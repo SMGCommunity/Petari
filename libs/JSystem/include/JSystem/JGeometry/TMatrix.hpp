@@ -365,7 +365,26 @@ namespace JGeometry {
             return (f64)rot.getRotate(rAxis);
         }
 
-        void getScale(TVec3f& rDest) const;
+        void getScale(TVec3f& rDest) const {
+            {
+                f32 y = this->mMtx[1][0];
+                f32 x = this->mMtx[0][0];
+                f32 z = this->mMtx[2][0];
+                rDest.x = TUtil< f32 >::sqrt(x * x + y * y + z * z);
+            }
+            {
+                f32 y = this->mMtx[1][1];
+                f32 x = this->mMtx[0][1];
+                f32 z = this->mMtx[2][1];
+                rDest.y = TUtil< f32 >::sqrt(x * x + y * y + z * z);
+            }
+            {
+                f32 y = this->mMtx[1][2];
+                f32 x = this->mMtx[0][2];
+                f32 z = this->mMtx[2][2];
+                rDest.z = TUtil< f32 >::sqrt(x * x + y * y + z * z);
+            }
+        }
         void setScale(const TVec3f& rSrc);
         void setScale(f32 x, f32 y, f32 z) NO_INLINE {
             this->mMtx[0][0] = x;
@@ -604,20 +623,24 @@ namespace JGeometry {
         }
 
         void setPositionFromLookAt(const TPosition3< T >& rLookAt) {
-            // FIXME: load order mixed
-            // https://decomp.me/scratch/YgGhi
             this->mMtx[0][0] = -rLookAt.get(0, 0);
             this->mMtx[1][1] = rLookAt.get(1, 1);
             this->mMtx[2][2] = -rLookAt.get(2, 2);
 
-            this->mMtx[1][0] = -rLookAt.get(0, 1);
+            f32 xy = -rLookAt.get(0, 1);
             this->mMtx[0][1] = rLookAt.get(1, 0);
+            this->mMtx[1][0] = xy;
 
-            this->mMtx[2][0] = -rLookAt.get(0, 2);
-            this->mMtx[0][2] = -rLookAt.get(2, 0);
+            f32 zx = rLookAt.get(2, 0);
+            f32 xz = rLookAt.get(0, 2);
+            zx = -zx;
+            xz = -xz;
+            this->mMtx[0][2] = zx;
+            this->mMtx[2][0] = xz;
 
-            this->mMtx[1][2] = -rLookAt.get(2, 1);
+            f32 zy = -rLookAt.get(2, 1);
             this->mMtx[2][1] = rLookAt.get(1, 2);
+            this->mMtx[1][2] = zy;
 
             TVec3f pos;
             rLookAt.getTrans(pos);

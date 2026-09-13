@@ -98,7 +98,13 @@ public:
 
     void initMember(u32);
 
-    XjointTransform* getJointTransform(u32);
+    XjointTransform* getJointTransform(u32 index) {
+        if (mTransformList == nullptr) {
+            return nullptr;
+        }
+
+        return &mTransformList[index];
+    }
 
     u8 _4;
     /* 0x5 */ u8 mTrackCount;

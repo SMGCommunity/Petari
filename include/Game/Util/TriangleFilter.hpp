@@ -46,6 +46,11 @@ public:
     /* 0x10 */ DelegateFilter mFunc;
 };
 
+class TriangleFilterDangerCode : public TriangleFilterFunc {
+public:
+    virtual bool isInvalidTriangle(const Triangle* pTriangle) const;
+};
+
 namespace MR {
     template < class T >
     static inline TriangleFilterDelegator< T >* createTriangleFilterDelegator(T* parent, bool (T::*filter)(const Triangle*)) {

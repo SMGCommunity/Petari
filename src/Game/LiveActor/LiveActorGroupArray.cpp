@@ -6,8 +6,23 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
+#include <algorithm>
 #include <cstdio>
 #include <cstring>
+
+namespace {
+    struct HasActor : std::binary_function< const MsgSharedGroup*, const LiveActor*, bool > {
+        bool operator()(const MsgSharedGroup* pGroup, const LiveActor* pActor) const {
+            return pGroup->hasActor(pActor);
+        }
+    };
+
+    struct HasGroupId : std::binary_function< const MsgSharedGroup*, JMapIdInfo, bool > {
+        bool operator()(const MsgSharedGroup* pGroup, const JMapIdInfo& rIdInfo) const {
+            return *pGroup->mIdInfo == rIdInfo;
+        }
+    };
+}  // namespace
 
 MsgSharedGroup::MsgSharedGroup(const char* pName, s32 numMax, const JMapInfoIter& rIter)
     : LiveActorGroup(mGroupName, numMax), mIdInfo(), mMsg(-1), mSensor(), mSensorName() {
@@ -68,14 +83,8 @@ LiveActorGroup* LiveActorGroupArray::createGroup(const JMapInfoIter& rIter, cons
     return pGroup;
 }
 
-LiveActorGroup* LiveActorGroupArray::findGroup(const LiveActor* pActor) const {
-    MsgSharedGroup* const* it;
-
-    for (it = mGroups.begin(); it != mGroups.end(); it++) {
-        if ((*it)->hasActor(pActor)) {
-            break;
-        }
-    }
+LiveActorGroup* LiveActorGroupArray::findGroup(const JMapInfoIter& rIter) const {
+    MsgSharedGroup* const* it = std::find_if(mGroups.begin(), mGroups.end(), std::bind2nd(HasGroupId(), MR::createJMapIdInfoFromGroupId(rIter)));
 
     if (it != mGroups.end()) {
         return *it;
@@ -84,15 +93,8 @@ LiveActorGroup* LiveActorGroupArray::findGroup(const LiveActor* pActor) const {
     return nullptr;
 }
 
-LiveActorGroup* LiveActorGroupArray::findGroup(const JMapInfoIter& rIter) const {
-    JMapIdInfo idInfo = MR::createJMapIdInfoFromGroupId(rIter);
-    MsgSharedGroup* const* it;
-
-    for (it = mGroups.begin(); it != mGroups.end(); it++) {
-        if (*(*it)->mIdInfo == idInfo) {
-            break;
-        }
-    }
+LiveActorGroup* LiveActorGroupArray::findGroup(const LiveActor* pActor) const {
+    MsgSharedGroup* const* it = std::find_if(mGroups.begin(), mGroups.end(), std::binder2nd< HasActor, const LiveActor* >(HasActor(), pActor));
 
     if (it != mGroups.end()) {
         return *it;

@@ -33,16 +33,16 @@ public:
     void receiveResourceForInitialize();
 
     /* 0x00 */ AudSystem* mAudSystem;
-    /* 0x04 */ JKRSolidHeap* _4;
-    /* 0x08 */ JKRHeap* _8;
+    /* 0x04 */ JKRSolidHeap* mSolidHeap;
+    /* 0x08 */ JKRHeap* mHeap;
     /* 0x0C */ void* mSmrRes;
     /* 0x10 */ JKRMemArchive* mJaiSeqRes;
-    /* 0x14 */ JKRMemArchive* mJaiCordRes;
+    /* 0x14 */ JKRMemArchive* mJaiChordRes;
     /* 0x18 */ JKRMemArchive* mJaiMeRes;
     /* 0x1C */ JKRMemArchive* mJaiRemixSeqRes;
     /* 0x20 */ JKRExpHeap* mSpkHeap;
     /* 0x24 */ JKRMemArchive* mSpkRes;
     /* 0x28 */ bool _28;
-    /* 0x29 */ bool _29;
-    /* 0x2A */ bool _2A;
+    /* 0x29 */ bool mIsResetDone;
+    /* 0x2A */ bool mDisableReset;
 };

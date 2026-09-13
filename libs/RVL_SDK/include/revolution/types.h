@@ -60,10 +60,8 @@ typedef int BOOL;
 #endif
 #endif
 
-// MetroTRK includes the Revolution SDK but it doesn't support the noinline attribute,
-// so we ignore it if we are dealing with MetroTRK but define it for everything else
 #if __MWERKS__
-#ifndef METRO_TRK
+#if !defined(METRO_TRK) && __MWERKS__ >= 0x3000
 #define ALWAYS_INLINE __attribute__((always_inline))
 #define NO_INLINE __attribute__((noinline))
 #else

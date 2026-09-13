@@ -1,13 +1,28 @@
 #include "Game/LiveActor/ShadowController.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ShadowDrawer.hpp"
+#include "Game/Map/HitInfo.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/GravityUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
-ShadowControllerHolder::ShadowControllerHolder() : NameObj("影管理"), _C(), _18(), _24(false) {
+namespace {
+    const s32 sCollisionCountLimit = 1;
+    const s32 sGravityCountLimit = 1;
+}  // namespace
+
+void ShadowController_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
+
+ShadowControllerHolder::ShadowControllerHolder() : NameObj("影管理"), _C(), _18(), _24() {
     mFarClip = 4000.0f;
     _C.init(0x500);
     _18.init(0x400);
@@ -17,6 +32,18 @@ ShadowControllerHolder::ShadowControllerHolder() : NameObj("影管理"), _C(), _
         _24 = true;
     }
 }
+
+ShadowController::ShadowController(LiveActor* pActor, const char* pName)
+    : mActor(pActor), mName(pName), mGroupName(""), mDrawer(), mProjectedSensor(), mCollisionPartsFilter(), _18(), _1C(), mDropPos(), mDropDir(),
+      mProjPos(), mProjNorm(), _30(0.0f, 0.0f, 0.0f), _3C(0.0f, -1.0f, 0.0f), _48(0.0f, 0.0f, 0.0f), _54(0.0f, 1.0f, 0.0f), _60(1), _61(), _62(),
+      _63(), _64(), _65(), _66(), _67(), mStartOffset(50.0f), mDropLength(), _70(), _71(1), _72(1) {
+    MR::createSceneObj(SceneObj_ShadowControllerHolder);
+    MR::addShadowController(this);
+}
+
+template MR::Vector< MR::AssignableArray< ShadowController* > >::Vector();
+template MR::Vector< MR::AssignableArray< ShadowController* > >::~Vector();
+template void MR::Vector< MR::AssignableArray< ShadowController* > >::push_back(ShadowController* const&);
 
 void ShadowControllerHolder::movement() {
     updateController();
@@ -115,6 +142,55 @@ void ShadowController::updateFarClipping(f32 clip) {
     _67 = cameraDistZ >= clip;
 }
 
+void ShadowController::updateDirection() {
+    if (isCalcGravity()) {
+        TVec3f position;
+        getDropPos(&position);
+        TVec3f previousDirection(_3C);
+        if (!isCalcShadowGravity() || !MR::calcDropShadowVectorOrZero(mActor, position, &_3C, nullptr, 0)) {
+            if (!MR::calcGravityVectorOrZero(mActor, position, &_3C, nullptr, 0)) {
+                _3C = previousDirection;
+            }
+        }
+
+        if (_61 == 2 || _61 == 5) {
+            _66++;
+        }
+    }
+}
+
+void ShadowController::updateProjection() {
+    if (isCalcCollision()) {
+        Triangle triangle;
+        TVec3f position;
+        getDropPos(&position);
+        TVec3f direction;
+        getDropDir(&direction);
+        position -= direction * mStartOffset;
+
+        switch (_62) {
+        case 0:
+            _63 = MR::getFirstPolyOnLineToMap(&_48, &triangle, position, direction * (mDropLength + mStartOffset), mCollisionPartsFilter, nullptr);
+            break;
+        case 1:
+            _63 = MR::getFirstPolyOnLineToWaterSurface(&_48, &triangle, position, direction * (mDropLength + mStartOffset), mCollisionPartsFilter,
+                                                       nullptr);
+            break;
+        }
+
+        if (_63) {
+            mProjectedSensor = triangle.getSensor();
+            _54.set< f32 >(*triangle.getNormal(0));
+        } else {
+            mProjectedSensor = nullptr;
+        }
+
+        if (_60 == 2) {
+            _65++;
+        }
+    }
+}
+
 ShadowDrawer* ShadowController::getShadowDrawer() {
     return mDrawer;
 }
@@ -168,6 +244,25 @@ void ShadowController::getProjectionNormal(TVec3f* pOut) const {
     }
 }
 
+f32 ShadowController::getProjectionLength() const {
+    if (!_63) {
+        return -1.0f;
+    }
+
+    TVec3f position;
+    getDropPos(&position);
+    TVec3f direction;
+    getDropDir(&direction);
+    TVec3f difference(_48);
+    difference -= position;
+    f32 length = direction.dot(difference);
+    if (length < 0.0f) {
+        return 0.0f;
+    }
+
+    return position.distance(_48);
+}
+
 bool ShadowController::isProjected() const {
     return _63 != 0;
 }
@@ -188,25 +283,34 @@ bool ShadowController::isDraw() const {
     return MR::isValidDraw(mActor);
 }
 
-/*
 bool ShadowController::isCalcCollision() const {
     if (!_60) {
         return false;
     }
 
     if (_60 == 2) {
-        return _65 >= 0;
+        return _65 < sCollisionCountLimit;
     }
 
     return true;
 }
-*/
 
-/*
-bool ShadowController::isCalcShadowGravity() const {
-    return (_61 + 0xFC) <= 1;
+bool ShadowController::isCalcGravity() const {
+    if (_61 == 0 || _61 == 3) {
+        return false;
+    }
+
+    if (_61 == 0 || _61 == 3) {
+        return _66 < sGravityCountLimit;
+    }
+
+    return true;
 }
-*/
+
+bool ShadowController::isCalcShadowGravity() const {
+    const u8 offset = static_cast< u8 >(-4);
+    return static_cast< u8 >(_61 + offset) <= 1;
+}
 
 void ShadowController::setGroupName(const char* pName) {
     mGroupName = pName;
@@ -215,6 +319,13 @@ void ShadowController::setGroupName(const char* pName) {
 void ShadowController::setDropPosPtr(const TVec3f* pDropPos) {
     mDropPos = pDropPos;
     _1C = 0;
+}
+
+void ShadowController::setDropPosMtxPtr(MtxPtr pMtx, const TVec3f& rOffset) {
+    _18 = pMtx;
+    mDropPos = nullptr;
+    _1C = pMtx;
+    _30.set< f32 >(rOffset);
 }
 
 void ShadowController::setDropPosFix(const TVec3f& rPos) {
@@ -228,8 +339,16 @@ void ShadowController::setDropDirPtr(const TVec3f* pDropDir) {
     _61 = 0;
 }
 
-void ShadowController::setDropDirFix(const TVec3f& a1) {
-    _3C.set< f32 >(a1);
+void ShadowController::setProjectionPtr(const TVec3f* pPosition, const TVec3f* pNormal) {
+    mProjPos = pPosition;
+    mProjNorm = pNormal;
+    _60 = 0;
+    _63 = 1;
+    mProjectedSensor = nullptr;
+}
+
+void ShadowController::setDropDirFix(const TVec3f& rDirection) {
+    _3C.set< f32 >(rDirection);
     mDropDir = 0;
     _61 = 0;
 }
@@ -250,10 +369,10 @@ void ShadowController::setDropTypeSurface() {
     _62 = 1;
 }
 
-void ShadowController::setProjectionFix(const TVec3f& a1, const TVec3f& a2, bool a3) {
-    _48.set< f32 >(a1);
-    _54.set< f32 >(a2);
-    _63 = a3;
+void ShadowController::setProjectionFix(const TVec3f& rPosition, const TVec3f& rNormal, bool projected) {
+    _48.set< f32 >(rPosition);
+    _54.set< f32 >(rNormal);
+    _63 = projected;
     mProjectedSensor = 0;
 }
 
@@ -339,6 +458,30 @@ void ShadowController::validate() {
 void ShadowController::invalidate() {
     _71 = 0;
 }
+
+namespace MR {
+    void addShadowController(ShadowController* pController) {
+        getSceneObj< ShadowControllerHolder >(SceneObj_ShadowControllerHolder)->_C.push_back(pController);
+    }
+
+    void requestCalcActorShadowAppear(LiveActor* pActor) {
+        if (!isInitializeStatePlacementSomething()) {
+            if (pActor->mShadowControllerList) {
+                pActor->mShadowControllerList->resetCalcCount();
+            }
+
+            requestCalcActorShadow(pActor);
+        }
+    }
+
+    void requestCalcActorShadow(LiveActor* pActor) {
+        if (pActor->mShadowControllerList) {
+            pActor->mShadowControllerList->requestCalc();
+        }
+    }
+}  // namespace MR
+
+template MR::AssignableArray< ShadowController* >::~AssignableArray();
 
 ShadowControllerHolder::~ShadowControllerHolder() {
 }

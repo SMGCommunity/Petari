@@ -19,6 +19,7 @@ namespace JGeometry {
             ps_neg xy, xy
             psq_st xy, 0(rDest), 0, 0
         }
+
         rDest[2] = -rSrc[2];
     }
 #else
@@ -52,6 +53,7 @@ namespace JGeometry {
                 ps_mul res, xy1, xy2
                 psq_st res, 0(dst), 0, 0
         }
+
         dst[2] = vec1[2] * vec2[2];
     }
 #else
@@ -107,17 +109,23 @@ namespace JGeometry {
         }
 
         void setMin(const TVec2< f32 >& min) {
-            if (x >= min.x)
+            if (x >= min.x) {
                 x = min.x;
-            if (y >= min.y)
+            }
+
+            if (y >= min.y) {
                 y = min.y;
+            }
         }
 
         void setMax(const TVec2< f32 >& max) {
-            if (x <= max.x)
+            if (x <= max.x) {
                 x = max.x;
-            if (y <= max.y)
+            }
+
+            if (y <= max.y) {
                 y = max.y;
+            }
         }
 
         inline bool isAbove(const TVec2< T >& other) const {
@@ -222,13 +230,27 @@ namespace JGeometry {
 
         f32 setLength(f32 newlength) {
             f32 oldlength = squared();
+
             if (oldlength <= JGeometry::TUtil< f32 >::epsilon()) {
                 return 0.0f;
             }
+
             f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(oldlength);
             scale(lengthinv * newlength);
             return lengthinv * oldlength;
         };
+
+        f32 normalize() {
+            f32 lengthSq = squared();
+
+            if (lengthSq <= JGeometry::TUtil< f32 >::epsilon()) {
+                return 0.0f;
+            }
+
+            f32 invLength = JGeometry::TUtil< f32 >::inv_sqrt(lengthSq);
+            scale(invLength);
+            return invLength * lengthSq;
+        }
 
         T x, y;
     };
@@ -278,7 +300,8 @@ namespace JGeometry {
             x = x;  // TODO: This shouldn't be here, but it's the only way to get a Ctor generated in OceanRingPipe.cpp
         }
 
-        TVec3(s16 x, s16 y, s16 z) {
+        template < typename J >
+        TVec3(J x, J y, J z) {
             set(x, y, z);
         }
 
@@ -368,6 +391,7 @@ namespace JGeometry {
         operator Vec*() {
             return (Vec*)&x;
         }
+
         operator const Vec*() const {
             return (Vec*)&x;
         }
@@ -653,6 +677,7 @@ namespace JGeometry {
 
         bool epsilonEquals(const TVec3< f32 >& a1, f32 a2) const {
             bool ret = false;
+
             if (JGeometry::TUtil< f32 >::epsilonEquals(x, a1.x, a2)) {
                 if (JGeometry::TUtil< f32 >::epsilonEquals(y, a1.y, a2)) {
                     if (JGeometry::TUtil< f32 >::epsilonEquals(z, a1.z, a2)) {
@@ -797,9 +822,11 @@ namespace JGeometry {
 
         f32 setLength(f32 newlength) {
             f32 oldlength = squared();
+
             if (oldlength <= JGeometry::TUtil< f32 >::epsilon()) {
                 return 0.0f;
             }
+
             f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(oldlength);
             scale(lengthinv * newlength);
             return lengthinv * oldlength;
@@ -807,10 +834,12 @@ namespace JGeometry {
 
         f32 setLength(const TVec3& rVec, f32 newlength) {
             f32 oldlength = rVec.squared();
+
             if (oldlength <= JGeometry::TUtil< f32 >::epsilon()) {
                 zero();
                 return 0.0f;
             }
+
             f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(oldlength);
             scale(lengthinv * newlength, rVec);
             return lengthinv * oldlength;
@@ -886,6 +915,7 @@ namespace JGeometry {
         operator Quaternion*() {
             return (Quaternion*)&x;
         }
+
         operator const Quaternion*() const {
             return (Quaternion*)&x;
         }
@@ -927,10 +957,12 @@ namespace JGeometry {
         /* General operations */
         void normalize() {
             f32 length = squared();
+
             if (length <= JGeometry::TUtil< f32 >::epsilon()) {
                 TVec4< T >::template set< T >(0.0f, 0.0f, 0.0f, 1.0f);
                 return;
             }
+
             f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(length);
             TVec4< T >::scale(lengthinv);
         }
@@ -957,9 +989,11 @@ namespace JGeometry {
         void setEuler(const TVec3< T >& rpy) {
             setEuler(rpy.x, rpy.y, rpy.z);
         }
+
         void setEulerDegree(T _x, T _y, T _z) {
             setEuler(_x * PI_180, _y * PI_180, _z * PI_180);
         }
+
         void setEulerX(T _x) {
             f32 s = sin(_x * 0.5f);
             f32 c = cos(_x * 0.5f);
@@ -968,6 +1002,7 @@ namespace JGeometry {
             this->z = 0.0f;
             this->w = c;
         }
+
         void setEulerY(T _y) {
             f32 s = sin(_y * 0.5f);
             f32 c = cos(_y * 0.5f);
@@ -976,6 +1011,7 @@ namespace JGeometry {
             this->z = 0.0f;
             this->w = c;
         }
+
         void setEulerZ(T _z) {
             f32 s = sin(_z * 0.5f);
             f32 c = cos(_z * 0.5f);
@@ -987,6 +1023,7 @@ namespace JGeometry {
 
         f32 getRotate(TVec3< T >& rAxis) {
             f32 length = toTvec()->squared();
+
             if (length <= JGeometry::TUtil< f32 >::epsilon()) {
                 rAxis.zero();
                 return 0.0f;
@@ -1000,6 +1037,7 @@ namespace JGeometry {
         void setRotate(const TVec3< f32 >& rA, const TVec3< f32 >& rB, f32 ratio) {
             TVec3< f32 > dir = rA.cross(rB);
             f32 crossPart = dir.length();
+
             if (crossPart <= JGeometry::TUtil< f32 >::epsilon()) {
                 set< f32 >(0.0f, 0.0f, 0.0f, 1.0f);
             } else {

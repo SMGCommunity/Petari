@@ -7,7 +7,9 @@ class SmallKameckBeamEventListener;
 
 class KameckTurtle : public LiveActor {
 public:
-    KameckTurtle(const char*);
+    /// @brief Creates a new `KameckTurtle`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    KameckTurtle(const char* pName);
 
     virtual void init(const JMapInfoIter&);
     virtual void makeActorAppeared();
@@ -25,9 +27,9 @@ public:
     bool isEnableAttack() const;
     void appearJetTurtle(bool);
 
-    /* 0x8C */ SmallKameckBeamEventListener* _8C;
+    /* 0x8C */ SmallKameckBeamEventListener* mEventListener;
     /* 0x90 */ JetTurtle* mTurtle;
-    /* 0x94 */ TQuat4f _94;
+    /* 0x94 */ TQuat4f mRotateQuat;
     /* 0xA4 */ TVec3f _A4;
     /* 0xB0 */ TVec3f _B0;
 };

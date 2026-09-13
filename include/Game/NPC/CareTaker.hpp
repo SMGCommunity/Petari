@@ -55,5 +55,4 @@ private:
     /* 0x170 */ s32 mObjArg4;
     /* 0x174 */ s32 mBodyColorFrame;
     /* 0x178 */ s32 mTidyTimeLimit;
-    /* 0x17C */ s32 _17C;
 };

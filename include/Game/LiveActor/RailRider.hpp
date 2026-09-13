@@ -47,16 +47,16 @@ public:
         return mEndPos;
     }
 
-    BezierRail* mBezierRail;  // 0x0
-    f32 mCoord;               // 0x4
-    f32 mSpeed;               // 0x8
-    bool mIsNotReverse;
-    u8 _D;
-    u8 _E;
-    u8 _F;
-    TVec3f mCurPos;        // 0x10
-    TVec3f mCurDirection;  // 0x1C
-    TVec3f mStartPos;      // 0x28
-    TVec3f mEndPos;        // 0x34
-    s32 mCurPoint;         // 0x40
+    /* 0x00 */ BezierRail* mBezierRail;
+    /* 0x04 */ f32 mCoord;
+    /* 0x08 */ f32 mSpeed;
+    /* 0x0C */ bool mIsNotReverse;
+    /* 0x0D */ u8 _D;
+    /* 0x0E */ u8 _E;
+    /* 0x0F */ u8 _F;
+    /* 0x10 */ TVec3f mCurPos;
+    /* 0x1C */ TVec3f mCurDirection;
+    /* 0x28 */ TVec3f mStartPos;
+    /* 0x34 */ TVec3f mEndPos;
+    /* 0x40 */ s32 mCurPoint;
 };

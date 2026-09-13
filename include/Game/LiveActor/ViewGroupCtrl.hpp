@@ -9,11 +9,11 @@ class JMapInfoIter;
 class LodCtrl;
 
 struct ViewGroupCtrlDataEntry {
-    bool _0;
-    bool _1;
-    bool _2;
-    bool _3;
-    bool _4;
+    /* 0x00 */ bool _0;
+    /* 0x01 */ bool _1;
+    /* 0x02 */ bool _2;
+    /* 0x03 */ bool _3;
+    /* 0x04 */ bool _4;
 };
 
 class ViewGroupCtrl {
@@ -27,9 +27,9 @@ public:
     void update();
     void startInitViewGroupTable();
 
-    AreaObjMgr* mViewCubeMgr;                // 0x0
-    s32 mMaxViewGroupId;                     // 0x4
-    ViewGroupCtrlDataEntry* mViewGroupData;  // 0x8
-    u32 mViewCtrlCount;                      // 0xC
-    LodCtrl** mLodCtrls;                     // 0x10
+    /* 0x00 */ AreaObjMgr* mViewCubeMgr;
+    /* 0x04 */ s32 mMaxViewGroupId;
+    /* 0x08 */ ViewGroupCtrlDataEntry* mViewGroupData;
+    /* 0x0C */ s32 mViewCtrlCount;
+    /* 0x10 */ LodCtrl** mLodCtrls;
 };

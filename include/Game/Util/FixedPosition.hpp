@@ -19,7 +19,11 @@ public:
     void copyTrans(TVec3f* pTrans) const {
         mMtx.getTrans(*pTrans);
     }
-    void copyRotate(TVec3f*) const;
+
+    void copyRotate(TVec3f* pRotate) const {
+        mMtx.getEuler(*pRotate);
+        *pRotate = *pRotate * _180_PI;
+    }
 
     /* 0x00 */ MtxPtr mBaseMtx;
     /* 0x04 */ TVec3f mLocalTrans;

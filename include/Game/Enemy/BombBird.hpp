@@ -20,15 +20,15 @@ class BombBird : public LiveActor {
 public:
     BombBird(const char*);
 
-    virtual ~BombBird();
-    virtual void init(const JMapInfoIter&);
-    virtual void makeActorDead();
-    virtual void startClipped();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool recieveOtherMsg(u32, HitSensor*, HitSensor*);
+    virtual ~BombBird() override;
+    virtual void init(const JMapInfoIter&) override;
+    virtual void makeActorDead() override;
+    virtual void startClipped() override;
+    virtual void control() override;
+    virtual void calcAndSetBaseMtx() override;
+    virtual void attackSensor(HitSensor*, HitSensor*) override;
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*) override;
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*) override;
 
     void exeFlyOnRail();
     void exeFlyOnRailSearch();
@@ -48,13 +48,13 @@ public:
     void exeBindStarPointer();
     void endBindStarPointer();
 
-    MR::FixedArray< BombBirdBomb*, 4 > mBombs;  // 0x8C
-    // BombBirdBomb* mBombs[4];  // 0x8C
-    TVec3f _9C;
-    u8 _A8;
-    s8 _A9;
-    FixedPosition* mFixedPos;                  // 0xAC
-    SpinHitController* mSpinHitController;     // 0xB0
-    AnimScaleController* mScaleController;     // 0xB4
-    WalkerStateBindStarPointer* mStarPointer;  // 0xB8
+    /* 0x8C */ MR::FixedArray< BombBirdBomb*, 3 > mBombs;
+    /* 0x98 */ BombBirdBomb* mHeldBomb;
+    /* 0x9C */ TVec3f mFront;
+    /* 0xA8 */ bool mSearchPlayer;
+    /* 0xA9 */ bool mHoldBomb;
+    /* 0xAC */ FixedPosition* mFixedPos;
+    /* 0xB0 */ SpinHitController* mSpinHitController;
+    /* 0xB4 */ AnimScaleController* mScaleController;
+    /* 0xB8 */ WalkerStateBindStarPointer* mStarPointer;
 };

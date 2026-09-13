@@ -186,7 +186,7 @@ void DemoDirector::startDemoRequested() {
 
     const DemoStartInfo& info = *mStartRequestHolder->getCurrentInfo();
 
-    startDemo(DemoStartRequestUtil::getDemoStarter(info), info.mDemoName, info._2C == nullptr, info._24);
+    startDemo(DemoStartRequestUtil::getDemoStarter(info), info.mDemoName, info.mFrameType == nullptr, info._24);
     DemoStartRequestUtil::popStartDemoRequest(mStartRequestHolder);
 }
 

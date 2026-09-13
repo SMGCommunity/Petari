@@ -3,19 +3,19 @@
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 class IKJoint;
-template < typename T >
-class JointControlDelegator;
+class JointController;
 class JointControllerInfo;
 class LiveActor;
 
 struct IKJointCtrlParam {
-    const char* mName;     // 0x0
-    f32 mNearLimitRate;    // 0x4
-    f32 mFarLimitRate;     // 0x8
-    f32 mEndDirMaxDegree;  // 0xC
-    f32 mEndLocalDirX;     // 0x10
-    f32 mEndLocalDirY;     // 0x14
-    f32 mEndLocalDirZ;     // 0x18
+    IKJointCtrlParam() : mName(""), mNearLimitRate(), mFarLimitRate(1.0f), mEndDirMaxDegree(45.0f), mEndLocalDir(0.0f, 1.0f, 0.0f) {
+    }
+
+    /* 0x00 */ const char* mName;
+    /* 0x04 */ f32 mNearLimitRate;
+    /* 0x08 */ f32 mFarLimitRate;
+    /* 0x0C */ f32 mEndDirMaxDegree;
+    /* 0x10 */ TVec3f mEndLocalDir;
 };
 
 class IKJointCtrl {
@@ -29,32 +29,36 @@ public:
     void setCallBackFunction();
     bool updateRootJointCallBack(TPos3f*, const JointControllerInfo&);
     bool updateMiddleJointCallBack(TPos3f*, const JointControllerInfo&);
+    bool updateEndJointCallBack(TPos3f*, const JointControllerInfo&);
 
-    void disableCallBack();
-    void enableCallBack();
+    void disableCallBack() {
+        _B6 = false;
+    }
 
-    const char* mName;  // 0x0
-    TMtx34f _4;
-    TMtx34f _34;
-    LiveActor* mActor;                                  // 0x64
-    IKJoint* mJoint;                                    // 0x68
-    JointControlDelegator< IKJointCtrl >* mRootCtrl;    // 0x6C
-    JointControlDelegator< IKJointCtrl >* mMiddleCtrl;  // 0x70
-    JointControlDelegator< IKJointCtrl >* mEndCtrl;     // 0x74
-    TVec3f _78;
-    TVec3f mEndLocalDir;  // 0x84
-    f32 _90;
-    f32 _94;
-    f32 _98;
-    f32 mNearLimitRate;    // 0x9C
-    f32 mFarLimitRate;     // 0xA0
-    f32 mEndDirMaxDegree;  // 0xA4
-    f32 _A8;
-    f32 _AC;
-    u16 _B0;
-    u16 _B2;
-    u16 _B4;
-    u8 _B6;
+    void enableCallBack() {
+        _B6 = true;
+    }
+
+    /* 0x00 */ const char* mName;
+    /* 0x04 */ TMtx34f _4;
+    /* 0x34 */ TMtx34f _34;
+    /* 0x64 */ LiveActor* mActor;
+    /* 0x68 */ IKJoint* mJoint;
+    /* 0x6C */ JointController* mRootCtrl;
+    /* 0x70 */ JointController* mMiddleCtrl;
+    /* 0x74 */ JointController* mEndCtrl;
+    /* 0x78 */ TVec3f _78;
+    /* 0x84 */ TVec3f mEndLocalDir;
+    /* 0x90 */ TVec3f _90;
+    /* 0x9C */ f32 mNearLimitRate;
+    /* 0xA0 */ f32 mFarLimitRate;
+    /* 0xA4 */ f32 mEndDirMaxDegree;
+    /* 0xA8 */ f32 _A8;
+    /* 0xAC */ f32 _AC;
+    /* 0xB0 */ u16 _B0;
+    /* 0xB2 */ u16 _B2;
+    /* 0xB4 */ u16 _B4;
+    /* 0xB6 */ u8 _B6;
 };
 
 class IKJointCtrlHolder {
@@ -67,17 +71,16 @@ public:
     void setEndDirection(const char*, const TVec3f&, f32);
 
     void startUpdate();
-
     void endUpdate();
     void endCtrlAll();
     void setCallBackFunction();
     IKJointCtrl* findIKJointCtrl(const char*);
 
-    IKJointCtrl** mControls;  // 0x0
-    s32 mNumControls;         // 0x4
-    s32 _8;
-    LiveActor* mActor;  // 0xC
-    u8 _10;
+    /* 0x00 */ IKJointCtrl** mControls;
+    /* 0x04 */ s32 mNumControls;
+    /* 0x08 */ s32 _8;
+    /* 0x0C */ LiveActor* mActor;
+    /* 0x10 */ u8 _10;
 };
 
 class ActorJoint {

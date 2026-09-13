@@ -32,16 +32,6 @@ namespace nw4r {
             EnableLinearFilter(true, true);
         }
 
-        void CharWriter::SetColorMapping(Color min, Color max) {
-            mColorMapping.min = min;
-            mColorMapping.max = max;
-        }
-
-        void CharWriter::SetTextColor(Color color) {
-            mTextColor.start = color;
-            UpdateVertexColor();
-        }
-
         void CharWriter::LoadTexture(const Glyph& glyph, GXTexMapID slot) {
             LoadingTexture loadInfo;
 

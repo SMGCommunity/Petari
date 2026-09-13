@@ -12,6 +12,7 @@ class DLchanger;
 class DrawAdaptor;
 class FixedPosition;
 class FootPrint;
+class FurMulti;
 class HashSortTable;
 class IceStep;
 class FireMarioBall;
@@ -787,7 +788,7 @@ public:
     /* 0x9D8 */ TVec3f _9D8;
     /* 0x9E4 */ ModelHolder* _9E4;
     /* 0x9E8 */ MarioParts* _9E8;
-    /* 0x9EC */ LiveActor* _9EC;
+    /* 0x9EC */ FurMulti* _9EC;
     /* 0x9F0 */ u8 _9F0;
     /* 0x9F1 */ u8 mBeeWallWalk;
     /* 0x9F2 */ u16 _9F2;

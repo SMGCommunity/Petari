@@ -15,6 +15,14 @@
 #include "Game/Util/StarPointerUtil.hpp"
 
 namespace {
+    static const f32 sFireRadius = 58.0f;
+    static const f32 sLife = 180;
+    static const f32 sInitVerticalSpeed = 15.0f;
+    static const f32 sInitHorizonSpeed = 15.0f;
+    static const f32 sGravityAccel = 0.5f;
+    static const f32 sFreqRate = 0.995f;
+    static const f32 sReboundRate = 0.4f;
+    static const s32 sSweepTime = 40;
     static Color8 sPointLightColor(0xFF, 0x64, 0, 0xFF);
 };  // namespace
 
@@ -23,12 +31,7 @@ namespace NrvBossKameckBeamFire {
     NEW_NERVE(KameckFireBallNrvSweep, KameckFireBall, Sweep);
 };  // namespace NrvBossKameckBeamFire
 
-KameckFireBall::KameckFireBall(const char* pName) : LiveActor(pName) {
-    _8C.x = 0.0f;
-    _8C.y = 0.0f;
-    _8C.z = 0.0f;
-    _8C.w = 1.0f;
-    mEventListener = nullptr;
+KameckFireBall::KameckFireBall(const char* pName) : LiveActor(pName), mRotateQuat(0.0f, 0.0f, 0.0f, 1.0f), mEventListener() {
 }
 
 void KameckFireBall::init(const JMapInfoIter& rIter) {
@@ -41,15 +44,15 @@ void KameckFireBall::init(const JMapInfoIter& rIter) {
     sensorOffs.x = 0.0f;
     sensorOffs.y = 0.0f;
     sensorOffs.z = 0.0f;
-    MR::addHitSensorEnemyAttack(this, "attack", 8, 58.0f, sensorOffs);
+    MR::addHitSensorEnemyAttack(this, "attack", 8, ::sFireRadius, sensorOffs);
     TVec3f pointerOffs;
     pointerOffs.x = 0.0f;
     pointerOffs.y = 0.0f;
     pointerOffs.z = 0.0f;
-    MR::initStarPointerTarget(this, 58.0f, pointerOffs);
-    initBinder(58.0f, 0.0f, 0);
+    MR::initStarPointerTarget(this, ::sFireRadius, pointerOffs);
+    initBinder(::sFireRadius, 0.0f, 0);
     MR::setKameckBeamCollisionFilter(this);
-    MR::initShadowVolumeSphere(this, 58.0f);
+    MR::initShadowVolumeSphere(this, ::sFireRadius);
     MR::onCalcShadow(this, nullptr);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
@@ -79,7 +82,7 @@ void KameckFireBall::control() {
 }
 
 void KameckFireBall::calcAndSetBaseMtx() {
-    MR::setBaseTRMtx(this, _8C);
+    MR::setBaseTRMtx(this, mRotateQuat);
     MR::setBaseScale(this, mScale);
 }
 
@@ -87,7 +90,7 @@ void KameckFireBall::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvBossKameckBeamFire::KameckFireBallNrvWait::sInstance)) {
         if (MR::isSensorEnemyAttack(pSender) && MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
             if (mEventListener != nullptr) {
-                mEventListener->hitBeam(2);
+                mEventListener->hitBeam(KameckBeam::BeamType_FireBall1);
             }
 
             kill();
@@ -121,7 +124,7 @@ void KameckFireBall::appearDirection(const TVec3f& rDirection) {
     appear();
     MR::onCalcGravity(this);
     MR::calcGravity(this);
-    mVelocity.set(rDirection * 15.0f + mGravity * 15.0f);
+    mVelocity.set(rDirection * ::sInitHorizonSpeed + mGravity * ::sInitVerticalSpeed);
 }
 
 void KameckFireBall::setEventListener(KameckBeamEventListener* pListener) {
@@ -134,11 +137,11 @@ void KameckFireBall::exeWait() {
     }
 
     MR::startLevelSound(this, "SE_BM_LV_KAMECK_FIRE_BALL");
-    MR::rotateQuatRollBall(&_8C, mVelocity, -mGravity, 58.0f);
-    MR::addVelocityToGravity(this, 0.5f);
-    MR::attenuateVelocity(this, 0.995f);
+    MR::rotateQuatRollBall(&mRotateQuat, mVelocity, -mGravity, ::sFireRadius);
+    MR::addVelocityToGravity(this, ::sGravityAccel);
+    MR::attenuateVelocity(this, ::sFreqRate);
 
-    if (MR::reboundVelocityFromCollision(this, 0.40f, 0.0f, 1.0f)) {
+    if (MR::reboundVelocityFromCollision(this, ::sReboundRate, 0.0f, 1.0f)) {
         if (mVelocity.dot(-mGravity) >= 1.0f) {
             MR::startSound(this, "SE_BM_KAMECK_FIRE_BOUND");
         }
@@ -146,10 +149,7 @@ void KameckFireBall::exeWait() {
 
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", 1, 0)) {
         kill();
-        return;
-    }
-
-    if (MR::isGreaterStep(this, 180) || MR::isInWater(mPosition)) {
+    } else if (MR::isGreaterStep(this, ::sLife) || MR::isInWater(mPosition)) {
         kill();
     }
 }
@@ -159,7 +159,7 @@ void KameckFireBall::exeSweep() {
         MR::hideModelAndOnCalcAnim(this);
     }
 
-    if (MR::isGreaterStep(this, 40)) {
+    if (MR::isGreaterStep(this, ::sSweepTime)) {
         kill();
     }
 }

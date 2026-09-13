@@ -3,9 +3,9 @@
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
 #include <cctype>
-// #include <cstdarg>
+#include <cstdarg>
 #include <cstdio>
-#include <va_list.h>
+#include <wstring.h>
 
 #define CENTISEC_PER_SEC 100
 #define SEC_PER_MIN 60
@@ -14,20 +14,23 @@
 #define FRAME_PER_MIN (FRAME_PER_SEC * SEC_PER_MIN)
 #define FRAME_PER_HOUR (FRAME_PER_SEC * SEC_PER_MIN * MIN_PER_HOUR)
 
-#ifdef __cplusplus
 extern "C" {
 int strcasecmp(const char*, const char*);
-// extern int vswprintf(wchar_t*, size_t, const wchar_t*, va_list);
-int wcsncpy(wchar_t*, const wchar_t*, size_t);
+int vswprintf(wchar_t*, size_t, const wchar_t*, va_list);
 };
-#endif
 
 namespace MR {
     struct Tag {
-        u16 _0;
-        u8 mDataSize;
-        u8 _3;
-        wchar_t mBuffer[1];
+        /* 0x00 */ u16 _0;
+        /* 0x02 */ u8 mDataSize;
+        /* 0x03 */ u8 _3;
+        /* 0x04 */ wchar_t mBuffer[1];
+    };
+
+    struct TagHeader {
+        /* 0x00 */ u8 mDataSize;
+        /* 0x01 */ u8 mGroup;
+        /* 0x02 */ u16 mTag;
     };
 
     void addFilePrefix(char* pDst, u32 size, const char* pChild, const char* pParent) {
@@ -156,33 +159,36 @@ namespace MR {
         return &pDst[1];
     }
 
-    /*
     wchar_t* addNumberFontTag(wchar_t* pDst, const wchar_t* pFmt, ...) {
+        *pDst++ = 0x1A;
+        TagHeader* pTag = reinterpret_cast< TagHeader* >(pDst);
+        pDst += sizeof(TagHeader) / sizeof(wchar_t);
+
         va_list args;
         va_start(args, pFmt);
 
-        Tag* pTag = reinterpret_cast< Tag* >(pDst);
+        int num = vswprintf(pDst, 256, pFmt, args);
+        va_end(args);
 
-        int num = vswprintf(pTag->mBuffer, 256, pFmt, args);
+        pDst += num;
+        pTag->mGroup = 10;
+        pTag->mTag = 0;
+        pTag->mDataSize = num * sizeof(wchar_t) + sizeof(TagHeader) + sizeof(wchar_t);
+        *pDst = '\0';
 
-        pTag->_0 = 26;
-        pTag->mDataSize = num * sizeof(wchar_t) + sizeof(Tag);
-        pTag->_3 = 10;
-        pTag->mBuffer[num] = '\0';
-
-        return pDst + num;
+        return pDst;
     }
-    */
 
-    // FIXME: Missing stack accesses.
     const char* getBasename(const char* pPath) {
         const char* pBasename = strrchr(pPath, '/');
 
         if (pBasename == nullptr) {
-            return pBasename;
+            pBasename = pPath;
+        } else {
+            pBasename++;
         }
 
-        return pBasename + 1;
+        return pBasename;
     }
 
     void extractString(char* pDst, const char* pSrc, u32 num, u32) {
@@ -278,9 +284,10 @@ namespace MR {
 
                 u16 dataSize = reinterpret_cast< const Tag* >(pMessage)->mDataSize;
 
-                // FIXME: r3-r4 used instead of r30-r31, and slwi used instead of clrrwi.
-                pMessage = (pMessage + dataSize) - 1;
-                length += (dataSize / sizeof(u16)) - 1;
+                pMessage += dataSize / sizeof(u16);
+                length += dataSize / sizeof(u16);
+                pMessage--;
+                length--;
             }
 
             pMessage++;

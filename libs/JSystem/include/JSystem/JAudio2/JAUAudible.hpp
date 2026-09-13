@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/JAudio2/JASHeapCtrl.hpp"
 #include <revolution/types.h>
 
 struct JAUAudibleParam {
@@ -88,4 +89,17 @@ struct JAUAudibleParam {
         };
         /* 0x0 */ u32 raw;
     };
+};
+
+// TODO: these are probably what AudAudible inherits from in AudioLib
+template < int SIZE >
+class JAUAudible : public JASPoolAllocObject< JAUAudible< SIZE > > {
+public:
+    JAUAudible(){};
+};
+
+template < int SIZE >
+class JAUDopplerAudible : public JASPoolAllocObject< JAUDopplerAudible< SIZE > > {
+public:
+    JAUDopplerAudible(){};
 };

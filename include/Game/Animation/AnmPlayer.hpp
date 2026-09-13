@@ -19,7 +19,9 @@ public:
     void start(const char*);
     void stop();
     bool isPlaying(const char*) const;
-    bool isStop() const;
+    bool isStop() const NO_INLINE {
+        return mAnmRes == nullptr || static_cast< s32 >(mFrameCtrl.checkState(1)) == 1 || mFrameCtrl.getRate() == 0.0f;
+    }
 
     /* 0x4 */ J3DAnmBase* mAnmRes;
     /* 0x8 */ const ResTable* mResTable;

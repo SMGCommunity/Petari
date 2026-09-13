@@ -1,8 +1,6 @@
 #include "JSystem/JMath/JMath.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 
-// -opt nocse matches this function...but why? is there another solution?
-// https://decomp.me/scratch/U3MdF
 void JMAEulerToQuat(s16 x, s16 y, s16 z, Quaternion* quat) {
     f32 cosX = JMASCos(x / 2);
     f32 cosY = JMASCos(y / 2);
@@ -38,6 +36,7 @@ void JMAQuatLerp(__REGISTER const Quaternion* p, __REGISTER const Quaternion* q,
     }
 #endif  // clang-format on
     f32 local_78 = dp;
+
     if (local_78 < 0.0) {
         int unused;
         dst->x = -t * (p->x + q->x) + p->x;

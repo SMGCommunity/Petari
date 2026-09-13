@@ -16,15 +16,28 @@ public:
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
 
-    CollisionParts* mBoxCollider;  // 0x8C
-    TMtx34f _90;
-    u32 _C0;
-    s32 mOpenCondition;  // 0xC4
-    u32 _C8;
-    u32 _CC;
-    TVec3f _D0;
-    TVec3f _DC;
-    u8 _E8;
-    s32 _EC;
-    s32 _F0;
+    void exeWait();
+    void exeOpen();
+    void exeItemBound();
+    void exeOpenWait();
+    void exeAlwaysOpen();
+    void initItem(const JMapInfoIter&);
+    void initItemTrans();
+    LiveActor* initYellowChip(const JMapInfoIter&);
+    LiveActor* initBlueChip(const JMapInfoIter&);
+    LiveActor* initKinokoOneUp(const JMapInfoIter&);
+    bool checkItemPos();
+    bool isHalfOpen() const;
+
+    /* 0x8C */ CollisionParts* mBoxCollider;
+    /* 0x90 */ TPos3f mTopMtx;
+    /* 0xC0 */ s32 mBoxType;
+    /* 0xC4 */ s32 mOpenCondition;
+    /* 0xC8 */ LiveActor* mItem;
+    /* 0xCC */ s32 mItemType;
+    /* 0xD0 */ TVec3f mItemVelocity;
+    /* 0xDC */ TVec3f mItemTargetPos;
+    /* 0xE8 */ bool mIsItemMoving;
+    /* 0xEC */ s32 mWaitForSwitchOn;
+    /* 0xF0 */ s32 mPowerStarId;
 };

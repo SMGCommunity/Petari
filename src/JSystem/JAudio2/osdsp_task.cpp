@@ -5,16 +5,20 @@
 extern DSPTaskInfo* __DSP_first_task;
 extern DSPTaskInfo* __DSP_curr_task;
 extern "C" void __DSP_exec_task(DSPTaskInfo*, DSPTaskInfo*);
-extern "C" void __DSP_remove_task(DSPTaskInfo* task);
+extern "C" void __DSP_remove_task(DSPTaskInfo* pTask);
 
-static void Dsp_Update_Request();
+void Dsp_Update_Request();
 
 static vu8 DspRunningStatus;
 static u8 lbl_806B75B9;
 
 DSPTaskInfo* DSP_prior_task;
 
-extern "C" void __DSPHandler(__OSInterrupt interrupt, OSContext* context) {
+void osdsp_task_FORCE_MATCH_RODATA(void* pTask) {
+    OSReport("GEN-REQ HALT (Task %x)\n", pTask);
+}
+
+extern "C" void __DSPHandler(__OSInterrupt interrupt, OSContext* pContext) {
     OSContext funcContext;
     __DSPRegs[5] = ((u16)(__DSPRegs[5]) & ~0x28) | 0x80;
     OSClearContext(&funcContext);
@@ -24,8 +28,9 @@ extern "C" void __DSPHandler(__OSInterrupt interrupt, OSContext* context) {
         __DSP_curr_task = DSP_prior_task;
     }
 
-    while (DSPCheckMailFromDSP() == 0)
-        ;
+    while (DSPCheckMailFromDSP() == 0) {
+    }
+
     u32 mail = DSPReadMailFromDSP();
 
     if ((__DSP_curr_task->flags & 2) && mail == 0xDCD10002) {
@@ -38,9 +43,11 @@ extern "C" void __DSPHandler(__OSInterrupt interrupt, OSContext* context) {
         if (__DSP_curr_task == DSP_prior_task) {
             DspRunningStatus = 1;
         }
+
         if (__DSP_curr_task->init_cb != NULL) {
             __DSP_curr_task->init_cb(__DSP_curr_task);
         }
+
         break;
     case 0xDCD10001:
         __DSP_curr_task->state = 1;
@@ -48,6 +55,7 @@ extern "C" void __DSPHandler(__OSInterrupt interrupt, OSContext* context) {
             DspRunningStatus = 1;
             Dsp_Update_Request();
         }
+
         if (__DSP_curr_task->res_cb != NULL) {
             __DSP_curr_task->res_cb(__DSP_curr_task);
         }
@@ -57,8 +65,9 @@ extern "C" void __DSPHandler(__OSInterrupt interrupt, OSContext* context) {
     case 0xDCD10002:
         OSReport("Yield Handler\n");
         DSPSendMailToDSP(0xCDD10001);
-        while (DSPCheckMailToDSP() != 0)
-            ;
+        while (DSPCheckMailToDSP() != 0) {
+        }
+
         __DSP_curr_task->state = 2;
         if (__DSP_curr_task->next == NULL && lbl_806B75B9) {
             __DSP_exec_task(__DSP_curr_task, DSP_prior_task);
@@ -68,15 +77,18 @@ extern "C" void __DSPHandler(__OSInterrupt interrupt, OSContext* context) {
             __DSP_exec_task(__DSP_curr_task, __DSP_curr_task->next);
             __DSP_curr_task = __DSP_curr_task->next;
         }
+
         break;
     case 0xDCD10003:
         OSReport("Done DSP Task  %x \n", __DSP_curr_task);
         if (__DSP_curr_task->done_cb != NULL) {
             __DSP_curr_task->done_cb(__DSP_curr_task);
         }
+
         DSPSendMailToDSP(0xCDD10001);
-        while (DSPCheckMailToDSP() != 0)
-            ;
+        while (DSPCheckMailToDSP() != 0) {
+        }
+
         __DSP_curr_task->state = 3;
         if (__DSP_curr_task->next == NULL) {
             __DSP_exec_task(NULL, DSP_prior_task);
@@ -87,17 +99,20 @@ extern "C" void __DSPHandler(__OSInterrupt interrupt, OSContext* context) {
             __DSP_curr_task = __DSP_curr_task->next;
             __DSP_remove_task(__DSP_curr_task->prev);
         }
+
         break;
     case 0xDCD10004:
         if (__DSP_curr_task->req_cb != NULL) {
             __DSP_curr_task->req_cb(__DSP_curr_task);
         }
+
         break;
     case 0xDCD10005:
         if (__DSP_first_task == NULL || lbl_806B75B9) {
             DSPSendMailToDSP(0xCDD10003);
-            while (DSPCheckMailToDSP() != 0)
-                ;
+            while (DSPCheckMailToDSP() != 0) {
+            }
+
             lbl_806B75B9 = 0;
             __DSP_curr_task = DSP_prior_task;
             Dsp_Update_Request();
@@ -105,17 +120,19 @@ extern "C" void __DSPHandler(__OSInterrupt interrupt, OSContext* context) {
             OSReport("Audio Yield Start\n");
             DspRunningStatus = 3;
             DSPSendMailToDSP(0xCDD10001);
-            while (DSPCheckMailToDSP() != 0)
-                ;
+            while (DSPCheckMailToDSP() != 0) {
+            }
+
             __DSP_exec_task(DSP_prior_task, __DSP_first_task);
             __DSP_curr_task = __DSP_first_task;
             OSReport("Audio Yield Finish\n");
         }
+
         break;
     }
 
     OSClearContext(&funcContext);
-    OSSetCurrentContext(context);
+    OSSetCurrentContext(pContext);
 }
 
 static u32 sync_stack[5];
@@ -129,6 +146,7 @@ void DsyncFrame2(u32 param_0, u32 param_1, u32 param_2) {
         sync_stack[2] = param_2;
         return;
     }
+
     DsyncFrame2ch(param_0, param_1, param_2);
     lbl_806B75B9 = 0;
 }
@@ -143,11 +161,12 @@ void DsyncFrame3(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param_4
         sync_stack[4] = param_4;
         return;
     }
+
     DsyncFrame4ch(param_0, param_1, param_2, param_3, param_4);
     lbl_806B75B9 = 0;
 }
 
-static void Dsp_Update_Request() {
+void Dsp_Update_Request() {
     switch (lbl_806B75B9) {
     case 0:
         break;

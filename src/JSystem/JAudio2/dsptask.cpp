@@ -1,11 +1,9 @@
 #include "JSystem/JAudio2/dsptask.hpp"
 #include "JSystem/JAudio2/osdsp.hpp"
 
-// NOTE: unfinished
-
-static void DspInitWork();
-static void DspHandShake(void* param_0);
-static int DspStartWork(u32 param_0, void (*param_1)(u16));
+void DspInitWork();
+void DspHandShake(void* pTask);
+int DspStartWork(u32 param_0, void (*pCallback)(u16));
 
 extern int Dsp_Running_Check();
 extern void Dsp_Running_Start();
@@ -14,10 +12,9 @@ void DspHandShake(void*) {
     OSReport("DSP InitCallback \n");
     while (DSPCheckMailFromDSP() == 0) {
     }
-    u32 result = DSPReadMailFromDSP();
-    OSReport("♪JDSP/Boot:: ＤＳＰからのファーストメール(%x)が届きました\n", result);
-    result = DSPCheckMailFromDSP();
-    OSReport("♪JDSP/Boot:: ＤＳＰからのセカンドメール(%x)が届きました\n", result);
+
+    OSReport("♪JDSP/Boot:: ＤＳＰからのファーストメール(%x)が届きました\n", DSPReadMailFromDSP());
+    OSReport("♪JDSP/Boot:: ＤＳＰからのセカンドメール(%x)が届きました\n", DSPCheckMailFromDSP());
 
     OSReport("♪JDSP/Boot:: ＤＳＰとの接続に成功しました\n");
     Dsp_Running_Start();
@@ -246,39 +243,44 @@ static u16 jdsp[] ATTRIBUTE_ALIGN(32) = {
     0x04f4, 0x0081, 0x0b00, 0x8900, 0x0f50, 0x0080, 0x0b00, 0x0083, 0x0d00, 0x0098, 0x47e0, 0x02bf, 0x00ff, 0x8900, 0x0f50, 0x0080, 0x0b00, 0x0083,
     0x0d60, 0x0098, 0x8001, 0x02bf, 0x00ff, 0x02df, 0x0000, 0x0000};
 
-static DSPTaskInfo audio_task ATTRIBUTE_ALIGN(32);
+static DSPTaskInfo audiotask ATTRIBUTE_ALIGN(32);
 
 static u16 AUDIO_YIELD_BUFFER[4096] ATTRIBUTE_ALIGN(32);
 
-void DspBoot(void (*param_0)(void*)) {
+void DspBoot(void (*pCallback)(void*)) {
     DspInitWork();
     OSReport("Dsp をブートします\n");
-    audio_task.priority = 0xf0;
-    audio_task.iram_mmem_addr = (u16*)((u8*)jdsp + 0x80000000);
-    audio_task.iram_length = sizeof(jdsp);
-    audio_task.iram_addr = 0;
-    audio_task.dram_mem_addr = (u16*)((u8*)AUDIO_YIELD_BUFFER + 0x80000000);
-    audio_task.dram_len = sizeof(AUDIO_YIELD_BUFFER);
-    audio_task.dram_addr = 0;
-    audio_task.dsp_vector = 0;
-    audio_task.dsp_res_vector = 0x10;
-    audio_task.init_cb = DspHandShake;
-    audio_task.res_cb = NULL;
-    audio_task.done_cb = NULL;
-    audio_task.req_cb = param_0;
+    audiotask.priority = 0xf0;
+    audiotask.iram_mmem_addr = (u16*)((u8*)jdsp + 0x80000000);
+    audiotask.iram_length = sizeof(jdsp);
+    audiotask.iram_addr = 0;
+    audiotask.dram_mem_addr = (u16*)((u8*)AUDIO_YIELD_BUFFER + 0x80000000);
+    audiotask.dram_len = sizeof(AUDIO_YIELD_BUFFER);
+    audiotask.dram_addr = 0;
+    audiotask.dsp_vector = 0;
+    audiotask.dsp_res_vector = 0x10;
+    audiotask.init_cb = DspHandShake;
+    audiotask.res_cb = NULL;
+    audiotask.done_cb = NULL;
+    audiotask.req_cb = pCallback;
     DSPInit();
-    DSPAddPriorTask(&audio_task);
+    DSPAddPriorTask(&audiotask);
     OSReport("Dspブートしました\n");
 }
 
-int DSPSendCommands2(u32* param_1, u32 param_2, void (*callBack)(u16)) {
+int DSPSendCommands2(u32* pMessages, u32 param_2, void (*pCallback)(u16)) {
     s32 i;
     BOOL interruptFlag;
     s32 startWorkStatus;
 
+    BOOL firstWarning = TRUE;
     while (Dsp_Running_Check() == 0) {
-        OSReport("Warning:まだブートしてません\n");
-    };
+        if (firstWarning) {
+            OSReport("Warning:まだブートしてません\n");
+        }
+
+        firstWarning = FALSE;
+    }
 
     interruptFlag = OSDisableInterrupts();
     if (DSPCheckMailToDSP()) {
@@ -289,21 +291,21 @@ int DSPSendCommands2(u32* param_1, u32 param_2, void (*callBack)(u16)) {
 
     DSPSendMailToDSP(param_2);
     DSPAssertInt();
-    while (DSPCheckMailToDSP() != 0)
-        ;
+    while (DSPCheckMailToDSP() != 0) {
+    }
 
     if (param_2 == 0) {
         param_2 = 1;
     }
 
-    if (callBack != NULL) {
-        startWorkStatus = DspStartWork(param_1[0], callBack);
+    if (pCallback != NULL) {
+        startWorkStatus = DspStartWork(pMessages[0], pCallback);
     }
 
     for (i = 0; i < param_2; i++) {
-        DSPSendMailToDSP(param_1[i]);
-        while (DSPCheckMailToDSP() != 0)
-            ;
+        DSPSendMailToDSP(pMessages[i]);
+        while (DSPCheckMailToDSP() != 0) {
+        }
     }
 
     OSRestoreInterrupts(interruptFlag);
@@ -311,14 +313,14 @@ int DSPSendCommands2(u32* param_1, u32 param_2, void (*callBack)(u16)) {
 }
 
 typedef struct {
-    u16 field_0x0;
-    u16 field_0x2;
-    void (*field_0x4)(u16);
+    /* 0x00 */ u16 field_0x0;
+    /* 0x02 */ u16 field_0x2;
+    /* 0x04 */ void (*field_0x4)(u16);
 } TaskWorkStruct;
 
 static TaskWorkStruct taskwork[16];
 
-static void DspInitWork() {
+void DspInitWork() {
     for (int i = 0; i < 16; i++) {
         taskwork[i].field_0x4 = NULL;
     }
@@ -328,7 +330,7 @@ static u32 taskreadp;
 
 static u32 taskwritep;
 
-static int DspStartWork(u32 param_0, void (*param_1)(u16)) {
+int DspStartWork(u32 param_0, void (*pCallback)(u16)) {
     u32 taskWritePrev = taskwritep;
     u32 writeVal = ((taskWritePrev + 1) & 0xf);
     if (writeVal == taskreadp) {
@@ -338,7 +340,7 @@ static int DspStartWork(u32 param_0, void (*param_1)(u16)) {
 
     taskwritep = writeVal;
     taskwork[taskWritePrev].field_0x0 = param_0 >> 0x10;
-    taskwork[taskWritePrev].field_0x4 = param_1;
+    taskwork[taskWritePrev].field_0x4 = pCallback;
     return taskWritePrev + 1;
 }
 

@@ -1,8 +1,10 @@
 #pragma once
 
-#include <revolution.h>
+#include "JSystem/JGeometry.hpp"
+#include <revolution/types.h>
 
 class JointController;
+struct JointControllerInfo;
 class JointCtrlRate;
 class LiveActor;
 
@@ -13,17 +15,15 @@ public:
     void init();
     void startCtrl(s32);
     void endCtrl(s32);
-    void update();
+    void update() NO_INLINE;
     void setCallBackFunction();
 
-    LiveActor* mHostActor;  // 0x0
-    f32 _4;
-    f32 _8;
-    f32 _C;
-    f32 _10;
-    f32 _14;
-    f32 _18;
-    f32 _1C;
-    JointController* mJointController;  // 0x20
-    JointCtrlRate* mJointCtrlRate;      // 0x24
+    bool updateJointMtxCallBack(TPos3f* pMtx, const JointControllerInfo& rInfo);
+
+    /* 0x00 */ LiveActor* mHostActor;
+    /* 0x04 */ f32 mDegreeMax;
+    /* 0x08 */ TVec3f _8;
+    /* 0x14 */ TVec3f _14;
+    /* 0x20 */ JointController* mJointController;
+    /* 0x24 */ JointCtrlRate* mJointCtrlRate;
 };

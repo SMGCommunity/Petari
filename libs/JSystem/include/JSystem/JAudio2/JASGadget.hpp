@@ -7,9 +7,9 @@ template < typename T >
 class JASPtrListAdaptor {
 public:
     // TEMP NO_INLINE
-    JASPtrListAdaptor(T* pData) NO_INLINE : mNext(nullptr), mData(pData) {};
+    JASPtrListAdaptor(T* pData) NO_INLINE : mNext(), mData(pData){};
 
-    ~JASPtrListAdaptor() {};
+    ~JASPtrListAdaptor(){};
 
     JASPtrListAdaptor< T >* getNext() const {
         return mNext;
@@ -26,7 +26,7 @@ public:
 template < typename T >
 class JASPtrList {
 public:
-    JASPtrList() : mList(nullptr) {};
+    JASPtrList() : mList(){};
 
     JASPtrList(JASPtrListAdaptor< T >* pAdapter) {
         mList = pAdapter;
@@ -36,7 +36,7 @@ public:
         return mList == nullptr;
     }
 
-    ~JASPtrList() {};
+    ~JASPtrList(){};
 
     JASPtrListAdaptor< T >* begin() const {
         return mList;
@@ -48,15 +48,15 @@ public:
 template < typename T >
 class JASPtrTable {
 public:
-    JASPtrTable(T** ptrTable, u32 len) {
-        mLen = len;
-        mPtrTable = ptrTable;
+    JASPtrTable(T** ptrTable, u32 len) : mPtrTable(ptrTable), mLen(len) {
         memset(mPtrTable, 0, len * sizeof(T*));
     }
 
     T* get(u32 idx) const {
-        if (idx >= mLen)
+        if (idx >= mLen) {
             return nullptr;
+        }
+
         return mPtrTable[idx];
     }
 

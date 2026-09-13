@@ -20,11 +20,11 @@ public:
     void updateModelTexMtx();
     f32 getDistance(const TVec3f&) const;
 
-    TVec3f _C;
-    TVec3f _18;
-    f32 _24;
-    TPos3f mViewMtx;      // 0x28
-    TPos3f mModelTexMtx;  // 0x58
+    /* 0x0C */ TVec3f _C;
+    /* 0x18 */ TVec3f _18;
+    /* 0x24 */ f32 _24;
+    /* 0x28 */ TPos3f mViewMtx;
+    /* 0x58 */ TPos3f mModelTexMtx;
 };
 
 namespace MR {

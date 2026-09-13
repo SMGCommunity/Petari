@@ -24,6 +24,10 @@ namespace nw4r {
                 return bottom - top;
             }
 
+            void SetHeight(f32 height) {
+                bottom = top + height;
+            }
+
             void MoveTo(f32 x, f32 y) {
                 right = x + GetWidth();
                 left = x;

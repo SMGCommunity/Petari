@@ -11,7 +11,7 @@ namespace NrvBegomanSpringHead {
     NEW_NERVE(HostTypeNrvHopWait, BegomanSpringHead, HopWait);
     NEW_NERVE(HostTypeNrvHopEnd, BegomanSpringHead, HopEnd);
     NEW_NERVE(HostTypeNrvHopJump, BegomanSpringHead, HopJump);
-};  // namespace NrvBegomanSpringHead
+}  // namespace NrvBegomanSpringHead
 
 void BegomanHead::calcAndSetBaseMtx() {
     PartsModel::calcAndSetBaseMtx();
@@ -19,15 +19,14 @@ void BegomanHead::calcAndSetBaseMtx() {
     MR::setBaseScale(this, scale);
 }
 
-BegomanSpringHead::BegomanSpringHead(LiveActor* pActor, MtxPtr pMtx)
-    : BegomanHead(pActor, "バネ頭", "BegomanSpringHead", pMtx, 10, false), _9C(nullptr) {
+BegomanSpringHead::BegomanSpringHead(LiveActor* pActor, MtxPtr pMtx) : BegomanHead(pActor, "バネ頭", "BegomanSpringHead", pMtx, 10, false) {
 }
 
 BegomanHead::~BegomanHead() {
 }
 
 void BegomanSpringHead::init(const JMapInfoIter& rIter) {
-    initNerve(&NrvBegomanSpringHead::HostTypeNrvWait::sInstance);
+    initNerve(GET_NERVE(BegomanSpringHead, HostTypeNrvWait));
     MR::initLightCtrl(this);
     initHitSensor(1);
     MR::addHitSensorAtJoint(this, "head", "SpringJoint5", ATYPE_MAP_OBJ_SIMPLE, 8, 100.0f, TVec3f(0.0f, 100.0f, 0.0f));
@@ -35,36 +34,37 @@ void BegomanSpringHead::init(const JMapInfoIter& rIter) {
 }
 
 bool BegomanSpringHead::isSpringHop() {
-    return !LiveActor::isNerve(&NrvBegomanSpringHead::HostTypeNrvWait::sInstance);
+    return !LiveActor::isNerve(GET_NERVE(BegomanSpringHead, HostTypeNrvWait));
 }
 
-void BegomanSpringHead::getHopEndBckFrameMax() {
-    MR::getBckFrameMax(this, "HopEnd");
+s16 BegomanSpringHead::getHopEndBckFrameMax() {
+    return MR::getBckFrameMax(this, "HopEnd");
 }
 
 void BegomanSpringHead::tryHopStart() {
-    if (!isNerve(&NrvBegomanSpringHead::HostTypeNrvHopStart::sInstance)) {
-        setNerve(&NrvBegomanSpringHead::HostTypeNrvHopStart::sInstance);
+    if (!isNerve(GET_NERVE(BegomanSpringHead, HostTypeNrvHopStart))) {
+        setNerve(GET_NERVE(BegomanSpringHead, HostTypeNrvHopStart));
     }
 }
 
 void BegomanSpringHead::tryHopEnd() {
-    if (isNerve(&NrvBegomanSpringHead::HostTypeNrvHopEnd::sInstance) || isNerve(&NrvBegomanSpringHead::HostTypeNrvWait::sInstance)) {
+    if (isNerve(GET_NERVE(BegomanSpringHead, HostTypeNrvHopEnd)) || isNerve(GET_NERVE(BegomanSpringHead, HostTypeNrvWait))) {
         return;
     }
-    setNerve(&NrvBegomanSpringHead::HostTypeNrvHopEnd::sInstance);
+
+    setNerve(GET_NERVE(BegomanSpringHead, HostTypeNrvHopEnd));
 }
 
 void BegomanSpringHead::tryHopJump() {
-    if (!isNerve(&NrvBegomanSpringHead::HostTypeNrvHopJump::sInstance)) {
-        setNerve(&NrvBegomanSpringHead::HostTypeNrvHopJump::sInstance);
+    if (!isNerve(GET_NERVE(BegomanSpringHead, HostTypeNrvHopJump))) {
+        setNerve(GET_NERVE(BegomanSpringHead, HostTypeNrvHopJump));
     }
 }
 
 void BegomanSpringHead::forceWaitImmediately() {
     MR::startBck(this, "Wait", nullptr);
     MR::startBrk(this, "Green");
-    setNerve(&NrvBegomanSpringHead::HostTypeNrvWait::sInstance);
+    setNerve(GET_NERVE(BegomanSpringHead, HostTypeNrvWait));
 }
 
 void BegomanSpringHead::exeWait() {
@@ -78,8 +78,9 @@ void BegomanSpringHead::exeHopStart() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "HopStart", nullptr);
         MR::startBrk(this, "OnAndOff");
-        MR::setNerveAtBckStopped(this, &NrvBegomanSpringHead::HostTypeNrvHopWait::sInstance);
     }
+
+    MR::setNerveAtBckStopped(this, GET_NERVE(BegomanSpringHead, HostTypeNrvHopWait));
 }
 
 void BegomanSpringHead::exeHopWait() {
@@ -93,8 +94,9 @@ void BegomanSpringHead::exeHopEnd() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_EM_BEGOMAN_CLOSE_SPRING");
     }
+
     MR::startBckAtFirstStep(this, "HopEnd");
-    MR::setNerveAtBckStopped(this, &NrvBegomanSpringHead::HostTypeNrvWait::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE(BegomanSpringHead, HostTypeNrvWait));
 }
 
 void BegomanSpringHead::exeHopJump() {
@@ -102,7 +104,8 @@ void BegomanSpringHead::exeHopJump() {
         MR::startBck(this, "HopJump", nullptr);
         MR::startBrk(this, "OnAndOff");
     }
-    MR::setNerveAtBckStopped(this, &NrvBegomanSpringHead::HostTypeNrvHopWait::sInstance);
+
+    MR::setNerveAtBckStopped(this, GET_NERVE(BegomanSpringHead, HostTypeNrvHopWait));
 }
 
 BegomanSpringHead::~BegomanSpringHead() {

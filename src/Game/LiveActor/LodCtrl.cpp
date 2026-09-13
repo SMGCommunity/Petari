@@ -11,37 +11,16 @@
 #include <cstdio>
 
 namespace {
-    void LodFuntionCall(LodCtrl* pCtrl, void (*pFunc)(LiveActor*)) NO_INLINE {
-        pFunc(pCtrl->mActor);
+    const f32 sDefaultDistanceToMiddle = 2000.0f;
+    const f32 sDefaultDistanceToLow = 3000.0f;
 
-        if (pCtrl->_10) {
-            pFunc(pCtrl->_10);
-        }
-
-        if (pCtrl->_14) {
-            pFunc(pCtrl->_14);
-        }
-    }
-
-    template < typename T >
-    void LodFuntionCall(LodCtrl* pCtrl, void (*pFunc)(LiveActor*, T), T arg) NO_INLINE {
-        pFunc(pCtrl->mActor, arg);
-
-        if (pCtrl->_10) {
-            pFunc(pCtrl->_10, arg);
-        }
-
-        if (pCtrl->_14) {
-            pFunc(pCtrl->_14, arg);
-        }
-    }
 };  // namespace
 
-const bool def = false;
+extern const bool def;
 
 LodCtrl::LodCtrl(LiveActor* pActor, const JMapInfoIter& rIter) {
-    _0 = 2000.0f;
-    _4 = 3000.0f;
+    _0 = sDefaultDistanceToMiddle;
+    _4 = sDefaultDistanceToLow;
     _8 = pActor;
     mActor = pActor;
     _10 = nullptr;
@@ -118,6 +97,46 @@ void LodCtrl::invalidate() {
     _18 = 0;
 }
 
+void LodCtrl::update() {
+    if (!MR::isDead(mActor) && _18) {
+        bool hasLod = _10 || _14;
+        if (!hasLod) {
+            if (*_28) {
+                hideAllModel();
+            } else {
+                showHighModel();
+            }
+
+            return;
+        }
+
+        f32 distance = calcDistanceToCamera();
+        f32 lowDistance = _4;
+        f32 middleDistance = _0;
+        if (*_28) {
+            hideAllModel();
+        } else if (*_1C) {
+            showHighModel();
+        } else if (_10 && *_20) {
+            showMiddleModel();
+        } else if (_14 && *_24) {
+            showLowModel();
+        } else if (distance < middleDistance) {
+            showHighModel();
+        } else if (!_10 && distance < lowDistance) {
+            showHighModel();
+        } else if (_10 && distance < lowDistance) {
+            showMiddleModel();
+        } else if (_14) {
+            showLowModel();
+        }
+
+        if (_8 && _8 != mActor) {
+            MR::copyTransRotateScale(mActor, _8);
+        }
+    }
+}
+
 bool LodCtrl::isShowLowModel() const {
     return _14 != nullptr && _14 == _8;
 }
@@ -142,6 +161,35 @@ void LodCtrl::setDistanceToMiddleAndLow(f32 mid_dist, f32 low_dist) {
     _0 = mid_dist;
     _4 = low_dist;
 }
+
+namespace {
+    void LodFuntionCall(LodCtrl* pCtrl, void (*pFunc)(LiveActor*)) NO_INLINE {
+        pFunc(pCtrl->mActor);
+
+        if (pCtrl->_10) {
+            pFunc(pCtrl->_10);
+        }
+
+        if (pCtrl->_14) {
+            pFunc(pCtrl->_14);
+        }
+    }
+
+    template < typename T >
+    void LodFuntionCall(LodCtrl* pCtrl, void (*pFunc)(LiveActor*, T), T arg) NO_INLINE {
+        pFunc(pCtrl->mActor, arg);
+
+        if (pCtrl->_10) {
+            pFunc(pCtrl->_10, arg);
+        }
+
+        if (pCtrl->_14) {
+            pFunc(pCtrl->_14, arg);
+        }
+    }
+
+    template void LodFuntionCall< f32 >(LodCtrl*, void (*)(LiveActor*, f32), f32);
+}  // namespace
 
 void LodCtrl::setClippingTypeSphereContainsModelBoundingBox(f32 bounds) {
     LodFuntionCall< f32 >(this, MR::setClippingTypeSphereContainsModelBoundingBox, bounds);
@@ -246,11 +294,11 @@ void LodCtrl::hideAllModel() {
     _8 = 0;
 }
 
-void LodCtrl::setViewCtrlPtr(const bool* a1, const bool* a2, const bool* a3, const bool* a4) {
-    _1C = a1;
-    _20 = a2;
-    _24 = a3;
-    _28 = a4;
+void LodCtrl::setViewCtrlPtr(const bool* pHigh, const bool* pMiddle, const bool* pLow, const bool* pHidden) {
+    _1C = pHigh;
+    _20 = pMiddle;
+    _24 = pLow;
+    _28 = pHidden;
 }
 
 void LodCtrl::createLodModel(int drawBufferType, int movementType, int calcAnimType) {
@@ -321,3 +369,9 @@ bool LodCtrlFunction::isExistLodLowModel(const char* pName) {
     snprintf(buf, sizeof(buf), "/ObjectData/%sLow.arc", pName);
     return MR::isFileExist(buf, false);
 }
+
+const char* LodCtrl_FORCE_MATCH_STRING() {
+    return "/ObjectData/%sMiddle.arc";
+}
+
+const bool def = false;

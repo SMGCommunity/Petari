@@ -19,7 +19,7 @@ public:
     void clear();
     const HitInfo* getPlane(int) const;
     u32 copyPlaneArrayAndSortingSensor(HitInfo**, u32);
-    static bool compSensor(HitInfo*, HitInfo*);
+    static bool compSensor(const HitInfo*, const HitInfo*);
     const TVec3f bind(const TVec3f&);
     void moveAlongHittedPlanes(TVec3f*, TVec3f*, TVec3f*, const TVec3f&, const TVec3f&, HitInfo*, u32, bool*);
     u32 findBindedPos(TVec3f*, TVec3f*, bool*, HitInfo*, u32, bool, bool);
@@ -60,11 +60,11 @@ public:
     /* 0x15C */ HitInfo mRoofInfo;
     /* 0x1E8 */ f32 _1E8;
     /* 0x1EC */ struct {
-        bool _0 : 1;
-        bool _1 : 1;
-        bool _2 : 1;
-        bool _3 : 1;
-        bool _4 : 1;
-        bool _5 : 1;
+        u8 _0 : 1;
+        u8 _1 : 1;
+        u8 _2 : 1;
+        u8 _3 : 1;
+        u8 _4 : 1;
+        u8 _5 : 1;
     } _1EC;
 };

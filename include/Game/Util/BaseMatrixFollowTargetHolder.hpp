@@ -20,11 +20,31 @@ public:
     const MtxPtr getHostBaseMtx() const;
     bool isValid(s32) const;
 
-    TMtx34f _0;
-    const TPos3f* _30;
-    LiveActor* mActor;                      // 0x34
-    const JMapLinkInfo* mLinkInfo;          // 0x38
-    BaseMatrixFollowValidater* mValidater;  // 0x3C
+    /* 0x00 */ TMtx34f _0;
+    /* 0x30 */ const TPos3f* _30;
+    /* 0x34 */ LiveActor* mActor;
+    /* 0x38 */ const JMapLinkInfo* mLinkInfo;
+    /* 0x3C */ BaseMatrixFollowValidater* mValidater;
+};
+
+class BaseMatrixFollower;
+
+class BaseMatrixFollowTargetHolder : public NameObj {
+public:
+    BaseMatrixFollowTargetHolder(const char*, s32, s32);
+
+    virtual ~BaseMatrixFollowTargetHolder();
+
+    virtual void initAfterPlacement();
+    virtual void movement();
+
+    void addFollower(BaseMatrixFollower* pFollower);
+    void setFollowTargetInfo(LiveActor* pActor, const JMapInfoIter& rIter, const TPos3f* pBaseMtx, BaseMatrixFollowValidater* pValidater) NO_INLINE;
+    BaseMatrixFollowTarget* findFollowTarget(const JMapLinkInfo* pLinkInfo);
+    BaseMatrixFollowTarget* findFollowTarget(const BaseMatrixFollower* pFollower);
+
+    /* 0x0C */ MR::Vector< MR::AssignableArray< BaseMatrixFollowTarget* > > mTargets;
+    /* 0x18 */ MR::Vector< MR::AssignableArray< BaseMatrixFollower* > > mFollowers;
 };
 
 class BaseMatrixFollower {
@@ -41,23 +61,10 @@ public:
     bool isEnableFollow() const;
     bool isValid() const;
 
-    JMapLinkInfo* mLinkInfo;                // 0x4
-    NameObj* mFollowerObj;                  // 0x8
-    BaseMatrixFollowTarget* mFollowTarget;  // 0xC
-    s32 mFollowID;                          // 0x10
-};
-
-class BaseMatrixFollowTargetHolder : public NameObj {
-public:
-    BaseMatrixFollowTargetHolder(const char*, s32, s32);
-
-    virtual ~BaseMatrixFollowTargetHolder();
-
-    virtual void initAfterPlacement();
-    virtual void movement();
-
-    MR::Vector< MR::AssignableArray< BaseMatrixFollower* > > mFollowers;    // 0xC
-    MR::Vector< MR::AssignableArray< BaseMatrixFollowTarget* > > mTargets;  // 0x18
+    /* 0x04 */ JMapLinkInfo* mLinkInfo;
+    /* 0x08 */ NameObj* mFollowerObj;
+    /* 0x0C */ BaseMatrixFollowTarget* mFollowTarget;
+    /* 0x10 */ s32 mFollowID;
 };
 
 namespace MR {

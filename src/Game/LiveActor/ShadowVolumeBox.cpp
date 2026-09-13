@@ -4,7 +4,7 @@
 #include "Game/LiveActor/ShadowDrawer.hpp"
 #include "Game/Util/CameraUtil.hpp"
 
-void FORCE_MATCH_SDATA2() {
+void ShadowVolumeBox_FORCE_MATCH_SDATA2() {
     f32 f1 = 0.0f;
     f32 f2 = 0.5f;
 }
@@ -29,15 +29,12 @@ void ShadowVolumeBox::loadModelDrawMtx() const {
 }
 
 void ShadowVolumeBox::makeVertexBuffer() const {
-    // FIXME: regswap and load swap
-    // https://decomp.me/scratch/MMjPY
+    MtxPtr mtx;
     ShadowController* controller = getController();
-    TPos3f* mtx = (TPos3f*)controller->_18;
-
-    // TODO/FIXME: why are these ctors for the get_Dir behavior?
-    TVec3f side(mtx->mMtx[0][0], mtx->mMtx[1][0], mtx->mMtx[2][0]);
-    TVec3f up(mtx->mMtx[0][1], mtx->mMtx[1][1], mtx->mMtx[2][1]);
-    TVec3f front(mtx->mMtx[0][2], mtx->mMtx[1][2], mtx->mMtx[2][2]);
+    mtx = controller->_18;
+    TVec3f side(mtx[0][0], mtx[1][0], mtx[2][0]);
+    TVec3f up(mtx[0][1], mtx[1][1], mtx[2][1]);
+    TVec3f front(mtx[0][2], mtx[1][2], mtx[2][2]);
 
     TVec3f pos, dir;
     calcBaseDropPosition(&pos);
@@ -49,10 +46,11 @@ void ShadowVolumeBox::makeVertexBuffer() const {
 
     TVec3f size = mSize;
     if (controller->isFollowHostScale()) {
-        // FIXME: some weirder TVec inline happening here
-        size *= controller->getHost()->mScale * 0.5f;
+        TVec3f scale(controller->getHost()->mScale);
+        scale /= 2.0f;
+        size *= scale;
     } else {
-        size.scale(0.5f);
+        size /= 2.0f;
     }
 
     side.scale(size.x);
@@ -78,6 +76,7 @@ void ShadowVolumeBox::makeVertexBuffer() const {
                 mPoints[12].set(mPoints[0]);
                 mPoints[13].set(mPoints[7] + dir);
             }
+
             mPoints[8].set(mPoints[4] + dir);
             mPoints[9].set(mPoints[5] + dir);
             mPoints[10].set(mPoints[2]);
@@ -90,11 +89,13 @@ void ShadowVolumeBox::makeVertexBuffer() const {
                 mPoints[12].set(mPoints[2]);
                 mPoints[13].set(mPoints[5] + dir);
             }
+
             mPoints[8].set(mPoints[0]);
             mPoints[9].set(mPoints[1]);
             mPoints[10].set(mPoints[6] + dir);
             mPoints[11].set(mPoints[7] + dir);
         }
+
         mPoints[0] += dir;
         mPoints[1] += dir;
         mPoints[2] += dir;
@@ -108,6 +109,7 @@ void ShadowVolumeBox::makeVertexBuffer() const {
                 mPoints[12].set(mPoints[4]);
                 mPoints[13].set(mPoints[3] + dir);
             }
+
             mPoints[8].set(mPoints[0] + dir);
             mPoints[9].set(mPoints[1] + dir);
             mPoints[10].set(mPoints[6]);
@@ -120,11 +122,13 @@ void ShadowVolumeBox::makeVertexBuffer() const {
                 mPoints[12].set(mPoints[6]);
                 mPoints[13].set(mPoints[1] + dir);
             }
+
             mPoints[8].set(mPoints[4]);
             mPoints[9].set(mPoints[5]);
             mPoints[10].set(mPoints[2] + dir);
             mPoints[11].set(mPoints[3] + dir);
         }
+
         mPoints[4] += dir;
         mPoints[5] += dir;
         mPoints[6] += dir;
@@ -150,6 +154,7 @@ void ShadowVolumeBox::drawShape() const {
         TDDraw::sendPoint(mPoints[0]);
         TDDraw::sendPoint(mPoints[1]);
     }
+
     GXEnd();
 
     GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, 8);
@@ -163,6 +168,7 @@ void ShadowVolumeBox::drawShape() const {
         TDDraw::sendPoint(mPoints[8]);
         TDDraw::sendPoint(mPoints[0]);
     }
+
     GXEnd();
 
     GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, 8);
@@ -176,5 +182,6 @@ void ShadowVolumeBox::drawShape() const {
         TDDraw::sendPoint(mPoints[3]);
         TDDraw::sendPoint(mPoints[1]);
     }
+
     GXEnd();
 }

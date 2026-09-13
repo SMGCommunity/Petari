@@ -60,6 +60,7 @@ namespace {
         void* kclRes;
         void* paRes = nullptr;
         kclRes = pResHolder->mFileInfoTable->getRes(kcl);
+
         if (pResHolder->mFileInfoTable->isExistRes(pa)) {
             paRes = pResHolder->mFileInfoTable->getRes(pa);
         }
@@ -110,6 +111,7 @@ namespace {
 
     void changeBckForEffectKeeper(const LiveActor* pActor) NO_INLINE {
         EffectKeeper* keeper = pActor->mEffectKeeper;
+
         if (keeper != nullptr) {
             keeper->changeBck();
         }
@@ -137,12 +139,14 @@ namespace {
     void callFuncAllGroupMember(const LiveActor* pActor, void (*pFunc)(LiveActor*)) NO_INLINE {
         LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
         LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(pActor);
+
         if (pGroup == nullptr) {
             return;
         }
 
         for (s32 i = 0; i < pGroup->getObjNum(); i++) {
             LiveActor* pMember = pGroup->getActor(i);
+
             if (pMember == pActor) {
                 continue;
             }
@@ -154,12 +158,14 @@ namespace {
     void callMethodAllGroupMember(const LiveActor* pActor, void (LiveActor::*pMethod)()) NO_INLINE {
         LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
         LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(pActor);
+
         if (pGroup == nullptr) {
             return;
         }
 
         for (s32 i = 0; i < pGroup->getObjNum(); i++) {
             LiveActor* pMember = pGroup->getActor(i);
+
             if (pMember == pActor) {
                 continue;
             }
@@ -176,12 +182,14 @@ namespace {
         LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
         LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(pActor);
         s32 count = 0;
+
         if (pGroup == nullptr) {
             return 0;
         }
 
         for (s32 i = 0; i < pGroup->getObjNum(); i++) {
             LiveActor* pMember = pGroup->getActor(i);
+
             if (pMember == pActor) {
                 continue;
             }
@@ -199,12 +207,14 @@ namespace {
         LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
         LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(pActor);
         s32 count = 0;
+
         if (pGroup == nullptr) {
             return 0;
         }
 
         for (s32 i = 0; i < pGroup->getObjNum(); i++) {
             LiveActor* pMember = pGroup->getActor(i);
+
             if (pMember == pActor) {
                 continue;
             }
@@ -246,6 +256,7 @@ namespace MR {
         const char* pCollisionName = "MoveLimit";
         MR::makeMtxTRS(mtx, pActor);
         CollisionParts* parts = ::createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::CollisionScaleType_Unk2, 3);
+
         if (parts != nullptr) {
             MR::validateCollisionParts(parts);
         }
@@ -268,6 +279,7 @@ namespace MR {
         const char* pCollisionName = "WaterSurface";
         MR::makeMtxTRS(mtx, pActor);
         CollisionParts* parts = ::createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::CollisionScaleType_Unk2, 2);
+
         if (parts != nullptr) {
             MR::validateCollisionParts(parts);
         }
@@ -290,6 +302,7 @@ namespace MR {
         const char* pCollisionName = "Sunshade";
         MR::makeMtxTRS(mtx, pActor);
         CollisionParts* parts = ::createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::CollisionScaleType_Unk2, 1);
+
         if (parts != nullptr) {
             MR::validateCollisionParts(parts);
         }
@@ -307,6 +320,7 @@ namespace MR {
 
     PartsModel* createBloomModel(LiveActor* pActor, MtxPtr pMtx) {
         PartsModel* parts = ::createSubModel(pActor, "Bloom", pMtx, 30);
+
         if (parts != nullptr) {
             MR::registerDemoSimpleCastAll(parts);
         }
@@ -335,6 +349,7 @@ namespace MR {
 
     bool isOnGround(const LiveActor* pActor) {
         Binder* binder = pActor->mBinder;
+
         if (binder == nullptr) {
             return false;
         }
@@ -349,8 +364,10 @@ namespace MR {
 
     bool isOnGroundCos(const LiveActor* pActor, f32 cos) {
         bool isGround = false;
+
         if (isOnGround(pActor)) {
             const TVec3f* normal = pActor->mBinder->mGroundInfo.mParentTriangle.getNormal(0);
+
             if (MR::isFloorPolygonCos(*normal, pActor->mGravity, cos)) {
                 isGround = true;
             }
@@ -361,6 +378,7 @@ namespace MR {
 
     bool isBindedGround(const LiveActor* pActor) {
         Binder* binder = pActor->mBinder;
+
         if (binder == nullptr) {
             return false;
         }
@@ -378,6 +396,7 @@ namespace MR {
 
     bool isBindedWall(const LiveActor* pActor) {
         Binder* binder = pActor->mBinder;
+
         if (binder == nullptr) {
             return false;
         }
@@ -395,8 +414,10 @@ namespace MR {
 
     bool isBindedWallOfMap(const LiveActor* pActor) {
         bool isMap = false;
+
         if (isBindedWall(pActor)) {
             const CollisionParts* parts = pActor->mBinder->mWallInfo.mParentTriangle.mParts;
+
             if (parts->mKeeperIndex == 0) {
                 isMap = true;
             }
@@ -407,8 +428,10 @@ namespace MR {
 
     bool isBindedWallOfMoveLimit(const LiveActor* pActor) {
         bool isMoveLimit = false;
+
         if (isBindedWall(pActor)) {
             const CollisionParts* parts = pActor->mBinder->mWallInfo.mParentTriangle.mParts;
+
             if (parts->mKeeperIndex == 3) {
                 isMoveLimit = true;
             }
@@ -429,6 +452,7 @@ namespace MR {
 
         if (isOnGround(pActor)) {
             const TVec3f* normal = pActor->mBinder->mGroundInfo.mParentTriangle.getNormal(0);
+
             if (!MR::isFloorPolygonCos(*normal, pActor->mGravity, cos)) {
                 if (pNormal != nullptr) {
                     const TVec3f* groundNormal = pActor->mBinder->mGroundInfo.mParentTriangle.getNormal(0);
@@ -495,6 +519,7 @@ namespace MR {
 
         TVec3f diff(roofPower);
         diff.sub(groundPower);
+
         if (0.0f < diff.dot(pActor->mGravity)) {
             return true;
         }
@@ -510,8 +535,10 @@ namespace MR {
 
         s32 planeNum = pActor->mBinder->mPlaneNum;
         s32 last = planeNum - 1;
+
         for (s32 i = 0; i < last; ++i) {
             const HitInfo* plane1 = pActor->mBinder->getPlane(i);
+
             if (!MR::isWallPolygon(*plane1->mParentTriangle.getFaceNormal(), pActor->mGravity)) {
                 continue;
             }
@@ -521,12 +548,14 @@ namespace MR {
 
             for (s32 j = i + 1; j < planeNum; ++j) {
                 const HitInfo* plane2 = pActor->mBinder->getPlane(j);
+
                 if (!MR::isWallPolygon(*plane2->mParentTriangle.getFaceNormal(), pActor->mGravity)) {
                     continue;
                 }
 
                 const TVec3f* normal2 = plane2->mParentTriangle.getFaceNormal();
                 const TVec3f* normal1 = plane1->mParentTriangle.getFaceNormal();
+
                 if (0.0f <= normal1->dot(*normal2)) {
                     continue;
                 }
@@ -965,6 +994,7 @@ namespace MR {
 
     bool tryStartAllAnim(const LiveActor* pActor, const char* pName) {
         bool started = false;
+
         if (startBckIfExist(pActor, pName)) {
             started = true;
         }
@@ -1200,6 +1230,7 @@ namespace MR {
         }
 
         s32 groupId;
+
         if (getJMapInfoGroupID(rIter, &groupId)) {
             LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
             return (MsgSharedGroup*)pGroupArray->entry(pActor, rIter, pName, maxCount);
@@ -1215,6 +1246,7 @@ namespace MR {
 
     LiveActor* getPairedGroupMember(const LiveActor* pActor) {
         LiveActorGroup* pGroup = getGroupFromArray(pActor);
+
         for (s32 i = 0; i < pGroup->getObjNum(); i++) {
             if (pGroup->getActor(i) != pActor) {
                 return pGroup->getActor(i);
@@ -1667,6 +1699,7 @@ namespace MR {
 
         for (u16 texIndex = 0; texIndex < pModelData->mMaterialTable.getTexture()->getNum(); texIndex++) {
             const char* name = pModelData->mMaterialTable.getTextureName()->getName(texIndex);
+
             if (strcmp(name, pTexName) != 0) {
                 continue;
             }
@@ -1714,6 +1747,7 @@ namespace MR {
 
             for (u16 matIndex = 0; matIndex < pModelData->mMaterialTable.getMaterialNum(); matIndex++) {
                 J3DMaterial* material = pModelData->mMaterialTable.getMaterialNodePointer(matIndex);
+
                 if (MR::isUseTex(material, texIndex)) {
                     pDLMaker->onCurFlag(matIndex, 0x4020000);
                 }
@@ -1770,6 +1804,7 @@ namespace MR {
         BckCtrlFunction::reflectBckCtrlData(rBck, pActor->mModelManager->mXanimePlayer);
 
         AudAnmSoundObject* pSoundObj = pActor->mSoundObject;
+
         if (pSoundObj != nullptr && pSoundObj->hasAnim()) {
             if (rBck.mRepeatFrame < 0) {
                 pSoundObj->setLoopFrame((f32)rBck.mStartFrame, (f32)rBck.mEndFrame);
@@ -2008,6 +2043,7 @@ namespace MR {
         }
 
         f32 dot = pActor->mVelocity.dot(*getGroundNormal(pActor));
+
         if (-dot > 0.0f) {
             return -dot;
         }
@@ -2021,6 +2057,7 @@ namespace MR {
         }
 
         f32 dot = pActor->mVelocity.dot(*getWallNormal(pActor));
+
         if (-dot > 0.0f) {
             return -dot;
         }
@@ -2228,6 +2265,7 @@ namespace MR {
     void calcGravityOrZero(LiveActor* pActor, const TVec3f& rPos) {
         TVec3f gravity;
         calcGravityVectorOrZero(pActor, rPos, &gravity, nullptr, 0);
+
         if (!isNearZero(gravity, 0.001f)) {
             pActor->mGravity.set(gravity);
             return;
@@ -2247,7 +2285,7 @@ namespace MR {
         initMultiFur(pActor, 3);
     }
 
-    LiveActor* initFurPlayer(LiveActor* pActor) {
+    FurMulti* initFurPlayer(LiveActor* pActor) {
         return initMultiFur(pActor, 0);
     }
 
@@ -2293,6 +2331,7 @@ namespace MR {
             const char* pKclName = "MoveLimit";
             snprintf(kcl, sizeof(kcl), "%s.kcl", pKclName);
         }
+
         if (!getResourceHolder(pActor)->mFileInfoTable->isExistRes(kcl)) {
             return nullptr;
         }
@@ -2316,6 +2355,7 @@ namespace MR {
             const char* pKclName = "WaterSurface";
             snprintf(kcl, sizeof(kcl), "%s.kcl", pKclName);
         }
+
         if (!getResourceHolder(pActor)->mFileInfoTable->isExistRes(kcl)) {
             return nullptr;
         }
@@ -2339,6 +2379,7 @@ namespace MR {
             const char* pKclName = "Sunshade";
             snprintf(kcl, sizeof(kcl), "%s.kcl", pKclName);
         }
+
         if (!getResourceHolder(pActor)->mFileInfoTable->isExistRes(kcl)) {
             return nullptr;
         }
@@ -2361,6 +2402,7 @@ namespace MR {
         CollisionParts* moveLimit = tryCreateCollisionMoveLimit(pActor, pSensor);
         CollisionParts* waterSurface = tryCreateCollisionWaterSurface(pActor, pSensor);
         CollisionParts* sunshade = tryCreateCollisionSunshade(pActor, pSensor);
+
         if (pMoveLimit != nullptr) {
             *pMoveLimit = moveLimit;
         }
@@ -2381,6 +2423,7 @@ namespace MR {
         CollisionParts* moveLimit = tryCreateCollisionMoveLimit(pActor, pMtx, pSensor);
         CollisionParts* waterSurface = tryCreateCollisionWaterSurface(pActor, pMtx, pSensor);
         CollisionParts* sunshade = tryCreateCollisionSunshade(pActor, pMtx, pSensor);
+
         if (pMoveLimit != nullptr) {
             *pMoveLimit = moveLimit;
         }
@@ -2453,6 +2496,7 @@ namespace MR {
 
     void onUpdateCollisionParts(LiveActor* pActor) {
         CollisionParts* pParts = pActor->mCollisionParts;
+
         if (!pParts->_CC) {
             validateCollisionParts(pActor);
         }
@@ -2462,6 +2506,7 @@ namespace MR {
 
     void onUpdateCollisionPartsOnetimeImmediately(LiveActor* pActor) {
         CollisionParts* pParts = pActor->mCollisionParts;
+
         if (!pParts->_CC) {
             validateCollisionParts(pActor);
         }
@@ -2475,6 +2520,7 @@ namespace MR {
 
     void offUpdateCollisionParts(LiveActor* pActor) {
         CollisionParts* pParts = pActor->mCollisionParts;
+
         if (!pParts->_CC) {
             validateCollisionParts(pActor);
         }
@@ -2484,6 +2530,7 @@ namespace MR {
 
     void resetAllCollisionMtx(LiveActor* pActor) {
         CollisionParts* pParts = pActor->mCollisionParts;
+
         if (pParts->_0 != nullptr) {
             pParts->resetAllMtx();
             return;

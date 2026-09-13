@@ -31,6 +31,9 @@ public:
     u32* getBase() {
         return (u32*)mSeqBuff;
     }
+    u32 getOffset() {
+        return (u32)mSeqCursor - (u32)mSeqBuff;
+    }
     u8* getAddr(u32 param_0) {
         return mSeqBuff + param_0;
     }

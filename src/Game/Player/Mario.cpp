@@ -2119,11 +2119,8 @@ void Mario::touchWater() {
     }
 }
 
-XjointTransform* XanimeCore::getJointTransform(u32 index) {
-    if (mTransformList == nullptr) {
-        return nullptr;
-    }
-    return &mTransformList[index];
+XjointTransform* (XanimeCore::* Mario_FORCE_MATCH_JOINT_TRANSFORM())(u32) {
+    return &XanimeCore::getJointTransform;
 }
 
 void MarioState::draw3D() const {

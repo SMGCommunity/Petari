@@ -25,21 +25,18 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
 
 namespace {
-    const char* cDemoNameDomeLecture1 = "ドームレクチャー１";
-    const char* cDemoNameDomeLecture2 = "ドームレクチャー２";
-    const char* cDemoNameButlerReport = "バトラー報告";
-    const char* cDemoNameStarPiece1 = "スターピース解説前半";
-    const char* cDemoNameStarPiece2 = "スターピース解説後半";
-    const char* cDemoNameGreenDriver = "バトラーグリーンドライバ説明";
-
-    const char* cMessageId[] = {
+    const char* const cDemoNameDomeLecture1 = "ドームレクチャー１";
+    const char* const cDemoNameDomeLecture2 = "ドームレクチャー２";
+    const char* const cDemoNameButlerReport = "バトラー報告";
+    const char* const cDemoNameStarPiece1 = "スターピース解説前半";
+    const char* const cDemoNameStarPiece2 = "スターピース解説後半";
+    const char* const cDemoNameGreenDriver = "バトラーグリーンドライバ説明";
+    const char* const cMessageId[] = {
         "AstroDome_Butler001", "AstroDome_Butler002",   "AstroDome_Butler003",   "AstroDome_Butler006",
         "AstroDome_Butler007", "AstroGalaxy_Butler005", "AstroGalaxy_Butler006",
     };
-
 };  // namespace
 
 namespace NrvButler {

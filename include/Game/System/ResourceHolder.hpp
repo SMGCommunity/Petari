@@ -63,6 +63,10 @@ public:
         return pResHolder->mBvaResTable->getResIndex(pName);
     }
 
+    const ResTable* getBvaResTable() const {
+        return mBvaResTable;
+    }
+
     const char* getModelName() const {
         return mModelResTable->getResName((u32)0);
     }

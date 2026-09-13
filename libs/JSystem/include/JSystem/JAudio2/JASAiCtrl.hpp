@@ -54,5 +54,5 @@ namespace JASDriver {
     extern void (*dacCallbackFunc)(s16*, u32);
     extern MixCallback extMixCallback;
     extern u32 sOutputRate;
-    extern u32 sSubFrameCounter;
+    extern volatile u32 sSubFrameCounter;
 };  // namespace JASDriver

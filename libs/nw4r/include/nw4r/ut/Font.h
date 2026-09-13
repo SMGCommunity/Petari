@@ -32,9 +32,11 @@ namespace nw4r {
         public:
             enum Type { TYPE_NULL, TYPE_ROM, TYPE_RESOURCE, TYPE_PAIR };
 
-            Font() : mReadFunc(&CharStrmReader::ReadNextCharCP1252) {}
+            Font() : mReadFunc(&CharStrmReader::ReadNextCharCP1252) {
+            }
 
-            virtual ~Font() {}
+            virtual ~Font() {
+            }
             virtual int GetWidth() const = 0;                                  // at 0xC
             virtual int GetHeight() const = 0;                                 // at 0x10
             virtual int GetAscent() const = 0;                                 // at 0x14
@@ -59,6 +61,7 @@ namespace nw4r {
             void InitReaderFunc(FontEncoding);
 
             const CharStrmReader GetCharStrmReader() const NO_INLINE {
+                NW4R_POINTER_ASSERT_AT(121, this);
                 CharStrmReader reader(mReadFunc);
                 return reader;
             }
