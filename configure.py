@@ -1380,7 +1380,7 @@ config.libs = [
             Object(Matching, "Game/LiveActor/ClippingDirector.cpp"),
             Object(NonMatching, "Game/LiveActor/ClippingGroupHolder.cpp"),
             Object(NonMatching, "Game/LiveActor/ClippingJudge.cpp"),
-            Object(NonMatching, "Game/LiveActor/DisplayListMaker.cpp"),
+            Object(Matching, "Game/LiveActor/DisplayListMaker.cpp"),
             Object(NonMatching, "Game/LiveActor/DynamicJointCtrl.cpp"),
             Object(NonMatching, "Game/LiveActor/EffectKeeper.cpp"),
             Object(NonMatching, "Game/LiveActor/FaceJointCtrl.cpp"),
