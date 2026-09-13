@@ -2,21 +2,12 @@
 
 #include "Game/Enemy/KameckBeam.hpp"
 
-class AnimScaleController;
-class WalkerStateBindStarPointer;
 class ActiveActorList;
-class Kameck;
+class AnimScaleController;
+class SmallKameckBeamEventListener;
+class WalkerStateBindStarPointer;
 
-class SmallKameckBeamEventListener : public KameckBeamEventListener {
-public:
-    SmallKameckBeamEventListener(Kameck* kameck) : mHost(kameck) {
-    }
-
-    virtual void hitBeam(s32);
-
-    Kameck* mHost;
-};
-
+/// @brief Magikoopa
 class Kameck : public LiveActor {
 public:
     Kameck(const char*);
@@ -66,7 +57,7 @@ public:
     bool requestPressDown();
     bool tryOpeningDemo();
     bool tryOpeningDemoEnd();
-    bool canNonActive() const;
+    bool canNonActive() const NO_INLINE;
     void setNonActive();
     bool tryActive();
     bool tryAppearEnd();
@@ -85,8 +76,8 @@ public:
     /* 0x90 */ ActiveActorList* mActiveActorList;
     /* 0x94 */ SmallKameckBeamEventListener* mBeamEventListener;
     /* 0x98 */ AnimScaleController* mAnimScaleController;
-    /* 0x9C */ WalkerStateBindStarPointer* mWalkerStateBindStarPointer;
-    /* 0xA0 */ TQuat4f _A0;
+    /* 0x9C */ WalkerStateBindStarPointer* mStateBindStarPointer;
+    /* 0xA0 */ TQuat4f mRotateQuat;
     /* 0xB0 */ TVec3f mFrontVec;
     /* 0xBC */ s32 mBeamType;
     /* 0xC0 */ s32 mMoveStep;
@@ -95,6 +86,19 @@ public:
     /* 0xCC */ f32 mActiveDistance;
 };
 
+class SmallKameckBeamEventListener : public KameckBeamEventListener {
+public:
+    SmallKameckBeamEventListener(Kameck* pHost) : mHost(pHost) {
+    }
+
+    virtual void hitBeam(s32 beamType) {
+        mHost->hitBeam(beamType);
+    }
+
+    /* 0x04 */ Kameck* mHost;
+};
+
 namespace MR {
     NameObj* createFireBallBeamKameck(const char*);
+    NameObj* createTurtleBeamKameck(const char*);
 };  // namespace MR

@@ -2,27 +2,9 @@
 
 #include "Game/Util/CollisionPartsFilter.hpp"
 
-class Kameck;
+class KameckBeamEventListener;
 class KameckTurtle;
 class KameckFireBall;
-
-class KameckBeamEventListener {
-public:
-    /// @brief Creates a new `KameckBeamEventListener`.
-    KameckBeamEventListener();
-
-    virtual void hitBeam(s32){};
-};
-
-class KameckBeamCollisionFilter : public CollisionPartsFilterBase {
-public:
-    KameckBeamCollisionFilter(const TVec3f*, f32);
-
-    virtual bool isInvalidParts(const CollisionParts*) const;
-
-    /* 0x4 */ const TVec3f* _4;
-    /* 0x8 */ f32 _8;
-};
 
 class KameckBeam : public LiveActor {
 public:
@@ -69,11 +51,29 @@ public:
     /* 0x8C */ KameckBeamEventListener* mEventListener;
     /* 0x90 */ KameckTurtle* mKameckTurtle;
     /* 0x94 */ KameckFireBall* mKameckFireBalls[3];
-    /* 0xA0 */ MtxPtr _A0;
+    /* 0xA0 */ MtxPtr mFollowMtx;
     /* 0xA4 */ TVec3f _A4;
     /* 0xB0 */ TVec3f mWandLocalPosition;
     /* 0xBC */ s32 mBeamKind;
     /* 0xC0 */ u8 _C0[4];
+};
+
+class KameckBeamEventListener {
+public:
+    /// @brief Creates a new `KameckBeamEventListener`.
+    KameckBeamEventListener();
+
+    virtual void hitBeam(s32){};
+};
+
+class KameckBeamCollisionFilter : public CollisionPartsFilterBase {
+public:
+    KameckBeamCollisionFilter(const TVec3f*, f32);
+
+    virtual bool isInvalidParts(const CollisionParts*) const;
+
+    /* 0x04 */ const TVec3f* _4;
+    /* 0x08 */ f32 _8;
 };
 
 namespace MR {

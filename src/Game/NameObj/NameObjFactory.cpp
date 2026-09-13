@@ -73,10 +73,6 @@ volatile const Nerve* cNerveInitKeep[] = {
     &NrvMorphItemObjNeo::MorphItemObjNeoNrvDemo::sInstance,
 };
 
-namespace MR {
-    NameObj* createTurtleBeamKameck(const char*);
-};  // namespace MR
-
 namespace {
     template < typename T >
     NameObj* createCenterOriginCube(const char* pName) {
