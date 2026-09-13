@@ -20,7 +20,7 @@ ChipGroup* ChipHolder::findChipGroup(s32 groupId) const {
     }
 
     for (s32 i = 0; i < mNumChipGroups; i++) {
-        if (mChipGroups[i]->_4C == groupId) {
+        if (mChipGroups[i]->mStageSwitchArg == groupId) {
             return mChipGroups[i];
         }
     }
