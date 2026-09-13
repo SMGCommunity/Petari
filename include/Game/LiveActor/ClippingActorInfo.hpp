@@ -18,6 +18,10 @@ public:
     void setTypeToSphere(f32, const TVec3f*);
     void setGroupClippingNo(const JMapInfoIter&);
 
+    void setFarClipLevel(s32 level) {
+        mFarClipLevel = level;
+    }
+
     LiveActor* mActor;  // 0x0
     const TVec3f* _4;
     f32 _8;
