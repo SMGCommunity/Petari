@@ -229,6 +229,20 @@ namespace MR {
         /// @param rItem The reference to the value to append.
         void push_back(const Item& rItem);
 
+        Item* insert(Item* pIter, const Item& rItem) {
+            for (Item* p = end(); p != pIter; p--) {
+                *p = *(p - 1);
+            }
+
+            *pIter = rItem;
+            mCount++;
+            return pIter;
+        }
+
+        void pop_back() {
+            mCount--;
+        }
+
         /// @brief Removes the value at the given position from the container.
         /// @param pIter The pointer to the position where the value should be removed.
         /// @return The pointer to the position of the removed value.

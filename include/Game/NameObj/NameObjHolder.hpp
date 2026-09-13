@@ -10,15 +10,15 @@ typedef void (NameObj::*NameObjMethodConst)(void) const;
 
 class NameObjHolder {
 public:
-    NameObjHolder(int);
+    NameObjHolder(int num);
 
-    void add(NameObj*);
+    void add(NameObj* pObj);
     void suspendAllObj();
     void resumeAllObj();
     void syncWithFlags();
-    void callMethodAllObj(NameObjMethod);
+    void callMethodAllObj(NameObjMethod pMethod);
     void clearArray();
-    NameObj* find(const char*);
+    NameObj* find(const char* pName);
 
 private:
     /* 0x00 */ MR::Vector< MR::AssignableArray< NameObj* > > mObjArray1;
