@@ -40,6 +40,14 @@
 #include <revolution/sc.h>
 #include <revolution/vi/vifuncs.h>
 
+static char sAudioResFile[] = "/AudioRes/SMR.szs";
+static char sJaiSeqArc[] = "/AudioRes/Seqs/JaiSeq.arc";
+static char sJaiChordArc[] = "/AudioRes/Seqs/JaiChord.arc";
+static char sJaiMeArc[] = "/AudioRes/Seqs/JaiMe.arc";
+static char sJaiRemixArc[] = "/AudioRes/Info/JaiRemixSeq.arc";
+static char sJaiAudioArc[] = "AudioRes/SMR.baa";
+static char sJaiSeqResArc[] = "/AudioRes/JaiSeq.arc";
+
 AudSystem* AudSystem::msBasic;
 
 AudSystem* AudNewAudSystem_(JAUSectionHeap* pHeap, JKRArchive* pChordArchive, JKRArchive* pMeArchive, JKRArchive* pRemixArchive, int maxChannels) {
@@ -90,9 +98,9 @@ AudSystem* AudNewAudSystem(JKRSolidHeap* pHeap, void* pV, JKRArchive* pSeqArchiv
     newHeap->getHeap()->becomeCurrentHeap();
 
     if (pV == nullptr) {
-        if (DVDConvertPathToEntrynum("/AudioRes/SMR.szs") >= 0) {
+        if (DVDConvertPathToEntrynum(sAudioResFile) >= 0) {
             JAUAudioArcLoader loader(newHeap);
-            loader.load("/AudioRes/SMR.szs");
+            loader.load(sAudioResFile);
             newHeap->getHeap()->freeTail();
         }
     } else {
@@ -103,9 +111,8 @@ AudSystem* AudNewAudSystem(JKRSolidHeap* pHeap, void* pV, JKRArchive* pSeqArchiv
 
     u32 maxSeqDataSize;
     if (pSeqArchive == nullptr) {
-        if (DVDConvertPathToEntrynum("/AudioRes/Seqs/JaiSeq.arc") >= 0) {
-            JKRArchive* seqArc =
-                JKRArchive::mount("/AudioRes/Seqs/JaiSeq.arc", JKRArchive::MOUNT_MODE_DVD, newHeap->getHeap(), JKRArchive::MOUNT_DIRECTION_1);
+        if (DVDConvertPathToEntrynum(sJaiSeqArc) >= 0) {
+            JKRArchive* seqArc = JKRArchive::mount(sJaiSeqArc, JKRArchive::MOUNT_MODE_DVD, newHeap->getHeap(), JKRArchive::MOUNT_DIRECTION_1);
             newHeap->setSeqDataArchive(seqArc);
             maxSeqDataSize = AudParams::maxSeqDataSize;
         } else {

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/Util/SingletonHolder.hpp"
 #include <revolution/types.h>
 
 class SpkTable;
@@ -10,7 +11,7 @@ struct CSSoundNameHashData {
     /* 0x08 */ s32 mHash;
 };
 
-class CSSoundNameConverter {
+class CSSoundNameConverter : public AudSingletonHolder< CSSoundNameConverter > {
 public:
     /// @brief Creates a new `CSSoundNameConverter`.
     CSSoundNameConverter();
