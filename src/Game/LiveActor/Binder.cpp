@@ -268,26 +268,6 @@ u32 Binder::storeCurrentHitInfo(HitInfo* pPlanes, u32 capacity, bool stopAtFirst
     return count;
 }
 
-HitInfo& HitInfo::operator=(const HitInfo& rOther) {
-    mParentTriangle.mParts = rOther.mParentTriangle.mParts;
-    mParentTriangle.mIdx = rOther.mParentTriangle.mIdx;
-    mParentTriangle.mSensor = rOther.mParentTriangle.mSensor;
-    mParentTriangle.mNormals[0] = rOther.mParentTriangle.mNormals[0];
-    mParentTriangle.mNormals[1] = rOther.mParentTriangle.mNormals[1];
-    mParentTriangle.mNormals[2] = rOther.mParentTriangle.mNormals[2];
-    mParentTriangle.mNormals[3] = rOther.mParentTriangle.mNormals[3];
-    mParentTriangle.mPos[0] = rOther.mParentTriangle.mPos[0];
-    mParentTriangle.mPos[1] = rOther.mParentTriangle.mPos[1];
-    mParentTriangle.mPos[2] = rOther.mParentTriangle.mPos[2];
-    _60 = rOther._60;
-    mHitPos = rOther.mHitPos;
-    _70 = rOther._70;
-    _7C = rOther._7C;
-    _88 = rOther._88;
-
-    return *this;
-}
-
 void Binder::obtainMomentFixReaction(HitInfo* pPlanes, u32 capacity, TVec3f* pReaction, u32 start) {
     TVec3f positive(0, 0, 0);
     TVec3f negative(0, 0, 0);

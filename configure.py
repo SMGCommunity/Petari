@@ -2489,7 +2489,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/LightUtil.cpp"),
             Object(NonMatching, "Game/Util/LiveActorUtil.cpp"),
             Object(NonMatching, "Game/Util/MapPartsUtil.cpp"),
-            Object(NonMatching, "Game/Util/MapUtil.cpp"),
+            Object(Matching, "Game/Util/MapUtil.cpp"),
             Object(NonMatching, "Game/Util/MathUtil.cpp"),
             Object(NonMatching, "Game/Util/MemoryUtil.cpp"),
             Object(NonMatching, "Game/Util/MessageUtil.cpp"),
