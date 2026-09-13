@@ -422,9 +422,11 @@ void CollisionParts::calcCollidePosition(TVec3f* pPos, const KC_PrismData& rPris
     TVec3f normal;
 
     switch (classification) {
+    // face, project into the triangle's plane
     case 1:
         projectToPlane(pPos, *pPos, mServer->getPos(&rPrism, 0), *mServer->getNormal(rPrism.mNormalIndex));
         break;
+    // edge 0, between verts 0-2
     case 2:
         projectToPlane(pPos, *pPos, mServer->getPos(&rPrism, 0), *mServer->getNormal(rPrism.mNormalIndex));
         normal.set(*mServer->getNormal(rPrism.mEdgeIndices[0]));
@@ -432,6 +434,7 @@ void CollisionParts::calcCollidePosition(TVec3f* pPos, const KC_PrismData& rPris
         offset -= mServer->getPos(&rPrism, 0);
         *pPos += -normal * offset.dot(normal);
         break;
+    // edge 1, between verts 0-1
     case 3:
         projectToPlane(pPos, *pPos, mServer->getPos(&rPrism, 0), *mServer->getNormal(rPrism.mNormalIndex));
         normal.set(*mServer->getNormal(rPrism.mEdgeIndices[1]));
@@ -439,6 +442,7 @@ void CollisionParts::calcCollidePosition(TVec3f* pPos, const KC_PrismData& rPris
         offset -= mServer->getPos(&rPrism, 0);
         *pPos += -normal * offset.dot(normal);
         break;
+    // edge 2, between verts 1-2
     case 4:
         projectToPlane(pPos, *pPos, mServer->getPos(&rPrism, 0), *mServer->getNormal(rPrism.mNormalIndex));
         normal.set(*mServer->getNormal(rPrism.mEdgeIndices[2]));
@@ -446,12 +450,15 @@ void CollisionParts::calcCollidePosition(TVec3f* pPos, const KC_PrismData& rPris
         offset -= mServer->getPos(&rPrism, 1);
         *pPos += -normal * offset.dot(normal);
         break;
+    // vertex 0
     case 5:
         pPos->set(mServer->getPos(&rPrism, 0));
         break;
+    // vertex 1
     case 6:
         pPos->set(mServer->getPos(&rPrism, 1));
         break;
+    // vertex 2
     case 7:
         pPos->set(mServer->getPos(&rPrism, 2));
         break;
