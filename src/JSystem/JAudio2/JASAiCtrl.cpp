@@ -103,7 +103,7 @@ const JASDriver::MixFunc JASDriver::sMixFuncs[4] = {
     mixInterleaveTrack,
 };
 
-u32 JASDriver::sSubFrameCounter;
+volatile u32 JASDriver::sSubFrameCounter;
 
 void JASDriver::updateDac() {
     static u32 dacp = 0;

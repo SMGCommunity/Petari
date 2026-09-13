@@ -10,7 +10,6 @@ JASBasicInst::JASBasicInst() : mVolume(1.0f), mPitch(1.0f), mEffects(nullptr), m
 
 JASBasicInst::~JASBasicInst() {
     delete[] mKeymap;
-    // delete mEffects;
 }
 
 bool JASBasicInst::getParam(int pitch, int velocity, JASInstParam* pParams) const {

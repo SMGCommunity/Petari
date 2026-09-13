@@ -11,9 +11,9 @@ class ViewGroupCtrl;
 
 class ClippingActorHolder : public NameObj {
 public:
+    /// @brief Creates a new `ClippingActorHolder`.
     ClippingActorHolder();
 
-    virtual ~ClippingActorHolder();
     virtual void movement() override;
 
     void registerActor(LiveActor*);
@@ -29,7 +29,7 @@ public:
     void setFarClipLevel(LiveActor*, s32);
     ClippingActorInfo* find(const LiveActor*) const;
 
-    /* 0x0C */ u32 _C;
+    /* 0x0C */ s32 mActorNum;
     /* 0x10 */ ClippingActorInfoList* _10;
     /* 0x14 */ ClippingActorInfoList* _14;
     /* 0x18 */ ClippingActorInfoList* _18;

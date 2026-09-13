@@ -42,7 +42,7 @@ public:
     virtual bool execNoteOnMidi(JASTrack*, u32, u32, u32);
     virtual void execNoteOff(JASTrack*, u32);
 
-    void noteOnProcess(u32, u32, u32, u32) NO_INLINE;  // FIXME
+    void noteOnProcess(u32, u32, u32, u32);
     void noteOffProcess(u32);
 
     bool checkNoteOn(u32, u32&, u32&, u32&, s64&, bool);

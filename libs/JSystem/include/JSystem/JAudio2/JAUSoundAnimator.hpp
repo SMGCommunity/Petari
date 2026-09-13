@@ -32,6 +32,9 @@ public:
     bool setsLifeTime() const {
         return (mFlags & 0x40) != 0;  // 0x40
     }
+    bool setsLifeTime2() const {
+        return (mFlags >> 6) & 1;  // 0x40
+    }
     bool playsAtIntervals() const {
         return (mFlags & 0x80) != 0;  // 0x80
     }

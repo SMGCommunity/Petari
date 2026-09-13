@@ -1,17 +1,21 @@
 #include "Game/Enemy/KameckHolder.hpp"
 #include "Game/Enemy/Kameck.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
-KameckHolder::KameckHolder(s32 max) : DeriveActorGroup< Kameck >("カメック管理", max) {
+KameckHolder::KameckHolder(s32 numMax) : DeriveActorGroup< Kameck >("カメック管理", numMax) {
 }
 
 void KameckHolder::startDemoAppear() {
     for (s32 i = 0; i < getObjNum(); i++) {
         Kameck* pActor = getMember(i);
-        if (MR::isDead(pActor)) {
-            pActor->startDemoAppear();
-            MR::requestMovementOn(pActor);
+
+        if (!MR::isDead(pActor)) {
+            continue;
         }
+
+        pActor->startDemoAppear();
+        MR::requestMovementOn(pActor);
     }
 }
 
@@ -24,8 +28,11 @@ void KameckHolder::endDemoAppear() {
 void KameckHolder::deadForceAll() {
     for (s32 i = 0; i < getObjNum(); i++) {
         Kameck* pActor = getMember(i);
-        if (!MR::isDead(pActor)) {
-            pActor->makeActorDeadForce();
+
+        if (MR::isDead(pActor)) {
+            continue;
         }
+
+        pActor->makeActorDeadForce();
     }
 }

@@ -47,8 +47,7 @@ s32 JASAudioReseter::calc() {
             }
         }
         if (mThreadStopFlag != false) {
-            JASAudioThread* pAudioThread = JASGlobalInstance< JASAudioThread >::getInstance();
-            pAudioThread->stop();
+            JASAudioThread::getInstance()->stop();
         }
         mDoneFlag = 1;
         return -1;
