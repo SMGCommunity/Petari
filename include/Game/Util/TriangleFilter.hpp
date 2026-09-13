@@ -46,7 +46,7 @@ public:
     /* 0x10 */ DelegateFilter mFunc;
 };
 
-class TriangleFilterDangerCode : public TriangleFilterFunc {
+class TriangleFilterDangerCode : public TriangleFilterBase {
 public:
     virtual bool isInvalidTriangle(const Triangle* pTriangle) const;
 };

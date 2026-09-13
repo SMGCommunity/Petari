@@ -9398,7 +9398,7 @@ Game/Util/LightUtil.cpp:
 Game/Util/LiveActorUtil.cpp:
 	.text       start:0x803DA22C end:0x803E0ECC
 	.rodata     start:0x8053EBB8 end:0x8053EBC8
-	.data       start:0x805E16D0 end:0x805E1838
+	.data       start:0x805E16D0 end:0x805E1808
 	.sdata2     start:0x806C1700 end:0x806C1720
 
 Game/Util/MapPartsUtil.cpp:
@@ -9410,6 +9410,7 @@ Game/Util/MapPartsUtil.cpp:
 Game/Util/MapUtil.cpp:
 	.text       start:0x803E19D0 end:0x803E3EBC
 	.ctors      start:0x8052F3AC end:0x8052F3B0
+	.data       start:0x805E1808 end:0x805E1838
 	.bss        start:0x8060B3F0 end:0x8060C570
 	.sbss       start:0x806B7008 end:0x806B7010
 	.sdata2     start:0x806C1730 end:0x806C1760
