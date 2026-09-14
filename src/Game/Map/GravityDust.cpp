@@ -3,47 +3,63 @@
 #include "Game/Util/GravityUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 
+namespace {
+    const f32 sGravity = 1.0f;
+    const f32 sFrictionRate = 0.995f;
+}  // namespace
+
+void GravityDust_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 GravityDustParticleCallBack::GravityDustParticleCallBack(const LiveActor* pActor) : MultiEmitterParticleCallBack(), mActor(pActor) {
 }
 
-// https://decomp.me/scratch/hyC0Q
 void GravityDustParticleCallBack::execute(JPABaseEmitter* pEmitter, JPABaseParticle* pParticle) {
     TVec3f offsetPosition;
     TVec3f baseAxis;
-    TVec3f currentPosition;
 
     if (pParticle->checkStatus(4)) {
         return;
     }
 
     offsetPosition.set(pParticle->mOffsetPosition);
-    f32 scaleFac = *pParticle->field_0x78;
+    u32 userWork = pParticle->getUserWork();
+    f32 speed = reinterpret_cast< f32& >(userWork);
     baseAxis.set(pParticle->mBaseAxis);
-    baseAxis.scale(scaleFac);
+    baseAxis.scale(speed);
     TVec3f gravityVector(0.0f, 0.0f, 0.0f);
-    currentPosition.set(pParticle->getCalcCurrentPositionX(pEmitter), pParticle->getCalcCurrentPositionY(pEmitter),
-                        pParticle->getCalcCurrentPositionZ(pEmitter));
+    TVec3f currentPosition;
+    currentPosition.set< f32 >(pParticle->getCalcCurrentPositionX(pEmitter), pParticle->getCalcCurrentPositionY(pEmitter),
+                               pParticle->getCalcCurrentPositionZ(pEmitter));
     MR::calcGravityVectorOrZero(mActor, currentPosition, &gravityVector, nullptr, 0);
 
     if (MR::isNearZero(gravityVector)) {
         return;
     }
-    gravityVector.scale(1.0f);
-    baseAxis.scale(0.995f);
+
+    gravityVector.scale(sGravity);
+    baseAxis.scale(sFrictionRate);
     baseAxis.add(gravityVector);
     offsetPosition.add(baseAxis);
     pParticle->mOffsetPosition.set(offsetPosition);
-    f32 baseAxisLength = baseAxis.length();
+    speed = baseAxis.length();
 
-    if (MR::isNearZero(baseAxisLength)) {
+    if (MR::isNearZero(speed)) {
         return;
     }
 
-    *pParticle->field_0x78 = baseAxisLength;
+    userWork = reinterpret_cast< u32& >(speed);
+    pParticle->setUserWork(userWork);
+
     if (MR::isNearZero(baseAxis)) {
         return;
     }
 
     MR::normalize(&baseAxis);
     pParticle->mBaseAxis.set(baseAxis);
+}
+
+GravityDustParticleCallBack::~GravityDustParticleCallBack() {
 }

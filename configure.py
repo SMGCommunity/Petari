@@ -1476,7 +1476,7 @@ config.libs = [
             Object(NonMatching, "Game/Map/FileSelectSky.cpp"),
             Object(Matching, "Game/Map/FishGroup.cpp"),
             Object(NonMatching, "Game/Map/Flag.cpp"),
-            Object(NonMatching, "Game/Map/GravityDust.cpp"),
+            Object(Matching, "Game/Map/GravityDust.cpp"),
             Object(Matching, "Game/Map/GroundChecker.cpp"),
             Object(Matching, "Game/Map/GroupSwitchWatcher.cpp"),
             Object(NonMatching, "Game/Map/Halo.cpp"),

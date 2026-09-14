@@ -75,7 +75,7 @@ void JPABaseParticle::init_p(JPAEmitterWorkData* work) {
 
     mMoment = 1.0f - dyn->getMomentRndm() * emtr->get_r_f();
     mDrag = 1.0f;
-    field_0x78 = 0;
+    mUserWork = 0;
 
     mBaseAxis.set< f32 >(work->mGlobalRot[0][1], work->mGlobalRot[1][1], work->mGlobalRot[2][1]);
 
@@ -150,7 +150,7 @@ void JPABaseParticle::init_c(JPAEmitterWorkData* work, JPABaseParticle* parent) 
         setStatus(0x40);
         mDrag = 1.0f;
     }
-    field_0x78 = parent->field_0x78;
+    mUserWork = parent->mUserWork;
 
     mVelType2.set(mVelType0);
     f32 ratio = mMoment * mDrag;
