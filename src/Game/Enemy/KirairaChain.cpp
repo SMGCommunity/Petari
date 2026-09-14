@@ -15,10 +15,10 @@ KirairaChain::~KirairaChain() {
 }
 
 KirairaChain::KirairaChain(const LiveActor* pHost)
-    : LiveActor("キライラの鎖"), mHost(pHost), mIsCut(false), mCutPos(0.0f, 0.0f, 0.0f), mRailStart(0.0f, 0.0f, 0.0f), mRailEnd(0.0f, 0.0f, 0.0f),
-      mFixPointTopDir(1.0f, 0.0f, 0.0f), mFixPointBottomDir(1.0f, 0.0f, 0.0f), mPointCount(0), mPoints(nullptr), _138(0), mAccelPointIdx(0),
-      mAccelTimer(0), mAccel(0.0f, 0.0f, 0.0f), mClippingCenter(0.0f, 0.0f, 0.0f), mModelDrawer(nullptr), mFixPointTop(nullptr),
-      mFixPointBottom(nullptr) {
+    : LiveActor("キライラの鎖"), mHost(pHost), mIsCut(), mCutPos(0.0f, 0.0f, 0.0f), mRailStart(0.0f, 0.0f, 0.0f), mRailEnd(0.0f, 0.0f, 0.0f),
+      mFixPointTopDir(1.0f, 0.0f, 0.0f), mFixPointBottomDir(1.0f, 0.0f, 0.0f), mPointCount(), mPoints(), _138(), mAccelPointIdx(),
+      mAccelTimer(), mAccel(0.0f, 0.0f, 0.0f), mClippingCenter(0.0f, 0.0f, 0.0f), mModelDrawer(), mFixPointTop(),
+      mFixPointBottom() {
     mFixPointTopMtx.identity();
     mFixPointBottomMtx.identity();
 
