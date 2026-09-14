@@ -3,9 +3,14 @@
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 
+namespace {
+    static const s32 sDefaultBlendTime = 30;
+    static const f32 sDefaultDistRef = 15.0f;
+};
+
 LightPointCtrl::LightPointCtrl()
-    : mStep(-1), mInterpolate(30), mCurrentActor(nullptr), mPreviousActor(nullptr), mCandidateActor(nullptr), mCurrentInfo(nullptr),
-      mTargetInfo(nullptr), mPreviousInfo(nullptr) {
+    : mStep(-1), mBlendTime(::sDefaultBlendTime), mCurrentActor(), mPreviousActor(), mCandidateActor(), mCurrentInfo(),
+      mTargetInfo(), mPreviousInfo() {
     mCurrentInfo = new PointLightInfo();
     mTargetInfo = new PointLightInfo();
     mPreviousInfo = new PointLightInfo();
@@ -40,18 +45,18 @@ void LightPointCtrl::requestPointLight(const LiveActor* pActor, TVec3f pos, Colo
         mTargetInfo->mPos = pos;
         mTargetInfo->mColor = color.mGXColor;
         mTargetInfo->mRefBrightness = MR::clamp(intensity, 0.95f, 0.999999f);
-        mTargetInfo->mRefDistance = 15.0f;
+        mTargetInfo->mRefDistance = ::sDefaultDistRef;
         mTargetInfo->mDistAttnFn = GX_DA_STEEP;
-        mInterpolate = duration >= 0 ? duration : 30;
+        mBlendTime = duration >= 0 ? duration : ::sDefaultBlendTime;
     }
 }
 
 void LightPointCtrl::updatePointLight() {
-    if (!mCurrentActor && mPreviousActor) {
+    if (mCurrentActor == nullptr && mPreviousActor != nullptr) {
         clearPointLight(mTargetInfo);
     }
 
-    if (!mCurrentActor && mStep == -1) {
+    if (mCurrentActor == nullptr && mStep == -1) {
         clearPointLight(mCurrentInfo);
         return;
     }
@@ -61,10 +66,10 @@ void LightPointCtrl::updatePointLight() {
         return;
     }
 
-    f32 t = MR::getEaseInOutValue((f32)mStep / mInterpolate, 0.0f, 1.0f, 1.0f);
+    f32 t = MR::getEaseInOutValue(static_cast< f32 >(mStep) / mBlendTime, 0.0f, 1.0f, 1.0f);
     blendPointLight(mCurrentInfo, *mPreviousInfo, *mTargetInfo, t);
 
-    if (mStep < mInterpolate) {
+    if (mStep < mBlendTime) {
         mStep++;
     } else {
         mStep = -1;
@@ -86,22 +91,22 @@ void LightPointCtrl::clearPointLight(PointLightInfo* pInfo) {
     pInfo->mColor = color;
 
     pInfo->mRefBrightness = 0.001f;
-    pInfo->mRefDistance = 15.0f;
+    pInfo->mRefDistance = ::sDefaultDistRef;
     pInfo->mDistAttnFn = GX_DA_STEEP;
-    mInterpolate = 30;
+    mBlendTime = ::sDefaultBlendTime;
 }
 
 void LightPointCtrl::blendPointLight(PointLightInfo* pDst, const PointLightInfo& rStart, const PointLightInfo& rEnd, f32 t) {
-    if (!mCurrentActor) {
+    if (mCurrentActor == nullptr) {
         pDst->mPos = rStart.mPos;
-    } else if (!mPreviousActor) {
+    } else if (mPreviousActor == nullptr) {
         pDst->mPos = rEnd.mPos;
     } else {
         MR::blendVec(&pDst->mPos, rStart.mPos, rEnd.mPos, t);
     }
 
-    f32 start = !mPreviousActor ? 0.95f : rStart.mRefBrightness;
-    f32 end = !mCurrentActor ? 0.95f : rEnd.mRefBrightness;
+    f32 start = mPreviousActor == nullptr ? 0.95f : rStart.mRefBrightness;
+    f32 end = mCurrentActor == nullptr ? 0.95f : rEnd.mRefBrightness;
     pDst->mRefBrightness = MR::getLinerValue(t, start, end, 1.0f);
     MR::blendColor(&pDst->mColor, rStart.mColor, rEnd.mColor, t);
     pDst->mRefDistance = MR::getLinerValue(t, rStart.mRefDistance, rEnd.mRefDistance, 1.0f);
@@ -117,7 +122,7 @@ bool LightPointCtrl::tryBlendStart() {
 }
 
 bool LightPointCtrl::isUpdateCandidateActor(const LiveActor* pActor) const {
-    if (!mCandidateActor) {
+    if (mCandidateActor == nullptr) {
         return true;
     }
 

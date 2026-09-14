@@ -211,7 +211,7 @@ void LightFunction::loadPointLightInfo(const PointLightInfo* pInfo) {
     GXInitLightPos(&obj, v7.x, v7.y, v7.z);
     GXInitLightDistAttn(&obj, pInfo->mRefDistance, pInfo->mRefBrightness, pInfo->mDistAttnFn);
     GXInitLightSpot(&obj, 0.0, GX_SP_OFF);
-    GXInitLightColor(&obj, GXColor(pInfo->mColor));
+    GXInitLightColor(&obj, pInfo->mColor);
     GXLoadLightObjImm(&obj, GX_LIGHT4);
 }
 

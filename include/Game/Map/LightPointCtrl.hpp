@@ -35,7 +35,7 @@ public:
     }
 
     /* 0x00 */ s32 mStep;
-    /* 0x04 */ s32 mInterpolate;
+    /* 0x04 */ s32 mBlendTime;
     /* 0x08 */ const LiveActor* mCurrentActor;
     /* 0x0C */ const LiveActor* mPreviousActor;
     /* 0x10 */ const LiveActor* mCandidateActor;
