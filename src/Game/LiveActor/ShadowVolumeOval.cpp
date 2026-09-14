@@ -16,8 +16,9 @@ bool ShadowVolumeOval::isDraw() const {
 }
 
 void ShadowVolumeOval::loadModelDrawMtx() const {
+    MtxPtr dropMtx;
     ShadowController* controller = getController();
-    MtxPtr dropMtx = controller->_18;
+    dropMtx = controller->_18;
     TVec3f direction;
     controller->getDropDir(&direction);
 
