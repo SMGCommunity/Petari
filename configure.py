@@ -2135,7 +2135,7 @@ config.libs = [
         "Ride",
         [
             Object(NonMatching, "Game/Ride/BigBubble.cpp"),
-            Object(NonMatching, "Game/Ride/Creeper.cpp"),
+            Object(Matching, "Game/Ride/Creeper.cpp"),
             Object(Matching, "Game/Ride/Fluff.cpp"),
             Object(NonMatching, "Game/Ride/FluffWind.cpp"),
             Object(Matching, "Game/Ride/JumpBranch.cpp"),
