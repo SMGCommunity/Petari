@@ -129,7 +129,7 @@ bool JASHeap::free() {
     mBase = nullptr;
     mHeap = nullptr;
     mSize = 0;
-    if (mDisposer) {
+    if (mDisposer != nullptr) {
         mDisposer->onDispose();
     }
 
@@ -140,7 +140,7 @@ void JASHeap::insertChild(JASHeap* pHeap, JASHeap* pNext, void* pBase, u32 size,
     JASMutexLock lock(&mMutex);
     if (!fromTail) {
         JSUTreeIterator< JASHeap > it;
-        if (!pNext) {
+        if (pNext == nullptr) {
             it = mTree.getLastChild();
         } else {
             it = pNext->mTree.getPrevChild();
@@ -241,7 +241,7 @@ void* JASGenericMemPool::alloc(u32 size) {
 }
 
 void JASGenericMemPool::free(void* pMemory, u32 size) {
-    if (!pMemory) {
+    if (pMemory == nullptr) {
         return;
     }
 
