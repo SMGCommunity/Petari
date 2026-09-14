@@ -7,18 +7,11 @@ class J3DJoint;
 class J3DModel;
 class LiveActor;
 
-struct UnkStruct {
-    /* 0x00 */ u32 _0;
-    /* 0x04 */ u32 _4;
-    /* 0x08 */ u32 _8;
-    /* 0x0C */ u32 _C;
-    /* 0x10 */ u32 _10;
-    /* 0x14 */ u16 _14;
-};
+class JointController;
 
 struct JointControllerInfo {
-    /* 0x00 */ u32 _0;
-    /* 0x04 */ UnkStruct* _4;
+    /* 0x00 */ JointController* mController;
+    /* 0x04 */ J3DJoint* mJoint;
 };
 
 class JointController {
