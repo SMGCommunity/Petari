@@ -19,6 +19,10 @@ namespace MR {
 
     class BothDirPtrList {
     public:
+        BothDirPtrList() {
+            initiate();
+        }
+
         BothDirPtrList(bool);
         ~BothDirPtrList();
 
@@ -38,13 +42,40 @@ namespace MR {
         BothDirLink(T* pValue) : BothDirPtrLink(pValue) {
         }
 
-        ~BothDirLink() NO_INLINE {
+        ~BothDirLink() {
         }
     };
 
     template < class T >
     class BothDirList : public BothDirPtrList {
     public:
+        class iterator {
+        public:
+            iterator(BothDirPtrLink* pLink) : mLink(pLink) {
+            }
+
+            T* operator->() const {
+                return static_cast< T* >(mLink->mValue);
+            }
+
+            void operator++(int) {
+                mLink = mLink->mNextLink;
+            }
+
+            bool isEnd() const {
+                return mLink == nullptr;
+            }
+
+            /* 0x00 */ BothDirPtrLink* mLink;
+        };
+
+        iterator begin() const {
+            return iterator(mHead);
+        }
+
+        BothDirList() : BothDirPtrList() {
+        }
+
         BothDirList(bool param1) : BothDirPtrList(param1) {
         }
 
