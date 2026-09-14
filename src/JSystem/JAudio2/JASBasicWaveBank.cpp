@@ -52,17 +52,18 @@ void JASBasicWaveBank::incWaveTable(JASBasicWaveBank::TWaveGroup const* waveGrou
     JASMutexLock lock(&mMutex);
     TWaveInfo** table;
     TWaveInfo* info;
+    u32 id;
     for (u32 i = 0; i < waveGroup->getWaveCount(); i++) {
-        info = &waveGroup->mCtrlWaveArray[i];
         table = mWaveTable;
+        info = &waveGroup->mCtrlWaveArray[i];
 
-        u32 idx = info->mWaveId;
+        id = info->getWaveID();
         info->mPrev = nullptr;
-        info->mNext = table[idx];
-        if (table[idx] != nullptr) {
-            table[idx]->mPrev = info;
+        info->mNext = table[id];
+        if (table[id] != nullptr) {
+            table[id]->mPrev = info;
         }
-        table[idx] = info;
+        table[id] = info;
     }
 }
 

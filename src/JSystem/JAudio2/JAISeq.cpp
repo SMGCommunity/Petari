@@ -49,6 +49,7 @@ void JAISeq::playSeqData_(const JASSoundParams& params, JAISoundActivity activit
 
 void JAISeq::reserveChildTracks_(int n) {
     // FIXME: regswap for the ages here
+
     for (int i = 0; i < 2; i++) {
         JASTrack* track = new JASTrack();
         if (track != nullptr) {
@@ -56,12 +57,14 @@ void JAISeq::reserveChildTracks_(int n) {
             inner_.outputTrack.connectChild(i, track);
 
             for (int j = 0; j < JASTrack::MAX_CHILDREN; j++) {
-                if (j + i * JASTrack::MAX_CHILDREN < n) {
-                    JASTrack* track2 = new JASTrack();
-                    if (track2 != nullptr) {
-                        track2->setAutoDelete(true);
-                        track->connectChild(j, track2);
-                    }
+                if (i * JASTrack::MAX_CHILDREN + j >= n) {
+                    continue;
+                }
+
+                JASTrack* child = new JASTrack();
+                if (child != nullptr) {
+                    child->setAutoDelete(true);
+                    track->connectChild(j, child);
                 }
             }
         }

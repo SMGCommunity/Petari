@@ -275,6 +275,14 @@ void JAISeMgr::mixOut() {
     }
 }
 
+int JAISeMgr::getNumActiveSe() const {
+    int num = 0;
+    for (int i = 0; i < NUM_CATEGORIES; i++) {
+        num += mCategoryMgrs[i].getNumSe();
+    }
+    return num;
+}
+
 bool JAISeMgr::startSound(JAISoundID id, JAISoundHandle* handle, const TVec3f* posPtr) {
     if (handle != nullptr && handle->isSoundAttached()) {
         (*handle)->stop();
@@ -309,12 +317,4 @@ bool JAISeMgr::startSound(JAISoundID id, JAISoundHandle* handle, const TVec3f* p
     }
 
     return true;
-}
-
-int JAISeMgr::getNumActiveSe() const {
-    int num = 0;
-    for (int i = 0; i < NUM_CATEGORIES; i++) {
-        num += mCategoryMgrs[i].getNumSe();
-    }
-    return num;
 }
