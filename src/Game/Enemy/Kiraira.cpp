@@ -211,7 +211,7 @@ void Kiraira::exeRecover() {
     }
     if (MR::isBckStopped(this)) {
         if (mChain != nullptr) {
-            mChain->_90 = false;
+            mChain->mIsCut = false;
         }
         if (!MR::isNearPlayer(this, ::sEyeSensorOutRadius)) {
             setNerve(&NrvKiraira::KirairaNrvFaceToMarioAndStare::sInstance);
@@ -332,7 +332,7 @@ void Kiraira::drift() {
             return;
         }
         if (mChain != nullptr) {
-            mChain->_94.set(mPosition);
+            mChain->mCutPos.set(mPosition);
         }
 
     } else {
@@ -358,7 +358,7 @@ void Kiraira::explode() {
     MR::emitEffect(this, "Explosion");
     MR::startSound(this, "SE_OJ_KIRAIRA_EXPLODE");
     if (mChain != nullptr) {
-        mChain->_90 = true;
+        mChain->mIsCut = true;
     }
     setNerve(&NrvKiraira::KirairaNrvDead::sInstance);
 }
