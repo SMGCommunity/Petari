@@ -69,8 +69,17 @@ public:
     Color10() : r(0x3FF), g(0x3FF), b(0x3FF), a(0x3FF) {
     }
 
-    u16 r;
-    u16 g;
-    u16 b;
-    u16 a;
+    operator GXColorS10() const {
+        return mColor;
+    }
+
+    union {
+        struct {
+            u16 r;
+            u16 g;
+            u16 b;
+            u16 a;
+        };
+        GXColorS10 mColor;
+    };
 };

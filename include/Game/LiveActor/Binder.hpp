@@ -14,6 +14,11 @@ public:
 
     void setExCollisionParts(CollisionParts* pParts) {
         mExCollisionParts = pParts;
+        if (pParts == nullptr) {
+            _1EC._2 = false;
+        } else {
+            _1EC._2 = true;
+        }
     }
 
     void clear();

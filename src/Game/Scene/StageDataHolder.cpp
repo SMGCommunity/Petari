@@ -364,8 +364,8 @@ const StageDataHolder* StageDataHolder::getStageDataHolderFromZoneId(int zoneID)
     return nullptr;
 }
 
-const StageDataHolder* StageDataHolder::getStageDataHolderFromZoneId(int zoneID) {
-    return static_cast< const StageDataHolder* >(this)->getStageDataHolderFromZoneId(zoneID);
+StageDataHolder* StageDataHolder::getStageDataHolderFromZoneId(int zoneID) {
+    return const_cast< StageDataHolder* >(static_cast< const StageDataHolder* >(this)->getStageDataHolderFromZoneId(zoneID));
 }
 
 bool StageDataHolder::isPlacedZone(int zoneID) const {

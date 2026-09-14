@@ -5333,7 +5333,7 @@ Game/MapObj/NeedlePlant.cpp:
 	.text       start:0x80202CF8 end:0x8020332C
 	.ctors      start:0x8052EDD8 end:0x8052EDDC
 	.data       start:0x8059A2F0 end:0x8059A408
-	.sbss       start:0x806B54B8 end:0x806B54C8
+	.sbss       start:0x806B54B8 end:0x806B54C0
 	.sdata2     start:0x806BD830 end:0x806BD848
 
 Game/MapObj/NormalMapBase.cpp:
@@ -5341,6 +5341,7 @@ Game/MapObj/NormalMapBase.cpp:
 	.rodata     start:0x80533540 end:0x80533558
 	.data       start:0x8059A408 end:0x8059A5C8
 	.sdata      start:0x806B1ED0 end:0x806B1ED8
+	.sbss       start:0x806B54C0 end:0x806B54C8
 	.sdata2     start:0x806BD848 end:0x806BD888
 
 Game/MapObj/NormalMapTestObj.cpp:
@@ -5803,7 +5804,7 @@ Game/MapObj/SnowplowSwitch.cpp:
 Game/MapObj/SoundEmitter.cpp:
 	.text       start:0x8022DE74 end:0x8022E260
 	.ctors      start:0x8052EEA8 end:0x8052EEAC
-	.rodata     start:0x805337B0 end:0x80533858
+	.rodata     start:0x805337B0 end:0x80533840
 	.data       start:0x805A0318 end:0x805A0438
 	.sbss       start:0x806B5878 end:0x806B5880
 	.sdata2     start:0x806BE048 end:0x806BE050
@@ -5826,6 +5827,7 @@ Game/MapObj/SpaceShipStep.cpp:
 Game/MapObj/SphereRailDash.cpp:
 	.text       start:0x8022EF24 end:0x8022F560
 	.ctors      start:0x8052EEB4 end:0x8052EEB8
+	.rodata     start:0x80533840 end:0x80533848
 	.data       start:0x805A06D8 end:0x805A0778
 	.sbss       start:0x806B5898 end:0x806B58A0
 	.sdata2     start:0x806BE080 end:0x806BE0A8
@@ -5833,6 +5835,7 @@ Game/MapObj/SphereRailDash.cpp:
 Game/MapObj/SpiderCoin.cpp:
 	.text       start:0x8022F560 end:0x8022FE24
 	.ctors      start:0x8052EEB8 end:0x8052EEBC
+	.rodata     start:0x80533848 end:0x80533858
 	.data       start:0x805A0778 end:0x805A0848
 	.sdata      start:0x806B2018 end:0x806B2020
 	.sbss       start:0x806B58A0 end:0x806B58B0
@@ -9398,7 +9401,7 @@ Game/Util/LightUtil.cpp:
 Game/Util/LiveActorUtil.cpp:
 	.text       start:0x803DA22C end:0x803E0ECC
 	.rodata     start:0x8053EBB8 end:0x8053EBC8
-	.data       start:0x805E16D0 end:0x805E1838
+	.data       start:0x805E16D0 end:0x805E1808
 	.sdata2     start:0x806C1700 end:0x806C1720
 
 Game/Util/MapPartsUtil.cpp:
@@ -9410,6 +9413,7 @@ Game/Util/MapPartsUtil.cpp:
 Game/Util/MapUtil.cpp:
 	.text       start:0x803E19D0 end:0x803E3EBC
 	.ctors      start:0x8052F3AC end:0x8052F3B0
+	.data       start:0x805E1808 end:0x805E1838
 	.bss        start:0x8060B3F0 end:0x8060C570
 	.sbss       start:0x806B7008 end:0x806B7010
 	.sdata2     start:0x806C1730 end:0x806C1760
