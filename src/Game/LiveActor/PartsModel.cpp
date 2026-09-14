@@ -37,7 +37,7 @@ PartsModel::PartsModel(LiveActor* pActor, const char* pName, const char* pModelN
         calcAnimType = MR::CalcAnimType_NPC;
     }
 
-    MR::connectToScene(this, movementType, calcAnimType, drawBufferType, -1);
+    MR::connectToScene(this, movementType, calcAnimType, drawBufferType, MR::DrawType_None);
 }
 
 void PartsModel::makeActorAppeared() {

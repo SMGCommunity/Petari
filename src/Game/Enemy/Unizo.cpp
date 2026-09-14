@@ -7,6 +7,7 @@
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/WaterInfo.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
@@ -118,22 +119,23 @@ void Unizo::initType(const JMapInfoIter& rIter) {
 
 void Unizo::init(const JMapInfoIter& rIter) {
     initType(rIter);
+
     if (mType == TypeSea) {
         initModelManagerWithAnm("Unizo", nullptr, false);
-        mBreakModel = new ModelObj("ウニゾー壊れモデル", "UnizoBreak", nullptr, 18, -2, -2, false);
+        mBreakModel = new ModelObj("ウニゾー壊れモデル", "UnizoBreak", nullptr, MR::DrawBufferType_Enemy, -2, -2, false);
         mBreakModel->initWithoutIter();
         mBreakModel->makeActorDead();
     } else if (mType == TypeLand) {
         mRollHeight = sRollHeightLand;
         mGravityRate = sGravityRateLand;
         initModelManagerWithAnm("UnizoLand", nullptr, false);
-        mBreakModel = new ModelObj("陸ウニゾー壊れモデル", "UnizoLandBreak", nullptr, 18, -2, -2, false);
+        mBreakModel = new ModelObj("陸ウニゾー壊れモデル", "UnizoLandBreak", nullptr, MR::DrawBufferType_Enemy, -2, -2, false);
         mBreakModel->initWithoutIter();
         mBreakModel->makeActorDead();
         MR::initFur(this);
     } else if (mType == TypeShoal) {
         initModelManagerWithAnm("UnizoShoal", nullptr, false);
-        mBreakModel = new ModelObj("浅瀬ウニゾー壊れモデル", "UnizoShoalBreak", nullptr, 18, -2, -2, false);
+        mBreakModel = new ModelObj("浅瀬ウニゾー壊れモデル", "UnizoShoalBreak", nullptr, MR::DrawBufferType_Enemy, -2, -2, false);
         mBreakModel->initWithoutIter();
         mBreakModel->makeActorDead();
     }

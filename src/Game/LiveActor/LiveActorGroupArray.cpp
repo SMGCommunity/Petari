@@ -39,7 +39,7 @@ MsgSharedGroup::MsgSharedGroup(const char* pName, s32 numMax, const JMapInfoIter
 }
 
 void MsgSharedGroup::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_MsgSharedGroup, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_MsgSharedGroup, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
 }
 
 void MsgSharedGroup::movement() {

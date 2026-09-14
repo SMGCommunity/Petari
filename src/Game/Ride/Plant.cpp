@@ -71,7 +71,7 @@ void Plant::init(const JMapInfoIter& pMapInfoIter) {
 
     mShapeDraw = MR::getSceneObj< PlantLeafDrawInit >(SceneObj_PlantLeafDrawInit)->mShapeDraw;
 
-    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_Ride, -1, MR::DrawType_Plant);
+    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_Ride, MR::DrawBufferType_None, MR::DrawType_Plant);
 
     MR::getJMapInfoArg0NoInit(pMapInfoIter, &mLaunchSpeed);
     MR::getJMapInfoArg1NoInit(pMapInfoIter, &mLaunchNormal);

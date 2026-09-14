@@ -30,7 +30,7 @@ ClipAreaDropLaser::ClipAreaDropLaser(const char* pName) : LiveActor(pName) {
 
 void ClipAreaDropLaser::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_ClipAreaDropLaser);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_ClipAreaDropLaser);
     initRailRider(rIter);
     MR::moveCoordAndTransToRailStartPoint(this);
     mSpeed = 20.0f;

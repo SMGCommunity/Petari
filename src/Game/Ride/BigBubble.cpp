@@ -125,7 +125,7 @@ BigBubble::BigBubble(const char* pName)
 void BigBubble::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     mBaseMtx.setTrans(mPosition);
-    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_MapObj, -1, -1);
+    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_MapObj, MR::DrawBufferType_None, MR::DrawType_None);
     BigBubble::initSensor();
     initNerve(GET_NERVE(BigBubble, BigBubbleNrvWait));
     initBinder(getBaseRadius(), 0, 16);

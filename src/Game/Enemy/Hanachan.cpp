@@ -141,7 +141,7 @@ HanachanParts::HanachanParts(Hanachan* pHost, s32 partsIndex, const char* pName,
 }
 
 void HanachanParts::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, -1, MR::MovementType_DemoDirector, MR::DrawType_SpinDriverPathDrawer, -1);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_Enemy, MR::DrawType_None);
     initNerve(&NrvHanachan::HanachanPartsNrvWalk::sInstance);
     initHitSensor(1);
 

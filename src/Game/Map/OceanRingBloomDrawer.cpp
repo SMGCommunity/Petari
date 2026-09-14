@@ -11,7 +11,7 @@ OceanRingBloomDrawer::OceanRingBloomDrawer(OceanRing* pRing) : NameObj("オー�
 }
 
 void OceanRingBloomDrawer::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, -1, -1, -1, MR::DrawType_OceanBowlBloomDrawer);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_OceanBowlBloomDrawer);
 }
 
 void OceanRingBloomDrawer::draw() const {

@@ -48,7 +48,7 @@ void DashRing::initCommon(const JMapInfoIter& rIter, const char* pName) {
 
         mDoLoop = true;
     } else {
-        MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_DashRing);
+        MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_DashRing);
     }
 
     initHitSensor(1);

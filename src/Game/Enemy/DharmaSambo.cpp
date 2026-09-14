@@ -734,9 +734,10 @@ bool DharmaSambo::isStarPointerPointingParts() {
     return false;
 }
 
-DharmaSamboParts::DharmaSamboParts(DharmaSambo* pHost, const char* pName, const char* pModel, MtxPtr mtx, int movement, int animation, int draw)
-    : ModelObj(pName, pModel, mtx, movement, animation, draw, false), mHost(pHost), mOriginalIndex(-1), mIndex(-1), mSpinHitController(),
-      mHitDistance(-1.0f), mIsHead() {
+DharmaSamboParts::DharmaSamboParts(DharmaSambo* pHost, const char* pName, const char* pModelName, MtxPtr pMtx, int drawBufferType, int movementType,
+                                   int calcAnimType)
+    : ModelObj(pName, pModelName, pMtx, drawBufferType, movementType, calcAnimType, false), mHost(pHost), mOriginalIndex(-1), mIndex(-1),
+      mSpinHitController(), mHitDistance(-1.0f), mIsHead() {
 }
 
 void DharmaSamboParts::init(const JMapInfoIter& rIter) {

@@ -30,7 +30,7 @@ OdhConverter::OdhConverter()
 }
 
 void OdhConverter::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, -1, -1, -1, MR::DrawType_LayoutOnPause);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_LayoutOnPause);
     MR::CurrentHeapRestorer heapRestorer(MR::getSceneHeapGDDR3());
 
     mImage = new (32) u8[mLimitSize];
@@ -114,7 +114,7 @@ namespace MR {
     NameObjAdaptor* createAdaptorAndConnectToWiiMessageBoard(const char* pParam1, const FunctorBase& rFunc) {
         NameObjAdaptor* pDrawAdaptor = createDrawAdaptor(pParam1, rFunc);
 
-        connectToScene(pDrawAdaptor, -1, -1, -1, MR::DrawType_MessageBoardCapture);
+        connectToScene(pDrawAdaptor, -1, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_MessageBoardCapture);
 
         return pDrawAdaptor;
     }

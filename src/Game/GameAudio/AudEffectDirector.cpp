@@ -23,7 +23,7 @@ AudEffectDirector::AudEffectDirector() : NameObj("オーディオエフェクト
 }
 
 void AudEffectDirector::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_AudEffectDirector, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_AudEffectDirector, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
 }
 
 void AudEffectDirector::movement() {

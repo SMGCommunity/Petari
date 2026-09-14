@@ -29,7 +29,7 @@ AstroDomeOrbit::AstroDomeOrbit() : LiveActor("天文ドームの軌道"), mOrbit
 }
 
 void AstroDomeOrbit::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, -1, -1, -1, MR::DrawType_AstroDomeOrbit);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_AstroDomeOrbit);
 
     MR::invalidateClipping(this);
 

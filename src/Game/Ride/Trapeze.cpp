@@ -44,7 +44,7 @@ Trapeze::Trapeze(const char* pName)
 
 void Trapeze::init(const JMapInfoIter& rIter) {
     MR::createSceneObj(SceneObj_TrapezeRopeDrawInit);
-    MR::connectToScene(this, MR::MovementType_Ride, -1, -1, MR::DrawType_Trapeze);
+    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_Trapeze);
     MR::initDefaultPos(this, rIter);
 
     TPos3f mtx;

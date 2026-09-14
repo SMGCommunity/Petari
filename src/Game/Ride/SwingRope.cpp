@@ -56,7 +56,7 @@ SwingRope::SwingRope(const char* pName)
 
 void SwingRope::init(const JMapInfoIter& rIter) {
     MR::createSceneObj(SceneObj_SwingRopeGroup);
-    MR::connectToScene(this, MR::MovementType_Ride, -1, -1, MR::DrawType_SwingRope);
+    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_SwingRope);
     MR::initDefaultPos(this, rIter);
 
     mBasePos.set(mPosition);

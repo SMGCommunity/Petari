@@ -34,7 +34,7 @@ TripodBossGuardWallPart::TripodBossGuardWallPart(const char* pName) : LiveActor(
 
 void TripodBossGuardWallPart::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("TripodBossGuardWall", nullptr, false);
-    MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, -1);
+    MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, MR::DrawType_None);
     initHitSensor(2);
     MR::initCollisionParts(this, "TripodBossGuardWall",
                            MR::addHitSensor(this, "collision", ATYPE_TRIPODBOSS_GUARD_WALL, 0, 1000.0f, TVec3f(0.0f, 0.0f, 0.0f)), nullptr);

@@ -249,7 +249,7 @@ OceanSphere::OceanSphere(const char* pName)
 }
 
 void OceanSphere::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_OceanSphere);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_OceanSphere);
     MR::initDefaultPos(this, rIter);
     mRadius = 100.0f * mScale.x;
     mRadiusTarget = mRadius;
