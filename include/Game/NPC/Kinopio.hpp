@@ -39,7 +39,6 @@ public:
     void exeEventAndTalk();
     void exeEventFall();
 
-private:
     /* 0x15C */ s32 mObjArg1;
     /* 0x160 */ s32 mObjArg2;
     /* 0x164 */ s32 mObjArg4;
