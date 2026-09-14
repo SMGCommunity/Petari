@@ -47,6 +47,7 @@ public:
     void stopSoundID(JAISoundID id);
     void pause(bool);
     void JAISeMgr_mixOut_(const JAISoundParamsMove& params, JAISoundActivity activity);
+
     JAISeCategoryMgr() {
         mParams.init();
         mMaxActiveSe = 0;

@@ -76,7 +76,7 @@ public:
             u8 upper;
             u8 lower0 : 4;
             u8 lower1 : 4;
-        } parts;
+        };
     };
 
     JASChannel(Callback, void*);

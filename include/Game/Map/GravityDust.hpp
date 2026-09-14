@@ -6,9 +6,11 @@ class LiveActor;
 
 class GravityDustParticleCallBack : public MultiEmitterParticleCallBack {
 public:
-    GravityDustParticleCallBack(const LiveActor*);
+    GravityDustParticleCallBack(const LiveActor* pActor);
 
-    virtual void execute(JPABaseEmitter*, JPABaseParticle*);
+    virtual ~GravityDustParticleCallBack();
 
-    const LiveActor* mActor;
+    virtual void execute(JPABaseEmitter* pEmitter, JPABaseParticle* pParticle);
+
+    /* 0x04 */ const LiveActor* mActor;
 };

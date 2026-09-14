@@ -12,21 +12,24 @@ namespace {
     template < typename T >
     class NameObjRealDelegator {
     public:
-        inline NameObjRealDelegator(T in_func) {
-            mNameObjFunc = in_func;
+        NameObjRealDelegator(T pMethod) {
+            mNameObjFunc = pMethod;
         }
 
-        virtual void operator()(NameObj* pNameObj) {
-            (pNameObj->*mNameObjFunc)();
-        }
+        virtual void operator()(NameObj* pNameObj);
 
-        T mNameObjFunc;  // 0x4
+        /* 0x04 */ T mNameObjFunc;
     };
+
+    template < typename T >
+    void NameObjRealDelegator< T >::operator()(NameObj* pNameObj) {
+        (pNameObj->*mNameObjFunc)();
+    }
 };  // namespace
 
 struct CategoryListInitialTable {
-    u32 mIndex;  // 0x0
-    u32 mCount;  // 0x4
+    /* 0x00 */ u32 mIndex;
+    /* 0x04 */ u32 mCount;
 };
 
 /// @brief Organizes NameObjs by execution category.
@@ -35,15 +38,17 @@ public:
     class CategoryInfo {
     public:
         CategoryInfo();
+
         ~CategoryInfo();
 
-        MR::Vector< MR::AssignableArray< NameObj* > > mNameObjArr;  // 0x0
-        MR::FunctorBase* _C;
-        u32 mCheck;  // 0x10
+        /* 0x00 */ MR::Vector< MR::AssignableArray< NameObj* > > mNameObjArr;
+        /* 0x0C */ MR::FunctorBase* mExecuteBeforeFunction;
+        /* 0x10 */ u32 mCheck;
     };
 
     NameObjCategoryList(u32, const CategoryListInitialTable*, NameObjMethod, bool, const char*);
     NameObjCategoryList(u32, const CategoryListInitialTable*, NameObjMethodConst, bool, const char*);
+
     ~NameObjCategoryList();
 
     void execute(int);
@@ -54,13 +59,13 @@ public:
     void registerExecuteBeforeFunction(const MR::FunctorBase&, int);
     void initTable(u32, const CategoryListInitialTable*);
 
-    MR::AssignableArray< NameObjCategoryList::CategoryInfo > mCategoryInfo;  // 0x0
+    /* 0x00 */ MR::AssignableArray< NameObjCategoryList::CategoryInfo > mCategoryInfo;
 
-    union {
+    /* 0x08 */ union {
         NameObjRealDelegator< NameObjMethod >* mDelegator;
         NameObjRealDelegator< NameObjMethodConst >* mDelegatorConst;
     };
 
-    u8 _C;
-    u8 _D;
+    /* 0x0C */ bool mBufferAllocated;
+    /* 0x0D */ bool mAllocateByCheck;
 };

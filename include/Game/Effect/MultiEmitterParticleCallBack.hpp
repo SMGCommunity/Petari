@@ -6,5 +6,6 @@ class MultiEmitterParticleCallBack : public JPAParticleCallBack {
 public:
     MultiEmitterParticleCallBack();
 
-    virtual ~MultiEmitterParticleCallBack();
+    virtual ~MultiEmitterParticleCallBack() {
+    }
 };

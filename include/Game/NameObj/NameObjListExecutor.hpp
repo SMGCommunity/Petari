@@ -11,42 +11,38 @@ public:
     NameObjListExecutor();
 
     virtual ~NameObjListExecutor();
-    virtual void initMovementList() {
-    }
-    virtual void initCalcAnimList() {
-    }
-    virtual void initCalcViewAndEntryList() {
-    }
-    virtual void initDrawList() {
-    }
+    virtual void initMovementList();
+    virtual void initCalcAnimList();
+    virtual void initCalcViewAndEntryList();
+    virtual void initDrawList();
 
     void init();
-    s32 registerDrawBuffer(LiveActor*, int);
+    s32 registerDrawBuffer(LiveActor* pActor, int drawBufferType);
     void allocateDrawBufferActorList();
-    void registerPreDrawFunction(const MR::FunctorBase&, int drawType);
-    void findLightInfo(LiveActor*, int, int) const;
-    void incrementCheckMovement(NameObj*, int);
-    void incrementCheckCalcAnim(NameObj*, int);
-    void incrementCheckDraw(NameObj*, int);
-    void addToMovement(NameObj*, int);
-    void addToCalcAnim(NameObj*, int);
-    void addToDrawBuffer(LiveActor*, int, int);
-    void addToDraw(NameObj*, int);
-    void removeToMovement(NameObj*, int);
-    void removeToCalcAnim(NameObj*, int);
-    void removeToDrawBuffer(LiveActor*, int, int);
-    void removeToDraw(NameObj*, int);
-    void executeMovement(int);
-    void executeCalcAnim(int);
+    void registerPreDrawFunction(const MR::FunctorBase& rFunc, int drawType);
+    void findLightInfo(LiveActor* pActor, int drawBufferType, int executorIndex) const;
+    void incrementCheckMovement(NameObj* pObj, int category);
+    void incrementCheckCalcAnim(NameObj* pObj, int category);
+    void incrementCheckDraw(NameObj* pObj, int category);
+    void addToMovement(NameObj* pObj, int category);
+    void addToCalcAnim(NameObj* pObj, int category);
+    void addToDrawBuffer(LiveActor* pActor, int drawBufferType, int executorIndex);
+    void addToDraw(NameObj* pObj, int category);
+    void removeToMovement(NameObj* pObj, int category);
+    void removeToCalcAnim(NameObj* pObj, int category);
+    void removeToDrawBuffer(LiveActor* pActor, int drawBufferType, int executorIndex);
+    void removeToDraw(NameObj* pObj, int category);
+    void executeMovement(int category);
+    void executeCalcAnim(int category);
     void entryDrawBuffer2D();
     void entryDrawBuffer3D();
     void entryDrawBufferMirror();
-    void drawOpa(int);
-    void drawXlu(int);
-    void executeDraw(int);
+    void drawOpa(int drawBufferType);
+    void drawXlu(int drawBufferType);
+    void executeDraw(int category);
 
-    DrawBufferHolder* mBufferHolder;     // 0x4
-    NameObjCategoryList* mMovementList;  // 0x8
-    NameObjCategoryList* mCalcAnimList;  // 0xC
-    NameObjCategoryList* mDrawList;      // 0x10
+    /* 0x04 */ DrawBufferHolder* mBufferHolder;
+    /* 0x08 */ NameObjCategoryList* mMovementList;
+    /* 0x0C */ NameObjCategoryList* mCalcAnimList;
+    /* 0x10 */ NameObjCategoryList* mDrawList;
 };

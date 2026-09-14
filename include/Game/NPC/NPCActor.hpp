@@ -27,51 +27,51 @@ public:
     void setIndirect();
 
     const char* _0;
-    bool mModel;              // 0x4
-    const char* mObjectName;  // 0x8
-    bool mMakeActor;          // 0xC
-    bool mHostIO;             // 0xD
-    bool mMessage;            // 0xE
+    /* 0x4 */ bool mModel;
+    /* 0x8 */ const char* mObjectName;
+    /* 0xC */ bool mMakeActor;
+    /* 0xD */ bool mHostIO;
+    /* 0xE */ bool mMessage;
     bool _F;
     const char* _10;
-    TVec3f mMessageOffset;       // 0x14
-    MtxPtr mTalkMtx;             // 0x20
-    const char* mTalkJointName;  // 0x24
-    bool mInterpole;             // 0x28
-    bool mConnectTo;             // 0x29
-    bool mLightCtrl;             // 0x2A
-    bool mEffect;                // 0x2B
-    bool mSound;                 // 0x2C
-    s32 mSoundSize;              // 0x30
-    bool mAttribute;             // 0x34
-    bool mPosition;              // 0x35
-    bool mLodCtrl;               // 0x36
-    bool mNerve;                 // 0x37
-    bool mBinder;                // 0x38
-    f32 mBinderSize;             // 0x3C
-    bool mSensor;                // 0x40
-    const char* mSensorJoint;    // 0x44
-    f32 mSensorSize;             // 0x48
-    TVec3f mSensorOffset;        // 0x4C
-    s32 mSensorMax;              // 0x58
-    bool mShadow;                // 0x5C
+    /* 0x14 */ TVec3f mMessageOffset;
+    /* 0x20 */ MtxPtr mTalkMtx;
+    /* 0x24 */ const char* mTalkJointName;
+    /* 0x28 */ bool mInterpole;
+    /* 0x29 */ bool mConnectTo;
+    /* 0x2A */ bool mLightCtrl;
+    /* 0x2B */ bool mEffect;
+    /* 0x2C */ bool mSound;
+    /* 0x30 */ s32 mSoundSize;
+    /* 0x34 */ bool mAttribute;
+    /* 0x35 */ bool mPosition;
+    /* 0x36 */ bool mLodCtrl;
+    /* 0x37 */ bool mNerve;
+    /* 0x38 */ bool mBinder;
+    /* 0x3C */ f32 mBinderSize;
+    /* 0x40 */ bool mSensor;
+    /* 0x44 */ const char* mSensorJoint;
+    /* 0x48 */ f32 mSensorSize;
+    /* 0x4C */ TVec3f mSensorOffset;
+    /* 0x58 */ s32 mSensorMax;
+    /* 0x5C */ bool mShadow;
     u8 _5D;
     u8 _5E;
     u8 _5F;
     f32 mShadowSize;
-    bool mRailRider;     // 0x64
-    bool mSwitchDead;    // 0x65
-    bool mSwitchAppear;  // 0x66
+    /* 0x64 */ bool mRailRider;
+    /* 0x65 */ bool mSwitchDead;
+    /* 0x66 */ bool mSwitchAppear;
     u8 _67;
-    bool mPointer;  // 0x68
+    /* 0x68 */ bool mPointer;
     const char* _6C;
     const char* _70;
-    TVec3f mStarPointerOffs;   // 0x74
-    f32 mPointerSize;          // 0x80
-    s32 mSceneConnectionType;  // 0x84
-    Nerve* mWaitNerve;         // 0x88
-    Nerve* mTalkNerve;         // 0x8C
-    Nerve* mReactionNerve;     // 0x90
+    /* 0x74 */ TVec3f mStarPointerOffs;
+    /* 0x80 */ f32 mPointerSize;
+    /* 0x84 */ s32 mSceneConnectionType;
+    /* 0x88 */ Nerve* mWaitNerve;
+    /* 0x8C */ Nerve* mTalkNerve;
+    /* 0x90 */ Nerve* mReactionNerve;
 };
 
 class NPCActor : public LiveActor {
@@ -109,6 +109,22 @@ public:
     bool isPointingSe() const;
     void updateReaction();
     void updateScaleCtrl();
+
+    bool isTrampledStart() const {
+        return !_DD && _E2;
+    }
+
+    bool isReactionStart() const {
+        return !_E0 && _E5;
+    }
+
+    bool isSpinAttackedStart() const {
+        return !_DE && _E3;
+    }
+
+    bool isPointingStart() const {
+        return !_DF && _E4;
+    }
 
     bool tryPushNullNerve();
 
@@ -159,8 +175,8 @@ public:
         return mMsgCtrl;
     }
 
-    LodCtrl* mLodCtrl;          // 0x8C
-    TalkMessageCtrl* mMsgCtrl;  // 0x90
+    /* 0x8C */ LodCtrl* mLodCtrl;
+    /* 0x90 */ TalkMessageCtrl* mMsgCtrl;
     PartsModel* _94;
     PartsModel* _98;
     s32 _9C;
@@ -184,7 +200,7 @@ public:
     u8 _E5;
     u8 _E6;
     u8 _E7;
-    MR::ActorTalkParam mParam;  // 0xE8
+    /* 0xE8 */ MR::ActorTalkParam mParam;
     f32 _10C;
     f32 _110;
     f32 _114;
@@ -201,11 +217,11 @@ public:
     const char* _134;
     const char* _138;
     const char* _13C;
-    AnimScaleController* mScaleController;          // 0x140
-    JointControlDelegator< NPCActor >* mDelegator;  // 0x144
-    const Nerve* mCurNerve;                         // 0x148
-    Nerve* mWaitNerve;                              // 0x14C
-    Nerve* mTalkNerve;                              // 0x150
-    Nerve* mReactionNerve;                          // 0x154
+    /* 0x140 */ AnimScaleController* mScaleController;
+    /* 0x144 */ JointControlDelegator< NPCActor >* mDelegator;
+    /* 0x148 */ const Nerve* mCurNerve;
+    /* 0x14C */ Nerve* mWaitNerve;
+    /* 0x150 */ Nerve* mTalkNerve;
+    /* 0x154 */ Nerve* mReactionNerve;
     s32 _158;
 };

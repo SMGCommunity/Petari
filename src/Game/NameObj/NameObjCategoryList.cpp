@@ -1,23 +1,24 @@
 #include "Game/NameObj/NameObjCategoryList.hpp"
 #include "Game/Util/Functor.hpp"
+#include <algorithm>
 
-NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable* pTable, NameObjMethod pMethod, bool a4,
-                                         const char* /* unused */) {
+NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable* pTable, NameObjMethod pMethod, bool allocateByCheck,
+                                         const char*) {
     NameObjMethod method;
     method = pMethod;
     mDelegator = new NameObjRealDelegator< NameObjMethod >(method);
-    _D = a4;
-    _C = 0;
+    mAllocateByCheck = allocateByCheck;
+    mBufferAllocated = false;
     initTable(count, pTable);
 }
 
-NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable* pTable, NameObjMethodConst pMethod, bool a4,
-                                         const char* /* unused */) {
+NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable* pTable, NameObjMethodConst pMethod, bool allocateByCheck,
+                                         const char*) {
     NameObjMethodConst method;
     method = pMethod;
     mDelegatorConst = new NameObjRealDelegator< NameObjMethodConst >(method);
-    _D = a4;
-    _C = 0;
+    mAllocateByCheck = allocateByCheck;
+    mBufferAllocated = false;
     initTable(count, pTable);
 }
 
@@ -32,8 +33,8 @@ void NameObjCategoryList::execute(int idx) {
         return;
     }
 
-    if (pCategoryInfo->_C != nullptr) {
-        (*pCategoryInfo->_C)();
+    if (pCategoryInfo->mExecuteBeforeFunction != nullptr) {
+        (*pCategoryInfo->mExecuteBeforeFunction)();
     }
 
     for (NameObj** pNameObj = pCategoryInfo->mNameObjArr.begin(); pNameObj != pCategoryInfo->mNameObjArr.end(); pNameObj++) {
@@ -41,22 +42,22 @@ void NameObjCategoryList::execute(int idx) {
     }
 }
 
-void NameObjCategoryList::incrementCheck(NameObj* /*unused*/, int index) {
+void NameObjCategoryList::incrementCheck(NameObj*, int index) {
     mCategoryInfo[index].mCheck++;
 }
 
 void NameObjCategoryList::allocateBuffer() {
-    if (_D) {
+    if (mAllocateByCheck) {
         for (int i = 0; i < mCategoryInfo.size(); i++) {
-            NameObjCategoryList::CategoryInfo* inf = &mCategoryInfo[i];
-            u32 size = inf->mCheck;
-            NameObj** nameObjArr = new NameObj*[size];
-            MR::Vector< MR::AssignableArray< NameObj* > >* arr = &mCategoryInfo[i].mNameObjArr;
-            arr->mArray.mArr = nameObjArr;
-            arr->mArray.mMaxSize = size;
+            NameObjCategoryList::CategoryInfo* pInfo = &mCategoryInfo[i];
+            u32 size = pInfo->mCheck;
+            NameObj** pNameObjArr = new NameObj*[size];
+            MR::Vector< MR::AssignableArray< NameObj* > >* pArray = &mCategoryInfo[i].mNameObjArr;
+            pArray->mArray.mArr = pNameObjArr;
+            pArray->mArray.mMaxSize = size;
         }
 
-        _C = 1;
+        mBufferAllocated = true;
     }
 }
 
@@ -64,29 +65,36 @@ void NameObjCategoryList::add(NameObj* pObj, int idx) {
     mCategoryInfo[idx].mNameObjArr.push_back(pObj);
 }
 
-// NameObjCategoryList::remove
+void NameObjCategoryList::remove(NameObj* pObj, int idx) {
+    MR::Vector< MR::AssignableArray< NameObj* > >& rArray = mCategoryInfo[idx].mNameObjArr;
+    s32 size = rArray.size();
+    NameObj** pBegin = rArray.begin();
+    NameObj** pFound = std::find(pBegin, pBegin + size, pObj);
+    rArray[pFound - pBegin] = rArray[rArray.size() - 1];
+    rArray.pop_back();
+}
 
 void NameObjCategoryList::registerExecuteBeforeFunction(const MR::FunctorBase& rFunc, int idx) {
     NameObjCategoryList::CategoryInfo* pCategoryInfo = &mCategoryInfo[idx];
 
-    pCategoryInfo->_C = rFunc.clone(nullptr);
+    pCategoryInfo->mExecuteBeforeFunction = rFunc.clone(nullptr);
 }
 
 void NameObjCategoryList::initTable(u32 count, const CategoryListInitialTable* pTable) {
     mCategoryInfo.init(count);
 
     for (CategoryInfo* pCategoryInfo = mCategoryInfo.begin(); pCategoryInfo != mCategoryInfo.end(); pCategoryInfo++) {
-        pCategoryInfo->_C = nullptr;
+        pCategoryInfo->mExecuteBeforeFunction = nullptr;
     }
 
     for (const CategoryListInitialTable* pEntry = &pTable[0]; pEntry->mIndex != -1; pEntry++) {
-        if (!_D) {
+        if (!mAllocateByCheck) {
             u32 size = pEntry->mCount;
-            NameObj** arr = new NameObj*[size];
-            NameObjCategoryList::CategoryInfo* inf = &mCategoryInfo[pEntry->mIndex];
-            inf->mNameObjArr.mArray.mArr = arr;
-            inf->mNameObjArr.mArray.mMaxSize = size;
-            _C = 1;
+            NameObj** pArray = new NameObj*[size];
+            NameObjCategoryList::CategoryInfo* pInfo = &mCategoryInfo[pEntry->mIndex];
+            pInfo->mNameObjArr.mArray.mArr = pArray;
+            pInfo->mNameObjArr.mArray.mMaxSize = size;
+            mBufferAllocated = true;
         }
 
         mCategoryInfo[pEntry->mIndex].mCheck = 0;

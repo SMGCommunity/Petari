@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/System/DrawBufferGroup.hpp"
 #include "Game/Util/Array.hpp"
 
+class DrawBufferGroup;
 class LiveActor;
 
 typedef MR::Vector< MR::AssignableArray< DrawBufferGroup* > > ExecutorList;
@@ -30,18 +30,9 @@ public:
     void drawOpa(s32) const;
     void drawXlu(s32) const;
 
-    ExecutorList& getExecuteList(s32 drawBufferType) {
-        s32 listId = mBufferGroups[drawBufferType].mDrawCameraType;
-        return mExecuteLists[listId];
-    }
-
-    bool isBufferGroupEmpty(s32 drawBufferType) const {
-        return mBufferGroups[drawBufferType].mActiveExecutors.size() == 0;
-    }
-
-    DrawBufferGroup* getDrawBufferGroup(s32 drawBufferType) {
-        return &mBufferGroups[drawBufferType];
-    }
+    ExecutorList& getExecuteList(s32 drawBufferType);
+    bool isBufferGroupEmpty(s32 drawBufferType) const;
+    DrawBufferGroup* getDrawBufferGroup(s32 drawBufferType);
 
     // debug symbol map functions
     s32 getActiveActorCount(const char*);

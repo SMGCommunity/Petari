@@ -14,7 +14,7 @@ public:
     virtual bool calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f& rPosition) const;
 
     void setPlane(const TVec3f& rPlaneUp, const TVec3f& rPlanePos);
-    void setRangeBox(const TPos3f&);
+    void setRangeBox(const TPos3f& rMtx);
     void setRangeCylinder(f32 radius, f32 height);
     void setRangeType(RANGE_TYPE rangeType);
     void setBaseDistance(f32 val);
@@ -24,18 +24,18 @@ public:
     bool isInCylinderRange(const TVec3f& rPosition, f32* pScalar) const;
     bool isInRange(const TVec3f& rPosition, f32* pScalar) const;
 
-    TPos3f mLocalMtx;                      // 0x28
-    TPos3f mWorldMtx;                      // 0x58
-    f32 mExtentX;                          // 0x88
-    f32 mExtentY;                          // 0x8C
-    f32 mExtentZ;                          // 0x90
-    TVec3f mPlanePosition;                 // 0x94
-    TVec3f mPlaneUpVec;                    // 0xA0
-    TVec3f mWorldPlanePosition;            // 0xAC
-    TVec3f mWorldPlaneUpVec;               // 0xB8
-    f32 mCylinderHeight;                   // 0xC4
-    f32 mCylinderRadius;                   // 0xC8
-    f32 mBaseDistance;                     // 0xCC
-    RANGE_TYPE mRangeType;                 // 0xD0
-    DISTANCE_CALC_TYPE mDistanceCalcType;  // 0xD4
+    /* 0x28 */ TPos3f mLocalMtx;
+    /* 0x58 */ TPos3f mWorldMtx;
+    /* 0x88 */ f32 mExtentX;
+    /* 0x8C */ f32 mExtentY;
+    /* 0x90 */ f32 mExtentZ;
+    /* 0x94 */ TVec3f mPlanePosition;
+    /* 0xA0 */ TVec3f mPlaneUpVec;
+    /* 0xAC */ TVec3f mWorldPlanePosition;
+    /* 0xB8 */ TVec3f mWorldPlaneUpVec;
+    /* 0xC4 */ f32 mCylinderHeight;
+    /* 0xC8 */ f32 mCylinderRadius;
+    /* 0xCC */ f32 mBaseDistance;
+    /* 0xD0 */ RANGE_TYPE mRangeType;
+    /* 0xD4 */ DISTANCE_CALC_TYPE mDistanceCalcType;
 };

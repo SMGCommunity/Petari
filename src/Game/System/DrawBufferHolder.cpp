@@ -10,7 +10,11 @@ namespace {
     bool isExcludedCheckMultiRegistCategory(s32);
 };  // namespace
 
-DrawBufferHolder::DrawBufferHolder() : mTableInitialized(false) {
+DrawBufferHolder::DrawBufferHolder() : mTableInitialized() {
+}
+
+bool DrawBufferHolder::isBufferGroupEmpty(s32 drawBufferType) const {
+    return mBufferGroups[drawBufferType].mActiveExecutors.size() == 0;
 }
 
 void DrawBufferHolder::initTable(const DrawBufferInitialTable* pInitialTable, s32 numGroups) {
@@ -105,4 +109,13 @@ void DrawBufferHolder::dummy(s32 drawBufferType) {
     // TODO: This SHOULD NOT be here, this is only here because for_each and Vector<>.end are emitted in this file for DrawBufferGroups,
     // indicating some stripped function uses them. (Check Debug symbols for candidates)
     std::for_each(mExecuteLists[drawBufferType].begin(), mExecuteLists[drawBufferType].end(), std::mem_func(&DrawBufferGroup::entry));
+}
+
+ExecutorList& DrawBufferHolder::getExecuteList(s32 drawBufferType) {
+    s32 listId = mBufferGroups[drawBufferType].mDrawCameraType;
+    return mExecuteLists[listId];
+}
+
+DrawBufferGroup* DrawBufferHolder::getDrawBufferGroup(s32 drawBufferType) {
+    return &mBufferGroups[drawBufferType];
 }

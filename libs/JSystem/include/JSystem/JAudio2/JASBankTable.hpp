@@ -1,7 +1,9 @@
 #pragma once
 
-#include <JSystem/JAudio2/JASBank.hpp>
+#include "JSystem/JAudio2/JASGadget.hpp"
 #include <JSystem/JAudio2/JASGlobal.hpp>
+
+#include <JSystem/JAudio2/JASBankList.hpp>
 
 #include <revolution/types.h>
 

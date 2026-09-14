@@ -16,7 +16,7 @@ namespace MR {
     bool isNPCItemFileExist(const char*);
     void initDefaultPose(NPCActor*, const JMapInfoIter&);
     void turnPlayerToActor(const LiveActor*, f32);
-    void decidePose(NPCActor*, const TVec3f&, const TVec3f&, const TVec3f&, f32, f32, f32);
+    void decidePose(NPCActor*, const TVec3f&, const TVec3f&, const TVec3f&, f32, f32, f32) NO_INLINE;
     void setNPCActorPos(NPCActor*, const char*);
     void setNPCActorPos(NPCActor*, const TVec3f&);
     void setNPCActorPose(NPCActor*, const TVec3f&, const TVec3f&, const TVec3f&);
@@ -57,20 +57,6 @@ namespace MR {
     void calcAndSetFloatBaseMtx(NPCActor*, f32);
 };  // namespace MR
 
-class DemoStarter : public NerveExecutor {
-public:
-    DemoStarter(NPCActor*);
-
-    bool update();
-    void start();
-    void exeInit();
-    void exeFade();
-    void exeWait();
-    void exeTerm();
-
-    /* 0x08 */ NPCActor* mActor;
-};
-
 class TakeOutStar : public NerveExecutor {
 public:
     TakeOutStar(NPCActor*, const char*, const char*, const Nerve*);
@@ -100,4 +86,18 @@ public:
     /* 0x08 */ NPCActor* mActor;
     /* 0x0C */ const Nerve* _C;
     /* 0x10 */ s32 _10;
+};
+
+class DemoStarter : public NerveExecutor {
+public:
+    DemoStarter(NPCActor*);
+
+    bool update();
+    void start();
+    void exeInit();
+    void exeFade();
+    void exeWait();
+    void exeTerm();
+
+    /* 0x08 */ NPCActor* mActor;
 };

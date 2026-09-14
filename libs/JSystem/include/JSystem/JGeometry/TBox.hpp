@@ -149,7 +149,8 @@ namespace JGeometry {
             this->f.y = other.f.y;
         }
         void set(const TVec2< T >& i, const TVec2< T >& f) {
-            this->i.set(i), this->f.set(f);
+            this->i = i;
+            this->f = f;
         }
         void set(T x0, T y0, T x1, T y1);
 

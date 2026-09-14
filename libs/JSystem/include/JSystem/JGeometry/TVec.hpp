@@ -507,7 +507,8 @@ namespace JGeometry {
 
         TVec3 operator/(f32 div) const {
             TVec3 ret(*this);
-            ret /= div;
+            f32 reciprocal = 1.0f / div;
+            ret *= reciprocal;
             return ret;
         }
 

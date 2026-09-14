@@ -55,6 +55,10 @@ public:
         return inner_.mCategory;
     }
 
+    JASTrack* getOutputTrack() {
+        return &inner_.outputTrack;
+    }
+
     /* 0x0A8 */ TInner inner_;
     /* 0x3A8 */ JAISoundStrategy< JAISeq >* soundStrategy;
 };

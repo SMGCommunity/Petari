@@ -1,12 +1,20 @@
 #include "Game/Util/IKJoint.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 
-void FORCE_OPERATOR() {
-    TVec3f vec;
-    vec * 1.0f;
+void IKJoint_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)-1.0f;
+    (void)2.0f;
+    (void)3.0f;
+    (void)100.0f;
+    (void)-2.0f;
+    (void)0.01f;
 }
 
-IKJoint::IKJoint() : mRootBoneLength(100.0f), mMiddleBoneLength(100.0f), _0(), _30(), _60() {
+IKJoint::IKJoint() : _0(), _30(), _60(), mRootBoneLength(100.0f), mMiddleBoneLength(100.0f) {
     _0.identity();
     _60.identity();
     _30.identity();
@@ -20,82 +28,141 @@ void IKJoint::setMiddleBoneLength(f32 boneLength) {
     mMiddleBoneLength = boneLength;
 }
 
-void IKJoint::setFirstPose(const TVec3f& a1, const TVec3f& a2) {
-    MR::makeMtxSideUp(&_0, a1, a2);
+void IKJoint::setFirstPose(const TVec3f& rSide, const TVec3f& rUp) {
+    MR::makeMtxSideUp(&_0, rSide, rUp);
 }
 
-s32 IKJoint::checkReachIKTarget(f32 a1, f32 a2, f32 a3) {
-    int res = 0;
+s32 IKJoint::checkReachIKTarget(f32 distance, f32 rootLength, f32 middleLength) {
+    int result = 0;
 
-    if (a1 > (a2 + a3)) {
-        res = 2;
+    if (distance > (rootLength + middleLength)) {
+        result = 2;
     } else {
-        if (a1 < __fabs(a2 - a3)) {
-            res = 1;
+        if (distance < __fabs(rootLength - middleLength)) {
+            result = 1;
         } else {
-            return res;
+            return result;
         }
     }
 
-    return res;
+    return result;
 }
 
-// regalloc
-f32 IKJoint::calcIKRootAngleCosign(f32 a1, f32 a2, f32 a3) {
-    s32 targ = checkReachIKTarget(a1, a2, a3);
+f32 IKJoint::calcIKRootAngleCosign(f32 distance, f32 rootLength, f32 middleLength) {
+    s32 reach = checkReachIKTarget(distance, rootLength, middleLength);
 
-    if (targ == 1) {
+    if (reach == 1) {
         return 1.0f;
     }
 
-    if (targ == -1) {
-        if (a2 < a3) {
+    if (reach == -1) {
+        if (rootLength < middleLength) {
             return -1.0f;
         }
 
         return 1.0f;
     }
 
-    f32 a3_sqr = a3 * a3;
-    f32 a2_sqr = a2 * a2;
-    f32 a1_sqr = a1 * a2;
-
-    f32 more_val = (a3_sqr - a1_sqr) - a2_sqr;
-    f32 val = (more_val / ((-2.0f * a2) * a1));
-
-    if (val < -1.0f) {
-        return -1.0f;
-    }
-
-    if (val > 1.0f) {
-        return 1.0f;
-    }
-
-    return val;
+    f32 distanceSquared = distance * distance;
+    f32 rootLengthSquared = rootLength * rootLength;
+    f32 middleLengthSquared = middleLength * middleLength;
+    f32 value = middleLengthSquared - distanceSquared - rootLengthSquared;
+    value /= -2.0f * rootLength * distance;
+    return MR::clamp(value, -1.0f, 1.0f);
 }
 
-// IKJoint::update
+void IKJoint::update(MtxPtr pRootMatrix, MtxPtr pMiddleMatrix, MtxPtr pEndMatrix, const TVec3f& rTarget) {
+    TPos3f rootMatrix;
+    TVec3f rootPosition;
+    TVec3f middlePosition;
+    TVec3f endPosition;
+    MR::extractMtxTrans(pRootMatrix, &rootPosition);
+    MR::extractMtxTrans(pMiddleMatrix, &middlePosition);
+    MR::extractMtxTrans(pEndMatrix, &endPosition);
+    mRootBoneLength = rootPosition.distance(middlePosition);
+    mMiddleBoneLength = middlePosition.distance(endPosition);
 
-void IKJoint::updateByLocalRootAndWorldTarget(const TPos3f& a1, const TVec3f& a2, const TVec3f& a3) {
-    TPos3f mtx = a1;
-    mtx.invert(a1);
-    TVec3f stack_14;
-    mtx.mult(a3, stack_14);
-    updateByLocalRootAndDirection(a1, a2, stack_14 - a2);
+    TVec3f targetDirection(rTarget - rootPosition);
+    TVec3f side(endPosition - rootPosition);
+    if (MR::normalizeOrZero(&side)) {
+        MR::extractMtxXDir(pRootMatrix, &side);
+    }
+
+    TVec3f up(middlePosition - rootPosition);
+    if (MR::isSameDirection(side, up, 0.01f)) {
+        MR::extractMtxYDir(pRootMatrix, &up);
+    }
+
+    MR::makeMtxSideUp(&_0, side, up);
+    rootMatrix.identity();
+    updateByLocalRootAndDirection(rootMatrix, rootPosition, targetDirection);
 }
 
-// IKJoint::updateByLocalRootAndDirection
+void IKJoint::updateByLocalRootAndWorldTarget(const TPos3f& rRootMatrix, const TVec3f& rRootPosition, const TVec3f& rTarget) {
+    TPos3f inverseRoot = rRootMatrix;
+    inverseRoot.invert(rRootMatrix);
+    TVec3f localTarget;
+    inverseRoot.mult(rTarget, localTarget);
+    updateByLocalRootAndDirection(rRootMatrix, rRootPosition, localTarget - rRootPosition);
+}
 
-s32 IKJoint::updateByUpVector(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3) {
-    f32 v9;
-    TPos3f mtx;
-    TVec3f sub = a2 - a1;
-    MR::separateScalarAndDirection(&v9, &sub, sub);
-    s32 v7 = updateByDistanceOnly(v9);
-    MR::makeMtxSideUpPos(&mtx, sub, a3, a1);
-    _30.concat(mtx, _30);
-    _60.concat(mtx, _60);
-    return v7;
+s32 IKJoint::updateByLocalRootAndDirection(const TPos3f& rRootMatrix, const TVec3f& rRootPosition, const TVec3f& rDirection) {
+    TPos3f matrix;
+    TVec3f direction(rDirection);
+    f32 distance;
+    MR::separateScalarAndDirection(&distance, &direction, direction);
+    s32 result = updateByDistanceOnly(distance);
+    calcToTargetMatrixByFirstPose(&matrix, rRootMatrix, rRootPosition, direction);
+    _30.concat(matrix, _30);
+    _60.concat(matrix, _60);
+    return result;
+}
+
+s32 IKJoint::updateByUpVector(const TVec3f& rRootPosition, const TVec3f& rTarget, const TVec3f& rUp) {
+    f32 distance;
+    TPos3f matrix;
+    TVec3f direction = rTarget - rRootPosition;
+    MR::separateScalarAndDirection(&distance, &direction, direction);
+    s32 result = updateByDistanceOnly(distance);
+    MR::makeMtxSideUpPos(&matrix, direction, rUp, rRootPosition);
+    _30.concat(matrix, _30);
+    _60.concat(matrix, _60);
+    return result;
+}
+
+s32 IKJoint::updateByDistanceOnly(f32 distance) {
+    s32 result = checkReachIKTarget(distance, mRootBoneLength, mMiddleBoneLength);
+    f32 cosine = calcIKRootAngleCosign(distance, mRootBoneLength, mMiddleBoneLength);
+    f32 sine = MR::fastSqrtf(1.0f - cosine * cosine);
+    TVec3f rootSide(cosine, sine, 0.0f);
+    TVec3f rootUp(-sine, cosine, 0.0f);
+    _30.identity();
+    _30.setXDir(rootSide);
+    _30.setYDir(rootUp);
+
+    TVec3f middlePosition(rootSide * mRootBoneLength);
+    TVec3f middleSide(TVec3f(distance, 0.0f, 0.0f) - middlePosition);
+    MR::normalizeOrZero(&middleSide);
+    TVec3f middleUp(-middleSide.y, middleSide.x, 0.0f);
+    _60.identity();
+    _60.setXDir(middleSide);
+    _60.setYDir(middleUp);
+    _60.setTrans(middlePosition);
+    return result;
+}
+
+void IKJoint::calcToTargetMatrixByFirstPose(TPos3f* pMatrix, const TPos3f& rRootMatrix, const TVec3f& rRootPosition, const TVec3f& rDirection) const {
+    TPos3f matrix;
+    TVec3f side;
+    _0.getXDir(side);
+    matrix.identity();
+    TQuat4f rotation;
+    rotation.setRotate(side, rDirection);
+    matrix.setQuat(rotation);
+    matrix.concat(matrix, _0);
+    matrix.setTrans(rRootPosition);
+    matrix.concat(rRootMatrix, matrix);
+    pMatrix->set(matrix);
 }
 
 void IKJoint::getRootJointPosition(TVec3f* pPos) const {

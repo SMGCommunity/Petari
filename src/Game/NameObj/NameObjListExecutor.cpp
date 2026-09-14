@@ -11,6 +11,8 @@ NameObjListExecutor::~NameObjListExecutor() {
     delete mBufferHolder;
 }
 
+template MR::Vector< MR::AssignableArray< DrawBufferGroup* > >::~Vector();
+
 void NameObjListExecutor::init() {
     initMovementList();
     initCalcAnimList();
@@ -111,4 +113,16 @@ void NameObjListExecutor::drawXlu(int drawBufferType) {
 
 void NameObjListExecutor::executeDraw(int category) {
     mDrawList->execute(category);
+}
+
+void NameObjListExecutor::initMovementList() {
+}
+
+void NameObjListExecutor::initCalcAnimList() {
+}
+
+void NameObjListExecutor::initCalcViewAndEntryList() {
+}
+
+void NameObjListExecutor::initDrawList() {
 }

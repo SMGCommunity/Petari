@@ -18,7 +18,7 @@ public:
     JASBank() {
         mWaveBank = NULL;
     }
-    virtual ~JASBank() {};
+    virtual ~JASBank(){};
     virtual bool getInstParam(int, int, int, JASInstParam*) const = 0;
     virtual u32 getType() const = 0;
 
@@ -34,11 +34,4 @@ public:
 
 private:
     /* 0x04 */ JASWaveBank* mWaveBank;
-};
-
-class JASBankList {
-public:
-    JASBankList() {};
-
-    virtual JASBank* getBank(u32) const = 0;
 };
