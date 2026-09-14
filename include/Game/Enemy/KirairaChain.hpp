@@ -35,7 +35,7 @@ public:
     /* 0x130 */ s32 mPointCount;
     /* 0x134 */ SwingRopePoint** mPoints;
     /* 0x138 */ s32 _138;
-    u8 _13C[0x140 - 0x13C];
+    /* 0x13C */ u8 _13C[4];
     /* 0x140 */ s32 mAccelPointIdx;
     /* 0x144 */ s32 mAccelTimer;
     /* 0x148 */ TVec3f mAccel;
