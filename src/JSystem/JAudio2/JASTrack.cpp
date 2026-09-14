@@ -1,7 +1,6 @@
 #include "JSystem/JAudio2/JASTrack.hpp"
 #include "JSystem/JAudio2/JASAiCtrl.hpp"
 #include "JSystem/JAudio2/JASBankTable.hpp"
-#include "JSystem/JAudio2/JASChannel.hpp"
 #include "JSystem/JAudio2/JASCriticalSection.hpp"
 #include "JSystem/JAudio2/JASDSPInterface.hpp"
 #include "JSystem/JAudio2/JASDriverIF.hpp"
@@ -11,23 +10,23 @@
 #include <cstring>
 #include <revolution/os.h>
 
-static const JASOscillator::Point sDefaultAdsr[4] = {{0, 0, 0x7fff}, {0, 0, 0x7fff}, {0, 0, 0}, {0xe, 0, 0}};
-
-const JASOscillator::Data JASTrack::sEnvOsc = {0, 1.0f, 0, 0, 1.0f, 0.0f};
-
-const JASOscillator::Data JASTrack::sPitchEnvOsc = {1, 1.0f, 0, 0, 1.0f, 0.0f};
-
-JASDefaultBankTable JASTrack::sDefaultBankTable;
-
-JASTrack::TList JASTrack::sTrackList;
-
-JASTrack::JASTrack() : mSeqCtrl(), mRegisterParam(), mDefaultChannelMgr(this), mChannelMgrCount(1), mStatus(0), mNode() {
+JASTrack::JASTrack() : mSeqCtrl(), mRegisterParam(), mDefaultChannelMgr(this), mChannelMgrCount(1), mStatus(STATUS_FREE), mNode() {
     mChannelMgrs[0] = &mDefaultChannelMgr;
     for (u32 i = 1; i < 4; i++) {
         mChannelMgrs[i] = nullptr;
     }
     init();
 }
+
+JASDefaultBankTable JASTrack::sDefaultBankTable;
+
+JASTrack::TList JASTrack::sTrackList;
+
+static const JASOscillator::Point sDefaultAdsr[4] = {{0, 0, 0x7fff}, {0, 0, 0x7fff}, {0, 0, 0}, {0xe, 0, 0}};
+
+const JASOscillator::Data JASTrack::sEnvOsc = {0, 1.0f, 0, 0, 1.0f, 0.0f};
+
+const JASOscillator::Data JASTrack::sPitchEnvOsc = {1, 1.0f, 0, 0, 1.0f, 0.0f};
 
 JASTrack::~JASTrack() {
     for (int i = 1; i < 4; i++) {
@@ -133,8 +132,8 @@ void JASTrack::init() {
     mIsOwnedByParent = false;
     mReadyToPlay = false;
     mIsStopped = false;
-    byteRepr = byteRepr;
-    mStatus = 0;
+
+    mStatus = STATUS_FREE;
 }
 
 void JASTrack::initTimed() {

@@ -52,8 +52,6 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded< JASTrack > {
         }
         void append(JASTrack*);
         void seqMain();
-        ~TList() {
-        }
 
         static s32 cbSeqMain(void*);
 
