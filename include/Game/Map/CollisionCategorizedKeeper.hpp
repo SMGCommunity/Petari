@@ -1,11 +1,13 @@
 #pragma once
 
-#include "Game/Map/CollisionParts.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/NameObj/NameObj.hpp"
+#include "Game/Util/Array.hpp"
 #include <revolution.h>
 
 class CollisionZone;
+class CollisionParts;
+class TriangleFilterBase;
 class CollisionPartsFilterBase;
 
 class CollisionCategorizedKeeper : public NameObj {
@@ -26,21 +28,18 @@ public:
     s32 checkStrikeLine(const TVec3f&, const TVec3f&, s32, const CollisionPartsFilterBase*, const TriangleFilterBase*);
     u32 createAreaPolygonList(Triangle*, u32, const TVec3f&, const TVec3f&);
     u32 createAreaPolygonListArray(Triangle*, u32, TVec3f*, u32);
-    void isSphereOverlappingWithBox(const TVec3f&, const TVec3f&, const TVec3f&, f32);
+    bool isSphereOverlappingWithBox(const TVec3f&, const TVec3f&, const TVec3f&, f32);
     bool searchSameHostParts(CollisionParts**, CollisionParts*) const;
     HitInfo* getStrikeInfo(u32);
     CollisionZone* getZone(int);
 
-    HitInfo* mHitInfoArray;  // 0xC
-    s32 _10;
-    s32 mZoneCount;               // 0x14
-    CollisionZone* mZones[0x20];  // 0x18
-    s32 mZoneNum;                 // 0x98
-    u32 _9C;
-    u8 _A0;
-    u8 _A1;
-    u8 _A2;
-    u8 _A3;
+    /* 0x0C */ HitInfo* mHitInfoArray;
+    /* 0x10 */ s32 _10;
+    /* 0x14 */ s32 mPartsCount;
+    /* 0x18 */ MR::Vector< MR::FixedArray< CollisionZone*, 32 > > mZones;
+    /* 0x9C */ s32 mCategory;
+    /* 0xA0 */ bool mZonesInitialized;
+    /* 0xA1 */ bool mUpdateZoneBounds;
 };
 
 class CollisionZone {
@@ -53,11 +52,10 @@ public:
     void addAndUpdateMinMax(TVec3f, TVec3f);
     void eraseParts(CollisionParts*);
 
-    s32 mZoneID;                         // 0x0
-    CollisionParts* mPartsArray[0x200];  // 0x4
-    s32 mNumParts;                       // 0x804
-    TVec3f _808;
-    f32 mRadius;  // 0x814
-    TVec3f _818;
-    TVec3f _824;
+    /* 0x000 */ s32 mZoneID;
+    /* 0x004 */ MR::Vector< MR::FixedArray< CollisionParts*, 512 > > mParts;
+    /* 0x808 */ TVec3f mCenter;
+    /* 0x814 */ f32 mRadius;
+    /* 0x818 */ TVec3f mMin;
+    /* 0x824 */ TVec3f mMax;
 };

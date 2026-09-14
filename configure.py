@@ -1462,7 +1462,7 @@ config.libs = [
             Object(NonMatching, "Game/Map/Air.cpp"),
             Object(NonMatching, "Game/Map/BezierRail.cpp"),
             Object(Matching, "Game/Map/Butterfly.cpp"),
-            Object(NonMatching, "Game/Map/CollisionCategorizedKeeper.cpp"),
+            Object(Matching, "Game/Map/CollisionCategorizedKeeper.cpp", extra_cflags=["-sym off"]),
             Object(NonMatching, "Game/Map/CollisionCode.cpp"),
             Object(NonMatching, "Game/Map/CollisionDirector.cpp"),
             Object(Matching, "Game/Map/CollisionParts.cpp", extra_cflags=["-sym off"]),
