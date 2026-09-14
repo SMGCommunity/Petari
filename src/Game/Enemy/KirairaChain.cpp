@@ -2,6 +2,7 @@
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/SimpleJ3DModelDrawer.hpp"
 #include "Game/Ride/SwingRopePoint.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
@@ -9,6 +10,9 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 #include <JSystem/J3DGraphBase/J3DShapeDraw.hpp>
+
+KirairaChain::~KirairaChain() {
+}
 
 KirairaChain::KirairaChain(const LiveActor* pHost)
     : LiveActor("キライラの鎖"), mHost(pHost), mIsCut(false), mCutPos(0.0f, 0.0f, 0.0f), mRailStart(0.0f, 0.0f, 0.0f), mRailEnd(0.0f, 0.0f, 0.0f),
@@ -46,14 +50,14 @@ KirairaChain::KirairaChain(const LiveActor* pHost)
         mClippingCenter.y *= 0.5f;
         mClippingCenter.z *= 0.5f;
 
-        MR::setClippingTypeSphere(this, PSVECDistance(&mClippingCenter, &mRailStart), &mClippingCenter);
+        MR::setClippingTypeSphere(this, mClippingCenter.distance(mRailStart), &mClippingCenter);
     } else {
         mPosition.y -= 300.0f;
-        railLength = PSVECDistance(&mHost->mPosition, &mPosition);
+        railLength = mHost->mPosition.distance(mPosition);
         mFixPointBottomMtx.setTrans(mPosition);
     }
 
-    mPointCount = static_cast< s32 >(railLength / 40.0f);
+    mPointCount = railLength / 40.0f;
 
     if (!MR::isExistRail(mHost)) {
         mPointCount -= 2;
@@ -61,9 +65,6 @@ KirairaChain::KirairaChain(const LiveActor* pHost)
 
     mFixPointTopMtx.getXDir(mFixPointTopDir);
     mFixPointBottomMtx.getXDir(mFixPointBottomDir);
-}
-
-KirairaChain::~KirairaChain() {
 }
 
 void KirairaChain::initPoints() {
@@ -92,23 +93,13 @@ void KirairaChain::draw() const {
     for (s32 i = 0; i < mPointCount; i++) {
         SwingRopePoint* point = mPoints[i];
 
-        mtx.mMtx[0][0] = point->mSide.x;
-        mtx.mMtx[1][0] = point->mSide.y;
-        mtx.mMtx[2][0] = point->mSide.z;
-
-        mtx.mMtx[0][1] = point->mUp.x;
-        mtx.mMtx[1][1] = point->mUp.y;
-        mtx.mMtx[2][1] = point->mUp.z;
-
-        mtx.mMtx[0][2] = point->mFront.x;
-        mtx.mMtx[1][2] = point->mFront.y;
-        mtx.mMtx[2][2] = point->mFront.z;
+        mtx.setXYZDir(point->mSide, point->mUp, point->mFront);
 
         mtx.setTrans(point->mPosition);
 
         PSMTXConcat(MR::getCameraViewMtx(), mtx, mtx);
-        GXLoadPosMtxImm(mtx, 0);
-        GXLoadNrmMtxImm(mtx, 0);
+        GXLoadPosMtxImm(mtx, GX_PNMTX0);
+        GXLoadNrmMtxImm(mtx, GX_PNMTX0);
         GXCallDisplayList(mModelDrawer->mShapeDraw->getDisplayList(), mModelDrawer->mShapeDraw->getDisplayListSize());
     }
 }
@@ -136,9 +127,9 @@ void KirairaChain::updatePoints() {
         s32 highIdx = MR::clamp(static_cast< s32 >((offset + MR::getRailCoord(mHost)) / 40.0f), 0, mPointCount - 1);
 
         TVec3f posA;
-        MR::calcRailPosAtCoord(&posA, mHost, 40.0f * static_cast< f32 >(lowIdx + 1));
+        MR::calcRailPosAtCoord(&posA, mHost, 40.0f * (lowIdx + 1));
         TVec3f posB;
-        MR::calcRailPosAtCoord(&posB, mHost, 40.0f * static_cast< f32 >(highIdx));
+        MR::calcRailPosAtCoord(&posB, mHost, 40.0f * highIdx);
 
         if (lowIdx + 1 < highIdx - 1) {
             restrictPointFromBottom(lowIdx + 1, highIdx - 1, posB, 1.0f);
@@ -216,7 +207,7 @@ void KirairaChain::control() {
 }
 
 void KirairaChain::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, 34, -1, -1, 26);
+    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_KirairaChain);
     initPoints();
 
     mModelDrawer = new SimpleJ3DModelDrawer(this, "キライラの鎖描画", "KirairaChain", -1);
