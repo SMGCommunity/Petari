@@ -10,6 +10,7 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
@@ -49,12 +50,20 @@ namespace NrvSuperSpinDriver {
     NEW_NERVE(SuperSpinDriverNrvCoolDown, SuperSpinDriver, CoolDown);
 };  // namespace NrvSuperSpinDriver
 
+// Fix TVec inlining
+void DUMMY() {
+    TVec3f a,b,c;
+    c *= 1.0f;
+    a += b;
+    a = b - c;
+}
+
 SuperSpinDriver::SuperSpinDriver(const char* pName, s32 color)
     : LiveActor(pName), mBindActor(), mShootPath(), mSpinDriverCamera(), mOperateRing(), mPathDrawer(), mEmptyModel(), _A4(0, 0, 0, 1),
-      _B4(0, 0, 0, 1), _C4(0, 0, 0), _D0(0, 0, 0), _DC(0, 1, 0), _E8(0, 0, 1), _F4(1, 0, 0), _100(0, 1, 0), _10C(0, 0, 0), _118(0, 0, 0),
-      _124(0, 0, 0), _134(), _138(), _13C(), mFrontAngle(), _144(), _148(0), mShadowLength(-1.0f), mFlightTime(300), _154(50), _158(230), _15C(280),
-      mDrawPathRangeIdx(-1), mPlayerLandRotation(), _168(), mAlreadyDoneFlagIdx(-1), mColor(color), _174(true), _178(), _17C(), _17D(),
-      mIsPullPlayer(true), mIsDisableJingle() {
+      _B4(0, 0, 0, 1), _C4(0, 0, 0), _D0(0, 0, 0), mShootPathDirection(0, 1, 0), _E8(0, 0, 1), _F4(1, 0, 0), _100(0, 1, 0),
+      mShootPathPosition(0, 0, 0), _118(0, 0, 0), _124(0, 0, 0), _134(), _138(), _13C(), mFrontAngle(), _144(), _148(0), mShadowLength(-1.0f),
+      mFlightTime(300), _154(50), _158(230), _15C(280), mDrawPathRangeIdx(-1), mPlayerLandRotation(), _168(), mAlreadyDoneFlagIdx(-1), mColor(color),
+      _174(true), _178(), _17C(), _17D(), mIsPullPlayer(true), mIsDisableJingle() {
 }
 
 void SuperSpinDriver::init(const JMapInfoIter& rIter) {
@@ -281,9 +290,8 @@ void SuperSpinDriver::appear() {
 }
 
 void SuperSpinDriver::control() {
-    // TODO:
-    // - Match/cleanup
-    // - Generate cntlzw + srwi. instruction combo instead of a cmpwi for the MR::isNearPlayerAnyTime condition
+    // TODO: Match/cleanup
+    // TODO: Generate cntlzw + srwi. instruction combo instead of a cmpwi for the MR::isNearPlayerAnyTime condition
     if (!_174 && MR::isNearPlayerAnyTime(this, 350.0f)) {
         _174 = true;
     }
@@ -306,7 +314,7 @@ void SuperSpinDriver::calcAndSetBaseMtx() {
 
     TPos3f mtxRotate;
     mtxRotate.identity();
-    mtxRotate.setEulerY(mFrontAngle);  // TODO: Avoid inlining
+    mtxRotate.setEulerY(mFrontAngle);
 
     mtx.concat(mtx, mtxRotate);
     MR::setBaseTRMtx(this, mtx);
@@ -370,11 +378,11 @@ bool SuperSpinDriver::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pR
 }
 
 bool SuperSpinDriver::canBind(HitSensor* pSender, HitSensor* pReceiver) const {
-    if (!isNerveBind()) {
+    if (!isNerveEnableBind()) {
         return false;
     }
 
-    if (isAttemptBind()) {
+    if (isSwingOr2PTrigger()) {
         return true;
     }
 
@@ -653,6 +661,98 @@ void SuperSpinDriver::exeCoolDown() {
     }
 }
 
+void SuperSpinDriver::exeShootStart() {
+    if (tryForceCancel()) {
+        return;
+    }
+
+    if (MR::isFirstStep(this)) {
+        MR::startSound(mBindActor, "SE_PM_SPIN_ATTACK");
+        MR::startCSSound("CS_SPIN_DRIVE_LONG", "SE_SY_CS_S_SPIN_DRV_START", 0);
+        MR::startSound(this, "SE_OJ_S_SPIN_DRV_PREP_JUMP");
+
+        if (MR::isInAreaObj("Water", mPosition)) {
+            MR::startSound(this, "SE_PM_SPIN_DRV_IN_WATER_1");
+        }
+
+        MR::deleteEffectAll(this);
+        MR::emitEffect(this, "SuperSpinDriverStart");
+        MR::startBck(this, "Start", nullptr);
+        MR::startBckPlayer("SuperSpinDriverStart", "SuperSpinDriverShoot");
+        _118 = _C4;
+        updateBindActorPoseToShoot(1.0f);
+    }
+
+    f32 rate = MR::calcNerveRate(this, 15);
+
+    _C4 = mPosition * rate + _118 * (1.0f - rate);
+    _144 *= 0.8f;
+
+    MR::tryRumblePadMiddle(this, WPAD_CHAN0);
+
+    if (tryShoot()) {
+        return;
+    }
+}
+
+void SuperSpinDriver::exeShoot() {
+    if (tryForceCancel()) {
+        return;
+    }
+
+    if (MR::isFirstStep(this)) {
+        calcShootMotionTime();
+        MR::validateHitSensor(this, "body");
+
+        if (MR::hasME()) {
+            MR::startSystemME("ME_MAGIC_L");
+        }
+        else {
+            MR::startSystemSE("SE_SY_S_SPIN_DRV_ME_ALT");
+        }
+
+        MR::startSound(this, "SE_OJ_S_SPIN_DRV_JUMP");
+        MR::startSound(mBindActor, "SE_PV_JUMP_JOY");
+
+        if (MR::isInAreaObj("Water", mPosition)) {
+            MR::startSound(this, "SE_PM_SPIN_DIV_IN_WATER_2");
+        }
+
+        MR::startBckPlayer("SpaceFlyStart", "SuperSpinDriverFlyStart");
+        MR::shakeCameraStrong();
+
+        MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
+        mShootPathDirection.set(_100);
+        mOperateRing->reset();
+        startPathDraw();
+    }
+
+    f32 rate = MR::calcNerveRate(this, mFlightTime);
+    updatePathDraw(rate);
+    updateOperateRate();
+    updateBindPosition(rate);
+
+    if (!MR::isNearZero(mShootPathDirection)) {
+        TVec3f stack_2C;
+        TVec3f stack_20 = mShootPathDirection + (mOperateRing->mDirection * mOperateRing->mRadiusRate) * 0.8f;
+        MR::normalize(stack_20, &stack_2C);
+        turnBindHead(stack_2C, 0.4f);
+    }
+
+    if (_154 <= getNerveStep() && getNerveStep() <= _158) {
+        f32 v = MR::normalize(getNerveStep(), _154, _158);
+        _138 = _13C * MR::getEaseOutValue(v, 0.0f, 1.0f, 1.0f);
+    }
+
+    _148 = PI * MR::normalize(getNerveStep(), _158, _15C);
+    updateShootMotion();
+    mSpinDriverCamera->update(mShootPathDirection, mShootPathPosition);
+
+    if (tryEndShoot()) {
+        return;
+    }
+}
+
 void SuperSpinDriver::updateShootMotion() {
     if (MR::isStep(this, _154)) {
         MR::startBckPlayer("SpaceFlyLoop", "SuperSpinDriverFlyLoop");
@@ -717,6 +817,23 @@ void SuperSpinDriver::updatePathDraw(f32 coord) {
     }
 }
 
+void SuperSpinDriver::updateBindPosition(f32 coord) {
+    mShootPath->calcPosition(&mShootPathPosition, coord);
+
+    TVec3f direction;
+    mShootPath->calcDirection(&direction, coord, 0.0099999998f);
+
+    if (!MR::isNearZero(direction)) {
+        mShootPathDirection = direction;
+    }
+
+    mOperateRing->update(mShootPathPosition, mShootPathDirection);
+    TVec3f stack_20 = _C4;
+    TVec3f stack_14 = mShootPathPosition + mOperateRing->_A4;
+    _C4.set(stack_14);
+    _D0 = _C4 - stack_20;
+}
+
 /*
 void SuperSpinDriver::calcShootMotionTime() {
     if (_150 >= 20) {
@@ -736,21 +853,14 @@ void SuperSpinDriver::calcShootMotionTime() {
 }
 */
 
-/*
 void SuperSpinDriver::addSwingSignRotateY() {
-    bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0)
-        || MR::isPlayerPointedBy2POnTriggerButton();
-
-    if (isSwingOrPointed) {
-        f32 v4 = MR::add(_144, 0.1f);
+    if (isSwingOr2PTrigger()) {
         _144 += 0.1f;
-
-        if (v4 > 0.23f) {
+        if (_144 > 0.23f) {
             _144 = 0.23f;
         }
     }
 }
-*/
 
 void SuperSpinDriver::onUse() {
     if (mEmptyModel != nullptr) {
@@ -786,11 +896,11 @@ bool SuperSpinDriver::isRightToUse() const {
     }
 }
 
-bool SuperSpinDriver::isNerveBind() const {
+bool SuperSpinDriver::isNerveEnableBind() const {
     return isNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvWait::sInstance) && MR::isGreaterStep(this, sCanBindTime);
 }
 
-bool SuperSpinDriver::isAttemptBind() const {
+bool SuperSpinDriver::isSwingOr2PTrigger() const {
     return MR::isPadSwing(WPAD_CHAN0) || MR::isPlayerPointedBy2POnTriggerButton();
 }
 
@@ -807,3 +917,6 @@ namespace MR {
         return new SuperSpinDriver(pName, 2);
     }
 };  // namespace MR
+
+SuperSpinDriver::~SuperSpinDriver() {
+}

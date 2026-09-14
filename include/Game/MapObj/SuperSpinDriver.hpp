@@ -79,8 +79,8 @@ public:
     void offUse();
     bool isNeedEmptyModel() const;
     bool isRightToUse() const;
-    bool isNerveBind() const;
-    bool isAttemptBind() const;
+    bool isNerveEnableBind() const;
+    bool isSwingOr2PTrigger() const;
 
     /* 0x8C */ LiveActor* mBindActor;
     /* 0x90 */ SpinDriverShootPath* mShootPath;
@@ -92,11 +92,11 @@ public:
     /* 0xB4 */ TQuat4f _B4;
     /* 0xC4 */ TVec3f _C4;
     /* 0xD0 */ TVec3f _D0;
-    /* 0xDC */ TVec3f _DC;
+    /* 0xDC */ TVec3f mShootPathDirection;
     /* 0xE8 */ TVec3f _E8;
     /* 0xF4 */ TVec3f _F4;
     /* 0x100 */ TVec3f _100;
-    /* 0x10C */ TVec3f _10C;
+    /* 0x10C */ TVec3f mShootPathPosition;
     /* 0x118 */ TVec3f _118;
     /* 0x124 */ TVec3f _124;
     /* 0x130 */ f32 _130;
@@ -108,8 +108,8 @@ public:
     /* 0x148 */ f32 _148;
     /* 0x14C */ f32 mShadowLength;
     /* 0x150 */ s32 mFlightTime;
-    /* 0x154 */ u32 _154;
-    /* 0x158 */ u32 _158;
+    /* 0x154 */ s32 _154;
+    /* 0x158 */ s32 _158;
     /* 0x15C */ u32 _15C;
     /* 0x160 */ s32 mDrawPathRangeIdx;
     /* 0x164 */ f32 mPlayerLandRotation;
