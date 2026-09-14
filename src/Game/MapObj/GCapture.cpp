@@ -5,6 +5,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/BlueStarCupsulePlanet.hpp"
 #include "Game/MapObj/GCaptureRibbon.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
@@ -115,7 +116,7 @@ GCapture::GCapture(const char* pName)
 
 void GCapture::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    MR::connectToScene(this, 34, 5, -1, 19);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_None, MR::DrawBufferType_EnemyDecoration);
     initSound(8, false);
     initHitSensor(2);
     MR::addHitSensorRide(this, "body", 16, 200.0f, TVec3f(0.0f, 0.0f, 0.0f));

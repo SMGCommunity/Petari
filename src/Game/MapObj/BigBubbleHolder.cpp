@@ -27,7 +27,7 @@ BigBubbleHolder::BigBubbleHolder(const char* pName) : NameObj(pName), mDrawer(nu
 
     mDrawer = new BigBubbleDrawer();
     MR::registerPreDrawFunction(MR::Functor_Inline(&MR::setUpBigBubbleDraw), MR::DrawType_BigBubble);
-    MR::connectToScene(this, MR::MovementType_EnemyDecoration, -1, -1, MR::DrawType_BigBubble);
+    MR::connectToScene(this, MR::MovementType_EnemyDecoration, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_BigBubble);
 }
 
 void BigBubbleHolder::movement() {

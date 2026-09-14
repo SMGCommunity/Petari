@@ -6,10 +6,9 @@
 class DrawAdaptor : public NameObj {
 public:
     DrawAdaptor(const MR::FunctorBase& rFunc, int drawType);
-    virtual ~DrawAdaptor();
 
     virtual void draw() const;
 
 private:
-    /* 0xC */ const MR::FunctorBase* mFunc;
+    /* 0x0C */ const MR::FunctorBase* mFunc;
 };

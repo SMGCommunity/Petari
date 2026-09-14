@@ -17,7 +17,7 @@ ClipArea::ClipArea(const char* pName) : LiveActor(pName), mShape() {
 
 void ClipArea::init(const JMapInfoIter& rIter) {
     initBaseMatrix(rIter);
-    MR::connectToScene(this, -1, -1, -1, MR::DrawType_ClipArea);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_ClipArea);
 }
 
 void ClipArea::initBaseMatrix(const JMapInfoIter& rIter) {

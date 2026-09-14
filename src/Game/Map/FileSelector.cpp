@@ -132,7 +132,7 @@ FileSelector::FileSelector(const char* pName)
 }
 
 void FileSelector::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_Environment, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_Environment, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
     initHitSensor(1);
     MR::addHitSensorPriorBinder(this, "body", 8, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initUserFileArray();
@@ -298,7 +298,7 @@ void FileSelector::createBackButton() {
     mBackButton = new BackButton("戻るボタン", false);
     mBackButton->initWithoutIter();
 
-    MR::connectToScene(mBackButton, MR::MovementType_Layout, MR::CalcAnimType_Layout, -1, MR::DrawType_LayoutDecoration);
+    MR::connectToScene(mBackButton, MR::MovementType_Layout, MR::CalcAnimType_Layout, MR::DrawBufferType_None, MR::DrawType_LayoutDecoration);
 }
 
 void FileSelector::createBrosButton() {
@@ -337,7 +337,7 @@ void FileSelector::createMiiSelect() {
 void FileSelector::createMiiConfirmIcon() {
     mMiiConfirmIcon = new MiiConfirmIcon("Mii確認用アイコン");
     mMiiConfirmIcon->initWithoutIter();
-    MR::connectToScene(mMiiConfirmIcon, MR::MovementType_Layout, MR::CalcAnimType_Layout, -1, MR::DrawType_LayoutDecoration);
+    MR::connectToScene(mMiiConfirmIcon, MR::MovementType_Layout, MR::CalcAnimType_Layout, MR::DrawBufferType_None, MR::DrawType_LayoutDecoration);
 }
 
 void FileSelector::createMiiFont() {

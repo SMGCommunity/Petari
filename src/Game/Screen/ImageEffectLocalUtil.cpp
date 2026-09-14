@@ -22,11 +22,11 @@ namespace {
 };  // namespace
 
 void MR::connectToSceneImageEffect(NameObj* pObj) {
-    MR::connectToScene(pObj, MovementType_ImageEffect, CalcAnimType_Environment, -1, DrawType_ImageEffect);
+    MR::connectToScene(pObj, MR::MovementType_ImageEffect, MR::CalcAnimType_Environment, MR::DrawBufferType_None, MR::DrawType_ImageEffect);
 }
 
 void MR::connectToSceneImageEffectMovement(NameObj* pObj) {
-    MR::connectToScene(pObj, MovementType_ImageEffect, -1, -1, -1);
+    MR::connectToScene(pObj, MR::MovementType_ImageEffect, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
 }
 
 void ImageEffectLocalUtil::capture(JUTTexture* pTexture, s32 param2, s32 param3, GXTexFmt format, bool param5, u8 param6) {
@@ -145,15 +145,15 @@ void ImageEffectLocalUtil::blurTexture(JUTTexture* pTexture, s32 param2, s32 par
 }
 */
 void MR::connectToSceneNormalBloom(BloomEffect* pBloomEffect) {
-    MR::connectToScene(pBloomEffect, -1, CalcAnimType_Environment, -1, -1);
+    MR::connectToScene(pBloomEffect, MR::MovementType_None, MR::CalcAnimType_Environment, MR::DrawBufferType_None, MR::DrawType_None);
 
     NameObjAdaptor* preDrawAdaptor = new NameObjAdaptor("BloomEffect::preDraw");
 
     preDrawAdaptor->connectToDraw(MR::Functor(pBloomEffect, &BloomEffect::preDraw));
-    MR::connectToScene(preDrawAdaptor, -1, -1, -1, DrawType_BloomEffectPreDraw);
+    MR::connectToScene(preDrawAdaptor, MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_BloomEffectPreDraw);
 
     NameObjAdaptor* postDrawAdaptor = new NameObjAdaptor("BloomEffect::postDraw");
 
     postDrawAdaptor->connectToDraw(MR::Functor(pBloomEffect, &BloomEffect::postDraw));
-    MR::connectToScene(postDrawAdaptor, -1, -1, -1, DrawType_BloomEffectPostDraw);
+    MR::connectToScene(postDrawAdaptor, MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_BloomEffectPostDraw);
 }

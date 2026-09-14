@@ -46,7 +46,7 @@ void TrampleStar::init(const JMapInfoIter& rIter) {
     // https://decomp.me/scratch/4dRlF
 
     MR::initDefaultPos(this, rIter);
-    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, -1, MR::DrawType_FlexibleSphere);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_None, MR::DrawType_FlexibleSphere);
 
     // FIXME: inline
     mTexture = new JUTTexture(MR::loadTexFromArc("TrampleStar.arc", "TrampleStar.bti"), 0);

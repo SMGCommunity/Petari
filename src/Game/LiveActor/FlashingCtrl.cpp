@@ -11,7 +11,7 @@ FlashingCtrl::FlashingCtrl(LiveActor* pActor, bool toggleDraw) : NameObj("点滅
     mOverrideInterval = 0;
     mTimer = 0;
     mFlashStartTime = 0;
-    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
 }
 
 void FlashingCtrl::movement() {

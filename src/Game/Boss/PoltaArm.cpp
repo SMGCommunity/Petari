@@ -2,6 +2,7 @@
 #include "Game/Boss/Polta.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -23,7 +24,7 @@ namespace NrvPoltaArm {
 };  // namespace NrvPoltaArm
 
 PoltaArm::PoltaArm(const char* pName, const char* pModelName, MtxPtr pMtx)
-    : ModelObj(pName, pModelName, pMtx, 18, -2, -2, false), mFormationModel(nullptr), mBreakModel(nullptr), _C8(2), _CC(2), mBrokenCounter(0), _D4(0),
+    : ModelObj(pName, pModelName, pMtx, MR::DrawBufferType_Enemy, -2, -2, false), mFormationModel(), mBreakModel(), _C8(2), _CC(2), mBrokenCounter(), _D4(),
       mIsLeftArm(true) {
     _98.identity();
     MR::initLightCtrl(this);

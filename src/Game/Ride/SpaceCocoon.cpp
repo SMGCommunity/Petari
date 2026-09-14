@@ -67,7 +67,7 @@ SpaceCocoon::SpaceCocoon(const char* pName)
 void SpaceCocoon::init(const JMapInfoIter& rIter) {
     // FIXME : annoying regswap, idx should be in r30
     // https://decomp.me/scratch/kjwvE
-    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_Ride, -1, MR::DrawType_SpaceCocoon);
+    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_Ride, MR::DrawBufferType_None, MR::DrawType_SpaceCocoon);
 
     MR::initDefaultPos(this, rIter);
 

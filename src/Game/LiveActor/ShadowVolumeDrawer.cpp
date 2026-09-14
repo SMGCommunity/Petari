@@ -19,7 +19,7 @@ ShadowVolumeDrawer::ShadowVolumeDrawer(const char* pName) : ShadowDrawer(pName) 
     mEndDrawShapeOffset = 0.0f;
     mIsCutDropShadow = false;
     MR::createSceneObj(SceneObj_ShadowVolumeDrawInit);
-    MR::connectToScene(this, -1, -1, -1, MR::DrawType_ShadowVolume);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_ShadowVolume);
 }
 
 void ShadowVolumeDrawer::setStartDrawShepeOffset(f32 offs) {

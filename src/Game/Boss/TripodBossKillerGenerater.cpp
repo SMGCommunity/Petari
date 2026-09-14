@@ -53,7 +53,7 @@ void TripodBossKillerGenerater::init(const JMapInfoIter& rIter) {
     TripodBossFixPartsBase::init(rIter);
     MR::makeMtxTR(_E4, this);
     initModelManagerWithAnm("TripodBossKillerCannon", nullptr, false);
-    MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, -1);
+    MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, MR::DrawType_None);
     MR::getJMapInfoArg1NoInit(rIter, &mCanShootSettingPlayerDistance);
     initClippingSphere();
 

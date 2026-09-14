@@ -32,7 +32,7 @@ PlantStalk::PlantStalk()
 }
 
 void PlantStalk::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, -1, -1, -1, 4);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_PlantStalk);
 
     initRailRider(rIter);
     mRailInfo = new PlantRailInfo(rIter, 30.0f);

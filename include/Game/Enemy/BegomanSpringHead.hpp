@@ -4,8 +4,8 @@
 
 class BegomanHead : public PartsModel {
 public:
-    BegomanHead(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx, int drawType, bool useHostLight)
-        : PartsModel(pHost, pName, pModelName, pMtx, drawType, useHostLight), _9C() {
+    BegomanHead(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx, int drawBufferType, bool useHostLight)
+        : PartsModel(pHost, pName, pModelName, pMtx, drawBufferType, useHostLight), _9C() {
     }
 
     virtual ~BegomanHead();

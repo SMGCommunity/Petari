@@ -97,7 +97,7 @@ namespace MR {
 };  // namespace MR
 
 void SpinDriverPathDrawer::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, -1, -1, -1, MR::DrawType_SpinDriverPathDrawer);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_SpinDriverPathDrawer);
     initPositionList(75.0f, 20.0f);
     initClipping();
     initPathEnd();

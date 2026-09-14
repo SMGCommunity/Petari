@@ -111,6 +111,6 @@ void WarpCube::init(const JMapInfoIter& rIter) {
     mEventName = new char[eventNameLength + 1];
     strcpy(mEventName, &eventName[0]);
 
-    MR::connectToScene(this, MR::MovementType_AreaObj, -1, -1, MR::DrawType_WarpPodPath);
+    MR::connectToScene(this, MR::MovementType_AreaObj, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_WarpPodPath);
     _48 = 0;
 }

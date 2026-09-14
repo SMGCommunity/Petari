@@ -13,74 +13,83 @@
 #include <revolution/mtx.h>
 #include <revolution/types.h>
 
+void BigBubble_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)2.0f;
+    (void)3.0f;
+}
+
 namespace {
-    // sBrakeInPointerTime
-    // sBrakeFric
-    // sNormalFric
-    // sBuoyancyAccel
-    // sPushedAccel
-    // sPushDeformAccel
-    // sNeedPushMoveMinRate
-    // sNeedPushDeformMinRate
+    // static const s32 sBrakeInPointerTime
+    // static const f32 sBrakeFric
+    static const f32 sNormalFric = 0.992f;
+    static const f32 sBuoyancyAccel = 0.03f;
+    static const f32 sPushedAccel = 0.18f;
+    static const f32 sPushDeformAccel = 1.1f;
+    static const f32 sNeedPushMoveMinRate = 0.9f;
+    static const f32 sNeedPushDeformMinRate = 0.9f;
     static const f32 sBaseRadiusSphere = 150.0f;
     static const f32 sBaseRadiusCube = 180.0f;
     static const f32 sBaseRadiusOctahedron = 120.0f;
-    // sNeedPushPointInTime
-    // sPushPower
-    // sInPushPower
-    // sPushInvelidTime
-    // sUnInvertPushTime
-    // sPushAccelTime
-    // sPointScreenAccelMin
-    // sPointScreenAccelMax
-    // sPointAccelMin
-    // sPointAccelMax
-    // sPointAccelDistanceMin
-    // sPointAccelDistanceMax
-    // sPointAccelDeformPowerRate
+    // static const s32 sNeedPushPointInTime
+    // static const f32 sPushPower
+    // static const f32 sInPushPower
+    // static const s32 sPushInvelidTime
+    // static const s32 sUnInvertPushTime
+    // static const s32 sPushAccelTime
+    // static const f32 sPointScreenAccelMin
+    // static const f32 sPointScreenAccelMax
+    static const f32 sPointAccelMin = 0.0f;
+    static const f32 sPointAccelMax = 1.0f;
+    static const f32 sPointAccelDistanceMin = 50.0f;
+    static const f32 sPointAccelDistanceMax = 1000.0f;
+    static const f32 sPointAccelDeformPowerRate = 1.5f;
     static const f32 sStarPieceDeformPower = 15.0f;
-    // sMeshScaleK
-    // sMeshScaleFreq
-    // sPushMeshPower
-    // sPressPower
-    // sAccelDeformPower
-    // sMaxDeformSpeed
-    // sSpinStartScreenSpeed
-    // sSpinMaxScreenSpeed
-    // sSpinPower
-    // sSpinFreq
-    // sMaxSpinSpeed
-    // sCaptureStartVolume
-    // sCaptureEndVolume
-    // sObstructCaptureTime
-    // sWindMinDistance
-    // sWindMaxDistance
-    // sWindAccel
-    // sCorioriRotSpeed
-    // sCoriolisAccelPower
-    static const s32 sReduceSizeInterval = 360;
+    // static const f32 sMeshScaleK =
+    static const f32 sMeshScaleFreq = 0.93f;
+    static const f32 sPushMeshPower = 0.02f;
+    static const f32 sPressPower = 10.0f;
+    static const f32 sAccelDeformPower = 0.8f;
+    static const f32 sMaxDeformSpeed = 10.0f;
+    static const f32 sSpinStartScreenSpeed = 0.03f;
+    static const f32 sSpinMaxScreenSpeed = 0.2f;
+    static const f32 sSpinPower = 0.03f;
+    static const f32 sSpinFreq = 0.99f;
+    static const f32 sMaxSpinSpeed = 0.2f;
+    static const f32 sCaptureStartVolume = 0.75f;
+    static const f32 sCaptureEndVolume = 0.25f;
+    // static const s32 sObstructCaptureTime =
+    static const f32 sWindMinDistance = 0.0f;
+    static const f32 sWindMaxDistance = 0.5f;
+    static const f32 sWindAccel = 0.25f;
+    static const f32 sCorioriRotSpeed = 3.0f;
+    static const f32 sCoriolisAccelPower = 0.1f;
+    static const s32 sReduceSizeInterval = 120;
     static const f32 sReduceVolume = 0.5f;
-    // sMaxVolume
-    // sMargeableVolume
-    // sAppearTime
-    // sAppearAddMoment
-    // sWarningCycle
+    static const f32 sMaxVolume = 5.0f;
+    // static const f32 sMargeableVolume
+    static const s32 sAppearTime = 30;
+    static const f32 sAppearAddMoment = 0.03f;
+    static const s32 sWarningCycle = 40;
     static const s32 sAutoBreakTime = 1200;
-    // sBreakTime
-    // sEscapeTime
-    // sEscapeVelocity
-    // sMargeableRate
-    // sMergeDeformAccel
-    // sMergedTime
-    // sMergeRotateRate
-    // sMergeDirCorrection
-    // sTurchDeformTime
-    // sTurchDeformAccel
-    static const f32 sRadiusSubLevel2 = 5.0f;
+    static const s32 sBreakTime = 20;
+    static const s32 sEscapeTime = 30;
+    static const f32 sEscapeVelocity = 30.0f;
+    static const f32 sMargeableRate = 0.9f;
+    static const f32 sMergeDeformAccel = 0.75f;
+    static const s32 sMergedTime = 45;
+    static const f32 sMergeRotateRate = 0.2f;
+    static const f32 sMergeDirCorrection = 0.95f;
+    static const s32 sTurchDeformTime = 25;
+    static const f32 sTurchDeformAccel = sMergeDeformAccel / 100.0f;
+    static const f32 sRadiusSubLevel2 = 3.0f;
     static const f32 sRadiusSubLevel3 = 7.0f;
     static const f32 sRadiusSubLevel4 = 15.0f;
     static const f32 sRadiusSubLevel5 = 30.0f;
     static const f32 sRadiusSubLevel6 = 50.0f;
+    static const f32 sRadiusSubLevel1 = 0.0f;
 };  // namespace
 
 enum Side { Side_Top = 0, Side_Right = 1, Side_Back = 2, Side_Left = 3, Side_Front = 4, Side_Bottom = 5 };
@@ -96,11 +105,11 @@ namespace NrvBigBubble {
 };  // namespace NrvBigBubble
 
 BigBubble::BigBubble(const char* pName)
-    : LiveActor(pName), mSurface(nullptr), mMoveLimitter(nullptr), mHost(nullptr), mRider(nullptr), mMergeBubble(nullptr), mBubbleQuat(0, 0, 0, 1),
-      mRiderQuat(0, 0, 0, 1), mRiderPos(0.0f, 0.0f, 0.0f), mSpawnPosition(0.0f, 0.0f, 0.0f), _18C(0.0f, 0.0f, 0.0f), mPointerPos(0.0f, 0.0f, 0.0f),
-      _1A4(0.0f, 0.0f, 0.0f), mMoment(0.0f, 0.0f, 0.0f), mCoriolisAccel(1.0f, 0.0f, 0.0f), mInterpolateTime(0), mBlowForce(0), _200(0),
-      mReduceVolumeTimer(0), _208(0), mMergeIndex(-1), mShapeType(-1), _214(0), mAppearRadius(1.0f), mVolume(1.0f), mDrawZ(0.0f), mBinderRadius(0.0f),
-      mWarningColor(255, 0, 0, 0), mIsObstruct(false), _22D(false), mIsHidden(false), mIsExitLimitter(false), mIsBroken(false), mIsShrinkable(true),
+    : LiveActor(pName), mSurface(), mMoveLimitter(), mHost(), mRider(), mMergeBubble(), mBubbleQuat(0, 0, 0, 1), mRiderQuat(0, 0, 0, 1),
+      mRiderPos(0.0f, 0.0f, 0.0f), mSpawnPosition(0.0f, 0.0f, 0.0f), _18C(0.0f, 0.0f, 0.0f), mPointerPos(0.0f, 0.0f, 0.0f),
+      mPushDirection(0.0f, 0.0f, 0.0f), mMoment(0.0f, 0.0f, 0.0f), mCoriolisAccel(1.0f, 0.0f, 0.0f), mInterpolateRate(), mPointAccel(),
+      mPushInvalidTime(), mReduceVolumeTimer(), _208(), mMergeIndex(-1), mShapeType(-1), _214(), mAppearRadius(1.0f), mVolume(1.0f), mDrawZ(),
+      mBinderRadius(), mWarningColor(255, 0, 0, 0), mIsObstruct(), _22D(), mIsHidden(), mIsExitLimitter(), mIsBroken(), mIsShrinkable(true),
       mIsAttached(true) {
     mSurface = new OctahedronBezierSurface(3);
     mEffectMtx.identity();
@@ -108,7 +117,7 @@ BigBubble::BigBubble(const char* pName)
 
     for (s32 idx = 0; idx < 6; idx++) {
         mDeformCoeff[idx] = 1.0f;
-        mDeformVelocity[idx] = 0.0f;
+        mDeformSpeed[idx] = 0.0f;
         mMergeBubbles[idx] = nullptr;
     }
 }
@@ -116,9 +125,9 @@ BigBubble::BigBubble(const char* pName)
 void BigBubble::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     mBaseMtx.setTrans(mPosition);
-    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_MapObj, -1, -1);
+    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_MapObj, MR::DrawBufferType_None, MR::DrawType_None);
     BigBubble::initSensor();
-    initNerve(&NrvBigBubble::BigBubbleNrvWait::sInstance);
+    initNerve(GET_NERVE(BigBubble, BigBubbleNrvWait));
     initBinder(getBaseRadius(), 0, 16);
     initEffectKeeper(0, "BigBubble", false);
     MR::setEffectHostMtx(this, "PushWind", mEffectMtx);
@@ -144,10 +153,10 @@ void BigBubble::makeActorAppeared() {
     updateMeshPoint();
     mSurface->calcAnim();
     LiveActor::makeActorAppeared();
-    setNerve(&NrvBigBubble::BigBubbleNrvAppear::sInstance);
+    setNerve(GET_NERVE(BigBubble, BigBubbleNrvAppear));
 
     for (s32 idx = 0; idx < 6; idx++) {
-        mDeformVelocity[idx] = 0.0f;
+        mDeformSpeed[idx] = 0.0f;
         mDeformCoeff[idx] = 0.0f;
         mMergeBubbles[idx] = nullptr;
     }
@@ -165,7 +174,7 @@ void BigBubble::makeActorDead() {
 
     for (s32 idx = 0; idx < 6; idx++) {
         mDeformCoeff[idx] = 0.0f;
-        mDeformVelocity[idx] = 0.0f;
+        mDeformSpeed[idx] = 0.0f;
         mMergeBubbles[idx] = nullptr;
     }
 
@@ -173,12 +182,9 @@ void BigBubble::makeActorDead() {
 }
 
 void BigBubble::control() {
-    // FIXME: float regswaps in setBinderRadius line
-    // https://decomp.me/scratch/uE4Rx
-
     mIsHidden = MR::isJudgedToClipFrustum(mPosition, getSize() * 1.2f);
 
-    if (!isNerve(&NrvBigBubble::BigBubbleNrvMerged::sInstance)) {
+    if (!isNerve(GET_NERVE(BigBubble, BigBubbleNrvMerged))) {
         doMoveLimit();
         updatePose();
         if (!mIsHidden) {
@@ -190,11 +196,12 @@ void BigBubble::control() {
         _208--;
     }
 
-    if (_200 > 0) {
-        _200--;
+    if (mPushInvalidTime > 0) {
+        mPushInvalidTime--;
     }
 
-    MR::setBinderRadius(this, MR::getBinderRadius(this) * 0.9f + mBinderRadius * 0.1f);
+    f32 radius = MR::getBinderRadius(this);
+    MR::setBinderRadius(this, 0.1f * mBinderRadius + 0.9f * radius);
 }
 
 void BigBubble::calcAnim() {
@@ -212,7 +219,7 @@ void BigBubble::calcAnim() {
             divideLevel = 3;
         } else if (radius >= ::sRadiusSubLevel2) {
             divideLevel = 2;
-        } else if (radius >= 3.0f) {  // no static symbol here?
+        } else if (radius >= ::sRadiusSubLevel1) {
             divideLevel = 1;
         }
 
@@ -314,7 +321,7 @@ void BigBubble::setScale(f32 scale) {
     f32 radius = getBaseRadius();
     mScale.set(TVec3f(scale, scale, scale));
     MR::setStarPointerTargetRadius3d(this, radius * scale);
-    MR::setShadowVolumeSphereRadius(this, nullptr, radius * 0.8f * scale);
+    MR::setShadowVolumeSphereRadius(this, nullptr, 0.8f * radius * scale);
     mBinderRadius = radius * scale * 0.95f;
     MR::setBinderRadius(this, radius * scale * 0.9f);
     MR::setSensorRadius(this, "body", radius * scale);
@@ -328,7 +335,7 @@ void BigBubble::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         pReceiver->receiveMessage(ACTMES_PUSH, pSender);
         f32 otherScale = pReceiver->mHost->mScale.x;
         f32 thisScale = mScale.x;
-        if (isNerve(&NrvBigBubble::BigBubbleNrvCapture::sInstance) || thisScale >= otherScale) {
+        if (isNerve(GET_NERVE(BigBubble, BigBubbleNrvCapture)) || thisScale >= otherScale) {
             s32 mergeIndex = getMergeIndex(MR::getSensorPos(pReceiver));
             if (mergeIndex != -1 && pReceiver->receiveMessage(ACTMES_BIG_BUBBLE_MERGE, pSender)) {
                 mReduceVolumeTimer = 0;
@@ -347,7 +354,7 @@ bool BigBubble::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
     }
 
     if (MR::isMsgPlayerHipDrop(msg) && mRider == nullptr) {
-        setNerve(&NrvBigBubble::BigBubbleNrvBreak::sInstance);
+        setNerve(GET_NERVE(BigBubble, BigBubbleNrvBreak));
         return true;
     }
 
@@ -364,33 +371,31 @@ bool BigBubble::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pR
         mRider = nullptr;
     }
 
-    setNerve(&NrvBigBubble::BigBubbleNrvBreak::sInstance);
+    setNerve(GET_NERVE(BigBubble, BigBubbleNrvBreak));
     return true;
 }
 
 bool BigBubble::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
-    // FIXME: regswaps and stack order
-    // https://decomp.me/scratch/x5Tjr
-
     if (pSender->isType(ATYPE_BIG_BUBBLE)) {
-        if (isNerve(&NrvBigBubble::BigBubbleNrvWait::sInstance) || isNerve(&NrvBigBubble::BigBubbleNrvCapture::sInstance)) {
+        if (isNerve(GET_NERVE(BigBubble, BigBubbleNrvWait)) || isNerve(GET_NERVE(BigBubble, BigBubbleNrvCapture))) {
             TVec3f dir = pReceiver->mPosition - pSender->mPosition;
             f32 dist = dir.length();
-            f32 sumRadii = pSender->mRadius + pReceiver->mRadius;
-            f32 mergeDiff = sumRadii * 0.9f - dist;
+            f32 sumRadii = pReceiver->getRadius() + pSender->getRadius();
+            f32 pushMoveRate = sumRadii * ::sNeedPushMoveMinRate - dist;
             MR::normalizeOrZero(&dir);
             if (MR::isNearZero(dir)) {
                 MR::addRandomVector(&dir, dir, 1.0f);
                 MR::normalizeOrZero(&dir);
             }
 
-            if (mergeDiff > 0.0f) {
-                mVelocity.add(dir * (mergeDiff / getSize()) * 0.18f);
+            if (pushMoveRate > 0.0f) {
+                TVec3f moveRate = dir * (pushMoveRate / getSize());
+                mVelocity.add(moveRate * ::sPushedAccel);
             }
 
-            f32 mergeDiff2 = sumRadii * 0.9f - dist;
-            if (mergeDiff2 > 0.0f) {
-                addDeformVelocityOuter(dir * (mergeDiff2 * (1.1f / getBaseRadius())), false);
+            f32 pushDeformRate = sumRadii * ::sNeedPushDeformMinRate - dist;
+            if (pushDeformRate > 0.0f) {
+                addDeformVelocityOuter(dir * (pushDeformRate * (::sPushDeformAccel / getBaseRadius())), false);
             }
         }
         return true;
@@ -428,7 +433,7 @@ bool BigBubble::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
 }
 
 bool BigBubble::requestBind(HitSensor* pSensor) {
-    if (!isNerve(&NrvBigBubble::BigBubbleNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(BigBubble, BigBubbleNrvWait))) {
         return false;
     }
 
@@ -439,24 +444,24 @@ bool BigBubble::requestBind(HitSensor* pSensor) {
     mRider = pSensor->mHost;
     mRiderPos = mRider->mPosition;
     mRiderBasePos = mRiderPos;
-    mInterpolateTime = 0.0f;
+    mInterpolateRate = 0.0f;
 
     TPos3f mtx;
     mtx.set(mRider->getBaseMtx());
     mtx.getQuat(mRiderQuat);
 
-    setNerve(&NrvBigBubble::BigBubbleNrvCapture::sInstance);
+    setNerve(GET_NERVE(BigBubble, BigBubbleNrvCapture));
     return true;
 }
 
 bool BigBubble::requestMerged(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvBigBubble::BigBubbleNrvWait::sInstance)) {
+    if (isNerve(GET_NERVE(BigBubble, BigBubbleNrvWait))) {
         f32 dist = pReceiver->mPosition.distance(pSender->mPosition);
         f32 radius1 = pSender->mRadius;
         f32 radius2 = pReceiver->mRadius;
         mReduceVolumeTimer = 0;
-        if (dist < (radius2 + radius1) * 0.9f) {
-            setNerve(&NrvBigBubble::BigBubbleNrvMerged::sInstance);
+        if (dist < (radius2 + radius1) * ::sMargeableRate) {
+            setNerve(GET_NERVE(BigBubble, BigBubbleNrvMerged));
             mMergeBubble = static_cast< BigBubble* >(pReceiver->mHost);
             mMergeIndex = getNearAxisIndex(MR::getSensorPos(pReceiver));
             return true;
@@ -482,8 +487,8 @@ bool BigBubble::requestAssimilate(HitSensor* pSender, HitSensor* pReceiver) {
 
     mReduceVolumeTimer = 0;
     mVolume += scale * scale * scale;
-    if (mVolume > 5.0f) {
-        mVolume = 5.0f;
+    if (mVolume > ::sMaxVolume) {
+        mVolume = ::sMaxVolume;
     }
 
     setScale(getRadius(mVolume));
@@ -509,14 +514,14 @@ bool BigBubble::requestCancelBind() {
     MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK");
     mIsBroken = true;
     mRiderBasePos = mRiderPos;
-    mInterpolateTime = 0.0f;
+    mInterpolateRate = 0.0f;
     kill();
     return true;
 }
 
 bool BigBubble::tryAppearEnd() {
-    if (MR::isGreaterEqualStep(this, 30)) {
-        setNerve(&NrvBigBubble::BigBubbleNrvWait::sInstance);
+    if (MR::isGreaterEqualStep(this, ::sAppearTime)) {
+        setNerve(GET_NERVE(BigBubble, BigBubbleNrvWait));
         return true;
     }
     return false;
@@ -550,7 +555,7 @@ bool BigBubble::tryBreak() {
     }
 
     if (breakBubble || mIsExitLimitter) {
-        setNerve(&NrvBigBubble::BigBubbleNrvBreak::sInstance);
+        setNerve(GET_NERVE(BigBubble, BigBubbleNrvBreak));
         return true;
     }
 
@@ -563,14 +568,14 @@ bool BigBubble::tryAutoBreak() {
             MR::endBindAndPlayerWeakGravityLimitJump(this, mVelocity);
             mRider = nullptr;
         }
-        setNerve(&NrvBigBubble::BigBubbleNrvBreak::sInstance);
+        setNerve(GET_NERVE(BigBubble, BigBubbleNrvBreak));
         return true;
     }
     return false;
 }
 
 bool BigBubble::tryBreakEnd() {
-    if (MR::isGreaterStep(this, 20)) {
+    if (MR::isGreaterStep(this, ::sBreakTime)) {
         kill();
         return true;
     }
@@ -579,17 +584,17 @@ bool BigBubble::tryBreakEnd() {
 
 bool BigBubble::tryEscape() {
     if (MR::testSubPadTriggerZ(WPAD_CHAN0)) {
-        setNerve(&NrvBigBubble::BigBubbleNrvEscape::sInstance);
+        setNerve(GET_NERVE(BigBubble, BigBubbleNrvEscape));
         return true;
     }
     return false;
 }
 
 bool BigBubble::tryEscapeEnd() {
-    if (MR::isGreaterStep(this, 30)) {
+    if (MR::isGreaterStep(this, ::sEscapeTime)) {
         if (mRider != nullptr) {
             MR::calcGravity(this);
-            MR::endBindAndPlayerJump(this, mGravity * 30.0f, 30);
+            MR::endBindAndPlayerJump(this, mGravity * ::sEscapeVelocity, ::sEscapeTime);
             mRider = nullptr;
         }
         MR::emitEffect(this, "Break");
@@ -609,7 +614,7 @@ bool BigBubble::tryMergedCancel() {
 }
 
 bool BigBubble::tryMergedEnd() {
-    if (MR::isGreaterStep(this, 45)) {
+    if (MR::isGreaterStep(this, ::sMergedTime)) {
         if (mMergeBubble->receiveMessage(ACTMES_BIG_BUBBLE_ASSIMILATE, getSensor("body"), mMergeBubble->getSensor("body"))) {
             mMergeBubble = nullptr;
             kill();
@@ -625,7 +630,7 @@ bool BigBubble::tryGoal() {
             MR::endBindAndPlayerWeakGravityLimitJump(this, mVelocity);
             mRider = nullptr;
         }
-        setNerve(&NrvBigBubble::BigBubbleNrvGoal::sInstance);
+        setNerve(GET_NERVE(BigBubble, BigBubbleNrvGoal));
         return true;
     }
 
@@ -636,11 +641,11 @@ void BigBubble::exeAppear() {
     if (MR::isFirstStep(this)) {
         mSpawnPosition = mPosition;
         MR::invalidateHitSensors(this);
-        MR::getRandomVector(&mMoment, 0.03f);
+        MR::getRandomVector(&mMoment, ::sAppearAddMoment);
         MR::startSound(this, "SE_OJ_BIG_BUBBLE_APPEAR");
     }
 
-    f32 scale = MR::calcNerveValue(this, 30, 0.01f, mAppearRadius);
+    f32 scale = MR::calcNerveValue(this, ::sAppearTime, 0.01f, mAppearRadius);
     setScale(scale);
 
     mPosition.set(mSpawnPosition + mGravity * (-scale * getBaseRadius()));
@@ -653,7 +658,7 @@ void BigBubble::exeAppear() {
 
 void BigBubble::exeWait() {
     if (MR::isFirstStep(this)) {
-        _1A4.zero();
+        mPushDirection.zero();
     }
 
     addCoriolisAccel();
@@ -672,7 +677,7 @@ void BigBubble::exeWait() {
 void BigBubble::exeCapture() {
     if (MR::isFirstStep(this)) {
         MR::startBckPlayer("SpaceWait", "BigBubbleCapture");
-        _1A4.zero();
+        mPushDirection.zero();
         mReduceVolumeTimer = 0;
         MR::startSound(this, "SE_OJ_BIG_BUBBLE_MARIO_IN");
         mRiderBasePos = mRiderPos;
@@ -681,8 +686,7 @@ void BigBubble::exeCapture() {
 
     if (mIsAttached) {
         if (addAccelPointing(WPAD_CHAN0)) {
-            TVec3f dir(mPosition - mPointerPos);
-            MR::makeMtxUpNoSupportPos(&mEffectMtx, dir, mPointerPos);
+            MR::makeMtxUpNoSupportPos(&mEffectMtx, mPosition - mPointerPos, mPointerPos);
             MR::emitEffect(this, "PushWind");
         } else {
             MR::deleteEffect(this, "PushWind");
@@ -697,8 +701,8 @@ void BigBubble::exeCapture() {
     MR::requestBigBubbleGuidance();
     updateNormalVelocity();
 
-    mInterpolateTime = MR::calcNerveEaseInOutRate(this, 30);
-    mRiderQuat.slerp(mBubbleQuat, 0.03f);
+    mInterpolateRate = MR::calcNerveEaseInOutRate(this, 30);
+    mRiderQuat.slerp(mBubbleQuat, ::sSpinPower);
 
     if (mIsShrinkable) {
         updateCaptureReduceVolume();
@@ -713,9 +717,6 @@ void BigBubble::exeCapture() {
 }
 
 void BigBubble::exeMerged() {
-    // FIXME: reg and instruction swap
-    // https://decomp.me/scratch/Wf2Wd
-
     if (tryMergedCancel()) {
         MR::onBind(this);
         return;
@@ -730,25 +731,25 @@ void BigBubble::exeMerged() {
     TVec3f mergePos, mergeDir;
     mMergeBubble->calcMergePosition(&mergePos, &mergeDir, this);
 
-    f32 size = getSize();
-    if (mMergeBubble->getBaseRadius() * mMergeBubble->mScale.x < size) {
-        size = mMergeBubble->getBaseRadius() * mMergeBubble->mScale.x;
+    f32 mergeSize = getSize();
+    if (mMergeBubble->getSize() < mergeSize) {
+        mergeSize = mMergeBubble->getSize2();  // FAKEMATCH: using getSize twice here uninlines
     }
 
-    f32 f1 = size * MR::calcNerveRate(this, 25) * 0.0075f;
-    addDeformVelocityOuter(mergeDir * f1, false);
-    mMergeBubble->addDeformVelocityOuter(mergeDir * -f1 * 0.75f, false);
+    f32 deformAccel = mergeSize * MR::calcNerveRate(this, ::sTurchDeformTime) * (::sTurchDeformAccel);
+    addDeformVelocityOuter(mergeDir * deformAccel, false);
+    mMergeBubble->addDeformVelocityOuter(mergeDir * -deformAccel * ::sMergeDeformAccel, false);
     addDeformVelocityInternalOressure();
     addDeformVelocityRebound();
     updateDeformVelocity();
 
     TVec3f localDir;
     calcLocalDirection(&localDir, mMergeIndex);
-    TQuat4f q;
-    q.setRotate(localDir, -mergeDir, 0.2f);
-    PSQUATMultiply(&q, &mBubbleQuat, &mBubbleQuat);
+    TQuat4f rot;
+    rot.setRotate(localDir, -mergeDir, ::sMergeRotateRate);
+    mBubbleQuat.mult(rot);
     calcLocalDirection(&localDir, mMergeIndex);
-    mPosition.set(mergePos - localDir * mDeformCoeff[mMergeIndex] * 0.95f);
+    mPosition.set(mergePos - localDir * mDeformCoeff[mMergeIndex] * ::sMergeDirCorrection);
     MR::rotateQuatMoment(&mBubbleQuat, mMoment);
 
     mBaseMtx.setQT(mBubbleQuat, mPosition);
@@ -769,10 +770,10 @@ void BigBubble::exeBreak() {
         MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK");
         mIsBroken = true;
         mRiderBasePos = mRiderPos;
-        mInterpolateTime = 0.0f;
+        mInterpolateRate = 0.0f;
     }
 
-    mInterpolateTime = MR::calcNerveRate(this, 20);
+    mInterpolateRate = MR::calcNerveRate(this, ::sBreakTime);
     updateNormalVelocity();
     if (tryBreakEnd()) {
         return;
@@ -786,18 +787,17 @@ void BigBubble::exeEscape() {
         MR::startSoundPlayer("SE_PV_HIP_DROP", -1);
         MR::startSoundPlayer("SE_PM_PRE_HIPDROP", -1);
         mRiderBasePos = mRiderPos;
-        mInterpolateTime = 0.0f;
+        mInterpolateRate = 0.0f;
     }
 
-    mInterpolateTime = MR::calcNerveRate(this, 30);
+    mInterpolateRate = MR::calcNerveRate(this, ::sEscapeTime);
     MR::calcGravity(this);
     updateNormalVelocity();
-    TQuat4f q;
+    TQuat4f rot;
     TVec3f up;
     mRiderQuat.getYDir(up);
-
-    q.setRotate(up, mGravity, 0.2f);
-    PSQUATMultiply(&q, &mRiderQuat, &mRiderQuat);
+    rot.setRotate(up, mGravity, ::sMaxSpinSpeed);
+    mRiderQuat.mult(rot);
 
     if (tryEscapeEnd()) {
         return;
@@ -817,10 +817,10 @@ void BigBubble::exeGoal() {
 
 void BigBubble::endCapture() {
     MR::invalidateHitSensor(this, "ride");
-    mBlowForce = 0.0f;
+    mPointAccel = 0.0f;
 }
 
-void BigBubble::addDeformVelocityOuter(const TVec3f& rDir, bool b) {
+void BigBubble::addDeformVelocityOuter(const TVec3f& rDir, bool reverse) {
     TVec3f side, up, front;
     mBaseMtx.getXDir(side);
     mBaseMtx.getYDir(up);
@@ -830,48 +830,48 @@ void BigBubble::addDeformVelocityOuter(const TVec3f& rDir, bool b) {
     f32 projUp = rDir.dot(up);
     f32 projFront = rDir.dot(front);
 
-    if (!b) {
+    if (!reverse) {
         if (projSide < 0.0f) {
-            mDeformVelocity[Side_Right] += projSide * 0.8f;
+            mDeformSpeed[Side_Right] += projSide * ::sAccelDeformPower;
         } else {
-            mDeformVelocity[Side_Left] -= projSide * 0.8f;
+            mDeformSpeed[Side_Left] -= projSide * ::sAccelDeformPower;
         }
 
         if (projUp < 0.0f) {
-            mDeformVelocity[Side_Top] += projUp * 0.8f;
+            mDeformSpeed[Side_Top] += projUp * ::sAccelDeformPower;
         } else {
-            mDeformVelocity[Side_Bottom] -= projUp * 0.8f;
+            mDeformSpeed[Side_Bottom] -= projUp * ::sAccelDeformPower;
         }
 
         if (projFront < 0.0f) {
-            mDeformVelocity[Side_Front] += projFront * 0.8f;
+            mDeformSpeed[Side_Front] += projFront * ::sAccelDeformPower;
         } else {
-            mDeformVelocity[Side_Back] -= projFront * 0.8f;
+            mDeformSpeed[Side_Back] -= projFront * ::sAccelDeformPower;
         }
     } else {
         if (projSide > 0.0f) {
-            mDeformVelocity[Side_Right] += projSide * 0.8f;
+            mDeformSpeed[Side_Right] += projSide * ::sAccelDeformPower;
         } else {
-            mDeformVelocity[Side_Left] -= projSide * 0.8f;
+            mDeformSpeed[Side_Left] -= projSide * ::sAccelDeformPower;
         }
 
         if (projUp > 0.0f) {
-            mDeformVelocity[Side_Top] += projUp * 0.8f;
+            mDeformSpeed[Side_Top] += projUp * ::sAccelDeformPower;
         } else {
-            mDeformVelocity[Side_Bottom] -= projUp * 0.8f;
+            mDeformSpeed[Side_Bottom] -= projUp * ::sAccelDeformPower;
         }
 
         if (projFront > 0.0f) {
-            mDeformVelocity[Side_Front] += projFront * 0.8f;
+            mDeformSpeed[Side_Front] += projFront * ::sAccelDeformPower;
         } else {
-            mDeformVelocity[Side_Back] -= projFront * 0.8f;
+            mDeformSpeed[Side_Back] -= projFront * ::sAccelDeformPower;
         }
     }
 }
 
 void BigBubble::addDeformVelocityInternalOressure() {
     f32 size = getSize();
-    // looks like there's a typo here, this is a bug
+    // BUG: pressure should be from opposing faces.
     f32 pressure = (mDeformCoeff[Side_Top] + mDeformCoeff[Side_Left]) * (mDeformCoeff[Side_Back] + mDeformCoeff[Side_Front]) *
                    (mDeformCoeff[Side_Right] + mDeformCoeff[Side_Bottom]) * 0.125f;
     if (pressure < 0.0f) {
@@ -879,42 +879,41 @@ void BigBubble::addDeformVelocityInternalOressure() {
     }
     if (size > 0.01f) {
         for (s32 idx = 0; idx < 6; idx++) {
-            mDeformVelocity[idx] += (1.0f - pressure / (size * size * size)) * 10.0f;
+            mDeformSpeed[idx] += (1.0f - pressure / (size * size * size)) * ::sPressPower;
         }
     }
 }
 
 void BigBubble::addDeformVelocityRebound() {
-    f32 radius = getBaseRadius();
-    f32 scale = mScale.x;
+    f32 size = getSize();
     for (s32 idx = 0; idx < 6; idx++) {
-        mDeformVelocity[idx] += ((radius * scale) - mDeformCoeff[idx]) * 0.02f;
+        mDeformSpeed[idx] += (size - mDeformCoeff[idx]) * ::sPushMeshPower;
     }
 }
 
 void BigBubble::addCoriolisAccel() {
-    MR::rotateVecDegree(&mCoriolisAccel, mGravity, 3.0f);
+    MR::rotateVecDegree(&mCoriolisAccel, mGravity, ::sCorioriRotSpeed);
     mCoriolisAccel.orthogonalize(mGravity);
     if (MR::isNearZero(mCoriolisAccel)) {
         MR::getRandomVector(&mCoriolisAccel, 1.0f);
     }
     MR::normalizeOrZero(&mCoriolisAccel);
-    mVelocity.add(mCoriolisAccel * mScale.x * 0.1f);
+    mVelocity.add(mCoriolisAccel * mScale.x * ::sCoriolisAccelPower);
 }
 
 void BigBubble::addAccelMoment(s32 padChannel) {
     TVec3f rotateMoment;
     if (MR::calcStarPointerStrokeRotateMoment(&rotateMoment, mPosition, getSize(), padChannel)) {
-        mMoment.add(rotateMoment * 0.03f);
-        f32 inertia = mMoment.length();
-        if (inertia > 0.2f) {
-            mMoment *= 0.2f / inertia;
+        mMoment.add(rotateMoment * ::sSpinStartScreenSpeed);
+        f32 spinSpeed = mMoment.length();
+        if (spinSpeed > ::sSpinMaxScreenSpeed) {
+            mMoment *= ::sSpinMaxScreenSpeed / spinSpeed;
         }
     }
 }
 
 bool BigBubble::addAccelPointing(s32 padChannel) {
-    mBlowForce = 0.0f;
+    mPointAccel = 0.0f;
     if (!MR::testCorePadButtonA(padChannel)) {
         return false;
     }
@@ -929,22 +928,23 @@ bool BigBubble::addAccelPointing(s32 padChannel) {
 
     MR::calcStarPointerWorldPointingPos(&mPointerPos, mPosition, padChannel);
     f32 pointerDist = mPointerPos.distance(mPosition);
-    if (pointerDist <= 50.0f) {
+    if (pointerDist <= ::sPointAccelDistanceMin) {
         return false;
     }
 
-    if (pointerDist >= 1000.0f) {
+    if (pointerDist >= ::sPointAccelDistanceMax) {
         return false;
     }
 
-    f32 maxDist = 1000.0f;
-    mBlowForce = 1.0f - (pointerDist - 50.0f) / (maxDist - 50.0f);
-    MR::startSystemLevelSE("SE_SY_LV_BIG_BUBBLE_WIND", mBlowForce * 100.0f);
+    f32 maxDist = ::sPointAccelDistanceMax;
+    mPointAccel = 1.0f - (pointerDist - ::sPointAccelDistanceMin) / (maxDist - ::sPointAccelDistanceMin);
+    mPointAccel = mPointAccel * (::sPointAccelMax - ::sPointAccelMin) + ::sPointAccelMin;
+    MR::startSystemLevelSE("SE_SY_LV_BIG_BUBBLE_WIND", mPointAccel * 100.0f);
 
     TVec3f accelDir;
     MR::normalizeOrZero(mPosition - mPointerPos, &accelDir);
-    MR::addVelocity(this, accelDir * mBlowForce);
-    addDeformVelocityOuter(accelDir * 1.5f, false);
+    MR::addVelocity(this, accelDir * mPointAccel);
+    addDeformVelocityOuter(accelDir * ::sPointAccelDeformPowerRate, false);
     return true;
 }
 
@@ -962,22 +962,22 @@ void BigBubble::doMoveLimit() {
 void BigBubble::updatePose() {
     MR::rotateQuatMoment(&mBubbleQuat, mMoment);
     mBaseMtx.setQT(mBubbleQuat, mPosition);
-    if (_200 > 0) {
-        addDeformVelocityOuter(_1A4, false);
+    if (mPushInvalidTime > 0) {
+        addDeformVelocityOuter(mPushDirection, false);
     }
 
-    addDeformVelocityOuter(-mGravity * 0.03f * mScale.x, false);
-    TVec3f v1;
-    MR::clampLength(&v1, -mVelocity, 10.0f);
-    addDeformVelocityOuter(v1 * 0.1f, false);
+    addDeformVelocityOuter(-mGravity * ::sBuoyancyAccel * mScale.x, false);
+    TVec3f deformVel;
+    MR::clampLength(&deformVel, -mVelocity, ::sMaxDeformSpeed);
+    addDeformVelocityOuter(deformVel * (1.0f / ::sMaxDeformSpeed), false);
     addDeformVelocityInternalOressure();
     addDeformVelocityRebound();
     updateDeformVelocity();
 }
 
 void BigBubble::updateBindActorMatrix() {
-    if (mInterpolateTime < 1.0f) {
-        mRiderPos.set(mRiderBasePos * (1.0f - mInterpolateTime) + mPosition * mInterpolateTime);
+    if (mInterpolateRate < 1.0f) {
+        mRiderPos.set(mRiderBasePos * (1.0f - mInterpolateRate) + mPosition * mInterpolateRate);
 
     } else {
         mRiderPos.set(mPosition);
@@ -988,31 +988,35 @@ void BigBubble::updateBindActorMatrix() {
 }
 
 void BigBubble::updateNormalVelocity() {
-    MR::addVelocityToGravity(this, mScale.x * -0.03f);
-    MR::attenuateVelocity(this, 0.992f);
+    MR::addVelocityToGravity(this, -::sBuoyancyAccel * mScale.x);
+    MR::attenuateVelocity(this, ::sNormalFric);
+    // TODO: "windDistance" here makes more sense if the function was using the
+    // result of the calculation from BigFan, not BigFanFunction.
+    // The value returned by calcWindInfo makes more sense as "windForce".
+    // Is this a case of these consts not being used here, or is this a deeper issue?
     TVec3f windDir;
-    f32 windSpeed;
-    BigFanFunction::calcWindInfo(&windDir, mPosition, &windSpeed);
-    windSpeed = MR::normalize(windSpeed, 0.0f, 0.5f);
-    mVelocity.add(windDir * 0.25f * windSpeed);
-    mMoment.mult(0.99f);
+    f32 windDistance;
+    BigFanFunction::calcWindInfo(&windDir, mPosition, &windDistance);
+    windDistance = MR::normalize(windDistance, ::sWindMinDistance, ::sWindMaxDistance);
+    mVelocity.add(windDir * ::sWindAccel * windDistance);
+    mMoment.mult(::sSpinFreq);
     MR::reboundVelocityFromEachCollision(this, 0.1f, 0.1f, 0.1f, 0.0f);
 }
 
 void BigBubble::resetDeformVelocity() {
     for (s32 idx = 0; idx < 6; idx++) {
         mDeformCoeff[idx] = 0;
-        mDeformVelocity[idx] = 0;
+        mDeformSpeed[idx] = 0;
     }
 }
 
 void BigBubble::updateDeformVelocity() {
     for (s32 idx = 0; idx < 6; idx++) {
-        mDeformCoeff[idx] += mDeformVelocity[idx];
-        mDeformVelocity[idx] *= 0.93f;
+        mDeformCoeff[idx] += mDeformSpeed[idx];
+        mDeformSpeed[idx] *= ::sMeshScaleFreq;
         if (mDeformCoeff[idx] < 0.0f) {
             mDeformCoeff[idx] = 0;
-            mDeformVelocity[idx] = 0;
+            mDeformSpeed[idx] = 0;
         }
     }
 }
@@ -1033,11 +1037,11 @@ void BigBubble::updateMeshPoint() {
 }
 
 void BigBubble::updateCaptureReduceVolume() {
-    if (mReduceVolumeTimer >= ::sReduceSizeInterval) {
+    if (mReduceVolumeTimer >= ::sReduceSizeInterval * 3) {
         mVolume -= ::sReduceVolume;
 
-        if (0.25f <= mVolume && mVolume < 0.735f) {
-            mVolume = 0.735f;
+        if (::sCaptureEndVolume <= mVolume && mVolume < ::sCaptureStartVolume * 0.98f) {
+            mVolume = ::sCaptureStartVolume * 0.98f;
         }
 
         if (mVolume < 0.0f) {
@@ -1052,25 +1056,28 @@ void BigBubble::updateCaptureReduceVolume() {
     mReduceVolumeTimer++;
 }
 
+s32 BigBubble::getCycle() const {
+    if (mReduceVolumeTimer > ::sReduceSizeInterval * 2) {
+        return ::sWarningCycle / 4;
+    } else if (mReduceVolumeTimer > ::sReduceSizeInterval * 1) {
+        return ::sWarningCycle / 2;
+    } else {
+        f32 f1 = 0.0f;  // FAKEMATCH: possible strip here.
+        return ::sWarningCycle / 1;
+    }
+}
+
 void BigBubble::updateCaptureWarningColor() {
-    // FIXME: horrible inlining and compiler optimization nightmare
-    // https://decomp.me/scratch/teRSV
+    // FIXME: compiler optimization of warning cycle load and extra stack use
+    // https://decomp.me/scratch/SkVS9
 
-    if (mVolume < 0.75f) {
-        // bad
-        s32 flashTime;
-        if (mReduceVolumeTimer > 240) {
-            flashTime = 10;
-        } else if (mReduceVolumeTimer > 120) {
-            flashTime = 20;
-        } else {
-            flashTime = 40;
-        }
+    if (mVolume < ::sCaptureStartVolume) {
+        s32 warningCycle = getCycle();
 
-        // disgusting mess
-        f32 flashPhase = (static_cast< f32 >(mReduceVolumeTimer % flashTime) / static_cast< f32 >(flashTime - 1)) * TWO_PI;
+        f32 flashPhase = static_cast< f32 >(mReduceVolumeTimer % warningCycle) / static_cast< f32 >(warningCycle - 1);
+        f32 color = (MR::cos(TWO_PI * flashPhase) + 1.0f) * 0.5f;
 
-        mWarningColor.a = (MR::cos(flashPhase) + 1.0f) * 0.5f * 128.0f;
+        mWarningColor.a = color * 128.0f;
     } else {
         mWarningColor.a = 0;
     }
@@ -1167,7 +1174,7 @@ s32 BigBubble::getMergeIndex(const TVec3f& rPos) const {
 }
 
 bool BigBubble::isPushable() const {
-    if (isNerve(&NrvBigBubble::BigBubbleNrvWait::sInstance) || isNerve(&NrvBigBubble::BigBubbleNrvCapture::sInstance)) {
+    if (isNerve(GET_NERVE(BigBubble, BigBubbleNrvWait)) || isNerve(GET_NERVE(BigBubble, BigBubbleNrvCapture))) {
         return true;
     }
     return false;
@@ -1182,11 +1189,11 @@ bool BigBubble::isDraw() const {
 }
 
 bool BigBubble::isMerged() const {
-    return isNerve(&NrvBigBubble::BigBubbleNrvMerged::sInstance);
+    return isNerve(GET_NERVE(BigBubble, BigBubbleNrvMerged));
 }
 
 bool BigBubble::isEnemyAttackBreakable() const {
-    if (isNerve(&NrvBigBubble::BigBubbleNrvWait::sInstance) || isNerve(&NrvBigBubble::BigBubbleNrvCapture::sInstance)) {
+    if (isNerve(GET_NERVE(BigBubble, BigBubbleNrvWait)) || isNerve(GET_NERVE(BigBubble, BigBubbleNrvCapture))) {
         return true;
     }
     return false;

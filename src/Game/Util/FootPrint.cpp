@@ -43,7 +43,7 @@ void FootPrint::initMember(s32 amount, s32 drawType) {
         mPrints[i].mIsValid = false;
     }
 
-    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, drawType);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_None, MR::DrawBufferType_None, drawType);
 }
 
 FootPrintInfo::FootPrintInfo() {

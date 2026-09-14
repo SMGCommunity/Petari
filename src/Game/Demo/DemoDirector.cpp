@@ -21,7 +21,7 @@
 DemoDirector::DemoDirector(const char* pName)
     : NameObj(pName), mIsActive(), mExecutor(), _14(), _18(), _20(new DemoSimpleCastHolder(512, 64, 128)), mResourceHolder(),
       mStartRequestHolder(new DemoStartRequestHolder()), _2C(), _30(), _34(-1), _38(true) {
-    MR::connectToScene(this, 11, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_DemoDirector, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
 
     _18 = new DemoCastGroupHolder();
     _18->initWithoutIter();

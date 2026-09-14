@@ -172,7 +172,7 @@ void GhostPlayer::init(const JMapInfoIter& rIter) {
     }
 
     initEffectKeeper(5, "GhostMario", false);
-    MR::connectToScene(this, MR::MovementType_Player, MR::CalcAnimType_Player, -1, MR::DrawType_Player);
+    MR::connectToScene(this, MR::MovementType_Player, MR::CalcAnimType_Player, MR::DrawBufferType_None, MR::DrawType_Player);
     MR::initDefaultPos(this, rIter);
     mStartPos = mPosition;
     mVelocity.zero();

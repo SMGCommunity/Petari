@@ -1,4 +1,5 @@
 #include "Game/Screen/CaptureScreenDirector.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
@@ -90,7 +91,7 @@ const TimingInfo* CaptureScreenDirector::findFromName(const char* pName) const {
 }
 
 CaptureScreenActor::CaptureScreenActor(u32 drawType, const char* pCameraName) : NameObj("画面キャプチャ"), mCameraName(pCameraName) {
-    MR::connectToScene(this, -1, -1, -1, drawType);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, drawType);
 }
 
 void CaptureScreenActor::draw() const {

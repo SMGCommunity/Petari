@@ -26,7 +26,7 @@ OceanRingPipeOutside::OceanRingPipeOutside(const OceanRingPipe* pPipe)
 }
 
 void OceanRingPipeOutside::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, -1, -1, -1, MR::DrawType_OceanRingPipeOutside);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_OceanRingPipeOutside);
     initDisplayList();
     MR::invalidateClipping(this);
     mWaterPipeIndirectTex = new JUTTexture(MR::loadTexFromArc("OceanRing.arc", "WaterPipeIndirect.bti"), 0);

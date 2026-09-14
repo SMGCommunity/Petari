@@ -73,7 +73,7 @@ Flag::Flag(const char* pName)
 void Flag::init(const JMapInfoIter& rIter) {
     // FIXME : JUTTexture ctor needs to not inline
 
-    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_Flag);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_Flag);
 
     if (MR::isValidInfo(rIter)) {
         MR::initDefaultPos(this, rIter);

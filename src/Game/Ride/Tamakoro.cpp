@@ -128,7 +128,7 @@ Tamakoro::Tamakoro(const char* pName)
 void Tamakoro::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("Tamakoro", nullptr, false);
-    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_Ride, MR::DrawBufferType_IndirectMapObjStrongLight, -1);
+    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_Ride, MR::DrawBufferType_IndirectMapObjStrongLight, MR::DrawType_None);
     MR::makeQuatFromRotate(&mBallRotateQuat, this);
     MR::initShadowVolumeSphere(this, mBaseRadius);
     initEffectKeeper(0, 0, false);

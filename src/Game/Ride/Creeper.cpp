@@ -133,7 +133,7 @@ void Creeper::init(const JMapInfoIter& rIter) {
         mBendFactorBee = mBendFactorNormal;
     }
 
-    MR::connectToScene(this, MR::MovementType_Ride, -1, -1, MR::DrawType_Creeper);
+    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_Creeper);
 
     initHitSensor(3);
     MR::addHitSensorBinder(this, "bind", 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));

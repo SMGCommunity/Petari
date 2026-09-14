@@ -24,7 +24,7 @@ void ShadowSurfaceDrawInit::initDraw() {
 
 ShadowSurfaceDrawer::ShadowSurfaceDrawer(const char* pName) : ShadowDrawer(pName) {
     MR::createSceneObj(SceneObj_ShadowSurfaceDrawInit);
-    MR::connectToScene(this, -1, -1, -1, MR::DrawType_ShadowSurface);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_ShadowSurface);
 }
 
 ShadowSurfaceDrawInit::~ShadowSurfaceDrawInit() {

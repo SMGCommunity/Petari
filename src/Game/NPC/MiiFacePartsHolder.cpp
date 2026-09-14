@@ -34,8 +34,9 @@ void MiiFacePartsHolder::init(const JMapInfoIter& rIter) {
     u32 resSize = pArchive->getResSize(pResBuffer);
     _38 = RFLInitResAsync(mRFLWorkBuffer, pResBuffer, resSize, false);
 
-    MR::connectToScene(this, -1, MR::CalcAnimType_NPC, -1, MR::DrawType_MiiFacePartsHolder);
-    MR::connectToScene(MR::createDrawAdaptor("Miiモデル再作成", MR::Functor_Inline(this, &MiiFacePartsHolder::reinitCharModel)), -1, -1, -1, 80);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_NPC, MR::DrawBufferType_None, MR::DrawType_MiiFacePartsHolder);
+    MR::connectToScene(MR::createDrawAdaptor("Miiモデル再作成", MR::Functor_Inline(this, &MiiFacePartsHolder::reinitCharModel)),
+                       MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_MiiFaceNew);
 }
 
 void MiiFacePartsHolder::calcAnim() {
