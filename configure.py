@@ -1353,7 +1353,7 @@ config.libs = [
             Object(Matching, "Game/Gravity/GraviryFollower.cpp"),
             Object(Matching, "Game/Gravity/GravityCreator.cpp"),
             Object(Matching, "Game/Gravity/GravityInfo.cpp"),
-            Object(NonMatching, "Game/Gravity/ParallelGravity.cpp"),
+            Object(Matching, "Game/Gravity/ParallelGravity.cpp"),
             Object(
                 Matching,
                 "Game/Gravity/PlanetGravity.cpp",

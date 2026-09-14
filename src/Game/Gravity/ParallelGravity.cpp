@@ -3,10 +3,8 @@
 #include "Inline.hpp"
 #include "JSystem/JMath.hpp"
 
-void DUMMY() {
-    // emit operator-()
-    TVec3f a;
-    TVec3f b = -a;
+void ParallelGravity_FORCE_MATCH(const TVec3f& rVector) {
+    TVec3f negated = -rVector;
 }
 
 void ParallelGravity_FORCE_MATCH_SDATA2() {
@@ -30,7 +28,7 @@ bool ParallelGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TV
         return false;
     }
 
-    if (pDest) {
+    if (pDest != nullptr) {
         *pDest = -mWorldPlaneUpVec;
     }
 
@@ -56,9 +54,7 @@ void ParallelGravity::updateMtx(const TPos3f& rMtx) {
 }
 
 void ParallelGravity::setPlane(const TVec3f& rPlaneUp, const TVec3f& rPlanePos) {
-    // Up vector
     mPlaneUpVec.normalize(rPlaneUp);
-    // Position
     mPlanePosition = rPlanePos;
 }
 
@@ -89,7 +85,7 @@ void ParallelGravity::setDistanceCalcType(DISTANCE_CALC_TYPE distanceCalcType) {
 }
 
 bool ParallelGravity::isInSphereRange(const TVec3f& rPosition, f32* pScalar) const {
-    if (pScalar) {
+    if (pScalar != nullptr) {
         *pScalar = mBaseDistance;
     }
 
@@ -103,37 +99,35 @@ bool ParallelGravity::isInSphereRange(const TVec3f& rPosition, f32* pScalar) con
 }
 
 bool ParallelGravity::isInBoxRange(const TVec3f& rPosition, f32* pScalar) const {
-    // Get direction to center
     TVec3f translation;
     mWorldMtx.getTrans(translation);
     TVec3f dirToCenter(rPosition - translation);
 
-    // Check in X direction
     TVec3f dirX;
     mWorldMtx.getXDir(dirX);
     f32 dotX = dirToCenter.dot(dirX);
 
-    if (dotX < -mExtentX || mExtentX < dotX)
+    if (dotX < -mExtentX || mExtentX < dotX) {
         return false;
+    }
 
-    // Check in Y direction
     TVec3f dirY;
     mWorldMtx.getYDir(dirY);
     f32 dotY = dirToCenter.dot(dirY);
 
-    if (dotY < -mExtentY || mExtentY < dotY)
+    if (dotY < -mExtentY || mExtentY < dotY) {
         return false;
+    }
 
-    // Check in Z direction
     TVec3f dirZ;
     mWorldMtx.getZDir(dirZ);
     f32 dotZ = dirToCenter.dot(dirZ);
 
-    if (dotZ < -mExtentZ || mExtentZ < dotZ)
+    if (dotZ < -mExtentZ || mExtentZ < dotZ) {
         return false;
+    }
 
-    // Calculate distance scalar
-    if (pScalar) {
+    if (pScalar != nullptr) {
         f32 abs;
         switch (mDistanceCalcType) {
         case DistanceCalcType_X:
@@ -158,7 +152,6 @@ bool ParallelGravity::isInBoxRange(const TVec3f& rPosition, f32* pScalar) const 
 }
 
 bool ParallelGravity::isInCylinderRange(const TVec3f& rPosition, f32* pScalar) const {
-    // FIXME
     f32 height = mWorldPlaneUpVec.dot(rPosition - mWorldPlanePosition);
 
     if (height < 0.0f || mCylinderHeight < height) {
@@ -167,8 +160,7 @@ bool ParallelGravity::isInCylinderRange(const TVec3f& rPosition, f32* pScalar) c
 
     TVec3f positionOnWorldPlane;
 
-    // Check radius range
-    positionOnWorldPlane.killElement(rPosition - mWorldPlanePosition, mWorldPlaneUpVec);
+    positionOnWorldPlane.killElement2(rPosition - mWorldPlanePosition, mWorldPlaneUpVec);
 
     f32 radius = positionOnWorldPlane.length();
 
@@ -176,7 +168,6 @@ bool ParallelGravity::isInCylinderRange(const TVec3f& rPosition, f32* pScalar) c
         return false;
     }
 
-    // Set speed
     *pScalar = mBaseDistance + radius;
 
     return true;
