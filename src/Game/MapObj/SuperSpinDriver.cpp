@@ -370,26 +370,16 @@ bool SuperSpinDriver::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pR
 }
 
 bool SuperSpinDriver::canBind(HitSensor* pSender, HitSensor* pReceiver) const {
-    bool canBind = false;
-
-    if (isNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvWait::sInstance) && MR::isGreaterStep(this, sCanBindTime)) {
-        canBind = true;
+    if (!isNerveBind()) {
+        return false;
     }
 
-    if (canBind) {
-        canBind = false;
+    if (isAttemptBind()) {
+        return true;
+    }
 
-        if (MR::isPadSwing(WPAD_CHAN0) || MR::isPlayerPointedBy2POnTriggerButton()) {
-            canBind = true;
-        }
-
-        if (canBind) {
-            return true;
-        }
-
-        if (mIsPullPlayer && _174 && MR::isNear(pSender, pReceiver, 240.0f)) {
-            return true;
-        }
+    if (mIsPullPlayer && _174 && MR::isNear(pSender, pReceiver, 240.0f)) {
+        return true;
     }
 
     return false;
@@ -794,6 +784,14 @@ bool SuperSpinDriver::isRightToUse() const {
     default:
         return true;
     }
+}
+
+bool SuperSpinDriver::isNerveBind() const {
+    return isNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvWait::sInstance) && MR::isGreaterStep(this, sCanBindTime);
+}
+
+bool SuperSpinDriver::isAttemptBind() const {
+    return MR::isPadSwing(WPAD_CHAN0) || MR::isPlayerPointedBy2POnTriggerButton();
 }
 
 namespace MR {

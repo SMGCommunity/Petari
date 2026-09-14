@@ -34,7 +34,7 @@ public:
     void initOperateRing();
     void initAppearState(const JMapInfoIter&);
     bool canBind(HitSensor*, HitSensor*) const;
-    bool tryBind(HitSensor*, HitSensor*) const;
+    bool tryBind(HitSensor*, HitSensor*);
     bool tryEndCapture();
     bool tryForceCancel();
     bool tryShootStart();
@@ -79,6 +79,8 @@ public:
     void offUse();
     bool isNeedEmptyModel() const;
     bool isRightToUse() const;
+    bool isNerveBind() const;
+    bool isAttemptBind() const;
 
     /* 0x8C */ LiveActor* mBindActor;
     /* 0x90 */ SpinDriverShootPath* mShootPath;
