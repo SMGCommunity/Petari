@@ -161,8 +161,8 @@ void JASChannel::updateEffectorParam(JASDsp::TChannel* i_channel, u16* i_mixerVo
     }
     f32 fxmix = calcEffect(&fxmix_vector);
     f32 volume = mVelocity / 127.0f;
-    volume = volume * volume;
-    volume = mSoundParams.mVolume * i_params.mVolume * mParams.mVolume * (i_params._18 * mTremolo.getValue() + 1.0f) * volume;
+    volume *= volume;
+    volume *= mSoundParams.mVolume * i_params.mVolume * mParams.mVolume * (i_params._18 * mTremolo.getValue() + 1.0f);
 
     if (volume < 0.0f) {
         volume = 0.0f;
@@ -233,18 +233,18 @@ s32 JASChannel::initialUpdateDSPChannel(JASDsp::TChannel* i_channel) {
         MixConfig mix_config = mMixConfig[i];
         u32 output_mode = JASDriver::getOutputMode();
         if (output_mode == 0) {
-            switch (mix_config.parts.upper) {
+            switch (mix_config.upper) {
             case 8:
-                mix_config.parts.upper = 11;
+                mix_config.upper = 11;
                 break;
             case 9:
-                mix_config.parts.upper = 2;
+                mix_config.upper = 2;
                 break;
             }
-        } else if (output_mode == 1 && mix_config.parts.upper == 8) {
-            mix_config.parts.upper = 11;
+        } else if (output_mode == 1 && mix_config.upper == 8) {
+            mix_config.upper = 11;
         }
-        i_channel->setBusConnect(i, mix_config.parts.upper);
+        i_channel->setBusConnect(i, mix_config.upper);
     }
 
     JASOscillator::EffectParams effect_params;
@@ -364,13 +364,13 @@ void JASChannel::updateMixer(f32 i_volume, f32 i_pan, f32 i_fxmix, f32 i_dolby, 
     for (u32 i = 0; i < 6; i++) {
         f32 volume = i_volume;
         MixConfig config = mMixConfig[i];
-        if (config.parts.upper == 0) {
+        if (config.upper == 0) {
             i_volumeOut[i] = 0;
         } else {
             f32 scale;
 
-            if (config.parts.lower0 != 0) {
-                switch (config.parts.lower0) {
+            if (config.lower0 != 0) {
+                switch (config.lower0) {
                 case 1:
                     scale = i_pan;
                     break;
@@ -391,7 +391,7 @@ void JASChannel::updateMixer(f32 i_volume, f32 i_pan, f32 i_fxmix, f32 i_dolby, 
                     break;
                 }
 
-                switch (config.parts.lower0) {
+                switch (config.lower0) {
                 case 2:
                 case 6:
                     volume *= scale;
@@ -406,8 +406,8 @@ void JASChannel::updateMixer(f32 i_volume, f32 i_pan, f32 i_fxmix, f32 i_dolby, 
                 }
             }
 
-            if (config.parts.lower1 != 0) {
-                switch (config.parts.lower1) {
+            if (config.lower1 != 0) {
+                switch (config.lower1) {
                 case 1:
                     scale = i_pan;
                     break;
@@ -428,7 +428,7 @@ void JASChannel::updateMixer(f32 i_volume, f32 i_pan, f32 i_fxmix, f32 i_dolby, 
                     break;
                 }
 
-                switch (config.parts.lower1) {
+                switch (config.lower1) {
                 case 3:
                 case 7:
                     volume *= JMASinRadian((scale * 0.34776f + 0.32612f) * JGeometry::TUtil< f32 >::PI() * 0.5f);
