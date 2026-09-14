@@ -80,49 +80,49 @@ public:
     bool isNeedEmptyModel() const;
     bool isRightToUse() const;
 
-    LiveActor* _8C;
-    SpinDriverShootPath* mShootPath;      // 0x90
-    SpinDriverCamera* mSpinDriverCamera;  // 0x94
-    SpinDriverOperateRing* mOperateRing;  // 0x98
-    SpinDriverPathDrawer* mPathDrawer;    // 0x9C
-    ModelObj* mEmptyModel;                // 0xA0
-    TQuat4f _A4;
-    TQuat4f _B4;
-    TVec3f _C4;
-    TVec3f _D0;
-    TVec3f _DC;
-    TVec3f _E8;
-    TVec3f _F4;
-    TVec3f _100;
-    TVec3f _10C;
-    TVec3f _118;
-    TVec3f _124;
-    f32 _130;
-    f32 _134;
-    f32 _138;
-    f32 _13C;
-    f32 _140;
-    f32 _144;
-    f32 _148;
-    f32 _14C;
-    u32 _150;
-    u32 _154;
-    u32 _158;
-    u32 _15C;
-    u32 _160;
-    f32 _164;
-    u32 _168;
-    u32 _16C;
-    s32 mColor;  // 0x170
-    u8 _174;
-    u8 _175;
-    u8 _176;
-    u8 _177;
-    u32 _178;
-    u8 _17C;
-    u8 _17D;
-    u8 _17E;
-    u8 _17F;
+    /* 0x8C */ LiveActor* _8C;
+    /* 0x90 */ SpinDriverShootPath* mShootPath;
+    /* 0x94 */ SpinDriverCamera* mSpinDriverCamera;
+    /* 0x98 */ SpinDriverOperateRing* mOperateRing;
+    /* 0x9C */ SpinDriverPathDrawer* mPathDrawer;
+    /* 0xA0 */ ModelObj* mEmptyModel;
+    /* 0xA4 */ TQuat4f _A4;
+    /* 0xB4 */ TQuat4f _B4;
+    /* 0xC4 */ TVec3f _C4;
+    /* 0xD0 */ TVec3f _D0;
+    /* 0xDC */ TVec3f _DC;
+    /* 0xE8 */ TVec3f _E8;
+    /* 0xF4 */ TVec3f _F4;
+    /* 0x100 */ TVec3f _100;
+    /* 0x10C */ TVec3f _10C;
+    /* 0x118 */ TVec3f _118;
+    /* 0x124 */ TVec3f _124;
+    /* 0x130 */ f32 _130;
+    /* 0x134 */ f32 _134;
+    /* 0x138 */ f32 _138;
+    /* 0x13C */ f32 _13C;
+    /* 0x140 */ f32 _140;
+    /* 0x144 */ f32 _144;
+    /* 0x148 */ f32 _148;
+    /* 0x14C */ f32 mShadowLength;
+    /* 0x150 */ s32 mFlightTime;
+    /* 0x154 */ u32 _154;
+    /* 0x158 */ u32 _158;
+    /* 0x15C */ u32 _15C;
+    /* 0x160 */ s32 mDrawPathRangeIdx;
+    /* 0x164 */ f32 mPlayerLandRotation;
+    /* 0x168 */ u32 _168;
+    /* 0x16C */ s32 mAlreadyDoneFlagIdx;
+    /* 0x170 */ s32 mColor;
+    /* 0x174 */ bool _174;
+    // u8 _175;
+    // u8 _176;
+    // u8 _177;
+    /* 0x178 */ u32 _178;
+    /* 0x17C */ bool _17C;
+    /* 0x17D */ bool _17D;
+    /* 0x17E */ bool mIsPullPlayer;
+    /* 0x17F */ bool mIsDisableJingle;
 };
 
 namespace MR {
