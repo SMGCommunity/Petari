@@ -80,7 +80,7 @@ public:
     bool isNeedEmptyModel() const;
     bool isRightToUse() const;
 
-    /* 0x8C */ LiveActor* _8C;
+    /* 0x8C */ LiveActor* mBindActor;
     /* 0x90 */ SpinDriverShootPath* mShootPath;
     /* 0x94 */ SpinDriverCamera* mSpinDriverCamera;
     /* 0x98 */ SpinDriverOperateRing* mOperateRing;
@@ -101,7 +101,7 @@ public:
     /* 0x134 */ f32 _134;
     /* 0x138 */ f32 _138;
     /* 0x13C */ f32 _13C;
-    /* 0x140 */ f32 _140;
+    /* 0x140 */ f32 mFrontAngle;
     /* 0x144 */ f32 _144;
     /* 0x148 */ f32 _148;
     /* 0x14C */ f32 mShadowLength;
