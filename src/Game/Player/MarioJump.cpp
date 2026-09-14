@@ -21,6 +21,49 @@ namespace {
     f32 cDropFrontSpeed = 2.0f;
 };  // namespace
 
+void MarioJump_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)1.57079637f;
+    (void)2.0f;
+    (void)0.00100000005f;
+    (void)15.0f;
+    (void)0.300000012f;
+    (void)4.0f;
+    (void)10.0f;
+    (void)0.899999976f;
+    (void)500.0f;
+    (void)0.100000001f;
+    (void)5.0f;
+    (void)100.0f;
+    (void)50.0f;
+    (void)150.0f;
+    (void)0.600000024f;
+    (void)80.0f;
+    (void)20.0f;
+    (void)8.0f;
+    (void)0.200000003f;
+    (void)0.800000012f;
+    (void)0.00390625f;
+    (void)45.0f;
+    (void)160.0f;
+    (void)1.79999995f;
+    (void)0.25f;
+    (void)300.0f;
+    (void)200.0f;
+    (void)-0.100000001f;
+    (void)-0.800000012f;
+    (void)30.0f;
+    (void)-0.200000003f;
+    (void)0.785398185f;
+    (void)0.998000026f;
+    (void)0.00999999978f;
+    (void)6.0f;
+    (void)7.0f;
+    (void)90.0f;
+}
+
 bool Mario::isRising() const {
     if (getPlayerMode() == 4 || getPlayerMode() == 6) {
         if (_16C.dot(*getGravityVec()) < 0.0f) {
@@ -77,7 +120,7 @@ void Mario::tryJump() {
                 mSinkTimer = 128;
                 changeAnimation("埋まりジャンプA", static_cast< const char* >(nullptr));
             } else {
-                mSinkTimer = 64;
+                mSinkTimer = 32;
                 changeAnimation("埋まりジャンプB", static_cast< const char* >(nullptr));
             }
 
@@ -143,7 +186,7 @@ void Mario::tryJump() {
 
     u32 floorCode = getFloorCode();
     if (floorCode != 0x20 && getPlayerMode() != 4 && (((mMovementStates._4) != 0) || (_3D2 != 0 && static_cast< u8 >(checkStickFrontBack()) == 2))) {
-        if ((mActor->getConst().getTable()->mTurnSlipTime - _3D0) >= mActor->getConst().getTable()->mTurnJumpInhibitTime) {
+        if ((mActor->mConst->getTable()->mTurnSlipTime - _3D0) >= mActor->getConst().getTable()->mTurnJumpInhibitTime) {
             tryTurnJump();
             return;
         }
@@ -269,6 +312,7 @@ void Mario::tryJump() {
     if (getFloorCode() == 0x20) {
         jumpRatio = mActor->getConst().getTable()->mMudFloorJumpWeakRatio;
     }
+
     if (_1C._B) {
         jumpRatio = 0.9f;
     }
@@ -326,6 +370,7 @@ void Mario::tryJump() {
         if (_10._1A) {
             changeAnimation("ショートジャンプ", "落下");
         }
+
         break;
     case 1:
         changeAnimationNonStop("ジャンプB");
@@ -347,6 +392,7 @@ void Mario::tryJump() {
         } else {
             changeAnimation("ジャンプC", "落下");
         }
+
         break;
     case 3:
         if (isMudFloorJump) {
@@ -356,6 +402,7 @@ void Mario::tryJump() {
             playSound("声小ジャンプ");
             playSound("ジャンプ踏切");
         }
+
         break;
     default:
         break;
@@ -608,7 +655,23 @@ bool Mario::taskOnTornadoCentering(u32 a1) {
 }
 
 void Mario::trySpinJump(u8 a1) {
-    if (mMovementStates._B || _430 == 0x8 || isStatusActive(0x17) || getPlayerMode() == 4 || getPlayerMode() == 6) {
+    if (mMovementStates._B) {
+        return;
+    }
+
+    if (_430 == 8) {
+        return;
+    }
+
+    if (isStatusActive(0x17)) {
+        return;
+    }
+
+    if (getPlayerMode() == 4) {
+        return;
+    }
+
+    if (getPlayerMode() == 6) {
         return;
     }
 
@@ -617,7 +680,11 @@ void Mario::trySpinJump(u8 a1) {
         return;
     }
 
-    if (isAnimationRun("水泳スピン移動") || isAnimationRun("水泳スピンジャンプ")) {
+    if (isAnimationRun("水泳スピン移動")) {
+        return;
+    }
+
+    if (isAnimationRun("水泳スピンジャンプ")) {
         return;
     }
 
@@ -697,7 +764,7 @@ void Mario::tryForceJump(const TVec3f& rVec, bool a2) {
     _42C = 0;
     _76C = 0;
     procJump(false);
-    changeAnimation(static_cast< const char* >(nullptr), "埋まりジャンプA");
+    changeAnimation(static_cast< const char* >(nullptr), "落下");
     mRabbit->forceJump();
     return;
 }
@@ -714,7 +781,7 @@ void Mario::tryForceFreeJump(const TVec3f& rVec) {
     _402 = mActor->getConst().getTable()->mAirWalkTime;
 
     if (getPlayerMode() == 4) {
-        playSound("ジャンプ踏切");
+        playSound("ハチ体力完全回復");
     }
 
     _76C = 0;
@@ -831,18 +898,18 @@ void Mario::tryStickJump(const TVec3f& rVec) {
     mMovementStates._E = true;
     mMovementStates._B = false;
     _430 = 0;
+    _20._28 = false;
+    mMovementStates._28 = false;
+    mMovementStates._29 = false;
     mMovementStates._6 = false;
     mMovementStates._9 = true;
-    mMovementStates._28 = false;
-    _20._28 = false;
-    mMovementStates._29 = false;
     mJumpVec = rVec;
     _3CA = 0;
+    _3CC = 0;
+    _3BE = 0;
     mMovementStates._13 = true;
     mMovementStates._11 = false;
     mMovementStates._1D = true;
-    _3CC = 0;
-    _3BE = 0;
     _76C = mActor->getConst().getTable()->mBeeGravityReviveTime;
     _770 = 0.0f;
     _3BC = 0xA;
@@ -876,11 +943,12 @@ void Mario::trySlipUpJump() {
     frontVec += mFrontVec * mActor->getConst().getTable()->mSlipUpFront;
     MR::normalizeOrZero(&frontVec);
 
+    f32 step = 50.0f;
     u32 hitCount;
     TVec3f hitPos;
     for (hitCount = 0; hitCount < 10; hitCount++) {
         Triangle* pTmpPolygon = getTmpPolygon();
-        predictPos += frontVec * 50.0f;
+        predictPos += frontVec * step;
 
         if (!MR::getFirstPolyOnLineBFast(predictPos, *getGravityVec() * 150.0f, &hitPos, pTmpPolygon)) {
             break;
@@ -1089,7 +1157,7 @@ void Mario::initJumpParam() {
     _426 = 0;
 
     if (mSinkTimer != 0) {
-        mJumpVec.scale(0.2f + (0.8f * ((0x100 - mSinkTimer) * (1.0f / 256.0f))));
+        mJumpVec.scale(0.2f + (0.8f * ((0x100 - mSinkTimer) / 256.0f)));
         mSinkTimer = 0;
     }
 }
@@ -1111,6 +1179,7 @@ bool Mario::isEnableFutureJump() const {
 }
 
 void Mario::procJump(bool a1) {
+    f32 jumpGravity;
     f32 gravityScale = 1.0f;
     if (!a1 && !_10._1F && _430 == 0 && _3BC < 6 && mActor->isRequestJump2P()) {
         _1C_WORD |= 0x00100000;
@@ -1178,10 +1247,11 @@ void Mario::procJump(bool a1) {
     }
 
     if (useConnectGravity) {
-        if (_3BC < 0x2E) {
-        }
-        gravityScale = mActor->getConst().getTable()->mGravityRatioA;
-        if (_3BC < 0x2E) {
+        MarioConstTable* pTable = mActor->getConst().getTable();
+        gravityScale = pTable->mGravityRatioA;
+        f32 connectRatio = _3BC <= 45 ? 0.0f : 1.0f;
+        if (_3BC <= 45) {
+            connectRatio = static_cast< f32 >(_3BC) / 45.0f;
         }
     }
 
@@ -1214,7 +1284,7 @@ void Mario::procJump(bool a1) {
     } else {
         f32 ceilDist = calcDistToCeil(false);
         if (ceilDist < 160.0f) {
-            f32 jumpGravity = cutGravityElementFromJumpVec(true);
+            jumpGravity = cutGravityElementFromJumpVec(true);
 
             playEffectTrans("天井ヒット", mPosition - getAirGravityVec() * ceilDist);
 
@@ -1288,47 +1358,48 @@ void Mario::procJump(bool a1) {
         _406--;
     }
 
-    f32 jumpGravity = 0.0f;
+    f32 jumpAcceleration;
     if (_430 == 0xC) {
-        jumpGravity = 1.8f;
+        jumpAcceleration = 1.8f;
     } else if (_430 == 0xD) {
-        jumpGravity = mActor->getConst().getTable()->mGravityJumping[9];
+        jumpAcceleration = mActor->getConst().getTable()->mGravityJumping[9];
     } else {
-        jumpGravity = mActor->getConst().getTable()->mGravityJumping[_430];
+        jumpAcceleration = mActor->getConst().getTable()->mGravityJumping[_430];
     }
 
     if (_430 == 0xB && (isRising() || _3BE < mActor->getConst().getTable()->mTrampleBegomaOpenTime)) {
-        jumpGravity = mActor->getConst().getTable()->mGravityJumping[0];
+        jumpAcceleration = mActor->getConst().getTable()->mGravityJumping[0];
     }
 
     if (_430 == 8 && _42A == 1) {
-        jumpGravity = mActor->getConst().getTable()->mSpinJumpGravity;
+        jumpAcceleration = mActor->getConst().getTable()->mSpinJumpGravity;
     }
 
     if (_430 == 8 && !isRising()) {
-        jumpGravity *= 0.25f;
+        jumpAcceleration *= 0.25f;
     }
 
-    f32 clingScale = 1.0f;
     const s32 clingNum = MR::getKarikariClingNum();
+    f32 clingScale = 1.0f;
     if (clingNum != 0) {
-        clingScale = (2.0f + static_cast< f32 >(clingNum)) * 0.5f;
+        clingScale = (2.0f + static_cast< f32 >(clingNum)) / 2.0f;
         if (getPlayerMode() == 4) {
             clingScale = 1.0f;
         }
 
-        jumpGravity *= clingScale;
+        jumpAcceleration *= clingScale;
     }
 
     if (wasAirWalk) {
-        jumpGravity = mActor->getConst().getTable()->mGravityAirWalk;
+        jumpAcceleration = mActor->getConst().getTable()->mGravityAirWalk;
     }
 
     if (_76C != 0) {
-        const u16 maxTimer = mActor->getConst().getTable()->mBeeGravityReviveTime;
+        const u16 maxTimer = mActor->mConst->getTable()->mBeeGravityReviveTime;
         const f32 t = static_cast< f32 >(_76C) / static_cast< f32 >(maxTimer);
+        jumpAcceleration = ((1.0f - t) + (t * mActor->getConst().getTable()->mGravityAirWalk));
         _76C--;
-        jumpGravity = ((1.0f - t) + (t * mActor->getConst().getTable()->mGravityAirWalk)) * clingScale;
+        jumpAcceleration *= clingScale;
     }
 
     if (_430 == 0xD && (isDigitalJump() || !isRising())) {
@@ -1352,7 +1423,7 @@ void Mario::procJump(bool a1) {
     }
 
     if (mMovementStates._17) {
-        f32 wallRatio = static_cast< f32 >(_3BC) / static_cast< f32 >(mActor->getConst().getTable()->mSlipUpSpdCtrlTimer);
+        f32 wallRatio = static_cast< f32 >(_3BC) / static_cast< f32 >(mActor->mConst->getTable()->mSlipUpSpdCtrlTimer);
         if (wallRatio > 1.0f) {
             wallRatio = 1.0f;
         }
@@ -1361,12 +1432,12 @@ void Mario::procJump(bool a1) {
             mActor->getConst().getTable()->mSlipUpSpdRatio + ((1.0f - wallRatio) * (1.0f - mActor->getConst().getTable()->mSlipUpSpdRatio));
         addVelocity(mJumpVec, wallScale);
 
-        mJumpVec += mActor->_240 * jumpGravity * gravityScale * wallScale;
+        mJumpVec += mActor->_240 * jumpAcceleration * gravityScale * wallScale;
         moveWallSlide(1.0f);
     } else if ((mMovementStates._1) == 0) {
         addVelocity(mJumpVec);
 
-        mJumpVec += mActor->_240 * jumpGravity * gravityScale;
+        mJumpVec += mActor->_240 * jumpAcceleration * gravityScale;
     }
 
     checkWallRising();
@@ -1383,15 +1454,15 @@ void Mario::procJump(bool a1) {
         const f32 dropSpeed = MR::vecKillElement(mJumpVec, *getGravityVec(), &side);
 
         f32 maxDrop = mActor->getConst().getTable()->mMaxDropSpeed[mActor->getGravityLevel() & 0xFF];
-        if (_430 == 0xB && !isRising() && _3BE >= mActor->getConst().getTable()->mTrampleBegomaOpenTime) {
-            maxDrop = mActor->getConst().getTable()->mMaxBackJumpSpeed;
+        if (_430 == 0xB && !isRising() && _3BE >= mActor->mConst->getTable()->mTrampleBegomaOpenTime) {
+            maxDrop = mActor->getConst().getTable()->mMaxDropSpeed[3];
         }
 
         if (getPlayerMode() == 4 && !isRising()) {
             maxDrop = mActor->getConst().getTable()->mMaxDropSpeed[4];
         }
 
-        if (maxDrop <= dropSpeed) {
+        if (dropSpeed >= maxDrop) {
             mJumpVec = *getGravityVec() * maxDrop + side;
         }
     }
@@ -1412,7 +1483,7 @@ void Mario::procJump(bool a1) {
                 pressedB = true;
             }
 
-            if (sensorA != sensorB && (pressedA || pressedB)) {
+            if (_730 != mGroundPolygon->mSensor && (pressedA || pressedB)) {
                 mActor->setPress(0, 0);
                 mActor->_3B4 = *mGroundPolygon->getNormal(0);
             }
@@ -1451,6 +1522,7 @@ void Mario::checkWallJumpHit() {
             _402 = 0;
             _428 = 0x3C;
         }
+
         return;
     }
 
@@ -1639,6 +1711,7 @@ bool Mario::jumpToHipDrop() {
 }
 
 void Mario::procHipDrop() {
+    f32 gravityHipDrop;
     if (isAnimationRun(_720)) {
         if (!isAnimationTerminate(nullptr)) {
             return;
@@ -1780,16 +1853,18 @@ void Mario::procHipDrop() {
             }
         }
     }
+
 PROC_HIP_DROP_MOVE:
     TVec3f moveVec(mJumpVec);
     if (moveVec.length() >= mVerticalSpeed) {
         moveVec.setLength(mVerticalSpeed);
     }
+
     addVelocity(moveVec);
 
     if (!mMovementStates._1) {
         const f32 speedRate = MR::clamp(0.1f + (1.0f - (mJumpVec.length() / mActor->getConst().getTable()->mLimitSpeedHipDrop)), 0.0f, 1.0f);
-        const f32 gravityHipDrop = mActor->getConst().getTable()->mGravityHipDrop;
+        gravityHipDrop = mActor->getConst().getTable()->mGravityHipDrop;
 
         mJumpVec += *getGravityVec() * gravityHipDrop * speedRate;
 
@@ -1812,6 +1887,7 @@ PROC_HIP_DROP_MOVE:
             Triangle strikeTriangles[0x20];
             HitSensor* homingSensor = nullptr;
 
+            f32 maxAngle = 45.0f;
             f32 speed = mVerticalSpeed;
             if (speed >= 500.0f) {
                 speed = 500.0f;
@@ -1825,7 +1901,7 @@ PROC_HIP_DROP_MOVE:
                 if (mActor->selectHomingInSuperHipDrop(strikeInfo->mParentTriangle.mSensor->mHost->mName)) {
                     TVec3f sensorPos(strikeInfo->mParentTriangle.mSensor->mPosition);
 
-                    if (MR::diffAngleAbs(sensorPos - mActor->_2A0, *getGravityVec()) < 45.0f) {
+                    if (MR::diffAngleAbs(sensorPos - mActor->_2A0, *getGravityVec()) < maxAngle) {
                         homingSensor = strikeInfo->mParentTriangle.mSensor;
                     }
                 }
@@ -1879,6 +1955,7 @@ void Mario::doAirWalk() {
         if (_3BC > mActor->getConst().getTable()->mWaitNeutralTimer) {
             mMovementStates._1D = false;
         }
+
         return;
     }
 
@@ -1888,10 +1965,13 @@ void Mario::doAirWalk() {
             stopAnimation("坂すべり上向きうつぶせ", 2);
             stopAnimation("坂すべり下向きあおむけ", 3);
         }
+
         return;
     }
 
+    f32 speedKiller;
     TVec3f moveDir;
+    TVec3f sideMove;
     calcMoveDir(mStickPos.x, mStickPos.y, &moveDir, true);
 
     if (mActor->_334 != 0) {
@@ -1918,7 +1998,7 @@ void Mario::doAirWalk() {
     }
 
     MR::vecKillElement(moveDir, *getGravityVec(), &moveDir);
-    TVec3f sideMove;
+
     bool inhibitFrontAdjust = false;
     f32 frontDot = MR::vecKillElement(moveDir, mFrontVec, &sideMove);
 
@@ -1955,11 +2035,10 @@ void Mario::doAirWalk() {
             _3CA++;
         }
 
-        f32 speedKiller;
         if (isAnimationRun("ターンジャンプ")) {
             _3CA = 0;
             speedKiller = 0.1f;
-        } else if (_3CA < mActor->getConst().getTable()->mBackJumpLimitFrame) {
+        } else if (_3CA < mActor->mConst->getTable()->mBackJumpLimitFrame) {
             const f32 remain = static_cast< f32 >(mActor->getConst().getTable()->mBackJumpLimitFrame - _3CA);
             speedKiller =
                 mActor->getConst().getTable()->mBackJumpRatio * (remain / static_cast< f32 >(mActor->getConst().getTable()->mBackJumpLimitFrame));
@@ -1976,7 +2055,7 @@ void Mario::doAirWalk() {
         const f32 backDot = -moveDir.dot(mFrontVec);
         if (backDot > mActor->getConst().getTable()->mMaxBackJumpSpeed) {
             moveDir.setLength(mActor->getConst().getTable()->mMaxBackJumpSpeed);
-        } else if (backDot < 0.0f && _3CA < mActor->getConst().getTable()->mBackJumpLimitFrame) {
+        } else if (backDot < 0.0f && _3CA < mActor->mConst->getTable()->mBackJumpLimitFrame) {
             _3CC = 0xA;
         }
     }
@@ -1988,10 +2067,10 @@ void Mario::doAirWalk() {
     MR::normalizeOrZero(&jumpNorm);
 
     if (!inhibitFrontAdjust) {
-        frontDot = moveNorm.dot(jumpNorm);
-        if (frontDot < 0.0f) {
+        f32 alignment = moveNorm.dot(jumpNorm);
+        if (alignment < 0.0f) {
             const f32 jumpGravity = cutGravityElementFromJumpVec(true);
-            mJumpVec += mJumpVec * mActor->getConst().getTable()->mAirWalkSpeedKiller * frontDot;
+            mJumpVec += mJumpVec * mActor->getConst().getTable()->mAirWalkSpeedKiller * alignment;
 
             mJumpVec += getAirGravityVec() * jumpGravity;
         }
@@ -2007,11 +2086,17 @@ void Mario::doAirWalk() {
         playSound("滞空中");
     } else if (getPlayerMode() == 6) {
         if (mJumpVec.dot(moveDir) >= 0.0f) {
-            if (moveDir.dot(mFrontVec) > 0.0f) {
+            f32 frontGravity = moveDir.dot(mFrontVec);
+            if (frontGravity > 0.0f) {
+                frontGravity = -frontGravity;
             }
+
             TVec3f normJump(mJumpVec);
             if (!MR::normalizeOrZero(&normJump)) {
-                mJumpVec *= 0.998f - (0.01f * (1.0f - (0.5f * (1.0f + normJump.dot(mFrontVec)))));
+                f32 alignment = normJump.dot(mFrontVec);
+                alignment += 1.0f;
+                f32 halfAlignment = alignment / 2.0f;
+                mJumpVec *= 0.998f - 0.01f * (1.0f - halfAlignment);
             }
         }
     } else {
@@ -2019,9 +2104,9 @@ void Mario::doAirWalk() {
                     (_3BC + mActor->getConst().getTable()->mAirWalkTimerFact2);
     }
 
-    frontDot = 1.0f;
+    f32 accelerationRate = 1.0f;
     if (_430 != 0xB && getPlayerMode() != 6 && !isRising()) {
-        addVelocity(moveDir, mActor->getConst().getTable()->mWalkSpeed * mActor->getConst().getTable()->mAirWalkTimerFact3 * frontDot);
+        addVelocity(moveDir, mActor->getConst().getTable()->mWalkSpeed * mActor->getConst().getTable()->mAirWalkTimerFact3 * accelerationRate);
     }
 
     const f32 jumpGravity = cutGravityElementFromJumpVec(true);
@@ -2044,7 +2129,7 @@ void Mario::doAirWalk() {
             }
         } else {
             f32 t = static_cast< f32 >(_774) / 30.0f;
-            const f32 limit = (t * mActor->getConst().getTable()->mMaxJumpSpeed) + ((1.0f - t) * mActor->getConst().getTable()->mBeeAirWalkLimit);
+            const f32 limit = (t * mActor->mConst->getTable()->mMaxJumpSpeed) + ((1.0f - t) * mActor->getConst().getTable()->mBeeAirWalkLimit);
             if (mJumpVec.length() > limit) {
                 mJumpVec.setLength(limit);
             }
@@ -2054,6 +2139,7 @@ void Mario::doAirWalk() {
             mJumpVec.setLength(mActor->getConst().getTable()->mMaxJumpSpeed);
         }
     }
+
     mJumpVec += getAirGravityVec() * jumpGravity;
 }
 
@@ -2139,7 +2225,7 @@ void Mario::checkAndTryForceJump() {
     bool doForceJump = false;
     TVec3f forceJumpVec;
 
-    if ((mMovementStates._1 && !mMovementStates.jumping) || isAnimationRun(_728)) {
+    if ((getMovementStates()._1 && !mMovementStates.jumping) || isAnimationRun(_728)) {
         switch (_960) {
         case 0x6:
         case 0x22: {
@@ -2148,18 +2234,21 @@ void Mario::checkAndTryForceJump() {
             doForceJump = true;
             break;
         }
+
         case 0x7: {
             const f32 jumpPower = mActor->getConst().getTable()->mCodeJumpPower[1];
             forceJumpVec = *mGroundPolygon->getNormal(0) * jumpPower;
             doForceJump = true;
             break;
         }
+
         case 0x8: {
             const f32 jumpPower = mActor->getConst().getTable()->mCodeJumpPower[2];
             forceJumpVec = *mGroundPolygon->getNormal(0) * jumpPower;
             doForceJump = true;
             break;
         }
+
         case 0xB: {
             MR::vecKillElement(_16C, *getGravityVec(), &forceJumpVec);
             forceJumpVec.setLength(10.0f);
@@ -2169,6 +2258,7 @@ void Mario::checkAndTryForceJump() {
             doForceJump = true;
             break;
         }
+
         default:
             break;
         }
@@ -2274,19 +2364,21 @@ void Mario::doLanding() {
         } else {
             changeStatus(mSkate);
         }
+
         return;
     }
 
     if (_430 == 5 && isSkatableFloor()) {
         if (checkSquat(false)) {
             mMovementStates._A = true;
-            mWalkSpeed = 0.0f;
+            mWalkSpeed = 1.0f;
             stopAnimation(static_cast< const char* >(nullptr), "しゃがみ基本");
         } else {
             cancelSquatMode();
             stopAnimationUpper(static_cast< const char* >(nullptr), static_cast< const char* >(nullptr));
             changeAnimation("スケート静止着地", "基本");
         }
+
         return;
     }
 
@@ -2317,6 +2409,7 @@ void Mario::doLanding() {
             if (!isStickFull()) {
                 keepFrontSlip = true;
             }
+
             doHardLanding = true;
             if (_1FC.dot(_368) < 0.0f) {
                 if (_960 == 0xD || _960 == 0x1E || _960 == 5 || _960 == 0x17) {
@@ -2328,6 +2421,7 @@ void Mario::doLanding() {
                     _3CE += 0x10;
                     forceSetHeadVecKeepSide(_368);
                 }
+
                 return;
             }
         } else {
@@ -2390,13 +2484,14 @@ void Mario::doLanding() {
     if (isBlendWaitGround()) {
         blendWait = true;
     }
+
     fixFrontVecByGravity();
 
     if (!doHardLanding && !mDrawStates._C && _430 != 0xE && !isAnimationRun("飛び込みジャンプ") && !isAnimationRun("後方飛び込みジャンプ") &&
         !_10._8 && !isAnimationRun("水上ダメージ中")) {
         if (_430 == 5 && checkSquat(false)) {
             mMovementStates._A = true;
-            mWalkSpeed = 0.0f;
+            mWalkSpeed = 1.0f;
             stopAnimation(static_cast< const char* >(nullptr), "しゃがみ基本");
             goto POST_LANDING;
         }
@@ -2410,6 +2505,7 @@ void Mario::doLanding() {
             if (_430 == 5) {
                 cancelSquatMode();
             }
+
             goto POST_LANDING;
         }
 
@@ -2436,9 +2532,9 @@ void Mario::doLanding() {
         }
 
         const f32 frontDot = mFrontVec.dot(mJumpVec);
-        if (frontDot > 0.5f && !keepFrontSlip) {
+        if (frontDot > 6.0f && !keepFrontSlip) {
             mWalkSpeed = frontDot / mActor->getConst().getTable()->mJumpFrontSpeed;
-            mWalkSpeed = MR::clamp(mWalkSpeed, 0.0f, 1.0f);
+            mWalkSpeed = MR::clamp(mWalkSpeed, 0.0f, 2.0f);
             stopAnimation(static_cast< const char* >(nullptr), "基本");
             _3FA = 0;
             _71E = 0;
@@ -2446,6 +2542,7 @@ void Mario::doLanding() {
             if (!_10._A) {
                 recordTurnSlipAngle();
             }
+
             goto POST_LANDING;
         }
     }
@@ -2478,6 +2575,7 @@ void Mario::doLanding() {
 
         goto POST_LANDING;
     }
+
     if (!mDrawStates._C) {
         clearSlope();
         switch (_430) {
@@ -2514,6 +2612,7 @@ void Mario::doLanding() {
             } else {
                 changeAnimation("着地", "基本");
             }
+
             break;
         case 3:
         case 0xA:
@@ -2529,6 +2628,7 @@ void Mario::doLanding() {
             blendWait = false;
             break;
         }
+
         stopWalk();
         if (blendWait) {
             changeAnimation("ショート着地", "基本");
@@ -2549,6 +2649,7 @@ void Mario::doLanding() {
         if (!isAnimationRun("坂すべり上向きうつぶせ", 2) && !isAnimationRun("坂すべり下向きあおむけ", 3)) {
             stopAnimation(static_cast< const char* >(nullptr), "基本");
         }
+
         changeAnimation("すべり着地", "基本");
         _71E = 0;
     }
@@ -2564,7 +2665,7 @@ POST_LANDING:
         } else {
             const f32 ratio = (90.0f - calcPolygonAngleD(mGroundPolygon)) / 90.0f;
             mWalkSpeed = mWalkSpeed * ratio;
-            mWalkSpeed = MR::clamp(mWalkSpeed, 0.0f, 1.0f);
+            mWalkSpeed = MR::clamp(mWalkSpeed, 0.0f, 2.0f);
 
             const f32 minVel = 10.0f - (10.0f * ratio);
             if (_8F0 < minVel) {
@@ -2593,6 +2694,11 @@ bool Mario::taskOnSlide(u32 a1) {
     addVelocity(_A40);
     _A3C--;
     return _A3C != 0;
+}
+
+void MarioJump_FORCE_MATCH_DATA() {
+    Mario::Task task = &Mario::taskOnWallRising;
+    (void)task;
 }
 
 bool Mario::taskOnWallRising(u32 a1) {

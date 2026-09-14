@@ -88,8 +88,8 @@ namespace JMath {
                 v = -v;
             }
 
-            f32 tmp = v;
-            tmp *= (LEN / TWO_PI);
+            f32 factor = LEN / TWO_PI;
+            f32 tmp = v * factor;
             return table[(u16)tmp & LEN - 1].b1;
         }
 

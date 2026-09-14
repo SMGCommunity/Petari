@@ -7002,6 +7002,7 @@ Game/Player/MarioActorGameOver.cpp:
 Game/Player/MarioActorGravity.cpp:
 	.text       start:0x802B9610 end:0x802BA858
 	.ctors      start:0x8052F070 end:0x8052F074
+	.rodata     start:0x80539A60 end:0x80539A68
 	.data       start:0x805B86D8 end:0x805B8708
 	.sdata      start:0x806B2218 end:0x806B2220
 	.sdata2     start:0x806BF698 end:0x806BF6F0
@@ -7027,6 +7028,7 @@ Game/Player/MarioActorPad.cpp:
 Game/Player/MarioActorParts.cpp:
 	.text       start:0x802BC2AC end:0x802BDB40
 	.ctors      start:0x8052F080 end:0x8052F084
+	.rodata     start:0x80539A68 end:0x80539A70
 	.data       start:0x805B8850 end:0x805B8A80
 	.sdata      start:0x806B2228 end:0x806B2230
 	.sdata2     start:0x806BF708 end:0x806BF748
@@ -7048,6 +7050,7 @@ Game/Player/MarioActorSensor.cpp:
 Game/Player/MarioActorShadow.cpp:
 	.text       start:0x802BFB84 end:0x802C1384
 	.ctors      start:0x8052F08C end:0x8052F090
+	.rodata     start:0x80539A70 end:0x80539A80
 	.data       start:0x805B8E00 end:0x805B8F28
 	.sdata      start:0x806B2240 end:0x806B2248
 	.sdata2     start:0x806BF7A0 end:0x806BF7E8
@@ -7055,6 +7058,7 @@ Game/Player/MarioActorShadow.cpp:
 Game/Player/MarioActorSpecialDraw.cpp:
 	.text       start:0x802C1384 end:0x802C43B8
 	.ctors      start:0x8052F090 end:0x8052F094
+	.rodata     start:0x80539A80 end:0x80539A90
 	.data       start:0x805B8F28 end:0x805B8F58
 	.sdata2     start:0x806BF7E8 end:0x806BF888
 
@@ -7074,6 +7078,7 @@ Game/Player/MarioActorMorph.cpp:
 Game/Player/MarioActorEye.cpp:
 	.text       start:0x802C52CC end:0x802C55E0
 	.ctors      start:0x8052F09C end:0x8052F0A0
+	.rodata     start:0x80539A90 end:0x80539A98
 	.data       start:0x805BA740 end:0x805BA758
 	.sdata2     start:0x806BF898 end:0x806BF8A0
 
@@ -7081,7 +7086,7 @@ Game/Player/MarioActorOffensiveMsg.cpp:
 	.text       start:0x802C55E0 end:0x802C7078
 	.ctors      start:0x8052F0A0 end:0x8052F0A4
 	.data       start:0x805BA758 end:0x805BA840
-	.sdata      start:0x806B2258 end:0x806B2288
+	.sdata      start:0x806B2258 end:0x806B2280
 	.sdata2     start:0x806BF8A0 end:0x806BF8C8
 
 Game/Player/MarioActorDefensiveMsg.cpp:
@@ -7105,20 +7110,23 @@ Game/Player/MarioActorTakeMsg.cpp:
 Game/Player/MarioActorBlackHole.cpp:
 	.text       start:0x802CA7F8 end:0x802CAD30
 	.ctors      start:0x8052F0B0 end:0x8052F0B4
+	.rodata     start:0x80539A98 end:0x80539AA0
 	.data       start:0x805BAB40 end:0x805BAC68
 	.sdata2     start:0x806BF948 end:0x806BF968
 
 Game/Player/MarioAnimator.cpp:
 	.text       start:0x802CAD30 end:0x802CDBC8
 	.ctors      start:0x8052F0B4 end:0x8052F0B8
+	.rodata     start:0x80539AA0 end:0x80539AB8
 	.data       start:0x805BAC68 end:0x805C4178
-	.sdata      start:0x806B2288 end:0x806B22A8
+	.sdata      start:0x806B2280 end:0x806B2290
 	.sdata2     start:0x806BF968 end:0x806BF9D8
 
 Game/Player/MarioAnimationEfx.cpp:
 	.text       start:0x802CDBC8 end:0x802CE398
 	.ctors      start:0x8052F0B8 end:0x8052F0BC
 	.data       start:0x805C4178 end:0x805C4768
+	.sdata      start:0x806B2290 end:0x806B2298
 	.sdata2     start:0x806BF9D8 end:0x806BF9E8
 
 Game/Player/MarioWait.cpp:
@@ -7136,7 +7144,9 @@ Game/Player/MarioClimb.cpp:
 Game/Player/MarioCollision.cpp:
 	.text       start:0x802CF1E4 end:0x802D53E4
 	.ctors      start:0x8052F0C4 end:0x8052F0C8
+	.rodata     start:0x80539AB8 end:0x80539AC0
 	.data       start:0x805C4960 end:0x805C4CE8
+	.sdata      start:0x806B2298 end:0x806B22A0
 	.sdata2     start:0x806BFA10 end:0x806BFAF8
 
 Game/Player/MarioConst.cpp:
@@ -7146,6 +7156,7 @@ Game/Player/MarioConst.cpp:
 Game/Player/MarioDamage.cpp:
 	.text       start:0x802D5408 end:0x802D85DC
 	.ctors      start:0x8052F0C8 end:0x8052F0CC
+	.rodata     start:0x80539AC0 end:0x80539B08
 	.data       start:0x805C5C30 end:0x805C6008
 	.sdata2     start:0x806BFAF8 end:0x806BFB30
 
@@ -7181,6 +7192,7 @@ Game/Player/MarioFaint.cpp:
 Game/Player/MarioFlip.cpp:
 	.text       start:0x802D9E54 end:0x802DAA44
 	.ctors      start:0x8052F0E0 end:0x8052F0E4
+	.rodata     start:0x80539B08 end:0x80539B10
 	.data       start:0x805C6608 end:0x805C6770
 	.sdata2     start:0x806BFB60 end:0x806BFB90
 
@@ -7193,6 +7205,7 @@ Game/Player/MarioFrontStep.cpp:
 Game/Player/MarioBee.cpp:
 	.text       start:0x802DB028 end:0x802DBAD8
 	.ctors      start:0x8052F0E8 end:0x8052F0EC
+	.rodata     start:0x80539B10 end:0x80539B18
 	.sdata2     start:0x806BFBA8 end:0x806BFBD8
 
 Game/Player/MarioBlown.cpp:
@@ -7204,8 +7217,9 @@ Game/Player/MarioBlown.cpp:
 Game/Player/MarioEffect.cpp:
 	.text       start:0x802DC258 end:0x802DEC08
 	.ctors      start:0x8052F0F0 end:0x8052F0F4
-	.rodata     start:0x80539A60 end:0x80539C08
+	.rodata     start:0x80539B18 end:0x80539B98
 	.data       start:0x805C6B28 end:0x805C7CD8
+	.sdata      start:0x806B22A0 end:0x806B22A8
 	.sdata2     start:0x806BFBF0 end:0x806BFC08
 
 Game/Player/MarioFlow.cpp:
@@ -7217,6 +7231,7 @@ Game/Player/MarioFlow.cpp:
 Game/Player/MarioFoo.cpp:
 	.text       start:0x802DF14C end:0x802E1A58
 	.ctors      start:0x8052F0F8 end:0x8052F0FC
+	.rodata     start:0x80539B98 end:0x80539BA8
 	.data       start:0x805C7E30 end:0x805C8140
 	.sdata      start:0x806B22A8 end:0x806B22B0
 	.sbss       start:0x806B6290 end:0x806B62A0
@@ -7233,8 +7248,9 @@ Game/Player/MarioInit.cpp:
 Game/Player/MarioJump.cpp:
 	.text       start:0x802E1D70 end:0x802E8C80
 	.ctors      start:0x8052F0FC end:0x8052F100
+	.rodata     start:0x80539BA8 end:0x80539BB8
 	.data       start:0x805C8170 end:0x805C8A00
-	.sdata      start:0x806B22B0 end:0x806B22D0
+	.sdata      start:0x806B22B0 end:0x806B22B8
 	.sdata2     start:0x806BFCB0 end:0x806BFD50
 
 Game/Player/MarioMessenger.cpp:
@@ -7250,6 +7266,7 @@ Game/Player/MarioModule.cpp:
 Game/Player/MarioMove.cpp:
 	.text       start:0x802E9FEC end:0x802ECA14
 	.ctors      start:0x8052F104 end:0x8052F108
+	.rodata     start:0x80539BB8 end:0x80539BC0
 	.data       start:0x805C8C38 end:0x805C8F20
 	.sdata2     start:0x806BFD78 end:0x806BFDF8
 
@@ -7282,12 +7299,15 @@ Game/Player/MarioRabbit.cpp:
 	.text       start:0x802EF560 end:0x802F0404
 	.ctors      start:0x8052F114 end:0x8052F118
 	.data       start:0x805C8FB0 end:0x805C91D8
+	.sdata      start:0x806B22B8 end:0x806B22C0
 	.sdata2     start:0x806BFED8 end:0x806BFF08
 
 Game/Player/MarioSearchLight.cpp:
 	.text       start:0x802F0404 end:0x802F12C8
 	.ctors      start:0x8052F118 end:0x8052F11C
+	.rodata     start:0x80539BC0 end:0x80539BE8
 	.data       start:0x805C91D8 end:0x805C9268
+	.sdata      start:0x806B22C0 end:0x806B22C8
 	.sdata2     start:0x806BFF08 end:0x806BFF48
 
 Game/Player/MarioSideStep.cpp:
@@ -7306,6 +7326,7 @@ Game/Player/MarioSound.cpp:
 	.text       start:0x802F28B4 end:0x802F2F20
 	.ctors      start:0x8052F124 end:0x8052F128
 	.data       start:0x805C95A8 end:0x805CB370
+	.sdata      start:0x806B22C8 end:0x806B22D0
 
 Game/Player/MarioSpecial.cpp:
 	.text       start:0x802F2F20 end:0x802F3DA0
@@ -7342,20 +7363,22 @@ Game/Player/MarioTalk.cpp:
 Game/Player/MarioWall.cpp:
 	.text       start:0x802F5760 end:0x802F7BD0
 	.ctors      start:0x8052F140 end:0x8052F144
+	.rodata     start:0x80539BE8 end:0x80539BF0
 	.data       start:0x805CB910 end:0x805CBB98
 	.sdata2     start:0x806C0040 end:0x806C0090
 
 Game/Player/MarioHang.cpp:
 	.text       start:0x802F7BD0 end:0x802FA024
 	.ctors      start:0x8052F144 end:0x8052F148
+	.rodata     start:0x80539BF0 end:0x80539BF8
 	.data       start:0x805CBB98 end:0x805CBC80
 	.sdata2     start:0x806C0090 end:0x806C0108
 
 Game/Player/MarioSwim.cpp:
 	.text       start:0x802FA024 end:0x80302870
 	.ctors      start:0x8052F148 end:0x8052F14C
-	.rodata     start:0x80539C08 end:0x80539C28
-	.data       start:0x805CBC80 end:0x805CC2B4
+	.rodata     start:0x80539BF8 end:0x80539C18
+	.data       start:0x805CBC80 end:0x805CC358
 	.sdata      start:0x806B22D0 end:0x806B22D8
 	.sbss       start:0x806B62A0 end:0x806B62B0
 	.sdata2     start:0x806C0108 end:0x806C0258
@@ -7389,13 +7412,14 @@ Game/Player/MarioWalk.cpp:
 
 Game/Player/MarioNullBck.cpp:
 	.text       start:0x80308E04 end:0x803090AC
-	.rodata     start:0x80539C58 end:0x80539CC0
+	.rodata     start:0x80539C58 end:0x80539C68
 	.data       start:0x805CC8B8 end:0x805CC960
 	.sdata2     start:0x806C0370 end:0x806C0378
 
 Game/Player/MarioRecovery.cpp:
 	.text       start:0x803090AC end:0x80309F6C
 	.ctors      start:0x8052F160 end:0x8052F164
+	.rodata     start:0x80539C68 end:0x80539C78
 	.data       start:0x805CC960 end:0x805CCAA8
 	.sdata2     start:0x806C0378 end:0x806C03D0
 
@@ -7408,40 +7432,46 @@ Game/Player/MarioSlider.cpp:
 Game/Player/MarioStep.cpp:
 	.text       start:0x8030AAD0 end:0x8030B278
 	.ctors      start:0x8052F168 end:0x8052F16C
+	.rodata     start:0x80539C78 end:0x80539C80
 	.data       start:0x805CCBF0 end:0x805CCC38
 	.sdata2     start:0x806C0400 end:0x806C0438
 
 Game/Player/MarioBump.cpp:
 	.text       start:0x8030B278 end:0x8030B7F8
 	.ctors      start:0x8052F16C end:0x8052F170
-	.data       start:0x805CCC38 end:0x805CCCB8
+	.data       start:0x805CCC38 end:0x805CCC98
 	.sdata2     start:0x806C0438 end:0x806C0450
 
 Game/Player/MarioEnforce.cpp:
 	.text       start:0x8030B7F8 end:0x8030D0F8
 	.ctors      start:0x8052F170 end:0x8052F174
+	.rodata     start:0x80539C80 end:0x80539C88
+	.data       start:0x805CCC98 end:0x805CCCB8
 	.sdata2     start:0x806C0450 end:0x806C0478
 
 Game/Player/MarioTask.cpp:
 	.text       start:0x8030D0F8 end:0x8030DEA4
 	.ctors      start:0x8052F174 end:0x8052F178
-	.data       start:0x805CCCB8 end:0x805CCEC8
+	.data       start:0x805CCCB8 end:0x805CCE10
 	.sdata2     start:0x806C0478 end:0x806C04A0
 
 Game/Player/MarioTeresa.cpp:
 	.text       start:0x8030DEA4 end:0x80310208
 	.ctors      start:0x8052F178 end:0x8052F17C
-	.data       start:0x805CCEC8 end:0x805CD0E8
+	.rodata     start:0x80539C88 end:0x80539C90
+	.data       start:0x805CCE10 end:0x805CD078
+	.sdata      start:0x806B22E0 end:0x806B22F8
 	.sdata2     start:0x806C04A0 end:0x806C0528
 
 Game/Player/MarioMagic.cpp:
 	.text       start:0x80310208 end:0x803105B0
 	.ctors      start:0x8052F17C end:0x8052F180
-	.data       start:0x805CD0E8 end:0x805CD1D0
+	.data       start:0x805CD078 end:0x805CD1D0
 
 Game/Player/MarioWarp.cpp:
 	.text       start:0x803105B0 end:0x80311B40
 	.ctors      start:0x8052F180 end:0x8052F184
+	.rodata     start:0x80539C90 end:0x80539CA0
 	.data       start:0x805CD1D0 end:0x805CD3D8
 	.sdata2     start:0x806C0528 end:0x806C0560
 
@@ -7475,8 +7505,9 @@ Game/Player/ModelHolder.cpp:
 
 Game/Player/MarioShadow.cpp:
 	.text       start:0x80312F7C end:0x803150CC
+	.rodata     start:0x80539CA0 end:0x80539CB8
 	.data       start:0x805CD5D8 end:0x805CD618
-	.sdata      start:0x806B22D8 end:0x806B2300
+	.sdata      start:0x806B22F8 end:0x806B2300
 	.sdata2     start:0x806C05B8 end:0x806C0618
 
 Game/Player/MarioMapCode.cpp:
@@ -7485,6 +7516,7 @@ Game/Player/MarioMapCode.cpp:
 Game/Player/MarioActorWipe.cpp:
 	.text       start:0x80315128 end:0x803152AC
 	.ctors      start:0x8052F18C end:0x8052F190
+	.rodata     start:0x80539CB8 end:0x80539CC0
 	.sdata2     start:0x806C0618 end:0x806C0620
 
 Game/Player/DrawAdaptor.cpp:

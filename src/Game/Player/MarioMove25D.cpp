@@ -4,10 +4,15 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 
-void Mario::set25Dmode(const AreaObj* area) {
+void MarioMove25D_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
+void Mario::set25Dmode(const AreaObj* pArea) {
     Mtx matrix;
     TVec3f rotation;
-    MR::calcCubeRotate(area, &rotation);
+    MR::calcCubeRotate(pArea, &rotation);
     TVec3f normal(0.0f, 0.0f, 1.0f);
     TVec3f up(0.0f, 1.0f, 0.0f);
     MR::makeMtxTR(matrix, 0.0f, 0.0f, 0.0f, rotation.x, rotation.y, rotation.z);
@@ -47,6 +52,7 @@ void Mario::update25Dmode() {
     } else {
         mode = normalDot > 0.0f ? 4 : 5;
     }
+
     _6AD = mode;
     if (mode == 2 || mode == 3) {
         if (mode == 2 || mode == 3) {
@@ -54,6 +60,7 @@ void Mario::update25Dmode() {
             if (_6AC == 2 || _6AC == 3) {
                 threshold = 0.9397f;
             }
+
             if (sideAbs < threshold) {
                 if (upAbs > normalAbs) {
                     if (upDot > 0.0f) {
@@ -107,6 +114,7 @@ void Mario::updateAxisFromMode(u8 mode) {
                 if (dot < 0.0f) {
                     side = -side;
                 }
+
                 break;
             case 1:
                 side = _6E8;
@@ -114,6 +122,7 @@ void Mario::updateAxisFromMode(u8 mode) {
                 if (dot > 0.0f) {
                     side = -side;
                 }
+
                 break;
             case 2:
                 side = _6D0;
@@ -122,6 +131,7 @@ void Mario::updateAxisFromMode(u8 mode) {
                     side = -side;
                     normal = -normal;
                 }
+
                 break;
             case 3:
                 side = -_6D0;
@@ -130,6 +140,7 @@ void Mario::updateAxisFromMode(u8 mode) {
                     side = -side;
                     normal = -normal;
                 }
+
                 break;
             }
         } else {
@@ -139,6 +150,7 @@ void Mario::updateAxisFromMode(u8 mode) {
             if (axis.dot(_6D0) < 0.0f) {
                 axis = -axis;
             }
+
             TVec3f tangent;
             tangent.cross(axis, up);
             MR::normalize(&tangent);
@@ -162,10 +174,11 @@ void Mario::updateAxisFromMode(u8 mode) {
             }
         }
     }
+
     _6B0 = side;
     _6BC = -normal;
 }
 
-void Mario::calcMoveDir25D(f32 x, f32 y, TVec3f* direction) {
-    *direction = _6B0 * x - _6BC * y;
+void Mario::calcMoveDir25D(f32 x, f32 y, TVec3f* pDirection) {
+    *pDirection = _6B0 * x - _6BC * y;
 }

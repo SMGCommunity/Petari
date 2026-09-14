@@ -20,6 +20,7 @@ bool Mario::doFlipWeak(const TVec3f& rVec) {
             mSwim->mDamageType = 1;
             mFaint->mNoDamage = false;
         }
+
         return true;
     }
 
@@ -78,6 +79,7 @@ bool MarioFaint::update() {
         if (mTimer == mActor->getConst().getTable()->mFaintTimer1) {
             _16++;
         }
+
         break;
     case 1:
         if (!getPlayer()->getMovementStates()._1) {
@@ -92,7 +94,7 @@ bool MarioFaint::update() {
             return false;
         }
 
-        if (mTimer == mActor->getConst().getTable()->mFaintTimer1 + mActor->getConst().getTable()->mFaintTimer2) {
+        if (mTimer == mActor->mConst->getTable()->mFaintTimer1 + mActor->getConst().getTable()->mFaintTimer2) {
             return false;
         }
 
@@ -150,12 +152,12 @@ bool MarioFaint::start() {
 }
 
 bool MarioFaint::close() {
-    if(getPlayer()->getMovementStates()._1) {
+    if (getPlayer()->getMovementStates()._1) {
         stopAnimation("後方小ダメージ");
-        stopAnimation("前方小ダメージ","基本");
+        stopAnimation("前方小ダメージ", "基本");
     }
 
-    if(mTookDamage) {
+    if (mTookDamage) {
         _14 = 120;
     }
 

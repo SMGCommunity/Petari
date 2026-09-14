@@ -1,4 +1,5 @@
 #include "Game/Player/PlayerEventAbyss.hpp"
+#include "Game/Player/MarioActor.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SequenceUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"

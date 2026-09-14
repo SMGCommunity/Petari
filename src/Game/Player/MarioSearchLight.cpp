@@ -56,6 +56,7 @@ void MarioSearchLight::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (pReceiver != _A4) {
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
     }
+
     _A4 = pReceiver;
     _A0 = 30;
 }
@@ -67,8 +68,8 @@ void MarioSearchLight::updateHitSensor(HitSensor* pSensor) {
     TVec3f frontPosition = mPosition + frontVec * _9C;
 
     pSensor->mPosition.x = frontPosition.x;
-    pSensor->mPosition.y = mRotation.x;
-    pSensor->mPosition.z = mRotation.y;
+    pSensor->mPosition.y = frontPosition.y;
+    pSensor->mPosition.z = frontPosition.z;
 
     _9C += 80.0f;
     if (_9C > 2000.0f) {
@@ -152,9 +153,8 @@ void MarioActor::updateThrowing() {
     TVec3f trans;
     mSearchLightThrowPos->mMtx.getTrans(trans);
 
-    // TODO: Probably missing an inline?
-    MarioSearchLight* searchLight = mSearchLight;
-    searchLight->mPosition = trans + mVelocity;
+    TVec3f& position = mSearchLight->mPosition;
+    position = trans + mVelocity;
 
     mSearchLightThrowPos->copyRotate(&mSearchLight->mRotation);
 
@@ -166,12 +166,12 @@ void MarioActor::calcViewSearchLight() {
         return;
     }
 
-    if (MR::isDead(mSearchLight)) {
+    if (!MR::isDead(mSearchLight)) {
         J3DModelX* model = static_cast< J3DModelX* >(MR::getJ3DModel(mSearchLight));
 
         // The search light is has three scaled cone "shells" to fake a blur effect.
         Mtx modelMdx;
-        MR::multMtx(modelMdx, model->getBaseTRMtx(), J3DSys::mCurrentMtx);
+        MR::multMtx(modelMdx, model->getBaseTRMtx(), j3dSys.getViewMtx());
 
         Mtx invBaseMtx;
         PSMTXInverse(model->getBaseTRMtx(), invBaseMtx);
@@ -184,7 +184,7 @@ void MarioActor::calcViewSearchLight() {
             PSMTXScale(scaledMtx, scale, scale, scale);
 
             MR::multMtx(scaledMtx, scaledMtx, modelMdx);
-            MR::multMtx(J3DSys::mCurrentMtx, invBaseMtx, scaledMtx);
+            MR::multMtx(j3dSys.getViewMtx(), invBaseMtx, scaledMtx);
 
             model->viewCalc3(i + 1, nullptr);
         }

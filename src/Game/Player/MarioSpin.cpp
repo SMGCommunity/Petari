@@ -22,14 +22,15 @@ void Mario::resetTornado() {
 }
 
 void Mario::calcTornadoTilt() {
+    bool spinning = mMovementStates._F != 0;
     bool flying = false;
-    bool spinning = mMovementStates._F;
     if (getPlayerMode() == PlayerMode_Bee) {
         if (mMovementStates.jumping && mMovementStates._11) {
             flying = true;
         }
     }
-    bool tilted = flying | spinning;
+
+    bool tilted = spinning | flying;
     if (!isStickOn() || !tilted) {
         _548 *= mActor->getConst().getTable()->mTornadoTiltCancel;
         bool blended;
@@ -38,6 +39,7 @@ void Mario::calcTornadoTilt() {
         } else {
             blended = MR::vecBlendSphere(_54C, mHeadVec, &_54C, mActor->getConst().getTable()->mTornadoTiltOffSpeed);
         }
+
         if (!blended) {
             _54C = mHeadVec;
         }
@@ -55,8 +57,8 @@ void Mario::calcTornadoTilt() {
     }
 }
 
-void Mario::reflectWallOnSpinning(const TVec3f& normal, u16 time) {
-    setFrontVecKeepUp(normal);
+void Mario::reflectWallOnSpinning(const TVec3f& rNormal, u16 time) {
+    setFrontVecKeepUp(rNormal);
     _3F8 = time;
     _328 = mFrontVec;
     doSpinWallEffect();
@@ -66,10 +68,12 @@ void Mario::forceStopTornado() {
     if (mMovementStates._F) {
         _40A = mActor->getConst().getTable()->mTornadoRestartTime;
     }
+
     resetTornado();
     if (mMovementStates.jumping) {
         cancelTornadoJump();
     }
+
     mDrawStates._8 = true;
 }
 
@@ -92,11 +96,13 @@ bool Mario::taskOnRotation(u32 flags) {
             mYAngleOffset = 0.0f;
             return false;
         }
+
         if (isRising()) {
             mYAngleOffset += mActor->getConst().getTable()->mTrampleBegomaRotRise;
         } else {
             mYAngleOffset += mActor->getConst().getTable()->mTrampleBegomaRotFall;
         }
     }
+
     return true;
 }

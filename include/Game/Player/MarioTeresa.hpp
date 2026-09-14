@@ -11,8 +11,13 @@ public:
     virtual bool start();
     virtual bool close();
     virtual bool update();
-    virtual bool notice();
-    virtual bool keep();
+    virtual bool notice() {
+        return true;
+    }
+
+    virtual bool keep() {
+        return update();
+    }
 
     void updateDropFlag();
     void resetTeresaMode();

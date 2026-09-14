@@ -266,7 +266,7 @@ public:
     bool isEnableSpinPunch();
     void reactionPunch(HitSensor*);
     bool sendPunch(HitSensor*, bool);
-    bool doFreezeAttack(HitSensor*);
+    bool doFreezeAttack(HitSensor*) NO_INLINE;
     bool trySpinPunch();
     void printHitMark(HitSensor*);
     bool tryPunchAirAfter(HitSensor*);
@@ -557,7 +557,7 @@ public:
         return _482 || _481;
     }
 
-    inline Mario* getMario() {
+    inline Mario* getMario() const {
         return mMario;
     }
 
@@ -894,7 +894,17 @@ public:
     /* 0xB92 */ s8 _B92;
     /* 0xB94 */ u16 _B94;
     /* 0xB96 */ u8 _B96;
-    /* 0xB98 */ u32 _B98;
+    union {
+        /* 0xB98 */ u32 _B98;
+        struct {
+            unsigned mSmoke : 1;
+            unsigned mSnow : 1;
+            unsigned _2 : 1;
+            unsigned mSlopeSlip : 1;
+            unsigned mIsStationary : 1;
+            unsigned mBeeWind : 1;
+        } mEffectFlags;
+    };
     /* 0xB9C */ u16 _B9C;
     /* 0xB9E */ u16 _B9E;
     /* 0xBA0 */ SmokeEffectEntry** _BA0;
@@ -1009,4 +1019,15 @@ namespace NrvMarioActor {
     NERVE_DECL_EXE(MarioActorNrvGameOverSink, MarioActor, GameOverSink);
     NERVE_DECL_EXE(MarioActorNrvTimeWait, MarioActor, TimeWait);
     NERVE_DECL_EXE(MarioActorNrvNoRush, MarioActor, Wait);
+
+    __declspec(weak) MarioActorNrvWait MarioActorNrvWait::sInstance;
+    __declspec(weak) MarioActorNrvGameOver MarioActorNrvGameOver::sInstance;
+    __declspec(weak) MarioActorNrvGameOverAbyss MarioActorNrvGameOverAbyss::sInstance;
+    __declspec(weak) MarioActorNrvGameOverAbyss2 MarioActorNrvGameOverAbyss2::sInstance;
+    __declspec(weak) MarioActorNrvGameOverFire MarioActorNrvGameOverFire::sInstance;
+    __declspec(weak) MarioActorNrvGameOverBlackHole MarioActorNrvGameOverBlackHole::sInstance;
+    __declspec(weak) MarioActorNrvGameOverNonStop MarioActorNrvGameOverNonStop::sInstance;
+    __declspec(weak) MarioActorNrvGameOverSink MarioActorNrvGameOverSink::sInstance;
+    __declspec(weak) MarioActorNrvTimeWait MarioActorNrvTimeWait::sInstance;
+    __declspec(weak) MarioActorNrvNoRush MarioActorNrvNoRush::sInstance;
 };  // namespace NrvMarioActor

@@ -23,26 +23,32 @@ bool MarioStun::update() {
     if (_14 != 0) {
         _14--;
     }
+
     if (_14 == 0) {
         if (_12 != 0) {
             return false;
         }
+
         _12 = 1;
         if (!getPlayer()->mMovementStates._1) {
             _14 = 0xa;
         } else {
             _14 = 0x1e;
         }
+
         if (getPlayer()->mMovementStates._1) {
             changeAnimation("しびれ回復", static_cast< const char* >(nullptr));
         }
     }
+
     if (_12 != 0 && (mActor->isRequestRush() || checkTrgA())) {
         stopAnimation(static_cast< const char* >(nullptr));
         if (checkTrgA()) {
             getPlayer()->tryJump();
         }
+
         return false;
     }
+
     return true;
 }

@@ -23,6 +23,11 @@ public:
     virtual void draw3D() const;
     virtual const TVec3f& getGravityVec() const;
 
+    void setStartSpeed(f32 speed) {
+        _28 = speed;
+        _AC = 20;
+    }
+
     void jet();
     void updateTilt();
     void spin();

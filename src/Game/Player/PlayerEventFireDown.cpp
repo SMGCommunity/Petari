@@ -6,13 +6,13 @@
 #include "Game/Util/SoundUtil.hpp"
 
 EventFireDown::EventFireDown() : EventSequence(16) {
-    addEventOnTime("炎匀ｻ", static_cast< EventFunc1 >(&EventFireDown::init), 0);
+    addEventOnTime("初期化", static_cast< EventFunc1 >(&EventFireDown::init), 0);
     addEventOnTime("通常レイアウト消去", static_cast< EventFunc1 >(&EventFireDown::closeDefaultLayout), 100);
-    addEventOnTime("サエンドA", static_cast< EventFunc1 >(&EventFireDown::sound), 30);
-    addEventOnTime("サエンドB", static_cast< EventFunc1 >(&EventFireDown::sound2), 50);
+    addEventOnTime("サウンドA", static_cast< EventFunc1 >(&EventFireDown::sound), 30);
+    addEventOnTime("サウンドB", static_cast< EventFunc1 >(&EventFireDown::sound2), 50);
     addEventInStatus("ワイプ開始", static_cast< EventFunc1 >(&EventFireDown::doCloseWipe),
                      static_cast< EventFunc2 >(&EventSequence::isMissLayoutClosed));
-    addEventOnTime("演出を引き", static_cast< EventFunc1 >(&EventFireDown::decLeft), 120);
+    addEventOnTime("残機を引く", static_cast< EventFunc1 >(&EventFireDown::decLeft), 120);
     addEventInPhase("ワイプ終了後", static_cast< EventFunc1 >(&EventFireDown::doWaitAfterWipe), 2);
 }
 
@@ -28,6 +28,7 @@ void EventFireDown::init(u16 eventFrame, u16 sequenceFrame) {
     MR::startPlayerDownWipe();
     MR::startMissLayout();
 }
+
 void EventFireDown::sound(u16 eventFrame, u16 sequenceFrame) {
     MR::setSoundVolumeSetting(2, 20);
     MR::startSubBGM("BGM_MISS", false);

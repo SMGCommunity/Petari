@@ -46,8 +46,8 @@ bool MarioStick::startJump() {
     return true;
 }
 
-bool MarioStick::postureCtrl(MtxPtr mtx) {
-    MR::makeMtxFrontUp(reinterpret_cast< TPos3f* >(mtx), _6C, _78);
+bool MarioStick::postureCtrl(MtxPtr pMtx) {
+    MR::makeMtxFrontUp(reinterpret_cast< TPos3f* >(pMtx), _6C, _78);
     return true;
 }
 
@@ -85,6 +85,7 @@ bool MarioStick::setStickSensor(const HitSensor* pSensor) {
         _44 = pSensor->mRadius;
         return true;
     }
+
     return false;
 }
 
@@ -115,6 +116,7 @@ bool MarioStick::update() {
     }
 
     Mario* player = getPlayer();
+    Mtx secondRotMtx;
     Mtx rotMtx;
     PSMTXRotAxisRad(rotMtx, &player->mSideVec, 0.01f * getStickY());
 
@@ -132,13 +134,13 @@ bool MarioStick::update() {
 
     const f32 angle = 0.01f * -getStickX();
     const TVec3f* gravityVec = getPlayer()->getGravityVec();
-    PSMTXRotAxisRad(rotMtx, gravityVec, angle);
-    PSMTXMultVec(rotMtx, &stack_2C, &stack_2C);
+    PSMTXRotAxisRad(secondRotMtx, gravityVec, angle);
+    PSMTXMultVec(secondRotMtx, &stack_2C, &stack_2C);
 
     if (getStickP() > 0.0f) {
-        changeAnimation("ハチ壁移動", static_cast< const char* >(nullptr));
+        changeAnimation("ハチ花移動", static_cast< const char* >(nullptr));
     } else {
-        stopAnimation("ハチ壁移動");
+        stopAnimation("ハチ花移動");
     }
 
     if (MR::diffAngleAbs(stack_2C, _2C) < 1.308997f) {
