@@ -3338,7 +3338,7 @@ config.libs = [
             Object(Matching, "JSystem/JAudio2/JASTaskThread.cpp"),
             Object(Matching, "JSystem/JAudio2/JASDvdThread.cpp"),
             Object(Matching, "JSystem/JAudio2/JASCallback.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASHeapCtrl.cpp"),
+            Object(Matching, "JSystem/JAudio2/JASHeapCtrl.cpp", mw_version="GC/3.0a3.2"),
             Object(Matching, "JSystem/JAudio2/JASResArcLoader.cpp"),
             Object(Matching, "JSystem/JAudio2/JASProbe.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASReport.cpp"),
