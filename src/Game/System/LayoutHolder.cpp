@@ -6,7 +6,7 @@
 #include <cstring>
 
 extern "C" {
-    int strncasecmp(const char *s1, const char *s2, size_t n);
+int strncasecmp(const char* s1, const char* s2, size_t n);
 }
 
 namespace {
@@ -46,9 +46,8 @@ void* LayoutHolder::GetResource(u32 resourceKind, const char* pName, u32* pResou
 
     if (pResourceInfo != nullptr) {
         if (pResource != nullptr) {
-            *pResourceInfo = static_cast<u32*>(pResource)[1];
-        }
-        else {
+            *pResourceInfo = static_cast< u32* >(pResource)[1];
+        } else {
             *pResourceInfo = 0;
         }
     }
@@ -129,8 +128,7 @@ u32 LayoutHolder::count(const char* pExtension, const char* pRoot) {
                 sprintf(path, "%s%s%s", pRoot, "/", pFinder->mName);
                 resCount += count(pExtension, path);
             }
-        }
-        else {
+        } else {
             if (pExtension == nullptr || strstr(pFinder->mName, pExtension) != nullptr) {
                 resCount++;
             }
