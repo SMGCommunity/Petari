@@ -1543,7 +1543,7 @@ config.libs = [
             Object(Matching, "Game/Map/WaterAreaHolder.cpp"),
             Object(Matching, "Game/Map/WaterInfo.cpp"),
             Object(NonMatching, "Game/Map/WaterPlant.cpp"),
-            Object(NonMatching, "Game/Map/WaterPoint.cpp"),
+            Object(Matching, "Game/Map/WaterPoint.cpp"),
             Object(NonMatching, "Game/Map/WaterRoad.cpp"),
             Object(NonMatching, "Game/Map/WhirlPoolAccelerator.cpp"),
         ],
