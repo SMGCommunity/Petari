@@ -73,7 +73,7 @@ void Tico::initBase(const JMapInfoIter& rIter, s32 color) {
     NPCActorCaps caps("Tico");
     caps.setDefault();
     caps.mMessage = 0;
-    caps._5D = true;
+    caps.mUseShadow = true;
     caps.mWaitNerve = GET_NERVE(Tico, TicoNrvWait);
     caps.mSensorJoint = "Body";
     caps.mSensorSize = 60.0f;
