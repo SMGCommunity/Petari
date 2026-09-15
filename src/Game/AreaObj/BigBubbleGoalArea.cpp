@@ -26,7 +26,7 @@ void BigBubbleGoalArea::init(const JMapInfoIter& rIter) {
     mMeterCapacity = mObjArg0 <= 0 ? 1.0f : mObjArg0;
 
     MR::getJMapInfoTrans(rIter, &mTrans);
-    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_BigBubbleGoal);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_BigBubbleGoal);
 }
 
 void BigBubbleGoalArea::addBubble(BigBubble* pBubble) {

@@ -22,16 +22,17 @@ static f32 mSensorRadiusTornadoStorm = 1000.0f;
 static f32 mSensorRadiusSpinPull = 450.0f;
 static f32 mSensorRadiusSpinPullOnGround = 450.0f;
 
-void MarioActor::attackOrPushSensor(HitSensor* sensor, f32 distance) {
-    f32 radius = sensor->mRadius;
-    mMario->checkOnimasu(sensor);
+void MarioActor::attackOrPushSensor(HitSensor* pSensor, f32 distance) {
+    f32 radius = pSensor->mRadius;
+    mMario->checkOnimasu(pSensor);
     bool pull = false;
     if (mMario->mMovementStates._F) {
-        if (distance < radius + mSensorRadiusTornadoAttack && tryTornadoAttack(sensor)) {
+        if (distance < radius + mSensorRadiusTornadoAttack && tryTornadoAttack(pSensor)) {
             return;
         }
+
         if (distance < radius + mSensorRadiusTornadoStorm) {
-            sensor->receiveMessage(ACTMES_TORNADO_STORM_RANGE, getSensor("body"));
+            pSensor->receiveMessage(ACTMES_TORNADO_STORM_RANGE, getSensor("body"));
             if (mMario->isSwimming()) {
                 if (distance < mSensorRadiusSpinPull) {
                     pull = true;
@@ -44,8 +45,9 @@ void MarioActor::attackOrPushSensor(HitSensor* sensor, f32 distance) {
         if (_3E5 && _945 < 15) {
             if (distance < radius + mSensorRadiusSpinStorm) {
                 if (selectAction("スピンアタック") < 4) {
-                    sensor->receiveMessage(ACTMES_SPIN_STORM_RANGE, getSensor("body"));
+                    pSensor->receiveMessage(ACTMES_SPIN_STORM_RANGE, getSensor("body"));
                 }
+
                 if (mMario->isSwimming()) {
                     if (distance < mSensorRadiusSpinPull) {
                         pull = true;
@@ -55,44 +57,53 @@ void MarioActor::attackOrPushSensor(HitSensor* sensor, f32 distance) {
                 }
             }
         } else if (isAnimationRun("ファイアスピン") && distance < radius + mSensorRadiusSpinStorm) {
-            sensor->receiveMessage(ACTMES_SPIN_STORM_RANGE, getSensor("body"));
+            pSensor->receiveMessage(ACTMES_SPIN_STORM_RANGE, getSensor("body"));
         }
     }
+
     if (pull && !_424) {
-        tryTornadoPull(sensor);
+        tryTornadoPull(pSensor);
     }
+
     if (mMario->mMovementStates._B && !mMario->mMovementStates._1 &&
         distance < radius + mSensorRadiusHipDropAttack + mMario->mJumpVec.dot(getGravityVector())) {
-        if (tryHipDropAttack(sensor) || tryGetItem(sensor)) {
+        if (tryHipDropAttack(pSensor) || tryGetItem(pSensor)) {
             return;
         }
+
         mMario->_10._27 = false;
     }
+
     if (distance < radius + mSensorRadiusAttack) {
-        if (_944 && tryPunchAirAfter(sensor)) {
+        if (_944 && tryPunchAirAfter(pSensor)) {
             return;
         }
-        if (checkAndTryTrampleAttack(sensor, distance, false)) {
+
+        if (checkAndTryTrampleAttack(pSensor, distance, false)) {
             return;
         }
+
         bool touching = false;
         if (mPlayerMode == PlayerMode_Teresa) {
-            TVec3f offset = _2A0 - sensor->mPosition;
+            TVec3f offset = _2A0 - pSensor->mPosition;
             f32 separation = offset.length();
-            if (separation < sensor->mRadius + mConst->getTable()->mTeresaBodyRadius) {
-                if (selectTeresaThru(sensor)) {
+            if (separation < pSensor->mRadius + mConst->getTable()->mTeresaBodyRadius) {
+                if (selectTeresaThru(pSensor)) {
                     return;
                 }
-                if (tryGetItem(sensor)) {
+
+                if (tryGetItem(pSensor)) {
                     return;
                 }
-                offset.setLength(sensor->mRadius + mConst->getTable()->mTeresaBodyRadius - separation);
-                if (!MR::isSensorAutoRush(sensor)) {
+
+                offset.setLength(pSensor->mRadius + mConst->getTable()->mTeresaBodyRadius - separation);
+                if (!MR::isSensorAutoRush(pSensor)) {
                     mMario->doTeresaReflection(offset, false);
-                    MR::sendArbitraryMsg(ACTMES_TERESA_PLAYER_TOUCH, sensor, getSensor("body"));
-                    touchSensor(sensor);
+                    MR::sendArbitraryMsg(ACTMES_TERESA_PLAYER_TOUCH, pSensor, getSensor("body"));
+                    touchSensor(pSensor);
                 }
-                if (MR::isSensorEnemy(sensor)) {
+
+                if (MR::isSensorEnemy(pSensor)) {
                     setPlayerMode(PlayerMode_Normal, true);
                 }
             }
@@ -103,57 +114,67 @@ void MarioActor::attackOrPushSensor(HitSensor* sensor, f32 distance) {
                 if (isJumping()) {
                     height += 10.0f;
                 }
+
                 if (mMario->mTargetWalkSpeedIndex >= 5) {
                     width += 15.0f;
                 }
             } else {
                 width -= 20.0f;
             }
-            f32 sensorRadius = sensor->mRadius;
-            if (cylinderPushCheck(sensor->mPosition - _2A0, sensorRadius, width, height)) {
-                if (sendBodyAttack(sensor) || tryGetItem(sensor)) {
+
+            f32 sensorRadius = pSensor->mRadius;
+            if (cylinderPushCheck(pSensor->mPosition - _2A0, sensorRadius, width, height)) {
+                if (sendBodyAttack(pSensor) || tryGetItem(pSensor)) {
                     return;
                 }
-                touchSensor(sensor);
+
+                touchSensor(pSensor);
                 touching = true;
-                if (!MR::sendMsgPush(sensor, getSensor("dummy")) && !sensor->isType(ATYPE_POWER_STAR_BIND)) {
+                if (!MR::sendMsgPush(pSensor, getSensor("dummy")) && !pSensor->isType(ATYPE_POWER_STAR_BIND)) {
                     mMario->_10._27 = false;
                 }
             }
         }
-        addRushSensor(sensor, touching);
+
+        addRushSensor(pSensor, touching);
     } else if (mMario->_10._6) {
         f32 height = _4B4;
         f32 width = 20.0f + _4B0;
         if (isJumping()) {
             height += 10.0f;
         }
+
         if (mMario->mTargetWalkSpeedIndex >= 5) {
             width += 15.0f;
         }
-        f32 sensorRadius = sensor->mRadius;
-        TVec3f offset = sensor->mPosition - _2A0;
+
+        f32 sensorRadius = pSensor->mRadius;
+        TVec3f offset = pSensor->mPosition - _2A0;
         f32 depth = MR::vecKillElement(offset, mCamDirZ, &offset);
-        if (depth < 250.0f && depth > -250.0f && cylinderPushCheck(offset, sensorRadius, width, height) && tryGetItem(sensor)) {
+        if (depth < 250.0f && depth > -250.0f && cylinderPushCheck(offset, sensorRadius, width, height) && tryGetItem(pSensor)) {
             return;
         }
     }
+
     f32 catchRadius = mSensorRadiusClapCatch;
     if (mMario->isSwimming()) {
         catchRadius = mSensorRadiusClapCatchSwim;
     }
+
     if (distance < radius + catchRadius) {
-        tryAddClapCoin(sensor);
+        tryAddClapCoin(pSensor);
     }
-    trySetLockOnTarget(sensor);
+
+    trySetLockOnTarget(pSensor);
     if (mPlayerMode == PlayerMode_Bee && distance < 100.0f + radius) {
-        mMario->tryBeeStick(sensor);
+        mMario->tryBeeStick(pSensor);
     }
-    if (isUnderTarget(sensor) && !selectNotHomingSensor(sensor)) {
-        f32 angle = MR::diffAngleAbs(sensor->mPosition - _2A0, getGravityVector());
+
+    if (isUnderTarget(pSensor) && !selectNotHomingSensor(pSensor)) {
+        f32 angle = MR::diffAngleAbs(pSensor->mPosition - _2A0, getGravityVector());
         if (_4AC > angle) {
             _4AC = angle;
-            _4A8 = sensor;
+            _4A8 = pSensor;
         }
     }
 }
@@ -220,8 +241,8 @@ void MarioActor::attackOrPushSensorInDamage(HitSensor* pReceiver, f32 radius) {
 void MarioActor::attackOrPushSensorInRush(HitSensor* pSensor, f32 radius) {
     f32 sensorRadius = pSensor->mRadius;
     if (radius < sensorRadius + mSensorRadiusAttack) {
-        f32 height = _4B4;
         f32 width = 20.0f + _4B0;
+        f32 height = _4B4;
         if (cylinderPushCheck(pSensor->mPosition - _2A0, sensorRadius, width, height)) {
             if (tryGetItem(pSensor)) {
                 return;
@@ -283,28 +304,33 @@ bool MarioActor::tryHipDropAttack(HitSensor* pSensor) {
     return false;
 }
 
-bool MarioActor::checkAndTryTrampleAttack(HitSensor* sensor, f32 distance, bool force) {
-    f32 radius = sensor->mRadius;
+bool MarioActor::checkAndTryTrampleAttack(HitSensor* pSensor, f32 distance, bool force) {
+    f32 radius = pSensor->mRadius;
     bool trample = getMovementStates()._B != true;
     bool falling = false;
     if (isJumping() && !mMario->isRising()) {
         falling = true;
     }
+
     bool near = distance < radius + mSensorRadiusTrampleAttack + 1.5f * mMario->mJumpVec.dot(getGravityVector());
     if (force) {
         falling = isJumping();
     }
+
     if (trample && falling && near) {
         bool attacked = false;
-        if (tryTrampleAttack(sensor)) {
+        if (tryTrampleAttack(pSensor)) {
             attacked = true;
         }
-        if (mPlayerMode == PlayerMode_Invincible && MR::sendArbitraryMsg(ACTMES_INVINCIBLE_ATTACK, sensor, getSensor("body"))) {
+
+        if (mPlayerMode == PlayerMode_Invincible && MR::sendArbitraryMsg(ACTMES_INVINCIBLE_ATTACK, pSensor, getSensor("body"))) {
             mMario->startPadVib(2);
-            printHitMark(sensor);
+            printHitMark(pSensor);
         }
+
         return attacked;
     }
+
     return false;
 }
 
@@ -360,9 +386,9 @@ void MarioActor::tryCounterJetAttack(HitSensor* pReceiver) {
     _1BC->addRequest(pReceiver, MR::MovementType_MsgSharedGroup);
 }
 
-bool MarioActor::tryGetItem(HitSensor* sensor) {
+bool MarioActor::tryGetItem(HitSensor* pSensor) {
     if (_934) {
-        switch (sensor->mType) {
+        switch (pSensor->mType) {
         case ATYPE_JET_TURTLE:
         case ATYPE_JET_TURTLE_SLOW:
         case ATYPE_BOMBHEI:
@@ -370,11 +396,13 @@ bool MarioActor::tryGetItem(HitSensor* sensor) {
             return false;
         }
     }
+
     if (!isEnableNerveChange()) {
         return false;
     }
+
     if (!mHealth) {
-        switch (sensor->mType) {
+        switch (pSensor->mType) {
         case ATYPE_JET_TURTLE:
         case ATYPE_JET_TURTLE_SLOW:
         case ATYPE_BOMBHEI:
@@ -383,22 +411,27 @@ bool MarioActor::tryGetItem(HitSensor* sensor) {
             return false;
         }
     }
-    switch (sensor->mType) {
+
+    switch (pSensor->mType) {
     case ATYPE_SWITCH:
         break;
     case ATYPE_NOKONOKO:
         if (isDamaging()) {
             return false;
         }
+
         if (!isActionOk("カメ持ち")) {
             return false;
         }
+
         if (_468 != 0) {
             return false;
         }
-        if (!sensor->receiveMessage(ACTMES_ITEM_GET, getSensor("dummy"))) {
+
+        if (!pSensor->receiveMessage(ACTMES_ITEM_GET, getSensor("dummy"))) {
             return false;
         }
+
         _38C = 2;
         return false;
     case ATYPE_JET_TURTLE:
@@ -408,47 +441,61 @@ bool MarioActor::tryGetItem(HitSensor* sensor) {
         if (_3AC) {
             return false;
         }
+
         if (isDamaging()) {
             return false;
         }
+
         if (!isActionOk("カメ持ち")) {
             return false;
         }
+
         if (_468 != 0) {
             return false;
         }
+
         bool moving = false;
         TVec3f horizontal;
-        if (MR::vecKillElement(*getShadowPos() - sensor->mPosition, getGravityVector(), &horizontal) > 100.0f) {
+        if (MR::vecKillElement(*getShadowPos() - pSensor->mPosition, getGravityVector(), &horizontal) > 100.0f) {
             moving = true;
         }
-        if (!MR::isNearZero(sensor->mHost->mVelocity)) {
+
+        if (!MR::isNearZero(pSensor->mHost->mVelocity)) {
             moving = true;
         }
+
         if (getMovementStates()._B) {
             moving = false;
         }
+
         if (!moving && !mMario->isSwimming() && !getMovementStates()._1 && !_424) {
             if (getMovementStates()._B) {
                 return false;
             }
-            doTrampleJump(sensor);
+
+            doTrampleJump(pSensor);
         }
+
         break;
     }
+
     case ATYPE_MORPH_ITEM:
         if (_3D8) {
             return false;
         }
+
         if (mMario->mMorphResetTimer) {
             return false;
         }
+
         break;
     }
-    if (!sensor->receiveMessage(ACTMES_ITEM_GET, getSensor("dummy"))) {
+
+    if (!pSensor->receiveMessage(ACTMES_ITEM_GET, getSensor("dummy"))) {
         return false;
     }
-    switch (sensor->mType) {
+
+    switch (pSensor->mType) {
     case ATYPE_COIN:
     case ATYPE_SWITCH:
     case ATYPE_KINOKO_ONEUP:
@@ -457,15 +504,16 @@ bool MarioActor::tryGetItem(HitSensor* sensor) {
     case ATYPE_JET_TURTLE_SLOW:
     case ATYPE_COINTHROW:
     case ATYPE_BOMBHEI:
-        mMarioAnim->changePickupAnimation(sensor);
+        mMarioAnim->changePickupAnimation(pSensor);
         if (!mMario->isSwimming()) {
             if (getMovementStates()._1 && _B92 != -3) {
-                if (sensor->mType == ATYPE_BOMBHEI) {
+                if (pSensor->mType == ATYPE_BOMBHEI) {
                     _38C = 40;
                 } else {
                     _38C = 25;
                 }
             }
+
             mVelocity.zero();
             mMario->mWalkSpeed = 0.0f;
             if (getMovementStates()._1) {
@@ -473,22 +521,25 @@ bool MarioActor::tryGetItem(HitSensor* sensor) {
                 mMario->mVerticalSpeed = 0.0f;
             }
         }
-        _424 = sensor;
+
+        _424 = pSensor;
         _480 = 1;
         break;
     case ATYPE_MORPH_ITEM:
         if (_4A4 != nullptr) {
             _4A4->mHost->kill();
         }
-        _4A4 = sensor;
+
+        _4A4 = pSensor;
         break;
     }
+
     return true;
 }
 
-bool MarioActor::cylinderPushCheck(const TVec3f& offset, f32 radius, f32 width, f32 height) {
+bool MarioActor::cylinderPushCheck(const TVec3f& rOffset, f32 radius, f32 width, f32 height) {
     TVec3f radial;
-    f32 axial = MR::vecKillElement(offset, _4C4, &radial);
+    f32 axial = MR::vecKillElement(rOffset, _4C4, &radial);
     if (axial > -radius) {
         f32 radialPenetration = radius + width - radial.length();
         f32 axialPenetration = radius + height - axial;
@@ -503,16 +554,20 @@ bool MarioActor::cylinderPushCheck(const TVec3f& offset, f32 radius, f32 width, 
                 dummy->mPosition.set(_2A0 + radial);
                 getSensor("dummy")->mRadius = height;
             }
+
             return true;
         }
     }
+
     if (getMovementStates()._A && getMovementStates()._1) {
         return false;
     }
-    axial = MR::vecKillElement(offset, _4B8, &radial);
+
+    axial = MR::vecKillElement(rOffset, _4B8, &radial);
     if (axial < -radius) {
         return false;
     }
+
     f32 radialPenetration = radius + width - radial.length();
     f32 axialPenetration = radius + height - axial;
     if (radialPenetration > 0.0f && axialPenetration > 0.0f) {
@@ -526,13 +581,14 @@ bool MarioActor::cylinderPushCheck(const TVec3f& offset, f32 radius, f32 width, 
             dummy->mPosition.set(_2A0 + radial);
             getSensor("dummy")->mRadius = height;
         }
+
         return true;
     }
+
     return false;
 }
 
 void MarioActor::attackOrPushPolygons() {
-    // FIXME: if chain has a mistake
     HitSensor* bodySensor = getSensor("body");
 
     _FCC = true;
@@ -566,8 +622,8 @@ void MarioActor::attackOrPushPolygons() {
                     HitSensor* groundSensor = mMario->mGroundPolygon->mSensor;
 
                     if (groundSensor != nullptr && !MR::isDead(groundSensor->mHost)) {
-                        groundSensor = mMario->mGroundPolygon->mSensor;
-                        if (!groundSensor->receiveMessage(ACTMES_PLAYER_HIP_DROP_FLOOR, getSensor("body"))) {
+                        HitSensor* hitSensor = mMario->mGroundPolygon->mSensor;
+                        if (!hitSensor->receiveMessage(ACTMES_PLAYER_HIP_DROP_FLOOR, getSensor("body"))) {
                             _3E8 = false;
                         }
                     }

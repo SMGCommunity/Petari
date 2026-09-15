@@ -19,7 +19,7 @@ AudBgmConductor::AudBgmConductor()
 }
 
 void AudBgmConductor::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_AudBgmConductor, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_AudBgmConductor, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
     if (MR::isEqualStageName("IceVolcanoGalaxy") || MR::isEqualStageName("OceanRingGalaxy")) {
         MR::registerDemoSimpleCastAll(this);
     }

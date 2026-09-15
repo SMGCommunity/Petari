@@ -40,7 +40,7 @@ void MarioSlider::calcGroundAccel() {
 bool MarioSlider::postureCtrl(MtxPtr) {
     Mtx rotMtx;
     TVec3f& frontVec = getFrontVec();
-    PSMTXRotAxisRad(rotMtx, &frontVec, 0.2f * (0.5f * (MR::pi() * _3C)));
+    PSMTXRotAxisRad(rotMtx, &frontVec, 0.2f * (MR::pi() * _3C / 2.0f));
 
     TVec3f newHeadVec;
     PSMTXMultVec(rotMtx, &getPlayer()->_368, &newHeadVec);
@@ -146,7 +146,7 @@ bool MarioSlider::update() {
     } else {
         f32 stickY = -getStickY();
         f32 stickX = getStickX();
-        _38 = (stickY * (1.0f - mActor->mConst->getTable()->mSliderBrakeIne)) + (_38 * mActor->mConst->getTable()->mSliderBrakeIne);
+        _38 = (stickY * (1.0f - mActor->getConst().getTable()->mSliderBrakeIne)) + (_38 * mActor->mConst->getTable()->mSliderBrakeIne);
         MarioConstTable* tbl = mActor->mConst->getTable();
         _3C = (stickX * (1.0f - tbl->mSliderWeightIne)) + (_3C * tbl->mSliderWeightIne);
         f32 v18 = _14.length();
@@ -208,9 +208,9 @@ bool MarioSlider::close() {
     if (getPlayer()->isSwimming()) {
         stopAnimation("スライダー尻");
     } else if (getPlayer()->mMovementStates.jumping) {
-        stopAnimation("スライダー尻", "基本");
-    } else {
         stopAnimation("スライダー尻", "落下");
+    } else {
+        stopAnimation("スライダー尻", "基本");
     }
 
     return true;

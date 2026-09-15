@@ -20,6 +20,24 @@
 #include <revolution/gx/GXPixel.h>
 #include <revolution/os.h>
 
+void MarioActorSpecialDraw_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.14159274f;
+    (void)2.0f;
+    (void)80.0f;
+    (void)0.99000001f;
+    (void)0.999899983f;
+    (void)300.0f;
+    (void)1000.0f;
+    (void)255.0f;
+    (void)63.0f;
+    (void)20.0f;
+    (void)0.800000012f;
+    (void)2607.59448f;
+}
+
 void MarioActor::initScreenBox() {
     _B44 = new (32) u8[0x20000];
     _B28 = 0.0f;
@@ -98,9 +116,7 @@ void MarioActor::calcScreenBoxRange() {
     _B40 = height;
     TBox2f capture(_B34, _B38, _B34 + _B3C, _B38 + _B40);
     s32 screenHeight = MR::getScreenHeight();
-    f32 frameWidth = MR::getFrameBufferWidth();
-    f32 frameHeight = screenHeight;
-    TBox2f screen(0.0f, 0.0f, frameWidth, frameHeight);
+    TBox2f screen(0.0f, 0.0f, MR::getFrameBufferWidth(), screenHeight);
     TBox2f clipped(capture);
 
     if (!clipped.intersect(screen)) {
@@ -234,20 +250,19 @@ void MarioActor::calcFogLighting() {
         fog.mGXColor = _1B0.mGXColor;
 
         if (_1B5) {
-            fog.g = 255.0f * MR::sin(PI * (_1AA / 20.0f));
+            fog.g = 255.0f * MR::sin(JGeometry::TUtil< f32 >::PI() * (_1AA / 20.0f));
         }
 
-        _1A4 = _1AC * MR::sin(PI * (_1AA / static_cast< f32 >(getConst().getTable()->mStarPieceFogTime)));
+        _1A4 = _1AC * MR::sin((_1AA / static_cast< f32 >(getConst().getTable()->mStarPieceFogTime)) * JGeometry::TUtil< f32 >::PI());
     } else if (mMario->_434) {
         fog.set(255, 255, 0, 0);
-        _1A4 = 0.8f * MR::sin((PI * (mMario->_434 / static_cast< f32 >(getConst().getTable()->mItemDashTimer))) / 2.0f);
+        _1A4 = 0.8f * MR::sin(((mMario->_434 / static_cast< f32 >(getConst().getTable()->mItemDashTimer)) * JGeometry::TUtil< f32 >::PI()) / 2.0f);
     } else {
         resetFog();
     }
 
     Color8 ambient = *MR::getLightAmbientColor(this);
-    Color8 material(255, 255, 255, 255);
-    updateLightDL(ambient, material, fog, _1A4);
+    updateLightDL(ambient, Color8(255, 255, 255, 255), fog, _1A4);
 }
 
 void MarioActor::resetFog() {
@@ -317,22 +332,22 @@ void MarioActor::updateReflectAlphaDL(u8 alpha) {
     DCStoreRange(holder->mDL, size);
 }
 
-void MarioActor::updateLightDL(const Color8& ambient, const Color8& material, const Color8& fog, f32 strength) {
+void MarioActor::updateLightDL(const Color8& rAmbient, const Color8& rMaterial, const Color8& rFog, f32 strength) {
     u8 buffer[512] ATTRIBUTE_ALIGN(32);
     GDLObj displayList;
     MR::ProhibitSchedulerAndInterrupts lock(false);
     GDInitGDLObj(&displayList, buffer, sizeof(buffer));
     __GDCurrentDL = &displayList;
-    GXColor ambientColor = ambient.mGXColor;
+    GXColor ambientColor = rAmbient.mGXColor;
     GDSetChanAmbColor(GX_COLOR0A0, ambientColor);
-    GXColor materialColor = material.mGXColor;
+    GXColor materialColor = rMaterial.mGXColor;
     GDSetChanMatColor(GX_COLOR0A0, materialColor);
     GDSetChanCtrl(GX_COLOR1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_CLAMP, GX_AF_NONE);
 
     if (!MR::isNearZero(strength)) {
         f32 nearZ = MR::getNearZ();
         f32 farZ = MR::getFarZ();
-        GXColor color = fog.mGXColor;
+        GXColor color = rFog.mGXColor;
         f32 start;
         f32 end;
         MR::calcFogStartEnd(mPosition, strength, &start, &end);
@@ -483,7 +498,7 @@ void MarioActor::updateRandomTexture(f32 distance) {
     DCStoreRange(image, 64);
 }
 
-void MarioActor::drawWallShade(const TVec3f& position, const TVec3f& normal, f32 unused) const {
+void MarioActor::drawWallShade(const TVec3f& rPosition, const TVec3f& rNormal, f32 unused) const {
     f32 radius = 100.0f;
     TDDraw::setup(1, 1, 0);
     GXSetZMode(GX_TRUE, GX_GREATER, GX_FALSE);
@@ -501,25 +516,25 @@ void MarioActor::drawWallShade(const TVec3f& position, const TVec3f& normal, f32
     GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
     GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
     Mtx rotation;
-    TVec3f tangent(0.0f, normal.z, -normal.y);
+    TVec3f tangent(0.0f, rNormal.z, -rNormal.y);
 
     if (MR::isNearZero(tangent)) {
-        tangent.set< f32 >(normal.z, 0.0f, normal.x);
+        tangent.set< f32 >(rNormal.z, 0.0f, rNormal.x);
     }
 
     MR::normalizeOrZero(&tangent);
-    PSMTXRotAxisRad(rotation, &normal, 0.3926991f);
+    PSMTXRotAxisRad(rotation, &rNormal, 0.3926991f);
     GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, 18);
-    GXPosition3f32(position.x - 5.0f * normal.x, position.y - 5.0f * normal.y, position.z - 5.0f * normal.z);
+    GXPosition3f32(rPosition.x - 5.0f * rNormal.x, rPosition.y - 5.0f * rNormal.y, rPosition.z - 5.0f * rNormal.z);
     GXColor1u32(128);
     GXTexCoord2f32(0.0f, 0.0f);
 
     for (u32 i = 0; i <= 16; i++) {
-        f32 angle = 2.0f * ((i / 16.0f) * PI);
-        TVec3f point = position - normal * 5.0f + tangent * radius;
+        f32 angle = 2.0f * ((i / 16.0f) * JGeometry::TUtil< f32 >::PI());
+        TVec3f point = rPosition - rNormal * 5.0f + tangent * radius;
         GXPosition3f32(point.x, point.y, point.z);
         GXColor1u32(1);
-        GXTexCoord2f32(10.0f * MR::cos(angle), 10.0f * MR::sin(angle));
+        GXTexCoord2f32(10.0f * JMACosRadian(angle), 10.0f * MR::sin(angle));
         PSMTXMultVecSR(rotation, &tangent, &tangent);
     }
 
@@ -562,7 +577,7 @@ void MarioActor::drawColdWaterDamage() const {
         f32 v = 0.0f;
 
         for (u32 row = y; row < y + 4; row++) {
-            f32 offset = 5.0f * MR::sin(2.0f * (((_37C + row * frequency) / MR::getScreenHeight()) * PI));
+            f32 offset = 5.0f * MR::sin(2.0f * (((_37C + row * frequency) / MR::getScreenHeight()) * JGeometry::TUtil< f32 >::PI()));
             GXBegin(GX_LINES, GX_VTXFMT0, 2);
             GXPosition3f32(offset, row, 0.0f);
             GXTexCoord2f32(0.0f, v);
@@ -580,9 +595,9 @@ void MarioActor::drawColdWaterDamage() const {
 
 void MarioActor::setRasterScroll(s32 i1, s32 i2, s32 i3) {
     _1E8 = i2;
-    _1E2 = 1;
     _1E4 = 0.9f * _1E4 + 0.1f * i1;
     _1EC = i3;
+    _1E2 = 1;
 }
 
 void MarioActor::updateRasterScroll() {
@@ -628,10 +643,8 @@ void MarioActor::drawRasterScroll(f32 amplitude, s16 period, f32 wavelength) con
     GXSetTexCopySrc(0, 0, width, 4);
     GXCopyTex(_1D8, GX_FALSE);
     f32 textureStep = 1.0f / static_cast< f32 >(stripHeight);
+    f32 phase = (_37C * JMath::TAngleConstant_< f32 >::RADIAN_DEG360()) / period;
     f32 spatialPhase = TWO_PI / wavelength;
-    f32 phase = _37C;
-    phase *= TWO_PI;
-    phase /= period;
 
     for (u32 y = 0; y < MR::getScreenHeight(); y += 4) {
         GXTexModeSync();
@@ -643,10 +656,8 @@ void MarioActor::drawRasterScroll(f32 amplitude, s16 period, f32 wavelength) con
         f32 v = 0.0f;
 
         for (u32 row = y; row < y + 4; row++) {
-            f32 angle = MR::sin(spatialPhase * row);
-            angle *= PI;
-            angle += phase;
-            f32 offset = amplitude * MR::sin(angle);
+            f32 angle = MR::sin(spatialPhase * row) * JGeometry::TUtil< f32 >::PI();
+            f32 offset = amplitude * MR::sin(angle + phase);
             GXBegin(GX_LINES, GX_VTXFMT0, 2);
             GXPosition3f32(offset, row, 0.0f);
             GXTexCoord2f32(0.0f, v);
@@ -744,7 +755,7 @@ void MarioActor::drawSpinEffect() const {
         TVec3f point(direction);
         point.setLength(_6D4);
         point += mMario->mHeadVec * MR::getRandom() * 10.0f;
-        f32 wave = MR::sin((((_37C + i) & 31) / 32.0f) * PI);
+        f32 wave = MR::sin((((_37C + i) & 31) / 32.0f) * JGeometry::TUtil< f32 >::PI());
         f32 square = wave * wave;
         u32 alpha = 160.0f * (square * square);
 
@@ -802,8 +813,9 @@ void MarioActor::updateDarkMask(u16 unused) {
     u8* image = mMaskTextures[_B88]->mImage;
     u8 x = MR::getRandom(0L, 8L);
     u8 y = MR::getRandom(0L, 8L);
-    image[x + y * 8] = 0xF0;
-    previous[x + y * 8] = 0xF0;
+    s32 index = x + y * 8;
+    image[index] = 0xF0;
+    previous[index] = 0xF0;
     DCStoreRange(image, 64);
     _1C4++;
 }

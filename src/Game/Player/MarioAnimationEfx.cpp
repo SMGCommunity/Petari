@@ -40,21 +40,23 @@ void MarioAnimator::initCallbackTable() {
             break;
         }
     }
+
     mCallbackTable = new HashSortTable(count);
     callback = marioCallbackTable;
     for (u32 i = 0; i < count; callback++, i++) {
         mCallbackTable->add(callback->mAnimation, i, false);
     }
+
     mCallbackTable->sort();
     mCallbackId = -1;
     mCallbackEnded = false;
 }
 
-void MarioAnimator::entryCallback(const char* name) {
+void MarioAnimator::entryCallback(const char* pName) {
     mCallbackEnded = false;
     closeCallback();
     u32 index;
-    if (mCallbackTable->search(name, &index)) {
+    if (mCallbackTable->search(pName, &index)) {
         mCallbackId = index;
         if (marioCallbackTable[mCallbackId].mEntry != nullptr) {
             (this->*marioCallbackTable[mCallbackId].mEntry)();
@@ -66,16 +68,19 @@ void MarioAnimator::runningCallback() {
     if (mCallbackId == -1) {
         return;
     }
+
     mCallbackEnded = true;
     if (isAnimationStop() || isAnimationTerminate(nullptr)) {
         closeCallback();
         return;
     }
+
     mCallbackEnded = false;
     if (!isAnimationRun(marioCallbackTable[mCallbackId].mAnimation)) {
         closeCallback();
         return;
     }
+
     if (marioCallbackTable[mCallbackId].mUpdate != nullptr) {
         (this->*marioCallbackTable[mCallbackId].mUpdate)();
     }
@@ -85,6 +90,7 @@ void MarioAnimator::closeCallback() {
     if (mCallbackId != -1 && marioCallbackTable[mCallbackId].mClose != nullptr) {
         (this->*marioCallbackTable[mCallbackId].mClose)();
     }
+
     mCallbackId = -1;
 }
 
@@ -105,6 +111,7 @@ void MarioAnimator::spinEntry() {
         } else {
             playEffect("ハチスピン");
         }
+
         break;
     }
 }
@@ -132,6 +139,7 @@ void MarioAnimator::spinClose() {
         } else {
             stopEffect("ハチスピン");
         }
+
         break;
     }
 }
@@ -144,7 +152,7 @@ void MarioAnimator::stageInCheck() {
 }
 
 void MarioAnimator::throwCheck() {
-    if (mActor->_38C == 0 && getStickP() != 0.0f && !getPlayer()->mMovementStates.jumping) {
+    if (mActor->_38C == 0 && getStickP() && !getPlayer()->mMovementStates.jumping) {
         stopAnimation(nullptr);
     }
 }

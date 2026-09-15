@@ -41,7 +41,7 @@ PlantGroup::PlantGroup(const char* pName)
 }
 
 void PlantGroup::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
     MR::initDefaultPos(this, rIter);
     const char* name = nullptr;
     MR::getObjectName(&name, rIter);

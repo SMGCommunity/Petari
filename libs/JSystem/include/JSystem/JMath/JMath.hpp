@@ -6,6 +6,7 @@ void JMAMTXApplyScale(const Mtx, Mtx, f32, f32, f32);
 void JMAVECLerp(const Vec*, const Vec*, Vec*, f32);
 void JMAVECScaleAdd(const Vec*, const Vec*, Vec*, f32);
 void JMAQuatLerp(const Quaternion*, const Quaternion*, f32, Quaternion*);
+void JMAEulerToQuat(s16, s16, s16, Quaternion*);
 
 inline f32 JMAFastSqrt(__REGISTER const f32 input) {
 #ifdef __MWERKS__
@@ -54,7 +55,16 @@ inline f32 JMAHermiteInterpolation(__REGISTER f32 p1, __REGISTER f32 p2, __REGIS
 }
 
 namespace JMath {
-    f32 fastReciprocal(f32);
+    inline f32 fastReciprocal(__REGISTER f32 value) {
+#ifdef __MWERKS__
+        asm {
+            fres value, value
+        }
+        return value;
+#else
+        return 1.0f / value;
+#endif
+    }
 
     template < typename T >
     inline T fastSqrt(T value) {

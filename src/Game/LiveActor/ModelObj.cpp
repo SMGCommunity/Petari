@@ -8,20 +8,20 @@
 
 ModelObj::ModelObj(const char* pName, const char* pModelName, MtxPtr pMtx, int drawBufferType, int movementType, int calcAnimType, bool a7)
     : LiveActor(pName), mMtx(pMtx) {
-    if (drawBufferType < -1) {
+    if (drawBufferType < MR::DrawBufferType_None) {
         drawBufferType = MR::DrawBufferType_MapObj;
     }
 
-    if (movementType < -1) {
+    if (movementType < MR::MovementType_None) {
         movementType = MR::MovementType_MapObjDecoration;
     }
 
-    if (calcAnimType < -1) {
+    if (calcAnimType < MR::CalcAnimType_None) {
         calcAnimType = MR::CalcAnimType_MapObjDecoration;
     }
 
     initModelManagerWithAnm(pModelName, nullptr, a7);
-    MR::connectToScene(this, movementType, calcAnimType, drawBufferType, -1);
+    MR::connectToScene(this, movementType, calcAnimType, drawBufferType, MR::DrawType_None);
     initSound(8, false);
     initEffectKeeper(8, nullptr, false);
 
@@ -30,7 +30,7 @@ ModelObj::ModelObj(const char* pName, const char* pModelName, MtxPtr pMtx, int d
     }
 }
 
-void ModelObj::init(const JMapInfoIter&) {
+void ModelObj::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
@@ -69,12 +69,12 @@ void ModelObjNpc::calcAndSetBaseMtx() {
 ModelObjNpc::~ModelObjNpc() {
 }
 
-ModelObjNpc::ModelObjNpc(const char* pName, const char* a2, MtxPtr pMtx) : LiveActor(pName), mMtx(pMtx), mLodCtrl(), mJointCtrl() {
+ModelObjNpc::ModelObjNpc(const char* pName, const char* pModelName, MtxPtr pMtx) : LiveActor(pName), mMtx(pMtx), mLodCtrl(), mJointCtrl() {
     if (mMtx != nullptr) {
         mPosition.set< f32 >(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
     }
 
-    initModelManagerWithAnm(a2, nullptr, false);
+    initModelManagerWithAnm(pModelName, nullptr, false);
     MR::connectToSceneNpc(this);
     MR::initShadowFromCSV(this, "Shadow");
     initSound(8, false);

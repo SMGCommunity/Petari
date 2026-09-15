@@ -78,7 +78,7 @@ TalkDirector::~TalkDirector() {
 }
 
 void TalkDirector::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_TalkDirector, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_TalkDirector, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
     mBalloonHolder = new TalkBalloonHolder();
     mStateHolder = new TalkStateHolder();
     mMsgControls.init(128);

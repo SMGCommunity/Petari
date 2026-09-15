@@ -72,7 +72,7 @@ void SpiderThread::init(const JMapInfoIter& rIter) {
 void SpiderThread::initThread(const TVec3f& rPos) {
     mPosition.set(rPos);
 
-    MR::connectToScene(this, MR::MovementType_Ride, -1, -1, MR::DrawType_SpiderThread);
+    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_SpiderThread);
 
     mWindCtrl = new SpiderThreadWindCtrl();
     initMainThreads();

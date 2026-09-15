@@ -1,10 +1,14 @@
-#include "Game/Util/Functor.hpp"
+#include "Game/Util/Functor.hpp" // TODO: Must be at the top to match?
 
 #include "Game/Enemy/BegomanSpike.hpp"
+#include "Game/Enemy/BegomanSpringHead.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JointController.hpp"
@@ -15,11 +19,6 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
-
-#include "Game/Enemy/BegomanSpringHead.hpp"
-#include "Game/LiveActor/ModelObj.hpp"
-#include "Game/Util/CameraUtil.hpp"
 
 namespace NrvBegomanSpike {
     NEW_NERVE_ONEND(HostTypeNrvNoCalcWait, BegomanSpike, NoCalcWait, NoCalcWait);
@@ -151,11 +150,11 @@ void BegomanSpike::init(const JMapInfoIter& rIter) {
     MR::setEffectHostMtx(this, "WaterColumn", mWaterColumnMatrix);
     initSound(8, false);
     initShadow(70.0f, "Center");
-    mHead = new BegomanHead(this, "トゲ頭", "BegomanSpikeHead", mHeadMatrix, 18, false);
+    mHead = new BegomanHead(this, "トゲ頭", "BegomanSpikeHead", mHeadMatrix, MR::DrawBufferType_Enemy, false);
     MR::initLightCtrl(mHead);
     mHead->_9C = &_B4;
     mHead->initWithoutIter();
-    mBrokenModel = new ModelObj("ベーゴマン壊れモデル", "BegomanBrokenPiece", getBaseMtx(), 18, -2, -2, false);
+    mBrokenModel = new ModelObj("ベーゴマン壊れモデル", "BegomanBrokenPiece", getBaseMtx(), MR::DrawBufferType_Enemy, -2, -2, false);
     mBrokenModel->mScale.set(mScale);
     mBrokenModel->initWithoutIter();
     MR::invalidateClipping(mBrokenModel);

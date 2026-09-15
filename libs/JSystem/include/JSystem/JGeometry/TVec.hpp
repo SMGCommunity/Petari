@@ -968,7 +968,27 @@ namespace JGeometry {
             TVec4< T >::scale(lengthinv);
         }
 
-        void normalize(const TQuat4< T >& rSrc);
+        void normalize(const TQuat4< T >& rSrc) NO_INLINE {
+            f32 length = rSrc.squared();
+
+            if (length <= TUtil< f32 >::epsilon()) {
+                this->template set< f32 >(0.0f, 0.0f, 0.0f, 1.0f);
+            } else {
+                f32 inverse;
+
+                if (length <= 0.0f) {
+                    inverse = length;
+                } else {
+                    f32 estimate = __frsqrte(length);
+                    inverse = (0.5f * estimate) * (3.0f - length * (estimate * estimate));
+                }
+
+                this->x = rSrc.x * inverse;
+                this->y = rSrc.y * inverse;
+                this->z = rSrc.z * inverse;
+                this->w = rSrc.w * inverse;
+            }
+        }
 
         void getXDir(TVec3< T >& rDest) const {
             rDest.template set< T >(1.0f - this->y * this->y * 2.0f - this->z * this->z * 2.0f, this->x * this->y * 2.0f + this->w * this->z * 2.0f,
@@ -985,8 +1005,41 @@ namespace JGeometry {
                                     1.0f - this->x * this->x * 2.0f - this->y * this->y * 2.0f);
         }
 
-        void getEuler(TVec3< T >& rDest) const;
-        void setEuler(T _x, T _y, T _z);
+        void getEuler(TVec3< T >& rDest) const NO_INLINE {
+            f32 m20 = 2.0f * (this->x * this->z - this->w * this->y);
+
+            if (m20 - 1.0f >= -TUtil< f32 >::epsilon()) {
+                rDest.x = JMAATan2(-(2.0f * (this->x * this->y - this->w * this->z)), 1.0f - 2.0f * (this->x * this->x + this->z * this->z));
+                rDest.y = -JMath::TAngleConstant_< f32 >::RADIAN_DEG090();
+                rDest.z = 0.0f;
+            } else if (1.0f + m20 <= TUtil< f32 >::epsilon()) {
+                rDest.x = JMAATan2(2.0f * (this->x * this->y - this->w * this->z), 1.0f - 2.0f * (this->x * this->x + this->z * this->z));
+                rDest.y = JMath::TAngleConstant_< f32 >::RADIAN_DEG090();
+                rDest.z = 0.0f;
+            } else {
+                f32 m10 = 2.0f * (this->x * this->y + this->w * this->z);
+                f32 m00 = 1.0f - 2.0f * (this->y * this->y + this->z * this->z);
+                rDest.x = JMAATan2(2.0f * (this->y * this->z + this->w * this->x), 1.0f - 2.0f * (this->x * this->x + this->y * this->y));
+                rDest.y = JMath::sAsinAcosTable.asin_(-m20);
+                rDest.z = JMAATan2(m10, m00);
+            }
+        }
+        void setEuler(T _x, T _y, T _z) NO_INLINE {
+            f32 cx = cos(0.5f * _x);
+            f32 cy = cos(0.5f * _y);
+            f32 cz = cos(0.5f * _z);
+            f32 sx = sin(0.5f * _x);
+            f32 sy = sin(0.5f * _y);
+            f32 sz = sin(0.5f * _z);
+            f32 cycz = cy * cz;
+            f32 sycz = sy * cz;
+            f32 cysz = cy * sz;
+            f32 sysz = sy * sz;
+            this->x = cycz * sx - sysz * cx;
+            this->y = sycz * cx + cysz * sx;
+            this->z = cysz * cx - sycz * sx;
+            this->w = cycz * cx + sysz * sx;
+        }
         void setEuler(const TVec3< T >& rpy) {
             setEuler(rpy.x, rpy.y, rpy.z);
         }
@@ -1049,7 +1102,19 @@ namespace JGeometry {
             }
         }
 
-        void setRotate(const TVec3< T >&, const TVec3< T >&);
+        void setRotate(const TVec3< T >& rA, const TVec3< T >& rB) NO_INLINE {
+            TVec3< T > dir = rA.cross(rB);
+            f32 crossPart = dir.length();
+
+            if (crossPart <= TUtil< f32 >::epsilon()) {
+                this->template set< f32 >(0.0f, 0.0f, 0.0f, 1.0f);
+            } else {
+                f32 dotPart = rA.dot(rB);
+                f32 halfAngle = 0.5f * JMAATan2(crossPart, dotPart);
+                toTvec()->scale((f32)sin(halfAngle) / crossPart, dir);
+                this->w = cos(halfAngle);
+            }
+        }
 
         void setRotate(const TVec3< T >& pVec, f32 pAngle) {
             f32 halfAngle = pAngle * 0.5f;
@@ -1079,7 +1144,38 @@ namespace JGeometry {
             TVec3< T >::scale(scalar, rVec);
         }
 
-        void slerp(const TQuat4< T >&, T);
+        void slerp(const TQuat4< T >& rOther, T ratio) NO_INLINE {
+            TQuat4< T > a;
+            TQuat4< T > b;
+            a.normalize(*this);
+            b.normalize(rOther);
+            f32 product = a.dot(b);
+            bool reverse;
+
+            if (product < 0.0f) {
+                product = -product;
+                reverse = true;
+            } else {
+                reverse = false;
+            }
+
+            f32 weight;
+
+            if (1.0f - product <= TUtil< f32 >::epsilon()) {
+                weight = 1.0f - ratio;
+            } else {
+                f32 angle = JMAAcosRadian(product);
+                f32 sinAngle = sin(angle);
+                weight = (f32)sin((1.0f - ratio) * angle) / sinAngle;
+                ratio = (f32)sin(ratio * angle) / sinAngle;
+            }
+
+            if (reverse) {
+                ratio = -ratio;
+            }
+
+            this->template set< f32 >(weight * a.x + ratio * b.x, weight * a.y + ratio * b.y, weight * a.z + ratio * b.z, weight * a.w + ratio * b.w);
+        }
 
         void transform(const TVec3< T >& v, TVec3< T >& rDest) const {
             // transformation via hamiltonian multiplication of a unit quaternion

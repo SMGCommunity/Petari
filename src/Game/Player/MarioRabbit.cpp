@@ -18,7 +18,8 @@ void Mario::endRabbitMode() {
     }
 }
 
-MarioRabbit::MarioRabbit(MarioActor* actor) : MarioState(actor, MarioStatus_Rabbit), _14(0.0f), _18(0.0f) {
+MarioRabbit::MarioRabbit(MarioActor* pActor) : MarioState(pActor, MarioStatus_Rabbit), _14() {
+    _18.zero();
     _24 = 0;
     _25 = 0;
     _26 = 0;
@@ -45,6 +46,7 @@ bool MarioRabbit::start() {
         _6A = 1;
         return true;
     }
+
     stopAnimationUpper(nullptr, nullptr);
     _14 = -mActor->getConst().getTable()->mRabbitFirstJump;
     _26 = 0;
@@ -56,6 +58,7 @@ bool MarioRabbit::start() {
         _25 = 1;
         _2A = 60;
     }
+
     impact();
     return true;
 }
@@ -66,6 +69,7 @@ void MarioRabbit::hop() {
     } else {
         _14 = 0.3f * -mActor->getConst().getTable()->mRabbitFirstJump;
     }
+
     _68 = 0;
 }
 
@@ -81,8 +85,10 @@ void MarioRabbit::impact() {
         if (_18.length() > 2.0f * mActor->getConst().getTable()->mRabbitMoveSpeed) {
             _18.setLength(2.0f * mActor->getConst().getTable()->mRabbitMoveSpeed);
         }
+
         _18.setLength(0.5f * _18.length());
     }
+
     getPlayer()->stopJump();
     getPlayer()->mMovementStates._1 = false;
     getPlayer()->mMovementStates.jumping = true;
@@ -101,6 +107,7 @@ void MarioRabbit::impact() {
             changeAnimationNonStop("ホッパーハイジャンプB");
             break;
         }
+
         _68 = 1 - _68;
     } else if (!MR::isNearZero(getStickP())) {
         switch (_68) {
@@ -111,6 +118,7 @@ void MarioRabbit::impact() {
             changeAnimationNonStop("ホッパー移動B");
             break;
         }
+
         _68 = 1 - _68;
     } else {
         switch (_68) {
@@ -122,6 +130,7 @@ void MarioRabbit::impact() {
             break;
         }
     }
+
     _27 = 1;
 }
 
@@ -129,19 +138,23 @@ bool MarioRabbit::update() {
     if (getPlayer()->mMorphResetTimer) {
         return false;
     }
+
     getPlayer()->mMovementStates._30 = false;
     getPlayer()->checkWallStick();
     if (_69) {
         _69--;
     }
+
     if (!getPlayer()->mMovementStates.jumping && !getPlayer()->mMovementStates._1) {
         getPlayer()->mMovementStates._1 = true;
     }
+
     if (getPlayer()->mMovementStates._1) {
         if (_6A) {
             playSound("ホッパー跳ね返り");
             _6A = 0;
         }
+
         if (_27 || isAnimationRun("ホッパー壁ジャンプ") || isAnimationRun("ホッパーヒップドロップ")) {
             stopAnimation(nullptr);
             switch (_68) {
@@ -152,17 +165,20 @@ bool MarioRabbit::update() {
                 changeAnimation("ホッパージャンプB", static_cast< const char* >(nullptr));
                 break;
             }
+
             _28 = 0;
             _27 = 0;
             if (!getPlayer()->mMovementStates._B) {
                 getPlayer()->mMovementStates.jumping = false;
             }
+
             startPadVib(1UL);
             playEffect("共通着地普通");
             if (!_28) {
                 playSound("ホッパー跳ね返り");
             }
         }
+
         if (getPlayer()->_3CE < mActor->getConst().getTable()->mHopperLandingTime) {
             if (mActor->isRequestJump() || _69) {
                 _28 = 1;
@@ -177,19 +193,23 @@ bool MarioRabbit::update() {
                     break;
                 }
             }
+
             return true;
         }
+
         if (_28) {
             if (getPlayer()->_3CE < mActor->getConst().getTable()->mRabbitChargeTime2) {
                 playSound("ホッパージャンプ溜め");
                 return true;
             }
+
             _14 = -mActor->getConst().getTable()->mRabbitFirstJump2;
             playSound("声物ジャンプ");
             playSound("ホッパージャンプ");
         } else {
             _14 = -mActor->getConst().getTable()->mRabbitFirstJump;
         }
+
         impact();
         _26 = 0;
     } else {
@@ -197,15 +217,18 @@ bool MarioRabbit::update() {
             getPlayer()->procJump(false);
             return true;
         }
+
         if (mActor->isRequestHipDrop()) {
             if (getPlayer()->jumpToHipDrop()) {
                 _68 = 0;
             }
         }
+
         if (mActor->isRequestJump()) {
             _69 = 3;
         }
     }
+
     getPlayer()->mJumpVec = getAirGravityVec() * _14;
     addVelocity(getAirGravityVec(), _14);
     if (_28) {
@@ -221,9 +244,11 @@ bool MarioRabbit::update() {
             _14 += mActor->getConst().getTable()->mRabbitGravityDrop;
         }
     }
+
     if (_14 > 50.0f) {
         _14 = 50.0f;
     }
+
     if (getStickP() != 0.0f) {
         if (_2A) {
             _2A--;
@@ -242,11 +267,13 @@ bool MarioRabbit::update() {
             }
         }
     }
+
     if (!_25) {
         if (_18.length() > mActor->getConst().getTable()->mRabbitMoveSpeed) {
             _18.setLength(mActor->getConst().getTable()->mRabbitMoveSpeed);
         }
     }
+
     addVelocity(_18);
     f32 angle = MR::diffAngleAbsHorizontal(getFrontVec(), _5C, getAirGravityVec());
     TVec3f cross;
@@ -254,12 +281,14 @@ bool MarioRabbit::update() {
     if (cross.dot(getAirGravityVec()) < 0.0f) {
         angle = -angle;
     }
+
     PSMTXCopy(MR::tmpMtxRotXRad(angle), _2C);
     if (__fabsf(angle) >= 1.0471976f) {
         MR::vecBlendSphere(_5C, getFrontVec(), &_5C, 0.2f);
     } else {
         MR::vecBlendSphere(_5C, getFrontVec(), &_5C, 0.05f);
     }
+
     MR::normalizeOrZero(&_5C);
     switch (_68) {
     case 0:
@@ -268,6 +297,7 @@ bool MarioRabbit::update() {
         setJointGlobalMtx(static_cast< u8 >(MR::getJointIndex(mActor, "Spine1")), _2C);
         break;
     }
+
     return true;
 }
 
@@ -278,6 +308,7 @@ bool MarioRabbit::close() {
     } else {
         stopAnimation(nullptr, "基本");
     }
+
     setJointGlobalMtx(static_cast< u8 >(MR::getJointIndex(mActor, "Hip")), nullptr);
     setJointGlobalMtx(static_cast< u8 >(MR::getJointIndex(mActor, "Spine1")), nullptr);
     return true;

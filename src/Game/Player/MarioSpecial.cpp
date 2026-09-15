@@ -86,19 +86,23 @@ bool Mario::isUseAnotherMovingPolygon() const {
         return true;
     }
 
-    return MR::isEqualStageName("TriLegLv1Galaxy");
+    if (MR::isEqualStageName("TriLegLv1Galaxy")) {
+        return true;
+    }
+
+    return false;
 }
 
-bool Mario::isUseFooSpecialGravity(const TVec3f& a1, TVec3f* a2) const {
+bool Mario::isUseFooSpecialGravity(const TVec3f& rA1, TVec3f* pA2) const {
     if (!isStatusActive(MarioStatus_Foo)) {
         return false;
     }
 
     if (MR::isEqualStageName("HeavensDoorGalaxy") && MR::getCurrentScenarioNo() == 2) {
         TVec3f vec(14760.0f, -10676.2f, 6770.0f);
-        TVec3f res = vec - a1;
-        a2->set(res);
-        MR::normalizeOrZero(a2);
+        TVec3f res = vec - rA1;
+        pA2->set(res);
+        MR::normalizeOrZero(pA2);
         return true;
     }
 
@@ -109,6 +113,7 @@ void Mario::updateOnimasu() {
     if (!_5FC) {
         return;
     }
+
     if ((_5FC->mPosition - mPosition).length() >= 1000.0f) {
         _5FC = nullptr;
         return;
@@ -143,11 +148,13 @@ void Mario::updateOnimasu() {
                 } else if (previousPosition.x > 320.0f) {
                     previousPosition.x = 320.0f;
                 }
+
                 if (previousPosition.z < -320.0f) {
                     previousPosition.z = -320.0f;
                 } else if (previousPosition.z > 320.0f) {
                     previousPosition.z = 320.0f;
                 }
+
                 localPosition = previousPosition;
             }
         } else if (MR::isInRange(localPosition.x, -400.0f, 400.0f) && MR::isInRange(localPosition.y, -400.0f, 400.0f) &&
@@ -163,6 +170,7 @@ void Mario::updateOnimasu() {
                 displacement += -getShadowNorm() * mVerticalSpeed;
                 position = mPosition + displacement;
             }
+
             setTrans(position, nullptr);
         }
 
@@ -189,6 +197,7 @@ void Mario::updateOnimasu() {
                 lower = 300.0f;
                 upper = 500.0f;
             }
+
             if (MR::isInRange(localPosition.x, lower, upper)) {
                 bool insideY = MR::isInRange(localPosition.y, -320.0f, 320.0f);
                 bool insideZ = MR::isInRange(localPosition.z, -320.0f, 320.0f);
@@ -199,6 +208,7 @@ void Mario::updateOnimasu() {
                     if (insideZ) {
                         correctY = true;
                     }
+
                     if (insideY) {
                         correctZ = true;
                     }
@@ -209,6 +219,7 @@ void Mario::updateOnimasu() {
                 lower = 300.0f;
                 upper = 500.0f;
             }
+
             if (MR::isInRange(localPosition.y, lower, upper)) {
                 bool insideX = MR::isInRange(localPosition.x, -320.0f, 320.0f);
                 bool insideZ = MR::isInRange(localPosition.z, -320.0f, 320.0f);
@@ -221,6 +232,7 @@ void Mario::updateOnimasu() {
                     if (insideZ) {
                         correctX = true;
                     }
+
                     if (insideX) {
                         correctZ = true;
                     }
@@ -231,6 +243,7 @@ void Mario::updateOnimasu() {
                 lower = 300.0f;
                 upper = 500.0f;
             }
+
             if (MR::isInRange(localPosition.z, lower, upper)) {
                 bool insideX = MR::isInRange(localPosition.x, -320.0f, 320.0f);
                 bool insideY = MR::isInRange(localPosition.y, -320.0f, 320.0f);
@@ -241,6 +254,7 @@ void Mario::updateOnimasu() {
                     if (insideY) {
                         correctX = true;
                     }
+
                     if (insideX) {
                         correctY = true;
                     }
@@ -255,6 +269,7 @@ void Mario::updateOnimasu() {
                 localPosition.x = 400.0f;
             }
         }
+
         if (correctY) {
             if (localPosition.y > -400.0f && localPosition.y < -320.0f) {
                 localPosition.y = -400.0f;
@@ -262,6 +277,7 @@ void Mario::updateOnimasu() {
                 localPosition.y = 400.0f;
             }
         }
+
         if (correctZ) {
             if (localPosition.z > -400.0f && localPosition.z < -320.0f) {
                 localPosition.z = -400.0f;
@@ -269,6 +285,7 @@ void Mario::updateOnimasu() {
                 localPosition.z = 400.0f;
             }
         }
+
         if (correctX | correctY | correctZ) {
             TVec3f position;
             PSMTXMultVec(sensor->mHost->mCollisionParts->mBaseMatrix, &localPosition, &position);
@@ -289,22 +306,27 @@ void Mario::updateOnimasu() {
             localPosition.y = previousPosition.y;
             corrected = true;
         }
+
         if (previousPosition.x >= -320.0f && localPosition.x < -320.0f) {
             localPosition.x = previousPosition.x;
             corrected = true;
         }
+
         if (previousPosition.x <= 320.0f && localPosition.x > 320.0f) {
             localPosition.x = previousPosition.x;
             corrected = true;
         }
+
         if (previousPosition.z >= -320.0f && localPosition.z < -320.0f) {
             localPosition.z = previousPosition.z;
             corrected = true;
         }
+
         if (previousPosition.z <= 320.0f && localPosition.z > 320.0f) {
             localPosition.z = previousPosition.z;
             corrected = true;
         }
+
         if (corrected) {
             TVec3f position;
             PSMTXMultVec(sensor->mHost->mCollisionParts->mBaseMatrix, &_600, &position);
@@ -312,11 +334,12 @@ void Mario::updateOnimasu() {
             localPosition = _600;
         }
     }
+
     _600 = localPosition;
 }
 
 bool Mario::isHeadPushEnableArea() const {
-    if (!mMovementStates._17) {
+    if (!mMovementStates._37) {
         return false;
     }
 

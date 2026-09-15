@@ -1,15 +1,16 @@
 #pragma once
 
+#include "JSystem/JKernel/JKRHeap.hpp"
 #include <revolution/mem.h>
 
 class JKRExpHeap;
-class JKRHeap;
 class JKRSolidHeap;
 
 namespace MR {
     class CurrentHeapRestorer {
     public:
-        CurrentHeapRestorer(JKRHeap*);
+        CurrentHeapRestorer(JKRHeap* pHeap);
+
         ~CurrentHeapRestorer();
 
     private:
@@ -27,7 +28,8 @@ namespace MR {
 
     MEMAllocator* getHomeButtonLayoutAllocator();
     JKRHeap* getCurrentHeap();
-    JKRHeap* getAproposHeapForSceneArchive(f32);
+    f32 getHeapFreeRatio(JKRHeap* pHeap);
+    JKRHeap* getAproposHeapForSceneArchive(f32 maxFreeSizeRate);
     JKRExpHeap* getStationedHeapNapa();
     JKRExpHeap* getStationedHeapGDDR3();
     JKRSolidHeap* getSceneHeapNapa();
@@ -74,4 +76,26 @@ namespace MR {
         static MEMAllocatorFunc sAllocatorFunc;
         static JKRHeap* sHeap;
     };
+
+    template < int N >
+    void* JKRHeapAllocator< N >::alloc(MEMAllocator* pAllocator, u32 size) {
+        return JKRHeapAllocator< N >::sHeap->alloc(size, 0);
+    }
+
+    template < int N >
+    void JKRHeapAllocator< N >::free(MEMAllocator* pAllocator, void* pPtr) {
+        JKRHeapAllocator< N >::sHeap->free(pPtr);
+    }
+
+    template < int N >
+    MEMAllocator JKRHeapAllocator< N >::sAllocator = {&sAllocatorFunc, nullptr, 4, 0};
+
+    template < int N >
+    MEMAllocatorFunc JKRHeapAllocator< N >::sAllocatorFunc = {
+        JKRHeapAllocator::alloc,
+        JKRHeapAllocator::free,
+    };
+
+    template < int N >
+    JKRHeap* JKRHeapAllocator< N >::sHeap;
 };  // namespace MR

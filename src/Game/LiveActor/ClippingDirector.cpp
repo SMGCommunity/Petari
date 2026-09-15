@@ -17,7 +17,7 @@ ClippingDirector::ClippingDirector() : NameObj("クリッピング指揮"), mJud
     mGroupHolder = new ClippingGroupHolder();
     mGroupHolder->initWithoutIter();
 
-    MR::connectToScene(this, MR::MovementType_ClippingDirector, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_ClippingDirector, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
 }
 
 void ClippingDirector::endInitActorSystemInfo() {

@@ -77,7 +77,7 @@ OceanRing::OceanRing(const char* pName) : LiveActor(pName) {
 }
 
 void OceanRing::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_OceanRing);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_OceanRing);
     MR::initDefaultPos(this, rIter);
     initRailRider(rIter);
     initPoints();

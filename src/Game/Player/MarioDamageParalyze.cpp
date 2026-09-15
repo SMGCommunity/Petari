@@ -46,28 +46,6 @@ bool Mario::doParalyze() {
 MarioParalyze::MarioParalyze(MarioActor* pActor) : MarioState(pActor, MarioStatus_Paralyze), _12(), mTimer(), _16(), mNotDecLife() {
 }
 
-bool MarioParalyze::close() {
-    if (mActor->mHealth == 0) {
-        if (!getPlayer()->mMovementStates._1) {
-            mActor->forceGameOverNonStop();
-        } else {
-            mActor->forceGameOver();
-        }
-        mActor->changeGameOverAnimation();
-    }
-
-    stopAnimation("電気ダメージ");
-    stopEffect("ビリビリ");
-
-    _16 = 120;
-
-    if (!getPlayer()->isStatusActive(MarioStatus_Swim) && !getPlayer()->getMovementStates()._1) {
-        getPlayer()->tryFreeJump(getFrontVec() * -10.0f, true);
-    }
-
-    return true;
-}
-
 bool MarioParalyze::start() {
     changeAnimationNonStop("電気ダメージ");
     playSound("ダメージ");
@@ -120,8 +98,32 @@ bool MarioParalyze::update() {
             } else {
                 mActor->forceGameOver();
             }
+
             mActor->changeGameOverAnimation();
         }
+    }
+
+    return true;
+}
+
+bool MarioParalyze::close() {
+    if (mActor->mHealth == 0) {
+        if (!getPlayer()->mMovementStates._1) {
+            mActor->forceGameOverNonStop();
+        } else {
+            mActor->forceGameOver();
+        }
+
+        mActor->changeGameOverAnimation();
+    }
+
+    stopAnimation("電気ダメージ");
+    stopEffect("ビリビリ");
+
+    _16 = 120;
+
+    if (!getPlayer()->isStatusActive(MarioStatus_Swim) && !getPlayer()->getMovementStates()._1) {
+        getPlayer()->tryFreeJump(getFrontVec() * -10.0f, true);
     }
 
     return true;

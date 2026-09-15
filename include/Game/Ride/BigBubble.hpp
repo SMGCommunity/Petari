@@ -90,6 +90,11 @@ public:
         return radius * mScale.x;
     }
 
+    inline f32 getSize2() {
+        f32 radius = getBaseRadius();
+        return radius * mScale.x;
+    }
+
     inline f32 getRadius(f32 volume) {
         return pow(volume, 1.0f / 3.0f);
     }
@@ -98,6 +103,8 @@ public:
         return mDrawZ;
     }
 
+    inline s32 getCycle() const;
+
     /* 0x8C */ OctahedronBezierSurface* mSurface;
     /* 0x90 */ const BigBubbleMoveLimitter* mMoveLimitter;
     /* 0x94 */ LiveActor* mHost;
@@ -105,35 +112,35 @@ public:
     /* 0x9C */ BigBubble* mMergeBubble;
     /* 0xA0 */ BigBubble* mMergeBubbles[6];
     /* 0xB8 */ TPos3f mEffectMtx;
-    /* 0xE8 */ TPos3f _E8;  // unused
+    /* 0xE8 */ TPos3f _E8;
     /* 0x118 */ TPos3f mBaseMtx;
     /* 0x148 */ TQuat4f mBubbleQuat;
     /* 0x158 */ TQuat4f mRiderQuat;
     /* 0x168 */ TVec3f mRiderBasePos;
     /* 0x174 */ TVec3f mRiderPos;
     /* 0x180 */ TVec3f mSpawnPosition;
-    /* 0x18C */ TVec3f _18C;  // unused?
+    /* 0x18C */ TVec3f _18C;
     /* 0x198 */ TVec3f mPointerPos;
-    /* 0x1A4 */ TVec3f _1A4;  // deform direction for something? not implemented
+    /* 0x1A4 */ TVec3f mPushDirection;
     /* 0x1B0 */ TVec3f mMoment;
     /* 0x1BC */ TVec3f mCoriolisAccel;
     /* 0x1C8 */ f32 mDeformCoeff[6];
-    /* 0x1E0 */ f32 mDeformVelocity[6];
-    /* 0x1F8 */ f32 mInterpolateTime;
-    /* 0x1FC */ f32 mBlowForce;
-    /* 0x200 */ s32 _200;  // some timer
+    /* 0x1E0 */ f32 mDeformSpeed[6];
+    /* 0x1F8 */ f32 mInterpolateRate;
+    /* 0x1FC */ f32 mPointAccel;
+    /* 0x200 */ s32 mPushInvalidTime;  // some timer
     /* 0x204 */ s32 mReduceVolumeTimer;
     /* 0x208 */ s32 _208;  // some timer
     /* 0x20C */ s32 mMergeIndex;
     /* 0x210 */ s32 mShapeType;
-    /* 0x214 */ s32 _214;  // unused
+    /* 0x214 */ s32 _214;
     /* 0x218 */ f32 mAppearRadius;
     /* 0x21C */ f32 mVolume;
     /* 0x220 */ f32 mDrawZ;
     /* 0x224 */ f32 mBinderRadius;
     /* 0x228 */ Color8 mWarningColor;
     /* 0x22C */ bool mIsObstruct;
-    /* 0x22D */ bool _22D;  // unused
+    /* 0x22D */ bool _22D;
     /* 0x22E */ bool mIsHidden;
     /* 0x22F */ bool mIsExitLimitter;
     /* 0x230 */ bool mIsBroken;

@@ -15,7 +15,7 @@ DynamicCollisionObj::DynamicCollisionObj(const char* pName) : LiveActor(pName) {
 
 void DynamicCollisionObj::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    MR::connectToScene(this, MR::MovementType_Enemy, MR::CalcAnimType_Enemy, -1, MR::DrawType_FlexibleSphere);
+    MR::connectToScene(this, MR::MovementType_Enemy, MR::CalcAnimType_Enemy, MR::DrawBufferType_None, MR::DrawType_FlexibleSphere);
 
     mKCLFile = nullptr;
 }

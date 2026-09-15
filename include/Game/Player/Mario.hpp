@@ -582,11 +582,21 @@ public:
     inline const MovementStates& getMovementStates() const {
         return mMovementStates;
     }
+
     inline const DrawStates& getDrawStates() const {
         return mDrawStates;
     }
+
     inline const DrawStates& getPrevDrawStates() const {
         return mPrevDrawStates;
+    }
+
+    const TVec3f& getUpVec() const {
+        return _1FC;
+    }
+
+    const TVec3f& getJumpVec() const {
+        return mJumpVec;
     }
 
     inline void setJumpVec(const TVec3f& rVec) {
@@ -938,8 +948,13 @@ public:
     /* 0x89C */ MarioFpView* mFpView;
     /* 0x8A0 */ MarioMove* mMove;
     /* 0x8A4 */ TVec3f _8A4;
-    /* 0x8B0 */ TVec3f _8B0;
-    /* 0x8BC */ TVec3f _8BC;
+    union {
+        struct {
+            /* 0x8B0 */ TVec3f _8B0;
+            /* 0x8BC */ TVec3f _8BC;
+        };
+        /* 0x8B0 */ TVec3f mRelativeWallPos[2];
+    };
     /* 0x8C8 */ Triangle* _8C8;
     /* 0x8CC */ Triangle* _8CC[2];
     /* 0x8D4 */ HitSensor* _8D4;

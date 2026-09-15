@@ -17,6 +17,10 @@ public:
     virtual void addVelocity(const TVec3f&);
     virtual void addVelocity(const TVec3f&, f32);
 
+    MarioActor* getActor() const {
+        return mActor;
+    }
+
     Mario* getPlayer() const;
     MarioAnimator* getAnimator() const;
     TVec3f& getShadowPos() const;

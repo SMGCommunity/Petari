@@ -88,8 +88,8 @@ namespace JMath {
                 v = -v;
             }
 
-            f32 tmp = v;
-            tmp *= (LEN / TWO_PI);
+            f32 factor = LEN / TWO_PI;
+            f32 tmp = v * factor;
             return table[(u16)tmp & LEN - 1].b1;
         }
 
@@ -136,6 +136,18 @@ namespace JMath {
         TAsinAcosTable();
 
         T get_(T, T) const;
+
+        T asin_(T x) const {
+            if (x >= 1.0f) {
+                return TAngleConstant_< T >::RADIAN_DEG090();
+            } else if (x <= -1.0f) {
+                return -TAngleConstant_< T >::RADIAN_DEG090();
+            } else if (x < 0.0f) {
+                return -mTable[(u32)(-x * 1023.5f)];
+            } else {
+                return mTable[(u32)(x * 1023.5f)];
+            }
+        }
 
         T acos_(T x) const {
             if (x >= 1.0f) {

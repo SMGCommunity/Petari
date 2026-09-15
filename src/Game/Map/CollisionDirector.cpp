@@ -15,7 +15,7 @@ CollisionDirector::CollisionDirector() : NameObj("地形コリジョン"), mCate
         mCategoryKeeper[i] = new CollisionCategorizedKeeper(i);
     }
 
-    MR::connectToScene(this, MR::MovementType_CollisionDirector, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_CollisionDirector, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
 }
 
 void CollisionDirector::init(const JMapInfoIter& rIter) {

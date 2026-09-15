@@ -67,9 +67,11 @@ void TripodBossFixParts::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm(mapPartsID, nullptr, false);
 
     if (val) {
-        MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_BloomModel, -1);
+        MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_BloomModel,
+                           MR::DrawType_None);
     } else {
-        MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, -1);
+        MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss,
+                           MR::DrawType_None);
     }
 
     if (MR::isEqualString(objName, "TriPodBossBodyA")) {

@@ -14,7 +14,7 @@ public:
     virtual bool notice();
 
     void initTriangleJump();
-    u8 isCancel();
+    u32 isCancel();
     bool startJump();
     bool startBackJump(u32);
 

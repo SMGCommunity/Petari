@@ -2,6 +2,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/MapObj/MapPartsRotator.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
@@ -58,7 +59,7 @@ void BlueStarCupsulePlanet::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::getObjectName(&mName, rIter);
     initModelManagerWithAnm(mName, nullptr, false);
-    MR::connectToScene(this, 29, 1, 4, -1);
+    MR::connectToScene(this, MR::MovementType_Planet, MR::CalcAnimType_Planet, MR::DrawBufferType_Planet, MR::DrawType_None);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     initNerve(&NrvBlueStarCupsulePlanet::BlueStarCupsulePlanetNrvWait::sInstance);

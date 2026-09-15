@@ -15,9 +15,9 @@ namespace NrvCinemaFrame {
     NEW_NERVE(CinemaFrameNrvFrameToScreen, CinemaFrame, FrameToScreen);
 };  // namespace NrvCinemaFrame
 
-CinemaFrame::CinemaFrame(bool isConnectToSceneLayout) : LayoutActor("シネマフレーム", true) {
-    if (isConnectToSceneLayout) {
-        MR::connectToScene(this, MR::MovementType_Layout, MR::CalcAnimType_Layout, -1, MR::DrawType_CinemaFrame);
+CinemaFrame::CinemaFrame(bool isConnectToScene) : LayoutActor("シネマフレーム", true) {
+    if (isConnectToScene) {
+        MR::connectToScene(this, MR::MovementType_Layout, MR::CalcAnimType_Layout, MR::DrawBufferType_None, MR::DrawType_CinemaFrame);
     }
 }
 

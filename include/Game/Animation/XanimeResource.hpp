@@ -34,7 +34,7 @@ public:
     /* 0xC */ f32 mStart;
     /* 0x10 */ f32 mEnd;
     /* 0x14 */ f32 mLoop;
-    /* 0x18 */ u32 mAttribute;
+    /* 0x18 */ s32 mAttribute;
     /* 0x1C */ u8 mBckTableVariant;
     u8 _1D;
     void* _20[4];

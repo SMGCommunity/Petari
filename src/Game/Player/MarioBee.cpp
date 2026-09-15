@@ -19,6 +19,7 @@ void MarioActor::entryWallWalkMode(const TVec3f& position, const TVec3f& normal)
     if (mBeeWallWalk) {
         return;
     }
+
     if (!_9F2) {
         mBeeWallWalk = 5;
         TVec3f gravity(-normal);
@@ -51,12 +52,14 @@ bool Mario::beeMarioOnAir() {
         if (_3BC == 1 && _402) {
             _402--;
         }
+
         if (isAnimationRun("ハチ壁ジャンプ") && isAnimationTerminate(nullptr)) {
             if (checkLvlA()) {
                 changeAnimation("ハチ飛行中", "落下");
             } else {
                 changeAnimation("ハチ飛行中無入力", "落下");
             }
+
             changeAnimationInterpoleFrame(30);
         }
     }
@@ -73,6 +76,7 @@ bool Mario::beeMarioOnAir() {
                     PSMTXRotAxisRad(rotation, &mHeadVec, 0.1f);
                     PSMTXMultVecSR(rotation, &mJumpVec, &mJumpVec);
                 }
+
                 mJumpVec.setLength(speed);
                 mJumpVec += getAirGravityVec() * verticalSpeed;
             }
@@ -83,6 +87,7 @@ bool Mario::beeMarioOnAir() {
                     _76C = 30;
                     _770 = 0.0f;
                 }
+
                 mMovementStates._12 = true;
                 _4B0 = mPosition;
                 mMovementStates._11 = true;
@@ -102,17 +107,21 @@ bool Mario::beeMarioOnAir() {
                 if (!MR::isNearZero(mStickPos.z)) {
                     setFrontVecKeepUp(getWorldPadDir(), mActor->getConst().getTable()->mBeeAirWalkTurnSpd);
                 }
+
                 u16 previousTime = _402;
                 if (_402) {
                     if (!mMovementStates._F && _402 > mActor->getConst().getTable()->mAirWalkTime) {
                         _402 = mActor->getConst().getTable()->mAirWalkTime;
                     }
+
                     _402--;
                 }
+
                 if (!_402) {
                     if (previousTime) {
                         playSound("ハチ体力切れ");
                     }
+
                     mMovementStates._11 = false;
                     stopAnimation("ハチ飛行中", static_cast< const char* >(nullptr));
                 } else {
@@ -120,15 +129,18 @@ bool Mario::beeMarioOnAir() {
                         if (!isAnimationRun("ハチ壁ジャンプ") && !isAnimationRun("ハチスピン空中")) {
                             changeAnimation("ハチ飛行中", "落下");
                         }
+
                         cancelSquatMode();
                         playSound("空中ふんばり");
                         if (_402 < mActor->getConst().getTable()->mAirWalkTime / 2) {
                             getAnimator()->setSpeed(1.5f);
                         }
+
                         if (_430 == 4) {
                             setFrontVecKeepUp(-_220);
                             _430 = 0;
                         }
+
                         if (_430 == 5) {
                             _430 = 0;
                         }
@@ -138,9 +150,10 @@ bool Mario::beeMarioOnAir() {
                     if (time > powerTime) {
                         time = powerTime;
                     }
+
                     f32 ratio = static_cast< f32 >(time) / powerTime;
-                    f32 reduction = 0.9f * (ratio * ratio);
-                    f32 acceleration = 15.0f * (MR::getRandom() - reduction);
+                    ratio = 0.9f * (ratio * ratio);
+                    f32 acceleration = 15.0f * (MR::getRandom() - ratio);
                     acceleration =
                         acceleration * mActor->getConst().getTable()->mBeeFlyRandomFactor - mActor->getConst().getTable()->mBeeFlyConstantFactor;
                     f32 verticalSpeed = cutGravityElementFromJumpVec(true);
@@ -149,13 +162,16 @@ bool Mario::beeMarioOnAir() {
                     if (!MR::isNearZero(mStickPos.z)) {
                         velocity.dot(getWorldPadDir());
                     }
+
                     if (factor < 0.0f) {
                         factor *= mActor->getConst().getTable()->mBeeUpAccelRatio;
                     }
+
                     _770 += factor * (acceleration * mActor->getConst().getTable()->mBeeAccelRatio);
                     if (_770 > 0.0f) {
                         _770 *= mActor->getConst().getTable()->mBeeUpDownKiller;
                     }
+
                     if (!_774) {
                         if (!getPlayer()->_1C._5) {
                             if (_770 < -mActor->getConst().getTable()->mBeeUpSpeedMax) {
@@ -165,15 +181,18 @@ bool Mario::beeMarioOnAir() {
                             _770 = -0.5f;
                         }
                     }
+
                     addVelocity(*getGravityVec(), _770);
                     if (!getPlayer()->_1C._5 && verticalSpeed > 0.0f) {
                         verticalSpeed *= mActor->getConst().getTable()->mBeePushRiseGravityEraser;
                     }
+
                     mJumpVec += getAirGravityVec() * verticalSpeed;
                     _408++;
                     if (_408 > 120) {
                         _408 = 120;
                     }
+
                     _4B0 = mPosition;
                     return true;
                 }
@@ -184,12 +203,15 @@ bool Mario::beeMarioOnAir() {
                         changeAnimation("ハチ飛行中無入力", static_cast< const char* >(nullptr));
                     }
                 }
+
                 if (_408) {
                     _408--;
                 }
+
                 if (_770 < mActor->getConst().getTable()->mBeeFreeDropMaxSpd) {
                     _770 += mActor->getConst().getTable()->mBeeFreeDropAcc;
                 }
+
                 f32 factor = 1.0f;
                 addVelocity(*getGravityVec(), _770 * factor);
                 if (!MR::isNearZero(mStickPos.z)) {
@@ -198,5 +220,6 @@ bool Mario::beeMarioOnAir() {
             }
         }
     }
+
     return false;
 }

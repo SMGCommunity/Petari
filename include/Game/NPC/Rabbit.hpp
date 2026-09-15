@@ -42,4 +42,17 @@ public:
 
     /* 0x8C */ LodCtrl* mLodCtrl;
     /* 0x90 */ TalkMessageCtrl* mTalkCtrl;
+    /* 0x15C */ s32 _15C;
+    /* 0x15C */ bool _160;
+    /* 0x15C */ bool _162;
+    /* 0x15C */ s32 _164;
+    /* 0x15C */ f32 _168;
+    /* 0x15C */ f32 _16C;
+    /* 0x15C */ f32 _170;
+    /* 0x15C */ TVec3f _174;
+    /* 0x15C */ f32 _180;
+    /* 0x15C */ TQuat4f _A0;
+    /* 0x15C */ bool _E4;
+    /* 0x15C */ bool _D9;
+    /* 0x15C */ bool _DB;
 };

@@ -16,20 +16,20 @@ public:
 
 class DemoSoundKeeper : public DemoSheetKeeperBase, public DemoSheetKeeperInfoHolder< DemoSoundInfo > {
 public:
-    DemoSoundKeeper(DemoExecutor*);
+    DemoSoundKeeper(DemoExecutor* pExecutor);
 
-    virtual const char* getName() {
+    virtual const char* getName() const {
         return "サウンド";
     }
 
-    virtual const char* getTypeString() {
+    virtual const char* getTypeString() const {
         return "Sound";
     }
 
     virtual void start();
     virtual void update();
 
-    virtual void executeType(const DemoSoundInfo*);
+    virtual void executeType(const DemoSoundInfo* pInfo);
 
     bool isPermitBgmChange();
 };

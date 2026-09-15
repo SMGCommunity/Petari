@@ -16,7 +16,7 @@ CenterScreenBlur::CenterScreenBlur() : LiveActor("画面中心ブラー"), mTime
 }
 
 void CenterScreenBlur::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_ImageEffect, -1, -1, MR::DrawType_CenterScreenBlur);
+    MR::connectToScene(this, MR::MovementType_ImageEffect, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_CenterScreenBlur);
     MR::invalidateClipping(this);
     MR::registerDemoSimpleCastAll(this);
     initNerve(&NrvCenterScreenBlur::CenterScreenBlurNrvFadeIn::sInstance);

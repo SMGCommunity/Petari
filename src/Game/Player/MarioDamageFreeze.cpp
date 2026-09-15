@@ -34,25 +34,16 @@ bool Mario::doFreeze() {
 MarioFreeze::MarioFreeze(MarioActor* pActor) : MarioState(pActor, MarioStatus_Freeze), mIsFrozen(), _14(), _18(), mFreezeTimer(), _1C() {
 }
 
-bool MarioFreeze::close() {
-    _1C = 120;
-
-    if (mIsFrozen) {
-        playSound("氷ダメージ終了");
-        mActor->hideFreezeModel();
-    }
-
-    return true;
-}
-
 bool MarioFreeze::notice() {
     if (mActor->mHealth == 0) {
         if (getNoticedStatus() == MarioStatus_Swim) {
             mActor->_B90 = true;
             mActor->forceGameOver();
         }
+
         return true;
     }
+
     return false;
 }
 
@@ -147,6 +138,17 @@ bool MarioFreeze::update() {
                 getPlayer()->setJumpVec(getGravityVec() * _14);
             }
         }
+    }
+
+    return true;
+}
+
+bool MarioFreeze::close() {
+    _1C = 120;
+
+    if (mIsFrozen) {
+        playSound("氷ダメージ終了");
+        mActor->hideFreezeModel();
     }
 
     return true;

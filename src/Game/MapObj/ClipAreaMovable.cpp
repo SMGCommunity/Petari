@@ -19,7 +19,7 @@ ClipAreaMovable::ClipAreaMovable(const char* pName) : ClipArea(pName), mMapParts
 
 void ClipAreaMovable::init(const JMapInfoIter& rIter) {
     initBaseMatrix(rIter);
-    MR::connectToScene(this, MR::MovementType_ClippedMapParts, -1, -1, MR::DrawType_ClipArea);
+    MR::connectToScene(this, MR::MovementType_ClippedMapParts, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_ClipArea);
     MR::setGroupClipping(this, rIter, 0x40);
     MR::setClippingTypeSphere(this, MR::getMaxAbsElement(mScale) * 1400.0f);
     initMoveFunction(rIter);

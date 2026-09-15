@@ -2,6 +2,7 @@
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/Util/MutexHolder.hpp"
 #include "Game/Util/SingletonHolder.hpp"
+#include "JSystem/JAudio2/JASMutex.hpp"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 #include <mem.h>
@@ -42,16 +43,17 @@ namespace MR {
         return JKRHeap::sCurrentHeap;
     }
 
+    f32 getHeapFreeRatio(JKRHeap* pHeap) {
+        u32 size = pHeap->mSize;
+        return static_cast< f32 >(pHeap->getTotalFreeSize()) / size;
+    }
+
     JKRHeap* getAproposHeapForSceneArchive(f32 maxFreeSizeRate) {
         JKRHeap* pFileCacheHeap = SingletonHolder< HeapMemoryWatcher >::get()->mFileCacheHeap;
 
         if (pFileCacheHeap != nullptr) {
-            f32 freeSize = pFileCacheHeap->getTotalFreeSize();
-            f32 size = pFileCacheHeap->mSize;
-            f32 workFreeSizeRate = freeSize / size;
-
-            if (workFreeSizeRate < maxFreeSizeRate) {
-                return SingletonHolder< HeapMemoryWatcher >::get()->mSceneHeapGDDR;
+            if (getHeapFreeRatio(pFileCacheHeap) < maxFreeSizeRate) {
+                pFileCacheHeap = SingletonHolder< HeapMemoryWatcher >::get()->mSceneHeapGDDR;
             }
         }
 
@@ -83,9 +85,8 @@ namespace MR {
     }
 
     void becomeCurrentHeap(JKRHeap* pHeap) {
-        OSLockMutex(&MR::MutexHolder< 1 >::sMutex);
+        JASMutexLock lock(&MR::MutexHolder< 1 >::sMutex);
         pHeap->becomeCurrentHeap();
-        OSUnlockMutex(&MR::MutexHolder< 1 >::sMutex);
     }
 
     bool isEqualCurrentHeap(JKRHeap* pHeap) {
@@ -96,7 +97,53 @@ namespace MR {
         pHeap->adjustSize();
     }
 
-    // MR::copyMemory
+    void copyMemory(void* pDst, const void* pSrc, u32 size) {
+        u8* pDstBytes = static_cast< u8* >(pDst);
+        const u8* pSrcBytes = static_cast< const u8* >(pSrc);
+        u32 srcAlignment = reinterpret_cast< u32 >(pSrc) & 3;
+        u32 dstAlignment = reinterpret_cast< u32 >(pDst) & 3;
+
+        if (srcAlignment == dstAlignment && (size & 0xF) == 0) {
+            const u32* pSrcWords = reinterpret_cast< const u32* >(pSrcBytes);
+            u32* pDstWords = reinterpret_cast< u32* >(pDstBytes);
+
+            for (u32 count = size / 16; count != 0; count--) {
+                u32 word3, word2, word1, word0;
+                word0 = *pSrcWords++;
+                word1 = *pSrcWords++;
+                word2 = *pSrcWords++;
+                word3 = *pSrcWords++;
+                *pDstWords++ = word0;
+                *pDstWords++ = word1;
+                *pDstWords++ = word2;
+                *pDstWords++ = word3;
+            }
+        } else if (srcAlignment == dstAlignment && size >= 16) {
+            if (srcAlignment != 0) {
+                for (u8 count = 4 - srcAlignment; count != 0; count--) {
+                    *pDstBytes++ = *pSrcBytes++;
+                    size--;
+                }
+            }
+
+            while (size >= 4) {
+                *reinterpret_cast< u32* >(pDstBytes) = *reinterpret_cast< const u32* >(pSrcBytes);
+                size -= 4;
+                pSrcBytes += 4;
+                pDstBytes += 4;
+            }
+
+            if (size != 0) {
+                for (; size != 0; size--) {
+                    *pDstBytes++ = *pSrcBytes++;
+                }
+            }
+        } else {
+            for (; size != 0; size--) {
+                *pDstBytes++ = *pSrcBytes++;
+            }
+        }
+    }
 
     void fillMemory(void* pDst, u8 ch, u32 size) {
         if (ch == 0) {
@@ -106,7 +153,46 @@ namespace MR {
         }
     }
 
-    // MR::zeroMemory
+    void zeroMemory(void* pDst, u32 size) {
+        u8* pDstBytes = static_cast< u8* >(pDst);
+        u32 alignment = reinterpret_cast< u32 >(pDst) & 3;
+
+        if ((reinterpret_cast< u32 >(pDst) & 0x1F) == 0 && (size & 0x1F) == 0) {
+            DCZeroRange(pDst, size);
+        } else if (alignment == 0 && (size & 0xF) == 0) {
+            for (u32 count = size / 16; count != 0; count--) {
+                u32* pWords = reinterpret_cast< u32* >(pDstBytes);
+                pWords[0] = 0;
+                pWords[1] = 0;
+                pWords[2] = 0;
+                pWords[3] = 0;
+                pDstBytes += 16;
+            }
+        } else if (size >= 16) {
+            if (alignment != 0) {
+                for (u8 count = 4 - alignment; count != 0; count--) {
+                    *pDstBytes++ = 0;
+                    size--;
+                }
+            }
+
+            while (size >= 4) {
+                *reinterpret_cast< u32* >(pDstBytes) = 0;
+                pDstBytes += 4;
+                size -= 4;
+            }
+
+            if (size != 0) {
+                for (; size != 0; size--) {
+                    *pDstBytes++ = 0;
+                }
+            }
+        } else {
+            for (; size != 0; size--) {
+                *pDstBytes++ = 0;
+            }
+        }
+    }
 
     u32 calcCheckSum(const void* pPtr, u32 size) {
         u16 sum;
@@ -135,23 +221,4 @@ namespace MR {
 
         return 1;
     }
-
-    template < int N >
-    void* JKRHeapAllocator< N >::alloc(MEMAllocator* pAllocator, u32 size) {
-        return JKRHeapAllocator< N >::sHeap->alloc(size, 0);
-    }
-
-    template < int N >
-    void JKRHeapAllocator< N >::free(MEMAllocator* pAllocator, void* pPtr) {
-        JKRHeapAllocator< N >::sHeap->free(pPtr);
-    }
-
-    template < int N >
-    MEMAllocator JKRHeapAllocator< N >::sAllocator = {&sAllocatorFunc, nullptr, 4, 0};
-
-    template < int N >
-    MEMAllocatorFunc JKRHeapAllocator< N >::sAllocatorFunc = {
-        JKRHeapAllocator::alloc,
-        JKRHeapAllocator::free,
-    };
 };  // namespace MR

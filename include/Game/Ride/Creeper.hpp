@@ -15,6 +15,22 @@ public:
     void updateBend(bool, const TVec3f&, f32, f32);
     void updateLocalAxis();
 
+    const TVec3f& getPosition() const {
+        return mPosition;
+    }
+
+    const TVec3f& getSide() const {
+        return mSide;
+    }
+
+    const TVec3f& getUp() const {
+        return mUp;
+    }
+
+    const TVec3f& getFront() const {
+        return mFront;
+    }
+
     /* 0x00 */ TVec3f mPosition;
     /* 0x0C */ TVec3f mNeutralPos;
     /* 0x18 */ TVec3f mVelocity;
@@ -28,6 +44,8 @@ public:
 class Creeper : public LiveActor {
 public:
     Creeper(const char*);
+
+    virtual ~Creeper();
 
     virtual void init(const JMapInfoIter&);
     virtual void control();
@@ -51,7 +69,9 @@ public:
     void calcAndGetCurrentInfo(TVec3f*, TVec3f*) const;
 
     void loadMaterial() const;
-    const CreeperPoint* getHeadPoint() const;
+    const CreeperPoint* getHeadPoint() const {
+        return getPoint(mNumPoints - 1);
+    }
 
     inline const CreeperPoint* getPoint(s32 idx) const {
         return mPoints[idx];
@@ -62,13 +82,13 @@ public:
     /* 0x94 */ LiveActor* mRider;
     /* 0x98 */ TVec3f mFront;
     /* 0xA4 */ TVec3f mUp;
-    /* 0xB0 */ f32 mClimbSpeed;
-    /* 0xB4 */ f32 mCoord;  // this is a ratio along stalk length
-    /* 0xB8 */ f32 mBendFactorNormal;
-    /* 0xBC */ f32 mBendFactorBee;
+    /* 0xB0 */ f32 mHangSpeed;
+    /* 0xB4 */ f32 mCoord;
+    /* 0xB8 */ f32 mBendRate;
+    /* 0xBC */ f32 mBendRateBee;
     /* 0xC0 */ TVec3f mBendDirection;
-    /* 0xCC */ f32 mLaunchHorizontalSpeed;
-    /* 0xD0 */ f32 mLaunchVerticalSpeed;
+    /* 0xCC */ f32 mJumpSpeedFront;
+    /* 0xD0 */ f32 mJumpSpeedUp;
     /* 0xD4 */ ActorCameraInfo* mCameraInfo;
     /* 0xD8 */ TVec3f mClippingCenter;
     /* 0xE4 */ JUTTexture* mTexture;

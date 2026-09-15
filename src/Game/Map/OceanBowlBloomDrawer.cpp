@@ -11,7 +11,7 @@ OceanBowlBloomDrawer::OceanBowlBloomDrawer(OceanBowl* pHost) : NameObj("オー�
 }
 
 void OceanBowlBloomDrawer::init(const JMapInfoIter&) {
-    MR::connectToScene(this, -1, -1, -1, MR::DrawType_OceanBowlBloomDrawer);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_OceanBowlBloomDrawer);
 }
 
 void OceanBowlBloomDrawer::draw() const {

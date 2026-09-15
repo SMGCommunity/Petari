@@ -23,8 +23,8 @@ namespace {
 };  // namespace
 
 MiiSelectIcon::MiiSelectIcon(int movementType, int calcAnimType, int drawType, const char* pName)
-    : LayoutActor(pName, true), _20(nullptr), _24(nullptr), _28(nullptr), mIcon(nullptr), mMiiTexMap(nullptr), mFellowTexMap(nullptr),
-      mIconID(new FileSelectIconID()), mIsMiiDummy(false), _3D(true) {
+    : LayoutActor(pName, true), _20(), _24(), _28(), mIcon(), mMiiTexMap(), mFellowTexMap(), mIconID(new FileSelectIconID()), mIsMiiDummy(),
+      _3D(true) {
     initLayoutManager("MiiIcon", 1);
     MR::createAndAddPaneCtrl(this, "MarioIcon", 3);
     MR::createAndAddPaneCtrl(this, "MiiIcon", 3);
@@ -45,7 +45,7 @@ MiiSelectIcon::MiiSelectIcon(int movementType, int calcAnimType, int drawType, c
         drawType = MR::DrawType_LayoutDecoration;
     }
 
-    MR::connectToScene(this, movementType, calcAnimType, -1, drawType);
+    MR::connectToScene(this, movementType, calcAnimType, MR::DrawBufferType_None, drawType);
 }
 
 void MiiSelectIcon::appear(const FileSelectIconID& rIconID) {
