@@ -2,6 +2,7 @@
 #include "Game/Boss/BossStinkBugActionSequencer.hpp"
 #include "Game/Boss/BossStinkBugBomb.hpp"
 #include "Game/Boss/BossStinkBugBombHolder.hpp"
+#include "Game/Boss/BossStinkBugFollowValidater.hpp"
 #include "Game/LiveActor/ActorJointCtrl.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
@@ -27,6 +28,12 @@
 #include "JSystem/JMath/JMath.hpp"
 #include "revolution/mtx.h"
 #include "revolution/types.h"
+
+void BossStinkBug_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)2.0f;
+}
 
 namespace {
     const char* sSensorNameList[] = {"Body", "BodyHipDrop"};

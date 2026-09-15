@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
 
 class ActorCameraInfo;
 class ActorJointCtrl;
@@ -78,17 +78,4 @@ public:
     f32 _10C;
     bool _110;
     bool _111;
-};
-
-class BossStinkBugFollowValidater : public BaseMatrixFollowValidater {
-public:
-    BossStinkBugFollowValidater(BossStinkBug* pStinkBug) {
-        mStinkBug = pStinkBug;
-    }
-
-    virtual bool isValid(s32 id) const {
-        return mStinkBug->isValidFollowId(id);
-    }
-
-    BossStinkBug* mStinkBug;
 };
