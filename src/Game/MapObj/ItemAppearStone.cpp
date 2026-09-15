@@ -29,7 +29,7 @@ void ItemAppearStone::init(const JMapInfoIter& rIter) {
     MR::initCollisionParts(this, model_name, sensor, MR::getJointMtx(this, "Move"));
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     MR::needStageSwitchReadB(this, rIter);
-    initNerve(&NrvItemAppearStone::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(ItemAppearStone, HostTypeWait));
     makeActorAppeared();
     MR::startBck(this, model_name, 0);
 }

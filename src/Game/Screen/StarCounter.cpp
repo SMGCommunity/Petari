@@ -24,7 +24,7 @@ void StarCounter::init(const JMapInfoIter& rIter) {
     mPaneRumbler = new CountUpPaneRumbler(this, "Counter");
 
     MR::connectToSceneLayout(this);
-    initNerve(&NrvStarCounter::StarCounterNrvAppear::sInstance);
+    initNerve(GET_NERVE(StarCounter, StarCounterNrvAppear));
 }
 
 void StarCounter::appear() {
@@ -35,18 +35,18 @@ void StarCounter::appear() {
     mPowerStarNum = MR::getPowerStarNum();
 
     MR::setTextBoxNumberRecursive(this, "Counter", mPowerStarNum);
-    setNerve(&NrvStarCounter::StarCounterNrvAppear::sInstance);
+    setNerve(GET_NERVE(StarCounter, StarCounterNrvAppear));
     LayoutActor::appear();
     MR::requestMovementOn(this);
 }
 
 void StarCounter::disappear() {
     MR::requestMovementOn(this);
-    setNerve(&NrvStarCounter::StarCounterNrvDisappear::sInstance);
+    setNerve(GET_NERVE(StarCounter, StarCounterNrvDisappear));
 }
 
 bool StarCounter::isWait() const {
-    return isNerve(&NrvStarCounter::StarCounterNrvWait::sInstance);
+    return isNerve(GET_NERVE(StarCounter, StarCounterNrvWait));
 }
 
 void StarCounter::control() {
@@ -56,13 +56,13 @@ void StarCounter::control() {
 
 void StarCounter::exeAppear() {
     if (mLayoutAppearer->isAppeared()) {
-        setNerve(&NrvStarCounter::StarCounterNrvWait::sInstance);
+        setNerve(GET_NERVE(StarCounter, StarCounterNrvWait));
     }
 }
 
 void StarCounter::exeWait() {
     if (mPowerStarNum < MR::getPowerStarNum()) {
-        setNerve(&NrvStarCounter::StarCounterNrvCountUp::sInstance);
+        setNerve(GET_NERVE(StarCounter, StarCounterNrvCountUp));
     }
 }
 
@@ -76,7 +76,7 @@ void StarCounter::exeCountUp() {
     }
 
     if (MR::isAnimStopped(this, 0) && !mPaneRumbler->isRumbling()) {
-        setNerve(&NrvStarCounter::StarCounterNrvWait::sInstance);
+        setNerve(GET_NERVE(StarCounter, StarCounterNrvWait));
     }
 }
 

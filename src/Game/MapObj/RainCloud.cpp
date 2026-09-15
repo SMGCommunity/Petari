@@ -118,7 +118,7 @@ void RainCloud::init(const JMapInfoIter& rIter) {
         MR::startBpk(_F4->_14, "Rain");
     }
 
-    initNerve(&NrvRainCloud::RainCloudNrvWait::sInstance);
+    initNerve(GET_NERVE(RainCloud, RainCloudNrvWait));
     makeActorAppeared();
 }
 
@@ -150,7 +150,7 @@ void RainCloud::exeAppear() {
 
     if (MR::isBckStopped(this)) {
         MR::validateHitSensors(this);
-        setNerve(&NrvRainCloud::RainCloudNrvWait::sInstance);
+        setNerve(GET_NERVE(RainCloud, RainCloudNrvWait));
     }
 }
 
@@ -161,7 +161,7 @@ void RainCloud::exeWait() {
 
     if (!MR::isOnPlayer(this) && mIsOnPlayer) {
         mIsOnPlayer = false;
-        setNerve(&NrvRainCloud::RainCloudNrvSoftTouch::sInstance);
+        setNerve(GET_NERVE(RainCloud, RainCloudNrvSoftTouch));
     }
 }
 
@@ -179,7 +179,7 @@ void RainCloud::exeDisappear() {
     }
 
     if (MR::isMapPartsRailMovePassedStartPointRepeat(mRailMover)) {
-        setNerve(&NrvRainCloud::RainCloudNrvEnd::sInstance);
+        setNerve(GET_NERVE(RainCloud, RainCloudNrvEnd));
     }
 }
 
@@ -189,7 +189,7 @@ void RainCloud::exeEnd() {
             mCloudCylinder->kill();
         }
 
-        setNerve(&NrvRainCloud::RainCloudNrvAppear::sInstance);
+        setNerve(GET_NERVE(RainCloud, RainCloudNrvAppear));
     }
 }
 
@@ -200,7 +200,7 @@ void RainCloud::exeSoftTouch() {
 
     if (MR::isBckStopped(this)) {
         mIsOnPlayer = MR::isOnPlayer(this);
-        setNerve(&NrvRainCloud::RainCloudNrvWait::sInstance);
+        setNerve(GET_NERVE(RainCloud, RainCloudNrvWait));
     }
 }
 
@@ -213,16 +213,16 @@ void RainCloud::exeHardTouch() {
 
     if (MR::isStep(this, 60)) {
         MR::validateCollisionParts(this);
-        setNerve(&NrvRainCloud::RainCloudNrvWait::sInstance);
+        setNerve(GET_NERVE(RainCloud, RainCloudNrvWait));
     }
 }
 
 void RainCloud::control() {
     _F4->update();
 
-    if (mRailMover != nullptr && !isNerve(&NrvRainCloud::RainCloudNrvEnd::sInstance) &&
+    if (mRailMover != nullptr && !isNerve(GET_NERVE(RainCloud, RainCloudNrvEnd)) &&
         (mRailMover->movement(), mPosition.set(mRailMover->_28), MR::isMapPartsRailMovePassedEndPointRepeat(mRailMover))) {
-        setNerve(&NrvRainCloud::RainCloudNrvDisappear::sInstance);
+        setNerve(GET_NERVE(RainCloud, RainCloudNrvDisappear));
     } else {
         if (MR::isShadowProjected(this, nullptr)) {
             _104 = MR::getShadowProjectionLength(this, nullptr);
@@ -278,8 +278,8 @@ void RainCloud::endClipped() {
 }
 
 void RainCloud::switchEffect() {
-    bool v2 = isNerve(&NrvRainCloud::RainCloudNrvAppear::sInstance) || isNerve(&NrvRainCloud::RainCloudNrvDisappear::sInstance) ||
-              isNerve(&NrvRainCloud::RainCloudNrvEnd::sInstance);
+    bool v2 = isNerve(GET_NERVE(RainCloud, RainCloudNrvAppear)) || isNerve(GET_NERVE(RainCloud, RainCloudNrvDisappear)) ||
+              isNerve(GET_NERVE(RainCloud, RainCloudNrvEnd));
 
     if (v2) {
         if (MR::isEffectValid(this, "Splash")) {

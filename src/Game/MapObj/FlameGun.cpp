@@ -26,17 +26,17 @@ void FlameGun::init(const JMapInfoIter& rIter) {
     mState = arg;
 
     if (MR::useStageSwitchReadA(this, rIter)) {
-        initNerve(&NrvFlameGun::HostTypeNrvSwitchWait::sInstance);
+        initNerve(GET_NERVE(FlameGun, HostTypeNrvSwitchWait));
     } else {
         switch (mState) {
         case 0:
-            initNerve(&NrvFlameGun::HostTypeNrvSwitchWait::sInstance);
+            initNerve(GET_NERVE(FlameGun, HostTypeNrvSwitchWait));
             break;
         case 1:
-            initNerve(&NrvFlameGun::HostTypeNrvRotate::sInstance);
+            initNerve(GET_NERVE(FlameGun, HostTypeNrvRotate));
             break;
         case 2:
-            initNerve(&NrvFlameGun::HostTypeNrvRadiateOnly::sInstance);
+            initNerve(GET_NERVE(FlameGun, HostTypeNrvRadiateOnly));
             break;
         }
     }
@@ -70,8 +70,8 @@ void FlameGun::initAfterPlacement() {
 void FlameGun::endClipped() {
     LiveActor::endClipped();
 
-    if (!isNerve(&NrvFlameGun::HostTypeNrvRadiate::sInstance) && !isNerve(&NrvFlameGun::HostTypeNrvRotate::sInstance)) {
-        isNerve(&NrvFlameGun::HostTypeNrvRadiateOnly::sInstance);
+    if (!isNerve(GET_NERVE(FlameGun, HostTypeNrvRadiate)) && !isNerve(GET_NERVE(FlameGun, HostTypeNrvRotate))) {
+        isNerve(GET_NERVE(FlameGun, HostTypeNrvRadiateOnly));
     }
 }
 
@@ -83,13 +83,13 @@ void FlameGun::exeSwitchWait() {
     if (MR::isValidSwitchA(this) && MR::isOnSwitchA(this)) {
         switch (mState) {
         case 0:
-            setNerve(&NrvFlameGun::HostTypeNrvPreRadiate::sInstance);
+            setNerve(GET_NERVE(FlameGun, HostTypeNrvPreRadiate));
             break;
         case 1:
-            setNerve(&NrvFlameGun::HostTypeNrvRotate::sInstance);
+            setNerve(GET_NERVE(FlameGun, HostTypeNrvRotate));
             break;
         case 2:
-            setNerve(&NrvFlameGun::HostTypeNrvRadiateOnly::sInstance);
+            setNerve(GET_NERVE(FlameGun, HostTypeNrvRadiateOnly));
             break;
         }
     }
@@ -101,7 +101,7 @@ void FlameGun::exeWait() {
     }
 
     if (MR::isGreaterStep(this, 120)) {
-        setNerve(&NrvFlameGun::HostTypeNrvPreRadiate::sInstance);
+        setNerve(GET_NERVE(FlameGun, HostTypeNrvPreRadiate));
     }
 }
 
@@ -112,7 +112,7 @@ void FlameGun::exePreRadiate() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvFlameGun::HostTypeNrvRadiate::sInstance);
+        setNerve(GET_NERVE(FlameGun, HostTypeNrvRadiate));
         MR::setBrkFrameAndStop(this, 0.0f);
     }
 }
@@ -126,7 +126,7 @@ void FlameGun::exeRadiate() {
     MR::startLevelSound(this, "SE_EM_LV_FLAMEGUN_FIRE");
 
     if (MR::isGreaterStep(this, 120)) {
-        setNerve(&NrvFlameGun::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(FlameGun, HostTypeNrvWait));
         MR::forceDeleteEffectAll(this);
         MR::invalidateHitSensor(this, "attack");
     }

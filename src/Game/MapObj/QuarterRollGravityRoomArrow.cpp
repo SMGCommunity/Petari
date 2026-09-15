@@ -20,7 +20,7 @@ void QuarterRollGravityRoomArrow::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info = MapObjActorInitInfo();
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
-    info.setupNerve(&NrvQuarterRollGravityRoomArrow::QuarterRollGravityRoomArrowNrvWait::sInstance);
+    info.setupNerve(GET_NERVE(QuarterRollGravityRoomArrow, QuarterRollGravityRoomArrowNrvWait));
     initialize(rIter, info);
 }
 
@@ -38,7 +38,7 @@ void QuarterRollGravityRoomArrow::exeRollOffA() {
         MR::startBck(this, "RollGravityAReverse", 0);
     }
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvQuarterRollGravityRoomArrow::QuarterRollGravityRoomArrowNrvWait::sInstance);
+        setNerve(GET_NERVE(QuarterRollGravityRoomArrow, QuarterRollGravityRoomArrowNrvWait));
     }
 }
 
@@ -70,17 +70,17 @@ void QuarterRollGravityRoomArrow::initCaseNoUseSwitchB(const MapObjActorInitInfo
 }
 
 void QuarterRollGravityRoomArrow::onRollA() {
-    setNerve(&NrvQuarterRollGravityRoomArrow::QuarterRollGravityRoomArrowNrvRollOnA::sInstance);
+    setNerve(GET_NERVE(QuarterRollGravityRoomArrow, QuarterRollGravityRoomArrowNrvRollOnA));
 }
 
 void QuarterRollGravityRoomArrow::offRollA() {
-    setNerve(&NrvQuarterRollGravityRoomArrow::QuarterRollGravityRoomArrowNrvRollOffA::sInstance);
+    setNerve(GET_NERVE(QuarterRollGravityRoomArrow, QuarterRollGravityRoomArrowNrvRollOffA));
 }
 
 void QuarterRollGravityRoomArrow::onRollB() {
-    setNerve(&NrvQuarterRollGravityRoomArrow::QuarterRollGravityRoomArrowNrvRollOnB::sInstance);
+    setNerve(GET_NERVE(QuarterRollGravityRoomArrow, QuarterRollGravityRoomArrowNrvRollOnB));
 }
 
 void QuarterRollGravityRoomArrow::offRollB() {
-    setNerve(&NrvQuarterRollGravityRoomArrow::QuarterRollGravityRoomArrowNrvRollOffB::sInstance);
+    setNerve(GET_NERVE(QuarterRollGravityRoomArrow, QuarterRollGravityRoomArrowNrvRollOffB));
 }

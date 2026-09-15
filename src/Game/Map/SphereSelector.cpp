@@ -40,7 +40,7 @@ void SphereSelector::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjDecorationMovement(this);
     MR::invalidateClipping(this);
     mSphereGroup = new LiveActorGroup("スフィアセレクターアクターグループ", 32);
-    initNerve(&NrvSphereSelector::SphereSelectorNrvSelectStart::sInstance);
+    initNerve(GET_NERVE(SphereSelector, SphereSelectorNrvSelectStart));
     makeActorDead();
 }
 
@@ -52,7 +52,7 @@ void SphereSelector::appear() {
     mIsPointingInvalid = false;
     MR::deactivateDefaultGameLayout();
     MR::startStarPointerModeSphereSelectorFinger(this);
-    setNerve(&NrvSphereSelector::SphereSelectorNrvSelectStart::sInstance);
+    setNerve(GET_NERVE(SphereSelector, SphereSelectorNrvSelectStart));
 }
 
 void SphereSelector::kill() {
@@ -180,7 +180,7 @@ void SphereSelector::exeConfirmStart() {
         _B1 = false;
         MR::endStarPointerMode(this);
     }
-    MR::setNerveAtStep(this, &NrvSphereSelector::SphereSelectorNrvConfirmWait::sInstance, SphereSelectorFunction::getConfirmStartCancelFrame());
+    MR::setNerveAtStep(this, GET_NERVE(SphereSelector, SphereSelectorNrvConfirmWait), SphereSelectorFunction::getConfirmStartCancelFrame());
 }
 
 void SphereSelector::exeConfirmCancel() {
@@ -193,7 +193,7 @@ void SphereSelector::exeConfirmCancel() {
         }
         _B1 = false;
     }
-    MR::setNerveAtStep(this, &NrvSphereSelector::SphereSelectorNrvSelectWait::sInstance, SphereSelectorFunction::getConfirmStartCancelFrame());
+    MR::setNerveAtStep(this, GET_NERVE(SphereSelector, SphereSelectorNrvSelectWait), SphereSelectorFunction::getConfirmStartCancelFrame());
 }
 
 void SphereSelector::exeSelectStart() {
@@ -201,7 +201,7 @@ void SphereSelector::exeSelectStart() {
         sendMsgToAllActor(ACTMES_SPHERE_SELECTOR_SELECT_START);
     }
 
-    MR::setNerveAtStep(this, &NrvSphereSelector::SphereSelectorNrvSelectWait::sInstance, 60);
+    MR::setNerveAtStep(this, GET_NERVE(SphereSelector, SphereSelectorNrvSelectWait), 60);
 }
 
 void SphereSelector::exeConfirmWait() {
@@ -239,7 +239,7 @@ void SphereSelectorFunction::selectCancel(bool b) {
     if (b) {
         ::getSphereSelector()->_B1 = true;
     }
-    ::getSphereSelector()->setNerve(&NrvSphereSelector::SphereSelectorNrvSelectCancel::sInstance);
+    ::getSphereSelector()->setNerve(GET_NERVE(SphereSelector, SphereSelectorNrvSelectCancel));
 }
 
 void SphereSelectorFunction::selectEnd() {
@@ -247,26 +247,26 @@ void SphereSelectorFunction::selectEnd() {
 }
 
 void SphereSelectorFunction::confirmStart() {
-    ::getSphereSelector()->setNerve(&NrvSphereSelector::SphereSelectorNrvConfirmStart::sInstance);
+    ::getSphereSelector()->setNerve(GET_NERVE(SphereSelector, SphereSelectorNrvConfirmStart));
 }
 
 void SphereSelectorFunction::confirmCancel(bool b) {
     if (b) {
         ::getSphereSelector()->_B1 = true;
     }
-    ::getSphereSelector()->setNerve(&NrvSphereSelector::SphereSelectorNrvConfirmCancel::sInstance);
+    ::getSphereSelector()->setNerve(GET_NERVE(SphereSelector, SphereSelectorNrvConfirmCancel));
 }
 
 void SphereSelectorFunction::confirmed() {
-    ::getSphereSelector()->setNerve(&NrvSphereSelector::SphereSelectorNrvConfirmed::sInstance);
+    ::getSphereSelector()->setNerve(GET_NERVE(SphereSelector, SphereSelectorNrvConfirmed));
 }
 
 bool SphereSelectorFunction::isSelectWait() {
-    return ::getSphereSelector()->isNerve(&NrvSphereSelector::SphereSelectorNrvSelectWait::sInstance);
+    return ::getSphereSelector()->isNerve(GET_NERVE(SphereSelector, SphereSelectorNrvSelectWait));
 }
 
 bool SphereSelectorFunction::isConfirmWait() {
-    return ::getSphereSelector()->isNerve(&NrvSphereSelector::SphereSelectorNrvConfirmWait::sInstance);
+    return ::getSphereSelector()->isNerve(GET_NERVE(SphereSelector, SphereSelectorNrvConfirmWait));
 }
 
 bool SphereSelectorFunction::isMsgSelectStart(u32 msg) {

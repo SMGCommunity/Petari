@@ -153,7 +153,7 @@ void TicoFat::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("TicoFat");
     NPCActorItem item("TicoFat");
     caps.setDefault();
-    caps.mWaitNerve = &NrvTicoFat::TicoFatNrvPrep::sInstance;
+    caps.mWaitNerve = GET_NERVE(TicoFat, TicoFatNrvPrep);
     caps.mMessage = 0;
     caps.mSensorSize = 100.0f;
     caps.mSensorOffset.y = 30.0f;
@@ -297,10 +297,9 @@ void TicoFat::control() {
     TVec3f trans;
     MR::extractMtxTrans(MR::getJointMtx(this, "Center"), &trans);
     MR::requestPointLight(this, TVec3f(trans), ::hPointLight, 0.99864602f, -1);
-    if (isNerve(&NrvTicoFat::TicoFatNrvPrep::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvWait::sInstance) ||
-        isNerve(&NrvTicoFat::TicoFatNrvPoint::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvEat::sInstance) ||
-        isNerve(&NrvTicoFat::TicoFatNrvChem::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvFullness::sInstance) ||
-        isNerve(&NrvTicoFat::TicoFatNrvDemo::sInstance)) {
+    if (isNerve(GET_NERVE(TicoFat, TicoFatNrvPrep)) || isNerve(GET_NERVE(TicoFat, TicoFatNrvWait)) || isNerve(GET_NERVE(TicoFat, TicoFatNrvPoint)) ||
+        isNerve(GET_NERVE(TicoFat, TicoFatNrvEat)) || isNerve(GET_NERVE(TicoFat, TicoFatNrvChem)) ||
+        isNerve(GET_NERVE(TicoFat, TicoFatNrvFullness)) || isNerve(GET_NERVE(TicoFat, TicoFatNrvDemo))) {
         MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT");
     }
 
@@ -309,9 +308,9 @@ void TicoFat::control() {
     if (mStartEat) {
         if (!_1E0) {
             MR::invalidateClipping(this);
-            if (isNerve(&NrvTicoFat::TicoFatNrvPoint::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvEat::sInstance) ||
-                isNerve(&NrvTicoFat::TicoFatNrvChem::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvWait::sInstance)) {
-                setNerve(&NrvTicoFat::TicoFatNrvTest::sInstance);
+            if (isNerve(GET_NERVE(TicoFat, TicoFatNrvPoint)) || isNerve(GET_NERVE(TicoFat, TicoFatNrvEat)) ||
+                isNerve(GET_NERVE(TicoFat, TicoFatNrvChem)) || isNerve(GET_NERVE(TicoFat, TicoFatNrvWait))) {
+                setNerve(GET_NERVE(TicoFat, TicoFatNrvTest));
             }
         }
 
@@ -344,7 +343,7 @@ void TicoFat::control() {
         if (_178 > 0) {
             if (MR::isIntervalStep(this, _1F0)) {
                 if (MR::testCorePadButtonB(WPAD_CHAN0)) {
-                    if (!MR::isDemoActive() && !isNerve(&NrvTicoFat::TicoFatNrvReaction::sInstance)) {
+                    if (!MR::isDemoActive() && !isNerve(GET_NERVE(TicoFat, TicoFatNrvReaction))) {
                         if (_1E0 && MR::getStarPieceNum() > 0) {
                             shootStarPiece();
                         }
@@ -493,14 +492,14 @@ void TicoFat::receiveStarPiece(s32 num) {
         setCameraParam();
     }
 
-    if (isNerve(&NrvTicoFat::TicoFatNrvEat::sInstance)) {
+    if (isNerve(GET_NERVE(TicoFat, TicoFatNrvEat))) {
         MR::setBckRate(this, MR::calcNerveValue(this, 0, 180, 1.0f, 1.6f));
     } else {
         if (!isEmptyNerve()) {
             popNerve();
         }
 
-        setNerve(&NrvTicoFat::TicoFatNrvEat::sInstance);
+        setNerve(GET_NERVE(TicoFat, TicoFatNrvEat));
     }
 }
 
@@ -554,12 +553,12 @@ void TicoFat::disappear(bool a1) {
 
 bool TicoFat::tryMetamorphosis() {
     if (_1DC == -1) {
-        setNerve(&NrvTicoFat::TicoFatNrvDemo::sInstance);
+        setNerve(GET_NERVE(TicoFat, TicoFatNrvDemo));
         MR::callRequestMovementOnAllGroupMember(this);
         MR::requestMovementOn(_94);
         MR::requestMovementOn(_98);
     } else {
-        setNerve(&NrvTicoFat::TicoFatNrvMeta::sInstance);
+        setNerve(GET_NERVE(TicoFat, TicoFatNrvMeta));
     }
 
     return true;
@@ -626,7 +625,7 @@ void TicoFat::updateGuidance() {
 void TicoFat::updatePointing() {
     bool isPointing;
 
-    if (isNerve(&NrvTicoFat::TicoFatNrvEat::sInstance)) {
+    if (isNerve(GET_NERVE(TicoFat, TicoFatNrvEat))) {
         isPointing = MR::isStarPointerPointing1PWithoutCheckZ(this, nullptr, false, false);
     } else {
         isPointing = MR::isStarPointerPointing(this, 0, false, nullptr);
@@ -683,9 +682,9 @@ void TicoFat::exePrep() {
         MR::startAction(this, getActionName("Wait"));
     }
 
-    if (!MR::tryStartReactionAndPushNerve(this, &NrvTicoFat::TicoFatNrvReaction::sInstance) && !MR::isPlayerElementModeInvincible()) {
+    if (!MR::tryStartReactionAndPushNerve(this, GET_NERVE(TicoFat, TicoFatNrvReaction)) && !MR::isPlayerElementModeInvincible()) {
         if (mStartEat) {
-            setNerve(&NrvTicoFat::TicoFatNrvWait::sInstance);
+            setNerve(GET_NERVE(TicoFat, TicoFatNrvWait));
         } else if (mMsgCtrl != nullptr) {
             MR::tryTalkNearPlayerAndStartTalkAction(this);
         }
@@ -704,9 +703,9 @@ void TicoFat::exeWait() {
         setMessage(1);
     }
 
-    if (!MR::tryStartReactionAndPushNerve(this, &NrvTicoFat::TicoFatNrvReaction::sInstance)) {
+    if (!MR::tryStartReactionAndPushNerve(this, GET_NERVE(TicoFat, TicoFatNrvReaction))) {
         if (_178 > 0) {
-            setNerve(&NrvTicoFat::TicoFatNrvPoint::sInstance);
+            setNerve(GET_NERVE(TicoFat, TicoFatNrvPoint));
         } else {
             turnToDefault(mParam._8);
             MR::tryTalkNearPlayer(_16C);
@@ -721,9 +720,9 @@ void TicoFat::exePoint() {
         MR::startAction(this, getActionName("Excite"));
     }
 
-    if (!MR::tryStartReactionAndPushNerve(this, &NrvTicoFat::TicoFatNrvReaction::sInstance)) {
+    if (!MR::tryStartReactionAndPushNerve(this, GET_NERVE(TicoFat, TicoFatNrvReaction))) {
         if (_178 <= 0) {
-            setNerve(&NrvTicoFat::TicoFatNrvWait::sInstance);
+            setNerve(GET_NERVE(TicoFat, TicoFatNrvWait));
         } else {
             turnToDefault(mParam._8);
             MR::tryTalkForce(_16C);
@@ -743,7 +742,7 @@ void TicoFat::exeEat() {
 
     MR::startLevelSound(this, "SE_SM_LV_TICOFAT_EATING", getDanceSeTranspose());
     if (!mCurrentFed) {
-        setNerve(&NrvTicoFat::TicoFatNrvChem::sInstance);
+        setNerve(GET_NERVE(TicoFat, TicoFatNrvChem));
     }
 }
 
@@ -761,10 +760,10 @@ void TicoFat::exeChem() {
     if (MR::isBckLooped(this)) {
         if (_178 > 0) {
             _174 = 8;
-            setNerve(&NrvTicoFat::TicoFatNrvPoint::sInstance);
+            setNerve(GET_NERVE(TicoFat, TicoFatNrvPoint));
         } else {
             _174 = 0;
-            setNerve(&NrvTicoFat::TicoFatNrvWait::sInstance);
+            setNerve(GET_NERVE(TicoFat, TicoFatNrvWait));
         }
     }
 }
@@ -787,7 +786,7 @@ void TicoFat::exeTest() {
         MR::requestMovementOn(_94);
         MR::requestMovementOn(_98);
         mMeter->pauseOff();
-        setNerve(&NrvTicoFat::TicoFatNrvFullness::sInstance);
+        setNerve(GET_NERVE(TicoFat, TicoFatNrvFullness));
     }
 }
 
@@ -845,10 +844,10 @@ void TicoFat::exeDemo() {
     if (MR::isBckStopped(this)) {
         MR::endMultiActorCamera(this, mCameraInfo, "変身", false, -1);
         if (_1DC == -1 && MR::isExistRail(this)) {
-            setNerve(&NrvTicoFat::TicoFatNrvFly::sInstance);
+            setNerve(GET_NERVE(TicoFat, TicoFatNrvFly));
         } else {
             MR::setNPCActorPos(this, mPosition);
-            setNerve(&NrvTicoFat::TicoFatNrvWipeOut::sInstance);
+            setNerve(GET_NERVE(TicoFat, TicoFatNrvWipeOut));
         }
     }
 }
@@ -888,7 +887,7 @@ void TicoFat::exeFly() {
     MR::setNPCActorPos(this, shootPos);
     _1F8 += _1FC;
     if (easeIn >= 1.0f) {
-        setNerve(&NrvTicoFat::TicoFatNrvWipeOut::sInstance);
+        setNerve(GET_NERVE(TicoFat, TicoFatNrvWipeOut));
     }
 }
 
@@ -907,7 +906,7 @@ void TicoFat::exeWipeOut() {
     if (!MR::isWipeActive()) {
         MR::emitEffect(this, "TicoFatScreenEFfectFog")->setHostMtx(_17C);
         MR::deleteEffect(this, "TicoFatScreenEffect");
-        setNerve(&NrvTicoFat::TicoFatNrvWipeIn::sInstance);
+        setNerve(GET_NERVE(TicoFat, TicoFatNrvWipeIn));
     }
 }
 
@@ -939,7 +938,7 @@ void TicoFat::exeWipeIn() {
         }
 
         if (!MR::isWipeActive()) {
-            setNerve(&NrvTicoFat::TicoFatNrvInfo::sInstance);
+            setNerve(GET_NERVE(TicoFat, TicoFatNrvInfo));
         }
     }
 }
@@ -953,7 +952,7 @@ void TicoFat::exeInfo() {
     if (MR::testCorePadTriggerA(WPAD_CHAN0)) {
         MR::startSystemSE("SE_SY_TALK_OK");
         MR::disappearInformationMessage();
-        setNerve(&NrvTicoFat::TicoFatNrvAfter::sInstance);
+        setNerve(GET_NERVE(TicoFat, TicoFatNrvAfter));
     }
 }
 

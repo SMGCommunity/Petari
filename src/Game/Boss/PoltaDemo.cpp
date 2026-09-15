@@ -43,22 +43,22 @@ PoltaDemo::PoltaDemo(Polta* pPolta) : PoltaActionBase("ポルタデモ", pPolta)
 }
 
 void PoltaDemo::init() {
-    initNerve(&NrvPoltaDemo::PoltaDemoNrvOpeningDemo::sInstance);
+    initNerve(GET_NERVE(PoltaDemo, PoltaDemoNrvOpeningDemo));
 }
 
 void PoltaDemo::control() {
 }
 
 void PoltaDemo::startOpeningDemo() {
-    startTryDemo("ポルタ開始デモ", &NrvPoltaDemo::PoltaDemoNrvOpeningDemo::sInstance);
+    startTryDemo("ポルタ開始デモ", GET_NERVE(PoltaDemo, PoltaDemoNrvOpeningDemo));
 }
 
 void PoltaDemo::startPowerUpDemo() {
-    startTryDemo("ポルタパワーアップデモ", &NrvPoltaDemo::PoltaDemoNrvPowerUpDemo::sInstance);
+    startTryDemo("ポルタパワーアップデモ", GET_NERVE(PoltaDemo, PoltaDemoNrvPowerUpDemo));
 }
 
 void PoltaDemo::startDownDemo() {
-    startTryDemo("ポルタダウンデモ", &NrvPoltaDemo::PoltaDemoNrvDownDemo::sInstance);
+    startTryDemo("ポルタダウンデモ", GET_NERVE(PoltaDemo, PoltaDemoNrvDownDemo));
 }
 
 void PoltaDemo::startDemoSetting() {
@@ -77,7 +77,7 @@ void PoltaDemo::startTryDemo(const char* pDemoName, const Nerve* pDemoNerve) {
         startDemoSetting();
         return;
     }
-    setNerve(&NrvPoltaDemo::PoltaDemoNrvTryStartDemo::sInstance);
+    setNerve(GET_NERVE(PoltaDemo, PoltaDemoNrvTryStartDemo));
 }
 
 void PoltaDemo::exeTryStartDemo() {

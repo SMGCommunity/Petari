@@ -54,13 +54,13 @@ void SuddenDeathMeter::init(const JMapInfoIter& rIter) {
     MR::setAnimFrameAndStop(this, 20.0f, 2);
     setCountAnimFrame();
     mCountUpPaneRumbler = new CountUpPaneRumbler(this, "HitPointNumber");
-    initNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvWait::sInstance);
+    initNerve(GET_NERVE(SuddenDeathMeter, SuddenDeathMeterNrvWait));
     initEffectKeeper(0, nullptr, nullptr);
     appear();
 }
 
 void SuddenDeathMeter::control() {
-    if (isNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvAppear::sInstance)) {
+    if (isNerve(GET_NERVE(SuddenDeathMeter, SuddenDeathMeterNrvAppear))) {
         mAlpha = 1.0f;
     }
 
@@ -78,7 +78,7 @@ void SuddenDeathMeter::requestActive() {
     appear();
     mCountUpPaneRumbler->reset();
     MR::showLayout(this);
-    setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvWait::sInstance);
+    setNerve(GET_NERVE(SuddenDeathMeter, SuddenDeathMeterNrvWait));
 }
 
 void SuddenDeathMeter::requestDeactivate() {
@@ -90,12 +90,12 @@ void SuddenDeathMeter::requestDeactivate() {
 }
 
 void SuddenDeathMeter::requestPowerUp() {
-    setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvPowerUp::sInstance);
+    setNerve(GET_NERVE(SuddenDeathMeter, SuddenDeathMeterNrvPowerUp));
 }
 
 void SuddenDeathMeter::requestForceAppear() {
     requestActive();
-    setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvAppear::sInstance);
+    setNerve(GET_NERVE(SuddenDeathMeter, SuddenDeathMeterNrvAppear));
 }
 
 void SuddenDeathMeter::requestPlayerMoving() {
@@ -108,7 +108,7 @@ void SuddenDeathMeter::exeAppear() {
     }
 
     if (MR::isGreaterStep(this, ::sAppearTime)) {
-        setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvWait::sInstance);
+        setNerve(GET_NERVE(SuddenDeathMeter, SuddenDeathMeterNrvWait));
     }
 }
 
@@ -131,7 +131,7 @@ void SuddenDeathMeter::exePowerUp() {
     setPowerUpMeterPosition(position);
 
     if (MR::isGreaterStep(this, ::sPowerUpWaitTime)) {
-        setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvMeterMove::sInstance);
+        setNerve(GET_NERVE(SuddenDeathMeter, SuddenDeathMeterNrvMeterMove));
     }
 }
 
@@ -145,7 +145,7 @@ void SuddenDeathMeter::exeMeterMove() {
     mFollowPosW = _2C * (1.0f - rate);
 
     if (MR::isGreaterStep(this, ::sMoveToBasePositionTime)) {
-        setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvCounterMove::sInstance);
+        setNerve(GET_NERVE(SuddenDeathMeter, SuddenDeathMeterNrvCounterMove));
     }
 }
 
@@ -155,7 +155,7 @@ void SuddenDeathMeter::exeCounterMove() {
         MR::setTextBoxNumberRecursive(this, "HitPointNumber", 2);
     }
     if (MR::isAnimStopped(this, 1)) {
-        setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvWait::sInstance);
+        setNerve(GET_NERVE(SuddenDeathMeter, SuddenDeathMeterNrvWait));
     }
 }
 
@@ -171,7 +171,7 @@ void SuddenDeathMeter::exeBreakMeter() {
         MR::startSystemSE("SE_SY_LIFE_PLATE_DEC");
         MR::startAnim(this, "FontPosition2to1", 1);
         setCountAnimFrame();
-        setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvWait::sInstance);
+        setNerve(GET_NERVE(SuddenDeathMeter, SuddenDeathMeterNrvWait));
     }
 }
 
@@ -182,7 +182,7 @@ void SuddenDeathMeter::exeZeroMeter() {
     }
 
     if (MR::isAnimStopped(this, 1)) {
-        setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvZeroMeterBreak::sInstance);
+        setNerve(GET_NERVE(SuddenDeathMeter, SuddenDeathMeterNrvZeroMeterBreak));
     }
 }
 
@@ -210,9 +210,9 @@ void SuddenDeathMeter::setCount(s32 count) {
     }
 
     if (count == 0) {
-        setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvZeroMeter::sInstance);
+        setNerve(GET_NERVE(SuddenDeathMeter, SuddenDeathMeterNrvZeroMeter));
     } else {
-        setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvBreakMeter::sInstance);
+        setNerve(GET_NERVE(SuddenDeathMeter, SuddenDeathMeterNrvBreakMeter));
     }
 }
 

@@ -27,7 +27,7 @@ void GamePauseSequence::init(const JMapInfoIter& rIter) {
         mPauseMenu->initWithoutIter();
     }
 
-    initNerve(&GamePauseSequenceDeactive::sInstance);
+    initNerve(GET_NERVE_GLOBAL(GamePauseSequenceDeactive));
 }
 
 void GamePauseSequence::initWindowMenu(const MR::FunctorBase& rFunc) {
@@ -46,10 +46,10 @@ void GamePauseSequence::startPause(MenuType type) {
     switch (mMenuType) {
     case ActivePause:
         mPauseMenu->appear();
-        setNerve(&GamePauseSequenceActivePauseMenu::sInstance);
+        setNerve(GET_NERVE_GLOBAL(GamePauseSequenceActivePauseMenu));
         break;
     case SceneInformation:
-        setNerve(&GamePauseSequenceSceneInformation::sInstance);
+        setNerve(GET_NERVE_GLOBAL(GamePauseSequenceSceneInformation));
         break;
     }
 }
@@ -58,7 +58,7 @@ void GamePauseSequence::deactivate() {
     MR::endStarPointerMode(this);
     kill();
     GameSystemFunction::onPauseEndAllRumble();
-    setNerve(&GamePauseSequenceDeactive::sInstance);
+    setNerve(GET_NERVE_GLOBAL(GamePauseSequenceDeactive));
 }
 
 void GamePauseSequence::exeDeactive() {

@@ -151,7 +151,7 @@ void FileSelector::init(const JMapInfoIter& rIter) {
     createMiiConfirmIcon();
     createManual();
     createSelectEffect();
-    initNerve(&NrvFileSelector::FileSelectorNrvWaitBind::sInstance);
+    initNerve(GET_NERVE(FileSelector, FileSelectorNrvWaitBind));
     MR::tryRegisterDemoCast(this, rIter);
     createMiiFont();
     appear();
@@ -160,7 +160,7 @@ void FileSelector::init(const JMapInfoIter& rIter) {
 void FileSelector::appear() {
     LiveActor::appear();
     mCameraController->appear();
-    setNerve(&NrvFileSelector::FileSelectorNrvWaitBind::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvWaitBind));
 }
 
 void FileSelector::kill() {
@@ -169,26 +169,26 @@ void FileSelector::kill() {
 }
 
 void FileSelector::callbackStart() {
-    setNerve(&NrvFileSelector::FileSelectorNrvDemoStartWait::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvDemoStartWait));
 }
 
 void FileSelector::callbackCopy() {
-    setNerve(&NrvFileSelector::FileSelectorNrvCopyWait::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvCopyWait));
 }
 
 void FileSelector::callbackMii() {
     disappearAllLayout();
     invalidateSelectAll();
-    setNerve(&NrvFileSelector::FileSelectorNrvMiiWait::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiWait));
 }
 
 void FileSelector::callbackDelete() {
-    setNerve(&NrvFileSelector::FileSelectorNrvDeleteConfirmStart::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvDeleteConfirmStart));
 }
 
 void FileSelector::callbackManual() {
     MR::startSystemSE("SE_SY_FILE_SEL_TIPS_OPEN");
-    setNerve(&NrvFileSelector::FileSelectorNrvManualStart::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvManualStart));
 }
 
 void FileSelector::notifyItem(FileSelectItem* pItem, s32 param2) {
@@ -200,7 +200,7 @@ void FileSelector::notifyItem(FileSelectItem* pItem, s32 param2) {
         onSelect(pItem);
         break;
     case 2:
-        if (isNerve(&NrvFileSelector::FileSelectorNrvCopySelect::sInstance)) {
+        if (isNerve(GET_NERVE(FileSelector, FileSelectorNrvCopySelect))) {
             onPoint(pItem);
         }
         break;
@@ -229,9 +229,9 @@ void FileSelector::control() {
 }
 
 bool FileSelector::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isMsgAutoRushBegin(msg) && isNerve(&NrvFileSelector::FileSelectorNrvWaitBind::sInstance)) {
+    if (MR::isMsgAutoRushBegin(msg) && isNerve(GET_NERVE(FileSelector, FileSelectorNrvWaitBind))) {
         MR::hidePlayer();
-        setNerve(&NrvFileSelector::FileSelectorNrvTitle::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvTitle));
 
         return true;
     }
@@ -497,13 +497,13 @@ void FileSelector::onPoint(FileSelectItem* pItem) {
 }
 
 void FileSelector::onSelect(FileSelectItem* pItem) {
-    if (isNerve(&NrvFileSelector::FileSelectorNrvCopySelect::sInstance)) {
-        setNerve(&NrvFileSelector::FileSelectorNrvCopyConfirmStart::sInstance);
-    } else if (isNerve(&NrvFileSelector::FileSelectorNrvFileSelect::sInstance)) {
+    if (isNerve(GET_NERVE(FileSelector, FileSelectorNrvCopySelect))) {
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvCopyConfirmStart));
+    } else if (isNerve(GET_NERVE(FileSelector, FileSelectorNrvFileSelect))) {
         if (pItem->isNew()) {
-            setNerve(&NrvFileSelector::FileSelectorNrvCreateConfirmStart::sInstance);
+            setNerve(GET_NERVE(FileSelector, FileSelectorNrvCreateConfirmStart));
         } else {
-            setNerve(&NrvFileSelector::FileSelectorNrvFileConfirmStart::sInstance);
+            setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileConfirmStart));
         }
     } else {
         return;
@@ -782,12 +782,12 @@ void FileSelector::exeTitle() {
 
     if (::getMiiFacePartsHolder()->isInitEnd()) {
         if (::getMiiFacePartsHolder()->isError()) {
-            setNerve(&NrvFileSelector::FileSelectorNrvRFLError::sInstance);
+            setNerve(GET_NERVE(FileSelector, FileSelectorNrvRFLError));
         } else {
-            setNerve(&NrvFileSelector::FileSelectorNrvTitleEnd::sInstance);
+            setNerve(GET_NERVE(FileSelector, FileSelectorNrvTitleEnd));
         }
     } else {
-        setNerve(&NrvFileSelector::FileSelectorNrvRFLWait::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvRFLWait));
     }
 }
 
@@ -805,7 +805,7 @@ void FileSelector::exeTitleEnd() {
 
     if (mCameraController->isAtFarPoint()) {
         validateRotateAllItems();
-        setNerve(&NrvFileSelector::FileSelectorNrvFileSelect::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileSelect));
     }
 }
 
@@ -815,7 +815,7 @@ void FileSelector::exeRFLError() {
     }
 
     if (MR::isDead(mSysInfoWindow)) {
-        setNerve(&NrvFileSelector::FileSelectorNrvTitleEnd::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvTitleEnd));
     }
 }
 
@@ -832,7 +832,7 @@ void FileSelector::exeRFLWait() {
         return;
     }
 
-    setNerve(&NrvFileSelector::FileSelectorNrvRFLWaitEnd::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvRFLWaitEnd));
 }
 
 void FileSelector::exeRFLWaitEnd() {
@@ -841,7 +841,7 @@ void FileSelector::exeRFLWaitEnd() {
     }
 
     if (MR::isDead(mSysInfoWindowMini)) {
-        setNerve(&NrvFileSelector::FileSelectorNrvTitleEnd::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvTitleEnd));
     }
 }
 
@@ -852,7 +852,7 @@ void FileSelector::exeFileSelectStart() {
     }
 
     if (mCameraController->isAtFarPoint()) {
-        setNerve(&NrvFileSelector::FileSelectorNrvFileSelect::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileSelect));
     }
 }
 
@@ -881,11 +881,11 @@ void FileSelector::exeFileConfirmStart() {
     }
 
     if (isUserFileCorrupted(_B4->_140)) {
-        setNerve(&NrvFileSelector::FileSelectorNrvFileBroken::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileBroken));
     } else if (_B4->_146 != 0) {
-        setNerve(&NrvFileSelector::FileSelectorNrvFileConfirmMiiDeleteWarningStart::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileConfirmMiiDeleteWarningStart));
     } else {
-        setNerve(&NrvFileSelector::FileSelectorNrvFileConfirm::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileConfirm));
     }
 }
 
@@ -895,7 +895,7 @@ void FileSelector::exeFileConfirmMiiDeleteWarningStart() {
     }
 
     if (isHiddenAllLayout()) {
-        setNerve(&NrvFileSelector::FileSelectorNrvFileConfirmMiiDeleteWarning::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileConfirmMiiDeleteWarning));
     }
 }
 
@@ -905,7 +905,7 @@ void FileSelector::exeFileConfirmMiiDeleteWarning() {
     }
 
     if (MR::isDead(mSysInfoWindowMini)) {
-        setNerve(&NrvFileSelector::FileSelectorNrvFileConfirmMiiDeleteSave::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileConfirmMiiDeleteSave));
     }
 }
 
@@ -923,7 +923,7 @@ void FileSelector::exeFileConfirmMiiDeleteSave() {
     _B4->_146 = 0;
 
     restoreUserFile();
-    setNerve(&NrvFileSelector::FileSelectorNrvFileConfirm::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileConfirm));
 }
 
 void FileSelector::exeFileConfirm() {
@@ -965,7 +965,7 @@ void FileSelector::exeFileConfirm() {
 
     disappearAllLayout();
     clearPointing();
-    setNerve(&NrvFileSelector::FileSelectorNrvFileSelectStart::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileSelectStart));
 }
 
 void FileSelector::exeDemoStartWait() {
@@ -980,7 +980,7 @@ void FileSelector::exeDemoStartWait() {
         return;
     }
 
-    setNerve(&NrvFileSelector::FileSelectorNrvDemo::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvDemo));
 }
 
 void FileSelector::exeDemo() {
@@ -1028,7 +1028,7 @@ void FileSelector::exeCreateConfirmStart() {
         return;
     }
 
-    setNerve(&NrvFileSelector::FileSelectorNrvCreateConfirm::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvCreateConfirm));
 }
 
 void FileSelector::exeCreateConfirm() {
@@ -1044,10 +1044,10 @@ void FileSelector::exeCreateConfirm() {
     mSysInfoWindow->resetYesNoSelectorSE();
 
     if (mSysInfoWindow->isSelectedYes()) {
-        setNerve(&NrvFileSelector::FileSelectorNrvCreate::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvCreate));
     } else {
         clearPointing();
-        setNerve(&NrvFileSelector::FileSelectorNrvFileSelectStart::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileSelectStart));
     }
 }
 
@@ -1062,10 +1062,10 @@ void FileSelector::exeCreate() {
 
     if (GameSequenceFunction::isSuccessSaveDataHandleSequence()) {
         restoreUserFile();
-        setNerve(&NrvFileSelector::FileSelectorNrvMiiSelectStartFirst::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiSelectStartFirst));
     } else {
         clearPointing();
-        setNerve(&NrvFileSelector::FileSelectorNrvFileSelectStart::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileSelectStart));
     }
 }
 
@@ -1085,7 +1085,7 @@ void FileSelector::exeCopyWait() {
         return;
     }
 
-    setNerve(&NrvFileSelector::FileSelectorNrvCopySelect::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvCopySelect));
 }
 
 void FileSelector::exeCopySelect() {
@@ -1117,7 +1117,7 @@ void FileSelector::exeCopySelect() {
     setFileInfo(_B4->_140);
     mFileInfo->appear();
     mFileInfo->forceChange();
-    setNerve(&NrvFileSelector::FileSelectorNrvFileConfirmStart::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileConfirmStart));
 }
 
 void FileSelector::exeCopyConfirmStart() {
@@ -1131,7 +1131,7 @@ void FileSelector::exeCopyConfirmStart() {
         return;
     }
 
-    setNerve(&NrvFileSelector::FileSelectorNrvCopyConfirm::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvCopyConfirm));
 }
 
 void FileSelector::exeCopyConfirm() {
@@ -1155,11 +1155,11 @@ void FileSelector::exeCopyConfirm() {
     }
 
     if (mSysInfoWindow->isSelectedYes()) {
-        setNerve(&NrvFileSelector::FileSelectorNrvCopySave::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvCopySave));
     } else {
         _B4 = _B8;
 
-        setNerve(&NrvFileSelector::FileSelectorNrvCopySelect::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvCopySelect));
     }
 }
 
@@ -1175,7 +1175,7 @@ void FileSelector::exeCopySave() {
             GameSequenceFunction::startCopyUserFileSequence(_B4->_140, _B8->_140);
         } else {
             GameSequenceFunction::storeCopyUserFileSequence(_B4->_140, _B8->_140);
-            setNerve(&NrvFileSelector::FileSelectorNrvCopySaveMii::sInstance);
+            setNerve(GET_NERVE(FileSelector, FileSelectorNrvCopySaveMii));
             return;
         }
     }
@@ -1184,7 +1184,7 @@ void FileSelector::exeCopySave() {
         return;
     }
 
-    setNerve(&NrvFileSelector::FileSelectorNrvCopyDemo::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvCopyDemo));
 }
 
 void FileSelector::exeCopySaveMii() {
@@ -1206,7 +1206,7 @@ void FileSelector::exeCopySaveMii() {
         return;
     }
 
-    setNerve(&NrvFileSelector::FileSelectorNrvCopyDemo::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvCopyDemo));
 }
 
 void FileSelector::exeCopyDemo() {
@@ -1228,7 +1228,7 @@ void FileSelector::exeCopyDemo() {
     }
 
     clearPointing();
-    setNerve(&NrvFileSelector::FileSelectorNrvFileSelect::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileSelect));
 }
 
 void FileSelector::exeCopyRejectStart() {
@@ -1240,7 +1240,7 @@ void FileSelector::exeCopyRejectStart() {
         return;
     }
 
-    setNerve(&NrvFileSelector::FileSelectorNrvCopyReject::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvCopyReject));
 }
 
 void FileSelector::exeCopyReject() {
@@ -1254,7 +1254,7 @@ void FileSelector::exeCopyReject() {
     }
 
     mOperationButton->shiftSelect();
-    setNerve(&NrvFileSelector::FileSelectorNrvFileConfirm::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileConfirm));
 }
 
 void FileSelector::exeMiiWait() {
@@ -1270,7 +1270,7 @@ void FileSelector::exeMiiWait() {
         return;
     }
 
-    setNerve(&NrvFileSelector::FileSelectorNrvMiiSelectStart::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiSelectStart));
 }
 
 void FileSelector::exeMiiTip() {
@@ -1284,12 +1284,12 @@ void FileSelector::exeMiiTip() {
         return;
     }
 
-    setNerve(&NrvFileSelector::FileSelectorNrvMiiSelectStart::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiSelectStart));
 }
 
 void FileSelector::exeMiiSelectStart() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvFileSelector::FileSelectorNrvMiiSelectStart::sInstance)) {
+        if (isNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiSelectStart))) {
             FileSelectIconID iconId = FileSelectIconID();
 
             _B4->copyIconID(&iconId);
@@ -1314,7 +1314,7 @@ void FileSelector::exeMiiSelectStart() {
         return;
     }
 
-    setNerve(&NrvFileSelector::FileSelectorNrvMiiSelect::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiSelect));
 }
 
 void FileSelector::exeMiiSelect() {
@@ -1332,7 +1332,7 @@ void FileSelector::exeMiiSelect() {
             mBackButton->disappear();
         }
 
-        setNerve(&NrvFileSelector::FileSelectorNrvMiiInfoStart::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiInfoStart));
     } else if (mMiiSelect->isSelected()) {
         MR::startSystemSE("SE_SY_FILE_SEL_MII_SELECTED");
         mMiiSelect->disappear();
@@ -1341,11 +1341,11 @@ void FileSelector::exeMiiSelect() {
             mBackButton->disappear();
         }
 
-        setNerve(&NrvFileSelector::FileSelectorNrvMiiConfirmWait::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiConfirmWait));
     } else if (checkSelectedBackButton()) {
         mMiiSelect->disappear();
         mBackButton->disappear();
-        setNerve(&NrvFileSelector::FileSelectorNrvMiiCancel::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiCancel));
     }
 }
 
@@ -1358,7 +1358,7 @@ void FileSelector::exeMiiCancel() {
         return;
     }
 
-    setNerve(&NrvFileSelector::FileSelectorNrvFileConfirm::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileConfirm));
 }
 
 void FileSelector::exeMiiConfirmWait() {
@@ -1370,7 +1370,7 @@ void FileSelector::exeMiiConfirmWait() {
         return;
     }
 
-    setNerve(&NrvFileSelector::FileSelectorNrvMiiConfirm::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiConfirm));
 }
 
 void FileSelector::exeMiiConfirm() {
@@ -1403,11 +1403,11 @@ void FileSelector::exeMiiConfirm() {
     mSysInfoWindow->resetYesNoSelectorSE();
 
     if (mSysInfoWindow->isSelectedYes()) {
-        setNerve(&NrvFileSelector::FileSelectorNrvMiiCreateWait::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiCreateWait));
     } else if (mIsMiiSelectStartFirst) {
-        setNerve(&NrvFileSelector::FileSelectorNrvMiiSelectStartFirst::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiSelectStartFirst));
     } else {
-        setNerve(&NrvFileSelector::FileSelectorNrvMiiSelectStart::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiSelectStart));
     }
 }
 
@@ -1425,7 +1425,7 @@ void FileSelector::exeMiiCreateWait() {
         return;
     }
 
-    setNerve(&NrvFileSelector::FileSelectorNrvMiiCreateDemo::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiCreateDemo));
 }
 
 void FileSelector::exeMiiCreateDemo() {
@@ -1448,9 +1448,9 @@ void FileSelector::exeMiiCreateDemo() {
     mMiiSelect->getSelectedID(&iconId);
 
     if (iconId.isMii()) {
-        setNerve(&NrvFileSelector::FileSelectorNrvMiiCaution::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiCaution));
     } else {
-        setNerve(&NrvFileSelector::FileSelectorNrvFileConfirm::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileConfirm));
     }
 }
 
@@ -1460,7 +1460,7 @@ void FileSelector::exeMiiCaution() {
     }
 
     if (MR::isDead(mSysInfoWindowMini)) {
-        setNerve(&NrvFileSelector::FileSelectorNrvFileConfirm::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileConfirm));
     }
 }
 
@@ -1473,7 +1473,7 @@ void FileSelector::exeMiiInfoStart() {
         return;
     }
 
-    setNerve(&NrvFileSelector::FileSelectorNrvMiiInfo::sInstance);
+    setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiInfo));
 }
 
 void FileSelector::exeMiiInfo() {
@@ -1486,9 +1486,9 @@ void FileSelector::exeMiiInfo() {
     }
 
     if (mIsMiiSelectStartFirst) {
-        setNerve(&NrvFileSelector::FileSelectorNrvMiiSelectStartFirst::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiSelectStartFirst));
     } else {
-        setNerve(&NrvFileSelector::FileSelectorNrvMiiSelectStart::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvMiiSelectStart));
     }
 }
 
@@ -1499,7 +1499,7 @@ void FileSelector::exeDeleteConfirmStart() {
     }
 
     if (isHiddenAllLayout()) {
-        setNerve(&NrvFileSelector::FileSelectorNrvDeleteConfirm::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvDeleteConfirm));
     }
 }
 
@@ -1516,10 +1516,10 @@ void FileSelector::exeDeleteConfirm() {
     mSysInfoWindow->resetYesNoSelectorSE();
 
     if (mSysInfoWindow->isSelectedYes()) {
-        setNerve(&NrvFileSelector::FileSelectorNrvDelete::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvDelete));
     } else {
         mOperationButton->shiftSelect();
-        setNerve(&NrvFileSelector::FileSelectorNrvFileConfirm::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileConfirm));
     }
 }
 
@@ -1534,10 +1534,10 @@ void FileSelector::exeDelete() {
     }
 
     if (GameSequenceFunction::isSuccessSaveDataHandleSequence()) {
-        setNerve(&NrvFileSelector::FileSelectorNrvDeleteDemo::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvDeleteDemo));
     } else {
         clearPointing();
-        setNerve(&NrvFileSelector::FileSelectorNrvFileSelectStart::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileSelectStart));
     }
 }
 
@@ -1549,7 +1549,7 @@ void FileSelector::exeDeleteDemo() {
     if (_B4->isNew()) {
         initUserFile();
         clearPointing();
-        setNerve(&NrvFileSelector::FileSelectorNrvFileSelectStart::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileSelectStart));
     }
 }
 
@@ -1560,7 +1560,7 @@ void FileSelector::exeFileBroken() {
     }
 
     if (MR::isDead(mSysInfoWindow)) {
-        setNerve(&NrvFileSelector::FileSelectorNrvFileConfirm::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileConfirm));
     }
 }
 
@@ -1570,7 +1570,7 @@ void FileSelector::exeManualStart() {
     }
 
     if (isHiddenAllLayout()) {
-        setNerve(&NrvFileSelector::FileSelectorNrvManual::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvManual));
     }
 }
 
@@ -1580,6 +1580,6 @@ void FileSelector::exeManual() {
     }
 
     if (mManual->isClosed()) {
-        setNerve(&NrvFileSelector::FileSelectorNrvFileConfirm::sInstance);
+        setNerve(GET_NERVE(FileSelector, FileSelectorNrvFileConfirm));
     }
 }

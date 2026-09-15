@@ -44,7 +44,7 @@ void PenguinStudent::init(const JMapInfoIter& rIter) {
     caps.mLodCtrl = 1;
     caps.mNerve = false;
     NPCActor::initialize(rIter, caps);
-    initNerve(&NrvPenguinStudent::PenguinStudentNrvSwim::sInstance);
+    initNerve(GET_NERVE(PenguinStudent, PenguinStudentNrvSwim));
     if (MR::isConnectedWithRail(rIter)) {
         initRailRider(rIter);
         MR::moveCoordToNearestPos(this, mPosition);
@@ -56,7 +56,7 @@ void PenguinStudent::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     if (_15C == -1) {
         mRemovableTurtle = new RemovableTurtle(this, true);
-        setNerve(&NrvPenguinStudent::PenguinStudentNrvSlow::sInstance);
+        setNerve(GET_NERVE(PenguinStudent, PenguinStudentNrvSlow));
     } else {
         s32 arg1 = 10;
         MR::getJMapInfoArg1NoInit(rIter, &arg1);
@@ -85,7 +85,7 @@ void PenguinStudent::initAfterPlacement() {
     for (s32 i = 0; i < group->getObjNum(); i++) {
         LiveActor* actor = group->getActor(i);
 
-        if (actor->isNerve(&NrvPenguinStudent::PenguinStudentNrvSwim::sInstance)) {
+        if (actor->isNerve(GET_NERVE(PenguinStudent, PenguinStudentNrvSwim))) {
             continue;
         }
 
@@ -95,13 +95,12 @@ void PenguinStudent::initAfterPlacement() {
 }
 
 bool PenguinStudent::branchFunc(u32 msg) {
-    return mActor->isNerve(&NrvPenguinStudent::PenguinStudentNrvLead::sInstance);
+    return mActor->isNerve(GET_NERVE(PenguinStudent, PenguinStudentNrvLead));
 }
 
 bool PenguinStudent::tryReleaseTurtle() {
-    if (_15C == -1 && isNerve(&NrvPenguinStudent::PenguinStudentNrvLead::sInstance) && mRemovableTurtle->isPullRange() &&
-        mRemovableTurtle->tryRemove()) {
-        setNerve(&NrvPenguinStudent::PenguinStudentNrvSlow::sInstance);
+    if (_15C == -1 && isNerve(GET_NERVE(PenguinStudent, PenguinStudentNrvLead)) && mRemovableTurtle->isPullRange() && mRemovableTurtle->tryRemove()) {
+        setNerve(GET_NERVE(PenguinStudent, PenguinStudentNrvSlow));
         return true;
     }
     return false;
@@ -153,7 +152,7 @@ void PenguinStudent::exeSlow() {
 
     if (!MR::isStageStatePowerStarAppeared() && MR::isOnSwitchA(this)) {
         if (mRemovableTurtle->tryAttach()) {
-            setNerve(&NrvPenguinStudent::PenguinStudentNrvLead::sInstance);
+            setNerve(GET_NERVE(PenguinStudent, PenguinStudentNrvLead));
         }
     }
 }

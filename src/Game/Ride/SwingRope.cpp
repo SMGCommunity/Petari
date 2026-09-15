@@ -78,7 +78,7 @@ void SwingRope::init(const JMapInfoIter& rIter) {
     MR::setShadowDropPositionPtr(this, nullptr, &mShadowDropPos);
 
     MR::initActorCamera(this, rIter, &mCameraInfo);
-    initNerve(&NrvSwingRope::SwingRopeNrvFree::sInstance);
+    initNerve(GET_NERVE(SwingRope, SwingRopeNrvFree));
     makeActorAppeared();
 }
 
@@ -87,9 +87,9 @@ void SwingRope::draw() const {
         return;
     }
 
-    if (isNerve(&NrvSwingRope::SwingRopeNrvStop::sInstance)) {
+    if (isNerve(GET_NERVE(SwingRope, SwingRopeNrvStop))) {
         drawStop();
-    } else if (isNerve(&NrvSwingRope::SwingRopeNrvFree::sInstance) || isNerve(&NrvSwingRope::SwingRopeNrvFreeInvalid::sInstance)) {
+    } else if (isNerve(GET_NERVE(SwingRope, SwingRopeNrvFree)) || isNerve(GET_NERVE(SwingRope, SwingRopeNrvFreeInvalid))) {
         drawFree();
     } else {
         drawBind();
@@ -135,7 +135,7 @@ void SwingRope::exeFree() {
         for (s32 idx = 0; idx < mNumPoints; idx++) {
             mPoints[idx]->stop();
         }
-        setNerve(&NrvSwingRope::SwingRopeNrvStop::sInstance);
+        setNerve(GET_NERVE(SwingRope, SwingRopeNrvStop));
     }
 }
 
@@ -143,7 +143,7 @@ inline void SwingRope::exeFreeInvalid() {
     exeFree();
 
     if (MR::isOnGroundPlayer()) {
-        setNerve(&NrvSwingRope::SwingRopeNrvFree::sInstance);
+        setNerve(GET_NERVE(SwingRope, SwingRopeNrvFree));
     }
 }
 
@@ -154,7 +154,7 @@ void SwingRope::exeBindSlideDownStart() {
     }
 
     if (!updateSlideDown() && MR::isBckStopped(mRider)) {
-        setNerve(&NrvSwingRope::SwingRopeNrvBindSlideDown::sInstance);
+        setNerve(GET_NERVE(SwingRope, SwingRopeNrvBindSlideDown));
     }
 }
 
@@ -174,7 +174,7 @@ void SwingRope::exeBindStretch() {
     }
 
     if (!updateStretch() && mGrabCoord - mBasePos.distance(mSledPoint->mPosition) > 5.0f) {
-        setNerve(&NrvSwingRope::SwingRopeNrvBindLoose::sInstance);
+        setNerve(GET_NERVE(SwingRope, SwingRopeNrvBindLoose));
     }
 }
 
@@ -184,7 +184,7 @@ void SwingRope::exeBindLoose() {
     }
 
     if (isStretched()) {
-        setNerve(&NrvSwingRope::SwingRopeNrvBindStretch::sInstance);
+        setNerve(GET_NERVE(SwingRope, SwingRopeNrvBindStretch));
     }
 }
 
@@ -229,7 +229,7 @@ void SwingRope::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 bool SwingRope::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgAutoRushBegin(msg)) {
         if (MR::isOnGroundPlayer() || MR::isPlayerSwimming() ||
-            (!isNerve(&NrvSwingRope::SwingRopeNrvStop::sInstance) && !isNerve(&NrvSwingRope::SwingRopeNrvFree::sInstance))) {
+            (!isNerve(GET_NERVE(SwingRope, SwingRopeNrvStop)) && !isNerve(GET_NERVE(SwingRope, SwingRopeNrvFree)))) {
             return false;
         }
 
@@ -268,7 +268,7 @@ bool SwingRope::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         MR::startSound(mRider, "SE_PM_GRAB_OBJ");
         MR::startActorCameraNoTarget(this, mCameraInfo, -1);
 
-        setNerve(&NrvSwingRope::SwingRopeNrvBindSlideDownStart::sInstance);
+        setNerve(GET_NERVE(SwingRope, SwingRopeNrvBindSlideDownStart));
 
         return true;
     }
@@ -282,7 +282,7 @@ bool SwingRope::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         mRider = nullptr;
         mGrabCoord = 0.0f;
         mGrabPointNum = 0.0f;
-        setNerve(&NrvSwingRope::SwingRopeNrvFree::sInstance);
+        setNerve(GET_NERVE(SwingRope, SwingRopeNrvFree));
         return true;
     }
 
@@ -398,7 +398,7 @@ bool SwingRope::tryJump() {
         MR::endBindAndPlayerWeakGravityJump(this, jumpVec);
 
         mRider = nullptr;
-        setNerve(&NrvSwingRope::SwingRopeNrvFreeInvalid::sInstance);
+        setNerve(GET_NERVE(SwingRope, SwingRopeNrvFreeInvalid));
         return true;
     }
 
@@ -412,7 +412,7 @@ void SwingRope::updateHangPoint() {
 
     if (!MR::isNearZero(stick, 0.001f)) {
         MR::vecBlend(mSledPoint->mFront, stick, &front, 0.1f);
-        if (isNerve(&NrvSwingRope::SwingRopeNrvBindLoose::sInstance)) {
+        if (isNerve(GET_NERVE(SwingRope, SwingRopeNrvBindLoose))) {
             stick.scale(0.8f);
         } else {
             stick.scale(0.5f);
@@ -437,7 +437,7 @@ void SwingRope::updateHangPoint() {
     MR::calcGravity(this);
 
     TVec3f grav(mGravity);
-    if (isNerve(&NrvSwingRope::SwingRopeNrvBindLoose::sInstance)) {
+    if (isNerve(GET_NERVE(SwingRope, SwingRopeNrvBindLoose))) {
         grav.scale(0.6f);
     } else {
         grav.scale(0.8f);
@@ -560,7 +560,7 @@ bool SwingRope::updateSlideDown() {
     if (mGrabCoord >= mRopeLength - 200.0f) {
         mGrabCoord = mRopeLength - 200.0f;
         mSlideSpeed = 0.0f;
-        setNerve(&NrvSwingRope::SwingRopeNrvBindStretch::sInstance);
+        setNerve(GET_NERVE(SwingRope, SwingRopeNrvBindStretch));
         return true;
     }
 

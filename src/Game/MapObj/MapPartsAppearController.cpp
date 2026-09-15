@@ -23,18 +23,18 @@ MapPartsAppearController::MapPartsAppearController(LiveActor* pActor) : MapParts
 }
 
 void MapPartsAppearController::init(const JMapInfoIter& rIter) {
-    initNerve(&NrvMapPartsAppearController::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(MapPartsAppearController, HostTypeWait));
     initSwitchMessenger(rIter);
     MR::getMapPartsArgSignMotionType(&mSignMotionType, rIter);
     mPostureHolder = new PostureHolder(mHost);
 }
 
 void MapPartsAppearController::start() {
-    setNerve(&NrvMapPartsAppearController::HostTypeWait::sInstance);
+    setNerve(GET_NERVE(MapPartsAppearController, HostTypeWait));
 }
 
 void MapPartsAppearController::end() {
-    setNerve(&NrvMapPartsAppearController::HostTypeWait::sInstance);
+    setNerve(GET_NERVE(MapPartsAppearController, HostTypeWait));
 }
 
 void MapPartsAppearController::storeCurrentPosture() {
@@ -55,12 +55,12 @@ bool MapPartsAppearController::receiveMsg(u32 msg) {
             return false;
         }
 
-        if (!isNerve(&NrvMapPartsAppearController::HostTypeWait::sInstance)) {
+        if (!isNerve(GET_NERVE(MapPartsAppearController, HostTypeWait))) {
             return false;
         }
 
         if (MR::hasMapPartsVanishSignMotion(mSignMotionType)) {
-            setNerve(&NrvMapPartsAppearController::HostTypeDisappear::sInstance);
+            setNerve(GET_NERVE(MapPartsAppearController, HostTypeDisappear));
 
             return true;
         }
@@ -75,8 +75,8 @@ bool MapPartsAppearController::receiveMsg(u32 msg) {
 
 void MapPartsAppearController::startAppear() {
     if (MR::isValidSwitchAppear(mHost) && !_20) {
-        if (isNerve(&NrvMapPartsAppearController::HostTypeDisappear::sInstance)) {
-            setNerve(&NrvMapPartsAppearController::HostTypeWait::sInstance);
+        if (isNerve(GET_NERVE(MapPartsAppearController, HostTypeDisappear))) {
+            setNerve(GET_NERVE(MapPartsAppearController, HostTypeWait));
         }
 
         appearHost();
@@ -88,9 +88,9 @@ void MapPartsAppearController::startKill() {
     if (MR::isValidSwitchAppear(mHost)) {
         _20 = 0;
         if (!MR::isDead(mHost)) {
-            if (isNerve(&NrvMapPartsAppearController::HostTypeWait::sInstance)) {
+            if (isNerve(GET_NERVE(MapPartsAppearController, HostTypeWait))) {
                 if (MR::hasMapPartsVanishSignMotion(mSignMotionType)) {
-                    setNerve(&NrvMapPartsAppearController::HostTypeDisappear::sInstance);
+                    setNerve(GET_NERVE(MapPartsAppearController, HostTypeDisappear));
                 } else {
                     killHost();
                 }
@@ -132,7 +132,7 @@ void MapPartsAppearController::exeDisappear() {
     }
 
     if (isStep(436)) {
-        setNerve(&NrvMapPartsAppearController::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(MapPartsAppearController, HostTypeWait));
         MR::showModel(mHost);
         killHost();
     }

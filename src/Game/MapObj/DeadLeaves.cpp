@@ -22,7 +22,7 @@ void DeadLeaves::init(const JMapInfoIter& rIter) {
     sensor.y = 30.0f;
     sensor.z = 0.0f;
     info.setupHitSensorParam(8, 70.0f, sensor);
-    info.setupNerve(&NrvDeadLeaves::DeadLeavesNrvWait::sInstance);
+    info.setupNerve(GET_NERVE(DeadLeaves, DeadLeavesNrvWait));
     initialize(rIter, info);
     MR::getJMapInfoArg0NoInit(rIter, &mItemType);
 
@@ -52,13 +52,13 @@ void DeadLeaves::exeSpin() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvDeadLeaves::DeadLeavesNrvWait::sInstance);
+        setNerve(GET_NERVE(DeadLeaves, DeadLeavesNrvWait));
     }
 }
 
 bool DeadLeaves::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerSpinAttack(msg)) {
-        setNerve(&NrvDeadLeaves::DeadLeavesNrvSpin::sInstance);
+        setNerve(GET_NERVE(DeadLeaves, DeadLeavesNrvSpin));
         return true;
     }
 

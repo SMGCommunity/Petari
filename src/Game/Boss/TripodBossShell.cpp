@@ -51,7 +51,7 @@ void TripodBossShell::init(const JMapInfoIter& rIter) {
     mBreakModel->makeActorDead();
     MR::addTripodBossPartsMovement(mBreakModel);
 
-    initNerve(&NrvTripodBossShell::TripodBossShellNrvNonActive::sInstance);
+    initNerve(GET_NERVE(TripodBossShell, TripodBossShellNrvNonActive));
     MR::invalidateCollisionParts(this);
     getSensor("body")->invalidate();
     MR::useStageSwitchWriteDead(this, rIter);
@@ -64,8 +64,8 @@ void TripodBossShell::kill() {
 }
 
 bool TripodBossShell::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (pReceiver == getSensor("killer_terget") && !isNerve(&NrvTripodBossShell::TripodBossShellNrvBreak::sInstance)) {
-        setNerve(&NrvTripodBossShell::TripodBossShellNrvBreak::sInstance);
+    if (pReceiver == getSensor("killer_terget") && !isNerve(GET_NERVE(TripodBossShell, TripodBossShellNrvBreak))) {
+        setNerve(GET_NERVE(TripodBossShell, TripodBossShellNrvBreak));
 
         return true;
     }
@@ -74,10 +74,10 @@ bool TripodBossShell::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSens
 }
 
 void TripodBossShell::activateTripodBoss() {
-    if (isNerve(&NrvTripodBossShell::TripodBossShellNrvNonActive::sInstance)) {
+    if (isNerve(GET_NERVE(TripodBossShell, TripodBossShellNrvNonActive))) {
         MR::onCalcAnim(this);
         MR::validateCollisionParts(this);
-        setNerve(&NrvTripodBossShell::TripodBossShellNrvWait::sInstance);
+        setNerve(GET_NERVE(TripodBossShell, TripodBossShellNrvWait));
     }
 }
 

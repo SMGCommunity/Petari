@@ -41,7 +41,7 @@ SaveDataHandler::SaveDataHandler(const SysConfigFile* pSysConfigFile, const User
 
     mBannerCreator = new SaveDataBannerCreator();
 
-    initNerve(&::SaveDataHandlerWait::sInstance);
+    initNerve(GET_NERVE_ANON(SaveDataHandlerWait));
 }
 
 void SaveDataHandler::update() {
@@ -54,7 +54,7 @@ void SaveDataHandler::requestCheckEnableToCreate() {
     mNANDRequestInfo->setCheck(5, 2, &_10);
     MR::addRequestToNANDManager(mNANDRequestInfo);
 
-    setNerve(&::SaveDataHandlerProcessing::sInstance);
+    setNerve(GET_NERVE_ANON(SaveDataHandlerProcessing));
 }
 
 void SaveDataHandler::requestLoadSaveData() {
@@ -62,7 +62,7 @@ void SaveDataHandler::requestLoadSaveData() {
     mNANDRequestInfo->setReadSeq(::cSaveFileName, _14, 0x10000, &_C);
     MR::addRequestToNANDManager(mNANDRequestInfo);
 
-    setNerve(&::SaveDataHandlerProcessing::sInstance);
+    setNerve(GET_NERVE_ANON(SaveDataHandlerProcessing));
 }
 
 bool SaveDataHandler::requestVerifyAfterLoadGameDataFile() {
@@ -163,11 +163,11 @@ void SaveDataHandler::requestSaveSaveData() {
     mNANDRequestInfo->setWriteSeq(::cSaveFileName, _14, OSRoundUp32B(fileAccessorB.getHeader()->mFileSize), 60, 0);
     MR::addRequestToNANDManager(mNANDRequestInfo);
 
-    setNerve(&::SaveDataHandlerSaveProcessingGameData::sInstance);
+    setNerve(GET_NERVE_ANON(SaveDataHandlerSaveProcessingGameData));
 }
 
 void SaveDataHandler::requestRemoveSaveData() {
-    setNerve(&::SaveDataHandlerRemoveProcessingBanner::sInstance);
+    setNerve(GET_NERVE_ANON(SaveDataHandlerRemoveProcessingBanner));
 }
 
 u32 SaveDataHandler::getEnoughtTempBufferSize() {
@@ -175,9 +175,9 @@ u32 SaveDataHandler::getEnoughtTempBufferSize() {
 }
 
 bool SaveDataHandler::isDone() const {
-    bool result = isNerve(&::SaveDataHandlerWait::sInstance) && mNANDRequestInfo->isDone();
+    bool result = isNerve(GET_NERVE_ANON(SaveDataHandlerWait)) && mNANDRequestInfo->isDone();
 
-    return isNerve(&::SaveDataHandlerWait::sInstance);
+    return isNerve(GET_NERVE_ANON(SaveDataHandlerWait));
 }
 
 NANDResultCode SaveDataHandler::getLastResultCode() const {
@@ -192,7 +192,7 @@ void SaveDataHandler::exeProcessing() {
         return;
     }
 
-    setNerve(&::SaveDataHandlerWait::sInstance);
+    setNerve(GET_NERVE_ANON(SaveDataHandlerWait));
 }
 
 void SaveDataHandler::exeSaveProcessingGameData() {
@@ -203,9 +203,9 @@ void SaveDataHandler::exeSaveProcessingGameData() {
     }
 
     if (!isErr) {
-        setNerve(&::SaveDataHandlerSaveProcessingBanner::sInstance);
+        setNerve(GET_NERVE_ANON(SaveDataHandlerSaveProcessingBanner));
     } else {
-        setNerve(&::SaveDataHandlerWait::sInstance);
+        setNerve(GET_NERVE_ANON(SaveDataHandlerWait));
     }
 }
 
@@ -217,10 +217,10 @@ void SaveDataHandler::exeSaveProcessingBanner() {
         mNANDRequestInfo->mResult = resultCode.getCode();
 
         if (resultCode.isSuccess()) {
-            setNerve(&::SaveDataHandlerWait::sInstance);
+            setNerve(GET_NERVE_ANON(SaveDataHandlerWait));
             return;
         } else {
-            setNerve(&::SaveDataHandlerWait::sInstance);
+            setNerve(GET_NERVE_ANON(SaveDataHandlerWait));
         }
     }
 }
@@ -232,7 +232,7 @@ void SaveDataHandler::exeRemoveProcessingGameData() {
         return;
     }
 
-    setNerve(&::SaveDataHandlerWait::sInstance);
+    setNerve(GET_NERVE_ANON(SaveDataHandlerWait));
 }
 
 void SaveDataHandler::exeRemoveProcessingBanner() {
@@ -243,9 +243,9 @@ void SaveDataHandler::exeRemoveProcessingBanner() {
     }
 
     if (isRemoved) {
-        setNerve(&::SaveDataHandlerRemoveProcessingGameData::sInstance);
+        setNerve(GET_NERVE_ANON(SaveDataHandlerRemoveProcessingGameData));
     } else {
-        setNerve(&::SaveDataHandlerWait::sInstance);
+        setNerve(GET_NERVE_ANON(SaveDataHandlerWait));
     }
 }
 

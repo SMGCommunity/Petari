@@ -19,12 +19,12 @@ namespace NrvPoltaStateGenerateBombTeresa {
 
 PoltaStateGroundRockAttack::PoltaStateGroundRockAttack(Polta* pPolta)
     : ActorStateBase< Polta >("[state]ポルタ地面岩攻撃", pPolta), _10(4), _14(false) {
-    initNerve(&NrvPoltaStateGenerateBombTeresa::PoltaStateGroundRockAttackNrvSign::sInstance);
+    initNerve(GET_NERVE(PoltaStateGenerateBombTeresa, PoltaStateGroundRockAttackNrvSign));
 }
 
 void PoltaStateGroundRockAttack::appear() {
     mIsDead = false;
-    setNerve(&NrvPoltaStateGenerateBombTeresa::PoltaStateGroundRockAttackNrvSign::sInstance);
+    setNerve(GET_NERVE(PoltaStateGenerateBombTeresa, PoltaStateGroundRockAttackNrvSign));
 }
 
 void PoltaStateGroundRockAttack::exeSign() {
@@ -35,7 +35,7 @@ void PoltaStateGroundRockAttack::exeSign() {
     }
     getHost()->rotateToPlayer();
     if (MR::isActionEnd(getHost())) {
-        setNerve(&NrvPoltaStateGenerateBombTeresa::PoltaStateGroundRockAttackNrvGenerate::sInstance);
+        setNerve(GET_NERVE(PoltaStateGenerateBombTeresa, PoltaStateGroundRockAttackNrvGenerate));
     }
 }
 
@@ -61,7 +61,7 @@ void PoltaStateGroundRockAttack::exeGenerate() {
         PoltaFunction::appearGroundRock(getHost(), (850.0f + (400.0f * v16)), _14 ? 20.0f : -20.0f);
     }
     if (MR::isGreaterStep(this, 15 * _10 + 90)) {
-        setNerve(&NrvPoltaStateGenerateBombTeresa::PoltaStateGroundRockAttackNrvEnd::sInstance);
+        setNerve(GET_NERVE(PoltaStateGenerateBombTeresa, PoltaStateGroundRockAttackNrvEnd));
     }
 }
 

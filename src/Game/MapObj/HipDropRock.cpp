@@ -46,7 +46,7 @@ void HipDropRock::init(const JMapInfoIter& rIter) {
     if (MR::tryRegisterDemoCast(this, rIter)) {
         MR::tryRegisterDemoCast(mModel, rIter);
     }
-    initNerve(&NrvHipDropRock::HipDropRockNrvWait::sInstance);
+    initNerve(GET_NERVE(HipDropRock, HipDropRockNrvWait));
     makeActorAppeared();
 }
 
@@ -82,7 +82,7 @@ void HipDropRock::exeBreak() {
         if (_C8) {
             kill();
         } else {
-            setNerve(&NrvHipDropRock::HipDropRockNrvWreck::sInstance);
+            setNerve(GET_NERVE(HipDropRock, HipDropRockNrvWreck));
         }
     }
 }
@@ -94,11 +94,11 @@ void HipDropRock::exeWreck() {
 }
 
 bool HipDropRock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvHipDropRock::HipDropRockNrvBreak::sInstance)) {
+    if (isNerve(GET_NERVE(HipDropRock, HipDropRockNrvBreak))) {
         return false;
     }
     if (MR::isMsgPlayerHipDropFloor(msg)) {
-        setNerve(&NrvHipDropRock::HipDropRockNrvBreak::sInstance);
+        setNerve(GET_NERVE(HipDropRock, HipDropRockNrvBreak));
         return true;
     }
     return false;

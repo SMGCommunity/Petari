@@ -158,7 +158,7 @@ void TalkBalloon::updateBalloon() {
 }
 
 TalkBalloonShort::TalkBalloonShort(const char* pName) : TalkBalloon(pName), _2C(0) {
-    initNerve(&NrvTalkBalloonShort::TalkBalloonShortNrvOpen::sInstance);
+    initNerve(GET_NERVE(TalkBalloonShort, TalkBalloonShortNrvOpen));
 }
 
 void TalkBalloonShort::init(const JMapInfoIter& rIter) {
@@ -167,7 +167,7 @@ void TalkBalloonShort::init(const JMapInfoIter& rIter) {
 
 void TalkBalloonShort::close() {
     TalkBalloon::close();
-    setNerve(&NrvTalkBalloonShort::TalkBalloonShortNrvClose::sInstance);
+    setNerve(GET_NERVE(TalkBalloonShort, TalkBalloonShortNrvClose));
 }
 
 void TalkBalloonShort::updateBalloon() {
@@ -205,7 +205,7 @@ void TalkBalloonShort::exeClose() {
 void TalkBalloonShort::exeOpen() {
     updateTalking();
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&NrvTalkBalloonShort::TalkBalloonShortNrvTalk::sInstance);
+        setNerve(GET_NERVE(TalkBalloonShort, TalkBalloonShortNrvTalk));
     }
 }
 
@@ -242,11 +242,11 @@ void TalkBalloonShort::open(TalkMessageCtrl* pCtrl) {
     }
 
     MR::setAnimFrameAndStopAdjustTextWidth(this, "TxtText", 1);
-    LayoutActor::setNerve(&NrvTalkBalloonShort::TalkBalloonShortNrvOpen::sInstance);
+    LayoutActor::setNerve(GET_NERVE(TalkBalloonShort, TalkBalloonShortNrvOpen));
 }
 
 TalkBalloonEvent::TalkBalloonEvent(const char* pName) : TalkBalloon(pName), _2C(1), mAButton(nullptr) {
-    initNerve(&NrvTalkBalloonEvent::TalkBalloonEventNrvWait::sInstance);
+    initNerve(GET_NERVE(TalkBalloonEvent, TalkBalloonEventNrvWait));
 }
 
 void TalkBalloonEvent::init(const JMapInfoIter& rIter) {
@@ -263,7 +263,7 @@ void TalkBalloonEvent::open(TalkMessageCtrl* pCtrl) {
     mAButton->kill();
     mAButton->setFollowActorPane(this, "AButtonPosition");
     updateBalloon();
-    LayoutActor::setNerve(&NrvTalkBalloonEvent::TalkBalloonEventNrvWait::sInstance);
+    LayoutActor::setNerve(GET_NERVE(TalkBalloonEvent, TalkBalloonEventNrvWait));
 }
 
 void TalkBalloonEvent::close() {
@@ -280,7 +280,7 @@ void TalkBalloonEvent::close() {
     MR::recoverSoundVolumeSetting(30);
     MR::moveVolumeStageBGM(1.0f, 60);
     MR::moveVolumeSubBGM(1.0f, 60);
-    LayoutActor::setNerve(&NrvTalkBalloonEvent::TalkBalloonEventNrvClose::sInstance);
+    LayoutActor::setNerve(GET_NERVE(TalkBalloonEvent, TalkBalloonEventNrvClose));
 }
 
 bool TalkBalloonEvent::turnPage() {
@@ -296,20 +296,20 @@ bool TalkBalloonEvent::turnPage() {
 }
 
 void TalkBalloonEvent::skipMessage() {
-    if (LayoutActor::isNerve(&NrvTalkBalloonEvent::TalkBalloonEventNrvTalk::sInstance)) {
+    if (LayoutActor::isNerve(GET_NERVE(TalkBalloonEvent, TalkBalloonEventNrvTalk))) {
         mTextFormer->updateTalking();
     }
 }
 
 bool TalkBalloonEvent::isTextAppearedAll() {
-    return mTextFormer->isTextAppearedAll() && LayoutActor::isNerve(&NrvTalkBalloonEvent::TalkBalloonEventNrvTalk::sInstance);
+    return mTextFormer->isTextAppearedAll() && LayoutActor::isNerve(GET_NERVE(TalkBalloonEvent, TalkBalloonEventNrvTalk));
 }
 
 void TalkBalloonEvent::exeWait() {
     if (MR::isTimeKeepDemoActive()) {
-        LayoutActor::setNerve(&NrvTalkBalloonEvent::TalkBalloonEventNrvOpen::sInstance);
+        LayoutActor::setNerve(GET_NERVE(TalkBalloonEvent, TalkBalloonEventNrvOpen));
     } else if (!MR::isFirstStep(this) && MR::isCameraInterpolatingNearlyEnd()) {
-        LayoutActor::setNerve(&NrvTalkBalloonEvent::TalkBalloonEventNrvOpen::sInstance);
+        LayoutActor::setNerve(GET_NERVE(TalkBalloonEvent, TalkBalloonEventNrvOpen));
     }
 }
 
@@ -331,7 +331,7 @@ void TalkBalloonEvent::exeOpen() {
 
     if (MR::isAnimStopped(this, 0)) {
         MR::startAnim(this, "Wait", 0);
-        LayoutActor::setNerve(&NrvTalkBalloonEvent::TalkBalloonEventNrvTalk::sInstance);
+        LayoutActor::setNerve(GET_NERVE(TalkBalloonEvent, TalkBalloonEventNrvTalk));
     }
 }
 
@@ -418,7 +418,7 @@ void TalkBalloonIcon::open(TalkMessageCtrl* pCtrl) {
 
     former->formMessage(message, 2);
     former->setArg(pCtrl->mTagArg, 0);
-    LayoutActor::setNerve(&NrvTalkBalloonShort::TalkBalloonShortNrvOpen::sInstance);
+    LayoutActor::setNerve(GET_NERVE(TalkBalloonShort, TalkBalloonShortNrvOpen));
 }
 
 TalkBalloonHolder::TalkBalloonHolder() : _14(0) {

@@ -35,7 +35,7 @@ namespace NrvBossStinkBugGroundBattle {
 };  // namespace NrvBossStinkBugGroundBattle
 
 BossStinkBugActionGround::BossStinkBugActionGround(BossStinkBug* pStinkBug) : BossStinkBugActionBase("ボスカメムシ地上戦", pStinkBug) {
-    initNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvWalk::sInstance);
+    initNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvWalk));
 }
 
 void BossStinkBugActionGround::appear() {
@@ -45,7 +45,7 @@ void BossStinkBugActionGround::appear() {
     MR::startBck(getHost()->getBombLauncher(), "Close", nullptr);
     MR::tryStartAllAnim(getHost()->getWingModel(), "Ground");
     ActorStateBase::appear();
-    setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvStart::sInstance);
+    setNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvStart));
     getHost()->onBindLeg();
 }
 
@@ -69,7 +69,7 @@ bool BossStinkBugActionGround::receiveMsgPlayerAttack(u32 msg, HitSensor* pSende
         MR::emitEffectHit(getHost(), MR::getSensorPos(pSender), "Hit");
         BossStinkBugFunction::invalidateAttack(getHost());
         MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1");
-        setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvDamage::sInstance);
+        setNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvDamage));
 
         return true;
     }
@@ -80,20 +80,20 @@ bool BossStinkBugActionGround::receiveMsgPlayerAttack(u32 msg, HitSensor* pSende
 bool BossStinkBugActionGround::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (getHost()->isSensorBody(pReceiver)) {
         if (isEnableShakeStart() && MR::isMsgFloorTouch(msg)) {
-            setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvShakeOff::sInstance);
+            setNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvShakeOff));
 
             return true;
         }
     } else if (MR::isMsgWallTouch(msg) || MR::isMsgCeilTouch(msg)) {
-        if (isNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvRun::sInstance) ||
-            isNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvShakeOffRun::sInstance)) {
+        if (isNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvRun)) ||
+            isNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvShakeOffRun))) {
             if (MR::isFaceToTargetDegree(getHost(), MR::getSensorPos(pSender), getHost()->_EC, 45.0f)) {
                 TVec3f railPosFrontCoord;
                 MR::calcRailPosFrontCoord(&railPosFrontCoord, getHost(), 2000.0f);
 
                 if (MR::sendMsgEnemyAttackMaximumToDir(pSender, pReceiver, railPosFrontCoord - getHost()->mPosition)) {
                     getHost()->invalidateCollision();
-                    setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvAttackSuccess::sInstance);
+                    setNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvAttackSuccess));
 
                     return true;
                 }
@@ -106,7 +106,7 @@ bool BossStinkBugActionGround::receiveOtherMsg(u32 msg, HitSensor* pSender, HitS
 
 void BossStinkBugActionGround::exeStart() {
     if (updateGroundRegainRail(::sWalkSpeed)) {
-        setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvWalk::sInstance);
+        setNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvWalk));
     }
 }
 
@@ -117,9 +117,9 @@ void BossStinkBugActionGround::exeWalk() {
 
     if (::sFindMinDistance <= findDistance && findDistance <= ::sFindMaxDistance &&
         MR::isFaceToPlayerDegreeHV(getHost(), getHost()->_EC, ::sFindDegreeH, ::sFindDegreeV)) {
-        setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvFind::sInstance);
+        setNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvFind));
     } else if (BossStinkBugFunction::isExistPlayerBack(getHost(), ::sTurnStartDistance)) {
-        setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvTurn::sInstance);
+        setNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvTurn));
     }
 }
 
@@ -131,25 +131,25 @@ void BossStinkBugActionGround::exeDamage() {
 
 void BossStinkBugActionGround::exeFind() {
     if (updateGroundFind()) {
-        setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvRun::sInstance);
+        setNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvRun));
     }
 }
 
 void BossStinkBugActionGround::exeShakeOff() {
     if (updateGroundShakeOff()) {
-        setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvShakeOffRun::sInstance);
+        setNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvShakeOffRun));
     }
 }
 
 void BossStinkBugActionGround::exeShakeOffRun() {
     if (updateGroundRun(::sRunSpeed)) {
-        setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvCoolDown::sInstance);
+        setNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvCoolDown));
     }
 }
 
 void BossStinkBugActionGround::exeRun() {
     if (updateGroundRun(::sRunSpeed)) {
-        setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvCoolDown::sInstance);
+        setNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvCoolDown));
     }
 }
 
@@ -159,34 +159,34 @@ void BossStinkBugActionGround::endAttackSuccess() {
 
 void BossStinkBugActionGround::exeAttackSuccess() {
     if (updateGroundAttackSuccess()) {
-        setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvWalk::sInstance);
+        setNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvWalk));
     }
 }
 
 void BossStinkBugActionGround::exeCoolDown() {
     if (updateGroundCoolDown()) {
         if (MR::isFaceToPlayerHorizontalDegree(getHost(), getHost()->_EC, 90.0f)) {
-            setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvWalk::sInstance);
+            setNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvWalk));
         } else {
-            setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvTurn::sInstance);
+            setNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvTurn));
         }
     }
 }
 
 void BossStinkBugActionGround::exeTurn() {
     if (updateGroundTurn()) {
-        setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvWalk::sInstance);
+        setNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvWalk));
     }
 }
 
 bool BossStinkBugActionGround::isEnableHipDrop() const {
-    if (isNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvWalk::sInstance) ||
-        isNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvFind::sInstance) ||
-        isNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvShakeOff::sInstance) ||
-        isNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvShakeOffRun::sInstance) ||
-        isNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvRun::sInstance) ||
-        isNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvTurn::sInstance) ||
-        isNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvCoolDown::sInstance)) {
+    if (isNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvWalk)) ||
+        isNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvFind)) ||
+        isNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvShakeOff)) ||
+        isNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvShakeOffRun)) ||
+        isNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvRun)) ||
+        isNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvTurn)) ||
+        isNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvCoolDown))) {
         return true;
     }
 
@@ -194,8 +194,8 @@ bool BossStinkBugActionGround::isEnableHipDrop() const {
 }
 
 bool BossStinkBugActionGround::isEnableShakeStart() const {
-    if (isNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvWalk::sInstance) ||
-        isNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvRun::sInstance)) {
+    if (isNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvWalk)) ||
+        isNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvRun))) {
         return true;
     }
 

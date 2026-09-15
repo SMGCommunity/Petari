@@ -44,7 +44,7 @@ void OceanFloaterLandParts::init(const JMapInfoIter& rIter) {
 
     bool notConnected = !MR::isConnectedWithRail(rIter);
     if (notConnected) {
-        initNerve(&NrvOceanFloaterLandParts::HostTypeDone::sInstance);
+        initNerve(GET_NERVE(OceanFloaterLandParts, HostTypeDone));
     } else {
         initMoveType(rIter);
     }
@@ -61,7 +61,7 @@ void OceanFloaterLandParts::init(const JMapInfoIter& rIter) {
                 MR::onSwitchA(this);
             }
 
-            setNerve(&NrvOceanFloaterLandParts::HostTypeDone::sInstance);
+            setNerve(GET_NERVE(OceanFloaterLandParts, HostTypeDone));
         }
     }
 
@@ -86,9 +86,9 @@ void OceanFloaterLandParts::makeActorDead() {
 void OceanFloaterLandParts::initMoveType(const JMapInfoIter& rIter) {
     initRailMoveFunction(rIter);
     MR::calcRailEndPos(&mRailEndPos, this);
-    initNerve(&NrvOceanFloaterLandParts::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(OceanFloaterLandParts, HostTypeWait));
     if (MR::tryRegisterDemoCast(this, rIter)) {
-        MR::registerDemoActionNerve(this, &NrvOceanFloaterLandParts::HostTypeMove::sInstance, nullptr);
+        MR::registerDemoActionNerve(this, GET_NERVE(OceanFloaterLandParts, HostTypeMove), nullptr);
         mIsRegisteredDemo = true;
     }
     MR::useStageSwitchWriteA(this, rIter);
@@ -115,7 +115,7 @@ void OceanFloaterLandParts::control() {
 }
 
 bool OceanFloaterLandParts::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (msg == ACTMES_MAPPARTS_DISAPPEAR_WITH_BLINK && isNerve(&NrvOceanFloaterLandParts::HostTypeMove::sInstance)) {
+    if (msg == ACTMES_MAPPARTS_DISAPPEAR_WITH_BLINK && isNerve(GET_NERVE(OceanFloaterLandParts, HostTypeMove))) {
         kill();
         return true;
     }
@@ -173,7 +173,7 @@ void OceanFloaterLandParts::exeMove() {
 
         if (!mIsRegisteredDemo) {
             MR::startSystemSE("SE_SY_READ_RIDDLE_S");
-            setNerve(&NrvOceanFloaterLandParts::HostTypeDone::sInstance);
+            setNerve(GET_NERVE(OceanFloaterLandParts, HostTypeDone));
             return;
         }
     }
@@ -181,7 +181,7 @@ void OceanFloaterLandParts::exeMove() {
     if (mIsRegisteredDemo && MR::isDemoLastStep()) {
         MR::startSystemSE("SE_SY_READ_RIDDLE_S");
         endFloatUpDemo();
-        setNerve(&NrvOceanFloaterLandParts::HostTypeDone::sInstance);
+        setNerve(GET_NERVE(OceanFloaterLandParts, HostTypeDone));
     }
 }
 

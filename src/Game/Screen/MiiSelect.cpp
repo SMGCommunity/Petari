@@ -46,14 +46,14 @@ void MiiSelect::init(const JMapInfoIter& rIter) {
     MR::invalidateParentAnim(this);
     createButtons();
     MR::connectToSceneLayout(this);
-    initNerve(&MiiSelectNrvAppear::sInstance);
+    initNerve(GET_NERVE_GLOBAL(MiiSelectNrvAppear));
     createPage();
     kill();
 }
 
 void MiiSelect::appear() {
     LayoutActor::appear();
-    setNerve(&MiiSelectNrvAppear::sInstance);
+    setNerve(GET_NERVE_GLOBAL(MiiSelectNrvAppear));
     _1EC = 0;
     refresh();
     setCurrentPageGroupA();
@@ -68,7 +68,7 @@ void MiiSelect::disappear() {
     _1F8->invalidateAllIcon();
     _1FC->invalidateAllIcon();
     disappearButtons();
-    setNerve(&MiiSelectNrvDisappear::sInstance);
+    setNerve(GET_NERVE_GLOBAL(MiiSelectNrvDisappear));
 }
 
 void MiiSelect::calcAnim() {
@@ -78,15 +78,15 @@ void MiiSelect::calcAnim() {
 }
 
 bool MiiSelect::isAppearing() const {
-    return isNerve(&MiiSelectNrvAppear::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(MiiSelectNrvAppear));
 }
 
 bool MiiSelect::isSelected() {
-    return isNerve(&MiiSelectNrvSelected::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(MiiSelectNrvSelected));
 }
 
 bool MiiSelect::isDummySelected() {
-    return isNerve(&MiiSelectNrvDummySelected::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(MiiSelectNrvDummySelected));
 }
 
 void MiiSelect::getSelectedID(FileSelectIconID* pSelectedID) {
@@ -131,7 +131,7 @@ void MiiSelect::exeAppear() {
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&MiiSelectNrvWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(MiiSelectNrvWait));
     }
 }
 
@@ -185,7 +185,7 @@ void MiiSelect::exeScrollLeft() {
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&MiiSelectNrvWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(MiiSelectNrvWait));
     }
 }
 
@@ -208,7 +208,7 @@ void MiiSelect::exeScrollRight() {
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&MiiSelectNrvWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(MiiSelectNrvWait));
     }
 }
 
@@ -272,14 +272,14 @@ void MiiSelect::callbackLeft() {
     _20[0]->_24 = false;
 
     MR::startSystemSE("SE_SY_FILE_SEL_MIISEL_SCRL");
-    setNerve(&MiiSelectNrvScrollLeft::sInstance);
+    setNerve(GET_NERVE_GLOBAL(MiiSelectNrvScrollLeft));
 }
 
 void MiiSelect::callbackRight() {
     _20[1]->_24 = false;
 
     MR::startSystemSE("SE_SY_FILE_SEL_MIISEL_SCRL");
-    setNerve(&MiiSelectNrvScrollRight::sInstance);
+    setNerve(GET_NERVE_GLOBAL(MiiSelectNrvScrollRight));
 }
 
 void MiiSelect::appearButtons() {
@@ -422,14 +422,14 @@ void MiiSelect::onSelect(s32 param1, nw4r::lyt::TexMap* pTexMap) {
     _1F8->invalidateAllIcon();
     _1FC->invalidateAllIcon();
     disappearButtons();
-    setNerve(&MiiSelectNrvSelected::sInstance);
+    setNerve(GET_NERVE_GLOBAL(MiiSelectNrvSelected));
 }
 
 void MiiSelect::onSelectDummy() {
     _1F8->invalidateAllIcon();
     _1FC->invalidateAllIcon();
     disappearButtons();
-    setNerve(&MiiSelectNrvDummySelected::sInstance);
+    setNerve(GET_NERVE_GLOBAL(MiiSelectNrvDummySelected));
 }
 
 namespace MiiSelectSub {

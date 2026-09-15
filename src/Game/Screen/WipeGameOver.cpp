@@ -11,23 +11,23 @@ WipeGameOver::WipeGameOver() : WipeLayoutBase("ゲームオーバー") {
 }
 
 void WipeGameOver::init(const JMapInfoIter& rIter) {
-    initNerve(&NrvWipeGameOver::WipeGameOverWait::sInstance);
+    initNerve(GET_NERVE(WipeGameOver, WipeGameOverWait));
     initLayoutManager("GameOver", 1);
 }
 
 void WipeGameOver::kill() {
     LayoutActor::kill();
-    setNerve(&NrvWipeGameOver::WipeGameOverWait::sInstance);
+    setNerve(GET_NERVE(WipeGameOver, WipeGameOverWait));
 }
 
 void WipeGameOver::wipe(s32 frame) {
-    if (isNerve(&NrvWipeGameOver::WipeGameOverActive::sInstance)) {
+    if (isNerve(GET_NERVE(WipeGameOver, WipeGameOverActive))) {
         return;
     }
 
     appear();
     MR::hideLayout(this);
-    setNerve(&NrvWipeGameOver::WipeGameOverActive::sInstance);
+    setNerve(GET_NERVE(WipeGameOver, WipeGameOverActive));
 }
 
 void WipeGameOver::forceClose() {
@@ -40,11 +40,11 @@ void WipeGameOver::forceOpen() {
 }
 
 bool WipeGameOver::isOpen() const {
-    return MR::isDead(this) || isNerve(&NrvWipeGameOver::WipeGameOverWait::sInstance);
+    return MR::isDead(this) || isNerve(GET_NERVE(WipeGameOver, WipeGameOverWait));
 }
 
 bool WipeGameOver::isClose() const {
-    return isNerve(&NrvWipeGameOver::WipeGameOverActive::sInstance) && MR::isAnimStopped(this, 0);
+    return isNerve(GET_NERVE(WipeGameOver, WipeGameOverActive)) && MR::isAnimStopped(this, 0);
 }
 
 bool WipeGameOver::isWipeIn() const {
@@ -52,7 +52,7 @@ bool WipeGameOver::isWipeIn() const {
 }
 
 bool WipeGameOver::isWipeOut() const {
-    return isNerve(&NrvWipeGameOver::WipeGameOverActive::sInstance) && !MR::isAnimStopped(this, 0);
+    return isNerve(GET_NERVE(WipeGameOver, WipeGameOverActive)) && !MR::isAnimStopped(this, 0);
 }
 
 void WipeGameOver::exeWait() {

@@ -23,7 +23,7 @@ void SimpleTimerObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
-    info.setupNerve(&NrvSimpleTimerObj::SimpleTimerObjNrvTimer::sInstance);
+    info.setupNerve(GET_NERVE(SimpleTimerObj, SimpleTimerObjNrvTimer));
     initialize(rIter, info);
     MR::getJMapInfoArg7NoInit(rIter, &mTimeLimit);
     mFlashingCtrl = new FlashingCtrl(this, true);
@@ -40,7 +40,7 @@ void SimpleTimerObj::appear() {
     MapObjActor::appear();
     MR::showModel(this);
     MR::validateShadow(this, 0);
-    setNerve(&NrvSimpleTimerObj::SimpleTimerObjNrvTimer::sInstance);
+    setNerve(GET_NERVE(SimpleTimerObj, SimpleTimerObjNrvTimer));
 }
 
 void SimpleTimerObj::kill() {

@@ -74,8 +74,8 @@ KoopaJrShip::KoopaJrShip(const char* pName)
 }
 
 bool KoopaJrShip::isStateBreak(void) const {
-    return isNerve(&NrvKoopaJrShip::HostTypeBreakStart::sInstance) || isNerve(&NrvKoopaJrShip::HostTypeBreak::sInstance) ||
-           isNerve(&NrvKoopaJrShip::HostTypeBreakEnd::sInstance);
+    return isNerve(GET_NERVE(KoopaJrShip, HostTypeBreakStart)) || isNerve(GET_NERVE(KoopaJrShip, HostTypeBreak)) ||
+           isNerve(GET_NERVE(KoopaJrShip, HostTypeBreakEnd));
 }
 
 void KoopaJrShip::init(const JMapInfoIter& rIter) {
@@ -106,14 +106,14 @@ void KoopaJrShip::init(const JMapInfoIter& rIter) {
     mPodModel->makeActorDead();
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
-        MR::registerDemoActionNerve(this, &NrvKoopaJrShip::HostTypeAppear::sInstance, "出現");
+        MR::registerDemoActionNerve(this, GET_NERVE(KoopaJrShip, HostTypeAppear), "出現");
         MR::registerDemoActionFunctor(this, MR::Functor_Inline(this, &KoopaJrShip::setStateTurnFront), "旋廻");
         MR::tryRegisterDemoCast(mShipBreakModel, rIter);
         MR::tryRegisterDemoCast(mPodModel, rIter);
-        initNerve(&NrvKoopaJrShip::HostTypeAppear::sInstance);
+        initNerve(GET_NERVE(KoopaJrShip, HostTypeAppear));
         makeActorDead();
     } else {
-        initNerve(&NrvKoopaJrShip::HostTypeMove::sInstance);
+        initNerve(GET_NERVE(KoopaJrShip, HostTypeMove));
         makeActorAppeared();
     }
 }
@@ -212,11 +212,11 @@ bool KoopaJrShip::receiveMsgJetTurtleAttack(HitSensor* pSender, HitSensor* pRece
         return false;
     }
 
-    if (isNerve(&NrvKoopaJrShip::HostTypeDamage::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaJrShip, HostTypeDamage))) {
         return false;
     }
 
-    if (isNerve(&NrvKoopaJrShip::HostTypePowerUp::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaJrShip, HostTypePowerUp))) {
         return false;
     }
 
@@ -232,23 +232,23 @@ bool KoopaJrShip::receiveMsgJetTurtleAttack(HitSensor* pSender, HitSensor* pRece
         MR::startSound(this, "SE_BM_KOOPAJR_SHIP_DAMAGE_L");
         MR::startSound(mJr, "SE_BV_KOOPAJR_DAMAGE_L");
         MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT");
-        setNerve(&NrvKoopaJrShip::HostTypeBreakStart::sInstance);
+        setNerve(GET_NERVE(KoopaJrShip, HostTypeBreakStart));
     } else {
         MR::startSound(this, "SE_BM_KOOPAJR_SHIP_DAMAGE");
         MR::startSound(mJr, "SE_BV_KOOPAJR_DAMAGE_S");
         MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1");
-        setNerve(&NrvKoopaJrShip::HostTypeDamage::sInstance);
+        setNerve(GET_NERVE(KoopaJrShip, HostTypeDamage));
     }
 
     return true;
 }
 
 s32 KoopaJrShip::getNumShootShells() const {
-    if (isNerve(&NrvKoopaJrShip::HostTypeShoot1::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaJrShip, HostTypeShoot1))) {
         return 1;
     }
 
-    return isNerve(&NrvKoopaJrShip::HostTypeShoot2::sInstance) != 0 ? 5 : 0;
+    return isNerve(GET_NERVE(KoopaJrShip, HostTypeShoot2)) != 0 ? 5 : 0;
 }
 
 void KoopaJrShip_float_ordering1() {
@@ -256,15 +256,15 @@ void KoopaJrShip_float_ordering1() {
 }
 
 f32 KoopaJrShip::getPropellerRotSpeed() const {
-    if (isNerve(&NrvKoopaJrShip::HostTypeBreakStart::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaJrShip, HostTypeBreakStart))) {
         return (40.0f * (1.0f - MR::calcNerveRate(this, 60)));
     }
 
-    if (isNerve(&NrvKoopaJrShip::HostTypeBreak::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaJrShip, HostTypeBreak))) {
         return 0.0f;
     }
 
-    if (isNerve(&NrvKoopaJrShip::HostTypePowerUp::sInstance) || 2 >= _D0 && !isNerve(&NrvKoopaJrShip::HostTypeDamage::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaJrShip, HostTypePowerUp)) || 2 >= _D0 && !isNerve(GET_NERVE(KoopaJrShip, HostTypeDamage))) {
         return 40.0f;
     }
 
@@ -452,7 +452,7 @@ void KoopaJrShip::emitDamageHitEffect() {
 }
 
 void KoopaJrShip::updateKoopaJrPos() {
-    if (isNerve(&NrvKoopaJrShip::HostTypeBreak::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaJrShip, HostTypeBreak))) {
         TPos3f v8;
         v8.set(MR::getJointMtx(mPodModel, ::cJointNamePodPos));
         v8.mult(_1EC, mJr->mPosition);
@@ -490,7 +490,7 @@ void KoopaJrShip::setStateTurnFront() {
     _1EC.x = ::sKoopaJrPosFront.x;
     _1EC.y = ::sKoopaJrPosFront.y;
     _1EC.z = ::sKoopaJrPosFront.z;
-    setNerve(&NrvKoopaJrShip::HostTypeTurnFront::sInstance);
+    setNerve(GET_NERVE(KoopaJrShip, HostTypeTurnFront));
 }
 
 void KoopaJrShip::exeAppear() {
@@ -510,7 +510,7 @@ void KoopaJrShip::exeAppear() {
         mJr->endShipBattleTalk();
         _188 = 60;
         MR::startStageBGM("MBGM_BOSS_06_A", false);
-        setNerve(&NrvKoopaJrShip::HostTypeMove::sInstance);
+        setNerve(GET_NERVE(KoopaJrShip, HostTypeMove));
     }
 }
 
@@ -527,23 +527,23 @@ void KoopaJrShip::exeMove() {
         if (!(getNerveStep() % 120) && !isExistActiveKiller()) {
             switch (_D0) {
             case 5:
-                setNerve(&NrvKoopaJrShip::HostTypeShoot1::sInstance);
+                setNerve(GET_NERVE(KoopaJrShip, HostTypeShoot1));
                 break;
             case 4:
-                setNerve(&NrvKoopaJrShip::HostTypeShoot2::sInstance);
+                setNerve(GET_NERVE(KoopaJrShip, HostTypeShoot2));
                 break;
             case 3:
-                setNerve(&NrvKoopaJrShip::HostTypeShoot2::sInstance);
+                setNerve(GET_NERVE(KoopaJrShip, HostTypeShoot2));
                 break;
             case 2:
-                setNerve(&NrvKoopaJrShip::HostTypeShoot2::sInstance);
+                setNerve(GET_NERVE(KoopaJrShip, HostTypeShoot2));
                 break;
             }
         }
     }
 
     if (MR::isRailReachedEdge(this)) {
-        setNerve(&NrvKoopaJrShip::HostTypeStopAtEnd::sInstance);
+        setNerve(GET_NERVE(KoopaJrShip, HostTypeStopAtEnd));
     }
 }
 
@@ -561,10 +561,10 @@ void KoopaJrShip::exeMoveFrontAttack() {
     if (MR::isRailReachedGoal(this)) {
         if (MR::isGreaterStep(this, 120)) {
             MR::reverseRailDirection(this);
-            setNerve(&NrvKoopaJrShip::HostTypeShootMain::sInstance);
+            setNerve(GET_NERVE(KoopaJrShip, HostTypeShootMain));
         }
     } else if (MR::isStep(this, 120)) {
-        setNerve(&NrvKoopaJrShip::HostTypeShootMain::sInstance);
+        setNerve(GET_NERVE(KoopaJrShip, HostTypeShootMain));
     }
 }
 
@@ -577,14 +577,14 @@ void KoopaJrShip::exeShoot() {
             shootShell(1);
 
             if (i == getNumShootShells() - 1) {
-                setNerve(&NrvKoopaJrShip::HostTypeMove::sInstance);
+                setNerve(GET_NERVE(KoopaJrShip, HostTypeMove));
                 return;
             }
         }
     }
 
     if (MR::isRailReachedEdge(this)) {
-        setNerve(&NrvKoopaJrShip::HostTypeStopAtEnd::sInstance);
+        setNerve(GET_NERVE(KoopaJrShip, HostTypeStopAtEnd));
     }
 }
 
@@ -607,7 +607,7 @@ void KoopaJrShip::exeShootMain() {
     updateCoordSpeed();
 
     if (MR::isStep(this, 150)) {
-        setNerve(&NrvKoopaJrShip::HostTypeMoveFrontAttack::sInstance);
+        setNerve(GET_NERVE(KoopaJrShip, HostTypeMoveFrontAttack));
     }
 }
 
@@ -619,9 +619,9 @@ void KoopaJrShip::exeStopAtEnd() {
         _188 = 60;
 
         if (_D0 <= 2) {
-            setNerve(&NrvKoopaJrShip::HostTypeMoveFrontAttack::sInstance);
+            setNerve(GET_NERVE(KoopaJrShip, HostTypeMoveFrontAttack));
         } else {
-            setNerve(&NrvKoopaJrShip::HostTypeMove::sInstance);
+            setNerve(GET_NERVE(KoopaJrShip, HostTypeMove));
         }
     }
 }
@@ -629,7 +629,7 @@ void KoopaJrShip::exeStopAtEnd() {
 void KoopaJrShip::exePowerUp() {
     if (MR::isStep(this, 90)) {
         _188 = 60;
-        setNerve(&NrvKoopaJrShip::HostTypeMove::sInstance);
+        setNerve(GET_NERVE(KoopaJrShip, HostTypeMove));
     }
 }
 
@@ -661,7 +661,7 @@ void KoopaJrShip::exeDamage() {
         }
 
         if (_D0 == 2) {
-            setNerve(&NrvKoopaJrShip::HostTypePowerUp::sInstance);
+            setNerve(GET_NERVE(KoopaJrShip, HostTypePowerUp));
             return;
         }
 
@@ -669,9 +669,9 @@ void KoopaJrShip::exeDamage() {
 
         // Needed to force another load and comparison
         if (get_D0() <= 2) {
-            setNerve(&NrvKoopaJrShip::HostTypeMoveFrontAttack::sInstance);
+            setNerve(GET_NERVE(KoopaJrShip, HostTypeMoveFrontAttack));
         } else {
-            setNerve(&NrvKoopaJrShip::HostTypeMove::sInstance);
+            setNerve(GET_NERVE(KoopaJrShip, HostTypeMove));
         }
     }
 }
@@ -711,7 +711,7 @@ void KoopaJrShip::exeBreakStart() {
         mPodMtx.set(getBaseMtx());
         mPodModel->appear();
         MR::startBck(mPodModel, "Escape", nullptr);
-        setNerve(&NrvKoopaJrShip::HostTypeBreak::sInstance);
+        setNerve(GET_NERVE(KoopaJrShip, HostTypeBreak));
     }
 }
 
@@ -753,7 +753,7 @@ void KoopaJrShip::exeBreak() {
 
     if (MR::isDemoLastStep()) {
         killAllSubModels();
-        setNerve(&NrvKoopaJrShip::HostTypeBreakEnd::sInstance);
+        setNerve(GET_NERVE(KoopaJrShip, HostTypeBreakEnd));
     }
 }
 
@@ -790,7 +790,7 @@ void KoopaJrShip::exeTurnFront() {
             mKamecks[0]->appear();
         }
 
-        setNerve(&NrvKoopaJrShip::HostTypeMoveFrontAttack::sInstance);
+        setNerve(GET_NERVE(KoopaJrShip, HostTypeMoveFrontAttack));
     }
 }
 

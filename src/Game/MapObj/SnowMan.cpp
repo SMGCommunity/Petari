@@ -51,7 +51,7 @@ void SnowMan::init(const JMapInfoIter& rrIter) {
     MR::useStageSwitchWriteA(this, rrIter);
     MR::useStageSwitchWriteB(this, rrIter);
     MR::useStageSwitchWriteDead(this, rrIter);
-    initNerve(&NrvSnowMan::SnowManNrvWait::sInstance);
+    initNerve(GET_NERVE(SnowMan, SnowManNrvWait));
     makeActorAppeared();
 }
 
@@ -97,18 +97,18 @@ bool SnowMan::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
 }
 
 void SnowMan::damageHead() {
-    if (isNerve(&NrvSnowMan::SnowManNrvWait::sInstance)) {
-        setNerve(&NrvSnowMan::SnowManNrvMeltHead::sInstance);
-    } else if (isNerve(&NrvSnowMan::SnowManNrvWaitHead::sInstance)) {
-        setNerve(&NrvSnowMan::SnowManNrvDownHead::sInstance);
+    if (isNerve(GET_NERVE(SnowMan, SnowManNrvWait))) {
+        setNerve(GET_NERVE(SnowMan, SnowManNrvMeltHead));
+    } else if (isNerve(GET_NERVE(SnowMan, SnowManNrvWaitHead))) {
+        setNerve(GET_NERVE(SnowMan, SnowManNrvDownHead));
     }
 }
 
 void SnowMan::damageBody() {
-    if (isNerve(&NrvSnowMan::SnowManNrvWait::sInstance)) {
-        setNerve(&NrvSnowMan::SnowManNrvMeltBody::sInstance);
-    } else if (isNerve(&NrvSnowMan::SnowManNrvWaitBody::sInstance)) {
-        setNerve(&NrvSnowMan::SnowManNrvDownBody::sInstance);
+    if (isNerve(GET_NERVE(SnowMan, SnowManNrvWait))) {
+        setNerve(GET_NERVE(SnowMan, SnowManNrvMeltBody));
+    } else if (isNerve(GET_NERVE(SnowMan, SnowManNrvWaitBody))) {
+        setNerve(GET_NERVE(SnowMan, SnowManNrvDownBody));
     }
 }
 
@@ -140,7 +140,7 @@ void SnowMan::exeMeltHead() {
 
     if (MR::isStep(this, ::sStepForMelt)) {
         MR::hideMaterial(this, "SnowManBucketMat_v");
-        setNerve(&NrvSnowMan::SnowManNrvWaitBody::sInstance);
+        setNerve(GET_NERVE(SnowMan, SnowManNrvWaitBody));
     }
 }
 
@@ -160,7 +160,7 @@ void SnowMan::exeMeltBody() {
     }
 
     if (MR::isStep(this, ::sStepForMelt)) {
-        setNerve(&NrvSnowMan::SnowManNrvWaitHead::sInstance);
+        setNerve(GET_NERVE(SnowMan, SnowManNrvWaitHead));
     }
 }
 

@@ -26,7 +26,7 @@ void WaterfallCaveCover::init(const JMapInfoIter& rIter) {
     rInitInfo.setupConnectToScene();
     rInitInfo.setupSound(4);
     rInitInfo.setupGroupClipping(16);
-    rInitInfo.setupNerve(&NrvWaterfallCaveCover::HostTypeWait::sInstance);
+    rInitInfo.setupNerve(GET_NERVE(WaterfallCaveCover, HostTypeWait));
     rInitInfo.setupHitSensor();
     rInitInfo.setupHitSensorParam(8, ::sSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
     rInitInfo.setupEffect(nullptr);
@@ -34,8 +34,8 @@ void WaterfallCaveCover::init(const JMapInfoIter& rIter) {
 }
 
 bool WaterfallCaveCover::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isMsgJetTurtleAttack(msg) && isNerve(&NrvWaterfallCaveCover::HostTypeWait::sInstance)) {
-        setNerve(&NrvWaterfallCaveCover::HostTypeBreak::sInstance);
+    if (MR::isMsgJetTurtleAttack(msg) && isNerve(GET_NERVE(WaterfallCaveCover, HostTypeWait))) {
+        setNerve(GET_NERVE(WaterfallCaveCover, HostTypeBreak));
         return true;
     }
     return false;

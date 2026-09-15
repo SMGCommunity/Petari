@@ -86,7 +86,7 @@ void ArrowSwitchMulti::init(const JMapInfoIter& rIter) {
 
     initSound(4, false);
     MR::registerArrowSwitchMulti(this);
-    initNerve(&NrvArrowSwitchMulti::ArrowSwitchMultiNrvWait::sInstance);
+    initNerve(GET_NERVE(ArrowSwitchMulti, ArrowSwitchMultiNrvWait));
     makeActorAppeared();
 }
 
@@ -130,7 +130,7 @@ bool ArrowSwitchMulti::requestPunch(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    if (!isNerve(&NrvArrowSwitchMulti::ArrowSwitchMultiNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(ArrowSwitchMulti, ArrowSwitchMultiNrvWait))) {
         return false;
     }
 
@@ -144,7 +144,7 @@ bool ArrowSwitchMulti::requestPunch(HitSensor* pSender, HitSensor* pReceiver) {
 
     _AC = (_AC + 4) % 4;
     MR::invalidateClipping(this);
-    setNerve(&NrvArrowSwitchMulti::ArrowSwitchMultiNrvRotate::sInstance);
+    setNerve(GET_NERVE(ArrowSwitchMulti, ArrowSwitchMultiNrvRotate));
 
     return true;
 }

@@ -61,7 +61,7 @@ DodoryuDemoOpening::DodoryuDemoOpening(Dodoryu* pHost, const char* pName) : Dodo
 
 void DodoryuDemoOpening::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
-    initNerve(&::DodoryuDemoOpeningNrvOpeningUnderground::sInstance);
+    initNerve(GET_NERVE_ANON(DodoryuDemoOpeningNrvOpeningUnderground));
     MR::initAnimCamera(mHost, &mActorCameraInfo, "OpeningDemo");
     makeActorAppeared();
 }
@@ -73,7 +73,7 @@ void DodoryuDemoOpening::control() {
 }
 
 void DodoryuDemoOpening::start() {
-    setNerve(&::DodoryuDemoOpeningNrvOpeningDemoWait::sInstance);
+    setNerve(GET_NERVE_ANON(DodoryuDemoOpeningNrvOpeningDemoWait));
 }
 
 void DodoryuDemoOpening::end() {
@@ -110,7 +110,7 @@ void DodoryuDemoOpening::exeDemoWait() {
     mHost->stopHillForce();
     MR::moveCoordToStartPos(mHost);
     mHost->resetRabbit();
-    setNerve(&::DodoryuDemoOpeningNrvOpeningUnderground::sInstance);
+    setNerve(GET_NERVE_ANON(DodoryuDemoOpeningNrvOpeningUnderground));
 }
 
 void DodoryuDemoOpening::exeUnderground() {
@@ -126,7 +126,7 @@ void DodoryuDemoOpening::exeUnderground() {
     turnToRabbit();
 
     if (MR::isGreaterEqualStep(this, ::sOpeningHideFrame)) {
-        setNerve(&::DodoryuDemoOpeningNrvOpeningUndergroundHide::sInstance);
+        setNerve(GET_NERVE_ANON(DodoryuDemoOpeningNrvOpeningUndergroundHide));
     }
 }
 
@@ -139,7 +139,7 @@ void DodoryuDemoOpening::exeUndergroundHide() {
     turnToRabbit();
 
     if (MR::isBckStopped(mHost)) {
-        setNerve(&::DodoryuDemoOpeningNrvOpeningAppear::sInstance);
+        setNerve(GET_NERVE_ANON(DodoryuDemoOpeningNrvOpeningAppear));
     }
 }
 
@@ -161,7 +161,7 @@ void DodoryuDemoOpening::exeAppear() {
     turnToRabbit();
 
     if (MR::isBckStopped(mHost)) {
-        setNerve(&::DodoryuDemoOpeningNrvOpeningWalk::sInstance);
+        setNerve(GET_NERVE_ANON(DodoryuDemoOpeningNrvOpeningWalk));
     }
 }
 
@@ -178,7 +178,7 @@ void DodoryuDemoOpening::exeWalk() {
     if (MR::isGreaterEqualStep(this, 60)) {
         mHost->_150 = false;
 
-        setNerve(&::DodoryuDemoOpeningNrvOpeningHideReady::sInstance);
+        setNerve(GET_NERVE_ANON(DodoryuDemoOpeningNrvOpeningHideReady));
     }
 }
 
@@ -193,7 +193,7 @@ void DodoryuDemoOpening::exeHideReady() {
 
     if (MR::isBckStopped(mHost)) {
         MR::startBck(mHost, "EffectWalkAppear", nullptr);
-        setNerve(&::DodoryuDemoOpeningNrvOpeningHide::sInstance);
+        setNerve(GET_NERVE_ANON(DodoryuDemoOpeningNrvOpeningHide));
     }
 }
 
@@ -211,7 +211,7 @@ void DodoryuDemoOpening::exeHide() {
 }
 
 bool DodoryuDemoOpening::tryFinish() {
-    if (!isNerve(&::DodoryuDemoOpeningNrvOpeningDemoWait::sInstance) && MR::isAnimCameraEnd(mHost, &mActorCameraInfo, "OpeningDemo")) {
+    if (!isNerve(GET_NERVE_ANON(DodoryuDemoOpeningNrvOpeningDemoWait)) && MR::isAnimCameraEnd(mHost, &mActorCameraInfo, "OpeningDemo")) {
         mHost->displayRabbitMessage();
         mHost->nextState();
 
@@ -229,13 +229,13 @@ DodoryuDemoAppear::DodoryuDemoAppear(Dodoryu* pHost, const char* pName) : Dodory
 
 void DodoryuDemoAppear::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
-    initNerve(&::DodoryuDemoAppearNrvAppearPlay::sInstance);
+    initNerve(GET_NERVE_ANON(DodoryuDemoAppearNrvAppearPlay));
     MR::initAnimCamera(mHost, &mActorCameraInfo, "AppearDemo");
     makeActorAppeared();
 }
 
 void DodoryuDemoAppear::start() {
-    setNerve(&::DodoryuDemoAppearNrvAppearDemoWait::sInstance);
+    setNerve(GET_NERVE_ANON(DodoryuDemoAppearNrvAppearDemoWait));
 }
 
 void DodoryuDemoAppear::end() {
@@ -256,7 +256,7 @@ void DodoryuDemoAppear::exeDemoWait() {
     MR::requestMovementOnImageEffect();
     MR::setImageEffectControlAuto();
     ::resetCastDisposition(mHost);
-    setNerve(&::DodoryuDemoAppearNrvAppearPlay::sInstance);
+    setNerve(GET_NERVE_ANON(DodoryuDemoAppearNrvAppearPlay));
 }
 
 void DodoryuDemoAppear::exePlay() {
@@ -289,13 +289,13 @@ DodoryuDemoAngry::DodoryuDemoAngry(Dodoryu* pHost, const char* pName) : DodoryuS
 
 void DodoryuDemoAngry::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
-    initNerve(&::DodoryuDemoAngryNrvAngryPlay::sInstance);
+    initNerve(GET_NERVE_ANON(DodoryuDemoAngryNrvAngryPlay));
     MR::initAnimCamera(mHost, &mActorCameraInfo, "AngryDemo");
     makeActorAppeared();
 }
 
 void DodoryuDemoAngry::start() {
-    setNerve(&::DodoryuDemoAngryNrvAngryDemoWait::sInstance);
+    setNerve(GET_NERVE_ANON(DodoryuDemoAngryNrvAngryDemoWait));
 }
 
 void DodoryuDemoAngry::end() {
@@ -314,7 +314,7 @@ void DodoryuDemoAngry::exeDemoWait() {
     MR::requestMovementOnImageEffect();
     MR::setImageEffectControlAuto();
     MR::startAnimCameraTargetSelf(mHost, &mActorCameraInfo, "AngryDemo", 0, 1.0f);
-    setNerve(&::DodoryuDemoAngryNrvAngryPlay::sInstance);
+    setNerve(GET_NERVE_ANON(DodoryuDemoAngryNrvAngryPlay));
 }
 
 void DodoryuDemoAngry::exePlay() {
@@ -349,13 +349,13 @@ DodoryuDemoDown::DodoryuDemoDown(Dodoryu* pHost, const char* pName) : DodoryuSta
 
 void DodoryuDemoDown::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
-    initNerve(&::DodoryuDemoDownNrvDownPlay::sInstance);
+    initNerve(GET_NERVE_ANON(DodoryuDemoDownNrvDownPlay));
     MR::initAnimCamera(mHost, &mActorCameraInfo, "DownDemo");
     makeActorAppeared();
 }
 
 void DodoryuDemoDown::start() {
-    setNerve(&::DodoryuDemoDownNrvDownDemoWait::sInstance);
+    setNerve(GET_NERVE_ANON(DodoryuDemoDownNrvDownDemoWait));
 }
 
 void DodoryuDemoDown::end() {
@@ -374,7 +374,7 @@ void DodoryuDemoDown::exeDemoWait() {
     MR::requestMovementOnImageEffect();
     MR::setImageEffectControlAuto();
     ::resetCastDisposition(mHost);
-    setNerve(&::DodoryuDemoDownNrvDownPlay::sInstance);
+    setNerve(GET_NERVE_ANON(DodoryuDemoDownNrvDownPlay));
 }
 
 void DodoryuDemoDown::exePlay() {

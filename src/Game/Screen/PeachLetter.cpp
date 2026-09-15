@@ -25,7 +25,7 @@ void PeachLetter::init(const JMapInfoIter&) {
     mAButtonIcon->setFollowActorPane(this, "AButtonPosition");
     MR::connectToSceneTalkLayoutNoMovement(this);
     MR::connectToSceneTalkLayoutNoMovement(mAButtonIcon);
-    initNerve(&NrvPeachLetter::PeachLetterNrvAppear::sInstance);
+    initNerve(GET_NERVE(PeachLetter, PeachLetterNrvAppear));
     MR::setTextBoxGameMessageRecursive(this, "Body", "PeachLetter_001");
     kill();
 }
@@ -37,7 +37,7 @@ void PeachLetter::movement() {
 
 void PeachLetter::appear() {
     LayoutActor::appear();
-    setNerve(&NrvPeachLetter::PeachLetterNrvAppear::sInstance);
+    setNerve(GET_NERVE(PeachLetter, PeachLetterNrvAppear));
 }
 
 void PeachLetter::exeAppear() {
@@ -48,7 +48,7 @@ void PeachLetter::exeAppear() {
 
     if (MR::isAnimStopped(this, 0)) {
         MR::startSystemSE("SE_SV_PEACH_MAIL");
-        setNerve(&NrvPeachLetter::PeachLetterNrvWait::sInstance);
+        setNerve(GET_NERVE(PeachLetter, PeachLetterNrvWait));
     }
 }
 
@@ -60,7 +60,7 @@ void PeachLetter::exeWait() {
 
     if (mAButtonIcon->isWait() && MR::testCorePadTriggerA(WPAD_CHAN0)) {
         MR::startSystemSE("SE_SY_TALK_OK");
-        setNerve(&NrvPeachLetter::PeachLetterNrvEnd::sInstance);
+        setNerve(GET_NERVE(PeachLetter, PeachLetterNrvEnd));
     }
 }
 

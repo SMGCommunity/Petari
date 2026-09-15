@@ -16,7 +16,7 @@ SignBoard::SignBoard(const char* pName) : NPCActor(pName) {
 void SignBoard::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("SignBoard");
     caps.setDefault();
-    caps.mWaitNerve = &NrvSignBoard::SignBoardNrvWait::sInstance;
+    caps.mWaitNerve = GET_NERVE(SignBoard, SignBoardNrvWait);
     caps.mShadowSize = 30.0f;
     caps.mSensorSize = 100.0f;
     caps.mSensorOffset.x = 0.0f;

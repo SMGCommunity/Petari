@@ -37,13 +37,13 @@ void FileSelectCameraController::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
     MR::invalidateClipping(this);
     MR::initActorCameraProgrammable(this);
-    initNerve(&::FileSelectCameraControllerNrvTitle::sInstance);
+    initNerve(GET_NERVE_ANON(FileSelectCameraControllerNrvTitle));
     makeActorDead();
 }
 
 void FileSelectCameraController::appear() {
     LiveActor::appear();
-    setNerve(&::FileSelectCameraControllerNrvTitle::sInstance);
+    setNerve(GET_NERVE_ANON(FileSelectCameraControllerNrvTitle));
     MR::startActorCameraProgrammable(this, -1);
 }
 
@@ -53,29 +53,29 @@ void FileSelectCameraController::kill() {
 }
 
 void FileSelectCameraController::goToFarPoint() {
-    setNerve(&::FileSelectCameraControllerNrvMoveToFarPoint::sInstance);
+    setNerve(GET_NERVE_ANON(FileSelectCameraControllerNrvMoveToFarPoint));
 }
 
 void FileSelectCameraController::goToNearPoint(const TVec3f& rPoint) {
     mNearTarget.set(rPoint + TVec3f(::cNearTargetOffset));
 
-    setNerve(&::FileSelectCameraControllerNrvMoveToNearPoint::sInstance);
+    setNerve(GET_NERVE_ANON(FileSelectCameraControllerNrvMoveToNearPoint));
 }
 
 bool FileSelectCameraController::isAtFarPoint() const {
-    return isNerve(&::FileSelectCameraControllerNrvFarPoint::sInstance);
+    return isNerve(GET_NERVE_ANON(FileSelectCameraControllerNrvFarPoint));
 }
 
 bool FileSelectCameraController::isAtNearPoint() const {
-    return isNerve(&::FileSelectCameraControllerNrvNearPoint::sInstance);
+    return isNerve(GET_NERVE_ANON(FileSelectCameraControllerNrvNearPoint));
 }
 
 bool FileSelectCameraController::isToOrAtFarPoint() const {
-    return isNerve(&::FileSelectCameraControllerNrvMoveToFarPoint::sInstance) || isNerve(&::FileSelectCameraControllerNrvFarPoint::sInstance);
+    return isNerve(GET_NERVE_ANON(FileSelectCameraControllerNrvMoveToFarPoint)) || isNerve(GET_NERVE_ANON(FileSelectCameraControllerNrvFarPoint));
 }
 
 bool FileSelectCameraController::isToOrAtNearPoint() const {
-    return isNerve(&::FileSelectCameraControllerNrvMoveToNearPoint::sInstance) || isNerve(&::FileSelectCameraControllerNrvNearPoint::sInstance);
+    return isNerve(GET_NERVE_ANON(FileSelectCameraControllerNrvMoveToNearPoint)) || isNerve(GET_NERVE_ANON(FileSelectCameraControllerNrvNearPoint));
 }
 
 void FileSelectCameraController::exeTitle() {
@@ -98,7 +98,7 @@ void FileSelectCameraController::exeMoveToFarPoint() {
     mFovy += (::cFarFovy - mFovy) * squaredTime;
     mPosition.add((TVec3f(::cFarPoint) - mPosition) * squaredTime);
 
-    MR::setNerveAtStep(this, &::FileSelectCameraControllerNrvFarPoint::sInstance, 60);
+    MR::setNerveAtStep(this, GET_NERVE_ANON(FileSelectCameraControllerNrvFarPoint), 60);
 }
 
 void FileSelectCameraController::exeFarPoint() {
@@ -116,7 +116,7 @@ void FileSelectCameraController::exeMoveToNearPoint() {
     mFovy += (::cNearFovy - mFovy) * squaredTime;
     mPosition += (nearPoint - mPosition) * squaredTime;
 
-    MR::setNerveAtStep(this, &::FileSelectCameraControllerNrvNearPoint::sInstance, 60);
+    MR::setNerveAtStep(this, GET_NERVE_ANON(FileSelectCameraControllerNrvNearPoint), 60);
 }
 
 void FileSelectCameraController::exeNearPoint() {

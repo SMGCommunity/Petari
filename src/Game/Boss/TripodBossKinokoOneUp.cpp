@@ -20,7 +20,7 @@ void TripodBossKinokoOneUp::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjDecorationMovement(this);
     MR::invalidateClipping(this);
     MR::getJMapInfoArg0NoInit(rIter, &mJointID);
-    initNerve(&NrvTripodBossKinokoOneUp::TripodBossKinokoOneUpNrvActive::sInstance);
+    initNerve(GET_NERVE(TripodBossKinokoOneUp, TripodBossKinokoOneUpNrvActive));
 
     mOneUp = new BenefitItemOneUp("1UPキノコ");
     mOneUp->setFollowMtx(_BC);
@@ -45,7 +45,7 @@ void TripodBossKinokoOneUp::exeActive() {
 
     if (MR::isBrokenTripodBoss() || MR::isDead(mOneUp)) {
         mOneUp->kill();
-        setNerve(&NrvTripodBossKinokoOneUp::TripodBossKinokoOneUpNrvEnd::sInstance);
+        setNerve(GET_NERVE(TripodBossKinokoOneUp, TripodBossKinokoOneUpNrvEnd));
     }
 }
 

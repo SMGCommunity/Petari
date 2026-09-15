@@ -38,7 +38,7 @@ void SurprisedGalaxy::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
     MR::addHitSensorMapObj(this, "Body", 8, boundingRadius, TVec3f(0.0f, 0.0f, 0.0f));
     MR::setClippingFar200m(this);
-    initNerve(&NrvSurprisedGalaxy::SurprisedGalaxyNrvWait::sInstance);
+    initNerve(GET_NERVE(SurprisedGalaxy, SurprisedGalaxyNrvWait));
     MR::useStageSwitchSleep(this, rIter);
     MR::startAction(this, "MiniSurprisedGalaxy");
     MR::registerDemoSimpleCastAll(this);
@@ -69,8 +69,8 @@ void SurprisedGalaxy::kill() {
 
 void SurprisedGalaxy::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayerOrRide(pReceiver)) {
-        if (!isNerve(&NrvSurprisedGalaxy::SurprisedGalaxyNrvExit::sInstance)) {
-            setNerve(&NrvSurprisedGalaxy::SurprisedGalaxyNrvExit::sInstance);
+        if (!isNerve(GET_NERVE(SurprisedGalaxy, SurprisedGalaxyNrvExit))) {
+            setNerve(GET_NERVE(SurprisedGalaxy, SurprisedGalaxyNrvExit));
         }
     }
 }
@@ -100,8 +100,8 @@ void SurprisedGalaxy::exeWait() {
 bool SurprisedGalaxy::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     switch (msg) {
     case ACTMES_IS_RUSH_TAKEOVER:
-        if (isNerve(&NrvSurprisedGalaxy::SurprisedGalaxyNrvWait::sInstance)) {
-            setNerve(&NrvSurprisedGalaxy::SurprisedGalaxyNrvExit::sInstance);
+        if (isNerve(GET_NERVE(SurprisedGalaxy, SurprisedGalaxyNrvWait))) {
+            setNerve(GET_NERVE(SurprisedGalaxy, SurprisedGalaxyNrvExit));
         }
         return false;
     default:

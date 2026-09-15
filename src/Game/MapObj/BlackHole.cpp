@@ -36,7 +36,7 @@ void BlackHole::init(const JMapInfoIter& rIter) {
     initSound(4, false);
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
-        MR::registerDemoActionNerve(this, &NrvBlackHole::BlackHoleNrvDisappear::sInstance, 0);
+        MR::registerDemoActionNerve(this, GET_NERVE(BlackHole, BlackHoleNrvDisappear), 0);
     }
 
     bool isCreated = MR::createActorCameraInfoIfExist(rIter, &mCameraInfo);
@@ -44,7 +44,7 @@ void BlackHole::init(const JMapInfoIter& rIter) {
         MR::initActorCamera(this, rIter, &mCameraInfo);
     }
 
-    initNerve(&NrvBlackHole::BlackHoleNrvWait::sInstance);
+    initNerve(GET_NERVE(BlackHole, BlackHoleNrvWait));
     bool uses = MR::useStageSwitchReadAppear(this, rIter);
     if (uses) {
         MR::syncStageSwitchAppear(this);
@@ -78,7 +78,7 @@ bool BlackHole::tryStartDemoCamera() {
 }
 
 void BlackHole::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvBlackHole::BlackHoleNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(BlackHole, BlackHoleNrvWait))) {
         return;
     }
 
@@ -94,7 +94,7 @@ void BlackHole::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    setNerve(&NrvBlackHole::BlackHoleNrvDemo::sInstance);
+    setNerve(GET_NERVE(BlackHole, BlackHoleNrvDemo));
 }
 
 // shrug

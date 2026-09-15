@@ -21,13 +21,13 @@ namespace NrvDinoPackunStateDamage {
 };  // namespace NrvDinoPackunStateDamage
 
 DinoPackunStateDamage::DinoPackunStateDamage(DinoPackun* pHost) : ActorStateBase< DinoPackun >("ディノパックンダメージ状態", pHost), _10(0), _14(1) {
-    initNerve(&NrvDinoPackunStateDamage::DinoPackunStateDamageNrvPunched::sInstance);
+    initNerve(GET_NERVE(DinoPackunStateDamage, DinoPackunStateDamageNrvPunched));
 }
 
 void DinoPackunStateDamage::appear() {
     mIsDead = false;
 
-    setNerve(&NrvDinoPackunStateDamage::DinoPackunStateDamageNrvPunched::sInstance);
+    setNerve(GET_NERVE(DinoPackunStateDamage, DinoPackunStateDamageNrvPunched));
 }
 
 bool DinoPackunStateDamage::isDamageMessage(u32 msg) const {
@@ -35,24 +35,24 @@ bool DinoPackunStateDamage::isDamageMessage(u32 msg) const {
 }
 
 bool DinoPackunStateDamage::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (msg == ACTMES_DINO_PACKUN_PULLED_TAIL && isNerve(&NrvDinoPackunStateDamage::DinoPackunStateDamageNrvPunched::sInstance)) {
-        setNerve(&NrvDinoPackunStateDamage::DinoPackunStateDamageNrvTryPulledDemo::sInstance);
+    if (msg == ACTMES_DINO_PACKUN_PULLED_TAIL && isNerve(GET_NERVE(DinoPackunStateDamage, DinoPackunStateDamageNrvPunched))) {
+        setNerve(GET_NERVE(DinoPackunStateDamage, DinoPackunStateDamageNrvTryPulledDemo));
 
         return true;
     }
 
-    if (msg == ACTMES_DINO_PACKUN_BALL_ATTACK && isNerve(&NrvDinoPackunStateDamage::DinoPackunStateDamageNrvPulled::sInstance)) {
+    if (msg == ACTMES_DINO_PACKUN_BALL_ATTACK && isNerve(GET_NERVE(DinoPackunStateDamage, DinoPackunStateDamageNrvPulled))) {
         MR::emitEffectHitBetweenSensors(getHost(), pSender, pReceiver, 0.0f, "Hit");
 
         switch (_14) {
         case 0:
-            setNerve(&NrvDinoPackunStateDamage::DinoPackunStateDamageNrvEggBroken::sInstance);
+            setNerve(GET_NERVE(DinoPackunStateDamage, DinoPackunStateDamageNrvEggBroken));
             break;
         case 1:
-            setNerve(&NrvDinoPackunStateDamage::DinoPackunStateDamageNrvDamage::sInstance);
+            setNerve(GET_NERVE(DinoPackunStateDamage, DinoPackunStateDamageNrvDamage));
             break;
         case 2:
-            setNerve(&NrvDinoPackunStateDamage::DinoPackunStateDamageNrvLastDamage::sInstance);
+            setNerve(GET_NERVE(DinoPackunStateDamage, DinoPackunStateDamageNrvLastDamage));
             break;
         }
 
@@ -235,7 +235,7 @@ void DinoPackunStateDamage::updateDamage() {
 
 void DinoPackunStateDamage::exeTryPulledDemo() {
     if (MR::tryStartDemoMarioPuppetable(getHost(), "ディノパックンダメージ")) {
-        setNerve(&NrvDinoPackunStateDamage::DinoPackunStateDamageNrvPulled::sInstance);
+        setNerve(GET_NERVE(DinoPackunStateDamage, DinoPackunStateDamageNrvPulled));
     }
 }
 

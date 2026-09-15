@@ -40,13 +40,13 @@ void PalmIsland::init(const JMapInfoIter& rIter) {
     initSound(2, false);
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     _8C = MR::getRandom(0l, 60);
-    initNerve(&NrvPalmIsland::PalmIslandNrvWait::sInstance);
+    initNerve(GET_NERVE(PalmIsland, PalmIslandNrvWait));
     makeActorAppeared();
 }
 
 inline void PalmIsland::exeWait() {
     if (MR::isStep(this, _8C)) {
-        setNerve(&NrvPalmIsland::PalmIslandNrvFloat::sInstance);
+        setNerve(GET_NERVE(PalmIsland, PalmIslandNrvFloat));
     }
 }
 

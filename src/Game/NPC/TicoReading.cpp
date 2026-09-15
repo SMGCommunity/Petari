@@ -26,13 +26,13 @@ void TicoReading::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     MR::initShadowFromCSV(this, "Shadow");
     MR::tryRegisterDemoCast(this, rIter);
-    initNerve(&NrvTicoReading::TicoReadingNrvWait::sInstance);
+    initNerve(GET_NERVE(TicoReading, TicoReadingNrvWait));
     makeActorDead();
 }
 
 void TicoReading::appear() {
     LiveActor::appear();
-    setNerve(&NrvTicoReading::TicoReadingNrvWait::sInstance);
+    setNerve(GET_NERVE(TicoReading, TicoReadingNrvWait));
 }
 
 void TicoReading::kill() {

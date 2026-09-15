@@ -23,7 +23,7 @@ QuakeEffectGenerator::QuakeEffectGenerator() : LiveActor("地震効果生成") {
 }
 
 void QuakeEffectGenerator::init(const JMapInfoIter& rIter) {
-    initNerve(&NrvQuakeEffectGenerator::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(QuakeEffectGenerator, HostTypeWait));
     MR::connectToSceneMapObjMovement(this);
     MR::invalidateClipping(this);
     makeActorAppeared();
@@ -31,16 +31,16 @@ void QuakeEffectGenerator::init(const JMapInfoIter& rIter) {
 
 void QuakeEffectGenerator::exeWait() {
     if (MR::isPlayerInAreaObj("QuakeEffectArea")) {
-        setNerve(&NrvQuakeEffectGenerator::HostTypeWaitInArea::sInstance);
+        setNerve(GET_NERVE(QuakeEffectGenerator, HostTypeWaitInArea));
     }
 }
 
 void QuakeEffectGenerator::exeWaitInArea() {
     if (!MR::isPlayerInAreaObj("QuakeEffectArea")) {
-        setNerve(&NrvQuakeEffectGenerator::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(QuakeEffectGenerator, HostTypeWait));
     } else if (!MR::isFirstStep(this)) {
         if (getNerveStep() % ::sQuakeInterval == 0) {
-            setNerve(&NrvQuakeEffectGenerator::HostTypeQuaking::sInstance);
+            setNerve(GET_NERVE(QuakeEffectGenerator, HostTypeQuaking));
         }
     }
 }
@@ -56,9 +56,9 @@ void QuakeEffectGenerator::exeQuaking() {
         MR::stopShakingCamera(this);
 
         if (MR::isPlayerInAreaObj("QuakeEffectArea")) {
-            setNerve(&NrvQuakeEffectGenerator::HostTypeWaitInArea::sInstance);
+            setNerve(GET_NERVE(QuakeEffectGenerator, HostTypeWaitInArea));
         } else {
-            setNerve(&NrvQuakeEffectGenerator::HostTypeWait::sInstance);
+            setNerve(GET_NERVE(QuakeEffectGenerator, HostTypeWait));
         }
     }
 }

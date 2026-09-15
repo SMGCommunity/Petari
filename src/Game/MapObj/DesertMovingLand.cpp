@@ -35,14 +35,14 @@ void DesertMovingLand::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info = MapObjActorInitInfo();
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     info.setupHitSensor();
-    info.setupNerve(&NrvDesertMovingLand::HostTypeWaitTop::sInstance);
+    info.setupNerve(GET_NERVE(DesertMovingLand, HostTypeWaitTop));
     info.setupBaseMtxFollowTarget();
     info.setupFarClipping(-1.0f);
     info.mIsAppearRiddleSE = false;
     initialize(rIter, info);
 
     if (!MR::isValidSwitchA(this))
-        setNerve(&NrvDesertMovingLand::HostTypeWaitBottom::sInstance);
+        setNerve(GET_NERVE(DesertMovingLand, HostTypeWaitBottom));
 
     MtxPtr jointMtx = MR::getJointMtx(this, mObjectName);
     HitSensor* pSensorMove = getSensor(0);
@@ -76,8 +76,8 @@ void DesertMovingLand::control() {
         updateDemoPlayerPos();
 
     MR::startLevelSound(this, "SE_AT_LV_WIND_MOVING_DESERT");
-    if (!isNerve(&NrvDesertMovingLand::HostTypeStop::sInstance) && MR::isPlayerOnPress())
-        setNerve(&NrvDesertMovingLand::HostTypeStop::sInstance);
+    if (!isNerve(GET_NERVE(DesertMovingLand, HostTypeStop)) && MR::isPlayerOnPress())
+        setNerve(GET_NERVE(DesertMovingLand, HostTypeStop));
 }
 
 void DesertMovingLand::startDemo() {
@@ -101,12 +101,12 @@ void DesertMovingLand::updateDemoPlayerPos() {
 }
 
 void DesertMovingLand::exeWait() {
-    if (MR::isValidSwitchA(this) && MR::isOnSwitchA(this) && isNerve(&NrvDesertMovingLand::HostTypeWaitTop::sInstance)) {
+    if (MR::isValidSwitchA(this) && MR::isOnSwitchA(this) && isNerve(GET_NERVE(DesertMovingLand, HostTypeWaitTop))) {
         startDemo();
-        setNerve(&NrvDesertMovingLand::HostTypeMoveDownSign::sInstance);
-    } else if (MR::isOnSwitchB(this) && isNerve(&NrvDesertMovingLand::HostTypeWaitBottom::sInstance)) {
+        setNerve(GET_NERVE(DesertMovingLand, HostTypeMoveDownSign));
+    } else if (MR::isOnSwitchB(this) && isNerve(GET_NERVE(DesertMovingLand, HostTypeWaitBottom))) {
         startDemo();
-        setNerve(&NrvDesertMovingLand::HostTypeMoveUpSign::sInstance);
+        setNerve(GET_NERVE(DesertMovingLand, HostTypeMoveUpSign));
     }
 }
 
@@ -131,7 +131,7 @@ void DesertMovingLand::exeMoveDown() {
         mVelocity.zero();
         mPosition.set(_D0);
         MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ED");
-        setNerve(&NrvDesertMovingLand::HostTypeWaitBottom::sInstance);
+        setNerve(GET_NERVE(DesertMovingLand, HostTypeWaitBottom));
     }
 }
 
@@ -159,7 +159,7 @@ void DesertMovingLand::exeMoveUp() {
         mVelocity.zero();
         mPosition.set(_C4);
         MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ED");
-        setNerve(&NrvDesertMovingLand::HostTypeWaitTop::sInstance);
+        setNerve(GET_NERVE(DesertMovingLand, HostTypeWaitTop));
     }
 }
 
@@ -176,14 +176,14 @@ void DesertMovingLand::exeMoveSign() {
     MR::startLevelSound(this, "SE_OJ_LV_DESERT_LAND_SIGN");
     MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     if (MR::isBckStopped(this)) {
-        if (isNerve(&NrvDesertMovingLand::HostTypeMoveUpSign::sInstance))
-            setNerve(&NrvDesertMovingLand::HostTypeMoveUp::sInstance);
+        if (isNerve(GET_NERVE(DesertMovingLand, HostTypeMoveUpSign)))
+            setNerve(GET_NERVE(DesertMovingLand, HostTypeMoveUp));
         else {
-            if (isNerve(&NrvDesertMovingLand::HostTypeMoveDownSign::sInstance)) {
+            if (isNerve(GET_NERVE(DesertMovingLand, HostTypeMoveDownSign))) {
                 if (MR::isDemoActive("砂ＵＦＯ下降"))
                     MR::startEventBGM(MR::EventBgmID_Hurry);
 
-                setNerve(&NrvDesertMovingLand::HostTypeMoveDown::sInstance);
+                setNerve(GET_NERVE(DesertMovingLand, HostTypeMoveDown));
             }
         }
     }
@@ -210,4 +210,4 @@ void DesertMovingLand::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
 void DesertMovingLand::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
 }
 
-DesertMovingLand::~DesertMovingLand() {};
+DesertMovingLand::~DesertMovingLand(){};

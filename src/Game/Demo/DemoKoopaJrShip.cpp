@@ -57,13 +57,13 @@ void DemoKoopaJrShip::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     createKoopaJrObj(rIter);
     MR::tryRegisterDemoCast(this, rIter);
-    initNerve(&::DemoKoopaJrShipNrvAppear::sInstance);
+    initNerve(GET_NERVE_ANON(DemoKoopaJrShipNrvAppear));
     makeActorDead();
 }
 
 void DemoKoopaJrShip::appear() {
     LiveActor::appear();
-    setNerve(&::DemoKoopaJrShipNrvAppear::sInstance);
+    setNerve(GET_NERVE_ANON(DemoKoopaJrShipNrvAppear));
     mKoopaJrObj->mPosition.set(::sKoopaJrPos);
 }
 
@@ -88,7 +88,7 @@ void DemoKoopaJrShip::exeAppear() {
     MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MOVE");
 
     if (MR::isBckStopped(this)) {
-        setNerve(&::DemoKoopaJrShipNrvTalk::sInstance);
+        setNerve(GET_NERVE_ANON(DemoKoopaJrShipNrvTalk));
     } else if (tryDemoEnd()) {
         return;
     }
@@ -103,7 +103,7 @@ void DemoKoopaJrShip::exeTalk() {
     MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MOVE");
 
     if (!DemoFunction::isPauseTimeKeepDemo(this)) {
-        setNerve(&::DemoKoopaJrShipNrvFlyAway::sInstance);
+        setNerve(GET_NERVE_ANON(DemoKoopaJrShipNrvFlyAway));
     } else if (tryDemoEnd()) {
         return;
     }

@@ -50,7 +50,7 @@ void DinoPackunFire::init(const JMapInfoIter& rIter) {
     starOffs.set(0.0f);
     MR::initStarPointerTarget(this, 150.0f, starOffs);
     initBinder(150.0f, 0.0f, 0);
-    initNerve(&NrvDinoPackunFire::DinoPackunFireNrvShot::sInstance);
+    initNerve(GET_NERVE(DinoPackunFire, DinoPackunFireNrvShot));
     MR::startBtk(this, "DinoPackunFireBall");
     MR::initShadowVolumeSphere(this, 150.0f);
     MR::onCalcShadow(this, nullptr);
@@ -84,7 +84,7 @@ void DinoPackunFire::appearShot(const TVec3f& rPos, const TVec3f& rVelocity) {
     mPosition.x = rPos.x;
     mPosition.y = rPos.y;
     mPosition.z = rPos.z;
-    setNerve(&NrvDinoPackunFire::DinoPackunFireNrvShot::sInstance);
+    setNerve(GET_NERVE(DinoPackunFire, DinoPackunFireNrvShot));
     appear();
     MR::setVelocity(this, rVelocity);
 }
@@ -100,7 +100,7 @@ void DinoPackunFire::exeShot() {
     MR::attenuateVelocity(this, 0.98f);
     MR::reboundVelocityFromCollision(this, 0.80f, 15.0f, 0.40f);
     if (MR::isGreaterStep(this, 120) && MR::isBindedGround(this)) {
-        setNerve(&NrvDinoPackunFire::DinoPackunFireNrvGround::sInstance);
+        setNerve(GET_NERVE(DinoPackunFire, DinoPackunFireNrvGround));
         MR::zeroVelocity(this);
     } else {
         MR::startLevelSound(this, "SE_BM_LV_D_PAKKUN_FIREBALL_L");

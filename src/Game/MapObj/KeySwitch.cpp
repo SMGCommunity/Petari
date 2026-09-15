@@ -54,10 +54,10 @@ void KeySwitch::init(const JMapInfoIter& rIter) {
     }
 
     if (usesSwitch || !MR::isValidInfo(rIter)) {
-        initNerve(&NrvKeySwitch::KeySwitchNrvDemoStart::sInstance);
+        initNerve(GET_NERVE(KeySwitch, KeySwitchNrvDemoStart));
 
     } else {
-        initNerve(&NrvKeySwitch::KeySwitchNrvWait::sInstance);
+        initNerve(GET_NERVE(KeySwitch, KeySwitchNrvWait));
     }
 
     if (usesSwitch || !MR::isValidInfo(rIter)) {
@@ -82,14 +82,14 @@ void KeySwitch::appearKeySwitch(const TVec3f& rVec) {
 
 void KeySwitch::exeDemoStart() {
     if (!mCameraInfo) {
-        setNerve(&NrvKeySwitch::KeySwitchNrvAppear::sInstance);
+        setNerve(GET_NERVE(KeySwitch, KeySwitchNrvAppear));
         return;
     }
 
     if (MR::tryStartDemoWithoutCinemaFrame(this, ::cDemoName)) {
         MR::startActorCameraTargetSelf(this, mCameraInfo, -1);
         mCurDemoFrame = 0;
-        setNerve(&NrvKeySwitch::KeySwitchNrvAppear::sInstance);
+        setNerve(GET_NERVE(KeySwitch, KeySwitchNrvAppear));
     }
 }
 
@@ -126,7 +126,7 @@ void KeySwitch::exeAppear() {
     if (!tryAvoid()) {
         if (val) {
             MR::validateClipping(this);
-            setNerve(&NrvKeySwitch::KeySwitchNrvWait::sInstance);
+            setNerve(GET_NERVE(KeySwitch, KeySwitchNrvWait));
         }
     }
 }
@@ -183,7 +183,7 @@ bool KeySwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         return true;
     }
 
-    if (isNerve(&NrvKeySwitch::KeySwitchNrvAppear::sInstance) && MR::isLessEqualStep(this, 60)) {
+    if (isNerve(GET_NERVE(KeySwitch, KeySwitchNrvAppear)) && MR::isLessEqualStep(this, 60)) {
         return false;
     }
 

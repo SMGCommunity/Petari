@@ -33,7 +33,7 @@ void CrystalSwitch::init(const JMapInfoIter& rIter) {
     initSound(4, false);
     MR::needStageSwitchWriteA(this, rIter);
     MR::getJMapInfoArg0NoInit(rIter, &_90);
-    initNerve(&NrvCrystalSwitch::CrystalSwitchNrvOff::sInstance);
+    initNerve(GET_NERVE(CrystalSwitch, CrystalSwitchNrvOff));
     initEffectKeeper(0, nullptr, false);
     MR::startBck(this, "Wait", nullptr);
     MR::startBpk(this, "Off");
@@ -58,7 +58,7 @@ bool CrystalSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSenso
 
 bool CrystalSwitch::trySwitchDown() {
     if (_98) {
-        setNerve(&NrvCrystalSwitch::CrystalSwitchNrvSwitchDown::sInstance);
+        setNerve(GET_NERVE(CrystalSwitch, CrystalSwitchNrvSwitchDown));
         return true;
     }
 
@@ -67,7 +67,7 @@ bool CrystalSwitch::trySwitchDown() {
 
 bool CrystalSwitch::tryOn() {
     if (getNerveStep() > 10) {
-        setNerve(&NrvCrystalSwitch::CrystalSwitchNrvOn::sInstance);
+        setNerve(GET_NERVE(CrystalSwitch, CrystalSwitchNrvOn));
         return true;
     }
 
@@ -76,7 +76,7 @@ bool CrystalSwitch::tryOn() {
 
 bool CrystalSwitch::tryOff() {
     if (mRotateSpeed < 8.0f) {
-        setNerve(&NrvCrystalSwitch::CrystalSwitchNrvOff::sInstance);
+        setNerve(GET_NERVE(CrystalSwitch, CrystalSwitchNrvOff));
         return true;
     }
 
@@ -120,7 +120,7 @@ void CrystalSwitch::exeSwitchUp() {
 }
 
 void CrystalSwitch::calcRotSpeed() {
-    if (isNerve(&NrvCrystalSwitch::CrystalSwitchNrvOn::sInstance)) {
+    if (isNerve(GET_NERVE(CrystalSwitch, CrystalSwitchNrvOn))) {
         if (mRotateSpeed < 10.0f) {
             mRotateSpeed += 1.5f;
         }

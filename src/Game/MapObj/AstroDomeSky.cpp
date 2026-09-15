@@ -101,26 +101,26 @@ bool AstroDomeSky::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
 
 bool AstroDomeSky::tryRotateAppearance() {
     if (::cAppearanceRotateSpeed < MR::abs(SphereSelectorFunction::getHandleRotateSpeed())) {
-        if (!isNerve(&NrvAstroDomeSky::AstroDomeSkyNrvRotateDisappear::sInstance)) {
-            if (isNerve(&NrvAstroDomeSky::AstroDomeSkyNrvRotateAppear::sInstance) && !MR::isBrkStopped(this)) {
+        if (!isNerve(GET_NERVE(AstroDomeSky, AstroDomeSkyNrvRotateDisappear))) {
+            if (isNerve(GET_NERVE(AstroDomeSky, AstroDomeSkyNrvRotateAppear)) && !MR::isBrkStopped(this)) {
                 mBrkFrame = ::cRotateAppearBrkFrame - MR::getBrkFrame(this);
             } else {
                 mBrkFrame = 0.0f;
             }
 
-            setNerve(&NrvAstroDomeSky::AstroDomeSkyNrvRotateDisappear::sInstance);
+            setNerve(GET_NERVE(AstroDomeSky, AstroDomeSkyNrvRotateDisappear));
 
             return true;
         }
     } else {
-        if (isNerve(&NrvAstroDomeSky::AstroDomeSkyNrvRotateDisappear::sInstance)) {
+        if (isNerve(GET_NERVE(AstroDomeSky, AstroDomeSkyNrvRotateDisappear))) {
             if (!MR::isBrkStopped(this)) {
                 mBrkFrame = ::cRotateAppearBrkFrame - MR::getBrkFrame(this);
             } else {
                 mBrkFrame = ::cRotateDisappearBrkFrame - 1.0f;
             }
 
-            setNerve(&NrvAstroDomeSky::AstroDomeSkyNrvRotateAppear::sInstance);
+            setNerve(GET_NERVE(AstroDomeSky, AstroDomeSkyNrvRotateAppear));
 
             return true;
         }

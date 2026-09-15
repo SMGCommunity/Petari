@@ -56,7 +56,7 @@ void Balloonfish::init(const JMapInfoIter& rIter) {
     MR::addHitSensorEnemy(this, "body", 32, 100.0f * scale, TVec3f(0.0f, 60.0f * scale, 0.0f));
     initEffectKeeper(0, "Balloonfish", false);
     initSound(2, false);
-    initNerve(&NrvBalloonfish::HostTypeNrvWait::sInstance);
+    initNerve(GET_NERVE(Balloonfish, HostTypeNrvWait));
     // float regswap
     f32 offset = 80.0f;
     MR::initStarPointerTarget(this, 110.0f, TVec3f(0.0f, offset, 0.0f));
@@ -106,14 +106,14 @@ void Balloonfish::exeWait() {
     MR::blendQuatFrontUp(&mQuat, -mGravity, toPredictedPlayerPos, 0.02f, 0.1f);
 
     if (mNotBoundStep > ::hWaitTime) {
-        setNerve(&NrvBalloonfish::HostTypeNrvDash::sInstance);
+        setNerve(GET_NERVE(Balloonfish, HostTypeNrvDash));
         return;
     }
 
     // "weak"
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
         mNerveBeforeBind = mSpine->getCurrentNerve();
-        setNerve(&NrvBalloonfish::HostTypeNrvStarPointerBind::sInstance);
+        setNerve(GET_NERVE(Balloonfish, HostTypeNrvStarPointerBind));
         return;
     }
 
@@ -122,7 +122,7 @@ void Balloonfish::exeWait() {
 
 void Balloonfish::exeDash() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvBalloonfish::HostTypeNrvDash::sInstance)) {
+        if (isNerve(GET_NERVE(Balloonfish, HostTypeNrvDash))) {
             if (mNerveBeforeBind != mSpine->getCurrentNerve()) {
                 mNotBoundStep = 0;
                 MR::startBck(this, "Attack", nullptr);
@@ -146,7 +146,7 @@ void Balloonfish::exeDash() {
     MR::startLevelSound(this, "SE_EM_LV_BLNFISH_DASH");
 
     s32 nerveMaxDuration;
-    if (isNerve(&NrvBalloonfish::HostTypeNrvDash::sInstance)) {
+    if (isNerve(GET_NERVE(Balloonfish, HostTypeNrvDash))) {
         nerveMaxDuration = ::hDashTime;
         f32 ratio = static_cast< f32 >(mNotBoundStep) / nerveMaxDuration;
         mScale.set(::hWaitMaxScale * (1.0f - ratio) + ::hDashScale * ratio);
@@ -155,8 +155,8 @@ void Balloonfish::exeDash() {
     }
 
     if (nerveMaxDuration < mNotBoundStep) {
-        if (isNerve(&NrvBalloonfish::HostTypeNrvDash::sInstance)) {
-            setNerve(&NrvBalloonfish::HostTypeNrvDashEnd::sInstance);
+        if (isNerve(GET_NERVE(Balloonfish, HostTypeNrvDash))) {
+            setNerve(GET_NERVE(Balloonfish, HostTypeNrvDashEnd));
             return;
         } else {
             kill();
@@ -172,7 +172,7 @@ void Balloonfish::exeDash() {
     // "weak"
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
         mNerveBeforeBind = mSpine->getCurrentNerve();
-        setNerve(&NrvBalloonfish::HostTypeNrvStarPointerBind::sInstance);
+        setNerve(GET_NERVE(Balloonfish, HostTypeNrvStarPointerBind));
         return;
     }
 
@@ -201,8 +201,8 @@ void Balloonfish::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    if (isNerve(&NrvBalloonfish::HostTypeNrvWait::sInstance) && MR::isLessStep(this, ::hAttackBeginTime) ||
-        isNerve(&NrvBalloonfish::HostTypeNrvStarPointerBind::sInstance)) {
+    if (isNerve(GET_NERVE(Balloonfish, HostTypeNrvWait)) && MR::isLessStep(this, ::hAttackBeginTime) ||
+        isNerve(GET_NERVE(Balloonfish, HostTypeNrvStarPointerBind))) {
         MR::sendMsgPush(pReceiver, pSender);
         return;
     }
@@ -214,7 +214,7 @@ void Balloonfish::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool Balloonfish::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceReflect(msg)) {
-        if (!isNerve(&NrvBalloonfish::HostTypeNrvStarPointerBind::sInstance)) {
+        if (!isNerve(GET_NERVE(Balloonfish, HostTypeNrvStarPointerBind))) {
             mAnimScaleController->startHitReaction();
         }
         return true;

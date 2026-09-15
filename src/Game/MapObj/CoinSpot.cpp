@@ -28,7 +28,7 @@ void CoinSpot::init(const JMapInfoIter& rIter) {
 
     initSound(4, false);
     initSensor();
-    initNerve(&NrvCoinSpot::CoinSpotNrvWait::sInstance);
+    initNerve(GET_NERVE(CoinSpot, CoinSpotNrvWait));
     appear();
 }
 
@@ -50,7 +50,7 @@ void CoinSpot::exeWait() {
     }
 
     if (_90 == 1) {
-        setNerve(&NrvCoinSpot::CoinSpotNrvIsInTornado::sInstance);
+        setNerve(GET_NERVE(CoinSpot, CoinSpotNrvIsInTornado));
     }
 }
 

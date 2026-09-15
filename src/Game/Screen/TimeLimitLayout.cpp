@@ -45,14 +45,14 @@ void TimeLimitLayout::init(const JMapInfoIter& rIter) {
     mFadeControl->setOne();
 
     MR::setInfluencedAlphaToChild(this);
-    initNerve(&NrvTimeLimitLayout::TimeLimitLayoutCountDown::sInstance);
+    initNerve(GET_NERVE(TimeLimitLayout, TimeLimitLayoutCountDown));
     kill();
 }
 
 void TimeLimitLayout::appear() {
     resetFrame();
     LayoutActor::appear();
-    setNerve(&NrvTimeLimitLayout::TimeLimitLayoutAppear::sInstance);
+    setNerve(GET_NERVE(TimeLimitLayout, TimeLimitLayoutAppear));
 }
 
 void TimeLimitLayout::kill() {
@@ -68,7 +68,7 @@ void TimeLimitLayout::setDisplayModeOnNormal(bool param1) {
 }
 
 bool TimeLimitLayout::isReadyToTimeUp() const {
-    return !MR::isDead(this) && isNerve(&NrvTimeLimitLayout::TimeLimitLayoutTimeUpReady::sInstance);
+    return !MR::isDead(this) && isNerve(GET_NERVE(TimeLimitLayout, TimeLimitLayoutTimeUpReady));
 }
 
 void TimeLimitLayout::resetFrame() {
@@ -104,7 +104,7 @@ void TimeLimitLayout::exeAppear() {
         MR::startAnim(this, "Appear", 0);
     }
 
-    MR::setNerveAtAnimStopped(this, &NrvTimeLimitLayout::TimeLimitLayoutCountDown::sInstance, 0);
+    MR::setNerveAtAnimStopped(this, GET_NERVE(TimeLimitLayout, TimeLimitLayoutCountDown), 0);
 }
 
 void TimeLimitLayout::exeCountDown() {
@@ -118,7 +118,7 @@ void TimeLimitLayout::exeCountDown() {
         mCurrentTiming = pTiming;
 
         MR::startSystemSE("SE_SY_E3_TIMER_SCALE_UP");
-        setNerve(&NrvTimeLimitLayout::TimeLimitLayoutScaleUp::sInstance);
+        setNerve(GET_NERVE(TimeLimitLayout, TimeLimitLayoutScaleUp));
     }
 }
 
@@ -133,7 +133,7 @@ void TimeLimitLayout::exeScaleUp() {
     }
 
     if (mScaleControl->mFrame == mScaleControl->mMaxFrame) {
-        setNerve(&NrvTimeLimitLayout::TimeLimitLayoutScaleKeep::sInstance);
+        setNerve(GET_NERVE(TimeLimitLayout, TimeLimitLayoutScaleKeep));
     }
 }
 
@@ -150,9 +150,9 @@ void TimeLimitLayout::exeScaleKeep() {
 
     if (MR::isGreaterStep(this, mCurrentTiming->mScaleKeepFrame)) {
         if (mCurrentTiming->mIsScaleDown) {
-            setNerve(&NrvTimeLimitLayout::TimeLimitLayoutScaleDown::sInstance);
+            setNerve(GET_NERVE(TimeLimitLayout, TimeLimitLayoutScaleDown));
         } else {
-            setNerve(&NrvTimeLimitLayout::TimeLimitLayoutCountDown::sInstance);
+            setNerve(GET_NERVE(TimeLimitLayout, TimeLimitLayoutCountDown));
         }
     }
 }
@@ -168,9 +168,9 @@ void TimeLimitLayout::exeScaleDown() {
 
     if (mScaleControl->mFrame == mScaleControl->mMaxFrame) {
         if (mCurrentTiming->_A && !_35) {
-            setNerve(&NrvTimeLimitLayout::TimeLimitLayoutFadeout::sInstance);
+            setNerve(GET_NERVE(TimeLimitLayout, TimeLimitLayoutFadeout));
         } else {
-            setNerve(&NrvTimeLimitLayout::TimeLimitLayoutCountDown::sInstance);
+            setNerve(GET_NERVE(TimeLimitLayout, TimeLimitLayoutCountDown));
         }
     }
 }
@@ -185,7 +185,7 @@ void TimeLimitLayout::exeFadeout() {
     }
 
     if (mFadeControl->mFrame == 0) {
-        setNerve(&NrvTimeLimitLayout::TimeLimitLayoutCountDown::sInstance);
+        setNerve(GET_NERVE(TimeLimitLayout, TimeLimitLayoutCountDown));
     }
 }
 
@@ -252,7 +252,7 @@ bool TimeLimitLayout::updateNormal() {
     }
 
     if (mTime == mTimeLimit) {
-        setNerve(&NrvTimeLimitLayout::TimeLimitLayoutTimeUpReady::sInstance);
+        setNerve(GET_NERVE(TimeLimitLayout, TimeLimitLayoutTimeUpReady));
 
         return true;
     }

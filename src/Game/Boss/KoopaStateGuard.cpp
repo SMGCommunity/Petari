@@ -23,7 +23,7 @@ KoopaStateGuard::KoopaStateGuard(Koopa* pKoopa) : ActorStateBase< Koopa >("State
 }
 
 void KoopaStateGuard::init() {
-    initNerve(&NrvKoopaStateGuard::KoopaStateGuardNrvGuardFace::sInstance);
+    initNerve(GET_NERVE(KoopaStateGuard, KoopaStateGuardNrvGuardFace));
 
     kill();
 }
@@ -36,7 +36,7 @@ bool KoopaStateGuard::tryStart(u32 msg, HitSensor* pReceiver, HitSensor* pSender
     if (MR::isSensor(pSender, "Face")) {
         MR::sendMsgEnemyAttackFlip(pReceiver, pSender);
 
-        setNerve(&NrvKoopaStateGuard::KoopaStateGuardNrvGuardFace::sInstance);
+        setNerve(GET_NERVE(KoopaStateGuard, KoopaStateGuardNrvGuardFace));
 
         return true;
     }
@@ -44,7 +44,7 @@ bool KoopaStateGuard::tryStart(u32 msg, HitSensor* pReceiver, HitSensor* pSender
     if (MR::isSensor(pSender, "GuardBody")) {
         MR::sendMsgEnemyAttackFlip(pReceiver, pSender);
 
-        setNerve(&NrvKoopaStateGuard::KoopaStateGuardNrvGuardBody::sInstance);
+        setNerve(GET_NERVE(KoopaStateGuard, KoopaStateGuardNrvGuardBody));
 
         return true;
     }
@@ -52,7 +52,7 @@ bool KoopaStateGuard::tryStart(u32 msg, HitSensor* pReceiver, HitSensor* pSender
     if (MR::isSensor(pSender, "Tail") || MR::isSensor(pSender, "TailTop")) {
         MR::sendMsgEnemyAttackFlipMaximum(pReceiver, pSender);
 
-        setNerve(&NrvKoopaStateGuard::KoopaStateGuardNrvGuardTail::sInstance);
+        setNerve(GET_NERVE(KoopaStateGuard, KoopaStateGuardNrvGuardTail));
 
         return true;
     }

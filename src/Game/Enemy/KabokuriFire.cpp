@@ -23,7 +23,7 @@ KabokuriFire::KabokuriFire(const char* pName) : LiveActor(pName) {
 
 void KabokuriFire::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemyMovement(this);
-    initNerve(&NrvKabokuriFire::KabokuriFireNrvWait::sInstance);
+    initNerve(GET_NERVE(KabokuriFire, KabokuriFireNrvWait));
     initEffectKeeper(0, "KabokuriFire", false);
     initSound(2, false);
     initHitSensor(1);
@@ -42,7 +42,7 @@ void KabokuriFire::start(const TVec3f& rPosition, bool gravitySet) {
 
     MR::makeMtxUpNoSupport(&_8C, -mGravity);
     _8C.setTrans(mPosition);
-    setNerve(&NrvKabokuriFire::KabokuriFireNrvWait::sInstance);
+    setNerve(GET_NERVE(KabokuriFire, KabokuriFireNrvWait));
     appear();
 }
 

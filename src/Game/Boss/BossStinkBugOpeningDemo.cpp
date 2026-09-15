@@ -19,16 +19,16 @@ namespace NrvBossStinkBugOpeningDemo {
 
 BossStinkBugOpeningDemo::BossStinkBugOpeningDemo(BossStinkBug* pStinkBug, const JMapInfoIter& rIter)
     : BossStinkBugActionBase("オープニングデモ", pStinkBug), mDemoPositionController(nullptr) {
-    initNerve(&NrvBossStinkBugOpeningDemo::BossStinkBugOpeningDemoNrvDemo::sInstance);
+    initNerve(GET_NERVE(BossStinkBugOpeningDemo, BossStinkBugOpeningDemoNrvDemo));
     mDemoPositionController = new DemoPositionController("BossStinkBugDemo", rIter);
     mDemoPositionController->initAnimCamera("OpeningDemo");
 }
 
 void BossStinkBugOpeningDemo::appear() {
     ActorStateBase::appear();
-    setNerve(&NrvBossStinkBugOpeningDemo::BossStinkBugOpeningDemoNrvTryStart::sInstance);
+    setNerve(GET_NERVE(BossStinkBugOpeningDemo, BossStinkBugOpeningDemoNrvTryStart));
     MR::requestStartDemoMarioPuppetable(this, getHost(), "ボスカメムシオープニングデモ",
-                                        &NrvBossStinkBugOpeningDemo::BossStinkBugOpeningDemoNrvDemo::sInstance, nullptr);
+                                        GET_NERVE(BossStinkBugOpeningDemo, BossStinkBugOpeningDemoNrvDemo), nullptr);
 }
 
 void BossStinkBugOpeningDemo::exeDemo() {

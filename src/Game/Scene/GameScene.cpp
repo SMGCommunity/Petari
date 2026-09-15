@@ -77,7 +77,7 @@ void GameScene::init() {
     SceneFunction::createHioBasicNode(this);
     SceneFunction::startStageFileLoad();
     MR::requestChangeArchivePlayer(MR::isPlayerLuigi() == false);
-    initNerve(&NrvGameScene::GameSceneScenarioOpeningCamera::sInstance);
+    initNerve(GET_NERVE(GameScene, GameSceneScenarioOpeningCamera));
     SceneFunction::initForNameObj();
     SceneFunction::initForLiveActor();
     initEffect();
@@ -164,10 +164,10 @@ void GameScene::update() {
     mPauseCtrl->updateNerve();
     updateNerve();
 
-    bool isTimeUp = MR::isGlobalTimerEnd() && !isNerve(&NrvGameScene::GameSceneTimeUp::sInstance) && MR::isGreaterEqualStep(this, 2);
+    bool isTimeUp = MR::isGlobalTimerEnd() && !isNerve(GET_NERVE(GameScene, GameSceneTimeUp)) && MR::isGreaterEqualStep(this, 2);
 
     if (isTimeUp) {
-        setNerve(&NrvGameScene::GameSceneTimeUp::sInstance);
+        setNerve(GET_NERVE(GameScene, GameSceneTimeUp));
     }
 }
 
@@ -190,7 +190,7 @@ void GameScene::calcAnim() {
         SceneFunction::executeCalcAnimList();
     }
 
-    if (!isNerve(&NrvGameScene::GameSceneTimeUp::sInstance)) {
+    if (!isNerve(GET_NERVE(GameScene, GameSceneTimeUp))) {
         CategoryList::execute(MR::CalcAnimType_AnimParticleIgnorePause);
     }
 
@@ -198,53 +198,53 @@ void GameScene::calcAnim() {
 }
 
 void GameScene::notifyEndScenarioStarter() {
-    setNerve(&NrvGameScene::GameSceneAction::sInstance);
+    setNerve(GET_NERVE(GameScene, GameSceneAction));
 }
 
 void GameScene::requestPlayMovieDemo() {
-    setNerve(&NrvGameScene::GameScenePlayMovie::sInstance);
+    setNerve(GET_NERVE(GameScene, GameScenePlayMovie));
 }
 
 void GameScene::requestStartGameOverDemo() {
-    if (!isNerve(&NrvGameScene::GameSceneGameOver::sInstance)) {
-        setNerve(&NrvGameScene::GameSceneGameOver::sInstance);
+    if (!isNerve(GET_NERVE(GameScene, GameSceneGameOver))) {
+        setNerve(GET_NERVE(GameScene, GameSceneGameOver));
     }
 }
 
 void GameScene::requestEndGameOverDemo() {
-    setNerve(&NrvGameScene::GameSceneSaveAfterGameOver::sInstance);
+    setNerve(GET_NERVE(GameScene, GameSceneSaveAfterGameOver));
 }
 
 void GameScene::requestEndMissDemo() {
     if (MR::isExistSceneObj(SceneObj_CometRetryButton)) {
-        setNerve(&NrvGameScene::GameSceneCometRetryAfterMiss::sInstance);
+        setNerve(GET_NERVE(GameScene, GameSceneCometRetryAfterMiss));
     } else {
         MR::requestChangeStageAfterMiss();
     }
 }
 
 void GameScene::requestPowerStarGetDemo() {
-    setNerve(&NrvGameScene::GameScenePowerStarGet::sInstance);
+    setNerve(GET_NERVE(GameScene, GameScenePowerStarGet));
 }
 
 void GameScene::requestGrandStarGetDemo() {
-    setNerve(&NrvGameScene::GameSceneGrandStarGet::sInstance);
+    setNerve(GET_NERVE(GameScene, GameSceneGrandStarGet));
 }
 
 void GameScene::setNerveAfterPauseMenu() {
-    setNerve(&NrvGameScene::GameSceneAction::sInstance);
+    setNerve(GET_NERVE(GameScene, GameSceneAction));
 }
 
 bool GameScene::isExecScenarioOpeningCamera() const {
-    return isNerve(&NrvGameScene::GameSceneScenarioOpeningCamera::sInstance);
+    return isNerve(GET_NERVE(GameScene, GameSceneScenarioOpeningCamera));
 }
 
 bool GameScene::isExecScenarioStarter() const {
-    return isNerve(&NrvGameScene::GameSceneScenarioStarter::sInstance);
+    return isNerve(GET_NERVE(GameScene, GameSceneScenarioStarter));
 }
 
 bool GameScene::isExecStageClearDemo() const {
-    return isNerve(&NrvGameScene::GameScenePowerStarGet::sInstance) || isNerve(&NrvGameScene::GameSceneGrandStarGet::sInstance);
+    return isNerve(GET_NERVE(GameScene, GameScenePowerStarGet)) || isNerve(GET_NERVE(GameScene, GameSceneGrandStarGet));
 }
 
 void GameScene::exeScenarioOpeningCamera() {
@@ -259,9 +259,9 @@ void GameScene::exeScenarioOpeningCamera() {
             MR::stopSubBGM(0);
             MR::stopStageBGM(0);
             MR::startStageBGMFromStageName("Game", MR::getCurrentStageName(), MR::getCurrentScenarioNo());
-            setNerve(&NrvGameScene::GameSceneAction::sInstance);
+            setNerve(GET_NERVE(GameScene, GameSceneAction));
         } else {
-            setNerve(&NrvGameScene::GameSceneScenarioStarter::sInstance);
+            setNerve(GET_NERVE(GameScene, GameSceneScenarioStarter));
         }
     }
 }
@@ -292,7 +292,7 @@ void GameScene::exeSaveAfterGameOver() {
 
 void GameScene::exePlayMovie() {
     if (!MR::isActiveMoviePlayer() && !MR::isMoviePlayingOnSequence()) {
-        setNerve(&NrvGameScene::GameSceneAction::sInstance);
+        setNerve(GET_NERVE(GameScene, GameSceneAction));
         SceneFunction::movementStopSceneController();
         SceneFunction::executeMovementList();
     } else {
@@ -307,7 +307,7 @@ void GameScene::exeGalaxyMap() {
 
     if (!MR::isActiveGalaxyMapLayout()) {
         MR::endStarPointerMode(this);
-        setNerve(&NrvGameScene::GameSceneAction::sInstance);
+        setNerve(GET_NERVE(GameScene, GameSceneAction));
     } else {
         CategoryList::execute(MR::MovementType_LayoutOnPause);
     }
@@ -324,7 +324,7 @@ void GameScene::initSequences() {
 
     mScenarioCamera = new GameSceneScenarioOpeningCameraState();
     mPauseCtrl = new GameScenePauseControl(this);
-    mPauseCtrl->registerNervePauseMenu(&NrvGameScene::GameScenePauseMenu::sInstance);
+    mPauseCtrl->registerNervePauseMenu(GET_NERVE(GameScene, GameScenePauseMenu));
 
     mPauseSeq->initWindowMenu(MR::Functor_Inline(mPauseCtrl, &GameScenePauseControl::requestPauseMenuOff));
 }
@@ -359,7 +359,7 @@ void GameScene::drawMirror() const {
 
 // inline
 bool GameScene::isPlayMovie() const {
-    return MR::isActiveMoviePlayer() || MR::isMoviePlayingOnSequence() || isNerve(&NrvGameScene::GameScenePlayMovie::sInstance);
+    return MR::isActiveMoviePlayer() || MR::isMoviePlayingOnSequence() || isNerve(GET_NERVE(GameScene, GameScenePlayMovie));
 }
 
 void GameScene::draw3D() const {
@@ -459,7 +459,7 @@ void GameScene::drawOdhCapture() const {
 
 void GameScene::startStagePlayFirst() {
     if (isValidScenarioOpeningCamera()) {
-        setNerve(&NrvGameScene::GameSceneScenarioOpeningCamera::sInstance);
+        setNerve(GET_NERVE(GameScene, GameSceneScenarioOpeningCamera));
 
         if (!MR::isBeginScenarioStarter()) {
             MR::stopSubBGM(0);
@@ -469,7 +469,7 @@ void GameScene::startStagePlayFirst() {
     } else if (MR::isBeginScenarioStarter()) {
         MR::forceToBlankCinemaFrame();
         MR::forceOpenWipeFade();
-        setNerve(&NrvGameScene::GameSceneScenarioStarter::sInstance);
+        setNerve(GET_NERVE(GameScene, GameSceneScenarioStarter));
     } else {
         if (MR::isStageBeginFadeWipe()) {
             MR::openWipeFade(180);
@@ -485,7 +485,7 @@ void GameScene::startStagePlayFirst() {
         MR::stopStageBGM(0);
         MR::startStageBGMFromStageName("Game", MR::getCurrentStageName(), MR::getCurrentScenarioNo());
         MR::executeOnWelcomeAndRetry();
-        setNerve(&NrvGameScene::GameSceneAction::sInstance);
+        setNerve(GET_NERVE(GameScene, GameSceneAction));
     }
 }
 
@@ -505,20 +505,20 @@ void GameScene::startStagePlayRetry() {
     }
 
     MR::executeOnWelcomeAndRetry();
-    setNerve(&NrvGameScene::GameSceneAction::sInstance);
+    setNerve(GET_NERVE(GameScene, GameSceneAction));
 }
 
 bool GameScene::isPermitToPauseMenu() const {
-    return !MR::isStageDisablePauseMenu() && isNerve(&NrvGameScene::GameSceneAction::sInstance) && !MR::isDemoActive() && !MR::isWipeActive() &&
+    return !MR::isStageDisablePauseMenu() && isNerve(GET_NERVE(GameScene, GameSceneAction)) && !MR::isDemoActive() && !MR::isWipeActive() &&
            !MR::isWipeBlank() && !MR::isPlayerDead() && !MR::isPlayerDamaging();
 }
 
 void GameScene::requestShowGalaxyMap() {
-    setNerve(&NrvGameScene::GameSceneGalaxyMap::sInstance);
+    setNerve(GET_NERVE(GameScene, GameSceneGalaxyMap));
 }
 
 void GameScene::requestStaffRoll() {
-    setNerve(&NrvGameScene::GameSceneStaffRoll::sInstance);
+    setNerve(GET_NERVE(GameScene, GameSceneStaffRoll));
 }
 
 bool GameScene::isDrawMirror() const {
@@ -535,9 +535,9 @@ bool GameScene::isDrawMirror() const {
 
 void GameScene::stageClear() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvGameScene::GameScenePowerStarGet::sInstance)) {
+        if (isNerve(GET_NERVE(GameScene, GameScenePowerStarGet))) {
             mStageClearSeq->startPowerStarGetDemo();
-        } else if (isNerve(&NrvGameScene::GameSceneGrandStarGet::sInstance)) {
+        } else if (isNerve(GET_NERVE(GameScene, GameSceneGrandStarGet))) {
             mStageClearSeq->startGrandStarGetDemo();
         }
     }

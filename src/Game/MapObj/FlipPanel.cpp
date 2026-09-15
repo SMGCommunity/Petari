@@ -43,7 +43,7 @@ void FlipPanel::init(const JMapInfoIter& rIter) {
     info.setupConnectToScene();
     info.setupEffect("FlipPanel");
     info.setupSound(4);
-    info.setupNerve(&NrvFlipPanel::FlipPanelNrvFront::sInstance);
+    info.setupNerve(GET_NERVE(FlipPanel, FlipPanelNrvFront));
     initialize(rIter, info);
     mIsReverse = isObjectName("FlipPanelReverse");
     mDelegator = MR::createJointDelegatorWithNullChildFunc(this, &FlipPanel::calcJointMove, "Panel");
@@ -85,7 +85,7 @@ void FlipPanel::exeFrontLand() {
     }
 
     if (MR::isOnGroundPlayer() && !MR::isOnPlayer(this)) {
-        setNerve(&NrvFlipPanel::FlipPanelNrvFront::sInstance);
+        setNerve(GET_NERVE(FlipPanel, FlipPanelNrvFront));
     }
 }
 
@@ -114,7 +114,7 @@ void FlipPanel::exeBackLand() {
     }
 
     if (MR::isOnGroundPlayer() && !MR::isOnPlayer(this)) {
-        setNerve(&NrvFlipPanel::FlipPanelNrvBack::sInstance);
+        setNerve(GET_NERVE(FlipPanel, FlipPanelNrvBack));
     }
 }
 
@@ -129,10 +129,10 @@ void FlipPanel::exeWait() {
 
     if (!_CC) {
         if (checkPlayerOnTop()) {
-            if (isNerve(&NrvFlipPanel::FlipPanelNrvFront::sInstance)) {
-                setNerve(&NrvFlipPanel::FlipPanelNrvBackLand::sInstance);
+            if (isNerve(GET_NERVE(FlipPanel, FlipPanelNrvFront))) {
+                setNerve(GET_NERVE(FlipPanel, FlipPanelNrvBackLand));
             } else {
-                setNerve(&NrvFlipPanel::FlipPanelNrvFrontLand::sInstance);
+                setNerve(GET_NERVE(FlipPanel, FlipPanelNrvFrontLand));
             }
         }
     }
@@ -140,7 +140,7 @@ void FlipPanel::exeWait() {
 
 void FlipPanel::exeEndPrepare() {
     if (MR::isStep(this, 20)) {
-        setNerve(&NrvFlipPanel::FlipPanelNrvEnd::sInstance);
+        setNerve(GET_NERVE(FlipPanel, FlipPanelNrvEnd));
     }
 }
 
@@ -189,7 +189,7 @@ void FlipPanel::calcAndSetBaseMtx() {
 }
 
 bool FlipPanel::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvFlipPanel::FlipPanelNrvEnd::sInstance)) {
+    if (isNerve(GET_NERVE(FlipPanel, FlipPanelNrvEnd))) {
         return false;
     }
 
@@ -201,7 +201,7 @@ bool FlipPanel::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
 
     if (msg == ACTMES_GROUP_MOVE_STOP) {
         MR::invalidateClipping(this);
-        setNerve(&NrvFlipPanel::FlipPanelNrvEndPrepare::sInstance);
+        setNerve(GET_NERVE(FlipPanel, FlipPanelNrvEndPrepare));
 
         return true;
     }
@@ -292,7 +292,7 @@ void FlipPanelObserver::init(const JMapInfoIter& rIter) {
         _9C = 0;
     }
 
-    initNerve(&NrvFlipPanelObserver::FlipPanelObserverNrvWait::sInstance);
+    initNerve(GET_NERVE(FlipPanelObserver, FlipPanelObserverNrvWait));
     bool ret = MR::useStageSwitchReadAppear(this, rIter);
 
     if (ret) {
@@ -310,7 +310,7 @@ void FlipPanelObserver::exeWait() {
     }
 
     if (_90 == _8C->getObjNum() - 1 && MR::tryStartDemo(this, "FlipPanelComplete")) {
-        setNerve(&NrvFlipPanelObserver::FlipPanelObserverNrvComplete::sInstance);
+        setNerve(GET_NERVE(FlipPanelObserver, FlipPanelObserverNrvComplete));
     } else {
         ::sBloomSyncStep++;
     }
@@ -334,7 +334,7 @@ void FlipPanelObserver::exeComplete() {
             }
         }
 
-        setNerve(&NrvFlipPanelObserver::FlipPanelObserverNrvDemoWait::sInstance);
+        setNerve(GET_NERVE(FlipPanelObserver, FlipPanelObserverNrvDemoWait));
     }
 }
 

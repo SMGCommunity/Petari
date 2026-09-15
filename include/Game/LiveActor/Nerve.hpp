@@ -39,8 +39,14 @@ public:
     };                                                                                                                                               \
     name name::sInstance ATTRIBUTE_WEAK;
 
-/* reduces the amount of lines / characters in a line with an easy alternative to get a nerve instance */
+/* easy alternative to get a nerve instance (in the standard format) */
 #define GET_NERVE(cls, nerve) (&Nrv##cls::nerve::sInstance)
 
-/* reduces the amount of lines / characters in a line with an easy alternative to get a nerve instance (with an anonymous namespace) */
-#define GET_NERVE_ANON(nerve) (&nerve::sInstance)
+/* easy alternative to get a nerve instance (with an anonymous namespace) */
+#define GET_NERVE_ANON(nerve) (&::nerve::sInstance)
+
+/* easy alternative to get a nerve instance (with no namespace) */
+#define GET_NERVE_GLOBAL(nerve) (&nerve::sInstance)
+
+/* easy alternative to get a nerve instance (where namespace does not follow standard) */
+#define GET_NERVE_DIRECT(nmspc, nerve) (&nmspc::nerve::sInstance)

@@ -111,7 +111,7 @@ void FileSelectItem::init(const JMapInfoIter& rIter) {
     createNumber();
     MR::initStarPointerTarget(this, 1000.0f, TVec3f(0.0f, 900.0f, 0.0f));
     MR::invalidateClipping(this);
-    initNerve(&FileSelectItemNrvNewWait::sInstance);
+    initNerve(GET_NERVE_GLOBAL(FileSelectItemNrvNewWait));
     MR::createCenterScreenBlur();
     makeActorAppeared();
 }
@@ -122,7 +122,7 @@ void FileSelectItem::appear() {
     if (_8C) {
         killAllModels();
         mPlanetMapObj->makeActorAppeared();
-        setNerve(&FileSelectItemNrvNewWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvNewWait));
     } else {
         if (mIconID->isMii()) {
             killAllModels();
@@ -131,7 +131,7 @@ void FileSelectItem::appear() {
             appearFellowModel();
         }
 
-        setNerve(&FileSelectItemNrvExistWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvExistWait));
     }
 }
 
@@ -153,15 +153,15 @@ void FileSelectItem::makeActorDead() {
 }
 
 bool FileSelectItem::isNew() const {
-    return isNerve(&FileSelectItemNrvNewWait::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(FileSelectItemNrvNewWait));
 }
 
 bool FileSelectItem::isExist() const {
-    return isNerve(&FileSelectItemNrvExistWait::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(FileSelectItemNrvExistWait));
 }
 
 void FileSelectItem::format() {
-    setNerve(&FileSelectItemNrvFormat::sInstance);
+    setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvFormat));
     deleteCompleteEffect();
     _8C = 1;
 }
@@ -170,9 +170,9 @@ void FileSelectItem::change(const FileSelectIconID& rID, bool a2) {
     mIconID->set(rID);
 
     if (rID.isMii()) {
-        setNerve(&FileSelectItemNrvChangeMii::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvChangeMii));
     } else {
-        setNerve(&FileSelectItemNrvChangeFellow::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvChangeFellow));
     }
 
     deleteCompleteEffect();
@@ -194,7 +194,7 @@ void FileSelectItem::forceChange(const FileSelectIconID& rID, bool a2) {
 
     _147 = a2;
     emitCompleteEffect();
-    setNerve(&FileSelectItemNrvExistWait::sInstance);
+    setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvExistWait));
     _8C = 0;
 }
 
@@ -228,7 +228,7 @@ void FileSelectItem::setSelectDelegator(FileSelectItemDelegatorBase* pDele) {
 
 void FileSelectItem::onPointing() {
     if (!mIsInvalidateSelect) {
-        if (isNerve(&FileSelectItemNrvNewWait::sInstance)) {
+        if (isNerve(GET_NERVE_GLOBAL(FileSelectItemNrvNewWait))) {
             playPointedNotUsingME();
         } else {
             playPointedME();
@@ -236,7 +236,7 @@ void FileSelectItem::onPointing() {
 
         _A0->onSelectIn();
         _144 = 1;
-        mScaleCtrl->setNerve(&FileSelectItemSub::ScaleControllerNrvToBig::sInstance);
+        mScaleCtrl->setNerve(GET_NERVE_DIRECT(FileSelectItemSub, ScaleControllerNrvToBig));
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
     }
 }
@@ -245,7 +245,7 @@ void FileSelectItem::offPointing() {
     if (!mIsInvalidateSelect) {
         _A0->onSelectOut();
         _144 = 0;
-        mScaleCtrl->setNerve(&FileSelectItemSub::ScaleControllerNrvToSmall::sInstance);
+        mScaleCtrl->setNerve(GET_NERVE_DIRECT(FileSelectItemSub, ScaleControllerNrvToSmall));
     }
 }
 
@@ -281,7 +281,7 @@ void FileSelectItem::exeFormat() {
     }
 
     if (MR::isStep(this, 60)) {
-        setNerve(&::FileSelectItemNrvNewWait::sInstance);
+        setNerve(GET_NERVE_ANON(FileSelectItemNrvNewWait));
     }
 }
 
@@ -314,7 +314,7 @@ void FileSelectItem::exeChangeFellow() {
     }
 
     if (MR::isStep(this, 150)) {
-        setNerve(&::FileSelectItemNrvExistWait::sInstance);
+        setNerve(GET_NERVE_ANON(FileSelectItemNrvExistWait));
     }
 }
 
@@ -352,7 +352,7 @@ void FileSelectItem::exeChangeMii() {
     }
 
     if (MR::isStep(this, 150)) {
-        setNerve(&FileSelectItemNrvExistWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvExistWait));
     }
 }
 
@@ -446,7 +446,7 @@ void FileSelectItem::updatePointing() {
     if (!mIsInvalidateSelect && _144 && MR::testDPDMenuPadDecideTrigger()) {
         if (mDelegator != nullptr) {
             mDelegator->notify(this, 1);
-            mScaleCtrl->setNerve(&FileSelectItemSub::ScaleControllerNrvToSmall::sInstance);
+            mScaleCtrl->setNerve(GET_NERVE_DIRECT(FileSelectItemSub, ScaleControllerNrvToSmall));
         }
     }
 }
@@ -477,7 +477,7 @@ void FileSelectItem::updateRotate() {
 
         mRotation.y = MR::repeat(mRotation.y, -180.0f, 360.0f);
         mBlinkCtrl->open();
-        mBlinkCtrl->setNerve(&FileSelectItemSub::BlinkControllerNrvOpen::sInstance);
+        mBlinkCtrl->setNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvOpen));
     } else if (MR::isStarPointerInScreen(0)) {
         TVec3f v43 = mPosition + TVec3f(0.0f, 900.0f, 0.0f);
         TVec2f screenPos(*MR::getStarPointerScreenPosition(0));
@@ -752,7 +752,7 @@ namespace FileSelectItemSub {
 
     ScaleController::ScaleController() : NerveExecutor("ファイルセレクタアイコンサイズ管理") {
         _8 = 1.0f;
-        initNerve(&FileSelectItemSub::ScaleControllerNrvSmall::sInstance);
+        initNerve(GET_NERVE_DIRECT(FileSelectItemSub, ScaleControllerNrvSmall));
     }
 
     void ScaleController::exeToSmall() {
@@ -761,7 +761,7 @@ namespace FileSelectItemSub {
             _8 += (v * (1.0f - _8));
         }
 
-        MR::setNerveAtStep(this, &FileSelectItemSub::ScaleControllerNrvSmall::sInstance, 30);
+        MR::setNerveAtStep(this, GET_NERVE_DIRECT(FileSelectItemSub, ScaleControllerNrvSmall), 30);
     }
 
     void ScaleController::exeToBig() {
@@ -770,14 +770,14 @@ namespace FileSelectItemSub {
             _8 += v * (1.2f - _8);
         }
 
-        MR::setNerveAtStep(this, &FileSelectItemSub::ScaleControllerNrvBig::sInstance, 30);
+        MR::setNerveAtStep(this, GET_NERVE_DIRECT(FileSelectItemSub, ScaleControllerNrvBig), 30);
     }
 
     BlinkController::BlinkController(FileSelectItem* pItem) : NerveExecutor("ファイルセレクタアイコン瞬き管理") {
         mItem = pItem;
         _C = 0;
         _10 = 0;
-        initNerve(&FileSelectItemSub::BlinkControllerNrvOpen::sInstance);
+        initNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvOpen));
     }
 
     void BlinkController::exeOpen() {
@@ -799,10 +799,10 @@ namespace FileSelectItemSub {
         }
 
         if (_10 > 180) {
-            setNerve(&FileSelectItemSub::BlinkControllerNrvSleep::sInstance);
+            setNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvSleep));
         } else {
             if (MR::isGreaterEqualStep(this, _C)) {
-                setNerve(&FileSelectItemSub::BlinkControllerNrvShut::sInstance);
+                setNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvShut));
             }
         }
     }
@@ -814,7 +814,7 @@ namespace FileSelectItemSub {
 
         if (MR::isGreaterEqualStep(this, 10)) {
             open();
-            setNerve(&FileSelectItemSub::BlinkControllerNrvOpen::sInstance);
+            setNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvOpen));
         }
     }
 
@@ -831,7 +831,7 @@ namespace FileSelectItemSub {
         }
 
         if (_10 > 60) {
-            setNerve(&FileSelectItemSub::BlinkControllerNrvBlink::sInstance);
+            setNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvBlink));
         }
     }
 
@@ -851,7 +851,7 @@ namespace FileSelectItemSub {
             FileSelectIconID::EFellowID id = mItem->mIconID->getFellowID();
 
             if (mItem->mModels[id]->isOpen()) {
-                setNerve(&FileSelectItemSub::BlinkControllerNrvOpen::sInstance);
+                setNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvOpen));
                 return;
             }
         }
@@ -859,7 +859,7 @@ namespace FileSelectItemSub {
         if (mItem->mIconID->isMii()) {
             if (MR::isGreaterEqualStep(this, 40)) {
                 mItem->mFaceParts->changeExpressionNormal();
-                setNerve(&FileSelectItemSub::BlinkControllerNrvOpen::sInstance);
+                setNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvOpen));
             }
         }
     }

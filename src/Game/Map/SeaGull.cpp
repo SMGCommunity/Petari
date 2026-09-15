@@ -73,7 +73,7 @@ void SeaGull::init(const JMapInfoIter& rIter) {
         MR::normalize(&_AC);
     }
 
-    initNerve(&NrvSeaGull::SeaGullNrvHoverFront::sInstance);
+    initNerve(GET_NERVE(SeaGull, SeaGullNrvHoverFront));
     initSound(4, false);
     _E0 = MR::getRandom((s32)0x3C, (s32)0x1E0);
     MR::invalidateClipping(this);
@@ -97,9 +97,9 @@ void SeaGull::exeHoverFront() {
             f32 prod = _C4.dot(stack_8);
 
             if (prod > 0.0f) {
-                setNerve(&NrvSeaGull::SeaGullNrvHoverLeft::sInstance);
+                setNerve(GET_NERVE(SeaGull, SeaGullNrvHoverLeft));
             } else {
-                setNerve(&NrvSeaGull::SeaGullNrvHoverRight::sInstance);
+                setNerve(GET_NERVE(SeaGull, SeaGullNrvHoverRight));
             }
         }
     }
@@ -113,7 +113,7 @@ void SeaGull::exeHoverLeft() {
     _D4 -= 0.1f;
 
     if (MR::isStep(this, _D0)) {
-        setNerve(&NrvSeaGull::SeaGullNrvHoverFront::sInstance);
+        setNerve(GET_NERVE(SeaGull, SeaGullNrvHoverFront));
     }
 }
 
@@ -125,7 +125,7 @@ void SeaGull::exeHoverRight() {
     _D4 += 0.1f;
 
     if (MR::isStep(this, _D0)) {
-        setNerve(&NrvSeaGull::SeaGullNrvHoverFront::sInstance);
+        setNerve(GET_NERVE(SeaGull, SeaGullNrvHoverFront));
     }
 }
 

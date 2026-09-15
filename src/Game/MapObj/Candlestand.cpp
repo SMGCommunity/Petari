@@ -81,7 +81,7 @@ void Candlestand::init(const JMapInfoIter& rIter) {
     info.setupHitSensorParam(8, sensorRange, offs);
     f32 clippingRadius = ::getParam(mObjectName)->mClippingRadius;
     info.setupClippingRadius(clippingRadius);
-    info.setupNerve(&NrvCandlestand::HostTypeBurn::sInstance);
+    info.setupNerve(GET_NERVE(Candlestand, HostTypeBurn));
     info.setupAffectedScale();
     initialize(rIter, info);
 
@@ -99,9 +99,9 @@ void Candlestand::init(const JMapInfoIter& rIter) {
 
     if (::getParam(mObjectName)->mCanUseSwitch) {
         if (MR::isValidSwitchA(this)) {
-            setNerve(&NrvCandlestand::HostTypeWaitFire::sInstance);
+            setNerve(GET_NERVE(Candlestand, HostTypeWaitFire));
         } else {
-            setNerve(&NrvCandlestand::HostTypeBurn::sInstance);
+            setNerve(GET_NERVE(Candlestand, HostTypeBurn));
         }
     }
 
@@ -119,13 +119,13 @@ void Candlestand::makeActorAppeared() {
 void Candlestand::startClipped() {
     MapObjActor::startClipped();
 
-    if (isNerve(&NrvCandlestand::HostTypeBurn::sInstance) || isNerve(&NrvCandlestand::HostTypeAttack::sInstance)) {
+    if (isNerve(GET_NERVE(Candlestand, HostTypeBurn)) || isNerve(GET_NERVE(Candlestand, HostTypeAttack))) {
         deleteEffectFire();
     }
 }
 
 void Candlestand::endClipped() {
-    if (isNerve(&NrvCandlestand::HostTypeBurn::sInstance) || isNerve(&NrvCandlestand::HostTypeAttack::sInstance)) {
+    if (isNerve(GET_NERVE(Candlestand, HostTypeBurn)) || isNerve(GET_NERVE(Candlestand, HostTypeAttack))) {
         emitEffectFire();
     }
 
@@ -133,7 +133,7 @@ void Candlestand::endClipped() {
 }
 
 void Candlestand::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvCandlestand::HostTypeBurn::sInstance)) {
+    if (!isNerve(GET_NERVE(Candlestand, HostTypeBurn))) {
         return;
     }
 
@@ -148,11 +148,11 @@ void Candlestand::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    setNerve(&NrvCandlestand::HostTypeAttack::sInstance);
+    setNerve(GET_NERVE(Candlestand, HostTypeAttack));
 }
 
 bool Candlestand::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvCandlestand::HostTypeWaitFire::sInstance)) {
+    if (!isNerve(GET_NERVE(Candlestand, HostTypeWaitFire))) {
         return false;
     }
 
@@ -167,12 +167,12 @@ bool Candlestand::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
         return false;
     }
 
-    setNerve(&NrvCandlestand::HostTypeFire::sInstance);
+    setNerve(GET_NERVE(Candlestand, HostTypeFire));
     return true;
 }
 
 bool Candlestand::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvCandlestand::HostTypeWaitFire::sInstance)) {
+    if (!isNerve(GET_NERVE(Candlestand, HostTypeWaitFire))) {
         return false;
     }
 
@@ -187,17 +187,17 @@ bool Candlestand::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
         return false;
     }
 
-    setNerve(&NrvCandlestand::HostTypeFire::sInstance);
+    setNerve(GET_NERVE(Candlestand, HostTypeFire));
     return true;
 }
 
 bool Candlestand::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isInSpinStormRange(msg, pSender, pReceiver, (350.0f * mScale.x)) && isNerve(&NrvCandlestand::HostTypeBurn::sInstance)) {
+    if (MR::isInSpinStormRange(msg, pSender, pReceiver, (350.0f * mScale.x)) && isNerve(GET_NERVE(Candlestand, HostTypeBurn))) {
         if (::getParam(mObjectName)->mCanUseSwitch) {
-            setNerve(&NrvCandlestand::HostTypeFlicker::sInstance);
+            setNerve(GET_NERVE(Candlestand, HostTypeFlicker));
             return true;
         } else {
-            setNerve(&NrvCandlestand::HostTypeExtinguish::sInstance);
+            setNerve(GET_NERVE(Candlestand, HostTypeExtinguish));
             return true;
         }
     }
@@ -250,7 +250,7 @@ void Candlestand::exeFire() {
             MR::onSwitchA(this);
         }
 
-        setNerve(&NrvCandlestand::HostTypeBurn::sInstance);
+        setNerve(GET_NERVE(Candlestand, HostTypeBurn));
     }
 }
 
@@ -269,7 +269,7 @@ void Candlestand::exeExtinguish() {
         appearItem();
 
         if (::getParam(mObjectName)->mCanUseSwitch) {
-            setNerve(&NrvCandlestand::HostTypeWaitFire::sInstance);
+            setNerve(GET_NERVE(Candlestand, HostTypeWaitFire));
         }
     }
 }
@@ -290,13 +290,13 @@ void Candlestand::exeFlicker() {
 
     if (MR::isStep(this, 30)) {
         emitEffectFire();
-        setNerve(&NrvCandlestand::HostTypeBurn::sInstance);
+        setNerve(GET_NERVE(Candlestand, HostTypeBurn));
     }
 }
 
 void Candlestand::exeAttack() {
     if (MR::isStep(this, 30)) {
-        setNerve(&NrvCandlestand::HostTypeBurn::sInstance);
+        setNerve(GET_NERVE(Candlestand, HostTypeBurn));
     } else {
         MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN");
     }

@@ -39,7 +39,7 @@ namespace NrvSurfRayTutorial {
 
 SurfRayTutorial::SurfRayTutorial(LiveActor* pHost, TalkMessageCtrl* pTalkCtrl, const JMapInfoIter& rIter)
     : NerveExecutor("チュートリアル演出"), mHost(pHost), mIsTutorialPass(), mPadAccel(0.0f, 0.0f, 0.0f), mTalkCtrl(pTalkCtrl), mChangeStep(), _28() {
-    initNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialAllStart::sInstance);
+    initNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialAllStart));
 
     mSurfingGuidance = new SurfingGuidance();
     mSurfingGuidance->init(rIter);
@@ -339,44 +339,44 @@ void SurfRayTutorial::omitTutorial() const {
 }
 
 void SurfRayTutorial::nextTutorial() {
-    if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialAllStart::sInstance)) {
-        setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightStart::sInstance);
-    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightStart::sInstance)) {
-        setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightFailure::sInstance);
-    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightFailure::sInstance)) {
-        setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightUpkeep::sInstance);
-    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightUpkeep::sInstance)) {
-        setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightSuccess::sInstance);
-    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightSuccess::sInstance)) {
-        setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftStart::sInstance);
-    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftStart::sInstance)) {
-        setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftFailure::sInstance);
-    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftFailure::sInstance)) {
-        setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftUpkeep::sInstance);
-    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftUpkeep::sInstance)) {
-        setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftSuccess::sInstance);
-    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftSuccess::sInstance)) {
-        setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightStart::sInstance);
-    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightStart::sInstance)) {
-        setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightFailure::sInstance);
-    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightFailure::sInstance)) {
-        setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightUpkeep::sInstance);
-    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightUpkeep::sInstance)) {
-        setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightSuccess::sInstance);
-    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightSuccess::sInstance)) {
-        setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialAllEnd::sInstance);
+    if (isNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialAllStart))) {
+        setNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialStraightStart));
+    } else if (isNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialStraightStart))) {
+        setNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialStraightFailure));
+    } else if (isNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialStraightFailure))) {
+        setNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialStraightUpkeep));
+    } else if (isNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialStraightUpkeep))) {
+        setNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialStraightSuccess));
+    } else if (isNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialStraightSuccess))) {
+        setNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnLeftStart));
+    } else if (isNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnLeftStart))) {
+        setNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnLeftFailure));
+    } else if (isNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnLeftFailure))) {
+        setNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnLeftUpkeep));
+    } else if (isNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnLeftUpkeep))) {
+        setNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnLeftSuccess));
+    } else if (isNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnLeftSuccess))) {
+        setNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnRightStart));
+    } else if (isNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnRightStart))) {
+        setNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnRightFailure));
+    } else if (isNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnRightFailure))) {
+        setNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnRightUpkeep));
+    } else if (isNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnRightUpkeep))) {
+        setNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnRightSuccess));
+    } else if (isNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnRightSuccess))) {
+        setNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialAllEnd));
     }
 
     MR::sendMsgToGroupMember(ACTMES_TUTORIAL_NEXT, mHost, MR::getSensor(mHost, 0), "body");
 }
 
 void SurfRayTutorial::prevTutorial() {
-    if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightUpkeep::sInstance)) {
-        setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialStraightFailure::sInstance);
-    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftUpkeep::sInstance)) {
-        setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnLeftFailure::sInstance);
-    } else if (isNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightUpkeep::sInstance)) {
-        setNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialTurnRightFailure::sInstance);
+    if (isNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialStraightUpkeep))) {
+        setNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialStraightFailure));
+    } else if (isNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnLeftUpkeep))) {
+        setNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnLeftFailure));
+    } else if (isNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnRightUpkeep))) {
+        setNerve(GET_NERVE(SurfRayTutorial, SurfRayTutorialNrvTutorialTurnRightFailure));
     }
 
     MR::sendMsgToGroupMember(ACTMES_TUTORIAL_PREV, mHost, MR::getSensor(mHost, 0), "body");

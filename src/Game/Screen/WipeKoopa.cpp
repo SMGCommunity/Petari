@@ -17,7 +17,7 @@ WipeKoopa::WipeKoopa() : WipeLayoutBase("クッパ"), mFrame(::sAnimFrame) {
 }
 
 void WipeKoopa::init(const JMapInfoIter& rIter) {
-    initNerve(&WipeKoopaNrvWait::sInstance);
+    initNerve(GET_NERVE_GLOBAL(WipeKoopaNrvWait));
     initLayoutManager("WipeKoopa", 1);
 }
 
@@ -38,7 +38,7 @@ void WipeKoopa::exeWipeOut() {
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&WipeKoopaNrvClose::sInstance);
+        setNerve(GET_NERVE_GLOBAL(WipeKoopaNrvClose));
     }
 }
 
@@ -46,7 +46,7 @@ void WipeKoopa::exeClose() {
 }
 
 void WipeKoopa::wipe(s32 frame) {
-    setNerve(&WipeKoopaNrvWipeOut::sInstance);
+    setNerve(GET_NERVE_GLOBAL(WipeKoopaNrvWipeOut));
     MR::hideLayout(this);
 
     if (frame > 0) {
@@ -57,23 +57,23 @@ void WipeKoopa::wipe(s32 frame) {
 }
 
 void WipeKoopa::forceClose() {
-    setNerve(&WipeKoopaNrvClose::sInstance);
+    setNerve(GET_NERVE_GLOBAL(WipeKoopaNrvClose));
     MR::showLayout(this);
     MR::startAnim(this, "out", 0);
     MR::setAnimFrameAndStop(this, MR::getAnimCtrl(this, 0)->getEnd(), 0);
 }
 
 void WipeKoopa::forceOpen() {
-    setNerve(&WipeKoopaNrvWait::sInstance);
+    setNerve(GET_NERVE_GLOBAL(WipeKoopaNrvWait));
     MR::hideLayout(this);
 }
 
 bool WipeKoopa::isOpen() const {
-    return isNerve(&WipeKoopaNrvWait::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(WipeKoopaNrvWait));
 }
 
 bool WipeKoopa::isClose() const {
-    return isNerve(&WipeKoopaNrvClose::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(WipeKoopaNrvClose));
 }
 
 bool WipeKoopa::isWipeIn() const {
@@ -81,5 +81,5 @@ bool WipeKoopa::isWipeIn() const {
 }
 
 bool WipeKoopa::isWipeOut() const {
-    return isNerve(&WipeKoopaNrvWipeOut::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(WipeKoopaNrvWipeOut));
 }

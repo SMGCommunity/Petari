@@ -26,7 +26,7 @@ KoopaStateJumpAway::KoopaStateJumpAway(Koopa* pKoopa) : ActorStateBase< Koopa >(
 }
 
 void KoopaStateJumpAway::init() {
-    initNerve(&NrvKoopaStateJumpAway::KoopaStateJumpAwayNrvJumpStart::sInstance);
+    initNerve(GET_NERVE(KoopaStateJumpAway, KoopaStateJumpAwayNrvJumpStart));
 
     kill();
 }
@@ -34,7 +34,7 @@ void KoopaStateJumpAway::init() {
 void KoopaStateJumpAway::appear() {
     mIsDead = false;
 
-    setNerve(&NrvKoopaStateJumpAway::KoopaStateJumpAwayNrvJumpStart::sInstance);
+    setNerve(GET_NERVE(KoopaStateJumpAway, KoopaStateJumpAwayNrvJumpStart));
 }
 
 void KoopaStateJumpAway::exeJumpStart() {
@@ -45,7 +45,7 @@ void KoopaStateJumpAway::exeJumpStart() {
     }
 
     if (MR::isActionEnd(mHost)) {
-        setNerve(&NrvKoopaStateJumpAway::KoopaStateJumpAwayNrvJump::sInstance);
+        setNerve(GET_NERVE(KoopaStateJumpAway, KoopaStateJumpAwayNrvJump));
     }
 }
 
@@ -80,7 +80,7 @@ void KoopaStateJumpAway::exeJump() {
 
         MR::zeroVelocity(mHost);
 
-        setNerve(&NrvKoopaStateJumpAway::KoopaStateJumpAwayNrvLand::sInstance);
+        setNerve(GET_NERVE(KoopaStateJumpAway, KoopaStateJumpAwayNrvLand));
     }
 }
 

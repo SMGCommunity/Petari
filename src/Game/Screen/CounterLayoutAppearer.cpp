@@ -14,9 +14,9 @@ CounterLayoutAppearer::CounterLayoutAppearer(LayoutActor* pActor, const TVec2f& 
     : NerveExecutor("カウンタ出現制御"), mLayout(pActor), mAppearOffset(rAppearOffset.x, rAppearOffset.y), mFollowPos(0.0f, 0.0f), _1C(0.0f, 0.0f) {
     MR::setFollowPos(&mFollowPos, pActor, nullptr);
     MR::setFollowTypeAdd(mLayout, nullptr);
-    initNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvHide::sInstance);
+    initNerve(GET_NERVE(CounterLayoutAppearer, CounterLayoutAppearerNrvHide));
     MR::startAnimAndSetFrameAndStop(mLayout, "Appear", 0.0f, 0);
-    setNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvHide::sInstance);
+    setNerve(GET_NERVE(CounterLayoutAppearer, CounterLayoutAppearerNrvHide));
 }
 
 void CounterLayoutAppearer::update() {
@@ -29,24 +29,24 @@ void CounterLayoutAppearer::appear(const TVec2f& param1) {
 
     MR::startAnim(mLayout, "Appear", 0);
     updateLayoutOffset(0.0f);
-    setNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvAppear::sInstance);
+    setNerve(GET_NERVE(CounterLayoutAppearer, CounterLayoutAppearerNrvAppear));
 }
 
 void CounterLayoutAppearer::disappear() {
-    setNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvDisappear::sInstance);
+    setNerve(GET_NERVE(CounterLayoutAppearer, CounterLayoutAppearerNrvDisappear));
 }
 
 bool CounterLayoutAppearer::isAppeared() const {
-    return isNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvShow::sInstance);
+    return isNerve(GET_NERVE(CounterLayoutAppearer, CounterLayoutAppearerNrvShow));
 }
 
 bool CounterLayoutAppearer::isDisappeared() const {
-    return isNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvHide::sInstance);
+    return isNerve(GET_NERVE(CounterLayoutAppearer, CounterLayoutAppearerNrvHide));
 }
 
 void CounterLayoutAppearer::reset() {
     MR::startAnimAndSetFrameAndStop(mLayout, "Appear", 0.0f, 0);
-    setNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvHide::sInstance);
+    setNerve(GET_NERVE(CounterLayoutAppearer, CounterLayoutAppearerNrvHide));
 }
 
 void CounterLayoutAppearer::updateLayoutOffset(f32 offset) {
@@ -67,7 +67,7 @@ void CounterLayoutAppearer::exeAppear() {
     updateLayoutOffset(MR::calcNerveEaseOutRate(this, MR::getAnimFrameMax(mLayout, (u32)0)));
 
     if (MR::isAnimStopped(mLayout, 0)) {
-        setNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvShow::sInstance);
+        setNerve(GET_NERVE(CounterLayoutAppearer, CounterLayoutAppearerNrvShow));
     }
 }
 
@@ -85,6 +85,6 @@ void CounterLayoutAppearer::exeDisappear() {
     updateLayoutOffset(1.0f - MR::calcNerveEaseInRate(this, MR::getAnimFrameMax(mLayout, static_cast< u32 >(0))));
 
     if (MR::isAnimStopped(mLayout, 0)) {
-        setNerve(&NrvCounterLayoutAppearer::CounterLayoutAppearerNrvHide::sInstance);
+        setNerve(GET_NERVE(CounterLayoutAppearer, CounterLayoutAppearerNrvHide));
     }
 }

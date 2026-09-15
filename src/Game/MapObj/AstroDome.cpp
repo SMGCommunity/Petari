@@ -20,7 +20,7 @@ AstroDome::AstroDome(const char* pName) : MapObjActor(pName) {
 void AstroDome::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
     info.setupModelName(AstroMapObjFunction::getModelName("AstroDome", AstroMapObjFunction::getDomeIdFromArg0(rIter)));
-    info.setupNerve(&NrvAstroDome::AstroDomeNrvWait::sInstance);
+    info.setupNerve(GET_NERVE(AstroDome, AstroDomeNrvWait));
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     info.setupNoAppearRiddleSE();
     initialize(rIter, info);
@@ -32,7 +32,7 @@ void AstroDome::init(const JMapInfoIter& rIter) {
 
 void AstroDome::appear() {
     MapObjActor::appear();
-    setNerve(&NrvAstroDome::AstroDomeNrvAppear::sInstance);
+    setNerve(GET_NERVE(AstroDome, AstroDomeNrvAppear));
 }
 
 void AstroDome::exeWait() {
@@ -61,7 +61,7 @@ void AstroDome::exeAppear() {
     }
 
     if (MR::isBrkStopped(this)) {
-        setNerve(&NrvAstroDome::AstroDomeNrvWait::sInstance);
+        setNerve(GET_NERVE(AstroDome, AstroDomeNrvWait));
     }
 }
 
@@ -79,7 +79,7 @@ void AstroDome::control() {
 
 bool AstroDome::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (SphereSelectorFunction::isMsgSelectStart(msg)) {
-        setNerve(&NrvAstroDome::AstroDomeNrvDisappear::sInstance);
+        setNerve(GET_NERVE(AstroDome, AstroDomeNrvDisappear));
         return true;
     }
 

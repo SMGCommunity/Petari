@@ -51,7 +51,7 @@ void TicoStarRing::init(const JMapInfoIter& rIter) {
         mGalaxyName = "unknown";
     }
 
-    setNerve(&NrvTicoStarRing::TicoStarRingNrvWait::sInstance);
+    setNerve(GET_NERVE(TicoStarRing, TicoStarRingNrvWait));
 }
 
 void TicoStarRing::kill() {

@@ -32,7 +32,7 @@ void KoopaDemoJumpToPlanet::init() {
     KoopaFunction::initKoopaCamera(mHost, "ウェイト（惑星までジャンプ）");
     KoopaFunction::initKoopaCamera(mHost, "落下（惑星までジャンプ）");
     KoopaFunction::initKoopaCamera(mHost, "ワープ後（惑星までジャンプ）");
-    initNerve(&NrvKoopaDemoJumpToPlanet::KoopaDemoJumpToPlanetNrvStart::sInstance);
+    initNerve(GET_NERVE(KoopaDemoJumpToPlanet, KoopaDemoJumpToPlanetNrvStart));
 }
 
 void KoopaDemoJumpToPlanet::kill() {
@@ -56,7 +56,7 @@ void KoopaDemoJumpToPlanet::exeStart() {
         MR::startAction(mHost, "JumpSoon");
         KoopaFunction::startFaceCtrl(mHost);
 
-        setNerve(&NrvKoopaDemoJumpToPlanet::KoopaDemoJumpToPlanetNrvFall::sInstance);
+        setNerve(GET_NERVE(KoopaDemoJumpToPlanet, KoopaDemoJumpToPlanetNrvFall));
     }
 }
 
@@ -80,7 +80,7 @@ void KoopaDemoJumpToPlanet::exeFall() {
     if (MR::isBindedGround(mHost)) {
         MR::zeroVelocity(mHost);
 
-        setNerve(&NrvKoopaDemoJumpToPlanet::KoopaDemoJumpToPlanetNrvLand::sInstance);
+        setNerve(GET_NERVE(KoopaDemoJumpToPlanet, KoopaDemoJumpToPlanetNrvLand));
     }
 }
 
@@ -95,7 +95,7 @@ void KoopaDemoJumpToPlanet::exeLand() {
     }
 
     if (MR::isActionEnd(mHost)) {
-        setNerve(&NrvKoopaDemoJumpToPlanet::KoopaDemoJumpToPlanetNrvWaitPlayer::sInstance);
+        setNerve(GET_NERVE(KoopaDemoJumpToPlanet, KoopaDemoJumpToPlanetNrvWaitPlayer));
     }
 }
 

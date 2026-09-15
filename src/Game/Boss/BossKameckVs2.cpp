@@ -41,12 +41,12 @@ void BossKameckVs2::init(BossKameck* pBoss, const JMapInfoIter& rIter) {
     mBarrier = new BossKameckBarrier("カメックバリア", "BossKameckBarrier");
     mBarrier->init(rIter);
 
-    initNerve(&NrvBossKameckVs2::BossKameckVs2NrvOpeningDemo::sInstance);
+    initNerve(GET_NERVE(BossKameckVs2, BossKameckVs2NrvOpeningDemo));
     MR::declareStarPiece(mBossKameck, 24);
 }
 
 void BossKameckVs2::start() {
-    setNerve(&NrvBossKameckVs2::BossKameckVs2NrvOpeningDemo::sInstance);
+    setNerve(GET_NERVE(BossKameckVs2, BossKameckVs2NrvOpeningDemo));
 }
 
 void BossKameckVs2::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -69,7 +69,7 @@ void BossKameckVs2::exeOpeningDemo() {
     }
 
     if (MR::updateActorState(this, mBattleDemo)) {
-        setNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv1::sInstance);
+        setNerve(GET_NERVE(BossKameckVs2, BossKameckVs2NrvBattleLv1));
         mBarrier->appear();
     }
 }
@@ -82,7 +82,7 @@ void BossKameckVs2::exeBattleLv1() {
         mStateBattle->_30 = 3;
     }
 
-    MR::updateActorStateAndNextNerve(this, mStateBattle, &NrvBossKameckVs2::BossKameckVs2NrvBattleLv2::sInstance);
+    MR::updateActorStateAndNextNerve(this, mStateBattle, GET_NERVE(BossKameckVs2, BossKameckVs2NrvBattleLv2));
 }
 
 void BossKameckVs2::exeBattleLv2() {
@@ -94,7 +94,7 @@ void BossKameckVs2::exeBattleLv2() {
         mStateBattle->_30 = 3;
     }
 
-    MR::updateActorStateAndNextNerve(this, mStateBattle, &NrvBossKameckVs2::BossKameckVs2NrvPowerUpDemo::sInstance);
+    MR::updateActorStateAndNextNerve(this, mStateBattle, GET_NERVE(BossKameckVs2, BossKameckVs2NrvPowerUpDemo));
 }
 
 void BossKameckVs2::exePowerUpDemo() {
@@ -103,7 +103,7 @@ void BossKameckVs2::exePowerUpDemo() {
     }
 
     if (MR::updateActorState(this, mBattleDemo)) {
-        setNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv3::sInstance);
+        setNerve(GET_NERVE(BossKameckVs2, BossKameckVs2NrvBattleLv3));
     }
 }
 
@@ -115,7 +115,7 @@ void BossKameckVs2::exeBattleLv3() {
         mStateBattle->_30 = 3;
     }
 
-    MR::updateActorStateAndNextNerve(this, mStateBattle, &NrvBossKameckVs2::BossKameckVs2NrvBattleLv4::sInstance);
+    MR::updateActorStateAndNextNerve(this, mStateBattle, GET_NERVE(BossKameckVs2, BossKameckVs2NrvBattleLv4));
 }
 
 void BossKameckVs2::exeBattleLv4() {
@@ -127,7 +127,7 @@ void BossKameckVs2::exeBattleLv4() {
         mStateBattle->_30 = 4;
     }
 
-    MR::updateActorStateAndNextNerve(this, mStateBattle, &NrvBossKameckVs2::BossKameckVs2NrvEndDemo::sInstance);
+    MR::updateActorStateAndNextNerve(this, mStateBattle, GET_NERVE(BossKameckVs2, BossKameckVs2NrvEndDemo));
 }
 
 void BossKameckVs2::exeEndDemo() {
@@ -140,8 +140,8 @@ void BossKameckVs2::exeEndDemo() {
 }
 
 bool BossKameckVs2::isBattle() const {
-    if (isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv1::sInstance) || isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv2::sInstance) ||
-        isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv3::sInstance) || isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv4::sInstance)) {
+    if (isNerve(GET_NERVE(BossKameckVs2, BossKameckVs2NrvBattleLv1)) || isNerve(GET_NERVE(BossKameckVs2, BossKameckVs2NrvBattleLv2)) ||
+        isNerve(GET_NERVE(BossKameckVs2, BossKameckVs2NrvBattleLv3)) || isNerve(GET_NERVE(BossKameckVs2, BossKameckVs2NrvBattleLv4))) {
         return true;
     }
 

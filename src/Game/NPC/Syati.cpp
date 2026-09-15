@@ -121,9 +121,9 @@ void Syati::init(const JMapInfoIter& rIter) {
     initSound(8, false);
 
     if (MR::isExistRail(this))
-        initNerve(&NrvSyati::SyatiWait::sInstance);
+        initNerve(GET_NERVE(Syati, SyatiWait));
     else
-        initNerve(&NrvSyati::SyatiHideOnShore::sInstance);
+        initNerve(GET_NERVE(Syati, SyatiHideOnShore));
 
     makeActorAppeared();
 }
@@ -143,7 +143,7 @@ void Syati::exeWait() {
     }
 
     if (MR::isOnSwitchA(this))
-        MR::requestStartDemoMarioPuppetable(this, "開始デモ", &NrvSyati::SyatiFadeoutStartEvent::sInstance, &NrvSyati::SyatiWaitDemoStart::sInstance);
+        MR::requestStartDemoMarioPuppetable(this, "開始デモ", GET_NERVE(Syati, SyatiFadeoutStartEvent), GET_NERVE(Syati, SyatiWaitDemoStart));
 }
 
 void Syati::exeFadeoutBeforeTalk() {
@@ -153,10 +153,10 @@ void Syati::exeFadeoutBeforeTalk() {
     }
 
     if (!MR::isWipeActive()) {
-        if (isNerve(&NrvSyati::SyatiFadeoutStartEvent::sInstance))
-            setNerve(&NrvSyati::SyatiWaitBlankStartEvent::sInstance);
+        if (isNerve(GET_NERVE(Syati, SyatiFadeoutStartEvent)))
+            setNerve(GET_NERVE(Syati, SyatiWaitBlankStartEvent));
         else
-            setNerve(&NrvSyati::SyatiWaitBlankRetryEvent::sInstance);
+            setNerve(GET_NERVE(Syati, SyatiWaitBlankRetryEvent));
     }
 }
 
@@ -172,10 +172,10 @@ void Syati::exeWaitBlank() {
     }
 
     if (MR::isStep(this, 0x1E)) {
-        if (isNerve(&NrvSyati::SyatiWaitBlankStartEvent::sInstance))
-            setNerve(&NrvSyati::SyatiFadeinStartEvent::sInstance);
+        if (isNerve(GET_NERVE(Syati, SyatiWaitBlankStartEvent)))
+            setNerve(GET_NERVE(Syati, SyatiFadeinStartEvent));
         else
-            setNerve(&NrvSyati::SyatiFadeinRetryEvent::sInstance);
+            setNerve(GET_NERVE(Syati, SyatiFadeinRetryEvent));
     }
 }
 
@@ -223,17 +223,17 @@ void Syati::exeFadeinBeforeTalk() {
         MR::startBck(this, "Talk", nullptr);
         MR::startBtk(this, "Talk");
 
-        if (isNerve(&NrvSyati::SyatiFadeinRetryEvent::sInstance) && MR::isEqualStageName("OceanPhantomCaveGalaxy") &&
+        if (isNerve(GET_NERVE(Syati, SyatiFadeinRetryEvent)) && MR::isEqualStageName("OceanPhantomCaveGalaxy") &&
             !MR::isPlayingStageBgmName("STM_GALAXY_05"))
             MR::stopStageBGM(0x3C);
     }
     mPlayerPoseSetterInWater->update();
 
     if (!MR::isWipeActive()) {
-        if (isNerve(&NrvSyati::SyatiFadeinStartEvent::sInstance))
-            setNerve(&NrvSyati::SyatiTalkStartMission::sInstance);
+        if (isNerve(GET_NERVE(Syati, SyatiFadeinStartEvent)))
+            setNerve(GET_NERVE(Syati, SyatiTalkStartMission));
         else
-            setNerve(&NrvSyati::SyatiTalkRetryMission::sInstance);
+            setNerve(GET_NERVE(Syati, SyatiTalkRetryMission));
     }
 }
 
@@ -247,7 +247,7 @@ void Syati::exeTalkStartMission() {
 
     if (MR::tryTalkForceWithoutDemoMarioPuppetableAtEnd(mTalkMessageCtrl)) {
         MR::endMultiActorCamera(this, mActorCameraInfo, "会話", false, -1);
-        setNerve(&NrvSyati::SyatiReadyToStart::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiReadyToStart));
     }
 }
 
@@ -268,7 +268,7 @@ void Syati::exeReadyToStart() {
     mPlayerPoseSetterInWater->update();
 
     if (MR::isBckStopped(this))
-        setNerve(&NrvSyati::SyatiCountDown::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiCountDown));
 }
 
 void Syati::exeCountDown() {
@@ -292,7 +292,7 @@ void Syati::exeCountDown() {
         MR::endDemo(this, "開始デモ");
         MR::endMultiActorCamera(this, mActorCameraInfo, "開始デモ", true, -1);
         MR::startSystemSE("SE_SY_RACE_START", -1, -1);
-        setNerve(&NrvSyati::SyatiSwim::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiSwim));
     }
 }
 
@@ -305,10 +305,10 @@ void Syati::exeSwim() {
     updateSwimCommon();
 
     if (isReadyToEmitRing()) {
-        setNerve(&NrvSyati::SyatiEmitRing::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiEmitRing));
     } else {
         if (MR::isRailReachedGoal(this)) {
-            setNerve(&NrvSyati::SyatiReachToEnd::sInstance);
+            setNerve(GET_NERVE(Syati, SyatiReachToEnd));
         }
     }
 }
@@ -323,10 +323,10 @@ void Syati::exeEmitRing() {
     updateSwimCommon();
 
     if (isReadyToEmitRing()) {
-        setNerve(&NrvSyati::SyatiEmitRing::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiEmitRing));
     } else {
         if (MR::isBckStopped(this)) {
-            setNerve(&NrvSyati::SyatiSwim::sInstance);
+            setNerve(GET_NERVE(Syati, SyatiSwim));
         }
     }
 }
@@ -352,7 +352,7 @@ void Syati::exeReachToEnd() {
         MR::startBck(this, "Turn", nullptr);
 
     if (MR::isBckStopped(this))
-        setNerve(&NrvSyati::SyatiWaitAllRingDisappear::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiWaitAllRingDisappear));
 }
 
 void Syati::exeWaitAllRingDisappear() {
@@ -366,8 +366,7 @@ void Syati::exeWaitAllRingDisappear() {
     }
 
     if (mPrizeRingGroup->getLivingActorNum() == 0 && mPrizeRingCount != mNumRings)
-        MR::requestStartDemoMarioPuppetable(this, "再挑戦デモ", &NrvSyati::SyatiFadeoutRetryEvent::sInstance,
-                                            &NrvSyati::SyatiWaitDemoStart::sInstance);
+        MR::requestStartDemoMarioPuppetable(this, "再挑戦デモ", GET_NERVE(Syati, SyatiFadeoutRetryEvent), GET_NERVE(Syati, SyatiWaitDemoStart));
 }
 
 void Syati::exeTalkRetryMission() {
@@ -386,7 +385,7 @@ void Syati::exeTalkRetryMission() {
     if (MR::tryTalkForceWithoutDemoMarioPuppetableAtEnd(mTalkMessageCtrl)) {
         MR::endDemo(this, "再挑戦デモ");
         MR::endMultiActorCamera(this, mActorCameraInfo, "会話", true, -1);
-        setNerve(&NrvSyati::SyatiForceKill::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiForceKill));
     }
 }
 
@@ -409,10 +408,10 @@ void Syati::exeHideOnShore() {
     switch (mHideOnShoreMode) {
     case 0:
         if (MR::isStageStatePowerStarAppeared())
-            setNerve(&NrvSyati::SyatiWaitOnShore::sInstance);
+            setNerve(GET_NERVE(Syati, SyatiWaitOnShore));
         break;
     case 1:
-        setNerve(&NrvSyati::SyatiWaitTalkNormal::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiWaitTalkNormal));
         break;
     }
 }
@@ -446,7 +445,7 @@ void Syati::exeWaitTalkNormal() {
     MR::tryTalkNearPlayer(mTalkMessageCtrl);
 
     if (MR::isNearPlayer(mTalkMessageCtrl, -1.0f))
-        setNerve(&NrvSyati::SyatiTalkNormal::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiTalkNormal));
 }
 
 void Syati::exeTalkNormal() {
@@ -459,7 +458,7 @@ void Syati::exeTalkNormal() {
     MR::tryTalkNearPlayer(mTalkMessageCtrl);
 
     if (!MR::isNearPlayer(mTalkMessageCtrl, -1.0f))
-        setNerve(&NrvSyati::SyatiWaitTalkNormal::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiWaitTalkNormal));
 }
 
 void Syati::exeStart() {
@@ -582,7 +581,7 @@ void Syati::updateNumRingPassed() {
 
         if (mPrizeRingCount == mNumRings) {
             killAllRings();
-            setNerve(&NrvSyati::SyatiWaitStarAppeared::sInstance);
+            setNerve(GET_NERVE(Syati, SyatiWaitStarAppeared));
         }
     }
 
@@ -688,8 +687,7 @@ void Syati::setupBalloonFollowMtx(const TVec3f& rVec) {
 
 bool Syati::calcHeadJoint(TPos3f* pPos, const JointControllerInfo& rInfo) {
     bool nrv = false;
-    nrv = isNerve(&NrvSyati::SyatiWaitOnShore::sInstance) || isNerve(&NrvSyati::SyatiWaitTalkNormal::sInstance) ||
-          isNerve(&NrvSyati::SyatiTalkNormal::sInstance);
+    nrv = isNerve(GET_NERVE(Syati, SyatiWaitOnShore)) || isNerve(GET_NERVE(Syati, SyatiWaitTalkNormal)) || isNerve(GET_NERVE(Syati, SyatiTalkNormal));
 
     if (!nrv)
         return false;

@@ -75,7 +75,7 @@ void BeamGoRoundPlanet::init(const JMapInfoIter& rIter) {
     info.setupEffect(nullptr);
     info.setupSound(4);
     info.setupFarClipping(-1.0f);
-    info.setupNerve(&NrvBeamGoRoundPlanet::BeamGoRoundPlanetNrvWait::sInstance);
+    info.setupNerve(GET_NERVE(BeamGoRoundPlanet, BeamGoRoundPlanetNrvWait));
     initialize(rIter, info);
     _C8 = MR::createCollisionPartsFromLiveActor(this, "Move", getSensor("body"), MR::getJointMtx(this, "move1"), MR::CollisionScaleType_Unk2);
     _CC = MR::createCollisionPartsFromLiveActor(this, "Move", getSensor("body"), MR::getJointMtx(this, "move2"), MR::CollisionScaleType_Unk2);

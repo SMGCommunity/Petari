@@ -35,7 +35,7 @@ void ChipCounter::init(const JMapInfoIter& rIter) {
         break;
     }
 
-    initNerve(&NrvChipCounter::ChipCounterNrvHide::sInstance);
+    initNerve(GET_NERVE(ChipCounter, ChipCounterNrvHide));
 
     for (s32 i = 0; i < ::sChipPainCount; i++) {
         MR::createAndAddPaneCtrl(this, ::sChipPainName[i], 2);

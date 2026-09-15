@@ -99,12 +99,12 @@ void GreenCaterpillarBig::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     mPlanetLOD = MR::createLodCtrlPlanet(this, rIter, -1.0f, -1);
     mPlanetLOD->validate();
-    initNerve(&NrvGreenCaterpillarBig::GreenCaterpillarBigNrvHide::sInstance);
+    initNerve(GET_NERVE(GreenCaterpillarBig, GreenCaterpillarBigNrvHide));
     makeActorAppeared();
 }
 
 void GreenCaterpillarBig::startWriggle() {
-    setNerve(&NrvGreenCaterpillarBig::GreenCaterpillarBigNrvWriggle::sInstance);
+    setNerve(GET_NERVE(GreenCaterpillarBig, GreenCaterpillarBigNrvWriggle));
 }
 
 void GreenCaterpillarBig::exeHide() {
@@ -124,7 +124,7 @@ void GreenCaterpillarBig::exeWriggle() {
     MR::startLevelSound(this, "SE_OJ_LV_GRN_CATERP_MOVE");
 
     if (MR::isRailReachedGoal(this)) {
-        setNerve(&NrvGreenCaterpillarBig::GreenCaterpillarBigNrvEndAdjust::sInstance);
+        setNerve(GET_NERVE(GreenCaterpillarBig, GreenCaterpillarBigNrvEndAdjust));
     } else {
         _9C = 0;
         _9D = 0;
@@ -142,7 +142,7 @@ void GreenCaterpillarBig::exeWriggle() {
                 MR::shakeCameraNormal();
                 MR::startSound(this, "SE_OJ_GRN_CATERP_IN");
             } else if (point_arg == 1.0f) {
-                setNerve(&NrvGreenCaterpillarBig::GreenCaterpillarBigNrvRest::sInstance);
+                setNerve(GET_NERVE(GreenCaterpillarBig, GreenCaterpillarBigNrvRest));
             } else if (point_arg == 2.0f) {
                 leaveApple();
             }
@@ -156,7 +156,7 @@ void GreenCaterpillarBig::exeRest() {
 
 void GreenCaterpillarBig::exeEndAdjust() {
     if (MR::isStep(this, 120)) {
-        setNerve(&NrvGreenCaterpillarBig::GreenCaterpillarBigNrvEnd::sInstance);
+        setNerve(GET_NERVE(GreenCaterpillarBig, GreenCaterpillarBigNrvEnd));
     }
 }
 
@@ -197,8 +197,8 @@ bool GreenCaterpillarBig::tryGenerateBodyParts() {
 }
 
 void GreenCaterpillarBig::control() {
-    if (!isNerve(&NrvGreenCaterpillarBig::GreenCaterpillarBigNrvHide::sInstance)) {
-        if (!isNerve(&NrvGreenCaterpillarBig::GreenCaterpillarBigNrvEnd::sInstance)) {
+    if (!isNerve(GET_NERVE(GreenCaterpillarBig, GreenCaterpillarBigNrvHide))) {
+        if (!isNerve(GET_NERVE(GreenCaterpillarBig, GreenCaterpillarBigNrvEnd))) {
             tryGenerateBodyParts();
         }
 

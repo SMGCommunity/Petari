@@ -71,7 +71,7 @@ void Coin::init(const JMapInfoIter& rIter) {
 
     mFlashCtrl = new FlashingCtrl(this, true);
     MR::tryCreateMirrorActor(this, mIsPurpleCoin ? "PurpleCoin" : "Coin");
-    initNerve(&NrvCoin::CoinNrvFix::sInstance);
+    initNerve(GET_NERVE(Coin, CoinNrvFix));
 
     if (MR::isValidInfo(rIter)) {
         if (MR::useStageSwitchReadAppear(this, rIter)) {
@@ -184,7 +184,7 @@ void Coin::calcAndSetBaseMtx() {
         MR::makeMtxUpNoSupportPos(&pos, another_vec, mPosition);
     }
 
-    if (isNerve(&NrvCoin::CoinNrvSpinDrained::sInstance)) {
+    if (isNerve(GET_NERVE(Coin, CoinNrvSpinDrained))) {
         pos.concat(pos, MR::getCoinHiSpeedRotateYMatrix());
     } else {
         if (mIsInWater) {
@@ -338,7 +338,7 @@ void Coin::appearFixInit() {
     MR::validateHitSensors(this);
     MR::offBind(this);
     mCannotTime = 0;
-    setNerve(&NrvCoin::CoinNrvFix::sInstance);
+    setNerve(GET_NERVE(Coin, CoinNrvFix));
 }
 
 void Coin::appearFix() {
@@ -347,7 +347,7 @@ void Coin::appearFix() {
     MR::validateHitSensors(this);
     MR::offBind(this);
     mCannotTime = 0;
-    setNerve(&NrvCoin::CoinNrvFix::sInstance);
+    setNerve(GET_NERVE(Coin, CoinNrvFix));
 }
 
 void Coin::appearControlPose() {
@@ -357,7 +357,7 @@ void Coin::appearControlPose() {
     MR::offBind(this);
     MR::calcGravityOrZero(this);
     mCannotTime = 0;
-    setNerve(&NrvCoin::CoinNrvControled::sInstance);
+    setNerve(GET_NERVE(Coin, CoinNrvControled));
 }
 
 void Coin::appearNonActive() {
@@ -366,7 +366,7 @@ void Coin::appearNonActive() {
     MR::invalidateHitSensors(this);
     MR::offBind(this);
     mCannotTime = 0;
-    setNerve(&NrvCoin::CoinNrvNonActive::sInstance);
+    setNerve(GET_NERVE(Coin, CoinNrvNonActive));
 }
 
 void Coin::appearFixTimer(s32 a1, s32 a2) {
@@ -376,7 +376,7 @@ void Coin::appearFixTimer(s32 a1, s32 a2) {
     MR::offBind(this);
     setLife(a1);
     setCannotTime(a2);
-    setNerve(&NrvCoin::CoinNrvFixTimer::sInstance);
+    setNerve(GET_NERVE(Coin, CoinNrvFixTimer));
 }
 
 void Coin::appearMove(const TVec3f& a1, const TVec3f& a2, s32 a3, s32 a4) {
@@ -400,7 +400,7 @@ void Coin::appearMove(const TVec3f& a1, const TVec3f& a2, s32 a3, s32 a4) {
     MR::calcGravityOrZero(this);
     setLife(a3);
     setCannotTime(a4);
-    setNerve(&NrvCoin::CoinNrvMove::sInstance);
+    setNerve(GET_NERVE(Coin, CoinNrvMove));
 }
 
 void Coin::appearHop(const TVec3f& a1, const TVec3f& a2) {
@@ -420,13 +420,13 @@ void Coin::appearHop(const TVec3f& a1, const TVec3f& a2) {
     MR::invalidateShadow(this, nullptr);
     mVelocity.set< f32 >(a2 * 30.0f);
     mCannotTime = 0;
-    setNerve(&NrvCoin::CoinNrvHop::sInstance);
+    setNerve(GET_NERVE(Coin, CoinNrvHop));
 }
 
 bool Coin::requestActive() {
-    if (isNerve(&NrvCoin::CoinNrvNonActive::sInstance)) {
+    if (isNerve(GET_NERVE(Coin, CoinNrvNonActive))) {
         MR::validateHitSensors(this);
-        setNerve(&NrvCoin::CoinNrvFix::sInstance);
+        setNerve(GET_NERVE(Coin, CoinNrvFix));
         return true;
     }
 
@@ -434,13 +434,13 @@ bool Coin::requestActive() {
 }
 
 bool Coin::requestActiveWithGravity() {
-    if (isNerve(&NrvCoin::CoinNrvNonActive::sInstance)) {
+    if (isNerve(GET_NERVE(Coin, CoinNrvNonActive))) {
         MR::invalidateClipping(this);
         MR::validateHitSensors(this);
         MR::onBind(this);
         MR::calcGravityOrZero(this);
         mVelocity.set< f32 >(-mGravity * 30.0f);
-        setNerve(&NrvCoin::CoinNrvMove::sInstance);
+        setNerve(GET_NERVE(Coin, CoinNrvMove));
         return true;
     }
 
@@ -448,9 +448,9 @@ bool Coin::requestActiveWithGravity() {
 }
 
 bool Coin::requestDeactive() {
-    if (!MR::isDead(this) && isNerve(&NrvCoin::CoinNrvFix::sInstance)) {
+    if (!MR::isDead(this) && isNerve(GET_NERVE(Coin, CoinNrvFix))) {
         MR::invalidateHitSensors(this);
-        setNerve(&NrvCoin::CoinNrvNonActive::sInstance);
+        setNerve(GET_NERVE(Coin, CoinNrvNonActive));
         return true;
     }
 
@@ -462,11 +462,11 @@ bool Coin::requestStartControl() {
         return false;
     }
 
-    if (!isNerve(&NrvCoin::CoinNrvFix::sInstance) && !isNerve(&NrvCoin::CoinNrvFixHide::sInstance)) {
+    if (!isNerve(GET_NERVE(Coin, CoinNrvFix)) && !isNerve(GET_NERVE(Coin, CoinNrvFixHide))) {
         return false;
     }
 
-    if (isNerve(&NrvCoin::CoinNrvFixHide::sInstance)) {
+    if (isNerve(GET_NERVE(Coin, CoinNrvFixHide))) {
         MR::showModel(this);
     }
 
@@ -474,13 +474,13 @@ bool Coin::requestStartControl() {
     MR::invalidateHitSensors(this);
     MR::offBind(this);
     MR::onCalcShadow(this, nullptr);
-    setNerve(&NrvCoin::CoinNrvControled::sInstance);
+    setNerve(GET_NERVE(Coin, CoinNrvControled));
     mFlashCtrl->end();
     return true;
 }
 
 bool Coin::requestEndControl() {
-    if (MR::isDead(this) || !isNerve(&NrvCoin::CoinNrvControled::sInstance)) {
+    if (MR::isDead(this) || !isNerve(GET_NERVE(Coin, CoinNrvControled))) {
         return false;
     }
 
@@ -490,12 +490,12 @@ bool Coin::requestEndControl() {
     MR::offCalcShadow(this, nullptr);
     setCalcShadowMode();
     mCannotTime = 0;
-    setNerve(&NrvCoin::CoinNrvFix::sInstance);
+    setNerve(GET_NERVE(Coin, CoinNrvFix));
     return true;
 }
 
 bool Coin::requestSpinDrain() {
-    if (isNerve(&NrvCoin::CoinNrvSpinDrained::sInstance)) {
+    if (isNerve(GET_NERVE(Coin, CoinNrvSpinDrained))) {
         return false;
     }
 
@@ -506,26 +506,26 @@ bool Coin::requestSpinDrain() {
     MR::invalidateClipping(this);
     MR::offBind(this);
     MR::validateHitSensors(this);
-    setNerve(&NrvCoin::CoinNrvSpinDrained::sInstance);
+    setNerve(GET_NERVE(Coin, CoinNrvSpinDrained));
     mFlashCtrl->end();
     return true;
 }
 
 bool Coin::requestShow() {
-    if (isNerve(&NrvCoin::CoinNrvFixHide::sInstance) && !MR::isDead(this)) {
+    if (isNerve(GET_NERVE(Coin, CoinNrvFixHide)) && !MR::isDead(this)) {
         MR::showModel(this);
         MR::validateHitSensors(this);
-        setNerve(&NrvCoin::CoinNrvFix::sInstance);
+        setNerve(GET_NERVE(Coin, CoinNrvFix));
     }
 
     return false;
 }
 
 bool Coin::requestHide() {
-    if (isNerve(&NrvCoin::CoinNrvFix::sInstance) && !MR::isDead(this)) {
+    if (isNerve(GET_NERVE(Coin, CoinNrvFix)) && !MR::isDead(this)) {
         MR::hideModel(this);
         MR::invalidateHitSensors(this);
-        setNerve(&NrvCoin::CoinNrvFixHide::sInstance);
+        setNerve(GET_NERVE(Coin, CoinNrvFixHide));
     }
 
     return false;

@@ -124,7 +124,7 @@ void Rock::init(const JMapInfoIter& rIter) {
         MR::initShadowVolumeSphere(this, ::cBinderRadius * getRadius());
     }
 
-    initNerve(&NrvRock::RockNrvAppear::sInstance);
+    initNerve(GET_NERVE(Rock, RockNrvAppear));
     makeActorDead();
 }
 
@@ -159,10 +159,10 @@ void Rock::appear() {
     LiveActor::appear();
     if (!MR::isLoopRail(this)) {
         MR::offBind(this);
-        setNerve(&NrvRock::RockNrvAppear::sInstance);
+        setNerve(GET_NERVE(Rock, RockNrvAppear));
     } else {
         MR::onBind(this);
-        setNerve(&NrvRock::RockNrvMove::sInstance);
+        setNerve(GET_NERVE(Rock, RockNrvMove));
     }
 }
 
@@ -202,12 +202,12 @@ s32 Rock::getAppearStarPieceNum(Type type) {
 }
 
 bool Rock::isMoveEnabled() const {
-    return isNerve(&NrvRock::RockNrvAppear::sInstance) || isNerve(&NrvRock::RockNrvAppearMoveInvalidBind::sInstance) ||
-           isNerve(&NrvRock::RockNrvMove::sInstance) || isNerve(&NrvRock::RockNrvMoveInvalidBind::sInstance);
+    return isNerve(GET_NERVE(Rock, RockNrvAppear)) || isNerve(GET_NERVE(Rock, RockNrvAppearMoveInvalidBind)) ||
+           isNerve(GET_NERVE(Rock, RockNrvMove)) || isNerve(GET_NERVE(Rock, RockNrvMoveInvalidBind));
 }
 
 void Rock::control() {
-    if (isNerve(&NrvRock::RockNrvBreak::sInstance)) {
+    if (isNerve(GET_NERVE(Rock, RockNrvBreak))) {
         return;
     }
 
@@ -249,7 +249,7 @@ void Rock::control() {
         mFallVelocity.zero();
     }
 
-    if (!isNerve(&NrvRock::RockNrvMove::sInstance)) {
+    if (!isNerve(GET_NERVE(Rock, RockNrvMove))) {
         return;
     }
 
@@ -270,10 +270,10 @@ void Rock::calcAndSetBaseMtx() {
     calcBaseMtx(&mtx);
     MR::setBaseTRMtx(this, mtx);
 
-    if (isNerve(&NrvRock::RockNrvAppearMoveInvalidBind::sInstance) || (isNerve(&NrvRock::RockNrvMove::sInstance) && MR::isOnGround(this)) ||
-        isNerve(&NrvRock::RockNrvMoveInvalidBind::sInstance)) {
+    if (isNerve(GET_NERVE(Rock, RockNrvAppearMoveInvalidBind)) || (isNerve(GET_NERVE(Rock, RockNrvMove)) && MR::isOnGround(this)) ||
+        isNerve(GET_NERVE(Rock, RockNrvMoveInvalidBind))) {
         TVec3f up;
-        if (isNerve(&NrvRock::RockNrvMove::sInstance)) {
+        if (isNerve(GET_NERVE(Rock, RockNrvMove))) {
             up.set(*MR::getGroundNormal(this));
         } else {
             up.negate(grav);
@@ -295,7 +295,7 @@ void Rock::calcAndSetBaseMtx() {
 void Rock::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     // smells like inline
     bool b = false;
-    if (isBodySensor(pSender) && !isNerve(&NrvRock::RockNrvBreak::sInstance)) {
+    if (isBodySensor(pSender) && !isNerve(GET_NERVE(Rock, RockNrvBreak))) {
         b = true;
     }
 
@@ -304,9 +304,9 @@ void Rock::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (MR::isSensorPlayer(pReceiver) || MR::isSensorRide(pReceiver)) {
-        if (!isNerve(&NrvRock::RockNrvFreeze::sInstance) && !isNerve(&NrvRock::RockNrvAppear::sInstance)) {
+        if (!isNerve(GET_NERVE(Rock, RockNrvFreeze)) && !isNerve(GET_NERVE(Rock, RockNrvAppear))) {
             if (MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
-                if (mSlowDownOnAttack && isNerve(&NrvRock::RockNrvMove::sInstance)) {
+                if (mSlowDownOnAttack && isNerve(GET_NERVE(Rock, RockNrvMove))) {
                     mSlowDownTimer = ::cSlowMoveFrame;
                 }
                 rumblePadAndCamera();
@@ -328,7 +328,7 @@ void Rock::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    if (!isNerve(&NrvRock::RockNrvFreeze::sInstance)) {
+    if (!isNerve(GET_NERVE(Rock, RockNrvFreeze))) {
         MR::sendMsgToEnemyAttackBlowOrTrample(pReceiver, pSender, 0.25f);
     } else {
         MR::sendMsgPush(pReceiver, pSender);
@@ -336,7 +336,7 @@ void Rock::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool Rock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvRock::RockNrvBreak::sInstance)) {
+    if (!isNerve(GET_NERVE(Rock, RockNrvBreak))) {
         if (isBodySensor(pReceiver)) {
             if (MR::isMsgInvincibleAttack(msg)) {
                 setNerveBreak(true);
@@ -351,7 +351,7 @@ bool Rock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRecei
                 return true;
             }
         } else {
-            if (mRockType == NormalRock && !isNerve(&NrvRock::RockNrvAppear::sInstance)) {
+            if (mRockType == NormalRock && !isNerve(GET_NERVE(Rock, RockNrvAppear))) {
                 if (MR::isMsgPlayerHitAll(msg)) {
                     setNerveBreak(true);
                     return true;
@@ -366,7 +366,7 @@ bool Rock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRecei
 bool Rock::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     // smells like inline
     bool b = false;
-    if (isBodySensor(pReceiver) && !isNerve(&NrvRock::RockNrvBreak::sInstance)) {
+    if (isBodySensor(pReceiver) && !isNerve(GET_NERVE(Rock, RockNrvBreak))) {
         b = true;
     }
 
@@ -496,7 +496,7 @@ bool Rock::move(f32 speed) {
         MR::getCurrentRailPointArg1WithInit(this, &pntArg);
 
         if (pntArg >= 0) {
-            setNerve(&NrvRock::RockNrvMoveInvalidBind::sInstance);
+            setNerve(GET_NERVE(Rock, RockNrvMoveInvalidBind));
             return false;
         }
     }
@@ -578,7 +578,7 @@ bool Rock::tryFreeze(const Nerve* pNerve) {
         mFreezeTime = 0;
         mFreezePos.set(mPosition);
         mUnfreezeNerve = pNerve;
-        setNerve(&NrvRock::RockNrvFreeze::sInstance);
+        setNerve(GET_NERVE(Rock, RockNrvFreeze));
         return true;
     }
 
@@ -624,7 +624,7 @@ void Rock::setNerveBreak(bool createStarPieces) {
         appearStarPiece();
     }
 
-    setNerve(&NrvRock::RockNrvBreak::sInstance);
+    setNerve(GET_NERVE(Rock, RockNrvBreak));
 }
 
 void Rock::updateRotateX(f32 angle) {
@@ -666,7 +666,7 @@ bool Rock::isForceInvalidBindSection() const {
 bool Rock::tryBreakReachedGoal() {
     if (MR::isRailReachedGoal(this)) {
         if (mBreakModelOnRailGoal) {
-            setNerve(&NrvRock::RockNrvBreak::sInstance);
+            setNerve(GET_NERVE(Rock, RockNrvBreak));
         } else {
             makeActorDead();
         }
@@ -713,7 +713,7 @@ void Rock::exeAppear() {
     }
 
     if (MR::isStep(this, spawnDelay + mAppearTime + ::cAppearRumbleFrame)) {
-        setNerve(&NrvRock::RockNrvAppearMoveInvalidBind::sInstance);
+        setNerve(GET_NERVE(Rock, RockNrvAppearMoveInvalidBind));
     }
 }
 
@@ -729,7 +729,7 @@ void Rock::exeAppearMoveInvalidBind() {
     startRollLevelSound(true);
     startSoundWanwanVoice();
 
-    if (tryFreeze(&NrvRock::RockNrvAppearMoveInvalidBind::sInstance)) {
+    if (tryFreeze(GET_NERVE(Rock, RockNrvAppearMoveInvalidBind))) {
         return;
     }
 
@@ -738,7 +738,7 @@ void Rock::exeAppearMoveInvalidBind() {
 
     if (!isInvalid && mInvalidBindTime > ::cAppearInvalidBindFrame) {
         MR::onBind(this);
-        setNerve(&NrvRock::RockNrvMove::sInstance);
+        setNerve(GET_NERVE(Rock, RockNrvMove));
     }
 }
 
@@ -748,7 +748,7 @@ void Rock::exeMove() {
 
     if (MR::isOnGround(this)) {
         if (mRockType == NormalRock && MR::isBindedGroundDamageFire(this)) {
-            setNerve(&NrvRock::RockNrvBreak::sInstance);
+            setNerve(GET_NERVE(Rock, RockNrvBreak));
             return;
         }
 
@@ -795,7 +795,7 @@ void Rock::exeMove() {
 
     if (isBreakByWall()) {
         if (mRockType == NormalRock) {
-            setNerve(&NrvRock::RockNrvBreak::sInstance);
+            setNerve(GET_NERVE(Rock, RockNrvBreak));
         } else {
             makeActorDead();
         }
@@ -822,7 +822,7 @@ void Rock::exeMove() {
     }
     updateRotateX(mRotation.x + rotateSpeed);
 
-    if (tryFreeze(&NrvRock::RockNrvMove::sInstance)) {
+    if (tryFreeze(GET_NERVE(Rock, RockNrvMove))) {
         return;
     }
 }
@@ -935,7 +935,7 @@ void Rock::exeFreeze() {
     mPosition.add(mFreezePos, v1);
 
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        setNerve(&NrvRock::RockNrvFreeze::sInstance);
+        setNerve(GET_NERVE(Rock, RockNrvFreeze));
         return;
     }
 

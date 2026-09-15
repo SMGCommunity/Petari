@@ -37,7 +37,7 @@ void GalaxySelectInfo::init(const JMapInfoIter& rIter) {
         MR::connectToSceneLayoutMovementCalcAnim(mInfoLayoutSetter->mIconComet);
     }
 
-    initNerve(&NrvGalaxySelectInfo::GalaxySelectInfoNrvWait::sInstance);
+    initNerve(GET_NERVE(GalaxySelectInfo, GalaxySelectInfoNrvWait));
 }
 
 void GalaxySelectInfo::draw() const {
@@ -96,7 +96,7 @@ bool GalaxySelectInfo::show(const char* pParam1, u32 param2, bool param3, int pa
         _24 = pParam1;
 
         mFadeinoutControl->setDirToOne();
-        setNerve(&NrvGalaxySelectInfo::GalaxySelectInfoNrvWait::sInstance);
+        setNerve(GET_NERVE(GalaxySelectInfo, GalaxySelectInfoNrvWait));
         appear();
 
         return true;
@@ -111,7 +111,7 @@ void GalaxySelectInfo::exeWait() {
     }
 
     mFadeinoutControl->setDirToZero();
-    setNerve(&NrvGalaxySelectInfo::GalaxySelectInfoNrvDisappear::sInstance);
+    setNerve(GET_NERVE(GalaxySelectInfo, GalaxySelectInfoNrvDisappear));
 }
 
 void GalaxySelectInfo::exeDisappear() {

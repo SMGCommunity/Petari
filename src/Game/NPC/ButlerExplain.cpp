@@ -38,7 +38,7 @@ void ButlerExplain::control() {
 }
 
 void ButlerExplain::startDemo() {
-    setNerve(&NrvButlerExplain::ButlerExplainNrvDemo::sInstance);
+    setNerve(GET_NERVE(ButlerExplain, ButlerExplainNrvDemo));
 }
 
 void ButlerExplain::exeDemo() {

@@ -40,9 +40,9 @@ TombSpiderAction2nd::TombSpiderAction2nd(TombSpider* pParent) : TombSpiderAction
 }
 
 void TombSpiderAction2nd::init() {
-    initNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvWait::sInstance);
+    initNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvWait));
     MR::initActorStateKeeper(this, 16);
-    MR::initActorState(this, new TombSpiderStateSwoon(mParent), &NrvTombSpiderAction2nd::TombSpiderAction2ndNrvSwoon::sInstance, "Swoon");
+    MR::initActorState(this, new TombSpiderStateSwoon(mParent), GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvSwoon), "Swoon");
     TombSpiderActionBase::init();
 }
 
@@ -53,7 +53,7 @@ void TombSpiderAction2nd::appear() {
 }
 
 void TombSpiderAction2nd::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (TombSpiderFunction::isSpiderAttack(pSender) && isNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvAttackLoop::sInstance)) {
+    if (TombSpiderFunction::isSpiderAttack(pSender) && isNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvAttackLoop))) {
         if (MR::isSensorPlayer(pReceiver) || TombSpiderFunction::isSpringAttacker(pReceiver)) {
             if (MR::sendMsgEnemyAttack(pReceiver, pSender)) {
                 mHitStep = getNerveStep();
@@ -72,28 +72,28 @@ bool TombSpiderAction2nd::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor
     }
 
     if (msg == ACTMES_SLING_SHOOT_ATTACK) {
-        if (!isNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvSwoon::sInstance) && TombSpiderFunction::tryDamageEye(pSender, pReceiver)) {
-            setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvDamageEye::sInstance);
+        if (!isNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvSwoon)) && TombSpiderFunction::tryDamageEye(pSender, pReceiver)) {
+            setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvDamageEye));
             return true;
         }
 
         if (TombSpiderFunction::tryDamageHip(pSender, pReceiver)) {
-            setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvDamageHip::sInstance);
+            setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvDamageHip));
             return true;
         }
 
         if (TombSpiderFunction::tryDamageGland(mParent, pSender, pReceiver)) {
-            setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvDamageGland::sInstance);
+            setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvDamageGland));
             return true;
         }
 
-        if (isNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvChanceWait::sInstance) &&
+        if (isNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvChanceWait)) &&
             TombSpiderFunction::tryDamageVitalSpot(mParent, pSender, pReceiver)) {
             startChanceDamage();
             if (mEnergy <= 0) {
-                setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvChanceDamageLast::sInstance);
+                setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvChanceDamageLast));
             } else {
-                setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvChanceDamage::sInstance);
+                setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvChanceDamage));
             }
             return true;
         }
@@ -104,7 +104,7 @@ bool TombSpiderAction2nd::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor
     }
 
     if (msg == ACTMES_SLING_SHOOT_PASS_THROUGH_ENABLE) {
-        return isNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvChanceDamage::sInstance);
+        return isNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvChanceDamage));
     }
 
     return false;
@@ -112,71 +112,71 @@ bool TombSpiderAction2nd::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor
 
 void TombSpiderAction2nd::exeWait() {
     if (updateWait(::sStepWaitMin, ::sStepWaitMax)) {
-        setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvAttackStart::sInstance);
+        setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvAttackStart));
     }
 }
 
 void TombSpiderAction2nd::exeAttackStart() {
     if (updateAttackStart()) {
-        setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvAttackLoop::sInstance);
+        setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvAttackLoop));
     }
 }
 
 void TombSpiderAction2nd::exeAttackLoop() {
     if (updateAttackLoop(::sStepAttackLoopMin, ::sStepAttackLoopMax, ::sAttackRotateAccel, ::sAttackRotateSpeedMax)) {
-        setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvAttackEnd::sInstance);
+        setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvAttackEnd));
     }
 }
 
 void TombSpiderAction2nd::exeAttackEnd() {
     if (updateAttackEnd()) {
-        setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvWait::sInstance);
+        setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvWait));
     }
 }
 
 void TombSpiderAction2nd::exeDamageEye() {
     if (updateDamageEye()) {
-        setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvSwoon::sInstance);
+        setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvSwoon));
     }
 }
 
 void TombSpiderAction2nd::exeDamageHip() {
     if (updateDamageHip()) {
-        setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvWaitDemo::sInstance);
-        if (!tryWaitChanceStartDemo(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvChanceStart::sInstance)) {
-            setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvChanceStart::sInstance);
+        setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvWaitDemo));
+        if (!tryWaitChanceStartDemo(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvChanceStart))) {
+            setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvChanceStart));
         }
     }
 }
 
 void TombSpiderAction2nd::exeDamageGland() {
     if (updateDamageGland()) {
-        setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvSwoon::sInstance);
+        setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvSwoon));
     }
 }
 
 void TombSpiderAction2nd::exeSwoon() {
-    MR::updateActorStateAndNextNerve(this, &NrvTombSpiderAction2nd::TombSpiderAction2ndNrvWait::sInstance);
+    MR::updateActorStateAndNextNerve(this, GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvWait));
 }
 
 void TombSpiderAction2nd::exeChanceStart() {
     if (updateChanceStart()) {
-        setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvChanceWait::sInstance);
+        setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvChanceWait));
     }
 }
 
 void TombSpiderAction2nd::exeChanceWait() {
     if (updateChanceWait(::sStepChanceWait)) {
-        setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvWaitDemo::sInstance);
-        if (!tryWaitChanceEndDemo(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvChanceEnd::sInstance)) {
-            setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvChanceEnd::sInstance);
+        setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvWaitDemo));
+        if (!tryWaitChanceEndDemo(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvChanceEnd))) {
+            setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvChanceEnd));
         }
     }
 }
 
 void TombSpiderAction2nd::exeChanceDamage() {
     if (updateChanceDamage()) {
-        setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvChanceWait::sInstance);
+        setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvChanceWait));
     }
 }
 
@@ -188,7 +188,7 @@ void TombSpiderAction2nd::exeChanceDamageLast() {
 
 void TombSpiderAction2nd::exeChanceEnd() {
     if (updateChanceEnd()) {
-        setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvWait::sInstance);
+        setNerve(GET_NERVE(TombSpiderAction2nd, TombSpiderAction2ndNrvWait));
     }
 }
 

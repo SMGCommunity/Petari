@@ -39,7 +39,7 @@ BossStinkBugActionFlyHigh::BossStinkBugActionFlyHigh(BossStinkBug* pStinkBug)
     _3C = 1000.0f;
     _44 = -400.0f;
     _68 = calcKeepRollTime(60);
-    initNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvFly::sInstance);
+    initNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvFly));
 }
 
 void BossStinkBugActionFlyHigh::appear() {
@@ -50,7 +50,7 @@ void BossStinkBugActionFlyHigh::appear() {
     }
 
     BossStinkBugActionBase::appear();
-    setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvFlyDash::sInstance);
+    setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvFlyDash));
     MR::offBind(getHost());
     getHost()->validateCollisionFly();
     MR::startBck(getHost()->getBombLauncher(), "Open", nullptr);
@@ -58,7 +58,7 @@ void BossStinkBugActionFlyHigh::appear() {
 }
 
 void BossStinkBugActionFlyHigh::control() {
-    if (!isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvFall::sInstance)) {
+    if (!isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvFall))) {
         MR::zeroVelocity(getHost());
     }
     updateSound();
@@ -73,11 +73,11 @@ bool BossStinkBugActionFlyHigh::receiveMsgPlayerAttack(u32 msg, HitSensor* pSend
         MR::emitEffectHit(getHost(), MR::getSensorPos(pSender), "Hit");
 
         if (BossStinkBugFunction::isHipDropableSensor(getHost(), pReceiver)) {
-            if (isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvLand::sInstance) ||
-                isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvGroundRun::sInstance)) {
-                setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvDamage::sInstance);
+            if (isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvLand)) ||
+                isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvGroundRun))) {
+                setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvDamage));
             } else {
-                setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvFall::sInstance);
+                setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvFall));
             }
 
             MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT");
@@ -90,19 +90,19 @@ bool BossStinkBugActionFlyHigh::receiveMsgPlayerAttack(u32 msg, HitSensor* pSend
 
 bool BossStinkBugActionFlyHigh::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (getHost()->isSensorBody(pReceiver)) {
-        if ((isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvFly::sInstance) ||
-             isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvRollSign::sInstance) ||
-             isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvRollEnd::sInstance)) &&
+        if ((isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvFly)) ||
+             isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvRollSign)) ||
+             isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvRollEnd))) &&
             MR::isMsgFloorTouch(msg)) {
-            setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvShakeOffSign::sInstance);
+            setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvShakeOffSign));
             return true;
         }
     } else if (isEnableAttack() && (MR::isMsgWallTouch(msg) || MR::isMsgCeilTouch(msg))) {
         if (MR::isFaceToTargetDegree(getHost(), MR::getSensorPos(pSender), getHost()->_EC, 45.0f)) {
             if (MR::sendMsgEnemyAttackStrongToDir(pSender, pReceiver, getHost()->_EC * 50.0f)) {
-                if (isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvGroundRun::sInstance)) {
+                if (isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvGroundRun))) {
                     getHost()->validateCollisionHitOnly();
-                    setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvToFly::sInstance);
+                    setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvToFly));
                 }
                 return true;
             }
@@ -113,17 +113,17 @@ bool BossStinkBugActionFlyHigh::receiveOtherMsg(u32 msg, HitSensor* pSender, Hit
 }
 
 bool BossStinkBugActionFlyHigh::isValidFollowId(s32 id) const {
-    return isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvToGround::sInstance) ||
-                   isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvLand::sInstance) ||
-                   isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvGroundRun::sInstance) ||
-                   isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvToFly::sInstance) ?
+    return isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvToGround)) ||
+                   isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvLand)) ||
+                   isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvGroundRun)) ||
+                   isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvToFly)) ?
                id == 0 :
                id == 1;
 }
 
 void BossStinkBugActionFlyHigh::exeFlyDash() {
     if (updateFlyDash(15.0f)) {
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvFly::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvFly));
     }
 }
 
@@ -132,11 +132,11 @@ void BossStinkBugActionFlyHigh::exeFly() {
     updateFly();
     if (_70 >= 2) {
         if (BossStinkBugFunction::isExistPlayerBack(getHost(), 1500.0f)) {
-            setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvTurnSign::sInstance);
+            setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvTurnSign));
             _70 = 0;
         }
     } else if (MR::isGreaterStep(this, _68)) {
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvRollSign::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvRollSign));
         _70++;
     }
 }
@@ -144,98 +144,98 @@ void BossStinkBugActionFlyHigh::exeFly() {
 void BossStinkBugActionFlyHigh::exeShakeOffSign() {
     throwBomb(40);
     if (updateFlyShakeOffSign(120)) {
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvShakeOff::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvShakeOff));
     }
 }
 
 void BossStinkBugActionFlyHigh::exeShakeOff() {
     throwBomb(40);
     if (updateFlyShakeOff()) {
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvShakeOffWait::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvShakeOffWait));
     }
 }
 
 void BossStinkBugActionFlyHigh::exeShakeOffWait() {
     throwBomb(40);
     if (updateFlyShakeOffWait(30)) {
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvShakeOffEnd::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvShakeOffEnd));
     }
 }
 
 void BossStinkBugActionFlyHigh::exeShakeOffEnd() {
     if (updateFlyShakeOffEnd()) {
         resetThrowBombTiming();
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvFly::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvFly));
     }
 }
 
 void BossStinkBugActionFlyHigh::exeRollSign() {
     throwBomb(40);
     if (updateFlyRollSign(60)) {
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvRoll::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvRoll));
     }
 }
 
 void BossStinkBugActionFlyHigh::exeRoll() {
     throwBomb(40);
     if (updateFlyRoll()) {
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvRollWait::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvRollWait));
     }
 }
 
 void BossStinkBugActionFlyHigh::exeRollWait() {
     throwBomb(40);
     if (updateFlyRollWait(_68)) {
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvRollEnd::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvRollEnd));
     }
 }
 
 void BossStinkBugActionFlyHigh::exeRollEnd() {
     if (updateFlyRollEnd()) {
         resetThrowBombTiming();
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvFly::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvFly));
     }
 }
 
 void BossStinkBugActionFlyHigh::exeTurnSign() {
     if (updateFlyTurnSign()) {
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvTurn::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvTurn));
     }
 }
 
 void BossStinkBugActionFlyHigh::exeTurn() {
     if (updateFlyTurn()) {
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvFly::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvFly));
     }
 }
 
 void BossStinkBugActionFlyHigh::exeFall() {
     if (updateFall()) {
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvDamage::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvDamage));
     }
 }
 
 void BossStinkBugActionFlyHigh::exeToGround() {
     if (updateToGround()) {
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvLand::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvLand));
     }
 }
 
 void BossStinkBugActionFlyHigh::exeLand() {
     if (updateLand()) {
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvGroundRun::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvGroundRun));
     }
 }
 
 void BossStinkBugActionFlyHigh::exeGroundRun() {
     if (updateGroundRun(25.0f)) {
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvToFly::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvToFly));
     }
 }
 
 void BossStinkBugActionFlyHigh::exeToFly() {
     if (updateToFly()) {
-        setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvFly::sInstance);
+        setNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvFly));
     }
 }
 
@@ -246,24 +246,24 @@ void BossStinkBugActionFlyHigh::exeDamage() {
 }
 
 bool BossStinkBugActionFlyHigh::isEnableHipDrop() const {
-    return isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvFly::sInstance) ||
-           isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvRollSign::sInstance) ||
-           isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvRoll::sInstance) ||
-           isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvRollEnd::sInstance) ||
-           isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvShakeOffSign::sInstance) ||
-           isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvShakeOff::sInstance) ||
-           isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvShakeOffEnd::sInstance) ||
-           isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvTurnSign::sInstance) ||
-           isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvToGround::sInstance) ||
-           isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvLand::sInstance) ||
-           isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvGroundRun::sInstance) ||
-           isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvToFly::sInstance) ||
-           isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvTurn::sInstance);
+    return isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvFly)) ||
+           isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvRollSign)) ||
+           isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvRoll)) ||
+           isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvRollEnd)) ||
+           isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvShakeOffSign)) ||
+           isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvShakeOff)) ||
+           isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvShakeOffEnd)) ||
+           isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvTurnSign)) ||
+           isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvToGround)) ||
+           isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvLand)) ||
+           isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvGroundRun)) ||
+           isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvToFly)) ||
+           isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvTurn));
 }
 
 bool BossStinkBugActionFlyHigh::isEnableAttack() const {
-    if (isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvFall::sInstance) ||
-        isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvDamage::sInstance)) {
+    if (isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvFall)) ||
+        isNerve(GET_NERVE(BossStinkBugActionFlyHigh, BossStinkBugActionFlyHighNrvDamage))) {
         return false;
     } else {
         return true;

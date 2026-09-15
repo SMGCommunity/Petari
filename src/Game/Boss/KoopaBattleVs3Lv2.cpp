@@ -27,30 +27,30 @@ KoopaBattleVs3Lv2::KoopaBattleVs3Lv2(Koopa* pKoopa) : KoopaBattleBase("クッパ
 
 void KoopaBattleVs3Lv2::init() {
     KoopaBattleBase::init();
-    initNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackFire::sInstance);
+    initNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvAttackFire));
     MR::initActorStateKeeper(this, 16);
 
     mStateAttackRoll = new KoopaStateAttackRoll(mHost);
 
-    MR::initActorState(this, mStateAttackRoll, &NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackRoll::sInstance, "AttackRoll");
-    MR::initActorState(this, new KoopaStateAttackFireShort(mHost), &NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackFire::sInstance, "AttackFire");
-    MR::initActorState(this, mStateDamageEscape, &NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvDamageReverse::sInstance, "Damage");
-    MR::initActorState(this, new KoopaStateJumpAway(mHost), &NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvJumpAway::sInstance, "JumpAway");
-    MR::initActorState(this, mStateGuard, &NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvGuard::sInstance, "Guard");
+    MR::initActorState(this, mStateAttackRoll, GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvAttackRoll), "AttackRoll");
+    MR::initActorState(this, new KoopaStateAttackFireShort(mHost), GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvAttackFire), "AttackFire");
+    MR::initActorState(this, mStateDamageEscape, GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvDamageReverse), "Damage");
+    MR::initActorState(this, new KoopaStateJumpAway(mHost), GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvJumpAway), "JumpAway");
+    MR::initActorState(this, mStateGuard, GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvGuard), "Guard");
 }
 
 void KoopaBattleVs3Lv2::appear() {
     mIsDead = false;
 
-    setNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackFire::sInstance);
+    setNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvAttackFire));
 }
 
 void KoopaBattleVs3Lv2::exeAttackRoll() {
     if (MR::updateActorState(this)) {
         if (MR::isPlayerDamaging()) {
-            setNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvJumpAway::sInstance);
+            setNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvJumpAway));
         } else {
-            setNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackFire::sInstance);
+            setNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvAttackFire));
         }
     }
 }
@@ -58,9 +58,9 @@ void KoopaBattleVs3Lv2::exeAttackRoll() {
 void KoopaBattleVs3Lv2::exeAttackFire() {
     if (MR::updateActorState(this)) {
         if (MR::isPlayerDamaging()) {
-            setNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvJumpAway::sInstance);
+            setNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvJumpAway));
         } else {
-            setNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackRoll::sInstance);
+            setNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvAttackRoll));
         }
     }
 }
@@ -72,7 +72,7 @@ void KoopaBattleVs3Lv2::exeDamageReverse() {
     }
 
     if (mStateDamageEscape->update()) {
-        setNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackFire::sInstance);
+        setNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvAttackFire));
         return;
     }
 
@@ -85,12 +85,12 @@ void KoopaBattleVs3Lv2::exeDamageReverse() {
         kill();
     } else {
         KoopaFunction::startKoopaAngry(mHost);
-        setNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvRecover::sInstance);
+        setNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvRecover));
     }
 }
 
 bool KoopaBattleVs3Lv2::tryCalcAndSetBaseMtx() {
-    if (isNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackRoll::sInstance) && mStateAttackRoll->tryCalcAndSetBaseMtx()) {
+    if (isNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvAttackRoll)) && mStateAttackRoll->tryCalcAndSetBaseMtx()) {
         return true;
     }
 
@@ -98,12 +98,12 @@ bool KoopaBattleVs3Lv2::tryCalcAndSetBaseMtx() {
 }
 
 void KoopaBattleVs3Lv2::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackRoll::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvAttackRoll))) {
         if (!mStateAttackRoll->attackSensor(pSender, pReceiver)) {
             KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver);
         }
-    } else if (!isNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvJumpAway::sInstance) || !KoopaFunction::tryKoopaAttackMapObj(pSender, pReceiver)) {
-        if (isNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvDamageReverse::sInstance)) {
+    } else if (!isNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvJumpAway)) || !KoopaFunction::tryKoopaAttackMapObj(pSender, pReceiver)) {
+        if (isNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvDamageReverse))) {
             mStateDamageEscape->attackSensor(pSender, pReceiver);
         } else if (!KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver) && KoopaFunction::tryKoopaBodyAttackPlayer(pSender, pReceiver)) {
             return;
@@ -112,16 +112,15 @@ void KoopaBattleVs3Lv2::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool KoopaBattleVs3Lv2::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvDamageReverse::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvDamageReverse))) {
         return mStateDamageEscape->tryDamage(msg, pSender, pReceiver);
     }
 
-    if ((isNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackFire::sInstance) ||
-         (isNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackRoll::sInstance) && mStateAttackRoll->isEnableGuard()) ||
-         isNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvJumpAway::sInstance) ||
-         isNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvRecover::sInstance)) &&
+    if ((isNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvAttackFire)) ||
+         (isNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvAttackRoll)) && mStateAttackRoll->isEnableGuard()) ||
+         isNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvJumpAway)) || isNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvRecover))) &&
         mStateGuard->tryStart(msg, pSender, pReceiver)) {
-        setNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvGuard::sInstance);
+        setNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvGuard));
         return true;
     }
 
@@ -133,17 +132,17 @@ bool KoopaBattleVs3Lv2::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitS
 }
 
 bool KoopaBattleVs3Lv2::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvDamageReverse::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvDamageReverse))) {
         return mStateDamageEscape->tryDamage(msg, pSender, pReceiver);
     }
 
-    if (isNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackRoll::sInstance) && mStateAttackRoll->isDamage(msg, pSender, pReceiver)) {
-        setNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvDamageReverse::sInstance);
+    if (isNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvAttackRoll)) && mStateAttackRoll->isDamage(msg, pSender, pReceiver)) {
+        setNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvDamageReverse));
         return true;
     }
 
-    if (isNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackFire::sInstance) && MR::isMsgToEnemyAttackBlow(msg)) {
-        setNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvDamageReverse::sInstance);
+    if (isNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvAttackFire)) && MR::isMsgToEnemyAttackBlow(msg)) {
+        setNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvDamageReverse));
         return true;
     }
 
@@ -152,16 +151,16 @@ bool KoopaBattleVs3Lv2::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSe
 
 void KoopaBattleVs3Lv2::exeGuard() {
     if (MR::updateActorState(this)) {
-        setNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackFire::sInstance);
+        setNerve(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvAttackFire));
     }
 }
 
 void KoopaBattleVs3Lv2::exeJumpAway() {
-    MR::updateActorStateAndNextNerve(this, &NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackFire::sInstance);
+    MR::updateActorStateAndNextNerve(this, GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvAttackFire));
 }
 
 void KoopaBattleVs3Lv2::exeRecover() {
-    updateRecover(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackFire::sInstance);
+    updateRecover(GET_NERVE(KoopaBattleVs3Lv2, KoopaBattleVs3Lv2NrvAttackFire));
 }
 
 KoopaBattleVs3Lv2::~KoopaBattleVs3Lv2() {

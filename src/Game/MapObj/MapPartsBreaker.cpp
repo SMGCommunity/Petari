@@ -25,14 +25,14 @@ void MapPartsBreaker::exeReactToTornado() {
 
     if (isStep(36)) {
         if (_38) {
-            setNerve(&NrvMapPartsBreaker::HostTypeBreak::sInstance);
+            setNerve(GET_NERVE(MapPartsBreaker, HostTypeBreak));
         } else {
             mHost->mVelocity.zero();
             mHost->mPosition.set< f32 >(_1C);
             _28.x = 0.0f;
             _28.y = 1.0f;
             _28.z = 0.0f;
-            setNerve(&NrvMapPartsBreaker::HostTypeWait::sInstance);
+            setNerve(GET_NERVE(MapPartsBreaker, HostTypeWait));
         }
     } else {
         _38 = 0;

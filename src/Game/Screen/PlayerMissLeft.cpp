@@ -28,7 +28,7 @@ void PlayerMissLeft::init(const JMapInfoIter& rIter) {
     mLayoutAppearer = new CounterLayoutAppearer(this, TVec2f(-50.0f, 0.0f));
     mPaneRumbler = new CountUpPaneRumbler(this, "CenterPlayerLeft");
 
-    initNerve(&NrvPlayerMissLeft::HostTypeNrvAppearWait::sInstance);
+    initNerve(GET_NERVE(PlayerMissLeft, HostTypeNrvAppearWait));
     kill();
 }
 
@@ -37,7 +37,7 @@ void PlayerMissLeft::appear() {
     mLayoutAppearer->reset();
     mPaneRumbler->reset();
     MR::hidePaneRecursive(this, "PlayerLeft");
-    setNerve(&NrvPlayerMissLeft::HostTypeNrvAppearWait::sInstance);
+    setNerve(GET_NERVE(PlayerMissLeft, HostTypeNrvAppearWait));
     MR::hideLayout(this);
 }
 
@@ -48,7 +48,7 @@ void PlayerMissLeft::control() {
 
 void PlayerMissLeft::exeAppearWait() {
     if (MR::isGreaterStep(this, 0)) {
-        setNerve(&NrvPlayerMissLeft::HostTypeNrvAppear::sInstance);
+        setNerve(GET_NERVE(PlayerMissLeft, HostTypeNrvAppear));
     }
 }
 
@@ -69,7 +69,7 @@ void PlayerMissLeft::exeAppear() {
     }
 
     if (mLayoutAppearer->isAppeared()) {
-        setNerve(&NrvPlayerMissLeft::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(PlayerMissLeft, HostTypeNrvWait));
     }
 }
 
@@ -81,7 +81,7 @@ void PlayerMissLeft::exeWait() {
     }
 
     if (MR::isGreaterStep(this, ::hEndTime)) {
-        setNerve(&NrvPlayerMissLeft::HostTypeNrvEnd::sInstance);
+        setNerve(GET_NERVE(PlayerMissLeft, HostTypeNrvEnd));
     }
 }
 

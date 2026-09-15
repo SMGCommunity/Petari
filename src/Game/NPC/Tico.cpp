@@ -74,7 +74,7 @@ void Tico::initBase(const JMapInfoIter& rIter, s32 color) {
     caps.setDefault();
     caps.mMessage = 0;
     caps._5D = true;
-    caps.mWaitNerve = &NrvTico::TicoNrvWait::sInstance;
+    caps.mWaitNerve = GET_NERVE(Tico, TicoNrvWait);
     caps.mSensorJoint = "Body";
     caps.mSensorSize = 60.0f;
     caps.mSensorOffset.z = 0.0f;
@@ -112,7 +112,7 @@ void Tico::initBase(const JMapInfoIter& rIter, s32 color) {
         _17C = ::hPointLight[ARRAY_SIZE(::hPointLight) - 1];
     }
 
-    _180 = &NrvTico::TicoNrvMeta::sInstance;
+    _180 = GET_NERVE(Tico, TicoNrvMeta);
     _160.set< f32 >(mPosition);
     MR::startAction(this, "Wait");
     MR::setBckFrameAtRandom(this);
@@ -187,32 +187,32 @@ void Tico::init(const JMapInfoIter& rIter) {
     switch (_15C) {
     case 5:
         mDemoGetPower = new TicoDemoGetPower(this, rIter);
-        setNerve(&NrvTico::TicoNrvSpin0::sInstance);
+        setNerve(GET_NERVE(Tico, TicoNrvSpin0));
         break;
     case 1:
-        setNerve(&NrvTico::TicoNrvBlue0::sInstance);
+        setNerve(GET_NERVE(Tico, TicoNrvBlue0));
         break;
     case 9:
         if (MR::isOnGameEventFlagRosettaTalkAboutTicoInTower()) {
             makeActorAppeared();
-            setNerve(&NrvTico::TicoNrvRed1::sInstance);
+            setNerve(GET_NERVE(Tico, TicoNrvRed1));
         } else {
-            setNerve(&NrvTico::TicoNrvRed0::sInstance);
+            setNerve(GET_NERVE(Tico, TicoNrvRed0));
         }
         break;
     case 6:
         MR::offRootNodeAutomatic(mMsgCtrl);
-        setNerve(&NrvTico::TicoNrvGuide0::sInstance);
+        setNerve(GET_NERVE(Tico, TicoNrvGuide0));
         break;
     case 7:
-        setNerve(&NrvTico::TicoNrvLead0::sInstance);
-        pushNerve(&NrvTico::TicoNrvAppear::sInstance);
+        setNerve(GET_NERVE(Tico, TicoNrvLead0));
+        pushNerve(GET_NERVE(Tico, TicoNrvAppear));
         break;
     case 3:
-        setNerve(&NrvTico::TicoNrvTalk::sInstance);
+        setNerve(GET_NERVE(Tico, TicoNrvTalk));
         break;
     case 8:
-        setNerve(&NrvTico::TicoNrvNoReaction::sInstance);
+        setNerve(GET_NERVE(Tico, TicoNrvNoReaction));
         break;
     default:
         break;
@@ -263,12 +263,12 @@ bool Tico::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRecei
 
 bool Tico::tryReaction() {
     if (_E5) {
-        pushNerve(&NrvTico::TicoNrvDelight::sInstance);
+        pushNerve(GET_NERVE(Tico, TicoNrvDelight));
 
         return true;
     }
 
-    return MR::tryStartReactionAndPushNerve(this, &NrvTico::TicoNrvReaction::sInstance);
+    return MR::tryStartReactionAndPushNerve(this, GET_NERVE(Tico, TicoNrvReaction));
 }
 
 void Tico::setNerveMeta() {
@@ -332,7 +332,7 @@ void Tico::exeAppear() {
 void Tico::exeNoReaction() {
     if (mMsgCtrl != nullptr) {
         if (MR::tryTalkNearPlayerAndStartTalkAction(this)) {
-            setNerve(&NrvTico::TicoNrvWait::sInstance);
+            setNerve(GET_NERVE(Tico, TicoNrvWait));
         }
     } else {
         MR::tryStartTurnAction(this);
@@ -357,7 +357,7 @@ void Tico::exeTalk() {
     }
 
     if (MR::tryTalkNearPlayerAtEndAndStartTalkAction(this)) {
-        setNerve(&NrvTico::TicoNrvMeta::sInstance);
+        setNerve(GET_NERVE(Tico, TicoNrvMeta));
     }
 }
 
@@ -378,7 +378,7 @@ void Tico::exeBlue0() {
     }
 
     if (MR::tryTalkNearPlayerAtEndAndStartTalkAction(this)) {
-        setNerve(&NrvTico::TicoNrvBlue1::sInstance);
+        setNerve(GET_NERVE(Tico, TicoNrvBlue1));
         MR::startTimeKeepDemo(this, "青チコ変身", nullptr);
     }
 }
@@ -392,13 +392,13 @@ void Tico::exeBlue1() {
     MR::moveCoordAndFollowTrans(this);
 
     if (MR::isRailReachedGoal(this)) {
-        setNerve(&NrvTico::TicoNrvMeta::sInstance);
+        setNerve(GET_NERVE(Tico, TicoNrvMeta));
     }
 }
 
 void Tico::exeRed0() {
     if (MR::tryStartTimeKeepDemoMarioPuppetable(this, "赤いスター", "赤いスター[開始]")) {
-        setNerve(&NrvTico::TicoNrvWait::sInstance);
+        setNerve(GET_NERVE(Tico, TicoNrvWait));
     }
 }
 
@@ -410,7 +410,7 @@ void Tico::exeRed1() {
     MR::tryStartTurnAction(this);
 
     if (MR::isNearPlayer(this, 400.0f)) {
-        setNerve(&NrvTico::TicoNrvRed2::sInstance);
+        setNerve(GET_NERVE(Tico, TicoNrvRed2));
     }
 }
 
@@ -421,7 +421,7 @@ void Tico::exeRed2() {
 
     if (mDemoStarter.update()) {
         MR::tryStartTimeKeepDemoMarioPuppetable(this, "赤いスター", "赤いスター[開始]");
-        setNerve(&NrvTico::TicoNrvWait::sInstance);
+        setNerve(GET_NERVE(Tico, TicoNrvWait));
     }
 }
 
@@ -435,7 +435,7 @@ void Tico::exeGuide0() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvTico::TicoNrvGuide1::sInstance);
+        setNerve(GET_NERVE(Tico, TicoNrvGuide1));
     }
 }
 
@@ -443,10 +443,10 @@ void Tico::exeGuide1() {
     if (MR::countShowGroupMember(this) == 0) {
         MR::forwardNode(mMsgCtrl);
         MR::forwardNode(mMsgCtrl);
-        setNerve(&NrvTico::TicoNrvGuide2::sInstance);
+        setNerve(GET_NERVE(Tico, TicoNrvGuide2));
     } else if (MR::countHideGroupMember(this) != 0) {
         MR::forwardNode(mMsgCtrl);
-        setNerve(&NrvTico::TicoNrvGuide2::sInstance);
+        setNerve(GET_NERVE(Tico, TicoNrvGuide2));
     } else {
         MR::tryTalkNearPlayerAndStartTalkAction(this);
 
@@ -459,7 +459,7 @@ void Tico::exeGuide1() {
 void Tico::exeGuide2() {
     if (MR::countShowGroupMember(this) == 0) {
         MR::forwardNode(mMsgCtrl);
-        setNerve(&NrvTico::TicoNrvGuide3::sInstance);
+        setNerve(GET_NERVE(Tico, TicoNrvGuide3));
     } else {
         MR::tryTalkNearPlayerAndStartTalkAction(this);
 

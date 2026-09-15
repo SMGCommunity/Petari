@@ -36,7 +36,7 @@ void FountainBig::init(const JMapInfoIter& rIter) {
     MR::setClippingTypeSphere(this, 600.0f, &mClippingRadius);
     MR::hideModel(this);
     MR::startBtk(this, "FountainBig");
-    initNerve(&NrvFountainBig::FountainBigNrvWait::sInstance);
+    initNerve(GET_NERVE(FountainBig, FountainBigNrvWait));
     makeActorAppeared();
 }
 
@@ -47,7 +47,7 @@ void FountainBig::exeWait() {
     }
 
     if (MR::isStep(this, 120)) {
-        setNerve(&NrvFountainBig::FountainBigNrvSign::sInstance);
+        setNerve(GET_NERVE(FountainBig, FountainBigNrvSign));
     }
 }
 
@@ -57,7 +57,7 @@ void FountainBig::exeSign() {
     }
     MR::startLevelSound(this, "SE_OJ_LV_FOUNTAIN_BIG_SIGN");
     if (MR::isStep(this, 80)) {
-        setNerve(&NrvFountainBig::FountainBigNrvSignStop::sInstance);
+        setNerve(GET_NERVE(FountainBig, FountainBigNrvSignStop));
     }
 }
 
@@ -67,7 +67,7 @@ void FountainBig::exeSignStop() {
     }
 
     if (MR::isStep(this, 30)) {
-        setNerve(&NrvFountainBig::FountainBigNrvSpout::sInstance);
+        setNerve(GET_NERVE(FountainBig, FountainBigNrvSpout));
     }
 }
 
@@ -98,7 +98,7 @@ void FountainBig::exeSpout() {
     if (MR::isStep(this, 180)) {
         MR::invalidateHitSensors(this);
         MR::deleteEffect(this, "FountainBig");
-        setNerve(&NrvFountainBig::FountainBigNrvSpoutEnd::sInstance);
+        setNerve(GET_NERVE(FountainBig, FountainBigNrvSpoutEnd));
     }
 }
 
@@ -110,7 +110,7 @@ void FountainBig::exeSpoutEnd() {
     MR::clamp(calcNerve, 0.01f, 1.0f);
     if (MR::isStep(this, 10)) {
         MR::hideModel(this);
-        setNerve(&NrvFountainBig::FountainBigNrvWait::sInstance);
+        setNerve(GET_NERVE(FountainBig, FountainBigNrvWait));
     }
 }
 

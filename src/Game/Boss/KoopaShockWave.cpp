@@ -42,7 +42,7 @@ void KoopaShockWave::init(const JMapInfoIter& rIter) {
 
     initSound(8, false);
 
-    initNerve(&NrvKoopaShockWave::KoopaShockWaveNrvWaveAttack::sInstance);
+    initNerve(GET_NERVE(KoopaShockWave, KoopaShockWaveNrvWaveAttack));
 
     MR::invalidateClipping(this);
 
@@ -71,7 +71,7 @@ void KoopaShockWave::appear() {
 
     mAngle = 0.0f;
 
-    setNerve(&NrvKoopaShockWave::KoopaShockWaveNrvWaveAttack::sInstance);
+    setNerve(GET_NERVE(KoopaShockWave, KoopaShockWaveNrvWaveAttack));
 }
 
 void KoopaShockWave::makeActorDead() {

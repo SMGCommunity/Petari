@@ -37,12 +37,12 @@ void IceStepNoSlip::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
     MR::initCollisionParts(this, "IceStepNoSlip", getSensor(nullptr), nullptr);
-    initNerve(&NrvIceStepNoSlip::IceStepNoSlipNrvAppear::sInstance);
+    initNerve(GET_NERVE(IceStepNoSlip, IceStepNoSlipNrvAppear));
 }
 
 void IceStepNoSlip::appear() {
     LiveActor::appear();
-    setNerve(&NrvIceStepNoSlip::IceStepNoSlipNrvAppear::sInstance);
+    setNerve(GET_NERVE(IceStepNoSlip, IceStepNoSlipNrvAppear));
 }
 
 void IceStepNoSlip::exeAppear() {
@@ -84,7 +84,7 @@ void WaterLeakPipe::init(const JMapInfoIter& rIter) {
     mIceStep = new IceStepNoSlip(mTopMtx);
     mIceStep->initWithoutIter();
     mIceStep->makeActorDead();
-    initNerve(&NrvWaterLeakPipe::WaterLeakPipeNrvWait::sInstance);
+    initNerve(GET_NERVE(WaterLeakPipe, WaterLeakPipeNrvWait));
     makeActorAppeared();
 }
 
@@ -103,12 +103,12 @@ void WaterLeakPipe::exeFreeze() {
         MR::startSound(this, "SE_OJ_ICE_FLOOR_FREEZE");
         MR::invalidateClipping(this);
     } else if (MR::isOnPlayer(mIceStep) && MR::isPlayerElementModeIce()) {
-        setNerve(&NrvWaterLeakPipe::WaterLeakPipeNrvFreeze::sInstance);
+        setNerve(GET_NERVE(WaterLeakPipe, WaterLeakPipeNrvFreeze));
     } else if (MR::isStep(this, ::sLifeTime)) {
-        mIceStep->setNerve(&NrvIceStepNoSlip::IceStepNoSlipNrvBreak::sInstance);
+        mIceStep->setNerve(GET_NERVE(IceStepNoSlip, IceStepNoSlipNrvBreak));
         MR::startSound(this, "SE_OJ_ICE_FLOOR_MELT");
         MR::validateClipping(this);
-        setNerve(&NrvWaterLeakPipe::WaterLeakPipeNrvWait::sInstance);
+        setNerve(GET_NERVE(WaterLeakPipe, WaterLeakPipeNrvWait));
     }
 }
 
@@ -117,7 +117,7 @@ bool WaterLeakPipe::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSenso
         return false;
     }
 
-    if (isNerve(&NrvWaterLeakPipe::WaterLeakPipeNrvFreeze::sInstance)) {
+    if (isNerve(GET_NERVE(WaterLeakPipe, WaterLeakPipeNrvFreeze))) {
         return false;
     }
 
@@ -135,7 +135,7 @@ bool WaterLeakPipe::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSenso
             return false;
         }
 
-        setNerve(&NrvWaterLeakPipe::WaterLeakPipeNrvFreeze::sInstance);
+        setNerve(GET_NERVE(WaterLeakPipe, WaterLeakPipeNrvFreeze));
         return false;
     }
 

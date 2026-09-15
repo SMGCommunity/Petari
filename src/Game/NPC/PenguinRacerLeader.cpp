@@ -44,13 +44,13 @@ void PenguinRacerLeader::init(const JMapInfoIter& rIter) {
     MR::registerBranchFunc(mMsgCtrl, TalkMessageFunc(this, &PenguinRacerLeader::branchFunc));
     MR::registerEventFunc(mMsgCtrl, TalkMessageFunc(this, &PenguinRacerLeader::eventFunc));
 
-    initNerve(&NrvPenguinRacerLeader::PenguinRacerLeaderNrvWait::sInstance);
+    initNerve(GET_NERVE(PenguinRacerLeader, PenguinRacerLeaderNrvWait));
 
     if (mRaceDisabled == 0) {
         MR::declarePowerStar(this);
         RaceManagerFunction::entryRacerOthers(this);
         initRailRider(rIter);
-        mTakeOutStar = new TakeOutStar(this, "TakeOutStar", "TakeOutStar", &NrvPenguinRacerLeader::PenguinRacerLeaderNrvTakeOutStar::sInstance);
+        mTakeOutStar = new TakeOutStar(this, "TakeOutStar", "TakeOutStar", GET_NERVE(PenguinRacerLeader, PenguinRacerLeaderNrvTakeOutStar));
     }
 
     MR::addToAttributeGroupSearchTurtle(this);
@@ -95,7 +95,7 @@ bool PenguinRacerLeader::eventFunc(u32 state) {
 void PenguinRacerLeader::exeWait() {
     if (!tryReaction() && MR::tryTalkNearPlayerAndStartTalkAction(this) && mRaceDisabled == 0) {
         MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "会話", -1);
-        setNerve(&NrvPenguinRacerLeader::PenguinRacerLeaderNrvPre::sInstance);
+        setNerve(GET_NERVE(PenguinRacerLeader, PenguinRacerLeaderNrvPre));
     }
 }
 
@@ -106,10 +106,10 @@ void PenguinRacerLeader::exePre() {
 
     if (MR::tryTalkSelectLeft(mMsgCtrl)) {
         RaceManagerFunction::startRaceWithWipe();
-        setNerve(&NrvPenguinRacerLeader::PenguinRacerLeaderNrvReady::sInstance);
+        setNerve(GET_NERVE(PenguinRacerLeader, PenguinRacerLeaderNrvReady));
     } else {
         MR::endMultiActorCamera(this, mCameraInfo, "会話", false, -1);
-        setNerve(&NrvPenguinRacerLeader::PenguinRacerLeaderNrvWait::sInstance);
+        setNerve(GET_NERVE(PenguinRacerLeader, PenguinRacerLeaderNrvWait));
     }
 }
 
@@ -124,10 +124,10 @@ void PenguinRacerLeader::exePost() {
     MR::endMultiActorCamera(this, mCameraInfo, "会話", true, -1);
 
     if (RaceManagerFunction::getRaceRank() == 1) {
-        setNerve(&NrvPenguinRacerLeader::PenguinRacerLeaderNrvTalk::sInstance);
+        setNerve(GET_NERVE(PenguinRacerLeader, PenguinRacerLeaderNrvTalk));
     } else {
         MR::forceKillPlayerByGroundRace();
-        setNerve(&NrvPenguinRacerLeader::PenguinRacerLeaderNrvReady::sInstance);
+        setNerve(GET_NERVE(PenguinRacerLeader, PenguinRacerLeaderNrvReady));
     }
 }
 
@@ -145,7 +145,7 @@ void PenguinRacerLeader::resetRacer(const RaceManager* pRaceManager) {
     turnToPlayer(180.0f);
     calcAndSetBaseMtx();
     MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "会話", 0);
-    setNerve(&NrvPenguinRacerLeader::PenguinRacerLeaderNrvPost::sInstance);
+    setNerve(GET_NERVE(PenguinRacerLeader, PenguinRacerLeaderNrvPost));
 }
 
 void PenguinRacerLeader::exitRacer() {

@@ -144,14 +144,14 @@ void EarthenPipe::init(const JMapInfoIter& rIter) {
     MR::setEffectHostMtx(this, "LavaVanish", _BC.mMtx);
     initSound(4, false);
     MR::initMultiActorCamera(this, rIter, &mCameraInfo, "出現");
-    initNerve(&NrvEarthenPipe::EarthenPipeNrvWait::sInstance);
+    initNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvWait));
 
     if ((mPipeMode - 1) <= 1u) {
         MR::invalidateCollisionParts(this);
         calcTrans(0.0f);
         MR::invalidateHitSensors(this);
         MR::hideModel(this);
-        setNerve(&NrvEarthenPipe::EarthenPipeNrvHide::sInstance);
+        setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvHide));
     }
 
     if (isWaterPipe) {
@@ -180,7 +180,7 @@ void EarthenPipe::init(const JMapInfoIter& rIter) {
 
 void EarthenPipe::makeActorAppeared() {
     LiveActor::makeActorAppeared();
-    if (isNerve(&NrvEarthenPipe::EarthenPipeNrvHide::sInstance)) {
+    if (isNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvHide))) {
         MR::invalidateCollisionParts(this);
     }
 }
@@ -192,7 +192,7 @@ bool EarthenPipe::tryShowUp() {
         return false;
     }
 
-    setNerve(&NrvEarthenPipe::EarthenPipeNrvWaitToShowUp::sInstance);
+    setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvWaitToShowUp));
     return true;
 }
 
@@ -201,15 +201,15 @@ bool EarthenPipe::tryHideDown() {
     MR::endMultiActorCamera(this, mCameraInfo, "出現", true, -1);
 
     if (!mPipeMode || (mPipeMode - 3) <= 1u) {
-        setNerve(&NrvEarthenPipe::EarthenPipeNrvInvalid::sInstance);
+        setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvInvalid));
         return false;
     } else {
         if (mPipeMode == 2) {
             mPipeMode = 0;
-            setNerve(&NrvEarthenPipe::EarthenPipeNrvInvalid::sInstance);
+            setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvInvalid));
             return false;
         } else {
-            setNerve(&NrvEarthenPipe::EarthenPipeNrvWaitToHideDown::sInstance);
+            setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvWaitToHideDown));
             return true;
         }
     }
@@ -218,7 +218,7 @@ bool EarthenPipe::tryHideDown() {
 bool EarthenPipe::isNerveShowUp() const {
     bool ret;
 
-    if (isNerve(&NrvEarthenPipe::EarthenPipeNrvShowUp::sInstance) || isNerve(&NrvEarthenPipe::EarthenPipeNrvShowUp::sInstance)) {
+    if (isNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvShowUp)) || isNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvShowUp))) {
         ret = true;
     } else {
         ret = false;
@@ -257,7 +257,7 @@ void EarthenPipe::exeReady() {
     MR::blendMtx(_120.mMtx, _150.mMtx, MR::calcNerveRate(this, MR::getBckFrameMaxPlayer()), _F0.mMtx);
     if (MR::isBckStoppedPlayer()) {
         if (!MR::isPlayerDead()) {
-            setNerve(&NrvEarthenPipe::EarthenPipeNrvPlayerIn::sInstance);
+            setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvPlayerIn));
         }
     }
 }
@@ -272,9 +272,9 @@ void EarthenPipe::exePlayerIn() {
     if (MR::isBckStopped(mHostActor) && !MR::isPlayerDead()) {
         _F0.setInline(_B0->getBaseMtx());
         if (_B0->tryShowUp()) {
-            setNerve(&NrvEarthenPipe::EarthenPipeNrvTargetPipeShowUp::sInstance);
+            setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvTargetPipeShowUp));
         } else {
-            setNerve(&NrvEarthenPipe::EarthenPipeNrvPlayerOut::sInstance);
+            setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvPlayerOut));
         }
     }
 }
@@ -287,7 +287,7 @@ void EarthenPipe::exeTargetPipeShowUp() {
     if (!_B0->isNerveShowUp()) {
         _F0.setInline(_B0->getBaseMtx());
         MR::showPlayer();
-        setNerve(&NrvEarthenPipe::EarthenPipeNrvPlayerOut::sInstance);
+        setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvPlayerOut));
     }
 }
 
@@ -323,7 +323,7 @@ void EarthenPipe::exePlayerOut() {
             }
         }
 
-        setNerve(&NrvEarthenPipe::EarthenPipeNrvInvalid::sInstance);
+        setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvInvalid));
     }
 }
 
@@ -335,7 +335,7 @@ void EarthenPipe::exeInvalid() {
     if (MR::isGreaterStep(this, 30) && MR::isOnGroundPlayer() || mPipeMode == 4 && isNear(this) || MR::isPlayerSwimming() && isNear(this)) {
         MR::validateClipping(this);
         MR::validateHitSensors(this);
-        setNerve(&NrvEarthenPipe::EarthenPipeNrvWait::sInstance);
+        setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvWait));
     }
 }
 
@@ -347,13 +347,13 @@ void EarthenPipe::exeShow() {
 
 void EarthenPipe::exeWaitToHideDown() {
     if (MR::isStep(this, 40)) {
-        setNerve(&NrvEarthenPipe::EarthenPipeNrvHideDown::sInstance);
+        setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvHideDown));
     }
 }
 
 void EarthenPipe::exeWaitToShowUp() {
     if (MR::isStep(this, 20)) {
-        setNerve(&NrvEarthenPipe::EarthenPipeNrvShowUp::sInstance);
+        setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvShowUp));
     }
 }
 
@@ -374,7 +374,7 @@ void EarthenPipe::exeShowUp() {
 
     if (MR::isStep(this, 30)) {
         MR::deleteEffect(this, "LavaAppear");
-        setNerve(&NrvEarthenPipe::EarthenPipeNrvShow::sInstance);
+        setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvShow));
     }
 }
 
@@ -394,7 +394,7 @@ void EarthenPipe::exeHideDown() {
         MR::invalidateCollisionParts(this);
         MR::validateClipping(this);
         MR::deleteEffect(this, "LavaVanish");
-        setNerve(&NrvEarthenPipe::EarthenPipeNrvHide::sInstance);
+        setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvHide));
     }
 }
 
@@ -407,9 +407,9 @@ void EarthenPipe::control() {
 
 bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgAutoRushBegin(msg)) {
-        if (!(!isNerve(&NrvEarthenPipe::EarthenPipeNrvInvalid::sInstance) && !isNerve(&NrvEarthenPipe::EarthenPipeNrvHide::sInstance) &&
-              !isNerve(&NrvEarthenPipe::EarthenPipeNrvWaitToShowUp::sInstance) && !isNerve(&NrvEarthenPipe::EarthenPipeNrvShowUp::sInstance) &&
-              !isNerve(&NrvEarthenPipe::EarthenPipeNrvWaitToHideDown::sInstance) && !isNerve(&NrvEarthenPipe::EarthenPipeNrvHideDown::sInstance) &&
+        if (!(!isNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvInvalid)) && !isNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvHide)) &&
+              !isNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvWaitToShowUp)) && !isNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvShowUp)) &&
+              !isNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvWaitToHideDown)) && !isNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvHideDown)) &&
               !MR::isPlayerDead())) {
             return false;
         }
@@ -430,7 +430,7 @@ bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
         MR::normalize(&camPos);
         MR::makeMtxUpFrontPos(&_150, _98, camPos, mPosition);
         MR::invalidateHitSensors(this);
-        setNerve(&NrvEarthenPipe::EarthenPipeNrvReady::sInstance);
+        setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvReady));
         return true;
     }
     if (MR::isMsgUpdateBaseMtx(msg)) {
@@ -447,7 +447,7 @@ bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
     if (MR::isMsgRushCancel(msg)) {
         mHostActor = nullptr;
         _B0->tryHideDown();
-        setNerve(&NrvEarthenPipe::EarthenPipeNrvWait::sInstance);
+        setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvWait));
         return true;
     }
     return false;

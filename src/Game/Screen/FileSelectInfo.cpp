@@ -45,13 +45,13 @@ FileSelectInfo::FileSelectInfo(s32 nameBufferSize, const char* pName)
 void FileSelectInfo::init(const JMapInfoIter& rIter) {
     initLayoutManager("FileInfo", 3);
     MR::connectToSceneLayout(this);
-    initNerve(&FileSelectInfoNrvAppear::sInstance);
+    initNerve(GET_NERVE_GLOBAL(FileSelectInfoNrvAppear));
 }
 
 void FileSelectInfo::appear() {
     f32 animFrame;
 
-    if (!MR::isDead(this) && isNerve(&FileSelectInfoNrvDisappear::sInstance)) {
+    if (!MR::isDead(this) && isNerve(GET_NERVE_GLOBAL(FileSelectInfoNrvDisappear))) {
         animFrame = MR::getAnimFrame(this, 0);
 
         MR::startAnim(this, "Appear", 0);
@@ -60,15 +60,15 @@ void FileSelectInfo::appear() {
         MR::startAnim(this, "Appear", 0);
     }
 
-    setNerve(&FileSelectInfoNrvAppear::sInstance);
+    setNerve(GET_NERVE_GLOBAL(FileSelectInfoNrvAppear));
     LayoutActor::appear();
 }
 
 void FileSelectInfo::disappear() {
     f32 animFrame;
 
-    if (!MR::isDead(this) && !isNerve(&FileSelectInfoNrvDisappear::sInstance)) {
-        if (isNerve(&FileSelectInfoNrvAppear::sInstance)) {
+    if (!MR::isDead(this) && !isNerve(GET_NERVE_GLOBAL(FileSelectInfoNrvDisappear))) {
+        if (isNerve(GET_NERVE_GLOBAL(FileSelectInfoNrvAppear))) {
             animFrame = MR::getAnimFrame(this, 0);
         } else {
             MR::startAnim(this, "Appear", 0);
@@ -79,16 +79,16 @@ void FileSelectInfo::disappear() {
         MR::startAnim(this, "Appear", 0);
         MR::setAnimFrame(this, animFrame, 0);
         MR::setAnimRate(this, 0.0f, 0);
-        setNerve(&FileSelectInfoNrvDisappear::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectInfoNrvDisappear));
     }
 }
 
 void FileSelectInfo::slide() {
-    mSlideState->setNerve(&FileSelectInfoSub::SlideStateNrvSliding::sInstance);
+    mSlideState->setNerve(GET_NERVE_DIRECT(FileSelectInfoSub, SlideStateNrvSliding));
 }
 
 void FileSelectInfo::slideBack() {
-    mSlideState->setNerve(&FileSelectInfoSub::SlideStateNrvSlidingBack::sInstance);
+    mSlideState->setNerve(GET_NERVE_DIRECT(FileSelectInfoSub, SlideStateNrvSlidingBack));
 }
 
 void FileSelectInfo::setInfo(u16* pName, s32 number, s32 starNum, s32 starPieceNum, bool isSelectedMario, bool isViewNormalEnding,
@@ -115,16 +115,16 @@ void FileSelectInfo::change() {
     if (mIsSelectedMarioPrev && !mIsSelectedMario) {
         pCharaState = mCharaState;
 
-        if (!pCharaState->isNerve(&FileSelectInfoSub::CharaStateNrvLuigi::sInstance) &&
-            !pCharaState->isNerve(&FileSelectInfoSub::CharaStateNrvToLuigi::sInstance)) {
-            pCharaState->setNerve(&FileSelectInfoSub::CharaStateNrvToLuigi::sInstance);
+        if (!pCharaState->isNerve(GET_NERVE_DIRECT(FileSelectInfoSub, CharaStateNrvLuigi)) &&
+            !pCharaState->isNerve(GET_NERVE_DIRECT(FileSelectInfoSub, CharaStateNrvToLuigi))) {
+            pCharaState->setNerve(GET_NERVE_DIRECT(FileSelectInfoSub, CharaStateNrvToLuigi));
         }
     } else if (!mIsSelectedMarioPrev && mIsSelectedMario) {
         pCharaState = mCharaState;
 
-        if (!pCharaState->isNerve(&FileSelectInfoSub::CharaStateNrvMario::sInstance) &&
-            !pCharaState->isNerve(&FileSelectInfoSub::CharaStateNrvToMario::sInstance)) {
-            pCharaState->setNerve(&FileSelectInfoSub::CharaStateNrvToMario::sInstance);
+        if (!pCharaState->isNerve(GET_NERVE_DIRECT(FileSelectInfoSub, CharaStateNrvMario)) &&
+            !pCharaState->isNerve(GET_NERVE_DIRECT(FileSelectInfoSub, CharaStateNrvToMario))) {
+            pCharaState->setNerve(GET_NERVE_DIRECT(FileSelectInfoSub, CharaStateNrvToMario));
         }
     }
 
@@ -133,10 +133,10 @@ void FileSelectInfo::change() {
 
 void FileSelectInfo::forceChange() {
     if (mIsSelectedMarioPrev && !mIsSelectedMario) {
-        mCharaState->setNerve(&FileSelectInfoSub::CharaStateNrvLuigi::sInstance);
+        mCharaState->setNerve(GET_NERVE_DIRECT(FileSelectInfoSub, CharaStateNrvLuigi));
         reflectInfo();
     } else if (!mIsSelectedMarioPrev && mIsSelectedMario) {
-        mCharaState->setNerve(&FileSelectInfoSub::CharaStateNrvMario::sInstance);
+        mCharaState->setNerve(GET_NERVE_DIRECT(FileSelectInfoSub, CharaStateNrvMario));
         reflectInfo();
     }
 
@@ -149,7 +149,7 @@ void FileSelectInfo::exeAppear() {
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&FileSelectInfoNrvDisplay::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectInfoNrvDisplay));
     }
 }
 
@@ -219,7 +219,7 @@ void FileSelectInfo::reflectInfo() {
 
 namespace FileSelectInfoSub {
     SlideState::SlideState(FileSelectInfo* pHost) : NerveExecutor("スライド状態"), mHost(pHost) {
-        initNerve(&SlideStateNrvNormalPos::sInstance);
+        initNerve(GET_NERVE_GLOBAL(SlideStateNrvNormalPos));
     }
 
     void SlideState::exeNormalPos() {
@@ -235,7 +235,7 @@ namespace FileSelectInfoSub {
         }
 
         if (MR::isAnimStopped(mHost, 1)) {
-            setNerve(&SlideStateNrvSlidePos::sInstance);
+            setNerve(GET_NERVE_GLOBAL(SlideStateNrvSlidePos));
         }
     }
 
@@ -252,14 +252,14 @@ namespace FileSelectInfoSub {
         }
 
         if (MR::isAnimStopped(mHost, 1)) {
-            setNerve(&SlideStateNrvNormalPos::sInstance);
+            setNerve(GET_NERVE_GLOBAL(SlideStateNrvNormalPos));
         }
     }
 };  // namespace FileSelectInfoSub
 
 namespace FileSelectInfoSub {
     CharaState::CharaState(FileSelectInfo* pHost) : NerveExecutor("キャラ選択状態"), mHost(pHost) {
-        initNerve(&CharaStateNrvMario::sInstance);
+        initNerve(GET_NERVE_GLOBAL(CharaStateNrvMario));
     }
 
     void CharaState::exeMario() {
@@ -278,7 +278,7 @@ namespace FileSelectInfoSub {
         }
 
         if (MR::isAnimStopped(mHost, 2)) {
-            setNerve(&CharaStateNrvLuigi::sInstance);
+            setNerve(GET_NERVE_GLOBAL(CharaStateNrvLuigi));
         }
     }
 
@@ -298,7 +298,7 @@ namespace FileSelectInfoSub {
         }
 
         if (MR::isAnimStopped(mHost, 2)) {
-            setNerve(&CharaStateNrvMario::sInstance);
+            setNerve(GET_NERVE_GLOBAL(CharaStateNrvMario));
         }
     }
 };  // namespace FileSelectInfoSub

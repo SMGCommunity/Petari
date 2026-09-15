@@ -34,7 +34,7 @@ bool MarioActor::receiveMsgEnemyAttack(u32 msg, HitSensor* sender, HitSensor* re
         }
         return false;
     }
-    if (!isNerve(&NrvMarioActor::MarioActorNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(MarioActor, MarioActorNrvWait))) {
         return false;
     }
     if (msg == ACTMES_ENEMY_ATTACK_EXTRA_DAMAGE) {

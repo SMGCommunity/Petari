@@ -48,7 +48,7 @@ void SpiderCoin::init(const JMapInfoIter& rIter) {
     MR::addHitSensorCallbackMapObj(this, "body", 8, 50.0f);
 
     initEffectKeeper(8, nullptr, false);
-    initNerve(&NrvSpiderCoin::SpiderCoinNrvWait::sInstance);
+    initNerve(GET_NERVE(SpiderCoin, SpiderCoinNrvWait));
     MR::initStarPointerTarget(this, 150.0f, TVec3f(0.0f, 80.0f, 0.0f));
 
     MR::declareCoin(this, 1);
@@ -82,7 +82,7 @@ void SpiderCoin::exeWait() {
     mPosition.set(*mPointPos);
 
     if (MR::tryStarPointerCheck(this, true, "弱")) {
-        setNerve(&NrvSpiderCoin::SpiderCoinNrvTouch::sInstance);
+        setNerve(GET_NERVE(SpiderCoin, SpiderCoinNrvTouch));
     }
 }
 
@@ -104,7 +104,7 @@ void SpiderCoin::exeTouch() {
 
     if (!tryRub(WPAD_CHAN0, &mPad0Velocity) && !tryRub(WPAD_CHAN1, &mPad1Velocity) && !MR::isStarPointerPointing(this, WPAD_CHAN0, true, "弱") &&
         !MR::isStarPointerPointing(this, WPAD_CHAN1, true, "弱")) {
-        setNerve(&NrvSpiderCoin::SpiderCoinNrvTouchAndApart::sInstance);
+        setNerve(GET_NERVE(SpiderCoin, SpiderCoinNrvTouchAndApart));
     }
 }
 
@@ -121,7 +121,7 @@ void SpiderCoin::exeTouchAndApart() {
     }
 
     if (MR::isStep(this, ::sStepToucnAndApart)) {
-        setNerve(&NrvSpiderCoin::SpiderCoinNrvWait::sInstance);
+        setNerve(GET_NERVE(SpiderCoin, SpiderCoinNrvWait));
     }
 }
 

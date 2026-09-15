@@ -36,7 +36,7 @@ void JumpStand::init(const JMapInfoIter& rIter) {
     MR::setGroupClipping(this, rIter, 16);
     MR::initShadowFromCSV(this, "Shadow");
     MR::onCalcGravity(this);
-    initNerve(&NrvJumpStand::JumpStandNrvWait::sInstance);
+    initNerve(GET_NERVE(JumpStand, JumpStandNrvWait));
     makeActorAppeared();
 }
 
@@ -83,7 +83,7 @@ void JumpStand::exeTrampleBound() {
 
     if (MR::isBckStopped(this)) {
         _C0 = 0;
-        setNerve(&NrvJumpStand::JumpStandNrvWait::sInstance);
+        setNerve(GET_NERVE(JumpStand, JumpStandNrvWait));
     }
 }
 
@@ -113,7 +113,7 @@ void JumpStand::exeHipDropBound() {
 
     if (MR::isBckStopped(this)) {
         MR::validateCollisionParts(this);
-        setNerve(&NrvJumpStand::JumpStandNrvWait::sInstance);
+        setNerve(GET_NERVE(JumpStand, JumpStandNrvWait));
     }
 }
 
@@ -124,7 +124,7 @@ void JumpStand::exeStarPieceBound() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvJumpStand::JumpStandNrvWait::sInstance);
+        setNerve(GET_NERVE(JumpStand, JumpStandNrvWait));
     }
 }
 
@@ -135,16 +135,16 @@ void JumpStand::control() {
 }
 
 bool JumpStand::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvJumpStand::JumpStandNrvTrampleBound::sInstance)) {
+    if (isNerve(GET_NERVE(JumpStand, JumpStandNrvTrampleBound))) {
         return false;
     }
 
-    if (isNerve(&NrvJumpStand::JumpStandNrvHipDropBound::sInstance)) {
+    if (isNerve(GET_NERVE(JumpStand, JumpStandNrvHipDropBound))) {
         return false;
     }
 
     if (MR::isMsgStarPieceAttack(msg)) {
-        setNerve(&NrvJumpStand::JumpStandNrvStarPieceBound::sInstance);
+        setNerve(GET_NERVE(JumpStand, JumpStandNrvStarPieceBound));
         return true;
     }
 
@@ -173,7 +173,7 @@ bool JumpStand::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
             if (!tryToStartBind(pSender)) {
                 return false;
             } else {
-                setNerve(&NrvJumpStand::JumpStandNrvTrampleBound::sInstance);
+                setNerve(GET_NERVE(JumpStand, JumpStandNrvTrampleBound));
                 return true;
             }
 
@@ -181,7 +181,7 @@ bool JumpStand::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
             if (!tryToStartBind(pSender)) {
                 return false;
             } else {
-                setNerve(&NrvJumpStand::JumpStandNrvHipDropBound::sInstance);
+                setNerve(GET_NERVE(JumpStand, JumpStandNrvHipDropBound));
                 return true;
             }
         }

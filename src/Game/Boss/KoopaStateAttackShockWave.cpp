@@ -35,7 +35,7 @@ KoopaStateAttackShockWave::KoopaStateAttackShockWave(Koopa* pKoopa)
 }
 
 void KoopaStateAttackShockWave::init() {
-    initNerve(&NrvKoopaStateAttackShockWave::KoopaStateAttackShockWaveNrvJumpStart::sInstance);
+    initNerve(GET_NERVE(KoopaStateAttackShockWave, KoopaStateAttackShockWaveNrvJumpStart));
     kill();
 }
 
@@ -94,7 +94,7 @@ void KoopaStateAttackShockWave::appear() {
         }
     }
 
-    setNerve(&NrvKoopaStateAttackShockWave::KoopaStateAttackShockWaveNrvJumpStart::sInstance);
+    setNerve(GET_NERVE(KoopaStateAttackShockWave, KoopaStateAttackShockWaveNrvJumpStart));
 }
 
 void KoopaStateAttackShockWave::kill() {
@@ -104,8 +104,8 @@ void KoopaStateAttackShockWave::kill() {
 }
 
 bool KoopaStateAttackShockWave::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if ((isNerve(&NrvKoopaStateAttackShockWave::KoopaStateAttackShockWaveNrvJump::sInstance) ||
-         isNerve(&NrvKoopaStateAttackShockWave::KoopaStateAttackShockWaveNrvJumpFast::sInstance)) &&
+    if ((isNerve(GET_NERVE(KoopaStateAttackShockWave, KoopaStateAttackShockWaveNrvJump)) ||
+         isNerve(GET_NERVE(KoopaStateAttackShockWave, KoopaStateAttackShockWaveNrvJumpFast))) &&
         MR::isSensor(pSender, "AttackHipDrop") && MR::sendMsgEnemyAttackMaximum(pReceiver, pSender)) {
         return true;
     }
@@ -127,7 +127,7 @@ void KoopaStateAttackShockWave::exeJumpStart() {
     }
 
     if (MR::isBckStopped(mHost)) {
-        setNerve(&NrvKoopaStateAttackShockWave::KoopaStateAttackShockWaveNrvJump::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackShockWave, KoopaStateAttackShockWaveNrvJump));
     }
 }
 
@@ -135,7 +135,7 @@ void KoopaStateAttackShockWave::exeJump() {
     if (MR::isFirstStep(this)) {
         if (mAttacks == mMaxAttacks - 1) {
             MR::startAction(mHost, "ShockWaveJump3rd");
-        } else if (isNerve(&NrvKoopaStateAttackShockWave::KoopaStateAttackShockWaveNrvJumpFast::sInstance)) {
+        } else if (isNerve(GET_NERVE(KoopaStateAttackShockWave, KoopaStateAttackShockWaveNrvJumpFast))) {
             MR::startAction(mHost, "JumpFast");
         } else {
             MR::startAction(mHost, "ShockWaveJump");
@@ -168,7 +168,7 @@ void KoopaStateAttackShockWave::exeJump() {
 
         mHost->mVelocity.set2(0.0f);
 
-        setNerve(&NrvKoopaStateAttackShockWave::KoopaStateAttackShockWaveNrvLand::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackShockWave, KoopaStateAttackShockWaveNrvLand));
     }
 }
 
@@ -178,7 +178,7 @@ void KoopaStateAttackShockWave::exeLand() {
     }
 
     if (MR::isStep(this, mJumpDelay) && ++mAttacks < mMaxAttacks) {
-        setNerve(&NrvKoopaStateAttackShockWave::KoopaStateAttackShockWaveNrvJumpFast::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackShockWave, KoopaStateAttackShockWaveNrvJumpFast));
     } else if (MR::isActionEnd(mHost)) {
         kill();
     }

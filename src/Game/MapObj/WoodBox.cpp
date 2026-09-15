@@ -30,7 +30,7 @@ void WoodBox::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjStrongLight(this);
     MR::initLightCtrl(this);
     initSound(6, false);
-    initNerve(&NrvWoodBox::WoodBoxNrvWait::sInstance);
+    initNerve(GET_NERVE(WoodBox, WoodBoxNrvWait));
     initEffectKeeper(0, nullptr, false);
 
     f32 radius = 120.0f * mScale.x;
@@ -85,7 +85,7 @@ void WoodBox::init(const JMapInfoIter& rIter) {
     mBreakModel->kill();
     mFloorTouchTimer = 0;
 
-    setNerve(&NrvWoodBox::WoodBoxNrvWait::sInstance);
+    setNerve(GET_NERVE(WoodBox, WoodBoxNrvWait));
     HitSensor* pBodySensor = getSensor("body");
     MR::initCollisionParts(this, "WoodBox", pBodySensor, nullptr);
 
@@ -203,7 +203,7 @@ void WoodBox::kill() {
     if (!mIsNoRespawn) {
         LiveActor::kill();
     } else {
-        LiveActor::setNerve(&NrvWoodBox::WoodBoxNrvWait::sInstance);
+        LiveActor::setNerve(GET_NERVE(WoodBox, WoodBoxNrvWait));
         MR::invalidateHitSensors(this);
         MR::invalidateCollisionParts(this);
     }
@@ -293,5 +293,5 @@ void WoodBox::doHit(HitSensor* pSender, HitSensor* pReceiver) {
         MR::hideModel(this);
     }
 
-    setNerve(&NrvWoodBox::WoodBoxNrvHit::sInstance);
+    setNerve(GET_NERVE(WoodBox, WoodBoxNrvHit));
 }

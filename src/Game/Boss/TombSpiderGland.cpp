@@ -19,25 +19,24 @@ TombSpiderGland::TombSpiderGland(LiveActor* pActor, const char* pName, const TVe
 void TombSpiderGland::init(const JMapInfoIter& rIter) {
     PartsModel::init(rIter);
     MR::startBrk(this, "Battle1st");
-    initNerve(&NrvTombSpiderGland::TombSpiderGlandNrvWait::sInstance);
+    initNerve(GET_NERVE(TombSpiderGland, TombSpiderGlandNrvWait));
 }
 
 void TombSpiderGland::startActive() {
     MR::startBrk(this, "Battle2nd");
-    setNerve(&NrvTombSpiderGland::TombSpiderGlandNrvActiveWait::sInstance);
+    setNerve(GET_NERVE(TombSpiderGland, TombSpiderGlandNrvActiveWait));
 }
 
 void TombSpiderGland::startDamage() {
-    setNerve(&NrvTombSpiderGland::TombSpiderGlandNrvDamageStart::sInstance);
+    setNerve(GET_NERVE(TombSpiderGland, TombSpiderGlandNrvDamageStart));
 }
 
 bool TombSpiderGland::isActive() const {
-    return isNerve(&NrvTombSpiderGland::TombSpiderGlandNrvActiveWait::sInstance);
+    return isNerve(GET_NERVE(TombSpiderGland, TombSpiderGlandNrvActiveWait));
 }
 
 bool TombSpiderGland::isDamage() const {
-    if (isNerve(&NrvTombSpiderGland::TombSpiderGlandNrvDamageStart::sInstance) ||
-        isNerve(&NrvTombSpiderGland::TombSpiderGlandNrvDamageWait::sInstance)) {
+    if (isNerve(GET_NERVE(TombSpiderGland, TombSpiderGlandNrvDamageStart)) || isNerve(GET_NERVE(TombSpiderGland, TombSpiderGlandNrvDamageWait))) {
         return true;
     }
     return false;
@@ -61,7 +60,7 @@ void TombSpiderGland::exeDamageStart() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvTombSpiderGland::TombSpiderGlandNrvDamageWait::sInstance);
+        setNerve(GET_NERVE(TombSpiderGland, TombSpiderGlandNrvDamageWait));
     }
 }
 

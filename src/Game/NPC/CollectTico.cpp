@@ -37,7 +37,7 @@ void CollectTico::init(const JMapInfoIter& rIter) {
 
     initEffectKeeper(0, "CollectTico", false);
     initSound(2, false);
-    initNerve(&NrvCollectTico::CollectTicoNrvWait::sInstance);
+    initNerve(GET_NERVE(CollectTico, CollectTicoNrvWait));
     if (MR::tryRegisterDemoCast(this, rIter)) {
         MR::registerDemoActionFunctor(this, MR::Functor_Inline(this, &CollectTico::startAppearPowerStar), "集めチコスター出現");
         _A0 = 1;
@@ -59,8 +59,8 @@ void CollectTico::exeWait() {
     }
 
     if (needsDemo && !MR::isPlayerDead()) {
-        MR::requestStartDemo(this, "チコ集めコンプリート", &NrvCollectTico::CollectTicoNrvCompleteDemo::sInstance,
-                             &NrvCollectTico::CollectTicoNrvTryStartDemo::sInstance);
+        MR::requestStartDemo(this, "チコ集めコンプリート", GET_NERVE(CollectTico, CollectTicoNrvCompleteDemo),
+                             GET_NERVE(CollectTico, CollectTicoNrvTryStartDemo));
     }
 }
 
@@ -88,7 +88,7 @@ void CollectTico::exeCompleteDemo() {
     }
 
     if (needFlash) {
-        setNerve(&NrvCollectTico::CollectTicoNrvFlash::sInstance);
+        setNerve(GET_NERVE(CollectTico, CollectTicoNrvFlash));
     }
 }
 
@@ -107,7 +107,7 @@ void CollectTico::exeFlash() {
     if (MR::isStep(this, 60)) {
         if (!_A0) {
             MR::requestAppearPowerStar(this, _94);
-            setNerve(&NrvCollectTico::CollectTicoNrvAppearPowerStar::sInstance);
+            setNerve(GET_NERVE(CollectTico, CollectTicoNrvAppearPowerStar));
         }
 
         MR::endDemo(this, "チコ集めコンプリート");
@@ -140,7 +140,7 @@ s32 CollectTico::calcNoRescuedCount() const {
 
 void CollectTico::startAppearPowerStar() {
     MR::requestAppearPowerStar(this, _94);
-    setNerve(&NrvCollectTico::CollectTicoNrvAppearPowerStar::sInstance);
+    setNerve(GET_NERVE(CollectTico, CollectTicoNrvAppearPowerStar));
 }
 
 void CollectTico::exeTryStartDemo() {

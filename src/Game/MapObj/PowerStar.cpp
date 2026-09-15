@@ -128,13 +128,13 @@ void PowerStar::init(const JMapInfoIter& rIter) {
     }
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
-        MR::registerDemoActionNerve(this, &NrvPowerStar::PowerStarNrvWeakNoRotate::sInstance, "ミニ太陽消失");
-        MR::registerDemoActionNerve(this, &NrvPowerStar::PowerStarNrvWeakToWait::sInstance, "グランドスター復活");
+        MR::registerDemoActionNerve(this, GET_NERVE(PowerStar, PowerStarNrvWeakNoRotate), "ミニ太陽消失");
+        MR::registerDemoActionNerve(this, GET_NERVE(PowerStar, PowerStarNrvWeakToWait), "グランドスター復活");
         MR::registerDemoSimpleCastAll(this);
     }
 
     initSound(4, false);
-    initNerve(&NrvPowerStar::PowerStarNrvWait::sInstance);
+    initNerve(GET_NERVE(PowerStar, PowerStarNrvWait));
 
     if (mPowerStarId == -1) {
         if (mIsInDemo) {
@@ -167,13 +167,12 @@ void PowerStar::requestAppear() {
     MR::invalidateClipping(this);
     MR::hideModel(this);
     MR::invalidateHitSensors(this);
-    setNerve(&NrvPowerStar::PowerStarNrvWaitStartAppear::sInstance);
+    setNerve(GET_NERVE(PowerStar, PowerStarNrvWaitStartAppear));
 
     if (MR::isStageKoopaVs()) {
-        MR::requestStartDemoMarioPuppetableWithoutCinemaFrame(this, ::cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoKoopa::sInstance,
-                                                              nullptr);
+        MR::requestStartDemoMarioPuppetableWithoutCinemaFrame(this, ::cAppearDemoName, GET_NERVE(PowerStar, PowerStarNrvAppearDemoKoopa), nullptr);
     } else {
-        MR::requestStartDemoWithoutCinemaFrame(this, ::cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoRise::sInstance, nullptr);
+        MR::requestStartDemoWithoutCinemaFrame(this, ::cAppearDemoName, GET_NERVE(PowerStar, PowerStarNrvAppearDemoRise), nullptr);
     }
 }
 
@@ -189,7 +188,7 @@ void PowerStar::setDemoAppearPos(const TVec3f& rVec) {
 }
 
 bool PowerStar::isEndAppearDemo() const {
-    return isNerve(&NrvPowerStar::PowerStarNrvWait::sInstance) || isNerve(&NrvPowerStar::PowerStarNrvStageClearDemo::sInstance);
+    return isNerve(GET_NERVE(PowerStar, PowerStarNrvWait)) || isNerve(GET_NERVE(PowerStar, PowerStarNrvStageClearDemo));
 }
 
 void PowerStar::offAppearDemo() {
@@ -293,16 +292,16 @@ void PowerStar::makeArchiveList(NameObjArchiveListCollector* pCollector, const J
 }
 
 void PowerStar::control() {
-    if (!isNerve(&NrvPowerStar::PowerStarNrvWaitStartAppear::sInstance)) {
+    if (!isNerve(GET_NERVE(PowerStar, PowerStarNrvWaitStartAppear))) {
         TVec3f jointPos;
 
-        if (isNerve(&NrvPowerStar::PowerStarNrvStageClearDemo::sInstance)) {
+        if (isNerve(GET_NERVE(PowerStar, PowerStarNrvStageClearDemo))) {
             MR::copyJointPos(mPowerStarModelObj, "PowerStar", &jointPos);
         } else {
             MR::copyJointPos(this, "PowerStar", &jointPos);
         }
 
-        bool cond = (isNerve(&NrvPowerStar::PowerStarNrvAppearDemoKoopa::sInstance) && MR::isStageKoopaVs3()) ? true : false;
+        bool cond = (isNerve(GET_NERVE(PowerStar, PowerStarNrvAppearDemoKoopa)) && MR::isStageKoopaVs3()) ? true : false;
         s32 val = cond ? 120 : -1;
 
         MR::requestPointLight(this, TVec3f(jointPos), lightColor[mColorFrame], 1.0f, val);
@@ -333,12 +332,12 @@ bool PowerStar::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
     case ACTMES_IS_RUSH_TAKEOVER:
         return true;
     case ACTMES_AUTORUSH_BEGIN:
-        if (isNerve(&NrvPowerStar::PowerStarNrvWait::sInstance)) {
+        if (isNerve(GET_NERVE(PowerStar, PowerStarNrvWait))) {
             MR::startSystemSE("SE_SY_STAR_GET");
             MR::stopSoundPlayer("SE_PV_BURN_RUN", 0);
             MR::stopSoundPlayer("SE_PV_NEEDLE_DAMAGE_RUN", 0);
             MR::makeMtxTR((MtxPtr)&mBaseMtx, *MR::getPlayerPos(), *MR::getPlayerRotate());
-            setNerve(&NrvPowerStar::PowerStarNrvStageClearDemo::sInstance);
+            setNerve(GET_NERVE(PowerStar, PowerStarNrvStageClearDemo));
             return true;
         }
         break;
@@ -482,7 +481,7 @@ void PowerStar::endAppearDemo() {
 
     MR::moveVolumeStageBGM(1.0f, 60);
     MR::moveVolumeSubBGM(1.0f, 60);
-    setNerve(&NrvPowerStar::PowerStarNrvWait::sInstance);
+    setNerve(GET_NERVE(PowerStar, PowerStarNrvWait));
 }
 
 PowerStarAppearPoint* PowerStar::getNearestAppearPoint(const TVec3f& rPos) const {
@@ -524,22 +523,22 @@ ActorCameraInfo* PowerStar::getAppearCameraInfo() const {
 
 void PowerStar::requestAppearOrWait() {
     if (MR::isDemoCast(this, 0)) {
-        setNerve(&NrvPowerStar::PowerStarNrvWeak::sInstance);
+        setNerve(GET_NERVE(PowerStar, PowerStarNrvWeak));
     } else if (mIsInDemo) {
         if (_11C) {
             MR::invalidateClipping(this);
             MR::requestMovementOn(this);
 
             if (MR::isStageKoopaVs()) {
-                setNerve(&NrvPowerStar::PowerStarNrvAppearDemoKoopa::sInstance);
+                setNerve(GET_NERVE(PowerStar, PowerStarNrvAppearDemoKoopa));
             } else {
-                setNerve(&NrvPowerStar::PowerStarNrvAppearDemoRise::sInstance);
+                setNerve(GET_NERVE(PowerStar, PowerStarNrvAppearDemoRise));
             }
         } else {
             requestAppear();
         }
     } else {
-        setNerve(&NrvPowerStar::PowerStarNrvWait::sInstance);
+        setNerve(GET_NERVE(PowerStar, PowerStarNrvWait));
     }
 }
 
@@ -615,7 +614,7 @@ void PowerStar::exeAppearDemoRise() {
     mRotation.y = MR::repeatDegree(mRotation.y + 10.0f);
 
     if (MR::isStep(this, 80)) {
-        setNerve(&NrvPowerStar::PowerStarNrvAppearDemoMove::sInstance);
+        setNerve(GET_NERVE(PowerStar, PowerStarNrvAppearDemoMove));
     }
 }
 
@@ -784,7 +783,7 @@ void PowerStar::exeWeakToWait() {
     _164 = false;
 
     processWait(MR::calcNerveEaseInValue(this, 30, 0.3f, mIsGrandStar ? 2.0f : 3.0f));
-    MR::setNerveAtStep(this, &NrvPowerStar::PowerStarNrvWait::sInstance, 30);
+    MR::setNerveAtStep(this, GET_NERVE(PowerStar, PowerStarNrvWait), 30);
 }
 
 void PowerStar::exeStageClearDemo() {

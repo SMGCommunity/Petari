@@ -40,7 +40,7 @@ void RailBlock::init(const JMapInfoIter& rIter) {
     MR::setGroupClipping(this, rIter, 16);
     MR::getJMapInfoArg0NoInit(rIter, &_8C);
     MR::getJMapInfoArg1NoInit(rIter, &_90);
-    initNerve(&NrvRailBlock::RailBlockNrvMove::sInstance);
+    initNerve(GET_NERVE(RailBlock, RailBlockNrvMove));
 
     if (!strcmp(objName, "RailBlockBig")) {
         _95 = 1;
@@ -50,7 +50,7 @@ void RailBlock::init(const JMapInfoIter& rIter) {
 
     if (MR::useStageSwitchReadB(this, rIter)) {
         MR::listenStageSwitchOnOffB(this, MR::Functor(this, &RailBlock::startMove), MR::Functor(this, &RailBlock::stopMove));
-        setNerve(&NrvRailBlock::RailBlockNrvWait::sInstance);
+        setNerve(GET_NERVE(RailBlock, RailBlockNrvWait));
     }
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
@@ -66,11 +66,11 @@ void RailBlock::calcViewAndEntry() {
 }
 
 void RailBlock::startMove() {
-    setNerve(&NrvRailBlock::RailBlockNrvMove::sInstance);
+    setNerve(GET_NERVE(RailBlock, RailBlockNrvMove));
 }
 
 void RailBlock::stopMove() {
-    setNerve(&NrvRailBlock::RailBlockNrvWait::sInstance);
+    setNerve(GET_NERVE(RailBlock, RailBlockNrvWait));
 }
 
 void RailBlock::exeMove() {
@@ -79,7 +79,7 @@ void RailBlock::exeMove() {
         MR::startLevelSound(this, "SE_OJ_LV_TSUKIDASHI_MOVE");
         if (MR::isRailReachedGoal(this)) {
             MR::startLevelSound(this, "SE_OJ_TSUKIDASHI_STOP");
-            setNerve(&NrvRailBlock::RailBlockNrvTerminate::sInstance);
+            setNerve(GET_NERVE(RailBlock, RailBlockNrvTerminate));
         }
     }
 }
@@ -108,7 +108,7 @@ void RailBlock::exeTerminate() {
     if (getNerveStep() >= _90) {
         MR::reverseRailDirection(this);
         MR::startSound(this, "SE_OJ_TSUKIDASHI_START");
-        setNerve(&NrvRailBlock::RailBlockNrvMove::sInstance);
+        setNerve(GET_NERVE(RailBlock, RailBlockNrvMove));
     }
 }
 

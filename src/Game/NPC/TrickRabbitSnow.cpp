@@ -87,7 +87,7 @@ void TrickRabbitSnow::init(const JMapInfoIter& rIter) {
     initSound(4, false);
     MR::onCalcGravity(this);
     MR::declareStarPiece(this, 6);
-    initNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvWaitSnow::sInstance);
+    initNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvWaitSnow));
     MR::tryRegisterNamePosLinkObj(this, rIter);
     MR::useStageSwitchReadA(this, rIter);
 
@@ -144,7 +144,7 @@ void TrickRabbitSnow::calcAndSetBaseMtx() {
 }
 
 void TrickRabbitSnow::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvHideSnow::sInstance)) {
+    if (isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvHideSnow))) {
         return;
     }
 
@@ -164,7 +164,7 @@ void TrickRabbitSnow::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool TrickRabbitSnow::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvHideSnow::sInstance)) {
+    if (isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvHideSnow))) {
         return false;
     }
 
@@ -184,7 +184,7 @@ bool TrickRabbitSnow::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSens
 }
 
 bool TrickRabbitSnow::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvGiveUp::sInstance)) {
+    if (isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvGiveUp))) {
         return mStateWaitStart->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
 
@@ -209,19 +209,19 @@ bool TrickRabbitSnow::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSen
 }
 
 bool TrickRabbitSnow::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvGiveUp::sInstance)) {
+    if (isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvGiveUp))) {
         return mStateWaitStart->receiveOtherMsg(msg, pSender, pReceiver);
     }
 
     if (!MR::isValidSwitchA(this)) {
         if (msg == ACTMES_ASK_HIDDEN_BY_SNOW) {
-            return isNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvHideSnow::sInstance);
+            return isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvHideSnow));
         }
 
         if (msg == ACTMES_NOTIFY_DISCOVER_SNOW) {
-            if (isNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvHideSnow::sInstance)) {
+            if (isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvHideSnow))) {
                 MR::showModel(this);
-                setNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvAppearFromSnow::sInstance);
+                setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvAppearFromSnow));
 
                 return true;
             }
@@ -234,7 +234,7 @@ bool TrickRabbitSnow::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pR
 bool TrickRabbitSnow::receiveMsgBlowDamage(HitSensor* pSender, HitSensor* pReceiver) {
     if (isEnableBlowDamage()) {
         MR::setVelocitySeparateHV(this, pSender, pReceiver, ::sAppearSnowJumpH, sAppearSnowJumpV);
-        setNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvBlowDamage::sInstance);
+        setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvBlowDamage));
 
         return true;
     }
@@ -250,7 +250,7 @@ bool TrickRabbitSnow::requestCaught() {
 
         MR::tryPlayerDropTakingActor();
         MR::invalidateClipping(this);
-        setNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvCaught::sInstance);
+        setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvCaught));
 
         return true;
     }
@@ -259,10 +259,10 @@ bool TrickRabbitSnow::requestCaught() {
 }
 
 bool TrickRabbitSnow::requestStartHideSnow() {
-    if (isNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvWaitSnow::sInstance)) {
+    if (isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvWaitSnow))) {
         MR::invalidateClipping(this);
         MR::requestMovementOn(this);
-        setNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvStartHideSnow::sInstance);
+        setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvStartHideSnow));
 
         return true;
     }
@@ -281,7 +281,7 @@ void TrickRabbitSnow::setFinishPosition() {
     MR::requestMovementOn(this);
     MR::forwardNode(mMsgCtrl);
     mStateWaitStart->_1D = false;
-    setNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvGiveUp::sInstance);
+    setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvGiveUp));
 }
 
 void TrickRabbitSnow::setNotCaughtable() {
@@ -309,7 +309,7 @@ void TrickRabbitSnow::exeStartHideSnow() {
     }
 
     if (MR::isGreaterStep(this, 120)) {
-        setNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvVanish::sInstance);
+        setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvVanish));
     }
 }
 
@@ -339,7 +339,7 @@ void TrickRabbitSnow::exeVanish() {
     MR::stopBck(this);
     MR::zeroVelocity(this);
     MR::hideModelAndOnCalcAnim(this);
-    setNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvHideSnow::sInstance);
+    setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvHideSnow));
 }
 
 void TrickRabbitSnow::exeHideSnow() {
@@ -352,7 +352,7 @@ void TrickRabbitSnow::exeHideSnow() {
 
     if (MR::isValidSwitchA(this) && MR::isOnSwitchA(this)) {
         MR::showModel(this);
-        setNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvAppearFromSnow::sInstance);
+        setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvAppearFromSnow));
     }
 }
 
@@ -371,7 +371,7 @@ void TrickRabbitSnow::exeAppearFromSnow() {
 
     if (MR::isGreaterStep(this, 5)) {
         if (MR::isBindedGround(this)) {
-            setNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvRunaway::sInstance);
+            setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvRunaway));
         }
     }
 }
@@ -397,12 +397,12 @@ void TrickRabbitSnow::exeRunaway() {
 }
 
 void TrickRabbitSnow::exeBlowDamage() {
-    MR::updateActorStateAndNextNerve(this, mStateBlowDamage, &NrvTrickRabbitFreeRun::TrickRabbitSnowNrvRunaway::sInstance);
+    MR::updateActorStateAndNextNerve(this, mStateBlowDamage, GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvRunaway));
 }
 
 void TrickRabbitSnow::exeCaught() {
     if (MR::isFirstStep(this) && MR::isDemoActive()) {
-        setNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvCaught::sInstance);
+        setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvCaught));
     } else if (MR::updateActorState(this, mStateCaught)) {
         MR::endDemo(this, "捕まり");
         MR::forwardNode(mMsgCtrl);
@@ -410,7 +410,7 @@ void TrickRabbitSnow::exeCaught() {
         mFootPrint->clear();
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         mStateWaitStart->_1D = true;
-        setNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvGiveUp::sInstance);
+        setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvGiveUp));
 
         if (mListener != nullptr) {
             mListener->noticeGiveUp(this);
@@ -427,11 +427,11 @@ void TrickRabbitSnow::exeGiveUp() {
 }
 
 bool TrickRabbitSnow::isGiveUp() const {
-    return isNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvGiveUp::sInstance);
+    return isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvGiveUp));
 }
 
 bool TrickRabbitSnow::isHideSnow() const {
-    return isNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvHideSnow::sInstance);
+    return isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvHideSnow));
 }
 
 bool TrickRabbitSnow::isEnableCaught() const {
@@ -439,8 +439,7 @@ bool TrickRabbitSnow::isEnableCaught() const {
         return false;
     }
 
-    if (isNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvRunaway::sInstance) ||
-        isNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvBlowDamage::sInstance)) {
+    if (isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvRunaway)) || isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvBlowDamage))) {
         return true;
     }
 
@@ -448,7 +447,7 @@ bool TrickRabbitSnow::isEnableCaught() const {
 }
 
 bool TrickRabbitSnow::isEnableBlowDamage() const {
-    return isNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvRunaway::sInstance);
+    return isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvRunaway));
 }
 
 void TrickRabbitSnow::startJumpSound() {

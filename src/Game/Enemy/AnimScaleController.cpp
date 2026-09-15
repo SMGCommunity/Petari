@@ -56,7 +56,7 @@ AnimScaleController::AnimScaleController(AnimScaleParam* pScaleParam) : NerveExe
     if (pScaleParam == nullptr) {
         _8 = &::sStaticAnimParam;
     }
-    initNerve(&NrvAnimScaleController::AnimScaleControllerNrvStop::sInstance);
+    initNerve(GET_NERVE(AnimScaleController, AnimScaleControllerNrvStop));
 }
 
 void AnimScaleController::setParamTight() {
@@ -64,31 +64,31 @@ void AnimScaleController::setParamTight() {
 }
 
 void AnimScaleController::startAnim() {
-    setNerve(&NrvAnimScaleController::AnimScaleControllerNrvAnim::sInstance);
+    setNerve(GET_NERVE(AnimScaleController, AnimScaleControllerNrvAnim));
 }
 
 void AnimScaleController::startDpdHitVibration() {
-    setNerve(&NrvAnimScaleController::AnimScaleControllerNrvDpdVibration::sInstance);
+    setNerve(GET_NERVE(AnimScaleController, AnimScaleControllerNrvDpdVibration));
 }
 
 void AnimScaleController::startHitReaction() {
-    setNerve(&NrvAnimScaleController::AnimScaleControllerNrvHitReaction::sInstance);
+    setNerve(GET_NERVE(AnimScaleController, AnimScaleControllerNrvHitReaction));
 }
 
 void AnimScaleController::startAndAddScaleVelocityY(f32 f1) {
     _18 += f1;
-    setNerve(&NrvAnimScaleController::AnimScaleControllerNrvAnim::sInstance);
+    setNerve(GET_NERVE(AnimScaleController, AnimScaleControllerNrvAnim));
 }
 
 void AnimScaleController::startCrush() {
-    setNerve(&NrvAnimScaleController::AnimScaleControllerNrvCrush::sInstance);
+    setNerve(GET_NERVE(AnimScaleController, AnimScaleControllerNrvCrush));
 }
 
 void AnimScaleController::stopAndReset() {
     resetScale();
     // resetScale already sets _18 to 0, so this is completely unnecessary
     _18 = 0.0f;
-    setNerve(&NrvAnimScaleController::AnimScaleControllerNrvStop::sInstance);
+    setNerve(GET_NERVE(AnimScaleController, AnimScaleControllerNrvStop));
 }
 
 void AnimScaleController::resetScale() {
@@ -138,12 +138,12 @@ void AnimScaleController::exeCrush() {
     _C.z = _C.x;
 
     if (MR::isGreaterStep(this, _8->_2C)) {
-        setNerve(&NrvAnimScaleController::AnimScaleControllerNrvStop::sInstance);
+        setNerve(GET_NERVE(AnimScaleController, AnimScaleControllerNrvStop));
     }
 }
 
 bool AnimScaleController::isHitReaction(s32 a1) const {
-    if (!isNerve(&NrvAnimScaleController::AnimScaleControllerNrvHitReaction::sInstance)) {
+    if (!isNerve(GET_NERVE(AnimScaleController, AnimScaleControllerNrvHitReaction))) {
         return false;
     }
 
@@ -156,7 +156,7 @@ bool AnimScaleController::isHitReaction(s32 a1) const {
 bool AnimScaleController::tryStop() {
     if (MR::abs(1.0f - _C.y) < 0.001f && MR::abs(_18) < 0.001f) {
         resetScale();
-        setNerve(&NrvAnimScaleController::AnimScaleControllerNrvStop::sInstance);
+        setNerve(GET_NERVE(AnimScaleController, AnimScaleControllerNrvStop));
         return true;
     }
     return false;
@@ -189,4 +189,4 @@ void AnimScaleController::updateScale(f32 f1, f32 f2) {
     _C.z = _C.x;
 }
 
-AnimScaleController::~AnimScaleController() {};
+AnimScaleController::~AnimScaleController(){};

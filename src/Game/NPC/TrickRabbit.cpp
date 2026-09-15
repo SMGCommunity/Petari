@@ -109,7 +109,7 @@ void TrickRabbit::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchWriteA(this, rIter);
 
     if (mTalkMessageCtrl == nullptr) {
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvWait::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvWait));
     }
 
     makeActorAppeared();
@@ -158,7 +158,7 @@ void TrickRabbit::initDemoCamera(const JMapInfoIter& rIter) {
 }
 
 void TrickRabbit::initState() {
-    initNerve(&NrvTrickRabbit::TrickRabbitNrvWaitStart::sInstance);
+    initNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvWaitStart));
 
     mRabbitStateCaught = new RabbitStateCaught(this, mTalkMessageCtrl);
     mRabbitStateCaught->init();
@@ -201,7 +201,7 @@ bool TrickRabbit::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
     if (pReceiver != getSensor("Body"))
         return false;
 
-    if (isNerve(&NrvTrickRabbit::TrickRabbitNrvWaitStart::sInstance) || isNerve(&NrvTrickRabbit::TrickRabbitNrvGiveUp::sInstance)) {
+    if (isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvWaitStart)) || isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvGiveUp))) {
         return mRabbitStateWaitStart->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
 
@@ -228,7 +228,7 @@ bool TrickRabbit::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
 }
 
 bool TrickRabbit::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvTrickRabbit::TrickRabbitNrvWaitStart::sInstance) || isNerve(&NrvTrickRabbit::TrickRabbitNrvGiveUp::sInstance)) {
+    if (isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvWaitStart)) || isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvGiveUp))) {
         return mRabbitStateWaitStart->receiveOtherMsg(msg, pSender, pReceiver);
     }
     return false;
@@ -238,12 +238,12 @@ bool TrickRabbit::receiveMsgTrample() {
     if (!isTumbable())
         return false;
 
-    bool b = isNerve(&NrvTrickRabbit::TrickRabbitNrvJump::sInstance) && MR::isGreaterStep(this, 1);
+    bool b = isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvJump)) && MR::isGreaterStep(this, 1);
 
     if (b)
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvFallDown::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvFallDown));
     else
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvTumble::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvTumble));
 
     return true;
 }
@@ -257,7 +257,7 @@ bool TrickRabbit::requestCaught() {
 
         MR::invalidateClipping(this);
         MR::forwardNode(mTalkMessageCtrl);
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvCaught::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvCaught));
         return true;
     }
 
@@ -272,13 +272,13 @@ bool TrickRabbit::tryStartDemoRunnaway() {
         }
         MR::moveNodeNearPosition(mRailGraphIter, mPosition, -1.0f, 0);
         if (selectEdgeStartEvent(mRailGraphIter)) {
-            setNerve(&NrvTrickRabbit::TrickRabbitNrvDemoRunaway::sInstance);
+            setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvDemoRunaway));
             if (_E1) {
                 MR::hideModelAndOnCalcAnim(this);
                 MR::invalidateShadow(this, 0);
             }
         } else {
-            setNerve(&NrvTrickRabbit::TrickRabbitNrvDemoEnd::sInstance);
+            setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvDemoEnd));
         }
         return true;
     }
@@ -292,7 +292,7 @@ void TrickRabbit::endDemoRunnaway() {
         mMultiEventCamera->endForce();
 
     startRouteLevelControl(1, 0x4B0);
-    setNerve(&NrvTrickRabbit::TrickRabbitNrvWait::sInstance);
+    setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvWait));
     _E9 = true;
 }
 
@@ -303,7 +303,7 @@ bool TrickRabbit::tryRunaway() {
 
         TVec3f stack_C(mPosition - *MR::getPlayerPos());
         selectEdgeRunnaway(mRailGraphIter, stack_C, -0.3f);
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvRunaway::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvRunaway));
         return true;
     }
     return false;
@@ -322,7 +322,7 @@ bool TrickRabbit::tryBrakeTurn() {
         f32 f = stack_20.dot(stack_2C);
         if (f > 0.1f) {
             MR::selectReverseEdge(mRailGraphIter);
-            setNerve(&NrvTrickRabbit::TrickRabbitNrvBrakeTurn::sInstance);
+            setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvBrakeTurn));
             return true;
         }
     }
@@ -331,7 +331,7 @@ bool TrickRabbit::tryBrakeTurn() {
 
 bool TrickRabbit::tryBrakeTurnEnd() {
     if (MR::isGreaterStep(this, 40)) {
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvRunaway::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvRunaway));
         return true;
     }
     return false;
@@ -340,7 +340,7 @@ bool TrickRabbit::tryBrakeTurnEnd() {
 bool TrickRabbit::tryStop() {
     bool isFar = !MR::isNearPlayer(this, 1500.0f);
     if (isFar) {
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvWait::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvWait));
         return true;
     }
     return false;
@@ -348,7 +348,7 @@ bool TrickRabbit::tryStop() {
 
 bool TrickRabbit::tryJumpStart() {
     if (isNextEdgeJump()) {
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvJumpStart::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvJumpStart));
         return true;
     }
     return false;
@@ -357,7 +357,7 @@ bool TrickRabbit::tryJumpStart() {
 bool TrickRabbit::tryJump() {
     if (MR::isGreaterStep(this, _CC)) {
         MR::zeroVelocity(this);
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvJump::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvJump));
         return true;
     }
     return false;
@@ -369,7 +369,7 @@ void TrickRabbit::endJump() {
 
 bool TrickRabbit::tryJumpEnd() {
     if (MR::isGreaterEqualStep(this, _CC)) {
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvRunaway::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvRunaway));
         return true;
     }
     return false;
@@ -379,7 +379,7 @@ bool TrickRabbit::tryEndFallDown() {
     if (MR::isBindedGround(this)) {
         MR::startAction(this, "FallDownLand");
         MR::zeroVelocity(this);
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvFallDownLand::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvFallDownLand));
         return true;
     }
     return false;
@@ -387,7 +387,7 @@ bool TrickRabbit::tryEndFallDown() {
 
 bool TrickRabbit::tryEndFallDownLand() {
     if (MR::isGreaterStep(this, 20)) {
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvGetUpFromFallDown::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvGetUpFromFallDown));
         return true;
     }
     return false;
@@ -395,7 +395,7 @@ bool TrickRabbit::tryEndFallDownLand() {
 
 bool TrickRabbit::tryComebackRouteStart() {
     if (MR::isGreaterStep(this, 20)) {
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvComebackRouteStart::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvComebackRouteStart));
         return true;
     }
     return false;
@@ -404,7 +404,7 @@ bool TrickRabbit::tryComebackRouteStart() {
 bool TrickRabbit::tryComebackRoute() {
     if (MR::isGreaterStep(this, _CC)) {
         MR::zeroVelocity(this);
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvComebackRoute::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvComebackRoute));
         return true;
     }
     return false;
@@ -416,7 +416,7 @@ void TrickRabbit::endComebackRoute() {
 
 bool TrickRabbit::tryEndTumble() {
     if (MR::isGreaterStep(this, 20) && MR::isBindedGround(this)) {
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvGetUp::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvGetUp));
         return true;
     }
     return false;
@@ -424,7 +424,7 @@ bool TrickRabbit::tryEndTumble() {
 
 bool TrickRabbit::tryEndGetUp() {
     if (MR::isGreaterStep(this, 20)) {
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvRunaway::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvRunaway));
         return true;
     }
     return false;
@@ -432,7 +432,7 @@ bool TrickRabbit::tryEndGetUp() {
 
 bool TrickRabbit::tryDemoJumpStart() {
     if (isNextEdgeJump()) {
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvDemoJumpStart::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvDemoJumpStart));
         return true;
     }
     return false;
@@ -441,7 +441,7 @@ bool TrickRabbit::tryDemoJumpStart() {
 bool TrickRabbit::tryDemoJump() {
     if (MR::isGreaterStep(this, _CC)) {
         MR::zeroVelocity(this);
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvDemoJump::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvDemoJump));
         return true;
     }
     return false;
@@ -453,7 +453,7 @@ void TrickRabbit::endDemoJump() {
 
 bool TrickRabbit::tryDemoJumpEnd() {
     if (MR::isGreaterEqualStep(this, _CC)) {
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvDemoRunaway::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvDemoRunaway));
         return true;
     }
     return false;
@@ -461,7 +461,7 @@ bool TrickRabbit::tryDemoJumpEnd() {
 
 bool TrickRabbit::tryEndPowerStarDemo() {
     if (MR::isEndPowerStarAppearDemo(this)) {
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvGiveUp::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvGiveUp));
         return true;
     }
     return false;
@@ -474,7 +474,7 @@ void TrickRabbit::exeWaitStart() {
     }
 
     if (MR::updateActorState(this, mRabbitStateWaitStart) && !tryStartDemoRunnaway())
-        setNerve(&NrvTrickRabbit::TrickRabbitNrvTryStartDemoRunnaway::sInstance);
+        setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvTryStartDemoRunnaway));
 }
 
 void TrickRabbit::exeTryStartDemoRunnaway() {
@@ -486,7 +486,7 @@ void TrickRabbit::exeDemoRunaway() {
     if (_D0 < 125.0f) {
         MR::moveNextNode(mRailGraphIter);
         if (!selectEdgeStartEvent(mRailGraphIter)) {
-            setNerve(&NrvTrickRabbit::TrickRabbitNrvDemoEnd::sInstance);
+            setNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvDemoEnd));
             return;
         }
     }
@@ -696,7 +696,7 @@ void TrickRabbit::exeCaught() {
         MR::stopStageBGM(60);
         MR::startSystemSE("SE_SY_TOTAL_COMPLETE");
     }
-    MR::updateActorStateAndNextNerve(this, mRabbitStateCaught, &NrvTrickRabbit::TrickRabbitNrvWaitPowerStarDemo::sInstance);
+    MR::updateActorStateAndNextNerve(this, mRabbitStateCaught, GET_NERVE(TrickRabbit, TrickRabbitNrvWaitPowerStarDemo));
 }
 
 void TrickRabbit::exeWaitPowerStarDemo() {
@@ -972,22 +972,22 @@ void TrickRabbit::updateFootPrint() {
 }
 
 bool TrickRabbit::isCaughtable() const {
-    if (isNerve(&NrvTrickRabbit::TrickRabbitNrvWait::sInstance) || isNerve(&NrvTrickRabbit::TrickRabbitNrvRunaway::sInstance) ||
-        isNerve(&NrvTrickRabbit::TrickRabbitNrvJumpStart::sInstance) || isNerve(&NrvTrickRabbit::TrickRabbitNrvJump::sInstance) ||
-        isNerve(&NrvTrickRabbit::TrickRabbitNrvBrakeTurn::sInstance) || isNerve(&NrvTrickRabbit::TrickRabbitNrvTumble::sInstance) ||
-        isNerve(&NrvTrickRabbit::TrickRabbitNrvFallDown::sInstance) || isNerve(&NrvTrickRabbit::TrickRabbitNrvGetUpFromFallDown::sInstance) ||
-        isNerve(&NrvTrickRabbit::TrickRabbitNrvComebackRouteStart::sInstance) || isNerve(&NrvTrickRabbit::TrickRabbitNrvComebackRoute::sInstance) ||
-        isNerve(&NrvTrickRabbit::TrickRabbitNrvGetUp::sInstance))
+    if (isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvWait)) || isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvRunaway)) ||
+        isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvJumpStart)) || isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvJump)) ||
+        isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvBrakeTurn)) || isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvTumble)) ||
+        isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvFallDown)) || isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvGetUpFromFallDown)) ||
+        isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvComebackRouteStart)) || isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvComebackRoute)) ||
+        isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvGetUp)))
         return true;
 
     return false;
 }
 
 bool TrickRabbit::isTumbable() const {
-    if (isNerve(&NrvTrickRabbit::TrickRabbitNrvWait::sInstance) || isNerve(&NrvTrickRabbit::TrickRabbitNrvRunaway::sInstance) ||
-        isNerve(&NrvTrickRabbit::TrickRabbitNrvJumpStart::sInstance) || isNerve(&NrvTrickRabbit::TrickRabbitNrvBrakeTurn::sInstance) ||
-        isNerve(&NrvTrickRabbit::TrickRabbitNrvJump::sInstance) || isNerve(&NrvTrickRabbit::TrickRabbitNrvWaitStart::sInstance) ||
-        isNerve(&NrvTrickRabbit::TrickRabbitNrvGiveUp::sInstance))
+    if (isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvWait)) || isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvRunaway)) ||
+        isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvJumpStart)) || isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvBrakeTurn)) ||
+        isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvJump)) || isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvWaitStart)) ||
+        isNerve(GET_NERVE(TrickRabbit, TrickRabbitNrvGiveUp)))
         return true;
 
     return false;

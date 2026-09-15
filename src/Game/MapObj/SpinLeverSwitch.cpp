@@ -33,13 +33,13 @@ void SpinLeverSwitch::init(const JMapInfoIter& rIter) {
     MR::setGroupClipping(this, rIter, 16);
 
     if (isWait) {
-        initNerve(&NrvSpinLeverSwitch::SpinLeverSwitchNrvWait::sInstance);
+        initNerve(GET_NERVE(SpinLeverSwitch, SpinLeverSwitchNrvWait));
     } else {
         MR::startBck(this, "On", nullptr);
         MR::setBckFrameAndStop(this, MR::getBckFrameMax(this));
         MR::startBrk(this, "On");
         MR::setBrkFrameAndStop(this, MR::getBrkFrameMax(this));
-        initNerve(&NrvSpinLeverSwitch::SpinLeverSwitchNrvEnd::sInstance);
+        initNerve(GET_NERVE(SpinLeverSwitch, SpinLeverSwitchNrvEnd));
     }
 
     makeActorAppeared();
@@ -69,7 +69,7 @@ void SpinLeverSwitch::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool SpinLeverSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvSpinLeverSwitch::SpinLeverSwitchNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(SpinLeverSwitch, SpinLeverSwitchNrvWait))) {
         return false;
     }
 
@@ -78,7 +78,7 @@ bool SpinLeverSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSen
     }
 
     if (MR::isMsgPlayerHitAll(msg)) {
-        setNerve(&NrvSpinLeverSwitch::SpinLeverSwitchNrvSwitchOn::sInstance);
+        setNerve(GET_NERVE(SpinLeverSwitch, SpinLeverSwitchNrvSwitchOn));
         MR::stopSceneForDefaultHit(::sStepForHitStop);
         return true;
     }
@@ -122,7 +122,7 @@ void SpinLeverSwitch::exeSwitchOn() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvSpinLeverSwitch::SpinLeverSwitchNrvEnd::sInstance);
+        setNerve(GET_NERVE(SpinLeverSwitch, SpinLeverSwitchNrvEnd));
     }
 }
 

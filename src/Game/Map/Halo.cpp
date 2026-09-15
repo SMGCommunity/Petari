@@ -41,7 +41,7 @@ void Halo::init(const JMapInfoIter& rIter) {
     info.setupHioNode("環境");
     info.setupDefaultPos();
     info.setupConnectToScene();
-    info.setupNerve(&NrvHalo::HostTypeAppear::sInstance);
+    info.setupNerve(GET_NERVE(Halo, HostTypeAppear));
     info.setupClippingRadius(::getParam(mObjectName)->clippingRadius * 100.0f);
     info.setupFarClipping(-1.0f);
     info.setupAffectedScale();
@@ -74,10 +74,10 @@ void Halo::appear() {
         }
 
         MR::hideModel(this);
-        setNerve(&NrvHalo::HostTypeDisappear::sInstance);
+        setNerve(GET_NERVE(Halo, HostTypeDisappear));
     } else {
         MR::startAllAnim(this, "Appear");
-        setNerve(&NrvHalo::HostTypeAppear::sInstance);
+        setNerve(GET_NERVE(Halo, HostTypeAppear));
     }
 }
 
@@ -117,7 +117,7 @@ bool Halo::isDistanceDisappear() const {
 void Halo::exeAppear() {
     if (isDistanceDisappear()) {
         MR::startAllAnim(this, "Disappear");
-        setNerve(&NrvHalo::HostTypeDisappear::sInstance);
+        setNerve(GET_NERVE(Halo, HostTypeDisappear));
     }
 }
 
@@ -146,7 +146,7 @@ void Halo::exeDisappear() {
     if (isDistanceAppear()) {
         MR::showModel(this);
         MR::startAllAnim(this, "Appear");
-        setNerve(&NrvHalo::HostTypeAppear::sInstance);
+        setNerve(GET_NERVE(Halo, HostTypeAppear));
     }
 }
 
@@ -161,12 +161,12 @@ void PowerStarHalo::init(const JMapInfoIter& rIter) {
     Halo::init(rIter);
     MR::getJMapInfoArg1NoInit(rIter, &_C8);
     if (_C8 == -1) {
-        setNerve(&NrvPowerStarHalo::HostTypeWaitScenarioOpeningEnd::sInstance);
+        setNerve(GET_NERVE(PowerStarHalo, HostTypeWaitScenarioOpeningEnd));
     }
 }
 
 void PowerStarHalo::appear() {
-    if (isNerve(&NrvPowerStarHalo::HostTypeWaitScenarioOpeningEnd::sInstance)) {
+    if (isNerve(GET_NERVE(PowerStarHalo, HostTypeWaitScenarioOpeningEnd))) {
         makeActorAppeared();
     } else {
         Halo::appear();

@@ -39,7 +39,7 @@ void UFOKinoko::init(const JMapInfoIter& rIter) {
     info.setupRailMover();
     info.setupRotator();
     info.setupBaseMtxFollowTarget();
-    info.setupNerve(&NrvUFOKinoko::HostTypeWait::sInstance);
+    info.setupNerve(GET_NERVE(UFOKinoko, HostTypeWait));
 
     if (hasShadow) {
         info.setupShadow(nullptr);
@@ -79,7 +79,7 @@ void UFOKinoko::startMove() {
         MapObjActorUtil::startRailMover(this);
     }
 
-    setNerve(&NrvUFOKinoko::HostTypeMove::sInstance);
+    setNerve(GET_NERVE(UFOKinoko, HostTypeMove));
 }
 
 void UFOKinoko::exeWait() {
@@ -94,7 +94,7 @@ void UFOKinoko::exeMove() {
     MR::startLevelSound(this, "SE_OJ_LV_UFO_KINOKO_MOVE");
 
     if (mRailMover != nullptr && !MapObjActorUtil::isRailMoverWorking(this)) {
-        setNerve(&NrvUFOKinoko::HostTypeStop::sInstance);
+        setNerve(GET_NERVE(UFOKinoko, HostTypeStop));
     }
 }
 

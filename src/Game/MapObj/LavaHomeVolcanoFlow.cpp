@@ -21,7 +21,7 @@ void LavaHomeVolcanoFlow::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
-    initNerve(&NrvLavaHomeVolcanoFlow::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(LavaHomeVolcanoFlow, HostTypeWait));
     MR::needStageSwitchReadA(this, rIter);
     MR::connectToSceneMapObj(this);
     makeActorAppeared();
@@ -30,24 +30,24 @@ void LavaHomeVolcanoFlow::init(const JMapInfoIter& rIter) {
 
 void LavaHomeVolcanoFlow::startClipped() {
     LiveActor::startClipped();
-    if (isNerve(&NrvLavaHomeVolcanoFlow::HostTypeMove::sInstance) || isNerve(&NrvLavaHomeVolcanoFlow::HostTypeDone::sInstance)) {
+    if (isNerve(GET_NERVE(LavaHomeVolcanoFlow, HostTypeMove)) || isNerve(GET_NERVE(LavaHomeVolcanoFlow, HostTypeDone))) {
         MR::deleteEffect(this, "Loop");
     }
 }
 
 void LavaHomeVolcanoFlow::endClipped() {
     LiveActor::endClipped();
-    if (isNerve(&NrvLavaHomeVolcanoFlow::HostTypeMove::sInstance) || isNerve(&NrvLavaHomeVolcanoFlow::HostTypeDone::sInstance)) {
+    if (isNerve(GET_NERVE(LavaHomeVolcanoFlow, HostTypeMove)) || isNerve(GET_NERVE(LavaHomeVolcanoFlow, HostTypeDone))) {
         MR::emitEffect(this, "Loop");
     }
 }
 
 void LavaHomeVolcanoFlow::exeWait() {
-    if (isNerve(&NrvLavaHomeVolcanoFlow::HostTypeWait::sInstance) && MR::isOnSwitchA(this)) {
-        setNerve(&NrvLavaHomeVolcanoFlow::HostTypeMove::sInstance);
+    if (isNerve(GET_NERVE(LavaHomeVolcanoFlow, HostTypeWait)) && MR::isOnSwitchA(this)) {
+        setNerve(GET_NERVE(LavaHomeVolcanoFlow, HostTypeMove));
         return;
     }
-    if (isNerve(&NrvLavaHomeVolcanoFlow::HostTypeDone::sInstance)) {
+    if (isNerve(GET_NERVE(LavaHomeVolcanoFlow, HostTypeDone))) {
         MR::startLevelSound(this, "SE_OJ_LV_VOLCANO_ERUPTION");
     }
 }
@@ -62,7 +62,7 @@ void LavaHomeVolcanoFlow::exeMove() {
         MR::emitEffect(this, "Loop");
         MR::startSound(this, "SE_OJ_VOLCANO_EXPLODE");
         MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
-        setNerve(&NrvLavaHomeVolcanoFlow::HostTypeDone::sInstance);
+        setNerve(GET_NERVE(LavaHomeVolcanoFlow, HostTypeDone));
     }
 }
 

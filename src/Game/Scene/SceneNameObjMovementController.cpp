@@ -55,7 +55,7 @@ namespace {
 };  // namespace
 
 StopSceneStateControl::StopSceneStateControl() : NerveExecutor("StopSceneStateControl") {
-    initNerve(&::StopSceneStateControlNone::sInstance);
+    initNerve(GET_NERVE_ANON(StopSceneStateControlNone));
 
     _8 = MR::MovementControlType_0;
     _C = nullptr;
@@ -63,80 +63,80 @@ StopSceneStateControl::StopSceneStateControl() : NerveExecutor("StopSceneStateCo
 
 void StopSceneStateControl::requestStopSceneFor(MR::MovementControlType param1, const NameObj* pParam2) {
     if (MR::isNewNerve(this)) {
-        if (isNerve(&::StopSceneStateControlNone::sInstance)) {
+        if (isNerve(GET_NERVE_ANON(StopSceneStateControlNone))) {
             _8 = param1;
             _C = pParam2;
 
-            setNerve(&::StopSceneStateControlStopped::sInstance);
+            setNerve(GET_NERVE_ANON(StopSceneStateControlStopped));
             executeStopCategories(param1);
-        } else if (isNerve(&::StopSceneStateControlStopped::sInstance)) {
+        } else if (isNerve(GET_NERVE_ANON(StopSceneStateControlStopped))) {
             return;
         }
-    } else if (isNerve(&::StopSceneStateControlNone::sInstance)) {
+    } else if (isNerve(GET_NERVE_ANON(StopSceneStateControlNone))) {
         _8 = param1;
         _C = pParam2;
 
-        setNerve(&::StopSceneStateControlStopped::sInstance);
+        setNerve(GET_NERVE_ANON(StopSceneStateControlStopped));
         executeStopCategories(param1);
-    } else if (!isNerve(&::StopSceneStateControlStopped::sInstance)) {
+    } else if (!isNerve(GET_NERVE_ANON(StopSceneStateControlStopped))) {
         return;
     }
 }
 
 void StopSceneStateControl::requestStopSceneOverwrite(const NameObj* pParam1) {
     if (MR::isNewNerve(this)) {
-        if (isNerve(&::StopSceneStateControlNone::sInstance)) {
+        if (isNerve(GET_NERVE_ANON(StopSceneStateControlNone))) {
             return;
         }
 
-        if (!isNerve(&::StopSceneStateControlStopped::sInstance)) {
+        if (!isNerve(GET_NERVE_ANON(StopSceneStateControlStopped))) {
             return;
         }
 
         _C = pParam1;
         _8 = MR::MovementControlType_5;
 
-        setNerve(&::StopSceneStateControlStopped::sInstance);
+        setNerve(GET_NERVE_ANON(StopSceneStateControlStopped));
         executeStopCategories(MR::MovementControlType_5);
     } else {
-        if (isNerve(&::StopSceneStateControlNone::sInstance)) {
+        if (isNerve(GET_NERVE_ANON(StopSceneStateControlNone))) {
             return;
         }
 
-        if (!isNerve(&::StopSceneStateControlStopped::sInstance)) {
+        if (!isNerve(GET_NERVE_ANON(StopSceneStateControlStopped))) {
             return;
         }
 
         _C = pParam1;
         _8 = MR::MovementControlType_5;
 
-        setNerve(&::StopSceneStateControlStopped::sInstance);
+        setNerve(GET_NERVE_ANON(StopSceneStateControlStopped));
         executeStopCategories(MR::MovementControlType_5);
     }
 }
 
 void StopSceneStateControl::requestPlaySceneFor(MR::MovementControlType param1, const NameObj* pParam2) {
     if (MR::isNewNerve(this)) {
-        if (isNerve(&::StopSceneStateControlNone::sInstance)) {
+        if (isNerve(GET_NERVE_ANON(StopSceneStateControlNone))) {
             return;
         }
 
-        if (isNerve(&::StopSceneStateControlStopped::sInstance)) {
+        if (isNerve(GET_NERVE_ANON(StopSceneStateControlStopped))) {
             return;
         }
     } else {
-        if (isNerve(&::StopSceneStateControlNone::sInstance)) {
+        if (isNerve(GET_NERVE_ANON(StopSceneStateControlNone))) {
             return;
         }
 
-        if (!isNerve(&::StopSceneStateControlStopped::sInstance)) {
+        if (!isNerve(GET_NERVE_ANON(StopSceneStateControlStopped))) {
             return;
         }
 
         _8 = param1;
         _C = pParam2;
 
-        setNerve(&::StopSceneStateControlNone::sInstance);
+        setNerve(GET_NERVE_ANON(StopSceneStateControlNone));
         executeStopCategories(MR::MovementControlType_0);
     }
 }

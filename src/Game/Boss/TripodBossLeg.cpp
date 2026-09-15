@@ -83,7 +83,7 @@ TripodBossLeg::TripodBossLeg(const char* pName)
 }
 
 void TripodBossLeg::init(const JMapInfoIter& rIter) {
-    initNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance);
+    initNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvHold));
     MR::invalidateClipping(this);
     initHitSensor(1);
     MR::addHitSensorMtxMapObj(this, "body", 16, 1000.0f, mEndJointMtx, TVec3f(500.0f, 200.0f, 0.0f));
@@ -162,7 +162,7 @@ void TripodBossLeg::setStepTarget(TripodBossStepPoint* pPoint) {
 }
 
 void TripodBossLeg::setWait() {
-    setNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance);
+    setNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvHold));
 }
 
 void TripodBossLeg::setForceEndPoint(const TVec3f& rPoint) {
@@ -210,7 +210,7 @@ const TPos3f& TripodBossLeg::getAnkleLocalXZMatrix() const {
 }
 
 void TripodBossLeg::requestStepTarget(TripodBossStepPoint* pPoint) {
-    bool v4 = isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvBreak::sInstance);
+    bool v4 = isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvDamage)) || isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvBreak));
 
     if (v4) {
         return;
@@ -219,50 +219,50 @@ void TripodBossLeg::requestStepTarget(TripodBossStepPoint* pPoint) {
     _94 = _98;
     _98 = pPoint;
 
-    if (isNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance)) {
-        setNerve(&NrvTripodBossLeg::TripodBossLegNrvUp::sInstance);
+    if (isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvHold))) {
+        setNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvUp));
     } else {
-        setNerve(&NrvTripodBossLeg::TripodBossLegNrvMoveToLandingPos::sInstance);
+        setNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvMoveToLandingPos));
     }
 }
 
 void TripodBossLeg::requestLeaveOut() {
-    setNerve(&NrvTripodBossLeg::TripodBossLegNrvLeaveOut::sInstance);
+    setNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvLeaveOut));
 }
 
 void TripodBossLeg::requestBreak() {
-    if (!isNerve(&NrvTripodBossLeg::TripodBossLegNrvBreak::sInstance)) {
-        setNerve(&NrvTripodBossLeg::TripodBossLegNrvBreak::sInstance);
+    if (!isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvBreak))) {
+        setNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvBreak));
     }
 }
 
 void TripodBossLeg::requestStartDemo() {
     _24C = 1;
 
-    setNerve(&NrvTripodBossLeg::TripodBossLegNrvDemo::sInstance);
+    setNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvDemo));
 }
 
 void TripodBossLeg::requestEndDemo() {
     _24C = 0;
 
-    setNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance);
+    setNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvHold));
 }
 
 bool TripodBossLeg::isLanding() const {
-    return isNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance);
+    return isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvHold));
 }
 
 bool TripodBossLeg::isDamage() const {
-    return isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamageVibration::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance);
+    return isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvDamageVibration)) || isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvDamage));
 }
 
 bool TripodBossLeg::isStop() const {
-    return isNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvDemo::sInstance) ||
-           isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvBreak::sInstance);
+    return isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvHold)) || isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvDemo)) ||
+           isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvDamage)) || isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvBreak));
 }
 
 bool TripodBossLeg::isBroken() const {
-    return isNerve(&NrvTripodBossLeg::TripodBossLegNrvBreak::sInstance);
+    return isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvBreak));
 }
 
 bool TripodBossLeg::isPressPlayer() const {
@@ -270,16 +270,16 @@ bool TripodBossLeg::isPressPlayer() const {
 }
 
 bool TripodBossLeg::canStep() const {
-    return !isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance) && !isNerve(&NrvTripodBossLeg::TripodBossLegNrvBreak::sInstance);
+    return !isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvDamage)) && !isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvBreak));
 }
 
 bool TripodBossLeg::canCancelStep() const {
-    return !isNerve(&NrvTripodBossLeg::TripodBossLegNrvLanding::sInstance) && !isNerve(&NrvTripodBossLeg::TripodBossLegNrvStampSign::sInstance);
+    return !isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvLanding)) && !isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvStampSign));
 }
 
 bool TripodBossLeg::canWeighting() const {
-    return isNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvLanding::sInstance) ||
-           isNerve(&NrvTripodBossLeg::TripodBossLegNrvLeaveOut::sInstance) && MR::isLessStep(this, 60);
+    return isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvHold)) || isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvLanding)) ||
+           isNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvLeaveOut)) && MR::isLessStep(this, 60);
 }
 
 void TripodBossLeg::exeDemo() {
@@ -310,7 +310,7 @@ void TripodBossLeg::exeUp() {
     updateAnkleUp(legHeight);
 
     if (legHeight > 1000.0f) {
-        setNerve(&NrvTripodBossLeg::TripodBossLegNrvMoveToLandingPos::sInstance);
+        setNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvMoveToLandingPos));
     }
 }
 
@@ -370,7 +370,7 @@ void TripodBossLeg::exeMoveToLandingPos() {
     updateAnkleSlerpToBasePose();
 
     if (mForceEndPoint.squared(_240) < 90000.0f) {
-        setNerve(&NrvTripodBossLeg::TripodBossLegNrvStampSign::sInstance);
+        setNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvStampSign));
     }
 }
 
@@ -399,7 +399,7 @@ void TripodBossLeg::exeStampSign() {
     if (MR::isGreaterStep(this, ::sStampSignTime)) {
         _240 = _98->mStepPosition;
 
-        setNerve(&NrvTripodBossLeg::TripodBossLegNrvLanding::sInstance);
+        setNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvLanding));
     }
 }
 
@@ -450,9 +450,9 @@ void TripodBossLeg::exeLanding() {
         _234.zero();
 
         if (_254) {
-            setNerve(&NrvTripodBossLeg::TripodBossLegNrvDamageVibration::sInstance);
+            setNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvDamageVibration));
         } else {
-            setNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance);
+            setNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvHold));
         }
 
         updateIKPose();
@@ -475,7 +475,7 @@ void TripodBossLeg::exeDamageVibration() {
 
     if (MR::isGreaterStep(this, ::sDamageVibrationTime)) {
         mForceEndPoint = _240;
-        setNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance);
+        setNerve(GET_NERVE(TripodBossLeg, TripodBossLegNrvDamage));
     }
 }
 

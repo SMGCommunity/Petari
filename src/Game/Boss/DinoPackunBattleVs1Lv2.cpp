@@ -24,7 +24,7 @@ namespace NrvDinoPackunBattleVs1Lv2 {
 DinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2(DinoPackun* pPackun) : DinoPackunAction("ラス", pPackun) {
     mStateDamage = nullptr;
     _18 = 1;
-    initNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvStart::sInstance);
+    initNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvStart));
     mStateDamage = new DinoPackunStateDamage(pPackun);
     mStateDamage->setDamageNormal();
 }
@@ -37,35 +37,35 @@ void DinoPackunBattleVs1Lv2::appear() {
     mIsDead = false;
 
     if (_18) {
-        setNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvStart::sInstance);
+        setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvStart));
     } else {
-        setNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvFind::sInstance);
+        setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvFind));
     }
 }
 
 void DinoPackunBattleVs1Lv2::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
-        bool v6 = isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvChase::sInstance) ||
-                  isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvWalk::sInstance);
+        bool v6 = isNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvChase)) ||
+                  isNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvWalk));
 
         if (v6 && sendBlowAttackMessage(pSender, pReceiver, false)) {
-            setNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvAttackHit::sInstance);
+            setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvAttackHit));
             return;
         }
 
-        bool v7 = isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvTurn::sInstance) ||
-                  isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvFind::sInstance) ||
-                  isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvCoolDown::sInstance);
+        bool v7 = isNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvTurn)) ||
+                  isNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvFind)) ||
+                  isNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvCoolDown));
 
         if (v7 && sendHitAttackMessage(pSender, pReceiver, false)) {
-            setNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvAttackHit::sInstance);
+            setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvAttackHit));
             return;
         }
 
         MR::sendMsgPush(pReceiver, pSender);
     } else {
-        bool v8 = isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvChase::sInstance) ||
-                  isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvWalk::sInstance);
+        bool v8 = isNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvChase)) ||
+                  isNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvWalk));
 
         if (v8) {
             MR::sendMsgEnemyAttack(pReceiver, pSender);
@@ -90,12 +90,12 @@ bool DinoPackunBattleVs1Lv2::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender,
 }
 
 bool DinoPackunBattleVs1Lv2::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvDamage::sInstance)) {
+    if (isNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvDamage))) {
         return mStateDamage->receiveOtherMsg(msg, pSender, pReceiver);
     }
 
     if (mStateDamage->isDamageMessage(msg)) {
-        setNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvDamage::sInstance);
+        setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvDamage));
         return true;
     }
 
@@ -120,7 +120,7 @@ void DinoPackunBattleVs1Lv2::setStartContinueBattle() {
 
 bool DinoPackunBattleVs1Lv2::tryFind() {
     if (MR::isInSightConePlayer(getHost(), getHost()->_E8, 1000.0f, 80.0f)) {
-        setNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvFind::sInstance);
+        setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvFind));
         return true;
     }
 
@@ -133,7 +133,7 @@ void DinoPackunBattleVs1Lv2::exeStart() {
     }
 
     if (updateStart()) {
-        setNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvChase::sInstance);
+        setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvChase));
     }
 }
 
@@ -152,7 +152,7 @@ void DinoPackunBattleVs1Lv2::exeTurn() {
     getHost()->updateFootPrintNerve(getNerveStep(), 50);
 
     if (MR::isGreaterStep(this, 30)) {
-        setNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvWalk::sInstance);
+        setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvWalk));
     } else {
         if (tryFind()) {
             return;
@@ -166,7 +166,7 @@ void DinoPackunBattleVs1Lv2::exeWalk() {
     }
 
     if (updateWalk(180, 0.5f, 50)) {
-        setNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvTurn::sInstance);
+        setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvTurn));
     } else {
         if (tryFind()) {
             return;
@@ -186,7 +186,7 @@ void DinoPackunBattleVs1Lv2::exeChase() {
     f32 v4 = isHit ? 0.0f : 1.0f;
 
     if (updateChase(300, 180.0f, v4, v3, 90, 46)) {
-        setNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvCoolDown::sInstance);
+        setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvCoolDown));
     }
 }
 
@@ -198,19 +198,19 @@ void DinoPackunBattleVs1Lv2::exeDamage() {
 
 void DinoPackunBattleVs1Lv2::exeAttackHit() {
     if (updateAttackHit()) {
-        setNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvTurn::sInstance);
+        setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvTurn));
     }
 }
 
 void DinoPackunBattleVs1Lv2::exeCoolDown() {
     if (updateCoolDown(0x1E)) {
-        setNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvTurn::sInstance);
+        setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvTurn));
     }
 }
 
 void DinoPackunBattleVs1Lv2::exeFind() {
     if (updateFind(0xE, 1.0f)) {
-        setNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvChase::sInstance);
+        setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvChase));
     }
 }
 

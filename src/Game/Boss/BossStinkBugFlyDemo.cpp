@@ -28,16 +28,15 @@ namespace NrvBossStinkBugFlyDemo {
 
 BossStinkBugFlyDemo::BossStinkBugFlyDemo(BossStinkBug* pStinkBug, const JMapInfoIter& rIter)
     : BossStinkBugActionBase("終了デモ", pStinkBug), mDemoPositionController(nullptr) {
-    initNerve(&NrvBossStinkBugFlyDemo::BossStinkBugFlyDemoNrvDemo::sInstance);
+    initNerve(GET_NERVE(BossStinkBugFlyDemo, BossStinkBugFlyDemoNrvDemo));
     mDemoPositionController = new DemoPositionController("BossStinkBugDemo", rIter);
     mDemoPositionController->initAnimCamera("FlyDemo");
 }
 
 void BossStinkBugFlyDemo::appear() {
     ActorStateBase::appear();
-    setNerve(&NrvBossStinkBugFlyDemo::BossStinkBugFlyDemoNrvTryStart::sInstance);
-    MR::requestStartDemoMarioPuppetable(this, getHost(), "ボスカメムシ飛行デモ", &NrvBossStinkBugFlyDemo::BossStinkBugFlyDemoNrvDemo::sInstance,
-                                        nullptr);
+    setNerve(GET_NERVE(BossStinkBugFlyDemo, BossStinkBugFlyDemoNrvTryStart));
+    MR::requestStartDemoMarioPuppetable(this, getHost(), "ボスカメムシ飛行デモ", GET_NERVE(BossStinkBugFlyDemo, BossStinkBugFlyDemoNrvDemo), nullptr);
 }
 
 void BossStinkBugFlyDemo::exeDemo() {

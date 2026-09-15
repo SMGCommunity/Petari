@@ -23,7 +23,7 @@ void TreasureSpot::init(const JMapInfoIter& rIter) {
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     info.setupHitSensor();
     info.setupHitSensorParam(4, 80.0f, TVec3f(0.0f, 3.0f, 0.0f));
-    info.setupNerve(&NrvTreasureSpot::TreasureSpotNrvWait::sInstance);
+    info.setupNerve(GET_NERVE(TreasureSpot, TreasureSpotNrvWait));
     info.setupSound(4);
     MapObjActor::initialize(rIter, info);
     mIsCoinFlower = isObjectName("CoinFlower");
@@ -48,7 +48,7 @@ void TreasureSpot::exeSpout() {
             MR::startBck(this, "Bloom", nullptr);
             MR::startSound(this, "SE_OJ_COIN_FLOWER_BLOOM");
         } else {
-            setNerve(&NrvTreasureSpot::TreasureSpotNrvEnd::sInstance);
+            setNerve(GET_NERVE(TreasureSpot, TreasureSpotNrvEnd));
             kill();
             return;
         }
@@ -56,17 +56,17 @@ void TreasureSpot::exeSpout() {
 
     if (mIsCoinFlower) {
         if (MR::isBckStopped(this)) {
-            setNerve(&NrvTreasureSpot::TreasureSpotNrvEnd::sInstance);
+            setNerve(GET_NERVE(TreasureSpot, TreasureSpotNrvEnd));
         }
     }
 }
 
 void TreasureSpot::control() {
-    if (isNerve(&NrvTreasureSpot::TreasureSpotNrvSpout::sInstance)) {
+    if (isNerve(GET_NERVE(TreasureSpot, TreasureSpotNrvSpout))) {
         return;
     }
 
-    if (isNerve(&NrvTreasureSpot::TreasureSpotNrvEnd::sInstance)) {
+    if (isNerve(GET_NERVE(TreasureSpot, TreasureSpotNrvEnd))) {
         return;
     }
 
@@ -74,11 +74,11 @@ void TreasureSpot::control() {
 }
 
 bool TreasureSpot::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvTreasureSpot::TreasureSpotNrvSpout::sInstance)) {
+    if (isNerve(GET_NERVE(TreasureSpot, TreasureSpotNrvSpout))) {
         return false;
     }
 
-    if (isNerve(&NrvTreasureSpot::TreasureSpotNrvEnd::sInstance)) {
+    if (isNerve(GET_NERVE(TreasureSpot, TreasureSpotNrvEnd))) {
         return false;
     }
 
@@ -91,7 +91,7 @@ bool TreasureSpot::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
     }
 
     if (MR::isMsgStarPieceAttack(msg)) {
-        setNerve(&NrvTreasureSpot::TreasureSpotNrvSpout::sInstance);
+        setNerve(GET_NERVE(TreasureSpot, TreasureSpotNrvSpout));
         return true;
     }
 

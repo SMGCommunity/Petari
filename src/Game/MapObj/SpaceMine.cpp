@@ -19,7 +19,7 @@ void SpaceMine::init(const JMapInfoIter& rIter) {
     info.setupConnectToScene();
     info.setupEffect(nullptr);
     info.setupSound(2);
-    info.setupNerve(&NrvSpaceMine::HostTypeWait::sInstance);
+    info.setupNerve(GET_NERVE(SpaceMine, HostTypeWait));
     info.setupRailMover();
     info.setupHitSensor();
     TVec3f sensorOffs;
@@ -161,7 +161,7 @@ void SpaceMine::exeAppear() {
 
     if (MR::isGreaterStep(this, 120)) {
         if (MR::isBckStopped(this)) {
-            setNerve(&NrvSpaceMine::HostTypeWait::sInstance);
+            setNerve(GET_NERVE(SpaceMine, HostTypeWait));
         }
     }
 }

@@ -47,7 +47,7 @@ KoopaStateAttackRoll::KoopaStateAttackRoll(Koopa* pKoopa)
 }
 
 void KoopaStateAttackRoll::init() {
-    initNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvStart::sInstance);
+    initNerve(GET_NERVE(KoopaStateAttackRoll, KoopaStateAttackRollNrvStart));
 
     KoopaFunction::initKoopaCamera(mHost, "ローリング攻撃開始");
     KoopaFunction::initKoopaCamera(mHost, "ローリング攻撃");
@@ -105,9 +105,9 @@ void KoopaStateAttackRoll::appear() {
     }
 
     if (mRollDelay >= 0) {
-        setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvWaitToStart::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackRoll, KoopaStateAttackRollNrvWaitToStart));
     } else {
-        setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvStart::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackRoll, KoopaStateAttackRollNrvStart));
     }
 }
 
@@ -125,8 +125,8 @@ void KoopaStateAttackRoll::kill() {
 }
 
 bool KoopaStateAttackRoll::tryCalcAndSetBaseMtx() {
-    if (isNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvRollAir::sInstance) ||
-        isNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvRollGround::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaStateAttackRoll, KoopaStateAttackRollNrvRollAir)) ||
+        isNerve(GET_NERVE(KoopaStateAttackRoll, KoopaStateAttackRollNrvRollGround))) {
         Koopa* pKoopa = mHost;
         MR::setBaseTRMtx(pKoopa, mFigureBall->getBaseMtx());
 
@@ -158,9 +158,9 @@ bool KoopaStateAttackRoll::isDamage(u32 msg, HitSensor* pSender, HitSensor* pRec
 }
 
 bool KoopaStateAttackRoll::isEnableGuard() const {
-    if (isNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvWaitToStart::sInstance) ||
-        isNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvEndAir::sInstance) ||
-        isNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvEndLand::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaStateAttackRoll, KoopaStateAttackRollNrvWaitToStart)) ||
+        isNerve(GET_NERVE(KoopaStateAttackRoll, KoopaStateAttackRollNrvEndAir)) ||
+        isNerve(GET_NERVE(KoopaStateAttackRoll, KoopaStateAttackRollNrvEndLand))) {
         return true;
     }
 
@@ -173,7 +173,7 @@ void KoopaStateAttackRoll::exeWaitToStart() {
     }
 
     if (MR::isStep(this, mRollDelay)) {
-        setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvStart::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackRoll, KoopaStateAttackRollNrvStart));
     }
 }
 
@@ -198,7 +198,7 @@ void KoopaStateAttackRoll::exeStart() {
     if (MR::isActionEnd(mHost)) {
         mFigureBall->appear();
 
-        setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvRollAir::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackRoll, KoopaStateAttackRollNrvRollAir));
     }
 }
 
@@ -215,9 +215,9 @@ void KoopaStateAttackRoll::exeRollAir() {
     MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_ATTACK_ROLL");
 
     if (MR::isBindedGround(mFigureBall)) {
-        setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvRollGround::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackRoll, KoopaStateAttackRollNrvRollGround));
     } else if (MR::isPlayerDamaging()) {
-        setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvEndAir::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackRoll, KoopaStateAttackRollNrvEndAir));
     }
 }
 
@@ -240,7 +240,7 @@ void KoopaStateAttackRoll::exeRollGround() {
         if (!MR::isPlayerDamaging() && KoopaFunction::isKoopaVs3(mHost) && KoopaFunction::isKoopaLv3(mHost)) {
             kill();
         } else {
-            setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvEndAir::sInstance);
+            setNerve(GET_NERVE(KoopaStateAttackRoll, KoopaStateAttackRollNrvEndAir));
         }
     }
 }
@@ -260,7 +260,7 @@ void KoopaStateAttackRoll::exeEndAir() {
     if (!MR::isFirstStep(this) && MR::isBindedGround(mHost)) {
         MR::zeroVelocity(mHost);
 
-        setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvEndLand::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackRoll, KoopaStateAttackRollNrvEndLand));
     }
 }
 

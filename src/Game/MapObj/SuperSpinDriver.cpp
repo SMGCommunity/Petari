@@ -83,7 +83,7 @@ void SuperSpinDriver::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     initSound(6, false);
     initEventCamera(rIter);
-    initNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvWait::sInstance);
+    initNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvWait));
 
     MR::initShadowVolumeFlatModel(this, "SuperSpinDriverShadow", MR::getJointMtx(this, "Outside"));
     initOperateRing();
@@ -97,9 +97,9 @@ void SuperSpinDriver::init(const JMapInfoIter& rIter) {
         MR::listenStageSwitchOnA(this, MR::Functor(this, &SuperSpinDriver::requestActive));
 
         if (isRightToUse()) {
-            setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvNonActive::sInstance);
+            setNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvNonActive));
         } else {
-            setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvEmptyNonActive::sInstance);
+            setNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvEmptyNonActive));
         }
     }
 
@@ -171,7 +171,7 @@ void SuperSpinDriver::initEmptyModel() {
         onUse();
     } else {
         offUse();
-        setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvEmptyWait::sInstance);
+        setNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvEmptyWait));
     }
 }
 
@@ -354,8 +354,8 @@ bool SuperSpinDriver::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pR
     }
 
     if (msg == ACTMES_RUSH_CANCEL) {
-        if (isNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvShootStart::sInstance) ||
-            isNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvShoot::sInstance) && MR::isLessStep(this, 40)) {
+        if (isNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvShootStart)) ||
+            isNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvShoot)) && MR::isLessStep(this, 40)) {
             return false;
         }
 
@@ -400,7 +400,7 @@ bool SuperSpinDriver::tryEndCapture() {
     if (MR::isGreaterStep(this, 60) && _C4.distance(mPosition) < 15.0f) {
         cancelBind();
         _174 = false;
-        setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvWait::sInstance);
+        setNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvWait));
         return true;
     }
 
@@ -409,7 +409,7 @@ bool SuperSpinDriver::tryEndCapture() {
 
 bool SuperSpinDriver::tryForceCancel() {
     if (mBindActor == nullptr) {
-        setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvCoolDown::sInstance);
+        setNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvCoolDown));
         return true;
     }
 
@@ -421,7 +421,7 @@ bool SuperSpinDriver::tryShootStart() {
 
     if (isSwingOrPointed) {
         MR::deleteEffect(this, "SuperSpinDriverLight");
-        setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvShootStart::sInstance);
+        setNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvShootStart));
         return true;
     }
 
@@ -430,7 +430,7 @@ bool SuperSpinDriver::tryShootStart() {
 
 bool SuperSpinDriver::tryShoot() {
     if (MR::isGreaterStep(this, 45)) {
-        setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvShoot::sInstance);
+        setNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvShoot));
         return true;
     }
 
@@ -440,7 +440,7 @@ bool SuperSpinDriver::tryShoot() {
 bool SuperSpinDriver::tryEndShoot() {
     if (MR::isGreaterEqualStep(this, mFlightTime)) {
         endBind();
-        setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvCoolDown::sInstance);
+        setNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvCoolDown));
         return true;
     }
 
@@ -449,7 +449,7 @@ bool SuperSpinDriver::tryEndShoot() {
 
 bool SuperSpinDriver::tryEndCoolDown() {
     if (MR::isGreaterStep(this, 60) && _178 == 0) {
-        setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvWait::sInstance);
+        setNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvWait));
         return true;
     }
 
@@ -469,10 +469,10 @@ void SuperSpinDriver::requestAppear() {
     MR::invalidateClipping(this);
 
     if (mSpinDriverCamera->isUseAppearCamera(this)) {
-        MR::requestStartDemo(this, "出現", &NrvSuperSpinDriver::SuperSpinDriverNrvAppear::sInstance,
-                             &NrvSuperSpinDriver::SuperSpinDriverNrvTryDemo::sInstance);
+        MR::requestStartDemo(this, "出現", GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvAppear),
+                             GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvTryDemo));
     } else {
-        setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvAppear::sInstance);
+        setNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvAppear));
     }
 }
 
@@ -480,17 +480,17 @@ void SuperSpinDriver::requestEmptyAppear() {
     MR::invalidateClipping(this);
 
     if (mSpinDriverCamera->isUseAppearCamera(this)) {
-        MR::requestStartDemo(this, "出現", &NrvSuperSpinDriver::SuperSpinDriverNrvEmptyAppear::sInstance,
-                             &NrvSuperSpinDriver::SuperSpinDriverNrvTryDemo::sInstance);
+        MR::requestStartDemo(this, "出現", GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvEmptyAppear),
+                             GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvTryDemo));
     } else {
-        setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvEmptyAppear::sInstance);
+        setNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvEmptyAppear));
     }
 }
 
 void SuperSpinDriver::requestActive() {
-    if (isNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvNonActive::sInstance)) {
+    if (isNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvNonActive))) {
         requestAppear();
-    } else if (isNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvEmptyNonActive::sInstance)) {
+    } else if (isNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvEmptyNonActive))) {
         requestEmptyAppear();
     }
 }
@@ -521,7 +521,7 @@ void SuperSpinDriver::exeEmptyNonActive() {
 
     if (isRightToUse()) {
         onUse();
-        setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvNonActive::sInstance);
+        setNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvNonActive));
     }
 }
 
@@ -539,7 +539,7 @@ void SuperSpinDriver::exeEmptyAppear() {
         s32 frames = mSpinDriverCamera->getAppearCameraFrames();
 
         if (MR::isGreaterStep(this, frames)) {
-            setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvEmptyWait::sInstance);
+            setNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvEmptyWait));
 
             if (mSpinDriverCamera->isUseAppearCamera(this)) {
                 mSpinDriverCamera->endAppearCamera(this);
@@ -556,7 +556,7 @@ void SuperSpinDriver::exeEmptyWait() {
 
     if (isRightToUse()) {
         onUse();
-        setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvWait::sInstance);
+        setNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvWait));
     }
 }
 
@@ -586,7 +586,7 @@ void SuperSpinDriver::exeAppear() {
         s32 frames = mSpinDriverCamera->getAppearCameraFrames();
 
         if (MR::isGreaterStep(this, frames)) {
-            setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvWait::sInstance);
+            setNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvWait));
 
             if (mSpinDriverCamera->isUseAppearCamera(this)) {
                 mSpinDriverCamera->endAppearCamera(this);
@@ -929,7 +929,7 @@ bool SuperSpinDriver::isRightToUse() const {
 }
 
 bool SuperSpinDriver::isNerveEnableBind() const {
-    return isNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvWait::sInstance) && MR::isGreaterStep(this, ::sCanBindTime);
+    return isNerve(GET_NERVE(SuperSpinDriver, SuperSpinDriverNrvWait)) && MR::isGreaterStep(this, ::sCanBindTime);
 }
 
 bool SuperSpinDriver::isSwingOr2PTrigger() const {

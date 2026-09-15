@@ -26,7 +26,7 @@ void AstroDomeAsteroid::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("AstroDomeAsteroid", nullptr, false);
     MR::connectToSceneMapObj(this);
     MR::invalidateClipping(this);
-    initNerve(&NrvAstroDomeAsteroid::AstroDomeAsteroidNrvWait::sInstance);
+    initNerve(GET_NERVE(AstroDomeAsteroid, AstroDomeAsteroidNrvWait));
     MR::tryRegisterDemoCast(this, rIter);
     MR::registerDemoSimpleCastAll(this);
     SphereSelectorFunction::registerTarget(this);

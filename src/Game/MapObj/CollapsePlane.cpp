@@ -34,7 +34,7 @@ void CollapsePlane::init(const JMapInfoIter& rIter) {
     info.setupHitSensor();
     info.setupSound(4);
     info.setupProjmapMtx(false);
-    info.setupNerve(&NrvCollapsePlane::CollapsePlaneNrvWait::sInstance);
+    info.setupNerve(GET_NERVE(CollapsePlane, CollapsePlaneNrvWait));
     initialize(rIter, info);
     initEffectKeeper(1, nullptr, false);
     MR::initStarPointerTarget(this, mScale.x * 200.0f, TVec3f(0.0f, 0.0f, 0.0f));
@@ -54,7 +54,7 @@ void CollapsePlane::init(const JMapInfoIter& rIter) {
 void CollapsePlane::exeWait() {
     if (MR::isOnPlayer(this)) {
         mCollapseStep = 0;
-        setNerve(&NrvCollapsePlane::CollapsePlaneNrvCollapse::sInstance);
+        setNerve(GET_NERVE(CollapsePlane, CollapsePlaneNrvCollapse));
     }
 }
 
@@ -69,7 +69,7 @@ void CollapsePlane::exeCollapse() {
         MR::emitEffect(this, "Vanish");
         MR::startSound(this, "SE_OJ_COLLAPSE_PLANE_VANISH");
         mCollapseStep = -1;
-        setNerve(&NrvCollapsePlane::CollapsePlaneNrvEnd::sInstance);
+        setNerve(GET_NERVE(CollapsePlane, CollapsePlaneNrvEnd));
     } else {
         mCollapseStep++;
     }
@@ -82,9 +82,9 @@ void CollapsePlane::exeDPDStop() {
 
     if (MR::updateActorState(this, mStateBindStartPointer)) {
         if (mCollapseStep != -1) {
-            setNerve(&NrvCollapsePlane::CollapsePlaneNrvCollapse::sInstance);
+            setNerve(GET_NERVE(CollapsePlane, CollapsePlaneNrvCollapse));
         } else {
-            setNerve(&NrvCollapsePlane::CollapsePlaneNrvWait::sInstance);
+            setNerve(GET_NERVE(CollapsePlane, CollapsePlaneNrvWait));
         }
     }
 }
@@ -122,11 +122,11 @@ bool CollapsePlane::calcJointPlane(TPos3f* pMtx, const JointControllerInfo&) {
 }
 
 bool CollapsePlane::tryDPDStop() {
-    if (isNerve(&NrvCollapsePlane::CollapsePlaneNrvDPDStop::sInstance)) {
+    if (isNerve(GET_NERVE(CollapsePlane, CollapsePlaneNrvDPDStop))) {
         return false;
     }
 
-    if (isNerve(&NrvCollapsePlane::CollapsePlaneNrvEnd::sInstance)) {
+    if (isNerve(GET_NERVE(CollapsePlane, CollapsePlaneNrvEnd))) {
         return false;
     }
 
@@ -134,7 +134,7 @@ bool CollapsePlane::tryDPDStop() {
         return false;
     }
 
-    setNerve(&NrvCollapsePlane::CollapsePlaneNrvDPDStop::sInstance);
+    setNerve(GET_NERVE(CollapsePlane, CollapsePlaneNrvDPDStop));
 
     return true;
 }

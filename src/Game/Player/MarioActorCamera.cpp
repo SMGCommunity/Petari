@@ -116,7 +116,7 @@ void MarioActor::updateTransForCamera() {
         return;
     }
 
-    if (isNerve(&NrvMarioActor::MarioActorNrvGameOverBlackHole::sInstance)) {
+    if (isNerve(GET_NERVE(MarioActor, MarioActorNrvGameOverBlackHole))) {
         mCameraTrans = mBlackHolePosition * 0.1f + mCameraTrans * 0.9f;
         return;
     }

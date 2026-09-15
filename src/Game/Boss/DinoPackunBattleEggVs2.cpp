@@ -42,7 +42,7 @@ void DinoPackunBattleEggVs2::setTrackFire(DinoPackunTrackFireHolder* pHolder) {
 }
 
 void DinoPackunBattleEggVs2::init() {
-    initNerve(&NrvDinoPackunBattleEgg::DinoPackunBattleEggVs2NrvTurn::sInstance);
+    initNerve(GET_NERVE(DinoPackunBattleEgg, DinoPackunBattleEggVs2NrvTurn));
     mStateDamage = new DinoPackunStateDamage(getHost());
     mStateDamage->setDamageEgg();
     mStateFire = new DinoPackunStateFire(getHost());
@@ -53,7 +53,7 @@ void DinoPackunBattleEggVs2::appear() {
     mIsDead = false;
     getHost()->mTail->lockNodePosition(1);
     mStateFire->requestFireDirect();
-    setNerve(&NrvDinoPackunBattleEgg::DinoPackunBattleEggVs2NrvTurn::sInstance);
+    setNerve(GET_NERVE(DinoPackunBattleEgg, DinoPackunBattleEggVs2NrvTurn));
 }
 
 void DinoPackunBattleEggVs2::control() {
@@ -85,14 +85,14 @@ bool DinoPackunBattleEggVs2::receiveMsgPush(HitSensor* pSender, HitSensor* pRece
 }
 
 bool DinoPackunBattleEggVs2::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvDinoPackunBattleEgg::DinoPackunBattleEggVs2NrvDamage::sInstance)) {
+    if (isNerve(GET_NERVE(DinoPackunBattleEgg, DinoPackunBattleEggVs2NrvDamage))) {
         if (mStateDamage->receiveOtherMsg(msg, pSender, pReceiver)) {
             mStateFire->requestCool();
             return true;
         }
     } else if (mStateDamage->isDamageMessage(msg)) {
         mTrackFireHolder->killAll();
-        setNerve(&NrvDinoPackunBattleEgg::DinoPackunBattleEggVs2NrvDamage::sInstance);
+        setNerve(GET_NERVE(DinoPackunBattleEgg, DinoPackunBattleEggVs2NrvDamage));
         return true;
     }
 
@@ -109,7 +109,7 @@ void DinoPackunBattleEggVs2::exeTurn() {
     getHost()->adjustTailRootPosition(::sEggOutPosition, 1.0f);
 
     if (updateTurn(30, 1.5f)) {
-        setNerve(&NrvDinoPackunBattleEgg::DinoPackunBattleEggVs2NrvWalk::sInstance);
+        setNerve(GET_NERVE(DinoPackunBattleEgg, DinoPackunBattleEggVs2NrvWalk));
     }
 }
 
@@ -144,7 +144,7 @@ void DinoPackunBattleEggVs2::exeWalk() {
     }
 
     if (updateWalk(750, 0.9f, 40)) {
-        setNerve(&NrvDinoPackunBattleEgg::DinoPackunBattleEggVs2NrvTurn::sInstance);
+        setNerve(GET_NERVE(DinoPackunBattleEgg, DinoPackunBattleEggVs2NrvTurn));
     }
 }
 

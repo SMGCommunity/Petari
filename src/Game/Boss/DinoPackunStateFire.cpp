@@ -19,13 +19,13 @@ DinoPackunStateFire::DinoPackunStateFire(DinoPackun* pBoss) : ActorStateBase< Di
 }
 
 void DinoPackunStateFire::init() {
-    initNerve(&NrvDinoPackunStateFire::DinoPackunStateFireNrvNormal::sInstance);
+    initNerve(GET_NERVE(DinoPackunStateFire, DinoPackunStateFireNrvNormal));
     appear();
 }
 
 void DinoPackunStateFire::appear() {
     mIsDead = false;
-    setNerve(&NrvDinoPackunStateFire::DinoPackunStateFireNrvNormal::sInstance);
+    setNerve(GET_NERVE(DinoPackunStateFire, DinoPackunStateFireNrvNormal));
 }
 
 void DinoPackunStateFire::exeNormal() {
@@ -55,32 +55,32 @@ void DinoPackunStateFire::exeCool() {
     }
 
     if (MR::isBrkStopped(getHost())) {
-        setNerve(&NrvDinoPackunStateFire::DinoPackunStateFireNrvNormal::sInstance);
+        setNerve(GET_NERVE(DinoPackunStateFire, DinoPackunStateFireNrvNormal));
     }
 }
 
 void DinoPackunStateFire::requestFire() {
     if (!isFire()) {
         setFire();
-        setNerve(&NrvDinoPackunStateFire::DinoPackunStateFireNrvFire::sInstance);
+        setNerve(GET_NERVE(DinoPackunStateFire, DinoPackunStateFireNrvFire));
     }
 }
 
 void DinoPackunStateFire::requestFireDirect() {
     setFireDirect();
-    setNerve(&NrvDinoPackunStateFire::DinoPackunStateFireNrvFire::sInstance);
+    setNerve(GET_NERVE(DinoPackunStateFire, DinoPackunStateFireNrvFire));
 }
 
 void DinoPackunStateFire::requestFireSign() {
     if (isEnableFire()) {
-        setNerve(&NrvDinoPackunStateFire::DinoPackunStateFireNrvFireSign::sInstance);
+        setNerve(GET_NERVE(DinoPackunStateFire, DinoPackunStateFireNrvFireSign));
     }
 }
 
 void DinoPackunStateFire::requestCool() {
     if (isEnableCool()) {
         MR::startSound(getHost()->getBallModel(), "SE_BM_D_PAKKUN_TAIL_FIRE_OFF");
-        setNerve(&NrvDinoPackunStateFire::DinoPackunStateFireNrvCool::sInstance);
+        setNerve(GET_NERVE(DinoPackunStateFire, DinoPackunStateFireNrvCool));
     }
 }
 
@@ -101,12 +101,12 @@ void DinoPackunStateFire::setFireDirect() {
 }
 
 bool DinoPackunStateFire::isFire() const {
-    return isNerve(&NrvDinoPackunStateFire::DinoPackunStateFireNrvFire::sInstance);
+    return isNerve(GET_NERVE(DinoPackunStateFire, DinoPackunStateFireNrvFire));
 }
 
 bool DinoPackunStateFire::isEnableFire() const {
-    if (isNerve(&NrvDinoPackunStateFire::DinoPackunStateFireNrvNormal::sInstance) ||
-        isNerve(&NrvDinoPackunStateFire::DinoPackunStateFireNrvCool::sInstance)) {
+    if (isNerve(GET_NERVE(DinoPackunStateFire, DinoPackunStateFireNrvNormal)) ||
+        isNerve(GET_NERVE(DinoPackunStateFire, DinoPackunStateFireNrvCool))) {
         return true;
     }
 
@@ -114,8 +114,8 @@ bool DinoPackunStateFire::isEnableFire() const {
 }
 
 bool DinoPackunStateFire::isEnableCool() const {
-    if (isNerve(&NrvDinoPackunStateFire::DinoPackunStateFireNrvFireSign::sInstance) ||
-        isNerve(&NrvDinoPackunStateFire::DinoPackunStateFireNrvFire::sInstance)) {
+    if (isNerve(GET_NERVE(DinoPackunStateFire, DinoPackunStateFireNrvFireSign)) ||
+        isNerve(GET_NERVE(DinoPackunStateFire, DinoPackunStateFireNrvFire))) {
         return true;
     }
 

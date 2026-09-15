@@ -31,7 +31,7 @@ void BallOpener::init(const JMapInfoIter& rIter) {
     initSound(4, false);
     MR::initCollisionParts(this, "BallOpener", getSensor(nullptr), nullptr);
     _8C->setPosition(mPosition);
-    initNerve(&NrvBallOpener::BallOpenerNrvWait::sInstance);
+    initNerve(GET_NERVE(BallOpener, BallOpenerNrvWait));
     MR::useStageSwitchWriteA(this, rIter);
     appear();
 }
@@ -54,7 +54,7 @@ void BallOpener::exeWait() {
 
     if (mSensor != nullptr) {
         bindHole();
-        setNerve(&NrvBallOpener::BallOpenerNrvSetCenter::sInstance);
+        setNerve(GET_NERVE(BallOpener, BallOpenerNrvSetCenter));
     }
 }
 
@@ -78,7 +78,7 @@ void BallOpener::exeSetCenter() {
 
     MR::startLevelSound(this, "SE_OJ_LV_BALL_OPN_SETTING");
     if (_C4 > 20 || MR::isGreaterStep(this, 180)) {
-        setNerve(&NrvBallOpener::BallOpenerNrvOpen::sInstance);
+        setNerve(GET_NERVE(BallOpener, BallOpenerNrvOpen));
     }
 }
 
@@ -98,7 +98,7 @@ void BallOpener::exeOpen() {
             MR::onSwitchA(this);
         }
 
-        setNerve(&NrvBallOpener::BallOpenerNrvWait::sInstance);
+        setNerve(GET_NERVE(BallOpener, BallOpenerNrvWait));
     }
 }
 

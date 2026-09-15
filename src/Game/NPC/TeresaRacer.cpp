@@ -56,7 +56,7 @@ void TeresaRacer::init(const JMapInfoIter& rIter) {
     caps.mSensorOffset.x = 0.0f;
     caps.mSensorOffset.y = 25.0f;
     caps.mSensorOffset.z = 40.0f;
-    caps.mWaitNerve = &NrvTeresaRacer::TeresaRacerNrvWait::sInstance;
+    caps.mWaitNerve = GET_NERVE(TeresaRacer, TeresaRacerNrvWait);
 
     initialize(rIter, caps);
 
@@ -85,8 +85,7 @@ void TeresaRacer::init(const JMapInfoIter& rIter) {
         _114 = 0.05f;
         mParam._4 = 3000.0f;
 
-        mTakeOutStar =
-            new TakeOutStar(this, "TakeOutStarTeresaRacer", "TakeOutStarTeresaRacer", &NrvTeresaRacer::TeresaRacerNrvTakeOutStar::sInstance);
+        mTakeOutStar = new TakeOutStar(this, "TakeOutStarTeresaRacer", "TakeOutStarTeresaRacer", GET_NERVE(TeresaRacer, TeresaRacerNrvTakeOutStar));
     }
 }
 
@@ -102,8 +101,8 @@ bool TeresaRacer::branchFunc(u32 state) {
 }
 
 bool TeresaRacer::animeFunc(u32 anime) {
-    if (!isNerve(&NrvTeresaRacer::TeresaRacerNrvReady::sInstance)) {
-        pushNerve(&NrvTeresaRacer::TeresaRacerNrvReady::sInstance);
+    if (!isNerve(GET_NERVE(TeresaRacer, TeresaRacerNrvReady))) {
+        pushNerve(GET_NERVE(TeresaRacer, TeresaRacerNrvReady));
     }
 
     if (MR::isBckOneTimeAndStopped(this)) {
@@ -149,7 +148,7 @@ void TeresaRacer::exeWait() {
         if (mRacerId == -1) {
             MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "会話", -1);
         }
-        setNerve(&NrvTeresaRacer::TeresaRacerNrvPre::sInstance);
+        setNerve(GET_NERVE(TeresaRacer, TeresaRacerNrvPre));
     }
 }
 
@@ -161,12 +160,12 @@ void TeresaRacer::exePre() {
     if (!MR::isActionContinuous(this) && MR::tryTalkNearPlayerAtEndAndStartTalkAction(this)) {
         if (MR::tryTalkSelectLeft(getMsgCtrl())) {
             RaceManagerFunction::startRaceWithWipe();
-            setNerve(&NrvTeresaRacer::TeresaRacerNrvReady::sInstance);
+            setNerve(GET_NERVE(TeresaRacer, TeresaRacerNrvReady));
         } else {
             if (mRacerId == -1) {
                 MR::endMultiActorCamera(this, mCameraInfo, "会話", false, -1);
             }
-            setNerve(&NrvTeresaRacer::TeresaRacerNrvWait::sInstance);
+            setNerve(GET_NERVE(TeresaRacer, TeresaRacerNrvWait));
         }
     }
 }
@@ -178,17 +177,17 @@ void TeresaRacer::exePost() {
     if (!MR::isActionContinuous(this) && MR::tryTalkForceAtEndAndStartTalkAction(this)) {
         MR::endMultiActorCamera(this, mCameraInfo, "会話", true, -1);
         if (RaceManagerFunction::getRaceRank() == 1) {
-            setNerve(&NrvTeresaRacer::TeresaRacerNrvTalk::sInstance);
+            setNerve(GET_NERVE(TeresaRacer, TeresaRacerNrvTalk));
         } else {
             MR::forceKillPlayerByGroundRace();
-            setNerve(&NrvTeresaRacer::TeresaRacerNrvReady::sInstance);
+            setNerve(GET_NERVE(TeresaRacer, TeresaRacerNrvReady));
         }
     }
 }
 
 void TeresaRacer::exeMove() {
     if (MR::isRailReachedNearGoal(this, ::sNearGoalDist) || !MR::isRailGoingToEnd(this)) {
-        setNerve(&NrvTeresaRacer::TeresaRacerNrvGoal::sInstance);
+        setNerve(GET_NERVE(TeresaRacer, TeresaRacerNrvGoal));
     } else {
         MR::getCurrentRailPointArg0NoInit(this, &_10C);  // speed
         TVec3f up;
@@ -258,7 +257,7 @@ void TeresaRacer::prepRacer(const RaceManager* pRaceManager) {
 void TeresaRacer::startRacer() {
     mIsGoal = false;
     mBgmState = 0;
-    setNerve(&NrvTeresaRacer::TeresaRacerNrvMove::sInstance);
+    setNerve(GET_NERVE(TeresaRacer, TeresaRacerNrvMove));
 }
 
 bool TeresaRacer::updateRacer(const RaceManager* pRaceManager) {
@@ -294,7 +293,7 @@ void TeresaRacer::resetRacer(const RaceManager* pRaceManager) {
     }
 
     turnToPlayer(180.0f);
-    setNerve(&NrvTeresaRacer::TeresaRacerNrvPost::sInstance);
+    setNerve(GET_NERVE(TeresaRacer, TeresaRacerNrvPost));
     MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "会話", -1);
     mParam._0 = true;
     mParam._1 = true;
