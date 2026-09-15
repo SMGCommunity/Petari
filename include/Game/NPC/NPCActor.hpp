@@ -55,7 +55,7 @@ public:
     /* 0x4C */ TVec3f mSensorOffset;
     /* 0x58 */ s32 mSensorMax;
     /* 0x5C */ bool mShadow;
-    u8 _5D;
+    /* 0x5D */ bool mUseShadow;
     u8 _5E;
     u8 _5F;
     f32 mShadowSize;

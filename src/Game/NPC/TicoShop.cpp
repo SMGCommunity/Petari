@@ -45,7 +45,7 @@ void TicoShop::init(const JMapInfoIter& rIter) {
     caps.setDefault();
     caps.mSensorSize = ::sSensorSize;
     caps.mSensorOffset.y = ::sSensorOffset;
-    caps._5D = true;
+    caps.mUseShadow = true;
     caps.mSoundSize = 6;
     caps.mSensorMax = 2;
     caps.mSensorJoint = "Center";

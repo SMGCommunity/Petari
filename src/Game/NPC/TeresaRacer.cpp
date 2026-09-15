@@ -51,7 +51,7 @@ void TeresaRacer::init(const JMapInfoIter& rIter) {
     caps.setDefault();
     caps.setIndirect();
     caps.mLodCtrl = false;
-    caps._5D = true;
+    caps.mUseShadow = true;
     caps.mSensorSize = 220.0f;
     caps.mSensorOffset.x = 0.0f;
     caps.mSensorOffset.y = 25.0f;

@@ -50,7 +50,7 @@ void ButlerMap::init(const JMapInfoIter& rIter) {
     caps.mSensorOffset.x = 0.0f;
     caps.mSensorOffset.y = 0.0f;
     caps.mSensorOffset.z = 0.0f;
-    caps._5D = true;
+    caps.mUseShadow = true;
     caps.mBinder = false;
     NPCActor::initialize(rIter, caps);
     setDefaults2();

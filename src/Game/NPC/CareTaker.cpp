@@ -67,7 +67,7 @@ void Caretaker::init(const JMapInfoIter& rIter) {
     caps.setDefault();
     caps.mSoundSize = 8;
     caps.mRailRider = true;
-    caps._5D = 1;
+    caps.mUseShadow = 1;
     caps.mWaitNerve = &NrvCaretaker::CaretakerNrvTalk::sInstance;
     caps.mSensorSize = 100.0f;
 
