@@ -27,11 +27,11 @@ void LargeChain::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
-        MR::registerDemoActionNerve(this, &NrvLargeChain::LargeChainNrvBreak::sInstance, nullptr);
+        MR::registerDemoActionNerve(this, GET_NERVE(LargeChain, LargeChainNrvBreak), nullptr);
     }
 
     MR::useStageSwitchSleep(this, rIter);
-    initNerve(&NrvLargeChain::LargeChainNrvWait::sInstance);
+    initNerve(GET_NERVE(LargeChain, LargeChainNrvWait));
     makeActorAppeared();
 }
 

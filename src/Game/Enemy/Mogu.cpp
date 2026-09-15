@@ -86,7 +86,7 @@ void Mogu::init(const JMapInfoIter& rIter) {
     initEffectKeeper(false, nullptr, false);
     MR::initStarPointerTarget(this, 100.0f, TVec3f(0.0f, 50.0f, 0.0f));
     initSound(4, 0);
-    initNerve(&NrvMogu::HostTypeNrvSearch::sInstance);
+    initNerve(GET_NERVE(Mogu, HostTypeNrvSearch));
     mGravity.set(-_A8);
     MR::initShadowVolumeSphere(this, 60.0f * mScale.y);
     MR::invalidateShadow(this, nullptr);
@@ -125,8 +125,8 @@ void Mogu::control() {
 void Mogu::endClipped() {
     LiveActor::endClipped();
 
-    if (isNerve(&NrvMogu::HostTypeNrvTurn::sInstance)) {
-        setNerve(&NrvMogu::HostTypeNrvTurn::sInstance);
+    if (isNerve(GET_NERVE(Mogu, HostTypeNrvTurn))) {
+        setNerve(GET_NERVE(Mogu, HostTypeNrvTurn));
     }
 }
 
@@ -141,7 +141,7 @@ void Mogu::exeHideWait() {
     f32 distanceToPlayer = MR::calcDistanceToPlayer(this);
 
     if (MR::isGreaterStep(this, 120) && 400.0f < distanceToPlayer && distanceToPlayer < 2000.0f) {
-        setNerve(&NrvMogu::HostTypeNrvAppear::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvAppear));
     }
 }
 
@@ -183,7 +183,7 @@ void Mogu::exeHide() {
     }
     if (MR::isActionEnd(this)) {
         MR::startSound(this, "SE_EM_MOGUHOLE_CLOSE");
-        setNerve(&NrvMogu::HostTypeNrvHideWait::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvHideWait));
     }
 }
 
@@ -201,29 +201,29 @@ void Mogu::exeAppear() {
     // "Strong"
     if (MR::isStarPointerPointing2POnTriggerButton(this, "強", true, false)) {
         MR::start2PAttackAssistSound();
-        setNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvSwoonStart));
         return;
     }
 
     if (MR::isGreaterStep(this, 30) && isNearPlayerHipDrop()) {
-        setNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvSwoonStart));
         return;
     }
 
     f32 distanceToPlayer = MR::calcDistanceToPlayer(this);
     if (distanceToPlayer < 400.0f || isPlayerExistUp()) {
-        setNerve(&NrvMogu::HostTypeNrvHide::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvHide));
         return;
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvMogu::HostTypeNrvSearch::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvSearch));
     }
 }
 
 void Mogu::exeSearch() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvMogu::HostTypeNrvTurn::sInstance)) {
+        if (isNerve(GET_NERVE(Mogu, HostTypeNrvTurn))) {
             MR::startAction(this, "Turn");
         } else {
             MR::startAction(this, "Wait");
@@ -233,16 +233,16 @@ void Mogu::exeSearch() {
     // "Strong"
     if (MR::isStarPointerPointing2POnTriggerButton(this, "強", true, false)) {
         MR::start2PAttackAssistSound();
-        setNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvSwoonStart));
         return;
     }
 
     if (isNearPlayerHipDrop()) {
-        setNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvSwoonStart));
         return;
     }
 
-    if (isNerve(&NrvMogu::HostTypeNrvTurn::sInstance)) {
+    if (isNerve(GET_NERVE(Mogu, HostTypeNrvTurn))) {
         TVec3f v1;
         MR::calcVecToPlayerH(&v1, this, nullptr);
         MR::turnVecToVecRadian(&mSight, mSight, v1, 0.03f, _A8);
@@ -258,24 +258,24 @@ void Mogu::exeSearch() {
     }
 
     if (distanceToPlayer < 400.0f || isPlayerExistUp()) {
-        setNerve(&NrvMogu::HostTypeNrvHide::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvHide));
         return;
     }
 
     if (2000.0f < distanceToPlayer) {
-        setNerve(&NrvMogu::HostTypeNrvHide::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvHide));
         return;
     }
 
-    if (isNerve(&NrvMogu::HostTypeNrvSearch::sInstance) && distanceToPlayer < sightParam) {
+    if (isNerve(GET_NERVE(Mogu, HostTypeNrvSearch)) && distanceToPlayer < sightParam) {
         if (!MR::isValidSwitchA(this) || MR::isOnSwitchA(this)) {
-            setNerve(&NrvMogu::HostTypeNrvTurn::sInstance);
+            setNerve(GET_NERVE(Mogu, HostTypeNrvTurn));
             return;
         }
     }
 
-    if (isNerve(&NrvMogu::HostTypeNrvTurn::sInstance) && distanceToPlayer < sightParam) {
-        setNerve(&NrvMogu::HostTypeNrvSearch::sInstance);
+    if (isNerve(GET_NERVE(Mogu, HostTypeNrvTurn)) && distanceToPlayer < sightParam) {
+        setNerve(GET_NERVE(Mogu, HostTypeNrvSearch));
         return;
     }
 
@@ -286,7 +286,7 @@ void Mogu::exeSearch() {
         }
 
         if (MR::isInSightFanPlayer(this, mSight, sight2[0], sight2[1], sight2[2]) && MR::isGreaterStep(this, 45) && MR::isDead(mStone)) {
-            setNerve(&NrvMogu::HostTypeNrvThrow::sInstance);
+            setNerve(GET_NERVE(Mogu, HostTypeNrvThrow));
         }
     }
 }
@@ -302,12 +302,12 @@ void Mogu::exeThrow() {
     // "Strong"
     if (MR::isStarPointerPointing2POnTriggerButton(this, "強", true, false)) {
         MR::start2PAttackAssistSound();
-        setNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvSwoonStart));
         return;
     }
 
     if (isNearPlayerHipDrop()) {
-        setNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvSwoonStart));
         return;
     }
 
@@ -346,17 +346,17 @@ void Mogu::exeThrow() {
 
     f32 distanceToPlayer = MR::calcDistanceToPlayer(this);
     if (distanceToPlayer < 400.0f || isPlayerExistUp()) {
-        setNerve(&NrvMogu::HostTypeNrvHide::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvHide));
         return;
     }
 
     if (2000.0f < distanceToPlayer) {
-        setNerve(&NrvMogu::HostTypeNrvHide::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvHide));
         return;
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvMogu::HostTypeNrvSearch::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvSearch));
     }
 }
 
@@ -378,7 +378,7 @@ void Mogu::exeSwoonStart() {
     MR::startLevelSound(this, "SE_EM_LV_SWOON_S");
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvMogu::HostTypeNrvSwoon::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvSwoon));
     }
 }
 
@@ -390,12 +390,12 @@ void Mogu::exeSwoon() {
     MR::startLevelSound(this, "SE_EM_LV_SWOON_S");
 
     if (isNearPlayerHipDrop()) {
-        setNerve(&NrvMogu::HostTypeNrvHipDropReaction::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvHipDropReaction));
         return;
     }
 
     if (MR::isGreaterStep(this, 120)) {
-        setNerve(&NrvMogu::HostTypeNrvSwoonEnd::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvSwoonEnd));
     }
 }
 
@@ -405,7 +405,7 @@ void Mogu::exeHipDropReaction() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvMogu::HostTypeNrvSwoon::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvSwoon));
     }
 }
 
@@ -419,7 +419,7 @@ void Mogu::exeSwoonEnd() {
     if (MR::isActionEnd(this)) {
         MR::startAction(mHole, "Close");
         MR::startSound(this, "SE_EM_MOGUHOLE_CLOSE");
-        setNerve(&NrvMogu::HostTypeNrvHideWait::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvHideWait));
     }
 }
 
@@ -473,8 +473,8 @@ bool Mogu::isNearPlayerHipDrop() {
 }
 
 void Mogu::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (pSender != getSensor("body") || isNerve(&NrvMogu::HostTypeNrvHideWait::sInstance) || isNerve(&NrvMogu::HostTypeNrvHide::sInstance) ||
-        isNerve(&NrvMogu::HostTypeNrvStampDeath::sInstance) || isNerve(&NrvMogu::HostTypeNrvHitBlow::sInstance)) {
+    if (pSender != getSensor("body") || isNerve(GET_NERVE(Mogu, HostTypeNrvHideWait)) || isNerve(GET_NERVE(Mogu, HostTypeNrvHide)) ||
+        isNerve(GET_NERVE(Mogu, HostTypeNrvStampDeath)) || isNerve(GET_NERVE(Mogu, HostTypeNrvHitBlow))) {
         return;
     }
 
@@ -485,32 +485,32 @@ void Mogu::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool Mogu::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceAttack(msg)) {
-        if (isNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance) || isNerve(&NrvMogu::HostTypeNrvSwoonEnd::sInstance) ||
-            isNerve(&NrvMogu::HostTypeNrvSwoon::sInstance) || isNerve(&NrvMogu::HostTypeNrvHipDropReaction::sInstance)) {
+        if (isNerve(GET_NERVE(Mogu, HostTypeNrvSwoonStart)) || isNerve(GET_NERVE(Mogu, HostTypeNrvSwoonEnd)) ||
+            isNerve(GET_NERVE(Mogu, HostTypeNrvSwoon)) || isNerve(GET_NERVE(Mogu, HostTypeNrvHipDropReaction))) {
             mAnimScaleController->startHitReaction();
-        } else if (isNerve(&NrvMogu::HostTypeNrvAppear::sInstance) || isNerve(&NrvMogu::HostTypeNrvSearch::sInstance) ||
-                   isNerve(&NrvMogu::HostTypeNrvThrow::sInstance)) {
-            setNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance);
+        } else if (isNerve(GET_NERVE(Mogu, HostTypeNrvAppear)) || isNerve(GET_NERVE(Mogu, HostTypeNrvSearch)) ||
+                   isNerve(GET_NERVE(Mogu, HostTypeNrvThrow))) {
+            setNerve(GET_NERVE(Mogu, HostTypeNrvSwoonStart));
         }
         return true;
     }
 
     if (MR::isMsgJetTurtleAttack(msg) || MR::isMsgInvincibleAttack(msg)) {
-        if (isNerve(&NrvMogu::HostTypeNrvHideWait::sInstance) || isNerve(&NrvMogu::HostTypeNrvHide::sInstance) ||
-            isNerve(&NrvMogu::HostTypeNrvStampDeath::sInstance) || isNerve(&NrvMogu::HostTypeNrvHitBlow::sInstance)) {
+        if (isNerve(GET_NERVE(Mogu, HostTypeNrvHideWait)) || isNerve(GET_NERVE(Mogu, HostTypeNrvHide)) ||
+            isNerve(GET_NERVE(Mogu, HostTypeNrvStampDeath)) || isNerve(GET_NERVE(Mogu, HostTypeNrvHitBlow))) {
             return false;
         } else {
             return tryPunchHitted(pSender, pReceiver, true);
         }
     }
 
-    if (!isNerve(&NrvMogu::HostTypeNrvSwoonStart::sInstance) && !isNerve(&NrvMogu::HostTypeNrvSwoonEnd::sInstance) &&
-        !isNerve(&NrvMogu::HostTypeNrvSwoon::sInstance) && !isNerve(&NrvMogu::HostTypeNrvHipDropReaction::sInstance)) {
+    if (!isNerve(GET_NERVE(Mogu, HostTypeNrvSwoonStart)) && !isNerve(GET_NERVE(Mogu, HostTypeNrvSwoonEnd)) &&
+        !isNerve(GET_NERVE(Mogu, HostTypeNrvSwoon)) && !isNerve(GET_NERVE(Mogu, HostTypeNrvHipDropReaction))) {
         return false;
     }
 
     if (MR::isMsgPlayerHipDrop(msg) || MR::isMsgPlayerTrample(msg)) {
-        setNerve(&NrvMogu::HostTypeNrvStampDeath::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvStampDeath));
         return true;
     }
 
@@ -528,7 +528,7 @@ void Mogu::calcAndSetBaseMtx() {
     TVec3f scale = mAnimScaleController->_C * mScale;
     MR::setBaseScale(this, scale);
 
-    if (isNerve(&NrvMogu::HostTypeNrvThrow::sInstance) && MR::isLessStep(this, 47)) {
+    if (isNerve(GET_NERVE(Mogu, HostTypeNrvThrow)) && MR::isLessStep(this, 47)) {
         _90->calc();
         _90->mMtx.getTrans(mStone->mPosition);
     }
@@ -540,7 +540,7 @@ bool Mogu::tryPunchHitted(HitSensor* pSender, HitSensor* pReceiver, bool arg3) {
     MR::vecKillElement(direction, mGravity, &direction);
     MR::normalizeOrZero(&direction);
     if (MR::isNearZero(direction)) {
-        setNerve(&NrvMogu::HostTypeNrvStampDeath::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvStampDeath));
     } else {
         direction *= 30.0f;
         TVec3f gravity(mGravity);
@@ -555,7 +555,7 @@ bool Mogu::tryPunchHitted(HitSensor* pSender, HitSensor* pReceiver, bool arg3) {
             mPosition += v5;
         }
 
-        setNerve(&NrvMogu::HostTypeNrvHitBlow::sInstance);
+        setNerve(GET_NERVE(Mogu, HostTypeNrvHitBlow));
     }
 
     return true;

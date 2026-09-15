@@ -38,7 +38,7 @@ TripodBossShell::TripodBossShell(const char* pName) : TripodBossFixPartsBase(pNa
 void TripodBossShell::init(const JMapInfoIter& rIter) {
     TripodBossFixPartsBase::init(rIter);
     initModelManagerWithAnm("TripodBossShell", nullptr, false);
-    MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, -1);
+    MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, MR::DrawType_None);
     initHitSensor(2);
     MR::addHitSensorMapObj(this, "body", 16, ::sHitSensorRadius, TVec3f(0.0f, 300.0f, 0.0f));
     MR::addHitSensor(this, "killer_terget", ATYPE_BREAKABLE_CAGE, 8, ::sHitSensorRadius * mScale.x, TVec3f(0.0f, 0.0f, 0.0f));
@@ -51,7 +51,7 @@ void TripodBossShell::init(const JMapInfoIter& rIter) {
     mBreakModel->makeActorDead();
     MR::addTripodBossPartsMovement(mBreakModel);
 
-    initNerve(&NrvTripodBossShell::TripodBossShellNrvNonActive::sInstance);
+    initNerve(GET_NERVE(TripodBossShell, TripodBossShellNrvNonActive));
     MR::invalidateCollisionParts(this);
     getSensor("body")->invalidate();
     MR::useStageSwitchWriteDead(this, rIter);
@@ -64,8 +64,8 @@ void TripodBossShell::kill() {
 }
 
 bool TripodBossShell::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (pReceiver == getSensor("killer_terget") && !isNerve(&NrvTripodBossShell::TripodBossShellNrvBreak::sInstance)) {
-        setNerve(&NrvTripodBossShell::TripodBossShellNrvBreak::sInstance);
+    if (pReceiver == getSensor("killer_terget") && !isNerve(GET_NERVE(TripodBossShell, TripodBossShellNrvBreak))) {
+        setNerve(GET_NERVE(TripodBossShell, TripodBossShellNrvBreak));
 
         return true;
     }
@@ -74,10 +74,10 @@ bool TripodBossShell::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSens
 }
 
 void TripodBossShell::activateTripodBoss() {
-    if (isNerve(&NrvTripodBossShell::TripodBossShellNrvNonActive::sInstance)) {
+    if (isNerve(GET_NERVE(TripodBossShell, TripodBossShellNrvNonActive))) {
         MR::onCalcAnim(this);
         MR::validateCollisionParts(this);
-        setNerve(&NrvTripodBossShell::TripodBossShellNrvWait::sInstance);
+        setNerve(GET_NERVE(TripodBossShell, TripodBossShellNrvWait));
     }
 }
 

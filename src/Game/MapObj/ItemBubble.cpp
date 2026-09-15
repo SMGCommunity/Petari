@@ -42,7 +42,7 @@ void ItemBubble::init(const JMapInfoIter& rIter) {
     MR::addHitSensorMapObj(this, "body", 8, mScale.x * ::cHitSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
-    initNerve(&NrvItemBubble::ItemBubbleNrvWait::sInstance);
+    initNerve(GET_NERVE(ItemBubble, ItemBubbleNrvWait));
 
     s32 itemType = 0;
     s32 itemCount = 1;
@@ -268,7 +268,7 @@ void ItemBubble::exeBreak() {
 
 bool ItemBubble::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pSender)) {
-        setNerve(&NrvItemBubble::ItemBubbleNrvBreak::sInstance);
+        setNerve(GET_NERVE(ItemBubble, ItemBubbleNrvBreak));
         return true;
     }
     return false;
@@ -276,7 +276,7 @@ bool ItemBubble::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool ItemBubble::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceAttack(msg)) {
-        setNerve(&NrvItemBubble::ItemBubbleNrvBreak::sInstance);
+        setNerve(GET_NERVE(ItemBubble, ItemBubbleNrvBreak));
         return true;
     }
     return false;

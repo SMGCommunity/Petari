@@ -78,12 +78,12 @@ TalkDirector::~TalkDirector() {
 }
 
 void TalkDirector::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_TalkDirector, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_TalkDirector, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
     mBalloonHolder = new TalkBalloonHolder();
     mStateHolder = new TalkStateHolder();
     mMsgControls.init(128);
     mPeekZ = new TalkPeekZ();
-    initNerve(&NrvTalkDirector::TalkDirectorNrvWait::sInstance);
+    initNerve(GET_NERVE(TalkDirector, TalkDirectorNrvWait));
     initBranchResult();
     appear();
 }
@@ -102,10 +102,10 @@ bool TalkDirector::request(TalkMessageCtrl* pCtrl, bool force) {
 
     if (pCtrl->mIsOnRootNodeAuto) {
         if (TalkFunction::isShortTalk(pCtrl)) {
-            if (!isNerve(&NrvTalkDirector::TalkDirectorNrvNext::sInstance)) {
+            if (!isNerve(GET_NERVE(TalkDirector, TalkDirectorNrvNext))) {
                 pCtrl->rootNodePre(false);
             }
-        } else if (!isNerve(&NrvTalkDirector::TalkDirectorNrvTalk::sInstance) && !isNerve(&NrvTalkDirector::TalkDirectorNrvNext::sInstance)) {
+        } else if (!isNerve(GET_NERVE(TalkDirector, TalkDirectorNrvTalk)) && !isNerve(GET_NERVE(TalkDirector, TalkDirectorNrvNext))) {
             pCtrl->rootNodePre(false);
         }
     }
@@ -114,7 +114,7 @@ bool TalkDirector::request(TalkMessageCtrl* pCtrl, bool force) {
         return false;
     }
 
-    if (isNerve(&NrvTalkDirector::TalkDirectorNrvTalk::sInstance) && !TalkFunction::isShortTalk(mTalkState->_04)) {
+    if (isNerve(GET_NERVE(TalkDirector, TalkDirectorNrvTalk)) && !TalkFunction::isShortTalk(mTalkState->_04)) {
         if (mTalkState->_04 == pCtrl) {
             var31 = true;
         } else {
@@ -153,12 +153,12 @@ bool TalkDirector::request(TalkMessageCtrl* pCtrl, bool force) {
         return false;
     }
 
-    if (!isNerve(&NrvTalkDirector::TalkDirectorNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(TalkDirector, TalkDirectorNrvWait))) {
         return mTalkState->_04 == pCtrl;
     }
 
     mTalkState = initState(pCtrl);
-    setNerve(&NrvTalkDirector::TalkDirectorNrvPrep::sInstance);
+    setNerve(GET_NERVE(TalkDirector, TalkDirectorNrvPrep));
     return true;
 }
 
@@ -171,11 +171,11 @@ bool TalkDirector::test(TalkMessageCtrl* pCtrl, bool arg2, bool arg3) {
         return false;
     }
 
-    if (isNerve(&NrvTalkDirector::TalkDirectorNrvTalk::sInstance)) {
+    if (isNerve(GET_NERVE(TalkDirector, TalkDirectorNrvTalk))) {
         return true;
     }
 
-    if (!isNerve(&NrvTalkDirector::TalkDirectorNrvPrep::sInstance)) {
+    if (!isNerve(GET_NERVE(TalkDirector, TalkDirectorNrvPrep))) {
         return false;
     }
 
@@ -192,7 +192,7 @@ bool TalkDirector::test(TalkMessageCtrl* pCtrl, bool arg2, bool arg3) {
 
 bool TalkDirector::start(TalkMessageCtrl* pCtrl, bool arg2, bool arg3, bool arg4) {
     if (test(pCtrl, arg2, arg3)) {
-        if (isNerve(&NrvTalkDirector::TalkDirectorNrvTalk::sInstance)) {
+        if (isNerve(GET_NERVE(TalkDirector, TalkDirectorNrvTalk))) {
             return true;
         }
     } else {
@@ -203,10 +203,10 @@ bool TalkDirector::start(TalkMessageCtrl* pCtrl, bool arg2, bool arg3, bool arg4
     prepTalk(pCtrl, arg2, arg3, arg4);
 
     if (TalkFunction::isEventNode(pCtrl)) {
-        setNerve(&NrvTalkDirector::TalkDirectorNrvNext::sInstance);
+        setNerve(GET_NERVE(TalkDirector, TalkDirectorNrvNext));
     } else {
         mTalkState->open();
-        setNerve(&NrvTalkDirector::TalkDirectorNrvTalk::sInstance);
+        setNerve(GET_NERVE(TalkDirector, TalkDirectorNrvTalk));
     }
 
     return true;
@@ -222,7 +222,7 @@ void TalkDirector::updateMessage() {
         }
     }
 
-    if (isNerve(&NrvTalkDirector::TalkDirectorNrvWait::sInstance) || isNerve(&NrvTalkDirector::TalkDirectorNrvPrep::sInstance)) {
+    if (isNerve(GET_NERVE(TalkDirector, TalkDirectorNrvWait)) || isNerve(GET_NERVE(TalkDirector, TalkDirectorNrvPrep))) {
         mMsgCtrl = _3C;
         _3C = _40;
         _40 = nullptr;
@@ -447,8 +447,8 @@ void TalkDirector::balloonOff() {
 }
 
 bool TalkDirector::isSystemTalking() const {
-    if (isNerve(&NrvTalkDirector::TalkDirectorNrvTalk::sInstance) || isNerve(&NrvTalkDirector::TalkDirectorNrvSlct::sInstance) ||
-        isNerve(&NrvTalkDirector::TalkDirectorNrvNext::sInstance)) {
+    if (isNerve(GET_NERVE(TalkDirector, TalkDirectorNrvTalk)) || isNerve(GET_NERVE(TalkDirector, TalkDirectorNrvSlct)) ||
+        isNerve(GET_NERVE(TalkDirector, TalkDirectorNrvNext))) {
         return !TalkFunction::isShortTalk(mTalkState->_04);
     }
 
@@ -478,7 +478,7 @@ void TalkDirector::exePrep() {
 
     TalkFunction::onTalkStateNone(mTalkState->_04);
     mTalkState = nullptr;
-    setNerve(&NrvTalkDirector::TalkDirectorNrvWait::sInstance);
+    setNerve(GET_NERVE(TalkDirector, TalkDirectorNrvWait));
 }
 
 void TalkDirector::exeWait() {
@@ -503,7 +503,7 @@ void TalkDirector::exeTalk() {
     }
 
     if (TalkFunction::isSelectTalk(control)) {
-        setNerve(&NrvTalkDirector::TalkDirectorNrvSlct::sInstance);
+        setNerve(GET_NERVE(TalkDirector, TalkDirectorNrvSlct));
         return;
     }
 
@@ -514,7 +514,7 @@ void TalkDirector::exeTalk() {
         control->rootNodePst();
     }
 
-    setNerve(&NrvTalkDirector::TalkDirectorNrvNext::sInstance);
+    setNerve(GET_NERVE(TalkDirector, TalkDirectorNrvNext));
     exeNext();
 }
 
@@ -538,7 +538,7 @@ void TalkDirector::exeSlct() {
             control->rootNodePre(true);
         }
 
-        setNerve(&NrvTalkDirector::TalkDirectorNrvNext::sInstance);
+        setNerve(GET_NERVE(TalkDirector, TalkDirectorNrvNext));
         exeNext();
     }
 }
@@ -558,13 +558,13 @@ void TalkDirector::exeNext() {
             control->rootNodePre(true);
             mTalkState = initState(control);
             mTalkState->open();
-            setNerve(&NrvTalkDirector::TalkDirectorNrvTalk::sInstance);
+            setNerve(GET_NERVE(TalkDirector, TalkDirectorNrvTalk));
 
             return;
         }
         termTalk();
         TalkFunction::onTalkStateEnableEnd(control);
-        setNerve(&NrvTalkDirector::TalkDirectorNrvTerm::sInstance);
+        setNerve(GET_NERVE(TalkDirector, TalkDirectorNrvTerm));
     }
 }
 
@@ -578,7 +578,7 @@ void TalkDirector::exeTerm() {
     TalkFunction::onTalkStateNone(mTalkState->_04);
     mTalkState = nullptr;
 
-    setNerve(&NrvTalkDirector::TalkDirectorNrvWait::sInstance);
+    setNerve(GET_NERVE(TalkDirector, TalkDirectorNrvWait));
 }
 
 bool TalkFunction::requestTalkSystem(TalkMessageCtrl* pCtrl, bool force) {

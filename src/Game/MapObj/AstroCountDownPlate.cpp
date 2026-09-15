@@ -51,13 +51,13 @@ void AstroCountDownPlate::init(const JMapInfoIter& rIter) {
     }
 
     MR::registerDemoSimpleCastAll(this);
-    initNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvDead::sInstance);
+    initNerve(GET_NERVE(AstroCountDownPlate, AstroCountDownPlateNrvDead));
     selectNrvWait();
     makeActorAppeared();
 }
 
 void AstroCountDownPlate::exeWait() {
-    if (MR::isFirstStep(this) && isNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvAlive::sInstance) && !MR::isEffectValid(this, "Light")) {
+    if (MR::isFirstStep(this) && isNerve(GET_NERVE(AstroCountDownPlate, AstroCountDownPlateNrvAlive)) && !MR::isEffectValid(this, "Light")) {
         MR::emitEffect(this, "Light");
 
         _1B4 = true;
@@ -83,7 +83,7 @@ void AstroCountDownPlate::exeRevival() {
     }
 
     if (MR::isBrkStopped(this)) {
-        setNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvAlive::sInstance);
+        setNerve(GET_NERVE(AstroCountDownPlate, AstroCountDownPlateNrvAlive));
     }
 }
 
@@ -103,7 +103,7 @@ void AstroCountDownPlate::exeCountToZero() {
     }
 
     if (MR::isStep(this, ::sStepForCountToZero)) {
-        setNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvAlive::sInstance);
+        setNerve(GET_NERVE(AstroCountDownPlate, AstroCountDownPlateNrvAlive));
     }
 }
 
@@ -122,16 +122,16 @@ void AstroCountDownPlate::setNumLeftStar() {
 
 void AstroCountDownPlate::selectNrvWait() {
     if (AstroMapObjFunction::isAlreadyRevival("AstroCountDownPlate", -1)) {
-        setNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvAlive::sInstance);
+        setNerve(GET_NERVE(AstroCountDownPlate, AstroCountDownPlateNrvAlive));
     } else {
-        setNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvDead::sInstance);
+        setNerve(GET_NERVE(AstroCountDownPlate, AstroCountDownPlateNrvDead));
     }
 
     setupStateWait();
 }
 
 void AstroCountDownPlate::setupStateWait() {
-    if (isNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvDead::sInstance)) {
+    if (isNerve(GET_NERVE(AstroCountDownPlate, AstroCountDownPlateNrvDead))) {
         MR::hideMaterial(this, ::cMaterialName01);
         MR::hideMaterial(this, ::cMaterialName10);
     } else {
@@ -147,9 +147,9 @@ void AstroCountDownPlate::setupStateWait() {
 }
 
 void AstroCountDownPlate::startDemoStartCountDown() {
-    setNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvRevival::sInstance);
+    setNerve(GET_NERVE(AstroCountDownPlate, AstroCountDownPlateNrvRevival));
 }
 
 void AstroCountDownPlate::startDemoLastBattle() {
-    setNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvCountToZero::sInstance);
+    setNerve(GET_NERVE(AstroCountDownPlate, AstroCountDownPlateNrvCountToZero));
 }

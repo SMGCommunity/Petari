@@ -26,7 +26,7 @@ ShadowControllerHolder::ShadowControllerHolder() : NameObj("影管理"), _C(), _
     mFarClip = 4000.0f;
     _C.init(0x500);
     _18.init(0x400);
-    MR::connectToScene(this, MR::MovementType_ShadowControllerHolder, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_ShadowControllerHolder, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
 
     if (MR::isEqualStageName("AstroGalaxy") || MR::isEqualStageName("PeachCastleGardenGalaxy") || MR::isEqualStageName("PeachCastleFinalGalaxy")) {
         _24 = true;

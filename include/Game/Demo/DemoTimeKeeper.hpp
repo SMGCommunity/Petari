@@ -16,17 +16,18 @@ public:
 
 class DemoTimeKeeper {
 public:
-    DemoTimeKeeper(const DemoExecutor*);
+    DemoTimeKeeper(const DemoExecutor* pExecutor);
 
     void start();
     void update();
     void end();
     bool isDemoEnd() const;
-    void setStartPart(const char*);
+    void setStartPart(const char* pPartName);
     bool isExistSuspendFlagCurrentPart() const;
     bool isPartLast() const;
-    void setCurrentPart(const char*);
+    void setCurrentPart(const char* pPartName);
     bool isCurrentDemoPartLastStep() const;
+    s32 getPart(const char* pPartName) const;
 
     /* 0x00 */ const DemoExecutor* mExecutor;
     /* 0x04 */ DemoTimePartInfo* mMainPartInfos;

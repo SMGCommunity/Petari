@@ -24,7 +24,7 @@ namespace NrvPoltaBattleLv1 {
 };  // namespace NrvPoltaBattleLv1
 
 PoltaBattleLv1::PoltaBattleLv1(Polta* pPolta) : PoltaActionBase("ポルタ1戦目", pPolta), mPoltaHealth(3), _24(0) {
-    initNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvWait::sInstance);
+    initNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvWait));
     mStateStagger = new PoltaStateStagger(pPolta);
     mStateGroundRockAttack = new PoltaStateGroundRockAttack(pPolta);
     mStateGroundRockAttack->_10 = 4;
@@ -43,20 +43,18 @@ void PoltaBattleLv1::appear() {
     PoltaFunction::setBodyHP(getHost(), 3);
     PoltaFunction::killLeftArm(getHost());
     PoltaFunction::killRightArm(getHost());
-    setNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvWait::sInstance);
+    setNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvWait));
     _24 = 0;
     PoltaFunction::emitEffectShadow(getHost());
 }
 
 void PoltaBattleLv1::control() {
     getHost()->updatePose(0.2f, 0.4f);
-    if (isNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvWait::sInstance) ||
-        isNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvGenerateGroundRock::sInstance) ||
-        isNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvGenerateRock::sInstance) ||
-        isNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvDamageBody::sInstance) || isNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvBreakBody::sInstance)) {
+    if (isNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvWait)) || isNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvGenerateGroundRock)) ||
+        isNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvGenerateRock)) || isNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvDamageBody)) ||
+        isNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvBreakBody))) {
         MR::startLevelSound(getHost(), "SE_BM_LV_POLTA_IN_BATTLE_ROCK");
-    } else if (isNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvStagger::sInstance) ||
-               isNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvDamageCore::sInstance)) {
+    } else if (isNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvStagger)) || isNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvDamageCore))) {
         MR::startLevelSound(getHost(), "SE_BM_LV_POLTA_CORE_ESCAPE");
     }
 }
@@ -90,13 +88,13 @@ bool PoltaBattleLv1::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSenso
         if (PoltaFunction::isBodySensor(getHost(), pReceiver)) {
             addDamageBody();
             if (mPoltaHealth <= 0) {
-                setNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvBreakBody::sInstance);
+                setNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvBreakBody));
             } else {
-                setNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvDamageBody::sInstance);
+                setNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvDamageBody));
             }
             return true;
         } else if (PoltaFunction::isCoreSensor(getHost(), pReceiver)) {
-            setNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvDamageCore::sInstance);
+            setNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvDamageCore));
             return true;
         }
     }
@@ -104,7 +102,7 @@ bool PoltaBattleLv1::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSenso
 }
 
 bool PoltaBattleLv1::isEnableSensor(const HitSensor* pSensor) const {
-    if (isNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvStagger::sInstance) && !mStateStagger->isEnableSensor()) {
+    if (isNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvStagger)) && !mStateStagger->isEnableSensor()) {
         return false;
     }
 
@@ -126,25 +124,25 @@ void PoltaBattleLv1::exeWait() {
     updateWait();
     if (MR::isGreaterStep(this, 90)) {
         if (_24 == 2 && PoltaFunction::getCountDeadGroundRock(getHost()) >= 4) {
-            setNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvGenerateGroundRock::sInstance);
+            setNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvGenerateGroundRock));
         } else {
-            setNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvGenerateRock::sInstance);
+            setNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvGenerateRock));
         }
         _24 = (_24 + 4) % 3;
     }
 }
 
 void PoltaBattleLv1::exeGenerateGroundRock() {
-    MR::updateActorStateAndNextNerve(this, mStateGroundRockAttack, &NrvPoltaBattleLv1::PoltaBattleLv1NrvWait::sInstance);
+    MR::updateActorStateAndNextNerve(this, mStateGroundRockAttack, GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvWait));
 }
 
 void PoltaBattleLv1::exeGenerateRock() {
-    MR::updateActorStateAndNextNerve(this, mStateGenerateRock, &NrvPoltaBattleLv1::PoltaBattleLv1NrvWait::sInstance);
+    MR::updateActorStateAndNextNerve(this, mStateGenerateRock, GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvWait));
 }
 
 void PoltaBattleLv1::exeDamageBody() {
     if (updateDamageBody(mPoltaHealth == 2)) {
-        setNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvWait::sInstance);
+        setNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvWait));
     }
 }
 
@@ -153,7 +151,7 @@ void PoltaBattleLv1::exeBreakBody() {
         getHost()->appearStarPiece(10);
     }
     if (updateBreakBody()) {
-        setNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvStagger::sInstance);
+        setNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvStagger));
     }
 }
 
@@ -183,14 +181,14 @@ void PoltaBattleLv1::exeDamageCore() {
 }
 
 bool PoltaBattleLv1::isEnableDamage() const {
-    if (isNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvBreakBody::sInstance) || isNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvDamageCore::sInstance)) {
+    if (isNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvBreakBody)) || isNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvDamageCore))) {
         return false;
     }
     return true;
 }
 
 bool PoltaBattleLv1::isEnableScream() const {
-    return isNerve(&NrvPoltaBattleLv1::PoltaBattleLv1NrvBreakBody::sInstance);
+    return isNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvBreakBody));
 }
 
 void PoltaBattleLv1::addDamageBody() {

@@ -67,7 +67,7 @@ SpaceCocoon::SpaceCocoon(const char* pName)
 void SpaceCocoon::init(const JMapInfoIter& rIter) {
     // FIXME : annoying regswap, idx should be in r30
     // https://decomp.me/scratch/kjwvE
-    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_Ride, -1, MR::DrawType_SpaceCocoon);
+    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_Ride, MR::DrawBufferType_None, MR::DrawType_SpaceCocoon);
 
     MR::initDefaultPos(this, rIter);
 
@@ -99,7 +99,7 @@ void SpaceCocoon::init(const JMapInfoIter& rIter) {
         MR::needStageSwitchWriteA(this, rIter);
     }
 
-    initNerve(&NrvSpaceCocoon::SpaceCocoonNrvStop::sInstance);
+    initNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvStop));
 
     mNumPoints = mHeight / 10.0f;
     mPlantPoints = new PlantPoint*[mNumPoints];
@@ -169,7 +169,7 @@ void SpaceCocoon::exeFree() {
         mSpringVel.zero();
         mCocoonPos.set(mNeutralPos);
         mPosition.set(mNeutralPos);
-        setNerve(&NrvSpaceCocoon::SpaceCocoonNrvStop::sInstance);
+        setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvStop));
     } else {
         mPosition.set(mCocoonPos);
     }
@@ -191,7 +191,7 @@ void SpaceCocoon::exeFreeInvalid() {
         mRider = nullptr;
         MR::validateClipping(this);
         MR::validateHitSensors(this);
-        setNerve(&NrvSpaceCocoon::SpaceCocoonNrvFree::sInstance);
+        setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvFree));
     }
 }
 
@@ -203,21 +203,21 @@ void SpaceCocoon::exeBindLand() {
             MR::startSound(mRider, "SE_PV_CATCH");
         } else {
             MR::startBckWithInterpole(mRider, "CocoonLand", 1);
-            setNerve(&NrvSpaceCocoon::SpaceCocoonNrvKinopioWait::sInstance);
+            setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvKinopioWait));
             return;
         }
         MR::startSound(this, "SE_OJ_SPACE_COCOON_ATTACH");
     }
 
     if (isKinopioAttached()) {
-        setNerve(&NrvSpaceCocoon::SpaceCocoonNrvBindWait::sInstance);
+        setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvBindWait));
         return;
     }
 
     if (!updateBindWait()) {
         tryTouch();
         if (MR::isBckStopped(mRider)) {
-            setNerve(&NrvSpaceCocoon::SpaceCocoonNrvBindWait::sInstance);
+            setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvBindWait));
         }
     }
 }
@@ -253,7 +253,7 @@ void SpaceCocoon::exeBindWait() {
 void SpaceCocoon::exeWaitKinopioAimDemo() {
     if (MR::tryStartDemoWithoutCinemaFrameValidStarPointer(this, "キノピオ狙い中")) {
         MR::startMultiActorCameraTargetPlayer(this, mCameraInfo, "狙い中", -1);
-        setNerve(&NrvSpaceCocoon::SpaceCocoonNrvKinopioAim::sInstance);
+        setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvKinopioAim));
     }
 }
 
@@ -320,9 +320,9 @@ void SpaceCocoon::exeBindAttackSuccess() {
 
     if (MR::isStep(this, 2)) {
         if (isKinopioAttached()) {
-            setNerve(&NrvSpaceCocoon::SpaceCocoonNrvKinopioAttack::sInstance);
+            setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvKinopioAttack));
         } else {
-            setNerve(&NrvSpaceCocoon::SpaceCocoonNrvBindAttack::sInstance);
+            setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvBindAttack));
         }
     }
 }
@@ -346,14 +346,14 @@ void SpaceCocoon::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         mSpringVel.set(side);
         mSpringVel.add(front);
         mRider->mVelocity.zero();
-        setNerve(&NrvSpaceCocoon::SpaceCocoonNrvKinopioWait::sInstance);
+        setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvKinopioWait));
         return;
     }
 
-    if (mRider == nullptr || isNerve(&NrvSpaceCocoon::SpaceCocoonNrvKinopioWait::sInstance) ||
-        isNerve(&NrvSpaceCocoon::SpaceCocoonNrvFreeInvalid::sInstance)) {
+    if (mRider == nullptr || isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvKinopioWait)) ||
+        isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvFreeInvalid))) {
         if (!MR::isSensorType(pSender, ATYPE_SPRING_ATTACKER) &&
-            (isKinopioAttached() || isNerve(&NrvSpaceCocoon::SpaceCocoonNrvFreeInvalid::sInstance))) {
+            (isKinopioAttached() || isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvFreeInvalid)))) {
             MR::sendMsgPush(pReceiver, pSender);
         }
         return;
@@ -369,7 +369,7 @@ bool SpaceCocoon::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
         return false;
     }
 
-    if (isNerve(&NrvSpaceCocoon::SpaceCocoonNrvFree::sInstance) || isNerve(&NrvSpaceCocoon::SpaceCocoonNrvFreeInvalid::sInstance)) {
+    if (isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvFree)) || isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvFreeInvalid))) {
         MR::addVelocitySeparateHV(this, pSender, pReceiver, 5.0f, 0.0f);
         mSpringVel.add(mVelocity);
         MR::zeroVelocity(this);
@@ -390,7 +390,7 @@ bool SpaceCocoon::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
 
 bool SpaceCocoon::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgAutoRushBegin(msg)) {
-        if (isNerve(&NrvSpaceCocoon::SpaceCocoonNrvFreeInvalid::sInstance) || isKinopioAttached()) {
+        if (isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvFreeInvalid)) || isKinopioAttached()) {
             return false;
         }
         mRider = pSender->mHost;
@@ -409,7 +409,7 @@ bool SpaceCocoon::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
         if (MR::isStarPointerInScreen(WPAD_CHAN0)) {
             MR::calcStarPointerPosOnPlane(&mPointerPos, mPosition, mUp, WPAD_CHAN0, false);
         }
-        setNerve(&NrvSpaceCocoon::SpaceCocoonNrvBindLand::sInstance);
+        setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvBindLand));
         return true;
     }
 
@@ -420,7 +420,7 @@ bool SpaceCocoon::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
     }
 
     if (MR::isMsgIsRushTakeOver(msg)) {
-        return !isNerve(&NrvSpaceCocoon::SpaceCocoonNrvFreeInvalid::sInstance);
+        return !isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvFreeInvalid));
     }
 
     if (MR::isMsgRushCancel(msg)) {
@@ -451,11 +451,11 @@ bool SpaceCocoon::updateBindWait() {
 
         if (mPadChannel >= 0) {
             if (isKinopioAttached()) {
-                setNerve(&NrvSpaceCocoon::SpaceCocoonNrvWaitKinopioAimDemo::sInstance);
+                setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvWaitKinopioAimDemo));
             } else {
                 MR::endMultiActorCamera(this, mCameraInfo, "ウェイト", true, -1);
                 MR::startMultiActorCameraTargetOther(this, mCameraInfo, "狙い中", CameraTargetArg(mCameraTargetMtx), -1);
-                setNerve(&NrvSpaceCocoon::SpaceCocoonNrvBindAim::sInstance);
+                setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvBindAim));
             }
             return true;
         }
@@ -544,8 +544,8 @@ void SpaceCocoon::updateBindAttack() {
 }
 
 void SpaceCocoon::updateActorMtx() {
-    if (isNerve(&NrvSpaceCocoon::SpaceCocoonNrvBindAttack::sInstance) || isNerve(&NrvSpaceCocoon::SpaceCocoonNrvBindAttackSuccess::sInstance) ||
-        isNerve(&NrvSpaceCocoon::SpaceCocoonNrvKinopioAttack::sInstance) || isNerve(&NrvSpaceCocoon::SpaceCocoonNrvKinopioAttackSuccess::sInstance)) {
+    if (isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvBindAttack)) || isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvBindAttackSuccess)) ||
+        isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvKinopioAttack)) || isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvKinopioAttackSuccess))) {
         mBaseMtx.setTrans(mPosition);
     } else {
         mBaseMtx.set(mTopMtx);
@@ -627,8 +627,8 @@ bool SpaceCocoon::tryTouch() {
 
         MR::startSound(this, "SE_OJ_SPACE_COCOON_BOUND");
 
-        if (isNerve(&NrvSpaceCocoon::SpaceCocoonNrvStop::sInstance)) {
-            setNerve(&NrvSpaceCocoon::SpaceCocoonNrvFree::sInstance);
+        if (isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvStop))) {
+            setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvFree));
         }
 
         mTouchTime = 20;
@@ -649,10 +649,10 @@ bool SpaceCocoon::tryRelease() {
     if (mPosition.distance(mNeutralPos) < 100.0f) {
         if (isKinopioAttached()) {
             MR::endDemo(this, "キノピオ狙い中");
-            setNerve(&NrvSpaceCocoon::SpaceCocoonNrvKinopioWait::sInstance);
+            setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvKinopioWait));
         } else {
             MR::startMultiActorCameraTargetOther(this, mCameraInfo, "ウェイト", CameraTargetArg(mCameraTargetMtx), -1);
-            setNerve(&NrvSpaceCocoon::SpaceCocoonNrvBindWait::sInstance);
+            setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvBindWait));
         }
         return true;
     }
@@ -683,9 +683,9 @@ bool SpaceCocoon::tryRelease() {
     MR::startMultiActorCameraNoTarget(this, mCameraInfo, "攻撃中", -1);
 
     if (isKinopioAttached()) {
-        setNerve(&NrvSpaceCocoon::SpaceCocoonNrvKinopioAttack::sInstance);
+        setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvKinopioAttack));
     } else {
-        setNerve(&NrvSpaceCocoon::SpaceCocoonNrvBindAttack::sInstance);
+        setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvBindAttack));
     }
 
     return true;
@@ -712,9 +712,9 @@ bool SpaceCocoon::tryAttackMap() {
 
     if (attackSuccess) {
         if (isKinopioAttached()) {
-            setNerve(&NrvSpaceCocoon::SpaceCocoonNrvKinopioAttackSuccess::sInstance);
+            setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvKinopioAttackSuccess));
         } else {
-            setNerve(&NrvSpaceCocoon::SpaceCocoonNrvBindAttackSuccess::sInstance);
+            setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvBindAttackSuccess));
         }
         return false;
     }
@@ -723,9 +723,9 @@ bool SpaceCocoon::tryAttackMap() {
 }
 
 bool SpaceCocoon::isKinopioAttached() const {
-    if (isNerve(&NrvSpaceCocoon::SpaceCocoonNrvKinopioWait::sInstance) || isNerve(&NrvSpaceCocoon::SpaceCocoonNrvWaitKinopioAimDemo::sInstance) ||
-        isNerve(&NrvSpaceCocoon::SpaceCocoonNrvKinopioAim::sInstance) || isNerve(&NrvSpaceCocoon::SpaceCocoonNrvKinopioAttack::sInstance) ||
-        isNerve(&NrvSpaceCocoon::SpaceCocoonNrvKinopioAttackSuccess::sInstance)) {
+    if (isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvKinopioWait)) || isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvWaitKinopioAimDemo)) ||
+        isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvKinopioAim)) || isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvKinopioAttack)) ||
+        isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvKinopioAttackSuccess))) {
         return true;
     }
 
@@ -752,7 +752,7 @@ void SpaceCocoon::endBind(const TVec3f& rJumpVec, bool b) {
     endCommandStream();
     mVelocity.zero();
     mPosition.set(mNeutralPos);
-    setNerve(&NrvSpaceCocoon::SpaceCocoonNrvFreeInvalid::sInstance);
+    setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvFreeInvalid));
 }
 
 void SpaceCocoon::endCommandStream() {

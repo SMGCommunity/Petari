@@ -566,7 +566,7 @@ WaterRoad::WaterRoad(const char* pName)
 }
 
 void WaterRoad::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_WaterRoad);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_WaterRoad);
     MR::initDefaultPos(this, rIter);
     MR::makeMtxTR(mBaseMtx, this);
     mBaseMtx.getYDir(mBaseUp);
@@ -579,7 +579,7 @@ void WaterRoad::init(const JMapInfoIter& rIter) {
     }
     updateDemo(0.0f);
 
-    initNerve(&NrvWaterRoad::WaterRoadNrvWait::sInstance);
+    initNerve(GET_NERVE(WaterRoad, WaterRoadNrvWait));
 
     initHitSensor(1);
     MR::addHitSensorCallbackBinder(this, "Binder", 8, mRadius);
@@ -626,9 +626,9 @@ void WaterRoad::appear() {
     }
 
     if (MR::isDemoPartActive("ウォーターロード成長")) {
-        setNerve(&NrvWaterRoad::WaterRoadNrvDemoGrowUp::sInstance);
+        setNerve(GET_NERVE(WaterRoad, WaterRoadNrvDemoGrowUp));
     } else {
-        setNerve(&NrvWaterRoad::WaterRoadNrvDemoStart::sInstance);
+        setNerve(GET_NERVE(WaterRoad, WaterRoadNrvDemoStart));
     }
 }
 
@@ -640,7 +640,7 @@ void WaterRoad::exeWait() {
 
 void WaterRoad::exeWaitInvalid() {
     if (MR::isStep(this, 180)) {
-        setNerve(&NrvWaterRoad::WaterRoadNrvWait::sInstance);
+        setNerve(GET_NERVE(WaterRoad, WaterRoadNrvWait));
     }
 }
 
@@ -655,12 +655,12 @@ void WaterRoad::exeRideStart() {
     }
 
     if (MR::isCorePadSwing(WPAD_CHAN0)) {
-        setNerve(&NrvWaterRoad::WaterRoadNrvRideSpin::sInstance);
+        setNerve(GET_NERVE(WaterRoad, WaterRoadNrvRideSpin));
         return;
     }
 
     if (MR::isBckStopped(mRider)) {
-        setNerve(&NrvWaterRoad::WaterRoadNrvRideWait::sInstance);
+        setNerve(GET_NERVE(WaterRoad, WaterRoadNrvRideWait));
     }
 }
 
@@ -674,7 +674,7 @@ void WaterRoad::exeRideWait() {
     }
 
     if (MR::isCorePadSwing(WPAD_CHAN0)) {
-        setNerve(&NrvWaterRoad::WaterRoadNrvRideSpin::sInstance);
+        setNerve(GET_NERVE(WaterRoad, WaterRoadNrvRideSpin));
     }
 }
 
@@ -694,7 +694,7 @@ void WaterRoad::exeRideSpin() {
     }
 
     if (MR::isStep(this, ::sStepRideSpin)) {
-        setNerve(&NrvWaterRoad::WaterRoadNrvRideWait::sInstance);
+        setNerve(GET_NERVE(WaterRoad, WaterRoadNrvRideWait));
     }
 }
 
@@ -703,7 +703,7 @@ void WaterRoad::exeDemoStart() {
     MR::startAtmosphereLevelSE("SE_AT_LV_EARTHQUAKE");
 
     if (MR::isDemoPartLastStep("ウォーターロード出現")) {
-        setNerve(&NrvWaterRoad::WaterRoadNrvDemoGrowUp::sInstance);
+        setNerve(GET_NERVE(WaterRoad, WaterRoadNrvDemoGrowUp));
     }
 }
 
@@ -723,14 +723,14 @@ void WaterRoad::exeDemoGrowUp() {
     if (MR::isDemoPartLastStep("ウォーターロード成長")) {
         MR::deleteEffect(this, "Top");
         MR::emitEffect(this, "End");
-        setNerve(&NrvWaterRoad::WaterRoadNrvDemoWaitEnd::sInstance);
+        setNerve(GET_NERVE(WaterRoad, WaterRoadNrvDemoWaitEnd));
     }
 }
 
 void WaterRoad::exeDemoWaitEnd() {
     if (!MR::isDemoActive()) {
         MR::showPlayer();
-        setNerve(&NrvWaterRoad::WaterRoadNrvWait::sInstance);
+        setNerve(GET_NERVE(WaterRoad, WaterRoadNrvWait));
     }
 }
 
@@ -765,7 +765,7 @@ void WaterRoad::movement() {
 }
 
 void WaterRoad::updateHitSensor(HitSensor* pSensor) {
-    if (!isNerve(&NrvWaterRoad::WaterRoadNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(WaterRoad, WaterRoadNrvWait))) {
         return;
     }
 
@@ -777,14 +777,14 @@ void WaterRoad::updateHitSensor(HitSensor* pSensor) {
 
 bool WaterRoad::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgAutoRushBegin(msg)) {
-        if (!isNerve(&NrvWaterRoad::WaterRoadNrvWait::sInstance)) {
+        if (!isNerve(GET_NERVE(WaterRoad, WaterRoadNrvWait))) {
             return false;
         }
 
         mRider = MR::getSensorHost(pSender);
         MR::moveCoordToNearestPos(this, mRider->mPosition);
         MR::startMultiActorCameraTargetPlayer(this, mCameraInfo, "バインド中", -1);
-        setNerve(&NrvWaterRoad::WaterRoadNrvRideStart::sInstance);
+        setNerve(GET_NERVE(WaterRoad, WaterRoadNrvRideStart));
         return true;
     }
 
@@ -814,7 +814,7 @@ bool WaterRoad::updateRide() {
         MR::endBindAndPlayerJump(this, TVec3f(0.0f, 0.0f, 0.0f), 0);
         MR::endMultiActorCamera(this, mCameraInfo, "バインド中", true, -1);
         mRider = nullptr;
-        setNerve(&NrvWaterRoad::WaterRoadNrvDisappear::sInstance);
+        setNerve(GET_NERVE(WaterRoad, WaterRoadNrvDisappear));
         return true;
     }
 
@@ -836,7 +836,7 @@ void WaterRoad::draw() const {
         return;
     }
 
-    if (isNerve(&NrvWaterRoad::WaterRoadNrvDemoStart::sInstance)) {
+    if (isNerve(GET_NERVE(WaterRoad, WaterRoadNrvDemoStart))) {
         return;
     }
 
@@ -854,7 +854,7 @@ void WaterRoad::draw() const {
     screenTex.load(GX_TEXMAP2);
     mEnvMap->load(GX_TEXMAP3);
 
-    if (isNerve(&NrvWaterRoad::WaterRoadNrvDemoGrowUp::sInstance) || isNerve(&NrvWaterRoad::WaterRoadNrvDemoWaitEnd::sInstance)) {
+    if (isNerve(GET_NERVE(WaterRoad, WaterRoadNrvDemoGrowUp)) || isNerve(GET_NERVE(WaterRoad, WaterRoadNrvDemoWaitEnd))) {
         mIndirect->load(GX_TEXMAP1);
         mtx[0][2] = mTexUV2.x;
         mtx[1][2] = mTexUV2.y;

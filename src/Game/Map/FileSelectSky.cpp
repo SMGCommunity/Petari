@@ -28,7 +28,7 @@ void FileSelectSky::init(const JMapInfoIter& rIter) {
     MR::connectToSceneSky(this);
     initEffectKeeper(0, nullptr, false);
     MR::invalidateClipping(this);
-    initNerve(&NrvFileSelectSky::FileSelectSkyNrvWait::sInstance);
+    initNerve(GET_NERVE(FileSelectSky, FileSelectSkyNrvWait));
     makeActorDead();
 }
 

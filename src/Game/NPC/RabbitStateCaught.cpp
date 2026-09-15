@@ -44,7 +44,7 @@ void RabbitStateCaught::unusePowerStarModel() {
 }
 
 void RabbitStateCaught::init() {
-    initNerve(&NrvRabbitStateCaught::RabbitStateCaughtNrvCaught::sInstance);
+    initNerve(GET_NERVE(RabbitStateCaught, RabbitStateCaughtNrvCaught));
 
     if (mUsePowerStarModel) {
         mPowerStarModel = MR::createPowerStarDemoModel(mHost, "パワースターデモモデル", mCaughtLandMarioBaseMtx);
@@ -57,8 +57,8 @@ void RabbitStateCaught::init() {
 void RabbitStateCaught::appear() {
     mIsDead = false;
 
-    MR::requestStartDemoMarioPuppetable(this, mHost, "捕まり", &NrvRabbitStateCaught::RabbitStateCaughtNrvCaught::sInstance,
-                                        &NrvRabbitStateCaught::RabbitStateCaughtNrvTryStartDemo::sInstance);
+    MR::requestStartDemoMarioPuppetable(this, mHost, "捕まり", GET_NERVE(RabbitStateCaught, RabbitStateCaughtNrvCaught),
+                                        GET_NERVE(RabbitStateCaught, RabbitStateCaughtNrvTryStartDemo));
 }
 
 void RabbitStateCaught::control() {
@@ -89,7 +89,7 @@ void RabbitStateCaught::exeCaught() {
 
     if (MR::isGreaterEqualStep(this, ::sCaughtLandStartTime) && MR::isBindedGround(mHost)) {
         MR::zeroVelocity(mHost);
-        setNerve(&NrvRabbitStateCaught::RabbitStateCaughtNrvCaughtLand::sInstance);
+        setNerve(GET_NERVE(RabbitStateCaught, RabbitStateCaughtNrvCaughtLand));
     }
 }
 
@@ -117,7 +117,7 @@ void RabbitStateCaught::exeCaughtLand() {
         if (mTalkCtrl == nullptr) {
             kill();
         } else {
-            setNerve(&NrvRabbitStateCaught::RabbitStateCaughtNrvCaughtEvent::sInstance);
+            setNerve(GET_NERVE(RabbitStateCaught, RabbitStateCaughtNrvCaughtEvent));
         }
     }
 }

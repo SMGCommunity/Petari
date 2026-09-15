@@ -18,13 +18,13 @@ TombSpiderStateSwoon::TombSpiderStateSwoon(TombSpider* pParent) : ActorStateBase
 }
 
 void TombSpiderStateSwoon::init() {
-    initNerve(&NrvTombSpiderStateSwoon::TombSpiderStateSwoonNrvStart::sInstance);
+    initNerve(GET_NERVE(TombSpiderStateSwoon, TombSpiderStateSwoonNrvStart));
     kill();
 }
 
 void TombSpiderStateSwoon::appear() {
     mIsDead = false;
-    setNerve(&NrvTombSpiderStateSwoon::TombSpiderStateSwoonNrvStart::sInstance);
+    setNerve(GET_NERVE(TombSpiderStateSwoon, TombSpiderStateSwoonNrvStart));
 }
 
 void TombSpiderStateSwoon::exeStart() {
@@ -33,7 +33,7 @@ void TombSpiderStateSwoon::exeStart() {
     }
 
     if (MR::isActionEnd(getHost())) {
-        setNerve(&NrvTombSpiderStateSwoon::TombSpiderStateSwoonNrvLoop::sInstance);
+        setNerve(GET_NERVE(TombSpiderStateSwoon, TombSpiderStateSwoonNrvLoop));
     }
 }
 
@@ -43,7 +43,7 @@ void TombSpiderStateSwoon::exeLoop() {
     }
 
     if (MR::isGreaterStep(this, ::sLoopStep)) {
-        setNerve(&NrvTombSpiderStateSwoon::TombSpiderStateSwoonNrvEnd::sInstance);
+        setNerve(GET_NERVE(TombSpiderStateSwoon, TombSpiderStateSwoonNrvEnd));
     }
 }
 

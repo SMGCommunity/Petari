@@ -69,7 +69,7 @@ void StarPointerCommandStream::init(const JMapInfoIter& rIter) {
     MR::createAndAddPaneCtrl(this, "PicArrow", 1);
     MR::createAndAddPaneCtrl(this, "Arrow", 1);
     MR::setFollowPos(&mFollowPos, this, "CommandStream");
-    initNerve(&NrvStarPointerCommandStream::HostTypeNrvWait::sInstance);
+    initNerve(GET_NERVE(StarPointerCommandStream, HostTypeNrvWait));
     appear();
     MR::setPaneScale(this, 0.0f, 0.0f, "PicRibbon");
     MR::hideLayout(this);
@@ -122,7 +122,7 @@ void StarPointerCommandStream::exeWait() {
     }
 
     if (!MR::isStarPointerInScreen(mPadChannel)) {
-        setNerve(&NrvStarPointerCommandStream::HostTypeNrvSignal::sInstance);
+        setNerve(GET_NERVE(StarPointerCommandStream, HostTypeNrvSignal));
     }
 }
 
@@ -131,7 +131,7 @@ void StarPointerCommandStream::exeSignal() {
     }
 
     if (MR::isStarPointerInScreen(mPadChannel)) {
-        setNerve(&NrvStarPointerCommandStream::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(StarPointerCommandStream, HostTypeNrvWait));
     }
 }
 

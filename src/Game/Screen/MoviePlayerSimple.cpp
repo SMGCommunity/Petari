@@ -61,12 +61,12 @@ void MoviePlayerSimple::init(const JMapInfoIter& rIter) {
 
     mHeap = JKRExpHeap::create(calcNeedMemoryForMovieWorks(), MR::getCurrentHeap(), true);
 
-    initNerve(&MoviePlayerSimpleOff::sInstance);
+    initNerve(GET_NERVE_GLOBAL(MoviePlayerSimpleOff));
     kill();
 }
 
 void MoviePlayerSimple::draw() const {
-    if (!isNerve(&MoviePlayerSimplePlaying::sInstance) && !isNerve(&MoviePlayerSimpleSuspend::sInstance)) {
+    if (!isNerve(GET_NERVE_GLOBAL(MoviePlayerSimplePlaying)) && !isNerve(GET_NERVE_GLOBAL(MoviePlayerSimpleSuspend))) {
         GXColor fillColor;
         fillColor.r = 0;
         fillColor.g = 0;
@@ -111,7 +111,7 @@ void MoviePlayerSimple::startMovie(const char* pMovieName, bool a2) {
 void MoviePlayerSimple::stopMovie() {
     stop();
     kill();
-    setNerve(&::MoviePlayerSimpleOff::sInstance);
+    setNerve(GET_NERVE_ANON(MoviePlayerSimpleOff));
 }
 
 bool MoviePlayerSimple::isMovieActive() const {
@@ -119,13 +119,13 @@ bool MoviePlayerSimple::isMovieActive() const {
         return false;
     }
 
-    return isNerve(&MoviePlayerSimpleOpen::sInstance) || isNerve(&MoviePlayerSimplePreload::sInstance) ||
-           isNerve(&MoviePlayerSimplePlaying::sInstance) || isNerve(&MoviePlayerSimpleSuspend::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(MoviePlayerSimpleOpen)) || isNerve(GET_NERVE_GLOBAL(MoviePlayerSimplePreload)) ||
+           isNerve(GET_NERVE_GLOBAL(MoviePlayerSimplePlaying)) || isNerve(GET_NERVE_GLOBAL(MoviePlayerSimpleSuspend));
 }
 
 bool MoviePlayerSimple::isMoviePlaying() const {
     if (isMovieActive()) {
-        return isNerve(&MoviePlayerSimplePlaying::sInstance);
+        return isNerve(GET_NERVE_GLOBAL(MoviePlayerSimplePlaying));
     }
 
     return false;
@@ -177,7 +177,7 @@ void MoviePlayerSimple::exeOpen() {
         mMovie->mBuffer = new (mHeap, 32) u8[mPlayerWrapper->calcNeedMemory()];
         mPlayerWrapper->setBuffer(mMovie->mBuffer);
         mPlayerWrapper->preLoad(_44 != false);
-        setNerve(&MoviePlayerSimplePreload::sInstance);
+        setNerve(GET_NERVE_GLOBAL(MoviePlayerSimplePreload));
     }
 }
 
@@ -186,7 +186,7 @@ void MoviePlayerSimple::exePreload() {
         return;
     }
 
-    setNerve(&MoviePlayerSimplePlaying::sInstance);
+    setNerve(GET_NERVE_GLOBAL(MoviePlayerSimplePlaying));
     appear();
 }
 
@@ -196,7 +196,7 @@ void MoviePlayerSimple::exePlaying() {
 
         if (!mMovie->_18) {
             stop();
-            setNerve(&MoviePlayerSimpleOff::sInstance);
+            setNerve(GET_NERVE_GLOBAL(MoviePlayerSimpleOff));
             return;
         }
     }
@@ -235,7 +235,7 @@ void MoviePlayerSimple::control() {
 
 void MoviePlayerSimple::play(bool a1) {
     _44 = a1;
-    setNerve(&MoviePlayerSimpleOpen::sInstance);
+    setNerve(GET_NERVE_GLOBAL(MoviePlayerSimpleOpen));
     MR::startStarPointerModeDemo(this);
     _45 = GameSystemFunction::setPermissionToCheckWiiRemoteConnectAndScreenDimming(false);
 }

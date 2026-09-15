@@ -52,18 +52,18 @@ WalkerStateRunaway::WalkerStateRunaway(LiveActor* pHost, TVec3f* pDirection, Wal
         mRunawayParam = &::sDefaultParam;
     }
 
-    initNerve(&NrvWalkerStateRunaway::WalkerStateRunawayNrvWait::sInstance);
+    initNerve(GET_NERVE(WalkerStateRunaway, WalkerStateRunawayNrvWait));
 }
 
 void WalkerStateRunaway::appear() {
     mIsDead = false;
-    setNerve(&NrvWalkerStateRunaway::WalkerStateRunawayNrvWait::sInstance);
+    setNerve(GET_NERVE(WalkerStateRunaway, WalkerStateRunawayNrvWait));
     _18 = 0;
 }
 
 bool WalkerStateRunaway::tryRunaway() {
     if (MR::isNearPlayer(getHost(), mRunawayParam->mRunawayDistance)) {
-        setNerve(&NrvWalkerStateRunaway::WalkerStateRunawayNrvRunaway::sInstance);
+        setNerve(GET_NERVE(WalkerStateRunaway, WalkerStateRunawayNrvRunaway));
         return true;
     }
 
@@ -72,7 +72,7 @@ bool WalkerStateRunaway::tryRunaway() {
 
 bool WalkerStateRunaway::tryWait() {
     if (isInWaitRange(mRunawayParam->mWaitDistance)) {
-        setNerve(&NrvWalkerStateRunaway::WalkerStateRunawayNrvWait::sInstance);
+        setNerve(GET_NERVE(WalkerStateRunaway, WalkerStateRunawayNrvWait));
         return true;
     }
 
@@ -96,7 +96,7 @@ bool WalkerStateRunaway::tryWallJump() {
         }
 
         MR::addVelocityJump(getHost(), mRunawayParam->mWallJumpPowerV);
-        setNerve(&NrvWalkerStateRunaway::WalkerStateRunawayNrvWallJump::sInstance);
+        setNerve(GET_NERVE(WalkerStateRunaway, WalkerStateRunawayNrvWallJump));
         return true;
     }
 
@@ -155,11 +155,11 @@ void WalkerStateRunaway::exeWallJump() {
 
     if (MR::isGreaterStep(this, mRunawayParam->mWallJumpTime)) {
         if (MR::isBindedGround(getHost())) {
-            setNerve(&NrvWalkerStateRunaway::WalkerStateRunawayNrvRunaway::sInstance);
+            setNerve(GET_NERVE(WalkerStateRunaway, WalkerStateRunawayNrvRunaway));
         }
     }
 }
 
 bool WalkerStateRunaway::isRunning() const {
-    return isNerve(&NrvWalkerStateRunaway::WalkerStateRunawayNrvRunaway::sInstance);
+    return isNerve(GET_NERVE(WalkerStateRunaway, WalkerStateRunawayNrvRunaway));
 }

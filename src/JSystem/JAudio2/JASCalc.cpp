@@ -154,6 +154,11 @@ void JASCalc::bzero(void* dest, u32 size) {
     }
 }
 
+void JASCalc_FORCE_MATCH_SDATA2() {
+    4503599627370496.0;
+    4503601774854144.0;
+}
+
 f32 JASCalc::pow2(f32 x) {
     static const f32 scale_frac[] = {0.0f, 0.5f};
     // { 1 , 1/sqrt2 }

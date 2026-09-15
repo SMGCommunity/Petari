@@ -255,7 +255,7 @@ void BrightObj::init(const JMapInfoIter& rIter) {
 
     MR::invalidateClipping(this);
 
-    MR::connectToScene(this, MR::MovementType_Environment, -1, -1, MR::DrawType_BrightSun);
+    MR::connectToScene(this, MR::MovementType_Environment, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_BrightSun);
 
     makeActorAppeared();
 }
@@ -379,7 +379,7 @@ void BrightSun::init(const JMapInfoIter& rIter) {
 
     MR::invalidateClipping(this);
 
-    MR::connectToScene(this, MR::MovementType_Environment, -1, -1, MR::DrawType_BrightSun);
+    MR::connectToScene(this, MR::MovementType_Environment, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_BrightSun);
 
     mSun = new Sun("太陽");
     mSun->initWithoutIter();

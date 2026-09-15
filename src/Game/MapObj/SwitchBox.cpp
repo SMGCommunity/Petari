@@ -16,7 +16,7 @@ void SwitchBox::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("SwitchBox", nullptr, false);
     MR::connectToSceneMapObjNoCalcAnim(this);
     initSound(2, false);
-    initNerve(&NrvSwitchBox::SwitchBoxNrvWait::sInstance);
+    initNerve(GET_NERVE(SwitchBox, SwitchBoxNrvWait));
     initEffectKeeper(3, nullptr, false);
     f32 newScale = mScale.x * 90.0f;
     initHitSensor(2);
@@ -28,7 +28,7 @@ void SwitchBox::init(const JMapInfoIter& rIter) {
         MR::getJMapInfoArg1NoInit(rIter, &local_38);
     }
 
-    setNerve(&NrvSwitchBox::SwitchBoxNrvWait::sInstance);
+    setNerve(GET_NERVE(SwitchBox, SwitchBoxNrvWait));
     MR::initCollisionParts(this, "SwitchBox", getSensor("body"), nullptr);
     MR::validateClipping(this);
 
@@ -74,7 +74,7 @@ void SwitchBox::exeWait() {
     }
 
     if (_90 == 0) {
-        setNerve(&NrvSwitchBox::SwitchBoxNrvHit::sInstance);
+        setNerve(GET_NERVE(SwitchBox, SwitchBoxNrvHit));
     }
 }
 
@@ -101,7 +101,7 @@ void SwitchBox::appear() {
 
     LiveActor::appear();
     MR::showModel(this);
-    setNerve(&NrvSwitchBox::SwitchBoxNrvWait::sInstance);
+    setNerve(GET_NERVE(SwitchBox, SwitchBoxNrvWait));
 }
 
 void SwitchBox::kill() {

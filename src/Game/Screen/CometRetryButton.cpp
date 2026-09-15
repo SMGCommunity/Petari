@@ -25,7 +25,7 @@ CometRetryButton::CometRetryButton(const char* pName)
 void CometRetryButton::init(const JMapInfoIter& rIter) {
     initLayoutManager("RetryButton", 1);
     MR::connectToSceneLayout(this);
-    initNerve(&NrvCometRetryButton::HostTypeNrvMissLeftWait::sInstance);
+    initNerve(GET_NERVE(CometRetryButton, HostTypeNrvMissLeftWait));
     MR::createAndAddPaneCtrl(this, "NBackUp", 1);
     MR::createAndAddPaneCtrl(this, "NBackDown", 1);
 
@@ -55,7 +55,7 @@ void CometRetryButton::init(const JMapInfoIter& rIter) {
 
 void CometRetryButton::appear() {
     LayoutActor::appear();
-    setNerve(&NrvCometRetryButton::HostTypeNrvMissLeftWait::sInstance);
+    setNerve(GET_NERVE(CometRetryButton, HostTypeNrvMissLeftWait));
     MR::deactivateDefaultGameLayout();
 }
 
@@ -87,7 +87,7 @@ void CometRetryButton::exeMissLeftWait() {
     if (MR::isDead(mPlayerMissLeft)) {
         mButtonYesPaneCtrl->appear();
         mButtonNoPaneCtrl->appear();
-        setNerve(&NrvCometRetryButton::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(CometRetryButton, HostTypeNrvWait));
     }
 }
 
@@ -101,7 +101,7 @@ void CometRetryButton::exeWait() {
             MR::startSystemSE("SE_SY_TALK_SELECT_NO");
         }
 
-        setNerve(&NrvCometRetryButton::HostTypeNrvDecided::sInstance);
+        setNerve(GET_NERVE(CometRetryButton, HostTypeNrvDecided));
     }
 }
 
@@ -110,11 +110,11 @@ void CometRetryButton::exeDecided() {
 
     if (mButtonYesPaneCtrl->mIsSelected) {
         if (mButtonYesPaneCtrl->isDecidedWait()) {
-            setNerve(&NrvCometRetryButton::HostTypeNrvEndRetry::sInstance);
+            setNerve(GET_NERVE(CometRetryButton, HostTypeNrvEndRetry));
         }
     } else if (mButtonNoPaneCtrl->mIsSelected) {
         if (mButtonNoPaneCtrl->isDecidedWait()) {
-            setNerve(&NrvCometRetryButton::HostTypeNrvEndGoBackAstroDome::sInstance);
+            setNerve(GET_NERVE(CometRetryButton, HostTypeNrvEndGoBackAstroDome));
         }
     }
 }
@@ -128,7 +128,7 @@ void CometRetryButton::exeEnd() {
     }
 
     if (mButtonYesPaneCtrl->isHidden() && mButtonNoPaneCtrl->isHidden()) {
-        if (isNerve(&NrvCometRetryButton::HostTypeNrvEndRetry::sInstance)) {
+        if (isNerve(GET_NERVE(CometRetryButton, HostTypeNrvEndRetry))) {
             MR::requestChangeStageAfterMiss();
         } else {
             MR::requestChangeStageGoBackAstroDome();

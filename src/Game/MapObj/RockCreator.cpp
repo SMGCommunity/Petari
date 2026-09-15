@@ -18,7 +18,7 @@ void RockCreator::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
     initMapToolInfo(rIter);
     initRailRider(rIter);
-    initNerve(&NrvRockCreator::RockCreatorNrvActive::sInstance);
+    initNerve(GET_NERVE(RockCreator, RockCreatorNrvActive));
 
     MR::needStageSwitchReadAppear(this, rIter);
     MR::syncStageSwitchAppear(this);
@@ -54,7 +54,7 @@ void RockCreator::appear() {
         LiveActor::appear();
         mSpawnTimer = 0;
         MR::invalidateClipping(this);
-        setNerve(&NrvRockCreator::RockCreatorNrvActive::sInstance);
+        setNerve(GET_NERVE(RockCreator, RockCreatorNrvActive));
     }
 }
 
@@ -109,7 +109,7 @@ void RockCreator::exeActive() {
     if (mSpawnDelay < 0 || isReadyToSpawn()) {
         create();
         if (mSpawnDelay < 0) {
-            setNerve(&NrvRockCreator::RockCreatorNrvDeactive::sInstance);
+            setNerve(GET_NERVE(RockCreator, RockCreatorNrvDeactive));
             return;
         }
         mSpawnTimer = 0;

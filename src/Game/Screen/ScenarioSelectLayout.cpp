@@ -119,7 +119,7 @@ void ScenarioSelectLayout::init(const JMapInfoIter& rIter) {
     mBackButton = new BackButton("戻るボタン", false);
     mBackButton->initWithoutIter();
 
-    initNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearStar::sInstance);
+    initNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvAppearStar));
 }
 
 void ScenarioSelectLayout::appear() {
@@ -209,7 +209,7 @@ void ScenarioSelectLayout::appear() {
     _24 = 0;
     _28 = 0;
 
-    setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearStar::sInstance);
+    setNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvAppearStar));
 }
 
 void ScenarioSelectLayout::kill() {
@@ -268,7 +268,7 @@ s32 ScenarioSelectLayout::getSelectedScenarioNo() const {
 }
 
 bool ScenarioSelectLayout::isReadyToDisappear() const {
-    if (isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance)) {
+    if (isNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvAfterScenarioSelected))) {
         return MR::isGreaterStep(this, 210);
     }
 
@@ -276,24 +276,23 @@ bool ScenarioSelectLayout::isReadyToDisappear() const {
 }
 
 void ScenarioSelectLayout::disappear() {
-    setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvDisappear::sInstance);
+    setNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvDisappear));
 }
 
 bool ScenarioSelectLayout::isAppearStarEnd() const {
-    return !MR::isDead(this) && !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearStar::sInstance) &&
-           !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearCometWarning::sInstance) &&
-           !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvWaitCometWarning::sInstance) &&
-           !isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvDisappearCometWarning::sInstance);
+    return !MR::isDead(this) && !isNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvAppearStar)) &&
+           !isNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvAppearCometWarning)) &&
+           !isNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvWaitCometWarning)) &&
+           !isNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvDisappearCometWarning));
 }
 
 bool ScenarioSelectLayout::isEndAnimStartStep() const {
-    return isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance) &&
-           MR::isStep(this, ::cSelectedEndAnimStartStep);
+    return isNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvAfterScenarioSelected)) && MR::isStep(this, ::cSelectedEndAnimStartStep);
 }
 
 bool ScenarioSelectLayout::isCanceled() const {
-    return isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancel::sInstance) ||
-           isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancelFadeOut::sInstance);
+    return isNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvCancel)) ||
+           isNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvCancelFadeOut));
 }
 
 void ScenarioSelectLayout::control() {
@@ -307,7 +306,7 @@ void ScenarioSelectLayout::control() {
 void ScenarioSelectLayout::updateSelectedScenario() {
     ScenarioSelectStar* star;
 
-    if (isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvWaitScenarioSelect::sInstance)) {
+    if (isNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvWaitScenarioSelect))) {
         for (s32 i = 0; i < 7; i++) {
             star = mStar[i];
 
@@ -329,7 +328,7 @@ void ScenarioSelectLayout::updateSelectedScenario() {
 }
 
 void ScenarioSelectLayout::updateScenarioText() {
-    bool isEndAnimStep = isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance) &&
+    bool isEndAnimStep = isNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvAfterScenarioSelected)) &&
                          MR::isGreaterEqualStep(this, ::cSelectedEndAnimStartStep);
 
     if (MR::isHiddenPane(this, "Scenario") || (mSelectedScenarioNo > 0 && getSelectedScenarioNo() != _A8)) {
@@ -533,14 +532,14 @@ bool ScenarioSelectLayout::isAppearStarEndAll() const {
 
 bool ScenarioSelectLayout::tryCancel() {
     if (mBackButton->_24) {
-        setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancel::sInstance);
+        setNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvCancel));
         return true;
     }
 
     if (MR::testCorePadTriggerB(WPAD_CHAN0)) {
         MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL");
         mBackButton->disappear();
-        setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancel::sInstance);
+        setNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvCancel));
         return true;
     }
 
@@ -578,7 +577,7 @@ void ScenarioSelectLayout::setAnimRateAllNewPane(f32 rate) {
 
 void ScenarioSelectLayout::exeDisappearCometWarning() {
     MR::startPaneAnimAtFirstStep(this, "CometAppear", "CometEnd", 0);
-    MR::setNerveAtPaneAnimStopped(this, "CometAppear", &NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppear::sInstance, 0);
+    MR::setNerveAtPaneAnimStopped(this, "CometAppear", GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvAppear), 0);
 }
 
 void ScenarioSelectLayout::exeCancelFadeOut() {
@@ -621,9 +620,9 @@ void ScenarioSelectLayout::exeAppearStar() {
     }
 
     if (needsAppearComet) {
-        setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppearCometWarning::sInstance);
+        setNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvAppearCometWarning));
     } else {
-        setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAppear::sInstance);
+        setNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvAppear));
     }
 }
 
@@ -634,7 +633,7 @@ void ScenarioSelectLayout::exeAppear() {
     }
 
     MR::startSystemLevelSE("SE_DM_LV_SENARIO_SEL_FLY");
-    MR::setNerveAtPaneAnimStopped(this, "ScenarioSelect", &NrvScenarioSelectLayout::ScenarioSelectLayoutNrvWaitScenarioSelect::sInstance, 0);
+    MR::setNerveAtPaneAnimStopped(this, "ScenarioSelect", GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvWaitScenarioSelect), 0);
 }
 
 void ScenarioSelectLayout::exeWaitScenarioSelect() {
@@ -656,7 +655,7 @@ void ScenarioSelectLayout::exeWaitScenarioSelect() {
         MR::startSystemSE("SE_SY_DECIDE_1");
         MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
         mBackButton->disappear();
-        setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvDecide::sInstance);
+        setNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvDecide));
     }
 }
 
@@ -679,7 +678,7 @@ void ScenarioSelectLayout::exeDecide() {
 
     updateScenarioText();
     MR::startSystemLevelSE("SE_DM_LV_SENARIO_SEL_FLY");
-    MR::setNerveAtStep(this, &NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance, ::cDecideFrame);
+    MR::setNerveAtStep(this, GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvAfterScenarioSelected), ::cDecideFrame);
 }
 
 void ScenarioSelectLayout::exeAfterScenarioSelected() {
@@ -734,7 +733,7 @@ void ScenarioSelectLayout::exeCancel() {
     if (mBackButton->isHidden()) {
         MR::closeSystemWipeFadeWithCaptureScreen(::cCancelFadeOutFrame);
         MR::stopStageBGM(1);
-        setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancelFadeOut::sInstance);
+        setNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvCancelFadeOut));
     }
 }
 
@@ -753,7 +752,7 @@ void ScenarioSelectLayout::exeAppearCometWarning() {
     }
 
     if (MR::isGreaterStep(this, ::cCometWarningWaitFrame)) {
-        MR::setNerveAtPaneAnimStopped(this, "CometAppear", &NrvScenarioSelectLayout::ScenarioSelectLayoutNrvWaitCometWarning::sInstance, 0);
+        MR::setNerveAtPaneAnimStopped(this, "CometAppear", GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvWaitCometWarning), 0);
     }
 }
 
@@ -763,5 +762,5 @@ void ScenarioSelectLayout::exeWaitCometWarning() {
     }
 
     MR::startPaneAnimAtFirstStep(this, "CometAppear", "CometWait", 0);
-    MR::setNerveAtStep(this, &NrvScenarioSelectLayout::ScenarioSelectLayoutNrvDisappearCometWarning::sInstance, ::cCometWarningFrame);
+    MR::setNerveAtStep(this, GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvDisappearCometWarning), ::cCometWarningFrame);
 }

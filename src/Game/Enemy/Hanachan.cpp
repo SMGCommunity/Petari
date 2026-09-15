@@ -141,8 +141,8 @@ HanachanParts::HanachanParts(Hanachan* pHost, s32 partsIndex, const char* pName,
 }
 
 void HanachanParts::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, -1, MR::MovementType_DemoDirector, MR::DrawType_SpinDriverPathDrawer, -1);
-    initNerve(&NrvHanachan::HanachanPartsNrvWalk::sInstance);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_Enemy, MR::DrawType_None);
+    initNerve(GET_NERVE(Hanachan, HanachanPartsNrvWalk));
     initHitSensor(1);
 
     if (mPartsType == PartsType_Body) {
@@ -171,11 +171,9 @@ void HanachanParts::init(const JMapInfoIter& rIter) {
 }
 
 const TVec3f* HanachanParts::getCommonGravity() const {
-    if (mHost->isNerve(&NrvHanachan::HanachanNrvHanachanTrample::sInstance) ||
-        mHost->isNerve(&NrvHanachan::HanachanNrvHanachanBecomeAngry::sInstance) ||
-        mHost->isNerve(&NrvHanachan::HanachanNrvHanachanOverturn::sInstance) ||
-        mHost->isNerve(&NrvHanachan::HanachanNrvHanachanOverturnBound::sInstance) ||
-        mHost->isNerve(&NrvHanachan::HanachanNrvHanachanRecover::sInstance)) {
+    if (mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanTrample)) || mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanBecomeAngry)) ||
+        mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturn)) || mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnBound)) ||
+        mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanRecover))) {
         return &mHost->mBodyParts[2]->mGravity;
     }
 
@@ -196,21 +194,21 @@ void HanachanParts::kill() {
 void HanachanParts::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         if (!MR::isPlayerDamaging()) {
-            if (isNerve(&NrvHanachan::HanachanPartsNrvAngryPursue::sInstance) && MR::isOnGroundPlayer()) {
+            if (isNerve(GET_NERVE(Hanachan, HanachanPartsNrvAngryPursue)) && MR::isOnGroundPlayer()) {
                 if (MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
-                    mHost->setNerve(&NrvHanachan::HanachanNrvHanachanWallHitEnd::sInstance);
+                    mHost->setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanWallHitEnd));
                     return;
                 }
 
                 MR::sendMsgPush(pReceiver, pSender);
-            } else if (isNerve(&NrvHanachan::HanachanPartsNrvWalk::sInstance) && MR::isOnGroundPlayer()) {
+            } else if (isNerve(GET_NERVE(Hanachan, HanachanPartsNrvWalk)) && MR::isOnGroundPlayer()) {
                 if (MR::sendMsgEnemyAttack(pReceiver, pSender)) {
                     return;
                 }
 
                 MR::sendMsgPush(pReceiver, pSender);
-            } else if (!isNerve(&NrvHanachan::HanachanPartsNrvHipDropped::sInstance) &&
-                       !isNerve(&NrvHanachan::HanachanPartsNrvOverturnHipDropped::sInstance)) {
+            } else if (!isNerve(GET_NERVE(Hanachan, HanachanPartsNrvHipDropped)) &&
+                       !isNerve(GET_NERVE(Hanachan, HanachanPartsNrvOverturnHipDropped))) {
                 MR::sendMsgPush(pReceiver, pSender);
             }
         } else {
@@ -218,9 +216,9 @@ void HanachanParts::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         }
     } else if (MR::isSensorEnemy(pReceiver)) {
         if (!mHost->isOwnSensor(pReceiver) &&
-            (isNerve(&NrvHanachan::HanachanPartsNrvBecomeAngry::sInstance) || isNerve(&NrvHanachan::HanachanPartsNrvAngryPursue::sInstance)) &&
+            (isNerve(GET_NERVE(Hanachan, HanachanPartsNrvBecomeAngry)) || isNerve(GET_NERVE(Hanachan, HanachanPartsNrvAngryPursue))) &&
             MR::sendMsgToEnemyAttackBlow(pReceiver, pSender) && mPartsType == PartsType_Head) {
-            mHost->setNerve(&NrvHanachan::HanachanNrvHanachanWallHitEnd::sInstance);
+            mHost->setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanWallHitEnd));
             return;
         }
 
@@ -230,8 +228,7 @@ void HanachanParts::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool HanachanParts::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgInvincibleAttack(msg)) {
-        if (mHost->isNerve(&NrvHanachan::HanachanNrvHanachanBlow::sInstance) ||
-            mHost->isNerve(&NrvHanachan::HanachanNrvHanachanHipDropped::sInstance)) {
+        if (mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanBlow)) || mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanHipDropped))) {
             return false;
         }
 
@@ -240,8 +237,7 @@ bool HanachanParts::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSenso
     }
 
     if (MR::isMsgStarPieceReflect(msg)) {
-        if (mHost->isNerve(&NrvHanachan::HanachanNrvHanachanOverturnWait::sInstance) ||
-            mHost->isNerve(&NrvHanachan::HanachanNrvHanachanWalk::sInstance)) {
+        if (mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnWait)) || mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanWalk))) {
             return false;
         }
 
@@ -249,14 +245,14 @@ bool HanachanParts::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSenso
     }
 
     if (MR::isMsgStarPieceAttack(msg)) {
-        if (mHost->isNerve(&NrvHanachan::HanachanNrvHanachanOverturnWait::sInstance)) {
-            mHost->setNerve(&NrvHanachan::HanachanNrvHanachanOverturnBound::sInstance);
+        if (mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnWait))) {
+            mHost->setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnBound));
             mHost->mAttackPos = pSender->mPosition;
             return true;
         }
 
-        if (mHost->isNerve(&NrvHanachan::HanachanNrvHanachanWalk::sInstance)) {
-            mHost->setNerve(&NrvHanachan::HanachanNrvHanachanStarPointerBindEnd::sInstance);
+        if (mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanWalk))) {
+            mHost->setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanStarPointerBindEnd));
             mHost->mAttackPos = pSender->mPosition;
             return true;
         }
@@ -264,20 +260,20 @@ bool HanachanParts::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSenso
         return false;
     }
 
-    if (isNerve(&NrvHanachan::HanachanPartsNrvHipDropped::sInstance) || isNerve(&NrvHanachan::HanachanPartsNrvOverturnHipDropped::sInstance)) {
+    if (isNerve(GET_NERVE(Hanachan, HanachanPartsNrvHipDropped)) || isNerve(GET_NERVE(Hanachan, HanachanPartsNrvOverturnHipDropped))) {
         return false;
     }
 
     if (MR::isMsgPlayerHipDrop(msg)) {
-        if (!mHost->isNerve(&NrvHanachan::HanachanNrvHanachanHipDropped::sInstance) &&
-            !mHost->isNerve(&NrvHanachan::HanachanNrvHanachanOverturnHipDropped::sInstance)) {
-            if (mHost->isNerve(&NrvHanachan::HanachanNrvHanachanOverturn::sInstance) ||
-                mHost->isNerve(&NrvHanachan::HanachanNrvHanachanOverturnBound::sInstance) ||
-                mHost->isNerve(&NrvHanachan::HanachanNrvHanachanOverturnWait::sInstance) ||
-                mHost->isNerve(&NrvHanachan::HanachanNrvHanachanRecover::sInstance)) {
-                mHost->setNerve(&NrvHanachan::HanachanNrvHanachanOverturnHipDropped::sInstance);
+        if (!mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanHipDropped)) &&
+            !mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnHipDropped))) {
+            if (mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturn)) ||
+                mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnBound)) ||
+                mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnWait)) ||
+                mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanRecover))) {
+                mHost->setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnHipDropped));
             } else {
-                mHost->setNerve(&NrvHanachan::HanachanNrvHanachanHipDropped::sInstance);
+                mHost->setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanHipDropped));
             }
 
             mHost->mAttackPos = pSender->mPosition;
@@ -290,27 +286,25 @@ bool HanachanParts::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSenso
     if (MR::isMsgPlayerTrample(msg)) {
         MR::startSound(this, "SE_EM_HANACHAN_TRAMPLE");
 
-        if (mHost->isNerve(&NrvHanachan::HanachanNrvHanachanAngryPursue::sInstance) ||
-            mHost->isNerve(&NrvHanachan::HanachanNrvHanachanAngryEnd::sInstance) ||
-            mHost->isNerve(&NrvHanachan::HanachanNrvHanachanWallHitEnd::sInstance) ||
-            mHost->isNerve(&NrvHanachan::HanachanNrvHanachanTrample::sInstance) ||
-            mHost->isNerve(&NrvHanachan::HanachanNrvHanachanBecomeAngry::sInstance)) {
+        if (mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanAngryPursue)) || mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanAngryEnd)) ||
+            mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanWallHitEnd)) || mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanTrample)) ||
+            mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanBecomeAngry))) {
             return true;
         }
 
-        if (mHost->isNerve(&NrvHanachan::HanachanNrvHanachanOverturnWait::sInstance) ||
-            (mHost->isNerve(&NrvHanachan::HanachanNrvHanachanOverturn::sInstance) && MR::isGreaterStep(mHost, ::hOverturnCanTrampleDeathTime)) ||
-            mHost->isNerve(&NrvHanachan::HanachanNrvHanachanOverturnBound::sInstance) ||
-            (mHost->isNerve(&NrvHanachan::HanachanNrvHanachanRecover::sInstance) && MR::isLessStep(mHost, ::hRecoverCanTrampleDeathTime)) ||
-            mHost->isNerve(&NrvHanachan::HanachanNrvHanachanStarPointerBindOverturn::sInstance) ||
-            mHost->isNerve(&NrvHanachan::HanachanNrvHanachanStarPointerBindEndOverturn::sInstance)) {
-            mHost->setNerve(&NrvHanachan::HanachanNrvHanachanOverturnHipDropped::sInstance);
+        if (mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnWait)) ||
+            (mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturn)) && MR::isGreaterStep(mHost, ::hOverturnCanTrampleDeathTime)) ||
+            mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnBound)) ||
+            (mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanRecover)) && MR::isLessStep(mHost, ::hRecoverCanTrampleDeathTime)) ||
+            mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanStarPointerBindOverturn)) ||
+            mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanStarPointerBindEndOverturn))) {
+            mHost->setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnHipDropped));
             mHost->mAttackPos = pSender->mPosition;
             return true;
         }
 
-        if (mHost->isNerve(&NrvHanachan::HanachanNrvHanachanWalk::sInstance)) {
-            mHost->setNerve(&NrvHanachan::HanachanNrvHanachanTrample::sInstance);
+        if (mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanWalk))) {
+            mHost->setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanTrample));
             mHost->mAttackPos = pSender->mPosition;
             return true;
         }
@@ -319,17 +313,17 @@ bool HanachanParts::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSenso
     }
 
     if (MR::isMsgPlayerHitAll(msg)) {
-        if (mHost->isNerve(&NrvHanachan::HanachanNrvHanachanOverturn::sInstance) ||
-            mHost->isNerve(&NrvHanachan::HanachanNrvHanachanOverturnBound::sInstance)) {
+        if (mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturn)) ||
+            mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnBound))) {
             return false;
         }
 
         MR::stopScene(::hPunchStopSceneTime);
 
-        if (mHost->isNerve(&NrvHanachan::HanachanNrvHanachanOverturnWait::sInstance)) {
-            mHost->setNerve(&NrvHanachan::HanachanNrvHanachanOverturnBound::sInstance);
+        if (mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnWait))) {
+            mHost->setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnBound));
         } else {
-            mHost->setNerve(&NrvHanachan::HanachanNrvHanachanOverturn::sInstance);
+            mHost->setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturn));
         }
 
         mHost->mAttackPos = pSender->mPosition;
@@ -475,12 +469,12 @@ void HanachanParts::exeAngryPursue() {
     bool isWallHit = isHeadHitWall() && MR::isBindedWallOfMap(this);
 
     if (isWallHit) {
-        mHost->setNerve(&NrvHanachan::HanachanNrvHanachanWallHitEnd::sInstance);
+        mHost->setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanWallHitEnd));
     } else {
         bool isMoveLimitHit = isHeadHitWall() && MR::isBindedWallOfMoveLimit(this);
 
         if (isMoveLimitHit) {
-            mHost->setNerve(&NrvHanachan::HanachanNrvHanachanAngryEnd::sInstance);
+            mHost->setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanAngryEnd));
         } else {
             mVelocity = mFallVelocity;
             mVelocity += mPushVelocity;
@@ -517,7 +511,7 @@ void HanachanParts::exeAngryEnd() {
     bool isWallHit = isHeadHitWall() && MR::isBindedWallOfMap(this);
 
     if (isWallHit) {
-        mHost->setNerve(&NrvHanachan::HanachanNrvHanachanWallHitEnd::sInstance);
+        mHost->setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanWallHitEnd));
     }
 
     mVelocity = mFallVelocity;
@@ -580,7 +574,7 @@ void HanachanParts::exeOverturn() {
         mFallVelocity.zero();
 
         if (MR::isGreaterStep(this, mActionStartStep)) {
-            setNerve(&NrvHanachan::HanachanPartsNrvOverturnWait::sInstance);
+            setNerve(GET_NERVE(Hanachan, HanachanPartsNrvOverturnWait));
         }
     } else {
         mFallVelocity += *getCommonGravity() * ::hOverturnGravity;
@@ -604,7 +598,7 @@ void HanachanParts::exeOverturnBound() {
         mFallVelocity.zero();
 
         if (MR::isGreaterStep(this, mActionStartStep)) {
-            setNerve(&NrvHanachan::HanachanPartsNrvOverturnWait::sInstance);
+            setNerve(GET_NERVE(Hanachan, HanachanPartsNrvOverturnWait));
         }
     } else {
         mFallVelocity += *getCommonGravity() * ::hOverturnBoundGravity;
@@ -688,7 +682,7 @@ void HanachanParts::exeHipDropped() {
 
     if (MR::isStep(this, mActionStartStep)) {
         s32 nearestId = mHost->calcNearestInfectionId();
-        bool isOverturn = isNerve(&NrvHanachan::HanachanPartsNrvOverturnHipDropped::sInstance);
+        bool isOverturn = isNerve(GET_NERVE(Hanachan, HanachanPartsNrvOverturnHipDropped));
 
         if (mPartsIndex == nearestId) {
             MR::startAction(this, isOverturn ? "OverturnPress" : "Press");
@@ -766,7 +760,7 @@ bool HanachanParts::isLandedInNerve(const Nerve* pNerve) {
 }
 
 bool HanachanParts::isHipDroppedLanded() {
-    return (isNerve(&NrvHanachan::HanachanPartsNrvHipDropped::sInstance) || isNerve(&NrvHanachan::HanachanPartsNrvOverturnHipDropped::sInstance)) &&
+    return (isNerve(GET_NERVE(Hanachan, HanachanPartsNrvHipDropped)) || isNerve(GET_NERVE(Hanachan, HanachanPartsNrvOverturnHipDropped))) &&
            mIsLanded;
 }
 
@@ -806,7 +800,7 @@ void Hanachan::init(const JMapInfoIter& rIter) {
 
     MR::useStageSwitchWriteDead(this, rIter);
     MR::connectToSceneEnemyMovement(this);
-    initNerve(&NrvHanachan::HanachanNrvHanachanWalk::sInstance);
+    initNerve(GET_NERVE(Hanachan, HanachanNrvHanachanWalk));
     initSound(6, false);
     MR::validateClipping(this);
     mScaleController = new AnimScaleController(nullptr);
@@ -884,20 +878,20 @@ void Hanachan::control() {
         }
     }
 
-    if ((isNerve(&NrvHanachan::HanachanNrvHanachanWalk::sInstance) || isNerve(&NrvHanachan::HanachanNrvHanachanAngryPursue::sInstance) ||
-         isNerve(&NrvHanachan::HanachanNrvHanachanOverturnWait::sInstance)) &&
+    if ((isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanWalk)) || isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanAngryPursue)) ||
+         isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnWait))) &&
         isStarPointerPointing()) {
-        if (isNerve(&NrvHanachan::HanachanNrvHanachanOverturnWait::sInstance)) {
-            setNerve(&NrvHanachan::HanachanNrvHanachanStarPointerBindOverturn::sInstance);
+        if (isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnWait))) {
+            setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanStarPointerBindOverturn));
         } else {
-            setNerve(&NrvHanachan::HanachanNrvHanachanStarPointerBind::sInstance);
+            setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanStarPointerBind));
         }
     }
 
     mPosition = mBodyParts[2]->mPosition;
 
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvHanachan::HanachanNrvHanachanWalk::sInstance)) {
+        if (isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanWalk))) {
             MR::validateClipping(this);
         } else {
             MR::invalidateClipping(this);
@@ -907,7 +901,7 @@ void Hanachan::control() {
 
 void Hanachan::exeWalk() {
     if (MR::isFirstStep(this)) {
-        setNerveAllParts(&NrvHanachan::HanachanPartsNrvWalk::sInstance);
+        setNerveAllParts(GET_NERVE(Hanachan, HanachanPartsNrvWalk));
     }
 
     moveHeadAlongRail(::hWalkSpeed);
@@ -917,22 +911,22 @@ void Hanachan::exeWalk() {
 
 void Hanachan::exeTrample() {
     if (MR::isFirstStep(this)) {
-        setNerveAllParts(&NrvHanachan::HanachanPartsNrvTrample::sInstance);
+        setNerveAllParts(GET_NERVE(Hanachan, HanachanPartsNrvTrample));
         setDelayAllPartsAtId(calcNearestInfectionId(), ::hTrampleInit, ::hTrampleInterval);
         MR::startSound(this, "SE_EV_HANACHAN_TRAMPLE");
     }
 
     moveBodyAlongHead();
 
-    if (mBodyParts[0]->isLandedInNerve(&NrvHanachan::HanachanPartsNrvTrample::sInstance) &&
-        mBodyParts[4]->isLandedInNerve(&NrvHanachan::HanachanPartsNrvTrample::sInstance)) {
-        setNerve(&NrvHanachan::HanachanNrvHanachanBecomeAngry::sInstance);
+    if (mBodyParts[0]->isLandedInNerve(GET_NERVE(Hanachan, HanachanPartsNrvTrample)) &&
+        mBodyParts[4]->isLandedInNerve(GET_NERVE(Hanachan, HanachanPartsNrvTrample))) {
+        setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanBecomeAngry));
     }
 }
 
 void Hanachan::exeBecomeAngry() {
     if (MR::isFirstStep(this)) {
-        setNerveAllParts(&NrvHanachan::HanachanPartsNrvBecomeAngry::sInstance);
+        setNerveAllParts(GET_NERVE(Hanachan, HanachanPartsNrvBecomeAngry));
         setDelayAllPartsAtId(0, 0, ::hBecomeAngryInterval);
     }
 
@@ -940,15 +934,15 @@ void Hanachan::exeBecomeAngry() {
     MR::startLevelSound(this, "SE_EM_LV_HANACHAN_PRE_ANGRY");
     moveBodyAlongHead();
 
-    if (mBodyParts[0]->isLandedInNerve(&NrvHanachan::HanachanPartsNrvBecomeAngry::sInstance) &&
-        mBodyParts[4]->isLandedInNerve(&NrvHanachan::HanachanPartsNrvBecomeAngry::sInstance)) {
-        setNerve(&NrvHanachan::HanachanNrvHanachanAngryPursue::sInstance);
+    if (mBodyParts[0]->isLandedInNerve(GET_NERVE(Hanachan, HanachanPartsNrvBecomeAngry)) &&
+        mBodyParts[4]->isLandedInNerve(GET_NERVE(Hanachan, HanachanPartsNrvBecomeAngry))) {
+        setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanAngryPursue));
     }
 }
 
 void Hanachan::exeAngryPursue() {
     if (MR::isFirstStep(this)) {
-        setNerveAllParts(&NrvHanachan::HanachanPartsNrvAngryPursue::sInstance);
+        setNerveAllParts(GET_NERVE(Hanachan, HanachanPartsNrvAngryPursue));
     }
 
     MR::startLevelSound(this, "SE_EM_LV_HANACHAN_WHISTLE");
@@ -964,13 +958,13 @@ void Hanachan::exeAngryPursue() {
     applyPlayerHipDropReaction();
 
     if (MR::isGreaterStep(this, ::hAngryPursueTime)) {
-        setNerve(&NrvHanachan::HanachanNrvHanachanAngryEnd::sInstance);
+        setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanAngryEnd));
     }
 }
 
 void Hanachan::exeAngryEnd() {
     if (MR::isFirstStep(this)) {
-        setNerveAllParts(&NrvHanachan::HanachanPartsNrvAngryEnd::sInstance);
+        setNerveAllParts(GET_NERVE(Hanachan, HanachanPartsNrvAngryEnd));
         setDelayAllPartsAtId(4, 0, 0);
         MR::startSound(this, "SE_EV_HANACHAN_COOLDOWN");
     }
@@ -989,9 +983,9 @@ void Hanachan::exeAngryEnd() {
     applyPlayerHipDropReaction();
 
     if (MR::isGreaterStep(this, 60)) {
-        if (mBodyParts[0]->isLandedInNerve(&NrvHanachan::HanachanPartsNrvAngryEnd::sInstance) &&
-            mBodyParts[4]->isLandedInNerve(&NrvHanachan::HanachanPartsNrvAngryEnd::sInstance)) {
-            setNerve(&NrvHanachan::HanachanNrvHanachanWalk::sInstance);
+        if (mBodyParts[0]->isLandedInNerve(GET_NERVE(Hanachan, HanachanPartsNrvAngryEnd)) &&
+            mBodyParts[4]->isLandedInNerve(GET_NERVE(Hanachan, HanachanPartsNrvAngryEnd))) {
+            setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanWalk));
         }
     }
 }
@@ -999,30 +993,30 @@ void Hanachan::exeAngryEnd() {
 void Hanachan::exeWallHitEnd() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_EV_HANACHAN_COOLDOWN");
-        setNerveAllParts(&NrvHanachan::HanachanPartsNrvWallHitEnd::sInstance);
+        setNerveAllParts(GET_NERVE(Hanachan, HanachanPartsNrvWallHitEnd));
 
-        if (isNerve(&NrvHanachan::HanachanNrvHanachanStarPointerBindEnd::sInstance) ||
-            isNerve(&NrvHanachan::HanachanNrvHanachanStarPointerBindEndOverturn::sInstance)) {
+        if (isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanStarPointerBindEnd)) ||
+            isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanStarPointerBindEndOverturn))) {
             setDelayAllPartsAtId(calcNearestInfectionId(), 0, ::hWallHitInterval);
-        } else if (isNerve(&NrvHanachan::HanachanNrvHanachanWallHitEnd::sInstance)) {
+        } else if (isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanWallHitEnd))) {
             setDelayAllPartsAtId(0, 0, ::hWallHitInterval);
             MR::emitEffect(mBodyParts[0], "WallHit");
         }
     }
 
-    if (mBodyParts[0]->isLandedInNerve(&NrvHanachan::HanachanPartsNrvWallHitEnd::sInstance) &&
-        mBodyParts[4]->isLandedInNerve(&NrvHanachan::HanachanPartsNrvWallHitEnd::sInstance)) {
-        if (isNerve(&NrvHanachan::HanachanNrvHanachanStarPointerBindEndOverturn::sInstance)) {
-            setNerve(&NrvHanachan::HanachanNrvHanachanOverturnWait::sInstance);
+    if (mBodyParts[0]->isLandedInNerve(GET_NERVE(Hanachan, HanachanPartsNrvWallHitEnd)) &&
+        mBodyParts[4]->isLandedInNerve(GET_NERVE(Hanachan, HanachanPartsNrvWallHitEnd))) {
+        if (isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanStarPointerBindEndOverturn))) {
+            setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnWait));
         } else {
-            setNerve(&NrvHanachan::HanachanNrvHanachanWalk::sInstance);
+            setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanWalk));
         }
     }
 }
 
 void Hanachan::exeOverturn() {
     if (MR::isFirstStep(this)) {
-        setNerveAllParts(&NrvHanachan::HanachanPartsNrvOverturn::sInstance);
+        setNerveAllParts(GET_NERVE(Hanachan, HanachanPartsNrvOverturn));
         setDelayAllPartsAtId(calcNearestInfectionId(), ::hSpinInit, ::hSpinInterval);
         MR::startBlowHitSound(this);
         MR::startSound(this, "SE_EV_HANACHAN_OVERTURN");
@@ -1034,15 +1028,15 @@ void Hanachan::exeOverturn() {
 
     moveBodyAlongHead();
 
-    if (mBodyParts[0]->isLandedInNerve(&NrvHanachan::HanachanPartsNrvOverturnWait::sInstance) &&
-        mBodyParts[4]->isLandedInNerve(&NrvHanachan::HanachanPartsNrvOverturnWait::sInstance)) {
-        setNerve(&NrvHanachan::HanachanNrvHanachanOverturnWait::sInstance);
+    if (mBodyParts[0]->isLandedInNerve(GET_NERVE(Hanachan, HanachanPartsNrvOverturnWait)) &&
+        mBodyParts[4]->isLandedInNerve(GET_NERVE(Hanachan, HanachanPartsNrvOverturnWait))) {
+        setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnWait));
     }
 }
 
 void Hanachan::exeOverturnWait() {
     if (MR::isGreaterStep(this, ::hOverturnTime)) {
-        setNerve(&NrvHanachan::HanachanNrvHanachanRecover::sInstance);
+        setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanRecover));
     } else {
         MR::startLevelSound(this, "SE_EM_LV_HANACHAN_SWOON");
         applyPlayerHipDropReaction();
@@ -1052,7 +1046,7 @@ void Hanachan::exeOverturnWait() {
 
 void Hanachan::exeOverturnBound() {
     if (MR::isFirstStep(this)) {
-        setNerveAllParts(&NrvHanachan::HanachanPartsNrvOverturnBound::sInstance);
+        setNerveAllParts(GET_NERVE(Hanachan, HanachanPartsNrvOverturnBound));
         setDelayAllPartsAtId(calcNearestInfectionId(), ::hOverturnBoundInit, ::hOverturnBoundInterval);
         MR::startBlowHitSound(this);
     }
@@ -1063,15 +1057,15 @@ void Hanachan::exeOverturnBound() {
 
     moveBodyAlongHead();
 
-    if (mBodyParts[0]->isLandedInNerve(&NrvHanachan::HanachanPartsNrvOverturnWait::sInstance) &&
-        mBodyParts[4]->isLandedInNerve(&NrvHanachan::HanachanPartsNrvOverturnWait::sInstance)) {
-        setNerve(&NrvHanachan::HanachanNrvHanachanOverturnWait::sInstance);
+    if (mBodyParts[0]->isLandedInNerve(GET_NERVE(Hanachan, HanachanPartsNrvOverturnWait)) &&
+        mBodyParts[4]->isLandedInNerve(GET_NERVE(Hanachan, HanachanPartsNrvOverturnWait))) {
+        setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnWait));
     }
 }
 
 void Hanachan::exeRecover() {
     if (MR::isFirstStep(this)) {
-        setNerveAllParts(&NrvHanachan::HanachanPartsNrvRecover::sInstance);
+        setNerveAllParts(GET_NERVE(Hanachan, HanachanPartsNrvRecover));
         setDelayAllPartsAtId(0, ::hRecoverInit, ::hRecoverInterval);
     }
 
@@ -1088,18 +1082,18 @@ void Hanachan::exeRecover() {
 
     moveBodyAlongHead();
 
-    if (mBodyParts[0]->isLandedInNerve(&NrvHanachan::HanachanPartsNrvRecover::sInstance) &&
-        mBodyParts[4]->isLandedInNerve(&NrvHanachan::HanachanPartsNrvRecover::sInstance)) {
-        setNerve(&NrvHanachan::HanachanNrvHanachanAngryPursue::sInstance);
+    if (mBodyParts[0]->isLandedInNerve(GET_NERVE(Hanachan, HanachanPartsNrvRecover)) &&
+        mBodyParts[4]->isLandedInNerve(GET_NERVE(Hanachan, HanachanPartsNrvRecover))) {
+        setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanAngryPursue));
     }
 }
 
 void Hanachan::exeHipDropped() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvHanachan::HanachanNrvHanachanOverturnHipDropped::sInstance)) {
-            setNerveAllParts(&NrvHanachan::HanachanPartsNrvOverturnHipDropped::sInstance);
+        if (isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnHipDropped))) {
+            setNerveAllParts(GET_NERVE(Hanachan, HanachanPartsNrvOverturnHipDropped));
         } else {
-            setNerveAllParts(&NrvHanachan::HanachanPartsNrvHipDropped::sInstance);
+            setNerveAllParts(GET_NERVE(Hanachan, HanachanPartsNrvHipDropped));
         }
 
         setDelayAllPartsAtId(calcNearestInfectionId(), ::hHipDroppedInit, ::hHipDroppedInterval);
@@ -1121,7 +1115,7 @@ void Hanachan::exeHipDropped() {
 
 void Hanachan::exeBlow() {
     if (MR::isFirstStep(this)) {
-        setNerveAllParts(&NrvHanachan::HanachanPartsNrvBlow::sInstance);
+        setNerveAllParts(GET_NERVE(Hanachan, HanachanPartsNrvBlow));
         MR::startBlowHitSound(this);
     }
 
@@ -1136,15 +1130,15 @@ void Hanachan::exeBlow() {
 
 void Hanachan::exeStarPointerBind() {
     if (MR::isFirstStep(this)) {
-        setNerveAllParts(&NrvHanachan::HanachanPartsNrvStarPointerBind::sInstance);
+        setNerveAllParts(GET_NERVE(Hanachan, HanachanPartsNrvStarPointerBind));
         mScaleController->startDpdHitVibration();
     }
 
     if (MR::isGreaterStep(this, ::hBindMinStep) && !isStarPointerPointing()) {
-        if (isNerve(&NrvHanachan::HanachanNrvHanachanStarPointerBindOverturn::sInstance)) {
-            setNerve(&NrvHanachan::HanachanNrvHanachanStarPointerBindEndOverturn::sInstance);
+        if (isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanStarPointerBindOverturn))) {
+            setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanStarPointerBindEndOverturn));
         } else {
-            setNerve(&NrvHanachan::HanachanNrvHanachanStarPointerBindEnd::sInstance);
+            setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanStarPointerBindEnd));
         }
 
         mAttackPos = *MR::getStarPointerWorldPosUsingDepth(0);
@@ -1222,7 +1216,7 @@ void Hanachan::setNerveBlow(const TVec3f& rPos) {
         angle += angleStep;
     }
 
-    setNerve(&NrvHanachan::HanachanNrvHanachanBlow::sInstance);
+    setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanBlow));
 }
 
 void Hanachan::applyPlayerHipDropReaction() {
@@ -1243,10 +1237,10 @@ void Hanachan::applyPlayerHipDropReaction() {
             return;
         }
 
-        if (isNerve(&NrvHanachan::HanachanNrvHanachanOverturnWait::sInstance)) {
-            setNerve(&NrvHanachan::HanachanNrvHanachanOverturnBound::sInstance);
+        if (isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnWait))) {
+            setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnBound));
         } else {
-            setNerve(&NrvHanachan::HanachanNrvHanachanOverturn::sInstance);
+            setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturn));
         }
     }
 }

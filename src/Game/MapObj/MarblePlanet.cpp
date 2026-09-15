@@ -41,7 +41,7 @@ void MarblePlanet::init(const JMapInfoIter& rIter) {
     mRemainingElectrons = mNumElectrons;
     initCoreAndElectron();
     MR::declarePowerStar(this);
-    initNerve(&NrvMarblePlanet::MarblePlanetNrvWait::sInstance);
+    initNerve(GET_NERVE(MarblePlanet, MarblePlanetNrvWait));
     makeActorAppeared();
 }
 
@@ -73,7 +73,7 @@ void MarblePlanet::exeScaleUpCore() {
         }
 
         if (mRemainingElectrons <= 0) {
-            setNerve(&NrvMarblePlanet::MarblePlanetNrvBreakCore::sInstance);
+            setNerve(GET_NERVE(MarblePlanet, MarblePlanetNrvBreakCore));
             return;
         } else {
             s32 electronCount = mNumElectrons;
@@ -88,7 +88,7 @@ void MarblePlanet::exeScaleUpCore() {
     mCorePlanetModel->mScale.setAll< f32 >(MR::getLinerValue(scale, 1.3f, 1.0f, 1.0f));
 
     if (MR::isStep(this, 30)) {
-        setNerve(&NrvMarblePlanet::MarblePlanetNrvWait::sInstance);
+        setNerve(GET_NERVE(MarblePlanet, MarblePlanetNrvWait));
     }
 }
 
@@ -137,15 +137,15 @@ void MarblePlanet::kill() {
 }
 
 bool MarblePlanet::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvMarblePlanet::MarblePlanetNrvScaleUpCore::sInstance)) {
+    if (isNerve(GET_NERVE(MarblePlanet, MarblePlanetNrvScaleUpCore))) {
         return false;
     }
 
-    if (isNerve(&NrvMarblePlanet::MarblePlanetNrvBreakCore::sInstance)) {
+    if (isNerve(GET_NERVE(MarblePlanet, MarblePlanetNrvBreakCore))) {
         return false;
     }
 
-    setNerve(&NrvMarblePlanet::MarblePlanetNrvScaleUpCore::sInstance);
+    setNerve(GET_NERVE(MarblePlanet, MarblePlanetNrvScaleUpCore));
     return true;
 }
 
@@ -214,7 +214,7 @@ void MarblePlanetElectron::init(const JMapInfoIter& rIter) {
     MR::setBaseTRMtx(this, mtx);
     MR::calcFrontVec(&_94, this);
     MR::startBck(this, "MarblePlanetElectron", 0);
-    initNerve(&NrvMarblePlanetElectron::MarblePlanetElectronNrvMove::sInstance);
+    initNerve(GET_NERVE(MarblePlanetElectron, MarblePlanetElectronNrvMove));
     makeActorAppeared();
 }
 
@@ -242,7 +242,7 @@ void MarblePlanetElectron::control() {
     MR::calcGravity(this);
     mGravity.negate();
 
-    if (isNerve(&NrvMarblePlanetElectron::MarblePlanetElectronNrvMove::sInstance)) {
+    if (isNerve(GET_NERVE(MarblePlanetElectron, MarblePlanetElectronNrvMove))) {
         MR::restrictVelocity(this, 30.0f);
     }
 }
@@ -271,12 +271,12 @@ void MarblePlanetElectron::attackSensor(HitSensor* pSender, HitSensor* pReceiver
 }
 
 bool MarblePlanetElectron::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvMarblePlanetElectron::MarblePlanetElectronNrvAttack::sInstance)) {
+    if (isNerve(GET_NERVE(MarblePlanetElectron, MarblePlanetElectronNrvAttack))) {
         return false;
     }
 
     if (MR::isMsgPlayerHipDrop(msg)) {
-        setNerve(&NrvMarblePlanetElectron::MarblePlanetElectronNrvAttack::sInstance);
+        setNerve(GET_NERVE(MarblePlanetElectron, MarblePlanetElectronNrvAttack));
         return true;
     }
 

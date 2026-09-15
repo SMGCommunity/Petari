@@ -146,7 +146,7 @@ void SkeletalFishBoss::init(const JMapInfoIter& rIter) {
     initCollision();
     initEffectKeeper(1, "SkeketalFishBoss", false);
     initSound(4, false);
-    initNerve(&::SkeletalFishBossNrvSwim::sInstance);
+    initNerve(GET_NERVE_ANON(SkeletalFishBossNrvSwim));
     MR::invalidateClipping(this);
     MR::setClippingTypeSphere(this, 1000.0f);
     mBossDirector = new SkeletalFishBossBattleDirector(this);
@@ -194,7 +194,7 @@ void SkeletalFishBoss::makeActorAppeared() {
 void SkeletalFishBoss::appear() {
     LiveActor::appear();
     MR::hideModel(this);
-    setNerve(&::SkeletalFishBossNrvAppearWait::sInstance);
+    setNerve(GET_NERVE_ANON(SkeletalFishBossNrvAppearWait));
 }
 
 void SkeletalFishBoss::kill() {
@@ -210,9 +210,9 @@ void SkeletalFishBoss::control() {
         MR::endGlobalEventCamera("デモ終了後カメラ", -1, true);
     }
 
-    if (!isNerve(&::SkeletalFishBossNrvDead::sInstance) && !isNerve(&::SkeletalFishBossNrvAppearWait::sInstance)) {
-        bool isInDemo = isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) || isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) ||
-                        isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance);
+    if (!isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDead)) && !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvAppearWait))) {
+        bool isInDemo = isNerve(GET_NERVE_ANON(SkeletalFishBossNrvAppearDemo)) || isNerve(GET_NERVE_ANON(SkeletalFishBossNrvPowerUpDemo)) ||
+                        isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDeadDemo));
 
         if (!isInDemo) {
             mRailControl->update();
@@ -290,15 +290,15 @@ void SkeletalFishBoss::damage(const HitSensor* pSensor, const TVec3f& rStarPiece
 
         if (_114 <= 0) {
             if (_110 + 1 == _1A0) {
-                setNerve(&::SkeletalFishBossNrvDeadDamage::sInstance);
+                setNerve(GET_NERVE_ANON(SkeletalFishBossNrvDeadDamage));
             } else if (MR::isDemoExist("スカルシャークデモ")) {
-                setNerve(&::SkeletalFishBossNrvDown::sInstance);
+                setNerve(GET_NERVE_ANON(SkeletalFishBossNrvDown));
             }
         } else {
             u32 numStarPiece = (_110 + 1 == _1A0) ? 15 : 10;
             MR::appearStarPiece(this, rStarPieceOffs, numStarPiece, 10.0f, 14.0f, false);
             MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W_F");
-            setNerve(&::SkeletalFishBossNrvDamage::sInstance);
+            setNerve(GET_NERVE_ANON(SkeletalFishBossNrvDamage));
         }
     }
 }
@@ -321,7 +321,7 @@ void SkeletalFishBoss::exeSwim() {
     bool isClose = mouthPos.distance(*MR::getPlayerPos()) < 5000.0f;
 
     if (isClose) {
-        setNerve(&::SkeletalFishBossNrvOpen::sInstance);
+        setNerve(GET_NERVE_ANON(SkeletalFishBossNrvOpen));
     }
 }
 
@@ -336,7 +336,7 @@ void SkeletalFishBoss::exeOpen() {
 
     if (MR::isBckStopped(mBossHead)) {
         MR::startBck(mBossHead, "OpenWait", nullptr);
-        setNerve(&::SkeletalFishBossNrvOpenWait::sInstance);
+        setNerve(GET_NERVE_ANON(SkeletalFishBossNrvOpenWait));
     }
 }
 
@@ -346,7 +346,7 @@ void SkeletalFishBoss::exeOpenWait() {
     bool isClose = mouthPos.distance(*MR::getPlayerPos()) < 7000.0f;
 
     if (!isClose) {
-        setNerve(&::SkeletalFishBossNrvClose::sInstance);
+        setNerve(GET_NERVE_ANON(SkeletalFishBossNrvClose));
     } else {
         MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR");
         MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR");
@@ -364,7 +364,7 @@ void SkeletalFishBoss::exeClose() {
 
     if (MR::isBckStopped(mBossHead)) {
         MR::startBck(mBossHead, "Wait", nullptr);
-        setNerve(&::SkeletalFishBossNrvSwim::sInstance);
+        setNerve(GET_NERVE_ANON(SkeletalFishBossNrvSwim));
     }
 }
 
@@ -378,7 +378,7 @@ void SkeletalFishBoss::exeBite() {
 
     if (MR::isBckStopped(mBossHead)) {
         MR::startBck(mBossHead, "Wait", nullptr);
-        setNerve(&::SkeletalFishBossNrvSwim::sInstance);
+        setNerve(GET_NERVE_ANON(SkeletalFishBossNrvSwim));
     }
 }
 
@@ -402,7 +402,7 @@ void SkeletalFishBoss::exeDamage() {
             MR::startBrk(mBossHead, "Damage2Color");
         }
 
-        setNerve(&::SkeletalFishBossNrvSwim::sInstance);
+        setNerve(GET_NERVE_ANON(SkeletalFishBossNrvSwim));
         MR::appearStarPiece(this, mPosition, 6, 10.0f, 40.0f, false);
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W_F");
     }
@@ -425,7 +425,7 @@ void SkeletalFishBoss::exeDown() {
     MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR");
 
     if (MR::isStep(this, 120)) {
-        stopScene("スカルシャークパワーアップ", &::SkeletalFishBossNrvPowerUpDemo::sInstance, &SkeletalFishBoss::startPowerUpDemo);
+        stopScene("スカルシャークパワーアップ", GET_NERVE_ANON(SkeletalFishBossNrvPowerUpDemo), &SkeletalFishBoss::startPowerUpDemo);
     }
 }
 
@@ -444,7 +444,7 @@ void SkeletalFishBoss::exeDeadDamage() {
 
     if (MR::isStep(this, 120)) {
         MR::stopStageBGM(30);
-        stopScene("スカルシャーク死亡", &::SkeletalFishBossNrvDeadDemo::sInstance, &SkeletalFishBoss::startDeadDemo);
+        stopScene("スカルシャーク死亡", GET_NERVE_ANON(SkeletalFishBossNrvDeadDemo), &SkeletalFishBoss::startDeadDemo);
     }
 }
 
@@ -467,7 +467,7 @@ void SkeletalFishBoss::exeDead() {
 
 void SkeletalFishBoss::exeAppearWait() {
     if (!MR::isPlayerInBind() && !MR::isEventCameraActive()) {
-        stopScene("スカルシャーク出現", &::SkeletalFishBossNrvAppearDemo::sInstance, &SkeletalFishBoss::startAppearDemo);
+        stopScene("スカルシャーク出現", GET_NERVE_ANON(SkeletalFishBossNrvAppearDemo), &SkeletalFishBoss::startAppearDemo);
     }
 }
 
@@ -563,7 +563,7 @@ void SkeletalFishBoss::exeDeadDemo() {
     if (MR::isBckStopped(this)) {
         mBossDirector->killBirdLouse();
         MR::overlayWithPreviousScreen(2);
-        setNerve(&::SkeletalFishBossNrvBreakDemo::sInstance);
+        setNerve(GET_NERVE_ANON(SkeletalFishBossNrvBreakDemo));
     }
 }
 
@@ -601,7 +601,7 @@ void SkeletalFishBoss::exeBreakDemo() {
         MR::startAfterBossBGM();
         mBossDirector->killBirdLouse();
         endBreakDemo();
-        setNerve(&::SkeletalFishBossNrvDead::sInstance);
+        setNerve(GET_NERVE_ANON(SkeletalFishBossNrvDead));
     }
 }
 
@@ -633,8 +633,8 @@ SkeletalFishBossHead* SkeletalFishBoss::getHeadActor() const {
 }
 
 void SkeletalFishBoss::calcAndSetBaseMtx() {
-    bool isInDemo = isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) || isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) ||
-                    isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance);
+    bool isInDemo = isNerve(GET_NERVE_ANON(SkeletalFishBossNrvAppearDemo)) || isNerve(GET_NERVE_ANON(SkeletalFishBossNrvPowerUpDemo)) ||
+                    isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDeadDemo));
 
     if (isInDemo) {
         MR::setBaseTRMtx(this, _150);
@@ -868,7 +868,7 @@ LiveActor* SkeletalFishBoss::getCurrentBossRail() {
 }
 
 void SkeletalFishBoss::stopScene(const char* pName, const Nerve* pNerve, SceneFunc func) {
-    setNerve(&::SkeletalFishBossNrvDemoWait::sInstance);
+    setNerve(GET_NERVE_ANON(SkeletalFishBossNrvDemoWait));
     mSceneFunc = func;
     mCurScene = pName;
     mSceneNerve = pNerve;
@@ -945,7 +945,7 @@ void SkeletalFishBoss::endAppearDemo() {
     MR::startBck(this, "Swim", nullptr);
     MR::startBck(mBossHead, "Wait", nullptr);
     resetRail();
-    setNerve(&::SkeletalFishBossNrvSwim::sInstance);
+    setNerve(GET_NERVE_ANON(SkeletalFishBossNrvSwim));
 }
 
 void SkeletalFishBoss::startPowerUpDemo() {
@@ -993,7 +993,7 @@ void SkeletalFishBoss::endPowerUpDemo() {
     MR::startBck(this, "Swim", nullptr);
     MR::startBck(mBossHead, "Wait", 0);
     mGuardHolder->forceAppearAll();
-    setNerve(&::SkeletalFishBossNrvSwim::sInstance);
+    setNerve(GET_NERVE_ANON(SkeletalFishBossNrvSwim));
 }
 
 void SkeletalFishBoss::startDeadDemo() {
@@ -1021,10 +1021,10 @@ void SkeletalFishBoss::endBreakDemo() {
 }
 
 bool SkeletalFishBoss::isEnableToBeDamaged() const {
-    return !isNerve(&::SkeletalFishBossNrvDamage::sInstance) && !isNerve(&::SkeletalFishBossNrvDown::sInstance) &&
-           !isNerve(&::SkeletalFishBossNrvDeadDamage::sInstance) && !isNerve(&::SkeletalFishBossNrvDead::sInstance) &&
-           !isNerve(&::SkeletalFishBossNrvDemoWait::sInstance) && !isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) &&
-           !isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) && !isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance);
+    return !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDamage)) && !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDown)) &&
+           !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDeadDamage)) && !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDead)) &&
+           !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDemoWait)) && !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvAppearDemo)) &&
+           !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvPowerUpDemo)) && !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDeadDemo));
 }
 
 SkeletalFishBossHead::SkeletalFishBossHead(LiveActor* pActor)
@@ -1058,27 +1058,27 @@ void SkeletalFishBossHead::attackSensor(HitSensor* pSender, HitSensor* pReceiver
     }
 
     LiveActor* pHost = mHost;
-    bool curFlag = pHost->isNerve(&::SkeletalFishBossNrvDeadDamage::sInstance) || pHost->isNerve(&::SkeletalFishBossNrvDead::sInstance);
+    bool curFlag = pHost->isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDeadDamage)) || pHost->isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDead));
 
     if (curFlag) {
         return;
     }
 
     if (MR::isSensorPlayer(pReceiver)) {
-        curFlag = pHost->isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) || pHost->isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) ||
-                  pHost->isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance);
+        curFlag = pHost->isNerve(GET_NERVE_ANON(SkeletalFishBossNrvAppearDemo)) || pHost->isNerve(GET_NERVE_ANON(SkeletalFishBossNrvPowerUpDemo)) ||
+                  pHost->isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDeadDemo));
 
         if (curFlag) {
             return;
         }
 
-        if (pHost->isNerve(&::SkeletalFishBossNrvDamage::sInstance)) {
+        if (pHost->isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDamage))) {
             MR::sendMsgPush(pReceiver, pSender);
         } else {
             MR::sendMsgPush(pReceiver, pSender);
 
-            if (pHost->isNerve(&::SkeletalFishBossNrvOpenWait::sInstance)) {
-                pHost->setNerve(&::SkeletalFishBossNrvBite::sInstance);
+            if (pHost->isNerve(GET_NERVE_ANON(SkeletalFishBossNrvOpenWait))) {
+                pHost->setNerve(GET_NERVE_ANON(SkeletalFishBossNrvBite));
             }
         }
     } else if (!MR::isSensorEnemyAttack(pSender) && MR::isSensorEnemy(pReceiver)) {

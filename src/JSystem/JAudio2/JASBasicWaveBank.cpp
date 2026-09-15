@@ -17,6 +17,7 @@ JASBasicWaveBank::~JASBasicWaveBank() {
     for (int i = 0; i < mGroupCount; i++) {
         delete mWaveGroupArray[i];
     }
+
     delete[] mWaveGroupArray;
 }
 
@@ -24,6 +25,7 @@ JASBasicWaveBank::TWaveGroup* JASBasicWaveBank::getWaveGroup(u32 param_0) {
     if (param_0 >= mGroupCount) {
         return nullptr;
     }
+
     return mWaveGroupArray[param_0];
 }
 
@@ -31,6 +33,7 @@ void JASBasicWaveBank::setGroupCount(u32 param_0, JKRHeap* heap) {
     for (int i = 0; i < mGroupCount; i++) {
         delete mWaveGroupArray[i];
     }
+
     delete[] mWaveGroupArray;
     mGroupCount = (u16)param_0;
     mWaveGroupArray = new (heap, 0) TWaveGroup*[param_0];
@@ -46,24 +49,24 @@ void JASBasicWaveBank::setWaveTableSize(u32 count, JKRHeap* heap) {
     mHandleCount = (u16)count;
 }
 
-void JASBasicWaveBank::incWaveTable(JASBasicWaveBank::TWaveGroup const* waveGroup) {
-    // FIXME: regswap
-
+void JASBasicWaveBank::incWaveTable(JASBasicWaveBank::TWaveGroup const* pWaveGroup) {
     JASMutexLock lock(&mMutex);
     TWaveInfo** table;
     TWaveInfo* info;
     u32 id;
-    for (u32 i = 0; i < waveGroup->getWaveCount(); i++) {
+    for (u32 i = 0; i < pWaveGroup->getWaveCount(); i++) {
         table = mWaveTable;
-        info = &waveGroup->mCtrlWaveArray[i];
+        info = &pWaveGroup->mCtrlWaveArray[i];
 
         id = info->getWaveID();
+        TWaveInfo*& entry = table[id];
         info->mPrev = nullptr;
-        info->mNext = table[id];
-        if (table[id] != nullptr) {
-            table[id]->mPrev = info;
+        info->mNext = entry;
+        if (entry != nullptr) {
+            entry->mPrev = info;
         }
-        table[id] = info;
+
+        entry = info;
     }
 }
 
@@ -80,9 +83,11 @@ void JASBasicWaveBank::decWaveTable(JASBasicWaveBank::TWaveGroup const* waveGrou
                 } else {
                     info2->mPrev->mNext = info2->mNext;
                 }
+
                 if (info2->mNext != nullptr) {
                     info2->mNext->mPrev = info2->mPrev;
                 }
+
                 break;
             }
         }
@@ -93,9 +98,11 @@ JASWaveHandle* JASBasicWaveBank::getWaveHandle(u32 waveId) const {
     if (waveId >= mHandleCount) {
         return nullptr;
     }
+
     if (mWaveTable[waveId] == nullptr) {
         return nullptr;
     }
+
     return &mWaveTable[waveId]->mWaveHandle;
 }
 
@@ -139,5 +146,6 @@ int JASBasicWaveBank::TWaveHandle::getWavePtr() const {
     if (base == 0) {
         return 0;
     }
+
     return (intptr_t)base + mWaveInfo.mAWStartOffs;
 }

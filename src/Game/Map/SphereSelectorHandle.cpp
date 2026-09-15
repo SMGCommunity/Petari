@@ -55,10 +55,10 @@ SphereSelectorHandle::SphereSelectorHandle(const char* pName)
 }
 
 void SphereSelectorHandle::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_Environment, MR::CalcAnimType_MapObj, -1, -1);
+    MR::connectToScene(this, MR::MovementType_Environment, MR::CalcAnimType_MapObj, MR::DrawBufferType_None, MR::DrawType_None);
     MR::getJMapInfoArg0NoInit(rIter, &mIsFileSelectMode);
     MR::invalidateClipping(this);
-    initNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvWait::sInstance);
+    initNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvWait));
     MR::tryRegisterDemoCast(this, rIter);
     MR::registerDemoSimpleCastAll(this);
     SphereSelectorFunction::registerTarget(this);
@@ -79,7 +79,7 @@ void SphereSelectorHandle::appear() {
     MR::rotateVecDegree(&_E8, TVec3f(0.0f, 1.0f, 0.0f), _DC, ::cRotateAppearX);
     MR::normalize(&_E8);
     MR::setStageBGMState(::cBgmAppearState, ::cBgmAppearFrames);
-    setNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvWait::sInstance);
+    setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvWait));
 }
 
 bool SphereSelectorHandle::isPointing() const {
@@ -87,15 +87,15 @@ bool SphereSelectorHandle::isPointing() const {
 }
 
 bool SphereSelectorHandle::isHolding() const {
-    return isNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvHold::sInstance);
+    return isNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvHold));
 }
 
 void SphereSelectorHandle::validateRotate() {
-    setNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvWait::sInstance);
+    setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvWait));
 }
 
 void SphereSelectorHandle::invalidateRotate() {
-    setNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvInvalidRotate::sInstance);
+    setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvInvalidRotate));
 }
 
 void SphereSelectorHandle::control() {
@@ -112,9 +112,9 @@ void SphereSelectorHandle::control() {
 }
 
 bool SphereSelectorHandle::isWaitOrSpinOrDemoRotate() {
-    return (isNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvWait::sInstance) ||
-            isNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvSpin::sInstance) ||
-            isNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvDemoRotate::sInstance));
+    return (isNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvWait)) ||
+            isNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvSpin)) ||
+            isNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvDemoRotate)));
 }
 
 bool SphereSelectorHandle::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
@@ -123,28 +123,28 @@ bool SphereSelectorHandle::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSenso
         return true;
     }
     if (SphereSelectorFunction::isMsgSelectEnd(msg)) {
-        setNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvDisappear::sInstance);
+        setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvDisappear));
         return true;
     }
     if (SphereSelectorFunction::isMsgConfirmStart(msg)) {
         if (mIsFileSelectMode) {
-            setNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvIdleForFileSelect::sInstance);
+            setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvIdleForFileSelect));
         } else {
-            setNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvGalaxyConfirmStart::sInstance);
+            setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvGalaxyConfirmStart));
         }
         return true;
     }
     if (SphereSelectorFunction::isMsgConfirmCancel(msg)) {
         if (mIsFileSelectMode) {
-            setNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvIdleEndForFileSelect::sInstance);
+            setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvIdleEndForFileSelect));
         } else {
-            setNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvGalaxyConfirmCancel::sInstance);
+            setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvGalaxyConfirmCancel));
         }
         return true;
     }
     if (SphereSelectorFunction::isMsgTargetSelected(msg)) {
         if (isWaitOrSpinOrDemoRotate()) {
-            setNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvHold::sInstance);
+            setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvHold));
             return true;
         }
     }
@@ -153,7 +153,7 @@ bool SphereSelectorHandle::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSenso
 
 bool SphereSelectorHandle::tryRelease() {
     if (!SphereSelectorFunction::isPadButton()) {
-        setNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvSpin::sInstance);
+        setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvSpin));
         return true;
     }
     return false;
@@ -263,7 +263,7 @@ void SphereSelectorHandle::exeWait() {
         SphereSelectorFunction::registerPointingTarget(this, HandlePointingPriority(1));
     }
     if (_10C > ::cDemoRotateStartFrame) {
-        setNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvDemoRotate::sInstance);
+        setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvDemoRotate));
     }
 }
 
@@ -299,7 +299,7 @@ void SphereSelectorHandle::exeSpin() {
         SphereSelectorFunction::registerPointingTarget(this, HandlePointingPriority(1));
     }
     if (MR::isNearZero(mRotateSpeed) && MR::isNearZero(_D4)) {
-        setNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvWait::sInstance);
+        setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvWait));
     }
 }
 
@@ -309,7 +309,7 @@ void SphereSelectorHandle::exeDemoRotate() {
         SphereSelectorFunction::registerPointingTarget(this, HandlePointingPriority(1));
     }
     if (_10C == 0) {
-        setNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvWait::sInstance);
+        setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvWait));
     }
 }
 
@@ -329,7 +329,7 @@ void SphereSelectorHandle::exeGalaxyConfirmStart() {
         setStateConfirmStartAtFirstStep();
         _110.zero();
     }
-    MR::setNerveAtStep(this, &NrvSphereSelectorHandle::SphereSelectorHandleNrvGalaxyConfirmWait::sInstance, confirmStartCancelFrame);
+    MR::setNerveAtStep(this, GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvGalaxyConfirmWait), confirmStartCancelFrame);
 }
 
 void SphereSelectorHandle::exeGalaxyConfirmCancel() {
@@ -338,14 +338,14 @@ void SphereSelectorHandle::exeGalaxyConfirmCancel() {
         MR::setStageBGMState(cBgmNotConfirmState, cBgmNotConfirmFrames);
     }
     mPosition.lerp(_110, TVec3f(0.0f, 0.0f, 0.0f), MR::calcNerveEaseInRate(this, confirmStartCancelFrame));
-    MR::setNerveAtStep(this, &NrvSphereSelectorHandle::SphereSelectorHandleNrvWait::sInstance, confirmStartCancelFrame);
+    MR::setNerveAtStep(this, GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvWait), confirmStartCancelFrame);
 }
 
 void SphereSelectorHandle::exeIdleEndForFileSelect() {
     if (MR::isFirstStep(this)) {
         MR::setStageBGMState(cBgmNotConfirmState, cBgmNotConfirmFrames);
     }
-    MR::setNerveAtStep(this, &NrvSphereSelectorHandle::SphereSelectorHandleNrvWait::sInstance, SphereSelectorFunction::getConfirmStartCancelFrame());
+    MR::setNerveAtStep(this, GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvWait), SphereSelectorFunction::getConfirmStartCancelFrame());
 }
 
 void SphereSelectorHandle::exeIdleForFileSelect() {

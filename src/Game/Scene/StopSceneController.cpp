@@ -1,9 +1,10 @@
 #include "Game/Scene/StopSceneController.hpp"
 #include "Game/NameObj/NameObjGroup.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 StopSceneDelayRequest::StopSceneDelayRequest() : NameObj("シーン硬直遅延発行"), mFrame(), mDelay() {
-    MR::connectToScene(this, 1, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_StopSceneDelayRequest, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
 }
 
 StopSceneController::StopSceneController() : NameObj("StopSceneController"), mDelayRequestArray(), mFrame() {

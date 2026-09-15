@@ -2,7 +2,6 @@
 
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/MapObj/BenefitItemObj.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/MapObj/SimpleBreakableObj.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
@@ -66,7 +65,9 @@ void SimpleBreakableObj::init(const JMapInfoIter& rIter) {
         MR::declareCoin(this, mItemNum);
         break;
     case 1:
-        mKinokoOneUp = MR::createKinokoOneUp();
+        // Likely FAKEMATCH, however including the BenefitItemOneUp header (and by proxy BenefitItemObj)
+        // will emit the nerve instances in sinit.
+        mKinokoOneUp = reinterpret_cast< BenefitItemObj* >(MR::createKinokoOneUp());
         break;
     case 2:
         MR::declarePowerStar(this);

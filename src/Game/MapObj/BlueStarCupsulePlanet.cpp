@@ -2,6 +2,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/MapObj/MapPartsRotator.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
@@ -58,10 +59,10 @@ void BlueStarCupsulePlanet::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::getObjectName(&mName, rIter);
     initModelManagerWithAnm(mName, nullptr, false);
-    MR::connectToScene(this, 29, 1, 4, -1);
+    MR::connectToScene(this, MR::MovementType_Planet, MR::CalcAnimType_Planet, MR::DrawBufferType_Planet, MR::DrawType_None);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
-    initNerve(&NrvBlueStarCupsulePlanet::BlueStarCupsulePlanetNrvWait::sInstance);
+    initNerve(GET_NERVE(BlueStarCupsulePlanet, BlueStarCupsulePlanetNrvWait));
     initHitSensor(1);
     TVec3f offsetPointer, vec, offsetMap;
     TPos3f pos;
@@ -147,14 +148,14 @@ void BlueStarCupsulePlanet::updatePose() {
 }
 
 void BlueStarCupsulePlanet::decidedTarget() {
-    if (!isNerve(&NrvBlueStarCupsulePlanet::BlueStarCupsulePlanetNrvActive::sInstance)) {
-        setNerve(&NrvBlueStarCupsulePlanet::BlueStarCupsulePlanetNrvActive::sInstance);
+    if (!isNerve(GET_NERVE(BlueStarCupsulePlanet, BlueStarCupsulePlanetNrvActive))) {
+        setNerve(GET_NERVE(BlueStarCupsulePlanet, BlueStarCupsulePlanetNrvActive));
     }
 }
 
 void BlueStarCupsulePlanet::releasedTarget() {
-    if (!isNerve(&NrvBlueStarCupsulePlanet::BlueStarCupsulePlanetNrvWait::sInstance)) {
-        setNerve(&NrvBlueStarCupsulePlanet::BlueStarCupsulePlanetNrvWait::sInstance);
+    if (!isNerve(GET_NERVE(BlueStarCupsulePlanet, BlueStarCupsulePlanetNrvWait))) {
+        setNerve(GET_NERVE(BlueStarCupsulePlanet, BlueStarCupsulePlanetNrvWait));
         MR::startAllAnim(this, "Wait");
     }
 }
@@ -179,7 +180,7 @@ void BlueStarCupsulePlanet::exeWait() {
     updatePose();
 
     if (isPointable()) {
-        setNerve(&NrvBlueStarCupsulePlanet::BlueStarCupsulePlanetNrvPointable::sInstance);
+        setNerve(GET_NERVE(BlueStarCupsulePlanet, BlueStarCupsulePlanetNrvPointable));
     }
 }
 
@@ -191,18 +192,18 @@ void BlueStarCupsulePlanet::exePointable() {
     updatePose();
 
     if (!isPointable()) {
-        setNerve(&NrvBlueStarCupsulePlanet::BlueStarCupsulePlanetNrvWait::sInstance);
+        setNerve(GET_NERVE(BlueStarCupsulePlanet, BlueStarCupsulePlanetNrvWait));
     } else if (MR::isStarPointerPointing(this, 0, true, "弱")) {
         if (MR::requestGCaptureTarget(this)) {
             MR::invalidateClipping(this);
-            setNerve(&NrvBlueStarCupsulePlanet::BlueStarCupsulePlanetNrvHitPointer::sInstance);
+            setNerve(GET_NERVE(BlueStarCupsulePlanet, BlueStarCupsulePlanetNrvHitPointer));
         }
     }
 }
 
 void BlueStarCupsulePlanet::exeHitPointer() {
     if (!MR::isRequestedGCaptureTarget(this)) {
-        setNerve(&NrvBlueStarCupsulePlanet::BlueStarCupsulePlanetNrvWait::sInstance);
+        setNerve(GET_NERVE(BlueStarCupsulePlanet, BlueStarCupsulePlanetNrvWait));
     } else {
         if (MR::isFirstStep(this)) {
             emitNerveEffect();
@@ -271,20 +272,20 @@ bool BlueStarCupsulePlanet::isPointable() const {
 }
 
 void BlueStarCupsulePlanet::emitNerveEffect() {
-    if (isNerve(&NrvBlueStarCupsulePlanet::BlueStarCupsulePlanetNrvWait::sInstance)) {
+    if (isNerve(GET_NERVE(BlueStarCupsulePlanet, BlueStarCupsulePlanetNrvWait))) {
         MR::deleteEffect(this, "TargetLight");
         MR::deleteEffect(this, "Touch");
         MR::deleteEffect(this, "Active");
-    } else if (isNerve(&NrvBlueStarCupsulePlanet::BlueStarCupsulePlanetNrvPointable::sInstance)) {
+    } else if (isNerve(GET_NERVE(BlueStarCupsulePlanet, BlueStarCupsulePlanetNrvPointable))) {
         MR::emitEffect(this, "TargetLight");
         MR::emitEffect(this, "TouchAble");
         MR::deleteEffect(this, "Touch");
         MR::deleteEffect(this, "Active");
-    } else if (isNerve(&NrvBlueStarCupsulePlanet::BlueStarCupsulePlanetNrvHitPointer::sInstance)) {
+    } else if (isNerve(GET_NERVE(BlueStarCupsulePlanet, BlueStarCupsulePlanetNrvHitPointer))) {
         MR::emitEffect(this, "TargetLight");
         MR::emitEffect(this, "Touch");
         MR::deleteEffect(this, "Active");
-    } else if (isNerve(&NrvBlueStarCupsulePlanet::BlueStarCupsulePlanetNrvActive::sInstance)) {
+    } else if (isNerve(GET_NERVE(BlueStarCupsulePlanet, BlueStarCupsulePlanetNrvActive))) {
         MR::emitEffect(this, "TargetLight");
         MR::deleteEffect(this, "Touch");
         MR::emitEffect(this, "Active");

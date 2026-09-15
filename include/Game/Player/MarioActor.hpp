@@ -266,7 +266,7 @@ public:
     bool isEnableSpinPunch();
     void reactionPunch(HitSensor*);
     bool sendPunch(HitSensor*, bool);
-    bool doFreezeAttack(HitSensor*);
+    bool doFreezeAttack(HitSensor*) NO_INLINE;
     bool trySpinPunch();
     void printHitMark(HitSensor*);
     bool tryPunchAirAfter(HitSensor*);
@@ -557,7 +557,7 @@ public:
         return _482 || _481;
     }
 
-    inline Mario* getMario() {
+    inline Mario* getMario() const {
         return mMario;
     }
 
@@ -894,7 +894,17 @@ public:
     /* 0xB92 */ s8 _B92;
     /* 0xB94 */ u16 _B94;
     /* 0xB96 */ u8 _B96;
-    /* 0xB98 */ u32 _B98;
+    union {
+        /* 0xB98 */ u32 _B98;
+        struct {
+            unsigned mSmoke : 1;
+            unsigned mSnow : 1;
+            unsigned _2 : 1;
+            unsigned mSlopeSlip : 1;
+            unsigned mIsStationary : 1;
+            unsigned mBeeWind : 1;
+        } mEffectFlags;
+    };
     /* 0xB9C */ u16 _B9C;
     /* 0xB9E */ u16 _B9E;
     /* 0xBA0 */ SmokeEffectEntry** _BA0;
@@ -999,14 +1009,14 @@ public:
 // header defined since these actually get defined in CamHeliEffector
 // and in sinit of NameObjFactory
 namespace NrvMarioActor {
-    NERVE_DECL_EXE(MarioActorNrvWait, MarioActor, Wait);
-    NERVE_DECL_EXE(MarioActorNrvGameOver, MarioActor, GameOver);
-    NERVE_DECL_EXE(MarioActorNrvGameOverAbyss, MarioActor, GameOverAbyss);
-    NERVE_DECL_EXE(MarioActorNrvGameOverAbyss2, MarioActor, GameOverAbyss);
-    NERVE_DECL_EXE(MarioActorNrvGameOverFire, MarioActor, GameOverFire);
-    NERVE_DECL_EXE(MarioActorNrvGameOverBlackHole, MarioActor, GameOverBlackHole2);
-    NERVE_DECL_EXE(MarioActorNrvGameOverNonStop, MarioActor, GameOverNonStop);
-    NERVE_DECL_EXE(MarioActorNrvGameOverSink, MarioActor, GameOverSink);
-    NERVE_DECL_EXE(MarioActorNrvTimeWait, MarioActor, TimeWait);
-    NERVE_DECL_EXE(MarioActorNrvNoRush, MarioActor, Wait);
+    NEW_NERVE(MarioActorNrvWait, MarioActor, Wait);
+    NEW_NERVE(MarioActorNrvGameOver, MarioActor, GameOver);
+    NEW_NERVE(MarioActorNrvGameOverAbyss, MarioActor, GameOverAbyss);
+    NEW_NERVE(MarioActorNrvGameOverAbyss2, MarioActor, GameOverAbyss);
+    NEW_NERVE(MarioActorNrvGameOverFire, MarioActor, GameOverFire);
+    NEW_NERVE(MarioActorNrvGameOverBlackHole, MarioActor, GameOverBlackHole2);
+    NEW_NERVE(MarioActorNrvGameOverNonStop, MarioActor, GameOverNonStop);
+    NEW_NERVE(MarioActorNrvGameOverSink, MarioActor, GameOverSink);
+    NEW_NERVE(MarioActorNrvTimeWait, MarioActor, TimeWait);
+    NEW_NERVE(MarioActorNrvNoRush, MarioActor, Wait);
 };  // namespace NrvMarioActor

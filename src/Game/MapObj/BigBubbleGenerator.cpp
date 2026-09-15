@@ -35,7 +35,7 @@ void BigBubbleGenerator::init(const JMapInfoIter& rIter) {
     MR::addBodyMessageSensorReceiver(this);
 
     MR::initCollisionParts(this, "AirBubbleGenerator", getSensor(nullptr), nullptr);
-    initNerve(&NrvBigBubbleGenerator::BigBubbleGeneratorNrvNonActive::sInstance);
+    initNerve(GET_NERVE(BigBubbleGenerator, BigBubbleGeneratorNrvNonActive));
     initFromJMapParam(rIter);
     makeActorAppeared();
 }
@@ -73,16 +73,16 @@ void BigBubbleGenerator::control() {
 }
 
 void BigBubbleGenerator::onActive() {
-    if (isNerve(&NrvBigBubbleGenerator::BigBubbleGeneratorNrvNonActive::sInstance)) {
+    if (isNerve(GET_NERVE(BigBubbleGenerator, BigBubbleGeneratorNrvNonActive))) {
         MR::invalidateClipping(this);
-        setNerve(&NrvBigBubbleGenerator::BigBubbleGeneratorNrvActive::sInstance);
+        setNerve(GET_NERVE(BigBubbleGenerator, BigBubbleGeneratorNrvActive));
     }
 }
 
 void BigBubbleGenerator::offActive() {
-    if (isNerve(&NrvBigBubbleGenerator::BigBubbleGeneratorNrvActive::sInstance)) {
+    if (isNerve(GET_NERVE(BigBubbleGenerator, BigBubbleGeneratorNrvActive))) {
         MR::validateClipping(this);
-        setNerve(&NrvBigBubbleGenerator::BigBubbleGeneratorNrvNonActive::sInstance);
+        setNerve(GET_NERVE(BigBubbleGenerator, BigBubbleGeneratorNrvNonActive));
     }
 }
 
@@ -97,7 +97,7 @@ bool BigBubbleGenerator::isNonActiveRange() {
 bool BigBubbleGenerator::tryActive() {
     if (!MR::isValidSwitchAppear(this) && isActiveRange()) {
         MR::invalidateClipping(this);
-        setNerve(&NrvBigBubbleGenerator::BigBubbleGeneratorNrvActive::sInstance);
+        setNerve(GET_NERVE(BigBubbleGenerator, BigBubbleGeneratorNrvActive));
         return true;
     }
     return false;
@@ -106,7 +106,7 @@ bool BigBubbleGenerator::tryActive() {
 bool BigBubbleGenerator::tryNonActive() {
     if (!MR::isValidSwitchAppear(this) && isNonActiveRange()) {
         MR::validateClipping(this);
-        setNerve(&NrvBigBubbleGenerator::BigBubbleGeneratorNrvNonActive::sInstance);
+        setNerve(GET_NERVE(BigBubbleGenerator, BigBubbleGeneratorNrvNonActive));
         return true;
     }
     return false;

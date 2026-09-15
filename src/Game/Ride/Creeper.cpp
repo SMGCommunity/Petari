@@ -31,6 +31,31 @@ namespace NrvCreeper {
 };  // namespace NrvCreeper
 
 namespace {
+    static const f32 sInterval = 50.0f;
+    static const s32 sHeadPointNo = 1;
+    static const f32 sDefaultBendRate = 100.0f;
+    static const f32 sDefaultJumpSpeedFront = 25.0f;
+    static const f32 sDefaultJumpSpeedUp = 40.0f;
+    static const f32 sFreeBackAccelRate = 0.05f;
+    static const f32 sPointFrictionFree = 0.9f;
+    static const f32 sPointFrictionHang = 0.7f;
+    static const f32 sHangStartRotateSpeed = 15.0f;
+    static const f32 sHangUpAccel = 5.0f;
+    static const f32 sHangUpAccel2P = 10.0f;
+    static const f32 sHangUpSpeedMin = 5.0f;
+    static const f32 sHangUpSpeedMax = 15.0f;
+    static const f32 sHangDownGravity = 0.4f;
+    static const f32 sHangDownSpeedMax = 20.0f;
+    static const f32 sHangRotateSpeedRate = 1.5f;
+    static const f32 sHangStartCoordMin = 100.0f;
+    static const f32 sHangEndCoord = 80.0f;
+    static const s32 sAnimInterpoleFrame = 15;
+    static const s32 sStepInvalidSpin = 60;
+    static const s32 sStepInvalid = 20;
+    static const f32 sDistanceNear = 200.0f;
+    static const f32 sDrawWidthX = 10.0f;
+    static const f32 sDrawWidthZ = 10.0f;
+
     static Color8 sColorPlusZ(0xFF, 0xFF, 0xFF, 0xFF);
     static Color8 sColorPlusX(0x96, 0x96, 0x96, 0xFF);
     static Color8 sColorMinusX(0xC8, 0xC8, 0xC8, 0xFF);
@@ -65,25 +90,22 @@ CreeperPoint::CreeperPoint(const TVec3f& rPos, const TVec3f& rUp, const CreeperP
 void CreeperPoint::updateFree() {
     TVec3f restoreVec(mNeutralPos - mPosition);
 
-    mVelocity.add(restoreVec * 0.05f);
-
+    mVelocity.add(restoreVec * ::sFreeBackAccelRate);
     mPosition.add(mVelocity);
-
-    mVelocity.mult(0.9f);
+    mVelocity.mult(::sPointFrictionFree);
 
     updateLocalAxis();
 
-    // mPosition = mPrevPoint->mPosition + mUp * 50.0f;
     mPosition.set(mUp);
-    mPosition.scale(50.0f);
+    mPosition.scale(::sInterval);
     mPosition.add(mPrevPoint->mPosition);
 }
 
-void CreeperPoint::updateBend(bool bend, const TVec3f& bendDirection, f32 t, f32 bendFactor) {
-    mVelocity.mult(0.7f);
+void CreeperPoint::updateBend(bool bend, const TVec3f& bendDirection, f32 t, f32 bendRate) {
+    mVelocity.mult(::sPointFrictionHang);
 
     if (bend) {
-        mVelocity.add(bendDirection * t * bendFactor);
+        mVelocity.add(bendDirection * t * bendRate);
     }
 
     mPosition = mPrevPoint->mSide * mProjection.x + mPrevPoint->mUp * mProjection.y + mPrevPoint->mFront * mProjection.z + mPrevPoint->mPosition;
@@ -92,9 +114,8 @@ void CreeperPoint::updateBend(bool bend, const TVec3f& bendDirection, f32 t, f32
 
     updateLocalAxis();
 
-    // mPosition = mPrevPoint->mPosition + mUp * 50.0f;
     mPosition.set(mUp);
-    mPosition.scale(50.0f);
+    mPosition.scale(::sInterval);
     mPosition.add(mPrevPoint->mPosition);
 }
 
@@ -112,28 +133,28 @@ void CreeperPoint::updateLocalAxis() {
 }
 
 Creeper::Creeper(const char* pName)
-    : LiveActor(pName), mNumPoints(0), mPoints(nullptr), mRider(nullptr), mFront(0.0f, 0.0f, 1.0f), mUp(0.0f, 1.0f, 0.0f), mClimbSpeed(0.0f),
-      mCoord(0), mLaunchHorizontalSpeed(25.0f), mLaunchVerticalSpeed(40.0f), mBendDirection(0.0f, 0.0f, 0.0f), mBendFactorNormal(100.0f),
-      mBendFactorBee(-1.0f), mCameraInfo(nullptr), mClippingCenter(0.0f, 0.0f, 0.0f), mTexture(nullptr), mFlowerModel(nullptr), mLeafModel(nullptr) {
+    : LiveActor(pName), mNumPoints(), mPoints(), mRider(), mFront(0.0f, 0.0f, 1.0f), mUp(0.0f, 1.0f, 0.0f), mHangSpeed(), mCoord(),
+      mJumpSpeedFront(::sDefaultJumpSpeedFront), mJumpSpeedUp(::sDefaultJumpSpeedUp), mBendDirection(0.0f, 0.0f, 0.0f), mBendRate(::sDefaultBendRate),
+      mBendRateBee(-1.0f), mCameraInfo(), mClippingCenter(0.0f, 0.0f, 0.0f), mTexture(), mFlowerModel(), mLeafModel() {
     mTopMtx.identity();
 }
 
 void Creeper::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
 
-    MR::getJMapInfoArg0NoInit(rIter, &mBendFactorNormal);
-    MR::getJMapInfoArg1NoInit(rIter, &mLaunchHorizontalSpeed);
-    MR::getJMapInfoArg2NoInit(rIter, &mLaunchVerticalSpeed);
-    MR::getJMapInfoArg3NoInit(rIter, &mBendFactorBee);
+    MR::getJMapInfoArg0NoInit(rIter, &mBendRate);
+    MR::getJMapInfoArg1NoInit(rIter, &mJumpSpeedFront);
+    MR::getJMapInfoArg2NoInit(rIter, &mJumpSpeedUp);
+    MR::getJMapInfoArg3NoInit(rIter, &mBendRateBee);
 
-    mBendFactorNormal /= 100.0f;
-    if (mBendFactorBee > 0.0f) {
-        mBendFactorBee /= 100.0f;
+    mBendRate /= ::sDefaultBendRate;
+    if (mBendRateBee > 0.0f) {
+        mBendRateBee /= ::sDefaultBendRate;
     } else {
-        mBendFactorBee = mBendFactorNormal;
+        mBendRateBee = mBendRate;
     }
 
-    MR::connectToScene(this, MR::MovementType_Ride, -1, -1, MR::DrawType_Creeper);
+    MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_Creeper);
 
     initHitSensor(3);
     MR::addHitSensorBinder(this, "bind", 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
@@ -142,7 +163,7 @@ void Creeper::init(const JMapInfoIter& rIter) {
     mPosition.set(MR::getRailPos(this));
     initPoints();
 
-    initNerve(&NrvCreeper::CreeperNrvFree::sInstance);
+    initNerve(GET_NERVE(Creeper, CreeperNrvFree));
 
     MR::initMultiActorCamera(this, rIter, &mCameraInfo, "掴まり");
 
@@ -163,65 +184,65 @@ void Creeper::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-inline void Creeper::exeFree() {
+void Creeper::exeFree() {
 }
 
 void Creeper::exeFreeInvalid() {
-    if (MR::isNearPlayer(this, 200.0f) && MR::isGreaterStep(this, 20)) {
-        setNerve(&NrvCreeper::CreeperNrvFree::sInstance);
+    if (MR::isNearPlayer(this, ::sDistanceNear) && MR::isGreaterStep(this, ::sStepInvalid)) {
+        setNerve(GET_NERVE(Creeper, CreeperNrvFree));
     }
 }
 
 void Creeper::exeHangStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("GrowPlantCatch", 15);
+        MR::startBckPlayer("GrowPlantCatch", ::sAnimInterpoleFrame);
     }
 
-    if (!updateHangUp(15.0f) && MR::isPadSwing(WPAD_CHAN0)) {
-        setNerve(&NrvCreeper::CreeperNrvHangUp::sInstance);
+    if (!updateHangUp(::sHangStartRotateSpeed) && MR::isPadSwing(WPAD_CHAN0)) {
+        setNerve(GET_NERVE(Creeper, CreeperNrvHangUp));
     }
 }
 
 void Creeper::exeHangUp() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("GrowPlantHangUp", 15);
+        MR::startBckPlayer("GrowPlantHangUp", ::sAnimInterpoleFrame);
     }
 
-    if (!updateHangUp(mClimbSpeed * 1.5f) && MR::isPadSwing(WPAD_CHAN0)) {
-        mClimbSpeed += 5.0f;
+    if (!updateHangUp(mHangSpeed * ::sHangRotateSpeedRate) && MR::isPadSwing(WPAD_CHAN0)) {
+        mHangSpeed += ::sHangUpAccel;
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     }
 }
 
 void Creeper::exeHangDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("GrowPlantHangDown", 15);
+        MR::startBckPlayer("GrowPlantHangDown", ::sAnimInterpoleFrame);
     }
 
     if (tryHangUp()) {
         return;
     }
 
-    mClimbSpeed += 0.4f;
-    mClimbSpeed = MR::clamp(mClimbSpeed, 0.0f, 20.0f);
+    mHangSpeed += ::sHangDownGravity;
+    mHangSpeed = MR::clamp(mHangSpeed, 0.0f, ::sHangDownSpeedMax);
 
-    if (MR::isRailReachedNearGoal(this, 80.0f)) {
+    if (MR::isRailReachedNearGoal(this, ::sHangEndCoord)) {
         MR::endMultiActorCamera(this, mCameraInfo, "掴まり", true, -1);
         MR::endBindAndPlayerJump(this, TVec3f(0.0f, 0.0f, 0.0f), 0);
         MR::startSound(mRider, "SE_PV_JUMP_S");
         MR::startSound(this, "SE_OJ_CREEPER_SWING");
         mRider = nullptr;
-        setNerve(&NrvCreeper::CreeperNrvFreeInvalid::sInstance);
+        setNerve(GET_NERVE(Creeper, CreeperNrvFreeInvalid));
     } else {
-        MR::moveCoord(this, mClimbSpeed);
+        MR::moveCoord(this, mHangSpeed);
         MR::startLevelSound(mRider, "SE_OJ_LV_CREEPER_DOWN");
         calcAndGetCurrentInfo(&mPosition, &mUp);
-        MR::rotateVecDegree(&mFront, mUp, mClimbSpeed * 1.5f);
+        MR::rotateVecDegree(&mFront, mUp, mHangSpeed * ::sHangRotateSpeedRate);
     }
 }
 
 void Creeper::initPoints() {
-    s32 numPoints = MR::getRailTotalLength(this) / 50.0f;
+    s32 numPoints = MR::getRailTotalLength(this) / ::sInterval;
     mNumPoints = numPoints + 1;
 
     mPoints = new CreeperPoint*[mNumPoints];
@@ -230,16 +251,15 @@ void Creeper::initPoints() {
 
     TVec3f bendSum(0.0f, 0.0f, 0.0f);  // cumulative direction
 
-    for (s32 idx = 0; idx < mNumPoints - 1; idx++) {
-        MR::setRailCoord(this, 50.0f * idx);
-        mPoints[idx] = new CreeperPoint(MR::getRailPos(this), MR::getRailDirection(this), prevPoint);
+    for (s32 i = 0; i < mNumPoints - 1; i++) {
+        MR::setRailCoord(this, ::sInterval * i);
+        mPoints[i] = new CreeperPoint(MR::getRailPos(this), MR::getRailDirection(this), prevPoint);
         bendSum.add(MR::getRailDirection(this));
-        prevPoint = mPoints[idx];
+        prevPoint = mPoints[i];
     }
 
     MR::moveCoordToEndPos(this);
 
-    // compiler likes to optimize this direct access if not written like this... very odd
     CreeperPoint* point = new CreeperPoint(MR::getRailPos(this), MR::getRailDirection(this), prevPoint);
     s32 index = mNumPoints - 1;
     mPoints[index] = point;
@@ -265,7 +285,7 @@ void Creeper::control() {
 
 bool Creeper::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgAutoRushBegin(msg)) {
-        if (isNerve(&NrvCreeper::CreeperNrvFreeInvalid::sInstance) || (!MR::isPlayerSwingAction() && MR::isOnGroundPlayer())) {
+        if (isNerve(GET_NERVE(Creeper, CreeperNrvFreeInvalid)) || (!MR::isPlayerSwingAction() && MR::isOnGroundPlayer())) {
             return false;
         }
 
@@ -275,21 +295,21 @@ bool Creeper::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         MR::invalidateClipping(this);
         MR::moveCoordAndTransToNearestRailPos(this, *MR::getPlayerPos());
 
-        if (MR::getRailCoord(this) < 100.0f) {
-            MR::setRailCoord(this, 100.0f);
+        if (MR::getRailCoord(this) < ::sHangStartCoordMin) {
+            MR::setRailCoord(this, ::sHangStartCoordMin);
         }
 
         MR::getPlayerFrontVec(&mFront);
-        mClimbSpeed = -mGravity.dot(*MR::getPlayerVelocity());
+        mHangSpeed = -mGravity.dot(*MR::getPlayerVelocity());
 
         MR::setRailDirectionToEnd(this);
-        if (mClimbSpeed > 0.0f) {
-            mClimbSpeed = MR::clamp(mClimbSpeed, 5.0f, 15.0f);
-            setNerve(&NrvCreeper::CreeperNrvHangStart::sInstance);
+        if (mHangSpeed > 0.0f) {
+            mHangSpeed = MR::clamp(mHangSpeed, ::sHangUpSpeedMin, ::sHangUpSpeedMax);
+            setNerve(GET_NERVE(Creeper, CreeperNrvHangStart));
         } else {
-            mClimbSpeed = 0.0f;
+            mHangSpeed = 0.0f;
             MR::setRailDirectionToStart(this);
-            setNerve(&NrvCreeper::CreeperNrvHangDown::sInstance);
+            setNerve(GET_NERVE(Creeper, CreeperNrvHangDown));
         }
 
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
@@ -310,7 +330,7 @@ bool Creeper::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         MR::endMultiActorCamera(this, mCameraInfo, "掴まり", true, -1);
         MR::endBindAndPlayerJump(this, TVec3f(0.0f, 0.0f, 0.0f), 0);
         mRider = nullptr;
-        setNerve(&NrvCreeper::CreeperNrvFreeInvalid::sInstance);
+        setNerve(GET_NERVE(Creeper, CreeperNrvFreeInvalid));
         return true;
     }
 
@@ -318,43 +338,43 @@ bool Creeper::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
 }
 
 void Creeper::updatePoints() {
-    for (s32 idx = 1; idx < mNumPoints; idx++) {
-        mPoints[idx]->updateFree();
+    for (s32 i = ::sHeadPointNo; i < mNumPoints; i++) {
+        mPoints[i]->updateFree();
     }
 }
 
 void Creeper::bendPoints() {
-    s32 numPoints = static_cast< s32 >(MR::getRailCoord(this) / 50.0f) + 1;
+    s32 numPoints = static_cast< s32 >(MR::getRailCoord(this) / ::sInterval) + 1;
     if (numPoints > mNumPoints) {
         numPoints = mNumPoints;
     }
 
-    f32 bendFactor = mBendFactorNormal;
+    f32 bendRate = mBendRate;
     if (MR::isPlayerElementModeBee()) {
-        bendFactor = mBendFactorBee;
+        bendRate = mBendRateBee;
     }
 
-    for (s32 idx = 1; idx < numPoints; idx++) {
-        mPoints[idx]->updateBend(true, mBendDirection, mCoord, bendFactor);
+    for (s32 i = ::sHeadPointNo; i < numPoints; i++) {
+        mPoints[i]->updateBend(true, mBendDirection, mCoord, bendRate);
     }
 
-    for (s32 idx = numPoints; idx < mNumPoints; idx++) {
-        mPoints[idx]->updateBend(false, mBendDirection, mCoord, bendFactor);
+    for (s32 i = numPoints; i < mNumPoints; i++) {
+        mPoints[i]->updateBend(false, mBendDirection, mCoord, bendRate);
     }
 }
 
 bool Creeper::tryHangUp() {
     if (MR::isPadSwing(WPAD_CHAN0)) {
-        // strange
+        // BUG: doubly-reversed logic: should be checking WPAD_CHAN1 and accel are swapped
         if (MR::isPadSwing(WPAD_CHAN0)) {
-            mClimbSpeed = 5.0f;
+            mHangSpeed = ::sHangUpAccel;
         } else {
-            mClimbSpeed = 10.0f;
+            mHangSpeed = ::sHangUpAccel2P;
         }
 
         MR::reverseRailDirection(this);
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
-        setNerve(&NrvCreeper::CreeperNrvHangUp::sInstance);
+        setNerve(GET_NERVE(Creeper, CreeperNrvHangUp));
         return true;
     }
 
@@ -378,50 +398,50 @@ bool Creeper::tryJump() {
 
     MR::vecKillElement(launchFront, mGravity, &launchFront);
     MR::normalizeOrZero(&launchFront);
-    if (!MR::isNearZero(launchFront, 0.001f)) {
+    if (!MR::isNearZero(launchFront)) {
         MR::setPlayerFrontTargetVec(launchFront, 1);
     }
 
     TVec3f launch;
-    launch = launchFront * mLaunchHorizontalSpeed - mGravity * mLaunchVerticalSpeed;
+    launch = launchFront * mJumpSpeedFront - mGravity * mJumpSpeedUp;
 
     MR::startBckPlayer("GrowPlantJump", static_cast< const char* >(nullptr));
     MR::endMultiActorCamera(this, mCameraInfo, "掴まり", true, -1);
     MR::endBindAndPlayerForceWeakGravityJump(this, launch);
 
-    MR::setPlayerSwingInhibitTimer(60);
+    MR::setPlayerSwingInhibitTimer(::sStepInvalidSpin);
     MR::stopSound(mRider, "SE_OJ_CREEPER_UP_START");
     MR::startSound(mRider, "SE_PV_JUMP_JOY");
     MR::startSound(mRider, "SE_PM_JUMP_L");
     MR::startSound(this, "SE_OJ_CREEPER_FLIP");
     mRider = nullptr;
-    setNerve(&NrvCreeper::CreeperNrvFreeInvalid::sInstance);
+    setNerve(GET_NERVE(Creeper, CreeperNrvFreeInvalid));
 
     return true;
 }
 
-bool Creeper::updateHangUp(f32 angleVel) {
+bool Creeper::updateHangUp(f32 rotateSpeed) {
     if (MR::isPadSwing(WPAD_CHAN0)) {
-        mClimbSpeed += 5.0f;
+        mHangSpeed += sHangUpAccel;
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     }
 
-    if (MR::isFirstStep(this) && mClimbSpeed >= 5.0f) {
+    if (MR::isFirstStep(this) && mHangSpeed >= 5.0f) {
         MR::startSound(mRider, "SE_OJ_CREEPER_UP_START");
     }
 
-    mClimbSpeed -= 0.4f;
+    mHangSpeed -= 0.4f;
 
-    mClimbSpeed = mClimbSpeed >= 15.0f ? 15.0f : mClimbSpeed;
+    mHangSpeed = mHangSpeed >= ::sHangUpSpeedMax ? ::sHangUpSpeedMax : mHangSpeed;
 
-    if (mClimbSpeed < 0.0f) {
-        mClimbSpeed = 0.0f;
+    if (mHangSpeed < 0.0f) {
+        mHangSpeed = 0.0f;
         MR::reverseRailDirection(this);
-        setNerve(&NrvCreeper::CreeperNrvHangDown::sInstance);
+        setNerve(GET_NERVE(Creeper, CreeperNrvHangDown));
         return true;
     }
 
-    MR::moveCoord(this, mClimbSpeed);
+    MR::moveCoord(this, mHangSpeed);
     MR::startLevelSound(mRider, "SE_OJ_LV_CREEPER_UP");
 
     if (tryJump()) {
@@ -429,23 +449,23 @@ bool Creeper::updateHangUp(f32 angleVel) {
     }
 
     calcAndGetCurrentInfo(&mPosition, &mUp);
-    MR::rotateVecDegree(&mFront, mUp, angleVel);
+    MR::rotateVecDegree(&mFront, mUp, rotateSpeed);
     return false;
 }
 
 void Creeper::calcAndGetCurrentInfo(TVec3f* pPosition, TVec3f* pUp) const {
-    f32 t0 = MR::getRailCoord(this) / 50.0f;
-    s32 idx = t0;
-    f32 t = t0 - idx;
+    f32 t0 = MR::getRailCoord(this) / ::sInterval;
+    s32 i = t0;
+    f32 t = t0 - i;
 
-    if (idx < mNumPoints - 1) {
-        s32 nextIdx = idx + 1;
-        *pPosition = mPoints[idx]->mPosition * (1.0f - t) + mPoints[nextIdx]->mPosition * t;
-        *pUp = mPoints[nextIdx]->mPosition - mPoints[idx]->mPosition;
+    if (i < mNumPoints - 1) {
+        s32 nextIdx = i + 1;
+        *pPosition = mPoints[i]->mPosition * (1.0f - t) + mPoints[nextIdx]->mPosition * t;
+        *pUp = mPoints[nextIdx]->mPosition - mPoints[i]->mPosition;
     } else {
-        s32 prevIdx = idx - 1;
-        pPosition->set(mPoints[idx]->mPosition);
-        *pUp = mPoints[idx]->mPosition - mPoints[prevIdx]->mPosition;
+        s32 prevIdx = i - 1;
+        pPosition->set(mPoints[i]->mPosition);
+        *pUp = mPoints[i]->mPosition - mPoints[prevIdx]->mPosition;
     }
     MR::normalize(pUp);
 }
@@ -456,12 +476,15 @@ namespace {
         GXColor1u32(color);
         GXTexCoord2f32(texX, texY);
     }
+
+    void drawPolygon(const TVec3f& rPos, const TVec3f& rSide, const TVec3f& rFront, f32 x1, f32 y1, f32 x2, f32 y2, u32 color1, u32 color2,
+                     f32 texY) {
+        ::sendVertex(rPos, rSide, rFront, x1, y1, color1, 1.0f, texY);
+        ::sendVertex(rPos, rSide, rFront, x2, y2, color2, 0.0f, texY);
+    }
 };  // namespace
 
 void Creeper::draw() const {
-    // FIXME register scheduling issues :/
-    // https://decomp.me/scratch/Rx30C
-
     if (!MR::isValidDraw(this)) {
         return;
     }
@@ -470,55 +493,24 @@ void Creeper::draw() const {
 
     f32 delta = 1.0f / (mNumPoints - 1);
 
-    u32 color1, color2;
-    const TVec3f* front;
-    const TVec3f* side;
-    const TVec3f* pos;
-
-    f32 texY;
-
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, mNumPoints * 2);
-    for (s32 idx = 0; idx < mNumPoints; idx++) {
-        texY = delta * ((mNumPoints - 1) - idx);
-        color1 = ::sColorPlusX;
-        color2 = ::sColorPlusZ;
-
-        front = &mPoints[idx]->mFront;
-        side = &mPoints[idx]->mSide;
-        pos = &mPoints[idx]->mPosition;
-
-        ::sendVertex(*pos, *side, *front, 10.0f, -10.0f, color1, 1.0f, texY);
-        ::sendVertex(*pos, *side, *front, 0.0f, 10.0f, color2, 0.0f, texY);
+    for (s32 i = 0; i < mNumPoints; i++) {
+        ::drawPolygon(mPoints[i]->getPosition(), mPoints[i]->getSide(), mPoints[i]->getFront(), ::sDrawWidthX, -::sDrawWidthZ, 0.0f, ::sDrawWidthZ,
+                      ::sColorPlusX, ::sColorPlusZ, delta * ((mNumPoints - 1) - i));
     }
     GXEnd();
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, mNumPoints * 2);
-    for (s32 idx = 0; idx < mNumPoints; idx++) {
-        texY = delta * ((mNumPoints - 1) - idx);
-        color1 = ::sColorPlusZ;
-        color2 = ::sColorMinusX;
-
-        front = &mPoints[idx]->mFront;
-        side = &mPoints[idx]->mSide;
-        pos = &mPoints[idx]->mPosition;
-
-        ::sendVertex(*pos, *side, *front, 0.0f, 10.0f, color1, 1.0f, texY);
-        ::sendVertex(*pos, *side, *front, -10.0f, -10.0f, color2, 0.0f, texY);
+    for (s32 i = 0; i < mNumPoints; i++) {
+        ::drawPolygon(mPoints[i]->getPosition(), mPoints[i]->getSide(), mPoints[i]->getFront(), 0.0f, ::sDrawWidthZ, -::sDrawWidthX, -::sDrawWidthZ,
+                      ::sColorPlusZ, ::sColorMinusX, delta * ((mNumPoints - 1) - i));
     }
     GXEnd();
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, mNumPoints * 2);
-    for (s32 idx = 0; idx < mNumPoints; idx++) {
-        texY = delta * ((mNumPoints - 1) - idx);
-        color1 = ::sColorMinusX;
-        color2 = ::sColorPlusX;
-
-        front = &mPoints[idx]->mFront;
-        side = &mPoints[idx]->mSide;
-        pos = &mPoints[idx]->mPosition;
-
-        ::sendVertex(*pos, *side, *front, -10.0f, -10.0f, color1, 1.0f, texY);
-        ::sendVertex(*pos, *side, *front, 10.0f, -10.0f, color2, 0.0f, texY);
+    for (s32 i = 0; i < mNumPoints; i++) {
+        ::drawPolygon(mPoints[i]->getPosition(), mPoints[i]->getSide(), mPoints[i]->getFront(), -::sDrawWidthX, -::sDrawWidthZ, ::sDrawWidthX,
+                      -::sDrawWidthZ, ::sColorMinusX, ::sColorPlusX, delta * ((mNumPoints - 1) - i));
     }
     GXEnd();
 }
@@ -559,6 +551,5 @@ void Creeper::loadMaterial() const {
     GXSetCullMode(GX_CULL_BACK);
 }
 
-const CreeperPoint* Creeper::getHeadPoint() const {
-    return getPoint(mNumPoints - 1);
+Creeper::~Creeper() {
 }

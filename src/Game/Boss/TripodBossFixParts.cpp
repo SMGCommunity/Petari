@@ -67,9 +67,11 @@ void TripodBossFixParts::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm(mapPartsID, nullptr, false);
 
     if (val) {
-        MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_BloomModel, -1);
+        MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_BloomModel,
+                           MR::DrawType_None);
     } else {
-        MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, -1);
+        MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss,
+                           MR::DrawType_None);
     }
 
     if (MR::isEqualString(objName, "TriPodBossBodyA")) {
@@ -94,7 +96,7 @@ void TripodBossFixParts::init(const JMapInfoIter& rIter) {
 
     initEffectKeeper(0, "TripodBoss", false);
     initSound(5, false);
-    initNerve(&NrvTripodBossFixParts::TripodBossFixPartsNrvNonActive::sInstance);
+    initNerve(GET_NERVE(TripodBossFixParts, TripodBossFixPartsNrvNonActive));
 
     if (mHasCollision) {
         MR::invalidateCollisionParts(this);
@@ -142,7 +144,7 @@ void TripodBossFixParts::kill() {
 }
 
 void TripodBossFixParts::activateTripodBoss() {
-    if (isNerve(&NrvTripodBossFixParts::TripodBossFixPartsNrvNonActive::sInstance)) {
+    if (isNerve(GET_NERVE(TripodBossFixParts, TripodBossFixPartsNrvNonActive))) {
         MR::onCalcAnim(this);
 
         if (mHasCollision) {
@@ -153,9 +155,9 @@ void TripodBossFixParts::activateTripodBoss() {
         _E1 = 0;
 
         if (MR::isExistAnim(this, "StartDemo")) {
-            setNerve(&NrvTripodBossFixParts::TripodBossFixPartsNrvStartDemo::sInstance);
+            setNerve(GET_NERVE(TripodBossFixParts, TripodBossFixPartsNrvStartDemo));
         } else {
-            setNerve(&NrvTripodBossFixParts::TripodBossFixPartsNrvWait::sInstance);
+            setNerve(GET_NERVE(TripodBossFixParts, TripodBossFixPartsNrvWait));
         }
     }
 }
@@ -171,7 +173,7 @@ void TripodBossFixParts::exeStartDemo() {
     updateTripodMatrix();
 
     if (!MR::isStartDemoTripodBoss()) {
-        setNerve(&NrvTripodBossFixParts::TripodBossFixPartsNrvWait::sInstance);
+        setNerve(GET_NERVE(TripodBossFixParts, TripodBossFixPartsNrvWait));
     }
 }
 
@@ -207,7 +209,7 @@ void TripodBossFixParts::exeWait() {
 
     if (MR::isEndBreakDownDemoTripodBoss()) {
         if (_ED) {
-            setNerve(&NrvTripodBossFixParts::TripodBossFixPartsNrvBreak::sInstance);
+            setNerve(GET_NERVE(TripodBossFixParts, TripodBossFixPartsNrvBreak));
         } else {
             kill();
         }

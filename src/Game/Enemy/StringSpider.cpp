@@ -5,6 +5,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/HitInfo.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
@@ -177,7 +178,7 @@ void StringSpider::init(const JMapInfoIter& rIter) {
     initEffectKeeper(1, nullptr, false);
     MR::addEffectHitNormal(this, nullptr);
     initSound(4, false);
-    initNerve(&NrvStringSpider::HostTypeNrvWait::sInstance);
+    initNerve(GET_NERVE(StringSpider, HostTypeNrvWait));
     MR::initStarPointerTarget(this, 80.0f, TVec3f(0, 0, 0));
     MR::declareStarPiece(this, 6);
     MR::declareStarPiece(this, 3);
@@ -291,8 +292,8 @@ void StringSpider::doSwingAction(f32 a1, bool a2) {
 }
 
 void StringSpider::reactDPD() {
-    if (isNerve(&NrvStringSpider::HostTypeNrvTrampleFall::sInstance) || isNerve(&NrvStringSpider::HostTypeNrvWallHitDeath::sInstance) ||
-        isNerve(&NrvStringSpider::HostTypeNrvTrampleDeath::sInstance)) {
+    if (isNerve(GET_NERVE(StringSpider, HostTypeNrvTrampleFall)) || isNerve(GET_NERVE(StringSpider, HostTypeNrvWallHitDeath)) ||
+        isNerve(GET_NERVE(StringSpider, HostTypeNrvTrampleDeath))) {
         _B8 = false;
         _BC = 0;
         return;
@@ -321,7 +322,7 @@ void StringSpider::reactDPD() {
             MR::emitEffectHit(this, a2, nullptr);
             _BC = 30;
             MR::start2PAttackAssistSound();
-            setNerve(&NrvStringSpider::HostTypeNrvSpinned::sInstance);
+            setNerve(GET_NERVE(StringSpider, HostTypeNrvSpinned));
         }
         _B8 = true;
     } else {
@@ -337,7 +338,7 @@ void StringSpider::reactStringForce() {
             kill();
         } else {
             MR::normalizeOrZero(&v2);
-            if (!isNerve(&NrvStringSpider::HostTypeNrvDpdGripped::sInstance)) {
+            if (!isNerve(GET_NERVE(StringSpider, HostTypeNrvDpdGripped))) {
                 MR::calcReflectionVector(&mVelocity, v2, 0.25f, 1.0f);
             }
 
@@ -371,7 +372,7 @@ void StringSpider::control() {
     mStampController->updateNerve();
     reactDPD();
 
-    if (!isNerve(&NrvStringSpider::HostTypeNrvDpdGripped::sInstance)) {
+    if (!isNerve(GET_NERVE(StringSpider, HostTypeNrvDpdGripped))) {
         if (MR::isBindedWallOfMap(this)) {
             TVec3f v9(*MR::getWallNormal(this));
             TVec3f v8(*MR::getWallHitPos(this));
@@ -384,13 +385,13 @@ void StringSpider::control() {
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
     MR::applyVelocityDampAndGravity(this, 1.5f, 0.8f, 0.98f, 0.98f, 1.0f);
 
-    if (!isNerve(&NrvStringSpider::HostTypeNrvTrampleFall::sInstance) && !isNerve(&NrvStringSpider::HostTypeNrvTrampleDeath::sInstance) &&
-        !isNerve(&NrvStringSpider::HostTypeNrvBlow::sInstance)) {
+    if (!isNerve(GET_NERVE(StringSpider, HostTypeNrvTrampleFall)) && !isNerve(GET_NERVE(StringSpider, HostTypeNrvTrampleDeath)) &&
+        !isNerve(GET_NERVE(StringSpider, HostTypeNrvBlow))) {
         reactStringForce();
     }
 
-    if (isNerve(&NrvStringSpider::HostTypeNrvSearch::sInstance) || isNerve(&NrvStringSpider::HostTypeNrvHit::sInstance) ||
-        isNerve(&NrvStringSpider::HostTypeNrvAttack::sInstance)) {
+    if (isNerve(GET_NERVE(StringSpider, HostTypeNrvSearch)) || isNerve(GET_NERVE(StringSpider, HostTypeNrvHit)) ||
+        isNerve(GET_NERVE(StringSpider, HostTypeNrvAttack))) {
         startSwingLevelSound();
     }
 }
@@ -434,10 +435,10 @@ void StringSpider::exeWait() {
 
     if (MR::isValidSwitchA(this)) {
         if (MR::isOnSwitchA(this)) {
-            setNerve(&NrvStringSpider::HostTypeNrvDownStart::sInstance);
+            setNerve(GET_NERVE(StringSpider, HostTypeNrvDownStart));
         }
     } else if (distance < 1400.0f) {
-        setNerve(&NrvStringSpider::HostTypeNrvDownStart::sInstance);
+        setNerve(GET_NERVE(StringSpider, HostTypeNrvDownStart));
     }
 }
 
@@ -454,7 +455,7 @@ void StringSpider::exeDownStart() {
     MR::calcDistanceToPlayer(this);
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvStringSpider::HostTypeNrvDown::sInstance);
+        setNerve(GET_NERVE(StringSpider, HostTypeNrvDown));
     }
 }
 
@@ -467,7 +468,7 @@ void StringSpider::exeDownEnd() {
     MR::calcDistanceToPlayer(this);
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvStringSpider::HostTypeNrvSearch::sInstance);
+        setNerve(GET_NERVE(StringSpider, HostTypeNrvSearch));
     }
 }
 
@@ -486,7 +487,7 @@ void StringSpider::exeDown() {
     }
 
     if (_B4 == _B0 && isOver) {
-        setNerve(&NrvStringSpider::HostTypeNrvDownEnd::sInstance);
+        setNerve(GET_NERVE(StringSpider, HostTypeNrvDownEnd));
     }
 }
 
@@ -499,11 +500,11 @@ void StringSpider::exeUp() {
     calcPosture(0.25f, true);
 
     if (MR::calcDistanceToPlayer(this) < 1400.0f) {
-        setNerve(&NrvStringSpider::HostTypeNrvDownStart::sInstance);
+        setNerve(GET_NERVE(StringSpider, HostTypeNrvDownStart));
     } else {
         shortenString(5.0f);
         if (_B4 == (0.333f * _B0)) {
-            setNerve(&NrvStringSpider::HostTypeNrvWait::sInstance);
+            setNerve(GET_NERVE(StringSpider, HostTypeNrvWait));
         }
     }
 }
@@ -525,7 +526,7 @@ void StringSpider::exeSearch() {
     if (calc < 800.0f) {
         doSwingAction(0.2f, true);
         if (MR::isGreaterStep(this, getSearchToAttackTime())) {
-            setNerve(&NrvStringSpider::HostTypeNrvAttack::sInstance);
+            setNerve(GET_NERVE(StringSpider, HostTypeNrvAttack));
             return;
         }
     } else {
@@ -533,7 +534,7 @@ void StringSpider::exeSearch() {
     }
 
     if ((!MR::isValidSwitchA(this) || !MR::isOnSwitchA(this)) && 1600.0f < calc) {
-        setNerve(&NrvStringSpider::HostTypeNrvUp::sInstance);
+        setNerve(GET_NERVE(StringSpider, HostTypeNrvUp));
     }
 }
 
@@ -553,7 +554,7 @@ void StringSpider::exeAttack() {
     doSwingAction(0.8f, false);
 
     if (MR::isGreaterStep(this, 60)) {
-        setNerve(&NrvStringSpider::HostTypeNrvSearch::sInstance);
+        setNerve(GET_NERVE(StringSpider, HostTypeNrvSearch));
     }
 }
 
@@ -567,7 +568,7 @@ void StringSpider::exeHit() {
     extendString();
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvStringSpider::HostTypeNrvSearch::sInstance);
+        setNerve(GET_NERVE(StringSpider, HostTypeNrvSearch));
     }
 }
 
@@ -602,7 +603,7 @@ void StringSpider::exeSpinned() {
     calcPosture(0.25f, false);
 
     if (MR::isGreaterStep(this, 480)) {
-        setNerve(&NrvStringSpider::HostTypeNrvSearch::sInstance);
+        setNerve(GET_NERVE(StringSpider, HostTypeNrvSearch));
     }
 }
 
@@ -648,14 +649,14 @@ void StringSpider::exeDpdGripped() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Spin", nullptr);
         if (!MR::tryStartStarPointerCommandStream(this, &mPosition, *MR::getStarPointerLastPointedPort(this), false)) {
-            setNerve(&NrvStringSpider::HostTypeNrvSearch::sInstance);
+            setNerve(GET_NERVE(StringSpider, HostTypeNrvSearch));
             return;
         }
     }
 
     s32 channel = WPAD_CHAN0;
     if (!MR::testCorePadButtonA(channel = *MR::getStarPointerLastPointedPort(this))) {
-        setNerve(&NrvStringSpider::HostTypeNrvSearch::sInstance);
+        setNerve(GET_NERVE(StringSpider, HostTypeNrvSearch));
     } else {
         calcPosture(0.25f, false);
         TVec3f v8;
@@ -670,7 +671,7 @@ void StringSpider::exeDpdGripped() {
         if ((100.0f + _B4) < v9) {
             MR::appearStarPiece(this, mPosition, 3, 10.0f, 40.0f, false);
             MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
-            setNerve(&NrvStringSpider::HostTypeNrvSearch::sInstance);
+            setNerve(GET_NERVE(StringSpider, HostTypeNrvSearch));
             MR::tryRumblePadStrong(this, channel);
         }
     }
@@ -714,8 +715,8 @@ void StringSpider::calcAnim() {
 }
 
 void StringSpider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvStringSpider::HostTypeNrvWallHitDeath::sInstance) || isNerve(&NrvStringSpider::HostTypeNrvTrampleFall::sInstance) ||
-        isNerve(&NrvStringSpider::HostTypeNrvBlow::sInstance) || isNerve(&NrvStringSpider::HostTypeNrvTrampleDeath::sInstance)) {
+    if (isNerve(GET_NERVE(StringSpider, HostTypeNrvWallHitDeath)) || isNerve(GET_NERVE(StringSpider, HostTypeNrvTrampleFall)) ||
+        isNerve(GET_NERVE(StringSpider, HostTypeNrvBlow)) || isNerve(GET_NERVE(StringSpider, HostTypeNrvTrampleDeath))) {
         return;
     }
 
@@ -723,7 +724,7 @@ void StringSpider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     v10.sub(pReceiver->mPosition);
     MR::normalizeOrZero(&v10);
     if (MR::isSensorPlayer(pReceiver)) {
-        if (isNerve(&NrvStringSpider::HostTypeNrvSpinned::sInstance)) {
+        if (isNerve(GET_NERVE(StringSpider, HostTypeNrvSpinned))) {
             MR::sendMsgPush(pReceiver, pSender);
             return;
         }
@@ -754,7 +755,7 @@ void StringSpider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             v8.scale(13.0f);
             v9.sub(v8);
             mVelocity.add(v9);
-            setNerve(&NrvStringSpider::HostTypeNrvHit::sInstance);
+            setNerve(GET_NERVE(StringSpider, HostTypeNrvHit));
         }
     } else if (MR::isSensorEnemy(pReceiver) && MR::sendMsgPush(pReceiver, pSender)) {
         MR::calcReflectionVector(&mVelocity, v10, 0.25f, 1.0f);
@@ -796,8 +797,8 @@ bool StringSpider::reactSpinHit(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool StringSpider::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvStringSpider::HostTypeNrvWallHitDeath::sInstance) || isNerve(&NrvStringSpider::HostTypeNrvTrampleFall::sInstance) ||
-        isNerve(&NrvStringSpider::HostTypeNrvBlow::sInstance) || isNerve(&NrvStringSpider::HostTypeNrvTrampleDeath::sInstance)) {
+    if (isNerve(GET_NERVE(StringSpider, HostTypeNrvWallHitDeath)) || isNerve(GET_NERVE(StringSpider, HostTypeNrvTrampleFall)) ||
+        isNerve(GET_NERVE(StringSpider, HostTypeNrvBlow)) || isNerve(GET_NERVE(StringSpider, HostTypeNrvTrampleDeath))) {
         return false;
     }
 
@@ -820,7 +821,7 @@ bool StringSpider::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor*
 
     if (MR::isMsgExplosionAttack(msg)) {
         mSpinHitController->start(this, pSender->mPosition, pReceiver->mPosition);
-        setNerve(&NrvStringSpider::HostTypeNrvBlow::sInstance);
+        setNerve(GET_NERVE(StringSpider, HostTypeNrvBlow));
         return true;
     }
 
@@ -828,8 +829,8 @@ bool StringSpider::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor*
 }
 
 bool StringSpider::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvStringSpider::HostTypeNrvWallHitDeath::sInstance) || isNerve(&NrvStringSpider::HostTypeNrvTrampleFall::sInstance) ||
-        isNerve(&NrvStringSpider::HostTypeNrvBlow::sInstance) || isNerve(&NrvStringSpider::HostTypeNrvTrampleDeath::sInstance)) {
+    if (isNerve(GET_NERVE(StringSpider, HostTypeNrvWallHitDeath)) || isNerve(GET_NERVE(StringSpider, HostTypeNrvTrampleFall)) ||
+        isNerve(GET_NERVE(StringSpider, HostTypeNrvBlow)) || isNerve(GET_NERVE(StringSpider, HostTypeNrvTrampleDeath))) {
         return false;
     }
 
@@ -855,23 +856,23 @@ bool StringSpider::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
 bool StringSpider::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceAttack(msg)) {
         if (reactSpinHit(pSender, pReceiver)) {
-            setNerve(&NrvStringSpider::HostTypeNrvSpinned::sInstance);
+            setNerve(GET_NERVE(StringSpider, HostTypeNrvSpinned));
         }
 
         return true;
     }
 
     if (MR::isMsgLockOnStarPieceShoot(msg)) {
-        if (isNerve(&NrvStringSpider::HostTypeNrvSpinned::sInstance) || isNerve(&NrvStringSpider::HostTypeNrvTrampleFall::sInstance) ||
-            isNerve(&NrvStringSpider::HostTypeNrvBlow::sInstance)) {
+        if (isNerve(GET_NERVE(StringSpider, HostTypeNrvSpinned)) || isNerve(GET_NERVE(StringSpider, HostTypeNrvTrampleFall)) ||
+            isNerve(GET_NERVE(StringSpider, HostTypeNrvBlow))) {
             return false;
         }
 
         return true;
     }
 
-    if (isNerve(&NrvStringSpider::HostTypeNrvWallHitDeath::sInstance) || isNerve(&NrvStringSpider::HostTypeNrvTrampleFall::sInstance) ||
-        isNerve(&NrvStringSpider::HostTypeNrvBlow::sInstance) || isNerve(&NrvStringSpider::HostTypeNrvTrampleDeath::sInstance)) {
+    if (isNerve(GET_NERVE(StringSpider, HostTypeNrvWallHitDeath)) || isNerve(GET_NERVE(StringSpider, HostTypeNrvTrampleFall)) ||
+        isNerve(GET_NERVE(StringSpider, HostTypeNrvBlow)) || isNerve(GET_NERVE(StringSpider, HostTypeNrvTrampleDeath))) {
         return false;
     }
 
@@ -886,7 +887,7 @@ bool StringSpider::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
             mVelocity += v16;
         }
 
-        setNerve(&NrvStringSpider::HostTypeNrvTrampleFall::sInstance);
+        setNerve(GET_NERVE(StringSpider, HostTypeNrvTrampleFall));
         return true;
     }
 
@@ -899,12 +900,12 @@ bool StringSpider::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
             mSpinHitController->start(this, pSender->mPosition, pReceiver->mPosition);
         }
 
-        setNerve(&NrvStringSpider::HostTypeNrvBlow::sInstance);
+        setNerve(GET_NERVE(StringSpider, HostTypeNrvBlow));
         return true;
     }
 
     if (MR::isMsgPlayerSpinAttack(msg)) {
-        if (isNerve(&NrvStringSpider::HostTypeNrvSpinned::sInstance)) {
+        if (isNerve(GET_NERVE(StringSpider, HostTypeNrvSpinned))) {
             if (_C4 != nullptr) {
                 TVec3f v14(pSender->mPosition - pReceiver->mPosition);
                 MR::vecKillElement(v14, *_C4, &v14);
@@ -913,12 +914,12 @@ bool StringSpider::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
                 mSpinHitController->start(this, pSender->mPosition, pReceiver->mPosition);
             }
 
-            setNerve(&NrvStringSpider::HostTypeNrvBlow::sInstance);
+            setNerve(GET_NERVE(StringSpider, HostTypeNrvBlow));
             return true;
         }
 
         if (reactSpinHit(pSender, pReceiver)) {
-            setNerve(&NrvStringSpider::HostTypeNrvSpinned::sInstance);
+            setNerve(GET_NERVE(StringSpider, HostTypeNrvSpinned));
         }
 
         return true;
@@ -941,7 +942,7 @@ void StringSpider::startSwingLevelSound() {
 
 StringSpiderString::StringSpiderString(const char* pName) : LiveActor(pName), _8C(0, 0, 0, 1), _9C(0, 0, 0) {
     initModelManagerWithAnm("StringSpiderString", nullptr, false);
-    MR::connectToScene(this, -1, 11, 18, -1);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_Enemy, MR::DrawType_None);
     MR::invalidateClipping(this);
 }
 

@@ -328,7 +328,7 @@ bool MiniatureGalaxy::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pR
         }
     } else {
         if (SphereSelectorFunction::isMsgConfirmStart(msg) && !isNerve(GET_NERVE(MiniatureGalaxy, MiniatureGalaxyNrvSelected))) {
-            setNerve(&NrvMiniatureGalaxy::MiniatureGalaxyNrvNotSelected::sInstance);
+            setNerve(GET_NERVE(MiniatureGalaxy, MiniatureGalaxyNrvNotSelected));
             return true;
         }
 

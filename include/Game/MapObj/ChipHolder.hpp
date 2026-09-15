@@ -29,7 +29,7 @@ namespace MR {
     void registerChipGroup(s32, ChipGroup* pChipGroup);
     void registerChip(s32, ChipBase*, s32);
     void noticeGetChip(s32, ChipBase*, s32);
-    s32 showChipCounter(s32, s32);
+    void showChipCounter(s32, s32);
     void hideChipCounter(s32, s32);
     void requestStartChipCompleteDemo(s32, s32);
     void noticeEndChipCompleteDemo(s32, s32);

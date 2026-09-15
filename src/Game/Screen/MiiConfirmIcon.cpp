@@ -13,7 +13,7 @@ MiiConfirmIcon::MiiConfirmIcon(const char* pName) : LayoutActor(pName, true) {
 
 void MiiConfirmIcon::init(const JMapInfoIter& rIter) {
     initLayoutManager("MiiConfirmIcon", 1);
-    initNerve(&MiiConfirmIconNrvAppear::sInstance);
+    initNerve(GET_NERVE_GLOBAL(MiiConfirmIconNrvAppear));
 }
 
 void MiiConfirmIcon::appear(nw4r::lyt::TexMap* pTexMap, const wchar_t* pName) {
@@ -21,11 +21,11 @@ void MiiConfirmIcon::appear(nw4r::lyt::TexMap* pTexMap, const wchar_t* pName) {
     MR::replacePaneTexture(this, "PicMiiDummy", pTexMap, 0);
     MR::setTextBoxMessageRecursive(this, "MiiName", pName);
     appear();
-    setNerve(&MiiConfirmIconNrvAppear::sInstance);
+    setNerve(GET_NERVE_GLOBAL(MiiConfirmIconNrvAppear));
 }
 
 void MiiConfirmIcon::disappear() {
-    setNerve(&MiiConfirmIconNrvDisappear::sInstance);
+    setNerve(GET_NERVE_GLOBAL(MiiConfirmIconNrvDisappear));
 }
 
 void MiiConfirmIcon::exeAppear() {
@@ -34,7 +34,7 @@ void MiiConfirmIcon::exeAppear() {
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&MiiConfirmIconNrvWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(MiiConfirmIconNrvWait));
     }
 }
 
@@ -55,7 +55,7 @@ void MiiConfirmIcon::exeDisappear() {
 }
 
 bool MiiConfirmIcon::isDisappear() const {
-    return isNerve(&MiiConfirmIconNrvDisappear::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(MiiConfirmIconNrvDisappear));
 }
 
 void MiiConfirmIcon::appear() {

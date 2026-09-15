@@ -21,26 +21,26 @@ void PictureBookCloseButton::init(const JMapInfoIter& rIter) {
 
     mPaneCtrl = new ButtonPaneController(this, "Back", "BoxButton", 0, true);
 
-    initNerve(&NrvPictureBookCloseButton::PictureBookCloseButtonNrvSelect::sInstance);
+    initNerve(GET_NERVE(PictureBookCloseButton, PictureBookCloseButtonNrvSelect));
 }
 
 void PictureBookCloseButton::appear() {
     LayoutActor::appear();
     mPaneCtrl->appear();
     MR::requestMovementOn(this);
-    setNerve(&NrvPictureBookCloseButton::PictureBookCloseButtonNrvSelect::sInstance);
+    setNerve(GET_NERVE(PictureBookCloseButton, PictureBookCloseButtonNrvSelect));
 }
 
 void PictureBookCloseButton::disappear() {
     mPaneCtrl->disappear();
-    setNerve(&NrvPictureBookCloseButton::PictureBookCloseButtonNrvNotSelected::sInstance);
+    setNerve(GET_NERVE(PictureBookCloseButton, PictureBookCloseButtonNrvNotSelected));
 }
 
 bool PictureBookCloseButton::trySelect() {
     if (mPaneCtrl->trySelect()) {
         MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL");
         MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
-        setNerve(&NrvPictureBookCloseButton::PictureBookCloseButtonNrvSelected::sInstance);
+        setNerve(GET_NERVE(PictureBookCloseButton, PictureBookCloseButtonNrvSelected));
 
         return true;
     }
@@ -49,7 +49,7 @@ bool PictureBookCloseButton::trySelect() {
         mPaneCtrl->disappear();
         MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL");
         MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
-        setNerve(&NrvPictureBookCloseButton::PictureBookCloseButtonNrvSelected::sInstance);
+        setNerve(GET_NERVE(PictureBookCloseButton, PictureBookCloseButtonNrvSelected));
 
         return true;
     }
@@ -58,7 +58,7 @@ bool PictureBookCloseButton::trySelect() {
 }
 
 bool PictureBookCloseButton::isSelected() const {
-    return isNerve(&NrvPictureBookCloseButton::PictureBookCloseButtonNrvSelected::sInstance);
+    return isNerve(GET_NERVE(PictureBookCloseButton, PictureBookCloseButtonNrvSelected));
 }
 
 void PictureBookCloseButton::control() {

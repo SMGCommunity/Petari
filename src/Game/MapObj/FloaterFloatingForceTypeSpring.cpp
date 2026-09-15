@@ -59,13 +59,13 @@ void FloaterFloatingForceTypeSpring::init(const JMapInfoIter& rIter) {
 
     mSpringForce = new FloaterSpringForce(-mMoveConditionType, rotateSpeed, rotateAngle);
 
-    initNerve(&NrvFloaterFloatingForceTypeSpring::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(FloaterFloatingForceTypeSpring, HostTypeWait));
     MR::useStageSwitchReadA(mHost, rIter);
 }
 
 void FloaterFloatingForceTypeSpring::start() {
     FloaterFloatingForce::start();
-    setNerve(&NrvFloaterFloatingForceTypeSpring::HostTypeWait::sInstance);
+    setNerve(GET_NERVE(FloaterFloatingForceTypeSpring, HostTypeWait));
 }
 
 void FloaterFloatingForceTypeSpring::updateVelocity() {
@@ -124,7 +124,7 @@ bool FloaterFloatingForceTypeSpring::tryOn() {
         return false;
     }
 
-    setNerve(&NrvFloaterFloatingForceTypeSpring::HostTypeMove::sInstance);
+    setNerve(GET_NERVE(FloaterFloatingForceTypeSpring, HostTypeMove));
 
     return true;
 }
@@ -136,7 +136,7 @@ bool FloaterFloatingForceTypeSpring::tryReturn() {
         return false;
     }
 
-    setNerve(&NrvFloaterFloatingForceTypeSpring::HostTypeMoveReturn::sInstance);
+    setNerve(GET_NERVE(FloaterFloatingForceTypeSpring, HostTypeMoveReturn));
 
     return true;
 }
@@ -174,7 +174,7 @@ void FloaterFloatingForceTypeSpring::exeMoveReturn() {
     if (MR::isNearZero(_1C - mHost->mPosition)) {
         if (MR::isNearZero(getCurrentSinkSpeed())) {
             mHost->mPosition.set(_1C);
-            setNerve(&NrvFloaterFloatingForceTypeSpring::HostTypeWait::sInstance);
+            setNerve(GET_NERVE(FloaterFloatingForceTypeSpring, HostTypeWait));
             return;
         }
     }

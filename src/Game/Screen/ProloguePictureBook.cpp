@@ -24,7 +24,7 @@ ProloguePictureBook::ProloguePictureBook() : LayoutActor("プロローグの絵�
 void ProloguePictureBook::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
     initLayoutManager("PrologueDemo", 1);
-    initNerve(&NrvProloguePictureBook::ProloguePictureBookPlaying::sInstance);
+    initNerve(GET_NERVE(ProloguePictureBook, ProloguePictureBookPlaying));
 
     mIconAButton = MR::createAndSetupIconAButton(this, true, false);
 
@@ -35,7 +35,7 @@ void ProloguePictureBook::appear() {
     LayoutActor::appear();
     MR::requestMovementOn(mIconAButton);
     MR::startAnim(this, "Prologue", 0);
-    setNerve(&NrvProloguePictureBook::ProloguePictureBookPlaying::sInstance);
+    setNerve(GET_NERVE(ProloguePictureBook, ProloguePictureBookPlaying));
 }
 
 void ProloguePictureBook::kill() {
@@ -47,7 +47,7 @@ void ProloguePictureBook::exeActive() {
     J3DFrameCtrl* animCtrl = MR::getAnimCtrl(this, 0);
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&NrvProloguePictureBook::ProloguePictureBookEnd::sInstance);
+        setNerve(GET_NERVE(ProloguePictureBook, ProloguePictureBookEnd));
     }
 }
 
@@ -55,7 +55,7 @@ void ProloguePictureBook::exePlaying() {
     J3DFrameCtrl* animCtrl = MR::getAnimCtrl(this, 0);
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&NrvProloguePictureBook::ProloguePictureBookEnd::sInstance);
+        setNerve(GET_NERVE(ProloguePictureBook, ProloguePictureBookEnd));
     } else {
         int index = mPage + 1;
 
@@ -71,7 +71,7 @@ void ProloguePictureBook::exePlaying() {
 
         animCtrl->setFrame(::sBookPageInfo[index] - 1.0f);
 
-        setNerve(&NrvProloguePictureBook::ProloguePictureBookKeyWait::sInstance);
+        setNerve(GET_NERVE(ProloguePictureBook, ProloguePictureBookKeyWait));
     }
 }
 
@@ -90,7 +90,7 @@ void ProloguePictureBook::exeKeyWait() {
         mPage++;
         animCtrl->setRate(1.0f);
 
-        setNerve(&NrvProloguePictureBook::ProloguePictureBookPlaying::sInstance);
+        setNerve(GET_NERVE(ProloguePictureBook, ProloguePictureBookPlaying));
     }
 }
 
@@ -98,7 +98,7 @@ void ProloguePictureBook::exeEnd() {
 }
 
 bool ProloguePictureBook::isEnd() const {
-    return isNerve(&NrvProloguePictureBook::ProloguePictureBookEnd::sInstance);
+    return isNerve(GET_NERVE(ProloguePictureBook, ProloguePictureBookEnd));
 }
 
 void ProloguePictureBook::control() {

@@ -108,7 +108,7 @@ void Butterfly::init(const JMapInfoIter& rIter) {
     MR::initStarPointerTarget(this, ::sDpdPointRadiusFast);
     MR::setClippingTypeSphere(this, ::sRadius);
     MR::setClippingFar50m(this);
-    initNerve(&NrvButterfly::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(Butterfly, HostTypeWait));
     makeActorAppeared();
     MR::startBck(this, "Butterfly", nullptr);
     MR::setBckFrameAtRandom(this);
@@ -154,12 +154,12 @@ void Butterfly::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    if (!isNerve(&NrvButterfly::HostTypeHive::sInstance)) {
+    if (!isNerve(GET_NERVE(Butterfly, HostTypeHive))) {
         return;
     }
 
     mPerchTarget = pReceiver;
-    setNerve(&NrvButterfly::HostTypePerchOn::sInstance);
+    setNerve(GET_NERVE(Butterfly, HostTypePerchOn));
 }
 
 void Butterfly::updatePosture() {
@@ -261,7 +261,7 @@ bool Butterfly::tryRunAway() {
     }
 
     addRunAwayVelocity();
-    setNerve(&NrvButterfly::HostTypeRunAway::sInstance);
+    setNerve(GET_NERVE(Butterfly, HostTypeRunAway));
     return true;
 }
 
@@ -286,7 +286,7 @@ bool Butterfly::tryHive() {
         return false;
     }
 
-    setNerve(&NrvButterfly::HostTypeHive::sInstance);
+    setNerve(GET_NERVE(Butterfly, HostTypeHive));
     return true;
 }
 
@@ -299,7 +299,7 @@ bool Butterfly::tryPerchOnSleepingMario() {
         return false;
     }
 
-    setNerve(&NrvButterfly::HostTypeGotoSleepingMario::sInstance);
+    setNerve(GET_NERVE(Butterfly, HostTypeGotoSleepingMario));
     return true;
 }
 
@@ -376,7 +376,7 @@ void Butterfly::exeRunAway() {
     mVelocity.z *= ::sRunAwayAttenVel;
 
     if (MR::isStep(this, ::sRunAwayTime)) {
-        setNerve(&NrvButterfly::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(Butterfly, HostTypeWait));
     }
 }
 
@@ -387,12 +387,12 @@ void Butterfly::exeHive() {
 
     s32 port = 0;
     if (!MR::isStarPointerInScreenAnyPort(&port)) {
-        setNerve(&NrvButterfly::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(Butterfly, HostTypeWait));
         return;
     }
 
     if (::sMoveDistanceMax < mPosition.distance(mHomePos)) {
-        setNerve(&NrvButterfly::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(Butterfly, HostTypeWait));
         return;
     }
 
@@ -451,7 +451,7 @@ void Butterfly::exeGotoSleepingMario() {
 
     if (mPosition.distance(posOffset) < ::sPerchOnNearDistance && MR::checkPassBckFrame(this, 0.0f)) {
         mVelocity.zero();
-        setNerve(&NrvButterfly::HostTypeReadyToPerchOnSleepingMario::sInstance);
+        setNerve(GET_NERVE(Butterfly, HostTypeReadyToPerchOnSleepingMario));
     }
 }
 
@@ -465,7 +465,7 @@ void Butterfly::exeReadyToPerchOnSleepingMario() {
 
     MR::setBckRate(this, MR::converge(MR::getBckRate(this), ::sReadyToPerchOnAnimRate, ::sAnimInterpolateRate));
     if (MR::checkPassBckFrame(this, 0.0f)) {
-        setNerve(&NrvButterfly::HostTypePerchOnSleepingMario::sInstance);
+        setNerve(GET_NERVE(Butterfly, HostTypePerchOnSleepingMario));
     }
 }
 
@@ -481,6 +481,6 @@ void Butterfly::exePerchOnSleepingMario() {
 
     if (!MR::isPlayerSleeping()) {
         MR::startBck(this, "Butterfly", nullptr);
-        setNerve(&NrvButterfly::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(Butterfly, HostTypeWait));
     }
 }

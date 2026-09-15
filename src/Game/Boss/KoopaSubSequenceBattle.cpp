@@ -18,7 +18,7 @@ namespace NrvKoopaSubSequenceBattle {
 
 KoopaSubSequenceBattle::KoopaSubSequenceBattle(Koopa* pKoopa, KoopaSequencer* pSequencer, KoopaBattleBase* pBattleBase)
     : ActorStateBase< Koopa >("Sequence[戦闘]", pKoopa), mSequencer(pSequencer), mBattleBase(pBattleBase) {
-    initNerve(&NrvKoopaSubSequenceBattle::KoopaSubSequenceBattleNrvBattleLv1::sInstance);
+    initNerve(GET_NERVE(KoopaSubSequenceBattle, KoopaSubSequenceBattleNrvBattleLv1));
 }
 
 void KoopaSubSequenceBattle::kill() {
@@ -28,8 +28,8 @@ void KoopaSubSequenceBattle::kill() {
 }
 
 bool KoopaSubSequenceBattle::isDemo() const {
-    if (isNerve(&NrvKoopaSubSequenceBattle::KoopaSubSequenceBattleNrvDemoStartLv2::sInstance) ||
-        isNerve(&NrvKoopaSubSequenceBattle::KoopaSubSequenceBattleNrvDemoStartLv3::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaSubSequenceBattle, KoopaSubSequenceBattleNrvDemoStartLv2)) ||
+        isNerve(GET_NERVE(KoopaSubSequenceBattle, KoopaSubSequenceBattleNrvDemoStartLv3))) {
         return true;
     }
 
@@ -37,7 +37,7 @@ bool KoopaSubSequenceBattle::isDemo() const {
 }
 
 void KoopaSubSequenceBattle::exeBattleLv1() {
-    MR::updateActorStateAndNextNerve(this, mBattleBase, &NrvKoopaSubSequenceBattle::KoopaSubSequenceBattleNrvDemoStartLv2::sInstance);
+    MR::updateActorStateAndNextNerve(this, mBattleBase, GET_NERVE(KoopaSubSequenceBattle, KoopaSubSequenceBattleNrvDemoStartLv2));
 }
 
 void KoopaSubSequenceBattle::exeDemoStartLv2() {
@@ -45,11 +45,11 @@ void KoopaSubSequenceBattle::exeDemoStartLv2() {
         mSequencer->startBattleLevel2();
     }
 
-    MR::updateActorStateAndNextNerve(this, mSequencer->mPowerUp, &NrvKoopaSubSequenceBattle::KoopaSubSequenceBattleNrvBattleLv2::sInstance);
+    MR::updateActorStateAndNextNerve(this, mSequencer->mPowerUp, GET_NERVE(KoopaSubSequenceBattle, KoopaSubSequenceBattleNrvBattleLv2));
 }
 
 void KoopaSubSequenceBattle::exeBattleLv2() {
-    MR::updateActorStateAndNextNerve(this, mBattleBase, &NrvKoopaSubSequenceBattle::KoopaSubSequenceBattleNrvDemoStartLv3::sInstance);
+    MR::updateActorStateAndNextNerve(this, mBattleBase, GET_NERVE(KoopaSubSequenceBattle, KoopaSubSequenceBattleNrvDemoStartLv3));
 }
 
 void KoopaSubSequenceBattle::exeDemoStartLv3() {
@@ -57,7 +57,7 @@ void KoopaSubSequenceBattle::exeDemoStartLv3() {
         mSequencer->startBattleLevel3();
     }
 
-    MR::updateActorStateAndNextNerve(this, mSequencer->mPowerUp, &NrvKoopaSubSequenceBattle::KoopaSubSequenceBattleNrvBattleLv3::sInstance);
+    MR::updateActorStateAndNextNerve(this, mSequencer->mPowerUp, GET_NERVE(KoopaSubSequenceBattle, KoopaSubSequenceBattleNrvBattleLv3));
 }
 
 void KoopaSubSequenceBattle::exeBattleLv3() {

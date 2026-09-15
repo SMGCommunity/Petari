@@ -99,7 +99,7 @@ void CrystalCage::init(const JMapInfoIter& rIter) {
     }
 
     MR::joinToGroupArray(this, rIter, nullptr, 0x20);
-    initNerve(&NrvCrystalCage::CrystalCageNrvWait::sInstance);
+    initNerve(GET_NERVE(CrystalCage, CrystalCageNrvWait));
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
         if (mDisplayModel) {
@@ -159,13 +159,13 @@ void CrystalCage::kill() {
 }
 
 void CrystalCage::forceBreak() {
-    if (isNerve(&NrvCrystalCage::CrystalCageNrvWait::sInstance)) {
+    if (isNerve(GET_NERVE(CrystalCage, CrystalCageNrvWait))) {
         if (!_104 || !MR::isClipped(this)) {
             MR::tryRumblePadStrong(this, WPAD_CHAN0);
             MR::invalidateClipping(this);
             MR::invalidateCollisionParts(this);
             MR::invalidateHitSensors(this);
-            setNerve(&NrvCrystalCage::CrystalCageNrvBreak::sInstance);
+            setNerve(GET_NERVE(CrystalCage, CrystalCageNrvBreak));
         } else {
             kill();
         }
@@ -179,7 +179,7 @@ void CrystalCage::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool CrystalCage::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvCrystalCage::CrystalCageNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(CrystalCage, CrystalCageNrvWait))) {
         return false;
     }
 
@@ -192,7 +192,7 @@ bool CrystalCage::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
             MR::invalidateClipping(this);
             MR::invalidateCollisionParts(this);
             MR::invalidateHitSensors(this);
-            setNerve(&NrvCrystalCage::CrystalCageNrvBreak::sInstance);
+            setNerve(GET_NERVE(CrystalCage, CrystalCageNrvBreak));
             MR::startCSSound("CS_SPIN_HIT", nullptr, 0);
             return true;
         }
@@ -220,11 +220,11 @@ bool CrystalCage::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
 }
 
 bool CrystalCage::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (mCrystalCageType != 2 && isNerve(&NrvCrystalCage::CrystalCageNrvWait::sInstance)) {
+    if (mCrystalCageType != 2 && isNerve(GET_NERVE(CrystalCage, CrystalCageNrvWait))) {
         MR::invalidateClipping(this);
         MR::invalidateCollisionParts(this);
         MR::invalidateHitSensors(this);
-        setNerve(&NrvCrystalCage::CrystalCageNrvBreak::sInstance);
+        setNerve(GET_NERVE(CrystalCage, CrystalCageNrvBreak));
         return true;
     }
 
@@ -382,7 +382,7 @@ void CrystalCage::exeBreak() {
         if (mIsBreakObjVisible) {
             kill();
         } else {
-            setNerve(&NrvCrystalCage::CrystalCageNrvBreakAfter::sInstance);
+            setNerve(GET_NERVE(CrystalCage, CrystalCageNrvBreakAfter));
         }
     }
 }

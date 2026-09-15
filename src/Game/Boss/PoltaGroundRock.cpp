@@ -33,7 +33,7 @@ void PoltaGroundRock::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     MR::setEffectHostSRT(this, "Shadow", &_A4, nullptr, nullptr);
     initSound(4, false);
-    initNerve(&NrvPoltaGroundRock::PoltaGroundRockNrvSign::sInstance);
+    initNerve(GET_NERVE(PoltaGroundRock, PoltaGroundRockNrvSign));
     initBreakModel();
     MR::invalidateClipping(this);
     makeActorDead();
@@ -57,7 +57,7 @@ void PoltaGroundRock::calcAndSetBaseMtx() {
 
 void PoltaGroundRock::start(LiveActor* pOwner, const TVec3f& rVec1) {
     mOwner = pOwner;
-    setNerve(&NrvPoltaGroundRock::PoltaGroundRockNrvSign::sInstance);
+    setNerve(GET_NERVE(PoltaGroundRock, PoltaGroundRockNrvSign));
     _A4.set(rVec1);
     MR::calcGravity(this, rVec1);
     mPosition.scaleAdd(500.0f, mGravity, _A4);
@@ -72,7 +72,7 @@ void PoltaGroundRock::start(LiveActor* pOwner, const TVec3f& rVec1) {
 
 void PoltaGroundRock::requestBreak() {
     if (PoltaGroundRock::isEnableBreak()) {
-        setNerve(&NrvPoltaGroundRock::PoltaGroundRockNrvBreak::sInstance);
+        setNerve(GET_NERVE(PoltaGroundRock, PoltaGroundRockNrvBreak));
     }
 }
 
@@ -91,7 +91,7 @@ bool PoltaGroundRock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSen
         return false;
     }
     if (MR::isMsgPlayerSpinAttack(msg) && isEnableBreak()) {
-        setNerve(&NrvPoltaGroundRock::PoltaGroundRockNrvBreak::sInstance);
+        setNerve(GET_NERVE(PoltaGroundRock, PoltaGroundRockNrvBreak));
         return true;
     }
 
@@ -104,7 +104,7 @@ bool PoltaGroundRock::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSens
     }
     if (MR::isMsgEnemyAttack(msg) || MR::isMsgExplosionAttack(msg)) {
         if (isEnableBreak()) {
-            setNerve(&NrvPoltaGroundRock::PoltaGroundRockNrvBreak::sInstance);
+            setNerve(GET_NERVE(PoltaGroundRock, PoltaGroundRockNrvBreak));
             return true;
         }
     }
@@ -113,7 +113,7 @@ bool PoltaGroundRock::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSens
 
 bool PoltaGroundRock::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_BREAK_POLTA_GROUND_ROCK && getSensor("body") == pReceiver && isEnableBreak()) {
-        setNerve(&NrvPoltaGroundRock::PoltaGroundRockNrvBreak::sInstance);
+        setNerve(GET_NERVE(PoltaGroundRock, PoltaGroundRockNrvBreak));
         return true;
     }
     return false;
@@ -125,7 +125,7 @@ void PoltaGroundRock::exeSign() {
     }
     MR::startLevelSound(this, "SE_OJ_LV_POLTA_G_ROCK_SIGN");
     if (MR::isGreaterStep(this, 60)) {
-        setNerve(&NrvPoltaGroundRock::PoltaGroundRockNrvJut::sInstance);
+        setNerve(GET_NERVE(PoltaGroundRock, PoltaGroundRockNrvJut));
     }
 }
 
@@ -136,7 +136,7 @@ void PoltaGroundRock::exeJut() {
     mPosition.scaleAdd(MR::calcNerveEaseOutValue(this, 20, 500.0f, 0.0f), mGravity, _A4);
     if (MR::isGreaterStep(this, 20)) {
         MR::tryRumblePadAndCameraDistanceMiddle(this, 800.0f, 1200.0f, 2000.0f);
-        setNerve(&NrvPoltaGroundRock::PoltaGroundRockNrvWait::sInstance);
+        setNerve(GET_NERVE(PoltaGroundRock, PoltaGroundRockNrvWait));
         MR::deleteEffect(this, "Shadow");
     }
 }
@@ -165,9 +165,9 @@ void PoltaGroundRock::exeBreak() {
 }
 
 bool PoltaGroundRock::isEnableAttack() const {
-    return isNerve(&NrvPoltaGroundRock::PoltaGroundRockNrvJut::sInstance);
+    return isNerve(GET_NERVE(PoltaGroundRock, PoltaGroundRockNrvJut));
 }
 
 bool PoltaGroundRock::isEnableBreak() const {
-    return !isNerve(&NrvPoltaGroundRock::PoltaGroundRockNrvBreak::sInstance);
+    return !isNerve(GET_NERVE(PoltaGroundRock, PoltaGroundRockNrvBreak));
 }

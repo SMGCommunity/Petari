@@ -79,6 +79,7 @@ public:
     void setPitch(f32 pitch) {
         mPitch = pitch;
     }
+
     void setVolume(f32 volume) {
         for (int i = 0; i < CHANNEL_MAX; i++) {
             mChannelVolume[i] = volume;
@@ -134,7 +135,7 @@ public:
     /* 0x0AE */ u8 _0AE;
     /* 0x0B0 */ int _0B0;
     /* 0x0B4 */ int _0B4;
-    /* 0x0B8 */ u32 _0B8;
+    /* 0x0B8 */ volatile u32 _0B8;
     /* 0x0BC */ int _0BC;
     /* 0x0C0 */ bool _0C0;
     /* 0x0C4 */ volatile u32 _0C4;
@@ -143,8 +144,8 @@ public:
     /* 0x108 */ u32 _108;
     /* 0x10C */ int _10C;
     /* 0x110 */ u32 mBlock;
-    /* 0x114 */ u8 _114;
-    /* 0x118 */ u32 _118;
+    /* 0x114 */ volatile u8 _114;
+    /* 0x118 */ volatile u32 _118;
     /* 0x11C */ int _11C;
     /* 0x120 */ int _120;
     /* 0x124 */ int _124;

@@ -7,13 +7,18 @@
 #include "Game/Util/SoundUtil.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
+void TornadoMario_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 TornadoMario::TornadoMario(const char* pName) : LiveActor(pName), mUp(0.0f, 1.0f, 0.0f) {
 }
 
 void TornadoMario::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm(mName, nullptr, true);
     initSound(4, false);
-    MR::connectToScene(this, MR::MovementType_Player, MR::CalcAnimType_Player, MR::DrawBufferType_PlayerDecoration, -1);
+    MR::connectToScene(this, MR::MovementType_Player, MR::CalcAnimType_Player, MR::DrawBufferType_PlayerDecoration, MR::DrawType_None);
     MR::initDLMakerFog(this, true);
     MR::newDifferedDLBuffer(this);
     MR::initJointTransform(this);
@@ -81,6 +86,7 @@ void TornadoMario::control() {
             MR::startBck(this, "MarioTornadoLoop", nullptr);
             MR::startBck(this, "MarioTornadoLoop", nullptr);
         }
+
         MR::startLevelSound(this, "SE_PM_LV_TORNADE_FLYING");
     } else {
         if (MR::isBckOneTimeAndStopped(this)) {

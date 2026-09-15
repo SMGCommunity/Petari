@@ -35,7 +35,7 @@ TripodBossCore::TripodBossCore(const char* pName) : TripodBossFixPartsBase(pName
 void TripodBossCore::init(const JMapInfoIter& rIter) {
     TripodBossFixPartsBase::init(rIter);
     initModelManagerWithAnm("TripodBossCore", nullptr, false);
-    MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, -1);
+    MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, MR::DrawType_None);
     initClippingSphere();
     initHitSensor(1);
     MR::addHitSensor(this, "body", ATYPE_BREAKABLE_CAGE, 8, ::sHitSensorRadius * mScale.x, TVec3f(0.0f, 0.0f, 0.0f));
@@ -54,7 +54,7 @@ void TripodBossCore::init(const JMapInfoIter& rIter) {
     mBloomModel->makeActorDead();
     MR::addTripodBossPartsMovement(mBloomModel);
 
-    initNerve(&NrvTripodBossCore::TripodBossCoreNrvNonActive::sInstance);
+    initNerve(GET_NERVE(TripodBossCore, TripodBossCoreNrvNonActive));
     initEffectKeeper(0, "TripodBossCore", false);
     MR::setEffectHostMtx(this, "BlackSmoke", getBaseMtx());
     MR::useStageSwitchWriteDead(this, rIter);
@@ -68,8 +68,8 @@ void TripodBossCore::kill() {
 }
 
 bool TripodBossCore::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvTripodBossCore::TripodBossCoreNrvBreak::sInstance)) {
-        setNerve(&NrvTripodBossCore::TripodBossCoreNrvBreak::sInstance);
+    if (!isNerve(GET_NERVE(TripodBossCore, TripodBossCoreNrvBreak))) {
+        setNerve(GET_NERVE(TripodBossCore, TripodBossCoreNrvBreak));
         return true;
     }
 
@@ -77,10 +77,10 @@ bool TripodBossCore::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSenso
 }
 
 void TripodBossCore::activateTripodBoss() {
-    if (isNerve(&NrvTripodBossCore::TripodBossCoreNrvNonActive::sInstance)) {
+    if (isNerve(GET_NERVE(TripodBossCore, TripodBossCoreNrvNonActive))) {
         MR::onCalcAnim(this);
         MR::validateCollisionParts(this);
-        setNerve(&NrvTripodBossCore::TripodBossCoreNrvWait::sInstance);
+        setNerve(GET_NERVE(TripodBossCore, TripodBossCoreNrvWait));
         mBloomModel->makeActorAppeared();
     }
 }
@@ -98,7 +98,7 @@ void TripodBossCore::exeWait() {
     MR::requestPointLight(this, mPosition, (GXColor){0x96, 0x96, 0x96, 0xFF}, 1.0f, -1);
 
     if (MR::isDamageDemoTripodBoss()) {
-        setNerve(&NrvTripodBossCore::TripodBossCoreNrvDamageDemo::sInstance);
+        setNerve(GET_NERVE(TripodBossCore, TripodBossCoreNrvDamageDemo));
     }
 }
 
@@ -111,7 +111,7 @@ void TripodBossCore::exeDamageDemo() {
     MR::requestPointLight(this, mPosition, (GXColor){0xFF, 0x96, 0x96, 0xFF}, 1.0f, -1);
 
     if (!MR::isDamageDemoTripodBoss()) {
-        setNerve(&NrvTripodBossCore::TripodBossCoreNrvWarning::sInstance);
+        setNerve(GET_NERVE(TripodBossCore, TripodBossCoreNrvWarning));
     }
 }
 

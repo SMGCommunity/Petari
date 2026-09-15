@@ -38,7 +38,7 @@ void MoguStone::init(const JMapInfoIter& rIter) {
     ModelObj::init(rIter);
     initHitSensor(1);
     MR::addHitSensorEnemy(this, "body", 32, 80.0f * mScale.y, TVec3f(0.0f, 0.0f, 0.0f));
-    initNerve(&NrvMoguStone::MoguStoneNrvTaken::sInstance);
+    initNerve(GET_NERVE(MoguStone, MoguStoneNrvTaken));
     MR::invalidateClipping(this);
     MR::onCalcGravity(this);
     MR::initShadowVolumeSphere(this, 50.0f * mScale.y);
@@ -47,7 +47,7 @@ void MoguStone::init(const JMapInfoIter& rIter) {
 
 void MoguStone::appear() {
     LiveActor::appear();
-    setNerve(&NrvMoguStone::MoguStoneNrvTaken::sInstance);
+    setNerve(GET_NERVE(MoguStone, MoguStoneNrvTaken));
 }
 
 void MoguStone::emit(bool arg1, const TVec3f& pArg2, const TVec3f& pArg3, f32 arg4) {
@@ -76,7 +76,7 @@ void MoguStone::emit(bool arg1, const TVec3f& pArg2, const TVec3f& pArg3, f32 ar
     }
 
     MR::normalizeOrZero(&_B0);
-    setNerve(&NrvMoguStone::MoguStoneNrvThrow::sInstance);
+    setNerve(GET_NERVE(MoguStone, MoguStoneNrvThrow));
 }
 
 void MoguStone::doBehavior() {
@@ -128,7 +128,7 @@ void MoguStone::exeThrow() {
     }
 
     if (MR::isGreaterStep(this, 100)) {
-        setNerve(&NrvMoguStone::MoguStoneNrvFall::sInstance);
+        setNerve(GET_NERVE(MoguStone, MoguStoneNrvFall));
     }
 }
 
@@ -145,7 +145,7 @@ void MoguStone::exeFall() {
 }
 
 bool MoguStone::isTaken() {
-    return isNerve(&NrvMoguStone::MoguStoneNrvTaken::sInstance);
+    return isNerve(GET_NERVE(MoguStone, MoguStoneNrvTaken));
 }
 
 void MoguStone::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -160,7 +160,7 @@ void MoguStone::exeTaken() {
 }
 
 bool MoguStone::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvMoguStone::MoguStoneNrvThrow::sInstance)) {
+    if (!isNerve(GET_NERVE(MoguStone, MoguStoneNrvThrow))) {
         return false;
     }
 
@@ -201,7 +201,7 @@ void ThrowingIce::init(const JMapInfoIter& rIter) {
     ModelObj::init(rIter);
     initHitSensor(1);
     MR::addHitSensorEnemy(this, "body", 32, 80.0f * mScale.y, TVec3f(0.0f, 0.0f, 0.0f));
-    initNerve(&NrvMoguStone::MoguStoneNrvTaken::sInstance);
+    initNerve(GET_NERVE(MoguStone, MoguStoneNrvTaken));
     MR::invalidateClipping(this);
     MR::onCalcGravity(this);
     MR::initShadowVolumeSphere(this, 90.0f * mScale.y);
@@ -216,7 +216,7 @@ void ThrowingIce::emitIce(const TVec3f& arg1, const TVec3f& arg2, f32 arg3, cons
     v2 -= arg1;
     MR::vecKillElement(v2, mGravity, &_B0);
     MR::normalizeOrZero(&_B0);
-    setNerve(&NrvMoguStone::MoguStoneNrvThrow::sInstance);
+    setNerve(GET_NERVE(MoguStone, MoguStoneNrvThrow));
     MR::emitEffect(this, "Smoke");
 }
 
@@ -245,7 +245,7 @@ void ThrowingIce::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool ThrowingIce::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvMoguStone::MoguStoneNrvThrow::sInstance)) {
+    if (!isNerve(GET_NERVE(MoguStone, MoguStoneNrvThrow))) {
         return false;
     }
 

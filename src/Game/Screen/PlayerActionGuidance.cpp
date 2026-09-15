@@ -57,7 +57,7 @@ void PlayerActionGuidance::control() {
 
 void PlayerActionGuidance::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayoutMovement(this);
-    initNerve(&PlayerActionGuidanceWaitFocusIn::sInstance);
+    initNerve(GET_NERVE_GLOBAL(PlayerActionGuidanceWaitFocusIn));
     startAnimAllLayout("Appear");
     setAnimFrameAndStopAllLayout(0.0f);
     hideAllLayout();
@@ -91,7 +91,7 @@ void PlayerActionGuidance::exeWaitFocusIn() {
     }
 
     if (_35) {
-        setNerve(&PlayerActionGuidanceSuspend::sInstance);
+        setNerve(GET_NERVE_GLOBAL(PlayerActionGuidanceSuspend));
     }
 }
 
@@ -106,7 +106,7 @@ void PlayerActionGuidance::exeFadein() {
     }
 
     if (MR::isAnimStopped(mCurrentLayout, 0)) {
-        setNerve(&PlayerActionGuidanceDisplay::sInstance);
+        setNerve(GET_NERVE_GLOBAL(PlayerActionGuidanceDisplay));
     }
 }
 
@@ -115,7 +115,7 @@ void PlayerActionGuidance::startWaitAnimTamakoro() {
         return;
     }
 
-    if (isNerve(&PlayerActionGuidanceFadein::sInstance)) {
+    if (isNerve(GET_NERVE_GLOBAL(PlayerActionGuidanceFadein))) {
         MR::startAnim(mTamakoroLayout, "WaitRotation", 0);
     }
 
@@ -166,7 +166,7 @@ void PlayerActionGuidance::exeDisplay() {
     }
 
     if (MR::isAnimStopped(mCurrentLayout, 0) || !_35) {
-        setNerve(&PlayerActionGuidanceFadeout::sInstance);
+        setNerve(GET_NERVE_GLOBAL(PlayerActionGuidanceFadeout));
     }
 }
 
@@ -174,9 +174,9 @@ void PlayerActionGuidance::exeSuspend() {
     if (MR::isStep(this, ::sSuspendFrame)) {
         if (!_35) {
             hideAllLayout();
-            setNerve(&PlayerActionGuidanceWaitFocusIn::sInstance);
+            setNerve(GET_NERVE_GLOBAL(PlayerActionGuidanceWaitFocusIn));
         } else {
-            setNerve(&PlayerActionGuidanceFadein::sInstance);
+            setNerve(GET_NERVE_GLOBAL(PlayerActionGuidanceFadein));
         }
     }
 }
@@ -188,10 +188,10 @@ void PlayerActionGuidance::exeFadeout() {
 
     if (MR::isAnimStopped(mCurrentLayout, 0)) {
         if (_35) {
-            setNerve(&PlayerActionGuidanceSuspend::sInstance);
+            setNerve(GET_NERVE_GLOBAL(PlayerActionGuidanceSuspend));
         } else {
             hideAllLayout();
-            setNerve(&PlayerActionGuidanceWaitFocusIn::sInstance);
+            setNerve(GET_NERVE_GLOBAL(PlayerActionGuidanceWaitFocusIn));
         }
     }
 }

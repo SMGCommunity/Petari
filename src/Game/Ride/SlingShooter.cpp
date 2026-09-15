@@ -74,7 +74,7 @@ void SlingShooter::init(const JMapInfoIter& rIter) {
 
     MR::initStarPointerTarget(this, 210.0f, TVec3f(0.0f, 50.0f, 0.0f));
 
-    initNerve(&NrvSlingShooter::SlingShooterNrvFree::sInstance);
+    initNerve(GET_NERVE(SlingShooter, SlingShooterNrvFree));
 
     mCameraTargetMtx = new CameraTargetMtx("カメラターゲットダミー");
     mCameraInfo = MR::createActorCameraInfo(rIter);
@@ -103,7 +103,7 @@ void SlingShooter::calcAnim() {
 void SlingShooter::exeFree() {
     mPosition.set(*mBasePos);
     if (MR::isPlayerInBind() && !mIsKinopioCameraFocused) {
-        setNerve(&NrvSlingShooter::SlingShooterNrvFreeInvalid::sInstance);
+        setNerve(GET_NERVE(SlingShooter, SlingShooterNrvFreeInvalid));
     }
 }
 
@@ -111,7 +111,7 @@ void SlingShooter::exeFreeInvalid() {
     exeFree();
     if (MR::isGreaterStep(this, 30) && (mIsKinopioAttached || MR::isOnGroundPlayer())) {
         mIsKinopioAttached = false;
-        setNerve(&NrvSlingShooter::SlingShooterNrvFree::sInstance);
+        setNerve(GET_NERVE(SlingShooter, SlingShooterNrvFree));
     }
 }
 
@@ -127,7 +127,7 @@ void SlingShooter::exeLand() {
     }
 
     if (mIsKinopioAttached) {
-        setNerve(&NrvSlingShooter::SlingShooterNrvWait::sInstance);
+        setNerve(GET_NERVE(SlingShooter, SlingShooterNrvWait));
         return;
     }
 
@@ -136,7 +136,7 @@ void SlingShooter::exeLand() {
     }
 
     if (MR::isBckStopped(mRider)) {
-        setNerve(&NrvSlingShooter::SlingShooterNrvWait::sInstance);
+        setNerve(GET_NERVE(SlingShooter, SlingShooterNrvWait));
         return;
     }
 
@@ -202,7 +202,7 @@ void SlingShooter::exeAim() {
 
         MR::offBind(this);
         MR::sendMsgToSpiderThread(ACTMES_SLING_SHOOT_ACTOR_HANG_END, getSensor("bind"));
-        setNerve(&NrvSlingShooter::SlingShooterNrvWait::sInstance);
+        setNerve(GET_NERVE(SlingShooter, SlingShooterNrvWait));
         return;
     }
 
@@ -243,7 +243,7 @@ void SlingShooter::exeAttackSuccess() {
         if (mPassThroughEnable) {
             mVelocity.set(mAttackVelocity);
             mPassThroughEnable = false;
-            setNerve(&NrvSlingShooter::SlingShooterNrvAttack::sInstance);
+            setNerve(GET_NERVE(SlingShooter, SlingShooterNrvAttack));
             return;
         }
 
@@ -275,8 +275,8 @@ void SlingShooter::updateHitSensor(HitSensor* pSensor) {
 void SlingShooter::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     // FIXME: TVec3f ordering issue due to inlining issue with MR::emitEffectHitBetweenSensors
     // https://decomp.me/scratch/e2M5n
-    if (mIsKinopioCameraFocused && mRider == nullptr && !isNerve(&NrvSlingShooter::SlingShooterNrvFreeInvalid::sInstance) &&
-        MR::isSensorNpc(pReceiver) && pReceiver->receiveMessage(ACTMES_NPC_EVENT_START, pSender)) {
+    if (mIsKinopioCameraFocused && mRider == nullptr && !isNerve(GET_NERVE(SlingShooter, SlingShooterNrvFreeInvalid)) && MR::isSensorNpc(pReceiver) &&
+        pReceiver->receiveMessage(ACTMES_NPC_EVENT_START, pSender)) {
         mIsKinopioAttached = true;
 
         startBind(pReceiver->mHost);
@@ -287,7 +287,7 @@ void SlingShooter::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
     if (mRider != nullptr && !MR::tryGetItem(pSender, pReceiver) &&
         (pSender->isType(ATYPE_SPRING_ATTACKER) || pSender->isType(ATYPE_SPRING_ATTACKER_KINOPIO)) &&
-        isNerve(&NrvSlingShooter::SlingShooterNrvAttack::sInstance) && pReceiver->receiveMessage(ACTMES_SLING_SHOOT_ATTACK, pSender)) {
+        isNerve(GET_NERVE(SlingShooter, SlingShooterNrvAttack)) && pReceiver->receiveMessage(ACTMES_SLING_SHOOT_ATTACK, pSender)) {
         if (pReceiver->receiveMessage(ACTMES_IS_BROKEN, pSender)) {
             // TODO: issue with MR::emitEffectHitBetweenSensors here?
             TVec3f vecBetween;
@@ -299,7 +299,7 @@ void SlingShooter::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
             mPassThroughEnable = pReceiver->receiveMessage(ACTMES_SLING_SHOOT_PASS_THROUGH_ENABLE, pSender);
             mIsLastDamage = pReceiver->receiveMessage(ACTMES_SLING_SHOOT_IS_LAST_DAMAGE, pSender);
-            setNerve(&NrvSlingShooter::SlingShooterNrvAttackSuccess::sInstance);
+            setNerve(GET_NERVE(SlingShooter, SlingShooterNrvAttackSuccess));
             return;
         }
 
@@ -334,10 +334,10 @@ bool SlingShooter::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
 }
 
 bool SlingShooter::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvSlingShooter::SlingShooterNrvLand::sInstance) || isNerve(&NrvSlingShooter::SlingShooterNrvWait::sInstance) ||
-        isNerve(&NrvSlingShooter::SlingShooterNrvAim::sInstance) || isNerve(&NrvSlingShooter::SlingShooterNrvAttack::sInstance)) {
+    if (isNerve(GET_NERVE(SlingShooter, SlingShooterNrvLand)) || isNerve(GET_NERVE(SlingShooter, SlingShooterNrvWait)) ||
+        isNerve(GET_NERVE(SlingShooter, SlingShooterNrvAim)) || isNerve(GET_NERVE(SlingShooter, SlingShooterNrvAttack))) {
         if (!mIsKinopioAttached) {
-            if (isNerve(&NrvSlingShooter::SlingShooterNrvAim::sInstance)) {
+            if (isNerve(GET_NERVE(SlingShooter, SlingShooterNrvAim))) {
                 MR::sendMsgToSpiderThread(ACTMES_SLING_SHOOT_ACTOR_HANG_END, getSensor("bind"));
             }
 
@@ -363,7 +363,7 @@ bool SlingShooter::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor*
 
 bool SlingShooter::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_AUTORUSH_BEGIN) {
-        if (isNerve(&NrvSlingShooter::SlingShooterNrvFreeInvalid::sInstance)) {
+        if (isNerve(GET_NERVE(SlingShooter, SlingShooterNrvFreeInvalid))) {
             return false;
         }
 
@@ -398,22 +398,22 @@ bool SlingShooter::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
 
     if (msg == ACTMES_TOMB_SPIDER_DEMO_START || msg == ACTMES_RUSH_CANCEL) {
         if (mIsKinopioAttached) {
-            if (msg == ACTMES_TOMB_SPIDER_DEMO_START && isNerve(&NrvSlingShooter::SlingShooterNrvAim::sInstance)) {
+            if (msg == ACTMES_TOMB_SPIDER_DEMO_START && isNerve(GET_NERVE(SlingShooter, SlingShooterNrvAim))) {
                 endCommandStream();
                 MR::offBind(this);
                 MR::sendMsgToSpiderThread(ACTMES_SLING_SHOOT_ACTOR_HANG_END, getSensor("bind"));
-                setNerve(&NrvSlingShooter::SlingShooterNrvWait::sInstance);
+                setNerve(GET_NERVE(SlingShooter, SlingShooterNrvWait));
                 return true;
             }
             return false;
         }
 
-        if (isNerve(&NrvSlingShooter::SlingShooterNrvLand::sInstance) || isNerve(&NrvSlingShooter::SlingShooterNrvWait::sInstance)) {
+        if (isNerve(GET_NERVE(SlingShooter, SlingShooterNrvLand)) || isNerve(GET_NERVE(SlingShooter, SlingShooterNrvWait))) {
             startCancelWait();
             return true;
         }
 
-        if (isNerve(&NrvSlingShooter::SlingShooterNrvAim::sInstance)) {
+        if (isNerve(GET_NERVE(SlingShooter, SlingShooterNrvAim))) {
             MR::offBind(this);
             startCancelAim();
             MR::startBckPlayer("Wait", static_cast< const char* >(nullptr));
@@ -424,7 +424,7 @@ bool SlingShooter::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
         }
 
         if (msg == ACTMES_RUSH_CANCEL && mRider != nullptr &&
-            (isNerve(&NrvSlingShooter::SlingShooterNrvAttack::sInstance) || isNerve(&NrvSlingShooter::SlingShooterNrvAttackSuccess::sInstance))) {
+            (isNerve(GET_NERVE(SlingShooter, SlingShooterNrvAttack)) || isNerve(GET_NERVE(SlingShooter, SlingShooterNrvAttackSuccess)))) {
             MR::offBind(this);
             endBind();
             return true;
@@ -437,8 +437,8 @@ bool SlingShooter::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
 }
 
 void SlingShooter::calcAndSetBaseMtx() {
-    if (isNerve(&NrvSlingShooter::SlingShooterNrvLand::sInstance) || isNerve(&NrvSlingShooter::SlingShooterNrvWait::sInstance) ||
-        isNerve(&NrvSlingShooter::SlingShooterNrvAim::sInstance)) {
+    if (isNerve(GET_NERVE(SlingShooter, SlingShooterNrvLand)) || isNerve(GET_NERVE(SlingShooter, SlingShooterNrvWait)) ||
+        isNerve(GET_NERVE(SlingShooter, SlingShooterNrvAim))) {
         MR::setBaseTRMtx(this, mBaseMtx);
         return;
     }
@@ -497,7 +497,7 @@ bool SlingShooter::updateWait() {
         } else if (mIsKinopioCameraFocused) {
             MR::startEventCameraNoTarget(mCameraInfo, "キノピオ射出者[狙い中]", -1);
         }
-        setNerve(&NrvSlingShooter::SlingShooterNrvAim::sInstance);
+        setNerve(GET_NERVE(SlingShooter, SlingShooterNrvAim));
         return true;
     }
 
@@ -555,13 +555,13 @@ void SlingShooter::updateHang() {
 }
 
 void SlingShooter::updateActorMtx() {
-    if (isNerve(&NrvSlingShooter::SlingShooterNrvAttack::sInstance) || isNerve(&NrvSlingShooter::SlingShooterNrvAttackSuccess::sInstance)) {
+    if (isNerve(GET_NERVE(SlingShooter, SlingShooterNrvAttack)) || isNerve(GET_NERVE(SlingShooter, SlingShooterNrvAttackSuccess))) {
         mBaseMtx.setTrans(mPosition);
         return;
     }
 
     TVec3f up;
-    if (isNerve(&NrvSlingShooter::SlingShooterNrvLand::sInstance) || isNerve(&NrvSlingShooter::SlingShooterNrvWait::sInstance)) {
+    if (isNerve(GET_NERVE(SlingShooter, SlingShooterNrvLand)) || isNerve(GET_NERVE(SlingShooter, SlingShooterNrvWait))) {
         up.set(*mUp);
         up.scale(-1.0f);
     } else {
@@ -611,7 +611,7 @@ bool SlingShooter::tryRelease() {
             MR::endEventCamera(mCameraInfo, "プレーヤー射出者[狙い中]", true, -1);
             MR::startEventCamera(mCameraInfo, "プレーヤー射出者[ウェイト]", CameraTargetArg(mCameraTargetMtx), -1);
         }
-        setNerve(&NrvSlingShooter::SlingShooterNrvWait::sInstance);
+        setNerve(GET_NERVE(SlingShooter, SlingShooterNrvWait));
         return true;
     }
 
@@ -663,7 +663,7 @@ bool SlingShooter::tryRelease() {
         mIsKinopioCameraFocused = false;
     }
 
-    setNerve(&NrvSlingShooter::SlingShooterNrvAttack::sInstance);
+    setNerve(GET_NERVE(SlingShooter, SlingShooterNrvAttack));
     return true;
 }
 
@@ -701,7 +701,7 @@ bool SlingShooter::tryAttackMap() {
 
     if (attackSuccess) {
         if (b2) {
-            setNerve(&NrvSlingShooter::SlingShooterNrvAttackSuccess::sInstance);
+            setNerve(GET_NERVE(SlingShooter, SlingShooterNrvAttackSuccess));
         }
         return false;
     }
@@ -732,7 +732,7 @@ void SlingShooter::startBind(LiveActor* pRider) {
     }
 
     updateActorMtx();
-    setNerve(&NrvSlingShooter::SlingShooterNrvLand::sInstance);
+    setNerve(GET_NERVE(SlingShooter, SlingShooterNrvLand));
 }
 
 void SlingShooter::startCancelWait() {
@@ -771,7 +771,7 @@ void SlingShooter::endBind() {
     MR::offBind(this);
     mPosition.set(*mBasePos);
     MR::validateClipping(this);
-    setNerve(&NrvSlingShooter::SlingShooterNrvFreeInvalid::sInstance);
+    setNerve(GET_NERVE(SlingShooter, SlingShooterNrvFreeInvalid));
 }
 
 void SlingShooter::endCommandStream() {

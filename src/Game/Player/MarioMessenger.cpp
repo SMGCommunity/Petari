@@ -10,7 +10,7 @@ MarioMessenger::MarioMessenger(HitSensor* pSender) : NameObj("マリオメッセ
     mMsgArray = new u32[MSG_SIZE];
     mArraySize = 0;
 
-    MR::connectToScene(this, MR::MovementType_PlayerMessenger, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_PlayerMessenger, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
 }
 
 void MarioMessenger::movement() {

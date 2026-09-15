@@ -91,7 +91,7 @@ void Kabokuri::init(const JMapInfoIter& rIter) {
     initSound(2, false);
     initSensor();
     MR::initShadowVolumeSphere(this, ::sShadowRadius);
-    initNerve(&NrvKabokuri::KabokuriNrvWait::sInstance);
+    initNerve(GET_NERVE(Kabokuri, KabokuriNrvWait));
     MR::initStarPointerTarget(this, 90.0f * mScale.y, TVec3f(0.0f, 90.0f * mScale.y, 0.0f));
 
     mAnimeScale = new AnimScaleController(nullptr);
@@ -207,7 +207,7 @@ void Kabokuri::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         }
 
         if (!MR::isPlayerHipDropFalling() && MR::sendMsgEnemyAttack(pReceiver, pSender)) {
-            setNerve(&NrvKabokuri::KabokuriNrvAttacksuccess::sInstance);
+            setNerve(GET_NERVE(Kabokuri, KabokuriNrvAttacksuccess));
             return;
         }
 
@@ -246,7 +246,7 @@ bool Kabokuri::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pR
 
 bool Kabokuri::requestTrampled() {
     if (isEnableTrampled()) {
-        setNerve(&NrvKabokuri::KabokuriNrvTrampled::sInstance);
+        setNerve(GET_NERVE(Kabokuri, KabokuriNrvTrampled));
         return true;
     }
 
@@ -256,7 +256,7 @@ bool Kabokuri::requestTrampled() {
 bool Kabokuri::requestStarPieceHitted() {
     if (isEnableTrampled()) {
         MR::forceDeleteEffectAll(this);
-        setNerve(&NrvKabokuri::KabokuriNrvStarPieceHitted::sInstance);
+        setNerve(GET_NERVE(Kabokuri, KabokuriNrvStarPieceHitted));
         return true;
     }
 
@@ -266,7 +266,7 @@ bool Kabokuri::requestStarPieceHitted() {
 bool Kabokuri::requestHipDropped() {
     if (isEnableTrampled()) {
         MR::zeroVelocity(this);
-        setNerve(&NrvKabokuri::KabokuriNrvHipDropped::sInstance);
+        setNerve(GET_NERVE(Kabokuri, KabokuriNrvHipDropped));
         MR::invalidateHitSensors(this);
         return true;
     }
@@ -277,7 +277,7 @@ bool Kabokuri::requestHipDropped() {
 bool Kabokuri::requestHitAttacked(HitSensor* pSender, HitSensor* pReceived) {
     if (isEnableTrampled()) {
         MR::setVelocityBlowAttack(this, pSender, pReceived, ::sHitAttackedAccelH, ::sHitAttackedAccelV, 4);
-        setNerve(&NrvKabokuri::KabokuriNrvHitAttacked::sInstance);
+        setNerve(GET_NERVE(Kabokuri, KabokuriNrvHitAttacked));
         MR::invalidateHitSensors(this);
         return true;
     }
@@ -287,7 +287,7 @@ bool Kabokuri::requestHitAttacked(HitSensor* pSender, HitSensor* pReceived) {
 
 bool Kabokuri::tryPointBind() {
     if (isEnablePointBind() && mStateBindStartPointer->tryStartPointBind()) {
-        setNerve(&NrvKabokuri::KabokuriNrvBindStarPointer::sInstance);
+        setNerve(GET_NERVE(Kabokuri, KabokuriNrvBindStarPointer));
         return true;
     }
 
@@ -301,7 +301,7 @@ void Kabokuri::exeWait() {
     }
 
     if (MR::isGreaterStep(this, ::sWaitTime)) {
-        setNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance);
+        setNerve(GET_NERVE(Kabokuri, KabokuriNrvWalk));
     }
 }
 
@@ -316,7 +316,7 @@ void Kabokuri::exeWalk() {
     addVelocityBase();
 
     if (mIsValidDropFire && MR::isRailReachedHorizonCurrentPos(this, ::sWalkGoalRange)) {
-        setNerve(&NrvKabokuri::KabokuriNrvDropFire::sInstance);
+        setNerve(GET_NERVE(Kabokuri, KabokuriNrvDropFire));
     }
 }
 
@@ -327,7 +327,7 @@ void Kabokuri::exeDropFire() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance);
+        setNerve(GET_NERVE(Kabokuri, KabokuriNrvWalk));
         KabokuriFireHolderFunc::generateFire(mPosition, mGravity, mIsFloating);
     }
 }
@@ -339,7 +339,7 @@ void Kabokuri::exeAttacksuccess() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance);
+        setNerve(GET_NERVE(Kabokuri, KabokuriNrvWalk));
     }
 }
 
@@ -351,7 +351,7 @@ void Kabokuri::exeTrampled() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance);
+        setNerve(GET_NERVE(Kabokuri, KabokuriNrvWalk));
     }
 }
 
@@ -362,7 +362,7 @@ void Kabokuri::exeStarPieceHitted() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance);
+        setNerve(GET_NERVE(Kabokuri, KabokuriNrvWalk));
     }
 }
 
@@ -372,7 +372,7 @@ void Kabokuri::exeHipDropped() {
         mKuribo->appearHipDropped(mPosition, mRotationQuat);
         mKuribo->mGravity.set(mGravity);
         MR::invalidateClipping(this);
-        setNerve(&NrvKabokuri::KabokuriNrvBreak::sInstance);
+        setNerve(GET_NERVE(Kabokuri, KabokuriNrvBreak));
     }
 }
 
@@ -394,7 +394,7 @@ void Kabokuri::exeHitAttacked() {
         mKuribo->appearBlowed(mPosition, mRotationQuat, mVelocity);
         mKuribo->mGravity.set(mGravity);
         MR::invalidateClipping(this);
-        setNerve(&NrvKabokuri::KabokuriNrvBreak::sInstance);
+        setNerve(GET_NERVE(Kabokuri, KabokuriNrvBreak));
     }
 }
 
@@ -415,8 +415,8 @@ void Kabokuri::exeBreak() {
 }
 
 bool Kabokuri::isEnableAttack() const {
-    if (isNerve(&NrvKabokuri::KabokuriNrvWait::sInstance) || isNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance) ||
-        isNerve(&NrvKabokuri::KabokuriNrvDropFire::sInstance)) {
+    if (isNerve(GET_NERVE(Kabokuri, KabokuriNrvWait)) || isNerve(GET_NERVE(Kabokuri, KabokuriNrvWalk)) ||
+        isNerve(GET_NERVE(Kabokuri, KabokuriNrvDropFire))) {
         return true;
     }
 
@@ -424,8 +424,8 @@ bool Kabokuri::isEnableAttack() const {
 }
 
 bool Kabokuri::isEnablePointBind() const {
-    if (isNerve(&NrvKabokuri::KabokuriNrvWait::sInstance) || isNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance) ||
-        isNerve(&NrvKabokuri::KabokuriNrvDropFire::sInstance) || isNerve(&NrvKabokuri::KabokuriNrvAttacksuccess::sInstance)) {
+    if (isNerve(GET_NERVE(Kabokuri, KabokuriNrvWait)) || isNerve(GET_NERVE(Kabokuri, KabokuriNrvWalk)) ||
+        isNerve(GET_NERVE(Kabokuri, KabokuriNrvDropFire)) || isNerve(GET_NERVE(Kabokuri, KabokuriNrvAttacksuccess))) {
         return true;
     }
 
@@ -433,10 +433,10 @@ bool Kabokuri::isEnablePointBind() const {
 }
 
 bool Kabokuri::isEnableTrampled() const {
-    if (isNerve(&NrvKabokuri::KabokuriNrvWait::sInstance) || isNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance) ||
-        isNerve(&NrvKabokuri::KabokuriNrvAttacksuccess::sInstance) || isNerve(&NrvKabokuri::KabokuriNrvDropFire::sInstance) ||
-        isNerve(&NrvKabokuri::KabokuriNrvTrampled::sInstance) || isNerve(&NrvKabokuri::KabokuriNrvBindStarPointer::sInstance) ||
-        isNerve(&NrvKabokuri::KabokuriNrvStarPieceHitted::sInstance)) {
+    if (isNerve(GET_NERVE(Kabokuri, KabokuriNrvWait)) || isNerve(GET_NERVE(Kabokuri, KabokuriNrvWalk)) ||
+        isNerve(GET_NERVE(Kabokuri, KabokuriNrvAttacksuccess)) || isNerve(GET_NERVE(Kabokuri, KabokuriNrvDropFire)) ||
+        isNerve(GET_NERVE(Kabokuri, KabokuriNrvTrampled)) || isNerve(GET_NERVE(Kabokuri, KabokuriNrvBindStarPointer)) ||
+        isNerve(GET_NERVE(Kabokuri, KabokuriNrvStarPieceHitted))) {
         return true;
     }
 
@@ -444,7 +444,7 @@ bool Kabokuri::isEnableTrampled() const {
 }
 
 bool Kabokuri::isEnablePush() const {
-    if (isNerve(&NrvKabokuri::KabokuriNrvHipDropped::sInstance) || isNerve(&NrvKabokuri::KabokuriNrvBreak::sInstance)) {
+    if (isNerve(GET_NERVE(Kabokuri, KabokuriNrvHipDropped)) || isNerve(GET_NERVE(Kabokuri, KabokuriNrvBreak))) {
         return false;
     }
 
@@ -456,5 +456,5 @@ void Kabokuri::endBindStarPointer() const {
 }
 
 void Kabokuri::exeBindStarPointer() {
-    MR::updateActorStateAndNextNerve(this, mStateBindStartPointer, &NrvKabokuri::KabokuriNrvWalk::sInstance);
+    MR::updateActorStateAndNextNerve(this, mStateBindStartPointer, GET_NERVE(Kabokuri, KabokuriNrvWalk));
 }

@@ -70,6 +70,7 @@ bool MarioFlip::update() {
     if (_12 == 0) {
         changeAnimationNonStop("はねとばされ");
     }
+
     _12++;
     TVec3f velocity(_18);
     TVec3f direction(_18);
@@ -80,11 +81,13 @@ bool MarioFlip::update() {
     } else {
         control = 1.0f;
     }
+
     TVec3f lateral;
     f32 along = MR::vecKillElement(getWorldPadDir(), direction, &lateral);
     if (along <= 0.0f) {
         _18 += direction * mActor->mConst->getTable()->mFlipFriction3 * along * control;
     }
+
     _18 += lateral * mActor->mConst->getTable()->mFlipFriction3;
     switch (_14) {
     case 0:
@@ -96,6 +99,7 @@ bool MarioFlip::update() {
         if (_12 == mActor->mConst->getTable()->mFlipTimer1) {
             _14++;
         }
+
         break;
     case 1:
         _24 += _28;
@@ -104,11 +108,13 @@ bool MarioFlip::update() {
         if (!getPlayer()->mMovementStates._1) {
             return false;
         }
+
         addVelocity(velocity);
         _18.scale(mActor->mConst->getTable()->mFlipFriction2);
-        if (_12 == mActor->mConst->getTable()->mFlipTimer1 + mActor->mConst->getTable()->mFlipTimer2) {
+        if (_12 == mActor->getConst().getTable()->mFlipTimer1 + mActor->mConst->getTable()->mFlipTimer2) {
             _14++;
         }
+
         break;
     case 2:
         addVelocity(velocity);
@@ -120,14 +126,17 @@ bool MarioFlip::update() {
             changeAnimation("はねとばされ終了", static_cast< const char* >(nullptr));
             _14++;
         }
+
         break;
     case 3:
         _24 = 0.0f;
         if (!isAnimationRun("はねとばされ終了")) {
             return false;
         }
+
         break;
     }
+
     _24 = MR::normalizeAngleAbs(_24);
     setYangleOffset(_24);
     if (getPlayer()->mMovementStates._8 || getPlayer()->mMovementStates._1A || getPlayer()->mMovementStates._19) {
@@ -144,13 +153,16 @@ bool MarioFlip::update() {
             getPlayer()->setFrontVecKeepUp(-_18);
         }
     }
+
     if (_14 >= 1 && checkTrgA()) {
         getPlayer()->tryJump();
         return false;
     }
+
     if (_14 == 3 && getStickP() != 0.0f) {
         return false;
     }
+
     return true;
 }
 

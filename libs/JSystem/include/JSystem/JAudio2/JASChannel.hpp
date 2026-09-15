@@ -23,6 +23,7 @@ public:
         mFxMix = 0.0f;
         mDolby = 0.0f;
     }
+
     void init() {
         mVolume = 1.0f;
         mPitch = 1.0f;
@@ -73,7 +74,7 @@ public:
     union MixConfig {
         u16 whole;
         struct {
-            u8 upper;
+            u8 upper : 8;
             u8 lower0 : 4;
             u8 lower1 : 4;
         };
@@ -104,59 +105,77 @@ public:
     void setPauseFlag(bool flag) {
         mPauseFlag = flag;
     }
+
     void setUpdateTimer(u32 timer) {
         mUpdateTimer = timer;
     }
+
     void setBankDisposeID(const void* id) {
         mBankDisposeID = id;
     }
+
     void setDirectRelease(u16 release) {
         mOscillators[0].setDirectRelease(release);
     }
+
     void setVibrate(f32 depth, f32 pitch) {
         mVibrate.setDepth(depth);
         mVibrate.setPitch(pitch);
     }
+
     void setVibrateDelay(u16 delay) {
         mVibrate.setDelay(delay);
     }
+
     void setTremolo(f32 depth, f32 pitch) {
         mTremolo.setDepth(depth);
         mTremolo.setPitch(pitch);
     }
+
     void setTremoloDelay(u16 delay) {
         mTremolo.setDelay(delay);
     }
+
     void setPriority(u16 prio) {
         mPriority = prio;
     }
+
     void setParams(const JASChannelParams& params) {
         mParams = params;
     }
+
     void setInitVolume(f32 volume) {
         mSoundParams.mVolume = volume;
     }
+
     void setInitFxmix(f32 fxMix) {
         mSoundParams.mFxMix = fxMix;
     }
+
     void setInitPitch(f32 pitch) {
         mSoundParams.mPitch = pitch;
     }
+
     void setInitPan(f32 pan) {
         mSoundParams.mPan = pan;
     }
+
     void setInitDolby(f32 dolby) {
         mSoundParams.mDolby = dolby;
     }
+
     void setKey(s32 key) {
         mKey = key;
     }
+
     void setVelocity(u32 velocity) {
         mVelocity = velocity;
     }
+
     void setSkipSamples(u32 skipSamples) {
         mSkipSamples = skipSamples;
     }
+
     bool isDolbyMode() const {
         return mMixConfig[0].whole == 0xffff;
     }

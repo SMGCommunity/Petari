@@ -26,7 +26,7 @@ void FirePressureBullet::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     MR::initShadowVolumeSphere(this, 75.0f);
-    initNerve(&NrvFirePressureBullet::FirePressureBulletNrvFly::sInstance);
+    initNerve(GET_NERVE(FirePressureBullet, FirePressureBulletNrvFly));
     makeActorDead();
 }
 
@@ -60,7 +60,7 @@ void FirePressureBullet::shotFireBullet(LiveActor* pActor, const TPos3f& rPos, c
     mRotation.x = 0.0f;
     MR::validateHitSensors(this);
     MR::invalidateClipping(this);
-    setNerve(&NrvFirePressureBullet::FirePressureBulletNrvFly::sInstance);
+    setNerve(GET_NERVE(FirePressureBullet, FirePressureBulletNrvFly));
     makeActorAppeared();
 }
 

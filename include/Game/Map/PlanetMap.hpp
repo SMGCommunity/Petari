@@ -9,7 +9,7 @@ class PartsModel;
 
 class PlanetMap : public LiveActor {
 public:
-    PlanetMap(const char*, const char*);
+    PlanetMap(const char*, const char* = nullptr);
 
     virtual ~PlanetMap();
     virtual void init(const JMapInfoIter&);
@@ -53,7 +53,8 @@ public:
 
 class PlanetMapAnimLow : public PlanetMap {
 public:
-    PlanetMapAnimLow();
+    PlanetMapAnimLow(const char* p1) : PlanetMap(p1) {
+    }
 
     virtual ~PlanetMapAnimLow();
     virtual s32 getLowMovementType() const;

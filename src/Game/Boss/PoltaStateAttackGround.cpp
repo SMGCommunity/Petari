@@ -15,7 +15,7 @@ namespace NrvPoltaStateAttackGround {
 };  // namespace NrvPoltaStateAttackGround
 
 PoltaStateAttackGround::PoltaStateAttackGround(Polta* pPolta) : ActorStateBase< Polta >("[state]地面叩き攻撃", pPolta), mIsAffectBody(true) {
-    initNerve(&NrvPoltaStateAttackGround::PoltaStateAttackGroundNrvStart::sInstance);
+    initNerve(GET_NERVE(PoltaStateAttackGround, PoltaStateAttackGroundNrvStart));
     mAttackStartLength = MR::getBckFrameMax(getHost(), "AttackFrontStart");
     mAttackLength = MR::getBckFrameMax(getHost(), "AttackFront");
     mAttackToWaitLength = MR::getBckFrameMax(getHost(), "AttackFrontToWait");
@@ -27,7 +27,7 @@ const char* unusedDamage = "Damage";
 void PoltaStateAttackGround::appear() {
     mIsDead = false;
     mIsAffectBody = true;
-    setNerve(&NrvPoltaStateAttackGround::PoltaStateAttackGroundNrvStart::sInstance);
+    setNerve(GET_NERVE(PoltaStateAttackGround, PoltaStateAttackGroundNrvStart));
 }
 
 void PoltaStateAttackGround::exeStart() {
@@ -44,7 +44,7 @@ void PoltaStateAttackGround::exeStart() {
         kill();
     } else {
         if (MR::isGreaterStep(this, mAttackStartLength)) {
-            setNerve(&NrvPoltaStateAttackGround::PoltaStateAttackGroundNrvAttack::sInstance);
+            setNerve(GET_NERVE(PoltaStateAttackGround, PoltaStateAttackGroundNrvAttack));
         }
     }
 }
@@ -59,7 +59,7 @@ void PoltaStateAttackGround::exeAttack() {
         kill();
     } else {
         if (MR::isGreaterStep(this, mAttackLength)) {
-            setNerve(&NrvPoltaStateAttackGround::PoltaStateAttackGroundNrvToWait::sInstance);
+            setNerve(GET_NERVE(PoltaStateAttackGround, PoltaStateAttackGroundNrvToWait));
             MR::tryRumblePadStrong(this, WPAD_CHAN0);
             MR::startSound(getHost(), "SE_BM_POLTA_HIT_GROUND");
             MR::shakeCameraNormalStrong();
@@ -80,7 +80,7 @@ bool PoltaStateAttackGround::isEnableAttack(const HitSensor* pSensor) const {
     if (PoltaFunction::isBodySensor(getHost(), pSensor)) {
         return false;
     } else {
-        return isNerve(&NrvPoltaStateAttackGround::PoltaStateAttackGroundNrvAttack::sInstance);
+        return isNerve(GET_NERVE(PoltaStateAttackGround, PoltaStateAttackGroundNrvAttack));
     }
 }
 

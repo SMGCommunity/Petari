@@ -64,7 +64,7 @@ OceanBowl::OceanBowl(const char* pName)
 }
 
 void OceanBowl::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_OceanBowl);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_OceanBowl);
     MR::initDefaultPos(this, rIter);
     MR::calcActorAxis(&mSide, &mUp, &mFront, this);
     mRadius = 100.0f * mScale.x;

@@ -3,11 +3,6 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 
-namespace NrvUnizoLauncher {
-    NERVE(UnizoLauncherNrvWait);
-    NERVE(UnizoLauncherNrvLaunch);
-}  // namespace NrvUnizoLauncher
-
 class Unizo;
 
 class UnizoLauncher : public LiveActor {
@@ -17,6 +12,7 @@ public:
     virtual ~UnizoLauncher();
     virtual void init(const JMapInfoIter&);
 
+    void exeWait();
     void exeLaunch();
 
     /* 0x8C */ Unizo** mUnizos;

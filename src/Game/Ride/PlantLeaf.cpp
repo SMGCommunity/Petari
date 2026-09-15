@@ -17,13 +17,25 @@ void PlantLeaf_FORCE_MATCH_SDATA2() {
     (void)0.5f;
 }
 
+namespace {
+    static const f32 sScaleMin = 0.0001f;
+    static const f32 sDistancePush = 50.0f;
+    static const f32 sPlayerPushRate = 0.02f;
+    static const f32 sSpringAccelRate = 0.1f;
+    static const f32 sSpringFrictionRate = 0.9f;
+    static const f32 sSpringSpeedMax = 0.5f;
+    static const f32 sSpringCoordMax = 0.9f;
+    static const f32 sSpringCoordToStop = 0.01f;
+    static const f32 sSpringSpeedToStop = 0.001f;
+};  // namespace
+
 PlantLeaf::PlantLeaf(f32 leafCoord, const TVec3f& pPosition, const TVec3f& pGrowDirection, f32 leafSize)
-    : LiveActor("葉（伸び植物）"), mSpringVel(0.0f), mSpringAccel(0.0f), mLeafCoord(leafCoord), mLeafSize(leafSize), mSide(1.0f, 0.0f, 0.0f),
+    : LiveActor("葉（伸び植物）"), mSpringCoord(), mSpringSpeed(), mLeafCoord(leafCoord), mLeafSize(leafSize), mSide(1.0f, 0.0f, 0.0f),
       mUp(0.0f, 1.0f, 0.0f), mFront(pGrowDirection) {
     mPosition.set(pPosition);
     MR::makeAxisFrontUp(&mSide, &mUp, mFront, mUp);
     mBaseMtx.setXYZDir(mSide, mUp, mFront);
-    mBaseMtx.scale(mLeafSize * 0.0001f);
+    mBaseMtx.scale(mLeafSize * ::sScaleMin);
     mBaseMtx.setTrans(mPosition);
     mPosMtx.identity();
 }
@@ -31,7 +43,7 @@ PlantLeaf::PlantLeaf(f32 leafCoord, const TVec3f& pPosition, const TVec3f& pGrow
 PlantLeafDrawInit::PlantLeafDrawInit(const char* pName) : LiveActor(pName), mMaterial(nullptr), mShape(nullptr), mShapeDraw(nullptr) {
     MR::FunctorV0M< const PlantLeafDrawInit*, void (PlantLeafDrawInit::*)() const > preDrawFunctor(this, &PlantLeafDrawInit::initDraw);
     MR::registerPreDrawFunction(preDrawFunctor, MR::DrawType_Plant);
-    // The above should probably be this instead, but MR::Functor_Inline does not like consts at the moment
+    // TODO: The above should probably be this instead, but MR::Functor_Inline does not like consts at the moment
     // MR::registerPreDrawFunction(MR::Functor_Inline(const_cast<const PlantLeafDrawInit*>(this), &PlantLeafDrawInit::initDraw), MR::DrawType_Plant);
 
     initModelManagerWithAnm("PlantLeaf", 0, false);
@@ -63,37 +75,37 @@ void PlantLeaf::updateGrowUp(const TVec3f& rStalkPos, const TVec3f& rAxisY, f32 
 }
 
 bool PlantLeaf::updateSpring(const TVec3f& v, f32 springPower, f32 growthPercent) {
-    if (mPosition.squared(v) < 2500.0f) {
-        if (mSpringVel == 0.0f && mSpringAccel == 0.0f) {
+    if (mPosition.squared(v) < ::sDistancePush * ::sDistancePush) {
+        if (mSpringCoord == 0.0f && mSpringSpeed == 0.0f) {
             MR::tryRumblePadWeak(this, WPAD_CHAN0);
         }
-        mSpringAccel += springPower * 0.02f;
+        mSpringSpeed += springPower * ::sPlayerPushRate;
     }
     return updateSpring(growthPercent);
 }
 
 bool PlantLeaf::updateSpring(f32 growthPercent) {
-    mSpringAccel -= mSpringVel * 0.1f;
-    mSpringAccel = MR::clamp(mSpringAccel, -0.5f, 0.5f);
+    mSpringSpeed -= mSpringCoord * ::sSpringAccelRate;
+    mSpringSpeed = MR::clamp(mSpringSpeed, -::sSpringSpeedMax, ::sSpringSpeedMax);
 
-    mSpringVel += mSpringAccel;
-    mSpringVel = MR::clamp(mSpringVel, -0.9f, 0.9f);
+    mSpringCoord += mSpringSpeed;
+    mSpringCoord = MR::clamp(mSpringCoord, -::sSpringCoordMax, ::sSpringCoordMax);
 
-    mSpringAccel *= 0.9f;
+    mSpringSpeed *= ::sSpringFrictionRate;
 
-    if (MR::abs(mSpringVel) < 0.01f && MR::abs(mSpringAccel) < 0.001f) {
-        mSpringVel = 0.0f;
-        mSpringAccel = 0.0f;
+    if (MR::abs(mSpringCoord) < ::sSpringCoordToStop && MR::abs(mSpringSpeed) < ::sSpringSpeedToStop) {
+        mSpringCoord = 0.0f;
+        mSpringSpeed = 0.0f;
         MR::makeAxisFrontUp(&mSide, &mUp, mFront, mUp);
         mBaseMtx.setXYZDir(mSide, mUp, mFront);
         mBaseMtx.scale(mLeafSize * growthPercent);
         mBaseMtx.setTrans(mPosition);
         return true;
     } else {
-        TVec3f side(mFront);
+        TVec3f side = mFront;
         TVec3f front;
         TVec3f up;
-        side.y += mSpringVel;
+        side.y += mSpringCoord;
         MR::normalize(&side);
         MR::makeAxisFrontUp(&front, &up, side, mUp);
         mBaseMtx.setXYZDir(front, up, side);
@@ -103,7 +115,7 @@ bool PlantLeaf::updateSpring(f32 growthPercent) {
     }
 }
 
-void PlantLeafDrawInit::init(const JMapInfoIter&) {
+void PlantLeafDrawInit::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     makeActorDead();
 }

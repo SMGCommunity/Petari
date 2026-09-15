@@ -56,7 +56,7 @@ TicoEat::TicoEat(const char* pName) : Tico(pName) {
 
 void TicoEat::init(const JMapInfoIter& rIter) {
     mScaleController = new AnimScaleController(&::sParam);
-    mReactionNerve = &NrvTicoEat::TicoEatNrvReaction::sInstance;
+    mReactionNerve = GET_NERVE(TicoEat, TicoEatNrvReaction);
     _178 = MR::getJointMtx(this, "Center");
     mParam._14 = "Wait";
     mParam._18 = "Wait";
@@ -115,10 +115,10 @@ void TicoEat::initStarPiece(s32 num) {
 
 bool TicoEat::tryEat() {
     if (isEmptyNerve()) {
-        pushNerve(&NrvTicoEat::TicoEatNrvEatPre::sInstance);
+        pushNerve(GET_NERVE(TicoEat, TicoEatNrvEatPre));
     }
 
-    if (isNerve(&NrvTicoEat::TicoEatNrvEatEnd::sInstance)) {
+    if (isNerve(GET_NERVE(TicoEat, TicoEatNrvEatEnd))) {
         popNerve();
         return true;
     }
@@ -165,7 +165,7 @@ void TicoEat::exeEatPre() {
     }
 
     if (MR::turnQuatZDirRad(&_A0, _A0, -MR::getCamZdir(), MR::toRadian(2.0f))) {
-        popAndPushNerve(&NrvTicoEat::TicoEatNrvEatNow::sInstance);
+        popAndPushNerve(GET_NERVE(TicoEat, TicoEatNrvEatNow));
     }
 }
 
@@ -182,7 +182,7 @@ void TicoEat::exeEatNow() {
     MR::startLevelSound(this, "SE_SM_LV_TICOFAT_EATING", 0);
 
     if (_198 == 0) {
-        popAndPushNerve(&NrvTicoEat::TicoEatNrvEatPst::sInstance);
+        popAndPushNerve(GET_NERVE(TicoEat, TicoEatNrvEatPst));
     }
 }
 
@@ -190,7 +190,7 @@ void TicoEat::exeEatPst() {
     if (MR::isGreaterEqualStep(this, 4)) {
         mParam._1C = "Joy2";
         mParam._20 = "Joy2";
-        popAndPushNerve(&NrvTicoEat::TicoEatNrvEatEnd::sInstance);
+        popAndPushNerve(GET_NERVE(TicoEat, TicoEatNrvEatEnd));
     }
 }
 
@@ -249,10 +249,10 @@ bool TicoComet::branchFunc(u32 val) {
 
 bool TicoComet::tryDemo() {
     if (isEmptyNerve()) {
-        pushNerve(&NrvTicoComet::TicoCometNrvDemoAnim::sInstance);
+        pushNerve(GET_NERVE(TicoComet, TicoCometNrvDemoAnim));
     }
 
-    if (isNerve(&NrvTicoComet::TicoCometNrvDemoEnd::sInstance)) {
+    if (isNerve(GET_NERVE(TicoComet, TicoCometNrvDemoEnd))) {
         popNerve();
         return true;
     }
@@ -302,7 +302,7 @@ void TicoComet::exeDemoAnim() {
     if (MR::isGreaterEqualStep(this, 90)) {
         MR::startSound(this, "SE_SM_METAMORPHOSE_SMOKE");
         MR::startSystemSE("SE_DM_TICOFAT_MORPH_WIPE_IN");
-        popAndPushNerve(&NrvTicoComet::TicoCometNrvDemoFade::sInstance);
+        popAndPushNerve(GET_NERVE(TicoComet, TicoCometNrvDemoFade));
     }
 }
 
@@ -323,7 +323,7 @@ void TicoComet::exeDemoFade() {
         MR::startBckNoInterpole(this, "Wait");
         MR::clearGotCountStarPieceReceiver(this);
         _198 = _194;
-        popAndPushNerve(&NrvTicoComet::TicoCometNrvDemoEnd::sInstance);
+        popAndPushNerve(GET_NERVE(TicoComet, TicoCometNrvDemoEnd));
     }
 }
 

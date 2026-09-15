@@ -40,9 +40,9 @@ WaterCameraFilter::WaterCameraFilter() : LiveActor("水中カメラフィルタ�
 }
 
 void WaterCameraFilter::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_WaterCameraFilter);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_WaterCameraFilter);
     MR::invalidateClipping(this);
-    initNerve(&NrvWaterCameraFilter::WaterCameraFilterNrvAir::sInstance);
+    initNerve(GET_NERVE(WaterCameraFilter, WaterCameraFilterNrvAir));
     initScreenTex();
     JUTTexture* filterTex = new JUTTexture(MR::loadTexFromArc("WaterCameraFilter.arc", "WaterCameraFilter.bti"), 0);
     mFilterTex = filterTex;
@@ -56,24 +56,24 @@ void WaterCameraFilter::initScreenTex() {
 
 void WaterCameraFilter::exeAirToWater() {
     if (!MR::isCameraInWater()) {
-        setNerve(&NrvWaterCameraFilter::WaterCameraFilterNrvWaterToAir::sInstance);
+        setNerve(GET_NERVE(WaterCameraFilter, WaterCameraFilterNrvWaterToAir));
     } else {
         mWaterAlpha += 20.0f;
         if (MR::isDemoActive() || mWaterAlpha >= 255.0f) {
             mWaterAlpha = 255.0f;
-            setNerve(&NrvWaterCameraFilter::WaterCameraFilterNrvWater::sInstance);
+            setNerve(GET_NERVE(WaterCameraFilter, WaterCameraFilterNrvWater));
         }
     }
 }
 
 void WaterCameraFilter::exeWaterToAir() {
     if (MR::isCameraInWater()) {
-        setNerve(&NrvWaterCameraFilter::WaterCameraFilterNrvAirToWater::sInstance);
+        setNerve(GET_NERVE(WaterCameraFilter, WaterCameraFilterNrvAirToWater));
     } else {
         mWaterAlpha -= 20.0f;
         if (MR::isDemoActive() || mWaterAlpha <= 0.0f) {
             mWaterAlpha = 0.0f;
-            setNerve(&NrvWaterCameraFilter::WaterCameraFilterNrvAir::sInstance);
+            setNerve(GET_NERVE(WaterCameraFilter, WaterCameraFilterNrvAir));
         }
     }
 }
@@ -111,7 +111,7 @@ void WaterCameraFilter::control() {
 }
 
 void WaterCameraFilter::draw() const {
-    if (isNerve(&NrvWaterCameraFilter::WaterCameraFilterNrvAir::sInstance)) {
+    if (isNerve(GET_NERVE(WaterCameraFilter, WaterCameraFilterNrvAir))) {
         return;
     }
 
@@ -234,12 +234,12 @@ void WaterCameraFilter::loadMaterial() const {
 
 void WaterCameraFilter::exeWater() {
     if (!MR::isCameraInWater()) {
-        setNerve(&NrvWaterCameraFilter::WaterCameraFilterNrvWaterToAir::sInstance);
+        setNerve(GET_NERVE(WaterCameraFilter, WaterCameraFilterNrvWaterToAir));
     }
 }
 
 void WaterCameraFilter::exeAir() {
     if (MR::isCameraInWater()) {
-        setNerve(&NrvWaterCameraFilter::WaterCameraFilterNrvAirToWater::sInstance);
+        setNerve(GET_NERVE(WaterCameraFilter, WaterCameraFilterNrvAirToWater));
     }
 }

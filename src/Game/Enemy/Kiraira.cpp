@@ -75,7 +75,7 @@ void Kiraira::init(const JMapInfoIter& rIter) {
         MR::getJMapInfoArg2NoInit(rIter, &mRailCoordSpeed);
         MR::setRailCoordSpeed(this, mRailCoordSpeed);
     }
-    initNerve(&NrvKiraira::KirairaNrvWait::sInstance);
+    initNerve(GET_NERVE(Kiraira, KirairaNrvWait));
     MR::useStageSwitchReadB(this, rIter);
     MR::setGroupClipping(this, rIter, 16);
     mSharedGroup = MR::joinToGroupArray(this, rIter, "キライラ軍団", 16);
@@ -103,7 +103,7 @@ void Kiraira::exeWait() {
         MR::startBrk(this, "Wait");
     }
     if (MR::isNearPlayer(this, ::sEyeSensorInRadius)) {
-        setNerve(&NrvKiraira::KirairaNrvFaceToMario::sInstance);
+        setNerve(GET_NERVE(Kiraira, KirairaNrvFaceToMario));
     } else {
         drift();
     }
@@ -114,12 +114,12 @@ void Kiraira::exeFaceToMario() {
         MR::startBrk(this, "Wait");
     }
     if (!MR::isNearPlayer(this, ::sEyeSensorOutRadius)) {
-        setNerve(&NrvKiraira::KirairaNrvWait::sInstance);
+        setNerve(GET_NERVE(Kiraira, KirairaNrvWait));
     } else {
         MR::turnDirectionToPlayerDegree(this, &mFront, ::sTurnRate);
         if (MR::isFaceToPlayerHorizontalDegree(this, mFront, ::sTurnRate)) {
             MR::startBck(this, "Stop", static_cast< const char* >(nullptr));
-            setNerve(&NrvKiraira::KirairaNrvFaceToMarioAndStare::sInstance);
+            setNerve(GET_NERVE(Kiraira, KirairaNrvFaceToMarioAndStare));
         } else {
             drift();
         }
@@ -134,7 +134,7 @@ void Kiraira::exeFaceToMarioAndStare() {
         openEyes();
     }
     if (!MR::isNearPlayer(this, ::sEyeSensorOutRadius)) {
-        setNerve(&NrvKiraira::KirairaNrvWait::sInstance);
+        setNerve(GET_NERVE(Kiraira, KirairaNrvWait));
     } else {
         MR::turnDirectionToTargetDegree(this, &mFront, *MR::getPlayerPos(), ::sTurnRate);
         drift();
@@ -167,7 +167,7 @@ void Kiraira::exeDead() {
         mSharedGroup->sendMsgToGroupMember(ACTMES_GROUP_ATTACK, getSensor("body"), "body");
     }
     if (MR::isStep(this, ::sStepToRecoverSign)) {
-        setNerve(&NrvKiraira::KirairaNrvRecoverSign::sInstance);
+        setNerve(GET_NERVE(Kiraira, KirairaNrvRecoverSign));
     } else {
         drift();
     }
@@ -184,7 +184,7 @@ void Kiraira::exeRecoverSign() {
         MR::validateClipping(this);
     }
     if (MR::isStep(this, ::sStepToRecover)) {
-        setNerve(&NrvKiraira::KirairaNrvRecover::sInstance);
+        setNerve(GET_NERVE(Kiraira, KirairaNrvRecover));
     } else {
         drift();
     }
@@ -214,9 +214,9 @@ void Kiraira::exeRecover() {
             mChain->mIsCut = false;
         }
         if (!MR::isNearPlayer(this, ::sEyeSensorOutRadius)) {
-            setNerve(&NrvKiraira::KirairaNrvFaceToMarioAndStare::sInstance);
+            setNerve(GET_NERVE(Kiraira, KirairaNrvFaceToMarioAndStare));
         } else {
-            setNerve(&NrvKiraira::KirairaNrvWait::sInstance);
+            setNerve(GET_NERVE(Kiraira, KirairaNrvWait));
         }
     }
 }
@@ -228,8 +228,8 @@ void Kiraira::exeExplode() {
 }
 
 bool Kiraira::isDown() const {
-    return isNerve(&NrvKiraira::KirairaNrvDead::sInstance) || isNerve(&NrvKiraira::KirairaNrvRecoverSign::sInstance) ||
-           isNerve(&NrvKiraira::KirairaNrvRecover::sInstance);
+    return isNerve(GET_NERVE(Kiraira, KirairaNrvDead)) || isNerve(GET_NERVE(Kiraira, KirairaNrvRecoverSign)) ||
+           isNerve(GET_NERVE(Kiraira, KirairaNrvRecover));
 }
 
 void Kiraira::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -239,7 +239,7 @@ void Kiraira::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
     if (!isDown() && MR::isSensorEnemy(pSender) && MR::isSensorPlayerOrRide(pReceiver)) {
         if (MR::sendMsgEnemyAttackExplosion(pReceiver, pSender)) {
-            setNerve(&NrvKiraira::KirairaNrvExplode::sInstance);
+            setNerve(GET_NERVE(Kiraira, KirairaNrvExplode));
             return;
         }
     }
@@ -254,17 +254,17 @@ bool Kiraira::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
     }
     if (MR::isMsgJetTurtleAttack(msg) && MR::isSensorEnemy(pReceiver)) {
         mIsForceDetonated = true;
-        setNerve(&NrvKiraira::KirairaNrvExplode::sInstance);
+        setNerve(GET_NERVE(Kiraira, KirairaNrvExplode));
         return true;
     }
     if (MR::isSensorEnemy(pReceiver) && MR::isMsgPlayerHitAll(msg)) {
         if (MR::sendMsgEnemyAttackExplosion(pSender, pReceiver)) {
-            setNerve(&NrvKiraira::KirairaNrvExplode::sInstance);
+            setNerve(GET_NERVE(Kiraira, KirairaNrvExplode));
             return true;
         }
     }
     if (MR::isSensorEnemy(pReceiver) && MR::isMsgStarPieceAttack(msg)) {
-        setNerve(&NrvKiraira::KirairaNrvExplode::sInstance);
+        setNerve(GET_NERVE(Kiraira, KirairaNrvExplode));
         return true;
     }
 
@@ -274,7 +274,7 @@ bool Kiraira::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
 bool Kiraira::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (!isDown() && MR::isMsgExplosionAttack(msg) && MR::isSensorEnemy(pReceiver)) {
         MR::invalidateClipping(this);
-        setNerve(&NrvKiraira::KirairaNrvBeExploded::sInstance);
+        setNerve(GET_NERVE(Kiraira, KirairaNrvBeExploded));
         return true;
     }
 
@@ -315,11 +315,11 @@ void Kiraira::drift() {
     if (mIsRail) {
         bool alive = true;
         bool dead = true;
-        if (isNerve(&NrvKiraira::KirairaNrvDead::sInstance) || !isNerve(&NrvKiraira::KirairaNrvRecoverSign::sInstance)) {
+        if (isNerve(GET_NERVE(Kiraira, KirairaNrvDead)) || !isNerve(GET_NERVE(Kiraira, KirairaNrvRecoverSign))) {
             alive = false;
         }
 
-        if (alive || !isNerve(&NrvKiraira::KirairaNrvRecover::sInstance)) {
+        if (alive || !isNerve(GET_NERVE(Kiraira, KirairaNrvRecover))) {
             dead = false;
         }
         if (!dead) {
@@ -327,7 +327,7 @@ void Kiraira::drift() {
             return;
         }
 
-        if (isNerve(&NrvKiraira::KirairaNrvRecover::sInstance)) {
+        if (isNerve(GET_NERVE(Kiraira, KirairaNrvRecover))) {
             mPosition.set(MR::getRailPos(this));
             return;
         }
@@ -360,5 +360,5 @@ void Kiraira::explode() {
     if (mChain != nullptr) {
         mChain->mIsCut = true;
     }
-    setNerve(&NrvKiraira::KirairaNrvDead::sInstance);
+    setNerve(GET_NERVE(Kiraira, KirairaNrvDead));
 }

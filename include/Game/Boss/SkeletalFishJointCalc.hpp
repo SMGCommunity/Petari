@@ -1,7 +1,9 @@
 #pragma once
 
-#include "Game/Boss/SkeletalFishRailControl.hpp"
-#include "Game/Util/JointController.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
+
+class SkeletalFishRailControl;
+class JointControllerInfo;
 
 class SkeletalFishJointCalc {
 public:

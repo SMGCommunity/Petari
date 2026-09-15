@@ -166,8 +166,8 @@ u8 MarioActor::selectAction(const char* pName) const {
     return _FBC->getValue(pName, mPlayerMode);
 }
 
-bool MarioActor::selectAutoBind(const char* pName, u8* value) const {
-    return _FC0->getValueOrNone(pName, mPlayerMode, value);
+bool MarioActor::selectAutoBind(const char* pName, u8* pValue) const {
+    return _FC0->getValueOrNone(pName, mPlayerMode, pValue);
 }
 
 bool MarioActor::selectCustomEffectSpinHitSound(const char* pName) const {

@@ -43,7 +43,7 @@ void LotusLeaf::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
     MR::initCollisionParts(this, "LotusLeaf", MR::addBodyMessageSensorMapObj(this), nullptr);
     initSound(4, false);
-    initNerve(&NrvLotusLeaf::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(LotusLeaf, HostTypeWait));
     initEffectKeeper(0, nullptr, false);
     MR::setEffectHostSRT(this, "LotusLeafRipple", &mInitPos, nullptr, nullptr);
     MR::initShadowVolumeCylinder(this, ::sShadowRadius);
@@ -64,7 +64,7 @@ void LotusLeaf::exeWait() {
     }
 
     if (MR::isOnPlayer(this))
-        setNerve(&NrvLotusLeaf::HostTypeShakeOnPlayer::sInstance);
+        setNerve(GET_NERVE(LotusLeaf, HostTypeShakeOnPlayer));
 }
 
 void LotusLeaf::exeWaitPlayerOn() {
@@ -76,7 +76,7 @@ void LotusLeaf::exeWaitPlayerOn() {
         return;
     }
 
-    setNerve(&NrvLotusLeaf::HostTypeWait::sInstance);
+    setNerve(GET_NERVE(LotusLeaf, HostTypeWait));
 }
 
 void LotusLeaf::exeShake() {
@@ -103,14 +103,14 @@ void LotusLeaf::exeShake() {
         mVelocity.zero();
     }
 
-    if (isNerve(&NrvLotusLeaf::HostTypeShake::sInstance)) {
+    if (isNerve(GET_NERVE(LotusLeaf, HostTypeShake))) {
         if (MR::isOnPlayer(this)) {
-            LiveActor::setNerve(&NrvLotusLeaf::HostTypeShakeOnPlayer::sInstance);
+            LiveActor::setNerve(GET_NERVE(LotusLeaf, HostTypeShakeOnPlayer));
             return;
         }
     } else {
         if (!MR::isOnPlayer(this)) {
-            setNerve(&NrvLotusLeaf::HostTypeShake::sInstance);
+            setNerve(GET_NERVE(LotusLeaf, HostTypeShake));
             return;
         }
     }
@@ -118,10 +118,10 @@ void LotusLeaf::exeShake() {
     if (MR::isNearZero(accel, ::sShakeAccelMin) && MR::isNearZero(vel, ::sShakeSpeedMin)) {
         mVelocity.zero();
 
-        if (isNerve(&NrvLotusLeaf::HostTypeShakeOnPlayer::sInstance)) {
-            setNerve(&NrvLotusLeaf::HostTypeWaitPlayerOn::sInstance);
+        if (isNerve(GET_NERVE(LotusLeaf, HostTypeShakeOnPlayer))) {
+            setNerve(GET_NERVE(LotusLeaf, HostTypeWaitPlayerOn));
         } else {
-            setNerve(&NrvLotusLeaf::HostTypeWait::sInstance);
+            setNerve(GET_NERVE(LotusLeaf, HostTypeWait));
         }
     }
 }

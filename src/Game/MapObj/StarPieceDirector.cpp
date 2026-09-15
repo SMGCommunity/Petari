@@ -326,7 +326,7 @@ void StarPieceShooter::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     MR::offCalcGravity(this);
 
-    initNerve(&NrvStarPieceShooter::HostTypeNrvWait::sInstance);
+    initNerve(GET_NERVE(StarPieceShooter, HostTypeNrvWait));
 
     initEffectKeeper(0, "StarDust", false);
     MR::setEffectHostSRT(this, "Charge", &_A8, &_B4, nullptr);
@@ -340,7 +340,7 @@ void StarPieceShooter::exeWait() {
     if (_90 != nullptr) {
         _98 = _90;
         _9C = _94;
-        setNerve(&NrvStarPieceShooter::HostTypeNrvLockOn::sInstance);
+        setNerve(GET_NERVE(StarPieceShooter, HostTypeNrvLockOn));
     }
 }
 
@@ -348,13 +348,13 @@ void StarPieceShooter::exeLockOn() {
     if (_90 != nullptr) {
         _98 = _90;
         _9C = _94;
-        setNerve(&NrvStarPieceShooter::HostTypeNrvLockOn::sInstance);
+        setNerve(GET_NERVE(StarPieceShooter, HostTypeNrvLockOn));
         return;
     }
     if (MR::isGreaterStep(this, 0)) {
         _98 = nullptr;
         _9C = 999999.0f;
-        setNerve(&NrvStarPieceShooter::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(StarPieceShooter, HostTypeNrvWait));
     }
 }
 

@@ -84,7 +84,7 @@ void SandUpDownEffectObj::init(const JMapInfoIter& rIter) {
     _94.scaleAdd(_8C - _90 * 0.5f, yDir, mPosition);
 
     MR::setClippingTypeSphere(this, _90 * 0.5f + 100.0f, &_94);
-    initNerve(&NrvSandUpDownEffectObj::SandUpDownEffectObjNrvWait::sInstance);
+    initNerve(GET_NERVE(SandUpDownEffectObj, SandUpDownEffectObjNrvWait));
     makeActorAppeared();
 }
 
@@ -103,9 +103,9 @@ void SandUpDownEffectObj::exeFallingRock() {
 
     if (isOnSwitchAOnly) {
         MR::deleteEffect(this, "FallingRock");
-        setNerve(&NrvSandUpDownEffectObj::SandUpDownEffectObjNrvWait::sInstance);
+        setNerve(GET_NERVE(SandUpDownEffectObj, SandUpDownEffectObjNrvWait));
     } else if (checkSandHit()) {
-        setNerve(&NrvSandUpDownEffectObj::SandUpDownEffectObjNrvFallingRockAndSmoke::sInstance);
+        setNerve(GET_NERVE(SandUpDownEffectObj, SandUpDownEffectObjNrvFallingRockAndSmoke));
     }
 }
 
@@ -116,20 +116,20 @@ void SandUpDownEffectObj::exeFallingRockAndSmoke() {
 
     if (!checkSandHit()) {
         MR::deleteEffect(this, "BurySmoke");
-        setNerve(&NrvSandUpDownEffectObj::SandUpDownEffectObjNrvFallingRock::sInstance);
+        setNerve(GET_NERVE(SandUpDownEffectObj, SandUpDownEffectObjNrvFallingRock));
     } else {
         bool isOnSwitchAOnly = MR::isOnSwitchA(this) && !MR::isOnSwitchB(this);
 
         if (isOnSwitchAOnly) {
             MR::deleteEffectAll(this);
-            setNerve(&NrvSandUpDownEffectObj::SandUpDownEffectObjNrvWait::sInstance);
+            setNerve(GET_NERVE(SandUpDownEffectObj, SandUpDownEffectObjNrvWait));
         }
     }
 }
 
 void SandUpDownEffectObj::exeBurySmokePrepare() {
     if (checkSandHit()) {
-        setNerve(&NrvSandUpDownEffectObj::SandUpDownEffectObjNrvBurySmoke::sInstance);
+        setNerve(GET_NERVE(SandUpDownEffectObj, SandUpDownEffectObjNrvBurySmoke));
     }
 }
 
@@ -140,24 +140,24 @@ void SandUpDownEffectObj::exeBurySmoke() {
 
     if (!checkSandHit()) {
         MR::deleteEffect(this, "BurySmoke");
-        setNerve(&NrvSandUpDownEffectObj::SandUpDownEffectObjNrvBuryEnd::sInstance);
+        setNerve(GET_NERVE(SandUpDownEffectObj, SandUpDownEffectObjNrvBuryEnd));
     } else if (isUfoTop()) {
-        setNerve(&NrvSandUpDownEffectObj::SandUpDownEffectObjNrvWait::sInstance);
+        setNerve(GET_NERVE(SandUpDownEffectObj, SandUpDownEffectObjNrvWait));
     }
 }
 
 void SandUpDownEffectObj::exeBuryEnd() {
     if (isUfoTop()) {
-        setNerve(&NrvSandUpDownEffectObj::SandUpDownEffectObjNrvWait::sInstance);
+        setNerve(GET_NERVE(SandUpDownEffectObj, SandUpDownEffectObjNrvWait));
     }
 }
 
 void SandUpDownEffectObj::startMoveUp() {
-    setNerve(&NrvSandUpDownEffectObj::SandUpDownEffectObjNrvBurySmokePrepare::sInstance);
+    setNerve(GET_NERVE(SandUpDownEffectObj, SandUpDownEffectObjNrvBurySmokePrepare));
 }
 
 void SandUpDownEffectObj::startMoveDown() {
-    setNerve(&NrvSandUpDownEffectObj::SandUpDownEffectObjNrvFallingRock::sInstance);
+    setNerve(GET_NERVE(SandUpDownEffectObj, SandUpDownEffectObjNrvFallingRock));
 }
 
 bool SandUpDownEffectObj::checkSandHit() {

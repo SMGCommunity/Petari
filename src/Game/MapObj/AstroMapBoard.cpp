@@ -23,7 +23,7 @@ void AstroMapBoard::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     info.setupPrepareChangeDummyTexture(::cDummyTexName);
-    info.setupNerve(&NrvAstroMapBoard::AstroMapBoardNrvWait::sInstance);
+    info.setupNerve(GET_NERVE(AstroMapBoard, AstroMapBoardNrvWait));
     info.setupFarClipping(-1.0f);
     info.setupNoAppearRiddleSE();
     initialize(rIter, info);

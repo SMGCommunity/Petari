@@ -38,12 +38,12 @@ WalkerStateStagger::WalkerStateStagger(LiveActor* pHost, TVec3f* pDirection, Wal
         mStaggerParam = &::sDefaultStaggerParam;
     }
 
-    initNerve(&NrvWalkerStateStagger::WalkerStateStaggerNrvStagger::sInstance);
+    initNerve(GET_NERVE(WalkerStateStagger, WalkerStateStaggerNrvStagger));
 }
 
 void WalkerStateStagger::appear() {
     mIsDead = false;
-    setNerve(&NrvWalkerStateStagger::WalkerStateStaggerNrvStagger::sInstance);
+    setNerve(GET_NERVE(WalkerStateStagger, WalkerStateStaggerNrvStagger));
 }
 
 void WalkerStateStagger::setPunchDirection(HitSensor* pSender, HitSensor* pReceiver) {
@@ -82,7 +82,7 @@ void WalkerStateStagger::exeStagger() {
     reboundWall();
 
     if (MR::isGreaterStep(this, mStaggerParam->mStaggerTime)) {
-        setNerve(&NrvWalkerStateStagger::WalkerStateStaggerNrvStaggerEnd::sInstance);
+        setNerve(GET_NERVE(WalkerStateStagger, WalkerStateStaggerNrvStaggerEnd));
     }
 }
 
@@ -117,7 +117,7 @@ bool WalkerStateStagger::isEnableKick() const {
         return false;
     }
 
-    if (isNerve(&NrvWalkerStateStagger::WalkerStateStaggerNrvStagger::sInstance) && MR::isLessStep(this, mStaggerParam->mKickEnableStep)) {
+    if (isNerve(GET_NERVE(WalkerStateStagger, WalkerStateStaggerNrvStagger)) && MR::isLessStep(this, mStaggerParam->mKickEnableStep)) {
         return false;
     }
 
@@ -129,7 +129,7 @@ bool WalkerStateStagger::isUpsideDown() const {
         return false;
     }
 
-    if (isNerve(&NrvWalkerStateStagger::WalkerStateStaggerNrvStaggerEnd::sInstance) && MR::isGreaterStep(this, 15)) {
+    if (isNerve(GET_NERVE(WalkerStateStagger, WalkerStateStaggerNrvStaggerEnd)) && MR::isGreaterStep(this, 15)) {
         return false;
     }
 
@@ -137,18 +137,18 @@ bool WalkerStateStagger::isUpsideDown() const {
 }
 
 bool WalkerStateStagger::isStaggerStart() const {
-    return isNerve(&NrvWalkerStateStagger::WalkerStateStaggerNrvStagger::sInstance) && MR::isStep(this, 1);
+    return isNerve(GET_NERVE(WalkerStateStagger, WalkerStateStaggerNrvStagger)) && MR::isStep(this, 1);
 }
 
 bool WalkerStateStagger::isSwooning(s32 swoonStep) const {
-    return isNerve(&NrvWalkerStateStagger::WalkerStateStaggerNrvStagger::sInstance) && MR::isGreaterEqualStep(this, swoonStep);
+    return isNerve(GET_NERVE(WalkerStateStagger, WalkerStateStaggerNrvStagger)) && MR::isGreaterEqualStep(this, swoonStep);
 }
 
 bool WalkerStateStagger::isSpinning(s32 spinStartStep, s32 spinEndStep) const {
-    return isNerve(&NrvWalkerStateStagger::WalkerStateStaggerNrvStagger::sInstance) && MR::isGreaterEqualStep(this, spinStartStep) &&
+    return isNerve(GET_NERVE(WalkerStateStagger, WalkerStateStaggerNrvStagger)) && MR::isGreaterEqualStep(this, spinStartStep) &&
            MR::isLessEqualStep(this, spinEndStep);
 }
 
 bool WalkerStateStagger::isRecoverStart() const {
-    return isNerve(&NrvWalkerStateStagger::WalkerStateStaggerNrvStaggerEnd::sInstance) && MR::isFirstStep(this);
+    return isNerve(GET_NERVE(WalkerStateStagger, WalkerStateStaggerNrvStaggerEnd)) && MR::isFirstStep(this);
 }

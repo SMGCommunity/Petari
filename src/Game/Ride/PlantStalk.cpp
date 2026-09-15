@@ -20,30 +20,47 @@
 #include <revolution/gx/GXTransform.h>
 #include <revolution/gx/GXVert.h>
 
+void PlantStalk_DUMMY() {
+    s32 x;
+    s32 a = MR::clamp(x, 1, 2);
+}
+
 namespace {
+    static const f32 sGrowSpeedMin = 15.0f;
+    static const f32 sGrowSpeedMax = 100.0f;
+    static const f32 sGrowSpeedFriction = 0.95f;
+    static const f32 sGrowAccelMin = 15.0f;
+    static const f32 sGrowAccelMax = 30.0f;
+    static const s32 sGrowAccelTimeMin = 5;
+    static const s32 sGrowAccelTimeMax = 30;
+    static const s32 sOffsetPointNum = 3;
+    static const f32 sInterval = 30.0f;
+    static const f32 sWidthRateMin = 0.45f;
+    static const f32 sDrawWidthX = 10.0f;
+    static const f32 sDrawWidthZ = 10.0f;
+    static const f32 sTexRate = 1.0f;
+    static const f32 sDrawWidthLongOffsetX = sDrawWidthX;
+    static const f32 sDrawWidthShortOffsetX = sDrawWidthX;
+    static const f32 sDrawWidthShortOffsetZ = sDrawWidthZ;
+
     static Color8 sColorPlusZ(0xFF, 0xFF, 0xFF, 0xFF);
     static Color8 sColorPlusX(0x64, 0x64, 0x64, 0xFF);
     static Color8 sColorMinusX(0x96, 0x96, 0x96, 0xFF);
 };  // namespace
 
 PlantStalk::PlantStalk()
-    : LiveActor("茎"), mNumPlantPoints(0), mPlantPoints(nullptr), mRailInfo(nullptr), mStalkLength(0.0f), mGrowthPercent(0.0f),
-      mGrowthRate(MR::getRandom(15.0f, 100.0f)), mGrowthTimer(MR::getRandom(static_cast< s32 >(5), static_cast< s32 >(30))), mGrownPlantPoints(0) {
+    : LiveActor("茎"), mNumPlantPoints(), mPlantPoints(), mRailInfo(), mStalkLength(), mGrowthPercent(),
+      mGrowSpeed(MR::getRandom(::sGrowSpeedMin, ::sGrowSpeedMax)), mGrowAccelTime(MR::getRandom(::sGrowAccelTimeMin, ::sGrowAccelTimeMax)),
+      mGrownPlantPoints() {
 }
 
 void PlantStalk::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, -1, -1, -1, 4);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_PlantStalk);
 
     initRailRider(rIter);
     mRailInfo = new PlantRailInfo(rIter, 30.0f);
 
-    // this is... not how you write this but
-    // otherwise the compiler tries to optimize with
-    // paired single optimization
-    const TVec3f* railPos = &MR::getRailPos(this);
-    mPosition.x = railPos->x;
-    mPosition.y = railPos->y;
-    mPosition.z = railPos->z;
+    mPosition.set(MR::getRailPos(this));
     mNumPlantPoints = mRailInfo->mNumPlantPoints;
 
     mPlantPoints = new PlantPoint*[mNumPlantPoints];
@@ -55,7 +72,7 @@ void PlantStalk::init(const JMapInfoIter& rIter) {
     for (s32 idx = 0; idx < mNumPlantPoints; idx++) {
         s32 index = (mNumPlantPoints - 1) - idx;
         mPlantPoints[idx] = new PlantPoint(mRailInfo->mPlantPoints[index]->mPosition, mRailInfo->mPlantPoints[index]->mUp,
-                                           MR::getEaseOutValue(idx * ratio, 0.45f, 1.0f, 1.0f));
+                                           MR::getEaseOutValue(idx * ratio, ::sWidthRateMin, 1.0f, 1.0f));
     }
 
     PlantPoint* point = mPlantPoints[0];
@@ -75,22 +92,21 @@ bool PlantStalk::updateGrowUp() {
     // issues with float to int conversion
     // https://decomp.me/scratch/pe9bX
 
-    if (--mGrowthTimer <= 0) {
-        mGrowthRate += MR::getRandom(15.0f, 30.0f);
-        mGrowthTimer = MR::getRandom(static_cast< s32 >(5), static_cast< s32 >(30));
+    if (--mGrowAccelTime <= 0) {
+        mGrowSpeed += MR::getRandom(::sGrowAccelMin, ::sGrowAccelMax);
+        mGrowAccelTime = MR::getRandom(::sGrowAccelTimeMin, ::sGrowAccelTimeMax);
     }
 
-    mStalkLength += mGrowthRate;
+    mStalkLength += mGrowSpeed;
 
-    // lol
     f32 length = mStalkLength;
     if (length <= 0.0f) {
         mStalkLength = 0.0f;
-        mGrowthRate = 0.0f;
+        mGrowSpeed = 0.0f;
     }
 
-    mGrowthRate *= 0.95f;
-    mGrowthRate = MR::clamp(mGrowthRate, 15.0f, 100.0f);
+    mGrowSpeed *= ::sGrowSpeedFriction;
+    mGrowSpeed = MR::clamp(mGrowSpeed, ::sGrowSpeedMin, ::sGrowSpeedMax);
 
     mGrowthPercent = mStalkLength / MR::getRailTotalLength(this);
     mGrowthPercent = MR::clamp(mGrowthPercent, 0.0f, 1.0f);
@@ -103,7 +119,7 @@ bool PlantStalk::updateGrowUp() {
     }
 
     // FIXME: float to int conversion not wanting to play nice here :(
-    mGrownPlantPoints = mStalkLength / 30.0f;
+    mGrownPlantPoints = (mStalkLength / ::sInterval);
     mGrownPlantPoints = MR::clamp(mGrownPlantPoints, 2, mNumPlantPoints);
 
     TVec3f stalkPos;
@@ -130,11 +146,11 @@ void PlantStalk::calcPosAndAxisY(TVec3f* pPos, TVec3f* pAxisY, f32 lengthAlongRa
 }
 
 void PlantStalk::calcNearestPos(TVec3f* pRailPos, const TVec3f& rSrcPos) const {
-    mRailInfo->calcNearestPointPos(pRailPos, rSrcPos, 3);
+    mRailInfo->calcNearestPointPos(pRailPos, rSrcPos, ::sOffsetPointNum);
 }
 
 f32 PlantStalk::calcPlayerCoord() const {
-    TVec3f playerPos(*MR::getPlayerCenterPos());
+    TVec3f playerPos = *MR::getPlayerCenterPos();
     f32 closestMag = 100000000.0;
     s32 closestPoint = 0;
 
@@ -149,7 +165,7 @@ f32 PlantStalk::calcPlayerCoord() const {
 
     if (mStalkLength > 15.0f) {
         f32 maxLength = MR::getRailTotalLength(this);
-        return MR::clamp((((f32)(mGrownPlantPoints - closestPoint) * 30.0f) / mStalkLength) * MR::getRailTotalLength(this), 0.0f, maxLength);
+        return MR::clamp((((f32)(mGrownPlantPoints - closestPoint) * ::sInterval) / mStalkLength) * MR::getRailTotalLength(this), 0.0f, maxLength);
     } else {
         return MR::getRailTotalLength(this);
     }
@@ -164,14 +180,16 @@ void PlantStalk::drawGrowUp() const {
         side.scale(mPlantPoints[idx]->mThickness);
         front.scale(mPlantPoints[idx]->mThickness);
 
-        GXPosition3f32(point->mPosition.x + 10.0f * front.x, point->mPosition.y + 10.0f * front.y, point->mPosition.z + 10.0f * front.z);
+        GXPosition3f32(point->mPosition.x + ::sDrawWidthLongOffsetX * front.x, point->mPosition.y + ::sDrawWidthLongOffsetX * front.y,
+                       point->mPosition.z + ::sDrawWidthLongOffsetX * front.z);
         GXColor1u32(::sColorPlusZ);
-        GXTexCoord2f32(0.0f, idx);
+        GXTexCoord2f32(0.0f, idx * ::sTexRate);
 
-        GXPosition3f32(point->mPosition.x + 10.0f * side.x - 10.0f * front.x, point->mPosition.y + 10.0f * side.y - 10.0f * front.y,
-                       point->mPosition.z + 10.0f * side.z - 10.0f * front.z);
+        GXPosition3f32(point->mPosition.x + ::sDrawWidthShortOffsetX * side.x - ::sDrawWidthShortOffsetZ * front.x,
+                       point->mPosition.y + ::sDrawWidthShortOffsetX * side.y - ::sDrawWidthShortOffsetZ * front.y,
+                       point->mPosition.z + ::sDrawWidthShortOffsetX * side.z - ::sDrawWidthShortOffsetZ * front.z);
         GXColor1u32(::sColorPlusX);
-        GXTexCoord2f32(1.0f, idx);
+        GXTexCoord2f32(1.0f, idx * ::sTexRate);
     }
     GXEnd();
 
@@ -183,14 +201,16 @@ void PlantStalk::drawGrowUp() const {
         side.scale(mPlantPoints[idx]->mThickness);
         front.scale(mPlantPoints[idx]->mThickness);
 
-        GXPosition3f32(point->mPosition.x - 10.0f * side.x - 10.0f * front.x, point->mPosition.y - 10.0f * side.y - 10.0f * front.y,
-                       point->mPosition.z - 10.0f * side.z - 10.0f * front.z);
+        GXPosition3f32(point->mPosition.x - ::sDrawWidthShortOffsetX * side.x - ::sDrawWidthShortOffsetZ * front.x,
+                       point->mPosition.y - ::sDrawWidthShortOffsetX * side.y - ::sDrawWidthShortOffsetZ * front.y,
+                       point->mPosition.z - ::sDrawWidthShortOffsetX * side.z - ::sDrawWidthShortOffsetZ * front.z);
         GXColor1u32(::sColorMinusX);
-        GXTexCoord2f32(0.0f, idx);
+        GXTexCoord2f32(0.0f, idx * ::sTexRate);
 
-        GXPosition3f32(point->mPosition.x + 10.0f * front.x, point->mPosition.y + 10.0f * front.y, point->mPosition.z + 10.0f * front.z);
+        GXPosition3f32(point->mPosition.x + ::sDrawWidthLongOffsetX * front.x, point->mPosition.y + ::sDrawWidthLongOffsetX * front.y,
+                       point->mPosition.z + ::sDrawWidthLongOffsetX * front.z);
         GXColor1u32(::sColorPlusZ);
-        GXTexCoord2f32(1.0f, idx);
+        GXTexCoord2f32(1.0f, idx * ::sTexRate);
     }
     GXEnd();
 
@@ -202,15 +222,17 @@ void PlantStalk::drawGrowUp() const {
         side.scale(mPlantPoints[idx]->mThickness);
         front.scale(mPlantPoints[idx]->mThickness);
 
-        GXPosition3f32(point->mPosition.x + 10.0f * side.x - 10.0f * front.x, point->mPosition.y + 10.0f * side.y - 10.0f * front.y,
-                       point->mPosition.z + 10.0f * side.z - 10.0f * front.z);
+        GXPosition3f32(point->mPosition.x + ::sDrawWidthShortOffsetX * side.x - ::sDrawWidthShortOffsetZ * front.x,
+                       point->mPosition.y + ::sDrawWidthShortOffsetX * side.y - ::sDrawWidthShortOffsetZ * front.y,
+                       point->mPosition.z + ::sDrawWidthShortOffsetX * side.z - ::sDrawWidthShortOffsetZ * front.z);
         GXColor1u32(::sColorPlusX);
-        GXTexCoord2f32(0.0f, idx);
+        GXTexCoord2f32(0.0f, idx * ::sTexRate);
 
-        GXPosition3f32(point->mPosition.x - 10.0f * side.x - 10.0f * front.x, point->mPosition.y - 10.0f * side.y - 10.0f * front.y,
-                       point->mPosition.z - 10.0f * side.z - 10.0f * front.z);
+        GXPosition3f32(point->mPosition.x - ::sDrawWidthShortOffsetX * side.x - ::sDrawWidthShortOffsetZ * front.x,
+                       point->mPosition.y - ::sDrawWidthShortOffsetX * side.y - ::sDrawWidthShortOffsetZ * front.y,
+                       point->mPosition.z - ::sDrawWidthShortOffsetX * side.z - ::sDrawWidthShortOffsetZ * front.z);
         GXColor1u32(::sColorMinusX);
-        GXTexCoord2f32(1.0f, idx);
+        GXTexCoord2f32(1.0f, idx * ::sTexRate);
     }
     GXEnd();
 }

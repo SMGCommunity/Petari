@@ -42,7 +42,7 @@ void RosettaPictureBook::init(const JMapInfoIter& rIter) {
     mIconAButton = new IconAButton(true, false);
     mIconAButton->initWithoutIter();
 
-    initNerve(&NrvRosettaPictureBook::HostTypeNrvWait::sInstance);
+    initNerve(GET_NERVE(RosettaPictureBook, HostTypeNrvWait));
     MR::tryRegisterDemoCast(this, rIter);
     makeActorAppeared();
 }
@@ -50,7 +50,7 @@ void RosettaPictureBook::init(const JMapInfoIter& rIter) {
 void RosettaPictureBook::appear() {
     mIsValidOpenIconAButton = false;
 
-    setNerve(&NrvRosettaPictureBook::HostTypeNrvWait::sInstance);
+    setNerve(GET_NERVE(RosettaPictureBook, HostTypeNrvWait));
     LiveActor::appear();
 }
 
@@ -95,8 +95,8 @@ void RosettaPictureBook::exeWait() {
         return;
     }
 
-    MR::requestStartDemoMarioPuppetableWithoutCinemaFrame(this, "ロゼッタ絵本デモ", &NrvRosettaPictureBook::HostTypeNrvFadeOut::sInstance,
-                                                          &NrvRosettaPictureBook::HostTypeNrvDemoWait::sInstance);
+    MR::requestStartDemoMarioPuppetableWithoutCinemaFrame(this, "ロゼッタ絵本デモ", GET_NERVE(RosettaPictureBook, HostTypeNrvFadeOut),
+                                                          GET_NERVE(RosettaPictureBook, HostTypeNrvDemoWait));
 }
 
 void RosettaPictureBook::exeDemoWait() {
@@ -114,7 +114,7 @@ void RosettaPictureBook::exeFadeOut() {
 
     if (MR::isGreaterStep(this, ::hFadeOutFrame)) {
         mLayout->appear();
-        setNerve(&NrvRosettaPictureBook::HostTypeNrvReading::sInstance);
+        setNerve(GET_NERVE(RosettaPictureBook, HostTypeNrvReading));
     }
 }
 
@@ -125,7 +125,7 @@ void RosettaPictureBook::exeReading() {
 
     if (MR::isDead(mLayout)) {
         MR::endDemo(this, "ロゼッタ絵本デモ");
-        setNerve(&NrvRosettaPictureBook::HostTypeNrvFadeIn::sInstance);
+        setNerve(GET_NERVE(RosettaPictureBook, HostTypeNrvFadeIn));
     }
 }
 
@@ -135,6 +135,6 @@ void RosettaPictureBook::exeFadeIn() {
     }
 
     if (MR::isGreaterStep(this, ::hFadeInFrame)) {
-        setNerve(&NrvRosettaPictureBook::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(RosettaPictureBook, HostTypeNrvWait));
     }
 }

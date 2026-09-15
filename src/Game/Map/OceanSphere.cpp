@@ -249,7 +249,7 @@ OceanSphere::OceanSphere(const char* pName)
 }
 
 void OceanSphere::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, MR::DrawType_OceanSphere);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_OceanSphere);
     MR::initDefaultPos(this, rIter);
     mRadius = 100.0f * mScale.x;
     mRadiusTarget = mRadius;
@@ -263,7 +263,7 @@ void OceanSphere::init(const JMapInfoIter& rIter) {
 
     MR::setClippingTypeSphere(this, mRadius);
     MR::setClippingFarMax(this);
-    initNerve(&NrvOceanSphere::OceanSphereNrvWait::sInstance);
+    initNerve(GET_NERVE(OceanSphere, OceanSphereNrvWait));
 
     if (MR::isEqualStageName("SkullSharkGalaxy")) {
         mEnableStartPosCameraSwitch = true;
@@ -293,7 +293,7 @@ void OceanSphere::init(const JMapInfoIter& rIter) {
 void OceanSphere::appear() {
     LiveActor::appear();
     mRadius = 1000.0f;
-    setNerve(&NrvOceanSphere::OceanSphereNrvRiseUp::sInstance);
+    setNerve(GET_NERVE(OceanSphere, OceanSphereNrvRiseUp));
 }
 
 void OceanSphere::exeWait() {
@@ -304,7 +304,7 @@ void OceanSphere::exeRiseUp() {
     mRadius = 1000.0f + (rate * (mRadiusTarget - 1000.0f));
 
     if (MR::isDemoPartLastStep("湧き水上昇")) {
-        setNerve(&NrvOceanSphere::OceanSphereNrvWait::sInstance);
+        setNerve(GET_NERVE(OceanSphere, OceanSphereNrvWait));
     }
 }
 

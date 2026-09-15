@@ -1,5 +1,6 @@
 #include "Game/Util/FurCtrl.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/FurDrawer.hpp"
 #include "Game/Util/FurMulti.hpp"
@@ -208,7 +209,7 @@ FurDrawManager::FurDrawManager(u8 capacity) : NameObj("ファー描画マネー�
     mFurCtrls[1] = new FurCtrl*[capacity];
     mCapacity = capacity;
     mBank = new FurBank;
-    MR::connectToScene(this, -1, -1, -1, 0x31);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_Fur);
 }
 
 void FurCtrl::setupFur(J3DModel* pModel, ResTIMG* pLength, ResTIMG* pIndirect, ResTIMG* pBody, u16 shape, u8 numLayers) {

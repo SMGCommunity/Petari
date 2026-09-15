@@ -62,7 +62,7 @@ BossKameckBattleDemo::BossKameckBattleDemo(BossKameck* pBoss, const JMapInfoIter
 }
 
 void BossKameckBattleDemo::init() {
-    initNerve(&NrvBossKamecBattleDemo::BossKameckBattleDemoNrvAppearVs1::sInstance);
+    initNerve(GET_NERVE(BossKamecBattleDemo, BossKameckBattleDemoNrvAppearVs1));
 }
 
 void BossKameckBattleDemo::appear() {
@@ -84,7 +84,7 @@ void BossKameckBattleDemo::startTryDemo(const char* pName, const Nerve* pNerve) 
     } else {
         mDemoNerve = pNerve;
         mCurDemoName = pName;
-        setNerve(&NrvBossKamecBattleDemo::BossKameckBattleDemoNrvTryStartDemo::sInstance);
+        setNerve(GET_NERVE(BossKamecBattleDemo, BossKameckBattleDemoNrvTryStartDemo));
     }
 }
 
@@ -98,31 +98,31 @@ void BossKameckBattleDemo::exeTryStartDemo() {
 }
 
 void BossKameckBattleDemo::startDemoAppearVs1() {
-    startTryDemo("カメック登場Vs1", &NrvBossKamecBattleDemo::BossKameckBattleDemoNrvWaitAppearVs1::sInstance);
+    startTryDemo("カメック登場Vs1", GET_NERVE(BossKamecBattleDemo, BossKameckBattleDemoNrvWaitAppearVs1));
     MR::hideModelAndOnCalcAnim(mHost);
     MR::invalidateShadowAll(mHost);
 }
 
 void BossKameckBattleDemo::startDemoAppearVs2() {
-    startTryDemo("カメック登場Vs2", &NrvBossKamecBattleDemo::BossKameckBattleDemoNrvWaitAppearVs2::sInstance);
+    startTryDemo("カメック登場Vs2", GET_NERVE(BossKamecBattleDemo, BossKameckBattleDemoNrvWaitAppearVs2));
     MR::hideModelAndOnCalcAnim(mHost);
     MR::invalidateShadowAll(mHost);
 }
 
 void BossKameckBattleDemo::startDemoPowerUpVs1() {
-    startTryDemo("カメックパワーアップVs1", &NrvBossKamecBattleDemo::BossKameckBattleDemoNrvPowerUpVs1::sInstance);
+    startTryDemo("カメックパワーアップVs1", GET_NERVE(BossKamecBattleDemo, BossKameckBattleDemoNrvPowerUpVs1));
 }
 
 void BossKameckBattleDemo::startDemoPowerUpVs2() {
-    startTryDemo("カメックパワーアップVs2", &NrvBossKamecBattleDemo::BossKameckBattleDemoNrvPowerUpVs2::sInstance);
+    startTryDemo("カメックパワーアップVs2", GET_NERVE(BossKamecBattleDemo, BossKameckBattleDemoNrvPowerUpVs2));
 }
 
 void BossKameckBattleDemo::startDemoDownVs1() {
-    startTryDemo("ボスカメックダウンLv1", &NrvBossKamecBattleDemo::BossKameckBattleDemoNrvDownVs1::sInstance);
+    startTryDemo("ボスカメックダウンLv1", GET_NERVE(BossKamecBattleDemo, BossKameckBattleDemoNrvDownVs1));
 }
 
 void BossKameckBattleDemo::startDemoDownVs2() {
-    startTryDemo("ボスカメックダウンLv2", &NrvBossKamecBattleDemo::BossKameckBattleDemoNrvDownVs2::sInstance);
+    startTryDemo("ボスカメックダウンLv2", GET_NERVE(BossKamecBattleDemo, BossKameckBattleDemoNrvDownVs2));
 }
 
 void BossKameckBattleDemo::exeWaitAppearVs1() {
@@ -133,7 +133,7 @@ void BossKameckBattleDemo::exeWaitAppearVs1() {
     }
 
     if (MR::isGreaterStep(this, ::sAppearKameckTime)) {
-        setNerve(&NrvBossKamecBattleDemo::BossKameckBattleDemoNrvAppearVs1::sInstance);
+        setNerve(GET_NERVE(BossKamecBattleDemo, BossKameckBattleDemoNrvAppearVs1));
     }
 }
 
@@ -180,7 +180,7 @@ void BossKameckBattleDemo::exeWaitAppearVs2() {
     }
 
     if (MR::isGreaterStep(this, ::sAppearKameckTime)) {
-        setNerve(&NrvBossKamecBattleDemo::BossKameckBattleDemoNrvAppearVs2::sInstance);
+        setNerve(GET_NERVE(BossKamecBattleDemo, BossKameckBattleDemoNrvAppearVs2));
     }
 }
 

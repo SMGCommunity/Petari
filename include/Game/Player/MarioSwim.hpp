@@ -32,7 +32,10 @@ public:
     virtual void hitWall(const TVec3f&, HitSensor*);
     virtual void hitPoly(u8, const TVec3f&, HitSensor*);
     virtual bool passRing(const HitSensor*);
-    virtual f32 getBlurOffset() const;
+    virtual f32 getBlurOffset() const {
+        return mBlurOffset;
+    }
+
     virtual void draw3D() const;
     virtual f32 getStickY() const;
     virtual const TVec3f& getGravityVec() const;
@@ -71,8 +74,10 @@ public:
         if (isOnWaterSurface()) {
             return -1.0f;
         }
+
         return mDistanceToWaterSurface;
     }
+
     bool tryJetAttack(HitSensor*);
     void dropJet(bool);
     void updateOxygenWatch();
@@ -114,6 +119,7 @@ public:
             if (mIdleWaitTimer > 0x1E) {
                 _1E = 1;
             }
+
             worthlesser = false;
             if (getStickY() > 0.0f) {
                 f32 stickY = getStickY();
@@ -129,6 +135,7 @@ public:
                 }
             }
         }
+
         worthlesser = true;
     }
 

@@ -44,7 +44,7 @@ KoopaBattleStairsVs1::KoopaBattleStairsVs1(Koopa* pKoopa)
     : KoopaBattleStairsBase(pKoopa), mFarBattleMapStair(), mNearBattleMapStair(), mFarFireStairs(), mNearFireStairs(), _20(), mCanJump(),
       mJumpPos0(0.0f, 0.0f, 0.0f), mJumpPos1(0.0f, 0.0f, 0.0f), mJumpPos2(0.0f, 0.0f, 0.0f), _4C(), _50(), _54(), mAvailableStairs(), mJumpIdx(),
       mOldPosition(0.0f, 0.0f, 0.0f), mNewPosition(0.0f, 0.0f, 0.0f), mNewDirection(0.0f, 0.0f, 1.0f) {
-    initNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvWaitDemo::sInstance);
+    initNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvWaitDemo));
 
     calcFireStartPos(&mJumpPos0, ::sKoopaPosName0);
     calcFireStartPos(&mJumpPos1, ::sKoopaPosName1);
@@ -91,7 +91,7 @@ void KoopaBattleStairsVs1::exeWaitDemo() {
         MR::startAction(mKoopa, "DemoBattleStairsStart");
         MR::stopStageBGM(60);
 
-        setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvDemo::sInstance);
+        setNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvDemo));
     }
 }
 
@@ -133,7 +133,7 @@ void KoopaBattleStairsVs1::exeDemo() {
         KoopaFunction::startFaceCtrl(mKoopa);
         MR::startStageBGM("MBGM_GALAXY_15_HURRY", false);
 
-        setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvWait::sInstance);
+        setNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvWait));
     }
 }
 
@@ -144,14 +144,14 @@ void KoopaBattleStairsVs1::exeWait() {
 
     if (tryAttackRequest()) {
         MR::startAction(mKoopa, "AttackFire");
-        setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvAttackFire::sInstance);
+        setNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvAttackFire));
     }
 }
 
 void KoopaBattleStairsVs1::exeAttackFire() {
     if (tryRequestedToMoveNextPos()) {
         _20 = nullptr;
-        setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvJumpToNextPosStart::sInstance);
+        setNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvJumpToNextPosStart));
         return;
     }
 
@@ -171,13 +171,13 @@ void KoopaBattleStairsVs1::exeAttackFire() {
         MR::copyJointPos(pKoopa, "Tongue2", &jointPos);
         KoopaFunction::emitFireStairsToTarget(pKoopa, pBattleMapStair, jointPos, false);
 
-        setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvAttackFire::sInstance);
+        setNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvAttackFire));
 
         return;
     }
 
     if (MR::isGreaterEqualStep(this, ::sStepToEmitFire) && tryAttackRequest()) {
-        setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvAttackFire::sInstance);
+        setNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvAttackFire));
         return;
     }
 
@@ -185,11 +185,11 @@ void KoopaBattleStairsVs1::exeAttackFire() {
         if (mCanJump || (mJumpIdx == 0 && mAvailableStairs >= _4C) || (mJumpIdx == 1 && mAvailableStairs >= _4C + _50) ||
             (mJumpIdx == 2 && mAvailableStairs >= _4C + _50 + _54)) {
             _20 = nullptr;
-            setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvJumpToNextPosStart::sInstance);
+            setNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvJumpToNextPosStart));
             return;
         }
 
-        setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvWait::sInstance);
+        setNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvWait));
     }
 }
 
@@ -201,7 +201,7 @@ void KoopaBattleStairsVs1::exeJumpToNextPosStart() {
     }
 
     if (MR::isBckStopped(mKoopa)) {
-        setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvJumpToNextPosLoop::sInstance);
+        setNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvJumpToNextPosLoop));
     }
 }
 
@@ -234,7 +234,7 @@ void KoopaBattleStairsVs1::exeJumpToNextPosLoop() {
     if (MR::isStep(this, ::sStepJumpToNextPosLoop)) {
         MR::tryRumblePadStrong(mKoopa, WPAD_CHAN0);
         MR::shakeCameraNormal();
-        setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvJumpToNextPosEnd::sInstance);
+        setNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvJumpToNextPosEnd));
     }
 }
 
@@ -251,7 +251,7 @@ void KoopaBattleStairsVs1::exeJumpToNextPosEnd() {
             KoopaFunction::setKoopaPos(mKoopa, sKoopaPosName2);
         }
 
-        setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvAttackFire::sInstance);
+        setNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvAttackFire));
         return;
     }
 
@@ -264,7 +264,7 @@ void KoopaBattleStairsVs1::exeJumpToNextPosEnd() {
             KoopaFunction::setKoopaPos(mKoopa, sKoopaPosNameEnd);
         }
 
-        setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvWait::sInstance);
+        setNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvWait));
     }
 }
 

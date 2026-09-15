@@ -1,5 +1,6 @@
 
 #include "Game/Player/Mario.hpp"
+#include "Game/Player/MarioActor.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "math_types.hpp"

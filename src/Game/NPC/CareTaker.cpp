@@ -68,7 +68,7 @@ void Caretaker::init(const JMapInfoIter& rIter) {
     caps.mSoundSize = 8;
     caps.mRailRider = true;
     caps.mUseShadow = 1;
-    caps.mWaitNerve = &NrvCaretaker::CaretakerNrvTalk::sInstance;
+    caps.mWaitNerve = GET_NERVE(Caretaker, CaretakerNrvTalk);
     caps.mSensorSize = 100.0f;
 
     s32 arg3 = 0;
@@ -139,12 +139,12 @@ void Caretaker::init(const JMapInfoIter& rIter) {
         _C0 = mPosition;
     }
 
-    setNerve(&NrvCaretaker::CaretakerNrvWait::sInstance);
+    setNerve(GET_NERVE(Caretaker, CaretakerNrvWait));
     MR::needStageSwitchReadA(this, rIter);
     MR::needStageSwitchWriteB(this, rIter);
     MR::declarePowerStar(this);
 
-    mTakeOutStar = new TakeOutStar(this, "TakeOutStarCaretaker", "TakeOutStarCaretaker", &NrvCaretaker::CaretakerNrvTakeOutStar::sInstance);
+    mTakeOutStar = new TakeOutStar(this, "TakeOutStarCaretaker", "TakeOutStarCaretaker", GET_NERVE(Caretaker, CaretakerNrvTakeOutStar));
 
     if (MR::isPlayerLuigi()) {
         MR::getJMapInfoArg2NoInit(rIter, &mTidyTimeLimit);
@@ -355,15 +355,15 @@ void Caretaker::exeReaction() {
 
 void Caretaker::exeTalk() {
     MR::tryTalkNearPlayerAndStartMoveTalkAction(this);
-    MR::tryStartReactionAndPushNerve(this, &NrvCaretaker::CaretakerNrvReaction::sInstance);
+    MR::tryStartReactionAndPushNerve(this, GET_NERVE(Caretaker, CaretakerNrvReaction));
 }
 
 void Caretaker::exeWait() {
     if (MR::tryTalkNearPlayerAndStartMoveTalkAction(this)) {
         MR::startNPCTalkCamera(mMsgCtrl, getBaseMtx(), 1.3f, -1);
         MR::setRailCoordSpeed(this, 0.0f);
-        setNerve(&NrvCaretaker::CaretakerNrvPreTalk::sInstance);
-    } else if (MR::tryStartReactionAndPushNerve(this, &NrvCaretaker::CaretakerNrvReaction::sInstance)) {
+        setNerve(GET_NERVE(Caretaker, CaretakerNrvPreTalk));
+    } else if (MR::tryStartReactionAndPushNerve(this, GET_NERVE(Caretaker, CaretakerNrvReaction))) {
         return;
     }
 }
@@ -379,10 +379,10 @@ void Caretaker::exePreTalk() {
         MR::tryStartDemoMarioPuppetableWithoutCinemaFrame(this, "ゴミ掃除タイムアタック");
         MR::startAction(this, "Wait");
         MR::startBckPlayer("Watch", static_cast< const char* >(nullptr));
-        setNerve(&NrvCaretaker::CaretakerNrvPreWipeOut::sInstance);
+        setNerve(GET_NERVE(Caretaker, CaretakerNrvPreWipeOut));
     } else {
         MR::endNPCTalkCamera(false, -1);
-        setNerve(&NrvCaretaker::CaretakerNrvWait::sInstance);
+        setNerve(GET_NERVE(Caretaker, CaretakerNrvWait));
     }
 }
 
@@ -406,7 +406,7 @@ void Caretaker::exePreWipeOut() {
     mBombTimerLayout->appear();
     mBombTimerLayout->suspend();
     mBombTimerLayout->setTimeLimit(mTidyTimeLimit * 60);
-    setNerve(&NrvCaretaker::CaretakerNrvPreWipeIn::sInstance);
+    setNerve(GET_NERVE(Caretaker, CaretakerNrvPreWipeIn));
 }
 
 void Caretaker::exePreWipeIn() {
@@ -419,7 +419,7 @@ void Caretaker::exePreWipeIn() {
         return;
     }
 
-    setNerve(&NrvCaretaker::CaretakerNrvPreWait::sInstance);
+    setNerve(GET_NERVE(Caretaker, CaretakerNrvPreWait));
 }
 
 void Caretaker::exePreWait() {
@@ -430,7 +430,7 @@ void Caretaker::exePreWait() {
     }
 
     if (MR::isGreaterStep(this, ::sPreRaceWait)) {
-        setNerve(&NrvCaretaker::CaretakerNrvCountDown::sInstance);
+        setNerve(GET_NERVE(Caretaker, CaretakerNrvCountDown));
     }
 }
 
@@ -445,7 +445,7 @@ void Caretaker::exeCountDown() {
 
     if (MR::isGreaterEqualStep(this, 180)) {
         MR::onPlayerControl(true);
-        setNerve(&NrvCaretaker::CaretakerNrvTidy::sInstance);
+        setNerve(GET_NERVE(Caretaker, CaretakerNrvTidy));
     }
 }
 
@@ -458,13 +458,13 @@ void Caretaker::exeTidy() {
     if (MR::isPlayerInBind()) {
         mBombTimerLayout->kill();
         MR::stopStageBGM(60);
-        setNerve(&NrvCaretaker::CaretakerNrvRunaway::sInstance);
+        setNerve(GET_NERVE(Caretaker, CaretakerNrvRunaway));
     } else {
         updateCounterSE();
 
         if (MR::canStartDemo() && mBombTimerLayout->isReadyToTimeUp() || MR::isOnSwitchA(this)) {
             MR::tryStartDemoMarioPuppetableWithoutCinemaFrame(this, "ゴミ掃除タイムアタック");
-            setNerve(&NrvCaretaker::CaretakerNrvPstWipeOut::sInstance);
+            setNerve(GET_NERVE(Caretaker, CaretakerNrvPstWipeOut));
         }
     }
 }
@@ -479,7 +479,7 @@ void Caretaker::exeRunaway() {
     MR::callAppearAllGroupMember(this);
     MR::callValidateClippingAllGroupMember(this);
     MR::resetNode(mMsgCtrl);
-    setNerve(&NrvCaretaker::CaretakerNrvWait::sInstance);
+    setNerve(GET_NERVE(Caretaker, CaretakerNrvWait));
 }
 
 void Caretaker::exePstWipeOut() {
@@ -512,7 +512,7 @@ void Caretaker::exePstWipeOut() {
     MR::setPlayerPosOnGroundAndWait("バトルシップ・タイムアタック後位置");
     MR::startBckPlayer("Watch", static_cast< const char* >(nullptr));
     MR::startNPCTalkCamera(mMsgCtrl, getBaseMtx(), 1.3f, 1);
-    setNerve(&NrvCaretaker::CaretakerNrvPstWipeIn::sInstance);
+    setNerve(GET_NERVE(Caretaker, CaretakerNrvPstWipeIn));
 }
 
 void Caretaker::exePstWipeIn() {
@@ -528,12 +528,12 @@ void Caretaker::exePstWipeIn() {
 
     MR::startAction(this, "TalkNormal");
     MR::validateClipping(this);
-    setNerve(&NrvCaretaker::CaretakerNrvPstWait::sInstance);
+    setNerve(GET_NERVE(Caretaker, CaretakerNrvPstWait));
 }
 
 void Caretaker::exePstWait() {
     if (MR::isGreaterEqualStep(this, ::sPstRaceWait)) {
-        setNerve(&NrvCaretaker::CaretakerNrvPstTalk::sInstance);
+        setNerve(GET_NERVE(Caretaker, CaretakerNrvPstTalk));
     }
 }
 
@@ -546,13 +546,13 @@ void Caretaker::exePstTalk() {
     MR::endNPCTalkCamera(false, -1);
 
     if (MR::isOnSwitchA(this)) {
-        setNerve(&NrvCaretaker::CaretakerNrvAppearedStar::sInstance);
+        setNerve(GET_NERVE(Caretaker, CaretakerNrvAppearedStar));
     } else {
-        setNerve(&NrvCaretaker::CaretakerNrvWait::sInstance);
+        setNerve(GET_NERVE(Caretaker, CaretakerNrvWait));
     }
 }
 
 void Caretaker::exeAppearedStar() {
     MR::tryTalkNearPlayerAndStartTalkAction(this);
-    MR::tryStartReactionAndPushNerve(this, &NrvCaretaker::CaretakerNrvReaction::sInstance);
+    MR::tryStartReactionAndPushNerve(this, GET_NERVE(Caretaker, CaretakerNrvReaction));
 }

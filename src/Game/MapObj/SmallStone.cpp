@@ -1,7 +1,7 @@
 #include "Game/MapObj/SmallStone.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
 
 namespace {
     const f32 hSize = 100.0f;
@@ -395,8 +395,8 @@ void SmallStone::endClipped() {
 }
 
 SmallStoneMember::SmallStoneMember(const char* pModelName)
-    : ModelObj("SmallStoneMember", pModelName, nullptr, 10, -1, -2, false), mAnimRate(1.0f), mShakeRequested(), mAnimStopped(), mBreakTimer(-1),
-      mBreakEffectName(), mUseGravity(true) {
+    : ModelObj("SmallStoneMember", pModelName, nullptr, MR::DrawBufferType_MapObjStrongLight, MR::MovementType_None, -2, false), mAnimRate(1.0f),
+      mShakeRequested(), mAnimStopped(), mBreakTimer(-1), mBreakEffectName(), mUseGravity(true) {
 }
 
 bool SmallStoneMember::tryShake() {

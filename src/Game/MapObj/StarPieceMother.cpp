@@ -76,12 +76,12 @@ void StarPieceMother::init(const JMapInfoIter& rIter) {
     }
 
     if (isRailNotConnected) {
-        initNerve(&NrvStarPieceMother::HostTypeNrvWait::sInstance);
+        initNerve(GET_NERVE(StarPieceMother, HostTypeNrvWait));
         initHitSensor(1);
         MR::addHitSensorMapObj(this, "body", 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
         makeActorAppeared();
     } else {
-        initNerve(&NrvStarPieceMother::HostTypeNrvMoveOnRail::sInstance);
+        initNerve(GET_NERVE(StarPieceMother, HostTypeNrvMoveOnRail));
 
         arg = -1;
         MR::getJMapInfoArg1NoInit(rIter, &arg);

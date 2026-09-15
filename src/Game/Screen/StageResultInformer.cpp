@@ -68,7 +68,7 @@ namespace {
 };  // namespace
 
 DisplayInformationForResult::DisplayInformationForResult(StageResultInformer* pHost) : NerveExecutor("DisplayInformationForResult"), mHost(pHost) {
-    initNerve(&::DisplayInformationForResultIdle::sInstance);
+    initNerve(GET_NERVE_ANON(DisplayInformationForResultIdle));
 }
 
 void DisplayInformationForResult::exeAppear() {
@@ -82,14 +82,14 @@ void DisplayInformationForResult::exeAppear() {
         MR::appearInformationMessageCenter(mMessageId, true);
     }
 
-    MR::setNerveAtStep(this, &::DisplayInformationForResultDisplay::sInstance, ::sWaitAppearInformationWindow);
+    MR::setNerveAtStep(this, GET_NERVE_ANON(DisplayInformationForResultDisplay), ::sWaitAppearInformationWindow);
 }
 
 void DisplayInformationForResult::exeDisplay() {
     if (MR::testSystemPadTriggerDecide()) {
         MR::startSystemSE("SE_SY_TALK_OK");
         MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
-        setNerve(&::DisplayInformationForResultDisappear::sInstance);
+        setNerve(GET_NERVE_ANON(DisplayInformationForResultDisappear));
     }
 }
 
@@ -99,7 +99,7 @@ void DisplayInformationForResult::exeDisappear() {
     }
 
     if (MR::isDeadInformationMessage()) {
-        setNerve(&::DisplayInformationForResultIdle::sInstance);
+        setNerve(GET_NERVE_ANON(DisplayInformationForResultIdle));
     }
 }
 
@@ -116,7 +116,7 @@ void StageResultInformer::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
     initLayoutManager("ResultWindow", 2);
     mIconAButton = MR::createAndSetupIconAButton(this, true, false);
-    initNerve(&::StageResultInformerAppearGetPowerStar::sInstance);
+    initNerve(GET_NERVE_ANON(StageResultInformerAppearGetPowerStar));
     initEffectKeeper(0, nullptr, nullptr);
 }
 
@@ -126,7 +126,7 @@ void StageResultInformer::appear() {
     MR::requestMovementOn(mIconAButton);
     MR::hideLayout(this);
     initBestScoreWindow();
-    setNerve(&::StageResultInformerAppearGetPowerStar::sInstance);
+    setNerve(GET_NERVE_ANON(StageResultInformerAppearGetPowerStar));
 }
 
 void StageResultInformer::kill() {
@@ -162,14 +162,14 @@ void StageResultInformer::exeAppearGetPowerStar() {
         MR::startSubBGM("BGM_ASTRO_RETURN", false);
     }
 
-    MR::setNerveAtAnimStopped(this, &::StageResultInformerWaitBeforeCountUpPowerStar::sInstance, 0);
+    MR::setNerveAtAnimStopped(this, GET_NERVE_ANON(StageResultInformerWaitBeforeCountUpPowerStar), 0);
 }
 
 void StageResultInformer::exeWaitBeforeCountUpPowerStar() {
-    const Nerve* pNerve = &::StageResultInformerDisplayGetPowerStar::sInstance;
+    const Nerve* pNerve = GET_NERVE_ANON(StageResultInformerDisplayGetPowerStar);
 
     if (mSequenceChecker->getPrevPowerStarNum() == mSequenceChecker->getAfterPowerStarNum()) {
-        pNerve = &::StageResultInformerCountUpPowerStar::sInstance;
+        pNerve = GET_NERVE_ANON(StageResultInformerCountUpPowerStar);
     }
 
     tryWaitIntervalBeforeKeyWait(pNerve, ::sWaitBeforeCountUpPowerStar);
@@ -187,7 +187,7 @@ void StageResultInformer::exeCountUpPowerStar() {
         _30 = true;
     }
 
-    MR::setNerveAtAnimStopped(this, &::StageResultInformerDisplayGetPowerStar::sInstance, 0);
+    MR::setNerveAtAnimStopped(this, GET_NERVE_ANON(StageResultInformerDisplayGetPowerStar), 0);
 }
 
 void StageResultInformer::exeDisplayGetPowerStar() {
@@ -195,7 +195,7 @@ void StageResultInformer::exeDisplayGetPowerStar() {
         mIconAButton->openWithoutMessage();
     }
 
-    tryWaitSystemPadTriggerDecide(&::StageResultInformerDisappearGetPowerStar::sInstance);
+    tryWaitSystemPadTriggerDecide(GET_NERVE_ANON(StageResultInformerDisappearGetPowerStar));
 }
 
 void StageResultInformer::exeDisappearGetPowerStar() {
@@ -224,7 +224,7 @@ void StageResultInformer::exeAppearUpdateBestScore() {
         GameSequenceFunction::reflectStageResultSequenceCoin();
     }
 
-    MR::setNerveAtAnimStopped(this, &::StageResultInformerDisplayUpdateBestScore::sInstance, 0);
+    MR::setNerveAtAnimStopped(this, GET_NERVE_ANON(StageResultInformerDisplayUpdateBestScore), 0);
 }
 
 void StageResultInformer::exeDisplayUpdateBestScore() {
@@ -232,7 +232,7 @@ void StageResultInformer::exeDisplayUpdateBestScore() {
         mIconAButton->openWithoutMessage();
     }
 
-    tryWaitSystemPadTriggerDecide(&::StageResultInformerDisappearUpdateBestScore::sInstance);
+    tryWaitSystemPadTriggerDecide(GET_NERVE_ANON(StageResultInformerDisappearUpdateBestScore));
 }
 
 void StageResultInformer::exeDisappearUpdateBestScore() {
@@ -258,7 +258,7 @@ void StageResultInformer::exeAppearGetStarPiece() {
         MR::setTextBoxNumberRecursive(this, ::cNameTotalStarPieceNum, MR::getStockedStarPieceNum());
     }
 
-    MR::setNerveAtAnimStopped(this, &::StageResultInformerDisplayGetStarPiece::sInstance, 0);
+    MR::setNerveAtAnimStopped(this, GET_NERVE_ANON(StageResultInformerDisplayGetStarPiece), 0);
 }
 
 void StageResultInformer::exeDisplayGetStarPiece() {
@@ -296,9 +296,9 @@ void StageResultInformer::exeDisplayGetStarPiece() {
         MR::startSystemSE("SE_SY_TALK_OK");
 
         if (hasStarPiece) {
-            setNerve(&::StageResultInformerDisappearGetStarPiece::sInstance);
+            setNerve(GET_NERVE_ANON(StageResultInformerDisappearGetStarPiece));
         } else {
-            setNerve(&::StageResultInformerWaitBeforeDisappearGetStarPiece::sInstance);
+            setNerve(GET_NERVE_ANON(StageResultInformerWaitBeforeDisappearGetStarPiece));
         }
     }
 }
@@ -314,7 +314,7 @@ void StageResultInformer::exeWaitBeforeDisappearGetStarPiece() {
         MR::deleteEffect(this, "ResultPieceCounter");
     }
 
-    MR::setNerveAtStep(this, &::StageResultInformerDisappearGetStarPiece::sInstance, ::sWaitDisplayStarPieceCount);
+    MR::setNerveAtStep(this, GET_NERVE_ANON(StageResultInformerDisappearGetStarPiece), ::sWaitDisplayStarPieceCount);
 }
 
 void StageResultInformer::exeDisappearGetStarPiece() {
@@ -334,7 +334,7 @@ void StageResultInformer::exeDisappearGetStarPiece() {
 }
 
 void StageResultInformer::exeShowNewGalaxyDiscover() {
-    tryShowAndKeyWaitInformationWindow(::cMessageIdNewGalaxyDiscover, &::StageResultInformerShowGalaxyMap::sInstance);
+    tryShowAndKeyWaitInformationWindow(::cMessageIdNewGalaxyDiscover, GET_NERVE_ANON(StageResultInformerShowGalaxyMap));
 }
 
 void StageResultInformer::exeShowGalaxyMap() {
@@ -354,12 +354,12 @@ void StageResultInformer::exeShowGetPictureBook() {
         }
 
         mInformationDisplayer->mMessageId = pMessageId;
-        mInformationDisplayer->setNerve(&::DisplayInformationForResultAppear::sInstance);
+        mInformationDisplayer->setNerve(GET_NERVE_ANON(DisplayInformationForResultAppear));
     }
 
     mInformationDisplayer->updateNerve();
 
-    bool isNotIdle = !mInformationDisplayer->isNerve(&::DisplayInformationForResultIdle::sInstance);
+    bool isNotIdle = !mInformationDisplayer->isNerve(GET_NERVE_ANON(DisplayInformationForResultIdle));
 
     if (!isNotIdle) {
         decideNextNerve();
@@ -367,7 +367,7 @@ void StageResultInformer::exeShowGetPictureBook() {
 }
 
 void StageResultInformer::exeShowTicoGalaxyAppear() {
-    tryShowAndKeyWaitInformationWindow(::cMessageIdTicoGalaxyAppear, &::StageResultInformerShowAstroMapForTico::sInstance);
+    tryShowAndKeyWaitInformationWindow(::cMessageIdTicoGalaxyAppear, GET_NERVE_ANON(StageResultInformerShowAstroMapForTico));
 }
 
 void StageResultInformer::exeShowAstroMapForTico() {
@@ -427,12 +427,12 @@ bool StageResultInformer::tryWaitIntervalBeforeKeyWait(const Nerve* pNerve, int 
 bool StageResultInformer::tryShowAndKeyWaitInformationWindow(const char* pMessageId, const Nerve* pNerve) {
     if (MR::isFirstStep(this)) {
         mInformationDisplayer->mMessageId = pMessageId;
-        mInformationDisplayer->setNerve(&::DisplayInformationForResultAppear::sInstance);
+        mInformationDisplayer->setNerve(GET_NERVE_ANON(DisplayInformationForResultAppear));
     }
 
     mInformationDisplayer->updateNerve();
 
-    bool isNotIdle = !mInformationDisplayer->isNerve(&::DisplayInformationForResultIdle::sInstance);
+    bool isNotIdle = !mInformationDisplayer->isNerve(GET_NERVE_ANON(DisplayInformationForResultIdle));
 
     if (!isNotIdle) {
         if (pNerve != nullptr) {

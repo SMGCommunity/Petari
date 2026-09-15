@@ -20,33 +20,33 @@ TombSpiderVitalSpot::TombSpiderVitalSpot(LiveActor* pActor, const char* pName, c
 
 void TombSpiderVitalSpot::init(const JMapInfoIter& rIter) {
     PartsModel::init(rIter);
-    initNerve(&NrvTombSpiderVitalSpot::TombSpiderVitalSpotNrvWait::sInstance);
+    initNerve(GET_NERVE(TombSpiderVitalSpot, TombSpiderVitalSpotNrvWait));
     makeActorAppeared();
 }
 
 void TombSpiderVitalSpot::startChance() {
-    if (isNerve(&NrvTombSpiderVitalSpot::TombSpiderVitalSpotNrvWait::sInstance)) {
-        setNerve(&NrvTombSpiderVitalSpot::TombSpiderVitalSpotNrvChanceWait::sInstance);
+    if (isNerve(GET_NERVE(TombSpiderVitalSpot, TombSpiderVitalSpotNrvWait))) {
+        setNerve(GET_NERVE(TombSpiderVitalSpot, TombSpiderVitalSpotNrvChanceWait));
     }
 }
 
 void TombSpiderVitalSpot::endChance() {
-    if (isNerve(&NrvTombSpiderVitalSpot::TombSpiderVitalSpotNrvChanceWait::sInstance)) {
-        setNerve(&NrvTombSpiderVitalSpot::TombSpiderVitalSpotNrvWait::sInstance);
+    if (isNerve(GET_NERVE(TombSpiderVitalSpot, TombSpiderVitalSpotNrvChanceWait))) {
+        setNerve(GET_NERVE(TombSpiderVitalSpot, TombSpiderVitalSpotNrvWait));
     }
 }
 
 void TombSpiderVitalSpot::startDamage() {
-    setNerve(&NrvTombSpiderVitalSpot::TombSpiderVitalSpotNrvDamageStart::sInstance);
+    setNerve(GET_NERVE(TombSpiderVitalSpot, TombSpiderVitalSpotNrvDamageStart));
 }
 
 void TombSpiderVitalSpot::recover() {
-    setNerve(&NrvTombSpiderVitalSpot::TombSpiderVitalSpotNrvRecover::sInstance);
+    setNerve(GET_NERVE(TombSpiderVitalSpot, TombSpiderVitalSpotNrvRecover));
 }
 
 bool TombSpiderVitalSpot::isDamage() const {
-    if (isNerve(&NrvTombSpiderVitalSpot::TombSpiderVitalSpotNrvDamageStart::sInstance) ||
-        isNerve(&NrvTombSpiderVitalSpot::TombSpiderVitalSpotNrvDamageWait::sInstance)) {
+    if (isNerve(GET_NERVE(TombSpiderVitalSpot, TombSpiderVitalSpotNrvDamageStart)) ||
+        isNerve(GET_NERVE(TombSpiderVitalSpot, TombSpiderVitalSpotNrvDamageWait))) {
         return true;
     }
     return false;
@@ -86,6 +86,6 @@ void TombSpiderVitalSpot::exeRecover() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvTombSpiderVitalSpot::TombSpiderVitalSpotNrvWait::sInstance);
+        setNerve(GET_NERVE(TombSpiderVitalSpot, TombSpiderVitalSpotNrvWait));
     }
 }

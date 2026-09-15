@@ -16,27 +16,27 @@ void MissLayout::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
     initLayoutManager("TooBad", 1);
     initEffectKeeper(0, nullptr, nullptr);
-    initNerve(&MissLayoutNrvWait::sInstance);
+    initNerve(GET_NERVE_GLOBAL(MissLayoutNrvWait));
     kill();
 }
 
 void MissLayout::kill() {
     LayoutActor::kill();
-    setNerve(&MissLayoutNrvWait::sInstance);
+    setNerve(GET_NERVE_GLOBAL(MissLayoutNrvWait));
 }
 
 bool MissLayout::isActive() const {
-    return isNerve(&MissLayoutNrvActive::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(MissLayoutNrvActive));
 }
 
 void MissLayout::start() {
-    if (isNerve(&MissLayoutNrvActive::sInstance)) {
+    if (isNerve(GET_NERVE_GLOBAL(MissLayoutNrvActive))) {
         return;
     }
 
     LayoutActor::appear();
     MR::hideLayout(this);
-    setNerve(&MissLayoutNrvActive::sInstance);
+    setNerve(GET_NERVE_GLOBAL(MissLayoutNrvActive));
 }
 
 void MissLayout::exeWait() {
@@ -53,7 +53,7 @@ void MissLayout::exeActive() {
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&MissLayoutNrvEnd::sInstance);
+        setNerve(GET_NERVE_GLOBAL(MissLayoutNrvEnd));
     }
 }
 

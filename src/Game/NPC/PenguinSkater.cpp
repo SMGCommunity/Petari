@@ -64,7 +64,7 @@ PenguinSkater::PenguinSkater(const char* pName)
 void PenguinSkater::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("PenguinSkater");
     caps.setDefault();
-    caps.mWaitNerve = &NrvPenguinSkater::PenguinSkaterNrvWait::sInstance;
+    caps.mWaitNerve = GET_NERVE(PenguinSkater, PenguinSkaterNrvWait);
     caps.mObjectName = "Penguin";
     if (MR::isConnectedWithRail(rIter)) {
         caps.mRailRider = true;
@@ -72,7 +72,7 @@ void PenguinSkater::init(const JMapInfoIter& rIter) {
         MR::initMultiActorCamera(this, rIter, &mCameraInfo, "終了");
         MR::joinToGroupArray(this, rIter, nullptr, 32);
     } else {
-        caps.mWaitNerve = &NrvPenguinSkater::PenguinSkaterNrvTalk::sInstance;
+        caps.mWaitNerve = GET_NERVE(PenguinSkater, PenguinSkaterNrvTalk);
     }
     initialize(rIter, caps);
     setDefaults();
@@ -107,15 +107,15 @@ void PenguinSkater::initAfterPlacement() {
 }
 
 bool PenguinSkater::isAttackable() const {
-    return (isNerve(&NrvPenguinSkater::PenguinSkaterNrvAway::sInstance) || isNerve(&NrvPenguinSkater::PenguinSkaterNrvTurn::sInstance) ||
-            isNerve(&NrvPenguinSkater::PenguinSkaterNrvSwitch::sInstance));
+    return (isNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvAway)) || isNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvTurn)) ||
+            isNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvSwitch)));
 }
 
 bool PenguinSkater::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerSpinAttack(msg)) {
         if (isAttackable()) {
             MR::tryRumblePadStrong(this, WPAD_CHAN0);
-            setNerve(&NrvPenguinSkater::PenguinSkaterNrvCaught::sInstance);
+            setNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvCaught));
         }
     }
 
@@ -126,7 +126,7 @@ void PenguinSkater::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         if (isAttackable()) {
             MR::tryRumblePadStrong(this, WPAD_CHAN0);
-            setNerve(&NrvPenguinSkater::PenguinSkaterNrvCaught::sInstance);
+            setNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvCaught));
         }
     }
     NPCActor::attackSensor(pSender, pReceiver);
@@ -273,7 +273,7 @@ void PenguinSkater::exeReaction() {
 
 void PenguinSkater::exeWait() {
     if (MR::tryStartReaction(this)) {
-        pushNerve(&NrvPenguinSkater::PenguinSkaterNrvReaction::sInstance);
+        pushNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvReaction));
     } else if (MR::tryTalkNearPlayerAtEndAndStartTalkAction(this)) {
         MR::invalidateClipping(this);
         MR::tryStartDemo(this, "ペンギンスケート開始");
@@ -286,7 +286,7 @@ void PenguinSkater::exeWait() {
             MR::reverseRailDirection(mSwitchRail);
         }
 
-        setNerve(&NrvPenguinSkater::PenguinSkaterNrvDemo::sInstance);
+        setNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvDemo));
     }
 }
 
@@ -307,7 +307,7 @@ void PenguinSkater::exeDemo() {
     if (inProvokeRangeIn(calcLead())) {
         MR::endMultiActorCamera(this, mCameraInfo, "開始", false, -1);
         MR::endDemo(this, "ペンギンスケート開始");
-        setNerve(&NrvPenguinSkater::PenguinSkaterNrvAway::sInstance);
+        setNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvAway));
     }
 }
 
@@ -319,11 +319,11 @@ void PenguinSkater::exeAway() {
     moveRail(::sAwaySpeed, ::sBlendRatio);
     f32 lead = calcLead();
     if (lead < 0.0f) {
-        setNerve(&NrvPenguinSkater::PenguinSkaterNrvTurn::sInstance);
+        setNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvTurn));
     } else if (inSwitchRange(lead) && trySwitchRail()) {
-        setNerve(&NrvPenguinSkater::PenguinSkaterNrvSwitch::sInstance);
+        setNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvSwitch));
     } else if (inProvokeRangeIn(lead)) {
-        setNerve(&NrvPenguinSkater::PenguinSkaterNrvProvoke::sInstance);
+        setNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvProvoke));
     }
 }
 
@@ -338,7 +338,7 @@ void PenguinSkater::exeTurn() {
     if (MR::isNearZero(MR::getRailCoordSpeed(mRail))) {
         MR::reverseRailDirection(mCurrentRail);
         MR::reverseRailDirection(mSwitchRail);
-        setNerve(&NrvPenguinSkater::PenguinSkaterNrvAway::sInstance);
+        setNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvAway));
     }
 }
 
@@ -347,7 +347,7 @@ void PenguinSkater::exeSwitch() {
     moveRail(::sSwitchSpeed, ::sBlendRatio);
     if (MR::isRailReachedGoal(mRail)) {
         endSwitchRail();
-        setNerve(&NrvPenguinSkater::PenguinSkaterNrvAway::sInstance);
+        setNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvAway));
     }
 }
 
@@ -366,7 +366,7 @@ void PenguinSkater::exeProvoke() {
                 MR::reverseRailDirection(mCurrentRail);
                 MR::reverseRailDirection(mSwitchRail);
             }
-            setNerve(&NrvPenguinSkater::PenguinSkaterNrvAway::sInstance);
+            setNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvAway));
             MR::startSound(this, "SE_SM_PENGUIN_SKATE_START");
         }
     }
@@ -388,7 +388,7 @@ void PenguinSkater::exeCaught() {
     }
     blendBaseMatrixToMario(MR::calcNerveRate(this, ::sMarioPoseBlendTime));
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvPenguinSkater::PenguinSkaterNrvFadeOut::sInstance);
+        setNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvFadeOut));
         MR::startBckPlayer("TossWait", static_cast< const char* >(nullptr));
     }
 }
@@ -402,7 +402,7 @@ void PenguinSkater::exeFadeOut() {
         MR::closeWipeCircle();
     }
     if (!MR::isWipeActive()) {
-        setNerve(&NrvPenguinSkater::PenguinSkaterNrvFadeIn::sInstance);
+        setNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvFadeIn));
     }
 }
 
@@ -423,7 +423,7 @@ void PenguinSkater::exeFadeIn() {
     }
     MR::tryStartTurnAction(this);
     if (!MR::isWipeActive()) {
-        setNerve(&NrvPenguinSkater::PenguinSkaterNrvGiveUp::sInstance);
+        setNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvGiveUp));
     }
 }
 
@@ -436,7 +436,7 @@ void PenguinSkater::exeGiveUp() {
         MR::forwardNode(mMsgCtrl);
         MR::onSwitchA(this);
         MR::validateClipping(this);
-        setNerve(&NrvPenguinSkater::PenguinSkaterNrvSitDown::sInstance);
+        setNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvSitDown));
     }
 }
 
@@ -445,7 +445,7 @@ void PenguinSkater::exeSitDown() {
 }
 
 void PenguinSkater::exeTalk() {
-    if (!MR::tryStartReactionAndPushNerve(this, &NrvPenguinSkater::PenguinSkaterNrvReaction::sInstance)) {
+    if (!MR::tryStartReactionAndPushNerve(this, GET_NERVE(PenguinSkater, PenguinSkaterNrvReaction))) {
         MR::tryTalkNearPlayerAndStartTalkAction(this);
     }
 }

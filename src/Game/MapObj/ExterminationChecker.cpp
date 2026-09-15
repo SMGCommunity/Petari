@@ -66,7 +66,7 @@ void ExterminationChecker::init(const JMapInfoIter& rIter) {
         MR::declarePowerStar(this);
     }
 
-    initNerve(&NrvExterminationChecker::ExterminationCheckerNrvWatching::sInstance);
+    initNerve(GET_NERVE(ExterminationChecker, ExterminationCheckerNrvWatching));
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
@@ -90,11 +90,11 @@ void ExterminationChecker::exeWatching() {
     }
 
     if (_A0) {
-        setNerve(&NrvExterminationChecker::ExterminationCheckerNrvTryStartDemoAppear::sInstance);
+        setNerve(GET_NERVE(ExterminationChecker, ExterminationCheckerNrvTryStartDemoAppear));
     }
 
     if (_A1) {
-        setNerve(&NrvExterminationChecker::ExterminationCheckerNrvAppearKeySwitch::sInstance);
+        setNerve(GET_NERVE(ExterminationChecker, ExterminationCheckerNrvAppearKeySwitch));
     }
 }
 
@@ -105,7 +105,7 @@ void ExterminationChecker::exeTryStartDemoAppear() {
 
     if (MR::isGreaterStep(this, 5)) {
         if (MR::tryStartDemo(this, "全滅スター出現")) {
-            setNerve(&NrvExterminationChecker::ExterminationCheckerNrvAppearStar::sInstance);
+            setNerve(GET_NERVE(ExterminationChecker, ExterminationCheckerNrvAppearStar));
         }
     }
 }

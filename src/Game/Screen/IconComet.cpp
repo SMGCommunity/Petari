@@ -12,7 +12,7 @@ IconComet::IconComet() : LayoutActor("コメットアイコン", true) {
 
 void IconComet::init(const JMapInfoIter& rIter) {
     initLayoutManager("IconComet", 1);
-    initNerve(&NrvIconComet::IconCometNrvWait::sInstance);
+    initNerve(GET_NERVE(IconComet, IconCometNrvWait));
 }
 
 bool IconComet::appearIfLanding(const char* pStageName) {

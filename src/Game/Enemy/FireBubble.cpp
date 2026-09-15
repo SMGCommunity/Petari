@@ -56,7 +56,7 @@ void FireBubble::init(const JMapInfoIter& rIter) {
     MR::initShadowVolumeCylinder(this, 40.0f);
     MR::invalidateClipping(this);
     MR::declareCoin(this, ::cCoinMaxNum);
-    initNerve(&NrvFireBubble::FireBubbleNrvAppear::sInstance);
+    initNerve(GET_NERVE(FireBubble, FireBubbleNrvAppear));
 
     if (mIsValidInfo) {
         MR::syncStageSwitchAppear(this);
@@ -71,7 +71,7 @@ void FireBubble::appear() {
     _B4.set(_9C);
     MR::calcGravity(this);
     LiveActor::appear();
-    setNerve(&NrvFireBubble::FireBubbleNrvAppear::sInstance);
+    setNerve(GET_NERVE(FireBubble, FireBubbleNrvAppear));
 }
 
 void FireBubble::appear(const TVec3f& vec1, const TVec3f& vec2, const TVec3f& vec3) {
@@ -107,8 +107,8 @@ void FireBubble::calcAndSetBaseMtx() {
 }
 
 void FireBubble::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvFireBubble::FireBubbleNrvAppear::sInstance) && !isNerve(&NrvFireBubble::FireBubbleNrvDown::sInstance) &&
-        !isNerve(&NrvFireBubble::FireBubbleNrvWaitToAppear::sInstance)) {
+    if (!isNerve(GET_NERVE(FireBubble, FireBubbleNrvAppear)) && !isNerve(GET_NERVE(FireBubble, FireBubbleNrvDown)) &&
+        !isNerve(GET_NERVE(FireBubble, FireBubbleNrvWaitToAppear))) {
         if (MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
             killOrWaitToApppear();
         }
@@ -213,7 +213,7 @@ bool FireBubble::tryChaseEnd() {
 
     if (mActFrame < mChaseCounter) {
         MR::onCalcGravity(this);
-        setNerve(&NrvFireBubble::FireBubbleNrvDown::sInstance);
+        setNerve(GET_NERVE(FireBubble, FireBubbleNrvDown));
         return true;
     }
 
@@ -225,7 +225,7 @@ bool FireBubble::tryReflect() {
         TVec2f starPointerScreenVelocity(*MR::getStarPointerScreenVelocity(*MR::getStarPointerLastPointedPort(this)));
         if (::cReflectCursorSpeed < starPointerScreenVelocity.length()) {
             MR::onCalcGravity(this);
-            setNerve(&NrvFireBubble::FireBubbleNrvReflect::sInstance);
+            setNerve(GET_NERVE(FireBubble, FireBubbleNrvReflect));
             return true;
         }
     }
@@ -236,7 +236,7 @@ bool FireBubble::tryReflect() {
 void FireBubble::killOrWaitToApppear() {
     if (mIsValidInfo) {
         MR::emitEffect(this, "Down");
-        setNerve(&NrvFireBubble::FireBubbleNrvWaitToAppear::sInstance);
+        setNerve(GET_NERVE(FireBubble, FireBubbleNrvWaitToAppear));
     } else {
         kill();
     }
@@ -268,7 +268,7 @@ void FireBubble::exeAppear() {
 
     if (!MR::isNoBind(this) && MR::isOnGround(this)) {
         MR::startSound(this, "SE_EM_FIRE_BUBBLE_JUMP");
-        setNerve(&NrvFireBubble::FireBubbleNrvWait::sInstance);
+        setNerve(GET_NERVE(FireBubble, FireBubbleNrvWait));
     } else {
         updateGravity(::cAppearGravity);
 
@@ -292,9 +292,9 @@ void FireBubble::exeWait() {
     if (MR::isGreaterStep(this, ::cChaseFrame) && MR::isNearPlayer(this, ::cChaseStartDistance)) {
         MR::startSound(this, "SE_EM_FIRE_BUBBLE_JUMP");
         mActFrame = MR::getRandom((s32)0, ::cRandomActFrame) + ::cChaseInvalidFrame;
-        setNerve(&NrvFireBubble::FireBubbleNrvChase::sInstance);
+        setNerve(GET_NERVE(FireBubble, FireBubbleNrvChase));
     } else if (MR::isStep(this, mActFrame)) {
-        setNerve(&NrvFireBubble::FireBubbleNrvDown::sInstance);
+        setNerve(GET_NERVE(FireBubble, FireBubbleNrvDown));
     }
 }
 
@@ -331,7 +331,7 @@ void FireBubble::exeReflect() {
     mChaseCounter++;
 
     if (MR::isOnGround(this)) {
-        setNerve(&NrvFireBubble::FireBubbleNrvReflectLand::sInstance);
+        setNerve(GET_NERVE(FireBubble, FireBubbleNrvReflectLand));
     } else {
         updateGravity(::cReflectGravity);
     }
@@ -345,7 +345,7 @@ void FireBubble::exeReflectLand() {
     }
 
     if (!tryChaseEnd() && !tryReflect()) {
-        MR::setNerveAtBckStopped(this, &NrvFireBubble::FireBubbleNrvReflectWait::sInstance);
+        MR::setNerveAtBckStopped(this, GET_NERVE(FireBubble, FireBubbleNrvReflectWait));
     }
 }
 
@@ -357,7 +357,7 @@ void FireBubble::exeReflectWait() {
     if (!tryChaseEnd() && !tryReflect() && MR::isStep(this, ::cReflectWaitFrame)) {
         MR::deleteEffect(this, "WaitS");
         MR::onCalcGravity(this);
-        setNerve(&NrvFireBubble::FireBubbleNrvChase::sInstance);
+        setNerve(GET_NERVE(FireBubble, FireBubbleNrvChase));
     }
 }
 
@@ -391,6 +391,6 @@ void FireBubble::exeWaitToAppear() {
         _B4.set(_9C);
         _A8.set(::cAppearVelocity);
         MR::calcGravity(this);
-        setNerve(&NrvFireBubble::FireBubbleNrvAppear::sInstance);
+        setNerve(GET_NERVE(FireBubble, FireBubbleNrvAppear));
     }
 }

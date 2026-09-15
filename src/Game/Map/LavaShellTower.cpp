@@ -31,9 +31,9 @@ void LavaShellTower::init(const JMapInfoIter& rIter) {
     info.setupConnectToScene();
     info.setupSound(4);
     info.setupGroupClipping(0x40);
-    info.setupNerve(&NrvLavaShellTower::HostTypeWait::sInstance);
+    info.setupNerve(GET_NERVE(LavaShellTower, HostTypeWait));
     initialize(rIter, info);
-    MR::registerDemoActionNerve(this, &NrvLavaShellTower::HostTypeDemo::sInstance, "開始");
+    MR::registerDemoActionNerve(this, GET_NERVE(LavaShellTower, HostTypeDemo), "開始");
     makeActorAppeared();
 }
 
@@ -51,7 +51,7 @@ void LavaShellTower::exeDemo() {
 
     if (MR::isGreaterStep(this, 1) && MR::isDemoLastStep()) {
         MR::stopShakingCamera(this);
-        setNerve(&NrvLavaShellTower::HostTypeDone::sInstance);
+        setNerve(GET_NERVE(LavaShellTower, HostTypeDone));
     }
 }
 

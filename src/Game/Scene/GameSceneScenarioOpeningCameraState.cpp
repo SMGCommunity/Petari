@@ -21,7 +21,7 @@ namespace {
 
 GameSceneScenarioOpeningCameraState::GameSceneScenarioOpeningCameraState() : NerveExecutor("シナリオ開始カメラ再生") {
     mBaseMtx.identity();
-    initNerve(&GameSceneScenarioOpeningCameraStatePlay::sInstance);
+    initNerve(GET_NERVE_GLOBAL(GameSceneScenarioOpeningCameraStatePlay));
     mScenarioTitle = new ScenarioTitle();
     mScenarioTitle->initWithoutIter();
     mScenarioTitle->kill();
@@ -32,7 +32,7 @@ void GameSceneScenarioOpeningCameraState::update() {
 }
 
 bool GameSceneScenarioOpeningCameraState::isDone() const {
-    return isNerve(&GameSceneScenarioOpeningCameraStateWait::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(GameSceneScenarioOpeningCameraStateWait));
 }
 
 void GameSceneScenarioOpeningCameraState::start() {
@@ -75,7 +75,7 @@ void GameSceneScenarioOpeningCameraState::exePlay() {
     if (trySkipTrigger()) {
         end();
         MR::forceToBlankCinemaFrame();
-        setNerve(&GameSceneScenarioOpeningCameraStateWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(GameSceneScenarioOpeningCameraStateWait));
     } else {
         if (MR::isStep(this, MR::getStartAnimCameraFrame() - 60)) {
             MR::tryFrameToBlankCinemaFrame();
@@ -88,7 +88,7 @@ void GameSceneScenarioOpeningCameraState::exePlay() {
 
         if (MR::isStartAnimCameraEnd() && MR::isStopCinemaFrame()) {
             end();
-            setNerve(&GameSceneScenarioOpeningCameraStateWait::sInstance);
+            setNerve(GET_NERVE_GLOBAL(GameSceneScenarioOpeningCameraStateWait));
         }
     }
 }

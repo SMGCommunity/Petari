@@ -28,9 +28,9 @@ ClipAreaDrop::ClipAreaDrop(const char* pName) : ClipArea(pName), mShapeSphere(),
 
 void ClipAreaDrop::init(const JMapInfoIter& rIter) {
     initBaseMatrix(rIter);
-    MR::connectToScene(this, MR::MovementType_ClippedMapParts, -1, -1, MR::DrawType_ClipArea);
+    MR::connectToScene(this, MR::MovementType_ClippedMapParts, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_ClipArea);
     MR::invalidateClipping(this);
-    initNerve(&NrvClipAreaDrop::ClipAreaDropNrvWait::sInstance);
+    initNerve(GET_NERVE(ClipAreaDrop, ClipAreaDropNrvWait));
     makeActorDead();
 }
 
@@ -43,7 +43,7 @@ void ClipAreaDrop::appear() {
 
     mShapeSphere->mRadius = 0.0f;
 
-    setNerve(&NrvClipAreaDrop::ClipAreaDropNrvWait::sInstance);
+    setNerve(GET_NERVE(ClipAreaDrop, ClipAreaDropNrvWait));
 }
 
 void ClipAreaDrop::control() {

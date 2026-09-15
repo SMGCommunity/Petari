@@ -82,9 +82,9 @@ MechanicKoopaMini::~MechanicKoopaMini() {
 
 void MechanicKoopaMini::onAppearSwitchOn() {
     if (mIsAppearJumping) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvJumpStart::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvJumpStart));
     } else {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvWait));
     }
 }
 
@@ -126,7 +126,7 @@ void MechanicKoopaMini::init(const JMapInfoIter& rIter) {
     initSound(3, false);
     MR::initLightCtrl(this);
     initEffectKeeper(1, nullptr, false);
-    initNerve(&NrvMechanicKoopaMini::HostTypeNrvWalkOnRail::sInstance);
+    initNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvWalkOnRail));
     initHitSensor(3);
     f32 yScale = mScale.y;
     MR::addHitSensorAtJointEnemy(this, "body", "JointRoot", 16, 130.0f * yScale, TVec3f(48.0f, 13.0f, 0.0f));
@@ -174,9 +174,9 @@ void MechanicKoopaMini::exeWait() {
     MR::moveAndTurnToPlayer(this, ::hNoMoveNoTurnParam._0, ::hNoMoveNoTurnParam._4, ::hNoMoveNoTurnParam._8, ::hNoMoveNoTurnParam._C);
 
     if (MR::calcDistanceToPlayer(this) < 900.0f && MR::isFaceToPlayerDegree(this, 120.0f)) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvFind::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvFind));
     } else if (MR::isGreaterStep(this, 120)) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvWalkOnRail::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvWalkOnRail));
     }
 }
 
@@ -193,13 +193,13 @@ void MechanicKoopaMini::exeWalkOnRail() {
         if (MR::isBindedWallOfMap(this)) {
             TVec3f vecc(*MR::getWallNormal(this));
             if (frontVec.dot(vecc) < -0.99f) {
-                setNerve(&NrvMechanicKoopaMini::HostTypeNrvJumpStart::sInstance);
+                setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvJumpStart));
                 return;
             }
         }
 
         if (MR::calcDistanceToPlayer(this) < 900.0f && MR::isFaceToPlayerDegree(this, 120.0f)) {
-            setNerve(&NrvMechanicKoopaMini::HostTypeNrvFind::sInstance);
+            setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvFind));
             return;
         }
     } else {
@@ -207,9 +207,9 @@ void MechanicKoopaMini::exeWalkOnRail() {
     }
 
     if (canTurn) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvTurn::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvTurn));
     } else if (!mIsForbidPause && MR::isGreaterStep(this, 120)) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvWait));
     }
 }
 
@@ -228,7 +228,7 @@ void MechanicKoopaMini::exeTurn() {
     TVec3f vec(mPosition);
     vec.add(railDir);
     if (MR::isFaceToTargetDegree(this, vec, 5.0f)) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvWalkOnRail::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvWalkOnRail));
     }
 }
 
@@ -249,7 +249,7 @@ void MechanicKoopaMini::exeJumpStart() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvJumpEnd::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvJumpEnd));
     }
 }
 
@@ -265,7 +265,7 @@ void MechanicKoopaMini::exeJumpEnd() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvWalkOnRail::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvWalkOnRail));
     }
 }
 
@@ -283,7 +283,7 @@ void MechanicKoopaMini::exeFind() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvPursue::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvPursue));
     }
 }
 
@@ -301,7 +301,7 @@ void MechanicKoopaMini::exePursue() {
         if (MR::isBindedWall(this)) {
             TVec3f vecc(*MR::getWallNormal(this));
             if (frontVec.dot(vecc) < -0.99f) {
-                setNerve(&NrvMechanicKoopaMini::HostTypeNrvJumpStart::sInstance);
+                setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvJumpStart));
             }
         }
     } else {
@@ -311,9 +311,9 @@ void MechanicKoopaMini::exePursue() {
 
     f32 distance = MR::calcDistanceToPlayer(this);
     if (1100.0f < distance) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvWalkOnRail::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvWalkOnRail));
     } else if (distance < 300.0f && MR::isFaceToPlayerHorizontalDegree(this, frontVec, 5.729578f) && MR::isOnGround(this)) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvPreFireAttack::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvPreFireAttack));
     }
 }
 
@@ -335,7 +335,7 @@ void MechanicKoopaMini::exePreFireAttack() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvFireAttack::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvFireAttack));
     }
 }
 
@@ -353,7 +353,7 @@ void MechanicKoopaMini::exeFireAttack() {
     }
 
     if (MR::isGreaterStep(this, 120)) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvFireAttackEnd::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvFireAttackEnd));
     } else if (MR::isLessEqualStep(this, 90)) {
         MR::startLevelSound(this, "SE_EM_LV_MKOOPAMINI_FIRE");
     }
@@ -376,7 +376,7 @@ void MechanicKoopaMini::exeFireAttackEnd() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvWalkOnRail::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvWalkOnRail));
     }
 }
 
@@ -393,7 +393,7 @@ void MechanicKoopaMini::exeAttackHit() {
     }
 
     if (MR::isOnGround(this) && MR::isActionEnd(this)) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvWait));
     }
 }
 
@@ -415,7 +415,7 @@ void MechanicKoopaMini::exeSpinHit() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvFireAttack::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvFireAttack));
     }
 }
 
@@ -435,7 +435,7 @@ void MechanicKoopaMini::exeTrample() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvFireAttack::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvFireAttack));
     }
 }
 
@@ -453,7 +453,7 @@ void MechanicKoopaMini::exeHipDropped() {
 }
 
 void MechanicKoopaMini::exeBindStarPointer() {
-    MR::updateActorStateAndNextNerve(this, mBindStarPointer, &NrvMechanicKoopaMini::HostTypeNrvWalkOnRail::sInstance);
+    MR::updateActorStateAndNextNerve(this, mBindStarPointer, GET_NERVE(MechanicKoopaMini, HostTypeNrvWalkOnRail));
 }
 
 void MechanicKoopaMini::endBindStarPointer() {
@@ -464,16 +464,15 @@ void MechanicKoopaMini::control() {
     mScaleController->updateNerve();
     if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f)) || MR::isInWater(mPosition)) {
         kill();
-    } else if ((isNerve(&NrvMechanicKoopaMini::HostTypeNrvFireAttack::sInstance) ||
-                isNerve(&NrvMechanicKoopaMini::HostTypeNrvPreFireAttack::sInstance) ||
-                isNerve(&NrvMechanicKoopaMini::HostTypeNrvWalkOnRail::sInstance) || isNerve(&NrvMechanicKoopaMini::HostTypeNrvPursue::sInstance)) &&
+    } else if ((isNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvFireAttack)) || isNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvPreFireAttack)) ||
+                isNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvWalkOnRail)) || isNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvPursue))) &&
                mBindStarPointer->tryStartPointBind()) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvBindStarPointer::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvBindStarPointer));
     }
 }
 
 void MechanicKoopaMini::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvMechanicKoopaMini::HostTypeNrvHipDropped::sInstance)) {
+    if (!isNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvHipDropped))) {
         if (getSensor("fire") == pSender) {
             if (MR::isSensorPlayer(pReceiver)) {
                 MR::sendMsgEnemyAttackFire(pReceiver, pSender);
@@ -499,12 +498,12 @@ bool MechanicKoopaMini::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitS
         return false;
     }
 
-    if (isNerve(&NrvMechanicKoopaMini::HostTypeNrvHipDropped::sInstance)) {
+    if (isNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvHipDropped))) {
         return false;
     }
 
     if (MR::isMsgStarPieceAttack(msg)) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvSpinHit::sInstance);
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvSpinHit));
         return true;
     }
 
@@ -517,25 +516,25 @@ bool MechanicKoopaMini::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitS
             return false;
         } else {
             MR::startSound(this, "SE_EM_MKOOPAMINI_TRAMPLE");
-            if (isNerve(&NrvMechanicKoopaMini::HostTypeNrvSpinHit::sInstance)) {
+            if (isNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvSpinHit))) {
                 return true;
             }
 
-            if (!isNerve(&NrvMechanicKoopaMini::HostTypeNrvTrample::sInstance)) {
-                setNerve(&NrvMechanicKoopaMini::HostTypeNrvTrample::sInstance);
+            if (!isNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvTrample))) {
+                setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvTrample));
             }
             return true;
         }
     }
 
-    if (MR::isMsgPlayerHipDrop(msg) && !isNerve(&NrvMechanicKoopaMini::HostTypeNrvHipDropped::sInstance)) {
-        setNerve(&NrvMechanicKoopaMini::HostTypeNrvHipDropped::sInstance);
+    if (MR::isMsgPlayerHipDrop(msg) && !isNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvHipDropped))) {
+        setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvHipDropped));
         return true;
     }
 
     if (MR::isMsgPlayerSpinAttack(msg)) {
-        if (!isNerve(&NrvMechanicKoopaMini::HostTypeNrvSpinHit::sInstance) || !MR::isLessStep(this, 120)) {
-            setNerve(&NrvMechanicKoopaMini::HostTypeNrvSpinHit::sInstance);
+        if (!isNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvSpinHit)) || !MR::isLessStep(this, 120)) {
+            setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvSpinHit));
         }
         return true;
     }

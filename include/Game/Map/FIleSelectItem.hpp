@@ -17,8 +17,6 @@ namespace FileSelectItemSub {
     public:
         ScaleController();
 
-        virtual ~ScaleController();
-
         void exeToSmall();
         void exeToBig();
         void exeSmall();
@@ -30,8 +28,6 @@ namespace FileSelectItemSub {
     class BlinkController : public NerveExecutor {
     public:
         BlinkController(FileSelectItem*);
-
-        virtual ~BlinkController();
 
         void exeOpen();
         void exeShut();
@@ -95,34 +91,34 @@ public:
     void exeExistWait();
     void exeNewWait();
 
-    bool _8C;
-    PartsModel* mPlanetMapObj;  // 0x90
-    FileSelectIconID* mIconID;  // 0x94
-    FileSelectModel** mModels;  // 0x98
-    MiiFaceParts* mFaceParts;   // 0x9C
-    FileSelectNumber* _A0;
-    TMtx34f _A4;
-    TMtx34f _D4;
-    TMtx34f _104;
-    TVec3f _134;
-    s32 _140;
-    u8 _144;
-    bool mIsInvalidateSelect;  // 0x145
-    u8 _146;
-    u8 _147;
-    FileSelectItemSub::ScaleController* mScaleCtrl;  // 0x148
-    FileSelectItemSub::BlinkController* mBlinkCtrl;  // 0x14C
-    FileSelectItemDelegatorBase* mDelegator;         // 0x150
-    u8 _154;
-    u8 _155;
-    u8 _156;
-    u8 _157;
-    TVec2f _158;
-    f32 _160;
-    bool mIsInvalidRotate;  // 0x164
-    u8 _165;
-    u8 _166;
-    u8 _167;
-    s32 _168;
-    s32 _16C;
+    /* 0x08C */ bool _8C;
+    /* 0x090 */ PartsModel* mPlanetMapObj;
+    /* 0x094 */ FileSelectIconID* mIconID;
+    /* 0x098 */ FileSelectModel** mModels;
+    /* 0x09C */ MiiFaceParts* mFaceParts;
+    /* 0x0A0 */ FileSelectNumber* _A0;
+    /* 0x0A4 */ TPos3f _A4;
+    /* 0x0D4 */ TMtx34f _D4;
+    /* 0x104 */ TMtx34f _104;
+    /* 0x134 */ TVec3f _134;
+    /* 0x140 */ s32 _140;
+    /* 0x144 */ u8 _144;
+    /* 0x145 */ bool mIsInvalidateSelect;
+    /* 0x146 */ u8 _146;
+    /* 0x147 */ u8 _147;
+    /* 0x148 */ FileSelectItemSub::ScaleController* mScaleCtrl;
+    /* 0x14C */ FileSelectItemSub::BlinkController* mBlinkCtrl;
+    /* 0x150 */ FileSelectItemDelegatorBase* mDelegator;
+    /* 0x154 */ u8 _154;
+    /* 0x155 */ u8 _155;
+    /* 0x156 */ u8 _156;
+    /* 0x157 */ u8 _157;
+    /* 0x158 */ TVec2f _158;
+    /* 0x160 */ f32 _160;
+    /* 0x164 */ bool mIsInvalidRotate;
+    /* 0x165 */ u8 _165;
+    /* 0x166 */ u8 _166;
+    /* 0x167 */ u8 _167;
+    /* 0x168 */ s32 _168;
+    /* 0x16C */ s32 _16C;
 };

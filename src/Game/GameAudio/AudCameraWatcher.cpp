@@ -21,7 +21,7 @@ void AudCameraWatcher::playAtmosphereSE() {
 }
 
 void AudCameraWatcher::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_AudCameraWatcher, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_AudCameraWatcher, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
 }
 
 void AudCameraWatcher::movement() {

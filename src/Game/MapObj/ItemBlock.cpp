@@ -45,7 +45,7 @@ void ItemBlock::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchSleep(this, rIter);
     initEffectKeeper(1, "CoinBlock", false);
     initSound(4, false);
-    initNerve(&NrvItemBlock::ItemBlockNrvStandby::sInstance);
+    initNerve(GET_NERVE(ItemBlock, ItemBlockNrvStandby));
     s32 arg = -1;
     MR::getJMapInfoArg4NoInit(rIter, &arg);
     MR::initShadowVolumeBox(this, TVec3f(150.0f, 150.0f, 150.0f));
@@ -155,7 +155,7 @@ void ItemBlock::initBlock() {
 
 void ItemBlock::appear() {
     LiveActor::appear();
-    setNerve(&NrvItemBlock::ItemBlockNrvStandby::sInstance);
+    setNerve(GET_NERVE(ItemBlock, ItemBlockNrvStandby));
 
     switch (mKind) {
     case 1:
@@ -189,20 +189,20 @@ bool ItemBlock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
 }
 
 bool ItemBlock::tryStartJumpPunch() {
-    if (isNerve(&NrvItemBlock::ItemBlockNrvStandby::sInstance)) {
+    if (isNerve(GET_NERVE(ItemBlock, ItemBlockNrvStandby))) {
         if (mKind == 1 || mKind == 3) {
             MR::startBck(this, "Appear", nullptr);
             calcAnim();
             mNoCalcAnim = true;
-            setNerve(&NrvItemBlock::ItemBlockNrvAppearItem::sInstance);
+            setNerve(GET_NERVE(ItemBlock, ItemBlockNrvAppearItem));
         } else if (mKind == 2 || mKind == 4 || mKind == 5) {
-            setNerve(&NrvItemBlock::ItemBlockNrvAppearItemSplash::sInstance);
+            setNerve(GET_NERVE(ItemBlock, ItemBlockNrvAppearItemSplash));
         }
 
         return true;
     }
 
-    if (isNerve(&NrvItemBlock::ItemBlockNrvWait::sInstance)) {
+    if (isNerve(GET_NERVE(ItemBlock, ItemBlockNrvWait))) {
         if (mKind == 1 || mKind == 3) {
             if (mKind == 1) {
                 if (MR::getDeclareRemnantCoinCount(this) == 1) {
@@ -217,7 +217,7 @@ bool ItemBlock::tryStartJumpPunch() {
             MR::startBck(this, "Appear", nullptr);
             calcAnim();
             mNoCalcAnim = true;
-            setNerve(&NrvItemBlock::ItemBlockNrvAppearItem::sInstance);
+            setNerve(GET_NERVE(ItemBlock, ItemBlockNrvAppearItem));
 
             return true;
         }
@@ -288,7 +288,7 @@ void ItemBlock::exeAppearItem() {
     if (!mTimer) {
         kill();
     } else {
-        setNerve(&NrvItemBlock::ItemBlockNrvWait::sInstance);
+        setNerve(GET_NERVE(ItemBlock, ItemBlockNrvWait));
     }
 }
 

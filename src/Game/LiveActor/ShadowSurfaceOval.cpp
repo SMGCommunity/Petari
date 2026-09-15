@@ -42,31 +42,27 @@ void ShadowSurfaceOval::draw() const {
         return;
     }
 
-    f32 f1 = 100.0f;
-    f32 f2 = 1.0f;
-    TVec3f vec(mSize);
-    vec.scale(f2 / f1);
-
+    TVec3f size(mSize / 100.0f);
     if (controller->isFollowHostScale()) {
-        vec *= controller->getHost()->mScale;
+        size *= controller->getHost()->mScale;
     }
 
-    TVec3f v23, v22;
-    controller->getProjectionPos(&v23);
-    controller->getProjectionNormal(&v22);
+    TVec3f pos, normal;
+    controller->getProjectionPos(&pos);
+    controller->getProjectionNormal(&normal);
     GXSetChanMatColor(GX_COLOR0A0, mColor);
-    TPos3f pos;
-    pos.setInline(baseMtx);
-    MR::preScaleMtx(pos, mSize);
-    MR::flattenMtx(pos, v22);
-    pos.setTrans(v23);
-    TDDraw::setModelMtx(pos.toMtxPtr());
+    TPos3f mtx;
+    mtx.setInline(baseMtx);
+    MR::preScaleMtx(mtx, size);
+    MR::flattenMtx(mtx, normal);
+    mtx.setTrans(pos);
+    TDDraw::setModelMtx(mtx.toMtxPtr());
     MR::drawSimpleModel(mModelData);
-    MR::preScaleMtx(pos, 0.9f);
-    TDDraw::setModelMtx(pos.toMtxPtr());
+    MR::preScaleMtx(mtx, 0.9f);
+    TDDraw::setModelMtx(mtx.toMtxPtr());
     MR::drawSimpleModel(mModelData);
-    MR::preScaleMtx(pos.toMtxPtr(), 0.9f);
-    TDDraw::setModelMtx(pos.toMtxPtr());
+    MR::preScaleMtx(mtx.toMtxPtr(), 0.9f);
+    TDDraw::setModelMtx(mtx.toMtxPtr());
     MR::drawSimpleModel(mModelData);
     GXSetChanMatColor(GX_COLOR0A0, Color8(128));
 }

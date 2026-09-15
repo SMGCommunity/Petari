@@ -73,7 +73,7 @@ void KoopaBattleMapStair::init(const JMapInfoIter& rIter) {
     MR::initCollisionParts(this, objName, getSensor("body"), nullptr);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
-    initNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvWaitSwitch::sInstance);
+    initNerve(GET_NERVE(KoopaBattleMapStair, KoopaBattleMapStairNrvWaitSwitch));
     MR::needStageSwitchReadA(this, rIter);
 
     if (mIsBig) {
@@ -92,7 +92,7 @@ void KoopaBattleMapStair::initAfterPlacement() {
 }
 
 bool KoopaBattleMapStair::isRequestAttackVs1() const {
-    if (isTypeNormal() && isNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvWaitKoopaFire::sInstance) && MR::isStep(this, mFireAttackStep)) {
+    if (isTypeNormal() && isNerve(GET_NERVE(KoopaBattleMapStair, KoopaBattleMapStairNrvWaitKoopaFire)) && MR::isStep(this, mFireAttackStep)) {
         return true;
     }
 
@@ -104,7 +104,7 @@ s32 KoopaBattleMapStair::calcRemainTimeToBreak() const {
 }
 
 bool KoopaBattleMapStair::isRequestAttackVs3() const {
-    if (!_A6 && isTypeNormal() && isNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvWaitKoopaFire::sInstance)) {
+    if (!_A6 && isTypeNormal() && isNerve(GET_NERVE(KoopaBattleMapStair, KoopaBattleMapStairNrvWaitKoopaFire))) {
         if (MR::isStep(this, mFireAttackStep) || mFireAttackStep < 0) {
             return true;
         }
@@ -175,7 +175,7 @@ f32 KoopaBattleMapStair::calcTimeRate() const {
 }
 
 bool KoopaBattleMapStair::isBreak() const {
-    return isNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvWaitFall::sInstance);
+    return isNerve(GET_NERVE(KoopaBattleMapStair, KoopaBattleMapStairNrvWaitFall));
 }
 
 bool KoopaBattleMapStair::isTypeNormal() const {
@@ -201,13 +201,13 @@ void KoopaBattleMapStair::exeWaitSwitch() {
 
     if (MR::isOnSwitchA(this)) {
         MR::invalidateClipping(this);
-        setNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvWaitKoopaFire::sInstance);
+        setNerve(GET_NERVE(KoopaBattleMapStair, KoopaBattleMapStairNrvWaitKoopaFire));
     }
 }
 
 void KoopaBattleMapStair::exeWaitKoopaFire() {
     if (MR::isStep(this, mTimeToBreak)) {
-        setNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvWaitFall::sInstance);
+        setNerve(GET_NERVE(KoopaBattleMapStair, KoopaBattleMapStairNrvWaitFall));
     }
 }
 
@@ -221,7 +221,7 @@ void KoopaBattleMapStair::exeWaitFall() {
 
     if (MR::isStep(this, mWaitFallStep)) {
         mVelocity.zero();
-        setNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvFall::sInstance);
+        setNerve(GET_NERVE(KoopaBattleMapStair, KoopaBattleMapStairNrvFall));
     }
 }
 
@@ -237,7 +237,7 @@ void KoopaBattleMapStair::exeFall() {
 
     if (MR::isStep(this, mFallStep)) {
         MR::startSound(this, "SE_OJ_STAIR_BREAK_END");
-        setNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvDisappear::sInstance);
+        setNerve(GET_NERVE(KoopaBattleMapStair, KoopaBattleMapStairNrvDisappear));
     }
 }
 

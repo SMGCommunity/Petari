@@ -28,13 +28,13 @@ void CometEventExecutorTimeLimit::init(const JMapInfoIter&) {
     mTimeLimitLayout->kill();
 
     MR::connectToSceneLayout(mTimeLimitLayout);
-    initNerve(&NrvCometEventExecutorTimeLimit::CometEventExecutorTimeLimitStartEvent::sInstance);
+    initNerve(GET_NERVE(CometEventExecutorTimeLimit, CometEventExecutorTimeLimitStartEvent));
     kill();
 }
 
 void CometEventExecutorTimeLimit::appear() {
     LiveActor::appear();
-    setNerve(&NrvCometEventExecutorTimeLimit::CometEventExecutorTimeLimitStartEvent::sInstance);
+    setNerve(GET_NERVE(CometEventExecutorTimeLimit, CometEventExecutorTimeLimitStartEvent));
 }
 
 void CometEventExecutorTimeLimit::kill() {

@@ -29,7 +29,7 @@ PrizeRing::~PrizeRing() {
 }
 
 void PrizeRing::init(const JMapInfoIter& rIter) {
-    initNerve(&NrvPrizeRing::PrizeRingStart::sInstance);
+    initNerve(GET_NERVE(PrizeRing, PrizeRingStart));
     initHitSensor(1);
     TVec3f offset;
     offset.x = 0.0f;
@@ -43,7 +43,7 @@ void PrizeRing::appear() {
     makeActorAppeared();
     MR::showModel(this);
     MR::invalidateClipping(this);
-    setNerve(&NrvPrizeRing::PrizeRingStart::sInstance);
+    setNerve(GET_NERVE(PrizeRing, PrizeRingStart));
 }
 
 void PrizeRing::kill() {
@@ -61,14 +61,14 @@ void PrizeRing::setNumber(int pNum) {
 }
 
 void PrizeRing::setNervePass() {
-    setNerve(&NrvPrizeRing::PrizeRingPass::sInstance);
+    setNerve(GET_NERVE(PrizeRing, PrizeRingPass));
 }
 
 bool PrizeRing::isReadyToPass() const {
     if (MR::isDead(this)) {
         return false;
     } else {
-        return isNerve(&NrvPrizeRing::PrizeRingReadyToPass::sInstance);
+        return isNerve(GET_NERVE(PrizeRing, PrizeRingReadyToPass));
     }
 }
 
@@ -76,7 +76,7 @@ bool PrizeRing::isReadyToKill() const {
     if (MR::isDead(this)) {
         return false;
     } else {
-        return isNerve(&NrvPrizeRing::PrizeRingReadyToKill::sInstance);
+        return isNerve(GET_NERVE(PrizeRing, PrizeRingReadyToKill));
     }
 }
 
@@ -89,7 +89,7 @@ void PrizeRing::exeStart() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvPrizeRing::PrizeRingLoop::sInstance);
+        setNerve(GET_NERVE(PrizeRing, PrizeRingLoop));
     }
 }
 
@@ -100,7 +100,7 @@ void PrizeRing::exeLoop() {
     }
 
     if (MR::isStep(this, mLifeTime)) {
-        setNerve(&NrvPrizeRing::PrizeRingTimeout::sInstance);
+        setNerve(GET_NERVE(PrizeRing, PrizeRingTimeout));
     }
 }
 
@@ -131,7 +131,7 @@ void PrizeRing::exePass() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvPrizeRing::PrizeRingReadyToKill::sInstance);
+        setNerve(GET_NERVE(PrizeRing, PrizeRingReadyToKill));
     }
 }
 
@@ -145,7 +145,7 @@ bool PrizeRing::isPassed() const {
     bool pass = isReadyToPass();
 
     if (!pass) {
-        pass = isNerve(&NrvPrizeRing::PrizeRingPass::sInstance);
+        pass = isNerve(GET_NERVE(PrizeRing, PrizeRingPass));
     }
 
     if (!pass) {
@@ -158,7 +158,7 @@ bool PrizeRing::isPassed() const {
 void PrizeRing::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         if (!isPassed()) {
-            setNerve(&NrvPrizeRing::PrizeRingReadyToPass::sInstance);
+            setNerve(GET_NERVE(PrizeRing, PrizeRingReadyToPass));
         }
     }
 }
@@ -184,7 +184,7 @@ void PrizeRing::playSound() const {
 }
 
 bool PrizeRing::isOnTriggerTimeoutFlash() const {
-    if (!isNerve(&NrvPrizeRing::PrizeRingTimeout::sInstance)) {
+    if (!isNerve(GET_NERVE(PrizeRing, PrizeRingTimeout))) {
         return false;
     }
 

@@ -20,7 +20,7 @@ namespace NrvRosettaDemoHeavensDoor1 {
 
 RosettaDemoHeavensDoor1::RosettaDemoHeavensDoor1(Rosetta* pHost, const JMapInfoIter& rIter) : NerveExecutor("ロゼッタデモ実行者"), mHost(pHost) {
     DemoFunction::tryCreateDemoTalkAnimCtrlForActor(mHost, "DemoGetPower", "スピンゲット[デモ1]");
-    initNerve(&NrvRosettaDemoHeavensDoor1::RosettaDemoHeavensDoor1NrvWait::sInstance);
+    initNerve(GET_NERVE(RosettaDemoHeavensDoor1, RosettaDemoHeavensDoor1NrvWait));
 
     mLightDomeModel = MR::createPartsModelNpc(mHost, "ライトドーム", "LightDome", nullptr);
     mLightDomeModel->makeActorDead();
@@ -92,7 +92,7 @@ void RosettaDemoHeavensDoor1::exeWait() {
         MR::offPlayerControl();
         MR::timeKeepDemoFadeOut();
         MR::startBrk(mLightHaloModel, "Disappear");
-        setNerve(&NrvRosettaDemoHeavensDoor1::RosettaDemoHeavensDoor1NrvFade::sInstance);
+        setNerve(GET_NERVE(RosettaDemoHeavensDoor1, RosettaDemoHeavensDoor1NrvFade));
     }
 }
 
@@ -158,7 +158,7 @@ RosettaDemoHeavensDoor2::RosettaDemoHeavensDoor2(Rosetta* pHost, const JMapInfoI
     MR::invalidateShadowAll(mHost);
     MR::invalidateHitSensors(mHost);
     mHost->startDemo(this);
-    initNerve(&NrvRosettaDemoHeavensDoor2::RosettaDemoHeavensDoor2NrvWait::sInstance);
+    initNerve(GET_NERVE(RosettaDemoHeavensDoor2, RosettaDemoHeavensDoor2NrvWait));
 }
 
 void RosettaDemoHeavensDoor2::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {

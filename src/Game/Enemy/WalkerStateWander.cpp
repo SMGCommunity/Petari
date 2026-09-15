@@ -27,7 +27,7 @@ WalkerStateWanderParam::WalkerStateWanderParam() : mWaitTime(120), mWalkTime(120
 WalkerStateWander::WalkerStateWander(LiveActor* pHost, TVec3f* pDirection, WalkerStateParam* pStateParam, WalkerStateWanderParam* pWanderParam)
     : ActorStateBase< LiveActor >("クリボー型うろつき状態", pHost), mDirection(pDirection), mTerritoryMover(nullptr), mStateParam(pStateParam),
       mWanderParam(pWanderParam) {
-    initNerve(&NrvWalkerStateWander::WalkerStateWanderNrvWait::sInstance);
+    initNerve(GET_NERVE(WalkerStateWander, WalkerStateWanderNrvWait));
 
     if (mWanderParam == nullptr) {
         mWanderParam = &::sDefaultParam;
@@ -39,7 +39,7 @@ WalkerStateWander::WalkerStateWander(LiveActor* pHost, TVec3f* pDirection, Walke
 
 void WalkerStateWander::appear() {
     mIsDead = false;
-    setNerve(&NrvWalkerStateWander::WalkerStateWanderNrvWait::sInstance);
+    setNerve(GET_NERVE(WalkerStateWander, WalkerStateWanderNrvWait));
 }
 
 void WalkerStateWander::setWanderCenter(const TVec3f& rCenter) {
@@ -55,7 +55,7 @@ void WalkerStateWander::exeWait() {
 
     if (MR::isGreaterStep(this, mWanderParam->mWaitTime)) {
         mTerritoryMover->decideNextTargetPos(getHost());
-        setNerve(&NrvWalkerStateWander::WalkerStateWanderNrvWalk::sInstance);
+        setNerve(GET_NERVE(WalkerStateWander, WalkerStateWanderNrvWalk));
     }
 }
 
@@ -74,11 +74,11 @@ void WalkerStateWander::exeWalk() {
 
     if (MR::isFallNextMove(getHost(), 150.0f, 150.0f, 150.0f, nullptr)) {
         MR::zeroVelocity(getHost());
-        setNerve(&NrvWalkerStateWander::WalkerStateWanderNrvWait::sInstance);
+        setNerve(GET_NERVE(WalkerStateWander, WalkerStateWanderNrvWait));
         return;
     }
 
     if (MR::isGreaterStep(this, mWanderParam->mWalkTime) || mTerritoryMover->isReachedTarget(getHost(), mWanderParam->mTargetDistance)) {
-        setNerve(&NrvWalkerStateWander::WalkerStateWanderNrvWait::sInstance);
+        setNerve(GET_NERVE(WalkerStateWander, WalkerStateWanderNrvWait));
     }
 }

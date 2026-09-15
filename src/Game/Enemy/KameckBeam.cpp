@@ -64,7 +64,7 @@ KameckBeam::KameckBeam(const char* pName)
 void KameckBeam::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::connectToSceneEnemyDecorationMovementCalcAnim(this);
-    initNerve(&NrvKameckBeam::KameckBeamNrvFollowWand::sInstance);
+    initNerve(GET_NERVE(KameckBeam, KameckBeamNrvFollowWand));
     initSound(4, false);
     initBinder(::sBeamRadius, 0.0f, 0);
     MR::setKameckBeamCollisionFilter(this);
@@ -185,7 +185,7 @@ bool KameckBeam::requestFollowWand(MtxPtr pMtx, f32 scale) {
     emitBeamReadyEffect();
     mFollowMtx = pMtx;
     makeActorAppeared();
-    setNerve(&NrvKameckBeam::KameckBeamNrvFollowWand::sInstance);
+    setNerve(GET_NERVE(KameckBeam, KameckBeamNrvFollowWand));
     MR::offBind(this);
     MR::invalidateHitSensors(this);
     MR::invalidateShadow(this, nullptr);
@@ -229,7 +229,7 @@ void KameckBeam::requestShoot(const TVec3f& rDir, f32 speed) {
     MR::validateHitSensors(this);
     MR::validateShadow(this, nullptr);
     mFollowMtx = nullptr;
-    setNerve(&NrvKameckBeam::KameckBeamNrvShoot::sInstance);
+    setNerve(GET_NERVE(KameckBeam, KameckBeamNrvShoot));
     _A4.set(rDir);
     mVelocity.set(rDir * speed);
 }
@@ -239,7 +239,7 @@ bool KameckBeam::requestStorm(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    if (!isNerve(&NrvKameckBeam::KameckBeamNrvShoot::sInstance)) {
+    if (!isNerve(GET_NERVE(KameckBeam, KameckBeamNrvShoot))) {
         return false;
     }
 
@@ -261,7 +261,7 @@ bool KameckBeam::tryShootEnd() {
         MR::sendMsgEnemyAttackExplosionToBindedSensor(this, getSensor("attack"));
         MR::invalidateHitSensors(this);
         MR::zeroVelocity(this);
-        setNerve(&NrvKameckBeam::KameckBeamNrvExplosion::sInstance);
+        setNerve(GET_NERVE(KameckBeam, KameckBeamNrvExplosion));
 
         return true;
     }
@@ -288,7 +288,7 @@ bool KameckBeam::tryChangeTurtle() {
     MR::forceDeleteEffectAll(this);
     mKameckTurtle->mPosition.set(mPosition);
     mKameckTurtle->appearDirection(_A4);
-    setNerve(&NrvKameckBeam::KameckBeamNrvJetTurtle::sInstance);
+    setNerve(GET_NERVE(KameckBeam, KameckBeamNrvJetTurtle));
 
     return true;
 }
@@ -335,7 +335,7 @@ bool KameckBeam::tryChangeFire() {
         MR::invalidateShadow(this, nullptr);
         MR::invalidateHitSensors(this);
         MR::forceDeleteEffectAll(this);
-        setNerve(&NrvKameckBeam::KameckBeamNrvFire::sInstance);
+        setNerve(GET_NERVE(KameckBeam, KameckBeamNrvFire));
         return true;
     }
 

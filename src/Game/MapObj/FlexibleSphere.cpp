@@ -51,7 +51,7 @@ void FlexibleSphere::init(const JMapInfoIter& rIter) {
 
     mGrowDirection = GROW;
 
-    MR::connectToScene(this, MR::MovementType_Planet, MR::CalcAnimType_Planet, -1, MR::DrawType_FlexibleSphere);
+    MR::connectToScene(this, MR::MovementType_Planet, MR::CalcAnimType_Planet, MR::DrawBufferType_None, MR::DrawType_FlexibleSphere);
 
     MR::setGroupClipping(this, rIter, 32);
     MR::setClippingTypeSphere(this, 3000.0f);

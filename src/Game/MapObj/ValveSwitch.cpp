@@ -35,7 +35,7 @@ void ValveSwitch::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     MR::getJMapInfoArg0NoInit(rIter, &_C4);
-    initNerve(&NrvValveSwitch::ValveSwitchNrvWait::sInstance);
+    initNerve(GET_NERVE(ValveSwitch, ValveSwitchNrvWait));
     makeActorAppeared();
 }
 
@@ -77,7 +77,7 @@ void ValveSwitch::exeAdjust() {
     _8C->mPosition.lerp(_8C->mPosition, getSensor("body")->mPosition, getNerveStep() / 3.0f);
 
     if (MR::isStep(this, 3)) {
-        setNerve(&NrvValveSwitch::ValveSwitchNrvValve::sInstance);
+        setNerve(GET_NERVE(ValveSwitch, ValveSwitchNrvValve));
     }
 }
 
@@ -105,7 +105,7 @@ void ValveSwitch::exeValve() {
 
     if (MR::isBckStopped(this)) {
         MR::onSwitchA(this);
-        setNerve(&NrvValveSwitch::ValveSwitchNrvEnd::sInstance);
+        setNerve(GET_NERVE(ValveSwitch, ValveSwitchNrvEnd));
     }
 }
 

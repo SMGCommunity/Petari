@@ -64,7 +64,7 @@ void BegomanBaby::init(const JMapInfoIter& rIter) {
         mHost = this;
     }
     initBinder(45.0f, 45.0f, 0);
-    initNerve(&NrvBegomanBaby::HostTypeNrvWait::sInstance);
+    initNerve(GET_NERVE(BegomanBaby, HostTypeNrvWait));
     initSensor(0, 40.0f, 80.0f, "Locator1");
 
     mBabyDelegator = MR::createJointDelegatorWithNullChildFunc(this, &BegomanBaby::calcHeadJoint, "BabyBegomanFace");
@@ -84,7 +84,7 @@ void BegomanBaby::init(const JMapInfoIter& rIter) {
 
 void BegomanBaby::appear() {
     BegomanBase::appear();
-    setNerve(&NrvBegomanBaby::HostTypeNrvWait::sInstance);
+    setNerve(GET_NERVE(BegomanBaby, HostTypeNrvWait));
     MR::validateExCollisionParts(this);
 }
 
@@ -92,7 +92,7 @@ void BegomanBaby::appearFromLaunch(const TVec3f& rVec1, const TVec3f& rVec2) {
     BegomanBase::appear();
     MR::emitEffect(this, "Death");
     MR::startSound(this, "SE_EM_BEGOMAN_APPEAR");
-    setNerve(&NrvBegomanBaby::HostTypeNrvAfterLaunch::sInstance);
+    setNerve(GET_NERVE(BegomanBaby, HostTypeNrvAfterLaunch));
 
     TVec3f vec(mPosition);
 
@@ -106,7 +106,7 @@ void BegomanBaby::appearFromLaunch(const TVec3f& rVec1, const TVec3f& rVec2) {
 
 void BegomanBaby::appearFromGuarder() {
     BegomanBase::appear();
-    setNerve(&NrvBegomanBaby::HostTypeNrvLaunchFromGuarder::sInstance);
+    setNerve(GET_NERVE(BegomanBaby, HostTypeNrvLaunchFromGuarder));
 }
 
 void BegomanBaby::kill() {
@@ -135,27 +135,27 @@ void BegomanBaby::killWithGenItem() {
 }
 
 void BegomanBaby::control() {
-    if (isNerve(&NrvBegomanBaby::HostTypeNrvPursue::sInstance) || isNerve(&NrvBegomanBaby::HostTypeNrvTurn::sInstance)) {
+    if (isNerve(GET_NERVE(BegomanBaby, HostTypeNrvPursue)) || isNerve(GET_NERVE(BegomanBaby, HostTypeNrvTurn))) {
         if (incAndCheckTiredCounter()) {
-            setNerve(&NrvBegomanBaby::HostTypeNrvTired::sInstance);
+            setNerve(GET_NERVE(BegomanBaby, HostTypeNrvTired));
             return;
         }
     } else {
         mTiredCounter = 0;
     }
 
-    checkTouchElectricRail(isNerve(&NrvBegomanBaby::HostTypeNrvBlow::sInstance));
+    checkTouchElectricRail(isNerve(GET_NERVE(BegomanBaby, HostTypeNrvBlow)));
 
     if (MR::isStep(this, 1)) {
-        if (isNerve(&NrvBegomanBaby::HostTypeNrvWait::sInstance) || isNerve(&NrvBegomanBaby::HostTypeNrvNoCalcWait::sInstance)) {
+        if (isNerve(GET_NERVE(BegomanBaby, HostTypeNrvWait)) || isNerve(GET_NERVE(BegomanBaby, HostTypeNrvNoCalcWait))) {
             MR::validateClipping(this);
         } else {
             MR::invalidateClipping(this);
         }
     }
 
-    if (!isNerve(&NrvBegomanBaby::HostTypeNrvInWater::sInstance) && !isNerve(&NrvBegomanBaby::HostTypeNrvNoCalcWait::sInstance)) {
-        if (isInWaterAndSetWaterNerve(&NrvBegomanBaby::HostTypeNrvInWater::sInstance, &mWaterColumnMatrix)) {
+    if (!isNerve(GET_NERVE(BegomanBaby, HostTypeNrvInWater)) && !isNerve(GET_NERVE(BegomanBaby, HostTypeNrvNoCalcWait))) {
+        if (isInWaterAndSetWaterNerve(GET_NERVE(BegomanBaby, HostTypeNrvInWater), &mWaterColumnMatrix)) {
             return;
         }
     }
@@ -176,22 +176,22 @@ void BegomanBaby::control() {
         return;
     }
 
-    if (isNerve(&NrvBegomanBaby::HostTypeNrvBlow::sInstance)) {
+    if (isNerve(GET_NERVE(BegomanBaby, HostTypeNrvBlow))) {
         preventSwingby(1.0f);
     }
 
-    if (!isNerve(&NrvBegomanBaby::HostTypeNrvNoCalcWait::sInstance) && !isNerve(&NrvBegomanBaby::HostTypeNrvWait::sInstance) &&
-            !isNerve(&NrvBegomanBaby::HostTypeNrvSignAttack::sInstance) && !isNerve(&NrvBegomanBaby::HostTypeNrvPursue::sInstance) &&
-            !isNerve(&NrvBegomanBaby::HostTypeNrvTurn::sInstance) && !isNerve(&NrvBegomanBaby::HostTypeNrvBrake::sInstance) &&
-            !isNerve(&NrvBegomanBaby::HostTypeNrvReturn::sInstance) && !isNerve(&NrvBegomanBaby::HostTypeNrvProvoke::sInstance) &&
-            !isNerve(&NrvBegomanBaby::HostTypeNrvLaunchTurn::sInstance) && !isNerve(&NrvBegomanBaby::HostTypeNrvKeepDistance::sInstance) ||
-        !BegomanBase::tryAndSetStarPointerBind(&NrvBegomanBaby::HostTypeNrvBindStarPointer::sInstance)) {
+    if (!isNerve(GET_NERVE(BegomanBaby, HostTypeNrvNoCalcWait)) && !isNerve(GET_NERVE(BegomanBaby, HostTypeNrvWait)) &&
+            !isNerve(GET_NERVE(BegomanBaby, HostTypeNrvSignAttack)) && !isNerve(GET_NERVE(BegomanBaby, HostTypeNrvPursue)) &&
+            !isNerve(GET_NERVE(BegomanBaby, HostTypeNrvTurn)) && !isNerve(GET_NERVE(BegomanBaby, HostTypeNrvBrake)) &&
+            !isNerve(GET_NERVE(BegomanBaby, HostTypeNrvReturn)) && !isNerve(GET_NERVE(BegomanBaby, HostTypeNrvProvoke)) &&
+            !isNerve(GET_NERVE(BegomanBaby, HostTypeNrvLaunchTurn)) && !isNerve(GET_NERVE(BegomanBaby, HostTypeNrvKeepDistance)) ||
+        !BegomanBase::tryAndSetStarPointerBind(GET_NERVE(BegomanBaby, HostTypeNrvBindStarPointer))) {
         BegomanBase::control();
     }
 }
 
 void BegomanBaby::exeNoCalcWait() {
-    exeNoCalcWaitCore(0.5f, &NrvBegomanBaby::HostTypeNrvWait::sInstance);
+    exeNoCalcWaitCore(0.5f, GET_NERVE(BegomanBaby, HostTypeNrvWait));
 }
 
 void BegomanBaby::endNoCalcWait() {
@@ -201,8 +201,8 @@ void BegomanBaby::endNoCalcWait() {
 void BegomanBaby::exeWait() {
     updateRotateY(0.15f, 0.5f);
     MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_SLOW");
-    exeWaitCore(::hWaitParam, &NrvBegomanBaby::HostTypeNrvSignAttack::sInstance, &NrvBegomanBaby::HostTypeNrvKeepDistance::sInstance,
-                &NrvBegomanBaby::HostTypeNrvNoCalcWait::sInstance);
+    exeWaitCore(::hWaitParam, GET_NERVE(BegomanBaby, HostTypeNrvSignAttack), GET_NERVE(BegomanBaby, HostTypeNrvKeepDistance),
+                GET_NERVE(BegomanBaby, HostTypeNrvNoCalcWait));
 }
 
 void BegomanBaby::exeSignAttack() {
@@ -213,7 +213,7 @@ void BegomanBaby::exeSignAttack() {
 
     updateRotateY(0.5f, 0.5f);
     MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE");
-    return exeSignAttackCore(::hSignAttackParam, &NrvBegomanBaby::HostTypeNrvPursue::sInstance);
+    return exeSignAttackCore(::hSignAttackParam, GET_NERVE(BegomanBaby, HostTypeNrvPursue));
 }
 
 void BegomanBaby::exePursue() {
@@ -222,37 +222,37 @@ void BegomanBaby::exePursue() {
     }
     updateRotateY(0.5f, 0.5f);
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_PURSUE");
-    exePursueCore(::hPursueParam, &NrvBegomanBaby::HostTypeNrvBrake::sInstance, &NrvBegomanBaby::HostTypeNrvTurn::sInstance, *getSoundNormal(), 1.0f);
+    exePursueCore(::hPursueParam, GET_NERVE(BegomanBaby, HostTypeNrvBrake), GET_NERVE(BegomanBaby, HostTypeNrvTurn), *getSoundNormal(), 1.0f);
 }
 
 void BegomanBaby::exeTurn() {
     updateRotateY(0.4f, 0.5f);
     MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_TURN");
     MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE");
-    exeTurnCore(::hTurnParam, &NrvBegomanBaby::HostTypeNrvBrake::sInstance, &NrvBegomanBaby::HostTypeNrvPursue::sInstance, false);
+    exeTurnCore(::hTurnParam, GET_NERVE(BegomanBaby, HostTypeNrvBrake), GET_NERVE(BegomanBaby, HostTypeNrvPursue), false);
 }
 
 void BegomanBaby::exeBrake() {
     updateRotateY(0.2f, 0.5f);
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_SPARK");
     MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE");
-    exeBrakeCore(&NrvBegomanBaby::HostTypeNrvTurn::sInstance);
+    exeBrakeCore(GET_NERVE(BegomanBaby, HostTypeNrvTurn));
 }
 
 void BegomanBaby::exeStepBack() {
     updateRotateY(0.2f, 0.5f);
-    exeStepBackCore(::hWaitParam, &NrvBegomanBaby::HostTypeNrvWait::sInstance);
+    exeStepBackCore(::hWaitParam, GET_NERVE(BegomanBaby, HostTypeNrvWait));
 }
 
 void BegomanBaby::exeReturn() {
     updateRotateY(0.2f, 0.5f);
-    exeReturnCore(&NrvBegomanBaby::HostTypeNrvWait::sInstance);
+    exeReturnCore(GET_NERVE(BegomanBaby, HostTypeNrvWait));
 }
 
 void BegomanBaby::exeProvoke() {
     updateRotateY(0.3f, 0.5f);
     MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE");
-    exeProvokeCore(::hWaitParam, &NrvBegomanBaby::HostTypeNrvSignAttack::sInstance);
+    exeProvokeCore(::hWaitParam, GET_NERVE(BegomanBaby, HostTypeNrvSignAttack));
 }
 
 void BegomanBaby::exeTrample() {
@@ -265,13 +265,13 @@ void BegomanBaby::exeTrample() {
     MR::moveAndTurnToDirection(this, &mFaceVec, mTargetVec, ::hStopParam._0, ::hStopParam._4, ::hStopParam._8, ::hStopParam._C);
     reboundWallAndGround(&mFaceVec, false);
     if (MR::isGreaterStep(this, 180)) {
-        setNerve(&NrvBegomanBaby::HostTypeNrvSignAttack::sInstance);
+        setNerve(GET_NERVE(BegomanBaby, HostTypeNrvSignAttack));
     }
 }
 
 void BegomanBaby::exeHitReaction() {
     updateRotateY(0.25f, 0.5f);
-    exeHitReactionCore(::hHitReactionParam, &NrvBegomanBaby::HostTypeNrvProvoke::sInstance);
+    exeHitReactionCore(::hHitReactionParam, GET_NERVE(BegomanBaby, HostTypeNrvProvoke));
 }
 
 void BegomanBaby::exeTired() {
@@ -279,7 +279,7 @@ void BegomanBaby::exeTired() {
     }
     updateRotateY(0.2f, 0.5f);
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_TURN");
-    exeTiredCore(::hTiredParam, &NrvBegomanBaby::HostTypeNrvWait::sInstance);
+    exeTiredCore(::hTiredParam, GET_NERVE(BegomanBaby, HostTypeNrvWait));
 }
 
 void BegomanBaby::exeBlow() {
@@ -317,7 +317,7 @@ void BegomanBaby::exeAfterLaunch() {
     }
 
     if (MR::isOnGround(this)) {
-        setNerve(&NrvBegomanBaby::HostTypeNrvAfterLaunchOnGround::sInstance);
+        setNerve(GET_NERVE(BegomanBaby, HostTypeNrvAfterLaunchOnGround));
     }
 }
 
@@ -329,7 +329,7 @@ void BegomanBaby::exeAfterLaunchOnGround() {
     MR::applyVelocityDampAndGravity(this, 3.0f, 0.8f, 0.98f, 0.98f, 1.0f);
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvBegomanBaby::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(BegomanBaby, HostTypeNrvWait));
     }
 }
 
@@ -345,7 +345,7 @@ void BegomanBaby::exeLaunchTurn() {
 
     updateRotateY(0.4f, 0.5f);
     MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE");
-    exeTurnCore(::hTurnParam, &NrvBegomanBaby::HostTypeNrvBrake::sInstance, &NrvBegomanBaby::HostTypeNrvPursue::sInstance, false);
+    exeTurnCore(::hTurnParam, GET_NERVE(BegomanBaby, HostTypeNrvBrake), GET_NERVE(BegomanBaby, HostTypeNrvPursue), false);
 }
 
 void BegomanBaby::exeInWater() {
@@ -364,8 +364,8 @@ void BegomanBaby::exeInWater() {
 
 void BegomanBaby::exeKeepDistance() {
     updateRotateY(0.2f, 0.5f);
-    exeKeepDistanceCore(&NrvBegomanBaby::HostTypeNrvWait::sInstance, &NrvBegomanBaby::HostTypeNrvSignAttack::sInstance,
-                        &NrvBegomanBaby::HostTypeNrvBrake::sInstance, 600.0f, 400.0f);
+    exeKeepDistanceCore(GET_NERVE(BegomanBaby, HostTypeNrvWait), GET_NERVE(BegomanBaby, HostTypeNrvSignAttack),
+                        GET_NERVE(BegomanBaby, HostTypeNrvBrake), 600.0f, 400.0f);
 }
 
 void BegomanBaby::exeBindStarPointer() {
@@ -386,8 +386,7 @@ void BegomanBaby::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    if (!MR::isSensorPlayer(pReceiver) || isNerve(&NrvBegomanBaby::HostTypeNrvBlow::sInstance) || MR::isPlayerSwingAction() ||
-        !MR::isOnGroundPlayer()) {
+    if (!MR::isSensorPlayer(pReceiver) || isNerve(GET_NERVE(BegomanBaby, HostTypeNrvBlow)) || MR::isPlayerSwingAction() || !MR::isOnGroundPlayer()) {
         return;
     }
 
@@ -407,7 +406,7 @@ void BegomanBaby::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                 MR::startSound(this, "SE_EM_BABYBEGO_COLLI");
             }
         }
-        setNerve(&NrvBegomanBaby::HostTypeNrvHitReaction::sInstance);
+        setNerve(GET_NERVE(BegomanBaby, HostTypeNrvHitReaction));
     }
 }
 
@@ -429,18 +428,18 @@ bool BegomanBaby::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
     }
 
     if (MR::isMsgExplosionAttack(msg)) {
-        if (!isNerve(&NrvBegomanBaby::HostTypeNrvBlow::sInstance)) {
+        if (!isNerve(GET_NERVE(BegomanBaby, HostTypeNrvBlow))) {
             mAppearThreeStarPiece = false;
             calcBlowReaction(pSender->mPosition, pReceiver->mPosition, 35.0f, 15.0f);
-            setNerve(&NrvBegomanBaby::HostTypeNrvBlow::sInstance);
+            setNerve(GET_NERVE(BegomanBaby, HostTypeNrvBlow));
             return true;
         } else {
             return false;
         }
     }
 
-    if (isNerve(&NrvBegomanBaby::HostTypeNrvAfterLaunch::sInstance) || isNerve(&NrvBegomanBaby::HostTypeNrvLaunchFromGuarder::sInstance) ||
-        isNerve(&NrvBegomanBaby::HostTypeNrvLaunchTurn::sInstance)) {
+    if (isNerve(GET_NERVE(BegomanBaby, HostTypeNrvAfterLaunch)) || isNerve(GET_NERVE(BegomanBaby, HostTypeNrvLaunchFromGuarder)) ||
+        isNerve(GET_NERVE(BegomanBaby, HostTypeNrvLaunchTurn))) {
         return false;
     }
 
@@ -457,7 +456,7 @@ bool BegomanBaby::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
         bool reflected = reboundPlaneWithEffect(dirFromReceiverToSender, 0.0f, 0.0f, "Spark");
 
         if (isFallNextMove(150.0f, 150.0f)) {
-            setNerve(&NrvBegomanBaby::HostTypeNrvBrake::sInstance);
+            setNerve(GET_NERVE(BegomanBaby, HostTypeNrvBrake));
             return true;
         }
 
@@ -470,10 +469,10 @@ bool BegomanBaby::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
             MR::startSound(this, "SE_EM_BABYBEGO_COLLI_BEGOMAN");
         }
 
-        if (!isNerve(&NrvBegomanBaby::HostTypeNrvTrample::sInstance) && !isNerve(&NrvBegomanBaby::HostTypeNrvProvoke::sInstance) &&
-            !isNerve(&NrvBegomanBaby::HostTypeNrvBlow::sInstance) && MR::isOnGround(this)) {
+        if (!isNerve(GET_NERVE(BegomanBaby, HostTypeNrvTrample)) && !isNerve(GET_NERVE(BegomanBaby, HostTypeNrvProvoke)) &&
+            !isNerve(GET_NERVE(BegomanBaby, HostTypeNrvBlow)) && MR::isOnGround(this)) {
             MR::startBck(this, "Turn", nullptr);
-            setNerve(&NrvBegomanBaby::HostTypeNrvTurn::sInstance);
+            setNerve(GET_NERVE(BegomanBaby, HostTypeNrvTurn));
         }
 
         return true;
@@ -499,21 +498,21 @@ bool BegomanBaby::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
         return false;
     }
 
-    if (isNerve(&NrvBegomanBaby::HostTypeNrvBlow::sInstance)) {
+    if (isNerve(GET_NERVE(BegomanBaby, HostTypeNrvBlow))) {
         return false;
     }
 
     if (MR::isMsgStarPieceAttack(msg)) {
         mAppearThreeStarPiece = true;
         calcBlowReaction(pSender->mPosition, pReceiver->mPosition, 35.0f, 15.0f);
-        setNerve(&NrvBegomanBaby::HostTypeNrvBlow::sInstance);
+        setNerve(GET_NERVE(BegomanBaby, HostTypeNrvBlow));
         return true;
     }
 
     if (MR::isMsgPlayerHitAll(msg)) {
         mAppearThreeStarPiece = false;
         calcBlowReaction(pSender->mPosition, pReceiver->mPosition, 35.0f, 15.0f);
-        setNerve(&NrvBegomanBaby::HostTypeNrvBlow::sInstance);
+        setNerve(GET_NERVE(BegomanBaby, HostTypeNrvBlow));
         return true;
     }
 
@@ -521,7 +520,7 @@ bool BegomanBaby::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
 }
 
 bool BegomanBaby::receiveMsgTrample(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvBegomanBaby::HostTypeNrvBlow::sInstance)) {
+    if (isNerve(GET_NERVE(BegomanBaby, HostTypeNrvBlow))) {
         return false;
     }
 
@@ -529,7 +528,7 @@ bool BegomanBaby::receiveMsgTrample(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    setNerve(&NrvBegomanBaby::HostTypeNrvTrample::sInstance);
+    setNerve(GET_NERVE(BegomanBaby, HostTypeNrvTrample));
     return true;
 }
 
@@ -538,11 +537,11 @@ bool BegomanBaby::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
 }
 
 bool BegomanBaby::onTouchElectric(const TVec3f& rVec1, const TVec3f& rVec2) {
-    if (isNerve(&NrvBegomanBaby::HostTypeNrvBlow::sInstance) || isNerve(&NrvBegomanBaby::HostTypeNrvInWater::sInstance)) {
+    if (isNerve(GET_NERVE(BegomanBaby, HostTypeNrvBlow)) || isNerve(GET_NERVE(BegomanBaby, HostTypeNrvInWater))) {
         return false;
     }
 
-    if (isNerve(&NrvBegomanBaby::HostTypeNrvStepBack::sInstance)) {
+    if (isNerve(GET_NERVE(BegomanBaby, HostTypeNrvStepBack))) {
         if (!MR::isOnGround(this)) {
             return false;
         }
@@ -552,7 +551,7 @@ bool BegomanBaby::onTouchElectric(const TVec3f& rVec1, const TVec3f& rVec2) {
     }
 
     if (BegomanBase::onTouchElectric(rVec1, rVec2)) {
-        setNerve(&NrvBegomanBaby::HostTypeNrvStepBack::sInstance);
+        setNerve(GET_NERVE(BegomanBaby, HostTypeNrvStepBack));
         return true;
     }
 
@@ -560,16 +559,16 @@ bool BegomanBaby::onTouchElectric(const TVec3f& rVec1, const TVec3f& rVec2) {
 }
 
 bool BegomanBaby::setNerveReturn() {
-    setNerve(&NrvBegomanBaby::HostTypeNrvReturn::sInstance);
+    setNerve(GET_NERVE(BegomanBaby, HostTypeNrvReturn));
     return true;
 }
 
 const Nerve* BegomanBaby::getNerveWait() {
-    return &::NrvBegomanBaby::HostTypeNrvWait::sInstance;
+    return GET_NERVE_ANON(NrvBegomanBaby::HostTypeNrvWait);
 }
 
 bool BegomanBaby::calcHeadJoint(TPos3f* pPos, const JointControllerInfo& rInfo) {
-    if (isNerve(&NrvBegomanBaby::HostTypeNrvBlow::sInstance)) {
+    if (isNerve(GET_NERVE(BegomanBaby, HostTypeNrvBlow))) {
         return true;
     }
 

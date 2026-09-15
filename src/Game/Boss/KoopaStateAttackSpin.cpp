@@ -47,7 +47,7 @@ KoopaStateAttackSpin::KoopaStateAttackSpin(Koopa* pKoopa)
 void KoopaStateAttackSpin::init() {
     MR::addHitSensor(mHost, "AttackSpin", ATYPE_KOOPA_ATTACK, 8, 250.0f, TVec3f(0.0f, 250.0f, 0.0f));
 
-    initNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvStart::sInstance);
+    initNerve(GET_NERVE(KoopaStateAttackSpin, KoopaStateAttackSpinNrvStart));
 
     kill();
 }
@@ -69,7 +69,7 @@ void KoopaStateAttackSpin::appear() {
 
     mMoveParam = &::sParamAttackSpin1st;
 
-    setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvWaitToStart::sInstance);
+    setNerve(GET_NERVE(KoopaStateAttackSpin, KoopaStateAttackSpinNrvWaitToStart));
 }
 
 void KoopaStateAttackSpin::kill() {
@@ -83,7 +83,7 @@ bool KoopaStateAttackSpin::attackSensor(HitSensor* pSender, HitSensor* pReceiver
         return true;
     }
 
-    if (isNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvSpin::sInstance) && MR::isGreaterStep(this, ::sSpinAttackStepMin) &&
+    if (isNerve(GET_NERVE(KoopaStateAttackSpin, KoopaStateAttackSpinNrvSpin)) && MR::isGreaterStep(this, ::sSpinAttackStepMin) &&
         MR::isLessStep(this, ::sSpinAttackStepMax) && KoopaFunction::tryKoopaAttackPlayerMaximum(pSender, pReceiver)) {
         return true;
     }
@@ -96,7 +96,7 @@ bool KoopaStateAttackSpin::tryDamage(u32 msg, HitSensor* pSender, HitSensor* pRe
         return false;
     }
 
-    if (isNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvEven::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaStateAttackSpin, KoopaStateAttackSpinNrvEven))) {
         return false;
     }
 
@@ -115,7 +115,7 @@ bool KoopaStateAttackSpin::tryDamage(u32 msg, HitSensor* pSender, HitSensor* pRe
         return true;
     }
 
-    setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvEven::sInstance);
+    setNerve(GET_NERVE(KoopaStateAttackSpin, KoopaStateAttackSpinNrvEven));
     return true;
 }
 
@@ -126,7 +126,7 @@ void KoopaStateAttackSpin::exeWaitToStart() {
     }
 
     if (MR::isStep(this, mSpinDelay)) {
-        setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvStart::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackSpin, KoopaStateAttackSpinNrvStart));
     }
 }
 
@@ -145,7 +145,7 @@ void KoopaStateAttackSpin::exeRun() {
 
     if (MR::isNearPlayer(mHost, ::sDistanceToJump) || MR::isGreaterStep(this, ::sRunStepMax)) {
         if (MR::calcGravitySpeed(mHost) >= 0.0f) {
-            setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvStart::sInstance);
+            setNerve(GET_NERVE(KoopaStateAttackSpin, KoopaStateAttackSpinNrvStart));
         }
     }
 }
@@ -159,7 +159,7 @@ void KoopaStateAttackSpin::exeStart() {
     MR::turnDirectionToPlayerDegree(mHost, &mHost->mFront, ::sStartTurnSpeed);
 
     if (MR::isActionEnd(mHost)) {
-        setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvSpin::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackSpin, KoopaStateAttackSpinNrvSpin));
     }
 }
 
@@ -184,9 +184,9 @@ void KoopaStateAttackSpin::exeSpin() {
 
         if (!MR::isPlayerDamaging() && mAttacks < mMaxAttacks) {
             mMoveParam = &::sParamAttackSpin2nd;
-            setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvStart::sInstance);
+            setNerve(GET_NERVE(KoopaStateAttackSpin, KoopaStateAttackSpinNrvStart));
         } else {
-            setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvEnd::sInstance);
+            setNerve(GET_NERVE(KoopaStateAttackSpin, KoopaStateAttackSpinNrvEnd));
         }
     }
 }
@@ -216,7 +216,7 @@ void KoopaStateAttackSpin::exeEven() {
     if (MR::isActionEnd(mHost)) {
         if (!MR::isPlayerDamaging() && mAttacks < mMaxAttacks) {
             mMoveParam = &::sParamAttackSpin2nd;
-            setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvSpin::sInstance);
+            setNerve(GET_NERVE(KoopaStateAttackSpin, KoopaStateAttackSpinNrvSpin));
         } else {
             kill();
         }

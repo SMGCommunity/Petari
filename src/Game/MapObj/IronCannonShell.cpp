@@ -42,7 +42,7 @@ void IronCannonLauncherPoint::init(const JMapInfoIter& rIter) {
     }
     MR::useStageSwitchReadA(this, rIter);
     MR::setGroupClipping(this, rIter, 32);
-    initNerve(&NrvIronCannonLauncherPoint::IronCannonLauncherPointNrvWait::sInstance);
+    initNerve(GET_NERVE(IronCannonLauncherPoint, IronCannonLauncherPointNrvWait));
 
     if (isAppear)
         makeActorDead();
@@ -52,18 +52,18 @@ void IronCannonLauncherPoint::init(const JMapInfoIter& rIter) {
 
 void IronCannonLauncherPoint::exeWait() {
     if (!MR::isStageStateScenarioOpeningCamera() && MR::isValidSwitchA(this) && !MR::isOnSwitchA(this)) {
-        setNerve(&NrvIronCannonLauncherPoint::IronCannonLauncherPointNrvWait::sInstance);
+        setNerve(GET_NERVE(IronCannonLauncherPoint, IronCannonLauncherPointNrvWait));
         return;
     }
 
     if (MR::isGreaterStep(this, mShotInterval))
-        setNerve(&NrvIronCannonLauncherPoint::IronCannonLauncherPointNrvShot::sInstance);
+        setNerve(GET_NERVE(IronCannonLauncherPoint, IronCannonLauncherPointNrvShot));
 }
 
 void IronCannonLauncherPoint::exeShot() {
     if (MR::isFirstStep(this)) {
         tryShotBullet(0.0f);
-        setNerve(&NrvIronCannonLauncherPoint::IronCannonLauncherPointNrvWait::sInstance);
+        setNerve(GET_NERVE(IronCannonLauncherPoint, IronCannonLauncherPointNrvWait));
     }
 }
 
@@ -120,24 +120,24 @@ void IronCannonLauncher::init(const JMapInfoIter& rIter) {
     MR::calcFrontVec(&front, this);
     mEffectMtx.scaleAdd(::sGunPointModelOffset, front, mPosition);
     MR::setEffectHostSRT(this, "Shoot", &mEffectMtx, nullptr, nullptr);
-    setNerve(&NrvIronCannonLauncher::IronCannonLauncherNrvWait::sInstance);
+    setNerve(GET_NERVE(IronCannonLauncher, IronCannonLauncherNrvWait));
 }
 
 void IronCannonLauncher::exeRelax() {
     if (MR::isOnSwitchA(this))
-        setNerve(&NrvIronCannonLauncher::IronCannonLauncherNrvWait::sInstance);
+        setNerve(GET_NERVE(IronCannonLauncher, IronCannonLauncherNrvWait));
 }
 
 void IronCannonLauncher::exeWait() {
     if (MR::isStep(this, mShotInterval))
-        setNerve(&NrvIronCannonLauncher::IronCannonLauncherNrvShot::sInstance);
+        setNerve(GET_NERVE(IronCannonLauncher, IronCannonLauncherNrvShot));
 }
 
 void IronCannonLauncher::exeShot() {
     if (MR::isFirstStep(this)) {
         MR::startAllAnim(this, "Shot");
         tryShotBullet(::sGunPointModelOffset);
-        setNerve(&NrvIronCannonLauncher::IronCannonLauncherNrvWait::sInstance);
+        setNerve(GET_NERVE(IronCannonLauncher, IronCannonLauncherNrvWait));
     }
 }
 

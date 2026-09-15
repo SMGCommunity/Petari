@@ -29,7 +29,7 @@ void AstroCore::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
-    info.setupNerve(&NrvAstroCore::AstroCoreNrvWait::sInstance);
+    info.setupNerve(GET_NERVE(AstroCore, AstroCoreNrvWait));
     info.setupHitSensor();
     info.setupHitSensorParam(8, ::sSensorSizeTable[0], TVec3f(0.0f, 0.0f, 0.0f));
     info.setupFarClipping(-1.0f);
@@ -65,7 +65,7 @@ bool AstroCore::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
 }
 
 void AstroCore::startDemo() {
-    setNerve(&::NrvAstroCore::AstroCoreNrvGrow::sInstance);
+    setNerve(GET_NERVE_ANON(NrvAstroCore::AstroCoreNrvGrow));
 }
 
 void AstroCore::startAnimGrow() {

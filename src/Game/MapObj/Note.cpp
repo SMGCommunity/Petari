@@ -41,7 +41,7 @@ void Note::init(const JMapInfoIter& rIter) {
     MR::addHitSensorMapObj(this, "body", 8, 80.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
-    initNerve(&NrvNote::NoteNrvWait::sInstance);
+    initNerve(GET_NERVE(Note, NoteNrvWait));
     mFlashCtrl = new FlashingCtrl(this, true);
     MR::calcGravityAndDropShadowVector(this, &mGravity, nullptr, 0);
 
@@ -67,7 +67,7 @@ void Note::exeWait() {
     }
 
     if (mIsCountdown) {
-        setNerve(&NrvNote::NoteNrvCountDown::sInstance);
+        setNerve(GET_NERVE(Note, NoteNrvCountDown));
     }
 }
 
@@ -114,11 +114,11 @@ void Note::calcAndSetBaseMtx() {
 
 void Note::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayerOrRide(pReceiver)) {
-        if (!isNerve(&NrvNote::NoteNrvFlyUp::sInstance)) {
+        if (!isNerve(GET_NERVE(Note, NoteNrvFlyUp))) {
             MR::emitEffect(this, "Get");
             MR::addNoteToCounter();
             mParentFairy->setLastGotNote(this);
-            setNerve(&NrvNote::NoteNrvFlyUp::sInstance);
+            setNerve(GET_NERVE(Note, NoteNrvFlyUp));
         }
     }
 }

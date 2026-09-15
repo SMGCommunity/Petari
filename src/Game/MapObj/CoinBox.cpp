@@ -18,7 +18,7 @@ void CoinBox::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::connectToSceneMapObjMovement(this);
     initSound(6, false);
-    initNerve(&NrvCoinBox::CoinBoxNrvWait::sInstance);
+    initNerve(GET_NERVE(CoinBox, CoinBoxNrvWait));
     initHitSensor(1);
     TVec3f box;
     box.x = 0.0f;
@@ -26,7 +26,7 @@ void CoinBox::init(const JMapInfoIter& rIter) {
     box.z = 0.0f;
     MR::addHitSensorMapObj(this, "body", 8, 5.0f, box);
     makeActorAppeared();
-    setNerve(&NrvCoinBox::CoinBoxNrvWait::sInstance);
+    setNerve(GET_NERVE(CoinBox, CoinBoxNrvWait));
     MR::declareCoin(this, 1);
     MR::setClippingFar50m(this);
     initEffectKeeper(1, "Coin", false);
@@ -56,7 +56,7 @@ void CoinBox::exeHit() {
 
 bool CoinBox::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_TORNADO_ATTACK || msg == ACTMES_TORNADO_STORM_RANGE || msg == ACTMES_SPIN_STORM_RANGE) {
-        setNerve(&NrvCoinBox::CoinBoxNrvHit::sInstance);
+        setNerve(GET_NERVE(CoinBox, CoinBoxNrvHit));
 
         return true;
     }

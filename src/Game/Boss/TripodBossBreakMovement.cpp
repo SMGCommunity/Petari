@@ -38,7 +38,7 @@ namespace NrvTripodBossBreakMovement {
 TripodBossBreakMovement::TripodBossBreakMovement(const char* pName)
     : LiveActor(pName), mSpring(), _CC(0, 0, 0), _D8(0, 0, 0), _E4(0, 1, 0), _F0(0.3f), _F4(), _F8(0.9f), _FC(), _100(-1) {
     _8C.identity();
-    initNerve(&NrvTripodBossBreakMovement::TripodBossBreakMovementNrvWait::sInstance);
+    initNerve(GET_NERVE(TripodBossBreakMovement, TripodBossBreakMovementNrvWait));
     MR::invalidateClipping(this);
     mSpring = new SpringValue();
     mSpring->setParam(0.0f, 0.0f, 0.2f, 0.9f, 0.0f);
@@ -73,7 +73,7 @@ void TripodBossBreakMovement::start(const TPos3f& a1, s32 a2) {
 
     mSpring->mVelocity += MR::getRandom(20.0f, 25.0f);
 
-    setNerve(&NrvTripodBossBreakMovement::TripodBossBreakMovementNrvStartBreak::sInstance);
+    setNerve(GET_NERVE(TripodBossBreakMovement, TripodBossBreakMovementNrvStartBreak));
     MR::invalidateClipping(this);
     appear();
 }
@@ -115,7 +115,7 @@ void TripodBossBreakMovement::exeStartBreak() {
     mSpring->update();
 
     if (MR::isGreaterStep(this, 0)) {
-        setNerve(&NrvTripodBossBreakMovement::TripodBossBreakMovementNrvBreak::sInstance);
+        setNerve(GET_NERVE(TripodBossBreakMovement, TripodBossBreakMovementNrvBreak));
     }
 }
 

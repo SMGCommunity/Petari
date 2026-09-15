@@ -2,6 +2,7 @@
 
 #include "Game/Effect/SimpleEffectObj.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 class NameObjArchiveListCollector;
@@ -195,3 +196,12 @@ public:
         return true;
     }
 };
+
+namespace NrvMorphItemObjNeo {
+    NEW_NERVE(MorphItemObjNeoNrvWait, MorphItemObjNeo, Wait);
+    NEW_NERVE(MorphItemObjNeoNrvAppear, MorphItemObjNeo, Appear);
+    NEW_NERVE(MorphItemObjNeoNrvSwitchAppear, MorphItemObjNeo, SwitchAppear);
+    NEW_NERVE(MorphItemObjNeoNrvWait2, MorphItemObjNeo, Wait2);
+    NEW_NERVE(MorphItemObjNeoNrvFly, MorphItemObjNeo, Fly);
+    NEW_NERVE(MorphItemObjNeoNrvDemo, MorphItemObjNeo, Demo);
+};  // namespace NrvMorphItemObjNeo

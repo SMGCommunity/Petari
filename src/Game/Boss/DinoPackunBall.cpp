@@ -45,7 +45,7 @@ void DinoPackunBall::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, "DinoPackunBall", false);
     MR::setEffectHostMtx(this, "TailDrag", _D4);
     MR::setEffectHostMtx(this, "TailDragBlack", _D4);
-    initNerve(&NrvDinoPackunBall::DinoPackunBallNrvWait::sInstance);
+    initNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvWait));
     MR::onCalcGravity(this);
     MR::invalidateClipping(this);
     initHitSensor(1);
@@ -80,14 +80,14 @@ void DinoPackunBall::calcAndSetBaseMtx() {
 void DinoPackunBall::addNodeVelocity(const TVec3f& rOther) {
     f32 v4;
 
-    if (isNerve(&NrvDinoPackunBall::DinoPackunBallNrvWait::sInstance)) {
+    if (isNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvWait))) {
         if (_126) {
             v4 = 0.0f;
         } else {
             v4 = 1.0f;
         }
     } else {
-        if (isNerve(&NrvDinoPackunBall::DinoPackunBallNrvRebound::sInstance)) {
+        if (isNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvRebound))) {
             v4 = MR::calcNerveRate(this, 180);
         } else {
             return;
@@ -109,12 +109,12 @@ JointController* DinoPackunBall::createJointControllerOwn(LiveActor* pActor, con
 
 void DinoPackunBall::requestLockPosition() {
     MR::zeroVelocity(this);
-    setNerve(&NrvDinoPackunBall::DinoPackunBallNrvLock::sInstance);
+    setNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvLock));
 }
 
 void DinoPackunBall::requestUnLockPosition() {
     mVelocity.set< f32 >(_118);
-    setNerve(&NrvDinoPackunBall::DinoPackunBallNrvRebound::sInstance);
+    setNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvRebound));
 }
 
 void DinoPackunBall::addDodgeTargetVelocity() {
@@ -142,7 +142,7 @@ void DinoPackunBall::addDodgeTargetVelocity() {
 void DinoPackunBall::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (_125) {
         MR::sendMsgEnemyAttackFire(pReceiver, pSender);
-    } else if (isNerve(&NrvDinoPackunBall::DinoPackunBallNrvWait::sInstance) || isNerve(&NrvDinoPackunBall::DinoPackunBallNrvRebound::sInstance)) {
+    } else if (isNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvWait)) || isNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvRebound))) {
         if (MR::sendMsgPush(pReceiver, pSender)) {
             TVec3f v13;
             MR::calcSensorDirectionNormalize(&v13, pReceiver, pSender);
@@ -157,14 +157,14 @@ void DinoPackunBall::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             }
         }
 
-    } else if (pReceiver == mWeakSensor && isNerve(&NrvDinoPackunBall::DinoPackunBallNrvReverse::sInstance) &&
+    } else if (pReceiver == mWeakSensor && isNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvReverse)) &&
                MR::sendArbitraryMsg(ACTMES_DINO_PACKUN_BALL_ATTACK, pReceiver, pSender)) {
         TVec3f v12;
         MR::calcSensorDirection(&v12, pReceiver, pSender);
         MR::normalizeOrZero(&v12);
         f32 v7 = mVelocity.length();
         mVelocity.set< f32 >((v12 * v7) * 0.3f);
-        setNerve(&NrvDinoPackunBall::DinoPackunBallNrvRebound::sInstance);
+        setNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvRebound));
     }
 }
 
@@ -195,10 +195,9 @@ bool DinoPackunBall::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSenso
 }
 
 bool DinoPackunBall::requestPunch(HitSensor* pReceiver, HitSensor* pSender) {
-    if (isNerve(&NrvDinoPackunBall::DinoPackunBallNrvWait::sInstance) &&
-        MR::sendArbitraryMsg(ACTMES_DINO_PACKUN_PUNCHED_BALL, mWeakSensor, pReceiver)) {
+    if (isNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvWait)) && MR::sendArbitraryMsg(ACTMES_DINO_PACKUN_PUNCHED_BALL, mWeakSensor, pReceiver)) {
         MR::addVelocitySeparateHV(this, pSender, pReceiver, 120.0f, 40.0f);
-        setNerve(&NrvDinoPackunBall::DinoPackunBallNrvShoot::sInstance);
+        setNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvShoot));
         return true;
     }
 
@@ -223,7 +222,7 @@ bool DinoPackunBall::tryRebound() {
         MR::normalizeOrZero(&v6);
         _118.set< f32 >(v6 * 40.0f);
         MR::zeroVelocity(this);
-        setNerve(&NrvDinoPackunBall::DinoPackunBallNrvRebound::sInstance);
+        setNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvRebound));
         return true;
     }
 
@@ -260,7 +259,7 @@ void DinoPackunBall::exeShoot() {
     f32 distanceToWeakSensor = MR::getSensorPos(mWeakSensor).distance(mPosition);
 
     if (MR::isGreaterStep(this, 30) || distanceToWeakSensor >= 1500.0f) {
-        setNerve(&NrvDinoPackunBall::DinoPackunBallNrvCharge::sInstance);
+        setNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvCharge));
     }
 }
 
@@ -276,7 +275,7 @@ void DinoPackunBall::exeCharge() {
     MR::startLevelSound(this, "SE_BM_LV_D_PAKKUN_TAIL_CRG");
 
     if (MR::isGreaterStep(this, 35)) {
-        setNerve(&NrvDinoPackunBall::DinoPackunBallNrvReverse::sInstance);
+        setNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvReverse));
     }
 }
 
@@ -304,7 +303,7 @@ void DinoPackunBall::exeRebound() {
     MR::attenuateVelocity(this, 0.9f);
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
     if (MR::isGreaterStep(this, 180)) {
-        setNerve(&NrvDinoPackunBall::DinoPackunBallNrvWait::sInstance);
+        setNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvWait));
     }
 }
 

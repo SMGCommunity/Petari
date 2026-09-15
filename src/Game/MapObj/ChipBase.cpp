@@ -29,7 +29,7 @@ void ChipBase::init(const JMapInfoIter& rIter) {
     initShadow(rIter);
     initEffectKeeper(0, 0, false);
     initSound(4, false);
-    initNerve(&NrvChipBase::ChipBaseNrvWait::sInstance);
+    initNerve(GET_NERVE(ChipBase, ChipBaseNrvWait));
 
     if (MR::isValidInfo(rIter)) {
         MR::setGroupClipping(this, rIter, 0x20);
@@ -127,7 +127,7 @@ void ChipBase::initAfterPlacement() {
 
 void ChipBase::deactive() {
     makeActorDead();
-    setNerve(&NrvChipBase::ChipBaseNrvDeactive::sInstance);
+    setNerve(GET_NERVE(ChipBase, ChipBaseNrvDeactive));
 }
 
 void ChipBase::setGroupID(s32 id) {
@@ -139,7 +139,7 @@ void ChipBase::setHost(LiveActor* pActor) {
 }
 
 void ChipBase::makeActorAppeared() {
-    if (isNerve(&NrvChipBase::ChipBaseNrvDeactive::sInstance)) {
+    if (isNerve(GET_NERVE(ChipBase, ChipBaseNrvDeactive))) {
         return;
     }
 
@@ -169,30 +169,30 @@ void ChipBase::control() {
 }
 
 void ChipBase::appearWait() {
-    if (isNerve(&NrvChipBase::ChipBaseNrvDeactive::sInstance)) {
+    if (isNerve(GET_NERVE(ChipBase, ChipBaseNrvDeactive))) {
         return;
     }
 
     makeActorAppeared();
     MR::validateClipping(this);
-    setNerve(&NrvChipBase::ChipBaseNrvWait::sInstance);
+    setNerve(GET_NERVE(ChipBase, ChipBaseNrvWait));
 }
 
 void ChipBase::appearFlashing(s32 a1) {
-    if (isNerve(&NrvChipBase::ChipBaseNrvDeactive::sInstance)) {
+    if (isNerve(GET_NERVE(ChipBase, ChipBaseNrvDeactive))) {
         return;
     }
 
     appear();
     MR::invalidateClipping(this);
     mFlashingCtrl->start(a1);
-    setNerve(&NrvChipBase::ChipBaseNrvFlashing::sInstance);
+    setNerve(GET_NERVE(ChipBase, ChipBaseNrvFlashing));
 }
 
 bool ChipBase::requestGet(HitSensor* pSender, HitSensor* pReceiver) {
     if (isGettable()) {
         MR::noticeGetChip(mChipType, this, mGroupID);
-        setNerve(&NrvChipBase::ChipBaseNrvGot::sInstance);
+        setNerve(GET_NERVE(ChipBase, ChipBaseNrvGot));
 
         if (mHost != nullptr) {
             mHost->receiveMessage(ACTMES_ITEM_GET, pSender, pReceiver);
@@ -205,10 +205,10 @@ bool ChipBase::requestGet(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool ChipBase::requestShow() {
-    if (isNerve(&NrvChipBase::ChipBaseNrvHide::sInstance)) {
+    if (isNerve(GET_NERVE(ChipBase, ChipBaseNrvHide))) {
         MR::startBck(this, "Wait", 0);
         MR::showModel(this);
-        setNerve(&NrvChipBase::ChipBaseNrvWait::sInstance);
+        setNerve(GET_NERVE(ChipBase, ChipBaseNrvWait));
 
         return true;
     }
@@ -222,7 +222,7 @@ bool ChipBase::requestHide() {
         MR::hideModel(this);
         MR::stopBck(this);
         MR::forceDeleteEffectAll(this);
-        setNerve(&NrvChipBase::ChipBaseNrvHide::sInstance);
+        setNerve(GET_NERVE(ChipBase, ChipBaseNrvHide));
 
         return true;
     }
@@ -231,8 +231,8 @@ bool ChipBase::requestHide() {
 }
 
 bool ChipBase::requestStartControl() {
-    if (isNerve(&NrvChipBase::ChipBaseNrvWait::sInstance)) {
-        setNerve(&NrvChipBase::ChipBaseNrvControled::sInstance);
+    if (isNerve(GET_NERVE(ChipBase, ChipBaseNrvWait))) {
+        setNerve(GET_NERVE(ChipBase, ChipBaseNrvControled));
 
         return true;
     }
@@ -241,8 +241,8 @@ bool ChipBase::requestStartControl() {
 }
 
 bool ChipBase::requestEndControl() {
-    if (isNerve(&NrvChipBase::ChipBaseNrvControled::sInstance)) {
-        setNerve(&NrvChipBase::ChipBaseNrvWait::sInstance);
+    if (isNerve(GET_NERVE(ChipBase, ChipBaseNrvControled))) {
+        setNerve(GET_NERVE(ChipBase, ChipBaseNrvWait));
 
         return true;
     }
@@ -310,7 +310,7 @@ bool ChipBase::isGettable() const {
         return false;
     }
 
-    return isNerve(&NrvChipBase::ChipBaseNrvWait::sInstance) || isNerve(&NrvChipBase::ChipBaseNrvFlashing::sInstance);
+    return isNerve(GET_NERVE(ChipBase, ChipBaseNrvWait)) || isNerve(GET_NERVE(ChipBase, ChipBaseNrvFlashing));
 }
 
 bool ChipBase::isNeedBubble(const JMapInfoIter& rIter) {

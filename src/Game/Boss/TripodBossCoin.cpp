@@ -24,7 +24,7 @@ void TripodBossCoin::init(const JMapInfoIter& rIter) {
     mCoin = static_cast< Coin* >(MR::createCoin(this, "コイン(三脚ボス用)"));
     mCoin->initWithoutIter();
 
-    mSpine = new Spine(this, &NrvTripodBossCoin::TripodBossCoinNrvNonActive::sInstance);
+    mSpine = new Spine(this, GET_NERVE(TripodBossCoin, TripodBossCoinNrvNonActive));
 
     MR::addTripodBossPartsMovement(this);
 }
@@ -35,7 +35,7 @@ void TripodBossCoin::movement() {
 
 void TripodBossCoin::exeNonActive() {
     if (MR::isStartedTripodBoss() && !MR::isStartDemoTripodBoss()) {
-        mSpine->setNerve(&NrvTripodBossCoin::TripodBossCoinNrvActive::sInstance);
+        mSpine->setNerve(GET_NERVE(TripodBossCoin, TripodBossCoinNrvActive));
     }
 }
 
@@ -56,7 +56,7 @@ void TripodBossCoin::exeActive() {
 
     if (MR::isBrokenTripodBoss() || MR::isDead(mCoin)) {
         mCoin->kill();
-        mSpine->setNerve(&NrvTripodBossCoin::TripodBossCoinNrvEnd::sInstance);
+        mSpine->setNerve(GET_NERVE(TripodBossCoin, TripodBossCoinNrvEnd));
     }
 }
 

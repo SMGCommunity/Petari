@@ -27,6 +27,7 @@ void JASAramStream::initSystem(u32 block_size, u32 channel_max) {
         if (sLoadThread == nullptr) {
             sLoadThread = JASDvd::getThreadPointer();
         }
+
         sReadBuffer = new (JASDram, 0x20) u8[(block_size + 0x20) * channel_max];
         sBlockSize = block_size;
         sChannelMax = channel_max;
@@ -35,22 +36,18 @@ void JASAramStream::initSystem(u32 block_size, u32 channel_max) {
     }
 }
 
-JASAramStream::JASAramStream() {
+JASAramStream::JASAramStream() : _0B8(), _0C4(), _0C8(), _114() {
     mUpdateChannel = nullptr;
     _0AC = false;
     _0AD = false;
     _0AE = 0;
     _0B0 = 0;
     _0B4 = 0;
-    _0B8 = 0;
     _0BC = 0;
     _0C0 = false;
-    _0C4 = 0;
-    _0C8 = 0.0f;
     _108 = 0;
     _10C = 0;
     mBlock = 0;
-    _114 = 0;
     _118 = 0;
     _12C = 0;
     _148 = 0;
@@ -76,6 +73,7 @@ JASAramStream::JASAramStream() {
         mChannelFxMix[i] = 0.0f;
         mChannelDolby[i] = 0.0f;
     }
+
     for (int i = 0; i < 6; i++) {
         _1DC[i] = 0;
     }
@@ -96,6 +94,7 @@ void JASAramStream::init(u32 param_0, u32 param_1, StreamCallback i_callback, vo
         mChannelFxMix[i] = 0.0f;
         mChannelDolby[i] = 0.0f;
     }
+
     mVolume = 1.0f;
     mPitch = 1.0f;
     _1DC[0] = 0xffff;
@@ -109,9 +108,11 @@ bool JASAramStream::prepare(s32 param_0, int param_1) {
     if (!DVDFastOpen(param_0, &mDvdFileInfo)) {
         return false;
     }
+
     if (!JASDriver::registerSubFrameCallback(channelProcCallback, this)) {
         return false;
     }
+
     TaskData data;
     data.stream = this;
     data._4 = _14C;
@@ -120,6 +121,7 @@ bool JASAramStream::prepare(s32 param_0, int param_1) {
         JASDriver::rejectCallback(channelProcCallback, this);
         return false;
     }
+
     return true;
 }
 
@@ -127,6 +129,7 @@ bool JASAramStream::start() {
     if (!OSSendMessage(&_000, (OSMessage)0, OS_MESSAGE_NOBLOCK)) {
         return false;
     }
+
     return true;
 }
 
@@ -134,6 +137,7 @@ bool JASAramStream::stop(u16 param_0) {
     if (!OSSendMessage(&_000, (OSMessage)(uintptr_t)(param_0 << 0x10 | 1), OS_MESSAGE_NOBLOCK)) {
         return false;
     }
+
     return true;
 }
 
@@ -142,6 +146,7 @@ bool JASAramStream::pause(bool param_0) {
     if (!OSSendMessage(&_000, msg, OS_MESSAGE_NOBLOCK)) {
         return false;
     }
+
     return true;
 }
 
@@ -150,6 +155,7 @@ bool JASAramStream::cancel() {
     if (!sLoadThread->sendCmdMsg(finishTask, this)) {
         return false;
     }
+
     return true;
 }
 
@@ -168,6 +174,7 @@ void JASAramStream::firstLoadTask(void* i_data) {
     if (!_this->load()) {
         return;
     }
+
     if (data->_8 > 0) {
         data->_8--;
         if (data->_8 == 0) {
@@ -176,11 +183,13 @@ void JASAramStream::firstLoadTask(void* i_data) {
             }
         }
     }
+
     if (data->_4 != 0) {
         data->_4--;
         if (!sLoadThread->sendCmdMsg(firstLoadTask, data, 0xc)) {
             UNK_BOOL_B = true;
         }
+
         JASCriticalSection cs;
         _this->_118++;
     }
@@ -194,6 +203,7 @@ void JASAramStream::finishTask(void* i_this) {
     JASAramStream* _this = (JASAramStream*)i_this;
     if (!JASDriver::rejectCallback(channelProcCallback, _this)) {
     }
+
     if (_this->mCallback != nullptr) {
         _this->mCallback(CB_START, _this, _this->mCallbackData);
         _this->mCallback = nullptr;
@@ -212,13 +222,16 @@ bool JASAramStream::headerLoad(u32 param_0, int param_1) {
     if (UNK_BOOL_B) {
         return false;
     }
+
     if (_114 != 0) {
         return false;
     }
+
     if (DVDReadPrio(&mDvdFileInfo, sReadBuffer, sizeof(Header), 0, 1) < 0) {
         UNK_BOOL_B = true;
         return false;
     }
+
     DCInvalidateRange(sReadBuffer, sizeof(Header));
     Header* header = (Header*)sReadBuffer;
     _158 = header->format;
@@ -238,12 +251,15 @@ bool JASAramStream::headerLoad(u32 param_0, int param_1) {
     u32 local_2c = (mLoopEnd - 1) / getBlockSamples();
     if (local_2c <= mBufCount && mLoop) {
     }
+
     if (param_1 < 0 || param_1 > _108) {
         param_1 = _108;
     }
+
     if (_114 != 0) {
         return false;
     }
+
     TaskData data;
     data.stream = this;
     data._4 = _108 - 1;
@@ -252,6 +268,7 @@ bool JASAramStream::headerLoad(u32 param_0, int param_1) {
         UNK_BOOL_B = true;
         return false;
     }
+
     JASCriticalSection cs;
     _118++;
     return true;
@@ -262,31 +279,38 @@ bool JASAramStream::load() {
         JASCriticalSection cs;
         _118--;
     }
+
     if (UNK_BOOL_B) {
         return false;
     }
+
     if (_114 != 0) {
         return false;
     }
+
     u32 loop_end_block = (mLoopEnd - 1) / getBlockSamples();
     u32 loop_start_block = mLoopStart / getBlockSamples();
     if (mBlock > loop_end_block) {
         return false;
     }
+
     u32 size = sBlockSize * mChannelNum + sizeof(BlockHeader);
     u32 offset = mBlock * size + sizeof(Header);
     if (mBlock == loop_end_block) {
         size = mDvdFileInfo.length - offset;
     }
+
     if (DVDReadPrio(&mDvdFileInfo, sReadBuffer, size, offset, 1) < 0) {
         UNK_BOOL_B = true;
         return false;
     }
+
     DCInvalidateRange(sReadBuffer, size);
     BlockHeader* bhead = (BlockHeader*)sReadBuffer;
     if (_114 != 0) {
         return false;
     }
+
     u32 sp08 = _148 + _10C * sBlockSize;
     for (int i = 0; i < mChannelNum; i++) {
         if (!JKRAram::mainRamToAram(sReadBuffer + bhead->_4 * i + sizeof(BlockHeader), sp08 + sBlockSize * _160 * i, bhead->_4,
@@ -295,6 +319,7 @@ bool JASAramStream::load() {
             return false;
         }
     }
+
     _10C++;
     if (_10C >= _108) {
         u32 r28 = mBlock;
@@ -305,22 +330,27 @@ bool JASAramStream::load() {
                 r28 += loop_start_block;
             }
         }
+
         if (r28 == loop_end_block || r28 + 2 == loop_end_block) {
             _108 = _160;
             OSSendMessage(&_020, (OSMessage)5, OS_MESSAGE_BLOCK);
         } else {
             _108 = _160 - 1;
         }
+
         for (int i = 0; i < mChannelNum; i++) {
             _130[i] = (s16)bhead->_8[i]._0;
             _13C[i] = (s16)bhead->_8[i]._2;
         }
+
         _10C = 0;
     }
+
     mBlock++;
     if (mBlock > loop_end_block && mLoop) {
         mBlock = loop_start_block;
     }
+
     return true;
 }
 
@@ -350,6 +380,7 @@ s32 JASAramStream::dvdErrorCheck(void* param_0) {
         UNK_BOOL_A = true;
         break;
     }
+
     return 0;
 }
 
@@ -372,6 +403,7 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel, JAS
             _0C4 = 0;
             _12C = 0;
         }
+
         break;
     case JASChannel::CB_PLAY:
         if (i_dspChannel->_8 == 0) {
@@ -394,17 +426,20 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel, JAS
                     if (_0C4 < 0xffffffff) {
                         _0C4++;
                     }
+
                     _0C0 = false;
                 }
 
                 if (_0B8 > mLoopEnd) {
                     UNK_BOOL_B = true;
                 }
+
                 f32 fvar1 = _0C4;
                 fvar1 *= mLoopEnd - mLoopStart;
                 if (_0C4 < 0xffffffff) {
                     fvar1 += _0B8;
                 }
+
                 fvar1 /= _164;
                 _0C8 = fvar1;
                 if (_0B8 + 400 >= mLoopEnd && !_0C0) {
@@ -413,6 +448,7 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel, JAS
                         if (uvar5 >= mBufCount) {
                             uvar5 = 0;
                         }
+
                         i_dspChannel->_110 = mLoopStart % block_samples + uvar5 * block_samples;
                         _120 = i_dspChannel->_110;
                         _12C |= 2;
@@ -421,16 +457,19 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel, JAS
                         _128 = 0;
                         _12C |= 8;
                     }
+
                     i_dspChannel->_74 -= block_samples * mBufCount - _0BC * block_samples - mLoopEnd % block_samples;
                     _11C = i_dspChannel->_74;
                     _12C |= 1;
                     _0BC += (mLoopEnd - 1) / block_samples - mLoopStart / block_samples + 1;
                     _0C0 = true;
                 }
+
                 u32 uvar4 = i_dspChannel->_70 - i_channel->mWavePtr;
                 if (uvar4 != 0) {
                     uvar4--;
                 }
+
                 u32 sp18 = uvar4 / sBlockSize;
                 u32 sp14 = (mLoopEnd - 1) / getBlockSamples();
                 if (sp18 != _0B0) {
@@ -440,15 +479,18 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel, JAS
                             UNK_BOOL_B = true;
                             break;
                         }
+
                         {
                             JASCriticalSection cs;
                             _118++;
                         }
+
                         _0B0++;
                         if (_0B0 >= mBufCount) {
                             _0B0 = 0;
                         }
                     }
+
                     if (cmp) {
                         _0BC -= mBufCount;
                         if (_0AD) {
@@ -457,6 +499,7 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel, JAS
                                 _11C = i_dspChannel->_74;
                                 _12C |= 1;
                             }
+
                             i_dspChannel->_114 += block_samples;
                             _124 = i_dspChannel->_114;
                             _12C |= 4;
@@ -482,6 +525,7 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel, JAS
                         _0AE &= ~4;
                     }
                 }
+
                 _0B4 = i_dspChannel->_74 + i_dspChannel->_64;
                 if (_118 >= _160 - 2) {
                     _0AE |= (u8)4;
@@ -490,25 +534,31 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel, JAS
                 if (_12C & 1) {
                     i_dspChannel->_74 = _11C;
                 }
+
                 if (_12C & 2) {
                     i_dspChannel->_110 = _120;
                 }
+
                 if (_12C & 4) {
                     i_dspChannel->_114 = _124;
                 }
+
                 if (_12C & 8) {
                     i_dspChannel->_102 = _128;
                 }
             }
+
             int ch = 0;
             for (; ch < CHANNEL_MAX; ch++) {
                 if (i_channel == mChannels[ch]) {
                     break;
                 }
             }
+
             i_dspChannel->_104 = (s16)_130[ch];
             i_dspChannel->_106 = (s16)_13C[ch];
         }
+
         break;
     case JASChannel::CB_STOP:
         bool open_channel = false;
@@ -519,6 +569,7 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel, JAS
                 open_channel = true;
             }
         }
+
         if (!open_channel) {
             _114 = 1;
             if (!sLoadThread->sendCmdMsg(finishTask, this)) {
@@ -526,8 +577,10 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel, JAS
                 return;
             }
         }
+
         break;
     }
+
     i_channel->setPauseFlag(_0AE != 0);
 }
 
@@ -568,6 +621,7 @@ s32 JASAramStream::channelProc() {
     if (UNK_BOOL_B) {
         _0AE |= 8;
     }
+
     if (UNK_BOOL_A) {
         _0AE |= 2;
     }
@@ -578,7 +632,6 @@ s32 JASAramStream::channelProc() {
             JASChannelParams params;
             params.mVolume = mVolume * mChannelVolume[i];
             params.mPitch = mPitch;
-            params._8 = 0.0f;
             params.mPan = mChannelPan[i];
             params.mFxMix = mChannelFxMix[i];
             params.mDolby = mChannelDolby[i];
@@ -606,6 +659,7 @@ void JASAramStream::channelStart() {
         r31 = 3;
         break;
     }
+
     for (int i = 0; i < mChannelNum; i++) {
         JASWaveInfo wave_info;
         wave_info.mFormat = r31;
@@ -623,6 +677,7 @@ void JASAramStream::channelStart() {
         for (u32 j = 0; j < 6; j++) {
             jc->setMixConfig(j, _1DC[j]);
         }
+
         jc->setInitPitch(_164 / JASDriver::getDacRate());
         jc->setOscInit(0, &OSC_ENV);
         jc->mWaveInfo = wave_info;
@@ -631,6 +686,7 @@ void JASAramStream::channelStart() {
         int ret = jc->playForce();
         mChannels[i] = jc;
     }
+
     mUpdateChannel = nullptr;
 }
 

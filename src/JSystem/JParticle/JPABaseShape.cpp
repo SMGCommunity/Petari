@@ -9,9 +9,9 @@ namespace JMathInlineVEC {
     void PSVECSubtract(const Vec*, const Vec*, Vec*) NO_INLINE;
 }
 
-#include "JSystem/JParticle/JPABaseShape.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
+#include "JSystem/JParticle/JPABaseShape.hpp"
 #include "JSystem/JParticle/JPAEmitter.hpp"
 #include "JSystem/JParticle/JPAParticle.hpp"
 #include "JSystem/JParticle/JPAResourceManager.hpp"
@@ -139,34 +139,36 @@ void JPACalcClrIdxNormal(JPAEmitterWorkData* work) {
     } else {
         keyFrame = bsp->getClrAnmMaxFrm();
     }
+
     work->mClrKeyFrame = keyFrame;
 }
 
 void JPACalcClrIdxNormal(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     s16 keyFrame;
     if (param_1->mAge < shape->getClrAnmMaxFrm()) {
         keyFrame = param_1->mAge;
     } else {
         keyFrame = shape->getClrAnmMaxFrm();
     }
+
     work->mClrKeyFrame = keyFrame;
 }
 
 void JPACalcClrIdxRepeat(JPAEmitterWorkData* work) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     work->mClrKeyFrame = work->mpEmtr->mTick % (shape->getClrAnmMaxFrm() + 1);
 }
 
 void JPACalcClrIdxRepeat(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     s32 age = param_1->mAge;
     s32 tick = age + shape->getClrLoopOfst(param_1->mAnmRandom);
     work->mClrKeyFrame = tick % (shape->getClrAnmMaxFrm() + 1);
 }
 
 void JPACalcClrIdxReverse(JPAEmitterWorkData* work) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     int maxFrm = shape->getClrAnmMaxFrm();
     u32 tick = work->mpEmtr->mTick;
     u32 uVar1 = tick / maxFrm;
@@ -176,7 +178,7 @@ void JPACalcClrIdxReverse(JPAEmitterWorkData* work) {
 }
 
 void JPACalcClrIdxReverse(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     s32 tick = param_1->mAge + shape->getClrLoopOfst(param_1->mAnmRandom);
     s32 maxFrm = shape->getClrAnmMaxFrm();
     s32 rem = tick % maxFrm;
@@ -188,7 +190,7 @@ void JPACalcClrIdxMerge(JPAEmitterWorkData* work) {
 }
 
 void JPACalcClrIdxMerge(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     s32 maxFrm = shape->getClrAnmMaxFrm() + 1;
     s32 tick = (s32)(param_1->mTime * maxFrm) + shape->getClrLoopOfst(param_1->mAnmRandom);
     work->mClrKeyFrame = tick % maxFrm;
@@ -199,7 +201,7 @@ void JPACalcClrIdxRandom(JPAEmitterWorkData* work) {
 }
 
 void JPACalcClrIdxRandom(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     s32 tick = shape->getClrLoopOfst(param_1->mAnmRandom);
     s32 maxFrm = shape->getClrAnmMaxFrm() + 1;
     work->mClrKeyFrame = tick % maxFrm;
@@ -240,7 +242,7 @@ void JPAGenTexCrdMtxPrj(JPAEmitterWorkData* param_0) {
 }
 
 void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData* work) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     f32 dVar16 = work->mpEmtr->mTick;
     f32 dVar15 = 0.5f * (1.0f + shape->getTilingS());
     f32 dVar14 = 0.5f * (1.0f + shape->getTilingT());
@@ -269,7 +271,7 @@ void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData* work) {
 }
 
 void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     f32 dVar16 = param_1->mAge;
     f32 dVar15 = 0.5f * (1.0f + shape->getTilingS());
     f32 dVar14 = 0.5f * (1.0f + shape->getTilingT());
@@ -309,30 +311,30 @@ void JPALoadTexAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
 }
 
 void JPACalcTexIdxNormal(JPAEmitterWorkData* work) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     u8 tick = shape->getTexAnmKeyNum() - 1 < work->mpEmtr->mTick ? shape->getTexAnmKeyNum() - 1 : work->mpEmtr->mTick;
     work->mpEmtr->mTexAnmIdx = shape->getTexIdx(tick);
 }
 
 void JPACalcTexIdxNormal(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     u8 tick = shape->getTexAnmKeyNum() - 1 < param_1->mAge ? shape->getTexAnmKeyNum() - 1 : param_1->mAge;
     param_1->mTexAnmIdx = shape->getTexIdx(tick);
 }
 
 void JPACalcTexIdxRepeat(JPAEmitterWorkData* work) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     work->mpEmtr->mTexAnmIdx = shape->getTexIdx(work->mpEmtr->mTick % shape->getTexAnmKeyNum());
 }
 
 void JPACalcTexIdxRepeat(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     u8 texIdx = ((int)shape->getTexLoopOfst(param_1->mAnmRandom) + param_1->mAge) % shape->getTexAnmKeyNum();
     param_1->mTexAnmIdx = shape->getTexIdx(texIdx);
 }
 
 void JPACalcTexIdxReverse(JPAEmitterWorkData* work) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     int tick = work->mpEmtr->mTick;
     int keyNum = (int)shape->getTexAnmKeyNum() - 1;
     int div = tick / keyNum;
@@ -341,13 +343,13 @@ void JPACalcTexIdxReverse(JPAEmitterWorkData* work) {
 }
 
 void JPACalcTexIdxReverse(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     s32 tick = shape->getTexLoopOfst(param_1->mAnmRandom) + param_1->mAge;
     int keyNum = (int)shape->getTexAnmKeyNum() - 1;
     int div = tick / keyNum;
     int rem = tick % keyNum;
     u8 texIdx = rem + (div & 1) * (keyNum - rem * 2);
-    param_1->mTexAnmIdx = shape->getTexIdx(texIdx);
+    param_1->mTexAnmIdx = work->mpRes->getBsp()->getTexIdx(texIdx);
 }
 
 void JPACalcTexIdxMerge(JPAEmitterWorkData* work) {
@@ -355,11 +357,11 @@ void JPACalcTexIdxMerge(JPAEmitterWorkData* work) {
 }
 
 void JPACalcTexIdxMerge(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     s32 maxFrm = shape->getTexAnmKeyNum();
     s32 tick = (s32)(maxFrm * param_1->mTime) + shape->getTexLoopOfst(param_1->mAnmRandom);
     u8 texIdx = tick % maxFrm;
-    param_1->mTexAnmIdx = shape->getTexIdx(texIdx);
+    param_1->mTexAnmIdx = work->mpRes->getBsp()->getTexIdx(texIdx);
 }
 
 void JPACalcTexIdxRandom(JPAEmitterWorkData* work) {
@@ -367,7 +369,7 @@ void JPACalcTexIdxRandom(JPAEmitterWorkData* work) {
 }
 
 void JPACalcTexIdxRandom(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     u8 texIdx = ((int)shape->getTexLoopOfst(param_1->mAnmRandom)) % shape->getTexAnmKeyNum();
     param_1->mTexAnmIdx = shape->getTexIdx(texIdx);
 }
@@ -387,7 +389,7 @@ void loadPrj(JPAEmitterWorkData const* work, const Mtx srt) {
 }
 
 static void loadPrjAnm(JPAEmitterWorkData const* work, const Mtx srt) {
-    JPABaseShape* shape = work->mpRes->getBsp();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     f32 dVar16 = work->mpEmtr->getAge();
     f32 dVar15 = 0.5f * (1.0f + shape->getTilingS());
     f32 dVar14 = 0.5f * (1.0f + shape->getTilingT());
@@ -519,6 +521,7 @@ void dirTypePrevPtcl(JPAEmitterWorkData const* work, JPABaseParticle const* para
     } else {
         work->mpEmtr->calcEmitterGlobalPosition(param_2);
     }
+
     param_2->sub(aTStack_24);
 }
 
@@ -635,8 +638,6 @@ static planeFunc p_plane[3] = {
     basePlaneTypeX,
 };
 
-
-
 void JPADrawRotation(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
     if (param_1->checkStatus(8) == 0) {
         f32 sinRot = JMASSin(param_1->mRotateAngle);
@@ -657,8 +658,9 @@ void JPADrawRotation(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
 }
 
 void JPADrawPoint(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
-    if (!!(ptcl->mStatus & JPAPtclStts_Invisible))
+    if (!!(ptcl->mStatus & JPAPtclStts_Invisible)) {
         return;
+    }
 
     GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
     GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
@@ -670,17 +672,18 @@ void JPADrawPoint(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
 }
 
-
 void JPADrawEmitterCallBackB(JPAEmitterWorkData* work) {
-    if (work->mpEmtr->mpEmtrCallBack == NULL)
+    if (work->mpEmtr->mpEmtrCallBack == nullptr) {
         return;
+    }
 
     work->mpEmtr->mpEmtrCallBack->draw(work->mpEmtr);
 }
 
 void JPADrawParticleCallBack(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
-    if (work->mpEmtr->mpPtclCallBack == NULL)
+    if (work->mpEmtr->mpPtclCallBack == nullptr) {
         return;
+    }
 
     work->mpEmtr->mpPtclCallBack->draw(work->mpEmtr, ptcl);
 }
@@ -726,6 +729,7 @@ static void makeColorTable(GXColor** o_color_table, JPAClrAnmKeyData const* i_da
             color_table[i].a = a;
         }
     }
+
     *o_color_table = color_table;
 }
 
@@ -735,28 +739,30 @@ JPABaseShape::JPABaseShape(u8 const* pData, JKRHeap* pHeap) {
     if (isTexCrdAnm()) {
         mpTexCrdMtxAnmTbl = (const void*)(pData + sizeof(JPABaseShapeData));
     } else {
-        mpTexCrdMtxAnmTbl = NULL;
+        mpTexCrdMtxAnmTbl = nullptr;
     }
 
     if (isTexAnm()) {
         u32 offs = sizeof(JPABaseShapeData);
-        if (isTexCrdAnm())
+        if (isTexCrdAnm()) {
             offs = sizeof(JPABaseShapeData) + 0x28;
+        }
+
         mpTexIdxAnimTbl = (const u8*)(pData + offs);
     } else {
-        mpTexIdxAnimTbl = NULL;
+        mpTexIdxAnimTbl = nullptr;
     }
 
     if (isPrmAnm()) {
         makeColorTable(&mpPrmClrAnmTbl, (JPAClrAnmKeyData*)(pData + mpData->mClrPrmAnmOffset), mpData->mClrPrmKeyNum, mpData->mClrAnmFrmMax, pHeap);
     } else {
-        mpPrmClrAnmTbl = NULL;
+        mpPrmClrAnmTbl = nullptr;
     }
 
     if (isEnvAnm()) {
         makeColorTable(&mpEnvClrAnmTbl, (JPAClrAnmKeyData*)(pData + mpData->mClrEnvAnmOffset), mpData->mClrEnvKeyNum, mpData->mClrAnmFrmMax, pHeap);
     } else {
-        mpEnvClrAnmTbl = NULL;
+        mpEnvClrAnmTbl = nullptr;
     }
 }
 
@@ -842,7 +848,7 @@ GXTevAlphaArg JPABaseShape::st_aa[2][4] = {
 };
 
 void JPABaseShape::setGX(JPAEmitterWorkData* work) const {
-    const GXTevColorArg* colorArg = getTevColorArg();
+    const GXTevColorArg* const colorArg = getTevColorArg();
     const GXTevAlphaArg* alphaArg = getTevAlphaArg();
     GXSetBlendMode(getBlendMode(), getBlendSrc(), getBlendDst(), getLogicOp());
     GXSetZMode(getZEnable(), getZCmp(), getZUpd());

@@ -38,7 +38,7 @@ void KameckFireBall::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("BossKameckFireBall", nullptr, false);
     MR::connectToSceneEnemy(this);
-    initNerve(&NrvBossKameckBeamFire::KameckFireBallNrvWait::sInstance);
+    initNerve(GET_NERVE(BossKameckBeamFire, KameckFireBallNrvWait));
     initHitSensor(1);
     TVec3f sensorOffs;
     sensorOffs.x = 0.0f;
@@ -69,7 +69,7 @@ void KameckFireBall::kill() {
 void KameckFireBall::makeActorAppeared() {
     MR::showModel(this);
     LiveActor::makeActorAppeared();
-    setNerve(&NrvBossKameckBeamFire::KameckFireBallNrvWait::sInstance);
+    setNerve(GET_NERVE(BossKameckBeamFire, KameckFireBallNrvWait));
 }
 
 void KameckFireBall::makeActorDead() {
@@ -87,7 +87,7 @@ void KameckFireBall::calcAndSetBaseMtx() {
 }
 
 void KameckFireBall::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvBossKameckBeamFire::KameckFireBallNrvWait::sInstance)) {
+    if (isNerve(GET_NERVE(BossKameckBeamFire, KameckFireBallNrvWait))) {
         if (MR::isSensorEnemyAttack(pSender) && MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
             if (mEventListener != nullptr) {
                 mEventListener->hitBeam(KameckBeam::BeamType_FireBall1);
@@ -103,7 +103,7 @@ bool KameckFireBall::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSens
         return true;
     }
 
-    if (MR::isMsgStarPieceAttack(msg) && isNerve(&NrvBossKameckBeamFire::KameckFireBallNrvWait::sInstance)) {
+    if (MR::isMsgStarPieceAttack(msg) && isNerve(GET_NERVE(BossKameckBeamFire, KameckFireBallNrvWait))) {
         kill();
         return true;
     }

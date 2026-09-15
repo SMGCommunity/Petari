@@ -7,7 +7,7 @@
 #include "Game/Util/ObjUtil.hpp"
 
 SwitchWatcherHolder::SwitchWatcherHolder() : NameObj("SwitchWatcherHolder"), mSwitchWatcher() {
-    MR::connectToScene(this, MR::MovementType_SwitchWatcherHolder, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_SwitchWatcherHolder, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
 }
 
 void SwitchWatcherHolder::movement() {

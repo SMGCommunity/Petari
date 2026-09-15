@@ -143,7 +143,7 @@ RosettaDemoAstroDomeExplain::RosettaDemoAstroDomeExplain(Rosetta* pRosetta, cons
     DemoFunction::registerDemoTalkMessageCtrlDirect(mRosetta, mRosetta->mMsgCtrl, sDemoExplain);
     MR::registerDemoActionFunctorDirect(mRosetta, MR::Functor_Inline(this, &RosettaDemoAstroDomeExplain::startDemo), sDemoExplain, "状況説明[開始]");
     mMonologue = new RosettaMonologue();
-    initNerve(&NrvRosettaDemoAstroDomeExplain::RosettaDemoAstroDomeExplainNrvExplainDemo::sInstance);
+    initNerve(GET_NERVE(RosettaDemoAstroDomeExplain, RosettaDemoAstroDomeExplainNrvExplainDemo));
 }
 
 void RosettaDemoAstroDomeExplain::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
@@ -181,7 +181,7 @@ RosettaDemoAstroDomeFinalBattle::RosettaDemoAstroDomeFinalBattle(Rosetta* pRoset
     EntryDemo(this, "ロゼッタノーマルエンディング後デモ", "AstroGalaxy_Rosetta400", rIter);
 
     MR::needStageSwitchWriteA(mRosetta, rIter);
-    initNerve(&NrvRosettaDemoAstroDomeFinalBattle::RosettaDemoAstroDomeFinalBattleNrvFinalBattleDemo::sInstance);
+    initNerve(GET_NERVE(RosettaDemoAstroDomeFinalBattle, RosettaDemoAstroDomeFinalBattleNrvFinalBattleDemo));
 }
 
 void RosettaDemoAstroDomeFinalBattle::startDemo() {
@@ -205,7 +205,7 @@ RosettaDemoAstroDomeTalk::RosettaDemoAstroDomeTalk(Rosetta* pRosetta, const JMap
     EntryDemo(this, "ロゼッタトーチの炎進捗デモ", "AstroGalaxy_Rosetta084", rIter);
     EntryDemo(this, "ロゼッタルイージデモ", "AstroGalaxy_Rosetta054", rIter);
 
-    initNerve(&NrvRosettaDemoAstroDomeTalk::RosettaDemoAstroDomeTalkNrvTalkDemo::sInstance);
+    initNerve(GET_NERVE(RosettaDemoAstroDomeTalk, RosettaDemoAstroDomeTalkNrvTalkDemo));
 }
 
 void RosettaDemoAstroDomeTalk::startDemo() {

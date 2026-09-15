@@ -16,10 +16,10 @@ CenterScreenBlur::CenterScreenBlur() : LiveActor("画面中心ブラー"), mTime
 }
 
 void CenterScreenBlur::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, MR::MovementType_ImageEffect, -1, -1, MR::DrawType_CenterScreenBlur);
+    MR::connectToScene(this, MR::MovementType_ImageEffect, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_CenterScreenBlur);
     MR::invalidateClipping(this);
     MR::registerDemoSimpleCastAll(this);
-    initNerve(&NrvCenterScreenBlur::CenterScreenBlurNrvFadeIn::sInstance);
+    initNerve(GET_NERVE(CenterScreenBlur, CenterScreenBlurNrvFadeIn));
     makeActorDead();
 }
 
@@ -28,7 +28,7 @@ void CenterScreenBlur::appear() {
 
     mBlendRate = 0.0f;
 
-    setNerve(&NrvCenterScreenBlur::CenterScreenBlurNrvFadeIn::sInstance);
+    setNerve(GET_NERVE(CenterScreenBlur, CenterScreenBlurNrvFadeIn));
 }
 
 void CenterScreenBlur::draw() const {
@@ -55,7 +55,7 @@ void CenterScreenBlur::start(s32 time, f32 offset, u8 alpha, s32 fadeIn, s32 fad
 void CenterScreenBlur::exeFadeIn() {
     mBlendRate = MR::calcNerveRate(this, mFadeIn);
 
-    MR::setNerveAtStep(this, &NrvCenterScreenBlur::CenterScreenBlurNrvKeep::sInstance, mFadeIn);
+    MR::setNerveAtStep(this, GET_NERVE(CenterScreenBlur, CenterScreenBlurNrvKeep), mFadeIn);
 }
 
 void CenterScreenBlur::exeKeep() {
@@ -64,7 +64,7 @@ void CenterScreenBlur::exeKeep() {
     }
 
     if (MR::isGreaterEqualStep(this, mTime - (mFadeIn + mFadeOut))) {
-        setNerve(&NrvCenterScreenBlur::CenterScreenBlurNrvFadeOut::sInstance);
+        setNerve(GET_NERVE(CenterScreenBlur, CenterScreenBlurNrvFadeOut));
     }
 }
 

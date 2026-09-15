@@ -41,9 +41,9 @@ void MapPartsRotator::init(const JMapInfoIter& rIter) {
     MR::getMapPartsArgSignMotionType(&mSignMotionType, rIter);
 
     if (MR::isNearZero(_18)) {
-        initNerve(&NrvMapPartsRotator::HostTypeNeverMove::sInstance);
+        initNerve(GET_NERVE(MapPartsRotator, HostTypeNeverMove));
     } else {
-        initNerve(&NrvMapPartsRotator::HostTypeWait::sInstance);
+        initNerve(GET_NERVE(MapPartsRotator, HostTypeWait));
     }
 
     bool cond = 0.0f < _18;
@@ -61,16 +61,16 @@ void MapPartsRotator::init(const JMapInfoIter& rIter) {
 void MapPartsRotator::start() {
     updateTargetAngle();
     updateRotateMtx((AxisType)mRotateAxis, mAngle);
-    setNerve(&NrvMapPartsRotator::HostTypeRotate::sInstance);
+    setNerve(GET_NERVE(MapPartsRotator, HostTypeRotate));
 }
 
 void MapPartsRotator::end() {
-    setNerve(&NrvMapPartsRotator::HostTypeWait::sInstance);
+    setNerve(GET_NERVE(MapPartsRotator, HostTypeWait));
 }
 
 bool MapPartsRotator::isWorking() const {
-    if (!isNerve(&NrvMapPartsRotator::HostTypeNeverMove::sInstance)) {
-        return !isNerve(&NrvMapPartsRotator::HostTypeWait::sInstance);
+    if (!isNerve(GET_NERVE(MapPartsRotator, HostTypeNeverMove))) {
+        return !isNerve(GET_NERVE(MapPartsRotator, HostTypeWait));
     }
 
     return false;
@@ -79,17 +79,17 @@ bool MapPartsRotator::isWorking() const {
 void MapPartsRotator::startWithSignalMotion() {
     updateBaseHostMtx();
     updateTargetAngle();
-    setNerve(&NrvMapPartsRotator::HostTypeRotateStart::sInstance);
+    setNerve(GET_NERVE(MapPartsRotator, HostTypeRotateStart));
 }
 
 void MapPartsRotator::cancelSignalMotion() {
     mAngle = _A0;
     updateRotateMtx((AxisType)mRotateAxis, _A0);
-    setNerve(&NrvMapPartsRotator::HostTypeWait::sInstance);
+    setNerve(GET_NERVE(MapPartsRotator, HostTypeWait));
 }
 
 bool MapPartsRotator::isMoving() const {
-    return isNerve(&NrvMapPartsRotator::HostTypeRotate::sInstance);
+    return isNerve(GET_NERVE(MapPartsRotator, HostTypeRotate));
 }
 
 void MapPartsRotator::restartAtEnd() {
@@ -101,9 +101,9 @@ void MapPartsRotator::restartAtEnd() {
         updateTargetAngle();
 
         if (MR::hasMapPartsMoveStartSignMotion(mSignMotionType)) {
-            setNerve(&NrvMapPartsRotator::HostTypeRotateStart::sInstance);
+            setNerve(GET_NERVE(MapPartsRotator, HostTypeRotateStart));
         } else {
-            setNerve(&NrvMapPartsRotator::HostTypeRotate::sInstance);
+            setNerve(GET_NERVE(MapPartsRotator, HostTypeRotate));
         }
     }
 }

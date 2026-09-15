@@ -35,7 +35,7 @@ void CoinCounter::init(const JMapInfoIter& rIter) {
     mLayoutAppearer = new CounterLayoutAppearer(this, TVec2f(50.0f, 0.0f));
     mPaneRumbler = new CountUpPaneRumbler(this, "Counter");
 
-    initNerve(&NrvCoinCounter::CoinCounterNrvHide::sInstance);
+    initNerve(GET_NERVE(CoinCounter, CoinCounterNrvHide));
     MR::connectToSceneLayout(this);
     appear();
 }
@@ -48,14 +48,14 @@ void CoinCounter::appear() {
     mIsForceAppear = false;
 
     MR::hideLayout(this);
-    setNerve(&NrvCoinCounter::CoinCounterNrvHide::sInstance);
+    setNerve(GET_NERVE(CoinCounter, CoinCounterNrvHide));
     LayoutActor::appear();
 }
 
 void CoinCounter::forceAppear() {
-    if (!isNerve(&NrvCoinCounter::CoinCounterNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(CoinCounter, CoinCounterNrvWait))) {
         appear();
-        setNerve(&NrvCoinCounter::CoinCounterNrvAppear::sInstance);
+        setNerve(GET_NERVE(CoinCounter, CoinCounterNrvAppear));
     }
 
     mIsForceAppear = true;
@@ -64,11 +64,11 @@ void CoinCounter::forceAppear() {
 void CoinCounter::disappear() {
     mIsForceAppear = false;
 
-    setNerve(&NrvCoinCounter::CoinCounterNrvDisappear::sInstance);
+    setNerve(GET_NERVE(CoinCounter, CoinCounterNrvDisappear));
 }
 
 bool CoinCounter::isWait() const {
-    return isNerve(&NrvCoinCounter::CoinCounterNrvWait::sInstance);
+    return isNerve(GET_NERVE(CoinCounter, CoinCounterNrvWait));
 }
 
 void CoinCounter::control() {
@@ -83,7 +83,7 @@ void CoinCounter::updateCounter() {
     if (mInvalidCountUpFrame > 0) {
         mInvalidCountUpFrame--;
     } else if (mCoinDisplayNum < mCoinNum) {
-        if (isNerve(&NrvCoinCounter::CoinCounterNrvWait::sInstance)) {
+        if (isNerve(GET_NERVE(CoinCounter, CoinCounterNrvWait))) {
             mInvalidCountUpFrame = ::cInvalidCountUpInterval;
             mCoinDisplayNum++;
 
@@ -92,11 +92,11 @@ void CoinCounter::updateCounter() {
             mPaneRumbler->start();
         }
 
-        if (!isNerve(&NrvCoinCounter::CoinCounterNrvAppear::sInstance)) {
-            if (!isNerve(&NrvCoinCounter::CoinCounterNrvWait::sInstance)) {
-                setNerve(&NrvCoinCounter::CoinCounterNrvAppear::sInstance);
+        if (!isNerve(GET_NERVE(CoinCounter, CoinCounterNrvAppear))) {
+            if (!isNerve(GET_NERVE(CoinCounter, CoinCounterNrvWait))) {
+                setNerve(GET_NERVE(CoinCounter, CoinCounterNrvAppear));
             } else {
-                setNerve(&NrvCoinCounter::CoinCounterNrvWait::sInstance);
+                setNerve(GET_NERVE(CoinCounter, CoinCounterNrvWait));
             }
         }
     }
@@ -135,7 +135,7 @@ void CoinCounter::exeAppear() {
     }
 
     if (mLayoutAppearer->isAppeared()) {
-        setNerve(&NrvCoinCounter::CoinCounterNrvWait::sInstance);
+        setNerve(GET_NERVE(CoinCounter, CoinCounterNrvWait));
     }
 }
 
@@ -149,7 +149,7 @@ void CoinCounter::exeWait() {
     }
 
     if (CounterLayoutController::isWaitToDisappearCounter(this)) {
-        setNerve(&NrvCoinCounter::CoinCounterNrvDisappear::sInstance);
+        setNerve(GET_NERVE(CoinCounter, CoinCounterNrvDisappear));
     }
 }
 
@@ -159,6 +159,6 @@ void CoinCounter::exeDisappear() {
     }
 
     if (mLayoutAppearer->isDisappeared()) {
-        setNerve(&NrvCoinCounter::CoinCounterNrvHide::sInstance);
+        setNerve(GET_NERVE(CoinCounter, CoinCounterNrvHide));
     }
 }

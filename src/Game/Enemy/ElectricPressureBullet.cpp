@@ -28,7 +28,7 @@ void ElectricPressureBullet::init(const JMapInfoIter& rIter) {
     initSound(1, false);
     MR::initStarPointerTarget(this, 100.0f, TVec3f(0, 0, 0));
     MR::initShadowVolumeCylinder(this, 75.0f);
-    initNerve(&NrvElectricPressureBullet::ElectricPressureBulletNrvFly::sInstance);
+    initNerve(GET_NERVE(ElectricPressureBullet, ElectricPressureBulletNrvFly));
     makeActorDead();
 }
 
@@ -50,7 +50,7 @@ void ElectricPressureBullet::shotElectricBullet(LiveActor* actor, const TPos3f& 
     makeActorAppeared();
     MR::validateHitSensors(this);
     MR::invalidateClipping(this);
-    setNerve(&NrvElectricPressureBullet::ElectricPressureBulletNrvFly::sInstance);
+    setNerve(GET_NERVE(ElectricPressureBullet, ElectricPressureBulletNrvFly));
 }
 
 void ElectricPressureBullet::exeFly() {

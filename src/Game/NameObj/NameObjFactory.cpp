@@ -17,62 +17,6 @@
 #include "Game/Util/FileUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
-namespace NrvMorphItemObjNeo {
-    NEW_NERVE(MorphItemObjNeoNrvWait, MorphItemObjNeo, Wait);
-    NEW_NERVE(MorphItemObjNeoNrvAppear, MorphItemObjNeo, Appear);
-    NEW_NERVE(MorphItemObjNeoNrvSwitchAppear, MorphItemObjNeo, SwitchAppear);
-    NEW_NERVE(MorphItemObjNeoNrvWait2, MorphItemObjNeo, Wait2);
-    NEW_NERVE(MorphItemObjNeoNrvFly, MorphItemObjNeo, Fly);
-    NEW_NERVE(MorphItemObjNeoNrvDemo, MorphItemObjNeo, Demo);
-};  // namespace NrvMorphItemObjNeo
-
-namespace NrvBenefitItemObj {
-    INIT_NERVE(HostTypeNrvWait);
-    INIT_NERVE(HostTypeNrvShoot);
-    INIT_NERVE(HostTypeNrvCatch);
-    INIT_NERVE(HostTypeNrvAppearGround);
-    INIT_NERVE(HostTypeNrvPreEscape);
-    INIT_NERVE(HostTypeNrvEscape);
-};  // namespace NrvBenefitItemObj
-
-namespace NrvMarioActor {
-    INIT_NERVE(MarioActorNrvWait);
-    INIT_NERVE(MarioActorNrvGameOver);
-    INIT_NERVE(MarioActorNrvGameOverAbyss);
-    INIT_NERVE(MarioActorNrvGameOverAbyss2);
-    INIT_NERVE(MarioActorNrvGameOverFire);
-    INIT_NERVE(MarioActorNrvGameOverBlackHole);
-    INIT_NERVE(MarioActorNrvGameOverNonStop);
-    INIT_NERVE(MarioActorNrvGameOverSink);
-    INIT_NERVE(MarioActorNrvTimeWait);
-    INIT_NERVE(MarioActorNrvNoRush);
-};  // namespace NrvMarioActor
-
-volatile const Nerve* cNerveInitKeep[] = {
-    &NrvBenefitItemObj::HostTypeNrvWait::sInstance,
-    &NrvBenefitItemObj::HostTypeNrvShoot::sInstance,
-    &NrvBenefitItemObj::HostTypeNrvCatch::sInstance,
-    &NrvBenefitItemObj::HostTypeNrvAppearGround::sInstance,
-    &NrvBenefitItemObj::HostTypeNrvPreEscape::sInstance,
-    &NrvBenefitItemObj::HostTypeNrvEscape::sInstance,
-    &NrvMarioActor::MarioActorNrvWait::sInstance,
-    &NrvMarioActor::MarioActorNrvGameOver::sInstance,
-    &NrvMarioActor::MarioActorNrvGameOverAbyss::sInstance,
-    &NrvMarioActor::MarioActorNrvGameOverAbyss2::sInstance,
-    &NrvMarioActor::MarioActorNrvGameOverFire::sInstance,
-    &NrvMarioActor::MarioActorNrvGameOverBlackHole::sInstance,
-    &NrvMarioActor::MarioActorNrvGameOverNonStop::sInstance,
-    &NrvMarioActor::MarioActorNrvGameOverSink::sInstance,
-    &NrvMarioActor::MarioActorNrvTimeWait::sInstance,
-    &NrvMarioActor::MarioActorNrvNoRush::sInstance,
-    &NrvMorphItemObjNeo::MorphItemObjNeoNrvWait::sInstance,
-    &NrvMorphItemObjNeo::MorphItemObjNeoNrvAppear::sInstance,
-    &NrvMorphItemObjNeo::MorphItemObjNeoNrvSwitchAppear::sInstance,
-    &NrvMorphItemObjNeo::MorphItemObjNeoNrvWait2::sInstance,
-    &NrvMorphItemObjNeo::MorphItemObjNeoNrvFly::sInstance,
-    &NrvMorphItemObjNeo::MorphItemObjNeoNrvDemo::sInstance,
-};
-
 namespace {
     template < typename T >
     NameObj* createCenterOriginCube(const char* pName) {

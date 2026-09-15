@@ -18,32 +18,32 @@ void FileSelectEffect::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("MiniatureGalaxySelect", nullptr, false);
     MR::connectToSceneMapObj(this);
     MR::invalidateClipping(this);
-    initNerve(&FileSelectEffectNrvWait::sInstance);
+    initNerve(GET_NERVE_GLOBAL(FileSelectEffectNrvWait));
     makeActorDead();
 }
 
 void FileSelectEffect::appear() {
     LiveActor::appear();
-    setNerve(&FileSelectEffectNrvAppear::sInstance);
+    setNerve(GET_NERVE_GLOBAL(FileSelectEffectNrvAppear));
 }
 
 void FileSelectEffect::disappear() {
-    if (MR::isDead(this) || isNerve(&::FileSelectEffectNrvDisappear::sInstance)) {
+    if (MR::isDead(this) || isNerve(GET_NERVE_ANON(FileSelectEffectNrvDisappear))) {
         return;
     }
 
-    if (isNerve(&::FileSelectEffectNrvAppear::sInstance)) {
+    if (isNerve(GET_NERVE_ANON(FileSelectEffectNrvAppear))) {
         if (MR::isNewNerve(this)) {
             kill();
             return;
         }
 
         mEffectFrame = MR::getBrkCtrl(this)->getFrame();
-    } else if (isNerve(&::FileSelectEffectNrvWait::sInstance)) {
+    } else if (isNerve(GET_NERVE_ANON(FileSelectEffectNrvWait))) {
         mEffectFrame = MR::getBrkCtrl(this)->getEnd();
     }
 
-    setNerve(&::FileSelectEffectNrvDisappear::sInstance);
+    setNerve(GET_NERVE_ANON(FileSelectEffectNrvDisappear));
 }
 
 void FileSelectEffect::exeAppear() {
@@ -53,7 +53,7 @@ void FileSelectEffect::exeAppear() {
     }
 
     if (MR::isBrkOneTimeAndStopped(this)) {
-        setNerve(&FileSelectEffectNrvWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectEffectNrvWait));
     }
 }
 

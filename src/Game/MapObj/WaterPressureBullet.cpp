@@ -46,7 +46,7 @@ void WaterPressureBullet::init(const JMapInfoIter& rIter) {
     MR::initShadowVolumeSphere(this, 75.0f);
     MR::setShadowDropLength(this, nullptr, 1500.0f);
     MR::registerDemoSimpleCastAll(this);
-    initNerve(&NrvWaterPressureBullet::WaterPressureBulletNrvFly::sInstance);
+    initNerve(GET_NERVE(WaterPressureBullet, WaterPressureBulletNrvFly));
     makeActorDead();
 }
 
@@ -117,7 +117,7 @@ void WaterPressureBullet::shotWaterBullet(LiveActor* pActor, const TPos3f& rPos,
         MR::onCalcGravity(this);
     }
 
-    setNerve(&NrvWaterPressureBullet::WaterPressureBulletNrvFly::sInstance);
+    setNerve(GET_NERVE(WaterPressureBullet, WaterPressureBulletNrvFly));
 }
 
 void WaterPressureBullet::exeFly() {
@@ -146,7 +146,7 @@ void WaterPressureBullet::exeFly() {
         MR::startSound(mHostActor, "SE_PV_TWIST_START");
         MR::startSound(mHostActor, "SE_PM_SPIN_ATTACK");
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
-        setNerve(&NrvWaterPressureBullet::WaterPressureBulletNrvSpinKill::sInstance);
+        setNerve(GET_NERVE(WaterPressureBullet, WaterPressureBulletNrvSpinKill));
         return;
     }
 
@@ -285,7 +285,7 @@ void WaterPressureBullet::updateSuffererMtx() {
     TPos3f pos;
     pos.identity();
 
-    if (isNerve(&NrvWaterPressureBullet::WaterPressureBulletNrvSpinKill::sInstance)) {
+    if (isNerve(GET_NERVE(WaterPressureBullet, WaterPressureBulletNrvSpinKill))) {
         TVec3f front;
         MR::calcFrontVec(&front, mHostActor);
         MR::calcMtxFromGravityAndZAxis(&pos, mHostActor, mGravity, front);

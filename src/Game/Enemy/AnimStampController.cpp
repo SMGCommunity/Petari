@@ -33,12 +33,12 @@ void AnimStampController::init(s32 a1, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6, f
     _14[4][1] = a6;
     _14[4][2] = a7;
     _14.identity();
-    initNerve(&NrvAnimStampController::HostNrvAnimEnd::sInstance);
+    initNerve(GET_NERVE(AnimStampController, HostNrvAnimEnd));
 }
 
 void AnimStampController::startAnim(const TVec3f& rVec) {
     _8.set(rVec);
-    setNerve(&NrvAnimStampController::HostNrvAnim::sInstance);
+    setNerve(GET_NERVE(AnimStampController, HostNrvAnim));
     _14.identity();
 }
 
@@ -49,7 +49,7 @@ void AnimStampController::exeAnim() {
         vib.y = MR::getReduceVibrationValue(getNerveStep(), _44, _14[3][1], _14[3][3], _14[4][0]);
         vib.z = MR::getReduceVibrationValue(getNerveStep(), _44, _14[3][2], _14[4][1], _14[4][2]);
     } else {
-        setNerve(&NrvAnimStampController::HostNrvAnimEnd::sInstance);
+        setNerve(GET_NERVE(AnimStampController, HostNrvAnimEnd));
     }
 
     MR::scaleMtxToDir(&_14, _8, vib);
@@ -59,5 +59,5 @@ void AnimStampController::exeAnimEnd() {
 }
 
 bool AnimStampController::isAnimEnd() const {
-    return isNerve(&NrvAnimStampController::HostNrvAnimEnd::sInstance);
+    return isNerve(GET_NERVE(AnimStampController, HostNrvAnimEnd));
 }

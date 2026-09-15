@@ -47,7 +47,7 @@ void StrayTico::init(const JMapInfoIter& rIter) {
     MR::makeQuatAndFrontFromRotate(&mRotateQuat, &mFrontVec, this);
     _B0.set(mPosition);
     MR::calcGravity(this);
-    initNerve(&NrvStrayTico::StrayTicoNrvWait::sInstance);
+    initNerve(GET_NERVE(StrayTico, StrayTicoNrvWait));
     initSensor();
     initShadow();
     initEffectKeeper(0, nullptr, false);
@@ -95,11 +95,11 @@ void StrayTico::appear() {
 void StrayTico::control() {
     MR::blendQuatUpFront(&mRotateQuat, -mGravity, mFrontVec, ::sUpVecBlendRate, ::sFrontVecBlendRate);
 
-    if (isNerve(&NrvStrayTico::StrayTicoNrvCompleteDemo::sInstance)) {
+    if (isNerve(GET_NERVE(StrayTico, StrayTicoNrvCompleteDemo))) {
         return;
     }
 
-    if (isNerve(&NrvStrayTico::StrayTicoNrvWait::sInstance)) {
+    if (isNerve(GET_NERVE(StrayTico, StrayTicoNrvWait))) {
         MR::startLevelSound(this, "SE_SM_LV_STRAYTICO_WAIT");
     } else {
         MR::startLevelSound(this, "SE_SM_LV_STRAYTICO_WAIT_GRP");
@@ -118,15 +118,15 @@ void StrayTico::startGlad() {
     MR::invalidateClipping(this);
     MR::validateHitSensor(this, "Body");
     MR::invalidateHitSensor(this, "Bubble");
-    setNerve(&NrvStrayTico::StrayTicoNrvGlad::sInstance);
+    setNerve(GET_NERVE(StrayTico, StrayTicoNrvGlad));
 }
 
 void StrayTico::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvStrayTico::StrayTicoNrvWait::sInstance) && MR::isSensorNpc(pReceiver) && MR::sendMsgPush(pReceiver, pSender)) {
+    if (!isNerve(GET_NERVE(StrayTico, StrayTicoNrvWait)) && MR::isSensorNpc(pReceiver) && MR::sendMsgPush(pReceiver, pSender)) {
         MR::addVelocityAwayFromTarget(this, MR::getSensorPos(pReceiver), ::sPushAccel);
     }
 
-    if (isNerve(&NrvStrayTico::StrayTicoNrvWait::sInstance) && MR::isSensorPlayer(pReceiver)) {
+    if (isNerve(GET_NERVE(StrayTico, StrayTicoNrvWait)) && MR::isSensorPlayer(pReceiver)) {
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::emitEffect(this, "Break");
         MR::startSound(this, "SE_OJ_ITEM_BUBBLE_BREAK");
@@ -135,14 +135,14 @@ void StrayTico::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool StrayTico::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isMsgStarPieceAttack(msg) && isNerve(&NrvStrayTico::StrayTicoNrvWait::sInstance)) {
+    if (MR::isMsgStarPieceAttack(msg) && isNerve(GET_NERVE(StrayTico, StrayTicoNrvWait))) {
         MR::limitedStarPieceHitSound();
 
         return true;
     }
 
-    if (MR::isMsgStarPieceReflect(msg) && !isNerve(&NrvStrayTico::StrayTicoNrvWait::sInstance)) {
-        if (isNerve(&NrvStrayTico::StrayTicoNrvChase::sInstance)) {
+    if (MR::isMsgStarPieceReflect(msg) && !isNerve(GET_NERVE(StrayTico, StrayTicoNrvWait))) {
+        if (isNerve(GET_NERVE(StrayTico, StrayTicoNrvChase))) {
             TVec3f sensorDir;
             MR::calcSensorDirectionNormalize(&sensorDir, pSender, pReceiver);
             MR::setVelocity(this, sensorDir * 10.0f);
@@ -155,7 +155,7 @@ bool StrayTico::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
 }
 
 bool StrayTico::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvStrayTico::StrayTicoNrvWait::sInstance) && MR::isSensorNpc(pSender)) {
+    if (!isNerve(GET_NERVE(StrayTico, StrayTicoNrvWait)) && MR::isSensorNpc(pSender)) {
         MR::addVelocityAwayFromTarget(this, MR::getSensorPos(pSender), ::sPushAccel);
 
         return true;
@@ -193,7 +193,7 @@ bool StrayTico::requestCompleteDemo(const TVec3f& rParam1, const TVec3f& rParam2
 
     _F0 = MR::toRadian(MR::diffAngleSigned(vec, _D4, _C8));
 
-    setNerve(&NrvStrayTico::StrayTicoNrvCompleteDemo::sInstance);
+    setNerve(GET_NERVE(StrayTico, StrayTicoNrvCompleteDemo));
 
     return true;
 }
@@ -216,7 +216,7 @@ void StrayTico::exeGlad() {
         MR::startSound(this, "SE_SM_STRAYTICO_GET", mHost->mTicoNum - noRescuedCount);
 
         if (noRescuedCount == 1) {
-            setNerve(&NrvStrayTico::StrayTicoNrvChase::sInstance);
+            setNerve(GET_NERVE(StrayTico, StrayTicoNrvChase));
             return;
         }
     }
@@ -226,7 +226,7 @@ void StrayTico::exeGlad() {
             MR::onSwitchA(this);
         }
 
-        setNerve(&NrvStrayTico::StrayTicoNrvChase::sInstance);
+        setNerve(GET_NERVE(StrayTico, StrayTicoNrvChase));
         MR::startSound(this, "SE_SV_STRAYTICO_GLAD");
     }
 }
@@ -244,7 +244,7 @@ void StrayTico::exeChase() {
     updateChase();
 
     if (MR::isActiveLauncherCamera() || MR::isActiveLauncherFlightCamera()) {
-        setNerve(&NrvStrayTico::StrayTicoNrvLauncherCamera::sInstance);
+        setNerve(GET_NERVE(StrayTico, StrayTicoNrvLauncherCamera));
     }
 }
 
@@ -269,7 +269,7 @@ void StrayTico::exeLauncherCamera() {
         return;
     }
 
-    setNerve(&NrvStrayTico::StrayTicoNrvChase::sInstance);
+    setNerve(GET_NERVE(StrayTico, StrayTicoNrvChase));
 }
 
 void StrayTico::updateWarp() {
@@ -337,8 +337,8 @@ void StrayTico::exeCompleteDemo() {
 }
 
 bool StrayTico::isEnableSpin() const {
-    if (isNerve(&NrvStrayTico::StrayTicoNrvWait::sInstance) || isNerve(&NrvStrayTico::StrayTicoNrvGlad::sInstance) ||
-        isNerve(&NrvStrayTico::StrayTicoNrvLauncherCamera::sInstance)) {
+    if (isNerve(GET_NERVE(StrayTico, StrayTicoNrvWait)) || isNerve(GET_NERVE(StrayTico, StrayTicoNrvGlad)) ||
+        isNerve(GET_NERVE(StrayTico, StrayTicoNrvLauncherCamera))) {
         return false;
     }
 
@@ -346,7 +346,7 @@ bool StrayTico::isEnableSpin() const {
 }
 
 bool StrayTico::isRescued() const {
-    if (isNerve(&NrvStrayTico::StrayTicoNrvChase::sInstance) || isNerve(&NrvStrayTico::StrayTicoNrvLauncherCamera::sInstance)) {
+    if (isNerve(GET_NERVE(StrayTico, StrayTicoNrvChase)) || isNerve(GET_NERVE(StrayTico, StrayTicoNrvLauncherCamera))) {
         return true;
     }
 
@@ -354,7 +354,7 @@ bool StrayTico::isRescued() const {
 }
 
 bool StrayTico::isCompleteDemoEnd() const {
-    if (isNerve(&NrvStrayTico::StrayTicoNrvCompleteDemo::sInstance) && MR::isGreaterStep(this, ::sCompleteDemoTime)) {
+    if (isNerve(GET_NERVE(StrayTico, StrayTicoNrvCompleteDemo)) && MR::isGreaterStep(this, ::sCompleteDemoTime)) {
         return true;
     }
 

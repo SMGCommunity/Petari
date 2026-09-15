@@ -53,7 +53,7 @@ void TripodBossKillerGenerater::init(const JMapInfoIter& rIter) {
     TripodBossFixPartsBase::init(rIter);
     MR::makeMtxTR(_E4, this);
     initModelManagerWithAnm("TripodBossKillerCannon", nullptr, false);
-    MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, -1);
+    MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, MR::DrawType_None);
     MR::getJMapInfoArg1NoInit(rIter, &mCanShootSettingPlayerDistance);
     initClippingSphere();
 
@@ -75,7 +75,7 @@ void TripodBossKillerGenerater::init(const JMapInfoIter& rIter) {
 
     initEffectKeeper(0, "TripodBoss", false);
     initSound(4, false);
-    initNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvNonActive::sInstance);
+    initNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvNonActive));
     MR::useStageSwitchReadAppear(this, rIter);
 
     if (mActiveLabel > 0) {
@@ -114,13 +114,13 @@ void TripodBossKillerGenerater::activateTripodBoss() {
     MR::onCalcAnim(this);
 
     if (mActiveLabel > 0) {
-        setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvHide::sInstance);
+        setNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvHide));
 
         if (mHasCollision) {
             MR::invalidateCollisionParts(this);
         }
     } else {
-        setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvReady::sInstance);
+        setNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvReady));
 
         if (mHasCollision) {
             MR::validateCollisionParts(this);
@@ -165,7 +165,7 @@ bool TripodBossKillerGenerater::tryShootSetting() {
 
             mKiller->appear(trans, front);
 
-            setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvShootSetting::sInstance);
+            setNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvShootSetting));
 
             return true;
         }
@@ -176,7 +176,7 @@ bool TripodBossKillerGenerater::tryShootSetting() {
 
 bool TripodBossKillerGenerater::tryShoot() {
     if (mKiller->isMoveStart()) {
-        setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvShoot::sInstance);
+        setNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvShoot));
 
         return true;
     }
@@ -186,7 +186,7 @@ bool TripodBossKillerGenerater::tryShoot() {
 
 bool TripodBossKillerGenerater::tryCoolDown() {
     if (MR::isDead(mKiller)) {
-        setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvCoolDown::sInstance);
+        setNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvCoolDown));
 
         return true;
     }
@@ -196,7 +196,7 @@ bool TripodBossKillerGenerater::tryCoolDown() {
 
 bool TripodBossKillerGenerater::tryReady() {
     if (MR::isGreaterStep(this, 0)) {
-        setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvReady::sInstance);
+        setNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvReady));
 
         return true;
     }
@@ -206,7 +206,7 @@ bool TripodBossKillerGenerater::tryReady() {
 
 bool TripodBossKillerGenerater::tryBreak() {
     if (MR::isEndBreakDownDemoTripodBoss()) {
-        setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvBreak::sInstance);
+        setNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvBreak));
 
         return true;
     }
@@ -220,7 +220,7 @@ bool TripodBossKillerGenerater::tryAbort() {
             mKiller->kill();
         }
 
-        setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvReady::sInstance);
+        setNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvReady));
 
         return true;
     }
@@ -229,11 +229,11 @@ bool TripodBossKillerGenerater::tryAbort() {
 }
 
 bool TripodBossKillerGenerater::requestBreak() {
-    if (isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvReady::sInstance) ||
-        isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvShootSetting::sInstance) ||
-        isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvShoot::sInstance) ||
-        isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvCoolDown::sInstance)) {
-        if (isNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvShootSetting::sInstance) && !MR::isDead(mKiller)) {
+    if (isNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvReady)) ||
+        isNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvShootSetting)) ||
+        isNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvShoot)) ||
+        isNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvCoolDown))) {
+        if (isNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvShootSetting)) && !MR::isDead(mKiller)) {
             mKiller->kill();
         }
 
@@ -243,7 +243,7 @@ bool TripodBossKillerGenerater::requestBreak() {
 
         MR::startBck(this, "2ndDemo", nullptr);
         MR::setBckFrameAndStop(this, 0.0f);
-        setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvStop::sInstance);
+        setNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvStop));
 
         return true;
     }
@@ -256,7 +256,7 @@ void TripodBossKillerGenerater::exeNonActive() {
 
 void TripodBossKillerGenerater::exeHide() {
     if (MR::isDamageDemoTripodBoss()) {
-        setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvShowDemo::sInstance);
+        setNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvShowDemo));
     }
 
     updateTripodMatrix();
@@ -265,7 +265,7 @@ void TripodBossKillerGenerater::exeHide() {
 void TripodBossKillerGenerater::exeShowDemo() {
     if (MR::isStep(this, ::sDemoAnimStartDelayTime)) {
         if (MR::getPlayerPos()->distance(mPosition) < ::sCanRestartPlayerDistance) {
-            setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvRestart::sInstance);
+            setNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvRestart));
             return;
         }
 
@@ -282,7 +282,7 @@ void TripodBossKillerGenerater::exeShowDemo() {
     }
 
     if (!MR::isDamageDemoTripodBoss()) {
-        setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvReady::sInstance);
+        setNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvReady));
     }
 }
 
@@ -346,7 +346,7 @@ void TripodBossKillerGenerater::exeStop() {
     updateTripodMatrix();
 
     if (MR::isGreaterStep(this, ::sStopTime)) {
-        setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvRestart::sInstance);
+        setNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvRestart));
     }
 }
 
@@ -372,7 +372,7 @@ void TripodBossKillerGenerater::exeRestart() {
 
     if (!_121) {
         if (MR::isBckStopped(this)) {
-            setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvReady::sInstance);
+            setNerve(GET_NERVE(TripodBossKillerGenerater, TripodBossKillerGeneraterNrvReady));
         }
     }
 }

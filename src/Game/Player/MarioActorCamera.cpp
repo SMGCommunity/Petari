@@ -6,6 +6,11 @@
 #include "Game/Player/MarioSwim.hpp"
 #include "Game/Util/MathUtil.hpp"
 
+void MarioActorCamera_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0000038146973f;
+}
+
 MtxPtr MarioActor::getMapBaseMtx() const {
     HitSensor* pSensor = mMario->_46C->mSensor;
     if (pSensor == nullptr) {
@@ -26,8 +31,7 @@ bool MarioActor::isFastRise() const {
 }
 
 bool MarioActor::isLongDrop() const {
-    // FIXME
-    if (mMario->getMovementStates()._2) {
+    if (mMario->getMovementStates()._2 == 0) {
         return true;
     }
 
@@ -69,12 +73,14 @@ bool MarioActor::isCameraStateOn(SPECIAL_STATUS_FOR_CAMERA status) const {
         if (mMario->isStatusActive(MarioStatus_FireDance)) {
             return true;
         }
+
         break;
 
     case CASE_1:
         if (isJumping() && mMario->_430 == 11) {
             return true;
         }
+
         break;
     }
 
@@ -110,7 +116,7 @@ void MarioActor::updateTransForCamera() {
         return;
     }
 
-    if (isNerve(&NrvMarioActor::MarioActorNrvGameOverBlackHole::sInstance)) {
+    if (isNerve(GET_NERVE(MarioActor, MarioActorNrvGameOverBlackHole))) {
         mCameraTrans = mBlackHolePosition * 0.1f + mCameraTrans * 0.9f;
         return;
     }

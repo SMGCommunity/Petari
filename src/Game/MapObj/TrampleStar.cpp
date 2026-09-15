@@ -46,7 +46,7 @@ void TrampleStar::init(const JMapInfoIter& rIter) {
     // https://decomp.me/scratch/4dRlF
 
     MR::initDefaultPos(this, rIter);
-    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, -1, MR::DrawType_FlexibleSphere);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_None, MR::DrawType_FlexibleSphere);
 
     // FIXME: inline
     mTexture = new JUTTexture(MR::loadTexFromArc("TrampleStar.arc", "TrampleStar.bti"), 0);
@@ -181,7 +181,7 @@ void TrampleStar::init(const JMapInfoIter& rIter) {
     calcSurface(false);
     mIsLod = false;
 
-    initNerve(&TrampleStarNrvWait::sInstance);
+    initNerve(GET_NERVE_GLOBAL(TrampleStarNrvWait));
     MR::initLightCtrlNoDrawMapObj(this);
     makeActorAppeared();
     MR::setClippingTypeSphere(this, scale);
@@ -276,7 +276,7 @@ void TrampleStar::control() {
 
 void TrampleStar::calcAnim() {
     calcSurface(false);
-    if (!isNerve(&TrampleStarNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE_GLOBAL(TrampleStarNrvWait))) {
         for (u32 idx = 0; idx < mNumVtxs; idx++) {
             s16 idx2 = mVtxOverlap[idx];
             if (idx2 != -1) {
@@ -384,7 +384,7 @@ void TrampleStar::exeBindingCapture() {
     mDeformRate = 0.85f * mDeformRate;
 
     if (getNerveStep() > mCaptureFrames) {
-        setNerve(&TrampleStarNrvBindingShoot::sInstance);
+        setNerve(GET_NERVE_GLOBAL(TrampleStarNrvBindingShoot));
     }
 }
 
@@ -434,7 +434,7 @@ void TrampleStar::exeBindingShoot() {
 
                     MR::endBindAndPlayerJump(this, up * mJumpVel, 0);
                     MR::startBckPlayer("Jump2", static_cast< const char* >(nullptr));
-                    setNerve(&TrampleStarNrvWait::sInstance);
+                    setNerve(GET_NERVE_GLOBAL(TrampleStarNrvWait));
                 }
             }
 
@@ -456,7 +456,7 @@ void TrampleStar::exeBindingShoot() {
             MR::endBindAndPlayerJump(this, up * mJumpVel, 0);
         }
 
-        setNerve(&TrampleStarNrvWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(TrampleStarNrvWait));
 
         for (u32 vtx = 0; vtx < mNumVtxs; vtx++) {
             mDeformSpeed[vtx] = 0.0f;
@@ -517,7 +517,7 @@ bool TrampleStar::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
         if (MR::getPlayerVelocity()->dot(mVtxs[mCaptureVtx]) > 0.0f) {
             return false;
         }
-        setNerve(&TrampleStarNrvBindingCapture::sInstance);
+        setNerve(GET_NERVE_GLOBAL(TrampleStarNrvBindingCapture));
         return true;
     }
 

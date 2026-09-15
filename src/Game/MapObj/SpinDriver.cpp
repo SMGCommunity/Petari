@@ -66,7 +66,7 @@ void SpinDriver::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     initSound(6, false);
     initEventCamera(rIter);
-    initNerve(&NrvSpinDriver::SpinDriverNrvWait::sInstance);
+    initNerve(GET_NERVE(SpinDriver, SpinDriverNrvWait));
     MR::initShadowVolumeFlatModel(this, "SpinDriverShadow", MR::getJointMtx(this, "SpinDriver"));
     initParamFromJMapInfo(rIter);
     MR::setClippingFar200m(this);
@@ -144,15 +144,15 @@ void SpinDriver::appear() {
     LiveActor::appear();
     MR::invalidateClipping(this);
     if (mSpinDriverCamera->isUseAppearCamera(this)) {
-        MR::requestStartDemo(this, "出現", &NrvSpinDriver::SpinDriverNrvAppear::sInstance, &NrvSpinDriver::SpinDriverNrvTryDemo::sInstance);
+        MR::requestStartDemo(this, "出現", GET_NERVE(SpinDriver, SpinDriverNrvAppear), GET_NERVE(SpinDriver, SpinDriverNrvTryDemo));
     } else {
-        setNerve(&NrvSpinDriver::SpinDriverNrvAppear::sInstance);
+        setNerve(GET_NERVE(SpinDriver, SpinDriverNrvAppear));
     }
 }
 
 void SpinDriver::makeActorAppeared() {
     LiveActor::makeActorAppeared();
-    setNerve(&NrvSpinDriver::SpinDriverNrvWait::sInstance);
+    setNerve(GET_NERVE(SpinDriver, SpinDriverNrvWait));
 }
 
 void SpinDriver::makeActorDead() {
@@ -223,7 +223,7 @@ bool SpinDriver::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
     }
 
     if (msg == ACTMES_RUSH_CANCEL) {
-        if (isNerve(&NrvSpinDriver::SpinDriverNrvShootStart::sInstance)) {
+        if (isNerve(GET_NERVE(SpinDriver, SpinDriverNrvShootStart))) {
             return false;
         }
 
@@ -262,7 +262,7 @@ bool SpinDriver::tryStartShoot() {
             MR::startSound(this, "SE_PMSPIN_DRV_IN_WATER_1");
         }
 
-        setNerve(&NrvSpinDriver::SpinDriverNrvShootStart::sInstance);
+        setNerve(GET_NERVE(SpinDriver, SpinDriverNrvShootStart));
         return true;
     }
 
@@ -273,7 +273,7 @@ bool SpinDriver::tryEndCapture() {
     if (MR::isGreaterStep(this, 40) && _B8.distance(mPosition) < 15.0f) {
         cancelBind();
         _141 = 0;
-        setNerve(&NrvSpinDriver::SpinDriverNrvWait::sInstance);
+        setNerve(GET_NERVE(SpinDriver, SpinDriverNrvWait));
         return true;
     }
 
@@ -282,7 +282,7 @@ bool SpinDriver::tryEndCapture() {
 
 bool SpinDriver::tryShoot() {
     if (MR::isGreaterStep(this, 20)) {
-        setNerve(&NrvSpinDriver::SpinDriverNrvShoot::sInstance);
+        setNerve(GET_NERVE(SpinDriver, SpinDriverNrvShoot));
         return true;
     }
 
@@ -294,7 +294,7 @@ bool SpinDriver::tryEndShoot() {
         MR::endBindAndSpinDriverJump(this, _C4);
         _8C = 0;
         endCamera();
-        setNerve(&NrvSpinDriver::SpinDriverNrvCoolDown::sInstance);
+        setNerve(GET_NERVE(SpinDriver, SpinDriverNrvCoolDown));
         return true;
     }
 
@@ -303,7 +303,7 @@ bool SpinDriver::tryEndShoot() {
 
 bool SpinDriver::tryForceCancel() {
     if (!_8C) {
-        setNerve(&NrvSpinDriver::SpinDriverNrvCoolDown::sInstance);
+        setNerve(GET_NERVE(SpinDriver, SpinDriverNrvCoolDown));
         return true;
     }
 
@@ -312,7 +312,7 @@ bool SpinDriver::tryForceCancel() {
 
 bool SpinDriver::tryEndCoolDown() {
     if (MR::isGreaterStep(this, 60)) {
-        setNerve(&NrvSpinDriver::SpinDriverNrvWait::sInstance);
+        setNerve(GET_NERVE(SpinDriver, SpinDriverNrvWait));
         return true;
     }
 
@@ -362,7 +362,7 @@ void SpinDriver::exeAppear() {
 
     if (MR::isBckStopped(this)) {
         if (MR::isGreaterStep(this, mSpinDriverCamera->getAppearCameraFrames())) {
-            setNerve(&NrvSpinDriver::SpinDriverNrvWait::sInstance);
+            setNerve(GET_NERVE(SpinDriver, SpinDriverNrvWait));
 
             if (mSpinDriverCamera->isUseAppearCamera(this)) {
                 MR::endDemoWaitCameraInterpolating(this, "出現");
@@ -555,11 +555,11 @@ bool SpinDriver::startBind(HitSensor *pSensor) {
             MR::startSound(this, "SE_PM_SPIN_DRV_IN_WATER_1");
         }
 
-        setNerve(&NrvSpinDriver::SpinDriverNrvShootStart::sInstance);
+        setNerve(GET_NERVE(SpinDriver, SpinDriverNrvShootStart));
     }
     else {
         if (_138 && _141 && mPosition.squared(pSensor->mPosition) < 57600.0f) {
-            setNerve(&NrvSpinDriver::SpinDriverNrvCapture::sInstance);
+            setNerve(GET_NERVE(SpinDriver, SpinDriverNrvCapture));
         }
         else {
             return false;
@@ -704,7 +704,7 @@ void SpinDriver::endCamera() {
 }
 
 bool SpinDriver::canStartBind() const {
-    return isNerve(&NrvSpinDriver::SpinDriverNrvWait::sInstance);
+    return isNerve(GET_NERVE(SpinDriver, SpinDriverNrvWait));
 }
 
 /*

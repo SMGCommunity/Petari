@@ -37,27 +37,6 @@ MarioBlown::MarioBlown(MarioActor* pActor) : MarioState(pActor, MarioStatus_Blow
     _25 = false;
 }
 
-bool MarioBlown::close() {
-    if (!_24) {
-        getPlayer()->stopJump();
-    }
-
-    stopAnimation("壁ヒット");
-
-    if (_25) {
-        stopAnimation("壁ヒット着地", "基本");
-    }
-
-    mActor->setBlendMtxTimer(6);
-    getPlayer()->unlockGroundCheck(this);
-
-    if (!_24) {
-        getPlayer()->mMovementStates._36 = false;
-    }
-
-    return true;
-}
-
 bool MarioBlown::start() {
     mTimer = 0;
     _14 = 0;
@@ -120,10 +99,11 @@ bool MarioBlown::update() {
                 playEffect("共通壁ヒット着地");
                 MR::vecKillElement(_18, mActor->_240, &_18);
             }
-            
+
             _14 = 1;
             mTimer = 0;
         }
+
         break;
     case 1:
         if (!getPlayer()->getMovementStates()._1 && !MR::isNearZero(getPlayer()->mVerticalSpeed)) {
@@ -144,6 +124,7 @@ bool MarioBlown::update() {
             _24 = true;
             return false;
         }
+
         break;
     }
 
@@ -155,5 +136,26 @@ bool MarioBlown::update() {
 
     _18 += mActor->_240 * MR::clamp(dot, 0.0f, 40.0f);
     getPlayer()->setJumpVec(_18);
+    return true;
+}
+
+bool MarioBlown::close() {
+    if (!_24) {
+        getPlayer()->stopJump();
+    }
+
+    stopAnimation("壁ヒット");
+
+    if (_25) {
+        stopAnimation("壁ヒット着地", "基本");
+    }
+
+    mActor->setBlendMtxTimer(6);
+    getPlayer()->unlockGroundCheck(this);
+
+    if (!_24) {
+        getPlayer()->mMovementStates._36 = false;
+    }
+
     return true;
 }

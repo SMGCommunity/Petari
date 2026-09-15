@@ -31,7 +31,7 @@ void PlayerLeft::init(const JMapInfoIter& rIter) {
         MR::startAnim(this, "Luigi", 2);
     }
 
-    initNerve(&NrvPlayerLeft::PlayerLeftNrvHide::sInstance);
+    initNerve(GET_NERVE(PlayerLeft, PlayerLeftNrvHide));
     MR::connectToSceneLayout(this);
     appear();
 }
@@ -43,14 +43,14 @@ void PlayerLeft::appear() {
     mIsForceAppear = false;
 
     MR::hideLayout(this);
-    setNerve(&NrvPlayerLeft::PlayerLeftNrvHide::sInstance);
+    setNerve(GET_NERVE(PlayerLeft, PlayerLeftNrvHide));
     LayoutActor::appear();
 }
 
 void PlayerLeft::forceAppear() {
-    if (!isNerve(&NrvPlayerLeft::PlayerLeftNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(PlayerLeft, PlayerLeftNrvWait))) {
         appear();
-        setNerve(&NrvPlayerLeft::PlayerLeftNrvAppear::sInstance);
+        setNerve(GET_NERVE(PlayerLeft, PlayerLeftNrvAppear));
     }
 
     mIsForceAppear = true;
@@ -59,11 +59,11 @@ void PlayerLeft::forceAppear() {
 void PlayerLeft::disappear() {
     mIsForceAppear = false;
 
-    setNerve(&NrvPlayerLeft::PlayerLeftNrvDisappear::sInstance);
+    setNerve(GET_NERVE(PlayerLeft, PlayerLeftNrvDisappear));
 }
 
 bool PlayerLeft::isWait() const {
-    return isNerve(&NrvPlayerLeft::PlayerLeftNrvWait::sInstance);
+    return isNerve(GET_NERVE(PlayerLeft, PlayerLeftNrvWait));
 }
 
 void PlayerLeft::control() {
@@ -86,7 +86,7 @@ void PlayerLeft::exeHide() {
     }
 
     if (isValidAppearSituation()) {
-        setNerve(&NrvPlayerLeft::PlayerLeftNrvAppear::sInstance);
+        setNerve(GET_NERVE(PlayerLeft, PlayerLeftNrvAppear));
     }
 }
 
@@ -98,7 +98,7 @@ void PlayerLeft::exeAppear() {
     }
 
     if (mLayoutAppearer->isAppeared()) {
-        setNerve(&NrvPlayerLeft::PlayerLeftNrvWait::sInstance);
+        setNerve(GET_NERVE(PlayerLeft, PlayerLeftNrvWait));
     }
 }
 
@@ -116,9 +116,9 @@ void PlayerLeft::exeWait() {
     }
 
     if (isValidAppearSituation()) {
-        setNerve(&NrvPlayerLeft::PlayerLeftNrvWait::sInstance);
+        setNerve(GET_NERVE(PlayerLeft, PlayerLeftNrvWait));
     } else if (!mIsForceAppear && CounterLayoutController::isWaitToDisappearCounter(this)) {
-        setNerve(&NrvPlayerLeft::PlayerLeftNrvDisappear::sInstance);
+        setNerve(GET_NERVE(PlayerLeft, PlayerLeftNrvDisappear));
     }
 }
 
@@ -128,6 +128,6 @@ void PlayerLeft::exeDisappear() {
     }
 
     if (mLayoutAppearer->isDisappeared()) {
-        setNerve(&NrvPlayerLeft::PlayerLeftNrvHide::sInstance);
+        setNerve(GET_NERVE(PlayerLeft, PlayerLeftNrvHide));
     }
 }

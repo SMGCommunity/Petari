@@ -41,13 +41,13 @@ void RabbitStateWaitStart::setTalkActionName(const char* pName) {
 }
 
 void RabbitStateWaitStart::init() {
-    initNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvWait::sInstance);
+    initNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvWait));
 }
 
 void RabbitStateWaitStart::appear() {
     mIsDead = false;
 
-    setNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvWait::sInstance);
+    setNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvWait));
 }
 
 void RabbitStateWaitStart::control() {
@@ -82,7 +82,7 @@ bool RabbitStateWaitStart::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSenso
 
 bool RabbitStateWaitStart::requestTrample() {
     if (isEnableReaction()) {
-        setNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvTrample::sInstance);
+        setNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvTrample));
 
         return true;
     }
@@ -92,7 +92,7 @@ bool RabbitStateWaitStart::requestTrample() {
 
 bool RabbitStateWaitStart::requestSpin() {
     if (isEnableReaction()) {
-        setNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvSpin::sInstance);
+        setNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvSpin));
 
         return true;
     }
@@ -102,7 +102,7 @@ bool RabbitStateWaitStart::requestSpin() {
 
 bool RabbitStateWaitStart::requestHitReaction() {
     if (isEnableReaction()) {
-        setNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvHitReaction::sInstance);
+        setNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvHitReaction));
 
         return true;
     }
@@ -111,10 +111,10 @@ bool RabbitStateWaitStart::requestHitReaction() {
 }
 
 bool RabbitStateWaitStart::isEnableReaction() const {
-    if (isNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvWait::sInstance) ||
-        isNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvSmallTurn::sInstance) ||
-        isNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvTrample::sInstance) ||
-        isNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvTalk::sInstance) && MR::isShortTalk(mTalkCtrl)) {
+    if (isNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvWait)) ||
+        isNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvSmallTurn)) ||
+        isNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvTrample)) ||
+        isNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvTalk)) && MR::isShortTalk(mTalkCtrl)) {
         return true;
     }
 
@@ -123,7 +123,7 @@ bool RabbitStateWaitStart::isEnableReaction() const {
 
 bool RabbitStateWaitStart::trySmallTurn() {
     if (MR::isGreaterStep(this, ::sSmallTurnTime) && !MR::isFaceToPlayerHorizontalDegree(mHost, *mHostFrontVec, ::sSmallTurnStartDegree)) {
-        setNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvSmallTurn::sInstance);
+        setNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvSmallTurn));
 
         return true;
     }
@@ -133,7 +133,7 @@ bool RabbitStateWaitStart::trySmallTurn() {
 
 bool RabbitStateWaitStart::tryTalk() {
     if (MR::isNearPlayer(mHost, ::sInStartTalkRange) && MR::tryTalkNearPlayer(mTalkCtrl)) {
-        setNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvTalk::sInstance);
+        setNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvTalk));
 
         return true;
     }
@@ -151,7 +151,7 @@ bool RabbitStateWaitStart::tryPointing() {
     }
 
     if (MR::isStarPointerPointing2POnPressButton(mHost, "弱", true, false)) {
-        setNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvPointing::sInstance);
+        setNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvPointing));
 
         return true;
     }
@@ -192,7 +192,7 @@ void RabbitStateWaitStart::exeSmallTurn() {
     MR::zeroVelocity(mHost);
 
     if (!tryTalk() && MR::isGreaterStep(this, ::sSmallTurnStopTime)) {
-        setNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvWait::sInstance);
+        setNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvWait));
     }
 }
 
@@ -207,7 +207,7 @@ void RabbitStateWaitStart::exeHitReaction() {
     MR::zeroVelocity(mHost);
 
     if (MR::isActionEnd(mHost)) {
-        setNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvWait::sInstance);
+        setNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvWait));
     }
 }
 
@@ -221,7 +221,7 @@ void RabbitStateWaitStart::exeTrample() {
     MR::zeroVelocity(mHost);
 
     if (MR::isActionEnd(mHost)) {
-        setNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvWait::sInstance);
+        setNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvWait));
     }
 }
 
@@ -236,7 +236,7 @@ void RabbitStateWaitStart::exeSpin() {
     MR::zeroVelocity(mHost);
 
     if (MR::isActionEnd(mHost)) {
-        setNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvWait::sInstance);
+        setNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvWait));
     }
 }
 
@@ -250,7 +250,7 @@ void RabbitStateWaitStart::exePointing() {
     MR::zeroVelocity(mHost);
 
     if ((MR::isShortTalk(mTalkCtrl) || !tryTalk()) && MR::isActionEnd(mHost)) {
-        setNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvWait::sInstance);
+        setNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvWait));
     }
 }
 
@@ -267,7 +267,7 @@ void RabbitStateWaitStart::exeTalk() {
         if (_1C) {
             kill();
         } else {
-            setNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvWait::sInstance);
+            setNerve(GET_NERVE(RabbitStateWaitStart, RabbitStateWaitStartNrvWait));
         }
     }
 }

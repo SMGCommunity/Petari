@@ -31,7 +31,7 @@ void AirBubbleGenerator::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("AirBubbleGenerator", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObj(this);
     initEffectKeeper(0, nullptr, false);
-    initNerve(&NrvAirBubbleGenerator::AirBubbleGeneratorNrvWait::sInstance);
+    initNerve(GET_NERVE(AirBubbleGenerator, AirBubbleGeneratorNrvWait));
     initHitSensor(1);
     MR::addBodyMessageSensorReceiver(this);
     MR::initCollisionParts(this, "AirBubbleGenerator", getSensor(nullptr), nullptr);
@@ -52,7 +52,7 @@ void AirBubbleGenerator::control() {
 
 void AirBubbleGenerator::exeWait() {
     if (mWaitTime - 1 == getNerveStep() % mWaitTime) {
-        setNerve(&NrvAirBubbleGenerator::AirBubbleGeneratorNrvGenerate::sInstance);
+        setNerve(GET_NERVE(AirBubbleGenerator, AirBubbleGeneratorNrvGenerate));
     }
 }
 
@@ -67,6 +67,6 @@ void AirBubbleGenerator::exeGenerate() {
     if (MR::isGreaterStep(this, ::sGenerateTime)) {
         MR::calcActorAxisY(&axisY, this);
         MR::appearAirBubble(mPosition + axisY * ::sGenerateOffsetY, mBubbleLifeTime);
-        setNerve(&NrvAirBubbleGenerator::AirBubbleGeneratorNrvWait::sInstance);
+        setNerve(GET_NERVE(AirBubbleGenerator, AirBubbleGeneratorNrvWait));
     }
 }

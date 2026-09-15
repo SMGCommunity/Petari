@@ -33,7 +33,7 @@ void HitWallTimerSwitch::init(const JMapInfoIter& rIter) {
     initSound(4, false);
     MR::needStageSwitchWriteA(this, rIter);
     MR::getJMapInfoArg0NoInit(rIter, &mTimer);
-    initNerve(&NrvHitWallTimerSwitch::HitWallTimerSwitchNrvOff::sInstance);
+    initNerve(GET_NERVE(HitWallTimerSwitch, HitWallTimerSwitchNrvOff));
     MR::startBck(this, "Wait", nullptr);
     appear();
 }
@@ -59,7 +59,7 @@ void HitWallTimerSwitch::control() {
 }
 
 bool HitWallTimerSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvHitWallTimerSwitch::HitWallTimerSwitchNrvOff::sInstance) && pReceiver->isType(ATYPE_SWITCH_BIND)) {
+    if (isNerve(GET_NERVE(HitWallTimerSwitch, HitWallTimerSwitchNrvOff)) && pReceiver->isType(ATYPE_SWITCH_BIND)) {
         _98 = 1;
         return true;
     }
@@ -68,7 +68,7 @@ bool HitWallTimerSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, Hit
 }
 
 bool HitWallTimerSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvHitWallTimerSwitch::HitWallTimerSwitchNrvOff::sInstance)) {
+    if (!isNerve(GET_NERVE(HitWallTimerSwitch, HitWallTimerSwitchNrvOff))) {
         return false;
     }
 
@@ -83,7 +83,7 @@ bool HitWallTimerSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor*
 
 bool HitWallTimerSwitch::trySwitchDown() {
     if (_98) {
-        setNerve(&NrvHitWallTimerSwitch::HitWallTimerSwitchNrvSwitchDown::sInstance);
+        setNerve(GET_NERVE(HitWallTimerSwitch, HitWallTimerSwitchNrvSwitchDown));
         return true;
     }
 
@@ -92,7 +92,7 @@ bool HitWallTimerSwitch::trySwitchDown() {
 
 bool HitWallTimerSwitch::tryOn() {
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvHitWallTimerSwitch::HitWallTimerSwitchNrvOn::sInstance);
+        setNerve(GET_NERVE(HitWallTimerSwitch, HitWallTimerSwitchNrvOn));
         return true;
     }
 
@@ -101,7 +101,7 @@ bool HitWallTimerSwitch::tryOn() {
 
 bool HitWallTimerSwitch::trySwitchUp() {
     if (getNerveStep() > mTimer) {
-        setNerve(&NrvHitWallTimerSwitch::HitWallTimerSwitchNrvSwitchUp::sInstance);
+        setNerve(GET_NERVE(HitWallTimerSwitch, HitWallTimerSwitchNrvSwitchUp));
         return true;
     } else {
         if (!MR::isPlayerDead() && !MR::isPowerStarGetDemoActive()) {
@@ -122,7 +122,7 @@ bool HitWallTimerSwitch::trySwitchUp() {
 
 bool HitWallTimerSwitch::tryOff() {
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvHitWallTimerSwitch::HitWallTimerSwitchNrvOff::sInstance);
+        setNerve(GET_NERVE(HitWallTimerSwitch, HitWallTimerSwitchNrvOff));
         return true;
     }
 

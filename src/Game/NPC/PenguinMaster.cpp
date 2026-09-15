@@ -27,7 +27,7 @@ void PenguinMaster::init(const JMapInfoIter& rIter) {
     caps.mStarPointerOffs.x = 0.0f;
     caps.mStarPointerOffs.y = 200.0f;
     caps.mStarPointerOffs.z = 80.0f;
-    caps.mWaitNerve = &NrvPenguinMaster::PenguinMasterNrvWait::sInstance;
+    caps.mWaitNerve = GET_NERVE(PenguinMaster, PenguinMasterNrvWait);
     LiveActor::initHitSensor(2);
     MR::addHitSensorPush(this, "body", 8, 150.0f, TVec3f(0.0f, 100.0f, 0.0f));
     MR::addHitSensorPush(this, "head", 8, 150.0f, TVec3f(0.0f, 260.0f, 100.0f));
@@ -61,7 +61,7 @@ bool PenguinMaster::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSenso
 
 void PenguinMaster::exeWait() {
     MR::tryTalkNearPlayerAndStartTalkAction(this);
-    MR::tryStartReactionAndPushNerve(this, &NrvPenguinMaster::PenguinMasterNrvReaction::sInstance);
+    MR::tryStartReactionAndPushNerve(this, GET_NERVE(PenguinMaster, PenguinMasterNrvReaction));
 }
 
 void PenguinMaster::exeReaction() {

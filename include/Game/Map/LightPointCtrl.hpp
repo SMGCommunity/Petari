@@ -7,15 +7,12 @@
 
 class LiveActor;
 
-class PointLightInfo {
-public:
-    void operator=(const PointLightInfo&);
-
-    Vec _0;
-    GXColor _C;
-    f32 _10;
-    f32 _14;
-    GXDistAttnFn _18;
+struct PointLightInfo {
+    /* 0x00 */ Vec mPos;
+    /* 0x0C */ GXColor mColor;
+    /* 0x10 */ f32 mRefDistance;
+    /* 0x14 */ f32 mRefBrightness;
+    /* 0x18 */ GXDistAttnFn mDistAttnFn;
 };
 
 class LightPointCtrl {
@@ -24,19 +21,25 @@ public:
 
     void loadPointLight();
     void update();
-    void requestPointLight(const LiveActor*, TVec3f, Color8, f32, s32);
-    void clearPointLight(PointLightInfo*);
+    void requestPointLight(const LiveActor* pActor, TVec3f pos, Color8 color, f32 intensity, s32 duration);
+    void clearPointLight(PointLightInfo* pInfo);
+    void blendPointLight(PointLightInfo* pDst, const PointLightInfo& rStart, const PointLightInfo& rEnd, f32 t);
 
     bool tryBlendStart();
+    bool isUpdateCandidateActor(const LiveActor* pActor) const;
 
     void updatePointLight();
 
-    s32 _0;
-    u32 _4;
-    u32 _8;
-    u32 _C;
-    u32 _10;
-    PointLightInfo* _14;
-    PointLightInfo* _18;
-    PointLightInfo* _1C;
+    s32 getStep() const {
+        return mStep;
+    }
+
+    /* 0x00 */ s32 mStep;
+    /* 0x04 */ s32 mBlendTime;
+    /* 0x08 */ const LiveActor* mCurrentActor;
+    /* 0x0C */ const LiveActor* mPreviousActor;
+    /* 0x10 */ const LiveActor* mCandidateActor;
+    /* 0x14 */ PointLightInfo* mCurrentInfo;
+    /* 0x18 */ PointLightInfo* mTargetInfo;
+    /* 0x1C */ PointLightInfo* mPreviousInfo;
 };

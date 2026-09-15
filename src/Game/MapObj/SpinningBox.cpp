@@ -92,7 +92,7 @@ void SpinningBox::init(const JMapInfoIter& rIter) {
     }
 
     MR::connectToSceneMapObjStrongLight(this);
-    initNerve(&NrvSpinningBox::HostTypeNrvFall::sInstance);
+    initNerve(GET_NERVE(SpinningBox, HostTypeNrvFall));
 
     f32 scale = getScale();
     initHitSensor(2);
@@ -173,8 +173,8 @@ void SpinningBox::control() {
     mRotate.mult(rotY);
     mRotate.normalize();
 
-    if (MR::isOnPlayer(getSensor("body")) && !isNerve(&NrvSpinningBox::HostTypeNrvWait::sInstance)) {
-        setNerve(&NrvSpinningBox::HostTypeNrvWait::sInstance);
+    if (MR::isOnPlayer(getSensor("body")) && !isNerve(GET_NERVE(SpinningBox, HostTypeNrvWait))) {
+        setNerve(GET_NERVE(SpinningBox, HostTypeNrvWait));
     }
 }
 
@@ -187,7 +187,7 @@ void SpinningBox::exeFall() {
     MR::applyVelocityDampAndGravity(this, ::hGravityVel, ::hDampVelHWait, ::hDampVelHWait, ::hDampVelVWait, ::hVelHMin);
 
     if (MR::isOnGround(this) && MR::isGreaterStep(this, ::hWaitTime)) {
-        setNerve(&NrvSpinningBox::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(SpinningBox, HostTypeNrvWait));
     }
 }
 
@@ -199,7 +199,7 @@ void SpinningBox::exeWait() {
     }
 
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        setNerve(&NrvSpinningBox::HostTypeNrvPointed::sInstance);
+        setNerve(GET_NERVE(SpinningBox, HostTypeNrvPointed));
         return;
     }
 
@@ -230,7 +230,7 @@ void SpinningBox::exeSliding() {
     }
 
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        setNerve(&NrvSpinningBox::HostTypeNrvPointed::sInstance);
+        setNerve(GET_NERVE(SpinningBox, HostTypeNrvPointed));
         return;
     }
 
@@ -243,7 +243,7 @@ void SpinningBox::exeSliding() {
     MR::startLevelSound(this, "SE_OJ_LV_SPIN_BOX_SLIDE", slideSoundLvl);
 
     if (mSlideSpeed <= ::hStopCheckVel) {
-        setNerve(&NrvSpinningBox::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(SpinningBox, HostTypeNrvWait));
         return;
     }
 
@@ -277,7 +277,7 @@ void SpinningBox::exeSpinning() {
     }
 
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        setNerve(&NrvSpinningBox::HostTypeNrvPointed::sInstance);
+        setNerve(GET_NERVE(SpinningBox, HostTypeNrvPointed));
         return;
     }
 
@@ -304,7 +304,7 @@ void SpinningBox::exeSpinning() {
     MR::startLevelSound(this, "SE_OJ_LV_SPIN_BOX_SLIDE", slideSoundLvl);
 
     if (mSlideSpeed <= ::hStopCheckVel) {
-        setNerve(&NrvSpinningBox::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(SpinningBox, HostTypeNrvWait));
         return;
     }
 
@@ -341,7 +341,7 @@ void SpinningBox::exePointed() {
     MR::startDPDFreezeLevelSound(this);
 
     if (!MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        setNerve(&NrvSpinningBox::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(SpinningBox, HostTypeNrvWait));
     }
 }
 
@@ -392,9 +392,9 @@ void SpinningBox::generateIceBox(HitSensor* pSender, HitSensor* pReceiver) {
 
     if (::hPlayerVelocityCheck < MR::getPlayerVelocity()->length()) {
         calcHitDirection(pSender->mPosition);
-        setNerve(&NrvSpinningBox::HostTypeNrvSpinning::sInstance);
+        setNerve(GET_NERVE(SpinningBox, HostTypeNrvSpinning));
     } else {
-        setNerve(&NrvSpinningBox::HostTypeNrvFall::sInstance);
+        setNerve(GET_NERVE(SpinningBox, HostTypeNrvFall));
     }
 }
 
@@ -406,7 +406,7 @@ void SpinningBox::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
     if (MR::isSensorPlayer(pReceiver)) {
         if (MR::isPlayerExistSide(this, ::hKickCheckOffsetUp, ::hPlayerIsSideDotCheck) && !MR::isOnPlayer(pSender)) {
-            if (isNerve(&NrvSpinningBox::HostTypeNrvSpinning::sInstance)) {
+            if (isNerve(GET_NERVE(SpinningBox, HostTypeNrvSpinning))) {
                 if (MR::isPlayerSwingAction() || !MR::isOnGroundPlayer()) {
                     return;
                 }
@@ -424,7 +424,7 @@ void SpinningBox::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                     MR::sendMsgPush(pReceiver, pSender);
                 }
 
-            } else if (isNerve(&NrvSpinningBox::HostTypeNrvSliding::sInstance)) {
+            } else if (isNerve(GET_NERVE(SpinningBox, HostTypeNrvSliding))) {
                 MR::sendMsgPush(pReceiver, pSender);
             }
         }
@@ -432,7 +432,7 @@ void SpinningBox::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (MR::isSensorMapObj(pReceiver) || MR::isSensorEnemy(pReceiver)) {
-        if (isNerve(&NrvSpinningBox::HostTypeNrvSpinning::sInstance) || isNerve(&NrvSpinningBox::HostTypeNrvSliding::sInstance)) {
+        if (isNerve(GET_NERVE(SpinningBox, HostTypeNrvSpinning)) || isNerve(GET_NERVE(SpinningBox, HostTypeNrvSliding))) {
             if (MR::sendMsgToEnemyAttackBlow(pReceiver, pSender)) {
                 if (!MR::isExistInAttributeGroupReflectSpinningBox(pReceiver->mHost)) {
                     kill();
@@ -449,11 +449,11 @@ bool SpinningBox::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
     }
 
     if (MR::isMsgPlayerKick(msg) && MR::isSensorMapObj(pReceiver)) {
-        if (isNerve(&NrvSpinningBox::HostTypeNrvSpinning::sInstance)) {
+        if (isNerve(GET_NERVE(SpinningBox, HostTypeNrvSpinning))) {
             return false;
         }
 
-        if (isNerve(&NrvSpinningBox::HostTypeNrvSliding::sInstance) && MR::isLessStep(this, ::hKickableTime)) {
+        if (isNerve(GET_NERVE(SpinningBox, HostTypeNrvSliding)) && MR::isLessStep(this, ::hKickableTime)) {
             return false;
         }
 
@@ -462,13 +462,13 @@ bool SpinningBox::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
         }
 
         if (MR::isPlayerExistSide(this, ::hKickCheckOffsetUp, ::hPlayerIsSideDotCheck)) {
-            if (isNerve(&NrvSpinningBox::HostTypeNrvPointed::sInstance)) {
+            if (isNerve(GET_NERVE(SpinningBox, HostTypeNrvPointed))) {
                 return false;
             }
 
             MR::getPlayerFrontVec(&mSlideDir);
             mSlideSpeed = ::hSlidingVelMax;
-            setNerve(&NrvSpinningBox::HostTypeNrvSliding::sInstance);
+            setNerve(GET_NERVE(SpinningBox, HostTypeNrvSliding));
             return true;
         }
     }
@@ -487,7 +487,7 @@ bool SpinningBox::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
     }
 
     if (MR::isMsgPlayerHitAll(msg)) {
-        if (isNerve(&NrvSpinningBox::HostTypeNrvFall::sInstance) || MR::isOnPlayer(getSensor("body"))) {
+        if (isNerve(GET_NERVE(SpinningBox, HostTypeNrvFall)) || MR::isOnPlayer(getSensor("body"))) {
             return false;
         }
 
@@ -498,7 +498,7 @@ bool SpinningBox::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
         mSlideSpeed = ::hSpinningVelMax;
         MR::startSpinHitSound(this);
         MR::startBlowHitSound(this);
-        setNerve(&NrvSpinningBox::HostTypeNrvSpinning::sInstance);
+        setNerve(GET_NERVE(SpinningBox, HostTypeNrvSpinning));
         return true;
     }
 
@@ -507,13 +507,13 @@ bool SpinningBox::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
 
 bool SpinningBox::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isExistInAttributeGroupReflectSpinningBox(pSender->mHost)) {
-        if (!isNerve(&NrvSpinningBox::HostTypeNrvSpinning::sInstance) && !isNerve(&NrvSpinningBox::HostTypeNrvSliding::sInstance)) {
+        if (!isNerve(GET_NERVE(SpinningBox, HostTypeNrvSpinning)) && !isNerve(GET_NERVE(SpinningBox, HostTypeNrvSliding))) {
             TVec3f dir = mPosition - pSender->mPosition;
             MR::normalizeOrZero(&dir);
             MR::vecKillElement(pSender->mHost->mVelocity, dir, &dir);
             MR::separateScalarAndDirection(&mSlideSpeed, &mSlideDir, dir);
             mSlideSpeed *= ::hReflectRate;
-            setNerve(&NrvSpinningBox::HostTypeNrvSliding::sInstance);
+            setNerve(GET_NERVE(SpinningBox, HostTypeNrvSliding));
         } else {
             hitReflection(pSender, pReceiver);
         }

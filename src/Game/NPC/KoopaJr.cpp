@@ -50,7 +50,7 @@ void KoopaJr::init(const JMapInfoIter& rIter) {
     caps.mSensorSize = ::sSensorSize;
     caps.mSensorOffset.y = ::sSensorSize;
     caps.mNerve = true;
-    caps.mWaitNerve = &NrvKoopaJr::HostTypeWait::sInstance;
+    caps.mWaitNerve = GET_NERVE(KoopaJr, HostTypeWait);
     caps.mMessage = true;
     caps.mShadow = true;
     caps.mShadowSize = ::sShadowRadius;
@@ -106,19 +106,19 @@ void KoopaJr::kill() {
 }
 
 void KoopaJr::setStateShipBattleAppear() {
-    setNerve(&NrvKoopaJr::HostTypeShipBattleAppear::sInstance);
+    setNerve(GET_NERVE(KoopaJr, HostTypeShipBattleAppear));
 }
 
 void KoopaJr::setStateShipBattlePowerUp() {
-    setNerve(&NrvKoopaJr::HostTypeShipBattlePowerUp::sInstance);
+    setNerve(GET_NERVE(KoopaJr, HostTypeShipBattlePowerUp));
 }
 
 void KoopaJr::setStateShipBattleEscape() {
-    setNerve(&NrvKoopaJr::HostTypeShipBattleEscape::sInstance);
+    setNerve(GET_NERVE(KoopaJr, HostTypeShipBattleEscape));
 }
 
 void KoopaJr::setStateShipBattleShipDamage() {
-    setNerve(&NrvKoopaJr::HostTypeShipBattleShipDamage::sInstance);
+    setNerve(GET_NERVE(KoopaJr, HostTypeShipBattleShipDamage));
 }
 
 void KoopaJr::endShipBattleTalk() {
@@ -142,7 +142,7 @@ void KoopaJr::startShipBattleTalk() {
     mIsShipBattleTalk = true;
 
     MR::tryTalkTimeKeepDemo(mMsgCtrl);
-    setNerve(&NrvKoopaJr::HostTypeShipBattleDemoTalkStart::sInstance);
+    setNerve(GET_NERVE(KoopaJr, HostTypeShipBattleDemoTalkStart));
 }
 
 void KoopaJr::exeWait() {
@@ -151,7 +151,7 @@ void KoopaJr::exeWait() {
             MR::startSound(this, "SE_OJ_STAR_PIECE_HIT_ENM_F");
         }
 
-        setNerve(&NrvKoopaJr::HostTypeReaction::sInstance);
+        setNerve(GET_NERVE(KoopaJr, HostTypeReaction));
     } else {
         MR::tryStartTurnAction(this);
     }
@@ -170,7 +170,7 @@ void KoopaJr::exeReaction() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvKoopaJr::HostTypeReactionEnd::sInstance);
+        setNerve(GET_NERVE(KoopaJr, HostTypeReactionEnd));
     }
 }
 
@@ -235,7 +235,7 @@ void KoopaJr::exeShipBattleDemoTalkStart() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvKoopaJr::HostTypeShipBattleDemoTalkWait::sInstance);
+        setNerve(GET_NERVE(KoopaJr, HostTypeShipBattleDemoTalkWait));
     }
 }
 

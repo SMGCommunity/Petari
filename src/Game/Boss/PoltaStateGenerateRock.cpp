@@ -23,12 +23,12 @@ namespace NrvPoltaStateGenerateRock {
 
 PoltaStateGenerateRock::PoltaStateGenerateRock(Polta* pPolta)
     : ActorStateBase< Polta >("ポルタ岩生成", pPolta), mPatternIndex(0), mIndexIntoPattern(0), mMaxIndexIntoPattern(5), mEndDelayStep(180) {
-    initNerve(&NrvPoltaStateGenerateRock::PoltaStateGenerateRockNrvSign::sInstance);
+    initNerve(GET_NERVE(PoltaStateGenerateRock, PoltaStateGenerateRockNrvSign));
 }
 
 void PoltaStateGenerateRock::appear() {
     mIsDead = false;
-    setNerve(&NrvPoltaStateGenerateRock::PoltaStateGenerateRockNrvSign::sInstance);
+    setNerve(GET_NERVE(PoltaStateGenerateRock, PoltaStateGenerateRockNrvSign));
     mIndexIntoPattern = 0;
 }
 
@@ -40,7 +40,7 @@ void PoltaStateGenerateRock::exeSign() {
     }
     getHost()->rotateToPlayer();
     if (MR::isActionEnd(getHost())) {
-        NerveExecutor::setNerve(&NrvPoltaStateGenerateRock::PoltaStateGenerateRockNrvGenerate::sInstance);
+        NerveExecutor::setNerve(GET_NERVE(PoltaStateGenerateRock, PoltaStateGenerateRockNrvGenerate));
     }
 }
 
@@ -65,7 +65,7 @@ void PoltaStateGenerateRock::exeGenerate() {
         mIndexIntoPattern++;
     }
     if (mIndexIntoPattern >= mMaxIndexIntoPattern) {
-        setNerve(&NrvPoltaStateGenerateRock::PoltaStateGenerateRockNrvEnd::sInstance);
+        setNerve(GET_NERVE(PoltaStateGenerateRock, PoltaStateGenerateRockNrvEnd));
     }
 }
 

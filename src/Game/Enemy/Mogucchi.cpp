@@ -4,6 +4,7 @@
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/HitInfo.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
@@ -20,7 +21,6 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
 #include "math_types.hpp"
 
 namespace {
@@ -58,7 +58,7 @@ void Mogucchi::init(const JMapInfoIter& rIter) {
     initSound(4, false);
     initRailRider(rIter);
     MR::declareCoin(this, 1);
-    initNerve(&MogucchiNrvStroll::sInstance);
+    initNerve(GET_NERVE_GLOBAL(MogucchiNrvStroll));
     MR::useStageSwitchWriteDead(this, rIter);
 
     MR::initStarPointerTargetAtJoint(this, "Head", 83.0f, TVec3f(::sHeadOffset));
@@ -80,7 +80,7 @@ void Mogucchi::initAfterPlacement() {
 void Mogucchi::makeActorAppeared() {
     LiveActor::makeActorAppeared();
     MR::showModel(this);
-    setNerve(&MogucchiNrvStroll::sInstance);
+    setNerve(GET_NERVE_GLOBAL(MogucchiNrvStroll));
     mHole->makeActorAppeared();
     MR::showModel(mHole);
     MR::validateClipping(this);
@@ -91,7 +91,7 @@ void Mogucchi::kill() {
     if (MR::isValidSwitchDead(this)) {
         MR::onSwitchDead(this);
     }
-    setNerve(&MogucchiNrvDie::sInstance);
+    setNerve(GET_NERVE_GLOBAL(MogucchiNrvDie));
 
     if (!MR::isDead(mHole)) {
         mHole->kill();
@@ -99,7 +99,7 @@ void Mogucchi::kill() {
 }
 
 void Mogucchi::control() {
-    if (isNerve(&MogucchiNrvScatter::sInstance) || isNerve(&MogucchiNrvDie::sInstance)) {
+    if (isNerve(GET_NERVE_GLOBAL(MogucchiNrvScatter)) || isNerve(GET_NERVE_GLOBAL(MogucchiNrvDie))) {
         return;
     }
 
@@ -135,7 +135,7 @@ void Mogucchi::exeStroll() {
     makeEulerRotation();
 
     if (Mogucchi::checkHipDrop()) {
-        setNerve(&MogucchiNrvAppearDown::sInstance);
+        setNerve(GET_NERVE_GLOBAL(MogucchiNrvAppearDown));
     }
 }
 
@@ -154,7 +154,7 @@ void Mogucchi::exeAppearDown() {
     }
 
     MR::startLevelSound(this, "SE_EM_LV_SWOON_S");
-    MR::setNerveAtBckStopped(this, &MogucchiNrvDown::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE_GLOBAL(MogucchiNrvDown));
 }
 
 void Mogucchi::exeDown() {
@@ -164,7 +164,7 @@ void Mogucchi::exeDown() {
         MR::startBck(mHole, "Swoon", nullptr);
     }
     MR::startLevelSound(this, "SE_EM_LV_SWOON_S");
-    MR::setNerveAtStep(this, &MogucchiNrvDive::sInstance, 30);
+    MR::setNerveAtStep(this, GET_NERVE_GLOBAL(MogucchiNrvDive), 30);
 }
 
 void Mogucchi::exeDive() {
@@ -176,7 +176,7 @@ void Mogucchi::exeDive() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&MogucchiNrvStroll::sInstance);
+        setNerve(GET_NERVE_GLOBAL(MogucchiNrvStroll));
     }
 }
 
@@ -207,7 +207,7 @@ void Mogucchi::exeScatter() {
     mScatterPropulsionSpeed -= 1.2f;
 
     if (MR::isGreaterEqualStep(this, 15)) {
-        setNerve(&MogucchiNrvDie::sInstance);
+        setNerve(GET_NERVE_GLOBAL(MogucchiNrvDie));
     }
 }
 
@@ -231,7 +231,7 @@ void Mogucchi::endStroll() {
 
 void Mogucchi::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayerOrRide(pReceiver) && (MR::isSensor(pSender, "body") || MR::isSensor(pSender, "head"))) {
-        if (!isNerve(&MogucchiNrvStroll::sInstance) || !MR::isOnGroundPlayer()) {
+        if (!isNerve(GET_NERVE_GLOBAL(MogucchiNrvStroll)) || !MR::isOnGroundPlayer()) {
             MR::sendMsgPush(pReceiver, pSender);
             return;
         }
@@ -327,7 +327,7 @@ void Mogucchi::updatePosition() {
 
 void Mogucchi::createHole() {
     // "Mogucchi hole"
-    mHole = new ModelObj("モグッチ穴", "MogucchiHole", mNewHolePos, 10, -2, -2, false);
+    mHole = new ModelObj("モグッチ穴", "MogucchiHole", mNewHolePos, MR::DrawBufferType_MapObjStrongLight, -2, -2, false);
     mHole->initWithoutIter();
 }
 
@@ -362,26 +362,27 @@ bool Mogucchi::receiveAttackBySpinSensor(u32 msg, HitSensor* pSender, HitSensor*
         return false;
     }
 
-    if (isNerve(&MogucchiNrvStroll::sInstance)) {
+    if (isNerve(GET_NERVE_GLOBAL(MogucchiNrvStroll))) {
         MR::startSound(this, "SE_EM_MOGUCCHI_REFRECT");
         MR::sendMsgEnemyAttackCounterSpin(pSender, pReceiver);
         return true;
     }
 
-    bool isDown = isNerve(&MogucchiNrvDown::sInstance) || isNerve(&MogucchiNrvAppearDown::sInstance) || isNerve(&MogucchiNrvDive::sInstance);
+    bool isDown =
+        isNerve(GET_NERVE_GLOBAL(MogucchiNrvDown)) || isNerve(GET_NERVE_GLOBAL(MogucchiNrvAppearDown)) || isNerve(GET_NERVE_GLOBAL(MogucchiNrvDive));
 
     if (!isDown) {
         return false;
     }
 
-    if (isNerve(&MogucchiNrvAppearDown::sInstance) && MR::isLessStep(this, 10)) {
+    if (isNerve(GET_NERVE_GLOBAL(MogucchiNrvAppearDown)) && MR::isLessStep(this, 10)) {
         return false;
     }
 
     MR::stopScene(8);
     MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     calcScatterVec(pSender->mPosition, pReceiver->mPosition);
-    setNerve(&MogucchiNrvScatter::sInstance);
+    setNerve(GET_NERVE_GLOBAL(MogucchiNrvScatter));
 
     return true;
 }
@@ -391,12 +392,13 @@ bool Mogucchi::receiveAttackByBodySensor(u32 msg, HitSensor* pSender, HitSensor*
         return false;
     }
 
-    if (!isNerve(&MogucchiNrvScatter::sInstance) && !isNerve(&MogucchiNrvDie::sInstance) && MR::isMsgStarPieceAttack(msg)) {
-        setNerve(&MogucchiNrvAppearDown::sInstance);
+    if (!isNerve(GET_NERVE_GLOBAL(MogucchiNrvScatter)) && !isNerve(GET_NERVE_GLOBAL(MogucchiNrvDie)) && MR::isMsgStarPieceAttack(msg)) {
+        setNerve(GET_NERVE_GLOBAL(MogucchiNrvAppearDown));
         return true;
     }
 
-    bool isDown = isNerve(&MogucchiNrvDown::sInstance) || isNerve(&MogucchiNrvAppearDown::sInstance) || isNerve(&MogucchiNrvDive::sInstance);
+    bool isDown =
+        isNerve(GET_NERVE_GLOBAL(MogucchiNrvDown)) || isNerve(GET_NERVE_GLOBAL(MogucchiNrvAppearDown)) || isNerve(GET_NERVE_GLOBAL(MogucchiNrvDive));
 
     if (!isDown) {
         if (MR::isMsgPlayerTrample(msg)) {
@@ -407,7 +409,7 @@ bool Mogucchi::receiveAttackByBodySensor(u32 msg, HitSensor* pSender, HitSensor*
         return false;
     }
 
-    if (isNerve(&MogucchiNrvAppearDown::sInstance) && MR::isLessStep(this, 10)) {
+    if (isNerve(GET_NERVE_GLOBAL(MogucchiNrvAppearDown)) && MR::isLessStep(this, 10)) {
         return false;
     }
 
@@ -421,7 +423,7 @@ bool Mogucchi::receiveAttackByBodySensor(u32 msg, HitSensor* pSender, HitSensor*
         MR::stopScene(8);
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         calcScatterVec(pSender->mPosition, pReceiver->mPosition);
-        setNerve(&MogucchiNrvScatter::sInstance);
+        setNerve(GET_NERVE_GLOBAL(MogucchiNrvScatter));
         return true;
     }
 

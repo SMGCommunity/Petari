@@ -5,6 +5,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/BlueStarCupsulePlanet.hpp"
 #include "Game/MapObj/GCaptureRibbon.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
@@ -115,7 +116,7 @@ GCapture::GCapture(const char* pName)
 
 void GCapture::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    MR::connectToScene(this, 34, 5, -1, 19);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_None, MR::DrawBufferType_EnemyDecoration);
     initSound(8, false);
     initHitSensor(2);
     MR::addHitSensorRide(this, "body", 16, 200.0f, TVec3f(0.0f, 0.0f, 0.0f));
@@ -130,7 +131,7 @@ void GCapture::init(const JMapInfoIter& rIter) {
     MR::setEffectHostMtx(this, "RibbonPoint", _8C.mMtx);
     MR::setEffectHostMtx(this, "RibbonBreak", _8C.mMtx);
     mCaptureRibbon->initWithoutIter();
-    initNerve(&NrvGCapture::GCaptureNrvWait::sInstance);
+    initNerve(GET_NERVE(GCapture, GCaptureNrvWait));
     MR::initStarPointerTarget(this, 200.0f, TVec3f(0.0f, 0.0f, 0.0f));
     makeActorAppeared();
     MR::invalidateClipping(this);
@@ -189,7 +190,7 @@ bool GCapture::receiveMsgEnemyAttack(u32 msg, HitSensor*, HitSensor*) {
 
 bool GCapture::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_IS_RUSH_TAKEOVER) {
-        return isNerve(&NrvGCapture::GCaptureNrvCapture::sInstance);
+        return isNerve(GET_NERVE(GCapture, GCaptureNrvCapture));
     } else if (msg == ACTMES_AUTORUSH_BEGIN) {
         return requestBind(pSender);
     } else if (msg == ACTMES_RUSH_CANCEL) {
@@ -205,7 +206,7 @@ bool GCapture::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver
 }
 
 bool GCapture::requestBind(HitSensor* pSensor) {
-    if (!isNerve(&NrvGCapture::GCaptureNrvCapture::sInstance)) {
+    if (!isNerve(GET_NERVE(GCapture, GCaptureNrvCapture))) {
         return false;
     }
 
@@ -222,7 +223,7 @@ bool GCapture::requestBind(HitSensor* pSensor) {
     _F0.zero();
     MR::startStarPointerModeBlueStar(this);
     MR::invalidateClipping(this);
-    setNerve(&NrvGCapture::GCaptureNrvTraction::sInstance);
+    setNerve(GET_NERVE(GCapture, GCaptureNrvTraction));
     MR::emitEffect(this, "LightGrow");
     return true;
 }
@@ -230,7 +231,7 @@ bool GCapture::requestBind(HitSensor* pSensor) {
 bool GCapture::requestCancelBind() {
     if (_108 != nullptr && canCancelBind()) {
         _108 = nullptr;
-        setNerve(&NrvGCapture::GCaptureNrvCoolDown::sInstance);
+        setNerve(GET_NERVE(GCapture, GCaptureNrvCoolDown));
         releaseTractTarget();
         MR::deleteEffectAll(this);
         MR::emitEffect(this, "LightBreak");
@@ -245,7 +246,7 @@ bool GCapture::requestCancelBind() {
 bool GCapture::requestDamageCancel(u32 msg) {
     if (_108 != nullptr && canCancelBind() && !MR::isPlayerElementModeInvincible()) {
         endBindByDamage(msg);
-        setNerve(&NrvGCapture::GCaptureNrvCoolDown::sInstance);
+        setNerve(GET_NERVE(GCapture, GCaptureNrvCoolDown));
         return true;
     }
 
@@ -260,7 +261,7 @@ void GCapture::reset() {
     }
 
     releaseTractTarget();
-    setNerve(&NrvGCapture::GCaptureNrvWait::sInstance);
+    setNerve(GET_NERVE(GCapture, GCaptureNrvWait));
 }
 
 bool GCapture::tryCapture() {
@@ -268,7 +269,7 @@ bool GCapture::tryCapture() {
         decideTractTarget();
         MR::setBinderRadius(this, 75.0f);
         _110->getTargetPosition(&mPosition);
-        setNerve(&NrvGCapture::GCaptureNrvCapture::sInstance);
+        setNerve(GET_NERVE(GCapture, GCaptureNrvCapture));
         return true;
     }
 
@@ -288,7 +289,7 @@ bool GCapture::tryCancelCapture() {
 
     if (MR::isGreaterStep(this, 40) || (!MR::testCorePadButtonA(WPAD_CHAN0) && MR::isGreaterStep(this, 30)) || ret) {
         releaseTractTarget();
-        setNerve(&NrvGCapture::GCaptureNrvWait::sInstance);
+        setNerve(GET_NERVE(GCapture, GCaptureNrvWait));
         return true;
     }
 
@@ -298,7 +299,7 @@ bool GCapture::tryCancelCapture() {
 bool GCapture::tryEndTraction() {
     if (!MR::testCorePadButtonA(WPAD_CHAN0) && MR::isGreaterStep(this, 30)) {
         releaseTractTarget();
-        setNerve(&NrvGCapture::GCaptureNrvHold::sInstance);
+        setNerve(GET_NERVE(GCapture, GCaptureNrvHold));
         return true;
     }
 
@@ -308,7 +309,7 @@ bool GCapture::tryEndTraction() {
 bool GCapture::tryRecapture() {
     if (mTarget != nullptr && MR::testCorePadTriggerA(WPAD_CHAN0)) {
         decideTractTarget();
-        setNerve(&NrvGCapture::GCaptureNrvRecapture::sInstance);
+        setNerve(GET_NERVE(GCapture, GCaptureNrvRecapture));
         return true;
     }
 
@@ -317,7 +318,7 @@ bool GCapture::tryRecapture() {
 
 bool GCapture::tryRetraction() {
     if (MR::isGreaterStep(this, 15)) {
-        setNerve(&NrvGCapture::GCaptureNrvTraction::sInstance);
+        setNerve(GET_NERVE(GCapture, GCaptureNrvTraction));
         return true;
     }
 
@@ -346,7 +347,7 @@ bool GCapture::tryBreak() {
     }
 
     if (channel != WPAD_CHAN0) {
-        setNerve(&NrvGCapture::GCaptureNrvBreak::sInstance);
+        setNerve(GET_NERVE(GCapture, GCaptureNrvBreak));
         return true;
     }
 
@@ -356,7 +357,7 @@ bool GCapture::tryBreak() {
 bool GCapture::tryFireDamage() {
     if (MR::isBindedDamageFire(this) && !MR::isPlayerElementModeInvincible()) {
         endBindByFireDamage();
-        setNerve(&NrvGCapture::GCaptureNrvCoolDown::sInstance);
+        setNerve(GET_NERVE(GCapture, GCaptureNrvCoolDown));
         return true;
     }
 
@@ -371,7 +372,7 @@ bool GCapture::tryRelease() {
 
         MR::startBckPlayer("Fall", "GCaptureFall");
         releaseTractTarget();
-        setNerve(&NrvGCapture::GCaptureNrvBreak::sInstance);
+        setNerve(GET_NERVE(GCapture, GCaptureNrvBreak));
         return true;
     }
 
@@ -387,7 +388,7 @@ void GCapture::exeCoolDown() {
     }
 
     if (MR::isGreaterStep(this, 10)) {
-        setNerve(&NrvGCapture::GCaptureNrvWait::sInstance);
+        setNerve(GET_NERVE(GCapture, GCaptureNrvWait));
     }
 }
 
@@ -587,7 +588,7 @@ void GCapture::exeBreak() {
     MR::attenuateVelocity(this, 0.99f);
 
     if (MR::isGreaterStep(this, 5)) {
-        setNerve(&NrvGCapture::GCaptureNrvWait::sInstance);
+        setNerve(GET_NERVE(GCapture, GCaptureNrvWait));
         releaseTractTarget();
         MR::endBindAndPlayerWeakGravityLimitJump(this, mVelocity);
         _108 = nullptr;
@@ -636,8 +637,8 @@ bool GCapture::canRequestTarget() const {
 }
 
 bool GCapture::canCancelBind() const {
-    if (isNerve(&NrvGCapture::GCaptureNrvTraction::sInstance) || isNerve(&NrvGCapture::GCaptureNrvHold::sInstance) ||
-        isNerve(&NrvGCapture::GCaptureNrvRecapture::sInstance)) {
+    if (isNerve(GET_NERVE(GCapture, GCaptureNrvTraction)) || isNerve(GET_NERVE(GCapture, GCaptureNrvHold)) ||
+        isNerve(GET_NERVE(GCapture, GCaptureNrvRecapture))) {
         return true;
     }
 

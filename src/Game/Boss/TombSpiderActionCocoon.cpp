@@ -25,7 +25,7 @@ TombSpiderActionCocoon::TombSpiderActionCocoon(TombSpider* pParent) : TombSpider
 }
 
 void TombSpiderActionCocoon::init() {
-    initNerve(&NrvTombSpiderActionCocoon::TombSpiderActionCocoonNrvWait::sInstance);
+    initNerve(GET_NERVE(TombSpiderActionCocoon, TombSpiderActionCocoonNrvWait));
     TombSpiderActionBase::init();
 }
 
@@ -37,7 +37,7 @@ void TombSpiderActionCocoon::attackSensor(HitSensor* pSender, HitSensor* pReceiv
 
 bool TombSpiderActionCocoon::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_IS_BROKEN) {
-        if (mIsDead || isNerve(&NrvTombSpiderActionCocoon::TombSpiderActionCocoonNrvBreak::sInstance)) {
+        if (mIsDead || isNerve(GET_NERVE(TombSpiderActionCocoon, TombSpiderActionCocoonNrvBreak))) {
             return true;
         }
         return false;
@@ -49,8 +49,8 @@ bool TombSpiderActionCocoon::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSen
         }
 
         if (TombSpiderFunction::isSpringAttacker(pSender)) {
-            if (isNerve(&NrvTombSpiderActionCocoon::TombSpiderActionCocoonNrvWait::sInstance)) {
-                setNerve(&NrvTombSpiderActionCocoon::TombSpiderActionCocoonNrvBreak::sInstance);
+            if (isNerve(GET_NERVE(TombSpiderActionCocoon, TombSpiderActionCocoonNrvWait))) {
+                setNerve(GET_NERVE(TombSpiderActionCocoon, TombSpiderActionCocoonNrvBreak));
                 return true;
             }
         } else {

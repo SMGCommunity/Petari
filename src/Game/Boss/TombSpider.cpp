@@ -66,7 +66,7 @@ void TombSpider::init(const JMapInfoIter& rIter) {
     MR::needStageSwitchWriteB(this, rIter);
     MR::needStageSwitchWriteDead(this, rIter);
 
-    initNerve(&NrvTombSpider::TombSpiderNrvWaitPlayer::sInstance);
+    initNerve(GET_NERVE(TombSpider, TombSpiderNrvWaitPlayer));
 
     mActionCocoon = new TombSpiderActionCocoon(this);
     mActionCocoon->init();
@@ -105,8 +105,8 @@ void TombSpider::exeWaitPlayer() {
     }
 
     if (mDemo->isStartDemoGateOpen()) {
-        setNerve(&NrvTombSpider::TombSpiderNrvWaitDemo::sInstance);
-        MR::requestStartDemoMarioPuppetable(this, "ゲートオープンデモ[トゥームスパイダー]", &NrvTombSpider::TombSpiderNrvDemoGateOpen::sInstance,
+        setNerve(GET_NERVE(TombSpider, TombSpiderNrvWaitDemo));
+        MR::requestStartDemoMarioPuppetable(this, "ゲートオープンデモ[トゥームスパイダー]", GET_NERVE(TombSpider, TombSpiderNrvDemoGateOpen),
                                             nullptr);
     }
 }
@@ -115,20 +115,20 @@ void TombSpider::exeDemoGateOpen() {
     if (mDemo->updateGateOpen()) {
         MR::deleteEffect(this, "Noctiluca");
         MR::emitEffect(TombSpiderFunction::getPlanet(this), "Noctiluca");
-        setNerve(&NrvTombSpider::TombSpiderNrvActionCocoon::sInstance);
+        setNerve(GET_NERVE(TombSpider, TombSpiderNrvActionCocoon));
     }
 }
 
 void TombSpider::exeActionCocoon() {
     if (MR::updateActorState(this, mActionCocoon)) {
-        setNerve(&NrvTombSpider::TombSpiderNrvWaitDemo::sInstance);
-        MR::requestStartDemoMarioPuppetable(this, "出現", &NrvTombSpider::TombSpiderNrvDemoCocoonBreak::sInstance, nullptr);
+        setNerve(GET_NERVE(TombSpider, TombSpiderNrvWaitDemo));
+        MR::requestStartDemoMarioPuppetable(this, "出現", GET_NERVE(TombSpider, TombSpiderNrvDemoCocoonBreak), nullptr);
     }
 }
 
 void TombSpider::exeDemoCocoonBreak() {
     if (mDemo->updateCocoonBreak()) {
-        setNerve(&NrvTombSpider::TombSpiderNrvDemoBattle1stStart::sInstance);
+        setNerve(GET_NERVE(TombSpider, TombSpiderNrvDemoBattle1stStart));
     }
 }
 
@@ -139,26 +139,26 @@ void TombSpider::exeDemoBattle1stStart() {
     }
 
     if (mDemo->updateBattle1stStart()) {
-        setNerve(&NrvTombSpider::TombSpiderNrvDemoBattle1stStartJumpToPlayer::sInstance);
+        setNerve(GET_NERVE(TombSpider, TombSpiderNrvDemoBattle1stStartJumpToPlayer));
     }
 }
 
 void TombSpider::exeDemoBattle1stStartJumpToPlayer() {
     if (mDemo->updateBattle1stStartJumpToPlayer()) {
-        setNerve(&NrvTombSpider::TombSpiderNrvAction1st::sInstance);
+        setNerve(GET_NERVE(TombSpider, TombSpiderNrvAction1st));
     }
 }
 
 void TombSpider::exeAction1st() {
     if (MR::updateActorState(this, mAction1st)) {
-        setNerve(&NrvTombSpider::TombSpiderNrvWaitDemo::sInstance);
-        MR::requestStartDemoMarioPuppetable(this, "１回戦終了", &NrvTombSpider::TombSpiderNrvDemoBattle1stEnd::sInstance, nullptr);
+        setNerve(GET_NERVE(TombSpider, TombSpiderNrvWaitDemo));
+        MR::requestStartDemoMarioPuppetable(this, "１回戦終了", GET_NERVE(TombSpider, TombSpiderNrvDemoBattle1stEnd), nullptr);
     }
 }
 
 void TombSpider::exeDemoBattle1stEnd() {
     if (mDemo->updateBattle1stEnd()) {
-        setNerve(&NrvTombSpider::TombSpiderNrvDemoBattle2ndStart::sInstance);
+        setNerve(GET_NERVE(TombSpider, TombSpiderNrvDemoBattle2ndStart));
     }
 }
 
@@ -172,14 +172,14 @@ void TombSpider::exeDemoBattle2ndStart() {
     }
 
     if (mDemo->updateBattle2ndStart()) {
-        setNerve(&NrvTombSpider::TombSpiderNrvAction2nd::sInstance);
+        setNerve(GET_NERVE(TombSpider, TombSpiderNrvAction2nd));
     }
 }
 
 void TombSpider::exeAction2nd() {
     if (MR::updateActorState(this, mAction2nd)) {
-        setNerve(&NrvTombSpider::TombSpiderNrvWaitDemo::sInstance);
-        MR::requestStartDemoMarioPuppetable(this, "死亡", &NrvTombSpider::TombSpiderNrvDemoDeath::sInstance, nullptr);
+        setNerve(GET_NERVE(TombSpider, TombSpiderNrvWaitDemo));
+        MR::requestStartDemoMarioPuppetable(this, "死亡", GET_NERVE(TombSpider, TombSpiderNrvDemoDeath), nullptr);
     }
 }
 
@@ -197,7 +197,7 @@ void TombSpider::exeWaitDemo() {
 }
 
 void TombSpider::control() {
-    if (!isNerve(&NrvTombSpider::TombSpiderNrvWaitPlayer::sInstance)) {
+    if (!isNerve(GET_NERVE(TombSpider, TombSpiderNrvWaitPlayer))) {
         TombSpiderFunction::updateAcid(this);
     }
 }
@@ -207,17 +207,17 @@ void TombSpider::updateHitSensor(HitSensor* pSensor) {
 }
 
 void TombSpider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvTombSpider::TombSpiderNrvActionCocoon::sInstance)) {
+    if (isNerve(GET_NERVE(TombSpider, TombSpiderNrvActionCocoon))) {
         mActionCocoon->attackSensor(pSender, pReceiver);
         return;
     }
 
-    if (isNerve(&NrvTombSpider::TombSpiderNrvAction1st::sInstance)) {
+    if (isNerve(GET_NERVE(TombSpider, TombSpiderNrvAction1st))) {
         mAction1st->attackSensor(pSender, pReceiver);
         return;
     }
 
-    if (isNerve(&NrvTombSpider::TombSpiderNrvAction2nd::sInstance)) {
+    if (isNerve(GET_NERVE(TombSpider, TombSpiderNrvAction2nd))) {
         mAction2nd->attackSensor(pSender, pReceiver);
         return;
     }
@@ -232,15 +232,15 @@ bool TombSpider::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
 }
 
 bool TombSpider::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvTombSpider::TombSpiderNrvActionCocoon::sInstance)) {
+    if (isNerve(GET_NERVE(TombSpider, TombSpiderNrvActionCocoon))) {
         return mActionCocoon->receiveOtherMsg(msg, pSender, pReceiver);
     }
 
-    if (isNerve(&NrvTombSpider::TombSpiderNrvAction1st::sInstance)) {
+    if (isNerve(GET_NERVE(TombSpider, TombSpiderNrvAction1st))) {
         return mAction1st->receiveOtherMsg(msg, pSender, pReceiver);
     }
 
-    if (isNerve(&NrvTombSpider::TombSpiderNrvAction2nd::sInstance)) {
+    if (isNerve(GET_NERVE(TombSpider, TombSpiderNrvAction2nd))) {
         return mAction2nd->receiveOtherMsg(msg, pSender, pReceiver);
     }
 

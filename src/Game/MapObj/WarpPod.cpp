@@ -42,7 +42,7 @@ WarpPodMgr::WarpPodMgr(const char* pName) : NameObj(pName) {
     _C = nullptr;
     _14 = 0;
 
-    MR::connectToScene(this, -1, -1, -1, MR::DrawType_WarpPodPath);
+    MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_WarpPodPath);
 }
 
 WarpPod* WarpPodMgr::getPairPod(const LiveActor* pParam1) {
@@ -167,9 +167,9 @@ void WarpPod::init(const JMapInfoIter& rIter) {
     strcpy(mEventCameraName, eventCameraName);
 
     if (mArg1 == 0) {
-        MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, -1);
+        MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
     } else {
-        MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_MapObj, -1);
+        MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_MapObj, MR::DrawType_None);
     }
 
     initSound(4, false);

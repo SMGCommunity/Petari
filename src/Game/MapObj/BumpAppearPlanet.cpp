@@ -18,7 +18,7 @@ void BumpAppearPlanet::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoPlanet(&info);
     info.setupSound(4);
-    info.setupNerve(&NrvBumpAppearPlanet::BumpAppearPlanetNrvWait::sInstance);
+    info.setupNerve(GET_NERVE(BumpAppearPlanet, BumpAppearPlanetNrvWait));
     initialize(rIter, info);
 
     _C4 = MR::createCollisionPartsFromLiveActor(this, "BumpAppearPlanetB", getSensor("body"), MR::getJointMtx(this, "BumpAppearPlanetB"),
@@ -49,7 +49,7 @@ void BumpAppearPlanet::exeBumpIn() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvBumpAppearPlanet::BumpAppearPlanetNrvWait::sInstance);
+        setNerve(GET_NERVE(BumpAppearPlanet, BumpAppearPlanetNrvWait));
     }
 }
 
@@ -68,9 +68,9 @@ void BumpAppearPlanet::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
 }
 
 void BumpAppearPlanet::startBumpOut() {
-    setNerve(&NrvBumpAppearPlanet::BumpAppearPlanetNrvBumpOut::sInstance);
+    setNerve(GET_NERVE(BumpAppearPlanet, BumpAppearPlanetNrvBumpOut));
 }
 
 void BumpAppearPlanet::startBumpIn() {
-    setNerve(&NrvBumpAppearPlanet::BumpAppearPlanetNrvBumpIn::sInstance);
+    setNerve(GET_NERVE(BumpAppearPlanet, BumpAppearPlanetNrvBumpIn));
 }

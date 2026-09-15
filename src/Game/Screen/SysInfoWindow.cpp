@@ -50,7 +50,7 @@ void SysInfoWindow::init(const JMapInfoIter& rIter) {
 
     mIconAButton = MR::createAndSetupIconAButton(this, !_38, false);
 
-    initNerve(&NrvSysInfoWindow::SysInfoWindowNrvAppear::sInstance);
+    initNerve(GET_NERVE(SysInfoWindow, SysInfoWindowNrvAppear));
 }
 
 void SysInfoWindow::movement() {
@@ -82,7 +82,7 @@ void SysInfoWindow::appear() {
 
     MR::startPaneAnim(this, mTextParentPaneName, pAnimName, 0);
     MR::startPaneAnim(this, mWindowParentPaneName, pAnimName, 0);
-    setNerve(&NrvSysInfoWindow::SysInfoWindowNrvAppear::sInstance);
+    setNerve(GET_NERVE(SysInfoWindow, SysInfoWindowNrvAppear));
     LayoutActor::appear();
 }
 
@@ -140,7 +140,7 @@ void SysInfoWindow::appear(const char* pMessageId, SysInfoType type, SysInfoText
 }
 
 void SysInfoWindow::disappear() {
-    setNerve(&NrvSysInfoWindow::SysInfoWindowNrvDisappear::sInstance);
+    setNerve(GET_NERVE(SysInfoWindow, SysInfoWindowNrvDisappear));
 }
 
 void SysInfoWindow::kill() {
@@ -157,7 +157,7 @@ void SysInfoWindow::forceKill() {
 }
 
 bool SysInfoWindow::isWait() const {
-    return isNerve(&NrvSysInfoWindow::SysInfoWindowNrvWait::sInstance);
+    return isNerve(GET_NERVE(SysInfoWindow, SysInfoWindowNrvWait));
 }
 
 bool SysInfoWindow::isSelectedYes() const {
@@ -165,7 +165,7 @@ bool SysInfoWindow::isSelectedYes() const {
 }
 
 bool SysInfoWindow::isDisappear() const {
-    return isNerve(&NrvSysInfoWindow::SysInfoWindowNrvDisappear::sInstance);
+    return isNerve(GET_NERVE(SysInfoWindow, SysInfoWindowNrvDisappear));
 }
 
 void SysInfoWindow::control() {
@@ -188,7 +188,7 @@ const char* SysInfoWindow::getLayoutName() const {
 }
 
 void SysInfoWindow::exeAppear() {
-    MR::setNerveAtPaneAnimStopped(this, mTextParentPaneName, &NrvSysInfoWindow::SysInfoWindowNrvWait::sInstance, 0);
+    MR::setNerveAtPaneAnimStopped(this, mTextParentPaneName, GET_NERVE(SysInfoWindow, SysInfoWindowNrvWait), 0);
 }
 
 void SysInfoWindow::exeWait() {
@@ -203,11 +203,11 @@ void SysInfoWindow::exeWait() {
         if (MR::testSystemPadTriggerDecide()) {
             MR::startSystemSE("SE_SY_TALK_OK");
             MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
-            setNerve(&NrvSysInfoWindow::SysInfoWindowNrvDisappear::sInstance);
+            setNerve(GET_NERVE(SysInfoWindow, SysInfoWindowNrvDisappear));
         }
     } else if (mYesNoSelector != nullptr) {
         if (mYesNoSelector->isDisappearStart()) {
-            setNerve(&NrvSysInfoWindow::SysInfoWindowNrvDisappear::sInstance);
+            setNerve(GET_NERVE(SysInfoWindow, SysInfoWindowNrvDisappear));
         }
     }
 };

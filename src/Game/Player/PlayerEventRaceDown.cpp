@@ -1,4 +1,5 @@
 #include "Game/Player/PlayerEventRaceDown.hpp"
+#include "Game/Player/MarioActor.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"

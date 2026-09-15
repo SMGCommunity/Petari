@@ -25,15 +25,15 @@ namespace NrvBossStinkBugFinishDemo {
 
 BossStinkBugFinishDemo::BossStinkBugFinishDemo(BossStinkBug* pHost, const JMapInfoIter& rIter)
     : BossStinkBugActionBase("終了デモ", pHost), mDemoPositionController(nullptr) {
-    initNerve(&NrvBossStinkBugFinishDemo::BossStinkBugFinishDemoNrvDemo::sInstance);
+    initNerve(GET_NERVE(BossStinkBugFinishDemo, BossStinkBugFinishDemoNrvDemo));
     mDemoPositionController = new DemoPositionController("BossStinkBugDemo", rIter);
     mDemoPositionController->initAnimCamera("FinishDemo");
 }
 
 void BossStinkBugFinishDemo::appear() {
     ActorStateBase::appear();
-    setNerve(&NrvBossStinkBugFinishDemo::BossStinkBugFinishDemoNrvTryStart::sInstance);
-    MR::requestStartDemoMarioPuppetable(this, getHost(), "ボスカメムシ終了デモ", &NrvBossStinkBugFinishDemo::BossStinkBugFinishDemoNrvDemo::sInstance,
+    setNerve(GET_NERVE(BossStinkBugFinishDemo, BossStinkBugFinishDemoNrvTryStart));
+    MR::requestStartDemoMarioPuppetable(this, getHost(), "ボスカメムシ終了デモ", GET_NERVE(BossStinkBugFinishDemo, BossStinkBugFinishDemoNrvDemo),
                                         nullptr);
 }
 
@@ -53,7 +53,7 @@ void BossStinkBugFinishDemo::exeDemo() {
     getHost()->setPose(MR::getJointMtx(mDemoPositionController, "Boss"));
 
     if (MR::isBckStopped(getHost())) {
-        setNerve(&NrvBossStinkBugFinishDemo::BossStinkBugFinishDemoNrvAppearPowerStar::sInstance);
+        setNerve(GET_NERVE(BossStinkBugFinishDemo, BossStinkBugFinishDemoNrvAppearPowerStar));
     }
 }
 

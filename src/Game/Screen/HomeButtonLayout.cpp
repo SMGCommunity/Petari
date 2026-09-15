@@ -81,7 +81,7 @@ void HomeButtonLayout::init(const JMapInfoIter& rIter) {
     RSO::HBMCreate(mMenuContext->mHomeButtonInfo);
     MR::setLayoutDefaultAllocator();
     RSO::HBMSetAdjustFlag(MR::isScreen16Per9());
-    initNerve(&NrvHomeButtonLayout::HomeButtonLayoutDeactive::sInstance);
+    initNerve(GET_NERVE(HomeButtonLayout, HomeButtonLayoutDeactive));
     appear();
 
     mFlag.mIsHidden = true;
@@ -112,7 +112,7 @@ void HomeButtonLayout::exeDeactive() {
     }
 
     if (tryCorePadTriggerHome()) {
-        setNerve(&NrvHomeButtonLayout::HomeButtonLayoutActive::sInstance);
+        setNerve(GET_NERVE(HomeButtonLayout, HomeButtonLayoutActive));
     }
 }
 
@@ -184,7 +184,7 @@ void HomeButtonLayout::exeActive() {
 
     _25 = false;
 
-    setNerve(&NrvHomeButtonLayout::HomeButtonLayoutDeactive::sInstance);
+    setNerve(GET_NERVE(HomeButtonLayout, HomeButtonLayoutDeactive));
 }
 
 void HomeButtonLayout::draw() const {
@@ -228,7 +228,7 @@ bool HomeButtonLayout::isActive() const {
         return false;
     }
 
-    return isNerve(&NrvHomeButtonLayout::HomeButtonLayoutActive::sInstance) && !MR::isNewNerve(this);
+    return isNerve(GET_NERVE(HomeButtonLayout, HomeButtonLayoutActive)) && !MR::isNewNerve(this);
 }
 
 void HomeButtonLayout::updateController() {

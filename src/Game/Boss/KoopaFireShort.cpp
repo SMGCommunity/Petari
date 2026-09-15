@@ -58,7 +58,7 @@ void KoopaFireShort::init(const JMapInfoIter& rIter) {
     MR::addEffectHitNormal(this, "Hit");
 
     initSound(4, false);
-    initNerve(&NrvKoopaFireShort::KoopaFireShortNrvFly::sInstance);
+    initNerve(GET_NERVE(KoopaFireShort, KoopaFireShortNrvFly));
 
     zeroVec.set(0.0f);
     MR::initStarPointerTarget(this, 100.0f, zeroVec);
@@ -102,7 +102,7 @@ void KoopaFireShort::appear() {
 
     MR::invalidateHitSensors(this);
 
-    setNerve(&NrvKoopaFireShort::KoopaFireShortNrvFly::sInstance);
+    setNerve(GET_NERVE(KoopaFireShort, KoopaFireShortNrvFly));
 }
 
 void KoopaFireShort::emitNormal() {
@@ -164,7 +164,7 @@ void KoopaFireShort::exeFly() {
 
         MR::invalidateHitSensors(this);
 
-        setNerve(&NrvKoopaFireShort::KoopaFireShortNrvErase2P::sInstance);
+        setNerve(GET_NERVE(KoopaFireShort, KoopaFireShortNrvErase2P));
     } else {
         updateFly();
 
@@ -173,7 +173,7 @@ void KoopaFireShort::exeFly() {
         }
 
         if (MR::isGreaterStep(this, mDuration)) {
-            setNerve(&NrvKoopaFireShort::KoopaFireShortNrvDisappear::sInstance);
+            setNerve(GET_NERVE(KoopaFireShort, KoopaFireShortNrvDisappear));
         }
     }
 }
@@ -214,20 +214,20 @@ void KoopaFireShort::calcAndSetBaseMtx() {
 }
 
 void KoopaFireShort::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvKoopaFireShort::KoopaFireShortNrvFly::sInstance)) {
+    if (!isNerve(GET_NERVE(KoopaFireShort, KoopaFireShortNrvFly))) {
         return;
     }
 
     if (MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
         mSpeed = 0.0f;
         MR::zeroVelocity(this);
-        setNerve(&NrvKoopaFireShort::KoopaFireShortNrvDisappear::sInstance);
+        setNerve(GET_NERVE(KoopaFireShort, KoopaFireShortNrvDisappear));
     } else if (!MR::isSensorPlayer(pReceiver) && !MR::sendMsgPush(pReceiver, pSender) && !MR::isSensorType(pReceiver, ATYPE_KOOPA_FIRE) &&
                !MR::isSensorType(pReceiver, ATYPE_KOOPA_DAMAGE_PLATE) && !MR::isSensorType(pReceiver, ATYPE_KOOPA_COIN_PLATE) &&
                !MR::isSensorType(pReceiver, ATYPE_KOOPA_PLATE)) {
         mSpeed = 0.0f;
         MR::zeroVelocity(this);
-        setNerve(&NrvKoopaFireShort::KoopaFireShortNrvDisappear::sInstance);
+        setNerve(GET_NERVE(KoopaFireShort, KoopaFireShortNrvDisappear));
     }
 }
 

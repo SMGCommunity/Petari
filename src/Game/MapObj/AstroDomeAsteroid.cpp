@@ -5,6 +5,11 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
+void AstroDomeAsteroid_FORCE_MATCH_SDATA2() {
+    1.0f;
+    0.0f;
+}
+
 namespace {
     const f32 cBckRate = 1.0f;
 };  // namespace
@@ -21,7 +26,7 @@ void AstroDomeAsteroid::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("AstroDomeAsteroid", nullptr, false);
     MR::connectToSceneMapObj(this);
     MR::invalidateClipping(this);
-    initNerve(&NrvAstroDomeAsteroid::AstroDomeAsteroidNrvWait::sInstance);
+    initNerve(GET_NERVE(AstroDomeAsteroid, AstroDomeAsteroidNrvWait));
     MR::tryRegisterDemoCast(this, rIter);
     MR::registerDemoSimpleCastAll(this);
     SphereSelectorFunction::registerTarget(this);

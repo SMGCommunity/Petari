@@ -34,7 +34,7 @@ TripodBossGuardWallPart::TripodBossGuardWallPart(const char* pName) : LiveActor(
 
 void TripodBossGuardWallPart::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("TripodBossGuardWall", nullptr, false);
-    MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, -1);
+    MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, MR::DrawType_None);
     initHitSensor(2);
     MR::initCollisionParts(this, "TripodBossGuardWall",
                            MR::addHitSensor(this, "collision", ATYPE_TRIPODBOSS_GUARD_WALL, 0, 1000.0f, TVec3f(0.0f, 0.0f, 0.0f)), nullptr);
@@ -43,7 +43,7 @@ void TripodBossGuardWallPart::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     MR::startBck(this, "2ndDemo", nullptr);
     MR::setBckFrameAndStop(this, 0.0f);
-    initNerve(&NrvTripodBossGuardWallPart::TripodBossGuardWallPartNrvNonActive::sInstance);
+    initNerve(GET_NERVE(TripodBossGuardWallPart, TripodBossGuardWallPartNrvNonActive));
     MR::addTripodBossPartsMovement(this);
     makeActorDead();
 }
@@ -80,20 +80,20 @@ bool TripodBossGuardWallPart::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender,
 }
 
 void TripodBossGuardWallPart::requestStartDemo() {
-    setNerve(&NrvTripodBossGuardWallPart::TripodBossGuardWallPartNrvDemo::sInstance);
+    setNerve(GET_NERVE(TripodBossGuardWallPart, TripodBossGuardWallPartNrvDemo));
 }
 
 bool TripodBossGuardWallPart::requestBreak() {
-    if (MR::isDead(this) || !isNerve(&NrvTripodBossGuardWallPart::TripodBossGuardWallPartNrvActive::sInstance)) {
+    if (MR::isDead(this) || !isNerve(GET_NERVE(TripodBossGuardWallPart, TripodBossGuardWallPartNrvActive))) {
         return false;
     }
 
-    setNerve(&NrvTripodBossGuardWallPart::TripodBossGuardWallPartNrvBreak::sInstance);
+    setNerve(GET_NERVE(TripodBossGuardWallPart, TripodBossGuardWallPartNrvBreak));
     return true;
 }
 
 bool TripodBossGuardWallPart::isEndDemo() const {
-    return isNerve(&NrvTripodBossGuardWallPart::TripodBossGuardWallPartNrvActive::sInstance);
+    return isNerve(GET_NERVE(TripodBossGuardWallPart, TripodBossGuardWallPartNrvActive));
 }
 
 void TripodBossGuardWallPart::exeNonActive() {
@@ -101,7 +101,7 @@ void TripodBossGuardWallPart::exeNonActive() {
 
 void TripodBossGuardWallPart::exeDemo() {
     if (MR::isGreaterStep(this, mStartTiming)) {
-        setNerve(&NrvTripodBossGuardWallPart::TripodBossGuardWallPartNrvRepair::sInstance);
+        setNerve(GET_NERVE(TripodBossGuardWallPart, TripodBossGuardWallPartNrvRepair));
     }
 }
 
@@ -122,7 +122,7 @@ void TripodBossGuardWallPart::exeBreak() {
     bool isNotNearPlayer = !MR::isNearPlayer(this, ::sRepairPlayerDistance);
 
     if (isNotNearPlayer && MR::isGreaterStep(this, ::sRepairTiming)) {
-        setNerve(&NrvTripodBossGuardWallPart::TripodBossGuardWallPartNrvRepair::sInstance);
+        setNerve(GET_NERVE(TripodBossGuardWallPart, TripodBossGuardWallPartNrvRepair));
     }
 }
 
@@ -137,7 +137,7 @@ void TripodBossGuardWallPart::exeRepair() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvTripodBossGuardWallPart::TripodBossGuardWallPartNrvActive::sInstance);
+        setNerve(GET_NERVE(TripodBossGuardWallPart, TripodBossGuardWallPartNrvActive));
     }
 }
 

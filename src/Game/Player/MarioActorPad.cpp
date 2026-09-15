@@ -161,66 +161,77 @@ bool MarioActor::checkButtonType(u16 type, bool isObeyDisable) const {
         if (_F0C || _F00) {
             return true;
         }
+
         break;
 
     case 0:
         if (_F0C) {
             return true;
         }
+
         break;
 
     case 1:
         if (_F00) {
             return true;
         }
+
         break;
 
     case 3:
         if (MR::getPlayerTriggerA()) {
             return true;
         }
+
         break;
 
     case 4:
         if (MR::getPlayerTriggerB()) {
             return true;
         }
+
         break;
 
     case 7:
         if (MR::getPlayerTriggerZ()) {
             return true;
         }
+
         break;
 
     case 8:
         if (MR::getPlayerTriggerC()) {
             return true;
         }
+
         break;
 
     case 5:
         if (MR::getPlayerLevelA()) {
             return true;
         }
+
         break;
 
     case 6:
         if (MR::getPlayerLevelB()) {
             return true;
         }
+
         break;
 
     case 9:
         if (MR::getPlayerLevelZ()) {
             return true;
         }
+
         break;
 
     case 10:
         if (MR::getPlayerLevelC()) {
             return true;
         }
+
         break;
     }
 

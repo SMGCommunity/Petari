@@ -2,6 +2,7 @@
 #include "Game/Boss/Polta.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -23,8 +24,8 @@ namespace NrvPoltaArm {
 };  // namespace NrvPoltaArm
 
 PoltaArm::PoltaArm(const char* pName, const char* pModelName, MtxPtr pMtx)
-    : ModelObj(pName, pModelName, pMtx, 18, -2, -2, false), mFormationModel(nullptr), mBreakModel(nullptr), _C8(2), _CC(2), mBrokenCounter(0), _D4(0),
-      mIsLeftArm(true) {
+    : ModelObj(pName, pModelName, pMtx, MR::DrawBufferType_Enemy, -2, -2, false), mFormationModel(), mBreakModel(), _C8(2), _CC(2), mBrokenCounter(),
+      _D4(), mIsLeftArm(true) {
     _98.identity();
     MR::initLightCtrl(this);
 
@@ -42,7 +43,7 @@ void PoltaArm::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     MR::startBva(this, "BreakLevel");
     MR::setBvaFrameAndStop(this, 0.0);
-    initNerve(&NrvPoltaArm::PoltaArmNrvControlled::sInstance);
+    initNerve(GET_NERVE(PoltaArm, PoltaArmNrvControlled));
     initPartsModel();
     makeActorDead();
 }
@@ -96,7 +97,7 @@ void PoltaArm::exeDamage() {
 
     if (MR::isActionEnd(this)) {
         MR::startAction(this, "DamageWait");
-        setNerve(&NrvPoltaArm::PoltaArmNrvWaitDamageEnd::sInstance);
+        setNerve(GET_NERVE(PoltaArm, PoltaArmNrvWaitDamageEnd));
     }
 }
 
@@ -111,7 +112,7 @@ void PoltaArm::exeBreak() {
     }
     if (MR::isActionEnd(this)) {
         MR::hideModel(this);
-        setNerve(&NrvPoltaArm::PoltaArmNrvBroken::sInstance);
+        setNerve(GET_NERVE(PoltaArm, PoltaArmNrvBroken));
     }
 }
 
@@ -140,7 +141,7 @@ void PoltaArm::exeRepair() {
         MR::startAction(this, "RepairWait");
         MR::startBva(this, "BreakLevel");
         MR::setBvaFrameAndStop(this, 0.0f);
-        setNerve(&NrvPoltaArm::PoltaArmNrvWaitRepairEnd::sInstance);
+        setNerve(GET_NERVE(PoltaArm, PoltaArmNrvWaitRepairEnd));
     }
 }
 
@@ -153,7 +154,7 @@ void PoltaArm::exeBroken() {
         mBrokenCounter++;
     }
     if (mBrokenCounter > 1200) {
-        setNerve(&NrvPoltaArm::PoltaArmNrvRepair::sInstance);
+        setNerve(GET_NERVE(PoltaArm, PoltaArmNrvRepair));
     }
 }
 
@@ -168,8 +169,8 @@ bool PoltaArm::isEnableHitSensor() const {
         return false;
     }
 
-    if (isNerve(&NrvPoltaArm::PoltaArmNrvControlled::sInstance) || isNerve(&NrvPoltaArm::PoltaArmNrvWaitDamageEnd::sInstance) ||
-        isNerve(&NrvPoltaArm::PoltaArmNrvWaitRepairEnd::sInstance)) {
+    if (isNerve(GET_NERVE(PoltaArm, PoltaArmNrvControlled)) || isNerve(GET_NERVE(PoltaArm, PoltaArmNrvWaitDamageEnd)) ||
+        isNerve(GET_NERVE(PoltaArm, PoltaArmNrvWaitRepairEnd))) {
         return true;
     }
     return false;
@@ -180,7 +181,7 @@ bool PoltaArm::isEnableAttack() const {
         return false;
     }
 
-    return isNerve(&NrvPoltaArm::PoltaArmNrvControlled::sInstance);
+    return isNerve(GET_NERVE(PoltaArm, PoltaArmNrvControlled));
 }
 
 bool PoltaArm::isBroken() const {
@@ -188,8 +189,8 @@ bool PoltaArm::isBroken() const {
         return true;
     }
 
-    if (isNerve(&NrvPoltaArm::PoltaArmNrvBreak::sInstance) || isNerve(&NrvPoltaArm::PoltaArmNrvBreakBody::sInstance) ||
-        isNerve(&NrvPoltaArm::PoltaArmNrvBroken::sInstance)) {
+    if (isNerve(GET_NERVE(PoltaArm, PoltaArmNrvBreak)) || isNerve(GET_NERVE(PoltaArm, PoltaArmNrvBreakBody)) ||
+        isNerve(GET_NERVE(PoltaArm, PoltaArmNrvBroken))) {
         return true;
     }
     return false;
@@ -208,7 +209,7 @@ void PoltaArm::start() {
     s32 CC_temp = _CC;  // required for matching, maybe they were planning to do something?
     mBrokenCounter = 0;
     _C8 = CC_temp;
-    setNerve(&NrvPoltaArm::PoltaArmNrvControlled::sInstance);
+    setNerve(GET_NERVE(PoltaArm, PoltaArmNrvControlled));
 }
 
 bool PoltaArm::requestBreakBody() {
@@ -216,12 +217,12 @@ bool PoltaArm::requestBreakBody() {
         return false;
     }
 
-    if (isNerve(&NrvPoltaArm::PoltaArmNrvBroken::sInstance)) {
+    if (isNerve(GET_NERVE(PoltaArm, PoltaArmNrvBroken))) {
         kill();
         return true;
     }
 
-    setNerve(&NrvPoltaArm::PoltaArmNrvBreakBody::sInstance);
+    setNerve(GET_NERVE(PoltaArm, PoltaArmNrvBreakBody));
     return true;
 }
 
@@ -229,15 +230,15 @@ bool PoltaArm::requestDamage() {
     if (MR::isDead(this)) {
         return false;
     }
-    if (isNerve(&NrvPoltaArm::PoltaArmNrvControlled::sInstance) || isNerve(&NrvPoltaArm::PoltaArmNrvWaitDamageEnd::sInstance) ||
-        isNerve(&NrvPoltaArm::PoltaArmNrvWaitRepairEnd::sInstance)) {
+    if (isNerve(GET_NERVE(PoltaArm, PoltaArmNrvControlled)) || isNerve(GET_NERVE(PoltaArm, PoltaArmNrvWaitDamageEnd)) ||
+        isNerve(GET_NERVE(PoltaArm, PoltaArmNrvWaitRepairEnd))) {
         _C8--;
         if (_C8 <= 0) {
             _C8 = 0;
             mBrokenCounter = 0;
-            setNerve(&NrvPoltaArm::PoltaArmNrvBreak::sInstance);
+            setNerve(GET_NERVE(PoltaArm, PoltaArmNrvBreak));
         } else {
-            setNerve(&NrvPoltaArm::PoltaArmNrvDamage::sInstance);
+            setNerve(GET_NERVE(PoltaArm, PoltaArmNrvDamage));
         }
         return true;
     }
@@ -249,8 +250,8 @@ bool PoltaArm::requestStartControll() {
         return false;
     }
 
-    if (isNerve(&NrvPoltaArm::PoltaArmNrvWaitRepairEnd::sInstance) || isNerve(&NrvPoltaArm::PoltaArmNrvWaitDamageEnd::sInstance)) {
-        setNerve(&NrvPoltaArm::PoltaArmNrvControlled::sInstance);
+    if (isNerve(GET_NERVE(PoltaArm, PoltaArmNrvWaitRepairEnd)) || isNerve(GET_NERVE(PoltaArm, PoltaArmNrvWaitDamageEnd))) {
+        setNerve(GET_NERVE(PoltaArm, PoltaArmNrvControlled));
         return true;
     }
 
@@ -261,7 +262,7 @@ bool PoltaArm::requestControlled(const char* pActionName) {
     if (MR::isDead(this)) {
         return false;
     }
-    if (!isNerve(&NrvPoltaArm::PoltaArmNrvControlled::sInstance)) {
+    if (!isNerve(GET_NERVE(PoltaArm, PoltaArmNrvControlled))) {
         return false;
     }
 

@@ -172,7 +172,7 @@ void GhostPlayer::init(const JMapInfoIter& rIter) {
     }
 
     initEffectKeeper(5, "GhostMario", false);
-    MR::connectToScene(this, MR::MovementType_Player, MR::CalcAnimType_Player, -1, MR::DrawType_Player);
+    MR::connectToScene(this, MR::MovementType_Player, MR::CalcAnimType_Player, MR::DrawBufferType_None, MR::DrawType_Player);
     MR::initDefaultPos(this, rIter);
     mStartPos = mPosition;
     mVelocity.zero();
@@ -195,7 +195,7 @@ void GhostPlayer::init(const JMapInfoIter& rIter) {
         MR::initMultiActorCamera(this, rIter, &mCameraInfo, "レース終了");
     }
     mCameraTargetMtx = new CameraTargetMtx("カメラターゲットダミー");
-    initNerve(&NrvGhostPlayer::HostTypeNrvWait::sInstance);
+    initNerve(GET_NERVE(GhostPlayer, HostTypeNrvWait));
     MR::needStageSwitchReadAppear(this, rIter);
     MR::syncStageSwitchAppear(this);
     makeActorDead();
@@ -214,7 +214,7 @@ void GhostPlayer::init(const JMapInfoIter& rIter) {
 
 void GhostPlayer::appear() {
     LiveActor::appear();
-    setNerve(&NrvGhostPlayer::HostTypeNrvPreStartDemo0::sInstance);
+    setNerve(GET_NERVE(GhostPlayer, HostTypeNrvPreStartDemo0));
     mIsHidden = true;
     MR::invalidateShadow(this, nullptr);
     if (MR::isPlayerLuigi()) {
@@ -237,15 +237,15 @@ void GhostPlayer::control() {
 
     MR::startLevelSound(this, "SE_BM_LV_GHOST_MARIO_AMBIENT");
 
-    if (isNerve(&NrvGhostPlayer::HostTypeNrvLostDemo::sInstance)) {
+    if (isNerve(GET_NERVE(GhostPlayer, HostTypeNrvLostDemo))) {
         return;
     }
-    if (isNerve(&NrvGhostPlayer::HostTypeNrvWinDemo::sInstance)) {
+    if (isNerve(GET_NERVE(GhostPlayer, HostTypeNrvWinDemo))) {
         return;
     }
 
-    if (strcmp("powerstarget", MR::getPlayerCurrentBckName()) == 0 && isNerve(&NrvGhostPlayer::HostTypeNrvRun::sInstance)) {
-        setNerve(&NrvGhostPlayer::HostTypeNrvLostDemo::sInstance);
+    if (strcmp("powerstarget", MR::getPlayerCurrentBckName()) == 0 && isNerve(GET_NERVE(GhostPlayer, HostTypeNrvRun))) {
+        setNerve(GET_NERVE(GhostPlayer, HostTypeNrvLostDemo));
         mKilledByStar = true;
     } else if (mCurrentPacket != nullptr) {
         u32 packetDelayTimer = 0;
@@ -333,12 +333,12 @@ void GhostPlayer::exePreStartDemo0() {
         TPos3f* cameraTargetMatrix = &mCameraTargetMtx->mMatrix;
         cameraTargetMatrix->set(getBaseMtx());
         MR::startMultiActorCameraTargetOther(this, mCameraInfo, "レース開始2", CameraTargetArg(mCameraTargetMtx), -1);
-        setNerve(&NrvGhostPlayer::HostTypeNrvPreStartDemo1::sInstance);
+        setNerve(GET_NERVE(GhostPlayer, HostTypeNrvPreStartDemo1));
         setAnimation("レース見る");
     } else if (isRequestSkipDemo()) {
         MR::endMultiActorCamera(this, mCameraInfo, "レース開始1", false, -1);
         MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "レース開始3", -1);
-        setNerve(&NrvGhostPlayer::HostTypeNrvPreStartDemo2::sInstance);
+        setNerve(GET_NERVE(GhostPlayer, HostTypeNrvPreStartDemo2));
         if (getNerveStep() < 60) {
             mIsHidden = false;
             setAnimation("ゴースト出現");
@@ -358,11 +358,11 @@ void GhostPlayer::exePreStartDemo1() {
     if (getNerveStep() == 240) {
         MR::endMultiActorCamera(this, mCameraInfo, "レース開始2", false, -1);
         MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "レース開始3", -1);
-        setNerve(&NrvGhostPlayer::HostTypeNrvPreStartDemo2::sInstance);
+        setNerve(GET_NERVE(GhostPlayer, HostTypeNrvPreStartDemo2));
     } else if (isRequestSkipDemo()) {
         MR::endMultiActorCamera(this, mCameraInfo, "レース開始2", false, -1);
         MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "レース開始3", -1);
-        setNerve(&NrvGhostPlayer::HostTypeNrvPreStartDemo2::sInstance);
+        setNerve(GET_NERVE(GhostPlayer, HostTypeNrvPreStartDemo2));
     }
 }
 
@@ -414,7 +414,7 @@ void GhostPlayer::exePreStartDemo2() {
     if (!mRaceManagerLayout->isPlayCountAnim()) {
         mWaitingToStart = false;
         MR::startSound(this, "SE_BV_GHOST_MARIO_RUN_START");
-        setNerve(&NrvGhostPlayer::HostTypeNrvRun::sInstance);
+        setNerve(GET_NERVE(GhostPlayer, HostTypeNrvRun));
         MR::onPlayerControl(true);
         MR::noticePlayerDashChance();
         MR::startBckPlayerJ("基本");
@@ -539,13 +539,13 @@ void GhostPlayer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         HitSensor* currentRushSensor = MR::getCurrentRushSensor();
         if ((currentRushSensor == nullptr || !currentRushSensor->isType(ATYPE_POWER_STAR_BIND)) && (!MR::isPlayerConfrontDeath() && !mKilledByStar)) {
             if (strcmp("powerstarget", MR::getPlayerCurrentBckName()) != 0) {
-                setNerve(&NrvGhostPlayer::HostTypeNrvWinDemo::sInstance);
+                setNerve(GET_NERVE(GhostPlayer, HostTypeNrvWinDemo));
                 mKilledByStar = true;
                 MR::preventPlayerRush();
             }
         }
     } else {
-        if (isNerve(&NrvGhostPlayer::HostTypeNrvRun::sInstance) && MR::sendMsgPush(pReceiver, pSender) && mAppearStarPieceCooldown == 0) {
+        if (isNerve(GET_NERVE(GhostPlayer, HostTypeNrvRun)) && MR::sendMsgPush(pReceiver, pSender) && mAppearStarPieceCooldown == 0) {
             if (MR::appearStarPiece(this, mPosition, 1, 10.0f, 40.0f, false)) {
                 if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
                     MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W");
@@ -555,7 +555,7 @@ void GhostPlayer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             }
             mAppearStarPieceCooldown = 5;
         }
-        if (LiveActor::isNerve(&NrvGhostPlayer::HostTypeNrvWait::sInstance)) {
+        if (LiveActor::isNerve(GET_NERVE(GhostPlayer, HostTypeNrvWait))) {
             return;
         }
     }

@@ -47,10 +47,12 @@ u8 Mario::checkStickWallSide() {
         if (direction.dot(getWallNorm()) < -0.5f) {
             return 1;
         }
+
         if (direction.dot(getWallNorm()) > 0.5f && !mMovementStates._1D) {
             return 2;
         }
     }
+
     return 0;
 }
 
@@ -60,14 +62,16 @@ s32 Mario::checkStickFrontBack() {
         if (direction.dot(-mFrontVec) < -0.5f) {
             return 1;
         }
+
         if (direction.dot(-mFrontVec) > 0.5f && !mMovementStates._1D) {
             return 2;
         }
     }
+
     return 0;
 }
 
-MarioWall::MarioWall(MarioActor* actor) : MarioState(actor, MarioStatus_Wall) {
+MarioWall::MarioWall(MarioActor* pActor) : MarioState(pActor, MarioStatus_Wall) {
     _14 = 0;
     _18 = 0;
     _1C = 0;
@@ -85,15 +89,17 @@ void MarioWall::initTriangleJump() {
     _14 = 0;
 }
 
-u8 MarioWall::isCancel() {
+u32 MarioWall::isCancel() {
     if (getPlayer()->mMovementStates._1) {
         _1C = 0;
     }
+
     if (_1C && getPlayer()->mMovementStates._8) {
         if (_24.dot(getPlayer()->getWallNorm()) < mActor->getConst().getTable()->mWallStickCancelAngle) {
             _1C = 0;
         }
     }
+
     return _1C;
 }
 
@@ -101,6 +107,7 @@ bool Mario::fixWallingPosition(bool immediate) {
     if (!fixWallingDist()) {
         return false;
     }
+
     fixWallingDir(immediate);
     return true;
 }
@@ -110,19 +117,23 @@ void Mario::fixWallingDir(bool immediate) {
     if (isStatusActive(MarioStatus_SideStep)) {
         back = false;
     }
+
     if (mMovementStates._19 && back) {
         if (immediate) {
             setFrontVecKeepUp(-*mBackWallTriangle->getNormal(0));
             return;
         }
+
         setFrontVecKeepUp(-*mBackWallTriangle->getNormal(0), 0.1f);
         return;
     }
+
     if (mMovementStates._8) {
         if (immediate) {
             setFrontVecKeepUp(-*mFrontWallTriangle->getNormal(0));
             return;
         }
+
         setFrontVecKeepUp(-*mFrontWallTriangle->getNormal(0), 0.1f);
     }
 }
@@ -134,11 +145,13 @@ bool Mario::fixWallingTop() {
     if (MR::isNearZero(side)) {
         return false;
     }
+
     PSVECCrossProduct(&getWallNorm(), &side, &_75C);
     MR::normalizeOrZero(&_75C);
     if (MR::isNearZero(_75C)) {
         return false;
     }
+
     getWallNorm().dot(getAirGravityVec());
     getPlayer()->forceSetHeadVecKeepSide(_75C);
     return true;
@@ -148,71 +161,85 @@ bool Mario::checkWallFloorCode(u16 code) const {
     if ((mMovementStates._8 || mMovementStates._32) && _964[0] == code) {
         return true;
     }
+
     if (mMovementStates._19 && _964[1] == code) {
         return true;
     }
+
     if (mMovementStates._1A && _964[2] == code) {
         return true;
     }
+
     return false;
 }
 
-bool Mario::checkWallCode(const char* code, bool frontBackOnly) const {
+bool Mario::checkWallCode(const char* pCode, bool frontBackOnly) const {
     if (mMovementStates._19) {
         const char* wallCode = MR::getWallCodeString(mBackWallTriangle);
-        if (wallCode && strcmp(wallCode, code) == 0) {
+        if (wallCode && strcmp(wallCode, pCode) == 0) {
             return true;
         }
     }
+
     if (mMovementStates._8 || mMovementStates._32) {
         const char* wallCode = MR::getWallCodeString(mFrontWallTriangle);
-        if (wallCode && strcmp(wallCode, code) == 0) {
+        if (wallCode && strcmp(wallCode, pCode) == 0) {
             return true;
         }
     }
+
     if (frontBackOnly) {
         return false;
     }
+
     if (mMovementStates._1A) {
         const char* wallCode = MR::getWallCodeString(mSideWallTriangle);
-        if (wallCode && strcmp(wallCode, code) == 0) {
+        if (wallCode && strcmp(wallCode, pCode) == 0) {
             return true;
         }
     }
+
     return false;
 }
 
-bool Mario::checkWallCodeNorm(u16 code, TVec3f* normal, bool frontBackOnly) const {
+bool Mario::checkWallCodeNorm(u16 code, TVec3f* pNormal, bool frontBackOnly) const {
     if (mMovementStates._19) {
         u16 wallCode = MR::getWallCodeIndex(mBackWallTriangle);
         if (wallCode == code) {
-            if (normal) {
-                *normal = *mBackWallTriangle->getNormal(0);
+            if (pNormal != nullptr) {
+                *pNormal = *mBackWallTriangle->getNormal(0);
             }
+
             return true;
         }
     }
+
     if (mMovementStates._8 || mMovementStates._32) {
         u16 wallCode = MR::getWallCodeIndex(mFrontWallTriangle);
         if (wallCode == code) {
-            if (normal) {
-                *normal = *mFrontWallTriangle->getNormal(0);
+            if (pNormal != nullptr) {
+                *pNormal = *mFrontWallTriangle->getNormal(0);
             }
+
             return true;
         }
     }
+
     if (frontBackOnly) {
         return false;
     }
+
     if (mMovementStates._1A) {
         u16 wallCode = MR::getWallCodeIndex(mSideWallTriangle);
         if (wallCode == code) {
-            if (normal) {
-                *normal = *mSideWallTriangle->getNormal(0);
+            if (pNormal != nullptr) {
+                *pNormal = *mSideWallTriangle->getNormal(0);
             }
+
             return true;
         }
     }
+
     return false;
 }
 
@@ -239,33 +266,42 @@ bool Mario::isEnableStickWall() {
         if (isStatusActive(MarioStatus_Foo)) {
             return false;
         }
+
         break;
     }
 
     if (mWall->isCancel()) {
         return false;
     }
+
     if (!mMovementStates.jumping || mMovementStates._1) {
         return false;
     }
+
     if (mMovementStates._B) {
         return false;
     }
+
     if (mMovementStates._F) {
         return false;
     }
+
     if (mDrawStates._1E) {
         return false;
     }
+
     if (!mMovementStates._8 && !mMovementStates._19) {
         return false;
     }
+
     if (mMovementStates._2 && mVerticalSpeed < mActor->getConst().getTable()->mWallStickGrHeight) {
         return false;
     }
+
     if (mMovementStates._15 && _4E0 < mActor->getConst().getTable()->mWallStickFrHeight && !getWallPolygon()->mSensor->isType(0x57)) {
         return false;
     }
+
     if (isAnimationRun("空中ひねり")) {
         if (mActor->_945 < 25) {
             return false;
@@ -273,6 +309,7 @@ bool Mario::isEnableStickWall() {
     } else if (mActor->isPunching() && mActor->_945 < 15) {
         return false;
     }
+
     if (mMovementStates._15 && mMovementStates._2 && mMovementStates._39) {
         if ((_4A4 - mShadowPos).dot(-*getGravityVec()) < mActor->getConst().getTable()->mWallStickStepHeight) {
             return false;
@@ -286,29 +323,37 @@ bool Mario::isEnableStickWall() {
             return false;
         }
     }
+
     if (isInhibitWall()) {
         return false;
     }
+
     if (mMovementStates._8 && calcPolygonAngleD(mFrontWallTriangle) < 80.0f) {
         return false;
     }
+
     if (mMovementStates._19 && calcPolygonAngleD(mBackWallTriangle) < 80.0f) {
         return false;
     }
+
     TVec3f side;
     PSVECCrossProduct(&getWallNorm(), &getAirGravityVec(), &side);
     if (MR::normalizeOrZero(&side)) {
         return false;
     }
+
     if (!checkWallCode("NotWallSlip", true)) {
         mMovementStates._28 = true;
     }
+
     if (checkWallCode("NoAction", true)) {
         return false;
     }
+
     if ((getPlayerMode() != PlayerMode_Ice || !getWallPolygon()->mSensor->isType(0x57)) && isRising()) {
         return false;
     }
+
     if (mMovementStates._19) {
         if (!isAnimationRun("壁ジャンプ") && getPlayer()->checkStickWallSide() != 1) {
             return false;
@@ -316,25 +361,31 @@ bool Mario::isEnableStickWall() {
     } else if (!isAnimationRun("壁ジャンプ") && !mMovementStates._9 && getPlayer()->checkStickWallSide() != 1) {
         return false;
     }
+
     if (mMovementStates._30) {
         return false;
     }
+
     if (mActor->_468) {
         if (!checkTrgA()) {
             return false;
         }
+
         mWall->initTriangleJump();
         mWall->startJump();
         return false;
     }
+
     TVec3f position(mActor->_2AC);
     f32 distance = 120.0f;
     if (mMovementStates._19) {
         distance = -120.0f;
     }
+
     if (!MR::isExistMapCollision(position, mFrontVec * distance)) {
         return false;
     }
+
     return MR::getKarikariClingNum() == 0;
 }
 
@@ -356,6 +407,7 @@ bool MarioWall::start() {
         playSound("スケート着地");
         _1E = 1;
     }
+
     return true;
 }
 
@@ -364,12 +416,15 @@ bool MarioWall::update() {
     if (mActor->_334) {
         return false;
     }
+
     if (MR::getKarikariClingNum()) {
         return false;
     }
+
     if ((isStatusActiveID(MarioStatus_Rabbit) || mActor->_37C - getPlayer()->_558 < 6) && startJump()) {
         return false;
     }
+
     if (getPlayer()->mDrawStates._6) {
         if (_1D) {
             TVec3f horizontal;
@@ -378,11 +433,13 @@ bool MarioWall::update() {
                 release = true;
             }
         }
+
         getPlayer()->mMovementStates._1 = true;
         _1D = 1;
     } else {
         _1D = 0;
     }
+
     _14++;
     if (getPlayer()->mMovementStates._1 && !release) {
         if (getPlayer()->mVerticalSpeed < 80.0f) {
@@ -392,17 +449,21 @@ bool MarioWall::update() {
                 changeAnimationInterpoleFrame(1);
                 mActor->setBlendMtxTimer(4);
             }
+
             release = true;
         } else {
             getPlayer()->mMovementStates._1 = false;
         }
     }
+
     if (_14 >= mActor->getConst().getTable()->mWallReleaseTime + mActor->getConst().getTable()->mWallStickTime) {
         release = true;
     }
+
     if (_14 >= 3 && !getPlayer()->mMovementStates._8 && !getPlayer()->mMovementStates._32) {
         release = true;
     }
+
     if (release) {
         if (!getPlayer()->mMovementStates._1) {
             _1C = 1;
@@ -410,19 +471,24 @@ bool MarioWall::update() {
             _24 = normal;
             getPlayer()->setFrontVecKeepUp(-normal);
         }
+
         if (isOnSlipGround()) {
             addVelocityAfter(getPlayer()->getWallNorm() * 10.0f);
         } else {
             addVelocityAfter(getPlayer()->getWallNorm() * 30.0f);
         }
+
         return false;
     }
+
     if (checkTrgA() && startJump()) {
         if (_1E) {
             playSound("スケートジャンプ");
         }
+
         return false;
     }
+
     if (mActor->isRequestRush()) {
         getPlayer()->mMovementStates._2B = false;
         changeAnimation("空中ひねり", static_cast< const char* >(nullptr));
@@ -430,6 +496,7 @@ bool MarioWall::update() {
         getPlayer()->setWallCancel();
         return false;
     }
+
     if (!getPlayer()->fixWallingPosition(false)) {
         getPlayer()->setWallCancel();
         return false;
@@ -441,12 +508,14 @@ bool MarioWall::update() {
     if (side == 1) {
         side = 0;
     }
+
     switch (side) {
     case 1:
         blend = 0.7f;
         if (_14 > mActor->getConst().getTable()->mWallStickTime) {
             _14 = mActor->getConst().getTable()->mWallStickTime;
         }
+
         _18 = 0;
         speed = mActor->getConst().getTable()->mWallDropSpeedStop;
         changeAnimation("壁くっつき", static_cast< const char* >(nullptr));
@@ -460,9 +529,11 @@ bool MarioWall::update() {
         } else if (_14 < 165) {
             _14 = 165;
         }
+
         if (!_18) {
             _18 = 1;
         }
+
         stopEffect("共通壁手擦り");
         break;
     case 0:
@@ -472,23 +543,29 @@ bool MarioWall::update() {
             if (!isAnimationRun("壁くっつき")) {
                 changeAnimation("壁すべり", static_cast< const char* >(nullptr));
             }
+
             playSound("スリップ");
             playEffect("共通壁手擦り");
         }
+
         break;
     }
+
     if (_18) {
         _18++;
     }
+
     if (_14 < mActor->getConst().getTable()->mWallStickTime) {
         blend = 1.0f;
     }
+
     if (_1E) {
         if (_14 > mActor->getConst().getTable()->mWallStickTimeIce) {
             _1C = 1;
             _24 = getPlayer()->getWallNorm();
             return false;
         }
+
         return true;
     }
 
@@ -501,8 +578,10 @@ bool MarioWall::update() {
         } else {
             ratio = 1.0f - (_14 - mActor->getConst().getTable()->mWallStickTime) * mActor->getConst().getTable()->mWallSideMoveRatio;
         }
+
         getPlayer()->moveWallSlide(MR::clamp(ratio, 0.0f, 1.0f));
     }
+
     return true;
 }
 
@@ -512,6 +591,7 @@ bool MarioWall::close() {
     if (getPlayer()->mMovementStates._1) {
         changeAnimation(nullptr, "基本");
     }
+
     stopEffect("共通壁手擦り");
     getPlayer()->resetTornado();
     getPlayer()->mMovementStates._38 = false;
@@ -522,6 +602,7 @@ bool MarioWall::startJump() {
     if (getPlayer()->isInhibitWall()) {
         return false;
     }
+
     TVec3f velocity(getPlayer()->getWallNorm());
     _24 = velocity;
     if (!getPlayer()->mDrawStates._3 && _14 < 15 && !MR::isNearZero(_30)) {
@@ -534,6 +615,7 @@ bool MarioWall::startJump() {
             PSMTXMultVec(rotation, &velocity, &velocity);
         }
     }
+
     velocity.scale(mActor->getConst().getTable()->mWallJumpPowerXZ);
     velocity += getGravityVec() * -mActor->getConst().getTable()->mWallJumpPowerY;
     getPlayer()->tryWallJump(velocity, true);
@@ -547,10 +629,12 @@ bool MarioWall::startBackJump(u32 type) {
     if (getPlayer()->isInhibitWall()) {
         return false;
     }
+
     TVec3f velocity(getPlayer()->getWallNorm());
     if (getPlayer()->mMovementStates.jumping && velocity.dot(getPlayer()->mJumpVec) > 0.0f) {
         return false;
     }
+
     _24 = velocity;
     velocity.scale(mActor->getConst().getTable()->mWallBackJumpPowerXZ);
     velocity += getGravityVec() * -mActor->getConst().getTable()->mWallBackJumpPowerY;
@@ -565,6 +649,7 @@ bool MarioWall::startBackJump(u32 type) {
         player->_428 = 60;
         break;
     }
+
     case 1:
         playEffectRTZ("水壁ヒット", _24, getPlayer()->getWallPos());
         playSound("水弾かれ");
@@ -573,6 +658,7 @@ bool MarioWall::startBackJump(u32 type) {
         playSound("トランポリンジャンプ大");
         break;
     }
+
     startPadVib(2);
     _1C = 1;
     getPlayer()->mMovementStates._2B = true;
@@ -583,6 +669,7 @@ bool Mario::fixWallingDist() {
     if (mMovementStates._19 & mMovementStates._8) {
         return true;
     }
+
     if (mMovementStates._19) {
         TVec3f position(_4F4 + *mBackWallTriangle->getNormal(0) * 79.0f);
         f32 distance = MR::vecKillElement(position - mPosition, *mBackWallTriangle->getNormal(0), &position);
@@ -590,11 +677,13 @@ bool Mario::fixWallingDist() {
         if (!fixWallingTop()) {
             return false;
         }
+
         mPosition = _4F4 + *mBackWallTriangle->getNormal(0) * 60.0f - _75C * 80.0f;
     } else if (mMovementStates._8) {
         if (!fixWallingTop()) {
             return false;
         }
+
         if (MR::isExistMapCollision(mPosition, mFrontVec * 100.0f) && mFrontVec.dot(*mFrontWallTriangle->getNormal(0)) < -0.999f) {
             TVec3f position(_4E8 + *mFrontWallTriangle->getNormal(0) * 60.0f - _75C * 80.0f);
             TVec3f correction;
@@ -604,16 +693,20 @@ bool Mario::fixWallingDist() {
                 if (__fabsf(relative.x) < __fabsf(correction.x)) {
                     correction.x = relative.x;
                 }
+
                 if (__fabsf(relative.y) < __fabsf(correction.y)) {
                     correction.y = relative.y;
                 }
+
                 if (__fabsf(relative.z) < __fabsf(correction.z)) {
                     correction.z = relative.z;
                 }
+
                 addTrans(correction, "壁補正");
             }
         }
     }
+
     return true;
 }
 
@@ -621,9 +714,11 @@ bool Mario::isInhibitWall() const {
     if (mDrawStates._2) {
         return true;
     }
+
     if (checkWallCode("NotWallJump", true)) {
         return true;
     }
+
     return checkWallCode("NoAction", true);
 }
 
@@ -633,9 +728,11 @@ void Mario::tryWallPunch() {
             if (getPlayer()->mMovementStates._8) {
                 mSwim->hitWall(*mFrontWallTriangle->getNormal(0), mFrontWallTriangle->mSensor);
             }
+
             if (getPlayer()->mMovementStates._19) {
                 mSwim->hitWall(*mBackWallTriangle->getNormal(0), mBackWallTriangle->mSensor);
             }
+
             if (getPlayer()->mMovementStates._1A) {
                 mSwim->hitWall(*mSideWallTriangle->getNormal(0), mSideWallTriangle->mSensor);
             }
@@ -645,6 +742,7 @@ void Mario::tryWallPunch() {
             if (mMovementStates.jumping) {
                 velocity.scale(mActor->getConst().getTable()->mWallSpinFlipAirRatio);
             }
+
             velocity -= *getGravityVec() * mActor->getConst().getTable()->mWallSpinHopGround;
             tryForcePowerJump(velocity, true);
             mMovementStates._2B = true;
@@ -655,12 +753,15 @@ void Mario::tryWallPunch() {
             if (getPlayer()->mMovementStates._8) {
                 sendPunch(mFrontWallTriangle->mSensor, true);
             }
+
             if (getPlayer()->mMovementStates._19) {
                 sendPunch(mBackWallTriangle->mSensor, true);
             }
+
             if (getPlayer()->mMovementStates._1A) {
                 sendPunch(mSideWallTriangle->mSensor, true);
             }
+
             mActor->_EF6 = 30;
         }
     }

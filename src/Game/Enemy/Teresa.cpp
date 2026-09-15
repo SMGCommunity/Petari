@@ -81,7 +81,7 @@ void Teresa::init(const JMapInfoIter& rIter) {
     MR::onShadowFollowHostScale(this, nullptr);
     initBind();
     initEffectKeeper(0, nullptr, false);
-    initNerve(&NrvTeresa::TeresaNrvWait::sInstance);
+    initNerve(GET_NERVE(Teresa, TeresaNrvWait));
     setTransparency(1.0f);
     MR::useStageSwitchWriteDead(this, rIter);
 
@@ -167,13 +167,13 @@ void Teresa::appear() {
         MR::invalidateClipping(this);
         MR::onBind(this);
         mWallHitPos.set< f32 >(mPosition);
-        setNerve(&NrvTeresa::TeresaNrvAppearFromGround::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvAppearFromGround));
         break;
     case 1:
         MR::invalidateClipping(this);
         MR::onBind(this);
         mWallHitPos.set< f32 >(mPosition);
-        setNerve(&NrvTeresa::TeresaNrvAppearFromWall::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvAppearFromWall));
         break;
     default:
         setStartNerve();
@@ -204,7 +204,7 @@ void Teresa::kill() {
 }
 
 void Teresa::control() {
-    if (!isNerve(&NrvTeresa::TeresaNrvDrift::sInstance) && !isNerve(&NrvTeresa::TeresaNrvAscension::sInstance)) {
+    if (!isNerve(GET_NERVE(Teresa, TeresaNrvDrift)) && !isNerve(GET_NERVE(Teresa, TeresaNrvAscension))) {
         f32 v2 = (1.0f / (1.0f + (0.949f) * (_D4.x - 1.0f)));
         _D4.x = 1.0f + (0.949f * (_D4.x - 1.0f));
         _D4.z = v2;
@@ -265,7 +265,7 @@ bool Teresa::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
 
     if (MR::isMsgStarPieceAttack(msg)) {
         if (isEnableStarPieceStop()) {
-            setNerve(&NrvTeresa::TeresaNrvStop::sInstance);
+            setNerve(GET_NERVE(Teresa, TeresaNrvStop));
         }
     }
 
@@ -292,7 +292,7 @@ bool Teresa::filterBind(const Triangle* pTriangle) {
     if (MR::isWallCodeGhostThrough(pTriangle)) {
         _FE = 1;
         _BC.set< f32 >(*pTriangle->getNormal(0));
-        return isNerve(&NrvTeresa::TeresaNrvDrift::sInstance);
+        return isNerve(GET_NERVE(Teresa, TeresaNrvDrift));
     }
 
     return false;
@@ -308,7 +308,7 @@ bool Teresa::requestAttack(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (MR::sendMsgEnemyAttack(pReceiver, pSender)) {
-        setNerve(&NrvTeresa::TeresaNrvAttackSuccess::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvAttackSuccess));
         return true;
     }
 
@@ -317,7 +317,7 @@ bool Teresa::requestAttack(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool Teresa::requestDrift() {
     if (canDrift()) {
-        setNerve(&NrvTeresa::TeresaNrvDrift::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvDrift));
         return true;
     }
 
@@ -325,9 +325,9 @@ bool Teresa::requestDrift() {
 }
 
 bool Teresa::requestLoveHit(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvTeresa::TeresaNrvLoveChase::sInstance)) {
+    if (isNerve(GET_NERVE(Teresa, TeresaNrvLoveChase))) {
         MR::addVelocitySeparateHV(this, pSender, pReceiver, 20.0f, 0.0f);
-        setNerve(&NrvTeresa::TeresaNrvLoveHit::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvLoveHit));
         return true;
     }
 
@@ -336,7 +336,7 @@ bool Teresa::requestLoveHit(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool Teresa::requestSearchLightDead() {
     if (canSearchLightDead()) {
-        setNerve(&NrvTeresa::TeresaNrvAscension::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvAscension));
         return true;
     }
 
@@ -345,12 +345,12 @@ bool Teresa::requestSearchLightDead() {
 
 void Teresa::setStartNerve() {
     if (MR::isExistRail(this)) {
-        setNerve(&NrvTeresa::TeresaNrvRailWalk::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvRailWalk));
         setTransparency(1.0f);
         MR::startAction(this, "Wait");
         MR::moveCoordToNearestPos(this, mPosition);
     } else {
-        setNerve(&NrvTeresa::TeresaNrvWait::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvWait));
     }
 }
 
@@ -375,7 +375,7 @@ bool Teresa::tryAppearFromGroundEnd() {
 bool Teresa::tryRailTurn() {
     if (MR::isRailReachedGoal(this)) {
         MR::reverseRailDirection(this);
-        setNerve(&NrvTeresa::TeresaNrvRailTurn::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvRailTurn));
         return true;
     }
 
@@ -384,7 +384,7 @@ bool Teresa::tryRailTurn() {
 
 bool Teresa::tryRailTurnEnd() {
     if (MR::isGreaterStep(this, 150)) {
-        setNerve(&NrvTeresa::TeresaNrvRailWalk::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvRailWalk));
         return true;
     }
     return false;
@@ -398,7 +398,7 @@ bool Teresa::tryWalk() {
         v6.orthogonalize(mGravity);
         v6 *= _F0;
         _E0 = v6 + _C8;
-        setNerve(&NrvTeresa::TeresaNrvWalk::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvWalk));
         return true;
     }
 
@@ -407,7 +407,7 @@ bool Teresa::tryWalk() {
 
 bool Teresa::tryWalkEnd() {
     if (MR::isGreaterStep(this, 300) || _E0.distance(mPosition) <= 200.0f) {
-        setNerve(&NrvTeresa::TeresaNrvWait::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvWait));
         return true;
     }
 
@@ -420,7 +420,7 @@ bool Teresa::tryChase() {
     }
 
     if (!isShay() && MR::isNearPlayer(this, 1800.0f)) {
-        setNerve(&NrvTeresa::TeresaNrvChase::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvChase));
         return true;
     }
 
@@ -438,7 +438,7 @@ bool Teresa::tryCheseEnd() {
 
 bool Teresa::tryShay() {
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        setNerve(&NrvTeresa::TeresaNrvShay::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvShay));
         return true;
     }
 
@@ -447,7 +447,7 @@ bool Teresa::tryShay() {
     }
 
     if (isShay()) {
-        setNerve(&NrvTeresa::TeresaNrvShay::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvShay));
         return true;
     }
 
@@ -466,7 +466,7 @@ bool Teresa::tryShayEnd() {
         if (MR::isExistRail(this)) {
             setStartNerve();
         } else {
-            setNerve(&NrvTeresa::TeresaNrvAggressive::sInstance);
+            setNerve(GET_NERVE(Teresa, TeresaNrvAggressive));
         }
 
         return true;
@@ -477,7 +477,7 @@ bool Teresa::tryShayEnd() {
 
 bool Teresa::tryLoveFind() {
     if (MR::isPlayerElementModeTeresa() && MR::isNearPlayerAnyTime(this, 1500.0f)) {
-        setNerve(&NrvTeresa::TeresaNrvLoveFind::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvLoveFind));
         return true;
     }
 
@@ -486,7 +486,7 @@ bool Teresa::tryLoveFind() {
 
 bool Teresa::tryLoveEnd() {
     if (MR::isPlayerElementModeTeresa() && MR::isNearPlayerAnyTime(this, 1500.0f)) {
-        setNerve(&NrvTeresa::TeresaNrvLoveEnd::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvLoveEnd));
         return true;
     }
 
@@ -495,7 +495,7 @@ bool Teresa::tryLoveEnd() {
 
 bool Teresa::tryLoveFindEnd() {
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvTeresa::TeresaNrvLoveChase::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvLoveChase));
         return true;
     }
 
@@ -513,7 +513,7 @@ bool Teresa::tryLoveChaseEnd() {
 
 bool Teresa::tryLoveHitEnd() {
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvTeresa::TeresaNrvLoveChase::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvLoveChase));
         return true;
     }
     return false;
@@ -521,7 +521,7 @@ bool Teresa::tryLoveHitEnd() {
 
 bool Teresa::tryAggressiveEnd() {
     if (MR::isGreaterStep(this, 75)) {
-        setNerve(&NrvTeresa::TeresaNrvWait::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvWait));
         return true;
     }
 
@@ -530,7 +530,7 @@ bool Teresa::tryAggressiveEnd() {
 
 bool Teresa::tryAttackSuccessEnd() {
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvTeresa::TeresaNrvWait::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvWait));
         return true;
     }
 
@@ -539,7 +539,7 @@ bool Teresa::tryAttackSuccessEnd() {
 
 bool Teresa::tryDriftEnd() {
     if (MR::isGreaterStep(this, 50)) {
-        setNerve(&NrvTeresa::TeresaNrvWait::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvWait));
         return true;
     }
 
@@ -559,7 +559,7 @@ bool Teresa::tryHideWater() {
         MR::offBind(this);
         MR::hideModel(this);
         MR::zeroVelocity(this);
-        setNerve(&NrvTeresa::TeresaNrvHideWater::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvHideWater));
         return true;
     }
 
@@ -578,7 +578,7 @@ bool Teresa::tryHideWall() {
         MR::offBind(this);
         MR::hideModel(this);
         MR::zeroVelocity(this);
-        setNerve(&NrvTeresa::TeresaNrvHideWall::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvHideWall));
         return true;
     }
 
@@ -590,7 +590,7 @@ bool Teresa::tryHideWallEnd() {
         MR::validateHitSensors(this);
         MR::onBind(this);
         MR::showModel(this);
-        setNerve(&NrvTeresa::TeresaNrvAppearFromWall::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvAppearFromWall));
         return true;
     }
 
@@ -599,7 +599,7 @@ bool Teresa::tryHideWallEnd() {
 
 bool Teresa::tryAscension() {
     if (MR::isInAreaObj("GlaringLightArea", mPosition) || !MR::isInShadeFromTheSun(mPosition, 10000.0f)) {
-        setNerve(&NrvTeresa::TeresaNrvAscension::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvAscension));
         return true;
     }
 
@@ -936,7 +936,7 @@ void Teresa::exeHideWater() {
         MR::validateHitSensors(this);
         MR::onBind(this);
         MR::showModel(this);
-        setNerve(&NrvTeresa::TeresaNrvAppearFromGround::sInstance);
+        setNerve(GET_NERVE(Teresa, TeresaNrvAppearFromGround));
     }
 }
 
@@ -1040,9 +1040,9 @@ void Teresa::setTransparency(f32 val) {
 }
 
 bool Teresa::canAttack() const {
-    if (isNerve(&NrvTeresa::TeresaNrvAppearFromWall::sInstance) || isNerve(&NrvTeresa::TeresaNrvAppearFromGround::sInstance) ||
-        isNerve(&NrvTeresa::TeresaNrvAttackSuccess::sInstance) || isNerve(&NrvTeresa::TeresaNrvDrift::sInstance) ||
-        isNerve(&NrvTeresa::TeresaNrvAscension::sInstance)) {
+    if (isNerve(GET_NERVE(Teresa, TeresaNrvAppearFromWall)) || isNerve(GET_NERVE(Teresa, TeresaNrvAppearFromGround)) ||
+        isNerve(GET_NERVE(Teresa, TeresaNrvAttackSuccess)) || isNerve(GET_NERVE(Teresa, TeresaNrvDrift)) ||
+        isNerve(GET_NERVE(Teresa, TeresaNrvAscension))) {
         return false;
     }
 
@@ -1050,7 +1050,7 @@ bool Teresa::canAttack() const {
 }
 
 bool Teresa::canDrift() const {
-    if (isNerve(&NrvTeresa::TeresaNrvDrift::sInstance) || isNerve(&NrvTeresa::TeresaNrvAscension::sInstance)) {
+    if (isNerve(GET_NERVE(Teresa, TeresaNrvDrift)) || isNerve(GET_NERVE(Teresa, TeresaNrvAscension))) {
         return false;
     }
 
@@ -1058,9 +1058,9 @@ bool Teresa::canDrift() const {
 }
 
 bool Teresa::canSearchLightDead() const {
-    if (isNerve(&NrvTeresa::TeresaNrvAppearFromWall::sInstance) || isNerve(&NrvTeresa::TeresaNrvAppearFromGround::sInstance) ||
-        isNerve(&NrvTeresa::TeresaNrvHideWater::sInstance) || isNerve(&NrvTeresa::TeresaNrvHideWall::sInstance) ||
-        isNerve(&NrvTeresa::TeresaNrvAscension::sInstance)) {
+    if (isNerve(GET_NERVE(Teresa, TeresaNrvAppearFromWall)) || isNerve(GET_NERVE(Teresa, TeresaNrvAppearFromGround)) ||
+        isNerve(GET_NERVE(Teresa, TeresaNrvHideWater)) || isNerve(GET_NERVE(Teresa, TeresaNrvHideWall)) ||
+        isNerve(GET_NERVE(Teresa, TeresaNrvAscension))) {
         return false;
     }
 
@@ -1068,10 +1068,10 @@ bool Teresa::canSearchLightDead() const {
 }
 
 bool Teresa::isEnableStarPieceStop() const {
-    if (isNerve(&NrvTeresa::TeresaNrvAppearFromWall::sInstance) || isNerve(&NrvTeresa::TeresaNrvAppearFromGround::sInstance) ||
-        isNerve(&NrvTeresa::TeresaNrvDrift::sInstance) || isNerve(&NrvTeresa::TeresaNrvHideWater::sInstance) ||
-        isNerve(&NrvTeresa::TeresaNrvHideWall::sInstance) || isNerve(&NrvTeresa::TeresaNrvAscension::sInstance) ||
-        isNerve(&NrvTeresa::TeresaNrvStop::sInstance)) {
+    if (isNerve(GET_NERVE(Teresa, TeresaNrvAppearFromWall)) || isNerve(GET_NERVE(Teresa, TeresaNrvAppearFromGround)) ||
+        isNerve(GET_NERVE(Teresa, TeresaNrvDrift)) || isNerve(GET_NERVE(Teresa, TeresaNrvHideWater)) ||
+        isNerve(GET_NERVE(Teresa, TeresaNrvHideWall)) || isNerve(GET_NERVE(Teresa, TeresaNrvAscension)) ||
+        isNerve(GET_NERVE(Teresa, TeresaNrvStop))) {
         return false;
     }
 
@@ -1079,9 +1079,9 @@ bool Teresa::isEnableStarPieceStop() const {
 }
 
 bool Teresa::isCheckWater() const {
-    if (isNerve(&NrvTeresa::TeresaNrvAppearFromWall::sInstance) || isNerve(&NrvTeresa::TeresaNrvAppearFromGround::sInstance) ||
-        isNerve(&NrvTeresa::TeresaNrvHideWater::sInstance) || isNerve(&NrvTeresa::TeresaNrvHideWall::sInstance) ||
-        isNerve(&NrvTeresa::TeresaNrvAscension::sInstance)) {
+    if (isNerve(GET_NERVE(Teresa, TeresaNrvAppearFromWall)) || isNerve(GET_NERVE(Teresa, TeresaNrvAppearFromGround)) ||
+        isNerve(GET_NERVE(Teresa, TeresaNrvHideWater)) || isNerve(GET_NERVE(Teresa, TeresaNrvHideWall)) ||
+        isNerve(GET_NERVE(Teresa, TeresaNrvAscension))) {
         return false;
     }
 

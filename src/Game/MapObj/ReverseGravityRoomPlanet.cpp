@@ -21,7 +21,7 @@ void ReverseGravityRoomPlanet::init(const JMapInfoIter& rIter) {
     info.setupConnectToScene();
     info.setupEffect(0);
     info.setupFarClipping(-1.0f);
-    info.setupNerve(&NrvReverseGravityRoomPlanet::ReverseGravityRoomPlanetNrvDownWait::sInstance);
+    info.setupNerve(GET_NERVE(ReverseGravityRoomPlanet, ReverseGravityRoomPlanetNrvDownWait));
     initialize(rIter, info);
 }
 
@@ -31,7 +31,7 @@ void ReverseGravityRoomPlanet::exeDownStart() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvReverseGravityRoomPlanet::ReverseGravityRoomPlanetNrvDownWait::sInstance);
+        setNerve(GET_NERVE(ReverseGravityRoomPlanet, ReverseGravityRoomPlanetNrvDownWait));
     }
 }
 
@@ -44,7 +44,7 @@ void ReverseGravityRoomPlanet::exeUpStart() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvReverseGravityRoomPlanet::ReverseGravityRoomPlanetNrvUpWait::sInstance);
+        setNerve(GET_NERVE(ReverseGravityRoomPlanet, ReverseGravityRoomPlanetNrvUpWait));
     }
 }
 
@@ -57,11 +57,11 @@ void ReverseGravityRoomPlanet::initCaseUseSwitchA(const MapObjActorInitInfo& rIt
 }
 
 void ReverseGravityRoomPlanet::startSwitchOn() {
-    setNerve(&NrvReverseGravityRoomPlanet::ReverseGravityRoomPlanetNrvUpStart::sInstance);
+    setNerve(GET_NERVE(ReverseGravityRoomPlanet, ReverseGravityRoomPlanetNrvUpStart));
 }
 
 void ReverseGravityRoomPlanet::startSwitchOff() {
-    setNerve(&NrvReverseGravityRoomPlanet::ReverseGravityRoomPlanetNrvDownStart::sInstance);
+    setNerve(GET_NERVE(ReverseGravityRoomPlanet, ReverseGravityRoomPlanetNrvDownStart));
 }
 
 ReverseGravityRoomPlanet::~ReverseGravityRoomPlanet() {

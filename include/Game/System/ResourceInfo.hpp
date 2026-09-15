@@ -8,6 +8,10 @@ public:
 
     void setName(const char*, bool);
 
+    inline bool isEqualHashCode(u32 hash) const {
+        return mHashCode == hash;
+    }
+
     void* mResource;  // 0x0
     u32 _4;
     void* _8;  // 0x8

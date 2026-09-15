@@ -31,7 +31,7 @@ void OtaKingMagma::init(const JMapInfoIter& rIter) {
     MR::startBtk(this, "OtaKingMagma");
     initHitSensor(1);
     MR::initCollisionParts(this, "OtaKingMagma", MR::addBodyMessageSensorEnemy(this), nullptr);
-    initNerve(&NrvOtaKingMagma::OtaKingMagmaNrvWait::sInstance);
+    initNerve(GET_NERVE(OtaKingMagma, OtaKingMagmaNrvWait));
     PartsModel::init(rIter);
     mSoundObject->setTrans(&mHost->mPosition);
 
@@ -50,27 +50,27 @@ void OtaKingMagma::init(const JMapInfoIter& rIter) {
 }
 
 void OtaKingMagma::appearDemo() {
-    setNerve(&NrvOtaKingMagma::OtaKingMagmaNrvAppearDemo::sInstance);
+    setNerve(GET_NERVE(OtaKingMagma, OtaKingMagmaNrvAppearDemo));
 }
 
 void OtaKingMagma::attack() {
-    setNerve(&NrvOtaKingMagma::OtaKingMagmaNrvAttack::sInstance);
+    setNerve(GET_NERVE(OtaKingMagma, OtaKingMagmaNrvAttack));
 }
 
 void OtaKingMagma::fireAttack() {
-    setNerve(&NrvOtaKingMagma::OtaKingMagmaNrvFireAttack::sInstance);
+    setNerve(GET_NERVE(OtaKingMagma, OtaKingMagmaNrvFireAttack));
 }
 
 void OtaKingMagma::hitBack() {
-    setNerve(&NrvOtaKingMagma::OtaKingMagmaNrvHitBack::sInstance);
+    setNerve(GET_NERVE(OtaKingMagma, OtaKingMagmaNrvHitBack));
 }
 
 void OtaKingMagma::damage() {
-    setNerve(&NrvOtaKingMagma::OtaKingMagmaNrvDamage::sInstance);
+    setNerve(GET_NERVE(OtaKingMagma, OtaKingMagmaNrvDamage));
 }
 
 void OtaKingMagma::down() {
-    setNerve(&NrvOtaKingMagma::OtaKingMagmaNrvDown::sInstance);
+    setNerve(GET_NERVE(OtaKingMagma, OtaKingMagmaNrvDown));
 }
 
 void OtaKingMagma::control() {
@@ -100,7 +100,7 @@ void OtaKingMagma::exeAppearDemo() {
     }
 
     MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND");
-    MR::setNerveAtBckStopped(this, &NrvOtaKingMagma::OtaKingMagmaNrvWait::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE(OtaKingMagma, OtaKingMagmaNrvWait));
 }
 
 void OtaKingMagma::exeAttack() {
@@ -110,7 +110,7 @@ void OtaKingMagma::exeAttack() {
     }
 
     MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND");
-    MR::setNerveAtBckStopped(this, &NrvOtaKingMagma::OtaKingMagmaNrvWait::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE(OtaKingMagma, OtaKingMagmaNrvWait));
 }
 
 void OtaKingMagma::exeFireAttack() {
@@ -120,7 +120,7 @@ void OtaKingMagma::exeFireAttack() {
     }
 
     MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND");
-    MR::setNerveAtBckStopped(this, &NrvOtaKingMagma::OtaKingMagmaNrvWait::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE(OtaKingMagma, OtaKingMagmaNrvWait));
 }
 
 void OtaKingMagma::exeHitBack() {
@@ -133,7 +133,7 @@ void OtaKingMagma::exeHitBack() {
         MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND");
     }
 
-    MR::setNerveAtBckStopped(this, &NrvOtaKingMagma::OtaKingMagmaNrvWait::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE(OtaKingMagma, OtaKingMagmaNrvWait));
 }
 
 void OtaKingMagma::exeDamage() {
@@ -143,7 +143,7 @@ void OtaKingMagma::exeDamage() {
     }
 
     MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND");
-    MR::setNerveAtBckStopped(this, &NrvOtaKingMagma::OtaKingMagmaNrvWait::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE(OtaKingMagma, OtaKingMagmaNrvWait));
 }
 
 void OtaKingMagma::exeDown() {
@@ -153,7 +153,7 @@ void OtaKingMagma::exeDown() {
     }
 
     MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND");
-    MR::setNerveAtBckStopped(this, &NrvOtaKingMagma::OtaKingMagmaNrvEndWait::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE(OtaKingMagma, OtaKingMagmaNrvEndWait));
 }
 
 void OtaKingMagma::exeEndWait() {

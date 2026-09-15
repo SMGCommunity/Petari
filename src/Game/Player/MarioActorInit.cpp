@@ -1,11 +1,17 @@
 #include "Game/Player/MarioActor.hpp"
 
+void MarioActorInit_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 void MarioActor::initMember() {
     _8C = 0;
     mDLchanger = nullptr;
     for (int i = 0; i < ARRAY_SIZE(_94); i++) {
         _94[i] = 0;
     }
+
     mDL[0] = nullptr;
     mDL[1] = nullptr;
     mDLSize = 0;
@@ -165,12 +171,14 @@ void MarioActor::initMember() {
     for (int i = 0; i < ARRAY_SIZE(_4D0); i++) {
         _4D0[i] = 0;
     }
+
     _6D0 = false;
     _6D4 = 0.0f;
     _6D8 = 0.0f;
     for (int i = 0; i < ARRAY_SIZE(_6DC); i++) {
         _6DC[i] = nullptr;
     }
+
     _7DC = 0;
     _7DE = 0;
     _7E0 = 0;
@@ -178,9 +186,11 @@ void MarioActor::initMember() {
     for (int i = 0; i < ARRAY_SIZE(_7E4); i++) {
         _7E4[i] = 0;
     }
+
     for (int i = 0; i < ARRAY_SIZE(_8E4); i++) {
         _8E4[i] = 0;
     }
+
     _924 = nullptr;
     _928 = 0;
     _92C = 0;
@@ -200,6 +210,7 @@ void MarioActor::initMember() {
     for (int i = 0; i < ARRAY_SIZE(_954); i++) {
         _954[i] = 0;
     }
+
     _974 = 0;
     _978.zero();
     _988 = 0;
@@ -247,6 +258,7 @@ void MarioActor::initMember() {
     for (int i = 0; i < ARRAY_SIZE(mModels); i++) {
         mModels[i] = nullptr;
     }
+
     _A40 = 0;
     _A44 = 0;
     _A48 = 0;
@@ -268,6 +280,7 @@ void MarioActor::initMember() {
         _A70[i] = nullptr;
         _A90[i] = nullptr;
     }
+
     PSMTXIdentity(_AB0.toMtxPtr());
     PSMTXIdentity(_AE0.toMtxPtr());
     _B10 = 0;
@@ -289,6 +302,7 @@ void MarioActor::initMember() {
     for (int i = 0; i < ARRAY_SIZE(_B54); i++) {
         _B54[i] = 0;
     }
+
     _B60 = 0;
     _B64 = 0;
     _B68 = 0;

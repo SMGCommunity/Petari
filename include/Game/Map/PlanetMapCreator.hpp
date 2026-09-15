@@ -1,18 +1,18 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
+#include "Game/Map/PlanetMap.hpp"
 
 class NameObjArchiveListCollector;
 
 struct PlanetMapData {
-    const char* mPlanetName;            // 0x0
-    const char* mData[5];               // 0x4
-    const char* mForceScenarioData[8];  // 0x18
+    /* 0x00 */ const char* mPlanetName;
+    /* 0x04 */ const char* mData[5];
+    /* 0x18 */ const char* mForceScenarioData[8];
 };
 
 struct UniqueEntry {
-    const char* _0;
-    const char* _4;
+    /* 0x00 */ const char* _0;
+    /* 0x04 */ const char* _4;
 };
 
 typedef NameObj* (*CreatorFuncPtr)(const char*);
@@ -33,8 +33,18 @@ public:
     PlanetMapData* getTableData(const char*) const;
     bool isScenarioForceLow(const PlanetMapData*) const;
 
-    PlanetMapData** mPlanetMapData;  // 0xC
-    s32 mTableCount;                 // 0x10
+    /* 0x0C */ PlanetMapData** mPlanetMapData;
+    /* 0x10 */ s32 mTableCount;
+};
+
+class PlanetMapFarClippable : public PlanetMap {
+public:
+    PlanetMapFarClippable(const char* pName) : PlanetMap(pName) {
+    }
+
+    f32 getFarClipDistance() const {
+        return 50.0f;
+    }
 };
 
 class PlanetMapCreatorFunction {

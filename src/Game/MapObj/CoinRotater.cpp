@@ -1,41 +1,31 @@
 #include "Game/MapObj/CoinRotater.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-CoinRotater::CoinRotater(const char* pName) : NameObj(pName) {
-    _C = 0.0f;
-    _10 = 0.0f;
-    _14 = 0.0f;
+CoinRotater::CoinRotater(const char* pName) : NameObj(pName), _C(), _10(), _14() {
     mRotateYMtx.identity();
     mHiSpeedRotateYMtx.identity();
     mWaterRotateMtx.identity();
+    
     MR::connectToSceneMapObjMovement(this);
 }
 
-/*
-// regalloc
 void CoinRotater::movement() {
-    f32 v2 = MR::subtractFromSum(8.0f, _C, 0.0f);
     _C += 8.0f;
-    f32 v3 = MR::modAndAdd(0.0f, v2, 360.0f);
-    f32 v4 = MR::subtractFromSum(0.0f, 4.0f, _10);
-    _10 += + 4.0f;
-    _C = v3;
-    f32 v5 = MR::modAndAdd(0.0f, v4, 360.0f);
-    f32 v6 = MR::subtractFromSum(_14, 16.0f, 0.0f);
-    _14 += _14 + 16.0f;
-    _10 = v5;
-    f32 v7 = fmod(360.0f + v6, 360.0f);
-    _14 = MR::add(0.0f, v7);
-    MR::makeMtxRotateY(mRotateYMtx.mMtx, _C);
-    MR::makeMtxRotateY(mHiSpeedRotateYMtx.mMtx, _14);
-    MR::makeMtxRotateY(mWaterRotateMtx.mMtx, _10);
+    _C = MR::repeat(_C, 0.0f, 360.0f);
+
+    _10 += 4.0f;
+    _10 = MR::repeat(_10, 0.0f, 360.0f);
+
+    _14 += 16.0f;
+    _14 = MR::repeat(_14, 0.0f, 360.0f);
+
+    MR::makeMtxRotateY(mRotateYMtx, _C);
+    MR::makeMtxRotateY(mHiSpeedRotateYMtx, _14);
+    MR::makeMtxRotateY(mWaterRotateMtx, _10);
 }
-*/
 
 namespace MR {
     void createCoinRotater() {
@@ -54,6 +44,3 @@ namespace MR {
         return MR::getSceneObj< CoinRotater >(SceneObj_CoinRotater)->mWaterRotateMtx;
     }
 };  // namespace MR
-
-CoinRotater::~CoinRotater() {
-}

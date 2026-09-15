@@ -43,7 +43,7 @@ void SunakazeKunTrap::init(const JMapInfoIter& rIter) {
     MR::setShadowDropLength(this, nullptr, 500.0f);
     PSMTXMultVec(mHost->getBaseMtx(), &_94, &mPosition);
     MR::invalidateClipping(this);
-    initNerve(&NrvSunakazeKunTrap::SunakazeKunTrapNrvTrap::sInstance);
+    initNerve(GET_NERVE(SunakazeKunTrap, SunakazeKunTrapNrvTrap));
     makeActorAppeared();
 }
 
@@ -143,7 +143,7 @@ void Sandstorm::init(const JMapInfoIter& rIter) {
         MR::onSwitchA(this);
     }
 
-    initNerve(&NrvSandstorm::SandstormNrvWait::sInstance);
+    initNerve(GET_NERVE(Sandstorm, SandstormNrvWait));
     makeActorAppeared();
 }
 
@@ -157,7 +157,7 @@ void Sandstorm::exeNonActive() {
     if (MR::isNearPlayerAnyTime(this, ::sActiveRadius)) {
         MR::onCalcShadow(this, nullptr);
         MR::validateHitSensors(this);
-        setNerve(&NrvSandstorm::SandstormNrvWait::sInstance);
+        setNerve(GET_NERVE(Sandstorm, SandstormNrvWait));
     }
 }
 
@@ -181,7 +181,7 @@ void Sandstorm::exeStorm() {
     updateSpiral();
 
     if ((!MR::isGreaterStep(this, ::sStepToEnableSpin) || !tryTornadoJumpPlayer()) && MR::isStep(this, mStepStorm)) {
-        setNerve(&NrvSandstorm::SandstormNrvStormAdjust::sInstance);
+        setNerve(GET_NERVE(Sandstorm, SandstormNrvStormAdjust));
     }
 }
 
@@ -194,7 +194,7 @@ void Sandstorm::exeStormAdjust() {
     updateSpiral();
 
     if (!tryTornadoJumpPlayer() && MR::isStep(this, mStepAdjust)) {
-        setNerve(&NrvSandstorm::SandstormNrvStormFix::sInstance);
+        setNerve(GET_NERVE(Sandstorm, SandstormNrvStormFix));
     }
 }
 
@@ -236,14 +236,14 @@ void Sandstorm::exeStormEnd() {
 
     if (MR::isGreaterStep(this, mStepEnd)) {
         MR::validateHitSensors(this);
-        setNerve(&NrvSandstorm::SandstormNrvWait::sInstance);
+        setNerve(GET_NERVE(Sandstorm, SandstormNrvWait));
     }
 }
 
 void Sandstorm::control() {
     MR::moveCoordAndFollowTrans(this, ::sRailSpeed);
 
-    if (isNerve(&NrvSandstorm::SandstormNrvNonActive::sInstance)) {
+    if (isNerve(GET_NERVE(Sandstorm, SandstormNrvNonActive))) {
         return;
     }
 
@@ -321,7 +321,7 @@ bool Sandstorm::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
 }
 
 bool Sandstorm::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvSandstorm::SandstormNrvStormEnd::sInstance)) {
+    if (isNerve(GET_NERVE(Sandstorm, SandstormNrvStormEnd))) {
         return false;
     }
 
@@ -337,7 +337,7 @@ bool Sandstorm::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
                 MR::startSound(this, "SE_OJ_SANDSTORM_BIND_IN");
             }
 
-            setNerve(&NrvSandstorm::SandstormNrvStorm::sInstance);
+            setNerve(GET_NERVE(Sandstorm, SandstormNrvStorm));
 
             return true;
         }
@@ -426,7 +426,7 @@ void Sandstorm::updateBindActorMtx() {
 
     TVec3f vec = TVec3f(MR::cos(_B8), _C4, MR::sin(_B8));
 
-    if (isSunakazeKun() && isNerve(&NrvSandstorm::SandstormNrvStormFix::sInstance)) {
+    if (isSunakazeKun() && isNerve(GET_NERVE(Sandstorm, SandstormNrvStormFix))) {
         vec.y += MR::sinDegree(getNerveStep() * 3.0f) * 270.0f;
     }
 
@@ -520,7 +520,7 @@ bool Sandstorm::tryTornadoJumpPlayer() {
     }
 
     endBind();
-    setNerve(&NrvSandstorm::SandstormNrvStormEnd::sInstance);
+    setNerve(GET_NERVE(Sandstorm, SandstormNrvStormEnd));
 
     return true;
 }
@@ -530,7 +530,7 @@ bool Sandstorm::tryNonActive() {
         return false;
     }
 
-    setNerve(&NrvSandstorm::SandstormNrvNonActive::sInstance);
+    setNerve(GET_NERVE(Sandstorm, SandstormNrvNonActive));
 
     return true;
 }

@@ -9,7 +9,7 @@
 #include "Game/Util/SoundUtil.hpp"
 
 bool MarioActor::isEnableSpinPunch() {
-    if (mMario->getMovementStates()._23) {
+    if (getMovementStates()._23) {
         return false;
     }
 
@@ -34,7 +34,7 @@ bool MarioActor::isEnableSpinPunch() {
         return out;
     }
 
-    if (mMario->getMovementStates()._A && mMario->calcDistToCeil(false) < 160.0f) {
+    if (getMovementStates()._A && mMario->calcDistToCeil(false) < 160.0f) {
         return false;
     }
 
@@ -56,7 +56,7 @@ void MarioActor::reactionPunch(HitSensor* pSensor) {
         }
     }
 
-    if (!mMario->getMovementStates()._2B) {
+    if (!getMovementStates()._2B) {
         jumpHop();
     }
 
@@ -196,7 +196,7 @@ bool MarioActor::sendBodyAttack(HitSensor* pSensor) {
         isStatus = false;
     }
 
-    if (isStatus && !mMario->getMovementStates()._8 && !isDamaging() && !mMario->getMovementStates()._B) {
+    if (isStatus && !getMovementStates()._8 && !isDamaging() && !getMovementStates()._B) {
         TVec3f newPos(pSensor->mPosition - getSensor("body")->mPosition);
         TVec3f* frontVec = &mMario->mFrontVec;
         if (MR::diffAngleAbsHorizontal(newPos, *frontVec, getGravityVector()) >= HALF_PI) {

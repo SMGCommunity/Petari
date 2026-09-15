@@ -15,7 +15,7 @@ GameScenePauseControl::GameScenePauseControl(GameScene* pScene) : NerveExecutor(
     mPauseChecker = nullptr;
     mPauseMenuOff = false;
     mPauseMenuNerve = nullptr;
-    initNerve(&GameScenePauseControlNormal::sInstance);
+    initNerve(GET_NERVE_GLOBAL(GameScenePauseControlNormal));
     mPauseChecker = new PauseButtonCheckerInGame();
 }
 

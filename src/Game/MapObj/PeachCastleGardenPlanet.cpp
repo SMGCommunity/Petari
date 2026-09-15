@@ -21,13 +21,13 @@ void PeachCastleGardenPlanet::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoPlanet(&info);
-    info.setupNerve(&NrvPeachCastleGardenPlanet::PeachCastleGardenPlanetNrvWait::sInstance);
+    info.setupNerve(GET_NERVE(PeachCastleGardenPlanet, PeachCastleGardenPlanetNrvWait));
     MapObjActor::initialize(rIter, info);
     _C4 = MR::createIndirectPlanetModel(this, nullptr);
 }
 
 void PeachCastleGardenPlanet::startDamage() {
-    setNerve(&NrvPeachCastleGardenPlanet::PeachCastleGardenPlanetNrvDamage::sInstance);
+    setNerve(GET_NERVE(PeachCastleGardenPlanet, PeachCastleGardenPlanetNrvDamage));
 }
 
 void PeachCastleGardenPlanet::connectToScene(const MapObjActorInitInfo& rIter) {
