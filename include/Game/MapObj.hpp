@@ -172,6 +172,7 @@
 #include "Game/MapObj/PunchingKinoko.hpp"
 #include "Game/MapObj/PurpleCoinHolder.hpp"
 #include "Game/MapObj/PurpleCoinStarter.hpp"
+#include "Game/MapObj/QuestionBoxGalleryObj.hpp"
 #include "Game/MapObj/RailBlock.hpp"
 #include "Game/MapObj/RailCoin.hpp"
 #include "Game/MapObj/RailMoveObj.hpp"
