@@ -22,6 +22,31 @@ namespace {
     static const Vec sTalkOffsetDelightDeepSea = {152.0f, 240.0f, 250.0f};
 };  // namespace
 
+namespace NrvSyati {
+    NEW_NERVE(SyatiWait, Syati, Wait);
+    NEW_NERVE(SyatiFadeoutStartEvent, Syati, FadeoutBeforeTalk);
+    NEW_NERVE(SyatiWaitBlankStartEvent, Syati, WaitBlank);
+    NEW_NERVE(SyatiFadeinStartEvent, Syati, FadeinBeforeTalk);
+    NEW_NERVE(SyatiTalkStartMission, Syati, TalkStartMission);
+    NEW_NERVE(SyatiReadyToStart, Syati, ReadyToStart);
+    NEW_NERVE(SyatiCountDown, Syati, CountDown);
+    NEW_NERVE(SyatiSwim, Syati, Swim);
+    NEW_NERVE(SyatiEmitRing, Syati, EmitRing);
+    NEW_NERVE(SyatiWaitStarAppeared, Syati, WaitStarAppeared);
+    NEW_NERVE(SyatiReachToEnd, Syati, ReachToEnd);
+    NEW_NERVE(SyatiWaitAllRingDisappear, Syati, WaitAllRingDisappear);
+    NEW_NERVE(SyatiFadeoutRetryEvent, Syati, FadeoutBeforeTalk);
+    NEW_NERVE(SyatiWaitBlankRetryEvent, Syati, WaitBlank);
+    NEW_NERVE(SyatiFadeinRetryEvent, Syati, FadeinBeforeTalk);
+    NEW_NERVE(SyatiTalkRetryMission, Syati, TalkRetryMission);
+    NEW_NERVE(SyatiForceKill, Syati, ForceKill);
+    NEW_NERVE(SyatiHideOnShore, Syati, HideOnShore);
+    NEW_NERVE(SyatiWaitOnShore, Syati, WaitOnShore);
+    NEW_NERVE(SyatiWaitTalkNormal, Syati, WaitTalkNormal);
+    NEW_NERVE(SyatiTalkNormal, Syati, TalkNormal);
+    NEW_NERVE(SyatiWaitDemoStart, Syati, Start);
+};  // namespace NrvSyati
+
 f32 JMAAcosRadian_dummy(f32 f) {
     TVec3f _dummy;
     _dummy.set(sMarioMoveLocalOffsetDeepSea);
@@ -437,6 +462,9 @@ void Syati::exeTalkNormal() {
         setNerve(&NrvSyati::SyatiWaitTalkNormal::sInstance);
 }
 
+void Syati::exeStart() {
+}
+
 void Syati::initRings(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &mNumRings);
     MR::getJMapInfoArg3NoInit(rIter, &mPrizeRingLife);
@@ -718,31 +746,3 @@ bool Syati::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRece
 
     return false;
 }
-
-Syati::~Syati() {
-}
-
-namespace NrvSyati {
-    SyatiWait(SyatiWait::sInstance);
-    SyatiFadeoutStartEvent(SyatiFadeoutStartEvent::sInstance);
-    SyatiWaitBlankStartEvent(SyatiWaitBlankStartEvent::sInstance);
-    SyatiFadeinStartEvent(SyatiFadeinStartEvent::sInstance);
-    SyatiTalkStartMission(SyatiTalkStartMission::sInstance);
-    SyatiReadyToStart(SyatiReadyToStart::sInstance);
-    SyatiCountDown(SyatiCountDown::sInstance);
-    SyatiSwim(SyatiSwim::sInstance);
-    SyatiEmitRing(SyatiEmitRing::sInstance);
-    SyatiWaitStarAppeared(SyatiWaitStarAppeared::sInstance);
-    SyatiReachToEnd(SyatiReachToEnd::sInstance);
-    SyatiWaitAllRingDisappear(SyatiWaitAllRingDisappear::sInstance);
-    SyatiFadeoutRetryEvent(SyatiFadeoutRetryEvent::sInstance);
-    SyatiWaitBlankRetryEvent(SyatiWaitBlankRetryEvent::sInstance);
-    SyatiFadeinRetryEvent(SyatiFadeinRetryEvent::sInstance);
-    SyatiTalkRetryMission(SyatiTalkRetryMission::sInstance);
-    SyatiForceKill(SyatiForceKill::sInstance);
-    SyatiHideOnShore(SyatiHideOnShore::sInstance);
-    SyatiWaitOnShore(SyatiWaitOnShore::sInstance);
-    SyatiWaitTalkNormal(SyatiWaitTalkNormal::sInstance);
-    SyatiTalkNormal(SyatiTalkNormal::sInstance);
-    SyatiWaitDemoStart(SyatiWaitDemoStart::sInstance);
-};  // namespace NrvSyati

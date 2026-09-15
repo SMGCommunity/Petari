@@ -2,7 +2,6 @@
 #include "Game/LiveActor/AnimationRandomPlayer.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/MapObj/BenefitItemObj.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/JointRumbler.hpp"
 #include "revolution/wpad.h"
@@ -511,7 +510,9 @@ void Kanina::initForType(const JMapInfoIter& rIter, KaninaType type) {
     }
 
     if (mType == KaninaType_Blue) {
-        mKinokoOneUp = MR::createKinokoOneUp();
+        // Likely FAKEMATCH, however including the BenefitItemOneUp header (and by proxy BenefitItemObj)
+        // will emit the nerve instances in sinit.
+        mKinokoOneUp = reinterpret_cast< BenefitItemObj* >(MR::createKinokoOneUp());
     }
 }
 

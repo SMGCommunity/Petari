@@ -6,6 +6,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/MapObj/BenefitItemLifeUp.hpp"
+#include "Game/MapObj/BenefitItemOneUp.hpp"
 #include "Game/MapObj/SpinDriverShootPath.hpp"
 #include "Game/MapObj/StarPieceDirector.hpp"
 #include "Game/NPC/NPCActorItem.hpp"

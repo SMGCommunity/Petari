@@ -1554,14 +1554,14 @@ Game/Boss/TripodBossKillerGeneraterCircle.cpp:
 Game/Boss/TripodBossKinokoOneUp.cpp:
 	.text       start:0x8008DE98 end:0x8008E2E8
 	.ctors      start:0x8052E9D4 end:0x8052E9D8
-	.data       start:0x80573998 end:0x80573BD8
+	.data       start:0x80573998 end:0x80573B50
 	.sbss       start:0x806B3998 end:0x806B39B8
 
 Game/Boss/TripodBossLeg.cpp:
 	.text       start:0x8008E2E8 end:0x80090694
 	.ctors      start:0x8052E9D8 end:0x8052E9DC
 	.rodata     start:0x805315B8 end:0x805315C0
-	.data       start:0x80573BD8 end:0x80573D00
+	.data       start:0x80573B50 end:0x80573D00
 	.sbss       start:0x806B39B8 end:0x806B39E8
 	.sdata2     start:0x806B9018 end:0x806B9098
 

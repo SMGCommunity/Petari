@@ -34,6 +34,7 @@
 #include "Game/MapObj/BenefitItemInvincible.hpp"
 #include "Game/MapObj/BenefitItemLifeUp.hpp"
 #include "Game/MapObj/BenefitItemObj.hpp"
+#include "Game/MapObj/BenefitItemOneUp.hpp"
 #include "Game/MapObj/BigBubbleDrawer.hpp"
 #include "Game/MapObj/BigBubbleHolder.hpp"
 #include "Game/MapObj/BigBubbleMoveLimitter.hpp"

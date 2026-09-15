@@ -2,7 +2,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/MapObj/BenefitItemObj.hpp"
+#include "Game/MapObj/BenefitItemOneUp.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
@@ -242,7 +242,7 @@ void WoodBox::exeHit() {
 
             MR::addTransMtx(spawnMtx, upVec * 50.0f);
 
-            MR::appearKinokoOneUpPop((BenefitItemObj*)mOneUp, spawnMtx, 30.0f);
+            MR::appearKinokoOneUpPop(mOneUp, spawnMtx, 30.0f);
         }
 
         if (MR::isValidSwitchDead(this)) {

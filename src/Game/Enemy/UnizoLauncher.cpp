@@ -12,22 +12,8 @@ namespace {
 }  // namespace
 
 namespace NrvUnizoLauncher {
-    INIT_NERVE(UnizoLauncherNrvWait);
-    INIT_NERVE(UnizoLauncherNrvLaunch);
-
-    inline void UnizoLauncherNrvWait::execute(Spine* pSpine) const {
-        UnizoLauncher* pActor = static_cast< UnizoLauncher* >(pSpine->mExecutor);
-        if (MR::isFirstStep(pActor)) {
-        }
-
-        if (MR::isGreaterStep(pActor, sUnizoInter)) {
-            pActor->setNerve(&UnizoLauncherNrvLaunch::sInstance);
-        }
-    }
-
-    inline void UnizoLauncherNrvLaunch::execute(Spine* pSpine) const {
-        static_cast< UnizoLauncher* >(pSpine->mExecutor)->exeLaunch();
-    }
+    NEW_NERVE(UnizoLauncherNrvWait, UnizoLauncher, Wait);
+    NEW_NERVE(UnizoLauncherNrvLaunch, UnizoLauncher, Launch);
 }  // namespace NrvUnizoLauncher
 
 UnizoLauncher::UnizoLauncher(const char* pName) : LiveActor(pName) {
@@ -69,6 +55,15 @@ void UnizoLauncher::exeLaunch() {
     }
 
     setNerve(&NrvUnizoLauncher::UnizoLauncherNrvWait::sInstance);
+}
+
+void UnizoLauncher::exeWait() {
+    if (MR::isFirstStep(this)) {
+    }
+
+    if (MR::isGreaterStep(this, sUnizoInter)) {
+        setNerve(&NrvUnizoLauncher::UnizoLauncherNrvLaunch::sInstance);
+    }
 }
 
 UnizoLauncher::~UnizoLauncher() {
