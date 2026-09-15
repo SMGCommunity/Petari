@@ -90,7 +90,7 @@ bool PlantLeaf::updateSpring(f32 growthPercent) {
         mBaseMtx.setTrans(mPosition);
         return true;
     } else {
-        TVec3f side(mFront);
+        TVec3f side = mFront;
         TVec3f front;
         TVec3f up;
         side.y += mSpringVel;
@@ -103,7 +103,7 @@ bool PlantLeaf::updateSpring(f32 growthPercent) {
     }
 }
 
-void PlantLeafDrawInit::init(const JMapInfoIter&) {
+void PlantLeafDrawInit::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     makeActorDead();
 }

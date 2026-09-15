@@ -42,7 +42,7 @@ void FluffWindEffect::initEffectInfo(const TVec3f& rFront, const TVec3f& rUp, co
     mEffectName = pEffectName;
     initEffectKeeper(0, pEffectName, false);
     MR::setEffectHostMtx(this, mEffectName, mMtx);
-    initNerve(&NrvFluffWindEffect::FluffWindEffectNrvBrowWind::sInstance);
+    initNerve(GET_NERVE(FluffWindEffect, FluffWindEffectNrvBrowWind));
     if (radius > 0.0f) {
         MR::setClippingTypeSphere(this, radius);
     }
@@ -69,7 +69,7 @@ void FluffWindEffect::exeBrowWind() {
 
     if (MR::isStep(this, mTimer)) {
         MR::invalidateClipping(this);
-        setNerve(&NrvFluffWindEffect::FluffWindEffectNrvBrowWind::sInstance);
+        setNerve(GET_NERVE(FluffWindEffect, FluffWindEffectNrvBrowWind));
     }
 }
 

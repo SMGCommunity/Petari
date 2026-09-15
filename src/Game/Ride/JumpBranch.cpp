@@ -73,7 +73,7 @@ void JumpBranch::init(const JMapInfoIter& rIter) {
 
     mSwingPoint = new SwingRopePoint(mPosition);
 
-    initNerve(&NrvJumpBranch::JumpBranchNrvWait::sInstance);
+    initNerve(GET_NERVE(JumpBranch, JumpBranchNrvWait));
     makeActorAppeared();
 }
 
@@ -92,13 +92,13 @@ void JumpBranch::exeWaitInvalid() {
     }
 
     if (MR::isGreaterStep(this, ::sStepInvalidBind)) {
-        setNerve(&NrvJumpBranch::JumpBranchNrvWait::sInstance);
+        setNerve(GET_NERVE(JumpBranch, JumpBranchNrvWait));
     }
 }
 
 inline void JumpBranch::exeBind() {
     if (updateBind()) {
-        setNerve(&NrvJumpBranch::JumpBranchNrvWaitInvalid::sInstance);
+        setNerve(GET_NERVE(JumpBranch, JumpBranchNrvWaitInvalid));
     }
 };
 
@@ -124,7 +124,7 @@ void JumpBranch::updateHitSensor(HitSensor* pSensor) {
 
 bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgAutoRushBegin(msg)) {
-        if (isNerve(&NrvJumpBranch::JumpBranchNrvWaitInvalid::sInstance) || MR::isOnGroundPlayer()) {
+        if (isNerve(GET_NERVE(JumpBranch, JumpBranchNrvWaitInvalid)) || MR::isOnGroundPlayer()) {
             return false;
         }
 
@@ -205,7 +205,7 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
         MR::startBckPlayer("JumpBranchWait", static_cast< const char* >(nullptr));
         MR::startSound(mRider, "SE_PM_GRAB_OBJ");
         MR::startSound(mRider, "SE_PM_SPIN");
-        setNerve(&NrvJumpBranch::JumpBranchNrvBind::sInstance);
+        setNerve(GET_NERVE(JumpBranch, JumpBranchNrvBind));
         return true;
     }
 
@@ -222,7 +222,7 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
 
     if (MR::isMsgRushCancel(msg)) {
         mRider = nullptr;
-        setNerve(&NrvJumpBranch::JumpBranchNrvWait::sInstance);
+        setNerve(GET_NERVE(JumpBranch, JumpBranchNrvWait));
         return true;
     }
 
