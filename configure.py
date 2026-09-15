@@ -739,7 +739,7 @@ config.libs = [
             Object(Matching, "Game/AreaObj/SpinGuidanceArea.cpp"),
             Object(Matching, "Game/AreaObj/SunLightArea.cpp"),
             Object(Matching, "Game/AreaObj/SwitchArea.cpp"),
-            Object(NonMatching, "Game/AreaObj/WarpCube.cpp"),
+            Object(Matching, "Game/AreaObj/WarpCube.cpp"),
             Object(Matching, "Game/AreaObj/WaterArea.cpp"),
         ],
     ),
