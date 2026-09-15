@@ -4530,7 +4530,7 @@ Game/MapObj/ChipCounter.cpp:
 	.text       start:0x801BEA88 end:0x801BF554
 	.ctors      start:0x8052EC9C end:0x8052ECA0
 	.data       start:0x805911D8 end:0x805912F0
-	.sdata      start:0x806B1D90 end:0x806B1DB0
+	.sdata      start:0x806B1D90 end:0x806B1DA8
 	.sbss       start:0x806B4F50 end:0x806B4F70
 	.sdata2     start:0x806BCA08 end:0x806BCA18
 
@@ -4660,13 +4660,14 @@ Game/MapObj/CoinReplica.cpp:
 Game/MapObj/CoinRotater.cpp:
 	.text       start:0x801C9DE8 end:0x801CA030
 	.rodata     start:0x80533108 end:0x80533110
-	.data       start:0x805922F0 end:0x80592320
+	.data       start:0x805922F0 end:0x80592318
 	.sdata2     start:0x806BCC38 end:0x806BCC50
 
 Game/MapObj/CoinSpot.cpp:
 	.text       start:0x801CA030 end:0x801CA398
 	.ctors      start:0x8052ECBC end:0x8052ECC0
-	.data       start:0x80592320 end:0x805923B8
+	.data       start:0x80592318 end:0x805923B8
+	.sdata      start:0x806B1DA8 end:0x806B1DB0
 	.sbss       start:0x806B4FD8 end:0x806B4FE0
 	.sdata2     start:0x806BCC50 end:0x806BCC58
 
