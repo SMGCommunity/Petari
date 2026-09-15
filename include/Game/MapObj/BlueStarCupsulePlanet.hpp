@@ -13,25 +13,10 @@ namespace {
     };
 };  // namespace
 
-class GCaptureTargetable {
-public:
-    GCaptureTargetable() {
-    }
-
-    virtual void decidedTarget();
-    virtual void releasedTarget();
-    virtual void getTargetPosition(TVec3f*);
-    virtual bool canEndHold() const;
-    virtual bool isReleaseForce() const;
-    virtual f32 releaseDistance() const;
-    virtual f32 getPointableRange() const;
-};
-
 class BlueStarCupsulePlanet : public LiveActor, public GCaptureTargetable {
 public:
     BlueStarCupsulePlanet(const char*);
 
-    virtual ~BlueStarCupsulePlanet();
     virtual void init(const JMapInfoIter&);
     virtual void startClipped();
     virtual void endClipped();
