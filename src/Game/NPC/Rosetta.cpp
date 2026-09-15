@@ -10,22 +10,16 @@
 #include "Game/NPC/TurnJointCtrl.hpp"
 #include "Game/Util.hpp"
 
-namespace NrvRosetta {
-    class RosettaNrvReaction : public Nerve {
-    public:
-        virtual void execute(Spine*) const;
-        static RosettaNrvReaction sInstance;
-    };
+namespace {
+    static const s32 sWaitActionInterval = 300;
+};  // namespace
 
-    class RosettaNrvDemo : public Nerve {
-    public:
-        virtual void execute(Spine*) const;
-        static RosettaNrvDemo sInstance;
-    };
+namespace NrvRosetta {
+    NEW_NERVE(RosettaNrvReaction, Rosetta, Reaction);
+    NEW_NERVE(RosettaNrvDemo, Rosetta, Demo);
 };  // namespace NrvRosetta
 
-Rosetta::Rosetta(const char* pName) : NPCActor(pName), mFadeStarter(this, -1), mDemoExecutor(), mTalkDemoExecutor() {
-    mObjArg0 = -1;
+Rosetta::Rosetta(const char* pName) : NPCActor(pName), mFadeStarter(this, -1), mDemoExecutor(), mTalkDemoExecutor(), mObjArg0(-1) {
 }
 
 void Rosetta::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
@@ -166,7 +160,7 @@ void Rosetta::control() {
         }
     }
 
-    if (MR::isIntervalStep(this, 300)) {
+    if (MR::isIntervalStep(this, ::sWaitActionInterval)) {
         switch (MR::getRandom(0l, 2l)) {
         case 0:
             mParam._14 = "WaitA";
@@ -233,23 +227,24 @@ bool Rosetta::canUpdateStarePos() const {
 }
 
 void Rosetta::exeReaction() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+    }
 
     if (_D8) {
-        MR::startSound(this, "SE_SM_ROSETTA_BARRIER", -1, -1);
+        MR::startSound(this, "SE_SM_ROSETTA_BARRIER");
     }
 
     if (isPointingSe()) {
         MR::startDPDHitSound();
-        MR::startSound(this, "SE_SV_ROSETTA_POINT", -1, -1);
+        MR::startSound(this, "SE_SV_ROSETTA_POINT");
     }
 
     if (_D9) {
-        MR::startSound(this, "SE_SV_ROSETTA_SPIN", -1, -1);
+        MR::startSound(this, "SE_SV_ROSETTA_SPIN");
     }
 
     if (_DB) {
-        MR::startSound(this, "SE_SV_ROSETTA_STAR_PIECE_HIT", -1, -1);
+        MR::startSound(this, "SE_SV_ROSETTA_STAR_PIECE_HIT");
     }
 
     if (MR::tryStartReactionAndPopNerve(this)) {
@@ -257,18 +252,6 @@ void Rosetta::exeReaction() {
     }
 }
 
-namespace NrvRosetta {
-    void RosettaNrvReaction::execute(Spine* pSpine) const {
-        Rosetta* actor = reinterpret_cast<Rosetta*>(pSpine->mExecutor);
-        actor->exeReaction();
-    }
-
-    void RosettaNrvDemo::execute(Spine* pSpine) const {
-        Rosetta* actor = reinterpret_cast<Rosetta*>(pSpine->mExecutor);
-        actor->mDemoExecutor->updateNerve();
-    }
-
-    RosettaNrvDemo RosettaNrvDemo::sInstance;
-
-    RosettaNrvReaction RosettaNrvReaction::sInstance;
-};  // namespace NrvRosetta
+void Rosetta::exeDemo() {
+    mDemoExecutor->updateNerve();
+}

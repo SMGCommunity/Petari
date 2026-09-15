@@ -7,14 +7,8 @@ class NameObjArchiveListCollector;
 class NerveExecutor;
 class TurnJointCtrl;
 
-namespace NrvRosetta {
-    class RosettaNrvDemo;
-}  // namespace NrvRosetta
-
 class Rosetta : public NPCActor {
 public:
-    friend class NrvRosetta::RosettaNrvDemo;
-
     /// @brief Creates a new `Rosetta`.
     /// @param pName The pointer to the null-terminated name of the object.
     Rosetta(const char* pName);
@@ -32,6 +26,7 @@ public:
     void endDemo();
     void endDemoWithInterpole();
     bool canUpdateStarePos() const;
+    void exeDemo();
     void exeReaction();
 
 private:
