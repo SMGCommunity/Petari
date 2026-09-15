@@ -11,9 +11,9 @@ public:
     void updateNormal();
     void updateOnPlayer();
 
-    const LiveActor* mActor;  // 0x0
-    s32 _4;
-    f32 _8;
-    f32 _C;
-    bool _10;
+    /* 0x00 */ const LiveActor* mActor;
+    /* 0x04 */ s32 mStepCount;
+    /* 0x08 */ f32 mAmplitude;
+    /* 0x0C */ f32 mStep;
+    /* 0x10 */ bool _10;
 };

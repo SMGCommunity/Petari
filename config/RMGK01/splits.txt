@@ -4522,15 +4522,15 @@ Game/MapObj/CapsuleCage.cpp:
 Game/MapObj/ChipBase.cpp:
 	.text       start:0x801BDC50 end:0x801BEA88
 	.ctors      start:0x8052EC98 end:0x8052EC9C
-	.data       start:0x80591080 end:0x805911D8
+	.data       start:0x80591080 end:0x805911B8
 	.sbss       start:0x806B4F38 end:0x806B4F50
 	.sdata2     start:0x806BC9E8 end:0x806BCA08
 
 Game/MapObj/ChipCounter.cpp:
 	.text       start:0x801BEA88 end:0x801BF554
 	.ctors      start:0x8052EC9C end:0x8052ECA0
-	.data       start:0x805911D8 end:0x805912F0
-	.sdata      start:0x806B1D90 end:0x806B1DA8
+	.data       start:0x805911B8 end:0x805912F0
+	.sdata      start:0x806B1D90 end:0x806B1D98
 	.sbss       start:0x806B4F50 end:0x806B4F70
 	.sdata2     start:0x806BCA08 end:0x806BCA18
 
@@ -4547,6 +4547,7 @@ Game/MapObj/ChooChooTrain.cpp:
 	.text       start:0x801C0464 end:0x801C0C2C
 	.rodata     start:0x805330E0 end:0x805330E8
 	.data       start:0x80591440 end:0x80591518
+	.sdata      start:0x806B1D98 end:0x806B1DA0
 	.sdata2     start:0x806BCA28 end:0x806BCA50
 
 Game/MapObj/CircleCoinGroup.cpp:
@@ -4613,6 +4614,7 @@ Game/MapObj/CocoNut.cpp:
 	.text       start:0x801C3884 end:0x801C5F94
 	.ctors      start:0x8052ECAC end:0x8052ECB0
 	.data       start:0x80591A48 end:0x80591C90
+	.sdata      start:0x806B1DA0 end:0x806B1DA8
 	.sbss       start:0x806B4F88 end:0x806B4FA0
 	.sdata2     start:0x806BCAD0 end:0x806BCB60
 
