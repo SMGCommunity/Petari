@@ -3640,12 +3640,12 @@ Game/LiveActor/ShadowDrawer.cpp:
 
 Game/LiveActor/ShadowSurfaceBox.cpp:
 	.text       start:0x8016CDE8 end:0x8016D338
-	.data       start:0x80588268 end:0x805882B8
+	.data       start:0x80588268 end:0x805882A8
 	.sdata2     start:0x806BBD08 end:0x806BBD20
 
 Game/LiveActor/ShadowSurfaceCircle.cpp:
 	.text       start:0x8016D338 end:0x8016D51C
-	.data       start:0x805882B8 end:0x805882E0
+	.data       start:0x805882A8 end:0x805882E0
 	.sdata2     start:0x806BBD20 end:0x806BBD28
 
 Game/LiveActor/ShadowSurfaceDrawer.cpp:
