@@ -1,7 +1,6 @@
-#include "Game/Util/Functor.hpp"
 
-#include "Game/Enemy/BegomanBaby.hpp"
 #include "Game/Enemy/BegomanSpring.hpp"
+#include "Game/Enemy/BegomanBaby.hpp"
 #include "Game/Enemy/BegomanSpringHead.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
@@ -26,6 +25,7 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
+
 
 namespace NrvBegomanSpring {
     NEW_NERVE_ONEND(HostTypeNrvNoCalcWait, BegomanSpring, NoCalcWait, NoCalcWait);

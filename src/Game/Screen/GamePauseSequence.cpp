@@ -5,7 +5,6 @@
 #include "Game/Screen/PauseMenu.hpp"
 #include "Game/System/GalaxyMapController.hpp"
 #include "Game/System/GameSystemFunction.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"

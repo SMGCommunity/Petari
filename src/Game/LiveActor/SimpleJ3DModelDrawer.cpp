@@ -1,5 +1,4 @@
 #include "Game/LiveActor/SimpleJ3DModelDrawer.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 

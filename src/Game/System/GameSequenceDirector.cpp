@@ -4,7 +4,6 @@
 #include "Game/System/GameDataTemporaryInGalaxy.hpp"
 #include "Game/System/GameSequenceProgress.hpp"
 #include "Game/System/SaveDataHandleSequence.hpp"
-#include "Game/Util/Functor.hpp"
 #include <JSystem/JKernel/JKRHeap.hpp>
 
 GameSequenceDirector::GameSequenceDirector()

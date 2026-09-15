@@ -9,7 +9,6 @@
 #include "Game/Screen/PowerStarList.hpp"
 #include "Game/Screen/WipeFade.hpp"
 #include "Game/Util/DrawUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"

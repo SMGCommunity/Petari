@@ -3,7 +3,6 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Map/SleepController.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SwitchEventFunctorListener.hpp"
