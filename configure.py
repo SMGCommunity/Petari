@@ -1623,7 +1623,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/CoconutTreeLeaf.cpp"),
             Object(NonMatching, "Game/MapObj/Coin.cpp"),
             Object(Matching, "Game/MapObj/CoinBox.cpp"),
-            Object(NonMatching, "Game/MapObj/CoinGroup.cpp"),
+            Object(Matching, "Game/MapObj/CoinGroup.cpp"),
             Object(NonMatching, "Game/MapObj/CoinHolder.cpp"),
             Object(NonMatching, "Game/MapObj/CoinReplica.cpp"),
             Object(Matching, "Game/MapObj/CoinRotater.cpp"),
