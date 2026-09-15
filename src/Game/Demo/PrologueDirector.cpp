@@ -19,6 +19,11 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void PrologueDirector_FORCE_MATCH_SDATA2() {
+    1.0f;
+    0.0f;
+}
+
 namespace {
     static const char* sPictureBookDemoName = "プロローグデモ";
     static const char* sArriveDemoName = "主人公ピーチ城に到着";

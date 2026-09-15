@@ -3,9 +3,10 @@
 #include <revolution.h>
 
 struct J3DTransformInfo {
-    Vec mScale;        // 0x00
-    S16Vec mRotation;  // 0x0C
-    Vec mTranslate;    // 0x14
+    /* 0x00 */ Vec mScale;
+    /* 0x0C */ S16Vec mRotation;
+    /* 0x12 */ u16 _12;
+    /* 0x14 */ Vec mTranslate;
 
 #ifdef __MWERKS__
     inline J3DTransformInfo& operator=(const __REGISTER J3DTransformInfo& b) {

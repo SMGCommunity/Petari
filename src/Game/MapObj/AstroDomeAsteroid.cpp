@@ -5,6 +5,11 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
+void AstroDomeAsteroid_FORCE_MATCH_SDATA2() {
+    1.0f;
+    0.0f;
+}
+
 namespace {
     const f32 cBckRate = 1.0f;
 };  // namespace

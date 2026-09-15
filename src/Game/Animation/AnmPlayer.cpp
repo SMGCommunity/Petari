@@ -3,8 +3,47 @@
 #include "Game/Util/StringUtil.hpp"
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
 
-AnmPlayerBase::AnmPlayerBase(const ResTable* pResTable) : mResTable(pResTable), mAnmRes(nullptr), mFrameCtrl(0) {
+void AnmPlayer_FORCE_EMIT(TQuat4f& rQuat, const TQuat4f& rOther, TPos3f& rMtx, const TPos3f& rSrc, TVec3f& rVec, f32 value) {
+    1.0f;
+    0.0f;
+    3.814697265625e-6f;
+    -3.814697265625e-6f;
+    0.5f;
+    3.0f;
+    -1.0f;
+    3.1415927f;
+    1023.5f;
+    1.5707964f;
+    2.0f;
+    -1.5707964f;
+
+    rQuat.setEuler(value, value, value);
+    rQuat.setRotate(rVec, rVec);
+    rQuat.slerp(rOther, value);
+    rQuat.normalize(rOther);
+    rQuat.getEuler(rVec);
+
+    delete[] new TPos3f[1];
+    rMtx.identity();
+    rMtx.mult(rVec, rVec);
+    rMtx.multTranspose(rVec, rVec);
+    rMtx.invert(rSrc);
+    rMtx.concat(rSrc, rSrc);
+    rMtx.concat(rSrc);
+
+    TVec3f vectors[2] = {value, value};
+    rVec.set< f32 >(value, value, value);
+    JGeometry::TUtil< f32 >::epsilonEquals(value, value, value);
+    JGeometry::TUtil< f32 >::sqrt(value);
+    rMtx.set(value, value, value, value, value, value, value, value, value, value, value, value);
+    rMtx.getQuat(rQuat);
+    rQuat.set< f32 >(value, value, value, value);
+    (rQuat.*&TQuat4f::operator=)(rOther);
+}
+
+AnmPlayerBase::AnmPlayerBase(const ResTable* pResTable) : mResTable(pResTable), mAnmRes(), mFrameCtrl(0) {
 }
 
 void AnmPlayerBase::update() {
