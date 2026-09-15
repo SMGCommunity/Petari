@@ -160,12 +160,12 @@ nw4r/lyt/lyt_common.cpp:
 Game/Animation/AnmPlayer.cpp:
 	.text       start:0x800161D0 end:0x800178C8
 	.data       start:0x80564A00 end:0x80564A38
-	.sdata2     start:0x806B7D30 end:0x806B7D38
+	.sdata2     start:0x806B7D30 end:0x806B7D60
 
 Game/Animation/BckCtrl.cpp:
 	.text       start:0x800178C8 end:0x8001804C
 	.data       start:0x80564A38 end:0x80564A80
-	.sdata      start:0x806B1638 end:0x806B1650
+	.sdata      start:0x806B1638 end:0x806B1640
 	.sdata2     start:0x806B7D60 end:0x806B7D68
 
 Game/Animation/BpkPlayer.cpp:
@@ -196,9 +196,11 @@ Game/Animation/LayoutAnmPlayer.cpp:
 Game/Animation/MaterialAnmBuffer.cpp:
 	.text       start:0x800183F4 end:0x80018DF8
 	.data       start:0x80564B08 end:0x80564B18
+	.sdata      start:0x806B1640 end:0x806B1650
 
 Game/Animation/XanimeCore.cpp:
 	.text       start:0x80018DF8 end:0x8001B148
+	.rodata     start:0x8052F488 end:0x8052F498
 	.data       start:0x80564B18 end:0x80564B48
 	.sdata2     start:0x806B7D70 end:0x806B7D78
 

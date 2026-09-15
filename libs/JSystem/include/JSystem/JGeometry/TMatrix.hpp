@@ -19,7 +19,20 @@ namespace JGeometry {
         void set(const SMatrix34C< T >& rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
         }
-        void set(T rxx, T ryx, T rzx, T tx, T rxy, T ryy, T rzy, T ty, T rxz, T ryz, T rzz, T tz);
+        void set(T xx, T xy, T xz, T tx, T yx, T yy, T yz, T ty, T zx, T zy, T zz, T tz) NO_INLINE {
+            mMtx[0][0] = xx;
+            mMtx[0][1] = xy;
+            mMtx[0][2] = xz;
+            mMtx[0][3] = tx;
+            mMtx[1][0] = yx;
+            mMtx[1][1] = yy;
+            mMtx[1][2] = yz;
+            mMtx[1][3] = ty;
+            mMtx[2][0] = zx;
+            mMtx[2][1] = zy;
+            mMtx[2][2] = zz;
+            mMtx[2][3] = tz;
+        }
 
         void scale(T scale);
 
@@ -119,14 +132,100 @@ namespace JGeometry {
     template < typename T >
     struct TMatrix34 : public T {
     public:
-        void identity();
-        void concat(const T& rSrcA, const T& rSrcB);
-        void concat(const T& rSrc);
-        void invert(const TMatrix34< T >& rDest);
+        void identity() NO_INLINE {
+            this->mMtx[1][0] = this->mMtx[2][0] = this->mMtx[0][1] = this->mMtx[2][1] = this->mMtx[0][2] = this->mMtx[1][2] = this->mMtx[0][3] =
+                this->mMtx[1][3] = this->mMtx[2][3] = 0.0f;
+            this->mMtx[0][0] = this->mMtx[1][1] = this->mMtx[2][2] = 1.0f;
+        }
+        void concat(const T& rSrcA, const T& rSrcB) NO_INLINE {
+            this->set(rSrcA.mMtx[0][2] * rSrcB.mMtx[2][0] + (rSrcA.mMtx[0][0] * rSrcB.mMtx[0][0] + rSrcA.mMtx[0][1] * rSrcB.mMtx[1][0]),
+                      rSrcA.mMtx[0][2] * rSrcB.mMtx[2][1] + (rSrcA.mMtx[0][0] * rSrcB.mMtx[0][1] + rSrcA.mMtx[0][1] * rSrcB.mMtx[1][1]),
+                      rSrcA.mMtx[0][2] * rSrcB.mMtx[2][2] + (rSrcA.mMtx[0][0] * rSrcB.mMtx[0][2] + rSrcA.mMtx[0][1] * rSrcB.mMtx[1][2]),
+                      rSrcA.mMtx[0][3] +
+                          (rSrcA.mMtx[0][2] * rSrcB.mMtx[2][3] + (rSrcA.mMtx[0][0] * rSrcB.mMtx[0][3] + rSrcA.mMtx[0][1] * rSrcB.mMtx[1][3])),
+                      rSrcA.mMtx[1][2] * rSrcB.mMtx[2][0] + (rSrcA.mMtx[1][0] * rSrcB.mMtx[0][0] + rSrcA.mMtx[1][1] * rSrcB.mMtx[1][0]),
+                      rSrcA.mMtx[1][2] * rSrcB.mMtx[2][1] + (rSrcA.mMtx[1][0] * rSrcB.mMtx[0][1] + rSrcA.mMtx[1][1] * rSrcB.mMtx[1][1]),
+                      rSrcA.mMtx[1][2] * rSrcB.mMtx[2][2] + (rSrcA.mMtx[1][0] * rSrcB.mMtx[0][2] + rSrcA.mMtx[1][1] * rSrcB.mMtx[1][2]),
+                      rSrcA.mMtx[1][3] +
+                          (rSrcA.mMtx[1][2] * rSrcB.mMtx[2][3] + (rSrcA.mMtx[1][0] * rSrcB.mMtx[0][3] + rSrcA.mMtx[1][1] * rSrcB.mMtx[1][3])),
+                      rSrcA.mMtx[2][2] * rSrcB.mMtx[2][0] + (rSrcA.mMtx[2][0] * rSrcB.mMtx[0][0] + rSrcA.mMtx[2][1] * rSrcB.mMtx[1][0]),
+                      rSrcA.mMtx[2][2] * rSrcB.mMtx[2][1] + (rSrcA.mMtx[2][0] * rSrcB.mMtx[0][1] + rSrcA.mMtx[2][1] * rSrcB.mMtx[1][1]),
+                      rSrcA.mMtx[2][2] * rSrcB.mMtx[2][2] + (rSrcA.mMtx[2][0] * rSrcB.mMtx[0][2] + rSrcA.mMtx[2][1] * rSrcB.mMtx[1][2]),
+                      rSrcA.mMtx[2][3] +
+                          (rSrcA.mMtx[2][2] * rSrcB.mMtx[2][3] + (rSrcA.mMtx[2][0] * rSrcB.mMtx[0][3] + rSrcA.mMtx[2][1] * rSrcB.mMtx[1][3])));
+        }
+        void concat(const T& rSrc) NO_INLINE {
+            this->set(
+                this->mMtx[0][2] * rSrc.mMtx[2][0] + (this->mMtx[0][0] * rSrc.mMtx[0][0] + this->mMtx[0][1] * rSrc.mMtx[1][0]),
+                this->mMtx[0][2] * rSrc.mMtx[2][1] + (this->mMtx[0][0] * rSrc.mMtx[0][1] + this->mMtx[0][1] * rSrc.mMtx[1][1]),
+                this->mMtx[0][2] * rSrc.mMtx[2][2] + (this->mMtx[0][0] * rSrc.mMtx[0][2] + this->mMtx[0][1] * rSrc.mMtx[1][2]),
+                this->mMtx[0][3] + (this->mMtx[0][2] * rSrc.mMtx[2][3] + (this->mMtx[0][0] * rSrc.mMtx[0][3] + this->mMtx[0][1] * rSrc.mMtx[1][3])),
+                this->mMtx[1][2] * rSrc.mMtx[2][0] + (this->mMtx[1][0] * rSrc.mMtx[0][0] + this->mMtx[1][1] * rSrc.mMtx[1][0]),
+                this->mMtx[1][2] * rSrc.mMtx[2][1] + (this->mMtx[1][0] * rSrc.mMtx[0][1] + this->mMtx[1][1] * rSrc.mMtx[1][1]),
+                this->mMtx[1][2] * rSrc.mMtx[2][2] + (this->mMtx[1][0] * rSrc.mMtx[0][2] + this->mMtx[1][1] * rSrc.mMtx[1][2]),
+                this->mMtx[1][3] + (this->mMtx[1][2] * rSrc.mMtx[2][3] + (this->mMtx[1][0] * rSrc.mMtx[0][3] + this->mMtx[1][1] * rSrc.mMtx[1][3])),
+                this->mMtx[2][2] * rSrc.mMtx[2][0] + (this->mMtx[2][0] * rSrc.mMtx[0][0] + this->mMtx[2][1] * rSrc.mMtx[1][0]),
+                this->mMtx[2][2] * rSrc.mMtx[2][1] + (this->mMtx[2][0] * rSrc.mMtx[0][1] + this->mMtx[2][1] * rSrc.mMtx[1][1]),
+                this->mMtx[2][2] * rSrc.mMtx[2][2] + (this->mMtx[2][0] * rSrc.mMtx[0][2] + this->mMtx[2][1] * rSrc.mMtx[1][2]),
+                this->mMtx[2][3] + (this->mMtx[2][2] * rSrc.mMtx[2][3] + (this->mMtx[2][0] * rSrc.mMtx[0][3] + this->mMtx[2][1] * rSrc.mMtx[1][3])));
+        }
+        bool invert(const TMatrix34< T >& rSrc) NO_INLINE {
+            f32 determinant = rSrc.mMtx[0][0] * (rSrc.mMtx[1][1] * rSrc.mMtx[2][2] - rSrc.mMtx[1][2] * rSrc.mMtx[2][1]) -
+                              rSrc.mMtx[0][1] * (rSrc.mMtx[1][0] * rSrc.mMtx[2][2] - rSrc.mMtx[1][2] * rSrc.mMtx[2][0]) +
+                              rSrc.mMtx[0][2] * (rSrc.mMtx[1][0] * rSrc.mMtx[2][1] - rSrc.mMtx[1][1] * rSrc.mMtx[2][0]);
 
-        void mult(const TVec3f& rSrc, TVec3f& rDest) const;
+            if (TUtil< f32 >::epsilonEquals(determinant, 0.0f, TUtil< f32 >::epsilon())) {
+                return false;
+            }
 
-        void multTranspose(const TVec3f& a1, const TVec3f& a2) const;
+            f32 inverse[3][3];
+            f32 scale = 1.0f / determinant;
+            inverse[0][0] = scale * (rSrc.mMtx[1][1] * rSrc.mMtx[2][2] - rSrc.mMtx[1][2] * rSrc.mMtx[2][1]);
+            inverse[0][1] = scale * (rSrc.mMtx[1][2] * rSrc.mMtx[2][0] - rSrc.mMtx[1][0] * rSrc.mMtx[2][2]);
+            inverse[0][2] = scale * (rSrc.mMtx[1][0] * rSrc.mMtx[2][1] - rSrc.mMtx[1][1] * rSrc.mMtx[2][0]);
+            inverse[1][0] = scale * (rSrc.mMtx[0][2] * rSrc.mMtx[2][1] - rSrc.mMtx[0][1] * rSrc.mMtx[2][2]);
+            inverse[1][1] = scale * (rSrc.mMtx[0][0] * rSrc.mMtx[2][2] - rSrc.mMtx[0][2] * rSrc.mMtx[2][0]);
+            inverse[1][2] = scale * (rSrc.mMtx[0][1] * rSrc.mMtx[2][0] - rSrc.mMtx[0][0] * rSrc.mMtx[2][1]);
+            inverse[2][0] = scale * (rSrc.mMtx[0][1] * rSrc.mMtx[1][2] - rSrc.mMtx[0][2] * rSrc.mMtx[1][1]);
+            inverse[2][1] = scale * (rSrc.mMtx[0][2] * rSrc.mMtx[1][0] - rSrc.mMtx[0][0] * rSrc.mMtx[1][2]);
+            inverse[2][2] = scale * (rSrc.mMtx[0][0] * rSrc.mMtx[1][1] - rSrc.mMtx[0][1] * rSrc.mMtx[1][0]);
+
+            TVec3f translation;
+            translation.x = -rSrc.mMtx[0][3];
+            translation.y = -rSrc.mMtx[1][3];
+            translation.z = -rSrc.mMtx[2][3];
+
+            this->mMtx[0][0] = inverse[0][0];
+            this->mMtx[1][0] = inverse[0][1];
+            this->mMtx[2][0] = inverse[0][2];
+            this->mMtx[0][1] = inverse[1][0];
+            this->mMtx[1][1] = inverse[1][1];
+            this->mMtx[2][1] = inverse[1][2];
+            this->mMtx[0][2] = inverse[2][0];
+            this->mMtx[1][2] = inverse[2][1];
+            this->mMtx[2][2] = inverse[2][2];
+            this->mMtx[0][3] = translation.z * inverse[2][0] + (translation.x * inverse[0][0] + translation.y * inverse[1][0]);
+            this->mMtx[1][3] = translation.z * inverse[2][1] + (translation.x * inverse[0][1] + translation.y * inverse[1][1]);
+            this->mMtx[2][3] = translation.z * inverse[2][2] + (translation.x * inverse[0][2] + translation.y * inverse[1][2]);
+            return true;
+        }
+
+        void mult(const TVec3f& rSrc, TVec3f& rDest) const NO_INLINE {
+            rDest.set< f32 >(this->mMtx[0][3] + (rSrc.z * this->mMtx[0][2] + (rSrc.x * this->mMtx[0][0] + rSrc.y * this->mMtx[0][1])),
+                             this->mMtx[1][3] + (rSrc.z * this->mMtx[1][2] + (rSrc.x * this->mMtx[1][0] + rSrc.y * this->mMtx[1][1])),
+                             this->mMtx[2][3] + (rSrc.z * this->mMtx[2][2] + (rSrc.x * this->mMtx[2][0] + rSrc.y * this->mMtx[2][1])));
+        }
+
+        void multTranspose(const TVec3f& rSrc, TVec3f& rDest) const NO_INLINE {
+            TVec3f translated;
+            translated.x = rSrc.x - this->mMtx[0][3];
+            translated.y = rSrc.y - this->mMtx[1][3];
+            translated.z = rSrc.z - this->mMtx[2][3];
+
+            rDest.set< f32 >(translated.z * this->mMtx[2][0] + (translated.x * this->mMtx[0][0] + translated.y * this->mMtx[1][0]),
+                             translated.z * this->mMtx[2][1] + (translated.x * this->mMtx[0][1] + translated.y * this->mMtx[1][1]),
+                             translated.z * this->mMtx[2][2] + (translated.x * this->mMtx[0][2] + translated.y * this->mMtx[1][2]));
+        }
 
         void scale(f32 scalar) {
             this->mMtx[0][0] *= scalar;
@@ -332,7 +431,44 @@ namespace JGeometry {
             this->mMtx[0][2] = 0.0f;
         }
 
-        void getQuat(TQuat4f& rDest) const;
+        void getQuat(TQuat4f& rDest) const NO_INLINE {
+            f32 trace = this->mMtx[0][0] + this->mMtx[1][1] + this->mMtx[2][2];
+
+            if (trace >= 0.0f) {
+                f32 root = TUtil< f32 >::sqrt(trace + 1.0f);
+                f32 scale = 0.5f / root;
+                rDest.w = 0.5f * root;
+                rDest.x = scale * (this->mMtx[2][1] - this->mMtx[1][2]);
+                rDest.y = scale * (this->mMtx[0][2] - this->mMtx[2][0]);
+                rDest.z = scale * (this->mMtx[1][0] - this->mMtx[0][1]);
+            } else {
+                f32 maximum = this->mMtx[0][0] >= this->mMtx[1][1] ? this->mMtx[0][0] : this->mMtx[1][1];
+                maximum = maximum >= this->mMtx[2][2] ? maximum : this->mMtx[2][2];
+
+                if (maximum == this->mMtx[0][0]) {
+                    f32 root = TUtil< f32 >::sqrt(1.0f + (this->mMtx[0][0] - (this->mMtx[1][1] + this->mMtx[2][2])));
+                    f32 scale = 0.5f / root;
+                    rDest.x = 0.5f * root;
+                    rDest.y = scale * (this->mMtx[0][1] + this->mMtx[1][0]);
+                    rDest.z = scale * (this->mMtx[2][0] + this->mMtx[0][2]);
+                    rDest.w = scale * (this->mMtx[2][1] - this->mMtx[1][2]);
+                } else if (maximum == this->mMtx[1][1]) {
+                    f32 root = TUtil< f32 >::sqrt(1.0f + (this->mMtx[1][1] - (this->mMtx[2][2] + this->mMtx[0][0])));
+                    f32 scale = 0.5f / root;
+                    rDest.y = 0.5f * root;
+                    rDest.z = scale * (this->mMtx[1][2] + this->mMtx[2][1]);
+                    rDest.x = scale * (this->mMtx[0][1] + this->mMtx[1][0]);
+                    rDest.w = scale * (this->mMtx[0][2] - this->mMtx[2][0]);
+                } else {
+                    f32 root = TUtil< f32 >::sqrt(1.0f + (this->mMtx[2][2] - (this->mMtx[0][0] + this->mMtx[1][1])));
+                    f32 scale = 0.5f / root;
+                    rDest.z = 0.5f * root;
+                    rDest.x = scale * (this->mMtx[2][0] + this->mMtx[0][2]);
+                    rDest.y = scale * (this->mMtx[1][2] + this->mMtx[2][1]);
+                    rDest.w = scale * (this->mMtx[1][0] - this->mMtx[0][1]);
+                }
+            }
+        }
         void setQuat(const TQuat4f& q) {
             f32 yy = 2.0f * q.y * q.y;
             f32 zz = 2.0f * q.z * q.z;

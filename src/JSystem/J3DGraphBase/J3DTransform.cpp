@@ -2,12 +2,13 @@
 #include "JSystem/J3DGraphBase/J3DStruct.hpp"
 #include "JSystem/JMath.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
-#include <revolution/mtx.h>
 #include <cmath>
+#include <revolution/mtx.h>
 
 const J3DTransformInfo j3dDefaultTransformInfo = {
     {1.0f, 1.0f, 1.0f},
     {0, 0, 0},
+    0,
     {0.0f, 0.0f, 0.0f},
 };
 

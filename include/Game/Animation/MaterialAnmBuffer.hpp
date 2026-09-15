@@ -15,9 +15,14 @@ public:
     MaterialAnmBuffer(const ResourceHolder*, J3DModelData*, bool);
 
     u32 getDiffFlag(s32) const;
+    u16 getAllocMaterialAnmNum(J3DModelData*, bool) const;
+    void searchUpdateMaterialID(const ResourceHolder*, J3DModelData*);
+    void setDiffFlag(const ResourceHolder*);
+    u16 getDifferedMaterialNum(const J3DModelData*) const;
+    void attachMaterialAnmBuffer(J3DModelData*, bool);
 
     /* 0x00 */ J3DMaterialAnm* _0;
-    /* 0x04 */ void* _4;
+    /* 0x04 */ u32* _4;
 };
 
 namespace MR {
