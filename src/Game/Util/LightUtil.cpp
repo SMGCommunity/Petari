@@ -1,30 +1,33 @@
 #include "Game/Util/LightUtil.hpp"
 #include "Game/LiveActor/ActorLightCtrl.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Map/LightDataHolder.hpp"
 #include "Game/Map/LightDirector.hpp"
 #include "Game/Map/LightFunction.hpp"
 #include "Game/Map/LightPointCtrl.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/System/ResourceHolder.hpp"
 
 namespace MR {
     void loadLight(s32 type) {
-        if (type == 4) {
+        if (type == MR::LightType_Coin) {
             MR::getSceneObj< LightDirector >(SceneObj_LightDirector)->loadLightCoin();
-        } else if (type == 0) {
-            MR::getSceneObj< LightDirector >(SceneObj_LightDirector)->loadLightPlayer();
-        } else {
-            AreaLightInfo* inf = MR::getSceneObj< LightDirector >(SceneObj_LightDirector)->mDefaultAreaLight;
+            return;
+        }
 
-            if (inf != nullptr) {
-                if (type == 1) {
-                    LightFunction::loadActorLightInfo(&inf->mStrongLight);
-                } else if (type == 2) {
-                    LightFunction::loadActorLightInfo(&inf->mWeakLight);
-                } else if (type == 3) {
-                    LightFunction::loadActorLightInfo(&inf->mPlanetLight);
-                }
+        if (type == MR::LightType_Player) {
+            MR::getSceneObj< LightDirector >(SceneObj_LightDirector)->loadLightPlayer();
+            return;
+        }
+
+        AreaLightInfo* inf = MR::getSceneObj< LightDirector >(SceneObj_LightDirector)->mDefaultAreaLight;
+
+        if (inf != nullptr) {
+            if (type == MR::LightType_Strong) {
+                LightFunction::loadActorLightInfo(&inf->mStrongLight);
+            } else if (type == MR::LightType_Weak) {
+                LightFunction::loadActorLightInfo(&inf->mWeakLight);
+            } else if (type == MR::LightType_Planet) {
+                LightFunction::loadActorLightInfo(&inf->mPlanetLight);
             }
         }
     }
@@ -41,9 +44,7 @@ namespace MR {
         pActor->mActorLightCtrl->_8 = pDrawBuffer;
     }
 
-    void requestPointLight(const LiveActor* pActor, TVec3f& rPos, Color8 color, f32 a4, s32 a5) {
-        return MR::getSceneObj< LightDirector >(SceneObj_LightDirector)->mPointCtrl->requestPointLight(pActor, rPos, color, a4, a5);
+    void requestPointLight(const LiveActor* pActor, TVec3f pos, Color8 color, f32 intensity, s32 duration) {
+        return MR::getSceneObj< LightDirector >(SceneObj_LightDirector)->mPointCtrl->requestPointLight(pActor, pos, color, intensity, duration);
     }
-
-    // requestPointLight
 };  // namespace MR

@@ -2487,7 +2487,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/JMapUtil.cpp"),
             Object(NonMatching, "Game/Util/JointUtil.cpp"),
             Object(NonMatching, "Game/Util/LayoutUtil.cpp", extra_cflags=["-DNW4R_DEBUG"]),
-            Object(NonMatching, "Game/Util/LightUtil.cpp"),
+            Object(Matching, "Game/Util/LightUtil.cpp"),
             Object(NonMatching, "Game/Util/LiveActorUtil.cpp"),
             Object(Matching, "Game/Util/MapPartsUtil.cpp"),
             Object(Matching, "Game/Util/MapUtil.cpp"),
