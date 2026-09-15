@@ -252,7 +252,9 @@ void Rosetta::exeReaction() {
         MR::startSound(this, "SE_SV_ROSETTA_STAR_PIECE_HIT", -1, -1);
     }
 
-    MR::tryStartReactionAndPopNerve(this);
+    if (MR::tryStartReactionAndPopNerve(this)) {
+        return;
+    }
 }
 
 namespace NrvRosetta {
