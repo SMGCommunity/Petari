@@ -5,7 +5,24 @@
 #include "Game/Scene/GameSceneFunction.hpp"
 #include "Game/Screen/ScenarioTitle.hpp"
 #include "Game/Screen/SimpleLayout.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SequenceUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvScenarioStarter {
     NEW_NERVE(ScenarioStarterWaitScenarioCameraEnd, ScenarioStarter, WaitScenarioCameraEnd);
@@ -184,14 +201,30 @@ void ScenarioStarter::updateBindPosition() {
     mPosition.set(pathPos);
 }
 
-/* void ScenarioStarter::updateBindActorMtx() {
+void ScenarioStarter::updateBindActorMtx() {
     if (isNerve(&NrvScenarioStarter::ScenarioStarterRailMove::sInstance)) {
-        TMtx34f mtx;
-        TMtx34f mtx2;
-        mtx.identity();
+        TPos3f mtx1;
+        mtx1.identity();
+        mtx1.setEulerY(_E4);
+        mtx1.setTrans(0.0f, 0.0f, 0.0f);
+
+        TPos3f mtx2;
         mtx2.identity();
+        mtx2.setEulerX(_EC);
+
+        // FIXME
+        TPos3f baseMtx;
+        baseMtx.setQuat(_A8);
+        baseMtx.setTrans(mPosition);
+        baseMtx.concat(baseMtx, mtx2);
+        baseMtx.concat(baseMtx, mtx1);
+        MR::setBaseTRMtx(_8C, baseMtx);
+    } else {
+        TPos3f baseMtx;
+        MR::makeMtxTR(baseMtx, _10C, _118);
+        MR::setBaseTRMtx(_8C, baseMtx);
     }
-} */
+}
 
 void ScenarioStarter::updateShootMotion() {
     if (MR::isStep(this, mFlyMotionStartStep)) {
@@ -210,16 +243,67 @@ void ScenarioStarter::updateShootMotion() {
     }
 }
 
+void ScenarioStarter::turnBindHead(const TVec3f& rVec, f32 f1) {
+    MR::turnQuatYDirRad(&_A8, _A8, _90, MR::pi());
+
+    TVec3f yDir;
+    _A8.getYDir(yDir);
+
+    TQuat4f rotateQuat;
+    rotateQuat.setRotate(yDir, rVec, f1);
+    _A8.mult(rotateQuat);
+    _A8.normalize();
+}
+
+void ScenarioStarter::calcShootMotionTime() {
+    s32 startMaxFrame = MR::getBckFrameMax(_8C, "SpaceFlyStart");
+    s32 loopMaxFrame = MR::getBckFrameMax(_8C, "SpaceFlyLoop");
+    s32 endMaxFrame = MR::getBckFrameMax(_8C, "SpaceFlyEnd");
+
+    if (mFlightTime < 20) {
+        mFlyMotionStartStep = -1;
+        _F8 = -1;
+        mFallMotionStartStep = 0;
+
+        return;
+    }
+    
+    if (mFlightTime < endMaxFrame + 20) {
+        mFlyMotionStartStep = -1;
+        _F8 = 0;
+        mFallMotionStartStep = -1;
+
+        return;
+    }
+
+    _F8 = mFlightTime - (endMaxFrame + 20);
+    mFallMotionStartStep = mFlightTime - 20;
+
+    // FIXME
+    s32 val3 = MR::max(static_cast<s32>(0.2f * mFlightTime), 90) % startMaxFrame;
+
+    mFlyMotionStartStep = val3;
+    if (_F8 <= val3) {
+        mFlyMotionStartStep = 0;
+    }
+
+    // FIXME
+    _E4 = 0.0f;
+    _E8 = 2 * MR::pi() * (0.05f * static_cast<f32>(_F8 - mFlyMotionStartStep)) / (2 * MR::pi());
+}
+
 bool ScenarioStarter::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (_8C != nullptr && MR::isMsgAutoRushBegin(msg) && isNerve(&NrvScenarioStarter::ScenarioStarterWaitToStart::sInstance)) {
+    if (_8C == nullptr && MR::isMsgAutoRushBegin(msg) && isNerve(&NrvScenarioStarter::ScenarioStarterWaitToStart::sInstance)) {
         _8C = MR::getSensorHost(pSender);
         setNerve(&NrvScenarioStarter::ScenarioStarterCinemaFrameBlank::sInstance);
         return true;
     }
-    if (_8C == nullptr && MR::isMsgUpdateBaseMtx(msg)) {
+
+    if (_8C != nullptr && MR::isMsgUpdateBaseMtx(msg)) {
         updateBindActorMtx();
         return true;
     }
+
     return false;
 }
 
