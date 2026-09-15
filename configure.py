@@ -3210,7 +3210,7 @@ config.libs = [
                 "JSystem/J3DGraphAnimator/J3DSkinDeform.cpp",
                 extra_cflags=["-ipa file", "-sym on"],
             ),
-            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DCluster.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DCluster.cpp", extra_cflags=["-ipa file"]),
             Object(
                 Matching,
                 "JSystem/J3DGraphAnimator/J3DJoint.cpp",

@@ -39,6 +39,7 @@ int J3DFrameCtrl::checkPass(f32 passFrame) {
         if (next_frame <= passFrame && passFrame < mFrame) {
             return true;
         }
+
         return false;
     case 2:
         if (mFrame < mStart) {
@@ -46,6 +47,7 @@ int J3DFrameCtrl::checkPass(f32 passFrame) {
                 if (mLoop - mStart <= 0.0f) {
                     break;
                 }
+
                 next_frame += mLoop - mStart;
             }
 
@@ -59,6 +61,7 @@ int J3DFrameCtrl::checkPass(f32 passFrame) {
                 if (mEnd - mLoop <= 0.0f) {
                     break;
                 }
+
                 next_frame -= mEnd - mLoop;
             }
 
@@ -72,6 +75,7 @@ int J3DFrameCtrl::checkPass(f32 passFrame) {
                 if (mLoop - mStart <= 0.0f) {
                     break;
                 }
+
                 next_frame += mLoop - mStart;
             }
 
@@ -103,6 +107,7 @@ int J3DFrameCtrl::checkPass(f32 passFrame) {
         } else if (next_frame <= passFrame && passFrame < mFrame) {
             return true;
         }
+
         return false;
     case 3:
     case 4:
@@ -125,6 +130,7 @@ int J3DFrameCtrl::checkPass(f32 passFrame) {
         if (next_frame <= passFrame && passFrame < mFrame) {
             return true;
         }
+
         return false;
     default:
         return false;
@@ -142,11 +148,13 @@ void J3DFrameCtrl::update() {
             mRate = 0.0f;
             mState |= (u8)1;
         }
+
         if (mFrame >= mEnd) {
             mFrame = mEnd - 0.001f;
             mRate = 0.0f;
             mState |= (u8)1;
         }
+
         break;
     case EMode_RESET:
         if (mFrame < mStart) {
@@ -154,11 +162,13 @@ void J3DFrameCtrl::update() {
             mRate = 0.0f;
             mState |= (u8)1;
         }
+
         if (mFrame >= mEnd) {
             mFrame = mStart;
             mRate = 0.0f;
             mState |= (u8)1;
         }
+
         break;
     case EMode_LOOP:
         while (mFrame < mStart) {
@@ -166,37 +176,45 @@ void J3DFrameCtrl::update() {
             if (mLoop - mStart <= 0.0f) {
                 break;
             }
+
             mFrame += mLoop - mStart;
         }
+
         while (mFrame >= mEnd) {
             mState |= (u8)2;
             if (mEnd - mLoop <= 0.0f) {
                 break;
             }
+
             mFrame -= mEnd - mLoop;
         }
+
         break;
     case EMode_REVERSE:
         if (mFrame >= mEnd) {
             mFrame = mEnd - (mFrame - mEnd);
             mRate = -mRate;
         }
+
         if (mFrame < mStart) {
             mFrame = mStart - (mFrame - mStart);
             mRate = 0.0f;
             mState |= (u8)1;
         }
+
         break;
     case EMode_LOOP_REVERSE:
         if (mFrame >= mEnd - 1.0f) {
             mFrame = (mEnd - 1.0f) - (mFrame - (mEnd - 1.0f));
             mRate = -mRate;
         }
+
         if (mFrame < mStart) {
             mFrame = mStart - (mFrame - mStart);
             mRate = -mRate;
             mState |= (u8)2;
         }
+
         break;
     }
 }
@@ -410,6 +428,7 @@ void J3DAnmTransformFullWithLerp::getTransform(u16 jointNo, J3DTransformInfo* pT
                 } else if (-delta > 0x8000) {
                     delta += 0x10000;
                 }
+
                 pTransform->mRotation.x = (u32)((f32)rot1 + rate * (f32)delta);
             }
 
@@ -442,6 +461,7 @@ void J3DAnmTransformFullWithLerp::getTransform(u16 jointNo, J3DTransformInfo* pT
                 } else if (-delta > 0x8000) {
                     delta += 0x10000;
                 }
+
                 pTransform->mRotation.y = (u32)((f32)rot1 + rate * (f32)delta);
             }
 
@@ -474,6 +494,7 @@ void J3DAnmTransformFullWithLerp::getTransform(u16 jointNo, J3DTransformInfo* pT
                 } else if (-delta > 0x8000) {
                     delta += 0x10000;
                 }
+
                 pTransform->mRotation.z = (u32)((f32)rot1 + rate * (f32)delta);
             }
 
@@ -525,6 +546,7 @@ inline f32 J3DHermiteInterpolation(__REGISTER f32 pp1, __REGISTER s16 const* pp2
         fmadds value, delta, squared, value
         fsubs value, value, end
     }
+
     return value;
 #endif
 }
@@ -690,13 +712,13 @@ void J3DAnmTransformKey::calcTransform(f32 frame, u16 jointNo, J3DTransformInfo*
 J3DAnmTextureSRTKey::J3DAnmTextureSRTKey() {
     mDecShift = 0;
     mTrackNum = mScaleNum = mRotNum = mTransNum = 0;
-    mAnmTable = NULL;
-    mScaleData = mTransData = NULL;
-    mRotData = NULL;
+    mAnmTable = nullptr;
+    mScaleData = mTransData = nullptr;
+    mRotData = nullptr;
     field_0x4a = field_0x44 = field_0x46 = field_0x48 = 0;
-    field_0x58 = NULL;
-    field_0x4c = field_0x54 = NULL;
-    field_0x50 = NULL;
+    field_0x58 = nullptr;
+    field_0x4c = field_0x54 = nullptr;
+    field_0x50 = nullptr;
     mTexMtxCalcType = 0;
 }
 
@@ -792,14 +814,15 @@ J3DAnmVtxColor::J3DAnmVtxColor() {
     for (int i = 0; i < 2; i++) {
         mAnmTableNum[i] = 0;
     }
+
     for (int i = 0; i < 2; i++) {
-        mAnmVtxColorIndexData[i] = NULL;
+        mAnmVtxColorIndexData[i] = nullptr;
     }
 }
 
 J3DAnmVtxColorFull::J3DAnmVtxColorFull() {
     for (int i = 0; i < 2; i++) {
-        mpTable[i] = NULL;
+        mpTable[i] = nullptr;
     }
 }
 
@@ -928,7 +951,7 @@ void J3DAnmVtxColorKey::getColor(u8 tableNo, u16 index, GXColor* pColor) const {
     }
 }
 
-J3DAnmColor::J3DAnmColor() : field_0xc(0), field_0xe(0), field_0x10(0), field_0x12(0), mUpdateMaterialNum(0), mUpdateMaterialID(NULL) {
+J3DAnmColor::J3DAnmColor() : field_0xc(), field_0xe(), field_0x10(), field_0x12(), mUpdateMaterialNum(), mUpdateMaterialID() {
 }
 
 void J3DAnmColor::searchUpdateMaterialID(J3DMaterialTable* pMatTable) {
@@ -947,11 +970,11 @@ void J3DAnmColor::searchUpdateMaterialID(J3DModelData* pModelData) {
 }
 
 J3DAnmColorFull::J3DAnmColorFull() {
-    mColorR = NULL;
-    mColorG = NULL;
-    mColorB = NULL;
-    mColorA = NULL;
-    mAnmTable = NULL;
+    mColorR = nullptr;
+    mColorG = nullptr;
+    mColorB = nullptr;
+    mColorA = nullptr;
+    mAnmTable = nullptr;
 }
 
 void J3DAnmColorFull::getColor(u16 index, GXColor* pColor) const {
@@ -997,11 +1020,11 @@ void J3DAnmColorFull::getColor(u16 index, GXColor* pColor) const {
 }
 
 J3DAnmColorKey::J3DAnmColorKey() {
-    mColorR = NULL;
-    mColorG = NULL;
-    mColorB = NULL;
-    mColorA = NULL;
-    mAnmTable = NULL;
+    mColorR = nullptr;
+    mColorG = nullptr;
+    mColorB = nullptr;
+    mColorA = nullptr;
+    mAnmTable = nullptr;
 }
 
 void J3DAnmColorKey::getColor(u16 index, GXColor* pColor) const {
@@ -1088,14 +1111,14 @@ J3DAnmTevRegKey::J3DAnmTevRegKey() {
 
     mKRegDataCountR = mKRegDataCountG = mKRegDataCountB = mKRegDataCountA = 0;
 
-    mCRegUpdateMaterialID = mKRegUpdateMaterialID = NULL;
+    mCRegUpdateMaterialID = mKRegUpdateMaterialID = nullptr;
 
-    mAnmCRegDataR = mAnmCRegDataG = mAnmCRegDataB = mAnmCRegDataA = NULL;
+    mAnmCRegDataR = mAnmCRegDataG = mAnmCRegDataB = mAnmCRegDataA = nullptr;
 
-    mAnmKRegDataR = mAnmKRegDataG = mAnmKRegDataB = mAnmKRegDataA = NULL;
+    mAnmKRegDataR = mAnmKRegDataG = mAnmKRegDataB = mAnmKRegDataA = nullptr;
 }
 
-J3DAnmTexPattern::J3DAnmTexPattern() : mTextureIndex(NULL), mAnmTable(NULL), field_0x14(0), mUpdateMaterialNum(0), mUpdateMaterialID(NULL) {
+J3DAnmTexPattern::J3DAnmTexPattern() : mTextureIndex(), mAnmTable(), field_0x14(), mUpdateMaterialNum(), mUpdateMaterialID() {
 }
 
 void J3DAnmTexPattern::getTexNo(u16 index, u16* pTexNo) const {
@@ -1337,4 +1360,8 @@ void J3DAnmTevRegKey::searchUpdateMaterialID(J3DMaterialTable* pMatTable) {
 
 void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* pModelData) {
     searchUpdateMaterialID(&pModelData->getMaterialTable());
+}
+
+void J3DAnimation_FORCE_EMIT(s16 frameMax, f32* pWeight) {
+    J3DAnmCluster cluster(frameMax, pWeight);
 }
