@@ -15,7 +15,6 @@ public:
 
     virtual ~ChipBase() {
     }
-
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void makeActorAppeared();
@@ -47,14 +46,14 @@ public:
     static bool isNeedBubble(const JMapInfoIter&);
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 
-    FlashingCtrl* mFlashingCtrl;    // 0x8C
-    MapPartsRailMover* mRailMover;  // 0x90
-    PartsModel* mAirBubble;         // 0x94
-    const char* mChipName;          // 0x98
-    LiveActor* mHost;               // 0x9C
-    TVec3f mClippingRange;          // 0xA0
-    s32 mGroupID;                   // 0xAC
-    s32 mChipType;                  // 0xB0
-    bool _B4;
-    bool _B5;
+    /* 0x8C */ FlashingCtrl* mFlashingCtrl;
+    /* 0x90 */ MapPartsRailMover* mRailMover;
+    /* 0x94 */ PartsModel* mAirBubble;
+    /* 0x98 */ const char* mChipName;
+    /* 0x9C */ LiveActor* mHost;
+    /* 0xA0 */ TVec3f mClippingRange;
+    /* 0xAC */ s32 mGroupID;
+    /* 0xB0 */ s32 mChipType;
+    /* 0xB4 */ bool _B4;
+    /* 0xB5 */ bool mIsCalcShadow;
 };
