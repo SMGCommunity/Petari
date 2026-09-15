@@ -6,7 +6,7 @@
 
 namespace {
     static const f32 sClippingRadius = 200.0f;
-}
+};  // namespace
 
 PhantomShipHandle::PhantomShipHandle(const char* pName) : LiveActor(pName), mRotator() {
 }
