@@ -15,6 +15,7 @@ class JPABaseParticle {
 public:
     ~JPABaseParticle() {
     }
+
     void init_p(JPAEmitterWorkData*);
     void init_c(JPAEmitterWorkData*, JPABaseParticle*);
     bool calc_p(JPAEmitterWorkData*);
@@ -25,60 +26,79 @@ public:
     int getAge() const {
         return mAge;
     }
+
     void setOffsetPosition(const JGeometry::TVec3< f32 >& pos) {
         mOffsetPosition.set(pos);
     }
+
     void setOffsetPosition(f32 x, f32 y, f32 z) {
         mOffsetPosition.set(x, y, z);
     }
+
     void getOffsetPosition(JGeometry::TVec3< f32 >& pos) {
         pos.set(mOffsetPosition);
     }
+
     void getOffsetPosition(JGeometry::TVec3< f32 >* pos) const {
         pos->set(mOffsetPosition);
     }
+
     u16 getRotateAngle() const {
         return mRotateAngle;
     }
+
     void getGlobalPosition(JGeometry::TVec3< f32 >& pos) const {
         pos.set(mPosition);
     }
+
     void getGlobalPosition(JGeometry::TVec3< f32 >* pos) const {
         pos->set(mPosition);
     }
+
     f32 getParticleScaleX() const {
         return mParticleScaleX;
     }
+
     f32 getParticleScaleY() const {
         return mParticleScaleY;
     }
+
     void setStatus(u32 flag) {
         mStatus |= flag;
     }
+
     u32 checkStatus(u32 flag) {
         return mStatus & flag;
     }
+
     void initStatus(u32 status) {
         mStatus = status;
     }
+
     void setInvisibleParticleFlag() {
         setStatus(8);
     }
+
     void setDeleteParticleFlag() {
         setStatus(2);
     }
+
     void getVelVec(JGeometry::TVec3< f32 >& vec) const {
         vec.set(mVelocity);
     }
+
     void getLocalPosition(JGeometry::TVec3< f32 >& vec) const {
         vec.set(mLocalPosition);
     }
+
     void getLocalPosition(JGeometry::TVec3< f32 >* vec) const {
         vec->set(mLocalPosition);
     }
+
     void getBaseAxis(JGeometry::TVec3< f32 >& vec) const {
         vec.set(mBaseAxis);
     }
+
     void getBaseAxis(JGeometry::TVec3< f32 >* vec) const {
         vec->set(mBaseAxis);
     }
@@ -86,6 +106,7 @@ public:
     u32 getUserWork() const {
         return mUserWork;
     }
+
     void setUserWork(u32 userWork) {
         mUserWork = userWork;
     }
@@ -114,7 +135,7 @@ public:
     /* 0x80 */ s16 mAge;
     /* 0x82 */ s16 mLifeTime;
     /* 0x84 */ f32 mTime;
-    /* 0x88 */ u16 mRotateAngle;
+    /* 0x88 */ s16 mRotateAngle;
     /* 0x8A */ s16 mRotateSpeed;
     /* 0x8C */ GXColor mPrmClr;
     /* 0x90 */ GXColor mEnvClr;
@@ -128,6 +149,7 @@ public:
     virtual ~JPAParticleCallBack() = 0;
     virtual void execute(JPABaseEmitter*, JPABaseParticle*) {
     }
+
     virtual void draw(JPABaseEmitter*, JPABaseParticle*) {
     }
 };

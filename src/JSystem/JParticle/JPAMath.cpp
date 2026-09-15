@@ -10,6 +10,7 @@ void JPAGetDirMtx(JGeometry::TVec3< f32 > const& param_0, f32 (*param_1)[4]) {
     } else {
         local_78.scale(1.0f / len);
     }
+
     f32 xsquared = local_78.x * local_78.x;
     f32 ysquared = local_78.y * local_78.y;
     f32 xlen = local_78.x * len;
@@ -49,11 +50,11 @@ void JPAGetYZRotateMtx(s16 angleY, s16 angleZ, f32 (*param_2)[4]) {
 }
 
 void JPAGetXYZRotateMtx(s16 x, s16 y, s16 z, Mtx mtx) {
+    f32 cosx = JMASCos(x);
     f32 siny = JMASSin(y);
+    f32 cosy = JMASCos(y);
     f32 cosz = JMASCos(z);
     f32 sinx = JMASSin(x);
-    f32 cosy = JMASCos(y);
-    f32 cosx = JMASCos(x);
     f32 sinz = JMASSin(z);
     mtx[0][0] = cosy * cosz;
     mtx[1][0] = cosy * sinz;
@@ -62,8 +63,8 @@ void JPAGetXYZRotateMtx(s16 x, s16 y, s16 z, Mtx mtx) {
     mtx[2][2] = cosx * cosy;
     f32 product1 = cosx * sinz;
     f32 product2 = sinx * cosz;
-    mtx[1][2] = product1 * siny - product2;
     mtx[0][1] = product2 * siny - product1;
+    mtx[1][2] = product1 * siny - product2;
     product1 = sinx * sinz;
     product2 = cosx * cosz;
     mtx[0][2] = product1 + product2 * siny;
@@ -99,18 +100,21 @@ void JPASetRMtxSTVecfromMtx(f32 const (*param_0)[4], f32 (*param_1)[4], JGeometr
         param_1[1][0] = param_0[1][0] * fVar5;
         param_1[2][0] = param_0[2][0] * fVar5;
     }
+
     if (param_2->y != 0.0f) {
         f32 fVar5 = 1.0f / param_2->y;
         param_1[0][1] = param_0[0][1] * fVar5;
         param_1[1][1] = param_0[1][1] * fVar5;
         param_1[2][1] = param_0[2][1] * fVar5;
     }
+
     if (param_2->z != 0.0f) {
         f32 fVar5 = 1.0f / param_2->z;
         param_1[0][2] = param_0[0][2] * fVar5;
         param_1[1][2] = param_0[1][2] * fVar5;
         param_1[2][2] = param_0[2][2] * fVar5;
     }
+
     param_3->set< f32 >(param_0[0][3], param_0[1][3], param_0[2][3]);
 }
 
@@ -118,10 +122,12 @@ f32 JPACalcKeyAnmValue(f32 param_0, u16 param_1, f32 const* param_2) {
     if (param_0 < param_2[0]) {
         return param_2[1];
     }
+
     int ind = param_1 - 1;
     if (param_2[ind * 4] <= param_0) {
         return (param_2 + ind * 4)[1];
     }
+
     int x = param_1;
     while (x > 1) {
         u32 uVar3 = x / 2;
@@ -132,5 +138,6 @@ f32 JPACalcKeyAnmValue(f32 param_0, u16 param_1, f32 const* param_2) {
             x = uVar3;
         }
     }
+
     return JMAHermiteInterpolation(param_0, param_2[0], param_2[1], param_2[3], param_2[4], param_2[5], param_2[6]);
 }
