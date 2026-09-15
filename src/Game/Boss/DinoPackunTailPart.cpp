@@ -21,7 +21,7 @@ DinoPackunTailPart::DinoPackunTailPart(const char* pName, DinoPackun* pParent) :
 }
 
 void DinoPackunTailPart::init(const JMapInfoIter& rIter) {
-    initNerve(&NrvDinoPackunTailPart::DinoPackunTailPartNrvWait::sInstance);
+    initNerve(GET_NERVE(DinoPackunTailPart, DinoPackunTailPartNrvWait));
     MR::onCalcGravity(this);
     initBinder(_D4, 0.0f, 0);
     MR::connectToSceneEnemyDecorationMovement(this);
@@ -70,12 +70,12 @@ bool DinoPackunTailPart::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, Hit
 
 void DinoPackunTailPart::requestLockPosition() {
     MR::zeroVelocity(this);
-    setNerve(&NrvDinoPackunTailPart::DinoPackunTailPartNrvLockPosition::sInstance);
+    setNerve(GET_NERVE(DinoPackunTailPart, DinoPackunTailPartNrvLockPosition));
     MR::offBind(this);
 }
 
 void DinoPackunTailPart::requestUnLockPosition() {
-    setNerve(&NrvDinoPackunTailPart::DinoPackunTailPartNrvWait::sInstance);
+    setNerve(GET_NERVE(DinoPackunTailPart, DinoPackunTailPartNrvWait));
     MR::onBind(this);
 }
 

@@ -80,7 +80,7 @@ void MarioActor::forceKill(u32 type) {
         _39D = type;
         mHealth = 0;
 
-        setNerve(&NrvMarioActor::MarioActorNrvGameOver::sInstance);
+        setNerve(GET_NERVE(MarioActor, MarioActorNrvGameOver));
         break;
     }
 }

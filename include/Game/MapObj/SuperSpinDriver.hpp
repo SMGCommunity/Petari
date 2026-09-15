@@ -81,6 +81,7 @@ public:
     bool isRightToUse() const;
     bool isNerveEnableBind() const;
     bool isSwingOr2PTrigger() const;
+    bool isFarPlayer() const;
 
     /* 0x8C */ LiveActor* mBindActor;
     /* 0x90 */ SpinDriverShootPath* mShootPath;
@@ -110,7 +111,7 @@ public:
     /* 0x150 */ s32 mFlightTime;
     /* 0x154 */ s32 _154;
     /* 0x158 */ s32 _158;
-    /* 0x15C */ u32 _15C;
+    /* 0x15C */ s32 _15C;
     /* 0x160 */ s32 mDrawPathRangeIdx;
     /* 0x164 */ f32 mPlayerLandRotation;
     /* 0x168 */ u32 _168;
@@ -120,7 +121,7 @@ public:
     // u8 _175;
     // u8 _176;
     // u8 _177;
-    /* 0x178 */ u32 _178;
+    /* 0x178 */ s32 _178;
     /* 0x17C */ bool _17C;
     /* 0x17D */ bool _17D;
     /* 0x17E */ bool mIsPullPlayer;

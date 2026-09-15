@@ -3,7 +3,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/AirBubble.hpp"
 #include "Game/MapObj/BenefitItemLifeUp.hpp"
-#include "Game/MapObj/BenefitItemObj.hpp"
+#include "Game/MapObj/BenefitItemOneUp.hpp"
 #include "Game/MapObj/BlueChip.hpp"
 #include "Game/MapObj/Coin.hpp"
 #include "Game/MapObj/YellowChip.hpp"

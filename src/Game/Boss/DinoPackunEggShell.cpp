@@ -19,7 +19,7 @@ void DinoPackunEggShell::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemyDecoration(this);
     MR::initLightCtrl(this);
     MR::initCollisionParts(this, "DinoPackunEggShell", _8C, nullptr);
-    initNerve(&NrvDinoPackunEggshell::DinoPackunEggShellNrvWait::sInstance);
+    initNerve(GET_NERVE(DinoPackunEggshell, DinoPackunEggShellNrvWait));
     makeActorAppeared();
     MR::startBva(this, "Normal");
     MR::invalidateClipping(this);

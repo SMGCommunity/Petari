@@ -27,14 +27,14 @@ void HatchWaterPlanet::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     if (MR::tryRegisterDemoCast(this, rIter)) {
-        MR::registerDemoActionNerve(this, &NrvHatchWaterPlanet::HatchWaterPlanetNrvOpen::sInstance, nullptr);
+        MR::registerDemoActionNerve(this, GET_NERVE(HatchWaterPlanet, HatchWaterPlanetNrvOpen), nullptr);
     }
 
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     MR::setClippingFarMax(this);
     mPlanetLODCtrl = MR::createLodCtrlPlanet(this, rIter, -1.0f, -1);
     mPlanetLODCtrl->validate();
-    initNerve(&NrvHatchWaterPlanet::HatchWaterPlanetNrvWait::sInstance);
+    initNerve(GET_NERVE(HatchWaterPlanet, HatchWaterPlanetNrvWait));
     makeActorAppeared();
 }
 
@@ -59,7 +59,7 @@ void HatchWaterPlanet::exeOpen() {
     if (MR::isBckStopped(this)) {
         MR::startSound(this, "SE_OJ_HATCH_WATER_PNT_ED");
         MR::startSystemSE("SE_SY_READ_RIDDLE_S");
-        setNerve(&NrvHatchWaterPlanet::HatchWaterPlanetNrvWaitAfterOpen::sInstance);
+        setNerve(GET_NERVE(HatchWaterPlanet, HatchWaterPlanetNrvWaitAfterOpen));
     }
 }
 

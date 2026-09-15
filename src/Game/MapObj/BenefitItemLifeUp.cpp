@@ -5,6 +5,10 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
+void BenefitItemLifeUp_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
+
 BenefitItemLifeUp::BenefitItemLifeUp(const char* pName) : BenefitItemObj(pName, "KinokoLifeUp") {
     if (MR::isGalaxyDarkCometAppearInCurrentStage()) {
         _D8 = 1;
@@ -35,10 +39,6 @@ void BenefitItemLifeUp::runEfx(const char* pName) {
     strcpy(str, pName);
     strcat(str, "LifeUp");
     MR::emitEffect(this, str);
-}
-
-void BenefitItemLifeUp::init(const JMapInfoIter& rIter) {
-    BenefitItemObj::init(rIter);
 }
 
 void BenefitItemLifeUp::stopEfx(const char* pName) {

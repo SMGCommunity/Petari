@@ -59,7 +59,7 @@ void AstroMapObj::init(const JMapInfoIter& rIter) {  // Pain
     mapObjInitInfo.setupFarClipping(-1.0f);
     mapObjInitInfo.setupEffect(_CC);
     mapObjInitInfo.setupSound(4);
-    mapObjInitInfo.setupNerve(&NrvAstroMapObj::AstroMapObjNrvDead::sInstance);
+    mapObjInitInfo.setupNerve(GET_NERVE(AstroMapObj, AstroMapObjNrvDead));
 
     if (checkOtherStrings(_CC)) {
         mapObjInitInfo.setupRotator();
@@ -95,14 +95,14 @@ void AstroMapObj::init(const JMapInfoIter& rIter) {  // Pain
 
 void AstroMapObj::exeWait() {
     if (MR::isFirstStep(this)) {
-        if (LiveActor::isNerve(&NrvAstroMapObj::AstroMapObjNrvDead::sInstance)) {
+        if (LiveActor::isNerve(GET_NERVE(AstroMapObj, AstroMapObjNrvDead))) {
             setStateDead();
-        } else if (LiveActor::isNerve(&NrvAstroMapObj::AstroMapObjNrvAlive::sInstance)) {
+        } else if (LiveActor::isNerve(GET_NERVE(AstroMapObj, AstroMapObjNrvAlive))) {
             setStateAlive();
         }
     }
     if (AstroMapObj::isPlayMachineSE() &&
-        (isNerve(&NrvAstroMapObj::AstroMapObjNrvAlive::sInstance) || isNerve(&NrvAstroMapObj::AstroMapObjNrvAliveAfterDemo::sInstance))) {
+        (isNerve(GET_NERVE(AstroMapObj, AstroMapObjNrvAlive)) || isNerve(GET_NERVE(AstroMapObj, AstroMapObjNrvAliveAfterDemo)))) {
         if (MR::isEqualString(_CC, "AstroRotateStepA")) {
             MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_1");
         } else if (MR::isEqualString(_CC, "AstroRotateStepB")) {
@@ -130,7 +130,7 @@ void AstroMapObj::exeRevival() {
         MR::startAtmosphereLevelSE("SE_AT_LV_ASTRO_PATH_APPEAR");
     }
     if (AstroMapObj::isEndRevival()) {
-        setNerve(&NrvAstroMapObj::AstroMapObjNrvAlive::sInstance);
+        setNerve(GET_NERVE(AstroMapObj, AstroMapObjNrvAlive));
     }
 }
 
@@ -144,7 +144,7 @@ void AstroMapObj::exeOpen() {
     if (MR::isBtkStopped(this)) {
         MR::validateCollisionParts(_D4);
         MR::invalidateCollisionParts(_D0);
-        setNerve(&NrvAstroMapObj::AstroMapObjNrvAliveAfterDemo::sInstance);
+        setNerve(GET_NERVE(AstroMapObj, AstroMapObjNrvAliveAfterDemo));
     }
 }
 
@@ -180,7 +180,7 @@ void AstroMapObj::setStateAlive() {
 }
 
 void AstroMapObj::setStateDoorOpenOrClose() {
-    if (!isNerve(&NrvAstroMapObj::AstroMapObjNrvAliveAfterDemo::sInstance)) {
+    if (!isNerve(GET_NERVE(AstroMapObj, AstroMapObjNrvAliveAfterDemo))) {
         if (checkStrings(_CC)) {
             if (AstroMapObjFunction::isAlreadyOpen(_CC, _D8)) {
                 MR::tryStartAllAnim(this, "Open");
@@ -188,7 +188,7 @@ void AstroMapObj::setStateDoorOpenOrClose() {
                 MR::validateCollisionParts(_D4);
                 MR::invalidateCollisionParts(_D0);
             } else {
-                if (!LiveActor::isNerve(&NrvAstroMapObj::AstroMapObjNrvDead::sInstance)) {
+                if (!LiveActor::isNerve(GET_NERVE(AstroMapObj, AstroMapObjNrvDead))) {
                     MR::tryStartAllAnim(this, "Open");
                     MR::setAllAnimFrameAndStop(this, "Open", 0.0f);
                 }
@@ -201,19 +201,19 @@ void AstroMapObj::setStateDoorOpenOrClose() {
 
 void AstroMapObj::selectNrvWait() {
     if (AstroMapObjFunction::isAlreadyRevival(_CC, _D8)) {
-        setNerve(&NrvAstroMapObj::AstroMapObjNrvAlive::sInstance);
+        setNerve(GET_NERVE(AstroMapObj, AstroMapObjNrvAlive));
     } else {
-        setNerve(&NrvAstroMapObj::AstroMapObjNrvDead::sInstance);
+        setNerve(GET_NERVE(AstroMapObj, AstroMapObjNrvDead));
     }
 }
 
 void AstroMapObj::startDemo() {
-    if (isNerve(&NrvAstroMapObj::AstroMapObjNrvDead::sInstance)) {
+    if (isNerve(GET_NERVE(AstroMapObj, AstroMapObjNrvDead))) {
         if (AstroMapObjFunction::isEnableRevival(_CC, _D8)) {
-            setNerve(&NrvAstroMapObj::AstroMapObjNrvRevival::sInstance);
+            setNerve(GET_NERVE(AstroMapObj, AstroMapObjNrvRevival));
         }
     } else if (AstroMapObjFunction::isEnableOpen(_CC, _D8)) {
-        setNerve(&NrvAstroMapObj::AstroMapObjNrvOpen::sInstance);
+        setNerve(GET_NERVE(AstroMapObj, AstroMapObjNrvOpen));
     }
 }
 

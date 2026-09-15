@@ -37,7 +37,7 @@ void BossStinkBugBomb::init(const JMapInfoIter& rIter) {
     initSound(5, false);
     MR::initShadowVolumeSphere(this, 60.0f);
 
-    initNerve(&NrvBossStinkBugBomb::BossStinkBugBombNrvWait::sInstance);
+    initNerve(GET_NERVE(BossStinkBugBomb, BossStinkBugBombNrvWait));
     MR::invalidateClipping(this);
     makeActorDead();
 }
@@ -59,7 +59,7 @@ void BossStinkBugBomb::start(const TVec3f& startPos, const TVec3f& startVelocity
     MR::validateHitSensor(this, "body");
     MR::invalidateHitSensor(this, "bomb");
 
-    setNerve(&NrvBossStinkBugBomb::BossStinkBugBombNrvWait::sInstance);
+    setNerve(GET_NERVE(BossStinkBugBomb, BossStinkBugBombNrvWait));
     appear();
     mVelocity.set(startVelocity);
 }
@@ -118,7 +118,7 @@ void BossStinkBugBomb::exeWait() {
     MR::attenuateVelocity(this, MR::isBinded(this) ? 0.9f : 0.98f);
 
     if (MR::isGreaterStep(this, 150)) {
-        setNerve(&NrvBossStinkBugBomb::BossStinkBugBombNrvExplosion::sInstance);
+        setNerve(GET_NERVE(BossStinkBugBomb, BossStinkBugBombNrvExplosion));
     }
 }
 

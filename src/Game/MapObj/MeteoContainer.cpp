@@ -35,7 +35,7 @@ void MeteoContainer::init(const JMapInfoIter& rIter) {
     sensorOffs.z = 0.0f;
     MR::addHitSensorMapObj(this, "body", 16, 150.0f, sensorOffs);
     initSound(4, false);
-    initNerve(&NrvMeteoContainer::MeteoContainerNrvWait::sInstance);
+    initNerve(GET_NERVE(MeteoContainer, MeteoContainerNrvWait));
     MR::initShadowVolumeSphere(this, 150.0f);
     MR::onCalcShadowOneTime(this, nullptr);
     MR::needStageSwitchWriteDead(this, rIter);
@@ -45,7 +45,7 @@ void MeteoContainer::init(const JMapInfoIter& rIter) {
 
 void MeteoContainer::appear() {
     LiveActor::appear();
-    setNerve(&NrvMeteoContainer::MeteoContainerNrvWait::sInstance);
+    setNerve(GET_NERVE(MeteoContainer, MeteoContainerNrvWait));
 }
 
 void MeteoContainer::kill() {
@@ -72,8 +72,8 @@ bool MeteoContainer::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool MeteoContainer::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (msg == ACTMES_TORNADO_ATTACK && isNerve(&NrvMeteoContainer::MeteoContainerNrvWait::sInstance)) {
-        setNerve(&NrvMeteoContainer::MeteoContainerNrvDestroy::sInstance);
+    if (msg == ACTMES_TORNADO_ATTACK && isNerve(GET_NERVE(MeteoContainer, MeteoContainerNrvWait))) {
+        setNerve(GET_NERVE(MeteoContainer, MeteoContainerNrvDestroy));
 
         return true;
     }

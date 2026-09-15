@@ -176,12 +176,12 @@ void NoteFairy::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchWriteA(this, rIter);
     MR::useStageSwitchReadB(this, rIter);
     MR::initActorCamera(this, rIter, &mCameraInfo);
-    initNerve(&NrvNoteFairy::NoteFairyNrvHide::sInstance);
+    initNerve(GET_NERVE(NoteFairy, NoteFairyNrvHide));
     makeActorAppeared();
 }
 
 void NoteFairy::control() {
-    if (!isNerve(&NrvNoteFairy::NoteFairyNrvHide::sInstance) && MR::isValidSwitchB(this) && !MR::isOnSwitchB(this)) {
+    if (!isNerve(GET_NERVE(NoteFairy, NoteFairyNrvHide)) && MR::isValidSwitchB(this) && !MR::isOnSwitchB(this)) {
         kill();
     } else if (MR::isPowerStarGetDemoActive()) {
         kill();
@@ -224,16 +224,16 @@ void NoteFairy::exeHide() {
         case 1:
         case 2:
         case 3:
-            setNerve(&NrvNoteFairy::NoteFairyNrvStartAppearDemo::sInstance);
+            setNerve(GET_NERVE(NoteFairy, NoteFairyNrvStartAppearDemo));
             return;
         case 4:
         case 5:
         case 6:
-            setNerve(&NrvNoteFairy::NoteFairyNrvRailMoveStart::sInstance);
+            setNerve(GET_NERVE(NoteFairy, NoteFairyNrvRailMoveStart));
             return;
         }
 
-        setNerve(&NrvNoteFairy::NoteFairyNrvAppearNote::sInstance);
+        setNerve(GET_NERVE(NoteFairy, NoteFairyNrvAppearNote));
     }
 }
 
@@ -249,7 +249,7 @@ void NoteFairy::exeStartAppearDemo() {
         TVec3f stack_8(_8C);
         stack_8.sub(*pos);
         MR::setPlayerFrontVec(stack_8, 1);
-        enterDemoAppear(&NrvNoteFairy::NoteFairyNrvDemoAppear::sInstance, true);
+        enterDemoAppear(GET_NERVE(NoteFairy, NoteFairyNrvDemoAppear), true);
     }
 }
 */
@@ -262,9 +262,9 @@ void NoteFairy::exeRailMoveStart() {
     }
 
     if (_CD) {
-        setNerve(&NrvNoteFairy::NoteFairyNrvAppearNoteBloom::sInstance);
+        setNerve(GET_NERVE(NoteFairy, NoteFairyNrvAppearNoteBloom));
     } else if (MR::isStep(this, 0)) {
-        enterDemoAppear(&NrvNoteFairy::NoteFairyNrvAppearNoteBloom::sInstance, false);
+        enterDemoAppear(GET_NERVE(NoteFairy, NoteFairyNrvAppearNoteBloom), false);
     }
 }
 
@@ -291,7 +291,7 @@ void NoteFairy::exeDemoAppear() {
     mRotation.y = MR::getSceneObj< NoteGroup >(SceneObj_NoteGroup)->mRotation;
 
     if (MR::isStep(this, 130)) {
-        setNerve(&NrvNoteFairy::NoteFairyNrvAppearNoteBloom::sInstance);
+        setNerve(GET_NERVE(NoteFairy, NoteFairyNrvAppearNoteBloom));
     }
 }
 
@@ -329,7 +329,7 @@ void NoteFairy::exeAppearNoteBloom() {
 
         MR::hideModel(this);
         MR::deleteEffect(this, "Blur");
-        setNerve(&NrvNoteFairy::NoteFairyNrvEndWait::sInstance);
+        setNerve(GET_NERVE(NoteFairy, NoteFairyNrvEndWait));
     }
 }
 
@@ -343,7 +343,7 @@ void NoteFairy::exeAppearNote() {
             mNoteArray[i]->_AC = 5.0f * i;
         }
 
-        setNerve(&NrvNoteFairy::NoteFairyNrvEndWait::sInstance);
+        setNerve(GET_NERVE(NoteFairy, NoteFairyNrvEndWait));
     }
 }
 
@@ -376,7 +376,7 @@ void NoteFairy::exeSuccessDemo() {
     }
 
     if (!MR::isTimeKeepDemoActive()) {
-        setNerve(&NrvNoteFairy::NoteFairyNrvSuccess::sInstance);
+        setNerve(GET_NERVE(NoteFairy, NoteFairyNrvSuccess));
     }
 }
 
@@ -398,7 +398,7 @@ void NoteFairy::exeSuccess() {
             break;
         }
 
-        setNerve(&NrvNoteFairy::NoteFairyNrvEndWait::sInstance);
+        setNerve(GET_NERVE(NoteFairy, NoteFairyNrvEndWait));
     }
 }
 
@@ -450,9 +450,9 @@ bool NoteFairy::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         }
 
         if (mHasDemo) {
-            setNerve(&NrvNoteFairy::NoteFairyNrvSuccessDemo::sInstance);
+            setNerve(GET_NERVE(NoteFairy, NoteFairyNrvSuccessDemo));
         } else {
-            setNerve(&NrvNoteFairy::NoteFairyNrvSuccess::sInstance);
+            setNerve(GET_NERVE(NoteFairy, NoteFairyNrvSuccess));
         }
 
         return true;

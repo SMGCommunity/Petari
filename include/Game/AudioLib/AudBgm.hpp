@@ -83,11 +83,10 @@ public:
         return false;
     }
     virtual JAISoundID getSoundID() const {
-        // FIXME: register again.
         if (!mHandle.isSoundAttached()) {
             return 0;
         }
-        return mSoundID;
+        return mHandle->mSoundID;
     }
     virtual void sendToSyncStream() {
     }

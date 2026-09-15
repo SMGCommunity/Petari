@@ -51,7 +51,7 @@ void KameckTurtle::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     MR::addHitSensorEnemyAttack(this, "attack", 8, 50.0f, TVec3f(0.0f));
     initEffectKeeper(0, "BossKameckBeam", false);
-    initNerve(&NrvKameckTurtle::KameckTurtleNrvWait::sInstance);
+    initNerve(GET_NERVE(KameckTurtle, KameckTurtleNrvWait));
     makeActorAppeared();
 }
 
@@ -65,7 +65,7 @@ void KameckTurtle::initJetTurtle() {
 
 void KameckTurtle::makeActorAppeared() {
     LiveActor::makeActorAppeared();
-    setNerve(&NrvKameckTurtle::KameckTurtleNrvRun::sInstance);
+    setNerve(GET_NERVE(KameckTurtle, KameckTurtleNrvRun));
     mTurtle->kill();
     MR::onBind(this);
     MR::showModel(this);
@@ -101,15 +101,15 @@ void KameckTurtle::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                 mEventListener->hitBeam(KameckBeam::BeamType_Turtle);
             }
         }
-    } else if (!isNerve(&NrvKameckTurtle::KameckTurtleNrvWait::sInstance)) {
+    } else if (!isNerve(GET_NERVE(KameckTurtle, KameckTurtleNrvWait))) {
         appearJetTurtle(false);
-        setNerve(&NrvKameckTurtle::KameckTurtleNrvWait::sInstance);
+        setNerve(GET_NERVE(KameckTurtle, KameckTurtleNrvWait));
     }
 }
 
 bool KameckTurtle::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerTrample(msg)) {
-        setNerve(&NrvKameckTurtle::KameckTurtleNrvWait::sInstance);
+        setNerve(GET_NERVE(KameckTurtle, KameckTurtleNrvWait));
         appearJetTurtle(false);
 
         return true;
@@ -124,7 +124,7 @@ bool KameckTurtle::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
     }
 
     if (MR::isMsgItemPull(msg)) {
-        setNerve(&NrvKameckTurtle::KameckTurtleNrvWait::sInstance);
+        setNerve(GET_NERVE(KameckTurtle, KameckTurtleNrvWait));
         appearJetTurtle(true);
 
         return true;
@@ -142,7 +142,7 @@ void KameckTurtle::appearDirection(const TVec3f& rDir) {
         MR::makeAxisVerticalZX(&_B0, mGravity);
     }
 
-    setNerve(&NrvKameckTurtle::KameckTurtleNrvRun::sInstance);
+    setNerve(GET_NERVE(KameckTurtle, KameckTurtleNrvRun));
     appear();
 }
 
@@ -206,7 +206,7 @@ void KameckTurtle::exeWait() {
 }
 
 bool KameckTurtle::isEnableAttack() const {
-    if (!isNerve(&NrvKameckTurtle::KameckTurtleNrvRun::sInstance)) {
+    if (!isNerve(GET_NERVE(KameckTurtle, KameckTurtleNrvRun))) {
         return false;
     }
 

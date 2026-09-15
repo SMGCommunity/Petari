@@ -39,7 +39,7 @@ void CocoNutBall::init(const JMapInfoIter& rIter) {
     initSound(4, false);
     MR::initShadowVolumeCylinder(this, 60.0f);
     MR::invalidateClipping(this);
-    initNerve(&NrvCocoNutBall::CocoNutBallNrvThrow::sInstance);
+    initNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvThrow));
     makeActorDead();
 }
 
@@ -47,7 +47,7 @@ void CocoNutBall::appear() {
     LiveActor::appear();
     _9C = 0;
     MR::onBind(this);
-    setNerve(&NrvCocoNutBall::CocoNutBallNrvThrow::sInstance);
+    setNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvThrow));
 }
 
 void CocoNutBall::kill() {
@@ -83,7 +83,7 @@ void CocoNutBall::hitBackToPlayer() {
     }
 
     setVelocityToPlayer(3.0f * _9C + 15.0f, rand);
-    setNerve(&NrvCocoNutBall::CocoNutBallNrvHitBackToPlayer::sInstance);
+    setNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvHitBackToPlayer));
 }
 
 void CocoNutBall::demoBreak(const TVec3f& pos) {
@@ -117,14 +117,14 @@ bool CocoNutBall::isSensorBody(HitSensor* pSensor) const {
 void CocoNutBall::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isSensorBody(pSender) && MR::isSensorPlayer(pReceiver)) {
         if (isNerveTrowToOrFreeze() && MR::sendArbitraryMsg(ACTMES_ENEMY_ATTACK_FLIP_VERYWEAK, pReceiver, pSender)) {
-            setNerve(&NrvCocoNutBall::CocoNutBallNrvRebound::sInstance);
+            setNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvRebound));
             return;
         }
     }
 
     if (MR::isSensorEnemy(pReceiver) && isSensorBody(pSender)) {
         if (pReceiver->mHost == _8C) {
-            if (isNerve(&NrvCocoNutBall::CocoNutBallNrvHitBackToHost::sInstance)) {
+            if (isNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvHitBackToHost))) {
                 if (MR::sendMsgEnemyAttack(pReceiver, pSender)) {
                     MR::emitEffect(this, "Hit");
                     kill();
@@ -133,8 +133,8 @@ void CocoNutBall::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             return;
         }
 
-        if (isNerve(&NrvCocoNutBall::CocoNutBallNrvThrow::sInstance) || isNerve(&NrvCocoNutBall::CocoNutBallNrvHitBackToHost::sInstance) ||
-            isNerve(&NrvCocoNutBall::CocoNutBallNrvHitBackToPlayer::sInstance)) {
+        if (isNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvThrow)) || isNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvHitBackToHost)) ||
+            isNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvHitBackToPlayer))) {
             if (MR::sendMsgEnemyAttack(pReceiver, pSender)) {
                 kill();
             }
@@ -145,7 +145,7 @@ void CocoNutBall::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 bool CocoNutBall::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerSpinAttack(msg)) {
         if (isValidReceivePunch()) {
-            setNerve(&NrvCocoNutBall::CocoNutBallNrvHitBackToHost::sInstance);
+            setNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvHitBackToHost));
             return true;
         }
     } else if (isSensorBody(pReceiver) && MR::isMsgStarPieceReflect(msg)) {
@@ -172,12 +172,12 @@ HitSensor* CocoNutBall::isBindedAny() const {
 }
 
 bool CocoNutBall::isNerveTrowToOrFreeze() const {
-    return isNerve(&NrvCocoNutBall::CocoNutBallNrvThrow::sInstance) || isNerve(&NrvCocoNutBall::CocoNutBallNrvHitBackToPlayer::sInstance) ||
-           isNerve(&NrvCocoNutBall::CocoNutBallNrvFreeze::sInstance) || isNerve(&NrvCocoNutBall::CocoNutBallNrvFreezeRelease::sInstance);
+    return isNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvThrow)) || isNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvHitBackToPlayer)) ||
+           isNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvFreeze)) || isNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvFreezeRelease));
 }
 
 bool CocoNutBall::isValidReceivePunch() const {
-    if (MR::isDead(this) || (!isNerveTrowToOrFreeze() && !isNerve(&NrvCocoNutBall::CocoNutBallNrvRebound::sInstance))) {
+    if (MR::isDead(this) || (!isNerveTrowToOrFreeze() && !isNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvRebound)))) {
         return false;
     } else {
         return mPosition.distance(*MR::getPlayerCenterPos()) < 400.0f;
@@ -281,7 +281,7 @@ bool CocoNutBall::tryToKill(bool alwaysKill) {
     HitSensor* bindedSensor = isBindedAny();
 
     if (bindedSensor != nullptr) {
-        if (bindedSensor->isType(ATYPE_PUNCH_BOX) && !isNerve(&NrvCocoNutBall::CocoNutBallNrvRebound::sInstance)) {
+        if (bindedSensor->isType(ATYPE_PUNCH_BOX) && !isNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvRebound))) {
             MR::sendMsgEnemyAttack(bindedSensor, getSensor("body"));
         }
         kill();
@@ -345,7 +345,7 @@ void CocoNutBall::freeze() {
     _A0 = 0;
     _A4.set(mPosition);
     _B0.set(mVelocity);
-    setNerve(&NrvCocoNutBall::CocoNutBallNrvFreeze::sInstance);
+    setNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvFreeze));
 }
 
 bool CocoNutBall::isFreezable() {
@@ -359,7 +359,7 @@ void CocoNutBall::processApproachToPlayer() {
         MR::deleteEffect(this, "CocoNutLight");
     }
 
-    if (isNerve(&NrvCocoNutBall::CocoNutBallNrvFreezeRelease::sInstance) || MR::isGreaterStep(this, 20)) {
+    if (isNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvFreezeRelease)) || MR::isGreaterStep(this, 20)) {
         if (isFreezable()) {
             freeze();
             return;
@@ -501,9 +501,9 @@ void CocoNutBall::exeFreeze() {
 
     if (isFreezable()) {
         // resets nerve step every frame i guess
-        setNerve(&NrvCocoNutBall::CocoNutBallNrvFreeze::sInstance);
+        setNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvFreeze));
     } else if (MR::isStep(this, 20)) {
-        setNerve(&NrvCocoNutBall::CocoNutBallNrvFreezeRelease::sInstance);
+        setNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvFreezeRelease));
     }
 }
 

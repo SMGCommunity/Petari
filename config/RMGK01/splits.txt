@@ -1554,14 +1554,14 @@ Game/Boss/TripodBossKillerGeneraterCircle.cpp:
 Game/Boss/TripodBossKinokoOneUp.cpp:
 	.text       start:0x8008DE98 end:0x8008E2E8
 	.ctors      start:0x8052E9D4 end:0x8052E9D8
-	.data       start:0x80573998 end:0x80573BD8
+	.data       start:0x80573998 end:0x80573B50
 	.sbss       start:0x806B3998 end:0x806B39B8
 
 Game/Boss/TripodBossLeg.cpp:
 	.text       start:0x8008E2E8 end:0x80090694
 	.ctors      start:0x8052E9D8 end:0x8052E9DC
 	.rodata     start:0x805315B8 end:0x805315C0
-	.data       start:0x80573BD8 end:0x80573D00
+	.data       start:0x80573B50 end:0x80573D00
 	.sbss       start:0x806B39B8 end:0x806B39E8
 	.sdata2     start:0x806B9018 end:0x806B9098
 
@@ -3640,12 +3640,12 @@ Game/LiveActor/ShadowDrawer.cpp:
 
 Game/LiveActor/ShadowSurfaceBox.cpp:
 	.text       start:0x8016CDE8 end:0x8016D338
-	.data       start:0x80588268 end:0x805882B8
+	.data       start:0x80588268 end:0x805882A8
 	.sdata2     start:0x806BBD08 end:0x806BBD20
 
 Game/LiveActor/ShadowSurfaceCircle.cpp:
 	.text       start:0x8016D338 end:0x8016D51C
-	.data       start:0x805882B8 end:0x805882E0
+	.data       start:0x805882A8 end:0x805882E0
 	.sdata2     start:0x806BBD20 end:0x806BBD28
 
 Game/LiveActor/ShadowSurfaceDrawer.cpp:
@@ -4530,7 +4530,7 @@ Game/MapObj/ChipCounter.cpp:
 	.text       start:0x801BEA88 end:0x801BF554
 	.ctors      start:0x8052EC9C end:0x8052ECA0
 	.data       start:0x805911D8 end:0x805912F0
-	.sdata      start:0x806B1D90 end:0x806B1DB0
+	.sdata      start:0x806B1D90 end:0x806B1DA8
 	.sbss       start:0x806B4F50 end:0x806B4F70
 	.sdata2     start:0x806BCA08 end:0x806BCA18
 
@@ -4660,13 +4660,14 @@ Game/MapObj/CoinReplica.cpp:
 Game/MapObj/CoinRotater.cpp:
 	.text       start:0x801C9DE8 end:0x801CA030
 	.rodata     start:0x80533108 end:0x80533110
-	.data       start:0x805922F0 end:0x80592320
+	.data       start:0x805922F0 end:0x80592318
 	.sdata2     start:0x806BCC38 end:0x806BCC50
 
 Game/MapObj/CoinSpot.cpp:
 	.text       start:0x801CA030 end:0x801CA398
 	.ctors      start:0x8052ECBC end:0x8052ECC0
-	.data       start:0x80592320 end:0x805923B8
+	.data       start:0x80592318 end:0x805923B8
+	.sdata      start:0x806B1DA8 end:0x806B1DB0
 	.sbss       start:0x806B4FD8 end:0x806B4FE0
 	.sdata2     start:0x806BCC50 end:0x806BCC58
 

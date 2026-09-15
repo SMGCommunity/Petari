@@ -187,7 +187,7 @@ void SurfRay::init(const JMapInfoIter& pMapInfoIter) {
     MR::setShadowProjectionPtr(this, 0, &mWaterShadowPos, &mWaterNormal);
     MR::setShadowSurfaceOvalAlpha(this, 0, (u8)mShadowAlpha & 0xff);
 
-    initNerve(&NrvSurfRay::SurfRayNrvWaitPlayer::sInstance);
+    initNerve(GET_NERVE(SurfRay, SurfRayNrvWaitPlayer));
 
     MR::useStageSwitchWriteA(this, pMapInfoIter);
     MR::tryFindNamePos("ワープ位置（サーフィン）", &mWarpPos, nullptr);
@@ -217,7 +217,7 @@ void SurfRay::exeWaitPlayer() {
     ::calcWaterShadowPos(&mWaterShadowPos, mPosition, mGravity);
 
     if (MR::isNearPlayer(this, ::sDistancePlayerNear)) {
-        setNerve(&NrvSurfRay::SurfRayNrvTurnToWait::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvTurnToWait));
     }
 }
 
@@ -228,7 +228,7 @@ void SurfRay::exeTurnToWait() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvSurfRay::SurfRayNrvWait::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvWait));
     }
 }
 
@@ -245,7 +245,7 @@ void SurfRay::exeRideAccel() {
     }
 
     if (!updateRideAccel() && isTwistStart()) {
-        setNerve(&NrvSurfRay::SurfRayNrvRideAccelTwist::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvRideAccelTwist));
     }
 }
 
@@ -255,7 +255,7 @@ void SurfRay::exeRideAccelTwist() {
     }
 
     if (!updateRideAccel() && MR::isBckStoppedPlayer()) {
-        setNerve(&NrvSurfRay::SurfRayNrvRideAccel::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvRideAccel));
     }
 }
 
@@ -266,7 +266,7 @@ void SurfRay::exeRideFree() {
     }
 
     if (!updateRideFree() && isTwistStart()) {
-        setNerve(&NrvSurfRay::SurfRayNrvRideFreeTwist::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvRideFreeTwist));
     }
 }
 
@@ -276,7 +276,7 @@ void SurfRay::exeRideFreeTwist() {
     }
 
     if (!updateRideFree() && MR::isBckStoppedPlayer()) {
-        setNerve(&NrvSurfRay::SurfRayNrvRideFree::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvRideFree));
     }
 }
 
@@ -288,7 +288,7 @@ void SurfRay::exeRideJump() {
     }
 
     if (!updateRide() && mVelocity.dot(mGravity) > 0.0f) {
-        setNerve(&NrvSurfRay::SurfRayNrvRideFall::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvRideFall));
     }
 }
 
@@ -300,7 +300,7 @@ void SurfRay::exeRideJumpHigh() {
     }
 
     if (!updateRide() && mVelocity.dot(mGravity) > 0.0f) {
-        setNerve(&NrvSurfRay::SurfRayNrvRideFall::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvRideFall));
     }
 }
 
@@ -311,7 +311,7 @@ void SurfRay::exeRideFall() {
     }
 
     if (!updateRide() && mVelocity.dot(mGravity) > 0.0f && mInWater) {
-        setNerve(&NrvSurfRay::SurfRayNrvRideLand::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvRideLand));
         MR::startSound(this, "SE_SM_SURF_RAY_LANDW");
     }
 }
@@ -323,7 +323,7 @@ void SurfRay::exeRideLand() {
     }
 
     if (!updateRide() && !tryJumpOrFall() && MR::isBckStopped(this)) {
-        setNerve(&NrvSurfRay::SurfRayNrvRideFree::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvRideFree));
     }
 }
 
@@ -420,7 +420,7 @@ void SurfRay::exeWipeOut() {
         resetAllInfo();
         MR::startBckPlayer("SurfRide", static_cast< s32 >(0));
         MR::resetCameraMan();
-        setNerve(&NrvSurfRay::SurfRayNrvWipeIn::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvWipeIn));
     }
 }
 
@@ -430,7 +430,7 @@ void SurfRay::exeWipeIn() {
     }
 
     if (!MR::isWipeActive()) {
-        setNerve(&NrvSurfRay::SurfRayNrvRideFree::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvRideFree));
     }
 }
 
@@ -509,9 +509,9 @@ bool SurfRay::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         mActorJointCtrl->resetDynamicCtrl();
 
         if (mInTutorial) {
-            setNerve(&NrvSurfRay::SurfRayNrvTutorial::sInstance);
+            setNerve(GET_NERVE(SurfRay, SurfRayNrvTutorial));
         } else {
-            setNerve(&NrvSurfRay::SurfRayNrvReady::sInstance);
+            setNerve(GET_NERVE(SurfRay, SurfRayNrvReady));
         }
 
         return true;
@@ -524,7 +524,7 @@ bool SurfRay::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
 
     if (MR::isMsgRushCancel(msg)) {
         mRider = nullptr;
-        setNerve(&NrvSurfRay::SurfRayNrvRideFree::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvRideFree));
         return true;
     }
 
@@ -536,19 +536,19 @@ bool SurfRay::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
 
     if (MR::isMsgTutorialNext(msg)) {
         mLectureIdx++;
-        setNerve(&NrvSurfRay::SurfRayNrvTutorial::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvTutorial));
         return true;
     }
 
     if (MR::isMsgTutorialPrev(msg)) {
         mLectureIdx--;
-        setNerve(&NrvSurfRay::SurfRayNrvTutorial::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvTutorial));
         return true;
     }
 
     if (MR::isMsgTutorialPass(msg)) {
         mInTutorial = false;
-        setNerve(&NrvSurfRay::SurfRayNrvRideFree::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvRideFree));
         return true;
     }
 
@@ -563,19 +563,19 @@ bool SurfRay::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
     }
 
     if (MR::isMsgRaceReady(msg)) {
-        setNerve(&NrvSurfRay::SurfRayNrvReady::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvReady));
         return true;
     }
 
     if (MR::isMsgRaceStart(msg)) {
-        setNerve(&NrvSurfRay::SurfRayNrvRideFree::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvRideFree));
         return true;
     }
 
     if (MR::isMsgRaceReset(msg)) {
         MR::endBindAndPlayerWait(this);
         resetAllInfo();
-        setNerve(&NrvSurfRay::SurfRayNrvWait::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvWait));
         MR::endStarPointerMode(this);
         kill();
         return true;
@@ -622,7 +622,7 @@ bool SurfRay::updateRideAccel() {
     }
 
     if (!MR::testCorePadButtonA(mPadChannel)) {
-        setNerve(&NrvSurfRay::SurfRayNrvRideFree::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvRideFree));
         return true;
     }
 
@@ -639,7 +639,7 @@ bool SurfRay::updateRideFree() {
     }
 
     if (MR::testCorePadButtonA(mPadChannel)) {
-        setNerve(&NrvSurfRay::SurfRayNrvRideAccel::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvRideAccel));
         return true;
     }
 
@@ -649,7 +649,7 @@ bool SurfRay::updateRideFree() {
 bool SurfRay::updateRide() {
     if (mInTutorialArea && mPosition.z > mWarpPos.z) {
         mInTutorialArea = false;
-        setNerve(&NrvSurfRay::SurfRayNrvWipeOut::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvWipeOut));
         return true;
     }
 
@@ -830,7 +830,7 @@ void SurfRay::updateAccel() {
         mOrthoVelocity.zero();
     }
 
-    if (mWaterInfo.isInWater() && !isNerve(&NrvSurfRay::SurfRayNrvRideJump::sInstance)) {
+    if (mWaterInfo.isInWater() && !isNerve(GET_NERVE(SurfRay, SurfRayNrvRideJump))) {
         mOrthoVelocity.mult(0.95f);
     }
 }
@@ -1036,16 +1036,16 @@ bool SurfRay::tryJumpOrFall() {
         }
 
         if (mOrthoVelocity.length() > 23.0f) {
-            setNerve(&NrvSurfRay::SurfRayNrvRideJumpHigh::sInstance);
+            setNerve(GET_NERVE(SurfRay, SurfRayNrvRideJumpHigh));
         } else {
-            setNerve(&NrvSurfRay::SurfRayNrvRideJump::sInstance);
+            setNerve(GET_NERVE(SurfRay, SurfRayNrvRideJump));
         }
 
         return true;
     }
 
     if (mAirTime > 45) {
-        setNerve(&NrvSurfRay::SurfRayNrvRideFall::sInstance);
+        setNerve(GET_NERVE(SurfRay, SurfRayNrvRideFall));
         return true;
     }
 

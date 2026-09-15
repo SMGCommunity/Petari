@@ -35,9 +35,9 @@ TitleSequenceProduct::TitleSequenceProduct()
     : NerveExecutor(""), mLogoLayout(nullptr), mPressStartLayout(nullptr), mEncouragePal60Window(nullptr), mAButtonChecker(nullptr),
       mBButtonChecker(nullptr) {
     if (MR::isDisplayEncouragePal60Window()) {
-        initNerve(&TitleSequenceProductDisplayEncouragePal60Window::sInstance);
+        initNerve(GET_NERVE_GLOBAL(TitleSequenceProductDisplayEncouragePal60Window));
     } else {
-        initNerve(&TitleSequenceProductBgmPrepare::sInstance);
+        initNerve(GET_NERVE_GLOBAL(TitleSequenceProductBgmPrepare));
     }
 
     mLogoLayout = new TitleSequenceProductSub::LogoLayout();
@@ -66,7 +66,7 @@ void TitleSequenceProduct::exeDisplayEncouragePal60Window() {
     }
 
     if (MR::isDead(mEncouragePal60Window)) {
-        setNerve(&TitleSequenceProductBgmPrepare::sInstance);
+        setNerve(GET_NERVE_GLOBAL(TitleSequenceProductBgmPrepare));
     }
 }
 
@@ -76,7 +76,7 @@ void TitleSequenceProduct::exeBgmPrepare() {
     }
 
     if (MR::isPreparedStageBgm()) {
-        setNerve(&TitleSequenceProductLogoFadein::sInstance);
+        setNerve(GET_NERVE_GLOBAL(TitleSequenceProductLogoFadein));
     }
 }
 
@@ -88,7 +88,7 @@ void TitleSequenceProduct::exeLogoFadein() {
     }
 
     if (MR::isAnimStopped(mLogoLayout, 0)) {
-        setNerve(&TitleSequenceProductLogoWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(TitleSequenceProductLogoWait));
     }
 }
 
@@ -105,7 +105,7 @@ void TitleSequenceProduct::exeLogoWait() {
     }
 
     if (MR::isStep(this, ::sPressABAppearFrame)) {
-        setNerve(&TitleSequenceProductLogoDisplay::sInstance);
+        setNerve(GET_NERVE_GLOBAL(TitleSequenceProductLogoDisplay));
     }
 }
 
@@ -127,7 +127,7 @@ void TitleSequenceProduct::exeLogoDisplay() {
         MR::startSystemSE("SE_SY_GAME_START");
         MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
-        setNerve(&TitleSequenceProductDecide::sInstance);
+        setNerve(GET_NERVE_GLOBAL(TitleSequenceProductDecide));
     } else {
         updateButtonReaction(mAButtonChecker, "ReactionA");
         updateButtonReaction(mBButtonChecker, "ReactionB");
@@ -143,7 +143,7 @@ void TitleSequenceProduct::exeDecide() {
     }
 
     if (MR::isAnimStopped(mLogoLayout, 0) && MR::isAnimStopped(mPressStartLayout, 0)) {
-        setNerve(&TitleSequenceProductDead::sInstance);
+        setNerve(GET_NERVE_GLOBAL(TitleSequenceProductDead));
     }
 }
 
@@ -160,18 +160,18 @@ void TitleSequenceProduct::exeDead() {
 
 void TitleSequenceProduct::appear() {
     if (mIsDisplayEncouragePal60Window) {
-        setNerve(&TitleSequenceProductDisplayEncouragePal60Window::sInstance);
+        setNerve(GET_NERVE_GLOBAL(TitleSequenceProductDisplayEncouragePal60Window));
     } else {
-        setNerve(&TitleSequenceProductBgmPrepare::sInstance);
+        setNerve(GET_NERVE_GLOBAL(TitleSequenceProductBgmPrepare));
     }
 }
 
 void TitleSequenceProduct::kill() {
-    setNerve(&TitleSequenceProductDead::sInstance);
+    setNerve(GET_NERVE_GLOBAL(TitleSequenceProductDead));
 }
 
 bool TitleSequenceProduct::isActive() const {
-    return !isNerve(&TitleSequenceProductDead::sInstance);
+    return !isNerve(GET_NERVE_GLOBAL(TitleSequenceProductDead));
 }
 
 void TitleSequenceProduct::updateButtonReaction(TriggerChecker* pButtonChecker, const char* pAnimName) {

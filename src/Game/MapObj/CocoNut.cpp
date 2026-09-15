@@ -60,9 +60,9 @@ void CocoNut::init(const JMapInfoIter& rIter) {
     MR::tryRegisterDemoCast(this, rIter);
 
     if (!mSphericalShadow) {
-        initNerve(&NrvCocoNut::CocoNutNrvWaitOnBind::sInstance);
+        initNerve(GET_NERVE(CocoNut, CocoNutNrvWaitOnBind));
     } else {
-        initNerve(&NrvCocoNut::CocoNutNrvWait::sInstance);
+        initNerve(GET_NERVE(CocoNut, CocoNutNrvWait));
     }
 
     makeActorAppeared();
@@ -84,7 +84,7 @@ void CocoNut::initAfterPlacement() {
 }
 
 void CocoNut::startClipped() {
-    if (isNerve(&NrvCocoNut::CocoNutNrvReplaceReady::sInstance)) {
+    if (isNerve(GET_NERVE(CocoNut, CocoNutNrvReplaceReady))) {
         if (!MR::isDemoActive()) {
             _90 = 0.0f;
             _8C = 0.0f;
@@ -96,15 +96,15 @@ void CocoNut::startClipped() {
             MR::validateHitSensors(this);
             if (!mSphericalShadow) {
                 _D4 = false;
-                setNerve(&NrvCocoNut::CocoNutNrvWait::sInstance);
+                setNerve(GET_NERVE(CocoNut, CocoNutNrvWait));
             } else {
-                setNerve(&NrvCocoNut::CocoNutNrvWaitOnBind::sInstance);
+                setNerve(GET_NERVE(CocoNut, CocoNutNrvWaitOnBind));
             }
         }
     } else if (mRespawnWhenOutOfView) {
         statusToHide();
         mPosition.set< f32 >(mSpawnPosition);
-        setNerve(&NrvCocoNut::CocoNutNrvReplaceReady::sInstance);
+        setNerve(GET_NERVE(CocoNut, CocoNutNrvReplaceReady));
     }
     LiveActor::startClipped();
 }
@@ -122,8 +122,8 @@ void CocoNut::hit(const TVec3f& a1, f32 a2) {
     }
 
     _8C = var_f0;
-    if (!isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance)) {
-        setNerve(&NrvCocoNut::CocoNutNrvMove::sInstance);
+    if (!isNerve(GET_NERVE(CocoNut, CocoNutNrvMove))) {
+        setNerve(GET_NERVE(CocoNut, CocoNutNrvMove));
     }
 }
 
@@ -140,7 +140,7 @@ bool CocoNut::isPossibleToHit(const TVec3f& a1, const TVec3f& a2, const TVec3f& 
     if (MR::normalizeOrZero(a3, &stack_14)) {
         return false;
     }
-    if (isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance)) {
+    if (isNerve(GET_NERVE(CocoNut, CocoNutNrvMove))) {
         if (MR::normalizeOrZero(mVelocity, &stack_8)) {
             return false;
         }
@@ -155,7 +155,7 @@ bool CocoNut::isPossibleToHit(const TVec3f& a1, const TVec3f& a2, const TVec3f& 
 }
 
 f32 CocoNut::calcMoveSpeed() const {
-    return !isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance) ? 0.0f : MR::max(_8C, _150.length());
+    return !isNerve(GET_NERVE(CocoNut, CocoNutNrvMove)) ? 0.0f : MR::max(_8C, _150.length());
 }
 
 void CocoNut::initSensor() {
@@ -312,7 +312,7 @@ void CocoNut::setFrontVec(const TVec3f& a1) {
 
 bool CocoNut::tryHit(HitSensor* pOtherSensor, HitSensor* pMySensor) {
     CocoNut* nut = static_cast< CocoNut* >(pMySensor->mHost);
-    if (!isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance)) {
+    if (!isNerve(GET_NERVE(CocoNut, CocoNutNrvMove))) {
         return false;
     }
     f32 moveSpeed = nut->calcMoveSpeed();
@@ -348,7 +348,7 @@ bool CocoNut::tryPushedFromActor(HitSensor* pOtherSensor, HitSensor* pMySensor) 
     if (_13C) {
         return false;
     }
-    if (isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance)) {
+    if (isNerve(GET_NERVE(CocoNut, CocoNutNrvMove))) {
         stack_34.sub(*otherSensorPos, *mySensorPos);
         MR::normalize(&stack_34);
         if (0.0f < stack_34.dot(_94)) {
@@ -414,11 +414,11 @@ void CocoNut::statusToWait() {
         _D4 = true;
         MR::offBind(this);
         MR::offCalcGravity(this);
-        if (!isNerve(&NrvCocoNut::CocoNutNrvWait::sInstance)) {
-            setNerve(&NrvCocoNut::CocoNutNrvWait::sInstance);
+        if (!isNerve(GET_NERVE(CocoNut, CocoNutNrvWait))) {
+            setNerve(GET_NERVE(CocoNut, CocoNutNrvWait));
         }
     } else {
-        setNerve(&NrvCocoNut::CocoNutNrvWaitOnBind::sInstance);
+        setNerve(GET_NERVE(CocoNut, CocoNutNrvWaitOnBind));
     }
 }
 
@@ -431,7 +431,7 @@ void CocoNut::tryMoveEnd() {
         }
     }
     if (sendMsgToBindedSensor()) {
-        setNerve(&NrvCocoNut::CocoNutNrvBreak::sInstance);
+        setNerve(GET_NERVE(CocoNut, CocoNutNrvBreak));
         return;
     }
     if (!tryDisappear()) {
@@ -443,11 +443,11 @@ bool CocoNut::tryDisappear() {
     TVec3f stack_14;
     stack_14.scale(-100.0f, mGravity);
     if (MR::isInWater(this, stack_14)) {
-        setNerve(&NrvCocoNut::CocoNutNrvInWater::sInstance);
+        setNerve(GET_NERVE(CocoNut, CocoNutNrvInWater));
         return true;
     }
     if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-        setNerve(&NrvCocoNut::CocoNutNrvBreak::sInstance);
+        setNerve(GET_NERVE(CocoNut, CocoNutNrvBreak));
         return true;
     }
     return false;
@@ -457,7 +457,7 @@ bool CocoNut::isValidPushedFromPlayer(const HitSensor* arg0, const HitSensor* ar
     if (_90 < 0.0f) {
         return false;
     }
-    if (isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance) && MR::isLessStep(this, 15)) {
+    if (isNerve(GET_NERVE(CocoNut, CocoNutNrvMove)) && MR::isLessStep(this, 15)) {
         return false;
     }
     TVec3f* playerVelocity = MR::getPlayerVelocity();
@@ -568,8 +568,8 @@ bool CocoNut::sendMsgEnemyAttackToBindedSensor(HitSensor* pSensor) {
 }
 
 bool CocoNut::isValidReceiveMsg(const HitSensor* pSensor) const {
-    return (isNerve(&NrvCocoNut::CocoNutNrvWait::sInstance) || isNerve(&NrvCocoNut::CocoNutNrvWaitOnBind::sInstance) ||
-            isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance)) &&
+    return (isNerve(GET_NERVE(CocoNut, CocoNutNrvWait)) || isNerve(GET_NERVE(CocoNut, CocoNutNrvWaitOnBind)) ||
+            isNerve(GET_NERVE(CocoNut, CocoNutNrvMove))) &&
            pSensor == getSensor("body");
 }
 
@@ -594,7 +594,7 @@ void CocoNut::calcAndSetBaseMtx() {
 
     MR::setBaseTRMtx(this, _A0);
 
-    if (isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance) && MR::isOnGround(this)) {
+    if (isNerve(GET_NERVE(CocoNut, CocoNutNrvMove)) && MR::isOnGround(this)) {
         const TVec3f* groundNormal = MR::getGroundNormal(this);
         f32 temp_f31 = _D0;
 
@@ -636,9 +636,9 @@ void CocoNut::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         if (MR::sendMsgPush(pReceiver, pSender)) {
             MR::startSound(this, "SE_OJ_COCONUT_HIT");
         }
-    } else if (_13C && isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance) && MR::sendMsgToEnemyAttackBlow(pReceiver, pSender)) {
+    } else if (_13C && isNerve(GET_NERVE(CocoNut, CocoNutNrvMove)) && MR::sendMsgToEnemyAttackBlow(pReceiver, pSender)) {
         MR::startSound(this, "SE_OJ_COCONUT_HIT");
-        setNerve(&NrvCocoNut::CocoNutNrvBreak::sInstance);
+        setNerve(GET_NERVE(CocoNut, CocoNutNrvBreak));
     } else {
         MR::sendMsgPush(pReceiver, pSender);
     }
@@ -710,7 +710,7 @@ bool CocoNut::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
         reviseFrontVec();
     }
 
-    setNerve(&NrvCocoNut::CocoNutNrvMove::sInstance);
+    setNerve(GET_NERVE(CocoNut, CocoNutNrvMove));
     return true;
 }
 
@@ -734,7 +734,7 @@ bool CocoNut::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
             _8C = MR::max(var_f2, temp_f0);
             _90 = -(0.7f * temp_f1);
             MR::startSound(this, "SE_OJ_COCONUT_FLIP_S");
-            setNerve(&NrvCocoNut::CocoNutNrvMove::sInstance);
+            setNerve(GET_NERVE(CocoNut, CocoNutNrvMove));
             return true;
         }
     } else if (MR::isMsgHitmarkEmit(msg)) {
@@ -853,7 +853,7 @@ void CocoNut::exeInWater() {
     }
     if (!MR::isEffectValid(this, "WaterColumn")) {
         mPosition.set(mSpawnPosition);
-        setNerve(&NrvCocoNut::CocoNutNrvReplaceReady::sInstance);
+        setNerve(GET_NERVE(CocoNut, CocoNutNrvReplaceReady));
     }
 }
 
@@ -865,7 +865,7 @@ void CocoNut::exeBreak() {
     }
     if (!MR::isEffectValid(this, getBreakEffectName())) {
         mPosition.set(mSpawnPosition);
-        setNerve(&NrvCocoNut::CocoNutNrvReplaceReady::sInstance);
+        setNerve(GET_NERVE(CocoNut, CocoNutNrvReplaceReady));
     }
 }
 

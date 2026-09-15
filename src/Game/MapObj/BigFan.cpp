@@ -55,10 +55,10 @@ void BigFan::init(const JMapInfoIter& rIter) {
         mIsTeresaGalaxy = false;
     }
 
-    initNerve(&NrvBigFan::BigFanNrvWait::sInstance);
+    initNerve(GET_NERVE(BigFan, BigFanNrvWait));
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &BigFan::start));
-        setNerve(&NrvBigFan::BigFanNrvStop::sInstance);
+        setNerve(GET_NERVE(BigFan, BigFanNrvStop));
         mWindModel->kill();
     }
 
@@ -120,8 +120,8 @@ void BigFan::control() {
 }
 
 void BigFan::start() {
-    if (isNerve(&NrvBigFan::BigFanNrvStop::sInstance)) {
-        setNerve(&NrvBigFan::BigFanNrvStart::sInstance);
+    if (isNerve(GET_NERVE(BigFan, BigFanNrvStop))) {
+        setNerve(GET_NERVE(BigFan, BigFanNrvStart));
     }
 }
 
@@ -146,7 +146,7 @@ void BigFan::exeStart() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvBigFan::BigFanNrvWait::sInstance);
+        setNerve(GET_NERVE(BigFan, BigFanNrvWait));
     }
 }
 
@@ -165,7 +165,7 @@ void BigFan::exeWait() {
 
 inline bool BigFan::isStartOrWait() {
     bool flag = false;
-    if (isNerve(&NrvBigFan::BigFanNrvStart::sInstance) || isNerve(&NrvBigFan::BigFanNrvWait::sInstance)) {
+    if (isNerve(GET_NERVE(BigFan, BigFanNrvStart)) || isNerve(GET_NERVE(BigFan, BigFanNrvWait))) {
         flag = true;
     }
 

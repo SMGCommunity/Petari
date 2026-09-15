@@ -43,7 +43,7 @@ void GalaxyMap::init(const JMapInfoIter& rIter) {
     initDomeIcon();
     initMarioIcon();
     initTicoIcon();
-    initNerve(&::GalaxyMapIdle::sInstance);
+    initNerve(GET_NERVE_ANON(GalaxyMapIdle));
 
     mGalaxyPlain = new GalaxyMapGalaxyPlain(this);
     mGalaxyPlain->initWithoutIter();
@@ -101,7 +101,7 @@ void GalaxyMap::kill() {
 void GalaxyMap::movement() {
     LayoutActor::movement();
 
-    if (!isNerve(&::GalaxyMapShowDetail::sInstance)) {
+    if (!isNerve(GET_NERVE_ANON(GalaxyMapShowDetail))) {
         std::for_each(mDomeIcon.begin(), mDomeIcon.end(), std::mem_func(&LayoutActor::movement));
         std::for_each(mIcon.begin(), mIcon.end(), std::mem_func(&LayoutActor::movement));
         std::for_each(mCometIcon.begin(), mCometIcon.end(), std::mem_func(&LayoutActor::movement));
@@ -167,7 +167,7 @@ void GalaxyMap::movementForCapture() {
         getLayoutManager()->movement();
     }
 
-    if (isNerve(&::GalaxyMapShowDetail::sInstance)) {
+    if (isNerve(GET_NERVE_ANON(GalaxyMapShowDetail))) {
         return;
     }
 
@@ -257,7 +257,7 @@ void GalaxyMap::drawGalaxyInfo() const {
 }
 
 bool GalaxyMap::isTransition() const {
-    return isNerve(&::GalaxyMapFadeinAstroMap::sInstance) || isNerve(&::GalaxyMapFadeinGalaxyMap::sInstance);
+    return isNerve(GET_NERVE_ANON(GalaxyMapFadeinAstroMap)) || isNerve(GET_NERVE_ANON(GalaxyMapFadeinGalaxyMap));
 }
 
 bool GalaxyMap::isPointingAnything() const {
@@ -265,7 +265,7 @@ bool GalaxyMap::isPointingAnything() const {
 }
 
 bool GalaxyMap::isShowDetail() const {
-    return !MR::isDead(this) && isNerve(&::GalaxyMapShowDetail::sInstance);
+    return !MR::isDead(this) && isNerve(GET_NERVE_ANON(GalaxyMapShowDetail));
 }
 
 void GalaxyMap::dispIconAButton() {
@@ -274,12 +274,12 @@ void GalaxyMap::dispIconAButton() {
 
 void GalaxyMap::changeToGalaxyMap() {
     appear();
-    setNerve(&::GalaxyMapFadeinGalaxyMap::sInstance);
+    setNerve(GET_NERVE_ANON(GalaxyMapFadeinGalaxyMap));
 }
 
 void GalaxyMap::changeToAstroMap() {
     appear();
-    setNerve(&::GalaxyMapFadeinAstroMap::sInstance);
+    setNerve(GET_NERVE_ANON(GalaxyMapFadeinAstroMap));
 }
 
 void GalaxyMap::forceToGalaxyMap() {
@@ -287,7 +287,7 @@ void GalaxyMap::forceToGalaxyMap() {
     MR::startAnim(this, "DomeIn", 0);
     MR::setAnimFrameAndStopAtEnd(this, 0);
     mTitle->startGalaxyMap();
-    setNerve(&::GalaxyMapIdle::sInstance);
+    setNerve(GET_NERVE_ANON(GalaxyMapIdle));
 }
 
 void GalaxyMap::forceToAstroMap() {
@@ -295,7 +295,7 @@ void GalaxyMap::forceToAstroMap() {
     MR::startAnim(this, "DomeOut", 0);
     MR::setAnimFrameAndStopAtEnd(this, 0);
     mTitle->startAstroMap();
-    setNerve(&::GalaxyMapIdle::sInstance);
+    setNerve(GET_NERVE_ANON(GalaxyMapIdle));
 }
 
 void GalaxyMap::exeIdle() {
@@ -321,7 +321,7 @@ void GalaxyMap::exeFocusOut() {
     if (MR::isGreaterStep(this, ::sFocusKeepFrame)) {
         mGalaxyName = nullptr;
 
-        setNerve(&::GalaxyMapIdle::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapIdle));
     }
 }
 
@@ -335,7 +335,7 @@ void GalaxyMap::exeFadeinGalaxyMap() {
         mGalaxyName = nullptr;
         mPointingIcon = nullptr;
 
-        setNerve(&::GalaxyMapIdle::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapIdle));
     }
 }
 
@@ -349,7 +349,7 @@ void GalaxyMap::exeFadeinAstroMap() {
         mGalaxyName = nullptr;
         mPointingIcon = nullptr;
 
-        setNerve(&::GalaxyMapIdle::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapIdle));
     }
 }
 
@@ -361,7 +361,7 @@ void GalaxyMap::exeShowDetail() {
 
     if (MR::isDead(mGalaxyDetail)) {
         std::for_each(mIcon.begin(), mIcon.end(), std::mem_func(&GalaxyMapIcon::activatePointing));
-        setNerve(&::GalaxyMapIdle::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapIdle));
     }
 }
 
@@ -439,7 +439,7 @@ bool GalaxyMap::tryFocusIn() {
         mGalaxyName = nullptr;
         mPointingIcon = nullptr;
 
-        setNerve(&::GalaxyMapIdle::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapIdle));
 
         return true;
     }
@@ -447,10 +447,10 @@ bool GalaxyMap::tryFocusIn() {
     GalaxyMapIcon* pointingGalaxyIcon = getPointingGalaxyIcon();
 
     if (pointingGalaxyIcon != mPointingIcon) {
-        const Nerve* nerve = &::GalaxyMapFocusOut::sInstance;
+        const Nerve* nerve = GET_NERVE_ANON(GalaxyMapFocusOut);
 
         if (pointingGalaxyIcon != nullptr) {
-            nerve = &::GalaxyMapFocusIn::sInstance;
+            nerve = GET_NERVE_ANON(GalaxyMapFocusIn);
             mGalaxyName = pointingGalaxyIcon->mGalaxyName;
         }
 
@@ -468,7 +468,7 @@ bool GalaxyMap::tryFocusIn() {
     }
 
     if (pointingGalaxyIcon != nullptr && MR::testCorePadTriggerA(WPAD_CHAN0)) {
-        setNerve(&::GalaxyMapShowDetail::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapShowDetail));
 
         return true;
     }

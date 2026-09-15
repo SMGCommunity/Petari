@@ -66,7 +66,7 @@ void Jiraira::init(const JMapInfoIter& rIter) {
     MR::validateCollisionParts(colPart);
     initSound(6, false);
     initEffectKeeper(0, nullptr, false);
-    initNerve(&NrvJiraira::HostTypeNrvWait::sInstance);
+    initNerve(GET_NERVE(Jiraira, HostTypeNrvWait));
     MR::invalidateClipping(this);
     appear();
 }
@@ -94,7 +94,7 @@ void Jiraira::exeWait() {
     }
 
     if (MR::isOnPlayer(getSensor("body"))) {
-        setNerve(&NrvJiraira::HostTypeNrvStepped::sInstance);
+        setNerve(GET_NERVE(Jiraira, HostTypeNrvStepped));
     }
 }
 
@@ -109,7 +109,7 @@ void Jiraira::exeStepped() {
     MR::startLevelSound(this, "SE_OJ_LV_JIRAIRA_CHARGE");
 
     if (MR::isGreaterStep(this, ::hBeginExplodeTime)) {
-        setNerve(&NrvJiraira::HostTypeNrvSteppedExplode::sInstance);
+        setNerve(GET_NERVE(Jiraira, HostTypeNrvSteppedExplode));
     }
 }
 
@@ -130,7 +130,7 @@ void Jiraira::exeExplode() {
     }
 
     if (MR::isGreaterStep(this, ::hPreRecoverTime)) {
-        setNerve(&NrvJiraira::HostTypeNrvPreRecover::sInstance);
+        setNerve(GET_NERVE(Jiraira, HostTypeNrvPreRecover));
     }
 }
 
@@ -143,7 +143,7 @@ void Jiraira::exePreRecover() {
     MR::startLevelSound(this, "SE_OJ_LV_JIRAIRA_RECOVERING");
 
     if (MR::isGreaterStep(this, ::hExplodeInvalidTime)) {
-        setNerve(&NrvJiraira::HostTypeNrvRecover::sInstance);
+        setNerve(GET_NERVE(Jiraira, HostTypeNrvRecover));
     }
 }
 
@@ -155,7 +155,7 @@ void Jiraira::exeRecover() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvJiraira::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(Jiraira, HostTypeNrvWait));
     }
 }
 
@@ -165,11 +165,11 @@ void Jiraira::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         if (MR::isSensorPlayer(pReceiver)) {
             MR::sendMsgEnemyAttackExplosion(pReceiver, pSender);
         } else if (MR::isSensorEnemy(pReceiver)) {
-            if (!isNerve(&NrvJiraira::HostTypeNrvSteppedExplode::sInstance)) {
+            if (!isNerve(GET_NERVE(Jiraira, HostTypeNrvSteppedExplode))) {
                 MR::sendMsgEnemyAttackExplosion(pReceiver, pSender);
             }
         } else if (MR::isSensorMapObj(pReceiver)) {
-            if (!isNerve(&NrvJiraira::HostTypeNrvSteppedExplode::sInstance)) {
+            if (!isNerve(GET_NERVE(Jiraira, HostTypeNrvSteppedExplode))) {
                 MR::sendMsgEnemyAttackExplosion(pReceiver, pSender);
             }
         }
@@ -177,14 +177,14 @@ void Jiraira::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool Jiraira::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvJiraira::HostTypeNrvExplode::sInstance) || isNerve(&NrvJiraira::HostTypeNrvSteppedExplode::sInstance) ||
-        isNerve(&NrvJiraira::HostTypeNrvPreRecover::sInstance)) {
+    if (isNerve(GET_NERVE(Jiraira, HostTypeNrvExplode)) || isNerve(GET_NERVE(Jiraira, HostTypeNrvSteppedExplode)) ||
+        isNerve(GET_NERVE(Jiraira, HostTypeNrvPreRecover))) {
         return false;
     }
 
     if (MR::isMsgStarPieceAttack(msg)) {
-        if (!isNerve(&NrvJiraira::HostTypeNrvStepped::sInstance)) {
-            setNerve(&NrvJiraira::HostTypeNrvStepped::sInstance);
+        if (!isNerve(GET_NERVE(Jiraira, HostTypeNrvStepped))) {
+            setNerve(GET_NERVE(Jiraira, HostTypeNrvStepped));
         }
 
         return true;
@@ -194,12 +194,12 @@ bool Jiraira::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
 }
 
 bool Jiraira::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvJiraira::HostTypeNrvExplode::sInstance) || isNerve(&NrvJiraira::HostTypeNrvSteppedExplode::sInstance)) {
+    if (isNerve(GET_NERVE(Jiraira, HostTypeNrvExplode)) || isNerve(GET_NERVE(Jiraira, HostTypeNrvSteppedExplode))) {
         return false;
     }
 
     if (MR::isMsgExplosionAttack(msg)) {
-        setNerve(&NrvJiraira::HostTypeNrvExplode::sInstance);
+        setNerve(GET_NERVE(Jiraira, HostTypeNrvExplode));
         return true;
     }
 

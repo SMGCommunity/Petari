@@ -141,7 +141,7 @@ void FireBar::init(const JMapInfoIter& rIter) {
     MR::setGroupClipping(this, rIter, 0x20);
     MR::setClippingTypeSphere(this, (mFireBallCount + 1) * 100.0f);
     MR::useStageSwitchSleep(this, rIter);
-    initNerve(&NrvFireBar::FireBarNrvWait::sInstance);
+    initNerve(GET_NERVE(FireBar, FireBarNrvWait));
     makeActorAppeared();
 }
 

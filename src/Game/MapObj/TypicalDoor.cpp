@@ -33,7 +33,7 @@ void TypicalDoor::init(const JMapInfoIter& rIter) {
     info.setupConnectToScene();
     info.setupSound(4);
     info.setupEffect(nullptr);
-    info.setupNerve(&NrvTypicalDoor::HostTypeClose::sInstance);
+    info.setupNerve(GET_NERVE(TypicalDoor, HostTypeClose));
     MapObjActor::initialize(rIter, info);
 
     if (info.mHasSensors) {
@@ -52,8 +52,8 @@ void TypicalDoor::init(const JMapInfoIter& rIter) {
     }
 
     if (MR::isDemoPartExist(this, "扉開く")) {
-        MR::registerDemoActionNerve(this, &NrvTypicalDoor::HostTypeOpen::sInstance, "扉開く");
-        setNerve(&NrvTypicalDoor::HostTypeCloseForDemo::sInstance);
+        MR::registerDemoActionNerve(this, GET_NERVE(TypicalDoor, HostTypeOpen), "扉開く");
+        setNerve(GET_NERVE(TypicalDoor, HostTypeCloseForDemo));
     }
 
     makeActorAppeared();
@@ -64,11 +64,11 @@ void TypicalDoor::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
 }
 
 void TypicalDoor::open() {
-    setNerve(&NrvTypicalDoor::HostTypeOpen::sInstance);
+    setNerve(GET_NERVE(TypicalDoor, HostTypeOpen));
 }
 
 void TypicalDoor::close() {
-    setNerve(&NrvTypicalDoor::HostTypeClose::sInstance);
+    setNerve(GET_NERVE(TypicalDoor, HostTypeClose));
 }
 
 void TypicalDoor::exeClose() {
@@ -166,13 +166,13 @@ void DarknessRoomDoor::validateCollision() {
         MR::validateCollisionParts(this);
     }
 
-    if (isNerve(&NrvTypicalDoor::HostTypeClose::sInstance)) {
+    if (isNerve(GET_NERVE(TypicalDoor, HostTypeClose))) {
         if (mCloseCollision != nullptr) {
             MR::validateCollisionParts(mCloseCollision);
         }
     }
 
-    if (isNerve(&NrvTypicalDoor::HostTypeOpen::sInstance)) {
+    if (isNerve(GET_NERVE(TypicalDoor, HostTypeOpen))) {
         if (mOpenCollision != nullptr) {
             MR::validateCollisionParts(mOpenCollision);
         }
@@ -184,13 +184,13 @@ void DarknessRoomDoor::invalidateCollision() {
         MR::invalidateCollisionParts(this);
     }
 
-    if (isNerve(&NrvTypicalDoor::HostTypeClose::sInstance)) {
+    if (isNerve(GET_NERVE(TypicalDoor, HostTypeClose))) {
         if (mCloseCollision != nullptr) {
             MR::invalidateCollisionParts(mCloseCollision);
         }
     }
 
-    if (isNerve(&NrvTypicalDoor::HostTypeOpen::sInstance)) {
+    if (isNerve(GET_NERVE(TypicalDoor, HostTypeOpen))) {
         if (mOpenCollision != nullptr) {
             MR::invalidateCollisionParts(mOpenCollision);
         }

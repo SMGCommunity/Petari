@@ -97,7 +97,7 @@ void StarPointerLayout::initWithPort(s32 channel) {
     }
     MR::createAndAddGroupCtrl(this, "GroupRing", 1);
 
-    initNerve(&NrvStarPointerLayout::HostTypeNrvHideImmediately::sInstance);
+    initNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHideImmediately));
 
     mBlur = new StarPointerBlur(new JUTTexture(MR::loadTexFromArc("StarPointerBlur.arc", "Blur.bti"), 0));
 
@@ -118,7 +118,7 @@ void StarPointerLayout::initWithPort(s32 channel) {
 
 void StarPointerLayout::appear() {
     LayoutActor::appear();
-    setNerve(&NrvStarPointerLayout::HostTypeNrvWait::sInstance);
+    setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvWait));
 }
 
 void StarPointerLayout::kill() {
@@ -178,10 +178,10 @@ void StarPointerLayout::exeWait() {
     }
 
     if (isTouch()) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvOnReaction::sInstance);
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvOnReaction));
     } else {
         if (MR::testCorePadButtonA(mPadChannel)) {
-            setNerve(&NrvStarPointerLayout::HostTypeNrvGrip::sInstance);
+            setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvGrip));
         }
     }
 }
@@ -231,12 +231,12 @@ void StarPointerLayout::exeGrip() {
     }
 
     if (!MR::testCorePadButtonA(mPadChannel)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvRelease::sInstance);
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvRelease));
         return;
     }
 
     if (MR::isGreaterStep(this, ::hGripTime) || MR::isHiddenPane(this, "StarPointer")) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvHold::sInstance);
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHold));
     }
 }
 
@@ -281,9 +281,9 @@ void StarPointerLayout::exeHold() {
         }
     }
 
-    if (isNerve(&NrvStarPointerLayout::HostTypeNrvHold::sInstance)) {
+    if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHold))) {
         if (isTouch()) {
-            setNerve(&NrvStarPointerLayout::HostTypeNrvHoldTouch::sInstance);
+            setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHoldTouch));
             return;
         }
 
@@ -293,13 +293,13 @@ void StarPointerLayout::exeHold() {
         }
     } else {
         if (!isTouch()) {
-            setNerve(&NrvStarPointerLayout::HostTypeNrvHold::sInstance);
+            setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHold));
             return;
         }
     }
 
     if (!MR::testCorePadButtonA(mPadChannel)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvRelease::sInstance);
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvRelease));
     }
 }
 
@@ -309,7 +309,7 @@ void StarPointerLayout::endHold() {
 
 void StarPointerLayout::tearDownHold() {
     if (mPointerKind == StarPointerKind_StarPointer && mPadChannel == WPAD_CHAN1) {
-        if (isNerve(&NrvStarPointerLayout::HostTypeNrvHold::sInstance) || isNerve(&NrvStarPointerLayout::HostTypeNrvHoldTouch::sInstance)) {
+        if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHold)) || isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHoldTouch))) {
             mRadius = ::sHandRadius;
         } else {
             mRadius = ::sNormalRadius;
@@ -321,7 +321,7 @@ void StarPointerLayout::tearDownHold() {
 
 void StarPointerLayout::exeRelease() {
     if (isTouch()) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvOnReaction::sInstance);
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvOnReaction));
         return;
     }
 
@@ -355,12 +355,12 @@ void StarPointerLayout::exeRelease() {
     }
 
     if (MR::testCorePadButtonA(mPadChannel)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvGrip::sInstance);
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvGrip));
         return;
     }
 
     if (MR::isGreaterStep(this, ::hReleaseTime)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvWait));
     }
 }
 
@@ -392,12 +392,12 @@ void StarPointerLayout::exeOnReaction() {
     }
 
     if (MR::testCorePadButtonA(mPadChannel)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvGrip::sInstance);
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvGrip));
         return;
     }
 
     if (!isTouch()) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvWait));
     }
 }
 
@@ -439,20 +439,20 @@ void StarPointerLayout::exeOutScreen() {
 
     if (MR::isStarPointerInScreen(mPadChannel)) {
         if (MR::testCorePadButtonA(mPadChannel)) {
-            setNerve(&NrvStarPointerLayout::HostTypeNrvGrip::sInstance);
+            setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvGrip));
         } else {
-            setNerve(&NrvStarPointerLayout::HostTypeNrvWait::sInstance);
+            setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvWait));
         }
         return;
     }
 
     if (mCommandStream->mWorldPos != nullptr && MR::testCorePadButtonA(mPadChannel)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvOutScreen::sInstance);
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvOutScreen));
         return;
     }
 
     if (MR::isGreaterStep(this, ::sBeginHideTime)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvHide::sInstance);
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHide));
     }
 }
 
@@ -473,12 +473,11 @@ void StarPointerLayout::exeHide() {
             MR::hidePane(this, "PicNozzle");
         }
 
-        if (isNerve(&NrvStarPointerLayout::HostTypeNrvHideImmediately::sInstance)) {
+        if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHideImmediately))) {
             MR::hidePaneRecursive(this, "HandPointer");
             MR::hidePaneRecursive(this, "StarPointer");
-        } else if (isNerve(&NrvStarPointerLayout::HostTypeNrvNotConnected::sInstance) ||
-                   isNerve(&NrvStarPointerLayout::HostTypeNrvInvalidate::sInstance) ||
-                   isNerve(&NrvStarPointerLayout::HostTypeNrvInvalidateWait::sInstance)) {
+        } else if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvNotConnected)) || isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvInvalidate)) ||
+                   isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvInvalidateWait))) {
             MR::hideLayout(this);
             MR::stopAnimFrame(this);
             MR::offCalcAnim(this);
@@ -497,9 +496,9 @@ void StarPointerLayout::exeHide() {
         mCommandStream->hide();
     }
 
-    if (isNerve(&NrvStarPointerLayout::HostTypeNrvHide::sInstance) || isNerve(&NrvStarPointerLayout::HostTypeNrvHideImmediately::sInstance)) {
+    if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHide)) || isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHideImmediately))) {
         if (MR::isStarPointerInScreen(mPadChannel)) {
-            setNerve(&NrvStarPointerLayout::HostTypeNrvWait::sInstance);
+            setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvWait));
         }
     }
 }
@@ -559,24 +558,23 @@ void StarPointerLayout::control() {
     mNumber->movement();
     MR::convertPaneLocalPosToScreenPos(&mPosition, MR::getRootPane(this), TVec2f(0.0f, 0.0f));
 
-    if (isNerve(&NrvStarPointerLayout::HostTypeNrvNotConnected::sInstance)) {
+    if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvNotConnected))) {
         if (MR::isConnectedWPad(mPadChannel)) {
             hideAll();
-            setNerve(&NrvStarPointerLayout::HostTypeNrvHideImmediately::sInstance);
+            setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHideImmediately));
         }
         return;
     }
 
     if (!MR::isConnectedWPad(mPadChannel)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvNotConnected::sInstance);
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvNotConnected));
         return;
     }
 
     if (mPadChannel == WPAD_CHAN0) {
         if (mPointerKind == StarPointerKind_HandPointerReactionWithCrossCursor &&
-            (getAnimType() == AnimType_HandGuu || getAnimType() == AnimType_HandPaa) && !isNerve(&NrvStarPointerLayout::HostTypeNrvHide::sInstance) &&
-            !isNerve(&NrvStarPointerLayout::HostTypeNrvHideImmediately::sInstance) &&
-            !isNerve(&NrvStarPointerLayout::HostTypeNrvOutScreen::sInstance)) {
+            (getAnimType() == AnimType_HandGuu || getAnimType() == AnimType_HandPaa) && !isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHide)) &&
+            !isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHideImmediately)) && !isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvOutScreen))) {
             MR::showPane(this, "HandArrow");
         } else {
             MR::hidePane(this, "HandArrow");
@@ -590,19 +588,19 @@ void StarPointerLayout::control() {
     mStartDisableShoot = false;
 
     if (!isAppear()) {
-        if (!isNerve(&NrvStarPointerLayout::HostTypeNrvInvalidate::sInstance)) {
-            setNerve(&NrvStarPointerLayout::HostTypeNrvInvalidate::sInstance);
+        if (!isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvInvalidate))) {
+            setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvInvalidate));
         }
         setPosition();
         return;
     }
 
-    if (isNerve(&NrvStarPointerLayout::HostTypeNrvInvalidate::sInstance) || isNerve(&NrvStarPointerLayout::HostTypeNrvInvalidateWait::sInstance)) {
+    if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvInvalidate)) || isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvInvalidateWait))) {
         if (MR::isStarPointerInScreen(mPadChannel)) {
-            setNerve(&NrvStarPointerLayout::HostTypeNrvWait::sInstance);
+            setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvWait));
         } else {
             hideAll();
-            setNerve(&NrvStarPointerLayout::HostTypeNrvHideImmediately::sInstance);
+            setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHideImmediately));
         }
         setPosition();
         return;
@@ -610,8 +608,8 @@ void StarPointerLayout::control() {
 
     if (!MR::isStarPointerInScreen(mPadChannel)) {
         StarPointerController* controller = StarPointerFunction::getStarPointerDirector()->getStarPointerController(mPadChannel);
-        if (!isNerve(&NrvStarPointerLayout::HostTypeNrvOutScreen::sInstance) && !isNerve(&NrvStarPointerLayout::HostTypeNrvHide::sInstance) &&
-            !isNerve(&NrvStarPointerLayout::HostTypeNrvHideImmediately::sInstance)) {
+        if (!isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvOutScreen)) && !isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHide)) &&
+            !isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHideImmediately))) {
             if (controller->isOutScreenLong()) {
                 if (mPointerKind == StarPointerKind_StarPointer) {
                     if (MR::isHiddenPane(this, "StarPointer")) {
@@ -622,7 +620,7 @@ void StarPointerLayout::control() {
                 } else if (mPointerKind == StarPointerKind_HandPointer) {
                     startAnimHandPaa();
                 }
-                setNerve(&NrvStarPointerLayout::HostTypeNrvOutScreen::sInstance);
+                setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvOutScreen));
                 rotateTest();
                 return;
             }
@@ -637,7 +635,7 @@ void StarPointerLayout::control() {
     if (mPadChannel == WPAD_CHAN1) {
         MR::startAnim(this, "Transparency", 1);
 
-        if (MR::isStarPointer2PTransparencyMode() && !isNerve(&NrvStarPointerLayout::HostTypeNrvHide::sInstance)) {
+        if (MR::isStarPointer2PTransparencyMode() && !isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHide))) {
             mBlur->setPortAndColor(mPadChannel, &::sColorB[mPadChannel], &::sColorB[mPadChannel]);
             MR::setAnimFrameAndStop(this, 1.0f, 1);
         } else {
@@ -741,7 +739,7 @@ void StarPointerLayout::changeLayout(StarPointerKind pointerKind) {
 
     mPointerKind = pointerKind;
 
-    if (!isNerve(&NrvStarPointerLayout::HostTypeNrvHide::sInstance) && !isNerve(&NrvStarPointerLayout::HostTypeNrvHideImmediately::sInstance)) {
+    if (!isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHide)) && !isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHideImmediately))) {
         calcAnim();
     }
 
@@ -753,11 +751,11 @@ bool StarPointerLayout::isChanceToRumble() const {
         return true;
     }
 
-    if (isNerve(&NrvStarPointerLayout::HostTypeNrvOnReaction::sInstance) && MR::isStep(this, 1)) {
+    if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvOnReaction)) && MR::isStep(this, 1)) {
         return true;
     }
 
-    if (isNerve(&NrvStarPointerLayout::HostTypeNrvGrip::sInstance) && MR::isStep(this, 1)) {
+    if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvGrip)) && MR::isStep(this, 1)) {
         return true;
     }
 
@@ -769,53 +767,53 @@ void StarPointerLayout::hideBlur() {
 }
 
 void StarPointerLayout::resetSameNerve() {
-    if (isNerve(&NrvStarPointerLayout::HostTypeNrvWait::sInstance)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvWait::sInstance);
+    if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvWait))) {
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvWait));
         return;
     }
 
-    if (isNerve(&NrvStarPointerLayout::HostTypeNrvOnReaction::sInstance)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvOnReaction::sInstance);
+    if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvOnReaction))) {
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvOnReaction));
         return;
     }
 
-    if (isNerve(&NrvStarPointerLayout::HostTypeNrvGrip::sInstance)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvGrip::sInstance);
+    if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvGrip))) {
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvGrip));
         return;
     }
 
-    if (isNerve(&NrvStarPointerLayout::HostTypeNrvHold::sInstance)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvHold::sInstance);
+    if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHold))) {
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHold));
         return;
     }
 
-    if (isNerve(&NrvStarPointerLayout::HostTypeNrvHoldTouch::sInstance)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvHoldTouch::sInstance);
+    if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHoldTouch))) {
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHoldTouch));
         return;
     }
 
-    if (isNerve(&NrvStarPointerLayout::HostTypeNrvRelease::sInstance)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvRelease::sInstance);
+    if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvRelease))) {
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvRelease));
         return;
     }
 
-    if (isNerve(&NrvStarPointerLayout::HostTypeNrvOutScreen::sInstance)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvOutScreen::sInstance);
+    if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvOutScreen))) {
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvOutScreen));
         return;
     }
 
-    if (isNerve(&NrvStarPointerLayout::HostTypeNrvNotConnected::sInstance)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvNotConnected::sInstance);
+    if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvNotConnected))) {
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvNotConnected));
         return;
     }
 
-    if (isNerve(&NrvStarPointerLayout::HostTypeNrvInvalidate::sInstance)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvInvalidate::sInstance);
+    if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvInvalidate))) {
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvInvalidate));
         return;
     }
 
-    if (isNerve(&NrvStarPointerLayout::HostTypeNrvInvalidateWait::sInstance)) {
-        setNerve(&NrvStarPointerLayout::HostTypeNrvInvalidateWait::sInstance);
+    if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvInvalidateWait))) {
+        setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvInvalidateWait));
         return;
     }
 }
@@ -930,12 +928,12 @@ void StarPointerNumber::control() {
 }
 
 bool StarPointerNumber::isOffState() const {
-    return mParent->isNerve(&NrvStarPointerLayout::HostTypeNrvOutScreen::sInstance) ||
-           mParent->isNerve(&NrvStarPointerLayout::HostTypeNrvNotConnected::sInstance) ||
-           mParent->isNerve(&NrvStarPointerLayout::HostTypeNrvHide::sInstance) ||
-           mParent->isNerve(&NrvStarPointerLayout::HostTypeNrvHideImmediately::sInstance) ||
-           mParent->isNerve(&NrvStarPointerLayout::HostTypeNrvInvalidate::sInstance) ||
-           mParent->isNerve(&NrvStarPointerLayout::HostTypeNrvInvalidateWait::sInstance);
+    return mParent->isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvOutScreen)) ||
+           mParent->isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvNotConnected)) ||
+           mParent->isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHide)) ||
+           mParent->isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHideImmediately)) ||
+           mParent->isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvInvalidate)) ||
+           mParent->isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvInvalidateWait));
 }
 
 void StarPointerNumber::startAnimPosition(u32 animType) {

@@ -41,14 +41,14 @@ void HipDropMoveObj::init(const JMapInfoIter& rIter) {
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     MR::setGroupClipping(this, rIter, 8);
     MR::useStageSwitchWriteA(this, rIter);
-    initNerve(&NrvHipDropMoveObj::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(HipDropMoveObj, HostTypeWait));
     MR::tryRegisterDemoCast(this, rIter);
     makeActorAppeared();
 }
 
 bool HipDropMoveObj::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerHipDropFloor(msg)) {
-        if (!isNerve(&NrvHipDropMoveObj::HostTypeWait::sInstance)) {
+        if (!isNerve(GET_NERVE(HipDropMoveObj, HostTypeWait))) {
             return false;
         } else {
             f32 radius = pReceiver->mRadius;
@@ -57,7 +57,7 @@ bool HipDropMoveObj::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSens
                 return false;
             }
 
-            setNerve(&NrvHipDropMoveObj::HostTypeMove::sInstance);
+            setNerve(GET_NERVE(HipDropMoveObj, HostTypeMove));
             return true;
         }
     }
@@ -133,7 +133,7 @@ void HipDropMoveObj::exeMove() {
         }
 
         moveEnd();
-        setNerve(&NrvHipDropMoveObj::HostTypeDone::sInstance);
+        setNerve(GET_NERVE(HipDropMoveObj, HostTypeDone));
     }
 }
 

@@ -27,7 +27,7 @@ void CannonFortressBreakStep::init(const JMapInfoIter& rIter) {
     info.setupRotator();
     info.setupEffect(nullptr);
     info.setupSound(6);
-    info.setupNerve(&NrvCannonFortressBreakStep::CannonFortressBreakStepNrvWait::sInstance);
+    info.setupNerve(GET_NERVE(CannonFortressBreakStep, CannonFortressBreakStepNrvWait));
     initialize(rIter, info);
     MapObjActorUtil::startAllMapPartsFunctions(this);
 }
@@ -43,7 +43,7 @@ void CannonFortressBreakStep::exeFallStart() {
         MR::startSound(this, "SE_OJ_CNFORT_BKSTEP_FALL_ST");
     }
 
-    setNerve(&NrvCannonFortressBreakStep::CannonFortressBreakStepNrvFall::sInstance);
+    setNerve(GET_NERVE(CannonFortressBreakStep, CannonFortressBreakStepNrvFall));
 }
 
 void CannonFortressBreakStep::exeFall() {
@@ -54,7 +54,7 @@ void CannonFortressBreakStep::exeFall() {
     MR::startLevelSound(this, "SE_OJ_LV_CNFORT_BKSTEP_FALL");
 
     if (MR::isStep(this, ::sStepForFall)) {
-        setNerve(&NrvCannonFortressBreakStep::CannonFortressBreakStepNrvBreak::sInstance);
+        setNerve(GET_NERVE(CannonFortressBreakStep, CannonFortressBreakStepNrvBreak));
     }
 }
 
@@ -67,7 +67,7 @@ void CannonFortressBreakStep::exeBreak() {
 }
 
 void CannonFortressBreakStep::startFall() {
-    setNerve(&NrvCannonFortressBreakStep::CannonFortressBreakStepNrvFallStart::sInstance);
+    setNerve(GET_NERVE(CannonFortressBreakStep, CannonFortressBreakStepNrvFallStart));
 }
 
 void CannonFortressBreakStep::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {

@@ -24,7 +24,7 @@ IconAButton::IconAButton(bool connectToScene, bool connectToPause) : LayoutActor
 
 void IconAButton::init(const JMapInfoIter& rIter) {
     initLayoutManager("IconAButton", 1);
-    initNerve(&NrvIconAButton::IconAButtonNrvOpen::sInstance);
+    initNerve(GET_NERVE(IconAButton, IconAButtonNrvOpen));
     MR::startAnim(this, "Appear", 0);
     MR::setAnimFrameAndStop(this, 0.0f, 0);
     kill();
@@ -42,14 +42,14 @@ bool IconAButton::isOpen() {
 }
 
 bool IconAButton::isWait() {
-    return isNerve(&NrvIconAButton::IconAButtonNrvWait::sInstance);
+    return isNerve(GET_NERVE(IconAButton, IconAButtonNrvWait));
 }
 
 void IconAButton::open() {
     appear();
     updateFollowPos();
     MR::showPane(this, "PicPlate");
-    setNerve(&NrvIconAButton::IconAButtonNrvOpen::sInstance);
+    setNerve(GET_NERVE(IconAButton, IconAButtonNrvOpen));
 }
 
 void IconAButton::openWithTalk() {
@@ -89,8 +89,8 @@ void IconAButton::openWithoutMessage() {
 }
 
 void IconAButton::term() {
-    if (isOpen() && (isNerve(&NrvIconAButton::IconAButtonNrvWait::sInstance) || isNerve(&NrvIconAButton::IconAButtonNrvOpen::sInstance))) {
-        setNerve(&NrvIconAButton::IconAButtonNrvTerm::sInstance);
+    if (isOpen() && (isNerve(GET_NERVE(IconAButton, IconAButtonNrvWait)) || isNerve(GET_NERVE(IconAButton, IconAButtonNrvOpen)))) {
+        setNerve(GET_NERVE(IconAButton, IconAButtonNrvTerm));
     }
 }
 
@@ -100,7 +100,7 @@ void IconAButton::exeOpen() {
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&NrvIconAButton::IconAButtonNrvWait::sInstance);
+        setNerve(GET_NERVE(IconAButton, IconAButtonNrvWait));
     }
 }
 

@@ -2,7 +2,7 @@
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/MapObj/BenefitItemObj.hpp"
+#include "Game/MapObj/BenefitItemOneUp.hpp"
 #include "Game/MapObj/BlueChip.hpp"
 #include "Game/MapObj/Coin.hpp"
 #include "Game/MapObj/YellowChip.hpp"

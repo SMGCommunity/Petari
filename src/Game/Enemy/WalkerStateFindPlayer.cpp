@@ -24,7 +24,7 @@ WalkerStateFindPlayer::WalkerStateFindPlayer(LiveActor* pHost, TVec3f* pDirectio
                                              WalkerStateFindPlayerParam* pFindPlayerParam)
     : ActorStateBase< LiveActor >("歩行型プレイヤー発見挙動", pHost), mDirection(pDirection), mStateParam(pStateParam),
       mFindPlayerParam(pFindPlayerParam) {
-    initNerve(&NrvWalkerStateFindPlayer::WalkerStateFindPlayerNrvFind::sInstance);
+    initNerve(GET_NERVE(WalkerStateFindPlayer, WalkerStateFindPlayerNrvFind));
     if (mFindPlayerParam == nullptr) {
         mFindPlayerParam = &::sDefaultParam;
     }
@@ -32,7 +32,7 @@ WalkerStateFindPlayer::WalkerStateFindPlayer(LiveActor* pHost, TVec3f* pDirectio
 
 void WalkerStateFindPlayer::appear() {
     mIsDead = false;
-    setNerve(&NrvWalkerStateFindPlayer::WalkerStateFindPlayerNrvFind::sInstance);
+    setNerve(GET_NERVE(WalkerStateFindPlayer, WalkerStateFindPlayerNrvFind));
 }
 
 void WalkerStateFindPlayer::exeFind() {
@@ -44,7 +44,7 @@ void WalkerStateFindPlayer::exeFind() {
     MR::turnDirectionToTargetUseGroundNormalDegree(getHost(), mDirection, *MR::getPlayerPos(), mFindPlayerParam->mTurnMaxRateDegree);
 
     if (MR::isStep(this, mFindPlayerParam->mJumpStartStep)) {
-        setNerve(&NrvWalkerStateFindPlayer::WalkerStateFindPlayerNrvFindJumpStart::sInstance);
+        setNerve(GET_NERVE(WalkerStateFindPlayer, WalkerStateFindPlayerNrvFindJumpStart));
     }
 }
 
@@ -56,7 +56,7 @@ void WalkerStateFindPlayer::exeFindJumpStart() {
     WalkerStateFunction::calcPassiveMovement(getHost(), mStateParam);
 
     if (MR::isBckStopped(getHost())) {
-        setNerve(&NrvWalkerStateFindPlayer::WalkerStateFindPlayerNrvFindJump::sInstance);
+        setNerve(GET_NERVE(WalkerStateFindPlayer, WalkerStateFindPlayerNrvFindJump));
     }
 }
 
@@ -69,7 +69,7 @@ void WalkerStateFindPlayer::exeFindJump() {
     WalkerStateFunction::calcPassiveMovement(getHost(), mStateParam);
 
     if (MR::isBindedGround(getHost()) && MR::isGreaterStep(this, 5)) {
-        setNerve(&NrvWalkerStateFindPlayer::WalkerStateFindPlayerNrvFindJumpEnd::sInstance);
+        setNerve(GET_NERVE(WalkerStateFindPlayer, WalkerStateFindPlayerNrvFindJumpEnd));
     }
 }
 
@@ -90,9 +90,9 @@ bool WalkerStateFindPlayer::isInSightPlayer() const {
 }
 
 bool WalkerStateFindPlayer::isFindJumpBegin() const {
-    return isNerve(&NrvWalkerStateFindPlayer::WalkerStateFindPlayerNrvFindJump::sInstance) && MR::isFirstStep(this);
+    return isNerve(GET_NERVE(WalkerStateFindPlayer, WalkerStateFindPlayerNrvFindJump)) && MR::isFirstStep(this);
 }
 
 bool WalkerStateFindPlayer::isLandStart() const {
-    return isNerve(&NrvWalkerStateFindPlayer::WalkerStateFindPlayerNrvFindJumpEnd::sInstance) && MR::isFirstStep(this);
+    return isNerve(GET_NERVE(WalkerStateFindPlayer, WalkerStateFindPlayerNrvFindJumpEnd)) && MR::isFirstStep(this);
 }

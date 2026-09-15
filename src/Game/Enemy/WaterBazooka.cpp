@@ -127,7 +127,7 @@ void WaterBazooka::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchReadA(this, rIter);
     MR::useStageSwitchWriteDead(this, rIter);
 
-    initNerve(&NrvWaterBazooka::WaterBazookaNrvWait::sInstance);
+    initNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvWait));
 
     if (MR::isEqualStageName("OceanPhantomCaveGalaxy")) {
         u32 a1 = 0;
@@ -223,7 +223,7 @@ bool WaterBazooka::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
             return true;
         }
 
-        if (isNerve(&NrvWaterBazooka::WaterBazookaNrvStorm::sInstance)) {
+        if (isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvStorm))) {
             MR::sendMsgEnemyAttackFlip(pSender, pReceiver);
             return true;
         }
@@ -236,17 +236,17 @@ bool WaterBazooka::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
 
 bool WaterBazooka::isFirstShoot() const {
     if (MR::isFirstStep(this)) {
-        return isNerve(&NrvWaterBazooka::WaterBazookaNrvShot::sInstance);
+        return isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvShot));
     }
     return false;
 }
 
 bool WaterBazooka::isTired() const {
-    return isNerve(&NrvWaterBazooka::WaterBazookaNrvTire::sInstance);
+    return isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvTire));
 }
 
 bool WaterBazooka::isPanic() const {
-    return isNerve(&NrvWaterBazooka::WaterBazookaNrvPanic::sInstance) || isNerve(&NrvWaterBazooka::WaterBazookaNrvStorm::sInstance);
+    return isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvPanic)) || isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvStorm));
 }
 
 bool WaterBazooka::isBazookaPinch() const {
@@ -267,7 +267,7 @@ void WaterBazooka::exeWaitForBattle() {
     bool start = !MR::isValidSwitchA(this) || MR::isOnSwitchA(this) || MR::isStageStateScenarioOpeningCamera();
 
     if (start) {
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvWait::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvWait));
     }
 }
 
@@ -277,12 +277,12 @@ void WaterBazooka::exeWait() {
     }
 
     if (mShooter->isLaughed()) {
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvWaitForLaugh::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvWaitForLaugh));
         return;
     }
 
     if (MR::isGreaterStep(this, 0) && !MR::isPlayerHidden()) {
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvAim::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvAim));
         return;
     }
 
@@ -302,12 +302,12 @@ void WaterBazooka::exeAim() {
     }
 
     if (aimAtMario()) {
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvAimEnd::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvAimEnd));
         return;
     }
 
     if (MR::isGreaterEqualStep(this, 60)) {
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvAimEnd::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvAimEnd));
     }
 }
 
@@ -323,9 +323,9 @@ void WaterBazooka::exeAimEnd() {
 
     if (MR::isBckStopped(this)) {
         if (isBazookaPinch() && !mIsElectric) {
-            setNerve(&NrvWaterBazooka::WaterBazookaNrvShotNoMotion::sInstance);
+            setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvShotNoMotion));
         } else {
-            setNerve(&NrvWaterBazooka::WaterBazookaNrvShot::sInstance);
+            setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvShot));
         }
     }
 }
@@ -348,14 +348,14 @@ void WaterBazooka::exeShot() {
     if (MR::isBckStopped(this)) {
         if (mShotNum >= 3) {
             mShotNum = 0;
-            setNerve(&NrvWaterBazooka::WaterBazookaNrvTire::sInstance);
+            setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvTire));
             return;
         }
 
         if (isBazookaPinch() && !mIsElectric) {
-            setNerve(&NrvWaterBazooka::WaterBazookaNrvShotNoMotion::sInstance);
+            setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvShotNoMotion));
         } else {
-            setNerve(&NrvWaterBazooka::WaterBazookaNrvWaitForLaugh::sInstance);
+            setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvWaitForLaugh));
         }
     }
 }
@@ -371,18 +371,18 @@ void WaterBazooka::exeShotNoMotion() {
     aimAtMario();
 
     if (mShooter->isLaughed()) {
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvWaitForLaugh::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvWaitForLaugh));
         return;
     }
 
     if (MR::isStep(this, 30)) {
         if (mShotNum >= 5) {
             mShotNum = 0;
-            setNerve(&NrvWaterBazooka::WaterBazookaNrvTire::sInstance);
+            setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvTire));
             return;
         }
 
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvShotNoMotion::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvShotNoMotion));
     }
 }
 
@@ -392,12 +392,12 @@ void WaterBazooka::exeTire() {
     }
 
     if (mShooter->isLaughed()) {
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvWaitForLaugh::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvWaitForLaugh));
         return;
     }
 
     if (MR::isStep(this, 120)) {
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvWait::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvWait));
     }
 }
 
@@ -420,7 +420,7 @@ void WaterBazooka::exeDemoCrackCapsule() {
         MR::appearStarPiece(this, starPieceSpawnPos, 8, 25.0f, 40.0f, false);
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         MR::validateCollisionParts(mCapsule);
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvWait::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvWait));
     }
 }
 
@@ -465,7 +465,7 @@ void WaterBazooka::exeDemoAnger() {
         MR::appearStarPiece(this, starPieceSpawnPos, 16, 25.0f, 40.0f, false);
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         MR::validateCollisionParts(mCapsule);
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvWait::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvWait));
     }
 }
 
@@ -478,7 +478,7 @@ void WaterBazooka::exeDemoBreakWait() {
     }
 
     if (MR::isStep(this, 5)) {
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvDemoBreakSign::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoBreakSign));
     }
 }
 
@@ -499,7 +499,7 @@ void WaterBazooka::exeDemoBreakSign() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvDemoBreakExplosion::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoBreakExplosion));
     }
 }
 
@@ -539,7 +539,7 @@ void WaterBazooka::exeDemoBreakExplosion() {
 
     if (MR::isBckStopped(mBreakModel)) {
         mBreakModel->kill();
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvDemoBreakEnd::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoBreakEnd));
     }
 }
 
@@ -556,7 +556,7 @@ void WaterBazooka::exeWaitForLaugh() {
     if (mShooter->isLaughed()) {
         mShotNum = 0;
     } else {
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvWait::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvWait));
     }
 }
 
@@ -571,7 +571,7 @@ void WaterBazooka::exePanic() {
     bool playerOn = MR::isOnPlayer(getSensor("cannon")) || mCapsule->isPlayerOnCapsule();
 
     if (!playerOn && MR::isOnGroundPlayer()) {
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvWait::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvWait));
         return;
     }
 
@@ -586,7 +586,7 @@ void WaterBazooka::exePanic() {
     }
 
     if (MR::isStep(this, 300)) {
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvStorm::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvStorm));
     }
 }
 
@@ -612,7 +612,7 @@ void WaterBazooka::exeStorm() {
     }
 
     if (MR::isStep(this, 150)) {
-        setNerve(&NrvWaterBazooka::WaterBazookaNrvWait::sInstance);
+        setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvWait));
     }
 }
 
@@ -673,7 +673,7 @@ void WaterBazooka::startDemoCrackCapsule() {
     MR::requestStartDemoRegisteredMarioPuppetable(this, nullptr, nullptr, "カプセル破壊");
     mCapsule->crackCapsule();
     MR::invalidateCollisionParts(mCapsule);
-    setNerve(&NrvWaterBazooka::WaterBazookaNrvDemoCrackCapsule::sInstance);
+    setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoCrackCapsule));
 }
 
 void WaterBazooka::startDemoAnger() {
@@ -682,7 +682,7 @@ void WaterBazooka::startDemoAnger() {
     }
     mCapsule->crackCapsule();
     MR::invalidateCollisionParts(mCapsule);
-    setNerve(&NrvWaterBazooka::WaterBazookaNrvDemoAnger::sInstance);
+    setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoAnger));
 }
 
 void WaterBazooka::startDemoBreakCapsule() {
@@ -690,7 +690,7 @@ void WaterBazooka::startDemoBreakCapsule() {
     mShooter->panicDeath();
     mCapsule->breakCapsule();
     MR::invalidateCollisionParts(mCapsule);
-    setNerve(&NrvWaterBazooka::WaterBazookaNrvDemoBreakWait::sInstance);
+    setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoBreakWait));
 }
 
 bool WaterBazooka::aimAtMario() {
@@ -729,8 +729,7 @@ bool WaterBazooka::aimAtMario() {
 }
 
 void WaterBazooka::switchShowOrHide() {
-    if (isNerve(&NrvWaterBazooka::WaterBazookaNrvDemoBreakExplosion::sInstance) ||
-        isNerve(&NrvWaterBazooka::WaterBazookaNrvDemoBreakEnd::sInstance)) {
+    if (isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoBreakExplosion)) || isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoBreakEnd))) {
         MR::hideModel(this);
         return;
     }
@@ -828,7 +827,7 @@ bool WaterBazooka::tryWaitForBattle() {
         return false;
     }
 
-    setNerve(&NrvWaterBazooka::WaterBazookaNrvWaitForBattle::sInstance);
+    setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvWaitForBattle));
     return true;
 }
 
@@ -837,7 +836,7 @@ bool WaterBazooka::tryPanic() {
         return false;
     }
 
-    bool b1 = isNerve(&NrvWaterBazooka::WaterBazookaNrvPanic::sInstance) || isNerve(&NrvWaterBazooka::WaterBazookaNrvStorm::sInstance);
+    bool b1 = isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvPanic)) || isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvStorm));
 
     if (b1) {
         return false;
@@ -849,15 +848,14 @@ bool WaterBazooka::tryPanic() {
         return false;
     }
 
-    setNerve(&NrvWaterBazooka::WaterBazookaNrvPanic::sInstance);
+    setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvPanic));
     return true;
 }
 
 bool WaterBazooka::isNrvDemo() const {
-    return isNerve(&NrvWaterBazooka::WaterBazookaNrvDemoCrackCapsule::sInstance) || isNerve(&NrvWaterBazooka::WaterBazookaNrvDemoAnger::sInstance) ||
-           isNerve(&NrvWaterBazooka::WaterBazookaNrvDemoBreakWait::sInstance) || isNerve(&NrvWaterBazooka::WaterBazookaNrvDemoBreakSign::sInstance) ||
-           isNerve(&NrvWaterBazooka::WaterBazookaNrvDemoBreakExplosion::sInstance) ||
-           isNerve(&NrvWaterBazooka::WaterBazookaNrvDemoBreakEnd::sInstance);
+    return isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoCrackCapsule)) || isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoAnger)) ||
+           isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoBreakWait)) || isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoBreakSign)) ||
+           isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoBreakExplosion)) || isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoBreakEnd));
 }
 
 bool WaterBazooka::isElectricLeakSign() const {

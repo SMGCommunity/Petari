@@ -49,7 +49,7 @@ void BallBeamer::init(const JMapInfoIter& rIter) {
     MR::initShadowVolumeSphere(this, 120.0f);
     initEffectKeeper(3, nullptr, nullptr);
     initSound(2, nullptr);
-    initNerve(&NrvBallBeamer::BallBeamerNrvWait::sInstance);
+    initNerve(GET_NERVE(BallBeamer, BallBeamerNrvWait));
     makeActorAppeared();
     if (MR::useStageSwitchReadA(this, rIter)) {
         MR::listenStageSwitchOnOffA(this, MR::Functor(this, &BallBeamer::syncSwitchOnA), MR::Functor(this, &BallBeamer::syncSwitchOffA));
@@ -107,8 +107,8 @@ void BallBeamer::syncSwitchOnB() {
 void BallBeamer::setupAttack() {
     if (!MR::isValidSwitchA(this) || MR::isOnSwitchA(this)) {
         MR::invalidateClipping(this);
-        if (!isNerve(&NrvBallBeamer::BallBeamerNrvAttack::sInstance)) {
-            setNerve(&NrvBallBeamer::BallBeamerNrvAttack::sInstance);
+        if (!isNerve(GET_NERVE(BallBeamer, BallBeamerNrvAttack))) {
+            setNerve(GET_NERVE(BallBeamer, BallBeamerNrvAttack));
         }
     }
 }
@@ -136,7 +136,7 @@ void BallBeamer::exeWait() {
 
 void BallBeamer::exeAttack() {
     if (MR::isGreaterEqualStep(this, 360)) {
-        setNerve(&NrvBallBeamer::BallBeamerNrvInter::sInstance);
+        setNerve(GET_NERVE(BallBeamer, BallBeamerNrvInter));
     } else {
         if (getNerveStep() % 120 >= 75 && getNerveStep() % 120 < 119) {
             MR::startLevelSound(this, "SE_EM_LV_RINGBEAM_CHARGE");
@@ -160,9 +160,9 @@ void BallBeamer::exeInter() {
 
     if (MR::isGreaterEqualStep(this, 120)) {
         if (_90) {
-            setNerve(&NrvBallBeamer::BallBeamerNrvAttack::sInstance);
+            setNerve(GET_NERVE(BallBeamer, BallBeamerNrvAttack));
         } else {
-            setNerve(&NrvBallBeamer::BallBeamerNrvWait::sInstance);
+            setNerve(GET_NERVE(BallBeamer, BallBeamerNrvWait));
         }
     }
 }

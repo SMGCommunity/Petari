@@ -57,7 +57,7 @@ void TeresaWater::init(const JMapInfoIter& rIter) {
     _A0.scaleAdd(arg0, _94, _AC);
     _B8 = &_A0;
     MR::initShadowVolumeCylinder(this, 100.0f);
-    initNerve(&NrvTeresaWater::TeresaWaterNrvMove::sInstance);
+    initNerve(GET_NERVE(TeresaWater, TeresaWaterNrvMove));
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
@@ -92,7 +92,7 @@ void TeresaWater::exeHit() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvTeresaWater::TeresaWaterNrvMove::sInstance);
+        setNerve(GET_NERVE(TeresaWater, TeresaWaterNrvMove));
     }
 }
 
@@ -102,7 +102,7 @@ void TeresaWater::exeStun() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvTeresaWater::TeresaWaterNrvMove::sInstance);
+        setNerve(GET_NERVE(TeresaWater, TeresaWaterNrvMove));
     }
 }
 
@@ -117,7 +117,7 @@ void TeresaWater::kill() {
 void TeresaWater::control() {
     _8C->updateNerve();
 
-    if (isNerve(&NrvTeresaWater::TeresaWaterNrvMove::sInstance)) {
+    if (isNerve(GET_NERVE(TeresaWater, TeresaWaterNrvMove))) {
         MR::startLevelSound(this, "SE_EM_LV_TERESA_MOVE");
     }
 
@@ -139,7 +139,7 @@ void TeresaWater::calcAndSetBaseMtx() {
 }
 
 void TeresaWater::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvTeresaWater::TeresaWaterNrvHit::sInstance)) {
+    if (isNerve(GET_NERVE(TeresaWater, TeresaWaterNrvHit))) {
         return;
     }
 
@@ -147,8 +147,8 @@ void TeresaWater::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    if (!isNerve(&NrvTeresaWater::TeresaWaterNrvDPDSwoon::sInstance) && MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
-        setNerve(&NrvTeresaWater::TeresaWaterNrvHit::sInstance);
+    if (!isNerve(GET_NERVE(TeresaWater, TeresaWaterNrvDPDSwoon)) && MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
+        setNerve(GET_NERVE(TeresaWater, TeresaWaterNrvHit));
     } else {
         MR::sendMsgPush(pReceiver, pSender);
     }
@@ -156,7 +156,7 @@ void TeresaWater::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool TeresaWater::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceAttack(msg)) {
-        setNerve(&NrvTeresaWater::TeresaWaterNrvStun::sInstance);
+        setNerve(GET_NERVE(TeresaWater, TeresaWaterNrvStun));
 
         return true;
     }
@@ -175,11 +175,11 @@ bool TeresaWater::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
 }
 
 bool TeresaWater::tryDPDSwoon() {
-    if (isNerve(&NrvTeresaWater::TeresaWaterNrvStun::sInstance)) {
+    if (isNerve(GET_NERVE(TeresaWater, TeresaWaterNrvStun))) {
         return false;
     }
 
-    if (isNerve(&NrvTeresaWater::TeresaWaterNrvDPDSwoon::sInstance)) {
+    if (isNerve(GET_NERVE(TeresaWater, TeresaWaterNrvDPDSwoon))) {
         return false;
     }
 
@@ -187,7 +187,7 @@ bool TeresaWater::tryDPDSwoon() {
         return false;
     }
 
-    setNerve(&NrvTeresaWater::TeresaWaterNrvDPDSwoon::sInstance);
+    setNerve(GET_NERVE(TeresaWater, TeresaWaterNrvDPDSwoon));
 
     return true;
 }
@@ -197,5 +197,5 @@ void TeresaWater::endDPDSwoon() {
 }
 
 void TeresaWater::exeDPDSwoon() {
-    MR::updateActorStateAndNextNerve(this, _90, &NrvTeresaWater::TeresaWaterNrvMove::sInstance);
+    MR::updateActorStateAndNextNerve(this, _90, GET_NERVE(TeresaWater, TeresaWaterNrvMove));
 }

@@ -59,7 +59,7 @@ void CocoSamboHead::init(const JMapInfoIter& rIter) {
     MR::addHitSensorAtJoint(this, "body", "Head", ATYPE_SAMBO_HEAD, 8, (::cHeadSensorRadius * mScale.x), sensorOffs);
     MR::addHitSensorAtJoint(this, "trample", "Head", ATYPE_SAMBO_HEAD, 8, (::cTrampleSensorRadius * mScale.x), sensorOffs);
     initFixedPosition(TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, -90.0f, -90.0f), "Head");
-    initNerve(&NrvCocoSamboHead::CocoSamboHeadNrvHeadConnectedBody::sInstance);
+    initNerve(GET_NERVE(CocoSamboHead, CocoSamboHeadNrvHeadConnectedBody));
     PartsModel::init(rIter);
 }
 
@@ -133,7 +133,7 @@ void CocoSamboHead::exeFall() {
     if (MR::isStep(this, ::cFallFrame)) {
         mPosition.set< f32 >(mHost->mPosition);
         mVelocity.zero();
-        setNerve(&NrvCocoSamboHead::CocoSamboHeadNrvHeadFallLand::sInstance);
+        setNerve(GET_NERVE(CocoSamboHead, CocoSamboHeadNrvHeadFallLand));
     } else {
         mVelocity += v16;
     }
@@ -147,7 +147,7 @@ void CocoSamboHead::exeFallLand() {
         MR::shakeCameraWeak();
     }
 
-    MR::setNerveAtBckStopped(this, &NrvCocoSamboHead::CocoSamboHeadNrvHeadSwoon::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE(CocoSamboHead, CocoSamboHeadNrvHeadSwoon));
 }
 
 void CocoSamboHead::exeSwoon() {
@@ -156,7 +156,7 @@ void CocoSamboHead::exeSwoon() {
     }
 
     if (MR::isStep(this, ::cSwoonFrame)) {
-        setNerve(&NrvCocoSamboHead::CocoSamboHeadNrvHeadSwoonEnd::sInstance);
+        setNerve(GET_NERVE(CocoSamboHead, CocoSamboHeadNrvHeadSwoonEnd));
     }
 }
 
@@ -172,7 +172,7 @@ void CocoSamboHead::exeSwoonEnd() {
         MR::shakeCameraNormal();
     }
 
-    MR::setNerveAtBckStopped(this, &NrvCocoSamboHead::CocoSamboHeadNrvHeadConnectedBody::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE(CocoSamboHead, CocoSamboHeadNrvHeadConnectedBody));
 }
 
 void CocoSamboHead::exeBlow() {
@@ -240,12 +240,12 @@ void CocoSambo::init(const JMapInfoIter& rIter) {
                                        TVec3f(mScale.x * 100.0f, 0.0f, 0.0f));
         mPointingActorArray[i]->makeActorAppeared();
     }
-    initNerve(&NrvCocoSambo::CocoSamboNrvHideWait::sInstance);
+    initNerve(GET_NERVE(CocoSambo, CocoSamboNrvHideWait));
     appear();
 }
 
 void CocoSambo::appear() {
-    setNerve(&NrvCocoSambo::CocoSamboNrvHideWait::sInstance);
+    setNerve(GET_NERVE(CocoSambo, CocoSamboNrvHideWait));
     LiveActor::appear();
 }
 
@@ -285,8 +285,8 @@ bool CocoSambo::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pR
 }
 
 inline bool CocoSambo::isNerveDown() {
-    return isNerve(&NrvCocoSambo::CocoSamboNrvFallHead::sInstance) || isNerve(&NrvCocoSambo::CocoSamboNrvFallHeadHide::sInstance) ||
-           isNerve(&NrvCocoSambo::CocoSamboNrvRecoverWait::sInstance);
+    return isNerve(GET_NERVE(CocoSambo, CocoSamboNrvFallHead)) || isNerve(GET_NERVE(CocoSambo, CocoSamboNrvFallHeadHide)) ||
+           isNerve(GET_NERVE(CocoSambo, CocoSamboNrvRecoverWait));
 }
 
 void CocoSambo::calcAndSetBaseMtx() {
@@ -310,14 +310,14 @@ void CocoSambo::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool CocoSambo::tryToFallHead(const HitSensor* pReceiver, const HitSensor* pSender) {
-    if (!(isNerve(&NrvCocoSambo::CocoSamboNrvAppear::sInstance) || isNerve(&NrvCocoSambo::CocoSamboNrvWait::sInstance) ||
-          isNerve(&NrvCocoSambo::CocoSamboNrvAttack::sInstance) || isNerve(&NrvCocoSambo::CocoSamboNrvAttackInterval::sInstance) ||
-          isNerve(&NrvCocoSambo::CocoSamboNrvDpdPointing::sInstance))) {
+    if (!(isNerve(GET_NERVE(CocoSambo, CocoSamboNrvAppear)) || isNerve(GET_NERVE(CocoSambo, CocoSamboNrvWait)) ||
+          isNerve(GET_NERVE(CocoSambo, CocoSamboNrvAttack)) || isNerve(GET_NERVE(CocoSambo, CocoSamboNrvAttackInterval)) ||
+          isNerve(GET_NERVE(CocoSambo, CocoSamboNrvDpdPointing)))) {
         return false;
     }
     MR::deleteEffectAll(this);
     mHitEffectScale.lerp(pReceiver->mPosition, pSender->mPosition, 0.75f);
-    setNerve(&NrvCocoSambo::CocoSamboNrvFallHead::sInstance);
+    setNerve(GET_NERVE(CocoSambo, CocoSamboNrvFallHead));
     return true;
 }
 
@@ -326,7 +326,7 @@ bool CocoSambo::tryToPress() {
         return false;
     }
     MR::deleteEffectAll(this);
-    setNerve(&NrvCocoSambo::CocoSamboNrvPressY::sInstance);
+    setNerve(GET_NERVE(CocoSambo, CocoSamboNrvPressY));
     return true;
 }
 
@@ -335,7 +335,7 @@ bool CocoSambo::tryToBlow() {
         return false;
     }
     MR::deleteEffectAll(this);
-    setNerve(&NrvCocoSambo::CocoSamboNrvBlow::sInstance);
+    setNerve(GET_NERVE(CocoSambo, CocoSamboNrvBlow));
     return true;
 }
 
@@ -343,7 +343,7 @@ bool CocoSambo::tryStarPieceReflect() {
     if (isNerveDying()) {
         return false;
     }
-    if (!isNerve(&NrvCocoSambo::CocoSamboNrvDpdPointing::sInstance)) {
+    if (!isNerve(GET_NERVE(CocoSambo, CocoSamboNrvDpdPointing))) {
         mAnimScaleController->startHitReaction();
     }
     return true;
@@ -392,7 +392,7 @@ void CocoSambo::dirToPlayer(f32 f) {
 bool CocoSambo::tryDpdPointing(const Nerve* pNerve) {
     if (isPointing()) {
         mDpdPointingEndNerve = pNerve;
-        setNerve(&NrvCocoSambo::CocoSamboNrvDpdPointing::sInstance);
+        setNerve(GET_NERVE(CocoSambo, CocoSamboNrvDpdPointing));
         return true;
     }
     return false;
@@ -414,12 +414,12 @@ void CocoSambo::exeHideWait() {
         MR::invalidateHitSensors(mHead);
     }
     if (MR::isNearPlayer(this, mPlayerSearchDistance)) {
-        setNerve(&NrvCocoSambo::CocoSamboNrvAppear::sInstance);
+        setNerve(GET_NERVE(CocoSambo, CocoSamboNrvAppear));
     }
 }
 
 bool CocoSambo::isNerveDying() {
-    return isNerve(&NrvCocoSambo::CocoSamboNrvPressY::sInstance) || isNerve(&NrvCocoSambo::CocoSamboNrvBlow::sInstance);
+    return isNerve(GET_NERVE(CocoSambo, CocoSamboNrvPressY)) || isNerve(GET_NERVE(CocoSambo, CocoSamboNrvBlow));
 }
 
 void CocoSambo::startBckThisAndHead(const char* pBckName) {
@@ -449,8 +449,8 @@ void CocoSambo::exeAppear() {
     }
 
     dirToPlayer(1.0f);
-    if (!MR::isGreaterStep(this, ::cAppearLandFrame) || !tryDpdPointing(&NrvCocoSambo::CocoSamboNrvWait::sInstance)) {
-        MR::setNerveAtBckStopped(this, &NrvCocoSambo::CocoSamboNrvWait::sInstance);
+    if (!MR::isGreaterStep(this, ::cAppearLandFrame) || !tryDpdPointing(GET_NERVE(CocoSambo, CocoSamboNrvWait))) {
+        MR::setNerveAtBckStopped(this, GET_NERVE(CocoSambo, CocoSamboNrvWait));
     }
 }
 
@@ -462,13 +462,13 @@ void CocoSambo::exeWait() {
         MR::deleteEffectAll(this);
     }
     dirToPlayer(1.0f);
-    if (tryDpdPointing(&NrvCocoSambo::CocoSamboNrvWait::sInstance)) {
+    if (tryDpdPointing(GET_NERVE(CocoSambo, CocoSamboNrvWait))) {
         return;
     }
     if (MR::isNearPlayer(this, 700.0f)) {
-        setNerve(&NrvCocoSambo::CocoSamboNrvAttack::sInstance);
+        setNerve(GET_NERVE(CocoSambo, CocoSamboNrvAttack));
     } else if (!MR::isNearPlayer(this, mPlayerSearchDistance + 100.0f)) {
-        setNerve(&NrvCocoSambo::CocoSamboNrvHide::sInstance);
+        setNerve(GET_NERVE(CocoSambo, CocoSamboNrvHide));
     }
 }
 
@@ -483,7 +483,7 @@ void CocoSambo::exeHide() {
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::shakeCameraWeak();
     }
-    MR::setNerveAtBckStopped(this, &NrvCocoSambo::CocoSamboNrvHideWait::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE(CocoSambo, CocoSamboNrvHideWait));
 }
 
 void CocoSambo::exeAttack() {
@@ -493,13 +493,13 @@ void CocoSambo::exeAttack() {
     if (MR::getBckFrame(this) < 30.0f) {
         dirToPlayer(1.0f);
     }
-    if (!tryDpdPointing(&NrvCocoSambo::CocoSamboNrvAttack::sInstance)) {
+    if (!tryDpdPointing(GET_NERVE(CocoSambo, CocoSamboNrvAttack))) {
         if (MR::checkPassBckFrame(this, 115.0f)) {
             MR::emitEffect(mHead, "CocoSamboAttack");
             MR::tryRumblePadStrong(this, WPAD_CHAN0);
             MR::shakeCameraNormal();
         }
-        MR::setNerveAtBckStopped(this, &NrvCocoSambo::CocoSamboNrvAttackInterval::sInstance);
+        MR::setNerveAtBckStopped(this, GET_NERVE(CocoSambo, CocoSamboNrvAttackInterval));
     }
 }
 
@@ -508,15 +508,15 @@ void CocoSambo::exeAttackInterval() {
         startBckThisAndHead("AttackInterval");
     }
     dirToPlayer(1.0f);
-    if (tryDpdPointing(&NrvCocoSambo::CocoSamboNrvWait::sInstance)) {
-        MR::setNerveAtStep(this, &NrvCocoSambo::CocoSamboNrvWait::sInstance, 60);
+    if (tryDpdPointing(GET_NERVE(CocoSambo, CocoSamboNrvWait))) {
+        MR::setNerveAtStep(this, GET_NERVE(CocoSambo, CocoSamboNrvWait), 60);
     }
 }
 
 void CocoSambo::exeFallHead() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Hit", nullptr);
-        mHead->setNerve(&NrvCocoSamboHead::CocoSamboHeadNrvHeadFall::sInstance);
+        mHead->setNerve(GET_NERVE(CocoSamboHead, CocoSamboHeadNrvHeadFall));
         MR::emitEffect(this, "Hit");
         MR::startSound(this, "SE_EM_SFSAMBO_DAMAGE");
         MR::startSound(this, "SE_EM_SFSAMBO_BLOW_HEAD");
@@ -534,7 +534,7 @@ void CocoSambo::exeFallHead() {
         MR::emitEffect(this, "DeathSmokeSpine2");
         MR::emitEffect(this, "DeathSmokeSpine3");
         MR::startSound(this, "SE_EM_EXPLODE_S");
-        setNerve(&NrvCocoSambo::CocoSamboNrvFallHeadHide::sInstance);
+        setNerve(GET_NERVE(CocoSambo, CocoSamboNrvFallHeadHide));
     }
 }
 
@@ -542,8 +542,8 @@ void CocoSambo::exeFallHeadHide() {
     if (MR::isFirstStep(this)) {
         MR::startBckNoInterpole(this, "HideWait");
     }
-    if (mHead->isNerve(&NrvCocoSamboHead::CocoSamboHeadNrvHeadConnectedBody::sInstance)) {
-        setNerve(&NrvCocoSambo::CocoSamboNrvRecoverWait::sInstance);
+    if (mHead->isNerve(GET_NERVE(CocoSamboHead, CocoSamboHeadNrvHeadConnectedBody))) {
+        setNerve(GET_NERVE(CocoSambo, CocoSamboNrvRecoverWait));
     }
 }
 
@@ -553,7 +553,7 @@ void CocoSambo::exeRecoverWait() {
         MR::setBckRate(this, 0.0f);
         MR::invalidateHitSensors(mHead);
     }
-    MR::setNerveAtStep(this, &NrvCocoSambo::CocoSamboNrvRecover::sInstance, 90);
+    MR::setNerveAtStep(this, GET_NERVE(CocoSambo, CocoSamboNrvRecover), 90);
 }
 
 void CocoSambo::exeRecover() {
@@ -564,7 +564,7 @@ void CocoSambo::exeRecover() {
         MR::showMaterial(mHead, "SanboNeedleMat_v");
     }
     dirToPlayer(180.0f);
-    MR::setNerveAtBckStopped(this, &NrvCocoSambo::CocoSamboNrvAppear::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE(CocoSambo, CocoSamboNrvAppear));
 }
 
 void CocoSambo::exePressY() {
@@ -584,7 +584,7 @@ void CocoSambo::exeBlow() {
         MR::invalidateShadow(this, nullptr);
         MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
         MR::startBlowHitSound(this);
-        mHead->setNerve(&NrvCocoSamboHead::CocoSamboHeadNrvHeadBlow::sInstance);
+        mHead->setNerve(GET_NERVE(CocoSamboHead, CocoSamboHeadNrvHeadBlow));
     }
     if (MR::isStep(this, 1)) {
         MR::stopScene(6);

@@ -58,9 +58,9 @@ void CoinGroup::init(const JMapInfoIter& rIter) {
         MR::initActorCamera(this, rIter, &mCameraInfo);
 
         if (MR::isExistActorCamera(mCameraInfo)) {
-            initNerve(&NrvCoinGroup::CoinGroupNrvDemoAppear::sInstance);
+            initNerve(GET_NERVE(CoinGroup, CoinGroupNrvDemoAppear));
         } else {
-            initNerve(&NrvCoinGroup::CoinGroupNrvAppear::sInstance);
+            initNerve(GET_NERVE(CoinGroup, CoinGroupNrvAppear));
         }
     } else {
         appearCoinFix();
@@ -110,8 +110,8 @@ void CoinGroup::setCoinTrans(s32 coinIndex, const TVec3f& rPos) {
 void CoinGroup::appear() {
     LiveActor::appear();
 
-    if (isNerve(&NrvCoinGroup::CoinGroupNrvDemoAppear::sInstance)) {
-        MR::requestStartDemo(this, "出現", &NrvCoinGroup::CoinGroupNrvDemoAppear::sInstance, &NrvCoinGroup::CoinGroupNrvTryStartDemo::sInstance);
+    if (isNerve(GET_NERVE(CoinGroup, CoinGroupNrvDemoAppear))) {
+        MR::requestStartDemo(this, "出現", GET_NERVE(CoinGroup, CoinGroupNrvDemoAppear), GET_NERVE(CoinGroup, CoinGroupNrvTryStartDemo));
     }
 }
 
@@ -124,7 +124,7 @@ void CoinGroup::exeAppear() {
         }
 
         appearCoinAll();
-        setNerve(&NrvCoinGroup::CoinGroupNrvKill::sInstance);
+        setNerve(GET_NERVE(CoinGroup, CoinGroupNrvKill));
         kill();
     }
 }
@@ -142,7 +142,7 @@ void CoinGroup::exeDemoAppear() {
     if (MR::isGreaterStep(this, 90)) {
         MR::endDemo(this, "出現");
         MR::endActorCamera(this, mCameraInfo, false, -1);
-        setNerve(&NrvCoinGroup::CoinGroupNrvKill::sInstance);
+        setNerve(GET_NERVE(CoinGroup, CoinGroupNrvKill));
         kill();
     }
 }

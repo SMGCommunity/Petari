@@ -62,7 +62,7 @@ void LavaFloater::init(const JMapInfoIter& rIter) {
         mLodCtrlPlanet = MR::createLodCtrlPlanet(this, rIter, -1.0f, -1);
     }
 
-    initNerve(&NrvLavaFloater::HostTypeFloat::sInstance);
+    initNerve(GET_NERVE(LavaFloater, HostTypeFloat));
     MR::onCalcGravity(this);
     const char* as = mObjectName;
     mFloatingForce = new FloaterFloatingForceTypeNormal(this, as);
@@ -130,7 +130,7 @@ void LavaFloater::startClipped() {
 
 void LavaFloater::endClipped() {
     LiveActor::endClipped();
-    if (isNerve(&NrvLavaFloater::HostTypeSink::sInstance)) {
+    if (isNerve(GET_NERVE(LavaFloater, HostTypeSink))) {
         MR::emitEffect(this, ::cEffectName);
     }
 }
@@ -151,7 +151,7 @@ void LavaFloater::exeFloat() {
     }
 
     if (_A8 < getCurrentSinkDepth()) {
-        setNerve(&NrvLavaFloater::HostTypeSink::sInstance);
+        setNerve(GET_NERVE(LavaFloater, HostTypeSink));
     }
 }
 
@@ -161,6 +161,6 @@ void LavaFloater::exeSink() {
     }
 
     if (MR::isNearZero(getCurrentSinkDepth() - _A8, 1.0f)) {
-        setNerve(&NrvLavaFloater::HostTypeFloat::sInstance);
+        setNerve(GET_NERVE(LavaFloater, HostTypeFloat));
     }
 }

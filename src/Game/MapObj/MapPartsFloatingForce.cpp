@@ -48,7 +48,7 @@ MapPartsFloatingForce::MapPartsFloatingForce(LiveActor* pActor) : MapPartsFuncti
 }
 
 void MapPartsFloatingForce::init(const JMapInfoIter& rIter) {
-    initNerve(&NrvMapPartsFloatingForce::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(MapPartsFloatingForce, HostTypeWait));
     MR::getMapPartsArgRotateAccelType(&mRotateAccelType, rIter);
 
     if (mRotateAccelType != 1) {
@@ -126,7 +126,7 @@ bool MapPartsFloatingForce::tryOn() {
             MR::startSound(mHost, ground_sound);
         }
 
-        setNerve(&NrvMapPartsFloatingForce::HostTypeMoveSpring::sInstance);
+        setNerve(GET_NERVE(MapPartsFloatingForce, HostTypeMoveSpring));
         return true;
     }
 
@@ -146,7 +146,7 @@ bool MapPartsFloatingForce::tryReturn() {
         }
     }
 
-    setNerve(&NrvMapPartsFloatingForce::HostTypeMoveReturn::sInstance);
+    setNerve(GET_NERVE(MapPartsFloatingForce, HostTypeMoveReturn));
     return true;
 }
 

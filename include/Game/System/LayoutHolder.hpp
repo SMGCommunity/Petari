@@ -37,8 +37,8 @@ public:
     void mount(char*);
     ResFileInfo* createAndRegisterObject(const char*, void*);
 
-    JKRArchive* mArchive;  // 0x4
-    ResTable mLayoutRes;   // 0x8
-    ResTable mAnimRes;     // 0x10
-    ResTable mResOther;    // 0x18
+    /* 0x04 */ JKRArchive* mArchive;
+    /* 0x08 */ ResTable mLayoutRes;
+    /* 0x10 */ ResTable mAnimRes;
+    /* 0x18 */ ResTable mResOther;
 };

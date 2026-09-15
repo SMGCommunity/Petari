@@ -54,11 +54,11 @@ void SimpleEffectObj::init(const JMapInfoIter& rIter) {
     MR::getObjectName(&_8C, rIter);
     initEffectKeeper(0, _8C, false);
     initSound(4, false);
-    initNerve(&NrvSimpleEffectObj::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(SimpleEffectObj, HostTypeWait));
     if (MR::useStageSwitchReadA(this, rIter)) {
         MR::listenStageSwitchOnOffA(this, MR::Functor(this, &SimpleEffectObj::setStateMove), MR::Functor(this, &SimpleEffectObj::setStateWait));
     } else {
-        setNerve(&NrvSimpleEffectObj::HostTypeMove::sInstance);
+        setNerve(GET_NERVE(SimpleEffectObj, HostTypeMove));
     }
     if (MR::tryRegisterDemoCast(this, rIter)) {
         MR::tryRegisterDemoActionFunctor(this, MR::Functor(this, &SimpleEffectObj::setStateMove), nullptr);
@@ -74,30 +74,30 @@ void SimpleEffectObj::init(const JMapInfoIter& rIter) {
 }
 
 bool SimpleEffectObj::isStateMove() const {
-    return isNerve(&NrvSimpleEffectObj::HostTypeMove::sInstance);
+    return isNerve(GET_NERVE(SimpleEffectObj, HostTypeMove));
 }
 
 void SimpleEffectObj::startClipped() {
     LiveActor::startClipped();
-    if (isSyncClipping() && isNerve(&NrvSimpleEffectObj::HostTypeMove::sInstance)) {
+    if (isSyncClipping() && isNerve(GET_NERVE(SimpleEffectObj, HostTypeMove))) {
         MR::deleteEffectAll(this);
     }
 }
 
 void SimpleEffectObj::endClipped() {
     LiveActor::endClipped();
-    if (isSyncClipping() && isNerve(&NrvSimpleEffectObj::HostTypeMove::sInstance)) {
+    if (isSyncClipping() && isNerve(GET_NERVE(SimpleEffectObj, HostTypeMove))) {
         MR::emitEffect(this, _8C);
     }
 }
 
 void SimpleEffectObj::setStateWait() {
     MR::deleteEffect(this, _8C);
-    setNerve(&NrvSimpleEffectObj::HostTypeWait::sInstance);
+    setNerve(GET_NERVE(SimpleEffectObj, HostTypeWait));
 }
 
 void SimpleEffectObj::setStateMove() {
-    setNerve(&NrvSimpleEffectObj::HostTypeMove::sInstance);
+    setNerve(GET_NERVE(SimpleEffectObj, HostTypeMove));
 }
 
 void SimpleEffectObj::exeWait() {

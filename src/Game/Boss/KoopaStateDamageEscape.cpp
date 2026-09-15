@@ -77,7 +77,7 @@ KoopaStateDamageEscape::KoopaStateDamageEscape(Koopa* pKoopa)
 }
 
 void KoopaStateDamageEscape::init() {
-    initNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvEscapeStart::sInstance);
+    initNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvEscapeStart));
 
     KoopaFunction::initKoopaCamera(mHost, "逃走開始");
     KoopaFunction::initKoopaCamera(mHost, "逃走");
@@ -140,7 +140,7 @@ void KoopaStateDamageEscape::appear() {
         }
     }
 
-    setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvEscapeStart::sInstance);
+    setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvEscapeStart));
 }
 
 void KoopaStateDamageEscape::kill() {
@@ -161,17 +161,17 @@ void KoopaStateDamageEscape::kill() {
 void KoopaStateDamageEscape::startDamageReverse() {
     KoopaFunction::startKoopaSpinHitBlow(mHost);
     KoopaFunction::changeBgmStateDamageTail();
-    setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunStart::sInstance);
+    setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunStart));
 }
 
 bool KoopaStateDamageEscape::isDownEnd() const {
     if ((KoopaFunction::isKoopaVs1(mHost) || KoopaFunction::isKoopaVs2(mHost)) && KoopaFunction::isKoopaLv3(mHost) &&
-        isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDown::sInstance) && MR::isGreaterStep(this, 45)) {
+        isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDown)) && MR::isGreaterStep(this, 45)) {
         return true;
     }
 
     if (KoopaFunction::isKoopaVs3(mHost) && KoopaFunction::isKoopaAngry(mHost) &&
-        isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDown::sInstance)) {
+        isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDown))) {
         if ((KoopaFunction::isKoopaLv1(mHost) || KoopaFunction::isKoopaLv2(mHost)) && MR::isGreaterStep(this, 45)) {
             return true;
         }
@@ -181,7 +181,7 @@ bool KoopaStateDamageEscape::isDownEnd() const {
         }
     }
 
-    return isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDownEnd::sInstance);
+    return isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDownEnd));
 }
 
 bool KoopaStateDamageEscape::tryDamage(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
@@ -189,30 +189,30 @@ bool KoopaStateDamageEscape::tryDamage(u32 msg, HitSensor* pSender, HitSensor* p
         return false;
     }
 
-    if (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvEscapeRun::sInstance) ||
-        isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvEscapeFind::sInstance) ||
-        isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvEscapeEnd::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvEscapeRun)) ||
+        isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvEscapeFind)) ||
+        isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvEscapeEnd))) {
         KoopaFunction::startKoopaSpinHitBlow(mHost);
         KoopaFunction::changeBgmStateDamageTail();
-        setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunStart::sInstance);
+        setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunStart));
 
         return true;
     }
 
     if (MR::isSensor(pReceiver, "DamageEscapeBody")) {
-        if ((isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunStart::sInstance) && MR::isGreaterStep(this, 60)) ||
-            isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRun::sInstance) ||
-            (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunEnd::sInstance) && MR::isLessStep(this, 60)) ||
-            isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunFinal::sInstance) ||
-            (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunEndFinal::sInstance) && MR::isLessStep(this, 60))) {
+        if ((isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunStart)) && MR::isGreaterStep(this, 60)) ||
+            isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRun)) ||
+            (isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunEnd)) && MR::isLessStep(this, 60)) ||
+            isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunFinal)) ||
+            (isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunEndFinal)) && MR::isLessStep(this, 60))) {
             MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
             MR::startSpinHitSound(mHost);
             MR::startBlowHitSound(mHost);
             MR::startSound(mHost, "SE_BM_KOOPA_DAMAGE_L");
 
-            if (mIsLastHit && (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunStart::sInstance) ||
-                               isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRun::sInstance) ||
-                               isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunEnd::sInstance))) {
+            if (mIsLastHit && (isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunStart)) ||
+                               isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRun)) ||
+                               isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunEnd)))) {
                 mDamageTailRunParam = &::sDamageTailRunFinalParam;
                 mMaxRunFrames = ::sDamageTailStepFinal;
 
@@ -220,15 +220,15 @@ bool KoopaStateDamageEscape::tryDamage(u32 msg, HitSensor* pSender, HitSensor* p
                 MR::startSound(mHost, "SE_BV_KOOPA_FLIP_DAMAGE_M");
                 MR::stopSceneForDefaultHit(10);
 
-                setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunStartFinal::sInstance);
+                setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunStartFinal));
 
                 return true;
             }
 
             KoopaFunction::changeBgmStateFlyAway();
 
-            if (mIsLastHit && (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunFinal::sInstance) ||
-                               isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunEndFinal::sInstance))) {
+            if (mIsLastHit && (isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunFinal)) ||
+                               isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunEndFinal)))) {
                 MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT");
                 MR::startSystemSE("SE_SY_VS_KOOPA_LAST_HIT");
                 MR::startSound(mHost, "SE_BV_KOOPA_FLIP_DAMAGE_L");
@@ -238,7 +238,7 @@ bool KoopaStateDamageEscape::tryDamage(u32 msg, HitSensor* pSender, HitSensor* p
             }
 
             MR::stopSceneForDefaultHit(20);
-            setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDown::sInstance);
+            setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDown));
 
             return true;
         }
@@ -249,10 +249,10 @@ bool KoopaStateDamageEscape::tryDamage(u32 msg, HitSensor* pSender, HitSensor* p
 
 bool KoopaStateDamageEscape::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
-        if ((isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvEscapeRun::sInstance) ||
-             (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRun::sInstance)) &&
+        if ((isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvEscapeRun)) ||
+             (isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRun))) &&
                  !(KoopaFunction::isKoopaVs1(mHost) && KoopaFunction::isKoopaLv1(mHost)) ||
-             isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunFinal::sInstance)) &&
+             isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunFinal))) &&
             MR::isSensor(pSender, "DamageEscapePush") && MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackFlipMaximum(pReceiver, pSender)) {
             return true;
         }
@@ -261,7 +261,7 @@ bool KoopaStateDamageEscape::attackSensor(HitSensor* pSender, HitSensor* pReceiv
             return true;
         }
 
-        if (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvEscapeRun::sInstance) &&
+        if (isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvEscapeRun)) &&
             KoopaFunction::tryKoopaShellAttackPlayer(pSender, pReceiver)) {
             return true;
         }
@@ -289,7 +289,7 @@ void KoopaStateDamageEscape::exeEscapeStart() {
     KoopaFunction::escapeKoopaFromPlayer(mHost, ::sEscapeStartParam);
 
     if (MR::isActionEnd(mHost)) {
-        setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvEscapeStartLoop::sInstance);
+        setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvEscapeStartLoop));
     }
 }
 
@@ -302,7 +302,7 @@ void KoopaStateDamageEscape::exeEscapeStartLoop() {
         MR::tryRumblePadAndCameraDistanceStrong(mHost, 800.0f, 1200.0f, 2000.0f);
         MR::startSound(mHost, "SE_BM_KOOPA_LAND");
 
-        setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvEscapeStartLand::sInstance);
+        setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvEscapeStartLand));
     }
 }
 
@@ -314,7 +314,7 @@ void KoopaStateDamageEscape::exeEscapeStartLand() {
     KoopaFunction::escapeKoopaFromPlayer(mHost, ::sEscapeStartParam);
 
     if (MR::isActionEnd(mHost)) {
-        setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvEscapeRun::sInstance);
+        setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvEscapeRun));
     }
 }
 
@@ -329,12 +329,12 @@ void KoopaStateDamageEscape::exeEscapeRun() {
     mEscapeTime++;
 
     if (mEscapeTime >= mMaxEscapeTime) {
-        setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvEscapeEnd::sInstance);
+        setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvEscapeEnd));
         return;
     }
 
     if (KoopaFunction::isKoopaSightPlayer(mHost, ::sEscapeFindSight)) {
-        setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvEscapeFind::sInstance);
+        setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvEscapeFind));
         return;
     }
 
@@ -360,7 +360,7 @@ void KoopaStateDamageEscape::exeEscapeFind() {
         front->z *= -1.0f;
 
         MR::startAction(mHost, "EscapeTurnEnd");
-        setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvEscapeRun::sInstance);
+        setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvEscapeRun));
     }
 }
 
@@ -379,7 +379,7 @@ void KoopaStateDamageEscape::exeEscapeEnd() {
 
 void KoopaStateDamageEscape::exeDamageTailRunStart() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunStart::sInstance)) {
+        if (isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunStart))) {
             MR::startAction(mHost, "DamageTailRunStart");
         } else {
             MR::startAction(mHost, "DamageTailRunFastStart");
@@ -406,7 +406,7 @@ void KoopaStateDamageEscape::exeDamageTailRunStart() {
     KoopaFunction::escapeKoopaFromPlayer(mHost, *mDamageTailRunParam);
     MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_SWOON");
 
-    if (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunStart::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunStart))) {
         MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_TAIL_RUN");
     } else {
         MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_TAIL_RUN_FAST");
@@ -417,17 +417,17 @@ void KoopaStateDamageEscape::exeDamageTailRunStart() {
     }
 
     if (MR::isActionEnd(mHost)) {
-        if (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunStart::sInstance)) {
-            setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRun::sInstance);
+        if (isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunStart))) {
+            setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRun));
         } else {
-            setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunFinal::sInstance);
+            setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunFinal));
         }
     }
 }
 
 void KoopaStateDamageEscape::exeDamageTailRun() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRun::sInstance)) {
+        if (isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRun))) {
             MR::startAction(mHost, "DamageTailRun");
         } else {
             MR::startAction(mHost, "DamageTailRunFast");
@@ -443,7 +443,7 @@ void KoopaStateDamageEscape::exeDamageTailRun() {
     KoopaFunction::escapeKoopaFromPlayer(mHost, *mDamageTailRunParam);
     MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_SWOON");
 
-    if (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRun::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRun))) {
         MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_TAIL_RUN");
     } else {
         MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_TAIL_RUN_FAST");
@@ -458,10 +458,10 @@ void KoopaStateDamageEscape::exeDamageTailRun() {
     }
 
     if (MR::isStep(this, mMaxRunFrames)) {
-        if (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRun::sInstance)) {
-            setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunEnd::sInstance);
+        if (isNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRun))) {
+            setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunEnd));
         } else {
-            setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunEndFinal::sInstance);
+            setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDamageTailRunEndFinal));
         }
     }
 }
@@ -519,7 +519,7 @@ void KoopaStateDamageEscape::exeDown() {
         MR::emitEffect(mHost, "DownSmoke");
         MR::zeroVelocity(mHost);
 
-        setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDownLand::sInstance);
+        setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDownLand));
     }
 }
 
@@ -535,7 +535,7 @@ void KoopaStateDamageEscape::exeDownLand() {
     }
 
     if (MR::isActionEnd(mHost)) {
-        setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDownEnd::sInstance);
+        setNerve(GET_NERVE(KoopaStateDamageEscape, KoopaStateDamageEscapeNrvDownEnd));
     }
 }
 

@@ -79,22 +79,22 @@ void UFOBase::init(const JMapInfoIter& rIter) {
     MR::tryStartAllAnim(this, name);
 
     if (MR::isMoveStartTypeUnconditional(_AC)) {
-        initNerve(&NrvUFOBase::UFOBaseNrvWait::sInstance);
+        initNerve(GET_NERVE(UFOBase, UFOBaseNrvWait));
     } else {
-        initNerve(&NrvUFOBase::UFOBaseNrvWaitForPlayerOn::sInstance);
+        initNerve(GET_NERVE(UFOBase, UFOBaseNrvWaitForPlayerOn));
     }
     makeActorAppeared();
 }
 
 void UFOBase::exeWait() {
     if (!MR::isValidSwitchB(this) || MR::isOnSwitchB(this)) {
-        setNerve(&NrvUFOBase::UFOBaseNrvMove::sInstance);
+        setNerve(GET_NERVE(UFOBase, UFOBaseNrvMove));
     }
 }
 
 void UFOBase::exeWaitForPlayerOn() {
     if (MR::isOnPlayer(getSensor(nullptr)) && (!MR::isValidSwitchB(this) || MR::isOnSwitchB(this))) {
-        setNerve(&NrvUFOBase::UFOBaseNrvMove::sInstance);
+        setNerve(GET_NERVE(UFOBase, UFOBaseNrvMove));
     }
 }
 
@@ -206,8 +206,8 @@ void UFOBreakable::initSensorType() {
 }
 
 bool UFOBreakable::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isMsgExplosionAttack(msg) && !isNerve(&NrvUFOBase::UFOBaseNrvBreak::sInstance)) {
-        setNerve(&NrvUFOBase::UFOBaseNrvBreak::sInstance);
+    if (MR::isMsgExplosionAttack(msg) && !isNerve(GET_NERVE(UFOBase, UFOBaseNrvBreak))) {
+        setNerve(GET_NERVE(UFOBase, UFOBaseNrvBreak));
         return true;
     }
     return false;

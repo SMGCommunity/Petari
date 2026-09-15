@@ -52,7 +52,7 @@ InformationObserver::InformationObserver() : LiveActor("初出監視"), mType(Ty
 void InformationObserver::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayoutMovement(this);
     MR::declareEventCameraProgrammable("初出監視カメラ");
-    initNerve(&NrvInformationObserver::InformationObserverNrvWait::sInstance);
+    initNerve(GET_NERVE(InformationObserver, InformationObserverNrvWait));
     MR::invalidateClipping(this);
     makeActorDead();
 }
@@ -64,10 +64,10 @@ void InformationObserver::entry(TYPE type, LiveActor* pParam2) {
 
     if (_90) {
         MR::pauseTimeKeepDemo(_94);
-        setNerve(&NrvInformationObserver::InformationObserverNrvDisp::sInstance);
+        setNerve(GET_NERVE(InformationObserver, InformationObserverNrvDisp));
     } else {
-        MR::requestStartDemoWithoutCinemaFrame(this, "初出表示", &NrvInformationObserver::InformationObserverNrvDisp::sInstance,
-                                               &NrvInformationObserver::InformationObserverNrvWait::sInstance);
+        MR::requestStartDemoWithoutCinemaFrame(this, "初出表示", GET_NERVE(InformationObserver, InformationObserverNrvDisp),
+                                               GET_NERVE(InformationObserver, InformationObserverNrvWait));
     }
 
     makeActorAppeared();

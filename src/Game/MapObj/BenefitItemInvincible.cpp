@@ -9,6 +9,13 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void BenefitItemInvincible_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)MR::epsilon();
+    (void)0.5f;
+}
+
 namespace {
     f32 cAppearThrowUpSpd = 10.0f;
     f32 cAppearThrowFwdSpd = 5.0f;

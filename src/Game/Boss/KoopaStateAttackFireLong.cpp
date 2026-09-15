@@ -25,7 +25,7 @@ KoopaStateAttackFireLong::KoopaStateAttackFireLong(Koopa* pKoopa)
 }
 
 void KoopaStateAttackFireLong::init() {
-    initNerve(&NrvKoopaStateAttackFireLong::KoopaStateAttackFireLongNrvStart::sInstance);
+    initNerve(GET_NERVE(KoopaStateAttackFireLong, KoopaStateAttackFireLongNrvStart));
 }
 
 void KoopaStateAttackFireLong::appear() {
@@ -35,7 +35,7 @@ void KoopaStateAttackFireLong::appear() {
 
     mFireEmitted = 0;
 
-    setNerve(&NrvKoopaStateAttackFireLong::KoopaStateAttackFireLongNrvStart::sInstance);
+    setNerve(GET_NERVE(KoopaStateAttackFireLong, KoopaStateAttackFireLongNrvStart));
 }
 
 void KoopaStateAttackFireLong::exeStart() {
@@ -48,7 +48,7 @@ void KoopaStateAttackFireLong::exeStart() {
 
     if (MR::isActionEnd(mHost)) {
         MR::startAction(mHost, "AttackFire");
-        setNerve(&NrvKoopaStateAttackFireLong::KoopaStateAttackFireLongNrvEmit::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackFireLong, KoopaStateAttackFireLongNrvEmit));
     }
 }
 
@@ -68,7 +68,7 @@ void KoopaStateAttackFireLong::exeEmit() {
         if (mFireEmitted >= mMaxFire) {
             kill();
         } else {
-            setNerve(&NrvKoopaStateAttackFireLong::KoopaStateAttackFireLongNrvEmit::sInstance);
+            setNerve(GET_NERVE(KoopaStateAttackFireLong, KoopaStateAttackFireLongNrvEmit));
         }
     }
 }

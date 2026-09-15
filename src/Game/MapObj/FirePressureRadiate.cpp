@@ -53,9 +53,9 @@ void FirePressureRadiate::init(const JMapInfoIter& rIter) {
 
     if (MR::useStageSwitchWriteA(this, rIter)) {
         MR::listenStageSwitchOnOffA(this, MR::Functor(this, &FirePressureRadiate::startWait), MR::Functor(this, &FirePressureRadiate::startRelax));
-        initNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvRelax::sInstance);
+        initNerve(GET_NERVE(FirePressureRadiate, FirePressureRadiateNrvRelax));
     } else {
-        initNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvWait::sInstance);
+        initNerve(GET_NERVE(FirePressureRadiate, FirePressureRadiateNrvWait));
     }
 
     MR::useStageSwitchSleep(this, rIter);
@@ -111,7 +111,7 @@ void FirePressureRadiate::exePrepareToRadiate() {
     }
 
     if (MR::isStep(this, 34)) {
-        setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvRadiate::sInstance);
+        setNerve(GET_NERVE(FirePressureRadiate, FirePressureRadiateNrvRadiate));
     }
 }
 
@@ -129,7 +129,7 @@ void FirePressureRadiate::exeRadiate() {
     }
 
     if (MR::isGreaterEqualStep(this, mShootTime)) {
-        setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvRadiateMargin::sInstance);
+        setNerve(GET_NERVE(FirePressureRadiate, FirePressureRadiateNrvRadiateMargin));
     }
 }
 
@@ -142,9 +142,9 @@ void FirePressureRadiate::exeRadiateMargin() {
         MR::invalidateHitSensor(this, "radiate");
 
         if (mGroup != nullptr) {
-            setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvSyncWait::sInstance);
+            setNerve(GET_NERVE(FirePressureRadiate, FirePressureRadiateNrvSyncWait));
         } else {
-            setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvWait::sInstance);
+            setNerve(GET_NERVE(FirePressureRadiate, FirePressureRadiateNrvWait));
         }
 
         if (_DC) {
@@ -155,7 +155,7 @@ void FirePressureRadiate::exeRadiateMargin() {
 
 void FirePressureRadiate::exeWait() {
     if (MR::isStep(this, mWaitTime)) {
-        setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvPrepareToRadiate::sInstance);
+        setNerve(GET_NERVE(FirePressureRadiate, FirePressureRadiateNrvPrepareToRadiate));
     }
 }
 
@@ -182,11 +182,11 @@ void FirePressureRadiate::attackSensor(HitSensor* pSender, HitSensor* pReceiver)
 
 bool FirePressureRadiate::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_GROUP_MOVE_STOP) {
-        setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvSyncWait::sInstance);
+        setNerve(GET_NERVE(FirePressureRadiate, FirePressureRadiateNrvSyncWait));
 
         return true;
     } else if (msg == ACTMES_GROUP_MOVE_START) {
-        setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvWait::sInstance);
+        setNerve(GET_NERVE(FirePressureRadiate, FirePressureRadiateNrvWait));
 
         return true;
     }
@@ -195,14 +195,14 @@ bool FirePressureRadiate::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor
 }
 
 void FirePressureRadiate::startWait() {
-    if (isNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvWait::sInstance)) {
-        setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvWait::sInstance);
+    if (isNerve(GET_NERVE(FirePressureRadiate, FirePressureRadiateNrvWait))) {
+        setNerve(GET_NERVE(FirePressureRadiate, FirePressureRadiateNrvWait));
     }
 }
 
 void FirePressureRadiate::startRelax() {
-    if (!isNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvRelax::sInstance)) {
-        setNerve(&NrvFirePressureRadiate::FirePressureRadiateNrvRelax::sInstance);
+    if (!isNerve(GET_NERVE(FirePressureRadiate, FirePressureRadiateNrvRelax))) {
+        setNerve(GET_NERVE(FirePressureRadiate, FirePressureRadiateNrvRelax));
     }
 }
 

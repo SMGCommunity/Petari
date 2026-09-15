@@ -59,7 +59,7 @@ void LavaStrangeRock::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObj(this);
     initEffect();
     initSound(4, false);
-    initNerve(&NrvLavaStrangeRock::LavaStrangeRockNrvWait::sInstance);
+    initNerve(GET_NERVE(LavaStrangeRock, LavaStrangeRockNrvWait));
     makeActorAppeared();
 }
 

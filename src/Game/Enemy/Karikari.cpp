@@ -135,7 +135,7 @@ void Karikari::init(const JMapInfoIter& rIter) {
     MR::addHitSensor(this, "body", ATYPE_KARIKARI, 32, 100.0f, TVec3f(0.0f, 30.0f, 0.0f));
     MR::initShadowVolumeSphere(this, ::sSize);
     MR::onCalcShadowOneTime(this, nullptr);
-    initNerve(&NrvKarikari::HostTypeNrvFall::sInstance);
+    initNerve(GET_NERVE(Karikari, HostTypeNrvFall));
     MR::initStarPointerTarget(this, 40.0f, TVec3f(0.0f, 25.0f, 0.0f));
 
     if (MR::isValidSwitchAppear(this)) {
@@ -161,12 +161,12 @@ void Karikari::applyEnvironmentInfluenceToVelocity() {
         return;
     }
 
-    if (isNerve(&NrvKarikari::HostTypeNrvSpinAttacked::sInstance)) {
+    if (isNerve(GET_NERVE(Karikari, HostTypeNrvSpinAttacked))) {
         mVelocity.mult(::sVelocityDampSpinAttacked);
         return;
     }
 
-    if (isNerve(&NrvKarikari::HostTypeNrvDPDAttacked::sInstance)) {
+    if (isNerve(GET_NERVE(Karikari, HostTypeNrvDPDAttacked))) {
         mVelocity.mult(::sVelocityDampAttacked);
         return;
     }
@@ -207,7 +207,7 @@ void Karikari::exeFall() {
 
     if (MR::isOnGround(this)) {
         MR::emitEffect(this, "SmokeLand");
-        setNerve(&NrvKarikari::HostTypeNrvLand::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvLand));
     }
 }
 
@@ -234,10 +234,10 @@ void Karikari::exeLand() {
         TVec3f diff(*MR::getPlayerPos());
         diff.sub(mPosition);
         if (diff.squared() < ::sDistToPursue * ::sDistToPursue) {
-            setNerve(&NrvKarikari::HostTypeNrvPursue::sInstance);
+            setNerve(GET_NERVE(Karikari, HostTypeNrvPursue));
             return;
         } else {
-            setNerve(&NrvKarikari::HostTypeNrvWait::sInstance);
+            setNerve(GET_NERVE(Karikari, HostTypeNrvWait));
             return;
         }
     }
@@ -268,7 +268,7 @@ void Karikari::exeNoCalcWait() {
 
     mVelocity.zero();
     if (MR::calcDistanceToPlayer(mPosition) < ::sDistToPursue) {
-        setNerve(&NrvKarikari::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvWait));
     }
 }
 
@@ -295,12 +295,12 @@ void Karikari::exeWait() {
     TVec3f diff(*MR::getPlayerPos());
     diff.sub(mPosition);
     if (diff.squared() < ::sDistToPursue * ::sDistToPursue) {
-        setNerve(&NrvKarikari::HostTypeNrvPrePursue::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvPrePursue));
         return;
     }
 
     if (MR::isOnGround(this)) {
-        setNerve(&NrvKarikari::HostTypeNrvNoCalcWait::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvNoCalcWait));
     }
 }
 
@@ -339,7 +339,7 @@ void Karikari::exePrePursue() {
     }
 
     if (MR::isOnGround(this)) {
-        setNerve(&NrvKarikari::HostTypeNrvPursue::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvPursue));
         MR::emitEffect(this, "SmokeLand");
     }
 }
@@ -386,17 +386,17 @@ void Karikari::exePursue() {
     if (MR::isOnGround(this)) {
         MR::emitEffect(this, "SmokeLand");
         if (::getKarikariDirector()->isMaxNumCling()) {
-            setNerve(&NrvKarikari::HostTypeNrvWatchFor::sInstance);
+            setNerve(GET_NERVE(Karikari, HostTypeNrvWatchFor));
             return;
         }
 
         if (::sDistToPursue * ::sDistToPursue < dist) {
-            setNerve(&NrvKarikari::HostTypeNrvWait::sInstance);
+            setNerve(GET_NERVE(Karikari, HostTypeNrvWait));
             return;
         }
 
         tryTurnToDirection(toPlayerH, ::sTurnRatio);
-        setNerve(&NrvKarikari::HostTypeNrvPursue::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvPursue));
 
     } else {
         mIsPushable = false;
@@ -432,7 +432,7 @@ void Karikari::exeWatchFor() {
         tryTurnToDirection(toPlayer, ::sTurnRatio);
 
         if (!::getKarikariDirector()->isMaxNumCling() || ::sWatchForDistance * ::sWatchForDistance < toPlayer.squared()) {
-            setNerve(&NrvKarikari::HostTypeNrvPrePursue::sInstance);
+            setNerve(GET_NERVE(Karikari, HostTypeNrvPrePursue));
         }
         return;
     }
@@ -443,7 +443,7 @@ void Karikari::exeWatchFor() {
     }
 
     if (MR::isGreaterStep(this, ::sWatchForLoopInterval)) {
-        setNerve(&NrvKarikari::HostTypeNrvWatchFor::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvWatchFor));
     }
 }
 
@@ -473,7 +473,7 @@ void Karikari::exePreCling() {
 
     if (MR::isGreaterStep(this, ::sPreClingTime)) {
         MR::onBind(this);
-        setNerve(&NrvKarikari::HostTypeNrvCling::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvCling));
     }
 }
 
@@ -513,7 +513,7 @@ void Karikari::exeRelease() {
     away.setLength(::sAttackedVel);
     away.sub(mGravity * ::sAttackedVerticalVel);
     mVelocity.set(away);
-    setNerve(&NrvKarikari::HostTypeNrvSpinAttacked::sInstance);
+    setNerve(GET_NERVE(Karikari, HostTypeNrvSpinAttacked));
 }
 
 void Karikari::exeSpinAttacked() {
@@ -537,7 +537,7 @@ void Karikari::exeSpinAttacked() {
     mVelocity += mGravity * ::sGravitySpinAttacked;
 
     if (MR::isGreaterStep(this, ::sSpinAttackedTime)) {
-        setNerve(&NrvKarikari::HostTypeNrvFrozen::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvFrozen));
     }
 }
 
@@ -564,7 +564,7 @@ void Karikari::exeDPDAttacked() {
 
     if (MR::isOnGround(this)) {
         MR::emitEffect(this, "SmokeLand");
-        setNerve(&NrvKarikari::HostTypeNrvLand::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvLand));
     }
 }
 
@@ -592,7 +592,7 @@ void Karikari::exeFrozen() {
 
     if (--mFrozenTime <= 0) {
         MR::onBind(this);
-        setNerve(&NrvKarikari::HostTypeNrvFrozenRecover::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvFrozenRecover));
     }
 }
 
@@ -622,7 +622,7 @@ void Karikari::exeFrozenRecover() {
 
     if (MR::isOnGround(this)) {
         MR::emitEffect(this, "KarikariSmokeLand");
-        setNerve(&NrvKarikari::HostTypeNrvLand::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvLand));
     }
 }
 
@@ -647,7 +647,7 @@ void Karikari::exeBlowOut() {
     mVelocity += mGravity * ::sBlowOutGravity;
 
     if (MR::isBinded(this) || MR::isGreaterStep(this, ::sBlowOutTime)) {
-        if (isNerve(&NrvKarikari::HostTypeNrvBlowOut::sInstance)) {
+        if (isNerve(GET_NERVE(Karikari, HostTypeNrvBlowOut))) {
             generateItem(1);
         } else {
             generateItem(3);
@@ -676,7 +676,7 @@ void Karikari::exeInTornado() {
     MR::startLevelSound(this, "SE_EM_LV_KARIKARI_TORNADO");
 
     if (!mIsReadyToLandTornado && MR::isOnGround(this)) {
-        setNerve(&NrvKarikari::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvWait));
         MR::emitEffect(this, "SmokeLand");
         return;
     }
@@ -705,13 +705,13 @@ void Karikari::exePress() {
 }
 
 bool Karikari::inClingNerve() const {
-    return isNerve(&NrvKarikari::HostTypeNrvPreCling::sInstance) || isNerve(&NrvKarikari::HostTypeNrvCling::sInstance);
+    return isNerve(GET_NERVE(Karikari, HostTypeNrvPreCling)) || isNerve(GET_NERVE(Karikari, HostTypeNrvCling));
 }
 
 bool Karikari::tryBlowOut(const TVec3f& rPos, bool spawnMultipleStarPieces) {
-    if (isNerve(&NrvKarikari::HostTypeNrvBlowOut::sInstance) || isNerve(&NrvKarikari::HostTypeNrvBlowOutStarPiece::sInstance) ||
-        isNerve(&NrvKarikari::HostTypeNrvRelease::sInstance) || isNerve(&NrvKarikari::HostTypeNrvSpinAttacked::sInstance) ||
-        isNerve(&NrvKarikari::HostTypeNrvDPDAttacked::sInstance) || isNerve(&NrvKarikari::HostTypeNrvPress::sInstance)) {
+    if (isNerve(GET_NERVE(Karikari, HostTypeNrvBlowOut)) || isNerve(GET_NERVE(Karikari, HostTypeNrvBlowOutStarPiece)) ||
+        isNerve(GET_NERVE(Karikari, HostTypeNrvRelease)) || isNerve(GET_NERVE(Karikari, HostTypeNrvSpinAttacked)) ||
+        isNerve(GET_NERVE(Karikari, HostTypeNrvDPDAttacked)) || isNerve(GET_NERVE(Karikari, HostTypeNrvPress))) {
         return false;
     }
 
@@ -729,9 +729,9 @@ bool Karikari::tryBlowOut(const TVec3f& rPos, bool spawnMultipleStarPieces) {
     }
 
     if (spawnMultipleStarPieces) {
-        setNerve(&NrvKarikari::HostTypeNrvBlowOutStarPiece::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvBlowOutStarPiece));
     } else {
-        setNerve(&NrvKarikari::HostTypeNrvBlowOut::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvBlowOut));
     }
 
     return true;
@@ -754,13 +754,13 @@ bool Karikari::tryHipDropRelease() {
     away.setLength(::sAttackedVel);
     away.sub(mGravity * ::sAttackedVerticalVel);
     mVelocity.set(away);
-    setNerve(&NrvKarikari::HostTypeNrvDPDAttacked::sInstance);
+    setNerve(GET_NERVE(Karikari, HostTypeNrvDPDAttacked));
     return true;
 }
 
 bool Karikari::tryDPDRelease(const TVec2f& rVel) {
     setVelocityFromCursorMove(rVel);
-    setNerve(&NrvKarikari::HostTypeNrvDPDAttacked::sInstance);
+    setNerve(GET_NERVE(Karikari, HostTypeNrvDPDAttacked));
     return true;
 }
 
@@ -788,7 +788,7 @@ bool Karikari::tryDPDAttacked() {
             ::getKarikariDirector()->requestRelease(this, vel, fromCursorPos.squared());
         } else {
             setVelocityFromCursorMove(vel);
-            setNerve(&NrvKarikari::HostTypeNrvDPDAttacked::sInstance);
+            setNerve(GET_NERVE(Karikari, HostTypeNrvDPDAttacked));
         }
         return true;
     }
@@ -813,7 +813,7 @@ void Karikari::makeActorDead() {
         MR::onSwitchDead(this);
     }
 
-    if (isNerve(&NrvKarikari::HostTypeNrvPreCling::sInstance) || isNerve(&NrvKarikari::HostTypeNrvCling::sInstance)) {
+    if (isNerve(GET_NERVE(Karikari, HostTypeNrvPreCling)) || isNerve(GET_NERVE(Karikari, HostTypeNrvCling))) {
         ::getKarikariDirector()->unregistCling(this);
     }
 }
@@ -833,9 +833,9 @@ void Karikari::generateItem(s32 numStarPieces) {
 }
 
 void Karikari::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvKarikari::HostTypeNrvCling::sInstance) || isNerve(&NrvKarikari::HostTypeNrvPreCling::sInstance) ||
-        isNerve(&NrvKarikari::HostTypeNrvBlowOut::sInstance) || isNerve(&NrvKarikari::HostTypeNrvBlowOutStarPiece::sInstance) ||
-        isNerve(&NrvKarikari::HostTypeNrvSpinAttacked::sInstance)) {
+    if (isNerve(GET_NERVE(Karikari, HostTypeNrvCling)) || isNerve(GET_NERVE(Karikari, HostTypeNrvPreCling)) ||
+        isNerve(GET_NERVE(Karikari, HostTypeNrvBlowOut)) || isNerve(GET_NERVE(Karikari, HostTypeNrvBlowOutStarPiece)) ||
+        isNerve(GET_NERVE(Karikari, HostTypeNrvSpinAttacked))) {
         return;
     }
 
@@ -849,7 +849,7 @@ void Karikari::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (_9E && MR::isSensorPlayer(pReceiver)) {
-        if (isNerve(&NrvKarikari::HostTypeNrvFrozen::sInstance)) {
+        if (isNerve(GET_NERVE(Karikari, HostTypeNrvFrozen))) {
             killedInFrozenState();
             return;
         }
@@ -859,7 +859,7 @@ void Karikari::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         f32 clingDist = ::sDistToCling;
         if (dist < clingDist * clingDist) {
             if (::getKarikariDirector()->registCling(this)) {
-                setNerve(&NrvKarikari::HostTypeNrvPreCling::sInstance);
+                setNerve(GET_NERVE(Karikari, HostTypeNrvPreCling));
                 mVelocity.zero();
             }
         }
@@ -904,9 +904,9 @@ bool Karikari::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    if (isNerve(&NrvKarikari::HostTypeNrvCling::sInstance) || isNerve(&NrvKarikari::HostTypeNrvPreCling::sInstance) ||
-        isNerve(&NrvKarikari::HostTypeNrvBlowOut::sInstance) || isNerve(&NrvKarikari::HostTypeNrvBlowOutStarPiece::sInstance) ||
-        isNerve(&NrvKarikari::HostTypeNrvFrozen::sInstance)) {
+    if (isNerve(GET_NERVE(Karikari, HostTypeNrvCling)) || isNerve(GET_NERVE(Karikari, HostTypeNrvPreCling)) ||
+        isNerve(GET_NERVE(Karikari, HostTypeNrvBlowOut)) || isNerve(GET_NERVE(Karikari, HostTypeNrvBlowOutStarPiece)) ||
+        isNerve(GET_NERVE(Karikari, HostTypeNrvFrozen))) {
         return false;
     }
 
@@ -922,19 +922,19 @@ bool Karikari::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool Karikari::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvKarikari::HostTypeNrvRelease::sInstance) || isNerve(&NrvKarikari::HostTypeNrvSpinAttacked::sInstance) ||
-        isNerve(&NrvKarikari::HostTypeNrvBlowOut::sInstance) || isNerve(&NrvKarikari::HostTypeNrvBlowOutStarPiece::sInstance) ||
-        isNerve(&NrvKarikari::HostTypeNrvPress::sInstance)) {
+    if (isNerve(GET_NERVE(Karikari, HostTypeNrvRelease)) || isNerve(GET_NERVE(Karikari, HostTypeNrvSpinAttacked)) ||
+        isNerve(GET_NERVE(Karikari, HostTypeNrvBlowOut)) || isNerve(GET_NERVE(Karikari, HostTypeNrvBlowOutStarPiece)) ||
+        isNerve(GET_NERVE(Karikari, HostTypeNrvPress))) {
         return false;
     }
 
-    if (isNerve(&NrvKarikari::HostTypeNrvFrozen::sInstance)) {
+    if (isNerve(GET_NERVE(Karikari, HostTypeNrvFrozen))) {
         killedInFrozenState();
         return true;
     }
 
     if (MR::isMsgToEnemyAttackBlow(msg)) {
-        if (isNerve(&NrvKarikari::HostTypeNrvPreCling::sInstance) || isNerve(&NrvKarikari::HostTypeNrvCling::sInstance)) {
+        if (isNerve(GET_NERVE(Karikari, HostTypeNrvPreCling)) || isNerve(GET_NERVE(Karikari, HostTypeNrvCling))) {
             ::getKarikariDirector()->unregistCling(this);
         }
         // blow away from enemy
@@ -943,26 +943,26 @@ bool Karikari::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
         MR::normalizeOrZero(&vel);
         vel.scale(::sEnemyAttackHitVel);
         mVelocity.set(vel);
-        setNerve(&NrvKarikari::HostTypeNrvBlowOut::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvBlowOut));
         return true;
     }
 
     if (MR::isMsgToEnemyAttackTrample(msg)) {
-        if (isNerve(&NrvKarikari::HostTypeNrvPreCling::sInstance) || isNerve(&NrvKarikari::HostTypeNrvCling::sInstance)) {
+        if (isNerve(GET_NERVE(Karikari, HostTypeNrvPreCling)) || isNerve(GET_NERVE(Karikari, HostTypeNrvCling))) {
             ::getKarikariDirector()->unregistCling(this);
         }
 
-        setNerve(&NrvKarikari::HostTypeNrvPress::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvPress));
         return true;
     }
 
     if (MR::isMsgExplosionAttack(msg)) {
-        if (isNerve(&NrvKarikari::HostTypeNrvFrozen::sInstance)) {
+        if (isNerve(GET_NERVE(Karikari, HostTypeNrvFrozen))) {
             killedInFrozenState();
             return true;
         }
 
-        if (isNerve(&NrvKarikari::HostTypeNrvPreCling::sInstance) || isNerve(&NrvKarikari::HostTypeNrvCling::sInstance)) {
+        if (isNerve(GET_NERVE(Karikari, HostTypeNrvPreCling)) || isNerve(GET_NERVE(Karikari, HostTypeNrvCling))) {
             ::getKarikariDirector()->unregistCling(this);
         }
         // blow away from explosion
@@ -970,7 +970,7 @@ bool Karikari::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
         vel.sub(pSender->mPosition);
         vel.setLength(::sExplosionBlowOutVel);
         mVelocity = vel;
-        setNerve(&NrvKarikari::HostTypeNrvBlowOut::sInstance);
+        setNerve(GET_NERVE(Karikari, HostTypeNrvBlowOut));
         return true;
     }
 
@@ -984,7 +984,7 @@ void Karikari::tryTurnToDirection(const TVec3f& rDir, f32 turnRatio) {
 }
 
 void Karikari::calcAndSetBaseMtx() {
-    if (isNerve(&NrvKarikari::HostTypeNrvCling::sInstance)) {
+    if (isNerve(GET_NERVE(Karikari, HostTypeNrvCling))) {
         MR::setBaseTRMtx(this, mClingPosition->mMtx);
         return;
     }

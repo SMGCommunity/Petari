@@ -15,7 +15,6 @@ class PlayerPoseSetterInWater;
 class Syati : public LiveActor {
 public:
     Syati(const char*);
-    virtual ~Syati();
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void control();
@@ -40,6 +39,7 @@ public:
     void exeWaitOnShore();
     void exeWaitTalkNormal();
     void exeTalkNormal();
+    void exeStart();
     void initRings(JMapInfoIter const&);
     void initPose();
     void initTalking(JMapInfoIter const&);
@@ -88,28 +88,3 @@ public:
     s32 _1C;
     Vec* _20;
 };
-
-namespace NrvSyati {
-    NERVE_DECL_EXE(SyatiWait, Syati, Wait);
-    NERVE_DECL_EXE(SyatiFadeoutStartEvent, Syati, FadeoutBeforeTalk);
-    NERVE_DECL_EXE(SyatiWaitBlankStartEvent, Syati, WaitBlank);
-    NERVE_DECL_EXE(SyatiFadeinStartEvent, Syati, FadeinBeforeTalk);
-    NERVE_DECL_EXE(SyatiTalkStartMission, Syati, TalkStartMission);
-    NERVE_DECL_EXE(SyatiReadyToStart, Syati, ReadyToStart);
-    NERVE_DECL_EXE(SyatiCountDown, Syati, CountDown);
-    NERVE_DECL_EXE(SyatiSwim, Syati, Swim);
-    NERVE_DECL_EXE(SyatiEmitRing, Syati, EmitRing);
-    NERVE_DECL_EXE(SyatiWaitStarAppeared, Syati, WaitStarAppeared);
-    NERVE_DECL_EXE(SyatiReachToEnd, Syati, ReachToEnd);
-    NERVE_DECL_EXE(SyatiWaitAllRingDisappear, Syati, WaitAllRingDisappear);
-    NERVE_DECL_EXE(SyatiFadeoutRetryEvent, Syati, FadeoutBeforeTalk);
-    NERVE_DECL_EXE(SyatiWaitBlankRetryEvent, Syati, WaitBlank);
-    NERVE_DECL_EXE(SyatiFadeinRetryEvent, Syati, FadeinBeforeTalk);
-    NERVE_DECL_EXE(SyatiTalkRetryMission, Syati, TalkRetryMission);
-    NERVE_DECL_EXE(SyatiForceKill, Syati, ForceKill);
-    NERVE_DECL_EXE(SyatiHideOnShore, Syati, HideOnShore);
-    NERVE_DECL_EXE(SyatiWaitOnShore, Syati, WaitOnShore);
-    NERVE_DECL_EXE(SyatiWaitTalkNormal, Syati, WaitTalkNormal);
-    NERVE_DECL_EXE(SyatiTalkNormal, Syati, TalkNormal);
-    NERVE_DECL_NULL(SyatiWaitDemoStart);
-};  // namespace NrvSyati

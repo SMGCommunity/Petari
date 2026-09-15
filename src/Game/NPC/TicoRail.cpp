@@ -68,9 +68,9 @@ void TicoRail::init(const JMapInfoIter& rIter) {
     s32 rand = MR::getRandom(0l, 2l);
 
     if (rand == 0) {
-        initNerve(&NrvTicoRail::TicoRailNrvWait::sInstance);
+        initNerve(GET_NERVE(TicoRail, TicoRailNrvWait));
     } else if (rand == 1) {
-        initNerve(&NrvTicoRail::TicoRailNrvMove::sInstance);
+        initNerve(GET_NERVE(TicoRail, TicoRailNrvMove));
     }
 
     makeActorAppeared();
@@ -82,7 +82,7 @@ void TicoRail::exeWait() {
     }
 
     if (isGreaterEqualStepAndRandom(::sStepForWait)) {
-        setNerve(&NrvTicoRail::TicoRailNrvLookAround::sInstance);
+        setNerve(GET_NERVE(TicoRail, TicoRailNrvLookAround));
     }
 }
 
@@ -108,9 +108,9 @@ void TicoRail::exeLookAround() {
 
     if (MR::isStep(this, 160)) {
         if (MR::getRandom(0l, 2l) != 0) {
-            setNerve(&NrvTicoRail::TicoRailNrvMoveSign::sInstance);
+            setNerve(GET_NERVE(TicoRail, TicoRailNrvMoveSign));
         } else {
-            setNerve(&NrvTicoRail::TicoRailNrvMoveSignAndTurn::sInstance);
+            setNerve(GET_NERVE(TicoRail, TicoRailNrvMoveSignAndTurn));
         }
     }
 }
@@ -119,7 +119,7 @@ void TicoRail::exeMoveSign() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Spin", nullptr);
 
-        if (isNerve(&NrvTicoRail::TicoRailNrvMoveSignAndTurn::sInstance)) {
+        if (isNerve(GET_NERVE(TicoRail, TicoRailNrvMoveSignAndTurn))) {
             MR::reverseRailDirection(this);
         }
     }
@@ -128,7 +128,7 @@ void TicoRail::exeMoveSign() {
     MR::blendVec(&_8C, -MR::getRailDirection(this), MR::getRailDirection(this), rate);
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvTicoRail::TicoRailNrvMove::sInstance);
+        setNerve(GET_NERVE(TicoRail, TicoRailNrvMove));
     }
 }
 
@@ -141,7 +141,7 @@ void TicoRail::exeMove() {
     _8C.set(MR::getRailDirection(this));
 
     if (isGreaterEqualStepAndRandom(::sStepForMove)) {
-        setNerve(&NrvTicoRail::TicoRailNrvStop::sInstance);
+        setNerve(GET_NERVE(TicoRail, TicoRailNrvStop));
     }
 }
 
@@ -153,7 +153,7 @@ void TicoRail::exeStop() {
     MR::moveCoordAndFollowTrans(this, MR::calcNerveValue(this, MR::getBckFrameMax(this), 15.0f, 0.0f));
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvTicoRail::TicoRailNrvWait::sInstance);
+        setNerve(GET_NERVE(TicoRail, TicoRailNrvWait));
     }
 }
 
@@ -175,7 +175,7 @@ void TicoRail::exeTalkStart() {
     MR::blendVec(&_8C, MR::getRailDirection(this), diff, MR::calcNerveRate(this, MR::getBckFrameMax(this)));
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvTicoRail::TicoRailNrvTalk::sInstance);
+        setNerve(GET_NERVE(TicoRail, TicoRailNrvTalk));
     }
 }
 
@@ -193,7 +193,7 @@ void TicoRail::exeTalk() {
     }
 
     if (MR::isStep(this, ::sStepForTalk)) {
-        setNerve(&NrvTicoRail::TicoRailNrvGoodBye::sInstance);
+        setNerve(GET_NERVE(TicoRail, TicoRailNrvGoodBye));
     }
 }
 
@@ -206,7 +206,7 @@ void TicoRail::exeTalkCancel() {
     _8C.set< f32 >(MR::getRailDirection(this));
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvTicoRail::TicoRailNrvMove::sInstance);
+        setNerve(GET_NERVE(TicoRail, TicoRailNrvMove));
     }
 }
 
@@ -225,7 +225,7 @@ void TicoRail::exeGoodBye() {
 
     if (MR::isBckLooped(this)) {
         _98 = nullptr;
-        setNerve(&NrvTicoRail::TicoRailNrvMoveSign::sInstance);
+        setNerve(GET_NERVE(TicoRail, TicoRailNrvMoveSign));
     }
 }
 
@@ -256,8 +256,8 @@ void TicoRail::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         MR::sendMsgPush(pReceiver, pSender);
     } else if (MR::isSensorNpc(pReceiver)) {
-        bool v6 = isNerve(&NrvTicoRail::TicoRailNrvTalkStart::sInstance) || isNerve(&NrvTicoRail::TicoRailNrvTalk::sInstance) ||
-                  isNerve(&NrvTicoRail::TicoRailNrvTalkCancel::sInstance) || isNerve(&NrvTicoRail::TicoRailNrvGoodBye::sInstance);
+        bool v6 = isNerve(GET_NERVE(TicoRail, TicoRailNrvTalkStart)) || isNerve(GET_NERVE(TicoRail, TicoRailNrvTalk)) ||
+                  isNerve(GET_NERVE(TicoRail, TicoRailNrvTalkCancel)) || isNerve(GET_NERVE(TicoRail, TicoRailNrvGoodBye));
 
         if (v6) {
             return;
@@ -265,9 +265,9 @@ void TicoRail::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
         if (MR::sendArbitraryMsg(ACTMES_TICO_RAIL_TOUCH, pReceiver, pSender)) {
             _98 = pReceiver->mHost;
-            setNerve(&NrvTicoRail::TicoRailNrvTalkStart::sInstance);
+            setNerve(GET_NERVE(TicoRail, TicoRailNrvTalkStart));
         } else if (!MR::isExistRail(pReceiver->mHost) || (MR::isRailGoingToEnd(this) != MR::isRailGoingToEnd(pReceiver->mHost))) {
-            setNerve(&NrvTicoRail::TicoRailNrvTalkCancel::sInstance);
+            setNerve(GET_NERVE(TicoRail, TicoRailNrvTalkCancel));
         }
     }
 }
@@ -277,8 +277,8 @@ bool TicoRail::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver
         return false;
     }
 
-    bool v8 = isNerve(&NrvTicoRail::TicoRailNrvTalkStart::sInstance) || isNerve(&NrvTicoRail::TicoRailNrvTalk::sInstance) ||
-              isNerve(&NrvTicoRail::TicoRailNrvTalkCancel::sInstance) || isNerve(&NrvTicoRail::TicoRailNrvGoodBye::sInstance);
+    bool v8 = isNerve(GET_NERVE(TicoRail, TicoRailNrvTalkStart)) || isNerve(GET_NERVE(TicoRail, TicoRailNrvTalk)) ||
+              isNerve(GET_NERVE(TicoRail, TicoRailNrvTalkCancel)) || isNerve(GET_NERVE(TicoRail, TicoRailNrvGoodBye));
 
     if (v8) {
         return false;
@@ -297,7 +297,7 @@ bool TicoRail::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver
     }
 
     _98 = pSender->mHost;
-    setNerve(&NrvTicoRail::TicoRailNrvTalkStart::sInstance);
+    setNerve(GET_NERVE(TicoRail, TicoRailNrvTalkStart));
 
     return true;
 }

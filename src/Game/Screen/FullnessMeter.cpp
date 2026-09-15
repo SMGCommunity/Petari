@@ -20,7 +20,7 @@ FullnessMeter::FullnessMeter(LiveActor* pHost, s32 a2, s32 a3) : LayoutActor("�
     mTargetCounter = MR::createSimpleLayoutTalkParts("満腹カウンター", "StarPieceTargetCounter", 1);
     MR::setTextBoxNumberRecursive(mTargetCounter, "NumberMax", _24);
     setNumber(a3);
-    initNerve(&NrvFullnessMeter::FullnessMeterNrvAppear::sInstance);
+    initNerve(GET_NERVE(FullnessMeter, FullnessMeterNrvAppear));
 }
 
 void FullnessMeter::init(const JMapInfoIter& rIter) {
@@ -56,17 +56,17 @@ void FullnessMeter::requestAppear() {
     appear();
     mTargetCounter->appear();
     MR::showScreen(this);
-    setNerve(&NrvFullnessMeter::FullnessMeterNrvAppear::sInstance);
+    setNerve(GET_NERVE(FullnessMeter, FullnessMeterNrvAppear));
     MR::startStarPointerModeStarPieceTarget(this);
     MR::startSystemSE("SE_SY_TICOFAT_POINT");
 }
 
 void FullnessMeter::requestDisappear() {
-    if (MR::isDead(this) || isNerve(&NrvFullnessMeter::FullnessMeterNrvEnd::sInstance)) {
+    if (MR::isDead(this) || isNerve(GET_NERVE(FullnessMeter, FullnessMeterNrvEnd))) {
         return;
     }
 
-    setNerve(&NrvFullnessMeter::FullnessMeterNrvEnd::sInstance);
+    setNerve(GET_NERVE(FullnessMeter, FullnessMeterNrvEnd));
     MR::hideScreen(this);
     MR::startAnim(mTargetCounter, "End", 0);
     MR::endStarPointerMode(this);
@@ -83,7 +83,7 @@ void FullnessMeter::exeAppear() {
     }
 
     if (MR::isAnimStopped(mTargetCounter, 0)) {
-        setNerve(&NrvFullnessMeter::FullnessMeterNrvWait::sInstance);
+        setNerve(GET_NERVE(FullnessMeter, FullnessMeterNrvWait));
     }
 }
 

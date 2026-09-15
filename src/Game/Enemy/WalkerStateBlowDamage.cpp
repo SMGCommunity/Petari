@@ -22,12 +22,12 @@ namespace NrvWalkerStateBlowDamage {
 
 WalkerStateBlowDamage::WalkerStateBlowDamage(LiveActor* pHost, TVec3f* pDirection, WalkerStateBlowDamageParam* pBlowDamageParam)
     : ActorStateBase< LiveActor >("吹き飛びダメージ状態", pHost), mDirection(pDirection), mBlowDamageParam(pBlowDamageParam) {
-    initNerve(&NrvWalkerStateBlowDamage::WalkerStateBlowDamageNrvBlow::sInstance);
+    initNerve(GET_NERVE(WalkerStateBlowDamage, WalkerStateBlowDamageNrvBlow));
 }
 
 void WalkerStateBlowDamage::appear() {
     mIsDead = false;
-    setNerve(&NrvWalkerStateBlowDamage::WalkerStateBlowDamageNrvBlow::sInstance);
+    setNerve(GET_NERVE(WalkerStateBlowDamage, WalkerStateBlowDamageNrvBlow));
 }
 
 void WalkerStateBlowDamage::exeBlow() {
@@ -42,7 +42,7 @@ void WalkerStateBlowDamage::exeBlow() {
         if (MR::isBindedGround(getHost())) {
             MR::startAction(getHost(), "DamageLand");
             MR::zeroVelocity(getHost());
-            setNerve(&NrvWalkerStateBlowDamage::WalkerStateBlowDamageNrvBlowLand::sInstance);
+            setNerve(GET_NERVE(WalkerStateBlowDamage, WalkerStateBlowDamageNrvBlowLand));
         }
     }
 }

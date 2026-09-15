@@ -15,7 +15,7 @@ CollectCounter::CollectCounter(const char* pName) : LayoutActor(pName, true) {
 void CollectCounter::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
     initLayoutManager("CollectCounter", 1);
-    initNerve(&NrvCollectCounter::CollectCounterNrvHide::sInstance);
+    initNerve(GET_NERVE(CollectCounter, CollectCounterNrvHide));
     MR::setFollowPos(&mFollowPosition, this, 0);
     kill();
 }
@@ -37,13 +37,13 @@ void CollectCounter::exeShow() {
 
 void CollectCounter::setCount(s32 num) {
     appear();
-    setNerve(&NrvCollectCounter::CollectCounterNrvShow::sInstance);
+    setNerve(GET_NERVE(CollectCounter, CollectCounterNrvShow));
     MR::setTextBoxNumberRecursive(this, "CollectCounter", num);
 }
 
 bool CollectCounter::tryEndShow() {
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&NrvCollectCounter::CollectCounterNrvHide::sInstance);
+        setNerve(GET_NERVE(CollectCounter, CollectCounterNrvHide));
         kill();
         return true;
     }

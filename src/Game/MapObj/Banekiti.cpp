@@ -37,7 +37,7 @@ void Banekiti::init(const JMapInfoIter& rIter) {
     MR::initStarPointerTarget(this, 120.0f, offset);
     mAnimScaleCtrl = new AnimScaleController(nullptr);
     mBindStarPointer = new WalkerStateBindStarPointer(this, mAnimScaleCtrl);
-    initNerve(&NrvBanekiti::BanekitiNrvWait::sInstance);
+    initNerve(GET_NERVE(Banekiti, BanekitiNrvWait));
     makeActorAppeared();
 }
 
@@ -56,7 +56,7 @@ void Banekiti::exeRepel() {
         MR::startSound(this, "SE_OJ_BANEKITI_REPEL");
     }
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvBanekiti::BanekitiNrvWait::sInstance);
+        setNerve(GET_NERVE(Banekiti, BanekitiNrvWait));
     }
 }
 
@@ -64,7 +64,7 @@ void Banekiti::exeDPDSwoon() {
     if (MR::isFirstStep(this)) {
         mRailMover->mIsActive = false;
     }
-    MR::updateActorStateAndNextNerve(this, mBindStarPointer, &NrvBanekiti::BanekitiNrvWait::sInstance);
+    MR::updateActorStateAndNextNerve(this, mBindStarPointer, GET_NERVE(Banekiti, BanekitiNrvWait));
 }
 
 void Banekiti::endDPDSwoon() {
@@ -86,9 +86,9 @@ void Banekiti::control() {
         mPosition.y = mRailMover->_28.y;
         mPosition.z = mRailMover->_28.z;
     }
-    if (!isNerve(&NrvBanekiti::BanekitiNrvDPDSwoon::sInstance)) {
+    if (!isNerve(GET_NERVE(Banekiti, BanekitiNrvDPDSwoon))) {
         if (mBindStarPointer->tryStartPointBind()) {
-            setNerve(&NrvBanekiti::BanekitiNrvDPDSwoon::sInstance);
+            setNerve(GET_NERVE(Banekiti, BanekitiNrvDPDSwoon));
         }
     }
 }
@@ -108,12 +108,12 @@ bool Banekiti::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver
         return false;
     }
 
-    if (isNerve(&NrvBanekiti::BanekitiNrvRepel::sInstance)) {
+    if (isNerve(GET_NERVE(Banekiti, BanekitiNrvRepel))) {
         return false;
     }
 
     if (msg == ACTMES_TERESA_PLAYER_TOUCH) {
-        setNerve(&NrvBanekiti::BanekitiNrvRepel::sInstance);
+        setNerve(GET_NERVE(Banekiti, BanekitiNrvRepel));
 
         return true;
     }

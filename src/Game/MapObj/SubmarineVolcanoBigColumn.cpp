@@ -46,7 +46,7 @@ void SubmarineVolcanoBigColumn::init(const JMapInfoIter& rIter) {
         MR::createAirBubbleHolder();
     }
 
-    initNerve(&NrvSubmarineVolcanoBigColumn::SubmarineVolcanoBigColumnNrvWait::sInstance);
+    initNerve(GET_NERVE(SubmarineVolcanoBigColumn, SubmarineVolcanoBigColumnNrvWait));
     makeActorAppeared();
 }
 
@@ -63,7 +63,7 @@ void SubmarineVolcanoBigColumn::exeWait() {
             MR::calcUpVec(&upVec, this);
             v11.scale(::sGenerateOffsetY, upVec);
             MR::appearAirBubble(mPosition + v11, ::sGenerateLife);
-            setNerve(&NrvSubmarineVolcanoBigColumn::SubmarineVolcanoBigColumnNrvWait::sInstance);
+            setNerve(GET_NERVE(SubmarineVolcanoBigColumn, SubmarineVolcanoBigColumnNrvWait));
         }
     }
 }
@@ -95,8 +95,8 @@ void SubmarineVolcanoBigColumn::pauseOff() {
 }
 
 bool SubmarineVolcanoBigColumn::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvSubmarineVolcanoBigColumn::SubmarineVolcanoBigColumnNrvWait::sInstance)) {
-        setNerve(&NrvSubmarineVolcanoBigColumn::SubmarineVolcanoBigColumnNrvBreak::sInstance);
+    if (isNerve(GET_NERVE(SubmarineVolcanoBigColumn, SubmarineVolcanoBigColumnNrvWait))) {
+        setNerve(GET_NERVE(SubmarineVolcanoBigColumn, SubmarineVolcanoBigColumnNrvBreak));
         return true;
     }
 

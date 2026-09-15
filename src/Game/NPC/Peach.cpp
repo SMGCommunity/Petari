@@ -12,7 +12,7 @@ Peach::Peach(const char* pName) : NPCActor(pName) {
 void Peach::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("Peach");
     caps.setDefault();
-    caps.mWaitNerve = &NrvPeach::PeachNrvWait::sInstance;
+    caps.mWaitNerve = GET_NERVE(Peach, PeachNrvWait);
     NPCActor::initialize(rIter, caps);
 }
 

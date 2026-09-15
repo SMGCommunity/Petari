@@ -52,7 +52,7 @@ void ArrowSwitch::init(const JMapInfoIter& rIter) {
     }
 
     initSound(4, false);
-    initNerve(&NrvArrowSwitch::ArrowSwitchNrvWait::sInstance);
+    initNerve(GET_NERVE(ArrowSwitch, ArrowSwitchNrvWait));
     MR::getJMapInfoArg0WithInit(rIter, &mObjArg0);
     MR::getJMapInfoArg1WithInit(rIter, &mObjArg1);
 
@@ -122,7 +122,7 @@ bool ArrowSwitch::requestPunch(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    if (!isNerve(&NrvArrowSwitch::ArrowSwitchNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(ArrowSwitch, ArrowSwitchNrvWait))) {
         return false;
     }
 
@@ -148,7 +148,7 @@ bool ArrowSwitch::requestPunch(HitSensor* pSender, HitSensor* pReceiver) {
     _9F = true;
 
     MR::invalidateClipping(this);
-    setNerve(&NrvArrowSwitch::ArrowSwitchNrvRotate::sInstance);
+    setNerve(GET_NERVE(ArrowSwitch, ArrowSwitchNrvRotate));
 
     return true;
 }
@@ -185,7 +185,7 @@ void ArrowSwitch::listenOnSwitch() {
     }
 
     MR::invalidateClipping(this);
-    setNerve(&NrvArrowSwitch::ArrowSwitchNrvRotate::sInstance);
+    setNerve(GET_NERVE(ArrowSwitch, ArrowSwitchNrvRotate));
 }
 
 void ArrowSwitch::listenOffSwitch() {
@@ -212,7 +212,7 @@ void ArrowSwitch::listenOffSwitch() {
     }
 
     MR::invalidateClipping(this);
-    setNerve(&NrvArrowSwitch::ArrowSwitchNrvRotate::sInstance);
+    setNerve(GET_NERVE(ArrowSwitch, ArrowSwitchNrvRotate));
 }
 
 void ArrowSwitch::exeWait() {
@@ -271,9 +271,9 @@ void ArrowSwitch::exeRotate() {
         _9F = false;
 
         if (mObjArg1) {
-            setNerve(&NrvArrowSwitch::ArrowSwitchNrvLock::sInstance);
+            setNerve(GET_NERVE(ArrowSwitch, ArrowSwitchNrvLock));
         } else {
-            setNerve(&NrvArrowSwitch::ArrowSwitchNrvWait::sInstance);
+            setNerve(GET_NERVE(ArrowSwitch, ArrowSwitchNrvWait));
         }
     }
 }

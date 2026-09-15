@@ -40,7 +40,7 @@ namespace {
 GameSequenceProgress::GameSequenceProgress()
     : NerveExecutor("シーケンス進行"), mStarPointerOnOffController(), mStorySequenceExecutor(), mFindingLuigiEventScheduler(),
       mGalaxyCometScheduler(), mLuigiLeftSupplier(), mPlayerMissLeft(), _20(), _24(), _25(), _26(true) {
-    initNerve(&::GameSequenceProgressBooting::sInstance);
+    initNerve(GET_NERVE_ANON(GameSequenceProgressBooting));
 
     mStarPointerOnOffController = new StarPointerOnOffController();
     mStorySequenceExecutor = new StorySequenceExecutor();
@@ -66,8 +66,8 @@ void GameSequenceProgress::update() {
         mGalaxyCometScheduler->update();
     }
 
-    if (!isNerve(&::GameSequenceProgressResetProcessing::sInstance) && GameSystemFunction::isResetProcessing()) {
-        setNerve(&::GameSequenceProgressResetProcessing::sInstance);
+    if (!isNerve(GET_NERVE_ANON(GameSequenceProgressResetProcessing)) && GameSystemFunction::isResetProcessing()) {
+        setNerve(GET_NERVE_ANON(GameSequenceProgressResetProcessing));
     }
 
     if (mPlayerMissLeft != nullptr) {
@@ -125,11 +125,11 @@ void GameSequenceProgress::startScene() {
 }
 
 void GameSequenceProgress::endScene() {
-    if (isNerve(&::GameSequenceProgressLogo::sInstance)) {
+    if (isNerve(GET_NERVE_ANON(GameSequenceProgressLogo))) {
         MR::requestChangeSceneAfterBoot();
         GameSystemFunction::setResetOperationApplicationReset();
-        setNerve(&::GameSequenceProgressWaitGoToFirstScene::sInstance);
-    } else if (!isNerve(&GameSequenceProgressWaitGoToFirstScene::sInstance)) {
+        setNerve(GET_NERVE_ANON(GameSequenceProgressWaitGoToFirstScene));
+    } else if (!isNerve(GET_NERVE_GLOBAL(GameSequenceProgressWaitGoToFirstScene))) {
         MR::requestChangeSceneTitle();
     }
 }
@@ -162,7 +162,7 @@ void GameSequenceProgress::exeBooting() {
     }
 
     if (GameSequenceFunction::isReadyToStartScene()) {
-        setNerve(&::GameSequenceProgressLogo::sInstance);
+        setNerve(GET_NERVE_ANON(GameSequenceProgressLogo));
     }
 }
 
@@ -176,7 +176,7 @@ void GameSequenceProgress::exeLogo() {
 
 void GameSequenceProgress::exeWaitGoToFirstScene() {
     if (GameSequenceFunction::isReadyToStartScene()) {
-        setNerve(&::GameSequenceProgressNormal::sInstance);
+        setNerve(GET_NERVE_ANON(GameSequenceProgressNormal));
     }
 }
 
@@ -191,7 +191,7 @@ void GameSequenceProgress::exeNormal() {
             GameSequenceFunction::startScene();
         }
     } else if (GameSequenceFunction::isReadyToStartScene()) {
-        setNerve(&::GameSequenceProgressNormal::sInstance);
+        setNerve(GET_NERVE_ANON(GameSequenceProgressNormal));
     }
 }
 
@@ -205,7 +205,7 @@ void GameSequenceProgress::exeGalaxyMove() {
     if (MR::isGreaterStep(this, _20)) {
         if (GameSequenceFunction::isReadyToStartScene()) {
             if (MR::isDead(mPlayerMissLeft)) {
-                setNerve(&::GameSequenceProgressNormal::sInstance);
+                setNerve(GET_NERVE_ANON(GameSequenceProgressNormal));
             }
         }
     }
@@ -231,7 +231,7 @@ void GameSequenceProgress::exeResetProcessing() {
     }
 
     MR::requestChangeSceneTitle();
-    setNerve(&::GameSequenceProgressWaitGoToFirstScene::sInstance);
+    setNerve(GET_NERVE_ANON(GameSequenceProgressWaitGoToFirstScene));
 }
 
 bool GameSequenceProgress::isScenePermittedIsUpdateWiiRemoteStatus() {
@@ -281,7 +281,7 @@ void GameSequenceProgress::resetGameDataAfterChangeScene(const GalaxyMoveArgumen
 }
 
 void GameSequenceProgress::updateGameDataGalaxyVisitedFlag() {
-    if (MR::isEqualSceneName("Game") && !_25 && !isNerve(&::GameSequenceProgressResetProcessing::sInstance)) {
+    if (MR::isEqualSceneName("Game") && !_25 && !isNerve(GET_NERVE_ANON(GameSequenceProgressResetProcessing))) {
         const char* pStageName = MR::getCurrentStageName();
         s32 scenarioNo = MR::getCurrentScenarioNo();
 

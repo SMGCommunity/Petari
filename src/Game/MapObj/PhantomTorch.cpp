@@ -57,7 +57,7 @@ void PhantomTorch::init(const JMapInfoIter& rIter) {
     MR::addHitSensorMapObj(this, "body", 8, 50.0f * x, vec);
     MR::setClippingTypeSphere(this, 500.0f * x);
     MR::joinToGroupArray(this, rIter, nullptr, 32);
-    initNerve(&NrvPhantomTorch::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(PhantomTorch, HostTypeWait));
     MR::connectToSceneMapObjMovement(this);
     makeActorAppeared();
     MR::useStageSwitchWriteDead(this, rIter);
@@ -114,8 +114,8 @@ void PhantomTorch::endClipped() {
 }
 
 void PhantomTorch::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!mIsDecorative && isNerve(&NrvPhantomTorch::HostTypeWait::sInstance) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
-        setNerve(&NrvPhantomTorch::HostTypeAttack::sInstance);
+    if (!mIsDecorative && isNerve(GET_NERVE(PhantomTorch, HostTypeWait)) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
+        setNerve(GET_NERVE(PhantomTorch, HostTypeAttack));
     }
 }
 
@@ -124,8 +124,8 @@ bool PhantomTorch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
         return false;
     }
 
-    if (MR::isInSpinStormRange(msg, pSender, pReceiver, 350.0f) && isNerve(&NrvPhantomTorch::HostTypeWait::sInstance)) {
-        setNerve(&NrvPhantomTorch::HostTypeExtinguish::sInstance);
+    if (MR::isInSpinStormRange(msg, pSender, pReceiver, 350.0f) && isNerve(GET_NERVE(PhantomTorch, HostTypeWait))) {
+        setNerve(GET_NERVE(PhantomTorch, HostTypeExtinguish));
         return true;
     }
     return false;
@@ -175,7 +175,7 @@ void PhantomTorch::exeWait() {
 
 void PhantomTorch::exeAttack() {
     if (MR::isStep(this, 30)) {
-        setNerve(&NrvPhantomTorch::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(PhantomTorch, HostTypeWait));
     } else if (MR::isEqualString(mParticle, "PhantomBonfire")) {
         MR::startLevelSound(this, "SE_OJ_LV_BONFIRE_BURN");
     } else {

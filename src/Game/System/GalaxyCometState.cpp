@@ -10,7 +10,7 @@ namespace {
 };  // namespace
 
 GalaxyCometState::GalaxyCometState() : NerveExecutor("GalaxyCometState"), mIsUpdateNerve(true) {
-    initNerve(&GalaxyCometStateLand::sInstance);
+    initNerve(GET_NERVE_GLOBAL(GalaxyCometStateLand));
 }
 
 void GalaxyCometState::update() {
@@ -22,15 +22,16 @@ void GalaxyCometState::update() {
 }
 
 bool GalaxyCometState::isLand() const {
-    return isNerve(&GalaxyCometStateLand::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(GalaxyCometStateLand));
 }
 
 bool GalaxyCometState::isHide() const {
-    return isNerve(&GalaxyCometStateHide::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(GalaxyCometStateHide));
 }
 
 void GalaxyCometState::forceToNext() {
-    Nerve* pNerve = isLand() ? static_cast< Nerve* >(&GalaxyCometStateHide::sInstance) : static_cast< Nerve* >(&GalaxyCometStateLand::sInstance);
+    Nerve* pNerve =
+        isLand() ? static_cast< Nerve* >(GET_NERVE_GLOBAL(GalaxyCometStateHide)) : static_cast< Nerve* >(GET_NERVE_GLOBAL(GalaxyCometStateLand));
 
     setNerve(pNerve);
 }
@@ -48,10 +49,10 @@ s32 GalaxyCometState::getPastSecond() const {
 void GalaxyCometState::setStateAndPastSecond(int state, u16 pastSecond) {
     switch (state) {
     case STATE_HIDE:
-        setNerve(&GalaxyCometStateHide::sInstance);
+        setNerve(GET_NERVE_GLOBAL(GalaxyCometStateHide));
         break;
     case STATE_LAND:
-        setNerve(&GalaxyCometStateLand::sInstance);
+        setNerve(GET_NERVE_GLOBAL(GalaxyCometStateLand));
         break;
     default:
         break;

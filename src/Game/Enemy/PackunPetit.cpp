@@ -72,7 +72,7 @@ void PackunPetit::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &mDontTurn);
     MR::calcFrontVec(&_94, this);
     initBlowModel();
-    initNerve(&NrvPackunPetit::PackunPetitNrvWait::sInstance);
+    initNerve(GET_NERVE(PackunPetit, PackunPetitNrvWait));
     makeActorAppeared();
 }
 
@@ -88,7 +88,7 @@ void PackunPetit::exeNonActive() {
     }
 
     if (MR::isNearPlayerAnyTime(this, 5000.0f)) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvWait::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvWait));
     }
 }
 
@@ -104,7 +104,7 @@ void PackunPetit::exeWait() {
     }
 
     if (MR::isNearPlayer(this, 1700.0f)) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvFind::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvFind));
     } else {
         tryNonActive();
     }
@@ -116,7 +116,7 @@ void PackunPetit::exeFind() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvThreat::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvThreat));
     }
 }
 
@@ -137,15 +137,15 @@ void PackunPetit::exeThreat() {
     }
 
     if (MR::isGreaterStep(this, 50) && MR::isNearPlayer(this, 1100.0f) && (MR::isFaceToPlayerHorizontalDegree(this, _94, 10.0f) || mDontTurn)) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvAttackStart::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvAttackStart));
     } else if (!MR::isNearPlayer(this, 2000.0f)) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvWait::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvWait));
     }
 }
 
 void PackunPetit::exeTurn() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvPackunPetit::PackunPetitNrvLeftTurn::sInstance)) {
+        if (isNerve(GET_NERVE(PackunPetit, PackunPetitNrvLeftTurn))) {
             MR::startBck(this, "TurnLeft", nullptr);
         } else {
             MR::startBck(this, "TurnRight", nullptr);
@@ -160,7 +160,7 @@ void PackunPetit::exeTurn() {
     TVec3f* pos = MR::getPlayerPos();
     MR::turnDirectionToTargetUseGroundNormalDegree(this, &_94, *pos, step);
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvThreat::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvThreat));
     }
 }
 
@@ -170,13 +170,13 @@ void PackunPetit::exeAttackStart() {
     }
 
     if (MR::isStep(this, 70)) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvAttack::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvAttack));
     }
 }
 
 void PackunPetit::exeAttack() {
     if (MR::isStep(this, 12)) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvAttackBack::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvAttackBack));
     }
 }
 
@@ -194,7 +194,7 @@ void PackunPetit::exeHitWaitForAttack() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvHit::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvHit));
     }
 }
 
@@ -251,7 +251,7 @@ void PackunPetit::exeSwoonStart() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvSwoon::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvSwoon));
     }
 }
 
@@ -273,7 +273,7 @@ void PackunPetit::exeSwoonToThreat() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvThreat::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvThreat));
     }
 }
 
@@ -330,14 +330,13 @@ void PackunPetit::control() {
 /*
 void PackunPetit::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
-        bool isTrampleOrPunch = isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance)
-            || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
+        bool isTrampleOrPunch = isNerve(GET_NERVE(PackunPetit, PackunPetitNrvTrampleDown))
+            || isNerve(GET_NERVE(PackunPetit, PackunPetitNrvPunchDown));
     }
 }*/
 
 bool PackunPetit::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    bool isTrampleOrPunch =
-        isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
+    bool isTrampleOrPunch = isNerve(GET_NERVE(PackunPetit, PackunPetitNrvTrampleDown)) || isNerve(GET_NERVE(PackunPetit, PackunPetitNrvPunchDown));
 
     if (isTrampleOrPunch) {
         return false;
@@ -348,11 +347,11 @@ bool PackunPetit::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
     }
 
     if (MR::isMsgStarPieceAttack(msg)) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvSwoonStart::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvSwoonStart));
         return true;
     }
 
-    bool isWaitOrHit = isNerve(&NrvPackunPetit::PackunPetitNrvHitWaitForAttack::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvHit::sInstance);
+    bool isWaitOrHit = isNerve(GET_NERVE(PackunPetit, PackunPetitNrvHitWaitForAttack)) || isNerve(GET_NERVE(PackunPetit, PackunPetitNrvHit));
 
     if (isWaitOrHit) {
         return false;
@@ -363,19 +362,19 @@ bool PackunPetit::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
         return true;
     }
 
-    if (isNerve(&NrvPackunPetit::PackunPetitNrvAttack::sInstance)) {
+    if (isNerve(GET_NERVE(PackunPetit, PackunPetitNrvAttack))) {
         return false;
     }
 
     if (MR::isMsgPlayerTrample(msg)) {
         MR::tryRumbleDefaultHit(this, 0);
-        setNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvTrampleDown));
         return true;
     }
 
     if (MR::isMsgPlayerHipDrop(msg)) {
         MR::tryRumbleDefaultHit(this, 0);
-        setNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvTrampleDown));
         return true;
     }
 
@@ -389,8 +388,7 @@ bool PackunPetit::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
 }
 
 bool PackunPetit::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    bool isTrampleOrPunch =
-        isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
+    bool isTrampleOrPunch = isNerve(GET_NERVE(PackunPetit, PackunPetitNrvTrampleDown)) || isNerve(GET_NERVE(PackunPetit, PackunPetitNrvPunchDown));
 
     if (isTrampleOrPunch) {
         return false;
@@ -398,12 +396,12 @@ bool PackunPetit::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
 
     if (MR::isMsgToEnemyAttackBlow(msg)) {
         punchDown(pSender, pReceiver);
-        setNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvPunchDown));
         return true;
     }
 
     if (MR::isMsgToEnemyAttackTrample(msg)) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvTrampleDown));
         return true;
     }
 
@@ -411,7 +409,7 @@ bool PackunPetit::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
 }
 
 bool PackunPetit::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    bool isSwoon = isNerve(&NrvPackunPetit::PackunPetitNrvSwoonStart::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvSwoon::sInstance);
+    bool isSwoon = isNerve(GET_NERVE(PackunPetit, PackunPetitNrvSwoonStart)) || isNerve(GET_NERVE(PackunPetit, PackunPetitNrvSwoon));
 
     if (!isSwoon) {
         return false;
@@ -448,16 +446,16 @@ void PackunPetit::punchDown(HitSensor* pSender, HitSensor* pReceiver) {
     v5.scale(20.0f, v6);
     v5.scaleAdd(-40.0f, mGravity, v5);
     mBlownModel->mVelocity.set(v5);
-    setNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
+    setNerve(GET_NERVE(PackunPetit, PackunPetitNrvPunchDown));
 }
 
 void PackunPetit::selectNrvWait() {
     if (!MR::isNearPlayer(this, 1700.0f)) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvWait::sInstance);
-    } else if (isNerve(&NrvPackunPetit::PackunPetitNrvSwoon::sInstance)) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvSwoonToThreat::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvWait));
+    } else if (isNerve(GET_NERVE(PackunPetit, PackunPetitNrvSwoon))) {
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvSwoonToThreat));
     } else {
-        setNerve(&NrvPackunPetit::PackunPetitNrvThreat::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvThreat));
     }
 }
 
@@ -466,7 +464,7 @@ bool PackunPetit::tryNonActive() {
         return false;
     }
 
-    setNerve(&NrvPackunPetit::PackunPetitNrvNonActive::sInstance);
+    setNerve(GET_NERVE(PackunPetit, PackunPetitNrvNonActive));
     return true;
 }
 
@@ -487,10 +485,10 @@ bool PackunPetit::tryTurn() {
     MR::calcSideVec(&sideVec, this);
 
     if (playerDist.dot(sideVec) > 0.0f) {
-        setNerve(&NrvPackunPetit::PackunPetitNrvLeftTurn::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvLeftTurn));
     }
     else {
-        setNerve(&NrvPackunPetit::PackunPetitNrvRightTurn::sInstance);
+        setNerve(GET_NERVE(PackunPetit, PackunPetitNrvRightTurn));
     }
 
     return true;
@@ -498,18 +496,17 @@ bool PackunPetit::tryTurn() {
 */
 
 bool PackunPetit::tryDPDSwoon() {
-    if (isNerve(&NrvPackunPetit::PackunPetitNrvDPDSwoon::sInstance)) {
+    if (isNerve(GET_NERVE(PackunPetit, PackunPetitNrvDPDSwoon))) {
         return false;
     }
 
-    bool isSwoon = isNerve(&NrvPackunPetit::PackunPetitNrvSwoonStart::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvSwoon::sInstance);
+    bool isSwoon = isNerve(GET_NERVE(PackunPetit, PackunPetitNrvSwoonStart)) || isNerve(GET_NERVE(PackunPetit, PackunPetitNrvSwoon));
 
     if (isSwoon) {
         return false;
     }
 
-    bool isTrampleOrPunch =
-        isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance) || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
+    bool isTrampleOrPunch = isNerve(GET_NERVE(PackunPetit, PackunPetitNrvTrampleDown)) || isNerve(GET_NERVE(PackunPetit, PackunPetitNrvPunchDown));
 
     if (isTrampleOrPunch) {
         return false;
@@ -519,7 +516,7 @@ bool PackunPetit::tryDPDSwoon() {
         return false;
     }
 
-    setNerve(&NrvPackunPetit::PackunPetitNrvDPDSwoon::sInstance);
+    setNerve(GET_NERVE(PackunPetit, PackunPetitNrvDPDSwoon));
     return true;
 }
 

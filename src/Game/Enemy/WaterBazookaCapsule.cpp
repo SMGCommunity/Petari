@@ -29,16 +29,16 @@ void WaterBazookaCapsule::init(const JMapInfoIter& rIter) {
 
     MR::startBrk(this, "Damage");
     MR::setBrkFrameAndStop(this, 0.0f);
-    initNerve(&NrvWaterBazookaCapsule::WaterBazookaCapsuleNrvNormal::sInstance);
+    initNerve(GET_NERVE(WaterBazookaCapsule, WaterBazookaCapsuleNrvNormal));
     makeActorAppeared();
 }
 
 void WaterBazookaCapsule::crackCapsule() {
-    setNerve(&NrvWaterBazookaCapsule::WaterBazookaCapsuleNrvCrack::sInstance);
+    setNerve(GET_NERVE(WaterBazookaCapsule, WaterBazookaCapsuleNrvCrack));
 }
 
 void WaterBazookaCapsule::breakCapsule() {
-    setNerve(&NrvWaterBazookaCapsule::WaterBazookaCapsuleNrvBreak::sInstance);
+    setNerve(GET_NERVE(WaterBazookaCapsule, WaterBazookaCapsuleNrvBreak));
 }
 
 bool WaterBazookaCapsule::isPlayerOnCapsule() const {
@@ -71,7 +71,7 @@ void WaterBazookaCapsule::exeBreak() {
 }
 
 bool WaterBazookaCapsule::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvWaterBazookaCapsule::WaterBazookaCapsuleNrvBreak::sInstance)) {
+    if (isNerve(GET_NERVE(WaterBazookaCapsule, WaterBazookaCapsuleNrvBreak))) {
         return false;
     }
 
@@ -83,7 +83,7 @@ bool WaterBazookaCapsule::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, Hi
 }
 
 bool WaterBazookaCapsule::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvWaterBazookaCapsule::WaterBazookaCapsuleNrvBreak::sInstance)) {
+    if (isNerve(GET_NERVE(WaterBazookaCapsule, WaterBazookaCapsuleNrvBreak))) {
         return false;
     }
 
@@ -95,7 +95,7 @@ bool WaterBazookaCapsule::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, Hit
 }
 
 bool WaterBazookaCapsule::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvWaterBazookaCapsule::WaterBazookaCapsuleNrvBreak::sInstance)) {
+    if (isNerve(GET_NERVE(WaterBazookaCapsule, WaterBazookaCapsuleNrvBreak))) {
         return false;
     }
 

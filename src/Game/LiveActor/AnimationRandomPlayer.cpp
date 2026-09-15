@@ -15,7 +15,7 @@ AnimationRandomPlayer::AnimationRandomPlayer(const LiveActor* pActor, const char
     _10 = a3;
     _18 = a4;
     _1C = a5;
-    initNerve(&NrvAnimationRandomPlayer::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(AnimationRandomPlayer, HostTypeWait));
     updateStartStep();
 }
 
@@ -34,7 +34,7 @@ void AnimationRandomPlayer::exeWait() {
     }
 
     if (MR::isStep(this, _14)) {
-        setNerve(&NrvAnimationRandomPlayer::HostTypePlay::sInstance);
+        setNerve(GET_NERVE(AnimationRandomPlayer, HostTypePlay));
     }
 }
 
@@ -46,7 +46,7 @@ void AnimationRandomPlayer::exePlay() {
     if (MR::isAnyAnimOneTimeAndStopped(mActor, _C)) {
         updateStartStep();
         MR::setAllAnimFrame(mActor, _C, 0.0f);
-        setNerve(&NrvAnimationRandomPlayer::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(AnimationRandomPlayer, HostTypeWait));
     }
 }
 

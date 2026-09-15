@@ -54,9 +54,9 @@ LogoScene::~LogoScene() {
 
 void LogoScene::init() {
     if (MR::isEqualString(MR::getCurrentRegionPrefix(), "Cn")) {
-        initNerve(&LogoSceneCensorshipFadein::sInstance);
+        initNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipFadein));
     } else {
-        initNerve(&LogoSceneStrapFadein::sInstance);
+        initNerve(GET_NERVE_GLOBAL(LogoSceneStrapFadein));
     }
 
     SceneFunction::createHioBasicNode(this);
@@ -90,8 +90,8 @@ void LogoScene::draw() const {
     MR::clearZBuffer();
     MR::drawInitFor2DModel();
 
-    bool isCensorship = isNerve(&LogoSceneCensorshipFadein::sInstance) || isNerve(&LogoSceneCensorshipDisplay::sInstance) ||
-                        isNerve(&LogoSceneCensorshipFadeout::sInstance);
+    bool isCensorship = isNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipFadein)) || isNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipDisplay)) ||
+                        isNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipFadeout));
 
     if (isCensorship) {
         MR::setupDrawForNW4RLayout(1.0f, true);
@@ -108,10 +108,10 @@ void LogoScene::draw() const {
 }
 
 bool LogoScene::isDisplayStrapRemineder() const {
-    return isNerve(&LogoSceneDeactive::sInstance) || isNerve(&LogoSceneCensorshipFadein::sInstance) ||
-           isNerve(&LogoSceneCensorshipDisplay::sInstance) || isNerve(&LogoSceneCensorshipFadeout::sInstance) ||
-           isNerve(&LogoSceneStrapFadein::sInstance) || isNerve(&LogoSceneStrapDisplay::sInstance) || isNerve(&LogoSceneStrapFadeout::sInstance) ||
-           isNerve(&LogoSceneWaitReadDoneSystemArchive::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(LogoSceneDeactive)) || isNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipFadein)) ||
+           isNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipDisplay)) || isNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipFadeout)) ||
+           isNerve(GET_NERVE_GLOBAL(LogoSceneStrapFadein)) || isNerve(GET_NERVE_GLOBAL(LogoSceneStrapDisplay)) ||
+           isNerve(GET_NERVE_GLOBAL(LogoSceneStrapFadeout)) || isNerve(GET_NERVE_GLOBAL(LogoSceneWaitReadDoneSystemArchive));
 }
 
 void LogoScene::exeCensorshipFadein() {
@@ -122,7 +122,7 @@ void LogoScene::exeCensorshipFadein() {
     mIsbnManager->calc(true);
 
     if (tryFadeinLayout()) {
-        setNerve(&LogoSceneCensorshipDisplay::sInstance);
+        setNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipDisplay));
     }
 }
 
@@ -134,7 +134,7 @@ void LogoScene::exeCensorshipDisplay() {
     mIsbnManager->calc(true);
 
     if (MR::isGreaterStep(this, CENSORSHIP_DISPLAY_FRAME)) {
-        setNerve(&LogoSceneCensorshipFadeout::sInstance);
+        setNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipFadeout));
     }
 }
 
@@ -142,7 +142,7 @@ void LogoScene::exeCensorshipFadeout() {
     mIsbnManager->calc(true);
 
     if (tryFadeoutLayout()) {
-        setNerve(&LogoSceneStrapFadein::sInstance);
+        setNerve(GET_NERVE_GLOBAL(LogoSceneStrapFadein));
     }
 }
 
@@ -155,7 +155,7 @@ void LogoScene::exeStrapFadein() {
     }
 
     if (tryFadeinLayout(mStrapLayout)) {
-        setNerve(&LogoSceneStrapDisplay::sInstance);
+        setNerve(GET_NERVE_GLOBAL(LogoSceneStrapDisplay));
     }
 }
 
@@ -170,13 +170,13 @@ void LogoScene::exeStrapDisplay() {
 
     if (MR::isGreaterStep(this, STRAP_DISPLAY_MIN_FRAME) &&
         (MR::testCorePadTriggerAnyWithoutHome(WPAD_CHAN0) || MR::isGreaterEqualStep(this, STRAP_DISPLAY_MAX_FRAME))) {
-        setNerve(&LogoSceneStrapFadeout::sInstance);
+        setNerve(GET_NERVE_GLOBAL(LogoSceneStrapFadeout));
     }
 }
 
 void LogoScene::exeStrapFadeout() {
     if (tryFadeoutLayout(mStrapLayout)) {
-        setNerve(&LogoSceneWaitReadDoneSystemArchive::sInstance);
+        setNerve(GET_NERVE_GLOBAL(LogoSceneWaitReadDoneSystemArchive));
     }
 }
 
@@ -189,12 +189,12 @@ void LogoScene::exeMountGameData() {
         return;
     }
 
-    setNerve(&LogoSceneDeactive::sInstance);
+    setNerve(GET_NERVE_GLOBAL(LogoSceneDeactive));
 }
 
 void LogoScene::exeWaitReadDoneSystemArchive() {
     if (GameSystemFunction::isDoneLoadSystemArchive()) {
-        setNerve(&LogoSceneMountGameData::sInstance);
+        setNerve(GET_NERVE_GLOBAL(LogoSceneMountGameData));
     }
 }
 

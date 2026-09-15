@@ -29,7 +29,7 @@ void TakoHeiInk::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     initSound(1, false);
     MR::initShadowVolumeSphere(this, ::sModelSize);
-    initNerve(&NrvTakoHeiInk::TakoHeiInkNrvWait::sInstance);
+    initNerve(GET_NERVE(TakoHeiInk, TakoHeiInkNrvWait));
     MR::invalidateClipping(this);
     makeActorDead();
 }
@@ -44,7 +44,7 @@ void TakoHeiInk::control() {
 
 void TakoHeiInk::start(const TVec3f& startPos, const TVec3f& startVelocity, bool startOffBind) {
     mPosition.set(startPos);
-    setNerve(&NrvTakoHeiInk::TakoHeiInkNrvWait::sInstance);
+    setNerve(GET_NERVE(TakoHeiInk, TakoHeiInkNrvWait));
     appear();
     mVelocity.set(startVelocity);
 

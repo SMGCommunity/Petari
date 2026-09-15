@@ -47,7 +47,7 @@ void HipDropSwitch::init(const JMapInfoIter& rIter) {
     MR::initCollisionParts(this, "HipDropSwitch", getSensor("body"), nullptr);
     _98 = MR::createCollisionPartsFromLiveActor(this, "Move", getSensor("hit"), MR::CollisionScaleType_Unk2);
     MR::validateCollisionParts(_98);
-    initNerve(&NrvHipDropSwitch::HipDropSwitchNrvOff::sInstance);
+    initNerve(GET_NERVE(HipDropSwitch, HipDropSwitchNrvOff));
     MR::needStageSwitchWriteA(this, rIter);
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
@@ -97,7 +97,7 @@ bool HipDropSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRec
 
 bool HipDropSwitch::trySwitchDown() {
     if (_CC) {
-        setNerve(&NrvHipDropSwitch::HipDropSwitchNrvSwitchDown::sInstance);
+        setNerve(GET_NERVE(HipDropSwitch, HipDropSwitchNrvSwitchDown));
         return true;
     }
 
@@ -106,7 +106,7 @@ bool HipDropSwitch::trySwitchDown() {
 
 bool HipDropSwitch::tryOn() {
     if (MR::isGreaterStep(this, 0) && MR::isBckStopped(this)) {
-        setNerve(&NrvHipDropSwitch::HipDropSwitchNrvOn::sInstance);
+        setNerve(GET_NERVE(HipDropSwitch, HipDropSwitchNrvOn));
         return true;
     }
 

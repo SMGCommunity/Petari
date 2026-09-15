@@ -17,7 +17,7 @@ FileSelectNumber::FileSelectNumber(const char* pName) : LayoutActor(pName, true)
 void FileSelectNumber::init(const JMapInfoIter& rIter) {
     initLayoutManager("FileNumber", 2);
     MR::connectToSceneLayout(this);
-    initNerve(&FileSelectNumberNrvWait::sInstance);
+    initNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvWait));
 
     mSelectAnimCtrl = new FileSelectNumberSub::SelectAnimController(this);
 }
@@ -28,29 +28,29 @@ void FileSelectNumber::appear() {
     if (MR::isDead(this)) {
         LayoutActor::appear();
         MR::startAnim(this, "Appear", 0);
-        setNerve(&FileSelectNumberNrvAppear::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvAppear));
         mSelectAnimCtrl->appear();
-    } else if (isNerve(&FileSelectNumberNrvEnd::sInstance)) {
+    } else if (isNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvEnd))) {
         animFrame = MR::getAnimFrame(this, 0);
 
         MR::startAnim(this, "Appear", 0);
         MR::setAnimFrame(this, MR::getAnimCtrl(this, 0)->getEnd() - animFrame, 0);
-        setNerve(&FileSelectNumberNrvAppear::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvAppear));
     }
 }
 
 void FileSelectNumber::disappear() {
     f32 animFrame;
 
-    if (isNerve(&FileSelectNumberNrvAppear::sInstance)) {
+    if (isNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvAppear))) {
         animFrame = MR::getAnimFrame(this, 0);
 
         MR::startAnim(this, "End", 0);
         MR::setAnimFrame(this, MR::getAnimCtrl(this, 0)->getEnd() - animFrame, 0);
-        setNerve(&FileSelectNumberNrvEnd::sInstance);
-    } else if (isNerve(&FileSelectNumberNrvWait::sInstance)) {
+        setNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvEnd));
+    } else if (isNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvWait))) {
         MR::startAnim(this, "End", 0);
-        setNerve(&FileSelectNumberNrvEnd::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvEnd));
     }
 }
 
@@ -77,7 +77,7 @@ void FileSelectNumber::exeAppear() {
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&FileSelectNumberNrvWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvWait));
     }
 }
 
@@ -100,32 +100,32 @@ namespace FileSelectNumberSub {
     NEW_NERVE(SelectAnimControllerNrvSelectOut, SelectAnimController, SelectOut);
 
     SelectAnimController::SelectAnimController(LayoutActor* pHost) : NerveExecutor("セレクトアニメ制御"), mHost(pHost) {
-        initNerve(&SelectAnimControllerNrvSelectOut::sInstance);
+        initNerve(GET_NERVE_GLOBAL(SelectAnimControllerNrvSelectOut));
     }
 
     void SelectAnimController::appear() {
-        setNerve(&SelectAnimControllerNrvSelectOut::sInstance);
+        setNerve(GET_NERVE_GLOBAL(SelectAnimControllerNrvSelectOut));
         MR::startAnim(mHost, "SelectOut", 1);
         MR::setAnimFrame(mHost, MR::getAnimCtrl(mHost, 1)->getEnd() - 1.0f, 1);
     }
 
     void SelectAnimController::selectIn() {
-        if (isNerve(&SelectAnimControllerNrvSelectOut::sInstance)) {
-            setNerve(&SelectAnimControllerNrvSelectInStart::sInstance);
+        if (isNerve(GET_NERVE_GLOBAL(SelectAnimControllerNrvSelectOut))) {
+            setNerve(GET_NERVE_GLOBAL(SelectAnimControllerNrvSelectInStart));
 
             _C = nullptr;
-        } else if (isNerve(&SelectAnimControllerNrvSelectOutStart::sInstance)) {
-            _C = &SelectAnimControllerNrvSelectIn::sInstance;
+        } else if (isNerve(GET_NERVE_GLOBAL(SelectAnimControllerNrvSelectOutStart))) {
+            _C = GET_NERVE_GLOBAL(SelectAnimControllerNrvSelectIn);
         }
     }
 
     void SelectAnimController::selectOut() {
-        if (isNerve(&SelectAnimControllerNrvSelectIn::sInstance)) {
-            setNerve(&SelectAnimControllerNrvSelectOutStart::sInstance);
+        if (isNerve(GET_NERVE_GLOBAL(SelectAnimControllerNrvSelectIn))) {
+            setNerve(GET_NERVE_GLOBAL(SelectAnimControllerNrvSelectOutStart));
 
             _C = nullptr;
-        } else if (isNerve(&SelectAnimControllerNrvSelectInStart::sInstance)) {
-            _C = &SelectAnimControllerNrvSelectOut::sInstance;
+        } else if (isNerve(GET_NERVE_GLOBAL(SelectAnimControllerNrvSelectInStart))) {
+            _C = GET_NERVE_GLOBAL(SelectAnimControllerNrvSelectOut);
         }
     }
 
@@ -135,10 +135,10 @@ namespace FileSelectNumberSub {
         }
 
         if (MR::isAnimStopped(mHost, 0)) {
-            if (_C == &SelectAnimControllerNrvSelectOut::sInstance) {
-                setNerve(&SelectAnimControllerNrvSelectOutStart::sInstance);
+            if (_C == GET_NERVE_GLOBAL(SelectAnimControllerNrvSelectOut)) {
+                setNerve(GET_NERVE_GLOBAL(SelectAnimControllerNrvSelectOutStart));
             } else {
-                setNerve(&SelectAnimControllerNrvSelectIn::sInstance);
+                setNerve(GET_NERVE_GLOBAL(SelectAnimControllerNrvSelectIn));
             }
 
             _C = nullptr;
@@ -154,10 +154,10 @@ namespace FileSelectNumberSub {
         }
 
         if (MR::isAnimStopped(mHost, 0)) {
-            if (_C == &SelectAnimControllerNrvSelectIn::sInstance) {
-                setNerve(&SelectAnimControllerNrvSelectInStart::sInstance);
+            if (_C == GET_NERVE_GLOBAL(SelectAnimControllerNrvSelectIn)) {
+                setNerve(GET_NERVE_GLOBAL(SelectAnimControllerNrvSelectInStart));
             } else {
-                setNerve(&SelectAnimControllerNrvSelectOut::sInstance);
+                setNerve(GET_NERVE_GLOBAL(SelectAnimControllerNrvSelectOut));
             }
 
             _C = nullptr;

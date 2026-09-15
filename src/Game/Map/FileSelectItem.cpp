@@ -9,7 +9,9 @@
 #include "Game/NPC/MiiFaceRecipe.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/FileSelectNumber.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
@@ -18,7 +20,6 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "RFL_Types.h"
 
 namespace {
     NEW_NERVE(FileSelectItemNrvNewWait, FileSelectItem, NewWait);
@@ -27,12 +28,26 @@ namespace {
     NEW_NERVE(FileSelectItemNrvChangeFellow, FileSelectItem, ChangeFellow);
     NEW_NERVE(FileSelectItemNrvChangeMii, FileSelectItem, ChangeMii);
 
-    bool checkCollisionOfPointAndCylinder(const TVec3f&, const TVec3f&, const TVec3f&, f32);
+    bool checkCollisionOfPointAndCylinder(const TVec3f& rVec1, const TVec3f& rVec2, const TVec3f& rVec3, f32 f1) {
+        f32 length = rVec3.length();
+        TVec3f vecCopy(rVec3);
+        MR::normalize(&vecCopy);
+
+        TVec3f diff(rVec1 - rVec2);
+
+        f32 dot = vecCopy.dot(diff);
+        if (dot < 0.0f || dot > length) {
+            return false;
+        }
+
+        vecCopy.scale(dot);
+        return !(vecCopy.distance(diff) > f1);
+    }
 
     const char* sFellowModel[5] = {"FileSelectDataMario", "FileSelectDataLuigi", "FileSelectDataYoshi", "FileSelectDataKinopio",
                                    "FileSelectDataPeach"};
 
-    // static TVec3f sDataInfoOffset = TVec3f(0.0f, 2150.0f, 0.0f);
+    static const Vec sDataInfoOffset = {0.0f, 2150.0f, 0.0f};
 };  // namespace
 
 namespace FileSelectItemSub {
@@ -96,7 +111,7 @@ void FileSelectItem::init(const JMapInfoIter& rIter) {
     createNumber();
     MR::initStarPointerTarget(this, 1000.0f, TVec3f(0.0f, 900.0f, 0.0f));
     MR::invalidateClipping(this);
-    initNerve(&FileSelectItemNrvNewWait::sInstance);
+    initNerve(GET_NERVE_GLOBAL(FileSelectItemNrvNewWait));
     MR::createCenterScreenBlur();
     makeActorAppeared();
 }
@@ -107,7 +122,7 @@ void FileSelectItem::appear() {
     if (_8C) {
         killAllModels();
         mPlanetMapObj->makeActorAppeared();
-        setNerve(&FileSelectItemNrvNewWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvNewWait));
     } else {
         if (mIconID->isMii()) {
             killAllModels();
@@ -116,7 +131,7 @@ void FileSelectItem::appear() {
             appearFellowModel();
         }
 
-        setNerve(&FileSelectItemNrvExistWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvExistWait));
     }
 }
 
@@ -138,15 +153,15 @@ void FileSelectItem::makeActorDead() {
 }
 
 bool FileSelectItem::isNew() const {
-    return isNerve(&FileSelectItemNrvNewWait::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(FileSelectItemNrvNewWait));
 }
 
 bool FileSelectItem::isExist() const {
-    return isNerve(&FileSelectItemNrvExistWait::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(FileSelectItemNrvExistWait));
 }
 
 void FileSelectItem::format() {
-    setNerve(&FileSelectItemNrvFormat::sInstance);
+    setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvFormat));
     deleteCompleteEffect();
     _8C = 1;
 }
@@ -155,9 +170,9 @@ void FileSelectItem::change(const FileSelectIconID& rID, bool a2) {
     mIconID->set(rID);
 
     if (rID.isMii()) {
-        setNerve(&FileSelectItemNrvChangeMii::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvChangeMii));
     } else {
-        setNerve(&FileSelectItemNrvChangeFellow::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvChangeFellow));
     }
 
     deleteCompleteEffect();
@@ -179,7 +194,7 @@ void FileSelectItem::forceChange(const FileSelectIconID& rID, bool a2) {
 
     _147 = a2;
     emitCompleteEffect();
-    setNerve(&FileSelectItemNrvExistWait::sInstance);
+    setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvExistWait));
     _8C = 0;
 }
 
@@ -213,7 +228,7 @@ void FileSelectItem::setSelectDelegator(FileSelectItemDelegatorBase* pDele) {
 
 void FileSelectItem::onPointing() {
     if (!mIsInvalidateSelect) {
-        if (isNerve(&FileSelectItemNrvNewWait::sInstance)) {
+        if (isNerve(GET_NERVE_GLOBAL(FileSelectItemNrvNewWait))) {
             playPointedNotUsingME();
         } else {
             playPointedME();
@@ -221,7 +236,7 @@ void FileSelectItem::onPointing() {
 
         _A0->onSelectIn();
         _144 = 1;
-        mScaleCtrl->setNerve(&FileSelectItemSub::ScaleControllerNrvToBig::sInstance);
+        mScaleCtrl->setNerve(GET_NERVE_DIRECT(FileSelectItemSub, ScaleControllerNrvToBig));
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
     }
 }
@@ -230,7 +245,7 @@ void FileSelectItem::offPointing() {
     if (!mIsInvalidateSelect) {
         _A0->onSelectOut();
         _144 = 0;
-        mScaleCtrl->setNerve(&FileSelectItemSub::ScaleControllerNrvToSmall::sInstance);
+        mScaleCtrl->setNerve(GET_NERVE_DIRECT(FileSelectItemSub, ScaleControllerNrvToSmall));
     }
 }
 
@@ -248,7 +263,7 @@ void FileSelectItem::exeFormat() {
     }
 
     if (MR::isLessStep(this, 40)) {
-        MR::startSystemLevelSE("SE_SY_LV_FILE_SE_MORPHBLUR");
+        MR::startSystemLevelSE("SE_SY_LV_FILE_SEL_MORPHBLUR");
     }
 
     if (MR::isStep(this, 40)) {
@@ -266,7 +281,7 @@ void FileSelectItem::exeFormat() {
     }
 
     if (MR::isStep(this, 60)) {
-        setNerve(&::FileSelectItemNrvNewWait::sInstance);
+        setNerve(GET_NERVE_ANON(FileSelectItemNrvNewWait));
     }
 }
 
@@ -275,7 +290,7 @@ void FileSelectItem::exeChangeFellow() {
     }
 
     if (MR::isLessStep(this, 40)) {
-        MR::startSystemLevelSE("SE_SY_FILE_SEL_MORPHBLR");
+        MR::startSystemLevelSE("SE_SY_LV_FILE_SEL_MORPHBLUR");
     }
 
     if (MR::isStep(this, 40)) {
@@ -299,7 +314,7 @@ void FileSelectItem::exeChangeFellow() {
     }
 
     if (MR::isStep(this, 150)) {
-        setNerve(&::FileSelectItemNrvExistWait::sInstance);
+        setNerve(GET_NERVE_ANON(FileSelectItemNrvExistWait));
     }
 }
 
@@ -316,7 +331,7 @@ void FileSelectItem::exeChangeMii() {
     }
 
     if (MR::isStep(this, 40)) {
-        MR::startSystemSE("SE_SY_FILE_SE_MORPH_MARIO");
+        MR::startSystemSE("SE_SY_FILE_SEL_MORPH_MARIO");
         killAllModels();
         mFaceParts->makeActorAppeared();
         emitCompleteEffect();
@@ -337,11 +352,50 @@ void FileSelectItem::exeChangeMii() {
     }
 
     if (MR::isStep(this, 150)) {
-        setNerve(&FileSelectItemNrvExistWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvExistWait));
     }
 }
 
-// ...
+void FileSelectItem::control() {
+    updatePointing();
+    updateRotate();
+
+    TPos3f mtx;
+    if (mRotation.x == 0.0f && mRotation.z == 0.0f) {
+        MR::makeMtxTransRotateY(mtx, this);
+    } else {
+        MR::makeMtxTR(mtx, this);
+    }
+
+    TVec3f yDir;
+    mtx.getYDir(yDir);
+
+    TVec3f trans;
+    mtx.getTrans(trans);
+    _A4.set(mtx);
+    _A4.setTrans(yDir * 30.0f + trans * 30.0f);
+
+    _D4.set(mtx);
+    _104.set(mtx);
+
+    mScaleCtrl->updateNerve();
+
+    mPlanetMapObj->mScale.setAll< f32 >(30.0f * mScaleCtrl->_8);
+
+    for (s32 i = 0; i < 5; i++) {
+        mModels[i]->mScale.setAll< f32 >(30.0f * mScaleCtrl->_8);
+    }
+
+    mFaceParts->mScale.setAll< f32 >(30.0f * mScaleCtrl->_8);
+
+    mBlinkCtrl->updateNerve();
+
+    TVec3f screenPos;
+    TVec3f newPos;
+    newPos.add(mPosition, sDataInfoOffset);
+    MR::calcScreenPosition(&screenPos, newPos);
+    _A0->setTrans(screenPos);
+}
 
 void FileSelectItem::createNew() {
     mPlanetMapObj = MR::createPartsModelMapObj(this, "ニューフェイス", "FileSelectDataPlanet", _A4);
@@ -392,174 +446,313 @@ void FileSelectItem::updatePointing() {
     if (!mIsInvalidateSelect && _144 && MR::testDPDMenuPadDecideTrigger()) {
         if (mDelegator != nullptr) {
             mDelegator->notify(this, 1);
-            mScaleCtrl->setNerve(&FileSelectItemSub::ScaleControllerNrvToSmall::sInstance);
+            mScaleCtrl->setNerve(GET_NERVE_DIRECT(FileSelectItemSub, ScaleControllerNrvToSmall));
         }
     }
 }
 
 // still quite a ways to go with this one.
 void FileSelectItem::updateRotate() {
-    if (!mIsInvalidRotate) {
-        if (_168 > 0) {
-            _160 = 0.0f;
+    if (mIsInvalidRotate) {
+        return;
+    }
 
-            f32 v6 = (f32)++_16C / (_168);
-            v6 *= v6;
-            if (v6 > 1.0f) {
-                v6 = 1.0f;
+    if (_168 > 0) {
+        _160 = 0.0f;
+
+        f32 v6 = (f32)++_16C / (_168);
+        v6 *= v6;
+        if (v6 > 1.0f) {
+            v6 = 1.0f;
+        }
+
+        if (v6 < 0.0f) {
+            v6 = 0.0f;
+        }
+
+        if (_16C >= _168) {
+            _16C = 0;
+            _168 = 0;
+        }
+
+        mRotation.y = MR::repeat(mRotation.y, -180.0f, 360.0f);
+        mBlinkCtrl->open();
+        mBlinkCtrl->setNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvOpen));
+    } else if (MR::isStarPointerInScreen(0)) {
+        TVec3f v43 = mPosition + TVec3f(0.0f, 900.0f, 0.0f);
+        TVec2f screenPos(*MR::getStarPointerScreenPosition(0));
+
+        if (_154) {
+            _158 = screenPos;
+            _156 = _155;
+            _154 = 0;
+        }
+
+        TVec3f v42 = MR::getCamPos();  // 0x100
+        TVec3f stack_F4 = v43 - v42;
+
+        f32 v11 = (900.0f + stack_F4.length());
+        if (JGeometry::TUtil< f32 >::sqrt(screenPos.squareDist(_158)) < 2.0f) {
+            TVec3f v40;
+            MR::calcWorldPositionFromScreen(&v40, screenPos, v11);
+            TVec3f v39 = v40 - v42;
+            MR::normalize(&v39);
+            TVec3f v38 = stack_F4.cross(v39);
+
+            if (v38.length() < 900.0f) {
+                _155 = 1;
             }
+        } else {
+            TVec3f v37;
+            MR::calcWorldPositionFromScreen(&v37, screenPos, v11);
+            TVec3f v36;
+            MR::calcWorldPositionFromScreen(&v36, _158, v11);
+            TVec3f v44;
+            v44 = v42;  // v44 = 0x118 / v42 = 0x100
+            TVec3f v45;
+            v45 = v37;  // v45 = 0x124 / v37 = 0xC4
+            TVec3f v46;
+            v46 = v36;  // v46 = 0x130 / v36 = 0xB8
 
-            if (v6 < 0.0f) {
-                v6 = 0.0f;
-            }
+            TVec3f v47;
+            v47 = v37 - v42;  // v47 = 0x13C / v26 = 0x40
 
-            if (_16C >= _168) {
-                _16C = 0;
-                _168 = 0;
-            }
+            TVec3f v48;
+            v48 = v36 - v37;  // v48 = 0x148 / v27 = 0x4C
 
-            mRotation.y = MR::repeat(mRotation.y, -180.0f, 360.0f);
-            mBlinkCtrl->open();
-            mBlinkCtrl->setNerve(&FileSelectItemSub::BlinkControllerNrvOpen::sInstance);
-        } else if (MR::isStarPointerInScreen(0)) {
-            TVec3f v43 = mPosition + TVec3f(0.0f, 900.0f, 0.0f);
-            TVec2f screenPos(*MR::getStarPointerScreenPosition(0));
+            TVec3f v49;
+            v49 = v42 - v36;
+            TVec3f v50 = v48.cross(v47);  // 0x160
+            MR::normalize(&v50);
 
-            if (_154) {
-                _158 = screenPos;
-                _156 = _155;
-                _154 = 0;
-            }
+            f32 v12 = v50.dot(v43 - v42);
 
-            TVec3f v42 = MR::getCamPos();  // 0x100
-            TVec3f stack_F4 = v43 - v42;
+            bool v14;
+            bool v13;
 
-            f32 v11 = (900.0f + stack_F4.length());
-            if (JGeometry::TUtil< f32 >::sqrt(screenPos.squareDist(_158)) < 2.0f) {
-                TVec3f v40;
-                MR::calcWorldPositionFromScreen(&v40, screenPos, v11);
-                TVec3f v39 = v40 - v42;
-                MR::normalize(&v39);
-                TVec3f v38 = stack_F4.cross(v39);
-
-                if (v38.length() < 900.0f) {
-                    _155 = 1;
-                }
+            if (MR::abs(v12) >= 900.0f) {
+                v13 = false;
             } else {
-                TVec3f v37;
-                MR::calcWorldPositionFromScreen(&v37, screenPos, v11);
-                TVec3f v36;
-                MR::calcWorldPositionFromScreen(&v36, _158, v11);
-                TVec3f v44;
-                v44 = v42;  // v44 = 0x118 / v42 = 0x100
-                TVec3f v45;
-                v45 = v37;  // v45 = 0x124 / v37 = 0xC4
-                TVec3f v46;
-                v46 = v36;  // v46 = 0x130 / v36 = 0xB8
+                TVec3f v29;
+                v29 = v43 - v50 * v12;
+                TVec3f v25 = v29 - v44;
+                TVec3f v34 = v25.cross(v47);
 
-                TVec3f v47;
-                v47 = v37 - v42;  // v47 = 0x13C / v26 = 0x40
-
-                TVec3f v48;
-                v48 = v36 - v37;  // v48 = 0x148 / v27 = 0x4C
-
-                TVec3f v49;
-                v49 = v42 - v36;
-                TVec3f v50 = v48.cross(v47);  // 0x160
-                MR::normalize(&v50);
-
-                f32 v12 = v50.dot(v43 - v42);
-
-                bool v14;
-                bool v13;
-
-                if (MR::abs(v12) >= 900.0f) {
-                    v13 = false;
+                if (v34.dot(v50) < 0.0f) {
+                    v14 = 0;
                 } else {
-                    TVec3f v29;
-                    v29 = v43 - v50 * v12;
-                    TVec3f v25 = v29 - v44;
-                    TVec3f v34 = v25.cross(v47);
+                    v34.cross(v25 - v45, v48);
 
                     if (v34.dot(v50) < 0.0f) {
                         v14 = 0;
                     } else {
-                        v34.cross(v25 - v45, v48);
+                        v34.cross(v25 - v46, v49);
 
-                        if (v34.dot(v50) < 0.0f) {
-                            v14 = 0;
-                        } else {
-                            v34.cross(v25 - v46, v49);
-
-                            v14 = !(v34.dot(v50) < 0.0f);
-                        }
-                    }
-                    if (v14) {
-                        v13 = 1;
-                    } else if (v44.distance(v43) <= 900.0f) {
-                        v13 = 1;
-                    } else if (v45.distance(v43) <= 900.0f) {
-                        v13 = 1;
-                    } else if (v46.distance(v43) <= 900.0f) {
-                        v13 = 1;
-                    } else if (checkCollisionOfPointAndCylinder(v43, v44, v47, 900.0f)) {
-                        v13 = 1;
-                    } else if (checkCollisionOfPointAndCylinder(v43, v45, v48, 900.0f)) {
-                        v13 = 1;
-                    } else {
-                        v13 = checkCollisionOfPointAndCylinder(v43, v46, v49, 900.0f);
+                        v14 = !(v34.dot(v50) < 0.0f);
                     }
                 }
-
-                if (v13) {
-                    _155 = 1;
+                if (v14) {
+                    v13 = 1;
+                } else if (v44.distance(v43) <= 900.0f) {
+                    v13 = 1;
+                } else if (v45.distance(v43) <= 900.0f) {
+                    v13 = 1;
+                } else if (v46.distance(v43) <= 900.0f) {
+                    v13 = 1;
+                } else if (checkCollisionOfPointAndCylinder(v43, v44, v47, 900.0f)) {
+                    v13 = 1;
+                } else if (checkCollisionOfPointAndCylinder(v43, v45, v48, 900.0f)) {
+                    v13 = 1;
+                } else {
+                    v13 = checkCollisionOfPointAndCylinder(v43, v46, v49, 900.0f);
                 }
             }
 
-            if (_155) {
-                f32 v15 = -25.0f;
-                f32 v21 = screenPos.x - _158.x;
-                f32 v20 = screenPos.y - _158.y;
-                f32 v16 = (_160 + (0.029f * v21) / mScale.x);
-                _160 += (0.029f * v21) / mScale.x;
+            if (v13) {
+                _155 = 1;
+            }
+        }
 
-                if (v16 >= -25.0f) {
-                    v15 = 25.0f;
+        if (_155) {
+            f32 v15 = -25.0f;
+            f32 v21 = screenPos.x - _158.x;
+            f32 v20 = screenPos.y - _158.y;
+            f32 v16 = (_160 + (0.029f * v21) / mScale.x);
+            _160 += (0.029f * v21) / mScale.x;
 
-                    if (v16 <= 25.0f) {
-                        v15 = v16;
-                    }
+            if (v16 >= -25.0f) {
+                v15 = 25.0f;
+
+                if (v16 <= 25.0f) {
+                    v15 = v16;
                 }
-
-                _160 = v15;
             }
 
-            _156 = _155;
-            _158 = screenPos;
-        } else {
-            _154 = 1;
+            _160 = v15;
         }
 
-        _160 *= 0.98f;
-
-        if (_160 >= 0.0f && _160 < 0.5f) {
-            _160 = 0.5f;
-        }
-
-        if (_160 < 0.0f && _160 > -0.5f) {
-            _160 = -0.5f;
-        }
-
-        mRotation.y = MR::repeat(mRotation.y + _160, 0.0f, 360.0f);
-        _155 = 0;
+        _156 = _155;
+        _158 = screenPos;
+    } else {
+        _154 = 1;
     }
+
+    _160 *= 0.98f;
+
+    if (_160 >= 0.0f && _160 < 0.5f) {
+        _160 = 0.5f;
+    }
+
+    if (_160 < 0.0f && _160 > -0.5f) {
+        _160 = -0.5f;
+    }
+
+    mRotation.y = MR::repeat(mRotation.y + _160, 0.0f, 360.0f);
+    _155 = 0;
+}
+
+void FileSelectItem::playPointedME() {
+    switch (MR::getRandom(0l, 5l)) {
+    case 0:
+        MR::startSystemME("ME_ASTRO_DOME_HIT_GALAXY1");
+
+        break;
+    case 1:
+        MR::startSystemME("ME_ASTRO_DOME_HIT_GALAXY2");
+
+        break;
+    case 2:
+        MR::startSystemME("ME_ASTRO_DOME_HIT_GALAXY3");
+
+        break;
+    case 3:
+        MR::startSystemME("ME_ASTRO_DOME_HIT_GALAXY4");
+
+        break;
+    case 4:
+        MR::startSystemME("ME_ASTRO_DOME_HIT_GALAXY5");
+
+        break;
+    }
+}
+
+void FileSelectItem::playPointedNotUsingME() {
+    switch (MR::getRandom(0l, 5l)) {
+    case 0:
+        MR::startSystemME("ME_ASTRO_DOME_HIT_GALAXY_N1");
+
+        break;
+    case 1:
+        MR::startSystemME("ME_ASTRO_DOME_HIT_GALAXY_N2");
+
+        break;
+    case 2:
+        MR::startSystemME("ME_ASTRO_DOME_HIT_GALAXY_N3");
+
+        break;
+    case 3:
+        MR::startSystemME("ME_ASTRO_DOME_HIT_GALAXY_N4");
+
+        break;
+    case 4:
+        MR::startSystemME("ME_ASTRO_DOME_HIT_GALAXY_N5");
+
+        break;
+    }
+}
+
+void FileSelectItem::appearFellowModel() {
+    killAllModels();
+    mModels[mIconID->getFellowID()]->makeActorAppeared();
+}
+
+void FileSelectItem::killAllModels() {
+    mPlanetMapObj->makeActorDead();
+
+    for (s32 i = 0; i < 5; i++) {
+        mModels[i]->makeActorDead();
+    }
+
+    mFaceParts->makeActorDead();
+}
+
+void FileSelectItem::emitOpen() {
+    if (!MR::isDead(mPlanetMapObj)) {
+        MR::emitEffect(mPlanetMapObj, "Open");
+    }
+
+    for (s32 i = 0; i < 5; i++) {
+        if (!MR::isDead(mModels[i])) {
+            mModels[i]->emitOpen();
+        }
+    }
+
+    if (!MR::isDead(mFaceParts)) {
+        MR::emitEffect(mFaceParts, "Open");
+    }
+}
+
+void FileSelectItem::emitVanish() {
+    if (!MR::isDead(mPlanetMapObj)) {
+        MR::emitEffect(mPlanetMapObj, "Vanish");
+    }
+
+    for (s32 i = 0; i < 5; i++) {
+        if (!MR::isDead(mModels[i])) {
+            mModels[i]->emitVanish();
+        }
+    }
+
+    if (!MR::isDead(mFaceParts)) {
+        MR::emitEffect(mFaceParts, "Vanish");
+    }
+}
+
+void FileSelectItem::emitCopy() {
+    if (!MR::isDead(mPlanetMapObj)) {
+        MR::emitEffect(mPlanetMapObj, "Copy");
+    }
+
+    for (s32 i = 0; i < 5; i++) {
+        if (!MR::isDead(mModels[i])) {
+            mModels[i]->emitCopy();
+        }
+    }
+
+    if (!MR::isDead(mFaceParts)) {
+        MR::emitEffect(mFaceParts, "Copy");
+    }
+}
+
+void FileSelectItem::emitCompleteEffect() {
+    if (!_147) {
+        return;
+    }
+
+    for (s32 i = 0; i < 5; i++) {
+        if (!MR::isDead(mModels[i])) {
+            mModels[i]->emitCompleteEffect();
+        }
+    }
+
+    if (!MR::isDead(mFaceParts)) {
+        MR::emitEffect(mFaceParts, "Complete");
+    }
+}
+
+void FileSelectItem::deleteCompleteEffect() {
+    for (s32 i = 0; i < 5; i++) {
+        mModels[i]->deleteCompleteEffect();
+    }
+
+    MR::deleteEffect(mFaceParts, "Complete");
 }
 
 namespace FileSelectItemSub {
 
     ScaleController::ScaleController() : NerveExecutor("ファイルセレクタアイコンサイズ管理") {
         _8 = 1.0f;
-        initNerve(&FileSelectItemSub::ScaleControllerNrvSmall::sInstance);
+        initNerve(GET_NERVE_DIRECT(FileSelectItemSub, ScaleControllerNrvSmall));
     }
 
     void ScaleController::exeToSmall() {
@@ -568,7 +761,7 @@ namespace FileSelectItemSub {
             _8 += (v * (1.0f - _8));
         }
 
-        MR::setNerveAtStep(this, &FileSelectItemSub::ScaleControllerNrvSmall::sInstance, 30);
+        MR::setNerveAtStep(this, GET_NERVE_DIRECT(FileSelectItemSub, ScaleControllerNrvSmall), 30);
     }
 
     void ScaleController::exeToBig() {
@@ -577,14 +770,14 @@ namespace FileSelectItemSub {
             _8 += v * (1.2f - _8);
         }
 
-        MR::setNerveAtStep(this, &FileSelectItemSub::ScaleControllerNrvBig::sInstance, 30);
+        MR::setNerveAtStep(this, GET_NERVE_DIRECT(FileSelectItemSub, ScaleControllerNrvBig), 30);
     }
 
     BlinkController::BlinkController(FileSelectItem* pItem) : NerveExecutor("ファイルセレクタアイコン瞬き管理") {
         mItem = pItem;
         _C = 0;
         _10 = 0;
-        initNerve(&FileSelectItemSub::BlinkControllerNrvOpen::sInstance);
+        initNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvOpen));
     }
 
     void BlinkController::exeOpen() {
@@ -606,10 +799,10 @@ namespace FileSelectItemSub {
         }
 
         if (_10 > 180) {
-            setNerve(&FileSelectItemSub::BlinkControllerNrvSleep::sInstance);
+            setNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvSleep));
         } else {
             if (MR::isGreaterEqualStep(this, _C)) {
-                setNerve(&FileSelectItemSub::BlinkControllerNrvShut::sInstance);
+                setNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvShut));
             }
         }
     }
@@ -621,7 +814,7 @@ namespace FileSelectItemSub {
 
         if (MR::isGreaterEqualStep(this, 10)) {
             open();
-            setNerve(&FileSelectItemSub::BlinkControllerNrvOpen::sInstance);
+            setNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvOpen));
         }
     }
 
@@ -638,7 +831,7 @@ namespace FileSelectItemSub {
         }
 
         if (_10 > 60) {
-            setNerve(&FileSelectItemSub::BlinkControllerNrvBlink::sInstance);
+            setNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvBlink));
         }
     }
 
@@ -658,7 +851,7 @@ namespace FileSelectItemSub {
             FileSelectIconID::EFellowID id = mItem->mIconID->getFellowID();
 
             if (mItem->mModels[id]->isOpen()) {
-                setNerve(&FileSelectItemSub::BlinkControllerNrvOpen::sInstance);
+                setNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvOpen));
                 return;
             }
         }
@@ -666,7 +859,7 @@ namespace FileSelectItemSub {
         if (mItem->mIconID->isMii()) {
             if (MR::isGreaterEqualStep(this, 40)) {
                 mItem->mFaceParts->changeExpressionNormal();
-                setNerve(&FileSelectItemSub::BlinkControllerNrvOpen::sInstance);
+                setNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvOpen));
             }
         }
     }
@@ -701,12 +894,6 @@ namespace FileSelectItemSub {
         }
     }
 
-    ScaleController::~ScaleController() {
-    }
-
-    BlinkController::~BlinkController() {
-    }
-
     void ScaleController::exeBig() {
         _8 = 1.2f;
     }
@@ -716,11 +903,11 @@ namespace FileSelectItemSub {
     }
 };  // namespace FileSelectItemSub
 
-FileSelectItem::~FileSelectItem() {
-}
-
 void FileSelectItem::exeExistWait() {
 }
 
 void FileSelectItem::exeNewWait() {
+}
+
+FileSelectItem::~FileSelectItem() {
 }

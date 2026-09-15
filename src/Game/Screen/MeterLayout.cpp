@@ -67,13 +67,13 @@ void MeterLayout::init(const JMapInfoIter& rIter) {
     MR::setAnimFrameAndStop(this, mAlpha * _4C * 20.0f, 2);
     setCountAnimFrame();
     mCountUpPaneRumbler = new CountUpPaneRumbler(this, "HitPointNumber");
-    initNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance);
+    initNerve(GET_NERVE(MeterLayout, MeterLayoutNrvWait));
     initEffectKeeper(0, nullptr, nullptr);
     appear();
 }
 
 void MeterLayout::control() {
-    if (isNerve(&NrvMeterLayout::MeterLayoutNrvAppear::sInstance)) {
+    if (isNerve(GET_NERVE(MeterLayout, MeterLayoutNrvAppear))) {
         mAlpha = 1.0f;
     } else if (MR::isStarPointerPointingPaneForMeterLayout(this, "PicBase", 0, false, nullptr)) {
         mAlpha -= 0.05f;
@@ -108,7 +108,7 @@ void MeterLayout::requestActive() {
     mFollowPosW.y = 0.0f;
     mFollowPosW.x = 0.0f;
     appear();
-    setNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance);
+    setNerve(GET_NERVE(MeterLayout, MeterLayoutNrvWait));
 }
 
 void MeterLayout::requestDeactivate() {
@@ -123,7 +123,7 @@ void MeterLayout::requestPowerUp() {
     mFollowPosW.y = 0.0f;
     mFollowPosW.x = 0.0f;
     appear();
-    setNerve(&NrvMeterLayout::MeterLayoutNrvPowerUp::sInstance);
+    setNerve(GET_NERVE(MeterLayout, MeterLayoutNrvPowerUp));
 }
 
 void MeterLayout::requestForceAppear() {
@@ -132,11 +132,11 @@ void MeterLayout::requestForceAppear() {
     }
 
     requestActive();
-    setNerve(&NrvMeterLayout::MeterLayoutNrvAppear::sInstance);
+    setNerve(GET_NERVE(MeterLayout, MeterLayoutNrvAppear));
 }
 
 void MeterLayout::requestPlayerMoving() {
-    if (!isNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(MeterLayout, MeterLayoutNrvWait))) {
         return;
     }
 
@@ -152,7 +152,7 @@ void MeterLayout::requestPlayerMoving() {
 }
 
 void MeterLayout::requestPlayerStopped() {
-    if (!isNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(MeterLayout, MeterLayoutNrvWait))) {
         return;
     }
 
@@ -178,14 +178,14 @@ void MeterLayout::setCount(s32 count) {
 
     if (count < prevCount) {
         if (count == 0) {
-            setNerve(&NrvMeterLayout::MeterLayoutNrvZeroMeter::sInstance);
+            setNerve(GET_NERVE(MeterLayout, MeterLayoutNrvZeroMeter));
         } else if (prevCount >= 4 && count < 4) {
-            setNerve(&NrvMeterLayout::MeterLayoutNrvBreakMeter::sInstance);
+            setNerve(GET_NERVE(MeterLayout, MeterLayoutNrvBreakMeter));
         } else {
-            setNerve(&NrvMeterLayout::MeterLayoutNrvDamage::sInstance);
+            setNerve(GET_NERVE(MeterLayout, MeterLayoutNrvDamage));
         }
     } else if (prevCount < count) {
-        setNerve(&NrvMeterLayout::MeterLayoutNrvRecover::sInstance);
+        setNerve(GET_NERVE(MeterLayout, MeterLayoutNrvRecover));
     }
 }
 
@@ -204,7 +204,7 @@ void MeterLayout::exeAppear() {
     mFollowPos.x = 0.0f;
 
     if (MR::isGreaterStep(this, ::sAppearTime)) {
-        setNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance);
+        setNerve(GET_NERVE(MeterLayout, MeterLayoutNrvWait));
     }
 }
 
@@ -220,7 +220,7 @@ void MeterLayout::exeWaitStart() {
     mFollowPosW.x = 0.0f;
 
     if (MR::isGreaterStep(this, ::sWaitStartTime)) {
-        setNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance);
+        setNerve(GET_NERVE(MeterLayout, MeterLayoutNrvWait));
     }
 }
 
@@ -269,7 +269,7 @@ void MeterLayout::exePowerUp() {
     }
 
     if (MR::isGreaterStep(this, ::sPowerUpWaitTime)) {
-        setNerve(&NrvMeterLayout::MeterLayoutNrvMeterMove::sInstance);
+        setNerve(GET_NERVE(MeterLayout, MeterLayoutNrvMeterMove));
     }
 }
 
@@ -284,7 +284,7 @@ void MeterLayout::exeMeterMove() {
     mFollowPosW = _3C * (1.0f - rate);
 
     if (MR::isGreaterStep(this, ::sMoveToBasePositionTime)) {
-        setNerve(&NrvMeterLayout::MeterLayoutNrvCounterMove::sInstance);
+        setNerve(GET_NERVE(MeterLayout, MeterLayoutNrvCounterMove));
     }
 }
 
@@ -307,7 +307,7 @@ void MeterLayout::exeCounterMove() {
     }
 
     if (MR::isAnimStopped(this, 1)) {
-        setNerve(&NrvMeterLayout::MeterLayoutNrvWaitStart::sInstance);
+        setNerve(GET_NERVE(MeterLayout, MeterLayoutNrvWaitStart));
     }
 }
 
@@ -324,7 +324,7 @@ void MeterLayout::exeRecover() {
     }
 
     if (MR::isPaneAnimStopped(this, "Font", 0)) {
-        setNerve(&NrvMeterLayout::MeterLayoutNrvWaitStart::sInstance);
+        setNerve(GET_NERVE(MeterLayout, MeterLayoutNrvWaitStart));
     }
 }
 
@@ -345,7 +345,7 @@ void MeterLayout::exeDamage() {
     }
 
     if (MR::isAnimStopped(this, 1)) {
-        setNerve(&NrvMeterLayout::MeterLayoutNrvWaitStart::sInstance);
+        setNerve(GET_NERVE(MeterLayout, MeterLayoutNrvWaitStart));
     }
 }
 
@@ -366,7 +366,7 @@ void MeterLayout::exeBreakMeter() {
         MR::startSystemSE("SE_SY_LIFE_PLATE_DEC");
         MR::startAnim(this, "FontPosition2to1", 1);
         setCountAnimFrame();
-        setNerve(&NrvMeterLayout::MeterLayoutNrvWaitStart::sInstance);
+        setNerve(GET_NERVE(MeterLayout, MeterLayoutNrvWaitStart));
     }
 }
 
@@ -382,7 +382,7 @@ void MeterLayout::exeZeroMeter() {
     }
 
     if (MR::isAnimStopped(this, 1)) {
-        setNerve(&NrvMeterLayout::MeterLayoutNrvZeroMeterBreak::sInstance);
+        setNerve(GET_NERVE(MeterLayout, MeterLayoutNrvZeroMeterBreak));
     }
 }
 

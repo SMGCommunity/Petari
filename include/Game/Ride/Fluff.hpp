@@ -36,10 +36,10 @@ public:
     /* 0x8C */ TVec3f mSide;
     /* 0x98 */ TVec3f mUp;
     /* 0xA4 */ TVec3f mFront;
-    /* 0xB0 */ TPos3f mInitialMtx;
+    /* 0xB0 */ TPos3f mBaseMtx;
     /* 0xE0 */ TVec3f mTargetUpVec;
     /* 0xEC */ TVec3f mWindDir;
-    /* 0xF8 */ f32 mWindStrength;
+    /* 0xF8 */ f32 mWindDistance;
     /* 0xFC */ s32 mWindSpinTimer;
     /* 0x100 */ s32 mSpinsRemaining;
     /* 0x104 */ ModelObj* mModel;

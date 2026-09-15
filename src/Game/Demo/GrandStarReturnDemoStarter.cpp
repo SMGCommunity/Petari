@@ -83,7 +83,7 @@ void GrandStarReturnDemoStarter::init(const JMapInfoIter& rIter) {
         MR::initAnimCamera(this, mActorCameraInfo, "DemoAstroReturn.arc", buffer);
     }
 
-    initNerve(&NrvGrandStarReturnDemoStarter::GrandStarReturnDemoStarterNrvMove::sInstance);
+    initNerve(GET_NERVE(GrandStarReturnDemoStarter, GrandStarReturnDemoStarterNrvMove));
     makeActorDead();
 }
 
@@ -98,12 +98,12 @@ void GrandStarReturnDemoStarter::appear() {
 
     PowerStar::setupColorAtResultSequence(mPowerStar, true);
 
-    setNerve(&NrvGrandStarReturnDemoStarter::GrandStarReturnDemoStarterNrvMove::sInstance);
+    setNerve(GET_NERVE(GrandStarReturnDemoStarter, GrandStarReturnDemoStarterNrvMove));
 }
 
 void GrandStarReturnDemoStarter::control() {
-    if (isNerve(&NrvGrandStarReturnDemoStarter::GrandStarReturnDemoStarterNrvMove::sInstance) ||
-        isNerve(&NrvGrandStarReturnDemoStarter::GrandStarReturnDemoStarterNrvFlyWait::sInstance)) {
+    if (isNerve(GET_NERVE(GrandStarReturnDemoStarter, GrandStarReturnDemoStarterNrvMove)) ||
+        isNerve(GET_NERVE(GrandStarReturnDemoStarter, GrandStarReturnDemoStarterNrvFlyWait))) {
         MR::setPlayerBaseMtx(mPrevTransform);
 
         mTransform.setInline(mPrevTransform);
@@ -158,7 +158,7 @@ void GrandStarReturnDemoStarter::tryStartStageResult(const char* pDemoName) {
         }
 
         MR::pauseTimeKeepDemo(this);
-        setNerve(&NrvGrandStarReturnDemoStarter::GrandStarReturnDemoStarterNrvStageResult::sInstance);
+        setNerve(GET_NERVE(GrandStarReturnDemoStarter, GrandStarReturnDemoStarterNrvStageResult));
     }
 }
 
@@ -193,7 +193,7 @@ void GrandStarReturnDemoStarter::exeMove() {
     updateRailMoveEndDir();
 
     if (MR::isDemoPartLastStep(pDemoName)) {
-        setNerve(&NrvGrandStarReturnDemoStarter::GrandStarReturnDemoStarterNrvFlyWait::sInstance);
+        setNerve(GET_NERVE(GrandStarReturnDemoStarter, GrandStarReturnDemoStarterNrvFlyWait));
     }
 }
 
@@ -212,7 +212,7 @@ void GrandStarReturnDemoStarter::exeFlyWait() {
     }
 
     if (MR::isBckOneTimeAndStoppedPlayer()) {
-        setNerve(&NrvGrandStarReturnDemoStarter::GrandStarReturnDemoStarterNrvRushToCore::sInstance);
+        setNerve(GET_NERVE(GrandStarReturnDemoStarter, GrandStarReturnDemoStarterNrvRushToCore));
     }
 }
 
@@ -235,7 +235,7 @@ void GrandStarReturnDemoStarter::exeRushToCore() {
     MR::startLevelSound(mPowerStar, "SE_OJ_LV_GND_STAR_RUSH");
 
     if (MR::isDemoPartLastStep(::cDemoWaitPartName)) {
-        setNerve(&NrvGrandStarReturnDemoStarter::GrandStarReturnDemoStarterNrvRevival::sInstance);
+        setNerve(GET_NERVE(GrandStarReturnDemoStarter, GrandStarReturnDemoStarterNrvRevival));
     }
 }
 
@@ -280,7 +280,7 @@ void GrandStarReturnDemoStarter::exeRevival() {
 
 void GrandStarReturnDemoStarter::exeStageResult() {
     if (MR::isDead(mStageResultInformer)) {
-        setNerve(&NrvGrandStarReturnDemoStarter::GrandStarReturnDemoStarterNrvFadeOut::sInstance);
+        setNerve(GET_NERVE(GrandStarReturnDemoStarter, GrandStarReturnDemoStarterNrvFadeOut));
     }
 }
 
@@ -291,7 +291,7 @@ void GrandStarReturnDemoStarter::exeFadeOut() {
 
     if (!MR::isWipeActive()) {
         MR::endMultiActorCamera(this, mActorCameraInfo, "リザルト", false, -1);
-        setNerve(&NrvGrandStarReturnDemoStarter::GrandStarReturnDemoStarterNrvWaitDemoEnd::sInstance);
+        setNerve(GET_NERVE(GrandStarReturnDemoStarter, GrandStarReturnDemoStarterNrvWaitDemoEnd));
     }
 }
 

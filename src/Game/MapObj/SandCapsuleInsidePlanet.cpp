@@ -16,7 +16,7 @@ void SandCapsuleInsidePlanet::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoPlanet(&info);
-    info.setupNerve(&NrvSandCapsuleInsidePlanet::SandCapsuleInsidePlanetNrvWait::sInstance);
+    info.setupNerve(GET_NERVE(SandCapsuleInsidePlanet, SandCapsuleInsidePlanetNrvWait));
     initialize(rIter, info);
     MR::startBrk(this, "Off");
     MR::setBrkFrameEndAndStop(this);

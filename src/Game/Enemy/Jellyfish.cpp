@@ -86,7 +86,7 @@ void Jellyfish::init(const JMapInfoIter& rIter) {
     }
 
     MR::calcFrontVec(&_98, this);
-    initNerve(&NrvJellyfish::JellyfishNrvWait::sInstance);
+    initNerve(GET_NERVE(Jellyfish, JellyfishNrvWait));
     makeActorAppeared();
 }
 
@@ -101,12 +101,12 @@ void Jellyfish::control() {
     MR::requestPointLight(this, TVec3f(mPosition), clr, 0.0998f, -1);
     mController->updateNerve();
 
-    if (!isNerve(&NrvJellyfish::JellyfishNrvDeath::sInstance)) {
+    if (!isNerve(GET_NERVE(Jellyfish, JellyfishNrvDeath))) {
         if (mIsConnectedRail) {
             MR::moveCoordAndFollowTrans(this, _A8);
             if (MR::isRailReachedGoal(this)) {
-                if (!isNerve(&NrvJellyfish::JellyfishNrvRailGoal::sInstance)) {
-                    setNerve(&NrvJellyfish::JellyfishNrvRailGoal::sInstance);
+                if (!isNerve(GET_NERVE(Jellyfish, JellyfishNrvRailGoal))) {
+                    setNerve(GET_NERVE(Jellyfish, JellyfishNrvRailGoal));
                     return;
                 }
             }
@@ -193,7 +193,7 @@ void Jellyfish::exeAttack() {
 
     if (MR::isBckStopped(this)) {
         if (!MR::isNearPlayer(this, 1500.0f)) {
-            setNerve(&NrvJellyfish::JellyfishNrvWait::sInstance);
+            setNerve(GET_NERVE(Jellyfish, JellyfishNrvWait));
         } else {
             selectNerveThreat();
         }
@@ -212,7 +212,7 @@ void Jellyfish::exeRailGoal() {
             MR::reverseRailDirection(this);
         }
 
-        setNerve(&NrvJellyfish::JellyfishNrvWait::sInstance);
+        setNerve(GET_NERVE(Jellyfish, JellyfishNrvWait));
     }
 }
 
@@ -225,7 +225,7 @@ void Jellyfish::exeThreatWithRightTurn() {
 }
 
 void Jellyfish::exeDPDSwoon() {
-    MR::updateActorStateAndNextNerve(this, mBindStarPtr, &NrvJellyfish::JellyfishNrvWait::sInstance);
+    MR::updateActorStateAndNextNerve(this, mBindStarPtr, GET_NERVE(Jellyfish, JellyfishNrvWait));
 }
 
 void Jellyfish::exeWaitWithLeftTurn() {
@@ -257,7 +257,7 @@ bool Jellyfish::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
 }
 
 bool Jellyfish::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isMsgExplosionAttack(msg) && !isNerve(&NrvJellyfish::JellyfishNrvDeath::sInstance)) {
+    if (MR::isMsgExplosionAttack(msg) && !isNerve(GET_NERVE(Jellyfish, JellyfishNrvDeath))) {
         knockOut(pSender, pReceiver);
         return true;
     }
@@ -295,11 +295,11 @@ bool Jellyfish::faceToMario() {
         MR::clampVecAngleDeg(&_98, v11, 30.0f);
     }
 
-    if (!isNerve(&NrvJellyfish::JellyfishNrvThreat::sInstance)) {
+    if (!isNerve(GET_NERVE(Jellyfish, JellyfishNrvThreat))) {
         f32 frameMax = MR::getBckFrameMax(this, "SearchRotate");
         f32 v7 = (1.0f - (frameMax / getNerveStep()));
         f32 v8;
-        if (isNerve(&NrvJellyfish::JellyfishNrvThreatWithLeftTurn::sInstance)) {
+        if (isNerve(GET_NERVE(Jellyfish, JellyfishNrvThreatWithLeftTurn))) {
             v8 = 1.0f;
         } else {
             v8 = -1.0f;
@@ -318,7 +318,7 @@ void Jellyfish::knockOut(HitSensor* pSender, HitSensor* pReceiver) {
     MR::normalize(pReceiver->mPosition - pSender->mPosition, &toReceiverDir);
     mVelocity.scale(50.0f, toReceiverDir);
     _98.negate(toReceiverDir);
-    setNerve(&NrvJellyfish::JellyfishNrvDeath::sInstance);
+    setNerve(GET_NERVE(Jellyfish, JellyfishNrvDeath));
 }
 
 // Jellyfish::selectNerveAfterWait

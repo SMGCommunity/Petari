@@ -1025,7 +1025,7 @@ void BegomanAttackPermitter::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemyDecorationMovement(this);
     MR::invalidateClipping(this);
     makeActorAppeared();
-    initNerve(&NrvBegomanAttackPermitter::HostTypeNrvWait::sInstance);
+    initNerve(GET_NERVE(BegomanAttackPermitter, HostTypeNrvWait));
 }
 
 void BegomanAttackPermitter::control() {
@@ -1038,18 +1038,18 @@ bool BegomanAttackPermitter::requestAttack(BegomanBase* pBegoman) {
     }
 
     if (pBegoman->getKind() == 0) {
-        return !isNerve(&NrvBegomanAttackPermitter::HostTypeNrvPermit::sInstance);
+        return !isNerve(GET_NERVE(BegomanAttackPermitter, HostTypeNrvPermit));
     }
 
     _98 = true;
 
-    if (isNerve(&NrvBegomanAttackPermitter::HostTypeNrvReceive::sInstance) || isNerve(&NrvBegomanAttackPermitter::HostTypeNrvWait::sInstance)) {
+    if (isNerve(GET_NERVE(BegomanAttackPermitter, HostTypeNrvReceive)) || isNerve(GET_NERVE(BegomanAttackPermitter, HostTypeNrvWait))) {
         if (mBegoman == nullptr) {
             mBegoman = pBegoman;
             mDistToPlayer = MR::calcDistanceToPlayer(pBegoman->mPosition);
 
-            if (isNerve(&NrvBegomanAttackPermitter::HostTypeNrvWait::sInstance)) {
-                setNerve(&NrvBegomanAttackPermitter::HostTypeNrvReceive::sInstance);
+            if (isNerve(GET_NERVE(BegomanAttackPermitter, HostTypeNrvWait))) {
+                setNerve(GET_NERVE(BegomanAttackPermitter, HostTypeNrvReceive));
             }
         } else {
             f32 distToPlayerPBegoman = MR::calcDistanceToPlayer(pBegoman->mPosition);
@@ -1060,11 +1060,11 @@ bool BegomanAttackPermitter::requestAttack(BegomanBase* pBegoman) {
         }
     }
 
-    if (isNerve(&NrvBegomanAttackPermitter::HostTypeNrvPermit::sInstance)) {
+    if (isNerve(GET_NERVE(BegomanAttackPermitter, HostTypeNrvPermit))) {
         _8C = mBegoman;
         if (mBegoman == pBegoman) {
             // nerve is already HostTypeNrvPermit if code gets here??
-            setNerve(&NrvBegomanAttackPermitter::HostTypeNrvPermit::sInstance);
+            setNerve(GET_NERVE(BegomanAttackPermitter, HostTypeNrvPermit));
             return true;
         }
     }
@@ -1081,9 +1081,9 @@ void BegomanAttackPermitter::exeWait() {
 
 void BegomanAttackPermitter::exeReceive() {
     if (!_98) {
-        setNerve(&NrvBegomanAttackPermitter::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(BegomanAttackPermitter, HostTypeNrvWait));
     } else if (MR::isGreaterStep(this, ::hReceiveLimitTime)) {
-        setNerve(&NrvBegomanAttackPermitter::HostTypeNrvPermit::sInstance);
+        setNerve(GET_NERVE(BegomanAttackPermitter, HostTypeNrvPermit));
     }
 }
 
@@ -1092,6 +1092,6 @@ void BegomanAttackPermitter::exePermit() {
     }
 
     if (MR::isGreaterStep(this, ::hPermitLimitTime)) {
-        setNerve(&NrvBegomanAttackPermitter::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(BegomanAttackPermitter, HostTypeNrvWait));
     }
 }

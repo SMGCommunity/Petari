@@ -65,7 +65,7 @@ void Trapeze::init(const JMapInfoIter& rIter) {
     mSwingPoint->updatePosAndAxis(mFront, 0.995f);
     mGrabPoint->updatePosAndAxis(mFront, 0.995f);
 
-    initNerve(&NrvTrapeze::TrapezeNrvFree::sInstance);
+    initNerve(GET_NERVE(Trapeze, TrapezeNrvFree));
 
     initHitSensor(2);
     MR::addHitSensorCallbackBinder(this, "bind", 8, 200.0f);
@@ -136,9 +136,9 @@ void Trapeze::exeFree() {
     updateStick(mPosition, mRopeLength);
     updateStickMtx();
 
-    if (isNerve(&NrvTrapeze::TrapezeNrvFree::sInstance)) {
+    if (isNerve(GET_NERVE(Trapeze, TrapezeNrvFree))) {
         if (mSwingPoint->mVelocity.squared() < 1.0f && 1.0f - MR::abs(mSwingPoint->mUp.y) < 0.001f) {
-            setNerve(&NrvTrapeze::TrapezeNrvStop::sInstance);
+            setNerve(GET_NERVE(Trapeze, TrapezeNrvStop));
         }
     }
 }
@@ -150,7 +150,7 @@ void Trapeze::exeFreeInvalid() {
     posDiffHoriz.y = 0.0f;
 
     if (MR::isOnGroundPlayer() || MR::isGreaterStep(this, 40) || posDiffHoriz.squared() > 250000.0f) {
-        setNerve(&NrvTrapeze::TrapezeNrvFree::sInstance);
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvFree));
     }
 }
 
@@ -164,9 +164,9 @@ void Trapeze::exeSwingWait() {
     }
 
     if (mIsSwingFront) {
-        setNerve(&NrvTrapeze::TrapezeNrvSwingFrontStart::sInstance);
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingFrontStart));
     } else if (mIsSwingBack) {
-        setNerve(&NrvTrapeze::TrapezeNrvSwingBackStart::sInstance);
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingBackStart));
     }
 }
 
@@ -176,7 +176,7 @@ void Trapeze::exeSwingSlideDownStart() {
     }
 
     if (!updateSlideDown() && MR::isBckStopped(mRider)) {
-        setNerve(&NrvTrapeze::TrapezeNrvSwingSlideDown::sInstance);
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingSlideDown));
     }
 }
 
@@ -192,7 +192,7 @@ void Trapeze::exeSwingSlideDown() {
 
 void Trapeze::exeSwingFrontStart() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvTrapeze::TrapezeNrvSlowSwingFrontStart::sInstance)) {
+        if (isNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingFrontStart))) {
             MR::startBckPlayer("TrapezeSlowSwingFrontStart", 12);
         } else {
             MR::startBckPlayer("TrapezeSwingFrontStart", 12);
@@ -205,36 +205,36 @@ void Trapeze::exeSwingFrontStart() {
 
     if (MR::isBckStopped(mRider) && !(mIsSwingFront && mSwingVel < 0.0f)) {
         if (!mIsSwingFront && mSwingVel < 80.0f) {
-            setNerve(&NrvTrapeze::TrapezeNrvSlowSwingFrontEnd::sInstance);
+            setNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingFrontEnd));
             return;
         }
 
-        setNerve(&NrvTrapeze::TrapezeNrvSwingFrontEnd::sInstance);
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingFrontEnd));
         return;
     }
 
-    if (isStartSwingFront() && isNerve(&NrvTrapeze::TrapezeNrvSlowSwingFrontStart::sInstance)) {
-        setNerve(&NrvTrapeze::TrapezeNrvSwingFrontStart::sInstance);
+    if (isStartSwingFront() && isNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingFrontStart))) {
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingFrontStart));
         return;
     }
 
     if (isStartSwingBack()) {
-        setNerve(&NrvTrapeze::TrapezeNrvSwingBackStart::sInstance);
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingBackStart));
         return;
     }
 
     if (!mIsSwingFront && mSwingVel < 0.0f) {
-        if (isNerve(&NrvTrapeze::TrapezeNrvSlowSwingFrontStart::sInstance)) {
-            setNerve(&NrvTrapeze::TrapezeNrvSlowSwingBackEnd::sInstance);
+        if (isNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingFrontStart))) {
+            setNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingBackEnd));
         } else {
-            setNerve(&NrvTrapeze::TrapezeNrvSwingBackEnd::sInstance);
+            setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingBackEnd));
         }
     }
 }
 
 void Trapeze::exeSwingFrontEnd() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvTrapeze::TrapezeNrvSlowSwingFrontEnd::sInstance)) {
+        if (isNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingFrontEnd))) {
             MR::startBckPlayer("TrapezeSlowSwingFrontEnd", 12);
         } else {
             MR::startBckPlayer("TrapezeSwingFrontEnd", 12);
@@ -246,27 +246,27 @@ void Trapeze::exeSwingFrontEnd() {
     }
 
     if (mSwingVel <= 0.0f) {
-        if (isNerve(&NrvTrapeze::TrapezeNrvSlowSwingFrontEnd::sInstance)) {
-            setNerve(&NrvTrapeze::TrapezeNrvSlowSwingBackStart::sInstance);
+        if (isNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingFrontEnd))) {
+            setNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingBackStart));
         } else {
-            setNerve(&NrvTrapeze::TrapezeNrvSwingBackStart::sInstance);
+            setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingBackStart));
         }
         return;
     }
 
     if (isStartSwingFront()) {
-        setNerve(&NrvTrapeze::TrapezeNrvSwingFrontStart::sInstance);
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingFrontStart));
         return;
     }
 
-    if (isStartSwingBack() && isNerve(&NrvTrapeze::TrapezeNrvSlowSwingFrontEnd::sInstance)) {
-        setNerve(&NrvTrapeze::TrapezeNrvSwingBackStart::sInstance);
+    if (isStartSwingBack() && isNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingFrontEnd))) {
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingBackStart));
     }
 }
 
 void Trapeze::exeSwingBackStart() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvTrapeze::TrapezeNrvSlowSwingBackStart::sInstance)) {
+        if (isNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingBackStart))) {
             MR::startBckPlayer("TrapezeSlowSwingBackStart", 12);
         } else {
             MR::startBckPlayer("TrapezeSwingBackStart", 12);
@@ -279,36 +279,36 @@ void Trapeze::exeSwingBackStart() {
 
     if (MR::isBckStopped(mRider) && !(mIsSwingBack && mSwingVel > 0.0f)) {
         if (!mIsSwingBack && mSwingVel > -80.0f) {
-            setNerve(&NrvTrapeze::TrapezeNrvSlowSwingBackEnd::sInstance);
+            setNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingBackEnd));
             return;
         }
 
-        setNerve(&NrvTrapeze::TrapezeNrvSwingBackEnd::sInstance);
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingBackEnd));
         return;
     }
 
-    if (isStartSwingBack() && isNerve(&NrvTrapeze::TrapezeNrvSlowSwingBackStart::sInstance)) {
-        setNerve(&NrvTrapeze::TrapezeNrvSwingBackStart::sInstance);
+    if (isStartSwingBack() && isNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingBackStart))) {
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingBackStart));
         return;
     }
 
     if (isStartSwingFront()) {
-        setNerve(&NrvTrapeze::TrapezeNrvSwingFrontStart::sInstance);
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingFrontStart));
         return;
     }
 
     if (!mIsSwingBack && mSwingVel > 0.0f) {
-        if (isNerve(&NrvTrapeze::TrapezeNrvSlowSwingBackStart::sInstance)) {
-            setNerve(&NrvTrapeze::TrapezeNrvSlowSwingFrontEnd::sInstance);
+        if (isNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingBackStart))) {
+            setNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingFrontEnd));
         } else {
-            setNerve(&NrvTrapeze::TrapezeNrvSwingFrontEnd::sInstance);
+            setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingFrontEnd));
         }
     }
 }
 
 void Trapeze::exeSwingBackEnd() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvTrapeze::TrapezeNrvSlowSwingBackEnd::sInstance)) {
+        if (isNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingBackEnd))) {
             MR::startBckPlayer("TrapezeSlowSwingBackEnd", 12);
         } else {
             MR::startBckPlayer("TrapezeSwingBackEnd", 12);
@@ -320,27 +320,27 @@ void Trapeze::exeSwingBackEnd() {
     }
 
     if (mSwingVel >= 0.0f) {
-        if (isNerve(&NrvTrapeze::TrapezeNrvSlowSwingBackEnd::sInstance)) {
-            setNerve(&NrvTrapeze::TrapezeNrvSlowSwingFrontStart::sInstance);
+        if (isNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingBackEnd))) {
+            setNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingFrontStart));
         } else {
-            setNerve(&NrvTrapeze::TrapezeNrvSwingFrontStart::sInstance);
+            setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingFrontStart));
         }
         return;
     }
 
     if (isStartSwingBack()) {
-        setNerve(&NrvTrapeze::TrapezeNrvSwingBackStart::sInstance);
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingBackStart));
         return;
     }
 
-    if (isStartSwingFront() && isNerve(&NrvTrapeze::TrapezeNrvSlowSwingBackEnd::sInstance)) {
-        setNerve(&NrvTrapeze::TrapezeNrvSwingFrontStart::sInstance);
+    if (isStartSwingFront() && isNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingBackEnd))) {
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingFrontStart));
     }
 }
 
 void Trapeze::updateHitSensor(HitSensor* pSensor) {
     if (MR::isSensorAutoRush(pSensor)) {
-        if (isNerve(&NrvTrapeze::TrapezeNrvStop::sInstance)) {
+        if (isNerve(GET_NERVE(Trapeze, TrapezeNrvStop))) {
             pSensor->mPosition.set< f32 >(mPosition.x, MR::getPlayerPos()->y, mPosition.z);
             f32 yPos = mPosition.y;
             yPos = MR::clamp(pSensor->mPosition.y, yPos - mRopeLength, yPos);
@@ -348,7 +348,7 @@ void Trapeze::updateHitSensor(HitSensor* pSensor) {
             return;
         }
 
-        if (isNerve(&NrvTrapeze::TrapezeNrvFree::sInstance)) {
+        if (isNerve(GET_NERVE(Trapeze, TrapezeNrvFree))) {
             MR::calcPerpendicFootToLineInside(&pSensor->mPosition, *MR::getPlayerPos(), mPosition, mSwingPoint->mPosition);
             return;
         }
@@ -371,7 +371,7 @@ void Trapeze::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgAutoRushBegin(msg)) {
-        if ((!isNerve(&NrvTrapeze::TrapezeNrvStop::sInstance) && !isNerve(&NrvTrapeze::TrapezeNrvFree::sInstance)) || MR::isOnGroundPlayer() ||
+        if ((!isNerve(GET_NERVE(Trapeze, TrapezeNrvStop)) && !isNerve(GET_NERVE(Trapeze, TrapezeNrvFree))) || MR::isOnGroundPlayer() ||
             pSender->mHost->mPosition.y > mPosition.y) {
             return false;
         }
@@ -435,7 +435,7 @@ bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
             MR::startActorCameraNoTarget(this, mCameraInfo, -1);
         }
 
-        setNerve(&NrvTrapeze::TrapezeNrvSwingSlideDownStart::sInstance);
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingSlideDownStart));
         return true;
     }
 
@@ -456,7 +456,7 @@ bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
     if (MR::isMsgRushCancel(msg)) {
         mRider = nullptr;
         mGrabCoord = 0.0f;
-        setNerve(&NrvTrapeze::TrapezeNrvFree::sInstance);
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvFree));
         return true;
     }
 
@@ -509,7 +509,7 @@ bool Trapeze::tryJump() {
         MR::endBindAndPlayerWeakGravityJump(this, jumpVel);
         mRider = nullptr;
 
-        setNerve(&NrvTrapeze::TrapezeNrvFreeInvalid::sInstance);
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvFreeInvalid));
         return true;
     }
 
@@ -616,7 +616,7 @@ bool Trapeze::updateSwing() {
     }
 
     if (!mIsSwingFront && !mIsSwingBack && MR::abs(mSwingVel) < 10.0f && mGrabPoint->mUp.y >= 0.99f) {
-        setNerve(&NrvTrapeze::TrapezeNrvSwingWait::sInstance);
+        setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingWait));
         return true;
     }
 
@@ -636,9 +636,9 @@ bool Trapeze::updateSlideDown() {
         }
 
         if (mSwingVel > 0) {
-            setNerve(&NrvTrapeze::TrapezeNrvSwingFrontStart::sInstance);
+            setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingFrontStart));
         } else {
-            setNerve(&NrvTrapeze::TrapezeNrvSwingBackStart::sInstance);
+            setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingBackStart));
         }
         return true;
     }

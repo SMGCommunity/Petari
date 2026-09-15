@@ -21,7 +21,7 @@ void YesNoLayout::init(const JMapInfoIter& rIter) {
     mController = new YesNoController(this);
 
     MR::registerDemoSimpleCastAll(this);
-    initNerve(&NrvYesNoLayout::YesNoLayoutNrvSelecting::sInstance);
+    initNerve(GET_NERVE(YesNoLayout, YesNoLayoutNrvSelecting));
 }
 
 void YesNoLayout::appear() {
@@ -31,7 +31,7 @@ void YesNoLayout::appear() {
     _24 = false;
 
     MR::startStarPointerModeChooseYesNo(this);
-    setNerve(&NrvYesNoLayout::YesNoLayoutNrvSelecting::sInstance);
+    setNerve(GET_NERVE(YesNoLayout, YesNoLayoutNrvSelecting));
 }
 
 void YesNoLayout::kill() {

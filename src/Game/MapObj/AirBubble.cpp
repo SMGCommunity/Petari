@@ -41,7 +41,7 @@ void AirBubble::init(const JMapInfoIter& rIter) {
     MR::addHitSensorMapObj(this, "body", 8, mScale.x * ::cHitSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(0, nullptr, false);
     initSound(2, false);
-    initNerve(&NrvAirBubble::AirBubbleNrvWait::sInstance);
+    initNerve(GET_NERVE(AirBubble, AirBubbleNrvWait));
     mIsFollowRail = false;
     makeActorAppeared();
     MR::setClippingFar100m(this);
@@ -77,7 +77,7 @@ void AirBubble::appearMove(const TVec3f& rTrans, s32 life) {
     mPosition.set(rTrans);
     appear();
     MR::showModel(this);
-    setNerve(&NrvAirBubble::AirBubbleNrvMove::sInstance);
+    setNerve(GET_NERVE(AirBubble, AirBubbleNrvMove));
     MR::invalidateClipping(this);
 
     mLife = life > 0 ? life : ::cDefaultLife;
@@ -135,7 +135,7 @@ void AirBubble::exeMove() {
         MR::startSound(this, "SE_OJ_AIR_BUBBLE_BREAK");
         MR::emitEffect(this, "RecoveryBubbleBreak");
         MR::offCalcGravity(this);
-        setNerve(&NrvAirBubble::AirBubbleNrvKillWait::sInstance);
+        setNerve(GET_NERVE(AirBubble, AirBubbleNrvKillWait));
     }
 }
 
@@ -157,14 +157,14 @@ void AirBubble::exeKillWait() {
 
 bool AirBubble::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pSender)) {
-        if (isNerve(&NrvAirBubble::AirBubbleNrvKillWait::sInstance)) {
+        if (isNerve(GET_NERVE(AirBubble, AirBubbleNrvKillWait))) {
             MR::incPlayerOxygen(8);
             kill();
 
             return true;
         }
 
-        setNerve(&NrvAirBubble::AirBubbleNrvBreak::sInstance);
+        setNerve(GET_NERVE(AirBubble, AirBubbleNrvBreak));
 
         return true;
     }
@@ -196,7 +196,7 @@ bool AirBubble::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
 
     if (MR::isMsgSpinStormRange(msg) && canSpinGet()) {
         if ((pSender->mPosition - mPosition).length() < ::cSwingRange) {
-            setNerve(&NrvAirBubble::AirBubbleNrvBreak::sInstance);
+            setNerve(GET_NERVE(AirBubble, AirBubbleNrvBreak));
             return true;
         }
     }
@@ -205,7 +205,7 @@ bool AirBubble::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
 }
 
 bool AirBubble::canSpinGet() const {
-    if (isNerve(&NrvAirBubble::AirBubbleNrvWait::sInstance) || isNerve(&NrvAirBubble::AirBubbleNrvMove::sInstance)) {
+    if (isNerve(GET_NERVE(AirBubble, AirBubbleNrvWait)) || isNerve(GET_NERVE(AirBubble, AirBubbleNrvMove))) {
         return true;
     }
 

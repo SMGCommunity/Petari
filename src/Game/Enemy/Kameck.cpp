@@ -86,7 +86,7 @@ void Kameck::init(const JMapInfoIter& rIter) {
         MR::moveTransToCurrentRailPos(this);
     }
 
-    initNerve(&NrvKameck::KameckNrvWait::sInstance);
+    initNerve(GET_NERVE(Kameck, KameckNrvWait));
     makeActorAppeared();
     MR::declareCoin(this, 1);
     initDemo(rIter);
@@ -151,7 +151,7 @@ void Kameck::makeActorDead() {
 void Kameck::appear() {
     MR::moveCoordAndTransToRailStartPoint(this);
     LiveActor::appear();
-    setNerve(&NrvKameck::KameckNrvAppear::sInstance);
+    setNerve(GET_NERVE(Kameck, KameckNrvAppear));
 }
 
 void Kameck::kill() {
@@ -236,14 +236,14 @@ bool Kameck::requestAttack(HitSensor* pSender, HitSensor* pReceiver) {
         if (MR::sendMsgEnemyAttack(pReceiver, pSender)) {
             if (isEnableAttack()) {
                 resetBeam();
-                setNerve(&NrvKameck::KameckNrvHit::sInstance);
+                setNerve(GET_NERVE(Kameck, KameckNrvHit));
                 return true;
             }
         } else {
             MR::sendMsgPush(pReceiver, pSender);
         }
     } else {
-        if (isNerve(&NrvKameck::KameckNrvBindStarPointer::sInstance)) {
+        if (isNerve(GET_NERVE(Kameck, KameckNrvBindStarPointer))) {
             MR::sendMsgPush(pReceiver, pSender);
         }
     }
@@ -258,7 +258,7 @@ bool Kameck::requestDown(HitSensor* pSender, HitSensor* pReceiver) {
         MR::invalidateHitSensors(this);
         MR::invalidateClipping(this);
         MR::setVelocityBlowAttack(this, pSender, pReceiver, ::sHitHorizontalPower, ::sHitVerticalPower, 4);
-        setNerve(&NrvKameck::KameckNrvDown::sInstance);
+        setNerve(GET_NERVE(Kameck, KameckNrvDown));
 
         return true;
     }
@@ -277,7 +277,7 @@ bool Kameck::requestGuard(HitSensor* pSender, HitSensor* pReceiver) {
 
         resetBeam();
         MR::invalidateClipping(this);
-        setNerve(&NrvKameck::KameckNrvGuard::sInstance);
+        setNerve(GET_NERVE(Kameck, KameckNrvGuard));
 
         return true;
     }
@@ -291,7 +291,7 @@ bool Kameck::requestPressDown() {
         MR::onBind(this);
         MR::invalidateHitSensors(this);
         MR::invalidateClipping(this);
-        setNerve(&NrvKameck::KameckNrvPressDown::sInstance);
+        setNerve(GET_NERVE(Kameck, KameckNrvPressDown));
         return true;
     }
 
@@ -302,7 +302,7 @@ void Kameck::startDemoAppear() {
     makeActorAppeared();
     MR::invalidateHitSensors(this);
     MR::invalidateClipping(this);
-    setNerve(&NrvKameck::KameckNrvDemoAppear::sInstance);
+    setNerve(GET_NERVE(Kameck, KameckNrvDemoAppear));
 }
 
 void Kameck::killForce() {
@@ -337,7 +337,7 @@ void Kameck::hitBeam(s32 beamType) {
 
 bool Kameck::tryOpeningDemo() {
     if (MR::isStageStateScenarioOpeningCamera()) {
-        setNerve(&NrvKameck::KameckNrvOpeningDemo::sInstance);
+        setNerve(GET_NERVE(Kameck, KameckNrvOpeningDemo));
         return true;
     }
 
@@ -355,7 +355,7 @@ bool Kameck::tryOpeningDemoEnd() {
 }
 
 bool Kameck::tryNonActive() {
-    if (isNerve(&NrvKameck::KameckNrvWait::sInstance) && canNonActive()) {
+    if (isNerve(GET_NERVE(Kameck, KameckNrvWait)) && canNonActive()) {
         setNonActive();
 
         return true;
@@ -371,12 +371,12 @@ void Kameck::setNonActive() {
     MR::offCalcShadow(this, nullptr);
     MR::validateClipping(this);
     MR::deleteEffectAll(this);
-    setNerve(&NrvKameck::KameckNrvNonActive::sInstance);
+    setNerve(GET_NERVE(Kameck, KameckNrvNonActive));
 }
 
 bool Kameck::tryActive() {
     if (!canNonActive()) {
-        setNerve(&NrvKameck::KameckNrvAppear::sInstance);
+        setNerve(GET_NERVE(Kameck, KameckNrvAppear));
 
         return true;
     }
@@ -387,7 +387,7 @@ bool Kameck::tryActive() {
 bool Kameck::tryAppearEnd() {
     if (MR::isBckStopped(this)) {
         if (!tryAttackWait()) {
-            setNerve(&NrvKameck::KameckNrvWait::sInstance);
+            setNerve(GET_NERVE(Kameck, KameckNrvWait));
         }
 
         return true;
@@ -401,7 +401,7 @@ bool Kameck::tryAttackWait() {
         mBeam = MR::startFollowKameckBeam(mBeamType, MR::getJointMtx(this, "Wand"), 0.6f, TVec3f(0.0f, 110.0f, 0.0f), mBeamEventListener);
 
         if (mBeam != nullptr) {
-            setNerve(&NrvKameck::KameckNrvAttackWait::sInstance);
+            setNerve(GET_NERVE(Kameck, KameckNrvAttackWait));
 
             return true;
         }
@@ -412,7 +412,7 @@ bool Kameck::tryAttackWait() {
 
 bool Kameck::tryAttack() {
     if (MR::isGreaterStep(this, ::sAttackWaitTime)) {
-        setNerve(&NrvKameck::KameckNrvAttack::sInstance);
+        setNerve(GET_NERVE(Kameck, KameckNrvAttack));
         return true;
     }
 
@@ -421,7 +421,7 @@ bool Kameck::tryAttack() {
 
 bool Kameck::tryAttackEnd() {
     if (MR::isGreaterStep(this, 30)) {
-        setNerve(&NrvKameck::KameckNrvMoveHide::sInstance);
+        setNerve(GET_NERVE(Kameck, KameckNrvMoveHide));
         return true;
     }
 
@@ -430,7 +430,7 @@ bool Kameck::tryAttackEnd() {
 
 bool Kameck::tryHitEnd() {
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvKameck::KameckNrvMoveHide::sInstance);
+        setNerve(GET_NERVE(Kameck, KameckNrvMoveHide));
         return true;
     }
 
@@ -439,7 +439,7 @@ bool Kameck::tryHitEnd() {
 
 bool Kameck::tryMove() {
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvKameck::KameckNrvMove::sInstance);
+        setNerve(GET_NERVE(Kameck, KameckNrvMove));
         return true;
     }
 
@@ -448,7 +448,7 @@ bool Kameck::tryMove() {
 
 bool Kameck::tryMoveEnd() {
     if (MR::isGreaterStep(this, mMoveStep)) {
-        setNerve(&NrvKameck::KameckNrvAppear::sInstance);
+        setNerve(GET_NERVE(Kameck, KameckNrvAppear));
         return true;
     }
 
@@ -458,7 +458,7 @@ bool Kameck::tryMoveEnd() {
 bool Kameck::tryPointBind() {
     if (mStateBindStarPointer->tryStartPointBind()) {
         resetBeam();
-        setNerve(&NrvKameck::KameckNrvBindStarPointer::sInstance);
+        setNerve(GET_NERVE(Kameck, KameckNrvBindStarPointer));
 
         return true;
     }
@@ -494,8 +494,8 @@ void Kameck::exeDemoAppear() {
 }
 
 void Kameck::endDemoAppear() {
-    if (isNerve(&NrvKameck::KameckNrvDemoAppear::sInstance)) {
-        setNerve(&NrvKameck::KameckNrvWait::sInstance);
+    if (isNerve(GET_NERVE(Kameck, KameckNrvDemoAppear))) {
+        setNerve(GET_NERVE(Kameck, KameckNrvWait));
     }
 }
 
@@ -560,7 +560,7 @@ void Kameck::exeGuard() {
     }
 
     if (!tryPointBind() && MR::isGreaterStep(this, ::sGuardTime)) {
-        setNerve(&NrvKameck::KameckNrvMoveHide::sInstance);
+        setNerve(GET_NERVE(Kameck, KameckNrvMoveHide));
     }
 }
 
@@ -638,7 +638,7 @@ void Kameck::exeMove() {
 }
 
 void Kameck::exeBindStarPointer() {
-    MR::updateActorStateAndNextNerve(this, mStateBindStarPointer, &NrvKameck::KameckNrvWait::sInstance);
+    MR::updateActorStateAndNextNerve(this, mStateBindStarPointer, GET_NERVE(Kameck, KameckNrvWait));
 }
 
 void Kameck::endBindStarPointer() {
@@ -691,9 +691,9 @@ bool Kameck::canNonActive() const {
 }
 
 bool Kameck::isEnableAttack() const {
-    if (!(!isNerve(&NrvKameck::KameckNrvWait::sInstance) && !isNerve(&NrvKameck::KameckNrvAppear::sInstance) &&
-          !isNerve(&NrvKameck::KameckNrvAttackWait::sInstance) && !isNerve(&NrvKameck::KameckNrvAttack::sInstance) &&
-          !isNerve(&NrvKameck::KameckNrvMoveHide::sInstance))) {
+    if (!(!isNerve(GET_NERVE(Kameck, KameckNrvWait)) && !isNerve(GET_NERVE(Kameck, KameckNrvAppear)) &&
+          !isNerve(GET_NERVE(Kameck, KameckNrvAttackWait)) && !isNerve(GET_NERVE(Kameck, KameckNrvAttack)) &&
+          !isNerve(GET_NERVE(Kameck, KameckNrvMoveHide)))) {
         return true;
     }
 
@@ -701,9 +701,9 @@ bool Kameck::isEnableAttack() const {
 }
 
 bool Kameck::isEnableGurad() const {
-    if (!(!isNerve(&NrvKameck::KameckNrvWait::sInstance) && !isNerve(&NrvKameck::KameckNrvAppear::sInstance) &&
-          !isNerve(&NrvKameck::KameckNrvAttackWait::sInstance) && !isNerve(&NrvKameck::KameckNrvAttack::sInstance) &&
-          !isNerve(&NrvKameck::KameckNrvGuard::sInstance) && !isNerve(&NrvKameck::KameckNrvMoveHide::sInstance))) {
+    if (!(!isNerve(GET_NERVE(Kameck, KameckNrvWait)) && !isNerve(GET_NERVE(Kameck, KameckNrvAppear)) &&
+          !isNerve(GET_NERVE(Kameck, KameckNrvAttackWait)) && !isNerve(GET_NERVE(Kameck, KameckNrvAttack)) &&
+          !isNerve(GET_NERVE(Kameck, KameckNrvGuard)) && !isNerve(GET_NERVE(Kameck, KameckNrvMoveHide)))) {
         return true;
     }
 
@@ -715,8 +715,8 @@ bool Kameck::isEnableDown() const {
         return false;
     }
 
-    if (!(!isNerve(&NrvKameck::KameckNrvNonActive::sInstance) && !isNerve(&NrvKameck::KameckNrvDown::sInstance) &&
-          !isNerve(&NrvKameck::KameckNrvPressDown::sInstance))) {
+    if (!(!isNerve(GET_NERVE(Kameck, KameckNrvNonActive)) && !isNerve(GET_NERVE(Kameck, KameckNrvDown)) &&
+          !isNerve(GET_NERVE(Kameck, KameckNrvPressDown)))) {
         return false;
     }
 

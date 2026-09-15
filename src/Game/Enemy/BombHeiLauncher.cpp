@@ -63,7 +63,7 @@ void BombHeiLauncher::init(const JMapInfoIter& rIter) {
     MR::initCollisionParts(this, "BombHeiLauncher", getSensor("body"), nullptr);
     MR::onCalcGravity(this);
 
-    initNerve(&NrvBombHeiLauncher::HostTypeNrvStop::sInstance);
+    initNerve(GET_NERVE(BombHeiLauncher, HostTypeNrvStop));
     mCountdown = -1;
 
     MR::validateClipping(this);
@@ -112,13 +112,13 @@ void BombHeiLauncher::startCountdown() {
 void BombHeiLauncher::onSwitchA() {
     mIsActive = true;
     mCountdown = 0;
-    setNerve(&NrvBombHeiLauncher::HostTypeNrvLauncherWait::sInstance);
+    setNerve(GET_NERVE(BombHeiLauncher, HostTypeNrvLauncherWait));
 }
 
 void BombHeiLauncher::offSwitchA() {
     mIsActive = false;
     mCountdown = -1;
-    setNerve(&NrvBombHeiLauncher::HostTypeNrvStop::sInstance);
+    setNerve(GET_NERVE(BombHeiLauncher, HostTypeNrvStop));
 
     if (mBomb != nullptr && !MR::isDead(mBomb)) {
         mBomb->kill();
@@ -150,7 +150,7 @@ void BombHeiLauncher::exeLauncherWait() {
         MR::calcFrontVec(&front, this);
         getBombVelocity()->set(up * ::hThrowVel);
         getBombVelocity()->add(front * ::hThrowFrontVel);
-        setNerve(&NrvBombHeiLauncher::HostTypeNrvStop::sInstance);
+        setNerve(GET_NERVE(BombHeiLauncher, HostTypeNrvStop));
         return;
     }
 
@@ -165,7 +165,7 @@ void BombHeiLauncher::exeStop() {
     }
 
     if (mIsActive && MR::isGreaterStep(this, 120)) {
-        setNerve(&NrvBombHeiLauncher::HostTypeNrvLauncherWait::sInstance);
+        setNerve(GET_NERVE(BombHeiLauncher, HostTypeNrvLauncherWait));
     }
 }
 

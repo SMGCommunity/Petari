@@ -17,7 +17,7 @@ void SpaceInner::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("SpaceInner", 0, false);
     MR::connectToSceneSky(this);
-    initNerve(&NrvSpaceInner::HostTypeAppear::sInstance);
+    initNerve(GET_NERVE(SpaceInner, HostTypeAppear));
     MR::invalidateClipping(this);
     MR::registerDemoSimpleCastAll(this);
     makeActorDead();
@@ -40,16 +40,16 @@ void SpaceInner::exeDisappear() {
 void SpaceInner::appear() {
     LiveActor::appear();
     MR::startBrk(this, "Appear");
-    setNerve(&NrvSpaceInner::HostTypeAppear::sInstance);
+    setNerve(GET_NERVE(SpaceInner, HostTypeAppear));
 }
 
 void SpaceInner::disappear() {
     MR::startBrk(this, "Disappear");
-    setNerve(&NrvSpaceInner::HostTypeDisappear::sInstance);
+    setNerve(GET_NERVE(SpaceInner, HostTypeDisappear));
 }
 
 bool SpaceInner::isAppeared() const {
-    if (isNerve(&NrvSpaceInner::HostTypeAppear::sInstance)) {
+    if (isNerve(GET_NERVE(SpaceInner, HostTypeAppear))) {
         return MR::isBrkStopped(this);
     }
 

@@ -59,9 +59,9 @@ void QuestionBoxGalleryObj::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &arg0);
 
     if (arg0) {
-        initNerve(&NrvQuestionBoxGalleryObj::QuestionBoxGalleryObjNrvOnWait::sInstance);
+        initNerve(GET_NERVE(QuestionBoxGalleryObj, QuestionBoxGalleryObjNrvOnWait));
     } else {
-        initNerve(&NrvQuestionBoxGalleryObj::QuestionBoxGalleryObjNrvOffWait::sInstance);
+        initNerve(GET_NERVE(QuestionBoxGalleryObj, QuestionBoxGalleryObjNrvOffWait));
     }
 }
 
@@ -71,7 +71,7 @@ void QuestionBoxGalleryObj::exeOnStart() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvQuestionBoxGalleryObj::QuestionBoxGalleryObjNrvOnWait::sInstance);
+        setNerve(GET_NERVE(QuestionBoxGalleryObj, QuestionBoxGalleryObjNrvOnWait));
     }
 }
 
@@ -88,7 +88,7 @@ void QuestionBoxGalleryObj::exeOffStart() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvQuestionBoxGalleryObj::QuestionBoxGalleryObjNrvOffWait::sInstance);
+        setNerve(GET_NERVE(QuestionBoxGalleryObj, QuestionBoxGalleryObjNrvOffWait));
     }
 }
 
@@ -127,10 +127,10 @@ void QuestionBoxGalleryObj::control() {
 
 void QuestionBoxGalleryObj::startSwitchOn() {
     MR::startSound(this, "SE_OJ_Q_BOX_LIGHT_ON");
-    setNerve(&NrvQuestionBoxGalleryObj::QuestionBoxGalleryObjNrvOnStart::sInstance);
+    setNerve(GET_NERVE(QuestionBoxGalleryObj, QuestionBoxGalleryObjNrvOnStart));
 }
 
 void QuestionBoxGalleryObj::startSwitchOff() {
     MR::startSound(this, "SE_OJ_Q_BOX_LIGHT_OFF");
-    setNerve(&NrvQuestionBoxGalleryObj::QuestionBoxGalleryObjNrvOffStart::sInstance);
+    setNerve(GET_NERVE(QuestionBoxGalleryObj, QuestionBoxGalleryObjNrvOffStart));
 }

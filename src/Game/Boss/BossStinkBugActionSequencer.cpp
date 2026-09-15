@@ -38,7 +38,7 @@ BossStinkBugActionSequencer::BossStinkBugActionSequencer(BossStinkBug* pStinkBug
     mAngryDemo = new BossStinkBugAngryDemo(pStinkBug, rIter);
     mActionFlyHigh = new BossStinkBugActionFlyHigh(pStinkBug);
     mFinishDemo = new BossStinkBugFinishDemo(pStinkBug, rIter);
-    initNerve(&NrvBossStinkBugActionSequencer::BossStinkBugActionSequencerNrvWaitStart::sInstance);
+    initNerve(GET_NERVE(BossStinkBugActionSequencer, BossStinkBugActionSequencerNrvWaitStart));
     MR::declareStarPiece(mStinkBug, 24);
 }
 
@@ -77,8 +77,8 @@ bool BossStinkBugActionSequencer::receiveOtherMsg(u32 msg, HitSensor* pSender, H
 }
 
 bool BossStinkBugActionSequencer::startAction() {
-    if (isNerve(&NrvBossStinkBugActionSequencer::BossStinkBugActionSequencerNrvWaitStart::sInstance)) {
-        setNerve(&NrvBossStinkBugActionSequencer::BossStinkBugActionSequencerNrvOpeningDemo::sInstance);
+    if (isNerve(GET_NERVE(BossStinkBugActionSequencer, BossStinkBugActionSequencerNrvWaitStart))) {
+        setNerve(GET_NERVE(BossStinkBugActionSequencer, BossStinkBugActionSequencerNrvOpeningDemo));
         return true;
     } else {
         return false;
@@ -92,7 +92,7 @@ void BossStinkBugActionSequencer::exeOpeningDemo() {
     if (MR::isFirstStep(this)) {
         mCurrentAction = mOpeningDemo;
     }
-    MR::updateActorStateAndNextNerve(this, mOpeningDemo, &NrvBossStinkBugActionSequencer::BossStinkBugActionSequencerNrvGround::sInstance);
+    MR::updateActorStateAndNextNerve(this, mOpeningDemo, GET_NERVE(BossStinkBugActionSequencer, BossStinkBugActionSequencerNrvGround));
 }
 
 void BossStinkBugActionSequencer::exeGround() {
@@ -100,14 +100,14 @@ void BossStinkBugActionSequencer::exeGround() {
         MR::startBossBGM(MR::BossBgmID_StinkBugA);
         mCurrentAction = mActionGround;
     }
-    MR::updateActorStateAndNextNerve(this, mActionGround, &NrvBossStinkBugActionSequencer::BossStinkBugActionSequencerNrvFlyDemo::sInstance);
+    MR::updateActorStateAndNextNerve(this, mActionGround, GET_NERVE(BossStinkBugActionSequencer, BossStinkBugActionSequencerNrvFlyDemo));
 }
 
 void BossStinkBugActionSequencer::exeFlyDemo() {
     if (MR::isFirstStep(this)) {
         mCurrentAction = mFlyDemo;
     }
-    MR::updateActorStateAndNextNerve(this, mFlyDemo, &NrvBossStinkBugActionSequencer::BossStinkBugActionSequencerNrvFlyLow::sInstance);
+    MR::updateActorStateAndNextNerve(this, mFlyDemo, GET_NERVE(BossStinkBugActionSequencer, BossStinkBugActionSequencerNrvFlyLow));
 }
 
 void BossStinkBugActionSequencer::exeFlyLow() {
@@ -116,14 +116,14 @@ void BossStinkBugActionSequencer::exeFlyLow() {
         MR::startBossBGM(MR::BossBgmID_StinkBugB);
         mCurrentAction = mActionFlyLow;
     }
-    MR::updateActorStateAndNextNerve(this, mActionFlyLow, &NrvBossStinkBugActionSequencer::BossStinkBugActionSequencerNrvAngryDemo::sInstance);
+    MR::updateActorStateAndNextNerve(this, mActionFlyLow, GET_NERVE(BossStinkBugActionSequencer, BossStinkBugActionSequencerNrvAngryDemo));
 }
 
 void BossStinkBugActionSequencer::exeAngryDemo() {
     if (MR::isFirstStep(this)) {
         mCurrentAction = mAngryDemo;
     }
-    MR::updateActorStateAndNextNerve(this, mAngryDemo, &NrvBossStinkBugActionSequencer::BossStinkBugActionSequencerNrvFlyHigh::sInstance);
+    MR::updateActorStateAndNextNerve(this, mAngryDemo, GET_NERVE(BossStinkBugActionSequencer, BossStinkBugActionSequencerNrvFlyHigh));
 }
 
 void BossStinkBugActionSequencer::exeFlyHigh() {
@@ -131,14 +131,14 @@ void BossStinkBugActionSequencer::exeFlyHigh() {
         mStinkBug->appearStarPiece(16);
         mCurrentAction = mActionFlyHigh;
     }
-    MR::updateActorStateAndNextNerve(this, mActionFlyHigh, &NrvBossStinkBugActionSequencer::BossStinkBugActionSequencerNrvFinishDemo::sInstance);
+    MR::updateActorStateAndNextNerve(this, mActionFlyHigh, GET_NERVE(BossStinkBugActionSequencer, BossStinkBugActionSequencerNrvFinishDemo));
 }
 
 void BossStinkBugActionSequencer::exeFinishDemo() {
     if (MR::isFirstStep(this)) {
         mCurrentAction = mFinishDemo;
     }
-    MR::updateActorStateAndNextNerve(this, mFinishDemo, &NrvBossStinkBugActionSequencer::BossStinkBugActionSequencerNrvEnd::sInstance);
+    MR::updateActorStateAndNextNerve(this, mFinishDemo, GET_NERVE(BossStinkBugActionSequencer, BossStinkBugActionSequencerNrvEnd));
 }
 
 void BossStinkBugActionSequencer::exeEnd() {

@@ -22,6 +22,31 @@ namespace {
     static const Vec sTalkOffsetDelightDeepSea = {152.0f, 240.0f, 250.0f};
 };  // namespace
 
+namespace NrvSyati {
+    NEW_NERVE(SyatiWait, Syati, Wait);
+    NEW_NERVE(SyatiFadeoutStartEvent, Syati, FadeoutBeforeTalk);
+    NEW_NERVE(SyatiWaitBlankStartEvent, Syati, WaitBlank);
+    NEW_NERVE(SyatiFadeinStartEvent, Syati, FadeinBeforeTalk);
+    NEW_NERVE(SyatiTalkStartMission, Syati, TalkStartMission);
+    NEW_NERVE(SyatiReadyToStart, Syati, ReadyToStart);
+    NEW_NERVE(SyatiCountDown, Syati, CountDown);
+    NEW_NERVE(SyatiSwim, Syati, Swim);
+    NEW_NERVE(SyatiEmitRing, Syati, EmitRing);
+    NEW_NERVE(SyatiWaitStarAppeared, Syati, WaitStarAppeared);
+    NEW_NERVE(SyatiReachToEnd, Syati, ReachToEnd);
+    NEW_NERVE(SyatiWaitAllRingDisappear, Syati, WaitAllRingDisappear);
+    NEW_NERVE(SyatiFadeoutRetryEvent, Syati, FadeoutBeforeTalk);
+    NEW_NERVE(SyatiWaitBlankRetryEvent, Syati, WaitBlank);
+    NEW_NERVE(SyatiFadeinRetryEvent, Syati, FadeinBeforeTalk);
+    NEW_NERVE(SyatiTalkRetryMission, Syati, TalkRetryMission);
+    NEW_NERVE(SyatiForceKill, Syati, ForceKill);
+    NEW_NERVE(SyatiHideOnShore, Syati, HideOnShore);
+    NEW_NERVE(SyatiWaitOnShore, Syati, WaitOnShore);
+    NEW_NERVE(SyatiWaitTalkNormal, Syati, WaitTalkNormal);
+    NEW_NERVE(SyatiTalkNormal, Syati, TalkNormal);
+    NEW_NERVE(SyatiWaitDemoStart, Syati, Start);
+};  // namespace NrvSyati
+
 f32 JMAAcosRadian_dummy(f32 f) {
     TVec3f _dummy;
     _dummy.set(sMarioMoveLocalOffsetDeepSea);
@@ -96,9 +121,9 @@ void Syati::init(const JMapInfoIter& rIter) {
     initSound(8, false);
 
     if (MR::isExistRail(this))
-        initNerve(&NrvSyati::SyatiWait::sInstance);
+        initNerve(GET_NERVE(Syati, SyatiWait));
     else
-        initNerve(&NrvSyati::SyatiHideOnShore::sInstance);
+        initNerve(GET_NERVE(Syati, SyatiHideOnShore));
 
     makeActorAppeared();
 }
@@ -118,7 +143,7 @@ void Syati::exeWait() {
     }
 
     if (MR::isOnSwitchA(this))
-        MR::requestStartDemoMarioPuppetable(this, "開始デモ", &NrvSyati::SyatiFadeoutStartEvent::sInstance, &NrvSyati::SyatiWaitDemoStart::sInstance);
+        MR::requestStartDemoMarioPuppetable(this, "開始デモ", GET_NERVE(Syati, SyatiFadeoutStartEvent), GET_NERVE(Syati, SyatiWaitDemoStart));
 }
 
 void Syati::exeFadeoutBeforeTalk() {
@@ -128,10 +153,10 @@ void Syati::exeFadeoutBeforeTalk() {
     }
 
     if (!MR::isWipeActive()) {
-        if (isNerve(&NrvSyati::SyatiFadeoutStartEvent::sInstance))
-            setNerve(&NrvSyati::SyatiWaitBlankStartEvent::sInstance);
+        if (isNerve(GET_NERVE(Syati, SyatiFadeoutStartEvent)))
+            setNerve(GET_NERVE(Syati, SyatiWaitBlankStartEvent));
         else
-            setNerve(&NrvSyati::SyatiWaitBlankRetryEvent::sInstance);
+            setNerve(GET_NERVE(Syati, SyatiWaitBlankRetryEvent));
     }
 }
 
@@ -147,10 +172,10 @@ void Syati::exeWaitBlank() {
     }
 
     if (MR::isStep(this, 0x1E)) {
-        if (isNerve(&NrvSyati::SyatiWaitBlankStartEvent::sInstance))
-            setNerve(&NrvSyati::SyatiFadeinStartEvent::sInstance);
+        if (isNerve(GET_NERVE(Syati, SyatiWaitBlankStartEvent)))
+            setNerve(GET_NERVE(Syati, SyatiFadeinStartEvent));
         else
-            setNerve(&NrvSyati::SyatiFadeinRetryEvent::sInstance);
+            setNerve(GET_NERVE(Syati, SyatiFadeinRetryEvent));
     }
 }
 
@@ -198,17 +223,17 @@ void Syati::exeFadeinBeforeTalk() {
         MR::startBck(this, "Talk", nullptr);
         MR::startBtk(this, "Talk");
 
-        if (isNerve(&NrvSyati::SyatiFadeinRetryEvent::sInstance) && MR::isEqualStageName("OceanPhantomCaveGalaxy") &&
+        if (isNerve(GET_NERVE(Syati, SyatiFadeinRetryEvent)) && MR::isEqualStageName("OceanPhantomCaveGalaxy") &&
             !MR::isPlayingStageBgmName("STM_GALAXY_05"))
             MR::stopStageBGM(0x3C);
     }
     mPlayerPoseSetterInWater->update();
 
     if (!MR::isWipeActive()) {
-        if (isNerve(&NrvSyati::SyatiFadeinStartEvent::sInstance))
-            setNerve(&NrvSyati::SyatiTalkStartMission::sInstance);
+        if (isNerve(GET_NERVE(Syati, SyatiFadeinStartEvent)))
+            setNerve(GET_NERVE(Syati, SyatiTalkStartMission));
         else
-            setNerve(&NrvSyati::SyatiTalkRetryMission::sInstance);
+            setNerve(GET_NERVE(Syati, SyatiTalkRetryMission));
     }
 }
 
@@ -222,7 +247,7 @@ void Syati::exeTalkStartMission() {
 
     if (MR::tryTalkForceWithoutDemoMarioPuppetableAtEnd(mTalkMessageCtrl)) {
         MR::endMultiActorCamera(this, mActorCameraInfo, "会話", false, -1);
-        setNerve(&NrvSyati::SyatiReadyToStart::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiReadyToStart));
     }
 }
 
@@ -243,7 +268,7 @@ void Syati::exeReadyToStart() {
     mPlayerPoseSetterInWater->update();
 
     if (MR::isBckStopped(this))
-        setNerve(&NrvSyati::SyatiCountDown::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiCountDown));
 }
 
 void Syati::exeCountDown() {
@@ -267,7 +292,7 @@ void Syati::exeCountDown() {
         MR::endDemo(this, "開始デモ");
         MR::endMultiActorCamera(this, mActorCameraInfo, "開始デモ", true, -1);
         MR::startSystemSE("SE_SY_RACE_START", -1, -1);
-        setNerve(&NrvSyati::SyatiSwim::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiSwim));
     }
 }
 
@@ -280,10 +305,10 @@ void Syati::exeSwim() {
     updateSwimCommon();
 
     if (isReadyToEmitRing()) {
-        setNerve(&NrvSyati::SyatiEmitRing::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiEmitRing));
     } else {
         if (MR::isRailReachedGoal(this)) {
-            setNerve(&NrvSyati::SyatiReachToEnd::sInstance);
+            setNerve(GET_NERVE(Syati, SyatiReachToEnd));
         }
     }
 }
@@ -298,10 +323,10 @@ void Syati::exeEmitRing() {
     updateSwimCommon();
 
     if (isReadyToEmitRing()) {
-        setNerve(&NrvSyati::SyatiEmitRing::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiEmitRing));
     } else {
         if (MR::isBckStopped(this)) {
-            setNerve(&NrvSyati::SyatiSwim::sInstance);
+            setNerve(GET_NERVE(Syati, SyatiSwim));
         }
     }
 }
@@ -327,7 +352,7 @@ void Syati::exeReachToEnd() {
         MR::startBck(this, "Turn", nullptr);
 
     if (MR::isBckStopped(this))
-        setNerve(&NrvSyati::SyatiWaitAllRingDisappear::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiWaitAllRingDisappear));
 }
 
 void Syati::exeWaitAllRingDisappear() {
@@ -341,8 +366,7 @@ void Syati::exeWaitAllRingDisappear() {
     }
 
     if (mPrizeRingGroup->getLivingActorNum() == 0 && mPrizeRingCount != mNumRings)
-        MR::requestStartDemoMarioPuppetable(this, "再挑戦デモ", &NrvSyati::SyatiFadeoutRetryEvent::sInstance,
-                                            &NrvSyati::SyatiWaitDemoStart::sInstance);
+        MR::requestStartDemoMarioPuppetable(this, "再挑戦デモ", GET_NERVE(Syati, SyatiFadeoutRetryEvent), GET_NERVE(Syati, SyatiWaitDemoStart));
 }
 
 void Syati::exeTalkRetryMission() {
@@ -361,7 +385,7 @@ void Syati::exeTalkRetryMission() {
     if (MR::tryTalkForceWithoutDemoMarioPuppetableAtEnd(mTalkMessageCtrl)) {
         MR::endDemo(this, "再挑戦デモ");
         MR::endMultiActorCamera(this, mActorCameraInfo, "会話", true, -1);
-        setNerve(&NrvSyati::SyatiForceKill::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiForceKill));
     }
 }
 
@@ -384,10 +408,10 @@ void Syati::exeHideOnShore() {
     switch (mHideOnShoreMode) {
     case 0:
         if (MR::isStageStatePowerStarAppeared())
-            setNerve(&NrvSyati::SyatiWaitOnShore::sInstance);
+            setNerve(GET_NERVE(Syati, SyatiWaitOnShore));
         break;
     case 1:
-        setNerve(&NrvSyati::SyatiWaitTalkNormal::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiWaitTalkNormal));
         break;
     }
 }
@@ -421,7 +445,7 @@ void Syati::exeWaitTalkNormal() {
     MR::tryTalkNearPlayer(mTalkMessageCtrl);
 
     if (MR::isNearPlayer(mTalkMessageCtrl, -1.0f))
-        setNerve(&NrvSyati::SyatiTalkNormal::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiTalkNormal));
 }
 
 void Syati::exeTalkNormal() {
@@ -434,7 +458,10 @@ void Syati::exeTalkNormal() {
     MR::tryTalkNearPlayer(mTalkMessageCtrl);
 
     if (!MR::isNearPlayer(mTalkMessageCtrl, -1.0f))
-        setNerve(&NrvSyati::SyatiWaitTalkNormal::sInstance);
+        setNerve(GET_NERVE(Syati, SyatiWaitTalkNormal));
+}
+
+void Syati::exeStart() {
 }
 
 void Syati::initRings(const JMapInfoIter& rIter) {
@@ -554,7 +581,7 @@ void Syati::updateNumRingPassed() {
 
         if (mPrizeRingCount == mNumRings) {
             killAllRings();
-            setNerve(&NrvSyati::SyatiWaitStarAppeared::sInstance);
+            setNerve(GET_NERVE(Syati, SyatiWaitStarAppeared));
         }
     }
 
@@ -660,8 +687,7 @@ void Syati::setupBalloonFollowMtx(const TVec3f& rVec) {
 
 bool Syati::calcHeadJoint(TPos3f* pPos, const JointControllerInfo& rInfo) {
     bool nrv = false;
-    nrv = isNerve(&NrvSyati::SyatiWaitOnShore::sInstance) || isNerve(&NrvSyati::SyatiWaitTalkNormal::sInstance) ||
-          isNerve(&NrvSyati::SyatiTalkNormal::sInstance);
+    nrv = isNerve(GET_NERVE(Syati, SyatiWaitOnShore)) || isNerve(GET_NERVE(Syati, SyatiWaitTalkNormal)) || isNerve(GET_NERVE(Syati, SyatiTalkNormal));
 
     if (!nrv)
         return false;
@@ -718,31 +744,3 @@ bool Syati::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRece
 
     return false;
 }
-
-Syati::~Syati() {
-}
-
-namespace NrvSyati {
-    SyatiWait(SyatiWait::sInstance);
-    SyatiFadeoutStartEvent(SyatiFadeoutStartEvent::sInstance);
-    SyatiWaitBlankStartEvent(SyatiWaitBlankStartEvent::sInstance);
-    SyatiFadeinStartEvent(SyatiFadeinStartEvent::sInstance);
-    SyatiTalkStartMission(SyatiTalkStartMission::sInstance);
-    SyatiReadyToStart(SyatiReadyToStart::sInstance);
-    SyatiCountDown(SyatiCountDown::sInstance);
-    SyatiSwim(SyatiSwim::sInstance);
-    SyatiEmitRing(SyatiEmitRing::sInstance);
-    SyatiWaitStarAppeared(SyatiWaitStarAppeared::sInstance);
-    SyatiReachToEnd(SyatiReachToEnd::sInstance);
-    SyatiWaitAllRingDisappear(SyatiWaitAllRingDisappear::sInstance);
-    SyatiFadeoutRetryEvent(SyatiFadeoutRetryEvent::sInstance);
-    SyatiWaitBlankRetryEvent(SyatiWaitBlankRetryEvent::sInstance);
-    SyatiFadeinRetryEvent(SyatiFadeinRetryEvent::sInstance);
-    SyatiTalkRetryMission(SyatiTalkRetryMission::sInstance);
-    SyatiForceKill(SyatiForceKill::sInstance);
-    SyatiHideOnShore(SyatiHideOnShore::sInstance);
-    SyatiWaitOnShore(SyatiWaitOnShore::sInstance);
-    SyatiWaitTalkNormal(SyatiWaitTalkNormal::sInstance);
-    SyatiTalkNormal(SyatiTalkNormal::sInstance);
-    SyatiWaitDemoStart(SyatiWaitDemoStart::sInstance);
-};  // namespace NrvSyati

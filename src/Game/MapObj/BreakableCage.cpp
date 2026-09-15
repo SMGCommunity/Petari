@@ -102,7 +102,7 @@ void BreakableCage::init(const JMapInfoIter &rIter) {
         MR::initActorCamera(this, rIter, &mCameraInfo);
     }
 
-    initNerve(&NrvBreakableCage::BreakableCageNrvWait::sInstance);
+    initNerve(GET_NERVE(BreakableCage, BreakableCageNrvWait));
     if (MR::isExistStageSwitchSleep(rIter)) {
         MR::useStageSwitchSleep(this, rIter);
         makeActorDead();
@@ -133,7 +133,7 @@ void BreakableCage::appear() {
         MR::offSwitchDead(this);
     }
 
-    setNerve(&NrvBreakableCage::BreakableCageNrvWait::sInstance);
+    setNerve(GET_NERVE(BreakableCage, BreakableCageNrvWait));
     LiveActor::appear();
 }
 
@@ -276,12 +276,12 @@ bool BreakableCage::isAppearPowerStar() const {
 }
 
 bool BreakableCage::tryBreak() {
-    if (isNerve(&NrvBreakableCage::BreakableCageNrvWait::sInstance)) {
+    if (isNerve(GET_NERVE(BreakableCage, BreakableCageNrvWait))) {
         if (mCameraInfo != nullptr) {
-            MR::requestStartDemoWithoutCinemaFrame(this, "破壊", &NrvBreakableCage::BreakableCageNrvBreak::sInstance,
-                                                   &NrvBreakableCage::BreakableCageNrvWaitStartDemoBreak::sInstance);
+            MR::requestStartDemoWithoutCinemaFrame(this, "破壊", GET_NERVE(BreakableCage, BreakableCageNrvBreak),
+                                                   GET_NERVE(BreakableCage, BreakableCageNrvWaitStartDemoBreak));
         } else {
-            setNerve(&NrvBreakableCage::BreakableCageNrvBreak::sInstance);
+            setNerve(GET_NERVE(BreakableCage, BreakableCageNrvBreak));
         }
 
         return true;

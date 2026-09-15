@@ -59,39 +59,39 @@ void MogucchiShooter::init(const JMapInfoIter& rIter) {
     MR::calcFrontVec(&mFront, this);
     MR::createCenterScreenBlur();
     MR::startBrk(this, "Normal");
-    initNerve(&NrvMogucchiShooter::MogucchiShooterNrvWait::sInstance);
+    initNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvWait));
     makeActorAppeared();
 }
 
 void MogucchiShooter::panicDeath() {
-    setNerve(&NrvMogucchiShooter::MogucchiShooterNrvDeathPanic::sInstance);
+    setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvDeathPanic));
 }
 
 void MogucchiShooter::explosion() {
     resetDirection();
-    setNerve(&NrvMogucchiShooter::MogucchiShooterNrvExplosion::sInstance);
+    setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvExplosion));
 }
 
 void MogucchiShooter::hitShock() {
     resetDirection();
-    setNerve(&NrvMogucchiShooter::MogucchiShooterNrvHitShock::sInstance);
+    setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvHitShock));
 }
 
 void MogucchiShooter::anger() {
     resetDirection();
-    setNerve(&NrvMogucchiShooter::MogucchiShooterNrvAnger::sInstance);
+    setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvAnger));
 }
 
 void MogucchiShooter::stormStart() {
-    setNerve(&NrvMogucchiShooter::MogucchiShooterNrvStormStart::sInstance);
+    setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvStormStart));
 }
 
 void MogucchiShooter::storm() {
-    setNerve(&NrvMogucchiShooter::MogucchiShooterNrvStorm::sInstance);
+    setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvStorm));
 }
 
 bool MogucchiShooter::isLaughed() const {
-    return isNerve(&NrvMogucchiShooter::MogucchiShooterNrvLaugh::sInstance);
+    return isNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvLaugh));
 }
 
 void MogucchiShooter::exeWait() {
@@ -109,22 +109,22 @@ void MogucchiShooter::exeWait() {
     faceToMario();
 
     if (MR::isPlayerInBind()) {
-        setNerve(&NrvMogucchiShooter::MogucchiShooterNrvLaugh::sInstance);
+        setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvLaugh));
         return;
     }
 
     if (bazooka->isPanic()) {
-        setNerve(&NrvMogucchiShooter::MogucchiShooterNrvShock::sInstance);
+        setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvShock));
         return;
     }
 
     if (bazooka->isTired()) {
-        setNerve(&NrvMogucchiShooter::MogucchiShooterNrvTire::sInstance);
+        setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvTire));
         return;
     }
 
     if (bazooka->isFirstShoot()) {
-        setNerve(&NrvMogucchiShooter::MogucchiShooterNrvShot::sInstance);
+        setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvShot));
     }
 }
 
@@ -135,12 +135,12 @@ void MogucchiShooter::exeShot() {
     }
 
     if (MR::isPlayerInBind()) {
-        setNerve(&NrvMogucchiShooter::MogucchiShooterNrvLaugh::sInstance);
+        setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvLaugh));
         return;
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvMogucchiShooter::MogucchiShooterNrvWait::sInstance);
+        setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvWait));
     }
 }
 
@@ -152,9 +152,9 @@ void MogucchiShooter::exeTire() {
     WaterBazooka* bazooka = static_cast< WaterBazooka* >(mHost);
 
     if (bazooka->isPanic()) {
-        setNerve(&NrvMogucchiShooter::MogucchiShooterNrvShock::sInstance);
+        setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvShock));
     } else if (!bazooka->isTired()) {
-        setNerve(&NrvMogucchiShooter::MogucchiShooterNrvWait::sInstance);
+        setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvWait));
     }
 }
 
@@ -182,7 +182,7 @@ void MogucchiShooter::exeLaugh() {
     }
 
     if (MR::isStep(this, ::sStepForLaugh)) {
-        setNerve(&NrvMogucchiShooter::MogucchiShooterNrvWait::sInstance);
+        setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvWait));
     }
 }
 
@@ -192,7 +192,7 @@ void MogucchiShooter::exeShock() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvMogucchiShooter::MogucchiShooterNrvPanic::sInstance);
+        setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvPanic));
     }
 }
 
@@ -211,7 +211,7 @@ void MogucchiShooter::exePanic() {
     faceToMario();
 
     if (!bazooka->isPanic() && MR::isOnGroundPlayer() && !bazooka->isBazookaLifeOut()) {
-        setNerve(&NrvMogucchiShooter::MogucchiShooterNrvWait::sInstance);
+        setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvWait));
     }
 }
 
@@ -223,7 +223,7 @@ void MogucchiShooter::exeHitShock() {
     faceToMario();
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvMogucchiShooter::MogucchiShooterNrvHitPanic::sInstance);
+        setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvHitPanic));
     }
 }
 
@@ -235,7 +235,7 @@ void MogucchiShooter::exeHitPanic() {
     MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_PANIC");
 
     if (!MR::isDemoActive()) {
-        setNerve(&NrvMogucchiShooter::MogucchiShooterNrvWait::sInstance);
+        setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvWait));
     }
 }
 
@@ -251,7 +251,7 @@ void MogucchiShooter::exeAnger() {
     faceToMario();
 
     if (!MR::isDemoActive()) {
-        setNerve(&NrvMogucchiShooter::MogucchiShooterNrvWait::sInstance);
+        setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvWait));
     }
 }
 
@@ -271,7 +271,7 @@ void MogucchiShooter::exeStorm() {
     faceToMario();
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvMogucchiShooter::MogucchiShooterNrvWait::sInstance);
+        setNerve(GET_NERVE(MogucchiShooter, MogucchiShooterNrvWait));
     }
 }
 

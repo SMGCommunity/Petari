@@ -24,14 +24,14 @@ void GalaxyMapGalaxyDetail::init(const JMapInfoIter& rIter) {
     initLayoutManager("GalaxyDetail", layerNum);
     mInfoLayoutSetter = new GalaxyInfoLayoutSetter(this);
     mAButtonIcon = MR::createAndSetupIconAButton(this, false, false);
-    initNerve(&GalaxyMapGalaxyDetailAppear::sInstance);
+    initNerve(GET_NERVE_GLOBAL(GalaxyMapGalaxyDetailAppear));
     kill();
 }
 
 void GalaxyMapGalaxyDetail::appear() {
     LayoutActor::appear();
     mInfoLayoutSetter->updateCometPos();
-    setNerve(&GalaxyMapGalaxyDetailAppear::sInstance);
+    setNerve(GET_NERVE_GLOBAL(GalaxyMapGalaxyDetailAppear));
 }
 
 void GalaxyMapGalaxyDetail::kill() {
@@ -77,7 +77,7 @@ void GalaxyMapGalaxyDetail::exeAppear() {
         MR::startSystemSE("SE_SY_GALAMAP_WINDOW_OPEN");
     }
 
-    MR::setNerveAtAnimStopped(this, &GalaxyMapGalaxyDetailDisplay::sInstance, 0);
+    MR::setNerveAtAnimStopped(this, GET_NERVE_GLOBAL(GalaxyMapGalaxyDetailDisplay), 0);
 }
 
 void GalaxyMapGalaxyDetail::exeDisplay() {
@@ -87,7 +87,7 @@ void GalaxyMapGalaxyDetail::exeDisplay() {
     }
 
     if (MR::testCorePadTriggerA(WPAD_CHAN0)) {
-        setNerve(&GalaxyMapGalaxyDetailDisappear::sInstance);
+        setNerve(GET_NERVE_GLOBAL(GalaxyMapGalaxyDetailDisappear));
     }
 }
 

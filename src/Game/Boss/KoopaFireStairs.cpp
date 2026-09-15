@@ -45,7 +45,7 @@ void KoopaFireStairs::init(const JMapInfoIter& rIteR) {
 
     initSound(4, false);
     MR::initShadowVolumeSphere(this, 60.0f);
-    initNerve(&NrvKoopaFireStairs::KoopaFireStairsNrvFly::sInstance);
+    initNerve(GET_NERVE(KoopaFireStairs, KoopaFireStairsNrvFly));
 
     MR::invalidateClipping(this);
 
@@ -67,7 +67,7 @@ void KoopaFireStairs::appear() {
         MR::startSound(this, "SE_OJ_KOOPA_FIRE_SHOT");
     }
 
-    setNerve(&NrvKoopaFireStairs::KoopaFireStairsNrvFly::sInstance);
+    setNerve(GET_NERVE(KoopaFireStairs, KoopaFireStairsNrvFly));
 }
 
 void KoopaFireStairs::makeActorDead() {
@@ -125,7 +125,7 @@ void KoopaFireStairs::exeFly() {
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraWeak();
         MR::hideModel(this);
-        setNerve(&NrvKoopaFireStairs::KoopaFireStairsNrvBreak::sInstance);
+        setNerve(GET_NERVE(KoopaFireStairs, KoopaFireStairsNrvBreak));
     } else {
         if (mIsKoopaJr) {
             TVec3f v14(mPosition);

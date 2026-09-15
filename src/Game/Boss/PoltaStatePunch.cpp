@@ -16,13 +16,13 @@ namespace NrvPoltaStatePunch {
 
 PoltaStatePunch::PoltaStatePunch(Polta* pPolta)
     : ActorStateBase< Polta >("[state]地面叩き攻撃", pPolta), mIsLeftArmActor(true), mIsActionAffectBody(true) {
-    initNerve(&NrvPoltaStatePunch::PoltaStatePunchNrvStart::sInstance);
+    initNerve(GET_NERVE(PoltaStatePunch, PoltaStatePunchNrvStart));
 }
 
 void PoltaStatePunch::appear() {
     mIsActionAffectBody = true;
     mIsDead = false;
-    setNerve(&NrvPoltaStatePunch::PoltaStatePunchNrvStart::sInstance);
+    setNerve(GET_NERVE(PoltaStatePunch, PoltaStatePunchNrvStart));
 }
 
 PoltaArm* PoltaStatePunch::getAttackActor() {
@@ -50,7 +50,7 @@ void PoltaStatePunch::exeStart() {
         kill();
     } else {
         if (MR::isActionEnd(getAttackActor())) {
-            setNerve(&NrvPoltaStatePunch::PoltaStatePunchNrvAttack::sInstance);
+            setNerve(GET_NERVE(PoltaStatePunch, PoltaStatePunchNrvAttack));
         }
     }
 }
@@ -66,7 +66,7 @@ void PoltaStatePunch::exeAttack() {
         kill();
     } else {
         if (MR::isActionEnd(getAttackActor())) {
-            setNerve(&NrvPoltaStatePunch::PoltaStatePunchNrvToWait::sInstance);
+            setNerve(GET_NERVE(PoltaStatePunch, PoltaStatePunchNrvToWait));
         }
     }
 }
@@ -89,7 +89,7 @@ void PoltaStatePunch::exeToWait() {
 }
 
 bool PoltaStatePunch::isEnableAttack(const HitSensor* pSensor) const {
-    if (!NerveExecutor::isNerve(&NrvPoltaStatePunch::PoltaStatePunchNrvAttack::sInstance)) {
+    if (!NerveExecutor::isNerve(GET_NERVE(PoltaStatePunch, PoltaStatePunchNrvAttack))) {
         return false;
     }
 

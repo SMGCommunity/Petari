@@ -108,7 +108,7 @@ void IceMerameraKing::init(const JMapInfoIter& rIter) {
     MR::addHitSensorAtJointEnemy(this, "body", "JointRoot", 32, (130.0f * v5), TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
-    initNerve(&NrvIceMerameraKing::HostTypeNrvSearch::sInstance);
+    initNerve(GET_NERVE(IceMerameraKing, HostTypeNrvSearch));
     MR::calcGravity(this);
     MR::initShadowVolumeSphere(this, (130.0f * mScale.y));
     MR::setShadowDropLength(this, nullptr, 1500.0f);
@@ -145,7 +145,7 @@ void IceMerameraKing::init(const JMapInfoIter& rIter) {
     }
 
     MR::tryRegisterDemoCast(_AC, rIter);
-    MR::registerDemoActionNerve(this, &NrvIceMerameraKing::HostTypeNrvBeginDemo::sInstance, nullptr);
+    MR::registerDemoActionNerve(this, GET_NERVE(IceMerameraKing, HostTypeNrvBeginDemo), nullptr);
     mSpinParticle = new MerameraParticleCallBack();
     mJointController = MR::createJointDelegatorWithNullChildFunc(this, &IceMerameraKing::calcJoint, "JointRoot");
     makeActorAppeared();
@@ -209,12 +209,12 @@ void IceMerameraKing::control() {
         }
     }
 
-    if (!isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance) && !isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance)) {
+    if (!isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvEscape)) && !isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvEscapeJump))) {
         TQuat4f quad(0, 0, 0, 1);
         _100.slerp(quad, 0.25f);
     }
 
-    if (!isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance) && !isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance)) {
+    if (!isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvEscape)) && !isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvEscapeJump))) {
         MR::startLevelSound(this, "SE_BM_LV_ICEMERAKING_WAIT");
     }
 
@@ -225,7 +225,7 @@ void IceMerameraKing::control() {
             _120 = true;
             _121 = true;
         }
-    } else if (!isNerve(&NrvIceMerameraKing::HostTypeNrvDeathDemoWait::sInstance) && !isNerve(&NrvIceMerameraKing::HostTypeNrvDeathDemo::sInstance) &&
+    } else if (!isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvDeathDemoWait)) && !isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvDeathDemo)) &&
                MR::isNearPlayer(this, 5000.0f) && _121) {
         MR::playLevelMarioPinchBGM(_120);
         _120 = true;
@@ -243,17 +243,17 @@ void IceMerameraKing::exeSearch() {
 
     if (!(4500.0f < shadow)) {
         if (shadow < 1000.0f) {
-            setNerve(&NrvIceMerameraKing::HostTypeNrvPreAttack::sInstance);
+            setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvPreAttack));
         } else {
             if (isEnableThrow()) {
                 if (!(_EC > 2)) {
                     if (MR::isGreaterStep(this, 100) && isDeadAllIce()) {
                         _E0 = 0;
-                        setNerve(&NrvIceMerameraKing::HostTypeNrvThrow2nd::sInstance);
+                        setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvThrow2nd));
                     }
                 } else if (MR::isGreaterStep(this, 200) && isDeadAllIce()) {
                     _E0 = 0;
-                    setNerve(&NrvIceMerameraKing::HostTypeNrvThrow::sInstance);
+                    setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvThrow));
                 }
             }
         }
@@ -263,7 +263,7 @@ void IceMerameraKing::exeSearch() {
 void IceMerameraKing::exeThrow() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "AttackThrow");
-        if (isNerve(&NrvIceMerameraKing::HostTypeNrvBeginDemo::sInstance)) {
+        if (isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvBeginDemo))) {
             MR::calcFrontVec(&_B0, mCameraTarget);
         }
     }
@@ -276,7 +276,7 @@ void IceMerameraKing::exeThrow() {
         mFixedPos->mMtx.getTrans(mThrowingIce->mPosition);
         ThrowingIce* ice = mThrowingIce;
         if (!ice) {
-            setNerve(&NrvIceMerameraKing::HostTypeNrvSearch::sInstance);
+            setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvSearch));
             return;
         }
 
@@ -288,19 +288,19 @@ void IceMerameraKing::exeThrow() {
 
     if (MR::isActionEnd(this)) {
         if (MR::calcDistanceToPlayer(this) < 1000.0f) {
-            setNerve(&NrvIceMerameraKing::HostTypeNrvPreAttack::sInstance);
+            setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvPreAttack));
         } else {
             u32 v10 = 3;
-            if (isNerve(&NrvIceMerameraKing::HostTypeNrvThrow2nd::sInstance)) {
+            if (isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvThrow2nd))) {
                 v10 = 6;
             }
 
             if (v10 <= _E0 || !isEnableThrow()) {
-                setNerve(&NrvIceMerameraKing::HostTypeNrvSearch::sInstance);
-            } else if (isNerve(&NrvIceMerameraKing::HostTypeNrvThrow2nd::sInstance)) {
-                setNerve(&NrvIceMerameraKing::HostTypeNrvThrow2nd::sInstance);
+                setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvSearch));
+            } else if (isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvThrow2nd))) {
+                setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvThrow2nd));
             } else {
-                setNerve(&NrvIceMerameraKing::HostTypeNrvThrow::sInstance);
+                setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvThrow));
             }
         }
     }
@@ -345,7 +345,7 @@ void IceMerameraKing::exeExtinguish() {
         MR::moveAndTurnToPlayer(this, &_B0, ::hOnGroundParam._0, ::hOnGroundParam._4, ::hOnGroundParam._8, ::hOnGroundParam._C);
         MR::startSound(this, "SE_BM_ICEMERAKING_LAND");
         _E8 = 0;
-        setNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance);
+        setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvEscape));
     } else {
         MR::moveAndTurnToPlayer(this, &_B0, ::hExtinguishFallOnAirParam._0, ::hExtinguishFallOnAirParam._4, ::hExtinguishFallOnAirParam._8,
                                 ::hExtinguishFallOnAirParam._C);
@@ -359,7 +359,7 @@ void IceMerameraKing::exeEscape() {
 
     if (_E8 > 600 && MR::isOnGround(this)) {
         _E8 = 0;
-        setNerve(&NrvIceMerameraKing::HostTypeNrvPreRecover::sInstance);
+        setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvPreRecover));
     } else {
         MR::emitEffect(this, "Rolling");
         if (MR::isOnGround(this)) {
@@ -373,7 +373,7 @@ void IceMerameraKing::exeEscape() {
             MR::moveAndTurnToPlayer(this, &_B0, ::hEscapeOnGroundParam._0, ::hEscapeOnGroundParam._4, ::hEscapeOnGroundParam._8,
                                     ::hEscapeOnGroundParam._C);
             if (MR::isBindedWallFront(this, -_B0, 0.25f)) {
-                setNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance);
+                setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvEscapeJump));
             }
         } else {
             f32 sensor = getSensor("body")->mRadius;
@@ -403,7 +403,7 @@ void IceMerameraKing::exeEscapeJump() {
         if (MR::isGreaterStep(this, 20)) {
             MR::emitEffect(this, "Land");
             MR::startSound(this, "SE_BM_ICEMERAKING_LAND");
-            setNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance);
+            setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvEscape));
         }
     } else {
         f32 radius = getSensor("body")->mRadius;
@@ -435,10 +435,10 @@ void IceMerameraKing::exeDamage() {
     if (MR::isGreaterStep(this, 60)) {
         if (_EC == 1) {
             if (MR::tryStartDemoRegisteredMarioPuppetable(this, "怒りデモ")) {
-                setNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance);
+                setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvAngryDemo2nd));
             }
         } else if (MR::tryStartDemoRegisteredMarioPuppetable(this, "怒りデモ")) {
-            setNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo1st::sInstance);
+            setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvAngryDemo1st));
         }
     }
 }
@@ -464,7 +464,7 @@ void IceMerameraKing::exePreRecover() {
         MR::addVelocityKeepHeightUseShadow(this, 750.0f, 1.5f, 300.0f, nullptr);
         MR::moveAndTurnToPlayer(this, &_B0, ::hFlyParam._0, ::hFlyParam._4, ::hFlyParam._8, ::hFlyParam._C);
     } else {
-        setNerve(&NrvIceMerameraKing::HostTypeNrvRecover::sInstance);
+        setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvRecover));
     }
 }
 
@@ -483,7 +483,7 @@ void IceMerameraKing::exeRecover() {
     MR::addVelocityKeepHeightUseShadow(this, 750.0f, 1.5f, 300.0f, nullptr);
 
     if (MR::isGreaterStep(this, 160)) {
-        setNerve(&NrvIceMerameraKing::HostTypeNrvSearch::sInstance);
+        setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvSearch));
     }
 }
 
@@ -494,7 +494,7 @@ void IceMerameraKing::exePreAttack() {
     if (MR::isLessStep(this, 120)) {
         MR::addVelocityKeepHeightUseShadow(this, 800.0f, 1.5f, 300.0f, nullptr);
     } else if (MR::isDead(_A8)) {
-        setNerve(&NrvIceMerameraKing::HostTypeNrvAttack::sInstance);
+        setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvAttack));
         return;
     }
     addVelocityToInitPos();
@@ -515,7 +515,7 @@ void IceMerameraKing::exeAttack() {
     }
 
     if (MR::isOnGround(this)) {
-        setNerve(&NrvIceMerameraKing::HostTypeNrvAttackAfter::sInstance);
+        setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvAttackAfter));
     }
 }
 
@@ -532,14 +532,14 @@ void IceMerameraKing::exeAttackAfter() {
     MR::moveAndTurnToPlayer(this, &_B0, ::hOnAirParam._0, ::hOnAirParam._4, ::hOnAirParam._8, ::hOnAirParam._C);
 
     if (MR::isGreaterStep(this, 90)) {
-        setNerve(&NrvIceMerameraKing::HostTypeNrvSearch::sInstance);
+        setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvSearch));
     }
 }
 
 void IceMerameraKing::exeAngryDemo() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "BodyIce");
-        if (isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance)) {
+        if (isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvAngryDemo2nd))) {
             MR::startAction(this, "Summon");
             MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ANGRY2");
         } else {
@@ -554,13 +554,13 @@ void IceMerameraKing::exeAngryDemo() {
     MR::moveAndTurnToPlayer(this, &_B0, ::hAngryDemoParam._0, ::hAngryDemoParam._4, ::hAngryDemoParam._8, ::hAngryDemoParam._C);
     MR::addVelocityKeepHeightUseShadow(this, 400.0f, 1.5f, 300.0f, nullptr);
 
-    if (isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance) && MR::isStep(this, 90)) {
+    if (isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvAngryDemo2nd)) && MR::isStep(this, 90)) {
         for (int i = 0; i < _F0; i++) {
             mModelArray[i]->makeActorAppeared();
         }
     }
 
-    if (isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance) && MR::isStep(this, 85)) {
+    if (isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvAngryDemo2nd)) && MR::isStep(this, 85)) {
         MR::startSound(this, "SE_BM_ICEMERAKING_ANGRY2");
     } else if (MR::isStep(this, 85)) {
         MR::startSound(this, "SE_BM_ICEMERAKING_ANGRY1");
@@ -574,7 +574,7 @@ void IceMerameraKing::exeAngryDemo() {
             MR::appearStarPiece(this, mPosition - mGravity * 200.0f, 16, 15.0f, 70.0f, false);
         }
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
-        setNerve(&NrvIceMerameraKing::HostTypeNrvSearch::sInstance);
+        setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvSearch));
     }
 }
 
@@ -640,11 +640,11 @@ void IceMerameraKing::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    if (isNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance) || isNerve(&NrvIceMerameraKing::HostTypeNrvExtinguish::sInstance) ||
-        isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance) || isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance) ||
-        isNerve(&NrvIceMerameraKing::HostTypeNrvPreRecover::sInstance) || isNerve(&NrvIceMerameraKing::HostTypeNrvRecover::sInstance) ||
-        isNerve(&NrvIceMerameraKing::HostTypeNrvDeathDemoWait::sInstance) || isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo1st::sInstance) ||
-        isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance) || isNerve(&NrvIceMerameraKing::HostTypeNrvDeathDemo::sInstance) ||
+    if (isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvDamage)) || isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvExtinguish)) ||
+        isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvEscape)) || isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvEscapeJump)) ||
+        isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvPreRecover)) || isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvRecover)) ||
+        isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvDeathDemoWait)) || isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvAngryDemo1st)) ||
+        isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvAngryDemo2nd)) || isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvDeathDemo)) ||
         MR::isPlayerElementModeIce()) {
         MR::sendMsgPush(pReceiver, pSender);
     } else {
@@ -657,7 +657,7 @@ bool IceMerameraKing::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSen
         return true;
     }
 
-    if (!isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance) && !isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance)) {
+    if (!isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvEscape)) && !isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvEscapeJump))) {
         return false;
     }
 
@@ -666,10 +666,10 @@ bool IceMerameraKing::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSen
 
         if (_EC == 0) {
             MR::stopMarioPinchBGMSoon();
-            MR::requestStartTimeKeepDemo(this, "メラキンオープニング", &NrvIceMerameraKing::HostTypeNrvDeathDemo::sInstance,
-                                         &NrvIceMerameraKing::HostTypeNrvDeathDemoWait::sInstance, "死亡デモ");
+            MR::requestStartTimeKeepDemo(this, "メラキンオープニング", GET_NERVE(IceMerameraKing, HostTypeNrvDeathDemo),
+                                         GET_NERVE(IceMerameraKing, HostTypeNrvDeathDemoWait), "死亡デモ");
         } else {
-            setNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance);
+            setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvDamage));
         }
 
         return true;
@@ -679,10 +679,10 @@ bool IceMerameraKing::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSen
         _EC--;
 
         if (_EC == 0) {
-            MR::requestStartTimeKeepDemo(this, "メラキンオープニング", &NrvIceMerameraKing::HostTypeNrvDeathDemo::sInstance,
-                                         &NrvIceMerameraKing::HostTypeNrvDeathDemoWait::sInstance, "死亡デモ");
+            MR::requestStartTimeKeepDemo(this, "メラキンオープニング", GET_NERVE(IceMerameraKing, HostTypeNrvDeathDemo),
+                                         GET_NERVE(IceMerameraKing, HostTypeNrvDeathDemoWait), "死亡デモ");
         } else {
-            setNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance);
+            setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvDamage));
         }
 
         return true;
@@ -693,11 +693,11 @@ bool IceMerameraKing::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSen
 
 bool IceMerameraKing::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isInSpinStormRange(msg, pSender, pReceiver, 600.0f)) {
-        if (isNerve(&NrvIceMerameraKing::HostTypeNrvDeathDemo::sInstance) || isNerve(&NrvIceMerameraKing::HostTypeNrvExtinguish::sInstance) ||
-            isNerve(&NrvIceMerameraKing::HostTypeNrvDamage::sInstance) || isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo1st::sInstance) ||
-            isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance) || isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance) ||
-            isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance) || isNerve(&NrvIceMerameraKing::HostTypeNrvPreRecover::sInstance) ||
-            isNerve(&NrvIceMerameraKing::HostTypeNrvRecover::sInstance)) {
+        if (isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvDeathDemo)) || isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvExtinguish)) ||
+            isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvDamage)) || isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvAngryDemo1st)) ||
+            isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvAngryDemo2nd)) || isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvEscape)) ||
+            isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvEscapeJump)) || isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvPreRecover)) ||
+            isNerve(GET_NERVE(IceMerameraKing, HostTypeNrvRecover))) {
             return false;
         } else {
             TVec3f v10 = *MR::getPlayerCenterPos() - mPosition;
@@ -706,7 +706,7 @@ bool IceMerameraKing::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pR
             if (v10.length() < getSensor("body")->getRadius()) {
                 return false;
             } else {
-                setNerve(&NrvIceMerameraKing::HostTypeNrvExtinguish::sInstance);
+                setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvExtinguish));
                 return true;
             }
         }

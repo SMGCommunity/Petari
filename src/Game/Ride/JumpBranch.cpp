@@ -22,6 +22,16 @@ void JumpBranch_FORCE_MATCH_SDATA2() {
 
 namespace {
     static Vec sStartPointVelocity = {0.0f, 0.0f, 0.0f};
+
+    static const f32 sPointGravity = 0.2f;
+    static const f32 sPointFrictionRate = 0.995f;
+    static const f32 sSensorMoveDistance = 50.0f;
+    static const f32 sPointInterval = 30.0f;
+    static const f32 sDistanceStartBindZ = 70.0f;
+    static const f32 sTransDiffMinY = 1.0f;
+    static const s32 sStepInvalidBind = 30;
+    static const f32 sJumpSpeed = 10.0f;
+    static const f32 sJumpSpeedOffsetY = 16.0f;
 };  // namespace
 
 namespace NrvJumpBranch {
@@ -31,8 +41,8 @@ namespace NrvJumpBranch {
 };  // namespace NrvJumpBranch
 
 JumpBranch::JumpBranch(const char* pName)
-    : LiveActor(pName), mCenter(0.0f, 0.0f, 0.0f), mSide(0.0f, 0.0f, 1.0f), mUp(0.0f, 0.0f, 1.0f), mFront(0.0f, 0.0f, 1.0f), mRider(nullptr),
-      mSwingPoint(nullptr), mSwingReverse(false) {
+    : LiveActor(pName), mCenter(0.0f, 0.0f, 0.0f), mSide(0.0f, 0.0f, 1.0f), mUp(0.0f, 0.0f, 1.0f), mFront(0.0f, 0.0f, 1.0f), mRider(), mSwingPoint(),
+      mSwingReverse() {
 }
 
 void JumpBranch::init(const JMapInfoIter& rIter) {
@@ -41,7 +51,7 @@ void JumpBranch::init(const JMapInfoIter& rIter) {
 
     TPos3f posMtx;
     posMtx.identity();
-    MR::makeMtxTR(reinterpret_cast< MtxPtr >(&posMtx), this);
+    MR::makeMtxTR(posMtx, this);
 
     posMtx.getXDir(mSide);
     posMtx.getYDir(mUp);
@@ -63,7 +73,7 @@ void JumpBranch::init(const JMapInfoIter& rIter) {
 
     mSwingPoint = new SwingRopePoint(mPosition);
 
-    initNerve(&NrvJumpBranch::JumpBranchNrvWait::sInstance);
+    initNerve(GET_NERVE(JumpBranch, JumpBranchNrvWait));
     makeActorAppeared();
 }
 
@@ -81,14 +91,14 @@ void JumpBranch::exeWaitInvalid() {
         mVelocity.zero();
     }
 
-    if (MR::isGreaterStep(this, 30)) {
-        setNerve(&NrvJumpBranch::JumpBranchNrvWait::sInstance);
+    if (MR::isGreaterStep(this, ::sStepInvalidBind)) {
+        setNerve(GET_NERVE(JumpBranch, JumpBranchNrvWait));
     }
 }
 
 inline void JumpBranch::exeBind() {
     if (updateBind()) {
-        setNerve(&NrvJumpBranch::JumpBranchNrvWaitInvalid::sInstance);
+        setNerve(GET_NERVE(JumpBranch, JumpBranchNrvWaitInvalid));
     }
 };
 
@@ -97,31 +107,31 @@ void JumpBranch::updateHitSensor(HitSensor* pSensor) {
 
     f32 proj = mSide.dot(planarDiff);
     f32 sensorPos;
-    if (proj < -50.0f) {
-        sensorPos = -50.0f;
-    } else if (proj > 50.0f) {
-        sensorPos = 50.0f;
+    if (proj < -::sSensorMoveDistance) {
+        sensorPos = -::sSensorMoveDistance;
+    } else if (proj > ::sSensorMoveDistance) {
+        sensorPos = ::sSensorMoveDistance;
     } else {
         sensorPos = proj;
     }
 
-    f32 x1 = mSide.x * sensorPos;  // register scheduling hotfix
-    pSensor->mPosition.x = x1 + mPosition.x;
+    f32 xOffs = mSide.x * sensorPos;
+    pSensor->mPosition.x = xOffs + mPosition.x;
     pSensor->mPosition.y = mPosition.y;
-    f32 z1 = mSide.z * sensorPos;  // register scheduling hotfix
-    pSensor->mPosition.z = z1 + mPosition.z;
+    f32 zOffs = mSide.z * sensorPos;
+    pSensor->mPosition.z = zOffs + mPosition.z;
 }
 
 bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgAutoRushBegin(msg)) {
-        if (isNerve(&NrvJumpBranch::JumpBranchNrvWaitInvalid::sInstance) || MR::isOnGroundPlayer()) {
+        if (isNerve(GET_NERVE(JumpBranch, JumpBranchNrvWaitInvalid)) || MR::isOnGroundPlayer()) {
             return false;
         }
 
         TVec3f posDiff(pSender->mHost->mPosition);
         posDiff.sub(pReceiver->mPosition);
 
-        if (MR::abs(posDiff.dot(mFront)) > 70.0f) {
+        if (MR::abs(posDiff.dot(mFront)) > ::sDistanceStartBindZ) {
             return false;
         }
 
@@ -136,12 +146,10 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
             mSwingReverse = false;
         }
 
-        TVec3f diff(pSender->mPosition);
-        diff.sub(pReceiver->mPosition);
+        TVec3f diff = pSender->mPosition - pReceiver->mPosition;
 
         f32 dotUp = mUp.dot(diff);
         f32 dotFront = mFront.dot(diff);
-
         diff.set(mUp * dotUp + mFront * dotFront);
 
         if (MR::isNearZero(diff)) {
@@ -153,7 +161,7 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
             MR::normalize(&diff);
         }
 
-        TVec3f grabUp(diff);
+        TVec3f grabUp = diff;
         diff.scale(30.0f);
         diff.add(mPosition);
 
@@ -171,7 +179,6 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
             grabFront.scale(-1.0f);
         }
 
-        // interesting...
         ::sStartPointVelocity.x = grabFront.x;
         ::sStartPointVelocity.y = grabFront.y;
         ::sStartPointVelocity.z = grabFront.z;
@@ -179,7 +186,7 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
         swingVelocity.set(grabFront);
         swingVelocity.scale(speed);
 
-        TVec3f swingFront(mFront);
+        TVec3f swingFront = mFront;
         if (grabUp.y > 0.0f) {
             swingFront.scale(-1.0f);
         }
@@ -188,24 +195,24 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
             swingFront.scale(-1.0f);
         }
 
-        if (MR::abs(diff.y - mPosition.y) < 1.0f) {
+        if (MR::abs(diff.y - mPosition.y) < ::sTransDiffMinY) {
             swingFront.set< f32 >(0.0f, -1.0f, 0.0f);
         }
 
         mSwingPoint->mFront.set(swingFront);
-        mSwingPoint->setInfo(diff, swingVelocity, mPosition, 30.0f);
+        mSwingPoint->setInfo(diff, swingVelocity, mPosition, ::sPointInterval);
 
         MR::startBckPlayer("JumpBranchWait", static_cast< const char* >(nullptr));
         MR::startSound(mRider, "SE_PM_GRAB_OBJ");
         MR::startSound(mRider, "SE_PM_SPIN");
-        setNerve(&NrvJumpBranch::JumpBranchNrvBind::sInstance);
+        setNerve(GET_NERVE(JumpBranch, JumpBranchNrvBind));
         return true;
     }
 
     if (MR::isMsgUpdateBaseMtx(msg)) {
         TPos3f posMtx;
-        TVec3f swingSide(mSwingPoint->mSide);
-        TVec3f swingFront(mSwingPoint->mFront);
+        TVec3f swingSide = mSwingPoint->mSide;
+        TVec3f swingFront = mSwingPoint->mFront;
 
         posMtx.setTR(swingSide, mSwingPoint->mUp, swingFront, mPosition);
 
@@ -215,7 +222,7 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
 
     if (MR::isMsgRushCancel(msg)) {
         mRider = nullptr;
-        setNerve(&NrvJumpBranch::JumpBranchNrvWait::sInstance);
+        setNerve(GET_NERVE(JumpBranch, JumpBranchNrvWait));
         return true;
     }
 
@@ -224,7 +231,7 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
 
 bool JumpBranch::updateBind() {
     if (MR::testCorePadTriggerA(WPAD_CHAN0) || MR::testSystemTriggerA() || MR::isCorePadSwing(WPAD_CHAN0)) {
-        TVec3f front(mFront);
+        TVec3f front = mFront;
         if (mSwingReverse) {
             front.scale(-1.0f);
         }
@@ -244,9 +251,9 @@ bool JumpBranch::updateBind() {
 
             f32 proj = mFront.dot(stickXZ);
 
-            jumpDir.x = proj * (mFront.x * 10.0f);
-            jumpDir.y = proj * (mFront.y * 10.0f) + 16.0f;
-            jumpDir.z = proj * (mFront.z * 10.0f);
+            jumpDir.x = ::sJumpSpeed * mFront.x * proj;
+            jumpDir.y = ::sJumpSpeed * mFront.y * proj + ::sJumpSpeedOffsetY;
+            jumpDir.z = ::sJumpSpeed * mFront.z * proj;
 
             MR::startSound(mRider, "SE_PM_JUMP_M");
             MR::startSound(mRider, "SE_PV_JUMP_S");
@@ -267,8 +274,8 @@ bool JumpBranch::updateBind() {
         return true;
     }
 
-    mSwingPoint->addAccel(mGravity * 0.2f);
-    mSwingPoint->strain(mPosition, 30.0f);
-    mSwingPoint->updatePosAndAxis(mSwingPoint->mFront, 0.995f);
+    mSwingPoint->addAccel(mGravity * ::sPointGravity);
+    mSwingPoint->strain(mPosition, ::sPointInterval);
+    mSwingPoint->updatePosAndAxis(mSwingPoint->mFront, ::sPointFrictionRate);
     return false;
 }

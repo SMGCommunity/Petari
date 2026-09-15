@@ -35,7 +35,7 @@ void OtaKingLongFoot::init(const JMapInfoIter& rIter) {
     MR::initLightCtrl(this);
     initSensor();
     mScaleController = new AnimScaleController(nullptr);
-    initNerve(&NrvOtaKingLongFoot::OtaKingLongFootNrvWait::sInstance);
+    initNerve(GET_NERVE(OtaKingLongFoot, OtaKingLongFootNrvWait));
     PartsModel::init(rIter);
 }
 
@@ -46,15 +46,15 @@ void OtaKingLongFoot::hide() {
 }
 
 void OtaKingLongFoot::startAppearDemo() {
-    setNerve(&NrvOtaKingLongFoot::OtaKingLongFootNrvAppearDemo::sInstance);
+    setNerve(GET_NERVE(OtaKingLongFoot, OtaKingLongFootNrvAppearDemo));
 }
 
 void OtaKingLongFoot::startDownDemo() {
-    setNerve(&NrvOtaKingLongFoot::OtaKingLongFootNrvDownDemo::sInstance);
+    setNerve(GET_NERVE(OtaKingLongFoot, OtaKingLongFootNrvDownDemo));
 }
 
 void OtaKingLongFoot::endDemo() {
-    setNerve(&NrvOtaKingLongFoot::OtaKingLongFootNrvWait::sInstance);
+    setNerve(GET_NERVE(OtaKingLongFoot, OtaKingLongFootNrvWait));
 }
 
 void OtaKingLongFoot::control() {
@@ -69,9 +69,9 @@ void OtaKingLongFoot::calcAndSetBaseMtx() {
 
 void OtaKingLongFoot::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
-        if (isNerve(&NrvOtaKingLongFoot::OtaKingLongFootNrvWait::sInstance) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
+        if (isNerve(GET_NERVE(OtaKingLongFoot, OtaKingLongFootNrvWait)) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
             MR::sendMsgPush(pReceiver, pSender);
-            setNerve(&NrvOtaKingLongFoot::OtaKingLongFootNrvDamage::sInstance);
+            setNerve(GET_NERVE(OtaKingLongFoot, OtaKingLongFootNrvDamage));
         } else {
             MR::sendMsgPush(pReceiver, pSender);
         }
@@ -97,8 +97,8 @@ void OtaKingLongFoot::initSensor() {
 }
 
 bool OtaKingLongFoot::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvOtaKingLongFoot::OtaKingLongFootNrvWait::sInstance)) {
-        setNerve(&NrvOtaKingLongFoot::OtaKingLongFootNrvDamage::sInstance);
+    if (isNerve(GET_NERVE(OtaKingLongFoot, OtaKingLongFootNrvWait))) {
+        setNerve(GET_NERVE(OtaKingLongFoot, OtaKingLongFootNrvDamage));
     }
     return true;
 }
@@ -115,7 +115,7 @@ void OtaKingLongFoot::exeDamage() {
         MR::startBckNoInterpole(this, "Damage");
     }
 
-    MR::setNerveAtBckStopped(this, &NrvOtaKingLongFoot::OtaKingLongFootNrvWait::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE(OtaKingLongFoot, OtaKingLongFootNrvWait));
 }
 
 void OtaKingLongFoot::exeAppearDemo() {

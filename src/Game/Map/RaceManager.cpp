@@ -192,7 +192,7 @@ void RaceManager::init(const JMapInfoIter& rIter) {
     mLayout->init(rIter);
 
     MR::invalidateClipping(this);
-    initNerve(&NrvRaceManager::RaceManagerNrvWait::sInstance);
+    initNerve(GET_NERVE(RaceManager, RaceManagerNrvWait));
     makeActorAppeared();
 }
 
@@ -206,17 +206,17 @@ void RaceManager::exeWait() {
 void RaceManager::exePrep() {
     std::for_each(&mRacer[0], &mRacer[mRacerNum], std::mem_func(&AbstractRacer::initRacer));
 
-    if (isNerve(&NrvRaceManager::RaceManagerNrvPrepWipe::sInstance)) {
-        setNerve(&NrvRaceManager::RaceManagerNrvPreWipeOut::sInstance);
+    if (isNerve(GET_NERVE(RaceManager, RaceManagerNrvPrepWipe))) {
+        setNerve(GET_NERVE(RaceManager, RaceManagerNrvPreWipeOut));
     } else {
         prepBind();
-        setNerve(&NrvRaceManager::RaceManagerNrvIntro::sInstance);
+        setNerve(GET_NERVE(RaceManager, RaceManagerNrvIntro));
     }
 }
 
 void RaceManager::exeWipeOut() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvRaceManager::RaceManagerNrvPreWipeOut::sInstance)) {
+        if (isNerve(GET_NERVE(RaceManager, RaceManagerNrvPreWipeOut))) {
             MR::stopStageBGM(90);
         }
 
@@ -227,12 +227,12 @@ void RaceManager::exeWipeOut() {
         return;
     }
 
-    if (isNerve(&NrvRaceManager::RaceManagerNrvPreWipeOut::sInstance)) {
+    if (isNerve(GET_NERVE(RaceManager, RaceManagerNrvPreWipeOut))) {
         prepRace();
-        setNerve(&NrvRaceManager::RaceManagerNrvPreWipeWait::sInstance);
+        setNerve(GET_NERVE(RaceManager, RaceManagerNrvPreWipeWait));
     } else {
         resetRace();
-        setNerve(&NrvRaceManager::RaceManagerNrvPstWipeWait::sInstance);
+        setNerve(GET_NERVE(RaceManager, RaceManagerNrvPstWipeWait));
     }
 }
 
@@ -241,16 +241,16 @@ void RaceManager::exeWipeWait() {
         return;
     }
 
-    if (isNerve(&NrvRaceManager::RaceManagerNrvPreWipeWait::sInstance)) {
-        setNerve(&NrvRaceManager::RaceManagerNrvPreWipeIn::sInstance);
+    if (isNerve(GET_NERVE(RaceManager, RaceManagerNrvPreWipeWait))) {
+        setNerve(GET_NERVE(RaceManager, RaceManagerNrvPreWipeIn));
     } else {
-        setNerve(&NrvRaceManager::RaceManagerNrvPstWipeIn::sInstance);
+        setNerve(GET_NERVE(RaceManager, RaceManagerNrvPstWipeIn));
     }
 }
 
 void RaceManager::exeWipeIn() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvRaceManager::RaceManagerNrvPreWipeIn::sInstance)) {
+        if (isNerve(GET_NERVE(RaceManager, RaceManagerNrvPreWipeIn))) {
             MR::startSubBGM("BGM_MINIGAME_START", false);
         } else if (!MR::isPlayerDead()) {
             MR::startCurrentStageBGM();
@@ -263,13 +263,13 @@ void RaceManager::exeWipeIn() {
         return;
     }
 
-    if (isNerve(&NrvRaceManager::RaceManagerNrvPreWipeIn::sInstance)) {
-        setNerve(&NrvRaceManager::RaceManagerNrvIntro::sInstance);
+    if (isNerve(GET_NERVE(RaceManager, RaceManagerNrvPreWipeIn))) {
+        setNerve(GET_NERVE(RaceManager, RaceManagerNrvIntro));
     } else {
         MR::onPlayerControl(true);
         MR::endDemo(this, "レース");
         std::for_each(&mRacer[0], &mRacer[mRacerNum], std::mem_func(&AbstractRacer::exitRacer));
-        setNerve(&NrvRaceManager::RaceManagerNrvWait::sInstance);
+        setNerve(GET_NERVE(RaceManager, RaceManagerNrvWait));
     }
 }
 
@@ -283,7 +283,7 @@ void RaceManager::exeIntro() {
     }
 
     if (MR::isStep(this, 110)) {
-        setNerve(&NrvRaceManager::RaceManagerNrvCount::sInstance);
+        setNerve(GET_NERVE(RaceManager, RaceManagerNrvCount));
     }
 }
 
@@ -312,7 +312,7 @@ void RaceManager::exeCount() {
 
     mLayout->playGo();
     startRace();
-    setNerve(&NrvRaceManager::RaceManagerNrvRace::sInstance);
+    setNerve(GET_NERVE(RaceManager, RaceManagerNrvRace));
 }
 
 void RaceManager::exeRace() {
@@ -325,7 +325,7 @@ void RaceManager::exeRace() {
     if (maxTime > 0 && getNerveStep() >= maxTime * 60) {
         mRank = 0;
         renewTime();
-        setNerve(&NrvRaceManager::RaceManagerNrvDemo::sInstance);
+        setNerve(GET_NERVE(RaceManager, RaceManagerNrvDemo));
         return;
     }
 
@@ -339,7 +339,7 @@ void RaceManager::exeRace() {
             std::swap(mRacer[idx], mRacer[mRank++]);
             if (racer->goalRacer()) {
                 renewTime();
-                setNerve(&NrvRaceManager::RaceManagerNrvDemo::sInstance);
+                setNerve(GET_NERVE(RaceManager, RaceManagerNrvDemo));
                 break;
             }
         }
@@ -355,7 +355,7 @@ void RaceManager::exeDemo() {
 
     goalRace();
     MR::offPlayerControl();
-    setNerve(&NrvRaceManager::RaceManagerNrvGoal::sInstance);
+    setNerve(GET_NERVE(RaceManager, RaceManagerNrvGoal));
 }
 
 void RaceManager::exeGoal() {
@@ -375,7 +375,7 @@ void RaceManager::exeGoal() {
     }
 
     if (mLayout->isAllAnimStopped()) {
-        setNerve(&NrvRaceManager::RaceManagerNrvRank::sInstance);
+        setNerve(GET_NERVE(RaceManager, RaceManagerNrvRank));
     }
 }
 
@@ -389,14 +389,14 @@ void RaceManager::exeRank() {
     }
 
     MR::tryStartDemoWithoutCinemaFrame(this, "レース");
-    setNerve(&NrvRaceManager::RaceManagerNrvPstWipeOut::sInstance);
+    setNerve(GET_NERVE(RaceManager, RaceManagerNrvPstWipeOut));
 }
 
 bool RaceManager::startWithWipe() {
     mRank = 0;
 
     mLayout->hideAllPane();
-    MR::requestStartDemoMarioPuppetableWithoutCinemaFrame(this, "レース", &NrvRaceManager::RaceManagerNrvPrepWipe::sInstance, nullptr);
+    MR::requestStartDemoMarioPuppetableWithoutCinemaFrame(this, "レース", GET_NERVE(RaceManager, RaceManagerNrvPrepWipe), nullptr);
 
     return true;
 }
@@ -405,7 +405,7 @@ bool RaceManager::startImmediately() {
     mRank = 0;
 
     mLayout->hideAllPane();
-    MR::requestStartDemoWithoutCinemaFrame(this, "レース", &NrvRaceManager::RaceManagerNrvPrepImme::sInstance, nullptr);
+    MR::requestStartDemoWithoutCinemaFrame(this, "レース", GET_NERVE(RaceManager, RaceManagerNrvPrepImme), nullptr);
     MR::requestMovementOnPlayer();
     MR::stopStageBGM(90);
     MR::startSubBGM("BGM_MINIGAME_START", false);

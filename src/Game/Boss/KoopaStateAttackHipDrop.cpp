@@ -52,7 +52,7 @@ void KoopaStateAttackHipDrop::init() {
     KoopaFunction::initKoopaCamera(mHost, "ヒップドロップ着地");
     KoopaFunction::initKoopaCamera(mHost, "ヒップドロップ着地（マリオ痺れ）");
 
-    initNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvRun::sInstance);
+    initNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvRun));
 
     kill();
 }
@@ -71,12 +71,12 @@ void KoopaStateAttackHipDrop::appear() {
         mMaxAttacks = 3;
         mAttackDelay = ::sJumpWaitAirStep;
 
-        setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvRun::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvRun));
     } else if (KoopaFunction::isKoopaVs2(mHost)) {
         mMaxAttacks = 2;
         mAttackDelay = ::sJumpWaitAirStepVs2;
 
-        setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpUp::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvJumpUp));
     } else {
         mAttackDelay = ::sJumpWaitAirStepVs3;
 
@@ -87,9 +87,9 @@ void KoopaStateAttackHipDrop::appear() {
         }
 
         if (MR::isNearPlayer(mHost, ::sDistanceToJumpVs3)) {
-            setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpUp::sInstance);
+            setNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvJumpUp));
         } else {
-            setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvRun::sInstance);
+            setNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvRun));
         }
     }
 }
@@ -105,7 +105,7 @@ void KoopaStateAttackHipDrop::kill() {
 }
 
 bool KoopaStateAttackHipDrop::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpAttackDown::sInstance) && MR::isSensor(pSender, "AttackHipDrop")) {
+    if (isNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvJumpAttackDown)) && MR::isSensor(pSender, "AttackHipDrop")) {
         if (MR::sendMsgEnemyAttackMaximum(pReceiver, pSender)) {
             return true;
         }
@@ -123,14 +123,14 @@ bool KoopaStateAttackHipDrop::attackSensor(HitSensor* pSender, HitSensor* pRecei
 }
 
 bool KoopaStateAttackHipDrop::isDamage() const {
-    return isNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvDamage::sInstance);
+    return isNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvDamage));
 }
 
 bool KoopaStateAttackHipDrop::isEnableGuard() const {
-    if (isNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvRun::sInstance) ||
-        isNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpStart::sInstance) ||
-        isNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpUp::sInstance) ||
-        isNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvLand::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvRun)) ||
+        isNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvJumpStart)) ||
+        isNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvJumpUp)) ||
+        isNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvLand))) {
         return true;
     }
 
@@ -155,7 +155,7 @@ void KoopaStateAttackHipDrop::exeRun() {
     }
 
     if ((MR::isNearPlayer(mHost, ::sDistanceToJump) || MR::isGreaterStep(this, ::sRunStepMax)) && MR::calcGravitySpeed(mHost) >= 0.0f) {
-        setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpStart::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvJumpStart));
     }
 }
 
@@ -167,7 +167,7 @@ void KoopaStateAttackHipDrop::exeJumpStart() {
     MR::moveAndTurnToPlayer(mHost, &mHost->mFront, ::sParamJumpStart);
 
     if (MR::isBckStopped(mHost)) {
-        setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpUp::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvJumpUp));
     }
 }
 
@@ -189,7 +189,7 @@ void KoopaStateAttackHipDrop::exeJumpUp() {
     MR::turnDirectionToPlayerDegree(pKoopa, KoopaFunction::getKoopaFrontPtr(pKoopa), ::sJumpUpTurnSpeed);
 
     if (mHost->mVelocity.dot(mHost->mGravity) >= 0.0f) {
-        setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpWaitAir::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvJumpWaitAir));
     }
 }
 
@@ -205,7 +205,7 @@ void KoopaStateAttackHipDrop::exeJumpWaitAir() {
     }
 
     if (MR::isStep(this, mAttackDelay)) {
-        setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpAttackDown::sInstance);
+        setNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvJumpAttackDown));
     }
 }
 
@@ -251,7 +251,7 @@ void KoopaStateAttackHipDrop::exeJumpAttackDown() {
 
                 MR::startSound(mHost, "SE_OJ_KOOPA_PLATE_LAVA_ST");
 
-                setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvDamage::sInstance);
+                setNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvDamage));
             } else {
                 MR::tryRumblePadAndCameraDistanceMiddle(mHost, 1500.0f, 3000.0f, 2000.0f);
             }
@@ -268,7 +268,7 @@ void KoopaStateAttackHipDrop::exeJumpAttackDown() {
     KoopaFunction::startKoopaCamera(mHost, "ヒップドロップ着地");
     MR::startSound(mHost, "SE_BM_KOOPA_LAND");
 
-    setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvLand::sInstance);
+    setNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvLand));
 }
 
 void KoopaStateAttackHipDrop::exeLand() {
@@ -284,7 +284,7 @@ void KoopaStateAttackHipDrop::exeLand() {
         if (mAttacks >= mMaxAttacks || MR::isPlayerDamaging()) {
             kill();
         } else {
-            setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvRun::sInstance);
+            setNerve(GET_NERVE(KoopaStateAttackHipDrop, KoopaStateAttackHipDropNrvRun));
         }
     }
 }

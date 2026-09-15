@@ -36,7 +36,7 @@ GalaxyNamePlate::GalaxyNamePlate(const char* pGalaxyName, bool param2)
 }
 
 void GalaxyNamePlate::init(const JMapInfoIter& rIter) {
-    initNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvAppear::sInstance);
+    initNerve(GET_NERVE(GalaxyNamePlate, GalaxyNamePlateNrvAppear));
 }
 
 void GalaxyNamePlate::kill() {
@@ -79,20 +79,20 @@ void GalaxyNamePlate::show(const wchar_t* pName, s32 a2, bool a3, bool a4) {
     if (MR::isDead(this)) {
         appear();
         if (a4) {
-            setNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvAppear::sInstance);
+            setNerve(GET_NERVE(GalaxyNamePlate, GalaxyNamePlateNrvAppear));
         } else {
-            setNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvAppearReady::sInstance);
+            setNerve(GET_NERVE(GalaxyNamePlate, GalaxyNamePlateNrvAppearReady));
         }
     } else {
         if (a4) {
-            if (isNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvAppearReady::sInstance)) {
-                setNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvAppear::sInstance);
+            if (isNerve(GET_NERVE(GalaxyNamePlate, GalaxyNamePlateNrvAppearReady))) {
+                setNerve(GET_NERVE(GalaxyNamePlate, GalaxyNamePlateNrvAppear));
             }
         } else if (_25) {
-            setNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvAppearReady::sInstance);
+            setNerve(GET_NERVE(GalaxyNamePlate, GalaxyNamePlateNrvAppearReady));
         }
 
-        if (!isNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvWait::sInstance) || a2 != 1) {
+        if (!isNerve(GET_NERVE(GalaxyNamePlate, GalaxyNamePlateNrvWait)) || a2 != 1) {
             MR::forceDeleteEffect(this, "GalaxyNamePlateNew");
         }
     }
@@ -128,7 +128,7 @@ void GalaxyNamePlate::exeAppearReady() {
     if (!_24) {
         kill();
     } else {
-        MR::setNerveAtStep(this, &NrvGalaxyNamePlate::GalaxyNamePlateNrvAppear::sInstance, ::cAppearReadyFrame);
+        MR::setNerveAtStep(this, GET_NERVE(GalaxyNamePlate, GalaxyNamePlateNrvAppear), ::cAppearReadyFrame);
     }
 }
 
@@ -141,7 +141,7 @@ void GalaxyNamePlate::exeAppear() {
     if (!_24) {
         kill();
     } else {
-        MR::setNerveAtAnimStopped(this, &NrvGalaxyNamePlate::GalaxyNamePlateNrvWait::sInstance, 0);
+        MR::setNerveAtAnimStopped(this, GET_NERVE(GalaxyNamePlate, GalaxyNamePlateNrvWait), 0);
     }
 }
 

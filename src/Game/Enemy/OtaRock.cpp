@@ -57,16 +57,16 @@ void OtaRock::init(const JMapInfoIter& rIter) {
     initSound(8, false);
     MR::addToAttributeGroupSearchTurtle(this);
     mAnimScaleController = new AnimScaleController(nullptr);
-    initNerve(&NrvOtaRock::OtaRockNrvWait::sInstance);
+    initNerve(GET_NERVE(OtaRock, OtaRockNrvWait));
     appear();
 }
 
 void OtaRock::appear() {
     LiveActor::appear();
     if (mNoThrowCocoNut) {
-        setNerve(&NrvOtaRock::OtaRockNrvWait::sInstance);
+        setNerve(GET_NERVE(OtaRock, OtaRockNrvWait));
     } else {
-        setNerve(&NrvOtaRock::OtaRockNrvHideWait::sInstance);
+        setNerve(GET_NERVE(OtaRock, OtaRockNrvHideWait));
     }
 }
 
@@ -117,7 +117,7 @@ bool OtaRock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
     }
 
     if (MR::isMsgJetTurtleAttack(msg)) {
-        setNerve(&NrvOtaRock::OtaRockNrvDown::sInstance);
+        setNerve(GET_NERVE(OtaRock, OtaRockNrvDown));
         return true;
     }
 
@@ -125,7 +125,7 @@ bool OtaRock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
 }
 
 bool OtaRock::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    setNerve(&NrvOtaRock::OtaRockNrvDown::sInstance);
+    setNerve(GET_NERVE(OtaRock, OtaRockNrvDown));
     return true;
 }
 
@@ -245,7 +245,7 @@ bool OtaRock::tryToHide() {
     }
 
     if (!mNoThrowCocoNut && getDisappearedCocoNutNum() == 4 && canHide) {
-        setNerve(&NrvOtaRock::OtaRockNrvHide::sInstance);
+        setNerve(GET_NERVE(OtaRock, OtaRockNrvHide));
         return true;
     }
     return false;
@@ -264,12 +264,12 @@ void OtaRock::exeWait() {
     if (!tryToHide() && MR::isGreaterStep(this, mWaitFrame)) {
         if (!mNoThrowCocoNut && mThrowCocoNutCounter < 2) {
             if (isValidThrowCocoNut()) {
-                setNerve(&NrvOtaRock::OtaRockNrvThrowCocoNut::sInstance);
+                setNerve(GET_NERVE(OtaRock, OtaRockNrvThrowCocoNut));
             }
         } else {
             if (isValidThrowFireBall()) {
                 mThrowCocoNutCounter = 0;
-                setNerve(&NrvOtaRock::OtaRockNrvThrowFireBall::sInstance);
+                setNerve(GET_NERVE(OtaRock, OtaRockNrvThrowFireBall));
             }
         }
     }
@@ -285,7 +285,7 @@ void OtaRock::exeThrowCocoNut() {
         throwCocoNut();
     }
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvOtaRock::OtaRockNrvWait::sInstance);
+        setNerve(GET_NERVE(OtaRock, OtaRockNrvWait));
     }
 }
 
@@ -300,7 +300,7 @@ void OtaRock::exeThrowFireBall() {
         throwFireBall();
     }
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvOtaRock::OtaRockNrvWait::sInstance);
+        setNerve(GET_NERVE(OtaRock, OtaRockNrvWait));
     }
 }
 
@@ -345,7 +345,7 @@ void OtaRock::exeHide() {
         MR::startSound(this, "SE_EM_OTAROCK_HIDE");
     }
     updateBaseMtx();
-    MR::setNerveAtBckStopped(this, &NrvOtaRock::OtaRockNrvHideWait::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE(OtaRock, OtaRockNrvHideWait));
 }
 
 void OtaRock::exeHideWait() {
@@ -363,7 +363,7 @@ void OtaRock::exeHideWait() {
     }
 
     if (show) {
-        setNerve(&NrvOtaRock::OtaRockNrvShow::sInstance);
+        setNerve(GET_NERVE(OtaRock, OtaRockNrvShow));
     }
 }
 
@@ -373,7 +373,7 @@ void OtaRock::exeShow() {
         MR::startSound(this, "SE_EM_OTAROCK_APPEAR");
     }
     updateBaseMtx();
-    MR::setNerveAtBckStopped(this, &NrvOtaRock::OtaRockNrvWait::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE(OtaRock, OtaRockNrvWait));
 }
 
 OtaRock::~OtaRock() {

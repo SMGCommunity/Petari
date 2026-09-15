@@ -2,7 +2,6 @@
 #include "Game/Scene/GameScene.hpp"
 #include "Game/Scene/IntermissionScene.hpp"
 #include "Game/Scene/LogoScene.hpp"
-#include <cstdio>
 
 namespace {
     struct Name2CreateFunc {
@@ -24,19 +23,16 @@ namespace {
 
 namespace MR {
     Scene* createScene(const char* pName) {
-        const ::Name2CreateFunc* pBegin = &::cCreateTable[0];
-        const ::Name2CreateFunc* pEnd = &::cCreateTable[ARRAY_SIZE(::cCreateTable)];
-        const ::Name2CreateFunc* pIter;
-
-        for (pIter = pBegin; pIter != pEnd; pIter++) {
-            bool isEqualName = strcmp(pIter->mName, pName) == 0;
+        const Name2CreateFunc* pIter;
+        for (pIter = &::cCreateTable[0]; pIter != &::cCreateTable[ARRAY_SIZE(::cCreateTable)]; pIter++) {
+            bool isEqualName = strcmp(pIter->mName, pName) == false;
 
             if (!isEqualName) {
                 break;
             }
         }
 
-        if (pIter == pEnd) {
+        if (pIter == &::cCreateTable[ARRAY_SIZE(::cCreateTable)]) {
             return nullptr;
         }
 

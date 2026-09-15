@@ -25,13 +25,13 @@ void EncouragePal60Window::init(const JMapInfoIter& rIter) {
 
     mAButtonIcon = MR::createAndSetupIconAButton(this, true, false);
 
-    initNerve(&EncouragePal60WindowAppear::sInstance);
+    initNerve(GET_NERVE_GLOBAL(EncouragePal60WindowAppear));
     kill();
 }
 
 void EncouragePal60Window::appear() {
     LayoutActor::appear();
-    setNerve(&EncouragePal60WindowAppear::sInstance);
+    setNerve(GET_NERVE_GLOBAL(EncouragePal60WindowAppear));
 }
 
 void EncouragePal60Window::exeAppear() {
@@ -40,7 +40,7 @@ void EncouragePal60Window::exeAppear() {
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&EncouragePal60WindowDisplay::sInstance);
+        setNerve(GET_NERVE_GLOBAL(EncouragePal60WindowDisplay));
     }
 }
 
@@ -55,7 +55,7 @@ void EncouragePal60Window::exeDisplay() {
 
     if (MR::isGreaterStep(this, ::DISPLAY_MIN_SECOND * 60) && MR::testCorePadTriggerAnyWithoutHome(WPAD_CHAN0)) {
         MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM");
-        setNerve(&EncouragePal60WindowDisappear::sInstance);
+        setNerve(GET_NERVE_GLOBAL(EncouragePal60WindowDisappear));
     }
 }
 

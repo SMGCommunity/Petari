@@ -51,7 +51,7 @@ void StarPieceCounter::init(const JMapInfoIter& rIter) {
     mStarPieceNum = MR::getStarPieceNum();
     mStarPieceDisplayNum = mStarPieceNum;
 
-    initNerve(&NrvStarPieceCounter::StarPieceCounterNrvHide::sInstance);
+    initNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvHide));
     MR::connectToSceneLayout(this);
     appear();
 }
@@ -65,7 +65,7 @@ void StarPieceCounter::appear() {
 
     MR::hideLayout(this);
     forceSync();
-    setNerve(&NrvStarPieceCounter::StarPieceCounterNrvHide::sInstance);
+    setNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvHide));
     LayoutActor::appear();
     MR::requestMovementOn(this);
 }
@@ -73,7 +73,7 @@ void StarPieceCounter::appear() {
 void StarPieceCounter::forceAppear(bool param1) {
     if (param1 || !isWait()) {
         appear();
-        setNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance);
+        setNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvAppear));
     }
 
     s32 v5 = 1;
@@ -87,7 +87,7 @@ void StarPieceCounter::forceAppear(bool param1) {
 
 void StarPieceCounter::disappear(bool param1) {
     if (param1 || !isValidAppearSituation()) {
-        setNerve(&NrvStarPieceCounter::StarPieceCounterNrvDisappear::sInstance);
+        setNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvDisappear));
     }
 
     if (!param1) {
@@ -96,7 +96,7 @@ void StarPieceCounter::disappear(bool param1) {
 }
 
 bool StarPieceCounter::isWait() const {
-    return !MR::isDead(this) && isNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance);
+    return !MR::isDead(this) && isNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvWait));
 }
 
 void StarPieceCounter::forceSync() {
@@ -160,14 +160,14 @@ void StarPieceCounter::updateCounter() {
 }
 
 void StarPieceCounter::updateCounterValue() {
-    if (isNerve(&NrvStarPieceCounter::StarPieceCounterNrvDisappear::sInstance)) {
+    if (isNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvDisappear))) {
         return;
     }
 
     if (mInvalidCountUpFrame > 0) {
         mInvalidCountUpFrame--;
     } else if (mStarPieceDisplayNum != mStarPieceNum) {
-        if (isNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance)) {
+        if (isNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvWait))) {
             if (mStarPieceDisplayNum < mStarPieceNum) {
                 mStarPieceDisplayNum++;
 
@@ -188,11 +188,11 @@ void StarPieceCounter::updateCounterValue() {
             mPaneRumbler->start();
         }
 
-        if (!isNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance)) {
-            if (!isNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance)) {
-                setNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance);
+        if (!isNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvAppear))) {
+            if (!isNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvWait))) {
+                setNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvAppear));
             } else {
-                setNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance);
+                setNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvWait));
             }
         }
     }
@@ -211,19 +211,18 @@ bool StarPieceCounter::isDispCenter() const {
 }
 
 bool StarPieceCounter::tryChangeModeTicoEat(int mode) {
-    if (isNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance) ||
-        isNerve(&NrvStarPieceCounter::StarPieceCounterNrvDisappear::sInstance)) {
+    if (isNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvAppear)) || isNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvDisappear))) {
         return false;
     }
 
-    if (isNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance)) {
-        setNerve(&NrvStarPieceCounter::StarPieceCounterNrvDisappear::sInstance);
+    if (isNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvWait))) {
+        setNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvDisappear));
 
         return false;
     }
 
-    if (isNerve(&NrvStarPieceCounter::StarPieceCounterNrvHide::sInstance)) {
-        setNerve(&NrvStarPieceCounter::StarPieceCounterNrvHide::sInstance);
+    if (isNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvHide))) {
+        setNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvHide));
     }
 
     forceSync();
@@ -243,7 +242,7 @@ void StarPieceCounter::exeHide() {
     s32 step = mMode != 0 ? ::cHideFrameMinTicoEat : ::cHideFrameMin;
 
     if (MR::isGreaterStep(this, step) && isValidAppearSituation()) {
-        setNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance);
+        setNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvAppear));
     }
 }
 
@@ -282,7 +281,7 @@ void StarPieceCounter::exeAppear() {
     }
 
     if (mLayoutAppearer->isAppeared()) {
-        setNerve(&NrvStarPieceCounter::StarPieceCounterNrvWait::sInstance);
+        setNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvWait));
     }
 }
 
@@ -292,7 +291,7 @@ void StarPieceCounter::exeWait() {
     }
 
     if (mMode != 0 || (_3C == 0 && mStarPieceDisplayNum == mStarPieceNum && CounterLayoutController::isWaitToDisappearCounter(this))) {
-        setNerve(&NrvStarPieceCounter::StarPieceCounterNrvDisappear::sInstance);
+        setNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvDisappear));
     }
 }
 
@@ -306,6 +305,6 @@ void StarPieceCounter::exeDisappear() {
             _3C = 0;
         }
 
-        setNerve(&NrvStarPieceCounter::StarPieceCounterNrvHide::sInstance);
+        setNerve(GET_NERVE(StarPieceCounter, StarPieceCounterNrvHide));
     }
 }

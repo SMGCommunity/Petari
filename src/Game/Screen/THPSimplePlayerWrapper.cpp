@@ -82,7 +82,7 @@ THPSimplePlayerWrapper::THPSimplePlayerWrapper(const char* pName) : NerveExecuto
     MR::zeroMemory(&mTextureSet[0], 0x10);
     MR::zeroMemory(&mTextureSet[1], 0x10);
     MR::zeroMemory(mAudioBuffer, 0xF0);
-    initNerve(&NrvTHPSimplePlayerWrapper::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeWait));
 }
 
 bool THPSimplePlayerWrapper::init(s32 audio) {
@@ -119,7 +119,7 @@ bool THPSimplePlayerWrapper::open(const char* pName) {
         return false;
     }
 
-    setNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadHeader::sInstance);
+    setNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadHeader));
     return true;
 }
 
@@ -228,7 +228,7 @@ bool THPSimplePlayerWrapper::preLoad(s32 loop) {
         }
     }
 
-    setNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadPreLoad::sInstance);
+    setNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadPreLoad));
     return true;
 }
 
@@ -441,31 +441,30 @@ void THPSimplePlayerWrapper::dvdCallBack(s32 result) {
 
 void THPSimplePlayerWrapper::readAsyncCallBack(s32 a1) {
     if (a1 < 0) {
-        if (!isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadHeader::sInstance) &&
-            !isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadFrameComp::sInstance) &&
-            !isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadVideoComp::sInstance) &&
-            !isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadAudioComp::sInstance)) {
-            isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadPreLoad::sInstance);
+        if (!isNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadHeader)) && !isNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadFrameComp)) &&
+            !isNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadVideoComp)) &&
+            !isNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadAudioComp))) {
+            isNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadPreLoad));
         }
 
         DVDClose(&mFileInfo);
         return;
     }
 
-    if (isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadHeader::sInstance)) {
+    if (isNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadHeader))) {
         endReadHeader();
-        setNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadFrameComp::sInstance);
+        setNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadFrameComp));
         return;
     }
 
-    if (isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadFrameComp::sInstance)) {
+    if (isNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadFrameComp))) {
         _10 = 0;
         endReadFrameComp();
         checkComponentsInFrame(_10);
         return;
     }
 
-    if (isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadVideoComp::sInstance)) {
+    if (isNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadVideoComp))) {
         endReadVideoComp();
         if (tryFinishDvdOpen()) {
             return;
@@ -475,7 +474,7 @@ void THPSimplePlayerWrapper::readAsyncCallBack(s32 a1) {
         return;
     }
 
-    if (isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadAudioComp::sInstance)) {
+    if (isNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadAudioComp))) {
         endReadAudioComp();
         if (tryFinishDvdOpen()) {
             return;
@@ -485,9 +484,9 @@ void THPSimplePlayerWrapper::readAsyncCallBack(s32 a1) {
         return;
     }
 
-    if (isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadPreLoad::sInstance)) {
+    if (isNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadPreLoad))) {
         endReadPreLoadOne();
-        setNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadPreLoad::sInstance);
+        setNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadPreLoad));
     }
 }
 
@@ -610,7 +609,7 @@ void THPSimplePlayerWrapper::exeReadPreLoad() {
 
     if (!_314) {
         mPreFetchState = 1;
-        setNerve(&NrvTHPSimplePlayerWrapper::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeWait));
     }
 }
 
@@ -638,10 +637,10 @@ bool THPSimplePlayerWrapper::checkComponentsInFrame(s32 comp) {
 
     switch (mFrameComp.frameComp[comp]) {
     case 0:
-        setNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadVideoComp::sInstance);
+        setNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadVideoComp));
         return true;
     case 1:
-        setNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadAudioComp::sInstance);
+        setNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadAudioComp));
         return true;
     }
 
@@ -655,7 +654,7 @@ bool THPSimplePlayerWrapper::tryFinishDvdOpen() {
 
     setupParams();
     _9 = 1;
-    setNerve(&NrvTHPSimplePlayerWrapper::HostTypeWait::sInstance);
+    setNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeWait));
     return true;
 }
 
@@ -863,7 +862,7 @@ bool THPSimplePlayerWrapper::setVolume(s32 volume, s32 time) {
 }
 
 bool THPSimplePlayerWrapper::isPreLoading() const {
-    return isNerve(&NrvTHPSimplePlayerWrapper::HostTypeReadPreLoad::sInstance);
+    return isNerve(GET_NERVE(THPSimplePlayerWrapper, HostTypeReadPreLoad));
 }
 
 void THPSimplePlayerWrapper::setUnpauseFrameFlag() {

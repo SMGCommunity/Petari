@@ -142,7 +142,7 @@ void BossBegoman::init(const JMapInfoIter& rIter) {
 
     MR::startBrk(mHead, "OffWait");
     initBinder(160.0f, 160.0f, false);
-    initNerve(&NrvBossBegoman::HostTypeNrvPreDemoWait::sInstance);
+    initNerve(GET_NERVE(BossBegoman, HostTypeNrvPreDemoWait));
 
     f32 scaleY = mScale.y;
     initSensor(1, 190.0f, 250.0f, "Center");
@@ -195,7 +195,7 @@ void BossBegoman::init(const JMapInfoIter& rIter) {
     if (MR::tryRegisterDemoCast(this, rIter)) {
         s32 i;
 
-        MR::registerDemoActionNerve(this, &NrvBossBegoman::HostTypeNrvFirstContactDemo::sInstance, nullptr);
+        MR::registerDemoActionNerve(this, GET_NERVE(BossBegoman, HostTypeNrvFirstContactDemo), nullptr);
 
         for (i = 0; i < mBabyFollowerNum; i++) {
             MR::tryRegisterDemoCast(mBabyFollowers[i], rIter);
@@ -217,7 +217,7 @@ void BossBegoman::init(const JMapInfoIter& rIter) {
 void BossBegoman::appear() {
     BegomanBase::appear();
     MR::emitEffect(this, "Death");
-    setNerve(&NrvBossBegoman::HostTypeNrvWait::sInstance);
+    setNerve(GET_NERVE(BossBegoman, HostTypeNrvWait));
 }
 
 void BossBegoman::kill() {
@@ -232,7 +232,7 @@ void BossBegoman::control() {
     MR::copyJointScale(mHead, "Edge", &headEdgeScale);
     MR::setShadowVolumeSphereRadius(this, nullptr, 200.0f * (1.0f - 0.35f * (1 - headEdgeScale.x)));
 
-    if (isNerve(&NrvBossBegoman::HostTypeNrvOnWeak::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvOnWeakTurn::sInstance)) {
+    if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvOnWeak)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvOnWeakTurn))) {
         HitSensor* bodySensor = getSensor("body");
         bodySensor->mRadius = 160.0f;
     } else {
@@ -240,15 +240,15 @@ void BossBegoman::control() {
         bodySensor->mRadius = 190.0f;
     }
 
-    if (!isNerve(&NrvBossBegoman::HostTypeNrvBlow::sInstance) && !isNerve(&NrvBossBegoman::HostTypeNrvElectricDeath::sInstance) &&
-        !isNerve(&NrvBossBegoman::HostTypeNrvElectricReturn::sInstance) && !isNerve(&NrvBossBegoman::HostTypeNrvJumpToInitPos::sInstance) &&
-        !isNerve(&NrvBossBegoman::HostTypeNrvOnWeakTurn::sInstance)) {
+    if (!isNerve(GET_NERVE(BossBegoman, HostTypeNrvBlow)) && !isNerve(GET_NERVE(BossBegoman, HostTypeNrvElectricDeath)) &&
+        !isNerve(GET_NERVE(BossBegoman, HostTypeNrvElectricReturn)) && !isNerve(GET_NERVE(BossBegoman, HostTypeNrvJumpToInitPos)) &&
+        !isNerve(GET_NERVE(BossBegoman, HostTypeNrvOnWeakTurn))) {
         checkTouchElectricRail(true);
     } else {
         checkTouchElectricRail(false);
     }
 
-    if (isNerve(&NrvBossBegoman::HostTypeNrvPursue::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvTurn::sInstance)) {
+    if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvPursue)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvTurn))) {
         f32 max = 1.0f;
         f32 new150;
         if (_150 + 0.01f >= max) {
@@ -262,7 +262,7 @@ void BossBegoman::control() {
     }
 
     if (MR::isStep(this, 1)) {
-        if (isNerve(&NrvBossBegoman::HostTypeNrvWait::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvNoCalcWait::sInstance)) {
+        if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvWait)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvNoCalcWait))) {
             MR::validateClipping(this);
         } else {
             MR::invalidateClipping(this);
@@ -271,31 +271,31 @@ void BossBegoman::control() {
 
     BegomanBase::control();
 
-    if (!isNerve(&NrvBossBegoman::HostTypeNrvPreDemoWait::sInstance) && !isNerve(&NrvBossBegoman::HostTypeNrvFirstContactDemo::sInstance)) {
+    if (!isNerve(GET_NERVE(BossBegoman, HostTypeNrvPreDemoWait)) && !isNerve(GET_NERVE(BossBegoman, HostTypeNrvFirstContactDemo))) {
         startRotationLevelSound();
     }
 }
 
 void BossBegoman::setStepBackNerve() {
     if (mHead->isEdgeOut()) {
-        setNerve(&NrvBossBegoman::HostTypeNrvStepBack::sInstance);
+        setNerve(GET_NERVE(BossBegoman, HostTypeNrvStepBack));
     } else {
-        setNerve(&NrvBossBegoman::HostTypeNrvStepBackOnWeak::sInstance);
+        setNerve(GET_NERVE(BossBegoman, HostTypeNrvStepBackOnWeak));
     }
 }
 
 bool BossBegoman::onTouchElectric(const TVec3f& a1, const TVec3f& a2) {
-    if (isNerve(&NrvBossBegoman::HostTypeNrvElectricDeath::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvElectricReturn::sInstance) ||
-        isNerve(&NrvBossBegoman::HostTypeNrvJumpToInitPos::sInstance)) {
+    if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvElectricDeath)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvElectricReturn)) ||
+        isNerve(GET_NERVE(BossBegoman, HostTypeNrvJumpToInitPos))) {
         return false;
     }
 
-    if (isNerve(&NrvBossBegoman::HostTypeNrvBlow::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvOnWeakTurn::sInstance)) {
-        setNerve(&NrvBossBegoman::HostTypeNrvElectricDeath::sInstance);
+    if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvBlow)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvOnWeakTurn))) {
+        setNerve(GET_NERVE(BossBegoman, HostTypeNrvElectricDeath));
         return false;
     }
 
-    if (isNerve(&NrvBossBegoman::HostTypeNrvStepBack::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvStepBackOnWeak::sInstance)) {
+    if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvStepBack)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvStepBackOnWeak))) {
         if (!MR::isOnGround(this)) {
             return false;
         }
@@ -310,13 +310,13 @@ bool BossBegoman::onTouchElectric(const TVec3f& a1, const TVec3f& a2) {
 }
 
 bool BossBegoman::setNerveReturn() {
-    setNerve(&NrvBossBegoman::HostTypeNrvReturn::sInstance);
+    setNerve(GET_NERVE(BossBegoman, HostTypeNrvReturn));
 
     return true;
 }
 
 const Nerve* BossBegoman::getNerveWait() {
-    return &NrvBossBegoman::HostTypeNrvWait::sInstance;
+    return GET_NERVE(BossBegoman, HostTypeNrvWait);
 }
 
 void BossBegoman::addVelocityOnPushedFromElectricRail(const TVec3f& a1, const TVec3f& a2) {
@@ -366,7 +366,7 @@ void BossBegoman::exeFirstContactDemo() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvBossBegoman::HostTypeNrvReady::sInstance);
+        setNerve(GET_NERVE(BossBegoman, HostTypeNrvReady));
     }
 }
 void BossBegoman::exeReady() {
@@ -380,7 +380,7 @@ void BossBegoman::exeReady() {
     if (MR::isActionEnd(this) && MR::isAnimCameraEnd(this, mOpeningDemoInfo, "OpeningDemo")) {
         MR::endAnimCamera(this, mOpeningDemoInfo, "OpeningDemo", -1, true);
         tryLaunchFollower();
-        setNerve(&NrvBossBegoman::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(BossBegoman, HostTypeNrvWait));
     }
 }
 
@@ -389,7 +389,7 @@ void BossBegoman::exeNoCalcWait() {
         tryLaunchFollower();
     }
 
-    exeNoCalcWaitCore(0.005f, &NrvBossBegoman::HostTypeNrvWait::sInstance);
+    exeNoCalcWaitCore(0.005f, GET_NERVE(BossBegoman, HostTypeNrvWait));
 }
 
 void BossBegoman::endNoCalcWait() {
@@ -398,8 +398,8 @@ void BossBegoman::endNoCalcWait() {
 
 void BossBegoman::exeWait() {
     updateRotateY(::sWaitRotate);
-    exeWaitCore(::hWaitParam, &NrvBossBegoman::HostTypeNrvSignAttack::sInstance, &NrvBossBegoman::HostTypeNrvKeepDistance::sInstance,
-                &NrvBossBegoman::HostTypeNrvNoCalcWait::sInstance);
+    exeWaitCore(::hWaitParam, GET_NERVE(BossBegoman, HostTypeNrvSignAttack), GET_NERVE(BossBegoman, HostTypeNrvKeepDistance),
+                GET_NERVE(BossBegoman, HostTypeNrvNoCalcWait));
 }
 
 void BossBegoman::exeSignAttack() {
@@ -409,7 +409,7 @@ void BossBegoman::exeSignAttack() {
     }
 
     updateRotateY(::sSignAttackRotate);
-    exeSignAttackCore(::hSignAttackParam, &NrvBossBegoman::HostTypeNrvPursue::sInstance);
+    exeSignAttackCore(::hSignAttackParam, GET_NERVE(BossBegoman, HostTypeNrvPursue));
 }
 
 void BossBegoman::exePursue() {
@@ -418,7 +418,7 @@ void BossBegoman::exePursue() {
     }
 
     updateRotateY(::sPursueRotate);
-    exePursueCore(::hPursueParam, &NrvBossBegoman::HostTypeNrvBrake::sInstance, &NrvBossBegoman::HostTypeNrvTurn::sInstance, *getSoundBoss(), _150);
+    exePursueCore(::hPursueParam, GET_NERVE(BossBegoman, HostTypeNrvBrake), GET_NERVE(BossBegoman, HostTypeNrvTurn), *getSoundBoss(), _150);
 }
 
 void BossBegoman::exeTurn() {
@@ -432,7 +432,7 @@ void BossBegoman::exeTurn() {
 
     updateRotateY(::sTurnRotate);
     MR::startLevelSound(this, "SE_BM_LV_BBEGO_TURN");
-    exeTurnCore(::hTurnParam, &NrvBossBegoman::HostTypeNrvBrake::sInstance, &NrvBossBegoman::HostTypeNrvPursue::sInstance, false);
+    exeTurnCore(::hTurnParam, GET_NERVE(BossBegoman, HostTypeNrvBrake), GET_NERVE(BossBegoman, HostTypeNrvPursue), false);
 }
 
 void BossBegoman::endTurn() {
@@ -454,13 +454,13 @@ void BossBegoman::exeOnWeak() {
         MR::moveAndTurnToPlayer(this, &mFaceVec, ::hOnWeakNoMoveParam._0, ::hOnWeakNoMoveParam._4, ::hOnWeakNoMoveParam._8, ::hOnWeakNoMoveParam._C);
     }
 
-    if (isNerve(&NrvBossBegoman::HostTypeNrvOnWeakTurn::sInstance)) {
+    if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvOnWeakTurn))) {
         if (MR::isGreaterStep(this, ::hOnWeakTurnTime)) {
-            setNerve(&NrvBossBegoman::HostTypeNrvOnWeak::sInstance);
+            setNerve(GET_NERVE(BossBegoman, HostTypeNrvOnWeak));
         }
     } else {
         if (MR::isGreaterStep(this, ::sOnWeakTime)) {
-            setNerve(&NrvBossBegoman::HostTypeNrvAware::sInstance);
+            setNerve(GET_NERVE(BossBegoman, HostTypeNrvAware));
         } else if (MR::isStep(this, ::hOnWeakSignSubTime)) {
             MR::startBrk(mHead, "SignWait");
             MR::setBrkRate(mHead, ::hSignSlowRate);
@@ -484,7 +484,7 @@ void BossBegoman::endOnWeak() {
 void BossBegoman::exeBrake() {
     updateRotateY(::sBrakeRotate);
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_SPARK");
-    exeBrakeCore(&NrvBossBegoman::HostTypeNrvTurn::sInstance);
+    exeBrakeCore(GET_NERVE(BossBegoman, HostTypeNrvTurn));
 }
 
 void BossBegoman::exeStepBack() {
@@ -494,16 +494,16 @@ void BossBegoman::exeStepBack() {
 
     updateRotateY(0.2f);
 
-    if (isNerve(&NrvBossBegoman::HostTypeNrvStepBackOnWeak::sInstance)) {
-        exeStepBackCore(::hWaitParam, &NrvBossBegoman::HostTypeNrvOnWeak::sInstance);
+    if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvStepBackOnWeak))) {
+        exeStepBackCore(::hWaitParam, GET_NERVE(BossBegoman, HostTypeNrvOnWeak));
     } else {
-        exeStepBackCore(::hWaitParam, &NrvBossBegoman::HostTypeNrvWait::sInstance);
+        exeStepBackCore(::hWaitParam, GET_NERVE(BossBegoman, HostTypeNrvWait));
     }
 }
 
 void BossBegoman::exeReturn() {
     updateRotateY(0.2f);
-    exeReturnCore(&NrvBossBegoman::HostTypeNrvWait::sInstance);
+    exeReturnCore(GET_NERVE(BossBegoman, HostTypeNrvWait));
 }
 
 void BossBegoman::exeProvoke() {
@@ -511,7 +511,7 @@ void BossBegoman::exeProvoke() {
     }
 
     updateRotateY(::sProvokeRotate);
-    exeProvokeCore(::hWaitParam, &NrvBossBegoman::HostTypeNrvSignAttack::sInstance);
+    exeProvokeCore(::hWaitParam, GET_NERVE(BossBegoman, HostTypeNrvSignAttack));
 }
 
 void BossBegoman::exeTrampleReaction() {
@@ -533,10 +533,10 @@ void BossBegoman::exeTrampleReaction() {
 
     if (mHead->isSwitchOn()) {
         if (MR::isGreaterStep(this, ::sTrampleReactionOnSwitchTime)) {
-            setNerve(&NrvBossBegoman::HostTypeNrvOnWeak::sInstance);
+            setNerve(GET_NERVE(BossBegoman, HostTypeNrvOnWeak));
         }
     } else if (MR::isGreaterStep(this, ::sTrampleReactionOnSwitchTime)) {
-        setNerve(&NrvBossBegoman::HostTypeNrvSignAttack::sInstance);
+        setNerve(GET_NERVE(BossBegoman, HostTypeNrvSignAttack));
     }
 }
 
@@ -551,13 +551,13 @@ void BossBegoman::exeAware() {
 
     if (MR::isGreaterStep(this, ::sAwareTime)) {
         tryLaunchFollower();
-        setNerve(&NrvBossBegoman::HostTypeNrvSignAttack::sInstance);
+        setNerve(GET_NERVE(BossBegoman, HostTypeNrvSignAttack));
     }
 }
 
 void BossBegoman::exeHitReaction() {
     updateRotateY(::sHitReactionRotate);
-    exeHitReactionCore(::hHitReactionParam, &NrvBossBegoman::HostTypeNrvProvoke::sInstance);
+    exeHitReactionCore(::hHitReactionParam, GET_NERVE(BossBegoman, HostTypeNrvProvoke));
 }
 
 void BossBegoman::exeBlow() {
@@ -577,9 +577,9 @@ void BossBegoman::exeBlow() {
         MR::startAction(this, "Turn");
 
         if (mHead->isSwitchOn()) {
-            setNerve(&NrvBossBegoman::HostTypeNrvOnWeakTurn::sInstance);
+            setNerve(GET_NERVE(BossBegoman, HostTypeNrvOnWeakTurn));
         } else {
-            setNerve(&NrvBossBegoman::HostTypeNrvTurn::sInstance);
+            setNerve(GET_NERVE(BossBegoman, HostTypeNrvTurn));
         }
     }
 }
@@ -627,7 +627,7 @@ void BossBegoman::exeElectricDeath() {
                 mFollowerKind = FollowerKind_SpikeFollower;
             }
 
-            setNerve(&NrvBossBegoman::HostTypeNrvJumpToInitPos::sInstance);
+            setNerve(GET_NERVE(BossBegoman, HostTypeNrvJumpToInitPos));
         }
 
         getSensor("body")->validate();
@@ -675,7 +675,7 @@ void BossBegoman::exeElectricReturn() {
 
     if (MR::isGreaterStep(this, ::sElectricReturnTime)) {
         mFaceVec.set(mTargetVec);
-        setNerve(&NrvBossBegoman::HostTypeNrvJumpToInitPos::sInstance);
+        setNerve(GET_NERVE(BossBegoman, HostTypeNrvJumpToInitPos));
     }
 }
 
@@ -699,7 +699,7 @@ void BossBegoman::exeJumpToInitPos() {
     mPath->calcPosition(&mPosition, MR::calcNerveRate(this, ::sJumpToInitPosTime));
 
     if (MR::isGreaterStep(this, ::sJumpToInitPosTime)) {
-        setNerve(&NrvBossBegoman::HostTypeNrvSignAttack::sInstance);
+        setNerve(GET_NERVE(BossBegoman, HostTypeNrvSignAttack));
         tryLaunchFollower();
         MR::startSound(this, "SE_BM_BBEGO_NEEDLE_ON");
         mHead->tryForceRecover();
@@ -709,8 +709,8 @@ void BossBegoman::exeJumpToInitPos() {
 
 void BossBegoman::exeKeepDistance() {
     updateRotateY(0.2f);
-    exeKeepDistanceCore(&NrvBossBegoman::HostTypeNrvWait::sInstance, &NrvBossBegoman::HostTypeNrvSignAttack::sInstance,
-                        &NrvBossBegoman::HostTypeNrvBrake::sInstance, ::hKeepDistFar, ::hKeepDistNear);
+    exeKeepDistanceCore(GET_NERVE(BossBegoman, HostTypeNrvWait), GET_NERVE(BossBegoman, HostTypeNrvSignAttack),
+                        GET_NERVE(BossBegoman, HostTypeNrvBrake), ::hKeepDistFar, ::hKeepDistNear);
 }
 
 void BossBegoman::tryLaunchFollower() {
@@ -785,13 +785,13 @@ void BossBegoman::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    if (isNerve(&NrvBossBegoman::HostTypeNrvBlow::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvElectricDeath::sInstance) ||
-        isNerve(&NrvBossBegoman::HostTypeNrvElectricReturn::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvAware::sInstance)) {
+    if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvBlow)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvElectricDeath)) ||
+        isNerve(GET_NERVE(BossBegoman, HostTypeNrvElectricReturn)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvAware))) {
         MR::sendMsgPush(pReceiver, pSender);
         return;
     }
 
-    if (isNerve(&NrvBossBegoman::HostTypeNrvJumpToInitPos::sInstance)) {
+    if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvJumpToInitPos))) {
         if (!MR::sendMsgEnemyAttackFlipRot(pReceiver, pSender)) {
             MR::sendMsgPush(pReceiver, pSender);
         }
@@ -825,7 +825,7 @@ void BossBegoman::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             }
         }
 
-        setNerve(&NrvBossBegoman::HostTypeNrvHitReaction::sInstance);
+        setNerve(GET_NERVE(BossBegoman, HostTypeNrvHitReaction));
         return;
     }
 
@@ -851,8 +851,8 @@ bool BossBegoman::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
         return onTouchElectric(pSender->mPosition, vec1);
     }
 
-    if (isNerve(&NrvBossBegoman::HostTypeNrvBlow::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvElectricDeath::sInstance) ||
-        isNerve(&NrvBossBegoman::HostTypeNrvElectricReturn::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvJumpToInitPos::sInstance)) {
+    if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvBlow)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvElectricDeath)) ||
+        isNerve(GET_NERVE(BossBegoman, HostTypeNrvElectricReturn)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvJumpToInitPos))) {
         return false;
     }
 
@@ -888,14 +888,14 @@ bool BossBegoman::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
         return receiveMsgTrample(pSender, pReceiver);
     }
 
-    if (isNerve(&NrvBossBegoman::HostTypeNrvBlow::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvElectricDeath::sInstance) ||
-        isNerve(&NrvBossBegoman::HostTypeNrvElectricReturn::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvJumpToInitPos::sInstance)) {
+    if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvBlow)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvElectricDeath)) ||
+        isNerve(GET_NERVE(BossBegoman, HostTypeNrvElectricReturn)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvJumpToInitPos))) {
         return false;
     }
 
     if (MR::isMsgPlayerHipDrop(msg) && pReceiver == getSensor("trample")) {
         MR::sendMsgAwayJump(pSender, pReceiver);
-        setNerve(&NrvBossBegoman::HostTypeNrvTrampleReaction::sInstance);
+        setNerve(GET_NERVE(BossBegoman, HostTypeNrvTrampleReaction));
         return true;
     }
 
@@ -905,17 +905,17 @@ bool BossBegoman::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
 
     if (MR::isMsgPlayerSpinAttack(msg) && !mHead->isSwitchOn() && MR::isPlayerExistSide(this, ::hSideCheckOffsetY, ::hSideCheckDot)) {
         MR::sendMsgEnemyAttackFire(pSender, pReceiver);
-        setNerve(&NrvBossBegoman::HostTypeNrvProvoke::sInstance);
+        setNerve(GET_NERVE(BossBegoman, HostTypeNrvProvoke));
         return false;
     }
 
-    if (isNerve(&NrvBossBegoman::HostTypeNrvTrampleReaction::sInstance) && !MR::isGreaterStep(this, 30)) {
+    if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvTrampleReaction)) && !MR::isGreaterStep(this, 30)) {
         return false;
     }
 
     if (!mHead->isEdgeOut() && MR::isMsgPlayerHitAll(msg)) {
         calcBlowReaction(pSender->mPosition, pReceiver->mPosition, ::hBlowVel, ::hBlowVerticalVel);
-        setNerve(&NrvBossBegoman::HostTypeNrvBlow::sInstance);
+        setNerve(GET_NERVE(BossBegoman, HostTypeNrvBlow));
         return true;
     }
 
@@ -923,8 +923,8 @@ bool BossBegoman::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
 }
 
 bool BossBegoman::receiveMsgTrample(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvBossBegoman::HostTypeNrvBlow::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvElectricDeath::sInstance) ||
-        isNerve(&NrvBossBegoman::HostTypeNrvElectricReturn::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvJumpToInitPos::sInstance)) {
+    if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvBlow)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvElectricDeath)) ||
+        isNerve(GET_NERVE(BossBegoman, HostTypeNrvElectricReturn)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvJumpToInitPos))) {
         return false;
     }
 
@@ -932,7 +932,7 @@ bool BossBegoman::receiveMsgTrample(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    if (isNerve(&NrvBossBegoman::HostTypeNrvTrampleReaction::sInstance) && MR::isLessStep(this, 5)) {
+    if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvTrampleReaction)) && MR::isLessStep(this, 5)) {
         return false;
     }
 
@@ -941,7 +941,7 @@ bool BossBegoman::receiveMsgTrample(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (pReceiver == getSensor("trample")) {
-        setNerve(&NrvBossBegoman::HostTypeNrvTrampleReaction::sInstance);
+        setNerve(GET_NERVE(BossBegoman, HostTypeNrvTrampleReaction));
 
         TVec3f vec1(pReceiver->mPosition);
         vec1.sub(pSender->mPosition);
@@ -971,8 +971,8 @@ bool BossBegoman::receiveMsgTrample(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool BossBegoman::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvBossBegoman::HostTypeNrvBlow::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvElectricDeath::sInstance) ||
-        isNerve(&NrvBossBegoman::HostTypeNrvElectricReturn::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvJumpToInitPos::sInstance)) {
+    if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvBlow)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvElectricDeath)) ||
+        isNerve(GET_NERVE(BossBegoman, HostTypeNrvElectricReturn)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvJumpToInitPos))) {
         return false;
     }
 
@@ -991,11 +991,11 @@ void BossBegoman::calcAnim() {
     }
 }
 void BossBegoman::startRotationLevelSound() {
-    if (isNerve(&NrvBossBegoman::HostTypeNrvWait::sInstance)) {
+    if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvWait))) {
         MR::startLevelSound(this, "SE_BM_LV_BBEGO_ROT_SLOW");
-    } else if (isNerve(&NrvBossBegoman::HostTypeNrvPursue::sInstance)) {
+    } else if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvPursue))) {
         MR::startLevelSound(this, "SE_BM_LV_BBEGO_PURSUE");
-    } else if (isNerve(&NrvBossBegoman::HostTypeNrvTrampleReaction::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvOnWeak::sInstance)) {
+    } else if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvTrampleReaction)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvOnWeak))) {
         MR::startLevelSound(this, "SE_BM_LV_BBEGO_ROT_WEAK");
     } else {
         MR::startLevelSound(this, "SE_BM_LV_BBEGO_ROT_MIDDLE");

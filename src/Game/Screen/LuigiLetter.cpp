@@ -24,7 +24,7 @@ void LuigiLetter::init(const JMapInfoIter& rIter) {
     char textureName[256];
 
     initLayoutManager("LuigiLetter", 1);
-    initNerve(&NrvLuigiLetter::HostTypeNrvAppear::sInstance);
+    initNerve(GET_NERVE(LuigiLetter, HostTypeNrvAppear));
     snprintf(archiveName, sizeof(archiveName), "LuigiPicture%s.arc", _28);
     snprintf(textureName, sizeof(textureName), "LuigiPicture%s.bti", _28);
 
@@ -49,7 +49,7 @@ void LuigiLetter::init(const JMapInfoIter& rIter) {
 
 void LuigiLetter::appear() {
     LayoutActor::appear();
-    setNerve(&NrvLuigiLetter::HostTypeNrvAppear::sInstance);
+    setNerve(GET_NERVE(LuigiLetter, HostTypeNrvAppear));
 }
 
 void LuigiLetter::movement() {
@@ -65,7 +65,7 @@ void LuigiLetter::exeAppear() {
 
     if (MR::isAnimStopped(this, 0)) {
         MR::startSystemSE("SE_SV_LUIGI_MAIL");
-        setNerve(&NrvLuigiLetter::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(LuigiLetter, HostTypeNrvWait));
     }
 }
 
@@ -77,7 +77,7 @@ void LuigiLetter::exeWait() {
 
     if (mAButtonIcon->isWait() && MR::testCorePadButtonA(WPAD_CHAN0)) {
         MR::startSystemSE("SE_SY_TALK_OK");
-        setNerve(&NrvLuigiLetter::HostTypeNrvEnd::sInstance);
+        setNerve(GET_NERVE(LuigiLetter, HostTypeNrvEnd));
     }
 }
 

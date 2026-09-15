@@ -177,7 +177,7 @@ void Snakehead::exeWaylay() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvSnakehead::SnakeheadNrvMoveForward::sInstance);
+        setNerve(GET_NERVE(Snakehead, SnakeheadNrvMoveForward));
     }
 }
 
@@ -197,7 +197,7 @@ void Snakehead::exeWait() {
         }
 
         if (v3 || isNearPlayerFromRail()) {
-            setNerve(&NrvSnakehead::SnakeheadNrvMoveForward::sInstance);
+            setNerve(GET_NERVE(Snakehead, SnakeheadNrvMoveForward));
         }
     }
 }
@@ -226,13 +226,13 @@ void Snakehead::exeMoveForward() {
     }
 
     if (MR::isRailReachedGoal(this)) {
-        setNerve(&NrvSnakehead::SnakeheadNrvRest::sInstance);
+        setNerve(GET_NERVE(Snakehead, SnakeheadNrvRest));
     }
 }
 
 void Snakehead::exeRest() {
     if (MR::isStep(this, *::sSnakeheadDataTable[_E8]._4)) {
-        setNerve(&NrvSnakehead::SnakeheadNrvMoveBack::sInstance);
+        setNerve(GET_NERVE(Snakehead, SnakeheadNrvMoveBack));
     }
 }
 
@@ -248,7 +248,7 @@ void Snakehead::exeMoveBack() {
     if (MR::isRailReachedNearGoal(this, 300.0f)) {
         MR::setRailCoord(this, 300.0f);
         MR::moveTransToCurrentRailPos(this);
-        setNerve(&NrvSnakehead::SnakeheadNrvWait::sInstance);
+        setNerve(GET_NERVE(Snakehead, SnakeheadNrvWait));
     }
 }
 
@@ -303,15 +303,15 @@ void Snakehead::choiceAndStartBck(const char* pBck) {
 }
 
 bool Snakehead::tryDPDSwoon() {
-    if (isNerve(&NrvSnakehead::SnakeheadNrvDPDSwoon::sInstance)) {
+    if (isNerve(GET_NERVE(Snakehead, SnakeheadNrvDPDSwoon))) {
         return false;
     }
 
-    if (isNerve(&NrvSnakehead::SnakeheadNrvWaylay::sInstance)) {
+    if (isNerve(GET_NERVE(Snakehead, SnakeheadNrvWaylay))) {
         return false;
     }
 
-    if (isNerve(&NrvSnakehead::SnakeheadNrvTurtleDown::sInstance)) {
+    if (isNerve(GET_NERVE(Snakehead, SnakeheadNrvTurtleDown))) {
         return false;
     }
 
@@ -319,7 +319,7 @@ bool Snakehead::tryDPDSwoon() {
         return false;
     }
 
-    setNerve(&NrvSnakehead::SnakeheadNrvDPDSwoon::sInstance);
+    setNerve(GET_NERVE(Snakehead, SnakeheadNrvDPDSwoon));
     return true;
 }
 
@@ -338,5 +338,5 @@ void Snakehead::endDPDSwoon() {
 }
 
 void Snakehead::exeDPDSwoon() {
-    MR::updateActorStateAndNextNerve(this, mStarPointer, &NrvSnakehead::SnakeheadNrvMoveBack::sInstance);
+    MR::updateActorStateAndNextNerve(this, mStarPointer, GET_NERVE(Snakehead, SnakeheadNrvMoveBack));
 }

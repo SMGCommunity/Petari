@@ -41,7 +41,7 @@ void BallRail::init(const JMapInfoIter& rIter) {
     offs.x = 0.0f;
     offs.z = 0.0f;
     MR::addHitSensor(this, "bind", ATYPE_BALL_RAIL, 8, _AC, offs);
-    initNerve(&NrvBallRail::BallRailNrvWait::sInstance);
+    initNerve(GET_NERVE(BallRail, BallRailNrvWait));
     appear();
 }
 
@@ -49,7 +49,7 @@ void BallRail::control() {
 }
 
 bool BallRail::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (msg == ACTMES_SPHERE_PLAYER_BINDED && isNerve(&NrvBallRail::BallRailNrvWait::sInstance)) {
+    if (msg == ACTMES_SPHERE_PLAYER_BINDED && isNerve(GET_NERVE(BallRail, BallRailNrvWait))) {
         TVec3f v9(pSender->mHost->mVelocity);
         TVec3f v8 = pSender->mPosition - pReceiver->mPosition;
 
@@ -120,7 +120,7 @@ void BallRail::exeWait() {
     MR::moveTransToCurrentRailPos(this);
 
     if (_90 != nullptr) {
-        setNerve(&NrvBallRail::BallRailNrvSetUp::sInstance);
+        setNerve(GET_NERVE(BallRail, BallRailNrvSetUp));
     }
 }
 
@@ -152,7 +152,7 @@ void BallRail::exeSetUp() {
     _90->mHost->mVelocity.set(v7 - _90->mPosition);
 
     if (MR::isGreaterStep(this, 45)) {
-        setNerve(&NrvBallRail::BallRailNrvRun::sInstance);
+        setNerve(GET_NERVE(BallRail, BallRailNrvRun));
     }
 }
 
@@ -186,13 +186,13 @@ void BallRail::exeRun() {
         host->mVelocity.set(MR::getRailDirection(this) * MR::getRailCoordSpeed(this));
         getSensor("bind")->receiveMessage(ACTMES_END_BALL_RAIL, _90);
         _90 = nullptr;
-        setNerve(&NrvBallRail::BallRailNrvNoBind::sInstance);
+        setNerve(GET_NERVE(BallRail, BallRailNrvNoBind));
     }
 }
 
 void BallRail::exeNoBind() {
     if (getNerveStep() > 60) {
-        setNerve(&NrvBallRail::BallRailNrvWait::sInstance);
+        setNerve(GET_NERVE(BallRail, BallRailNrvWait));
     }
 }
 

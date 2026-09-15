@@ -116,7 +116,7 @@ void BenefitItemObj::init(const JMapInfoIter& rIter) {
     MR::setClippingFar100m(this);
     MR::setClippingTypeSphere(this, 100.0f);
 
-    initNerve(&NrvBenefitItemObj::HostTypeNrvWait::sInstance);
+    initNerve(GET_NERVE(BenefitItemObj, HostTypeNrvWait));
 
     _DF = 1;
     _D9 = 0;
@@ -318,7 +318,7 @@ void BenefitItemObj::appear() {
     switch (_D9) {
     case 0:
         if (_DA) {
-            setNerve(&NrvBenefitItemObj::HostTypeNrvPreEscape::sInstance);
+            setNerve(GET_NERVE(BenefitItemObj, HostTypeNrvPreEscape));
         }
 
         MR::validateHitSensors(this);

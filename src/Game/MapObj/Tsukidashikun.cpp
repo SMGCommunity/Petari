@@ -41,7 +41,7 @@ void Tsukidashikun::init(const JMapInfoIter& rIter) {
     info.setupEffect(0);
     info.setupSound(4);
     info.setupGroupClipping(8);
-    info.setupNerve(&NrvTsukidashikun::TsukidashikunNrvRelax::sInstance);
+    info.setupNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvRelax));
     initialize(rIter, info);
     MR::initLightCtrl(this);
     MR::getJMapInfoArg0NoInit(rIter, &mMoveSpeed);
@@ -51,7 +51,7 @@ void Tsukidashikun::init(const JMapInfoIter& rIter) {
 
 void Tsukidashikun::exeWait() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvTsukidashikun::TsukidashikunNrvWaitBack::sInstance)) {
+        if (isNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvWaitBack))) {
             MR::startBva(this, "BWait");
         } else {
             MR::startBva(this, "FWait");
@@ -59,10 +59,10 @@ void Tsukidashikun::exeWait() {
     }
 
     if (MR::isGreaterEqualStep(this, mWaitTimer)) {
-        if (isNerve(&NrvTsukidashikun::TsukidashikunNrvWaitBack::sInstance)) {
-            setNerve(&NrvTsukidashikun::TsukidashikunNrvSignForward::sInstance);
+        if (isNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvWaitBack))) {
+            setNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvSignForward));
         } else {
-            setNerve(&NrvTsukidashikun::TsukidashikunNrvSignBack::sInstance);
+            setNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvSignBack));
         }
     }
 }
@@ -71,7 +71,7 @@ void Tsukidashikun::exeSign() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "BWait", nullptr);
 
-        if (isNerve(&NrvTsukidashikun::TsukidashikunNrvSignForward::sInstance)) {
+        if (isNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvSignForward))) {
             MR::startBva(this, "FSign");
         } else {
             MR::startBva(this, "BSign");
@@ -90,10 +90,10 @@ void Tsukidashikun::exeSign() {
     if (MR::isStep(this, ::sStepForSign)) {
         MR::setBckFrameAndStop(this, 0.0f);
 
-        if (isNerve(&NrvTsukidashikun::TsukidashikunNrvSignForward::sInstance)) {
-            setNerve(&NrvTsukidashikun::TsukidashikunNrvMoveForward::sInstance);
+        if (isNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvSignForward))) {
+            setNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvMoveForward));
         } else {
-            setNerve(&NrvTsukidashikun::TsukidashikunNrvMoveBack::sInstance);
+            setNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvMoveBack));
         }
     }
 }
@@ -110,10 +110,10 @@ void Tsukidashikun::exeMove() {
         MR::startLevelSound(this, "SE_OJ_TSUKIDASHI_STOP");
         MR::reverseRailDirection(this);
 
-        if (isNerve(&NrvTsukidashikun::TsukidashikunNrvMoveForward::sInstance)) {
-            setNerve(&NrvTsukidashikun::TsukidashikunNrvWaitForward::sInstance);
+        if (isNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvMoveForward))) {
+            setNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvWaitForward));
         } else {
-            setNerve(&NrvTsukidashikun::TsukidashikunNrvWaitBack::sInstance);
+            setNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvWaitBack));
         }
     }
 }
@@ -133,9 +133,9 @@ void Tsukidashikun::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
 }
 
 void Tsukidashikun::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {
-    setNerve(&NrvTsukidashikun::TsukidashikunNrvWaitBack::sInstance);
+    setNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvWaitBack));
 }
 
 void Tsukidashikun::startMove() {
-    setNerve(&NrvTsukidashikun::TsukidashikunNrvWaitBack::sInstance);
+    setNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvWaitBack));
 }

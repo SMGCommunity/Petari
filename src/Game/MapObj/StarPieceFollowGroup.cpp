@@ -37,7 +37,7 @@ void StarPieceFollowGroup::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg1NoInit(rIter, &mTimeLimit);
     MR::getJMapInfoArg2NoInit(rIter, &mRadius);
 
-    initNerve(&NrvStarPieceFollowGroup::HostTypeNrvFollowEnd::sInstance);
+    initNerve(GET_NERVE(StarPieceFollowGroup, HostTypeNrvFollowEnd));
 
     mPieces = new StarPiece*[mNumPiecesTotal];
     _90 = new TVec3f[mNumPiecesTotal];
@@ -183,7 +183,7 @@ void StarPieceFollowGroup::allKillPieces() {
 
 void StarPieceFollowGroup::onSwitchA() {
     if (beginFollowPieces()) {
-        setNerve(&NrvStarPieceFollowGroup::HostTypeNrvFollowToPlayer::sInstance);
+        setNerve(GET_NERVE(StarPieceFollowGroup, HostTypeNrvFollowToPlayer));
         appear();
     } else {
         kill();
@@ -201,7 +201,7 @@ void StarPieceFollowGroup::exeFollowToPlayer() {
     mAngle += 0.025f;
 
     if (MR::isGreaterStep(this, mTimeLimit)) {
-        setNerve(&NrvStarPieceFollowGroup::HostTypeNrvFollowEnd::sInstance);
+        setNerve(GET_NERVE(StarPieceFollowGroup, HostTypeNrvFollowEnd));
     }
 }
 

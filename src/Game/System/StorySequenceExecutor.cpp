@@ -496,7 +496,7 @@ StorySequenceExecutor::StorySequenceExecutor()
     mStageName[0] = '\0';
     mScenarioNo = -1;
 
-    initNerve(&::StorySequenceExecutorIdle::sInstance);
+    initNerve(GET_NERVE_ANON(StorySequenceExecutorIdle));
 }
 
 void StorySequenceExecutor::update() {
@@ -614,7 +614,7 @@ void StorySequenceExecutor::forceStop() {
     _B0 = false;
     mNextNerve = nullptr;
 
-    setNerve(&::StorySequenceExecutorIdle::sInstance);
+    setNerve(GET_NERVE_ANON(StorySequenceExecutorIdle));
 }
 
 void StorySequenceExecutor::exeIdle() {
@@ -632,21 +632,21 @@ void StorySequenceExecutor::exePlayDemoSequence() {
     switch (pDemoInfo->_0) {
     case 0:
         if (tryStartDemo(pDemoInfo->_4)) {
-            setNerve(&::StorySequenceExecutorWaitTimeKeepDemoEnd::sInstance);
+            setNerve(GET_NERVE_ANON(StorySequenceExecutorWaitTimeKeepDemoEnd));
         }
         break;
     case 1:
         if (tryStartFadein()) {
             _48[0]++;
 
-            setNerve(&::StorySequenceExecutorPlayDemoSequence::sInstance);
+            setNerve(GET_NERVE_ANON(StorySequenceExecutorPlayDemoSequence));
         }
         break;
     case 2:
         if (tryStartMovieAndWaitEnd(pDemoInfo->_2)) {
             _48[0]++;
 
-            setNerve(&::StorySequenceExecutorPlayDemoSequence::sInstance);
+            setNerve(GET_NERVE_ANON(StorySequenceExecutorPlayDemoSequence));
         }
         break;
     case 3:
@@ -658,7 +658,7 @@ void StorySequenceExecutor::exePlayDemoSequence() {
         break;
     case 5:
         if (tryStartSave()) {
-            setNerve(&::StorySequenceExecutorWaitSaveEnd::sInstance);
+            setNerve(GET_NERVE_ANON(StorySequenceExecutorWaitSaveEnd));
         }
         break;
     case 6:
@@ -679,7 +679,7 @@ void StorySequenceExecutor::exePlayDemoSequence() {
         break;
     case 9:
         GameSceneFunction::requestStaffRoll();
-        setNerve(&::StorySequenceExecutorStaffRollSequence::sInstance);
+        setNerve(GET_NERVE_ANON(StorySequenceExecutorStaffRollSequence));
         break;
     case 10:
         if (pDemoInfo->_2 == 14) {
@@ -707,7 +707,7 @@ void StorySequenceExecutor::exePlayDemoSequence() {
 
             _B0 = false;
 
-            setNerve(&::StorySequenceExecutorIdle::sInstance);
+            setNerve(GET_NERVE_ANON(StorySequenceExecutorIdle));
         }
         break;
     case 13:
@@ -717,9 +717,9 @@ void StorySequenceExecutor::exePlayDemoSequence() {
             const Nerve* pNerve;
 
             if (_B0) {
-                pNerve = &::StorySequenceExecutorFadeinAfterSequence::sInstance;
+                pNerve = GET_NERVE_ANON(StorySequenceExecutorFadeinAfterSequence);
             } else {
-                pNerve = &::StorySequenceExecutorStartSaveAfterSequence::sInstance;
+                pNerve = GET_NERVE_ANON(StorySequenceExecutorStartSaveAfterSequence);
             }
 
             setNerve(pNerve);
@@ -741,7 +741,7 @@ void StorySequenceExecutor::exeWaitTimeKeepDemoEnd() {
 
     _48[0]++;
 
-    setNerve(&::StorySequenceExecutorPlayDemoSequence::sInstance);
+    setNerve(GET_NERVE_ANON(StorySequenceExecutorPlayDemoSequence));
 }
 
 void StorySequenceExecutor::exeWaitSaveEnd() {
@@ -753,18 +753,18 @@ void StorySequenceExecutor::exeWaitSaveEnd() {
 
     _48[0]++;
 
-    setNerve(&::StorySequenceExecutorPlayDemoSequence::sInstance);
+    setNerve(GET_NERVE_ANON(StorySequenceExecutorPlayDemoSequence));
 }
 
 void StorySequenceExecutor::exeStartSaveAfterSequence() {
     if (tryStartSave()) {
-        setNerve(&::StorySequenceExecutorWaitSaveEndAfterSequence::sInstance);
+        setNerve(GET_NERVE_ANON(StorySequenceExecutorWaitSaveEndAfterSequence));
     }
 }
 
 void StorySequenceExecutor::exeWaitSaveEndAfterSequence() {
     if (tryWaitSaveEnd()) {
-        setNerve(&::StorySequenceExecutorFadeinAfterSequence::sInstance);
+        setNerve(GET_NERVE_ANON(StorySequenceExecutorFadeinAfterSequence));
     }
 }
 
@@ -779,7 +779,7 @@ void StorySequenceExecutor::exeFadeinAfterSequence() {
     _B0 = false;
 
     MR::endStartPosCamera();
-    setNerve(&::StorySequenceExecutorIdle::sInstance);
+    setNerve(GET_NERVE_ANON(StorySequenceExecutorIdle));
 }
 
 void StorySequenceExecutor::exeStaffRollSequence() {
@@ -807,7 +807,7 @@ void StorySequenceExecutor::exeStaffRollSequence() {
 
     _48[0]++;
 
-    setNerve(&::StorySequenceExecutorPlayDemoSequence::sInstance);
+    setNerve(GET_NERVE_ANON(StorySequenceExecutorPlayDemoSequence));
 }
 
 void StorySequenceExecutor::decideNextEventForClearGalaxy(GalaxyMoveArgument* pMoveArgument) {
@@ -936,9 +936,9 @@ void StorySequenceExecutor::decideNextEventForClearGalaxy(GalaxyMoveArgument* pM
             prepareDemoSequence(arr);
         }
     } else {
-        mNextNerve = &::StorySequenceExecutorIdle::sInstance;
+        mNextNerve = GET_NERVE_ANON(StorySequenceExecutorIdle);
 
-        setNerve(&::StorySequenceExecutorWaitToSceneStart::sInstance);
+        setNerve(GET_NERVE_ANON(StorySequenceExecutorWaitToSceneStart));
     }
 }
 
@@ -1078,9 +1078,9 @@ bool StorySequenceExecutor::isEqualStageStopCometScheduler(const char* pStageNam
 void StorySequenceExecutor::prepareDemoSequence(const StorySequenceExecutorType::DemoSequenceInfo* pDemoInfo) {
     _48.push_back(pDemoInfo);
 
-    mNextNerve = &::StorySequenceExecutorPlayDemoSequence::sInstance;
+    mNextNerve = GET_NERVE_ANON(StorySequenceExecutorPlayDemoSequence);
 
-    setNerve(&::StorySequenceExecutorWaitToSceneStart::sInstance);
+    setNerve(GET_NERVE_ANON(StorySequenceExecutorWaitToSceneStart));
 }
 
 void StorySequenceExecutor::prepareDemoSequence(

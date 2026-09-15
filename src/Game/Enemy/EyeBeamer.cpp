@@ -73,9 +73,9 @@ void EyeBeamer::init(const JMapInfoIter& rIter) {
         MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &EyeBeamer::requestStartPatrol));
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
-        MR::registerDemoActionNerve(this, &NrvEyeBeamer::EyeBeamerNrvDemoTurn::sInstance, "アイビーマー回転");
-        MR::registerDemoActionNerve(this, &NrvEyeBeamer::EyeBeamerNrvDemoGotoPatrol::sInstance, "アイビーマー降下");
-        setNerve(&NrvEyeBeamer::EyeBeamerNrvDemoStartWait::sInstance);
+        MR::registerDemoActionNerve(this, GET_NERVE(EyeBeamer, EyeBeamerNrvDemoTurn), "アイビーマー回転");
+        MR::registerDemoActionNerve(this, GET_NERVE(EyeBeamer, EyeBeamerNrvDemoGotoPatrol), "アイビーマー降下");
+        setNerve(GET_NERVE(EyeBeamer, EyeBeamerNrvDemoStartWait));
     }
     MR::setGroupClipping(this, rIter, 0x20);
     MR::startBck(this, "EyeBeamer", 0);
@@ -88,13 +88,13 @@ void EyeBeamer::initStartNerve(const JMapInfoIter& rIter) {
 
     switch (arg) {
     case -1:
-        initNerve(&NrvEyeBeamer::EyeBeamerNrvWait::sInstance);
+        initNerve(GET_NERVE(EyeBeamer, EyeBeamerNrvWait));
         break;
     case 0:
-        initNerve(&NrvEyeBeamer::EyeBeamerNrvPatrol::sInstance);
+        initNerve(GET_NERVE(EyeBeamer, EyeBeamerNrvPatrol));
         break;
     default:
-        initNerve(&NrvEyeBeamer::EyeBeamerNrvWait::sInstance);
+        initNerve(GET_NERVE(EyeBeamer, EyeBeamerNrvWait));
         break;
     }
 }
@@ -226,15 +226,15 @@ void EyeBeamer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 void EyeBeamer::requestStartPatrol() {
-    if (isNerve(&NrvEyeBeamer::EyeBeamerNrvWait::sInstance)) {
-        setNerve(&NrvEyeBeamer::EyeBeamerNrvTurn::sInstance);
+    if (isNerve(GET_NERVE(EyeBeamer, EyeBeamerNrvWait))) {
+        setNerve(GET_NERVE(EyeBeamer, EyeBeamerNrvTurn));
         MR::invalidateClipping(this);
     }
 }
 
 bool EyeBeamer::tryGotoPatrol() {
     if (MR::isGreaterStep(this, 300)) {
-        setNerve(&NrvEyeBeamer::EyeBeamerNrvGotoPatrol::sInstance);
+        setNerve(GET_NERVE(EyeBeamer, EyeBeamerNrvGotoPatrol));
         return true;
     }
     return false;
@@ -242,7 +242,7 @@ bool EyeBeamer::tryGotoPatrol() {
 
 bool EyeBeamer::tryPatrol() {
     if (MR::isGreaterStep(this, 500)) {
-        setNerve(&NrvEyeBeamer::EyeBeamerNrvPatrol::sInstance);
+        setNerve(GET_NERVE(EyeBeamer, EyeBeamerNrvPatrol));
         return true;
     }
     return false;
@@ -253,7 +253,7 @@ void EyeBeamer::exeDemoStartWait() {
 
 void EyeBeamer::exeDemoWait() {
     if (MR::isDemoLastStep()) {
-        setNerve(&NrvEyeBeamer::EyeBeamerNrvPatrol::sInstance);
+        setNerve(GET_NERVE(EyeBeamer, EyeBeamerNrvPatrol));
     }
 }
 
@@ -275,7 +275,7 @@ void EyeBeamer::exeDemoTurn() {
         _CC.getXDir(stack_8);
         stack_14.setRotate(stack_8, PI);
         PSQUATMultiply((Quaternion*)&stack_14, (Quaternion*)&_CC, (Quaternion*)&_DC);
-        setNerve(&NrvEyeBeamer::EyeBeamerNrvDemoWait::sInstance);
+        setNerve(GET_NERVE(EyeBeamer, EyeBeamerNrvDemoWait));
     }
 }
 
@@ -284,7 +284,7 @@ void EyeBeamer::exeDemoGotoPatrol() {
     f32 easeInOut = MR::getEaseInOutValue(rate, 0.0f, 1.0f, 1.0f);
     MR::vecBlend(_F8, _104, &_EC, easeInOut);
     if (MR::isDemoPartLastStep("アイビーマー降下"))
-        setNerve(&NrvEyeBeamer::EyeBeamerNrvDemoWait::sInstance);
+        setNerve(GET_NERVE(EyeBeamer, EyeBeamerNrvDemoWait));
 }
 
 void EyeBeamer::exeWait() {
@@ -359,8 +359,8 @@ bool EyeBeamer::isInBeamRange(const TVec3f& rVec) const {
 }
 
 bool EyeBeamer::isOnBeam() const {
-    if (isNerve(&NrvEyeBeamer::EyeBeamerNrvDemoStartWait::sInstance) || isNerve(&NrvEyeBeamer::EyeBeamerNrvWait::sInstance) ||
-        isNerve(&NrvEyeBeamer::EyeBeamerNrvPatrol::sInstance))
+    if (isNerve(GET_NERVE(EyeBeamer, EyeBeamerNrvDemoStartWait)) || isNerve(GET_NERVE(EyeBeamer, EyeBeamerNrvWait)) ||
+        isNerve(GET_NERVE(EyeBeamer, EyeBeamerNrvPatrol)))
         return true;
 
     return false;

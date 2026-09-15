@@ -15,8 +15,6 @@ public:
     virtual MtxPtr getBaseMtx() const {
         return (MtxPtr)&mBaseMtx;
     }
-    virtual void startClipped();
-    virtual void endClipped();
 
     void updateGrowUp(const TVec3f&, const TVec3f&, f32, f32);
     bool updateSpring(const TVec3f&, f32, f32);
@@ -26,12 +24,10 @@ public:
         return (MtxPtr)&mPosMtx;
     }
 
-    /* 0x8C */ f32 mSpringVel;    // first-order spring differential
-    /* 0x90 */ f32 mSpringAccel;  // second-order spring differential
-
+    /* 0x8C */ f32 mSpringCoord;
+    /* 0x90 */ f32 mSpringSpeed;
     /* 0x94 */ f32 mLeafCoord;
     /* 0x98 */ f32 mLeafSize;
-
     /* 0x9C */ TVec3f mSide;
     /* 0xA8 */ TVec3f mUp;
     /* 0xB4 */ TVec3f mFront;

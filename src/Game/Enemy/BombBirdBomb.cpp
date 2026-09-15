@@ -49,7 +49,7 @@ void BombBirdBomb::init(const JMapInfoIter& rIter) {
     initSound(3, false);
     f32 radius = getSensor("body")->mRadius;
     MR::initShadowVolumeSphere(this, radius);
-    initNerve(&NrvBombBirdBomb::HostTypeNrvHold::sInstance);
+    initNerve(GET_NERVE(BombBirdBomb, HostTypeNrvHold));
     MR::invalidateClipping(this);
     makeActorDead();
 }
@@ -73,7 +73,7 @@ void BombBirdBomb::hold(const TVec3f& rPos) {
     MR::resetPosition(this, rPos);
     appear();
     MR::showModel(this);
-    setNerve(&NrvBombBirdBomb::HostTypeNrvHold::sInstance);
+    setNerve(GET_NERVE(BombBirdBomb, HostTypeNrvHold));
 }
 
 void BombBirdBomb::start(const TVec3f& rTrans, const TVec3f& rVelocity) {
@@ -81,13 +81,13 @@ void BombBirdBomb::start(const TVec3f& rTrans, const TVec3f& rVelocity) {
     MR::showModel(this);
     MR::validateHitSensor(this, "body");
     MR::invalidateHitSensor(this, "bomb");
-    setNerve(&NrvBombBirdBomb::HostTypeNrvWait::sInstance);
+    setNerve(GET_NERVE(BombBirdBomb, HostTypeNrvWait));
     mVelocity.set(rVelocity);
     MR::emitEffect(this, "LocusSmoke");
 }
 
 void BombBirdBomb::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvBombBirdBomb::HostTypeNrvExplosion::sInstance) && MR::isSensorEnemyAttack(pSender)) {
+    if (isNerve(GET_NERVE(BombBirdBomb, HostTypeNrvExplosion)) && MR::isSensorEnemyAttack(pSender)) {
         MR::sendMsgEnemyAttackExplosion(pReceiver, pSender);
         return;
     }
@@ -96,7 +96,7 @@ void BombBirdBomb::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    if (!isNerve(&NrvBombBirdBomb::HostTypeNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(BombBirdBomb, HostTypeNrvWait))) {
         return;
     }
 
@@ -150,7 +150,7 @@ void BombBirdBomb::exeWait() {
     }
 
     if (MR::isGreaterStep(this, ::sWaitTime)) {
-        setNerve(&NrvBombBirdBomb::HostTypeNrvExplosion::sInstance);
+        setNerve(GET_NERVE(BombBirdBomb, HostTypeNrvExplosion));
     }
 }
 

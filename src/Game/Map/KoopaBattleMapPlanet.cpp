@@ -64,7 +64,7 @@ void KoopaBattleMapPlanet::init(const JMapInfoIter& rIter) {
     MR::setClippingTypeSphere(this, 100.0f + boundingRadius);
     MR::setClippingFarMax(this);
 
-    initNerve(&NrvKoopaBattleMapPlanet::KoopaBattleMapPlanetNrvWait::sInstance);
+    initNerve(GET_NERVE(KoopaBattleMapPlanet, KoopaBattleMapPlanetNrvWait));
 
     if (!_DE) {
         createPlate();
@@ -80,7 +80,7 @@ void KoopaBattleMapPlanet::init(const JMapInfoIter& rIter) {
 }
 
 void KoopaBattleMapPlanet::startAnimPowerStarAppear() {
-    setNerve(&NrvKoopaBattleMapPlanet::KoopaBattleMapPlanetNrvDemoGrandStarAppear::sInstance);
+    setNerve(GET_NERVE(KoopaBattleMapPlanet, KoopaBattleMapPlanetNrvDemoGrandStarAppear));
 }
 
 void KoopaBattleMapPlanet::exeWait() {

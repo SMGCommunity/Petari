@@ -24,13 +24,13 @@ void SnowCapsulePlanet::init(const JMapInfoIter& rIter) {
     MapObjActorUtil::setupInitInfoPlanet(&info);
     info.setupHitSensor();
     info.setupSound(6);
-    info.setupNerve(&NrvSnowCapsulePlanet::SnowCapsulePlanetNrvCloseWait::sInstance);
+    info.setupNerve(GET_NERVE(SnowCapsulePlanet, SnowCapsulePlanetNrvCloseWait));
     initialize(rIter, info);
     mDoor1 = MR::createCollisionPartsFromLiveActor(this, "Open", getSensor("body"), MR::CollisionScaleType_Unk2);
     mDoor2 = MR::createCollisionPartsFromLiveActor(this, "Close", getSensor("body"), MR::CollisionScaleType_Unk2);
     MR::validateCollisionParts(mDoor2);
     if (MR::isDemoCast(this, nullptr)) {
-        MR::tryRegisterDemoActionNerve(this, &NrvSnowCapsulePlanet::SnowCapsulePlanetNrvOpen::sInstance, nullptr);
+        MR::tryRegisterDemoActionNerve(this, GET_NERVE(SnowCapsulePlanet, SnowCapsulePlanetNrvOpen), nullptr);
     }
 }
 
@@ -51,6 +51,6 @@ void SnowCapsulePlanet::exeOpen() {
 
     if (MR::isBckStopped(this)) {
         MR::startSystemSE("SE_SY_READ_RIDDLE_S");
-        setNerve(&NrvSnowCapsulePlanet::SnowCapsulePlanetNrvOpenWait::sInstance);
+        setNerve(GET_NERVE(SnowCapsulePlanet, SnowCapsulePlanetNrvOpenWait));
     }
 }

@@ -161,9 +161,9 @@ bool JumpGuarder::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
             MR::calcUpVec(&upVec, this);
             MR::setPlayerJumpVec(upVec);
             startEventCamera();
-            setNerve(&NrvJumpGuarder::JumpGuarderNrvHopJump::sInstance);
+            setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvHopJump));
         } else {
-            setNerve(&NrvJumpGuarder::JumpGuarderNrvHopStart::sInstance);
+            setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvHopStart));
         }
 
         return true;
@@ -175,8 +175,8 @@ bool JumpGuarder::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
     }
 
     if (MR::isMsgPlayerSpinAttack(msg)) {
-        if (!isNerve(&NrvJumpGuarder::JumpGuarderNrvHopStart::sInstance)) {
-            setNerve(&NrvJumpGuarder::JumpGuarderNrvHopStart::sInstance);
+        if (!isNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvHopStart))) {
+            setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvHopStart));
         }
 
         return true;
@@ -188,12 +188,12 @@ bool JumpGuarder::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
 bool JumpGuarder::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_GROUP_ATTACK) {
         MR::invalidateClipping(this);
-        setNerve(&NrvJumpGuarder::JumpGuarderNrvUp::sInstance);
+        setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvUp));
         return true;
     }
 
     if (msg == ACTMES_GROUP_HIDE) {
-        setNerve(&NrvJumpGuarder::JumpGuarderNrvDown::sInstance);
+        setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvDown));
         return true;
     }
 
@@ -244,7 +244,7 @@ void JumpGuarder::exeUp() {
 
     if (MR::isBckStopped(this)) {
         MR::setShadowVolumeSphereRadius(this, nullptr, ::sHideShadowRadius);
-        setNerve(&NrvJumpGuarder::JumpGuarderNrvWait::sInstance);
+        setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvWait));
     }
 }
 
@@ -254,7 +254,7 @@ void JumpGuarder::exeWait() {
     if (!MR::enableGroupAttack(this, ::sAppearDistance, ::sAppearHeight)) {
         MR::sendMsgToGroupMember(ACTMES_GROUP_HIDE, this, getSensor("Body"), "Body");
     } else if (enableAttack()) {
-        setNerve(&NrvJumpGuarder::JumpGuarderNrvPreOpen::sInstance);
+        setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvPreOpen));
     }
 }
 
@@ -268,7 +268,7 @@ void JumpGuarder::exeDown() {
     MR::setShadowVolumeSphereRadius(this, nullptr, (::sShadowRadius - ::sHideShadowRadius) * ratio + ::sHideShadowRadius);
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvJumpGuarder::JumpGuarderNrvHide::sInstance);
+        setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvHide));
     }
 }
 
@@ -293,7 +293,7 @@ void JumpGuarder::exeHopStart() {
     }
 
     if (MR::isBckStopped(mHeadModel)) {
-        setNerve(&NrvJumpGuarder::JumpGuarderNrvHopWait::sInstance);
+        setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvHopWait));
     }
 }
 
@@ -307,7 +307,7 @@ void JumpGuarder::exeHopWait() {
     MR::startLevelSound(this, "SE_EM_LV_JGUARDER_SHAKE");
 
     if (MR::isStep(this, ::sHopStep)) {
-        setNerve(&NrvJumpGuarder::JumpGuarderNrvHopEnd::sInstance);
+        setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvHopEnd));
     }
 }
 
@@ -318,7 +318,7 @@ void JumpGuarder::exeHopJump() {
     }
 
     if (MR::isBckStopped(mHeadModel)) {
-        setNerve(&NrvJumpGuarder::JumpGuarderNrvHopWait::sInstance);
+        setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvHopWait));
     }
 }
 
@@ -334,7 +334,7 @@ void JumpGuarder::exeHopEnd() {
         HitSensor* body = getSensor("Body");
         body->mRadius = 145.0f;
         getSensor("Jump")->invalidate();
-        setNerve(&NrvJumpGuarder::JumpGuarderNrvWait::sInstance);
+        setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvWait));
     }
 }
 
@@ -344,7 +344,7 @@ void JumpGuarder::exePreOpen() {
     if (!MR::enableGroupAttack(this, ::sAppearDistance, ::sAppearHeight)) {
         MR::sendMsgToGroupMember(ACTMES_GROUP_HIDE, this, getSensor("Body"), "Body");
     } else if (MR::isStep(this, 0)) {
-        setNerve(&NrvJumpGuarder::JumpGuarderNrvOpen::sInstance);
+        setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvOpen));
     }
 }
 
@@ -426,7 +426,7 @@ void JumpGuarder::exeOpen() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvJumpGuarder::JumpGuarderNrvClose::sInstance);
+        setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvClose));
     }
 }
 
@@ -438,7 +438,7 @@ void JumpGuarder::exeClose() {
     MR::startLevelSound(this, "SE_EM_LV_JGUARDER_SHUTTER_CLOSE");
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvJumpGuarder::JumpGuarderNrvInter::sInstance);
+        setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvInter));
     }
 }
 
@@ -448,7 +448,7 @@ void JumpGuarder::exeInter() {
     if (!MR::enableGroupAttack(this, ::sDisappearDistance, ::sAppearHeight)) {
         MR::sendMsgToGroupMember(ACTMES_GROUP_HIDE, this, getSensor("Body"), "Body");
     } else {
-        setNerve(&NrvJumpGuarder::JumpGuarderNrvWait::sInstance);
+        setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvWait));
     }
 }
 
@@ -479,7 +479,7 @@ void JumpGuarder::init(const JMapInfoIter& rIter) {
     initEffectKeeper(1, nullptr, false);
     initSound(8, false);
     MR::invalidateClipping(this);
-    initNerve(&NrvJumpGuarder::JumpGuarderNrvHide::sInstance);
+    initNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvHide));
     MR::startBckWithInterpole(this, "Down", 0);
     MR::setBckFrame(this, MR::getBckCtrl(this)->getEnd() - 1);
     MR::calcAnimDirect(this);
@@ -526,14 +526,14 @@ void JumpGuarder::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorEnemy(pReceiver)) {
         if (isHit(pReceiver->mHost)) {
             MR::sendMsgEnemyAttack(pReceiver, pSender);
-            if (isNerve(&NrvJumpGuarder::JumpGuarderNrvWait::sInstance) && !MR::isOnGround(pReceiver->mHost)) {
+            if (isNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvWait)) && !MR::isOnGround(pReceiver->mHost)) {
                 MR::startBck(this, "Hit", nullptr);
                 MR::startSound(this, "SE_EM_JGUARDER_HIT");
             }
         }
     } else if (MR::isSensorPlayer(pReceiver)) {
         MR::sendMsgPush(pReceiver, pSender);
-        if ((isNerve(&NrvJumpGuarder::JumpGuarderNrvWait::sInstance) || isNerve(&NrvJumpGuarder::JumpGuarderNrvHopWait::sInstance)) &&
+        if ((isNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvWait)) || isNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvHopWait))) &&
             MR::isPlayerStaggering() && mBumpCooldown == 0) {
             mBumpCooldown = ::sHitInt;
             MR::startBck(this, "Hit", nullptr);

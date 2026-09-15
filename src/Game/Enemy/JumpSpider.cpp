@@ -91,7 +91,7 @@ void JumpSpider::init(const JMapInfoIter& rIter) {
     MR::addHitSensorEnemy(this, "body", 32, scaleY * 100.0f, offset1);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
-    initNerve(&NrvJumpSpider::HostTypeNrvWait::sInstance);
+    initNerve(GET_NERVE(JumpSpider, HostTypeNrvWait));
     TVec3f offset2;
     offset2.x = 0.0f;
     offset2.y = 80.0f;
@@ -146,11 +146,11 @@ void JumpSpider::endClipped() {
 
 void JumpSpider::control() {
     mScaleController->updateNerve();
-    if (!isNerve(&NrvJumpSpider::HostTypeNrvStampFall::sInstance) && !isNerve(&NrvJumpSpider::HostTypeNrvStampDeath::sInstance) &&
-        !isNerve(&NrvJumpSpider::HostTypeNrvHitBlow::sInstance) && !isNerve(&NrvJumpSpider::HostTypeNrvDpdPointed::sInstance) &&
-        !isNerve(&NrvJumpSpider::HostTypeNrvStarPieceHit::sInstance) && !isNerve(&NrvJumpSpider::HostTypeNrvStarPieceHitLand::sInstance) &&
-        !isNerve(&NrvJumpSpider::HostTypeNrvStarPieceHitWait::sInstance) && MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        setNerve(&NrvJumpSpider::HostTypeNrvDpdPointed::sInstance);
+    if (!isNerve(GET_NERVE(JumpSpider, HostTypeNrvStampFall)) && !isNerve(GET_NERVE(JumpSpider, HostTypeNrvStampDeath)) &&
+        !isNerve(GET_NERVE(JumpSpider, HostTypeNrvHitBlow)) && !isNerve(GET_NERVE(JumpSpider, HostTypeNrvDpdPointed)) &&
+        !isNerve(GET_NERVE(JumpSpider, HostTypeNrvStarPieceHit)) && !isNerve(GET_NERVE(JumpSpider, HostTypeNrvStarPieceHitLand)) &&
+        !isNerve(GET_NERVE(JumpSpider, HostTypeNrvStarPieceHitWait)) && MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
+        setNerve(GET_NERVE(JumpSpider, HostTypeNrvDpdPointed));
     }
 }
 
@@ -161,7 +161,7 @@ void JumpSpider::exeWait() {
 
     if (MR::calcDistanceToPlayer(this) < 1000.0f) {
         MR::startSound(this, "SE_EV_JUMPSPIDER_FIND");
-        setNerve(&NrvJumpSpider::HostTypeNrvPreJump::sInstance);
+        setNerve(GET_NERVE(JumpSpider, HostTypeNrvPreJump));
     }
 }
 
@@ -176,7 +176,7 @@ void JumpSpider::exePreJump() {
     MR::turnVecToVecRadian(&_94, _94, heightVec, 0.05f, mGravity);
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvJumpSpider::HostTypeNrvJump::sInstance);
+        setNerve(GET_NERVE(JumpSpider, HostTypeNrvJump));
     }
 }
 
@@ -197,7 +197,7 @@ void JumpSpider::exeJump() {
         mPosition.set(_A0);
         mVelocity.zero();
         MR::startBck(this, "JumpEnd", nullptr);
-        setNerve(&NrvJumpSpider::HostTypeNrvJumpEnd::sInstance);
+        setNerve(GET_NERVE(JumpSpider, HostTypeNrvJumpEnd));
     }
 }
 
@@ -209,9 +209,9 @@ void JumpSpider::exeJumpEnd() {
 
     if (MR::isBckStopped(this)) {
         if (1000.0f < MR::calcDistanceToPlayer(this)) {
-            setNerve(&NrvJumpSpider::HostTypeNrvWait::sInstance);
+            setNerve(GET_NERVE(JumpSpider, HostTypeNrvWait));
         } else {
-            setNerve(&NrvJumpSpider::HostTypeNrvPreJump::sInstance);
+            setNerve(GET_NERVE(JumpSpider, HostTypeNrvPreJump));
         }
     }
 }
@@ -233,7 +233,7 @@ void JumpSpider::exeHitToPlayer() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvJumpSpider::HostTypeNrvJump::sInstance);
+        setNerve(GET_NERVE(JumpSpider, HostTypeNrvJump));
     }
 }
 
@@ -246,7 +246,7 @@ void JumpSpider::exeStampFall() {
     if (MR::isOnGround(this)) {
         mVelocity.zero();
         mPosition.set(_A0);
-        setNerve(&NrvJumpSpider::HostTypeNrvStampDeath::sInstance);
+        setNerve(GET_NERVE(JumpSpider, HostTypeNrvStampDeath));
     }
 }
 
@@ -302,7 +302,7 @@ void JumpSpider::exeDpdPointed() {
     MR::startDPDFreezeLevelSound(this);
 
     if (!MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        setNerve(&NrvJumpSpider::HostTypeNrvDpdPointedEnd::sInstance);
+        setNerve(GET_NERVE(JumpSpider, HostTypeNrvDpdPointedEnd));
     } else {
         mVelocity.zero();
     }
@@ -325,14 +325,14 @@ void JumpSpider::exeNoPowerStart() {
         mPosition.set(_A0);
         MR::startSound(this, "SE_EM_JUMPSPIDER_LAND");
 
-        if (isNerve(&NrvJumpSpider::HostTypeNrvStarPieceHit::sInstance)) {
+        if (isNerve(GET_NERVE(JumpSpider, HostTypeNrvStarPieceHit))) {
             mPosition.set(_A0);
             mVelocity.zero();
             MR::startBck(this, "NoPowerLand", nullptr);
-            setNerve(&NrvJumpSpider::HostTypeNrvStarPieceHitLand::sInstance);
+            setNerve(GET_NERVE(JumpSpider, HostTypeNrvStarPieceHitLand));
         } else {
             MR::startBck(this, "NoPowerLand", nullptr);
-            setNerve(&NrvJumpSpider::HostTypeNrvDpdPointedLand::sInstance);
+            setNerve(GET_NERVE(JumpSpider, HostTypeNrvDpdPointedLand));
         }
     }
 }
@@ -345,10 +345,10 @@ void JumpSpider::exeNoPowerLand() {
     mPosition.set(_A0);
 
     if (MR::isBckStopped(this)) {
-        if (isNerve(&NrvJumpSpider::HostTypeNrvStarPieceHitLand::sInstance)) {
-            setNerve(&NrvJumpSpider::HostTypeNrvStarPieceHitWait::sInstance);
+        if (isNerve(GET_NERVE(JumpSpider, HostTypeNrvStarPieceHitLand))) {
+            setNerve(GET_NERVE(JumpSpider, HostTypeNrvStarPieceHitWait));
         } else {
-            setNerve(&NrvJumpSpider::HostTypeNrvNoPowerEnd::sInstance);
+            setNerve(GET_NERVE(JumpSpider, HostTypeNrvNoPowerEnd));
         }
     }
 }
@@ -363,7 +363,7 @@ void JumpSpider::exeNoPowerWait() {
     MR::startLevelSound(this, "SE_EM_LV_SWOON_S");
 
     if (MR::isGreaterStep(this, ::hNoPowerWaitTime)) {
-        setNerve(&NrvJumpSpider::HostTypeNrvNoPowerEnd::sInstance);
+        setNerve(GET_NERVE(JumpSpider, HostTypeNrvNoPowerEnd));
     }
 }
 
@@ -376,13 +376,13 @@ void JumpSpider::exeNoPowerEnd() {
     mPosition.set(_A0);
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvJumpSpider::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(JumpSpider, HostTypeNrvWait));
     }
 }
 
 void JumpSpider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvJumpSpider::HostTypeNrvHitBlow::sInstance) || isNerve(&NrvJumpSpider::HostTypeNrvStampDeath::sInstance) ||
-        isNerve(&NrvJumpSpider::HostTypeNrvStampFall::sInstance)) {
+    if (isNerve(GET_NERVE(JumpSpider, HostTypeNrvHitBlow)) || isNerve(GET_NERVE(JumpSpider, HostTypeNrvStampDeath)) ||
+        isNerve(GET_NERVE(JumpSpider, HostTypeNrvStampFall))) {
         return;
     }
 
@@ -395,11 +395,11 @@ void JumpSpider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             return;
         }
 
-        if (isNerve(&NrvJumpSpider::HostTypeNrvWait::sInstance) || isNerve(&NrvJumpSpider::HostTypeNrvJumpEnd::sInstance) ||
-            isNerve(&NrvJumpSpider::HostTypeNrvStarPieceHit::sInstance) || isNerve(&NrvJumpSpider::HostTypeNrvStarPieceHitLand::sInstance) ||
-            isNerve(&NrvJumpSpider::HostTypeNrvStarPieceHitWait::sInstance) || isNerve(&NrvJumpSpider::HostTypeNrvDpdPointed::sInstance) ||
-            isNerve(&NrvJumpSpider::HostTypeNrvDpdPointedLand::sInstance) || isNerve(&NrvJumpSpider::HostTypeNrvDpdPointedEnd::sInstance) ||
-            isNerve(&NrvJumpSpider::HostTypeNrvNoPowerEnd::sInstance)) {
+        if (isNerve(GET_NERVE(JumpSpider, HostTypeNrvWait)) || isNerve(GET_NERVE(JumpSpider, HostTypeNrvJumpEnd)) ||
+            isNerve(GET_NERVE(JumpSpider, HostTypeNrvStarPieceHit)) || isNerve(GET_NERVE(JumpSpider, HostTypeNrvStarPieceHitLand)) ||
+            isNerve(GET_NERVE(JumpSpider, HostTypeNrvStarPieceHitWait)) || isNerve(GET_NERVE(JumpSpider, HostTypeNrvDpdPointed)) ||
+            isNerve(GET_NERVE(JumpSpider, HostTypeNrvDpdPointedLand)) || isNerve(GET_NERVE(JumpSpider, HostTypeNrvDpdPointedEnd)) ||
+            isNerve(GET_NERVE(JumpSpider, HostTypeNrvNoPowerEnd))) {
             MR::sendMsgPush(pReceiver, pSender);
             return;
         }
@@ -410,7 +410,7 @@ void JumpSpider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         }
 
         if (MR::sendMsgEnemyAttack(pReceiver, pSender) == true) {
-            setNerve(&NrvJumpSpider::HostTypeNrvHitToPlayer::sInstance);
+            setNerve(GET_NERVE(JumpSpider, HostTypeNrvHitToPlayer));
         } else {
             MR::sendMsgPush(pReceiver, pSender);
         }
@@ -420,8 +420,8 @@ void JumpSpider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool JumpSpider::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvJumpSpider::HostTypeNrvHitBlow::sInstance) || isNerve(&NrvJumpSpider::HostTypeNrvStampDeath::sInstance) ||
-        isNerve(&NrvJumpSpider::HostTypeNrvStampFall::sInstance)) {
+    if (isNerve(GET_NERVE(JumpSpider, HostTypeNrvHitBlow)) || isNerve(GET_NERVE(JumpSpider, HostTypeNrvStampDeath)) ||
+        isNerve(GET_NERVE(JumpSpider, HostTypeNrvStampFall))) {
         return false;
     }
 
@@ -430,8 +430,8 @@ bool JumpSpider::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
     }
 
     if (MR::isMsgStarPieceAttack(msg)) {
-        if (!isNerve(&NrvJumpSpider::HostTypeNrvStarPieceHit::sInstance)) {
-            setNerve(&NrvJumpSpider::HostTypeNrvStarPieceHit::sInstance);
+        if (!isNerve(GET_NERVE(JumpSpider, HostTypeNrvStarPieceHit))) {
+            setNerve(GET_NERVE(JumpSpider, HostTypeNrvStarPieceHit));
         }
 
         return true;
@@ -442,9 +442,9 @@ bool JumpSpider::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
         MR::startSound(this, "SE_EV_JUMPSPIDER_DEAD");
 
         if (MR::isOnGround(this)) {
-            setNerve(&NrvJumpSpider::HostTypeNrvStampDeath::sInstance);
+            setNerve(GET_NERVE(JumpSpider, HostTypeNrvStampDeath));
         } else {
-            setNerve(&NrvJumpSpider::HostTypeNrvStampFall::sInstance);
+            setNerve(GET_NERVE(JumpSpider, HostTypeNrvStampFall));
         }
 
         return true;
@@ -452,7 +452,7 @@ bool JumpSpider::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
 
     if (MR::isMsgPlayerHitAll(msg)) {
         mSpinHitController->start(this, pSender->mPosition, pReceiver->mPosition);
-        setNerve(&NrvJumpSpider::HostTypeNrvHitBlow::sInstance);
+        setNerve(GET_NERVE(JumpSpider, HostTypeNrvHitBlow));
         return true;
     }
 
@@ -461,10 +461,10 @@ bool JumpSpider::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
 
 bool JumpSpider::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerKick(msg) &&
-        (isNerve(&NrvJumpSpider::HostTypeNrvStarPieceHit::sInstance) || isNerve(&NrvJumpSpider::HostTypeNrvStarPieceHitLand::sInstance) ||
-         isNerve(&NrvJumpSpider::HostTypeNrvStarPieceHitWait::sInstance))) {
+        (isNerve(GET_NERVE(JumpSpider, HostTypeNrvStarPieceHit)) || isNerve(GET_NERVE(JumpSpider, HostTypeNrvStarPieceHitLand)) ||
+         isNerve(GET_NERVE(JumpSpider, HostTypeNrvStarPieceHitWait)))) {
         mSpinHitController->start(this, pSender->mPosition, pReceiver->mPosition);
-        setNerve(&NrvJumpSpider::HostTypeNrvHitBlow::sInstance);
+        setNerve(GET_NERVE(JumpSpider, HostTypeNrvHitBlow));
         return true;
     }
 

@@ -27,7 +27,7 @@ void PicketSwitch::init(const JMapInfoIter& rIter) {
     MR::initCollisionPartsAutoEqualScale(this, pName, getSensor(0), MR::getJointMtx(this, "Picket"));
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
-    initNerve(&NrvPicketSwitch::PicketSwitchNrvWait::sInstance);
+    initNerve(GET_NERVE(PicketSwitch, PicketSwitchNrvWait));
     makeActorAppeared();
 }
 
@@ -64,13 +64,13 @@ void PicketSwitch::exeLastDrop() {
 bool PicketSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerHipDropFloor(msg)) {
         if (pReceiver->isType(ATYPE_SWITCH)) {
-            if (isNerve(&NrvPicketSwitch::PicketSwitchNrvWait::sInstance)) {
-                setNerve(&NrvPicketSwitch::PicketSwitchNrvLastDrop::sInstance);
+            if (isNerve(GET_NERVE(PicketSwitch, PicketSwitchNrvWait))) {
+                setNerve(GET_NERVE(PicketSwitch, PicketSwitchNrvLastDrop));
                 return true;
             }
-            if ((isNerve(&NrvPicketSwitch::PicketSwitchNrvFirstDrop::sInstance))) {
+            if ((isNerve(GET_NERVE(PicketSwitch, PicketSwitchNrvFirstDrop)))) {
                 if (MR::isBckStopped(this)) {
-                    setNerve(&NrvPicketSwitch::PicketSwitchNrvLastDrop::sInstance);
+                    setNerve(GET_NERVE(PicketSwitch, PicketSwitchNrvLastDrop));
                     return true;
                 }
             }
