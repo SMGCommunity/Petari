@@ -9,7 +9,7 @@ namespace {
     static const f32 sSinRate0 = 0.003f;
     static const f32 sSinRate1 = 0.0003f;
     static const f32 sSinRate2 = 0.0025f;
-    //static const f32 sMapCheckHeight;
+    static const f32 sMapCheckHeight = 400.0f;
     static const f32 sMapWaveRateMin = 0.1f;
     static const f32 sAlphaMin = 30.0f;
 };  // namespace
@@ -21,24 +21,24 @@ WaterPoint::WaterPoint(const TVec3f& rPos, const TVec3f& rUpVec, f32 coordAcross
 
 void WaterPoint::initAfterPlacement() {
     if (mHeight != 0.0f) {
-        TVec3f v9(mPosition.x, (200.0f + mPosition.y), mPosition.z);
-        TVec3f v8(0.0f, 0.0f, 0.0f);
+        TVec3f startCheckPos(mPosition.x, (::sMapCheckHeight/2.0f + mPosition.y), mPosition.z);
+        TVec3f mapCheckPos(0.0f, 0.0f, 0.0f);
 
-        if (MR::calcMapGround(v9, &v8, 400.0f)) {
-            f32 v2 = ((v8.y - mPosition.y) / 200.0f);
-            f32 v3 = MR::clamp((::sMapWaveRateMin + MR::abs(v2)), ::sMapWaveRateMin, 1.0f);
-            f32 v6 = MR::clamp((::sAlphaMin + (255.0f * -v2)), ::sAlphaMin, 255.0f);
-            mAlpha = v6;
-            mHeight = MR::min(v3, mHeight);
+        if (MR::calcMapGround(startCheckPos, &mapCheckPos, ::sMapCheckHeight)) {
+            f32 heightDiff = ((mapCheckPos.y - mPosition.y) / (::sMapCheckHeight / 2.0f));
+            f32 waveRate = MR::clamp((::sMapWaveRateMin + MR::abs(heightDiff)), ::sMapWaveRateMin, 1.0f);
+            mAlpha = MR::clamp((::sAlphaMin + (255.0f * -heightDiff)), ::sAlphaMin, 255.0f);
+            mHeight = MR::min(waveRate, mHeight);
         }
     }
 }
 
 void WaterPoint::updatePos(f32 waveTheta1, f32 waveTheta2, f32 waveHeight1, f32 waveHeight2, f32 a5) {
     f32 height = calcHeight(waveTheta1, waveTheta2, waveHeight1, waveHeight2, mCoordAcrossRail, mCoordOnRail);
+    // inlined TVec scale(f32, TVec3f)?
     f32 v9 = a5 * height;
     mPosition.x = mUpVec.x * v9;
-    mPosition.y = mUpVec.y * (a5 * height);
+    mPosition.y = mUpVec.y * v9;
     mPosition.z = mUpVec.z * v9;
     mPosition.add(mOrigPos);
 }
