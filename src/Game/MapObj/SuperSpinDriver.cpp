@@ -50,12 +50,18 @@ namespace NrvSuperSpinDriver {
     NEW_NERVE(SuperSpinDriverNrvCoolDown, SuperSpinDriver, CoolDown);
 };  // namespace NrvSuperSpinDriver
 
-// Fix TVec inlining
+// Fix JGeometry inlining
 void DUMMY() {
-    TVec3f a,b,c;
+    TVec3f a, b, c;
     c *= 1.0f;
     a += b;
     a = b - c;
+
+    TPos3f d;
+    d.setEulerY(1.0f);
+
+    TQuat4f e;
+    d.makeQuat(e);
 }
 
 SuperSpinDriver::SuperSpinDriver(const char* pName, s32 color)
@@ -290,9 +296,7 @@ void SuperSpinDriver::appear() {
 }
 
 void SuperSpinDriver::control() {
-    // TODO: Match/cleanup
-    // TODO: Generate cntlzw + srwi. instruction combo instead of a cmpwi for the MR::isNearPlayerAnyTime condition
-    if (!_174 && MR::isNearPlayerAnyTime(this, 350.0f)) {
+    if (!_174 && isFarPlayer()) {
         _174 = true;
     }
 
@@ -303,8 +307,7 @@ void SuperSpinDriver::control() {
     _17C = _178 == 1;
 
     mFrontAngle += _144;
-    f32 v5 = fmod(TWO_PI + mFrontAngle + PI, TWO_PI);
-    mFrontAngle = -PI + v5;
+    mFrontAngle = MR::repeat(mFrontAngle, -PI, TWO_PI);
     _144 *= 0.985f;
 }
 
@@ -396,7 +399,7 @@ bool SuperSpinDriver::canBind(HitSensor* pSender, HitSensor* pReceiver) const {
 bool SuperSpinDriver::tryEndCapture() {
     if (MR::isGreaterStep(this, 60) && _C4.distance(mPosition) < 15.0f) {
         cancelBind();
-        _174 = 0;
+        _174 = false;
         setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvWait::sInstance);
         return true;
     }
@@ -706,8 +709,7 @@ void SuperSpinDriver::exeShoot() {
 
         if (MR::hasME()) {
             MR::startSystemME("ME_MAGIC_L");
-        }
-        else {
+        } else {
             MR::startSystemSE("SE_SY_S_SPIN_DRV_ME_ALT");
         }
 
@@ -788,6 +790,19 @@ void SuperSpinDriver::endBind() {
     mSpinDriverCamera->end();
 }
 
+void SuperSpinDriver::updateBindActorPoseToShoot(f32 a1) {
+    TPos3f stack_18;
+    stack_18.identity();
+
+    MR::makeMtxUpFront(&stack_18, _100, _E8);
+
+    TQuat4f stack_8;
+    stack_18.makeQuat(stack_8);
+
+    _B4 = _A4;
+    _B4.slerp(stack_8, a1);
+}
+
 void SuperSpinDriver::startPathDraw() {
     if (mPathDrawer != nullptr) {
         if (MR::isDead(mPathDrawer)) {
@@ -815,6 +830,23 @@ void SuperSpinDriver::updatePathDraw(f32 coord) {
     if (mDrawPathRangeIdx >= 0) {
         MR::updateStorageSpinDriverPathDrawRange(mDrawPathRangeIdx, mPathDrawer->_B0);
     }
+}
+
+void SuperSpinDriver::updateOperateRate() {
+    f32 rate = 0.0f;
+
+    if (_17D && _154 > 0 && _158 > 0 && _15C > 0) {
+        if (MR::isLessStep(this, _154)) {
+            rate = 0.0f;
+        } else if (MR::isLessStep(this, _158)) {
+            s32 min = _154;
+            rate = MR::normalize(getNerveStep(), _154, _154 + MR::min(5, _15C - _158));
+        } else if (MR::isLessStep(this, _15C)) {
+            rate = 1.0f - MR::normalize(getNerveStep(), _158, _15C);
+        }
+    }
+
+    mOperateRing->setRadiusRate(rate);
 }
 
 void SuperSpinDriver::updateBindPosition(f32 coord) {
@@ -897,11 +929,15 @@ bool SuperSpinDriver::isRightToUse() const {
 }
 
 bool SuperSpinDriver::isNerveEnableBind() const {
-    return isNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvWait::sInstance) && MR::isGreaterStep(this, sCanBindTime);
+    return isNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvWait::sInstance) && MR::isGreaterStep(this, ::sCanBindTime);
 }
 
 bool SuperSpinDriver::isSwingOr2PTrigger() const {
     return MR::isPadSwing(WPAD_CHAN0) || MR::isPlayerPointedBy2POnTriggerButton();
+}
+
+bool SuperSpinDriver::isFarPlayer() const {
+    return !MR::isNearPlayerAnyTime(this, 350.0f);
 }
 
 namespace MR {
