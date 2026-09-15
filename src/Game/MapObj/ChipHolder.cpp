@@ -66,7 +66,7 @@ void MR::noticeGetChip(s32 chipType, ChipBase* pChip, s32 groupId) {
     incPlayerOxygen(8);
 }
 
-s32 MR::showChipCounter(s32 chipType, s32 param2) {
+void MR::showChipCounter(s32 chipType, s32 param2) {
     ChipHolder* holder = getChipHolder(chipType);
     return holder->mChipCounter->requestShow(param2, holder->findChipGroup(param2)->getGotCount());
 }
