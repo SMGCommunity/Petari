@@ -2492,7 +2492,7 @@ config.libs = [
             Object(Matching, "Game/Util/MapPartsUtil.cpp"),
             Object(Matching, "Game/Util/MapUtil.cpp"),
             Object(NonMatching, "Game/Util/MathUtil.cpp"),
-            Object(NonMatching, "Game/Util/MemoryUtil.cpp"),
+            Object(Matching, "Game/Util/MemoryUtil.cpp"),
             Object(NonMatching, "Game/Util/MessageUtil.cpp"),
             Object(NonMatching, "Game/Util/ModelUtil.cpp"),
             Object(NonMatching, "Game/Util/MtxUtil.cpp"),
