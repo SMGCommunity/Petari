@@ -11,6 +11,10 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void Tsukidashikun_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
+
 namespace {
     static const f32 sDefaultMoveSpeed = 10.0f;
     static const s32 sDefaultWaitTime = 120;
@@ -34,7 +38,7 @@ Tsukidashikun::Tsukidashikun(const char* pName) : MapObjActor(pName), mMoveSpeed
 void Tsukidashikun::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
-    info.setupHioNode("ツキダシドン");
+    info.setupHioNode("地形オブジェ");
     info.setupDefaultPos();
     info.setupConnectToScene();
     info.setupEffect(0);
@@ -46,6 +50,12 @@ void Tsukidashikun::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &mMoveSpeed);
     MR::getJMapInfoArg1NoInit(rIter, &mWaitTimer);
     MR::moveCoordToNearestPos(this, mPosition);
+}
+
+void Tsukidashikun::exeRelax() {
+    if (MR::isFirstStep(this)) {
+        MR::startBva(this, "BSign");
+    }
 }
 
 void Tsukidashikun::exeWait() {
@@ -68,7 +78,7 @@ void Tsukidashikun::exeWait() {
 
 void Tsukidashikun::exeSign() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "BWait", nullptr);
+        MR::startBck(this, "Sign", nullptr);
 
         if (isNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvSignForward))) {
             MR::startBva(this, "FSign");
@@ -114,12 +124,6 @@ void Tsukidashikun::exeMove() {
         } else {
             setNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvWaitBack));
         }
-    }
-}
-
-void Tsukidashikun::exeRelax() {
-    if (MR::isFirstStep(this)) {
-        MR::startBva(this, "BWait");
     }
 }
 

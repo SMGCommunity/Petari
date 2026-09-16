@@ -1834,7 +1834,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/TransparentWall.cpp"),
             Object(NonMatching, "Game/MapObj/TreasureBoxCracked.cpp"),
             Object(NonMatching, "Game/MapObj/TreasureSpot.cpp"),
-            Object(NonMatching, "Game/MapObj/Tsukidashikun.cpp"),
+            Object(Matching, "Game/MapObj/Tsukidashikun.cpp"),
             Object(NonMatching, "Game/MapObj/TypicalDoor.cpp"),
             Object(Matching, "Game/MapObj/UFOBase.cpp"),
             Object(NonMatching, "Game/MapObj/UFOKinoko.cpp"),
