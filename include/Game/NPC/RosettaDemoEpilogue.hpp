@@ -5,7 +5,7 @@
 class JMapInfoIter;
 class Rosetta;
 
-class RosettaDemoEpilogue : NerveExecutor {
+class RosettaDemoEpilogue : public NerveExecutor {
 public:
     /// @brief Creates a new `RosettaDemoEpilogue`.
     /// @param pRosetta The pointer to the actor instance for Rosalina.

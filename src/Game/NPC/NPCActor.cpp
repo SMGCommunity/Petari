@@ -66,7 +66,7 @@ NPCActorCaps::NPCActorCaps(const char* pName) {
     mSensor = false;
     mBinder = false;
     mShadow = false;
-    _5D = false;
+    mUseShadow = false;
     mRailRider = false;
     mSwitchDead = true;
     mSwitchAppear = false;
@@ -85,7 +85,7 @@ NPCActorCaps::NPCActorCaps(const char* pName) {
     mSensor = false;
     mBinder = false;
     mShadow = false;
-    _5D = false;
+    mUseShadow = false;
     mRailRider = false;
     mSwitchDead = true;
     mSwitchAppear = false;
@@ -381,7 +381,7 @@ void NPCActor::initialize(const JMapInfoIter& rIter, const NPCActorCaps& rCaps) 
         initEffectKeeper(0, nullptr, false);
     }
 
-    if (rCaps._5D) {
+    if (rCaps.mUseShadow) {
         MR::initShadowFromCSV(this, "Shadow");
     } else if (rCaps.mShadow) {
         MR::initShadowVolumeSphere(this, rCaps.mShadowSize);
