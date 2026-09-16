@@ -378,6 +378,10 @@ namespace nw4r {
                 return Iterator(Base::Erase(GetNodeFromPointer(p)));
             }
 
+            unsigned long GetSize() const {
+                return mSize;
+            }
+
             static const_pointer GetPointerFromNode(const Node* p) {
                 NW4R_NULL_ASSERT_AT(578, p);
                 return reinterpret_cast< const_pointer >(reinterpret_cast< IntPtr >(p) - TNOffset);
