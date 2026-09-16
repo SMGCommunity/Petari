@@ -726,7 +726,7 @@ config.libs = [
             Object(Matching, "Game/AreaObj/HazeCube.cpp"),
             Object(Matching, "Game/AreaObj/ImageEffectArea.cpp"),
             Object(Matching, "Game/AreaObj/LightArea.cpp"),
-            Object(NonMatching, "Game/AreaObj/LightAreaHolder.cpp"),
+            Object(Matching, "Game/AreaObj/LightAreaHolder.cpp"),
             Object(NonMatching, "Game/AreaObj/MercatorTransformCube.cpp"),
             Object(Matching, "Game/AreaObj/MessageArea.cpp"),
             Object(Matching, "Game/AreaObj/PlayerSeArea.cpp"),

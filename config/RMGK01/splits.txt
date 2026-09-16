@@ -323,12 +323,12 @@ Game/AreaObj/LightArea.cpp:
 
 Game/AreaObj/LightAreaHolder.cpp:
 	.text       start:0x80023588 end:0x80023768
-	.data       start:0x80565740 end:0x80565778
+	.data       start:0x80565740 end:0x80565768
 
 Game/AreaObj/MercatorTransformCube.cpp:
 	.text       start:0x80023768 end:0x80024984
 	.rodata     start:0x8052F800 end:0x8052F810
-	.data       start:0x80565778 end:0x805657A8
+	.data       start:0x80565768 end:0x805657A8
 	.sdata2     start:0x806B7E38 end:0x806B7E78
 
 Game/AreaObj/MessageArea.cpp:
