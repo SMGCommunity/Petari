@@ -4,7 +4,6 @@
 #include "Game/NameObj/NameObjAdaptor.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 MiiFaceIconHolder::MiiFaceIconHolder(u32 iconNum, const char* pName)

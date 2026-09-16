@@ -2,7 +2,6 @@
 #include "Game/Demo/DemoFunction.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/DemoUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
 namespace NrvButlerExplain {

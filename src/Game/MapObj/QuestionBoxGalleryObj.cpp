@@ -3,7 +3,6 @@
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapPartsUtil.hpp"

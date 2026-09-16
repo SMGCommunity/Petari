@@ -5,7 +5,6 @@
 #include "Game/Util.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"

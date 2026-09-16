@@ -5442,7 +5442,7 @@ Game/MapObj/PicketSwitch.cpp:
 Game/MapObj/PlantGroup.cpp:
 	.text       start:0x8020C7E0 end:0x8020E394
 	.ctors      start:0x8052EE04 end:0x8052EE08
-	.rodata     start:0x805335B8 end:0x805335C8
+	.rodata     start:0x805335B8 end:0x805335C0
 	.data       start:0x8059B550 end:0x8059B728
 	.sdata      start:0x806B1EE0 end:0x806B1EE8
 	.sbss       start:0x806B5578 end:0x806B5590
@@ -5455,6 +5455,7 @@ Game/MapObj/PlantPoint.cpp:
 
 Game/MapObj/PlantRailInfo.cpp:
 	.text       start:0x8020E4D4 end:0x8020E8A0
+	.rodata     start:0x805335C0 end:0x805335C8
 	.sdata2     start:0x806BDA38 end:0x806BDA40
 
 Game/MapObj/PomponPlant.cpp:

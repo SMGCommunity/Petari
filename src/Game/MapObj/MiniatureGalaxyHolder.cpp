@@ -5,7 +5,6 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/StringUtil.hpp"
 
 namespace {

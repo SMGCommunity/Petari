@@ -20,7 +20,6 @@
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/GravityUtil.hpp"
 #include "Game/Util/JointController.hpp"
 #include "Game/Util/JointRumbler.hpp"

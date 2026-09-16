@@ -4,7 +4,6 @@
 #include "Game/Screen/BloomEffect.hpp"
 #include "Game/Util/Color.hpp"
 #include "Game/Util/DrawUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include <JSystem/JUtility/JUTTexture.hpp>

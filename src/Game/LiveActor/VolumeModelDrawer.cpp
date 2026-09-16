@@ -4,7 +4,6 @@
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DrawUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include <cstdio>

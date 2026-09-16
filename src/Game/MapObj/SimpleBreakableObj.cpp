@@ -1,11 +1,11 @@
-#include "Game/Util/Functor.hpp"
 
+#include "Game/MapObj/SimpleBreakableObj.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
-#include "Game/MapObj/SimpleBreakableObj.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/Util.hpp"
+
 
 namespace {
     const s32 sDefaultBreakOffsetFrame = 60;

@@ -1,5 +1,3 @@
-#include "Game/Util/Functor.hpp" // TODO: Must be at the top to match?
-
 #include "Game/Enemy/BegomanSpike.hpp"
 #include "Game/Enemy/BegomanSpringHead.hpp"
 #include "Game/LiveActor/HitSensor.hpp"

@@ -1,7 +1,6 @@
-#include "Game/Util/Functor.hpp"
 
-#include "Game/Enemy/BegomanBaby.hpp"
 #include "Game/Enemy/BegomanLauncher.hpp"
+#include "Game/Enemy/BegomanBaby.hpp"
 #include "Game/Enemy/BegomanSpike.hpp"
 #include "Game/Enemy/BegomanSpring.hpp"
 #include "Game/LiveActor/Nerve.hpp"
@@ -14,6 +13,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
+
 
 namespace NrvBegomanLauncher {
     NEW_NERVE(HostTypeNrvWaitAfterSwitchOn, BegomanLauncher, WaitAfterSwitchOn);

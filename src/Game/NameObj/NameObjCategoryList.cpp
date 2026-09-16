@@ -1,5 +1,4 @@
 #include "Game/NameObj/NameObjCategoryList.hpp"
-#include "Game/Util/Functor.hpp"
 #include <algorithm>
 
 NameObjCategoryList::NameObjCategoryList(u32 count, const CategoryListInitialTable* pTable, NameObjMethod pMethod, bool allocateByCheck,

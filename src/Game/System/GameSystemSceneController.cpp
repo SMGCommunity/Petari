@@ -15,7 +15,6 @@
 #include "Game/System/WPadHolder.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/FileUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/JMapIdInfo.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"

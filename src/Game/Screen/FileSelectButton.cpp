@@ -2,7 +2,6 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
 #include "Game/Screen/GalaxyMapGalaxyPlain.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"

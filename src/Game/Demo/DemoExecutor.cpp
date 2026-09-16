@@ -12,7 +12,6 @@
 #include "Game/Map/StageSwitch.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"

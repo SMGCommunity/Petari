@@ -8,7 +8,6 @@ class CoinReplica : public NameObj {
 public:
     CoinReplica(const char*);
 
-    virtual ~CoinReplica();
     virtual void init(const JMapInfoIter&);
 
     void activeCoin();
@@ -16,5 +15,5 @@ public:
     void deactiveCoin();
     void removeCoin();
 
-    Coin* mCoin;  // 0xC
+    /* 0xC */ Coin* mCoin;
 };

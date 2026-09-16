@@ -4,7 +4,6 @@
 #include "Game/NPC/Tico.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 

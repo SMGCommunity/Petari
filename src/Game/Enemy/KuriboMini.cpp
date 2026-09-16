@@ -15,7 +15,6 @@
 #include "Game/Util/ActorStateUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"

@@ -5,8 +5,29 @@
 
 class CameraTargetMtx;
 class GCaptureRibbon;
-class GCaptureTargetable;
 class SpringValue;
+
+class GCaptureTargetable {
+public:
+    GCaptureTargetable() {
+    }
+
+    virtual void decidedTarget() = 0;
+    virtual void releasedTarget() = 0;
+    virtual void getTargetPosition(TVec3f*) = 0;
+    virtual bool canEndHold() const {
+        return true;
+    }
+    virtual bool isReleaseForce() const {
+        return false;
+    }
+    virtual f32 releaseDistance() const {
+        return -1.0f;
+    }
+    virtual f32 getPointableRange() const {
+        return 3000.0f;
+    }
+};
 
 class GCapture : public LiveActor {
 public:

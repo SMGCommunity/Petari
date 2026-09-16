@@ -7,7 +7,6 @@
 #include "Game/Screen/IconAButton.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"

@@ -3,7 +3,6 @@
 #include "Game/Map/StageSwitch.hpp"
 #include "Game/MapObj/PurpleCoinHolder.hpp"
 #include "Game/Util.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 PurpleCoinStarter::PurpleCoinStarter(const char* pName) : NameObj(pName), mHost(), mStageSwitchCtrl() {

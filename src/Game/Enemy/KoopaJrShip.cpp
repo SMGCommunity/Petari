@@ -11,7 +11,6 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"

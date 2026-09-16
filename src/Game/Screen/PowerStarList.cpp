@@ -12,7 +12,6 @@
 #include "Game/System/GameDataFunction.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
 #include "Game/Util/EventUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"

@@ -4,7 +4,6 @@
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
