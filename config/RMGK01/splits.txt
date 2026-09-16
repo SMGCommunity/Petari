@@ -5415,6 +5415,7 @@ Game/MapObj/PhantomShipBoxFloater.cpp:
 Game/MapObj/PhantomShipBridge.cpp:
 	.text       start:0x8020B098 end:0x8020B790
 	.ctors      start:0x8052EDF8 end:0x8052EDFC
+	.rodata     start:0x805335B0 end:0x805335B8
 	.data       start:0x8059B028 end:0x8059B1E8
 	.sbss       start:0x806B5548 end:0x806B5558
 	.sdata2     start:0x806BD980 end:0x806BD988
@@ -5441,6 +5442,7 @@ Game/MapObj/PicketSwitch.cpp:
 Game/MapObj/PlantGroup.cpp:
 	.text       start:0x8020C7E0 end:0x8020E394
 	.ctors      start:0x8052EE04 end:0x8052EE08
+	.rodata     start:0x805335B8 end:0x805335C8
 	.data       start:0x8059B550 end:0x8059B728
 	.sdata      start:0x806B1EE0 end:0x806B1EE8
 	.sbss       start:0x806B5578 end:0x806B5590
@@ -5458,7 +5460,7 @@ Game/MapObj/PlantRailInfo.cpp:
 Game/MapObj/PomponPlant.cpp:
 	.text       start:0x8020E8A0 end:0x8020EE70
 	.ctors      start:0x8052EE08 end:0x8052EE0C
-	.rodata     start:0x805335B0 end:0x805335D8
+	.rodata     start:0x805335C8 end:0x805335D8
 	.data       start:0x8059B738 end:0x8059B838
 	.sdata      start:0x806B1EE8 end:0x806B1EF0
 	.sbss       start:0x806B5590 end:0x806B55A0
