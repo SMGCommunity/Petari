@@ -370,15 +370,15 @@ u16 getTexNoReg(void* param_0);
 
 extern J3DTexCoordInfo const j3dDefaultTexCoordInfo[8];
 
-struct J3DTexCoord : public J3DTexCoordInfo {
+struct J3DTexCoord {
     J3DTexCoord() {
-        J3DTexCoordInfo::operator=(j3dDefaultTexCoordInfo[0]);
-        mTexMtxReg = mTexGenMtx;
+        mInfo = j3dDefaultTexCoordInfo[0];
+        mTexMtxReg = mInfo.mTexGenMtx;
     }
 
     J3DTexCoord(const J3DTexCoordInfo& info) {
-        J3DTexCoordInfo::operator=(info);
-        mTexMtxReg = mTexGenMtx;
+        mInfo = info;
+        mTexMtxReg = mInfo.mTexGenMtx;
     }
 
     void setTexCoordInfo(const J3DTexCoordInfo& info) {
@@ -386,15 +386,15 @@ struct J3DTexCoord : public J3DTexCoordInfo {
     }
 
     u8 getTexGenType() const {
-        return mTexGenType;
+        return mInfo.mTexGenType;
     }
 
     u8 getTexGenSrc() const {
-        return mTexGenSrc;
+        return mInfo.mTexGenSrc;
     }
 
     u8 getTexGenMtx() const {
-        return mTexGenMtx;
+        return mInfo.mTexGenMtx;
     }
 
     u32 getTexMtxReg() const {
@@ -402,7 +402,7 @@ struct J3DTexCoord : public J3DTexCoordInfo {
     }
 
     void setTexGenMtx(u8 param_1) {
-        mTexGenMtx = param_1;
+        mInfo.mTexGenMtx = param_1;
     }
 
     void setTexMtxReg(u16 reg) {
@@ -415,9 +415,10 @@ struct J3DTexCoord : public J3DTexCoordInfo {
     }
 
     void resetTexMtxReg() {
-        mTexMtxReg = mTexGenMtx;
+        mTexMtxReg = mInfo.mTexGenMtx;
     }
 
+    /* 0x0 */ J3DTexCoordInfo mInfo;
     /* 0x4 */ u16 mTexMtxReg;
 };  // Size: 0x6
 

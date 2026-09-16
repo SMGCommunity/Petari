@@ -72,6 +72,7 @@ namespace MR {
         if (pActor->mModelManager == nullptr) {
             return nullptr;
         }
+
         return pActor->mModelManager->getJ3DModel();
     }
 
@@ -85,6 +86,7 @@ namespace MR {
         if (pActor->mModelManager == nullptr) {
             return nullptr;
         }
+
         return pActor->mModelManager->getJ3DModelData();
     }
 
@@ -275,6 +277,7 @@ namespace MR {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -315,6 +318,7 @@ namespace MR {
             if (!isUseEnvMap && !isUseProjMap) {
                 continue;
             }
+
             J3DShape* shape = material->getShape();
             setShapeVcdVatCmdSelf(shape);
             doSort = true;
@@ -325,10 +329,10 @@ namespace MR {
             for (u32 idx = 0; idx < 8; idx++) {
                 J3DTexCoord* texCoord = material->getTexCoord(idx);
                 GXAttr attr = static_cast< GXAttr >(idx + 1);
-                if (texCoord->mTexGenSrc == 1) {
+                if (texCoord->getTexGenSrc() == 1) {
                     shape->addTexMtxIndexInDL(attr, 30);
                     shape->addTexMtxIndexInVcd(attr);
-                } else if (texCoord->mTexGenSrc == 0) {
+                } else if (texCoord->getTexGenSrc() == 0) {
                     shape->addTexMtxIndexInDL(attr, 0);
                     shape->addTexMtxIndexInVcd(attr);
                 }
@@ -494,9 +498,11 @@ namespace MR {
                 if (vtxAttrFmtList->frac == 0) {
                     return;
                 }
+
                 vtxAttrFmtList->frac--;
                 break;
             }
+
             vtxAttrFmtList++;
         }
 
@@ -504,6 +510,7 @@ namespace MR {
         for (u32 i = 0; i < vtxNum * 3; i++) {
             vertexPosArray[i] >>= 1;
         }
+
         DCStoreRange(vertexPosArray, vtxNum * 6);
 
         for (u32 i = 0; i < pModelData->getShapeTable()->getShapeNum(); i++) {
@@ -609,6 +616,7 @@ namespace MR {
             newModel = new J3DModel(modelData, mdlFlag, 1);
             OSUnlockMutex(&MR::MutexHolder< 0 >::sMutex);
         }
+
         initJ3DShapePacketUserData(newModel);
         Mtx mtx;
         PSMTXIdentity(mtx);
@@ -626,6 +634,7 @@ namespace MR {
             newModel->makeDL();
             OSUnlockMutex(&MR::MutexHolder< 0 >::sMutex);
         }
+
         newModel->lock();
         return newModel;
     }
@@ -642,6 +651,7 @@ namespace MR {
                 return true;
             }
         }
+
         return false;
     }
 };  // namespace MR

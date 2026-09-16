@@ -1846,7 +1846,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/WaterPressure.cpp"),
             Object(NonMatching, "Game/MapObj/WaterPressureBullet.cpp"),
             Object(Matching, "Game/MapObj/WaterPressureBulletHolder.cpp"),
-            Object(NonMatching, "Game/MapObj/WaveFloatingForce.cpp"),
+            Object(Matching, "Game/MapObj/WaveFloatingForce.cpp"),
             Object(NonMatching, "Game/MapObj/WhirlPool.cpp"),
             Object(NonMatching, "Game/MapObj/WoodBox.cpp"),
             Object(NonMatching, "Game/MapObj/WormEatenPlanet.cpp"),

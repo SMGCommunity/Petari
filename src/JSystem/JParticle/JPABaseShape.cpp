@@ -469,7 +469,7 @@ void JPADrawRotBillboard(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
         JGeometry::TVec3< f32 > local_48;
         PSMTXMultVec(work->mPosCamMtx, &param_1->mPosition, &local_48);
         f32 sinRot = JMASSin(param_1->mRotateAngle);
-        f32 cosRot = JMASCos(param_1->mRotateAngle);
+        f32 cosRot = JMath::sSinCosTable.cosShort(param_1->mRotateAngle);
         f32 particleX = work->mGlobalPtclScl.x * param_1->mParticleScaleX;
         f32 particleY = work->mGlobalPtclScl.y * param_1->mParticleScaleY;
 
@@ -570,24 +570,22 @@ static void rotTypeZ(f32 param_0, f32 param_1, Mtx& param_2) {
     param_2[2][3] = 0.0f;
 }
 
-static void rotTypeXYZ(f32 param_0, f32 param_1, Mtx& param_2) {
-    f32 third = 0.33333298563957214f * (1.0f - param_1);
-    f32 sine = 0.5773500204086304f * param_0;
-    f32 diagonal = third + param_1;
-    f32 plus = third + sine;
-    f32 minus = third - sine;
-    param_2[0][0] = diagonal;
-    param_2[0][1] = minus;
-    param_2[0][2] = plus;
-    param_2[0][3] = 0.0f;
-    param_2[1][0] = plus;
-    param_2[1][1] = diagonal;
-    param_2[1][2] = minus;
-    param_2[1][3] = 0.0f;
-    param_2[2][0] = minus;
-    param_2[2][1] = plus;
-    param_2[2][2] = diagonal;
-    param_2[2][3] = 0.0f;
+static void rotTypeXYZ(f32 sin, f32 cos, Mtx& rMtx) {
+    f32 third = 0.333333f * (1.0f - cos);
+    f32 scaledSin = 0.57735f * sin;
+    f32 plus = third + scaledSin;
+    rMtx[0][0] = (third + cos);
+    rMtx[0][1] = (third - scaledSin);
+    rMtx[0][2] = plus;
+    rMtx[0][3] = 0.0f;
+    rMtx[1][0] = plus;
+    rMtx[1][1] = (third + cos);
+    rMtx[1][2] = (third - scaledSin);
+    rMtx[1][3] = 0.0f;
+    rMtx[2][0] = (third - scaledSin);
+    rMtx[2][1] = plus;
+    rMtx[2][2] = (third + cos);
+    rMtx[2][3] = 0.0f;
 }
 
 static void basePlaneTypeXY(MtxPtr param_0, f32 param_1, f32 param_2) {
@@ -641,7 +639,7 @@ static planeFunc p_plane[3] = {
 void JPADrawRotation(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
     if (param_1->checkStatus(8) == 0) {
         f32 sinRot = JMASSin(param_1->mRotateAngle);
-        f32 cosRot = JMASCos(param_1->mRotateAngle);
+        f32 cosRot = JMath::sSinCosTable.cosShort(param_1->mRotateAngle);
         f32 particleX = param_0->mGlobalPtclScl.x * param_1->mParticleScaleX;
         f32 particleY = param_0->mGlobalPtclScl.y * param_1->mParticleScaleY;
         Mtx auStack_88;

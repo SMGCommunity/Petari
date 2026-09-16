@@ -5387,13 +5387,14 @@ Game/MapObj/OceanSmallTurtle.cpp:
 
 Game/MapObj/OceanWaveFloater.cpp:
 	.text       start:0x80209AE4 end:0x8020A344
-	.rodata     start:0x80533578 end:0x805335C8
+	.rodata     start:0x80533578 end:0x805335A8
 	.data       start:0x8059AC70 end:0x8059AD58
 	.sdata2     start:0x806BD928 end:0x806BD938
 
 Game/MapObj/PalmIsland.cpp:
 	.text       start:0x8020A344 end:0x8020A6EC
 	.ctors      start:0x8052EDEC end:0x8052EDF0
+	.rodata     start:0x805335A8 end:0x805335B0
 	.data       start:0x8059AD58 end:0x8059AE20
 	.sbss       start:0x806B5528 end:0x806B5530
 	.sdata2     start:0x806BD938 end:0x806BD958
@@ -5457,7 +5458,7 @@ Game/MapObj/PlantRailInfo.cpp:
 Game/MapObj/PomponPlant.cpp:
 	.text       start:0x8020E8A0 end:0x8020EE70
 	.ctors      start:0x8052EE08 end:0x8052EE0C
-	.rodata     start:0x805335C8 end:0x805335D8
+	.rodata     start:0x805335B0 end:0x805335D8
 	.data       start:0x8059B738 end:0x8059B838
 	.sdata      start:0x806B1EE8 end:0x806B1EF0
 	.sbss       start:0x806B5590 end:0x806B55A0

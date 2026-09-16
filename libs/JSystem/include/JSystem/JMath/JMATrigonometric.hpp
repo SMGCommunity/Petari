@@ -25,12 +25,15 @@ namespace JMath {
         static f32 RADIAN_DEG090() {
             return 1.5707964f;
         }
+
         static f32 RADIAN_DEG180() {
             return 3.1415927f;
         }
+
         static f32 RADIAN_DEG360() {
             return 6.2831855f;
         }
+
         static f32 RADIAN_TO_DEGREE_FACTOR() {
             return 180.0f / RADIAN_DEG180();
         }
@@ -47,8 +50,10 @@ namespace JMath {
         T sinShort(s16 v) const {
             return table[static_cast< u16 >(v) >> (16U - Bits)].a1;
         }
+
         T cosShort(s16 v) const {
-            return table[static_cast< u16 >(v) >> (16U - Bits)].b1;
+            const std::pair< T, T >& rValue = table[static_cast< u16 >(v) >> (16 - Bits)];
+            return rValue.b1;
         }
 
         inline f32 sinRadian(f32 v) {
@@ -97,6 +102,7 @@ namespace JMath {
             if (v < 0.0f) {
                 v = -v;
             }
+
             // 45.511112f == LEN / TWO_PI * PI / 180
             v = 45.511112f * v;
 
