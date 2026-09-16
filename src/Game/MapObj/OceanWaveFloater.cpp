@@ -131,7 +131,7 @@ void OceanWaveFloater::control() {
 void OceanWaveFloater::calcAndSetBaseMtx() {
     TPos3f baseMtx;
     baseMtx.identity();
-    baseMtx.setRotateDegree(mRotation);
+    baseMtx.setRotate(mRotation * (MR::pi()/180.0f));
     baseMtx.setTrans(mPosition - mGravity * mForce->getCurrentValue());
     MR::setBaseTRMtx(this, baseMtx);
 }
