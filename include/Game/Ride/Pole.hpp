@@ -15,7 +15,13 @@ public:
     virtual void attackSensor(HitSensor*, HitSensor*);
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
-    virtual MtxPtr getBaseMtx() const;
+    virtual MtxPtr getBaseMtx() const {
+        if (mNoModel) {
+            return (MtxPtr)&mBaseMtx;
+        } else {
+            return LiveActor::getBaseMtx();
+        }
+    }
 
     void exeDemoAppear();
     void exeFree();
@@ -43,7 +49,7 @@ public:
 
     /* 0x8C */ TVec3f mBasePos;
     /* 0x98 */ TVec3f mTopPos;
-    /* 0xA4 */ f32 mPoleLength;
+    /* 0xA4 */ f32 mHeight;
     /* 0xA8 */ bool mDisableHandstand;
     /* 0xA9 */ bool mIsSquare;
     /* 0xAA */ bool mNoModel;
