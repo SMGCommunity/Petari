@@ -4,17 +4,23 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void RailBlock_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
+namespace {
+    static const s32 sStartSignTime = 60;
+    static const s32 sCycle = 3;
+    static const f32 sAmplitude = 30.0f;
+};  // namespace
+
 namespace NrvRailBlock {
     NEW_NERVE(RailBlockNrvWait, RailBlock, Wait);
     NEW_NERVE(RailBlockNrvMove, RailBlock, Move);
     NEW_NERVE(RailBlockNrvTerminate, RailBlock, Terminate);
 };  // namespace NrvRailBlock
 
-RailBlock::RailBlock(const char* pName) : LiveActor(pName) {
-    _8C = 0xA;
-    _90 = 0x64;
-    _94 = 0;
-    _95 = 0;
+RailBlock::RailBlock(const char* pName) : LiveActor(pName), mRailSpeed(10), mMoveTime(100), mIsConnectedToRail(), mIsBig() {
 }
 
 void RailBlock::init(const JMapInfoIter& rIter) {
@@ -32,20 +38,22 @@ void RailBlock::init(const JMapInfoIter& rIter) {
     if (MR::isConnectedWithRail(rIter)) {
         initRailRider(rIter);
         MR::moveCoordToNearestPos(this, mPosition);
-        _94 = 1;
+        mIsConnectedToRail = true;
     } else {
-        _94 = 0;
+        mIsConnectedToRail = false;
     }
 
     MR::setGroupClipping(this, rIter, 16);
-    MR::getJMapInfoArg0NoInit(rIter, &_8C);
-    MR::getJMapInfoArg1NoInit(rIter, &_90);
+
+    MR::getJMapInfoArg0NoInit(rIter, &mRailSpeed);
+    MR::getJMapInfoArg1NoInit(rIter, &mMoveTime);
+
     initNerve(GET_NERVE(RailBlock, RailBlockNrvMove));
 
-    if (!strcmp(objName, "RailBlockBig")) {
-        _95 = 1;
-    } else if (!strcmp(objName, "TsukidashkunBig")) {
-        _95 = 1;
+    if (strcmp(objName, "RailBlockBig") == 0) {
+        mIsBig = true;
+    } else if (strcmp(objName, "TsukidashikunBig") == 0) {
+        mIsBig = true;
     }
 
     if (MR::useStageSwitchReadB(this, rIter)) {
@@ -74,38 +82,39 @@ void RailBlock::stopMove() {
 }
 
 void RailBlock::exeMove() {
-    if (_94) {
-        MR::moveCoordAndFollowTrans(this, _8C);
-        MR::startLevelSound(this, "SE_OJ_LV_TSUKIDASHI_MOVE");
-        if (MR::isRailReachedGoal(this)) {
-            MR::startLevelSound(this, "SE_OJ_TSUKIDASHI_STOP");
-            setNerve(GET_NERVE(RailBlock, RailBlockNrvTerminate));
-        }
+    if (!mIsConnectedToRail) {
+        return;
+    }
+
+    MR::moveCoordAndFollowTrans(this, mRailSpeed);
+    MR::startLevelSound(this, "SE_OJ_LV_TSUKIDASHI_MOVE");
+    if (MR::isRailReachedGoal(this)) {
+        MR::startLevelSound(this, "SE_OJ_TSUKIDASHI_STOP");
+        setNerve(GET_NERVE(RailBlock, RailBlockNrvTerminate));
     }
 }
 
 void RailBlock::exeTerminate() {
-    if (getNerveStep() >= _90 - 60) {
-        s32 step = getNerveStep() - _90 + 60;
-        f32 v4 = step % 3;
-        f32 v3;
-        f32 val = 30.0f;
+    if (getNerveStep() >= mMoveTime - ::sStartSignTime) {
+        s32 step = getNerveStep() - mMoveTime + ::sStartSignTime;
+        f32 rate = static_cast< f32 >(step % ::sCycle) / ::sCycle;
 
-        if (((step / 3) & 1 ^ ((step / 3) >> 31)) == (step / 3) >> 31) {
-            v3 = val * (v4 / 3.0f);
+        f32 coord;
+        if ((step / ::sCycle) % 2 == 0) {
+            coord = ::sAmplitude * rate;
         } else {
-            v3 = val * ((1.0f - v4) / 3.0f);
+            coord = ::sAmplitude * (1.0f - rate);
         }
 
         if (MR::isRailGoingToEnd(this)) {
-            v3 = MR::getRailTotalLength(this) - v3;
+            coord = MR::getRailTotalLength(this) - coord;
         }
 
-        MR::calcRailPosAtCoord(&mPosition, this, v3);
+        MR::calcRailPosAtCoord(&mPosition, this, coord);
         MR::startLevelSound(this, "SE_OJ_LV_TSUKIDASHI_VIB");
     }
 
-    if (getNerveStep() >= _90) {
+    if (getNerveStep() >= mMoveTime) {
         MR::reverseRailDirection(this);
         MR::startSound(this, "SE_OJ_TSUKIDASHI_START");
         setNerve(GET_NERVE(RailBlock, RailBlockNrvMove));
@@ -117,7 +126,4 @@ void RailBlock::exeWait() {
 
 void RailBlock::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
-}
-
-RailBlock::~RailBlock() {
 }

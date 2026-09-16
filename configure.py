@@ -1754,7 +1754,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/QuarterRollGravityRoomArrow.cpp"),
             Object(NonMatching, "Game/MapObj/QuestionBoxGalleryObj.cpp"),
             Object(NonMatching, "Game/MapObj/QuestionCoin.cpp"),
-            Object(NonMatching, "Game/MapObj/RailBlock.cpp"),
+            Object(Matching, "Game/MapObj/RailBlock.cpp"),
             Object(NonMatching, "Game/MapObj/RailCoin.cpp"),
             Object(NonMatching, "Game/MapObj/RailMoveObj.cpp"),
             Object(NonMatching, "Game/MapObj/RainCloud.cpp"),

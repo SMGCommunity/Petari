@@ -5556,12 +5556,14 @@ Game/MapObj/QuestionCoin.cpp:
 Game/MapObj/RailBlock.cpp:
 	.text       start:0x80217BE8 end:0x80218260
 	.ctors      start:0x8052EE30 end:0x8052EE34
+	.rodata     start:0x80533640 end:0x80533648
 	.data       start:0x8059C960 end:0x8059CAC8
 	.sbss       start:0x806B5678 end:0x806B5688
 	.sdata2     start:0x806BDBF8 end:0x806BDC08
 
 Game/MapObj/RailCoin.cpp:
 	.text       start:0x80218260 end:0x8021857C
+	.rodata     start:0x80533648 end:0x80533650
 	.data       start:0x8059CAC8 end:0x8059CB98
 	.sdata2     start:0x806BDC08 end:0x806BDC10
 
@@ -5599,7 +5601,7 @@ Game/MapObj/RevolvingWay.cpp:
 Game/MapObj/Rock.cpp:
 	.text       start:0x8021ADD8 end:0x8021D5F0
 	.ctors      start:0x8052EE44 end:0x8052EE48
-	.rodata     start:0x80533640 end:0x80533678
+	.rodata     start:0x80533650 end:0x80533678
 	.data       start:0x8059D460 end:0x8059D7C8
 	.sdata      start:0x806B1F40 end:0x806B1F50
 	.sbss       start:0x806B56C8 end:0x806B56E0

@@ -6,7 +6,7 @@ class RailBlock : public LiveActor {
 public:
     RailBlock(const char*);
 
-    virtual ~RailBlock();
+    virtual ~RailBlock(){};
     virtual void init(const JMapInfoIter&);
     virtual void calcViewAndEntry();
     virtual void calcAndSetBaseMtx();
@@ -17,8 +17,8 @@ public:
     void exeMove();
     void exeTerminate();
 
-    s32 _8C;
-    s32 _90;
-    u8 _94;
-    u8 _95;
+    /* 0x8C */ s32 mRailSpeed;
+    /* 0x90 */ s32 mMoveTime;
+    /* 0x94 */ bool mIsConnectedToRail;
+    /* 0x95 */ bool mIsBig;
 };
