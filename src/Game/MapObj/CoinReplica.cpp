@@ -4,24 +4,23 @@
 #include "Game/MapObj/Coin.hpp"
 #include "Game/Util.hpp"
 
-CoinReplica::CoinReplica(const char* pName) : NameObj(pName) {
-    mCoin = nullptr;
+CoinReplica::CoinReplica(const char* pName) : NameObj(pName), mCoin() {
 }
 
 void CoinReplica::activeCoin() {
-    if (mCoin) {
+    if (mCoin != nullptr) {
         mCoin->requestActive();
     }
 }
 
 void CoinReplica::activeCoinWithGravity() {
-    if (mCoin) {
+    if (mCoin != nullptr) {
         mCoin->requestActiveWithGravity();
     }
 }
 
 void CoinReplica::deactiveCoin() {
-    if (mCoin) {
+    if (mCoin != nullptr) {
         mCoin->requestDeactive();
     }
 }
@@ -38,19 +37,19 @@ void CoinReplica::init(const JMapInfoIter& rIter) {
     mCoin->initWithoutIter();
     mCoin->appearNonActive();
 
-    s32 arg0;
-    MR::getJMapInfoArg0WithInit(rIter, &arg0);
+    s32 calcGravity;
+    MR::getJMapInfoArg0WithInit(rIter, &calcGravity);
 
     if (MR::isExistStageSwitchA(rIter) || MR::isExistStageSwitchB(rIter)) {
         StageSwitchCtrl* switchCtrl = MR::createStageSwitchCtrl(this, rIter);
 
         if (switchCtrl->isValidSwitchA()) {
-            if (arg0 == -1) {
-                MR::listenNameObjStageSwitchOnOffA(this, switchCtrl, MR::Functor(this, &CoinReplica::deactiveCoin),
-                                                   MR::Functor(this, &CoinReplica::activeCoin));
+            if (calcGravity == -1) {
+                MR::listenNameObjStageSwitchOnOffA(this, switchCtrl, MR::Functor(this, &CoinReplica::activeCoin),
+                                                   MR::Functor(this, &CoinReplica::deactiveCoin));
             } else {
-                MR::listenNameObjStageSwitchOnOffA(this, switchCtrl, MR::Functor(this, &CoinReplica::deactiveCoin),
-                                                   MR::Functor(this, &CoinReplica::activeCoinWithGravity));
+                MR::listenNameObjStageSwitchOnOffA(this, switchCtrl, MR::Functor(this, &CoinReplica::activeCoinWithGravity),
+                                                   MR::Functor(this, &CoinReplica::deactiveCoin));
             }
         }
 
@@ -58,7 +57,4 @@ void CoinReplica::init(const JMapInfoIter& rIter) {
             MR::listenNameObjStageSwitchOnB(this, switchCtrl, MR::Functor(this, &CoinReplica::removeCoin));
         }
     }
-}
-
-CoinReplica::~CoinReplica() {
 }
