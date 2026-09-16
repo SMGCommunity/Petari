@@ -8,21 +8,27 @@ class PressureMessenger : public LiveActor {
 public:
     PressureMessenger(MsgSharedGroup*, const char*);
 
-    virtual ~PressureMessenger();
+    virtual ~PressureMessenger(){};
     virtual void init(const JMapInfoIter&);
 
     void exeSync();
 
-    MsgSharedGroup* mSharedGroup;  // 0x8C
-    s32 _90;
+    /* 0x8C */ MsgSharedGroup* mSharedGroup;
+    /* 0x90 */ s32 mWaitSyncTime;
 };
 
 class PressureBase : public LiveActor {
 public:
+    enum ShotType {
+        ShotType_OnGravity = 0,
+        ShotType_1 = 1,
+        ShotType_Follow = 2,
+        ShotType_AimTurn = 3,
+    };
+
     PressureBase(const char*);
 
-    virtual ~PressureBase() {
-    }
+    virtual ~PressureBase(){};
 
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
@@ -47,18 +53,15 @@ public:
     bool isShotTypeOnGravity() const;
     bool isShotTypeFollow() const;
 
-    JointControlDelegator< PressureBase >* mJointController;  // 0x8C
-    TVec3f mFront;                                            // 0x90
-    f32 _9C;
-    f32 mNozzleRotation;  // 0xA0
-    s32 mWaitTime;        // 0xA4
-    f32 mBallSpeed;       // 0xA8
-    s32 mShotType;        // 0xAC
-    u8 _B0;
-    u8 _B1;
-    u8 _B2;
-    u8 _B3;
-    PressureMessenger* mMessenger;  // 0xB4
-    MsgSharedGroup* mGroup;         // 0xB8
-    s8 _BC;
+    /* 0x8C */ JointControlDelegator< PressureBase >* mJointController;
+    /* 0x90 */ TVec3f mFront;
+    /* 0x9C */ f32 mRelaxAngle;
+    /* 0xA0 */ f32 mBaseAngle;
+    /* 0xA4 */ s32 mWaitTime;
+    /* 0xA8 */ f32 mBallSpeed;
+    /* 0xAC */ s32 mShotType;
+    /* 0xB0 */ bool mIsShortShot;
+    /* 0xB4 */ PressureMessenger* mMessenger;
+    /* 0xB8 */ MsgSharedGroup* mGroup;
+    /* 0xBC */ bool _BC;
 };

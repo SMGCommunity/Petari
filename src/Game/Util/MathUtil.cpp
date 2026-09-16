@@ -155,13 +155,13 @@ namespace MR {
         return getInterpolateValue((1.0f - JMACosRadian(t)) / 2.0f, start, end);
     }
 
-    f32 getScaleWithReactionValueZeroToOne(f32 x, f32 rate, f32 amplitude) {
+    f32 getScaleWithReactionValueZeroToOne(f32 x, f32 freq, f32 amplitude) {
         if (x < 0.5f) {
             return getEaseOutValue(x * 2.0f, 0.0f, 1.0f, 1.0f);
         } else {
             // reaction oscillation, TODO: inline?
             f32 t = (x - 0.5f) * 2.0f;
-            return 1.0f + (1.0f - JMACosRadian(pi() * rate * t)) * (1.0f - t) * amplitude;
+            return 1.0f + (1.0f - JMACosRadian(pi() * freq * t)) * (1.0f - t) * amplitude;
         }
     }
 
