@@ -12,6 +12,11 @@ namespace {
     // static const s32 sCylPower = _;
 };  // namespace
 
+void CameraRepulsiveArea_FORCE_EMIT(TVec3f* pVec, const TVec3f& rVec) {
+    pVec->scale(1.0f);
+    *pVec -= rVec;
+}
+
 CameraRepulsiveArea::~CameraRepulsiveArea() {
 }
 
@@ -43,7 +48,6 @@ TVec3f CameraRepulsiveCylinder::getRepulsion(const TVec3f& rRep) {
 
     f32 base = (_14.length() * 2.0f) / MR::getCylinderRadius(this);
 
-    // denom = base^3
     f32 denom = base;
 
     for (int i = 0; i < 2; i++) {

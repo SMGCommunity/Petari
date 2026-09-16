@@ -697,7 +697,7 @@ config.libs = [
         "AreaObj",
         [
             Object(NonMatching, "Game/AreaObj/AreaForm.cpp"),
-            Object(NonMatching, "Game/AreaObj/AreaFormDrawer.cpp"),
+            Object(Matching, "Game/AreaObj/AreaFormDrawer.cpp", extra_cflags=["-sym off"]),
             Object(NonMatching, "Game/AreaObj/AreaObj.cpp"),
             Object(Matching, "Game/AreaObj/AreaObjContainer.cpp"),
             Object(Matching, "Game/AreaObj/AreaObjFollower.cpp"),
@@ -715,7 +715,7 @@ config.libs = [
                 "Game/AreaObj/BloomArea.cpp",
                 cflags=[*cflags_game, "-sym off"],
             ),
-            Object(NonMatching, "Game/AreaObj/CameraRepulsiveArea.cpp"),
+            Object(Matching, "Game/AreaObj/CameraRepulsiveArea.cpp", extra_cflags=["-sym off"]),
             Object(Matching, "Game/AreaObj/ChangeBgmCube.cpp"),
             Object(NonMatching, "Game/AreaObj/CollisionArea.cpp"),
             Object(Matching, "Game/AreaObj/CubeCamera.cpp"),
