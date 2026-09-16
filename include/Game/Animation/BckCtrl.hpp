@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/Util/Array.hpp"
 #include <revolution/types.h>
 
 class ResourceHolder;
@@ -7,22 +8,19 @@ class XanimePlayer;
 
 class BckCtrlData {
 public:
-    // some callers inline this and some do not
     BckCtrlData() : mName(""), mPlayFrame(-1), mStartFrame(-1), mEndFrame(-1), mRepeatFrame(-1), mInterpole(-1), mLoopMode(-1) {
     }
 
-    void operator=(const BckCtrlData&);
-
-    const char* mName;  // 0x0
-    s16 mPlayFrame;     // 0x4
-    s16 mStartFrame;    // 0x6
-    s16 mEndFrame;      // 0x8
-    s16 mRepeatFrame;   // 0xA
-    s16 mInterpole;     // 0xC
-    u8 mLoopMode;       // 0xE
-    u8 _F;
-    u8 _10;
-    u8 _11;
+    /* 0x00 */ const char* mName;
+    /* 0x04 */ s16 mPlayFrame;
+    /* 0x06 */ s16 mStartFrame;
+    /* 0x08 */ s16 mEndFrame;
+    /* 0x0A */ s16 mRepeatFrame;
+    /* 0x0C */ s16 mInterpole;
+    /* 0x0E */ u8 mLoopMode;
+    /* 0x0F */ u8 _F;
+    /* 0x10 */ u8 _10;
+    /* 0x11 */ u8 _11;
 };
 
 class BckCtrlFunction {
@@ -39,8 +37,6 @@ public:
     void overWrite(const BckCtrlData&);
     void changeBckSetting(const char*, XanimePlayer*) const;
 
-    BckCtrlData mDefaultCtrlData;  // 0x0
-    BckCtrlData* mControlData;     // 0x14
-    u32 mControlDataCount;         // 0x18
-    u32 _1C;
+    /* 0x00 */ BckCtrlData mDefaultCtrlData;
+    /* 0x14 */ MR::Vector< MR::AssignableArray< BckCtrlData > > mControlData;
 };
