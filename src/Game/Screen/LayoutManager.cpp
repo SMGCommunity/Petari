@@ -27,7 +27,7 @@ namespace {
     };
 }
 
-LayoutManager::LayoutManager(const char* pLayoutName, bool a2, u32 rootPaneAnimLayerNum, u32 textBoxAllocSize)
+LayoutManager::LayoutManager(const char* pLayoutName, bool a2, u32 rootPaneAnimLayerNum, u32 textBoxBufferLength)
     : mLayoutHolder(), mLayout(), mAnimTransList(), mDrawInfo(), mIsScreenHidden(), _61(true), _64(), mPaneCount(), _6C(), _70(), _74(),
       mLayoutName() {
     if (a2) {
@@ -61,7 +61,7 @@ LayoutManager::LayoutManager(const char* pLayoutName, bool a2, u32 rootPaneAnimL
     initPaneInfo();
     initGroupCtrlList();
     initDrawInfo();
-    initTextBoxRecursive(mLayout->mpRootPane, nullptr, mLayoutName, textBoxAllocSize);
+    initTextBoxRecursive(mLayout->mpRootPane, nullptr, mLayoutName, textBoxBufferLength);
     replaceIndDummyTexture();
 
     if (rootPaneAnimLayerNum != 0) {
@@ -259,7 +259,7 @@ void LayoutManager::initGroupCtrlList() {
     }
 }
 
-void LayoutManager::initTextBoxRecursive(nw4r::lyt::Pane* pPane, nw4r::lyt::Pane* pUserDataPane, const char* pLayoutName, u32 textBoxAllocSize) {
+void LayoutManager::initTextBoxRecursive(nw4r::lyt::Pane* pPane, nw4r::lyt::Pane* pUserDataPane, const char* pLayoutName, u32 textBoxBufferLength) {
     nw4r::lyt::TextBox* pTextBox;
 
     const nw4r::ut::detail::RuntimeTypeInfo* pTextBoxRuntimeInfo = &nw4r::lyt::TextBox::typeInfo;
@@ -283,12 +283,12 @@ void LayoutManager::initTextBoxRecursive(nw4r::lyt::Pane* pPane, nw4r::lyt::Pane
             MR::getLayoutMessageID(messageID, pLayoutName, userData);
             LayoutCoreUtil::initTextBoxPane(pTextBox, messageID, 0x100);
         } else {
-            LayoutCoreUtil::initTextBoxPane(pTextBox, nullptr, textBoxAllocSize);
+            LayoutCoreUtil::initTextBoxPane(pTextBox, nullptr, textBoxBufferLength);
         }
     }
 
     nw4r::lyt::PaneList& rPaneList = pPane->mChildList;
     for (nw4r::lyt::PaneList::Iterator it = rPaneList.GetBeginIter(); it != rPaneList.GetEndIter(); ++it) {
-        initTextBoxRecursive(&*it, pUserDataPane, pLayoutName, textBoxAllocSize);
+        initTextBoxRecursive(&*it, pUserDataPane, pLayoutName, textBoxBufferLength);
     }
 }

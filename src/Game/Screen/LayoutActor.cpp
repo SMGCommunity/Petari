@@ -98,16 +98,16 @@ MtxPtr LayoutActor::getPaneMtxRef(const char* pParam1) {
     return mLayoutManager->getPaneMtxRef(pParam1);
 }
 
-void LayoutActor::initLayoutManager(const char* pName, u32 a2) {
-    mLayoutManager = new LayoutManager(pName, true, a2, 0x100);
+void LayoutActor::initLayoutManager(const char* pName, u32 rootPaneAnimLayerNum) {
+    mLayoutManager = new LayoutManager(pName, true, rootPaneAnimLayerNum, 0x100);
 }
 
-void LayoutActor::initLayoutManagerNoConvertFilename(const char* pName, u32 a2) {
-    mLayoutManager = new LayoutManager(pName, false, a2, 0x100);
+void LayoutActor::initLayoutManagerNoConvertFilename(const char* pName, u32 rootPaneAnimLayerNum) {
+    mLayoutManager = new LayoutManager(pName, false, rootPaneAnimLayerNum, 0x100);
 }
 
-void LayoutActor::initLayoutManagerWithTextBoxBufferLength(const char* pName, u32 textBoxBufferLength, u32 a3) {
-    mLayoutManager = new LayoutManager(pName, false, a3, textBoxBufferLength);
+void LayoutActor::initLayoutManagerWithTextBoxBufferLength(const char* pName, u32 textBoxBufferLength, u32 rootPaneAnimLayerNum) {
+    mLayoutManager = new LayoutManager(pName, false, rootPaneAnimLayerNum, textBoxBufferLength);
 }
 
 void LayoutActor::initNerve(const Nerve* pNerve) {
