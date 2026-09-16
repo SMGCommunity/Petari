@@ -9,6 +9,7 @@ extern "C" {
 #include <revolution/gx/GXStruct.h>
 #include <revolution/types.h>
 
+void GXProject(f32 x, f32 y, f32 z, const f32 pMtx[3][4], const f32* pProjection, const f32* pViewport, f32* pScreenX, f32* pScreenY, f32* pScreenZ);
 
 void GXSetProjection(const f32 mtx[4][4], GXProjectionType type);
 void GXSetProjectionv(const f32* ptr);

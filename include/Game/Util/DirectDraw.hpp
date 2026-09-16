@@ -11,8 +11,8 @@ namespace TDDraw {
     void resetViewMtx();
     void close();
     void setup(u32, u32, u8);
-    void sendPoint(const TVec3f&, u32);
-    void sendPoint(const TVec3f&);
+    void sendPoint(const TVec3f&, u32) NO_INLINE;
+    void sendPoint(const TVec3f&) NO_INLINE;
     void drawLine(const TVec3f&, const TVec3f&, u32);
     void drawCircle(const TVec3f&, const TVec3f&, f32, u32, u32);
     void drawCircle(const TVec3f&, const TVec3f&, const TVec3f&, f32, u32, u32);
