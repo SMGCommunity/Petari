@@ -15,9 +15,9 @@ JKRHeap* StationedArchiveLoader::Condition::getProperHeap(const MR::StationedFil
 
 JKRHeap* StationedArchiveLoader::getProperHeap(const MR::StationedFileInfo* pInfo) {
     switch (pInfo->mHeapType) {
-    case 0:
+    case MR::StationedFileInfo::HEAP_TYPE_NAPA:
         return MR::getStationedHeapNapa();
-    case 1:
+    case MR::StationedFileInfo::HEAP_TYPE_GDDR:
         return MR::getStationedHeapGDDR3();
     default:
         return nullptr;
@@ -37,14 +37,14 @@ void StationedArchiveLoader::loadResourcesFromTable(const StationedArchiveLoader
         }
 
         switch (pInfo->mLoadType) {
-        case 0:
+        case MR::StationedFileInfo::LOAD_TYPE_FILE:
             MR::loadToMainRAM(pInfo->mArchive, nullptr, pHeap, JKRDvdRipper::ALLOC_DIRECTION_FORWARD);
             break;
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
+        case MR::StationedFileInfo::LOAD_TYPE_MOUNT:
+        case MR::StationedFileInfo::LOAD_TYPE_MOUNT_RESOURCE_MARIO:
+        case MR::StationedFileInfo::LOAD_TYPE_MOUNT_RESOURCE_LUIGI:
+        case MR::StationedFileInfo::LOAD_TYPE_MOUNT_RESOURCE:
+        case MR::StationedFileInfo::LOAD_TYPE_MOUNT_RESOURCE_LAYOUT:
             MR::mountArchive(pInfo->mArchive, pHeap);
             break;
         }
@@ -58,12 +58,12 @@ void StationedArchiveLoader::createAndAddResourcesFromTable(const Condition& rCo
         }
 
         switch (pInfo->mLoadType) {
-        case 2:
-        case 3:
-        case 4:
+        case MR::StationedFileInfo::LOAD_TYPE_MOUNT_RESOURCE_MARIO:
+        case MR::StationedFileInfo::LOAD_TYPE_MOUNT_RESOURCE_LUIGI:
+        case MR::StationedFileInfo::LOAD_TYPE_MOUNT_RESOURCE:
             SingletonHolder< ResourceHolderManager >::get()->createAndAddStationed(pInfo->mArchive);
             break;
-        case 5:
+        case MR::StationedFileInfo::LOAD_TYPE_MOUNT_RESOURCE_LAYOUT:
             SingletonHolder< ResourceHolderManager >::get()->createAndAddLayoutHolderStationed(pInfo->mArchive);
             break;
         default:

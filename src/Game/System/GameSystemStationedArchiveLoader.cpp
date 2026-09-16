@@ -24,17 +24,18 @@ namespace {
 };  // namespace
 
 bool ConditionIfIsNotPlayer::isExecute(const MR::StationedFileInfo* pInfo) const {
-    return pInfo->mLoadType != 2 && pInfo->mLoadType != 3;
+    return pInfo->mLoadType != MR::StationedFileInfo::LOAD_TYPE_MOUNT_RESOURCE_MARIO &&
+           pInfo->mLoadType != MR::StationedFileInfo::LOAD_TYPE_MOUNT_RESOURCE_LUIGI;
 }
 
 ConditionUsePlayerHeap::ConditionUsePlayerHeap() : mNapaHeap(nullptr), mGDDRHeap(nullptr), mIsDataMario(true) {
 }
 
 bool ConditionUsePlayerHeap::isExecute(const MR::StationedFileInfo* pInfo) const {
-    s32 type = 3;
+    MR::StationedFileInfo::LoadType type = MR::StationedFileInfo::LOAD_TYPE_MOUNT_RESOURCE_LUIGI;
 
     if (mIsDataMario) {
-        type = 2;
+        type = MR::StationedFileInfo::LOAD_TYPE_MOUNT_RESOURCE_MARIO;
     }
 
     return pInfo->mLoadType == type;
@@ -42,11 +43,11 @@ bool ConditionUsePlayerHeap::isExecute(const MR::StationedFileInfo* pInfo) const
 
 JKRHeap* ConditionUsePlayerHeap::getProperHeap(const MR::StationedFileInfo* pInfo) const {
     switch (pInfo->mHeapType) {
-    case 0:
+    case MR::StationedFileInfo::HEAP_TYPE_NAPA:
         return mNapaHeap;
-    case 1:
+    case MR::StationedFileInfo::HEAP_TYPE_GDDR:
         return mGDDRHeap;
-    case 2:
+    case MR::StationedFileInfo::HEAP_TYPE_NONE:
         return nullptr;
     default:
         return nullptr;
@@ -292,5 +293,5 @@ void GameSystemStationedArchiveLoader::createAndAddOtherArchives() {
 }
 
 bool ConditionIsEqualType::isExecute(const MR::StationedFileInfo* pStationedFileInfo) const {
-    return pStationedFileInfo->mLoadType == _4;
+    return pStationedFileInfo->mLoadType == mLoadType;
 }

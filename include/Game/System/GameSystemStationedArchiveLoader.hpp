@@ -2,6 +2,7 @@
 
 #include "Game/System/NerveExecutor.hpp"
 #include "Game/System/StationedArchiveLoader.hpp"
+#include "Game/System/StationedFileInfo.hpp"
 
 class JKRExpHeap;
 class JKRHeap;
@@ -57,19 +58,19 @@ public:
 
 class ConditionIsEqualType : public StationedArchiveLoader::Condition {
 public:
-    ConditionIsEqualType(bool b) {
-        s32 var = 3;
+    ConditionIsEqualType(bool isDataMario) {
+        MR::StationedFileInfo::LoadType var = MR::StationedFileInfo::LOAD_TYPE_MOUNT_RESOURCE_LUIGI;
 
-        if (b) {
-            var = 2;
+        if (isDataMario) {
+            var = MR::StationedFileInfo::LOAD_TYPE_MOUNT_RESOURCE_MARIO;
         }
 
-        _4 = var;
+        mLoadType = var;
     }
 
     virtual bool isExecute(const MR::StationedFileInfo*) const;
 
-    /* 0x4 */ s32 _4;
+    /* 0x4 */ MR::StationedFileInfo::LoadType mLoadType;
 };
 
 class PlayerHeapHolder {
