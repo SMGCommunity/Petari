@@ -45,23 +45,24 @@ public:
     void endBind();
     void endCommandStream();
 
-    /// @note if the next use of the SlingShooter should signal the associated camera area to stop focusing on this SlingShooter (for use when Kinipio
-    /// is not yet launched from SlingShooter)
-    /* 0x8C */ bool mIsKinopioCameraFocused;  // maybe rename like SpaceCocoon?
-    /* 0x90 */ u32 _90;                       // unused
-    /* 0x94 */ f32 mPlayerZ;
-    /* 0x98 */ bool mIsKinopioAttached;
-    /* 0x99 */ bool mIsKinopioTalkEnabled;
-    /* 0x9A */ bool mIsLastDamage;
-    /* 0x9C */ const TVec3f* mBasePos;
-    /* 0xA0 */ const TVec3f* mNeutralPos;
-    /* 0xA4 */ const TVec3f* mUp;
-    /* 0xA8 */ TVec3f mPointerPos;
-    /* 0xB4 */ s32 mPadChannel;
-    /* 0xB8 */ bool mPassThroughEnable;
-    /* 0xBC */ TVec3f mAttackVelocity;
-    /* 0xC8 */ LiveActor* mRider;
-    /* 0xCC */ TPos3f mBaseMtx;
-    /* 0xFC */ CameraTargetMtx* mCameraTargetMtx;
+    void emitNullEffect(HitSensor* pSender, HitSensor* pReceiver);
+    void emitHitEffect(HitSensor* pSender, HitSensor* pReceiver);
+
+    /* 0x08C */ bool mIsKinopioCameraFocused;
+    /* 0x090 */ u32 _90;
+    /* 0x094 */ f32 mPlayerZ;
+    /* 0x098 */ bool mIsKinopioAttached;
+    /* 0x099 */ bool mIsKinopioTalkEnabled;
+    /* 0x09A */ bool mIsLastDamage;
+    /* 0x09C */ const TVec3f* mBasePos;
+    /* 0x0A0 */ const TVec3f* mNeutralPos;
+    /* 0x0A4 */ const TVec3f* mUp;
+    /* 0x0A8 */ TVec3f mPointerPos;
+    /* 0x0B4 */ s32 mPadChannel;
+    /* 0x0B8 */ bool mPassThroughEnable;
+    /* 0x0BC */ TVec3f mAttackVelocity;
+    /* 0x0C8 */ LiveActor* mRider;
+    /* 0x0CC */ TPos3f mBaseMtx;
+    /* 0x0FC */ CameraTargetMtx* mCameraTargetMtx;
     /* 0x100 */ ActorCameraInfo* mCameraInfo;
 };

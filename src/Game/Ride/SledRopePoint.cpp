@@ -25,9 +25,9 @@ bool SledRopePoint::bindToMapCollision(f32 rebound) {
         const TVec3f* normal = mBinder->getPlane(plane)->mParentTriangle.getNormal(0);
         f32 dot = mVelocity.dot(*normal);
         if (dot < 0.0f) {
-            TVec3f v1(*normal);
-            v1.scale(-(1.0f + rebound) * dot);
-            mVelocity.add(v1);
+            TVec3f reboundVec = *normal;
+            reboundVec.scale(-(1.0f + rebound) * dot);
+            mVelocity.add(reboundVec);
             bound = true;
         }
     }

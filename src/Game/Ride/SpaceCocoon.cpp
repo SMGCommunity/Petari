@@ -438,7 +438,7 @@ bool SpaceCocoon::updateBindWait() {
         }
 
         bool set;
-        if (MR::isStarPointerPointing(this, 0, true, "弱") && MR::testCorePadTriggerA(WPAD_CHAN0) &&
+        if (MR::isStarPointerPointing(this, WPAD_CHAN0, true, "弱") && MR::testCorePadTriggerA(WPAD_CHAN0) &&
             MR::tryStartStarPointerCommandStream(this, &mPosition, WPAD_CHAN0, false)) {
             set = true;
         } else {
