@@ -79,7 +79,9 @@ void WarpCube::movement() {
         }
     }
 
-    if (--mInvalidateTimer == 0) {
+    mInvalidateTimer--;
+
+    if (mInvalidateTimer == 0) {
         mIsValid = true;
     }
 }

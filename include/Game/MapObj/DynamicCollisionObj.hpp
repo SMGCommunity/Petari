@@ -15,26 +15,28 @@ public:
         u16 mIndex[3];
     };
 
-    DynamicCollisionObj(const char*);
-    virtual ~DynamicCollisionObj();
+    DynamicCollisionObj(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
+    virtual ~DynamicCollisionObj() {
+    }
+
+    virtual void init(const JMapInfoIter& rIter);
 
     void syncCollision();
     void updateTriangle();
     void updateCollisionHeader();
     void createCollision();
 
-    KCLFile* mKCLFile;           //  0x8C
-    CollisionParts* mParts;      //  0x90
-    u16 _94;                     //  0x94 : Always set to 2 by AreaPolygon::init
-    u16 mPositionNum;            //  0x96
-    TVec3f* mPositions;          //  0x98
-    TVec3f* _9C;                 //  0x9C
-    TriangleIndexing* mIndices;  //  0xA0
-    u32 _A4;                     //  0xA4
-    u32 _A8;                     //  0xA8
-    u32 _AC;                     //  0xAC
-    u8 _B0[0x6C];                //  0xB0 : Seems completely unused
-    u32 _11C;                    // 0x11C : Only used by FollowCollisionArea
+    /* 0x8C */ KCLFile* mKCLFile;
+    /* 0x90 */ CollisionParts* mParts;
+    /* 0x94 */ u16 _94;
+    /* 0x96 */ u16 mPositionNum;
+    /* 0x98 */ TVec3f* mPositions;
+    /* 0x9C */ TVec3f* _9C;
+    /* 0xA0 */ TriangleIndexing* mIndices;
+    /* 0xA4 */ u32 _A4;
+    /* 0xA8 */ u32 _A8;
+    /* 0xAC */ u32 _AC;
+    /* 0xB0 */ u8 _B0[0x6C];
+    /* 0x11C */ u32 _11C;
 };

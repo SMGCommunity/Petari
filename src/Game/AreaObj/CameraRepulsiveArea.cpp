@@ -1,6 +1,12 @@
 #include "Game/AreaObj/CameraRepulsiveArea.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
 
+void CameraRepulsiveArea_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)2.0f;
+}
+
 namespace {
     // static const s32 sPow = _;
     // static const s32 sCylPower = _;

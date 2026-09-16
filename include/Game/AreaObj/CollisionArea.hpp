@@ -6,43 +6,45 @@
 class AreaPolygon : public DynamicCollisionObj {
 public:
     AreaPolygon();
+
     virtual ~AreaPolygon();
 
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
 
-    void setMtx(MtxPtr, const TVec3f&, f32 a3);
-    void setSurfaceAndSync(s32);
-    void setSurface(s32);
+    void setMtx(MtxPtr pMatrix, const TVec3f& rSize, f32 offset);
+    void setSurfaceAndSync(s32 surface);
+    void setSurface(s32 surface);
     void invalidate();
     void validate();
 
-    u8 _120[4];
-    AreaForm* mForm;  // 0x124
-    MtxPtr _128;
-    TVec3f _12C;
-    f32 _138;
+    /* 0x120 */ u8 _120[4];
+    /* 0x124 */ AreaForm* mForm;
+    /* 0x128 */ MtxPtr _128;
+    /* 0x12C */ TVec3f _12C;
+    /* 0x138 */ f32 _138;
 };
 
 class CollisionArea : public AreaObj {
 public:
-    CollisionArea(int, const char*);
+    CollisionArea(int formType, const char* pName);
+
     virtual ~CollisionArea();
 
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void movement();
 
-    bool hitCheck(const TVec3f&, f32, TVec3f*, TVec3f*);
+    bool hitCheck(const TVec3f& rPos, f32 radius, TVec3f* pPoint, TVec3f* pNormal);
 
-    u32 _3C;
-    f32 _40;
-    TVec3f _44;
-    s32 _50;
-    s32 _54;
-    bool _58;
-    u8 _59[3];
-    s32 _5C;
-    s32 _60;
-    AreaPolygon* mPolygon;  // 0x64
-    bool mIsValid;          // 0x68
-    u8 _69[3];
+    /* 0x3C */ u32 _3C;
+    /* 0x40 */ f32 _40;
+    /* 0x44 */ TVec3f _44;
+    /* 0x50 */ s32 _50;
+    /* 0x54 */ s32 _54;
+    /* 0x58 */ bool _58;
+    /* 0x59 */ u8 _59[3];
+    /* 0x5C */ s32 _5C;
+    /* 0x60 */ s32 _60;
+    /* 0x64 */ AreaPolygon* mPolygon;
+    /* 0x68 */ bool mIsValid;
+    /* 0x69 */ u8 _69[3];
 };
