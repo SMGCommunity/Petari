@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/LodCtrl.hpp"
-#include "Game/LiveActor/MaterialCtrl.hpp"
+
+class LodCtrl;
+class ProjmapEffectMtxSetter;
 
 class LavaGalaxyParts : public LiveActor {
 public:
@@ -15,6 +16,6 @@ public:
     virtual void makeActorDead();
     virtual void control();
 
-    LodCtrl* mLodCtrl;                   // 0x8C
-    ProjmapEffectMtxSetter* mMtxSetter;  // 0x90
+    /* 0x8C */ LodCtrl* mLodCtrl;
+    /* 0x90 */ ProjmapEffectMtxSetter* mMtxSetter;
 };
