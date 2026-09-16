@@ -2,13 +2,13 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
-RosettaChair::RosettaChair(const char* pName) : LiveActor(pName), _8C(0.0f, 0.0f, 0.0f), _98(0.0f, 0.0f, 0.0f) {
-    _A0.identity();
+RosettaChair::RosettaChair(const char* pName) : LiveActor(pName), mDefaultPosition(0.0f, 0.0f, 0.0f), mDefaultRotation(0.0f, 0.0f, 0.0f) {
+    mScaleMtx.identity();
 }
 
 void RosettaChair::setDefaultPose() {
-    mPosition.set< f32 >(_8C);
-    mRotation.set< f32 >(_98);
+    mPosition.set(mDefaultPosition);
+    mRotation.set(mDefaultRotation);
     MR::startBck(this, "RosettaChair", nullptr);
     MR::validateCollisionParts(this);
 }
@@ -19,23 +19,17 @@ void RosettaChair::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
-    _A0.setInline(getBaseMtx());
-    _A0.mMtx[0][0] *= 1.7f;
-    _A0.mMtx[0][1] *= 1.7f;
-    _A0.mMtx[0][2] *= 1.7f;
-    _A0.mMtx[1][0] *= 1.7f;
-    _A0.mMtx[1][1] *= 1.7f;
-    _A0.mMtx[1][2] *= 1.7f;
-    _A0.mMtx[2][0] *= 1.7f;
-    _A0.mMtx[2][1] *= 1.7f;
-    _A0.mMtx[2][2] *= 1.7f;
-    MR::initCollisionPartsAutoEqualScale(this, "RosettaChair", getSensor("body"), _A0);
+
+    mScaleMtx.set(getBaseMtx());
+    mScaleMtx.scaleXYZ(1.7f);
+    MR::initCollisionPartsAutoEqualScale(this, "RosettaChair", getSensor("body"), mScaleMtx);
+
     MR::setClippingTypeSphere(this, 500.0f);
     MR::tryRegisterDemoCast(this, rIter);
     MR::registerDemoActionFunctor(this, MR::Functor(this, &RosettaChair::startDemo), "朗読開始");
     MR::registerDemoActionFunctor(this, MR::Functor(this, &RosettaChair::setDefaultPose), "キャスト入れ換え");
-    _8C.set< f32 >(mPosition);
-    _98.set< f32 >(mRotation);
+    mDefaultPosition.set(mPosition);
+    mDefaultRotation.set(mRotation);
     MR::startBck(this, "RosettaChair", nullptr);
     makeActorAppeared();
 }

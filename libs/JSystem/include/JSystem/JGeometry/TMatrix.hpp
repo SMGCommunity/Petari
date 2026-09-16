@@ -34,7 +34,17 @@ namespace JGeometry {
             mMtx[2][3] = tz;
         }
 
-        void scale(T scale);
+        void scale(T scale) {
+            mMtx[0][0] *= scale;
+            mMtx[0][1] *= scale;
+            mMtx[0][2] *= scale;
+            mMtx[1][0] *= scale;
+            mMtx[1][1] *= scale;
+            mMtx[1][2] *= scale;
+            mMtx[2][0] *= scale;
+            mMtx[2][1] *= scale;
+            mMtx[2][2] *= scale;
+        }
 
         inline void setInline(const SMatrix34C< T >& rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
@@ -240,6 +250,10 @@ namespace JGeometry {
             this->mMtx[0][3] *= scalar;
             this->mMtx[1][3] *= scalar;
             this->mMtx[2][3] *= scalar;
+        }
+
+        void scaleXYZ(f32 scalar) {
+            T::scale(scalar);
         }
     };
     template < class T >
