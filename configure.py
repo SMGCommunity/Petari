@@ -2502,7 +2502,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/ObjUtil.cpp"),
             Object(NonMatching, "Game/Util/ParabolicPath.cpp"),
             Object(NonMatching, "Game/Util/PlayerUtil.cpp"),
-            Object(NonMatching, "Game/Util/RailGraphUtil.cpp"),
+            Object(Matching, "Game/Util/RailGraphUtil.cpp", extra_cflags=["-sym off"]),
             Object(NonMatching, "Game/Util/RailUtil.cpp"),
             Object(NonMatching, "Game/Util/SceneUtil.cpp"),
             Object(NonMatching, "Game/Util/SchedulerUtil.cpp"),
