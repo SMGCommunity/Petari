@@ -83,7 +83,7 @@ bool KinopioAstro::isDispLetterIcon() const {
 
 void KinopioAstro::createLetterIcon(const JMapInfoIter& rIter) {
     mLetterIconTalkCtrl = MR::createTalkCtrlDirect(this, rIter, "Common_Kinopio000", TVec3f(0.0f, 122.0f, 0.0f), nullptr);
-    MR::setDistanceToTalk(mLetterIconTalkCtrl, sMessangerTalkDistance);
+    MR::setDistanceToTalk(mLetterIconTalkCtrl, ::sMessangerTalkDistance);
 }
 
 bool KinopioAstro::sendLetter() {
@@ -119,16 +119,16 @@ bool KinopioAstro::eventFunc(u32 letterEvent) {
         return false;
     } else if (letterEvent == LetterEvent_PeachLetter1Ups) {
         if (mIsPlayerLuigi) {
-            for (s32 i = 0; i < sMessangerOneUpExNum; i++) {
+            for (s32 i = 0; i < ::sMessangerOneUpExNum; i++) {
                 MR::incPlayerLeft();
             }
-            MR::getGameSceneLayoutHolder()->requestOneUp(sMessangerOneUpExNum);
+            MR::getGameSceneLayoutHolder()->requestOneUp(::sMessangerOneUpExNum);
             MR::startSystemSE("SE_SY_5UP");
         } else {
-            for (s32 i = 0; i < sMessangerOneUpNum; i++) {
+            for (s32 i = 0; i < ::sMessangerOneUpNum; i++) {
                 MR::incPlayerLeft();
             }
-            MR::getGameSceneLayoutHolder()->requestOneUp(sMessangerOneUpNum);
+            MR::getGameSceneLayoutHolder()->requestOneUp(::sMessangerOneUpNum);
             MR::startSystemSE("SE_SY_5UP");
         }
         return true;
@@ -158,12 +158,12 @@ void KinopioAstro::endDemo() {
 
 void KinopioAstro::init(const JMapInfoIter& rIter) {
     Kinopio::init(rIter);
-    if (mMsgCtrl) {
+    if (mMsgCtrl != nullptr) {
         MR::registerEventFunc(mMsgCtrl, TalkMessageFunc(this, &KinopioAstro::eventFunc));
         MR::registerBranchFunc(mMsgCtrl, TalkMessageFunc(this, &KinopioAstro::branchFunc));
     }
     if (MR::isEqualStageName("PeachCastleFinalGalaxy")) {
-        _198 = new ReceiverTagMail("StaffFinalLetter_000", sStaffLetterID, sSenderID);
+        _198 = new ReceiverTagMail("StaffFinalLetter_000", ::sStaffLetterID, ::sSenderID);
         _19C = MR::createAndAddResourceHolder("AllCompleteImage.arc");
         createLetterIcon(rIter);
         return;
@@ -188,9 +188,9 @@ void KinopioAstro::init(const JMapInfoIter& rIter) {
                 mIsPlayerLuigi = true;
             }
             if (mIsPlayerLuigi) {
-                MR::setMessageArg(mMsgCtrl, sMessangerOneUpExNum);
+                MR::setMessageArg(mMsgCtrl, ::sMessangerOneUpExNum);
             } else {
-                MR::setMessageArg(mMsgCtrl, sMessangerOneUpNum);
+                MR::setMessageArg(mMsgCtrl, ::sMessangerOneUpNum);
             }
         }
         if (MR::isLuigiLetterArrivalAtMessenger()) {
@@ -218,8 +218,8 @@ void KinopioAstro::init(const JMapInfoIter& rIter) {
 }
 
 void KinopioAstro::control() {
-    if (isDispLetterIcon() && MR::calcCameraDistanceZ(mPosition) < sMessangerTalkDistance && MR::tryTalkNearPlayer(mLetterIconTalkCtrl) &&
-        MR::calcDistanceToPlayer(this) <= sGotMailSePlayAreaRadius) {
+    if (isDispLetterIcon() && MR::calcCameraDistanceZ(mPosition) < ::sMessangerTalkDistance && MR::tryTalkNearPlayer(mLetterIconTalkCtrl) &&
+        MR::calcDistanceToPlayer(this) <= ::sGotMailSePlayAreaRadius) {
         MR::startLevelSound(this, "SE_SM_LV_KINOMES_GOT_MAIL");
     }
     NPCActor::control();
