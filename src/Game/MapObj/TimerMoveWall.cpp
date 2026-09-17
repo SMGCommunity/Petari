@@ -37,9 +37,9 @@ void TimerMoveWall::init(const JMapInfoIter& rIter) {
     info.setupSound(4);
     info.setupNerve(GET_NERVE(TimerMoveWall, TimerMoveWallNrvWait));
     initialize(rIter, info);
-    MR::getJMapInfoArg0NoInit(rIter, &mTimer); 
-    MR::getJMapInfoArg1NoInit(rIter, &mMoveLenght); 
-} 
+    MR::getJMapInfoArg0NoInit(rIter, &mTimer);
+    MR::getJMapInfoArg1NoInit(rIter, &mMoveLenght);
+}
 
 inline void TimerMoveWall::exeWait() {
     if (MR::isFirstStep(this)) {
