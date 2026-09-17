@@ -1857,7 +1857,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/FloaterFloatingForceTypeNormal.cpp"),
             Object(NonMatching, "Game/MapObj/FloaterFloatingForceTypeSpring.cpp"),
             Object(Matching, "Game/MapObj/FloaterFunction.cpp"),
-            Object(NonMatching, "Game/MapObj/LavaHomeSeesawRotator.cpp"),
+            Object(Matching, "Game/MapObj/LavaHomeSeesawRotator.cpp"),
             Object(
                 Matching,
                 "Game/MapObj/MapPartsAppearController.cpp",
