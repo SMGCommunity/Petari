@@ -149,6 +149,13 @@ public:
         _13C = "Reaction";
     }
 
+    inline void setDefaults(const char* a1, const char* a2, const char* a3, const char* a4) {
+        _130 = a4;
+        _134 = a3;
+        _138 = a2;
+        _13C = a1;
+    }
+
     inline void setDefaultsParam() {
         mParam._14 = "Wait";
         mParam._18 = "Turn";
