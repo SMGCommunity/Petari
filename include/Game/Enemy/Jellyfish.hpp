@@ -9,7 +9,6 @@ class Jellyfish : public LiveActor {
 public:
     Jellyfish(const char*);
 
-    virtual ~Jellyfish();
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void control();
@@ -29,6 +28,7 @@ public:
     void exeWaitWithRightTurn();
     void exeThreatWithLeftTurn();
     void exeThreatWithRightTurn();
+
     void threatTurn();
     bool faceToMario();
     void knockOut(HitSensor*, HitSensor*);
@@ -36,13 +36,13 @@ public:
     bool selectNerveThreat();
     bool tryDPDSwoon();
 
-    AnimScaleController* mController;          // 0x8C
-    WalkerStateBindStarPointer* mBindStarPtr;  // 0x90
-    s32 _94;
-    TVec3f _98;
-    bool mIsConnectedRail;  // 0xA4
-    f32 _A8;
-    s32 _AC;
-    bool _B0;
-    TVec3f _B4;
+    /* 0x8C */ AnimScaleController* mController;
+    /* 0x90 */ WalkerStateBindStarPointer* mBindStarPtr;
+    /* 0x94 */ s32 _94;
+    /* 0x98 */ TVec3f _98;
+    /* 0xA4 */ bool mIsConnectedRail;
+    /* 0xA8 */ f32 _A8;
+    /* 0xAC */ s32 _AC;
+    /* 0xB0 */ bool _B0;
+    /* 0xB4 */ TVec3f _B4;
 };
