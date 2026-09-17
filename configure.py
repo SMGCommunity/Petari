@@ -2232,7 +2232,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/GalaxyMapController.cpp"),
             Object(NonMatching, "Game/Screen/GalaxyMapDomeIcon.cpp"),
             Object(NonMatching, "Game/Screen/GalaxyMapGalaxyDetail.cpp"),
-            Object(NonMatching, "Game/Screen/GalaxyMapGalaxyPlain.cpp"),
+            Object(Matching, "Game/Screen/GalaxyMapGalaxyPlain.cpp"),
             Object(Matching, "Game/Screen/GalaxyMapIcon.cpp"),
             Object(Matching, "Game/Screen/GalaxyMapMarioIcon.cpp"),
             Object(Matching, "Game/Screen/GalaxyMapSelectButton.cpp"),

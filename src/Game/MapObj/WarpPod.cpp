@@ -30,7 +30,7 @@ void WarpPod_FORCE_MATCH_SDATA2() {
     (void)MR::pi();
     (void)2.0f;
     (void)200.0f;
-    (void)(MR::pi()/4.0f);
+    (void)(MR::pi() / 4.0f);
     (void)30.0f;
     (void)100.0f;
 }
@@ -259,7 +259,8 @@ void WarpPod::glowEffect() {
     }
 
     MR::emitEffect(this, "EndGlow");
-    MR::setEffectEnvColor(this, "EndGlow", gGlowEffectEnvColor[mGlowColorIndex].r, gGlowEffectEnvColor[mGlowColorIndex].g, gGlowEffectEnvColor[mGlowColorIndex].b);
+    MR::setEffectEnvColor(this, "EndGlow", gGlowEffectEnvColor[mGlowColorIndex].r, gGlowEffectEnvColor[mGlowColorIndex].g,
+                          gGlowEffectEnvColor[mGlowColorIndex].b);
 }
 
 void WarpPod::initPair() {
@@ -544,7 +545,7 @@ void WarpPod::drawCylinder(u32) const {
     }
 
     if (val1 != 0) {
-        val2 *= 1 - static_cast<f32>(val1) / val3;
+        val2 *= 1 - static_cast< f32 >(val1) / val3;
     }
 
     for (u32 i = 0; i < val2; i++) {
@@ -592,7 +593,7 @@ void WarpPod::drawCylinder(u32) const {
             continue;
         }
 
-        f32 val = 2.0f * (static_cast<f32>(i + 1) / val2) - 1.0f;
+        f32 val = 2.0f * (static_cast< f32 >(i + 1) / val2) - 1.0f;
         if (val < 0.0f) {
             val = -val;
         }
