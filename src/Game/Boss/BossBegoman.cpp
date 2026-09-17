@@ -866,8 +866,8 @@ bool BossBegoman::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
         }
 
         bool rebounded = reboundPlaneWithEffect(vec2, 0.0f, 0.0f, "Spark");
-        // float regswap
-        MR::addVelocityLimit(this, vec2 * 6.0f * (pSender->mRadius / getSensor("body")->mRadius));
+        HitSensor* pBody = getSensor("body");
+        MR::addVelocityLimit(this, vec2 * 6.0f * (pSender->mRadius / pBody->mRadius));
 
         if (rebounded) {
             MR::startSound(this, "SE_EM_BEGOMAN_COLLI_BEGOMAN");
