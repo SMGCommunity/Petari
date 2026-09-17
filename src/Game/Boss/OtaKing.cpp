@@ -337,7 +337,7 @@ void OtaKing::initModel(const JMapInfoIter& rIter) {
 
     for (int i = 0; i < 6; i++) {
         mFireBallArray[i].initWithoutIter();
-        mFireBallArray[i]._8C = this;
+        mFireBallArray[i].mHost = this;
     }
 
     mFireBubbleArray = new FireBubble[6];

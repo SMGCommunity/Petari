@@ -143,7 +143,7 @@ void OtaRock::initModel() {
     mFireBallArray = new FireBall[3];
     for (int i = 0; i < 3; i++) {
         mFireBallArray[i].initWithoutIter();
-        mFireBallArray[i]._8C = this;
+        mFireBallArray[i].mHost = this;
     }
 
     mFixedPosition = new FixedPosition(this, "Mouth", TVec3f(0.0f, 0.0f, 50.0f), TVec3f(0.0f, 0.0f, -90.0f));
