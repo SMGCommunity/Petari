@@ -171,7 +171,7 @@ void KinopioAstro::init(const JMapInfoIter& rIter) {
     if (!MR::isKinopioExplorerRescued()) {
         makeActorDead();
     }
-    if (mObjArg1 == 2) {
+    if (mObjArg0 == 2) {
         if (MR::isDemoCast(this, "ルイージ失踪デモ")) {
             TalkMessageCtrl* msgCtrl = MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, "AstroGalaxy_Kinopio100",
                                                                                    MR::getMessageBalloonFollowOffset(mMsgCtrl).copy(), nullptr);
@@ -198,7 +198,7 @@ void KinopioAstro::init(const JMapInfoIter& rIter) {
             mLuigiLetter->initWithoutIter();
             _195 = true;
         }
-        if (mObjArg7 != 3) {
+        if (mEquipment != 3) {
             NPCActorItem npcItems("Kinopio");
             MR::getNPCItemData(&npcItems, 3);
             _94 = MR::createNPCGoods(this, npcItems.mGoods0, npcItems.mGoodsJoint0);

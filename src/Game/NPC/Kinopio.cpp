@@ -7,24 +7,6 @@
 #include "Game/NPC/NPCActorItem.hpp"
 #include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/Util.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/ActorShadowUtil.hpp"
-#include "Game/Util/ActorSwitchUtil.hpp"
-#include "Game/Util/JMapUtil.hpp"
-#include "Game/Util/JointController.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/MathUtil.hpp"
-#include "Game/Util/NPCUtil.hpp"
-#include "Game/Util/RailUtil.hpp"
-#include "Game/Util/SceneUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
-#include "Game/Util/StarPointerUtil.hpp"
-#include "Game/Util/TalkUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "math_types.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
 
 namespace NrvKinopio {
     NEW_NERVE(KinopioNrvReaction, Kinopio, Reaction);
@@ -65,7 +47,7 @@ namespace {
 };  // namespace
 
 Kinopio::Kinopio(const char* pName)
-    : NPCActor(pName), mColorFrame(), mBehavior(-1), mAppearBehavior(-1), mEquipment(-1), _17C(), mTakeOutStar(), mIsSpawnPowerStarMode(), _185() {
+    : NPCActor(pName), mObjArg0(), mBehavior(-1), mAppearBehavior(-1), mEquipment(-1), _17C(), mTakeOutStar(), mIsSpawnPowerStarMode(), _185() {
     _16C.set(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
@@ -74,7 +56,7 @@ void Kinopio::init(const JMapInfoIter& rIter) {
     TVec3f rotation(mRotation);
     rotation.scale(MR::toRadian(1.0f));
     _A0.setEuler(rotation);
-    MR::getJMapInfoArg1NoInit(rIter, &mColorFrame);
+    MR::getJMapInfoArg1NoInit(rIter, &mObjArg0);
     MR::getJMapInfoArg2NoInit(rIter, &mBehavior);
     MR::getJMapInfoArg3NoInit(rIter, &mIsSpawnPowerStarMode);
     MR::getJMapInfoArg4NoInit(rIter, &mAppearBehavior);

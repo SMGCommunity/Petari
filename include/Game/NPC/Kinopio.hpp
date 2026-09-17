@@ -41,7 +41,7 @@ public:
 
     inline bool isPlayerNotNearKinopio();
 
-    /* 0x15C */ s32 mColorFrame;
+    /* 0x15C */ s32 mObjArg0;
     /* 0x160 */ s32 mBehavior;
     /* 0x164 */ s32 mAppearBehavior;
     /* 0x168 */ s32 mEquipment;
