@@ -6,12 +6,18 @@
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/FileUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
+#include "JSystem/JUtility/JUTTexture.hpp"
 #include "nw4r/lyt/group.h"
 #include "nw4r/lyt/layout.h"
+#include "nw4r/lyt/material.h"
 #include "nw4r/lyt/pane.h"
+#include "nw4r/lyt/picture.h"
+#include "nw4r/lyt/texMap.h"
 #include "nw4r/lyt/textBox.h"
 #include "nw4r/ut/Rect.h"
 #include "nw4r/ut/RuntimeTypeInfo.h"
@@ -29,7 +35,7 @@ namespace {
 }
 
 LayoutManager::LayoutManager(const char* pLayoutName, bool a2, u32 rootPaneAnimLayerNum, u32 textBoxBufferLength)
-    : mLayoutHolder(), mLayout(), mAnimTransList(), mDrawInfo(), mIsScreenHidden(), _61(true), _64(), mPaneCount(), mPaneInfoList(),
+    : mLayoutHolder(), mLayout(), mAnimTransList(), mDrawInfo(), mIsScreenHidden(), _61(true), mIndDummyTexMap(), mPaneCount(), mPaneInfoList(),
       mGroupCtrlCount(), mGroupCtrlList(), mLayoutName() {
     if (a2) {
         char fileNameWithoutExtension[0x60];
@@ -286,4 +292,63 @@ void LayoutManager::initTextBoxRecursive(nw4r::lyt::Pane* pPane, nw4r::lyt::Pane
     for (nw4r::lyt::PaneList::Iterator it = rPaneList.GetBeginIter(); it != rPaneList.GetEndIter(); ++it) {
         initTextBoxRecursive(&*it, pUserDataPane, pLayoutName, textBoxBufferLength);
     }
+}
+
+void LayoutManager::replaceIndDummyTexture() {
+    if (!mLayoutHolder->isExistResOther("IndDummy.tpl")) {
+        return;
+    }
+
+    JUTTexture screenTex(MR::getScreenResTIMG(), static_cast< u8 >(0));
+
+    mIndDummyTexMap = new nw4r::lyt::TexMap(screenTex.getTexObj());
+
+    // ???
+    void* pIndDummyResStart = mLayoutHolder->getResOther("IndDummy.tpl");
+    void* pIndDummyResEnd = reinterpret_cast< void* >(-1);
+
+    for (u32 i = 0; i < mLayoutHolder->getResOtherNum(); i++) {
+        void* pRes = mLayoutHolder->getResOther(i);
+
+        if (pIndDummyResStart < pRes && pIndDummyResEnd > pRes) {
+            pIndDummyResEnd = pRes;
+        }
+    }
+
+    for (u32 paneIdx = 0; paneIdx < mPaneCount; paneIdx++) {
+        nw4r::lyt::Pane* pCurrPane = mPaneInfoList[paneIdx].mPane;
+        nw4r::lyt::Picture* pPicPane;
+        const nw4r::ut::detail::RuntimeTypeInfo* pPictureRuntimeInfo = &nw4r::lyt::Picture::typeInfo;
+
+        if (pCurrPane && pCurrPane->GetRuntimeTypeInfo()->IsDerivedFrom(pPictureRuntimeInfo)) {
+            pPicPane = static_cast<nw4r::lyt::Picture*>(pCurrPane);
+        }
+        else {
+            pPicPane = nullptr;
+        }
+
+        if (pPicPane == nullptr) {
+            continue;
+        }
+
+        nw4r::lyt::Material* pMaterial = pPicPane->GetMaterial();
+
+        for (u8 texMapIdx = 0; texMapIdx < pMaterial->GetTextureNum(); texMapIdx++) {
+            void* pImage = pMaterial->GetTexture(texMapIdx).mImage;
+
+            if (pImage < pIndDummyResStart) { 
+                continue;
+            }
+
+            if (pImage >= pIndDummyResEnd) {
+                continue;
+            }
+
+            pMaterial->SetTexture(texMapIdx, *mIndDummyTexMap);
+        }
+    }
+}
+
+void LayoutManager::removeUnnecessaryPanes(nw4r::lyt::Pane* pPane) {
+
 }

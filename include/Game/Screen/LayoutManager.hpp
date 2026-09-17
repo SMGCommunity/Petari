@@ -11,6 +11,7 @@ namespace nw4r {
         class Group;
         class Layout;
         class Pane;
+        class TexMap;
     };  // namespace lyt
 };  // namespace nw4r
 
@@ -82,7 +83,7 @@ public:
     /* 0x0C */ nw4r::lyt::DrawInfo mDrawInfo;
     /* 0x60 */ bool mIsScreenHidden;
     /* 0x61 */ bool _61;
-    /* 0x64 */ u32 _64;
+    /* 0x64 */ nw4r::lyt::TexMap* mIndDummyTexMap;
     /* 0x68 */ u32 mPaneCount;
     /* 0x6C */ LayoutPaneInfo* mPaneInfoList;
     /* 0x70 */ u32 mGroupCtrlCount;
