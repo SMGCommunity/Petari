@@ -2297,7 +2297,7 @@ config.libs = [
             Object(Matching, "Game/Screen/PrologueLetter.cpp"),
             Object(NonMatching, "Game/Screen/ProloguePictureBook.cpp"),
             Object(NonMatching, "Game/Screen/PurpleCoinCounter.cpp"),
-            Object(NonMatching, "Game/Screen/ReplaceTagProcessor.cpp"),
+            Object(Matching, "Game/Screen/ReplaceTagProcessor.cpp"),
             Object(Matching, "Game/Screen/SaveIcon.cpp"),
             Object(NonMatching, "Game/Screen/ScenarioSelectLayout.cpp"),
             Object(Matching, "Game/Screen/ScenarioTitle.cpp"),
