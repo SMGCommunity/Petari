@@ -6,18 +6,12 @@
 #define ARG_U16 1
 #define ARG_U24 2
 
-#define FUNC_0(func)                                                                                                                                 \
-    { &AudMeSeqParser::func, 0, 0 }
-#define FUNC_1(func, a)                                                                                                                              \
-    { &AudMeSeqParser::func, 1, (a << 0) }
-#define FUNC_2(func, a, b)                                                                                                                           \
-    { &AudMeSeqParser::func, 2, ((a << 0) | (b << 2)) }
-#define FUNC_3(func, a, b, c)                                                                                                                        \
-    { &AudMeSeqParser::func, 3, ((a << 0) | (b << 2) | (c << 4)) }
-#define FUNC_4(func, a, b, c, d)                                                                                                                     \
-    { &AudMeSeqParser::func, 4, ((a << 0) | (b << 2) | (c << 4) | (d << 6)) }
-#define FUNC_5(func, a, b, c, d, e)                                                                                                                  \
-    { &AudMeSeqParser::func, 5, ((a << 0) | (b << 2) | (c << 4) | (d << 6) | (e << 8)) }
+#define FUNC_0(func) {&AudMeSeqParser::func, 0, 0}
+#define FUNC_1(func, a) {&AudMeSeqParser::func, 1, (a << 0)}
+#define FUNC_2(func, a, b) {&AudMeSeqParser::func, 2, ((a << 0) | (b << 2))}
+#define FUNC_3(func, a, b, c) {&AudMeSeqParser::func, 3, ((a << 0) | (b << 2) | (c << 4))}
+#define FUNC_4(func, a, b, c, d) {&AudMeSeqParser::func, 4, ((a << 0) | (b << 2) | (c << 4) | (d << 6))}
+#define FUNC_5(func, a, b, c, d, e) {&AudMeSeqParser::func, 5, ((a << 0) | (b << 2) | (c << 4) | (d << 6) | (e << 8))}
 
 AudMeSeqParser::Command AudMeSeqParser::sCmdInfo[0xA0] = {
     /* 0x00 */ FUNC_1(cmdBank, ARG_U8),
@@ -218,6 +212,7 @@ s32 AudMeSeqParser::cmdOpenTrack(AudMeTrack* pTrack, u32* pArgs) {
     if (child == nullptr) {
         return 0;
     }
+
     child->setSeqData(pTrack->getSeqCtrl()->getBase(), addr);
     return 0;
 }
@@ -273,6 +268,7 @@ s32 AudMeSeqParser::cmdJumpZ(AudMeTrack* pTrack, u32* pArgs) {
     if (pTrack->getFlagZ()) {
         pTrack->getSeqCtrl()->jump(addr);
     }
+
     pTrack->clearJumpFlag();
     return 0;
 }
@@ -282,6 +278,7 @@ s32 AudMeSeqParser::cmdJumpNZ(AudMeTrack* pTrack, u32* pArgs) {
     if (pTrack->getFlagNZ()) {
         pTrack->getSeqCtrl()->jump(addr);
     }
+
     pTrack->clearJumpFlag();
     return 0;
 }
@@ -291,6 +288,7 @@ s32 AudMeSeqParser::cmdCallZ(AudMeTrack* pTrack, u32* pArgs) {
     if (pTrack->getFlagZ()) {
         pTrack->getSeqCtrl()->call(addr);
     }
+
     pTrack->clearJumpFlag();
     return 0;
 }
@@ -300,6 +298,7 @@ s32 AudMeSeqParser::cmdCallNZ(AudMeTrack* pTrack, u32* pArgs) {
     if (pTrack->getFlagNZ()) {
         pTrack->getSeqCtrl()->call(addr);
     }
+
     pTrack->clearJumpFlag();
     return 0;
 }
@@ -439,6 +438,7 @@ s32 AudMeSeqParser::cmdCmpNI(AudMeTrack* pTrack, u32* pArgs) {
     } else {
         pTrack->setJumpFlag(false);
     }
+
     return 0;
 }
 
@@ -450,6 +450,7 @@ s32 AudMeSeqParser::cmdCmpCI(AudMeTrack* pTrack, u32* pArgs) {
     } else {
         pTrack->setJumpFlag(false);
     }
+
     return 0;
 }
 
@@ -538,9 +539,6 @@ s32 AudMeSeqParser::cmdModifyRnd(AudMeTrack* pTrack, u32* pArgs) {
 }
 
 s32 AudMeSeqParser::parse(AudMeTrack* pTrack) {
-    // FIXME: regswap in read16
-    // https://decomp.me/scratch/rnZki
-
     if (pTrack == nullptr) {
         return 0;
     }
@@ -563,6 +561,7 @@ s32 AudMeSeqParser::parse(AudMeTrack* pTrack) {
             arg = pTrack->getSeqCtrl()->read24();
             break;
         }
+
         args[i] = arg;
         readType = (u16)readType >> 2;
     }

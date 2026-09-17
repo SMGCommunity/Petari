@@ -8,19 +8,14 @@ class AudMe;
 class AudMeHandle {
 public:
     /// @brief Creates a new `AudMeHandle`.
-    AudMeHandle() : mMe(nullptr) {};
+    AudMeHandle() : mMe() {};
 
     /// @brief Destroys the `AudMeHandle`.
     ~AudMeHandle() {
         releaseMe();
     }
 
-    void releaseMe() {
-        if (isMeAttached()) {
-            mMe->mHandle = nullptr;
-            mMe = nullptr;
-        }
-    }
+    void releaseMe();
 
     bool isMeAttached() const {
         return mMe != nullptr;

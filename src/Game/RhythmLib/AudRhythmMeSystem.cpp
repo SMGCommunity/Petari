@@ -30,7 +30,6 @@ AudRhythmMeSystem::AudRhythmMeSystem(JKRHeap* pHeap, u32 numSeqParsers, bool has
 }
 
 bool AudRhythmMeSystem::setSeq(JAISoundHandle& rHandle, s32 parserNo) {
-    // FIXME: reg alloc
     if (!rHandle.isSoundAttached()) {
         return false;
     }
@@ -43,7 +42,8 @@ bool AudRhythmMeSystem::setSeq(JAISoundHandle& rHandle, s32 parserNo) {
         }
 
         track->mSeqCtrl.mParser = mSeqParsers[parserNo];
-        if (track->getChild(0) == nullptr) {
+        track = track->getChild(0);
+        if (track == nullptr) {
             return false;
         }
 
@@ -55,6 +55,7 @@ bool AudRhythmMeSystem::setSeq(JAISoundHandle& rHandle, s32 parserNo) {
         track->mSeqCtrl.mParser = mSeqParsers[parserNo];
         track->mute(true);
     }
+
     mSeqParsers[parserNo]->activate();
     mRhythmHolders[parserNo].init();
     return true;
@@ -100,5 +101,6 @@ void AudRhythmMeSystem::setUsingRhythmParser(u32 parserNo) {
             mSeqParsers[i]->mIsUsed = false;
         }
     }
+
     mBgmIdx = parserNo;
 }
