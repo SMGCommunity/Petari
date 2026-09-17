@@ -24,12 +24,15 @@ public:
     void requestGalaxyMove(const GalaxyMoveArgument&);
     void requestCancelScenarioSelect();
     GalaxyCometScheduler* getGalaxyCometScheduler();
+
     void exeBooting();
     void exeLogo();
     void exeWaitGoToFirstScene();
     void exeNormal();
     void exeGalaxyMove();
     void exeResetProcessing();
+
+    inline static bool isCometStar(GalaxyMoveArgument);
     static bool isScenePermittedIsUpdateWiiRemoteStatus() NO_INLINE;
     static bool isSceneLongAutoSleepWiiRemote();
     void updateGameDataBeforeChangeScene();
@@ -46,8 +49,8 @@ public:
     /* 0x14 */ GalaxyCometScheduler* mGalaxyCometScheduler;
     /* 0x18 */ LuigiLeftSupplier* mLuigiLeftSupplier;
     /* 0x1C */ PlayerMissLeft* mPlayerMissLeft;
-    /* 0x20 */ s32 _20;
-    /* 0x24 */ bool _24;
-    /* 0x25 */ bool _25;
-    /* 0x26 */ bool _26;
+    /* 0x20 */ s32 mMinFrame;
+    /* 0x24 */ bool mIsPlayTicoSound;
+    /* 0x25 */ bool mIsCancelScenarioSelect;
+    /* 0x26 */ bool mIsForceWipe;
 };

@@ -2441,7 +2441,7 @@ config.libs = [
             Object(NonMatching, "Game/System/GameEventValueChecker.cpp"),
             Object(NonMatching, "Game/System/GameSequenceDirector.cpp"),
             Object(NonMatching, "Game/System/GameSequenceFunction.cpp"),
-            Object(NonMatching, "Game/System/GameSequenceProgress.cpp"),
+            Object(Matching, "Game/System/GameSequenceProgress.cpp"),
             Object(Matching, "Game/System/LuigiLeftSupplier.cpp"),
             Object(NonMatching, "Game/System/SaveDataBannerCreator.cpp"),
             Object(NonMatching, "Game/System/SaveDataFileAccessor.cpp"),

@@ -4,6 +4,7 @@
 #include "Game/System/FindingLuigiEventScheduler.hpp"
 #include "Game/System/GalaxyCometScheduler.hpp"
 #include "Game/System/GalaxyMoveArgument.hpp"
+#include "Game/System/GalaxyStatusAccessor.hpp"
 #include "Game/System/GameDataFunction.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
@@ -39,7 +40,8 @@ namespace {
 
 GameSequenceProgress::GameSequenceProgress()
     : NerveExecutor("シーケンス進行"), mStarPointerOnOffController(), mStorySequenceExecutor(), mFindingLuigiEventScheduler(),
-      mGalaxyCometScheduler(), mLuigiLeftSupplier(), mPlayerMissLeft(), _20(), _24(), _25(), _26(true) {
+      mGalaxyCometScheduler(), mLuigiLeftSupplier(), mPlayerMissLeft(), mMinFrame(), mIsPlayTicoSound(), mIsCancelScenarioSelect(),
+      mIsForceWipe(true) {
     initNerve(GET_NERVE_ANON(GameSequenceProgressBooting));
 
     mStarPointerOnOffController = new StarPointerOnOffController();
@@ -83,8 +85,8 @@ void GameSequenceProgress::draw() {
 }
 
 void GameSequenceProgress::startScene() {
-    _20 = 0;
-    _24 = false;
+    mMinFrame = 0;
+    mIsPlayTicoSound = false;
 
     if (MR::isEqualSceneName("Logo")) {
         mStarPointerOnOffController->setStateToBase(this);
@@ -110,7 +112,7 @@ void GameSequenceProgress::startScene() {
             MR::forceOpenWipeFade();
         }
 
-        if (_26) {
+        if (mIsForceWipe) {
             MR::forceOpenSystemWipeFade();
         }
 
@@ -127,7 +129,9 @@ void GameSequenceProgress::startScene() {
 void GameSequenceProgress::endScene() {
     if (isNerve(GET_NERVE_ANON(GameSequenceProgressLogo))) {
         MR::requestChangeSceneAfterBoot();
+
         GameSystemFunction::setResetOperationApplicationReset();
+
         setNerve(GET_NERVE_ANON(GameSequenceProgressWaitGoToFirstScene));
     } else if (!isNerve(GET_NERVE_GLOBAL(GameSequenceProgressWaitGoToFirstScene))) {
         MR::requestChangeSceneTitle();
@@ -135,11 +139,9 @@ void GameSequenceProgress::endScene() {
 }
 
 void GameSequenceProgress::requestChangeScene(const char* pName) {
-    GameSystemSceneController* pSceneController;
-
     updateGameDataBeforeChangeScene();
 
-    pSceneController = SingletonHolder< GameSystem >::get()->mSceneController;
+    GameSystemSceneController* pSceneController = SingletonHolder< GameSystem >::get()->mSceneController;
     pSceneController->mNextSceneControlInfo.setScene(pName);
     pSceneController->requestChangeScene();
 
@@ -147,10 +149,77 @@ void GameSequenceProgress::requestChangeScene(const char* pName) {
     mStorySequenceExecutor->forceStop();
 }
 
-// GameSequenceProgress::requestGalaxyMove
+void GameSequenceProgress::requestGalaxyMove(const GalaxyMoveArgument& rMoveArg) {
+    updateGameDataGalaxyVisitedFlag();
+    GameSequenceFunction::storeSceneStartGameDataHolder();
+
+    if (rMoveArg.mMoveType == 4) {
+        GameSequenceFunction::updateGameDataAndSequenceAfterStageResultSequence();
+        mFindingLuigiEventScheduler->updateOnStageResult(GameSequenceFunction::getClearedStageName(), GameSequenceFunction::getClearedPowerStarId());
+
+        countDownGameEventValueFromNewPowerStar();
+    }
+
+    mFindingLuigiEventScheduler->update(rMoveArg);
+
+    GalaxyMoveArgument moveArg(rMoveArg);
+    mStorySequenceExecutor->moveGalaxy(&moveArg, isNerve(GET_NERVE_ANON(GameSequenceProgressResetProcessing)) || mIsCancelScenarioSelect);
+
+    mGalaxyCometScheduler->syncWithFlags();
+
+    updateGameDataBeforeChangeScene();
+    setMinFrameBeforeStartNextStage(moveArg);
+
+    GameSystemSceneController* pController = SingletonHolder< GameSystem >::get()->mSceneController;
+    pController->mNextSceneControlInfo.setScene("Game");
+    pController->mNextSceneControlInfo.setStage(moveArg.mStageName);
+    pController->mNextSceneControlInfo.mScenarioNo = moveArg.mScenarioNo;
+    pController->mNextSceneControlInfo.mSelectedScenarioNo = moveArg._C;
+    pController->mNextSceneControlInfo.setStartIdInfo(moveArg.mIDInfo);
+    pController->requestChangeScene();
+
+    resetGameDataAfterChangeScene(moveArg);
+
+    switch (moveArg.mMoveType) {
+    case 2:
+        SingletonHolder< GameSystem >::get()->mSceneController->startScenarioSelectScene();
+        MR::setStarPointerModeBase();
+
+        break;
+    case 7:
+        SingletonHolder< GameSystem >::get()->mSceneController->startScenarioSelectSceneBackground();
+        mStarPointerOnOffController->setStateToTitle(this);
+        break;
+    case 5:
+        if (mPlayerMissLeft != nullptr && !isCometStar(moveArg)) {
+            mPlayerMissLeft->appear();
+        }
+    case 0:
+    case 1:
+    case 3:
+    case 4:
+    case 6:
+        SingletonHolder< GameSystem >::get()->mSceneController->startScenarioSelectSceneBackground();
+        mStarPointerOnOffController->setStateToBase(this);
+
+        if (moveArg.mMoveType == 6) {
+            mLuigiLeftSupplier->syncWithFlags();
+        }
+
+        break;
+    }
+
+    mIsForceWipe = true;
+
+    if (moveArg.mMoveType == 2 || MR::isEqualString(moveArg.mStageName, "EpilogueDemoStage")) {
+        mIsForceWipe = false;
+    }
+
+    setNerve(GET_NERVE_ANON(GameSequenceProgressGalaxyMove));
+}
 
 void GameSequenceProgress::requestCancelScenarioSelect() {
-    _25 = true;
+    mIsCancelScenarioSelect = true;
 }
 
 GalaxyCometScheduler* GameSequenceProgress::getGalaxyCometScheduler() {
@@ -170,6 +239,7 @@ void GameSequenceProgress::exeLogo() {
     if (MR::isFirstStep(this)) {
         startScene();
         GameSequenceFunction::startScene();
+
         GameSystemFunction::tryToLoadSystemArchive();
     }
 }
@@ -182,10 +252,9 @@ void GameSequenceProgress::exeWaitGoToFirstScene() {
 
 void GameSequenceProgress::exeNormal() {
     if (MR::isFirstStep(this)) {
-        if (_25) {
+        if (mIsCancelScenarioSelect) {
             requestGalaxyMove(GalaxyMoveArgument(3, nullptr, 1, nullptr));
-
-            _25 = false;
+            mIsCancelScenarioSelect = false;
         } else {
             startScene();
             GameSequenceFunction::startScene();
@@ -196,26 +265,22 @@ void GameSequenceProgress::exeNormal() {
 }
 
 void GameSequenceProgress::exeGalaxyMove() {
-    if (_24) {
+    if (mIsPlayTicoSound) {
         if (MR::isStep(this, ::sTimingPlayingTicoSE)) {
             MR::startSystemSE("SE_SY_TICO_WAKE_PLAYER");
         }
     }
 
-    if (MR::isGreaterStep(this, _20)) {
-        if (GameSequenceFunction::isReadyToStartScene()) {
-            if (MR::isDead(mPlayerMissLeft)) {
-                setNerve(GET_NERVE_ANON(GameSequenceProgressNormal));
-            }
-        }
+    if (MR::isGreaterStep(this, mMinFrame) && GameSequenceFunction::isReadyToStartScene() && MR::isDead(mPlayerMissLeft)) {
+        setNerve(GET_NERVE_ANON(GameSequenceProgressNormal));
     }
 }
 
 void GameSequenceProgress::exeResetProcessing() {
     if (MR::isFirstStep(this)) {
-        _25 = false;
-        _20 = 0;
-        _24 = false;
+        mIsCancelScenarioSelect = false;
+        mMinFrame = 0;
+        mIsPlayTicoSound = false;
 
         mStorySequenceExecutor->forceStop();
 
@@ -226,12 +291,10 @@ void GameSequenceProgress::exeResetProcessing() {
         mFindingLuigiEventScheduler->clearLostAndFoundCount();
     }
 
-    if (GameSystemFunction::isResetProcessing()) {
-        return;
+    if (!GameSystemFunction::isResetProcessing()) {
+        MR::requestChangeSceneTitle();
+        setNerve(GET_NERVE_ANON(GameSequenceProgressWaitGoToFirstScene));
     }
-
-    MR::requestChangeSceneTitle();
-    setNerve(GET_NERVE_ANON(GameSequenceProgressWaitGoToFirstScene));
 }
 
 bool GameSequenceProgress::isScenePermittedIsUpdateWiiRemoteStatus() {
@@ -246,54 +309,63 @@ bool GameSequenceProgress::isSceneLongAutoSleepWiiRemote() {
     return false;
 }
 
+bool GameSequenceProgress::isCometStar(GalaxyMoveArgument moveArg) {
+    GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(moveArg.mStageName);
+    return accessor.isCometStar(moveArg.mScenarioNo);
+}
+
 void GameSequenceProgress::updateGameDataBeforeChangeScene() {
     if (GameSequenceFunction::hasStageResultSequence() && GameSequenceFunction::isPowerStarAtResultSequence("KoopaBattleVs3Galaxy", 1)) {
         GameSequenceFunction::reflectStageResultSequenceCoin();
+
         GameDataFunction::addStockedStarPiece(GameSequenceFunction::getClearedStarPieceNum());
+
         GameSequenceFunction::resetStageResultSequenceParam();
     }
 }
 
-void GameSequenceProgress::resetGameDataAfterChangeScene(const GalaxyMoveArgument& rParam1) {
+void GameSequenceProgress::resetGameDataAfterChangeScene(const GalaxyMoveArgument& rMoveArg) {
     s32 starPieceNum = GameDataFunction::getStarPieceNum();
     s32 last1upStarPieceNum = GameDataFunction::getLast1upStarPieceNum();
 
-    switch (rParam1.mMoveType) {
+    switch (rMoveArg.mMoveType) {
     case 6:
         mGalaxyCometScheduler->restoreStateFromGameData();
+
     case 0:
     case 1:
     case 2:
     case 3:
     case 7:
         GameDataFunction::resetGameDataGoToGalaxyFirst();
+
         break;
     case 5:
         GameDataFunction::resetGameDataGoToGalaxyRetry();
+
         break;
     }
 
-    if (rParam1.isEqualStageScenario("HeavensDoorGalaxy", 1) && mStorySequenceExecutor->isEqualStageScenarioBefore("PeachCastleGardenGalaxy", 1) &&
-        rParam1.mMoveType == 0) {
+    if (rMoveArg.isEqualStageScenario("HeavensDoorGalaxy", 1) && mStorySequenceExecutor->isEqualStageScenarioBefore("PeachCastleGardenGalaxy", 1) &&
+        rMoveArg.mMoveType == 0) {
         GameDataFunction::addStarPiece(starPieceNum);
         GameDataFunction::setLast1upStarPieceNum(last1upStarPieceNum);
     }
 }
 
 void GameSequenceProgress::updateGameDataGalaxyVisitedFlag() {
-    if (MR::isEqualSceneName("Game") && !_25 && !isNerve(GET_NERVE_ANON(GameSequenceProgressResetProcessing))) {
+    if (MR::isEqualSceneName("Game") && !mIsCancelScenarioSelect && !isNerve(GET_NERVE_ANON(GameSequenceProgressResetProcessing))) {
         const char* pStageName = MR::getCurrentStageName();
         s32 scenarioNo = MR::getCurrentScenarioNo();
-
         GameDataFunction::onGalaxyScenarioFlagAlreadyVisited(pStageName, scenarioNo);
     }
 }
 
-void GameSequenceProgress::setMinFrameBeforeStartNextStage(const GalaxyMoveArgument& rParam1) {
+void GameSequenceProgress::setMinFrameBeforeStartNextStage(const GalaxyMoveArgument& rMoveArg) {
     if (MR::isEqualSceneName("Game") && MR::isEqualStageName("PeachCastleGardenGalaxy") &&
-        MR::isEqualString(rParam1.mStageName, "HeavensDoorGalaxy") && rParam1.mScenarioNo == 1) {
-        _20 = 300;
-        _24 = true;
+        MR::isEqualString(rMoveArg.mStageName, "HeavensDoorGalaxy") && rMoveArg.mScenarioNo == 1) {
+        mMinFrame = 300;
+        mIsPlayTicoSound = true;
     }
 }
 
@@ -306,29 +378,34 @@ void GameSequenceProgress::offLuigiLeftSupply() {
 }
 
 void GameSequenceProgress::countDownGameEventValueFromNewPowerStar() {
-    if (GameSequenceFunction::hasStageResultSequence() && !GameSequenceFunction::hasPowerStarYetAtResultSequence()) {
-        for (GameEventFlagIter iter = GameEventFlagTable::getBeginIter(); !iter.isEnd(); iter.goNext()) {
-            GameEventFlagAccessor accessor(iter.getFlag());
+    if (!GameSequenceFunction::hasStageResultSequence()) {
+        return;
+    }
 
-            if (!accessor.isTypeEventValueIsZero()) {
-                continue;
-            }
+    if (GameSequenceFunction::hasPowerStarYetAtResultSequence()) {
+        return;
+    }
 
-            if (GameDataFunction::canOnGameEventFlag(accessor.getName())) {
-                continue;
-            }
+    for (GameEventFlagIter iter = GameEventFlagTable::getBeginIter(); !iter.isEnd(); iter.goNext()) {
+        GameEventFlagAccessor accessor(iter.getFlag());
 
-            if (!GameDataFunction::isOnGameEventFlag(accessor.getRequirement())) {
-                continue;
-            }
-
-            if (GameDataFunction::isOnJustGameEventFlag(accessor.getRequirement())) {
-                continue;
-            }
-
-            u32 eventValue = GameDataFunction::getGameEventValue(accessor.getEventValueName());
-
-            GameDataFunction::setGameEventValue(accessor.getEventValueName(), eventValue - 1);
+        if (!accessor.isTypeEventValueIsZero()) {
+            continue;
         }
+
+        if (GameDataFunction::canOnGameEventFlag(accessor.getName())) {
+            continue;
+        }
+
+        if (!GameDataFunction::isOnGameEventFlag(accessor.getRequirement())) {
+            continue;
+        }
+
+        if (GameDataFunction::isOnJustGameEventFlag(accessor.getRequirement())) {
+            continue;
+        }
+
+        u32 eventValue = GameDataFunction::getGameEventValue(accessor.getEventValueName());
+        GameDataFunction::setGameEventValue(accessor.getEventValueName(), eventValue - 1);
     }
 }
