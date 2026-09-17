@@ -31,9 +31,11 @@ public:
     virtual void setVolumeController(AudBgmVolumeController* pController) {
         mVolumeController = pController;
     }
+
     virtual AudBgmRhythmStrategy* getRhythmStrategy() {
         return &mRhythmStrategy;
     }
+
     virtual void sendToSyncStream() = 0;
     virtual void rejectFromSyncStream() = 0;
     virtual void resetAuxVolume();
@@ -61,35 +63,45 @@ public:
     virtual JAISoundHandle* getHandle() {
         return &mHandle;
     }
+
     virtual JAISoundHandle* getRhythmHandle();
     virtual bool isSoundAttached() const {
         return mHandle.isSoundAttached();
     }
+
     virtual void pause(bool pause) {
         if (mHandle.isSoundAttached()) {
             mHandle->pause(pause);
         }
     }
+
     virtual bool isStopping() const {
         if (mHandle.isSoundAttached()) {
             return mHandle->isStopping();
         }
+
         return true;
     }
+
     virtual bool isPaused() const {
         if (mHandle.isSoundAttached()) {
             return mHandle->isPaused();
         }
+
         return false;
     }
+
     virtual JAISoundID getSoundID() const {
         if (!mHandle.isSoundAttached()) {
             return 0;
         }
+
         return mHandle->mSoundID;
     }
+
     virtual void sendToSyncStream() {
     }
+
     virtual void rejectFromSyncStream() {
     }
 

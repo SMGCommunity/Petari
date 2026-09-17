@@ -143,12 +143,22 @@ AudSystem* AudNewAudSystem(JKRSolidHeap* pHeap, void* pV, JKRArchive* pSeqArchiv
     return system;
 }
 
+static JAUStdSoundInfo* newSoundInfo(JAUSection* pSection) {
+    JAUSection* heap = pSection;
+    JKRHeap* prevHeap = heap->getHeap_()->becomeCurrentHeap();
+
+    JAUDisposerObject_< JAUStdSoundInfo >* soundInfo = new JAUDisposerObject_< JAUStdSoundInfo >(true);
+
+    heap->get_C4().append(soundInfo);
+    prevHeap->becomeCurrentHeap();
+    return soundInfo;
+}
+
 AudSystem::AudSystem(JAUSectionHeap* pSectionHeap, JKRArchive* pChordArchive, JKRArchive* pMeArchive, JKRArchive* pRemixArchive)
     : mIsResetReady(), mIsReset(), mStopThreads(), _828(), mIsPaused(), _82A(), _82B(), _82C(), _830(-1), mSoundInfo(), mSectionHeap(pSectionHeap),
       mStreamAramMgr(), mAudible(), mSystemSeObject(), mSystemMeObject(), mSceneMgr(), mRhythmMeSystem(), mRemixMgr(), mAudEffector(),
       mSeStrategyMgr(), mVolumeController(), mHomeButtonMenuState(), mHomeButtonToggleTime(-1), mPauseMenuState(), mPauseMenuToggleTime(-1),
       mIsDvdError(), mLimitedSoundInfo(), mSpkSystem() {
-    // FIXME: inline chains and ctors.
     msBasic = this;
     mLimitedSoundInfo = new (mSectionHeap->getHeap(), 0) AudLimitedSoundInfo[2];
     clearAllLimitedSound();
@@ -165,27 +175,16 @@ AudSystem::AudSystem(JAUSectionHeap* pSectionHeap, JKRArchive* pChordArchive, JK
 
     setAudience(&mAudience);
 
-    /*   FIXME    */
     JAUStreamStaticAramMgr* streamAramMgr = new JAUStreamStaticAramMgr();
     JASHeap* aramHeap = JASKernel::getAramHeap();
     streamAramMgr->alloc(aramHeap, JASAramStream::getBlockSize() * AudParams::streamAramBlocks_perChunk);
     mStreamAramMgr = streamAramMgr;
     mStreamMgr.setStreamAramMgr(mStreamAramMgr);
-    /*   -----    */
 
     mSoundInfo = nullptr;
     JAUSoundTable* soundTable = mSectionHeap->getSoundTable();
     if (soundTable != nullptr) {
-        JAUSectionHeap* heap = mSectionHeap->getSectionHeap();
-        JKRHeap* prevHeap = heap->mHeap->becomeCurrentHeap();
-
-        /*   FIXME    */
-        JAUDisposerObject_< JAUStdSoundInfo >* soundInfo = new JAUDisposerObject_< JAUStdSoundInfo >(true);
-        /*   -----    */
-
-        heap->get_C4().append(soundInfo);
-        prevHeap->becomeCurrentHeap();
-        mSoundInfo = soundInfo;
+        mSoundInfo = newSoundInfo(mSectionHeap);
     }
 
     JAIStreamDataMgr* streamDataMgr = pSectionHeap->getStreamDataMgr();
@@ -213,9 +212,11 @@ AudSystem::AudSystem(JAUSectionHeap* pSectionHeap, JKRArchive* pChordArchive, JK
     if (pChordArchive != nullptr) {
         mRhythmMeSystem->mChordInfo.init(pChordArchive);
     }
+
     if (pMeArchive != nullptr) {
         setMeResource(pMeArchive, 1, 0);
     }
+
     if (pRemixArchive != nullptr) {
         mRemixMgr->setRemixSeqResource(pRemixArchive->getResource(static_cast< u16 >(0)));
     }
@@ -269,8 +270,10 @@ void AudSystem::calc() {
         if (!mStopThreads) {
             stopSync();
         }
+
         return;
     }
+
     JAUSoundMgr::calc();
 }
 
@@ -443,6 +446,7 @@ void AudSystem::resumeReset() {
     if (mVolumeController != nullptr) {
         mVolumeController->init();
     }
+
     _82A = false;
     _82B = false;
     _82C = false;
@@ -463,6 +467,7 @@ void AudSystem::initSceneVolume() {
     if (mVolumeController != nullptr) {
         mVolumeController->init();
     }
+
     setSeVolumeSet(AudSystemVolumeController::VolumeSet_0, 0);
     mSeqMgr.getParams()->moveVolume(AudParams::masterVolBgm, 0);
     mStreamMgr.getParams()->moveVolume(AudParams::masterVolStream, 0);
@@ -524,12 +529,14 @@ void AudSystem::updateHomeButtonMenu() {
                 pause();
             }
         }
+
         break;
     case MenuState_Exit:
         if (mHomeButtonToggleTime > 0 && --mHomeButtonToggleTime <= 0) {
             mHomeButtonToggleTime = -1;
             mHomeButtonMenuState = MenuState_Off;
         }
+
         break;
     case MenuState_Active:
         break;
@@ -540,6 +547,7 @@ bool AudSystem::isHomeButtonMenuActive() const {
     if (mHomeButtonMenuState == MenuState_Off || mHomeButtonMenuState == MenuState_Exit) {
         return false;
     }
+
     return true;
 }
 
@@ -571,12 +579,14 @@ void AudSystem::updatePauseMenu() {
             mPauseMenuState = MenuState_Active;
             pause();
         }
+
         break;
     case MenuState_Exit:
         if (mPauseMenuToggleTime > 0 && --mPauseMenuToggleTime <= 0) {
             mPauseMenuToggleTime = -1;
             mPauseMenuState = MenuState_Off;
         }
+
         break;
     case MenuState_Active:
         break;
@@ -587,6 +597,7 @@ bool AudSystem::isPauseMenuActive() const {
     if (mPauseMenuState == MenuState_Off || mPauseMenuState == MenuState_Exit) {
         return false;
     }
+
     return true;
 }
 
@@ -594,6 +605,7 @@ void AudSystem::screenSaverProcess() {
     if (VIGetDimmingCount() > 0) {
         return;
     }
+
     setSeVolumeSetLevel(AudSystemVolumeController::VolumeSet_ScreenSaver);
     mBgmMgr.volDownLevel(false);
 }
@@ -629,6 +641,7 @@ void AudSystem::exitDvdErrorProcess() {
     if (!isPauseMenuActive() && !isHomeButtonMenuActive()) {
         unpause();
     }
+
     mIsDvdError = false;
 }
 
@@ -642,6 +655,7 @@ s32 AudSystem::getNumOfPlaying(JAISoundID soundID) {
             }
         }
     }
+
     return count;
 }
 
@@ -657,6 +671,7 @@ u32 AudSystem::getPlayCountMin(JAISoundID soundID) {
             }
         }
     }
+
     return min;
 }
 
@@ -702,22 +717,12 @@ void AudSystem::initVolumeSetting() {
 
 void AudSystem::initCategoryArrangement() {
     // FIXME: struct shouldnt be cleared beforehand!
-    mSeMgr.setCategoryArrangement((JAISeCategoryArrangement){
-        AudParams::arrangeSE_SY,
-        AudParams::arrangeSE_PV,
-        AudParams::arrangeSE_PM,
-        AudParams::arrangeSE_BV,
-        AudParams::arrangeSE_BM,
-        AudParams::arrangeSE_OJ,
-        AudParams::arrangeSE_AT,
-        AudParams::arrangeSE_DM,
-        AudParams::arrangeSE_EV,
-        AudParams::arrangeSE_EM,
-        AudParams::arrangeSE_SV,
-        AudParams::arrangeSE_SM,
-        AudParams::arrangeSE_RS,
-        AudParams::arrangeHOMESE,
-    });
+    JAISeCategoryArrangement arrangement = {
+        AudParams::arrangeSE_SY, AudParams::arrangeSE_PV, AudParams::arrangeSE_PM, AudParams::arrangeSE_BV,  AudParams::arrangeSE_BM,
+        AudParams::arrangeSE_OJ, AudParams::arrangeSE_AT, AudParams::arrangeSE_DM, AudParams::arrangeSE_EV,  AudParams::arrangeSE_EM,
+        AudParams::arrangeSE_SV, AudParams::arrangeSE_SM, AudParams::arrangeSE_RS, AudParams::arrangeHOMESE,
+    };
+    mSeMgr.setCategoryArrangement(arrangement);
 }
 
 void AudSystem::setMeResource(JKRArchive* pArchive, u16 a1, u16 a2) {
@@ -787,6 +792,7 @@ bool AudSystem::isFanfareSePlaying() {
             }
         }
     }
+
     return false;
 }
 
@@ -819,6 +825,7 @@ bool AudSystem::isRegisteredLimitedSound(JAISoundID soundID) {
             return true;
         }
     }
+
     return false;
 }
 

@@ -36,7 +36,7 @@ struct JAUAudibleParam {
         return mAudibleSw >> 9 & 1;
     }
 
-    bool get_BIT8() const {
+    u8 get_BIT8() const {
         return mAudibleSw >> 8 & 1;
     }
 
@@ -58,15 +58,17 @@ struct JAUAudibleParam {
     }
 
     f32 getDopplerPower() const {
-        return (u32)((*(u8*)&raw >> 12) & 0xf) * (1.0f / 15.0f);
+        JAUAudibleParam param(*this);
+        return param.getDoppler() * (1.0f / 15.0f);
     }
 
     f32 getDopplerPower2() const {
-        return (u32)((*(u8*)&raw >> 12) & 0xf) * (1.0f / 15.0f);
+        JAUAudibleParam param(*this);
+        return param.getDoppler() * (1.0f / 15.0f);
     }
 
     u32 getVolDistBit() const {
-        return 1 << (mAudibleSw >> 4 & 3);
+        return 1 << ((*(u16*)&raw >> 4) & 3);
     }
 
     union {
@@ -95,11 +97,11 @@ struct JAUAudibleParam {
 template < int SIZE >
 class JAUAudible : public JASPoolAllocObject< JAUAudible< SIZE > > {
 public:
-    JAUAudible(){};
+    JAUAudible() {};
 };
 
 template < int SIZE >
 class JAUDopplerAudible : public JASPoolAllocObject< JAUDopplerAudible< SIZE > > {
 public:
-    JAUDopplerAudible(){};
+    JAUDopplerAudible() {};
 };
