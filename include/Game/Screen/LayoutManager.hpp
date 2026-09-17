@@ -18,13 +18,13 @@ class LayoutGroupCtrl;
 class LayoutHolder;
 class LayoutPaneCtrl;
 
-struct PaneInfo {
-    const char* mName;
-    LayoutPaneCtrl* mPaneCtrl;
-    u32 _8;
-    u32 _C;
-    u32 mChildCount;
-    nw4r::lyt::Pane* mPane;
+struct LayoutPaneInfo {
+    /* 0x00 */ const char* mName;
+    /* 0x04 */ LayoutPaneCtrl* mPaneCtrl;
+    /* 0x08 */ u32 _8;
+    /* 0x0C */ u32 _C;
+    /* 0x10 */ u32 mChildCount;
+    /* 0x14 */ nw4r::lyt::Pane* mPane;
 };
 
 class LayoutManager {
@@ -84,8 +84,8 @@ public:
     /* 0x61 */ bool _61;
     /* 0x64 */ u32 _64;
     /* 0x68 */ u32 mPaneCount;
-    /* 0x6C */ PaneInfo* _6C;
-    /* 0x70 */ u32 _70;
-    /* 0x74 */ LayoutGroupCtrl** _74;
+    /* 0x6C */ LayoutPaneInfo* mPaneInfoList;
+    /* 0x70 */ u32 mGroupCtrlCount;
+    /* 0x74 */ LayoutGroupCtrl** mGroupCtrlList;
     /* 0x78 */ char* mLayoutName;
 };

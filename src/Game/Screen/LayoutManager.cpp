@@ -11,6 +11,7 @@
 #include "Game/Util/SystemUtil.hpp"
 #include "nw4r/lyt/group.h"
 #include "nw4r/lyt/layout.h"
+#include "nw4r/lyt/pane.h"
 #include "nw4r/lyt/textBox.h"
 #include "nw4r/ut/Rect.h"
 #include "nw4r/ut/RuntimeTypeInfo.h"
@@ -28,8 +29,8 @@ namespace {
 }
 
 LayoutManager::LayoutManager(const char* pLayoutName, bool a2, u32 rootPaneAnimLayerNum, u32 textBoxBufferLength)
-    : mLayoutHolder(), mLayout(), mAnimTransList(), mDrawInfo(), mIsScreenHidden(), _61(true), _64(), mPaneCount(), _6C(), _70(), _74(),
-      mLayoutName() {
+    : mLayoutHolder(), mLayout(), mAnimTransList(), mDrawInfo(), mIsScreenHidden(), _61(true), _64(), mPaneCount(), mPaneInfoList(),
+      mGroupCtrlCount(), mGroupCtrlList(), mLayoutName() {
     if (a2) {
         char fileNameWithoutExtension[0x60];
         char fileNameFromPrefix[0x80];
@@ -74,14 +75,14 @@ LayoutManager::LayoutManager(const char* pLayoutName, bool a2, u32 rootPaneAnimL
 
 void LayoutManager::movement() {
     for (u32 i = 0; i < mPaneCount; i++) {
-        if (_6C[i].mPaneCtrl != nullptr) {
-            _6C[i].mPaneCtrl->movement();
+        if (mPaneInfoList[i].mPaneCtrl != nullptr) {
+            mPaneInfoList[i].mPaneCtrl->movement();
         }
     }
 
-    for (u32 i = 0; i < _70; i++) {
-        if (_74[i] != nullptr) {
-            _74[i]->movement();
+    for (u32 i = 0; i < mGroupCtrlCount; i++) {
+        if (mGroupCtrlList[i] != nullptr) {
+            mGroupCtrlList[i]->movement();
         }
     }
 }
@@ -112,19 +113,19 @@ void LayoutManager::draw() const {
 }
 
 void LayoutManager::addPaneCtrl(LayoutPaneCtrl* pPaneCtrl) {
-    s32 idx = getIndexOfPane(pPaneCtrl->mPane->mName);
+    s32 index = getIndexOfPane(pPaneCtrl->mPane->mName);
 
-    if (_6C[idx].mPaneCtrl == nullptr) {
-        pPaneCtrl->mPaneIndex = idx;
-        _6C[idx].mPaneCtrl = pPaneCtrl;
+    if (mPaneInfoList[index].mPaneCtrl == nullptr) {
+        pPaneCtrl->mPaneIndex = index;
+        mPaneInfoList[index].mPaneCtrl = pPaneCtrl;
     }
 }
 
 LayoutPaneCtrl* LayoutManager::createAndAddRootPaneCtrl(u32 animLayerNum) {
-    s32 idx = getIndexOfPane(mLayout->mpRootPane->mName);
+    s32 index = getIndexOfPane(mLayout->mpRootPane->mName);
 
-    if (_6C[idx].mPaneCtrl != nullptr) {
-        return _6C[idx].mPaneCtrl;
+    if (mPaneInfoList[index].mPaneCtrl != nullptr) {
+        return mPaneInfoList[index].mPaneCtrl;
     }
 
     LayoutPaneCtrl* pPaneCtrl = new LayoutPaneCtrl(this, mLayout->mpRootPane->mName, animLayerNum);
@@ -133,10 +134,10 @@ LayoutPaneCtrl* LayoutManager::createAndAddRootPaneCtrl(u32 animLayerNum) {
 }
 
 LayoutPaneCtrl* LayoutManager::createAndAddPaneCtrl(const char* pName, u32 animLayerNum) {
-    s32 idx = getIndexOfPane(pName);
+    s32 index = getIndexOfPane(pName);
 
-    if (_6C[idx].mPaneCtrl != nullptr) {
-        return _6C[idx].mPaneCtrl;
+    if (mPaneInfoList[index].mPaneCtrl != nullptr) {
+        return mPaneInfoList[index].mPaneCtrl;
     }
 
     LayoutPaneCtrl* pPaneCtrl = new LayoutPaneCtrl(this, pName, animLayerNum);
@@ -146,18 +147,18 @@ LayoutPaneCtrl* LayoutManager::createAndAddPaneCtrl(const char* pName, u32 animL
 
 LayoutPaneCtrl* LayoutManager::getPaneCtrl(const char* pName) const {
     if (pName == nullptr) {
-        return _6C[0].mPaneCtrl;
+        return mPaneInfoList[0].mPaneCtrl;
     }
 
-    s32 idx = getIndexOfPane(pName);
-    return _6C[idx].mPaneCtrl;
+    s32 index = getIndexOfPane(pName);
+    return mPaneInfoList[index].mPaneCtrl;
 }
 
 s32 LayoutManager::getIndexOfPane(const char* pName) const {
     u32 paneCount = mPaneCount;
 
     for (u32 i = 0; i < paneCount; i++) {
-        if (strcmp(_6C[i].mName, pName) == 0) {
+        if (strcmp(mPaneInfoList[i].mName, pName) == 0) {
             return i;
         }
     }
@@ -167,18 +168,12 @@ s32 LayoutManager::getIndexOfPane(const char* pName) const {
 
 bool LayoutManager::isExistPaneCtrl(const char* pName) const {
     if (pName == nullptr) {
-        return _6C[0].mPaneCtrl != nullptr;
+        return mPaneInfoList[0].mPaneCtrl != nullptr;
     }
 
-    s32 idx = getIndexOfPane(pName);
-    return _6C[idx].mPaneCtrl != nullptr;
+    s32 index = getIndexOfPane(pName);
+    return mPaneInfoList[index].mPaneCtrl != nullptr;
 }
-
-/*
-void LayoutManager::addGroupCtrl(LayoutGroupCtrl* pGroupCtrl) {
-
-}
-*/
 
 void LayoutManager::initArc(const char* pArchiveName, const char* pLayoutName) {
     mLayoutHolder = MR::createAndAddLayoutHolder(pArchiveName);
@@ -214,7 +209,7 @@ void LayoutManager::initDrawInfo() {
 
 void LayoutManager::initPaneInfo() {
     mPaneCount = countPanes(mLayout->mpRootPane);
-    _6C = new PaneInfo[mPaneCount];
+    mPaneInfoList = new LayoutPaneInfo[mPaneCount];
 
     u32 rIndex = 0;
     initPaneInfoRecursive(rIndex, mLayout->mpRootPane);
@@ -223,19 +218,19 @@ void LayoutManager::initPaneInfo() {
 void LayoutManager::initPaneInfoRecursive(u32& rIndex, nw4r::lyt::Pane* pPane) {
     nw4r::lyt::PaneList& rPaneList = pPane->mChildList;
 
-    _6C[rIndex].mName = pPane->mName;
-    _6C[rIndex].mPaneCtrl = nullptr;
-    _6C[rIndex]._8 = 0;
-    _6C[rIndex]._C = 0;
-    _6C[rIndex].mPane = pPane;
+    mPaneInfoList[rIndex].mName = pPane->mName;
+    mPaneInfoList[rIndex].mPaneCtrl = nullptr;
+    mPaneInfoList[rIndex]._8 = 0;
+    mPaneInfoList[rIndex]._C = 0;
+    mPaneInfoList[rIndex].mPane = pPane;
 
     u32 startIndex = rIndex++;
 
     for (nw4r::lyt::PaneList::Iterator it = rPaneList.GetBeginIter(); it != rPaneList.GetEndIter(); ++it) {
-        initPaneInfoRecursive(rIndex, &*it);  // * operator being inlined
+        initPaneInfoRecursive(rIndex, &*it);  // TODO * operator being inlined
     }
 
-    _6C[startIndex].mChildCount = rIndex - startIndex;
+    mPaneInfoList[startIndex].mChildCount = rIndex - startIndex;
 }
 
 // TODO: instruction swap
@@ -251,11 +246,11 @@ u32 LayoutManager::countPanes(nw4r::lyt::Pane* pPane) {
 }
 
 void LayoutManager::initGroupCtrlList() {
-    _70 = mLayout->mpGroupContainer->mGroupList.GetSize();
-    _74 = new LayoutGroupCtrl*[_70];
+    mGroupCtrlCount = mLayout->mpGroupContainer->mGroupList.GetSize();
+    mGroupCtrlList = new LayoutGroupCtrl*[mGroupCtrlCount];
 
-    for (u32 i = 0; i < _70; i++) {
-        _74[i] = nullptr;
+    for (u32 i = 0; i < mGroupCtrlCount; i++) {
+        mGroupCtrlList[i] = nullptr;
     }
 }
 
