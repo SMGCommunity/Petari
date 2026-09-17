@@ -143,7 +143,7 @@ public:
     void exePleasure();
 
     /* 0x90 */ Dodoryu* mHost;
-    /* 0x94 */ TMtx34f _94;
+    /* 0x94 */ TPos3f _94;
     /* 0xC4 */ f32 _C4;
     /* 0xC8 */ TalkMessageCtrl* mTalkCtrl;
     /* 0xCC */ s32 _CC;

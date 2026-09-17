@@ -482,7 +482,7 @@ void Dodoryu::reactJumpOutCommon() const {
 }
 
 void Dodoryu::startSpinOutCamera() {
-    MR::startGlobalEventCamera(::sSpinOutCamera, CameraTargetArg(this), 120);
+    MR::startGlobalEventCamera(::sSpinOutCamera, CameraTargetArg(_14C), 120);
 }
 
 void Dodoryu::endSpinOutCamera() {
@@ -518,17 +518,15 @@ void Dodoryu::validateStarPieceSensor() {
 }
 
 bool Dodoryu::isHeadNeedle(HitSensor* pReceiver, HitSensor* pSender) const {
-    HitSensor* pSensor = getSensor(::sHeadSensorName);
-
-    if (pReceiver != pSensor) {
+    if (pReceiver != getSensor(::sHeadSensorName)) {
         return false;
     }
 
     TVec3f deltaPos = pSender->mPosition - pReceiver->mPosition;
 
     TVec3f xDir;
-    TRot3f jointMtx;
-    jointMtx.setInline(MR::getJointMtx(this, ::sHeadJointName));
+    TPos3f jointMtx;
+    jointMtx.set(MR::getJointMtx(this, ::sHeadJointName));
     jointMtx.getXDir(xDir);
 
     return xDir.dot(deltaPos) >= 105.0f;
@@ -699,7 +697,29 @@ void Dodoryu::createDodoryuBank() {
     mBank->initWithoutIter();
 }
 
-// Dodoryu::turnUpVecTo
+void Dodoryu::turnUpVecTo(const TVec3f& rVec) {
+    TVec3f dir;
+    mBaseMtx.getYDir(dir);
+
+    TQuat4f q;
+    q.setRotate(dir, rVec);
+
+    TPos3f mtx;
+    mtx.setQuat(q);
+    mBaseMtx.concat(mtx, mBaseMtx);
+    
+    // FIXME: probably an inline
+    TVec3f xDir, yDir, zDir;
+    mBaseMtx.getXYZDir(xDir, yDir, zDir);
+
+    yDir.cross(zDir, xDir);
+    zDir.cross(xDir, yDir);
+
+    yDir.normalize();
+    zDir.normalize();
+
+    mBaseMtx.setXYZDir2(xDir, yDir, zDir);
+}
 
 void Dodoryu::checkHipDrop() {
     if (MR::isPlayerHipDropLand()) {
@@ -937,7 +957,7 @@ bool DodoryuRabbit::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSenso
             _D8->reset();
         }
 
-        _D8->start();
+        _D4->start();
 
         return true;
     }
@@ -947,7 +967,7 @@ bool DodoryuRabbit::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSenso
             _D4->reset();
         }
 
-        _D4->start();
+        _D8->start();
 
         return false;
     }
@@ -965,7 +985,35 @@ void DodoryuRabbit::reset(bool param1) {
     }
 }
 
-// DodoryuRabbit::updatePos
+void DodoryuRabbit::updatePos(f32 f1) {
+    _C4 += f1;
+
+    if (_C4 >= MR::getRailTotalLength(mHost)) {
+        _C4 -= MR::getRailTotalLength(mHost);
+    }
+
+    TVec3f railPos;
+    MR::calcRailPosAtCoord(&railPos, mHost, _C4);
+    mPosition.set(railPos);
+
+    MR::calcGravityVector(this, &mGravity, nullptr, 0);
+
+    TVec3f upVec(-mGravity);
+    TVec3f railDir;
+    MR::calcRailDirectionAtCoord(&railDir, mHost, _C4);
+
+    TVec3f vec98;
+    vec98.cross(upVec, railDir);
+
+    Triangle triangle = Triangle();
+    TVec3f vecA4;
+    if (!MR::getFirstPolyOnLineToMap(&vecA4, &triangle, mPosition - mGravity * 200.0f, mGravity * 1200.0f)) {
+        vecA4.set(railPos);
+    }
+
+    _94.setXYZDir(vec98, upVec, railDir);
+    _94.setTrans(vecA4);
+}
 
 f32 DodoryuRabbit::calcCoordDiff() const {
     f32 coord = MR::getRailCoord(mHost);
@@ -985,7 +1033,7 @@ bool DodoryuRabbit::tryTalk() {
     return false;
 }
 
-DodoryuLeadHill::DodoryuLeadHill(Dodoryu* pHost) : LiveActor("ドドリュウ塚先頭"), mHostBaseMtx(getBaseMtx()), _90() {
+DodoryuLeadHill::DodoryuLeadHill(Dodoryu* pHost) : LiveActor("ドドリュウ塚先頭"), mHostBaseMtx(pHost->getBaseMtx()), _90() {
     for (int i = 0; i < ARRAY_SIZE(_94); i++) {
         _94[i] = nullptr;
     }
@@ -1001,14 +1049,20 @@ void DodoryuLeadHill::init(const JMapInfoIter& rIter) {
     initEffectKeeper(8, nullptr, false);
     mPosition.setTrans(mHostBaseMtx);
     initJoint();
-    makeActorAppeared();
+    makeActorDead();
 }
 
 void DodoryuLeadHill::control() {
     _90 += 0.07f;
 }
 
-// DodoryuLeadHill::calcJoint
+bool DodoryuLeadHill::calcJoint(TPos3f* pDst, const JointControllerInfo&) {
+    TPos3f rotateMtx;
+    rotateMtx.makeRotate(TVec3f(1.0f, 0.0f, 0.0f), _90);
+    pDst->concat(rotateMtx);
+
+    return true;
+}
 
 void DodoryuLeadHill::calcAndSetBaseMtx() {
     for (int i = 0; i < ARRAY_SIZE(_94); i++) {
