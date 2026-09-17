@@ -225,7 +225,7 @@ MoviePlayingSequence::MoviePlayingSequence(const char* pName, s32 movieType) : L
 
     MR::createSceneObj(SceneObj_MoviePlayerSimple);
     MR::connectToSceneLayoutMovement(this);
-    initNerve(&NrvMoviePlayingSequence::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(MoviePlayingSequence, HostTypeWait));
 
     s32 subtitleNum = MovieSubtitlesUtil::getSubtitlesMessageNum(mInfo->mMovieName);
 
@@ -248,7 +248,7 @@ MoviePlayingSequence::MoviePlayingSequence(const char* pName, s32 movieType) : L
 
 void MoviePlayingSequence::appear() {
     LayoutActor::appear();
-    setNerve(&NrvMoviePlayingSequence::HostTypePlayWait::sInstance);
+    setNerve(GET_NERVE(MoviePlayingSequence, HostTypePlayWait));
 }
 
 void MoviePlayingSequence::kill() {
@@ -285,7 +285,7 @@ void MoviePlayingSequence::exePlayWait() {
     }
 
     if (MR::isStep(this, mInfo->mPlayWaitTime)) {
-        setNerve(&NrvMoviePlayingSequence::HostTypePlayStart::sInstance);
+        setNerve(GET_NERVE(MoviePlayingSequence, HostTypePlayStart));
     }
 }
 
@@ -295,7 +295,7 @@ void MoviePlayingSequence::exePlayStart() {
         MR::tryFrameToScreenCinemaFrame();
     } else if (MR::isMoviePlayerPlaying()) {
         MR::setMovieVolume(0.0f, 0);
-        setNerve(&NrvMoviePlayingSequence::HostTypePlay::sInstance);
+        setNerve(GET_NERVE(MoviePlayingSequence, HostTypePlay));
     }
 }
 
@@ -341,7 +341,7 @@ bool MoviePlayingSequence::tryEnd() {
     if (mInfo->mCloseWipeTime == -1) {
         if (!MR::isActiveMoviePlayer()) {
             ::closeWipe(WipeType(mInfo->mCloseWipeType), mInfo->mCloseWipeTime);
-            setNerve(&NrvMoviePlayingSequence::HostTypeEndWait::sInstance);
+            setNerve(GET_NERVE(MoviePlayingSequence, HostTypeEndWait));
 
             return true;
         }
@@ -351,7 +351,7 @@ bool MoviePlayingSequence::tryEnd() {
         s32 closeWipeFrame = MR::getMovieTotalFrame() - mInfo->mCloseWipeTime;
 
         if (closeWipeFrame <= MR::getMovieCurrentFrame()) {
-            setNerve(&NrvMoviePlayingSequence::HostTypeCloseWipeOnPlaying::sInstance);
+            setNerve(GET_NERVE(MoviePlayingSequence, HostTypeCloseWipeOnPlaying));
 
             return true;
         }
@@ -379,7 +379,7 @@ bool MoviePlayingSequence::trySkip() {
 
     MR::stopMoviePlayer();
     MR::forceCloseWipeFade();
-    setNerve(&NrvMoviePlayingSequence::HostTypeEndWait::sInstance);
+    setNerve(GET_NERVE(MoviePlayingSequence, HostTypeEndWait));
 
     return true;
 }
@@ -390,7 +390,7 @@ void MoviePlayingSequence::exeCloseWipeOnPlaying() {
     }
 
     if (!MR::isActiveMoviePlayer()) {
-        setNerve(&NrvMoviePlayingSequence::HostTypeEndWait::sInstance);
+        setNerve(GET_NERVE(MoviePlayingSequence, HostTypeEndWait));
     }
 }
 

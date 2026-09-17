@@ -58,13 +58,13 @@ void RosettaReading::init(const JMapInfoIter& rIter) {
         mPictureBookLayout->initWithoutIter();
     }
 
-    initNerve(&NrvRosettaReading::RosettaReadingNrvPictureBookBefore::sInstance);
+    initNerve(GET_NERVE(RosettaReading, RosettaReadingNrvPictureBookBefore));
     appear();
 }
 
 void RosettaReading::appear() {
     LiveActor::appear();
-    setNerve(&NrvRosettaReading::RosettaReadingNrvPictureBookBefore::sInstance);
+    setNerve(GET_NERVE(RosettaReading, RosettaReadingNrvPictureBookBefore));
 }
 
 void RosettaReading::kill() {
@@ -92,7 +92,7 @@ void RosettaReading::exePictureBookBefore() {
 
     if (MR::isDemoPartLastStep("絵本デモ開始")) {
         MR::pauseTimeKeepDemo(this);
-        setNerve(&NrvRosettaReading::RosettaReadingNrvPictureBook::sInstance);
+        setNerve(GET_NERVE(RosettaReading, RosettaReadingNrvPictureBook));
     }
 }
 
@@ -109,7 +109,7 @@ void RosettaReading::exePictureBook() {
 
         MR::forceToFrameCinemaFrame();
         MR::resumeTimeKeepDemo(this);
-        setNerve(&NrvRosettaReading::RosettaReadingNrvPictureBookAfter::sInstance);
+        setNerve(GET_NERVE(RosettaReading, RosettaReadingNrvPictureBookAfter));
     }
 }
 

@@ -40,9 +40,9 @@ void SoundEmitter::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchReadAppear(this, rIter);
     MR::useStageSwitchReadA(this, rIter);
     if (MR::isValidSwitchAppear(this)) {
-        initNerve(&NrvSoundEmitter::SoundEmitterNrvStandBy::sInstance);
+        initNerve(GET_NERVE(SoundEmitter, SoundEmitterNrvStandBy));
     } else {
-        initNerve(&NrvSoundEmitter::SoundEmitterNrvPlaySound::sInstance);
+        initNerve(GET_NERVE(SoundEmitter, SoundEmitterNrvPlaySound));
     }
     makeActorAppeared();
 }
@@ -105,7 +105,7 @@ void SoundEmitter::exePlaySound() {
 inline void SoundEmitter::exeStandBy() {
     if (MR::isValidSwitchAppear(this)) {
         if (MR::isOnSwitchAppear(this)) {
-            setNerve(&NrvSoundEmitter::SoundEmitterNrvPlaySound::sInstance);
+            setNerve(GET_NERVE(SoundEmitter, SoundEmitterNrvPlaySound));
         }
     }
 }

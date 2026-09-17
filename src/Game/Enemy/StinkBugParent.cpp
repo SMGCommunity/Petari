@@ -97,14 +97,14 @@ void StinkBugParent::init(const JMapInfoIter& rIter) {
     MR::declareStarPiece(this, 8);
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
-        MR::registerDemoActionNerve(this, &NrvStinkBugParent::StinkBugParentNrvDemoAnger::sInstance, "ダメージ中");
+        MR::registerDemoActionNerve(this, GET_NERVE(StinkBugParent, StinkBugParentNrvDemoAnger), "ダメージ中");
     }
 
     _B0 = 50.0f;
     mRadius = 1200.0f;
     MR::startBrk(this, "Anger");
     MR::setBrkFrameAndStop(this, 0.0f);
-    initNerve(&NrvStinkBugParent::StinkBugParentNrvWait::sInstance);
+    initNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvWait));
     makeActorAppeared();
 }
 
@@ -117,9 +117,9 @@ void StinkBugParent::exeWait() {
     fixInitPos();
 
     if (isPlayerInTerritory(400.0, 200.0f, 600.0f, 200.0f)) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvDashSign::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvDashSign));
     } else if (MR::isGreaterStep(this, ::sStepForWait)) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvSearch::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvSearch));
     }
 }
 
@@ -135,9 +135,9 @@ void StinkBugParent::exeSearch() {
     fixInitPos();
 
     if (tryTurnSearch(::sTurnRateSearch)) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvWait::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvWait));
     } else if (isPlayerInTerritory(400.0f, 200.0f, 600.0f, 200.0f)) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvDashSign::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvDashSign));
     }
 }
 
@@ -152,13 +152,13 @@ void StinkBugParent::exeDashSign() {
     tryTurnDashSign(::sTurnRateDashSign);
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvDashSignEnd::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvDashSignEnd));
     }
 }
 
 void StinkBugParent::exeDashSignEnd() {
     if (MR::isStep(this, ::sStepForDashSignEnd)) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvDash::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvDash));
     }
 }
 
@@ -172,7 +172,7 @@ void StinkBugParent::exeDash() {
 
     if (!MR::isNear(this, _98, mRadius) || MR::isBindedWall(this)) {
         mVelocity.zero();
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvDashEnd::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvDashEnd));
         MR::startSound(this, "SE_EM_STINKBUG_L_DASH_END");
     } else {
         setDashVelocity(getParam(mIsChildAlive)->mDashVelocity);
@@ -187,7 +187,7 @@ void StinkBugParent::exeDashEnd() {
     mVelocity.zero();
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvBack::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvBack));
     }
 }
 
@@ -200,7 +200,7 @@ void StinkBugParent::exeBack() {
     MR::startLevelSound(this, "SE_EM_LV_STINKBUG_L_BACK");
 
     if (MR::isNear(this, _98, (2.0f * getParam(mIsChildAlive)->mDashDistance))) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvWait::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvWait));
     } else {
         TVec3f a1;
         a1.sub(_98, mPosition);
@@ -235,7 +235,7 @@ void StinkBugParent::exeAttack() {
     mVelocity.zero();
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvBack::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvBack));
     }
 }
 
@@ -248,7 +248,7 @@ void StinkBugParent::exeSpinReaction() {
     mVelocity.zero();
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvBack::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvBack));
     }
 }
 
@@ -263,9 +263,9 @@ void StinkBugParent::exePanic() {
     mVelocity.zero();
 
     if (!MR::isOnPlayer(getSensor("body"))) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvRecover::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvRecover));
     } else if (MR::isStep(this, getParam(mIsChildAlive)->mPanicStep)) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvShakeStart::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvShakeStart));
     }
 }
 
@@ -274,7 +274,7 @@ void StinkBugParent::exeRecover() {
     MR::startLevelSound(this, "SE_EM_LV_STINKBUG_L_PANIC");
 
     if (MR::isStep(this, ::sStepForRecover)) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvBack::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvBack));
     }
 }
 
@@ -284,19 +284,19 @@ void StinkBugParent::exeShakeStart() {
     }
 
     if (MR::isStep(this, ::sStepForShakeStart)) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvShake::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvShake));
     }
 }
 
 void StinkBugParent::exeShake() {
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvBack::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvBack));
     }
 }
 
 void StinkBugParent::exeDemoPrepare() {
     if (MR::tryStartDemoRegisteredMarioPuppetable(this, nullptr)) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvDemoChildDown::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvDemoChildDown));
     }
 }
 
@@ -350,7 +350,7 @@ void StinkBugParent::exeDemoAnger() {
         MR::appearStarPieceToDirection(this, v2, v3, 8, 25.0f, 40.0f, false);
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_F");
         MR::validateHitSensors(this);
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvWait::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvWait));
         MR::startSound(this, "SE_EM_STINKBUG_L_ANGRY_END");
     }
 }
@@ -384,8 +384,8 @@ void StinkBugParent::calcAndSetBaseMtx() {
 }
 
 void StinkBugParent::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvStinkBugParent::StinkBugParentNrvHipDropDown::sInstance) && !isNrvDemo() &&
-        !isNerve(&NrvStinkBugParent::StinkBugParentNrvAttack::sInstance) && MR::isSensorPlayer(pReceiver)) {
+    if (!isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvHipDropDown)) && !isNrvDemo() &&
+        !isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvAttack)) && MR::isSensorPlayer(pReceiver)) {
         if (MR::isSensorEnemyAttack(pSender)) {
             if (!isHitHorn(pSender, pReceiver, 25.0f)) {
                 return;
@@ -393,8 +393,8 @@ void StinkBugParent::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
             if (MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
                 MR::emitEffectHitBetweenSensors(this, pSender, pReceiver, 0.0f, nullptr);
-                if (!isNerve(&NrvStinkBugParent::StinkBugParentNrvDash::sInstance)) {
-                    setNerve(&NrvStinkBugParent::StinkBugParentNrvAttack::sInstance);
+                if (!isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvDash))) {
+                    setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvAttack));
                     return;
                 }
             }
@@ -408,7 +408,7 @@ void StinkBugParent::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool StinkBugParent::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvStinkBugParent::StinkBugParentNrvHipDropDown::sInstance)) {
+    if (isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvHipDropDown))) {
         return false;
     }
 
@@ -422,7 +422,7 @@ bool StinkBugParent::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSens
 
     if (MR::isMsgStarPieceReflect(msg) && pReceiver == getSensor("body")) {
         if (isNrvEnableStarPieceAttack()) {
-            setNerve(&NrvStinkBugParent::StinkBugParentNrvSpinReaction::sInstance);
+            setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvSpinReaction));
         }
         return true;
     } else if (MR::isMsgPlayerHipDropFloor(msg)) {
@@ -430,15 +430,15 @@ bool StinkBugParent::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSens
             if (!isHitChild()) {
                 return false;
             } else {
-                setNerve(&NrvStinkBugParent::StinkBugParentNrvDemoPrepare::sInstance);
+                setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvDemoPrepare));
             }
         } else {
-            setNerve(&NrvStinkBugParent::StinkBugParentNrvHipDropDown::sInstance);
+            setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvHipDropDown));
         }
         return true;
-    } else if (!isNerve(&NrvStinkBugParent::StinkBugParentNrvSpinReaction::sInstance) &&
-               !isNerve(&NrvStinkBugParent::StinkBugParentNrvDash::sInstance) && MR::isMsgPlayerSpinAttack(msg) && pReceiver == getSensor("body")) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvSpinReaction::sInstance);
+    } else if (!isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvSpinReaction)) && !isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvDash)) &&
+               MR::isMsgPlayerSpinAttack(msg) && pReceiver == getSensor("body")) {
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvSpinReaction));
         return true;
     }
 
@@ -446,7 +446,7 @@ bool StinkBugParent::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSens
 }
 
 bool StinkBugParent::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvStinkBugParent::StinkBugParentNrvHipDropDown::sInstance)) {
+    if (isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvHipDropDown))) {
         return false;
     }
 
@@ -454,20 +454,20 @@ bool StinkBugParent::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
         return false;
     }
 
-    if (isNerve(&NrvStinkBugParent::StinkBugParentNrvPanic::sInstance)) {
+    if (isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvPanic))) {
         return false;
     }
 
-    if (isNerve(&NrvStinkBugParent::StinkBugParentNrvShakeStart::sInstance)) {
+    if (isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvShakeStart))) {
         return false;
     }
 
-    if (isNerve(&NrvStinkBugParent::StinkBugParentNrvShake::sInstance)) {
+    if (isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvShake))) {
         return false;
     }
 
     if (MR::isMsgFloorTouch(msg) && MR::isOnPlayer(getSensor("body"))) {
-        setNerve(&NrvStinkBugParent::StinkBugParentNrvPanic::sInstance);
+        setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvPanic));
         return true;
     }
 
@@ -486,7 +486,7 @@ void StinkBugParent::jumpBackPlayerFromChild() const {
 }
 
 bool StinkBugParent::isShakeChance() const {
-    if (isNerve(&NrvStinkBugParent::StinkBugParentNrvHipDropDown::sInstance)) {
+    if (isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvHipDropDown))) {
         return false;
     }
 
@@ -494,7 +494,7 @@ bool StinkBugParent::isShakeChance() const {
         return false;
     }
 
-    if (!isNerve(&NrvStinkBugParent::StinkBugParentNrvShake::sInstance)) {
+    if (!isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvShake))) {
         return false;
     }
 
@@ -520,17 +520,16 @@ bool StinkBugParent::isHitChild() const {
 }
 
 bool StinkBugParent::isNrvEnableStarPieceAttack() const {
-    return isNerve(&NrvStinkBugParent::StinkBugParentNrvWait::sInstance) || isNerve(&NrvStinkBugParent::StinkBugParentNrvSearch::sInstance) ||
-           isNerve(&NrvStinkBugParent::StinkBugParentNrvDashSign::sInstance) ||
-           isNerve(&NrvStinkBugParent::StinkBugParentNrvDashSignEnd::sInstance) || isNerve(&NrvStinkBugParent::StinkBugParentNrvBack::sInstance);
+    return isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvWait)) || isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvSearch)) ||
+           isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvDashSign)) || isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvDashSignEnd)) ||
+           isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvBack));
 }
 
 inline bool StinkBugParent::isNrvMoving() const {
-    return isNerve(&NrvStinkBugParent::StinkBugParentNrvDash::sInstance) || isNerve(&NrvStinkBugParent::StinkBugParentNrvBack::sInstance);
+    return isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvDash)) || isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvBack));
 }
 
 inline bool StinkBugParent::isNrvDemo() const {
-    return isNerve(&NrvStinkBugParent::StinkBugParentNrvDemoPrepare::sInstance) ||
-           isNerve(&NrvStinkBugParent::StinkBugParentNrvDemoChildDown::sInstance) ||
-           isNerve(&NrvStinkBugParent::StinkBugParentNrvDemoAnger::sInstance);
+    return isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvDemoPrepare)) || isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvDemoChildDown)) ||
+           isNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvDemoAnger));
 }

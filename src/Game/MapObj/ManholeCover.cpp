@@ -27,14 +27,14 @@ void ManholeCover::init(const JMapInfoIter& rIter) {
     info.setupSound(4);
     info.setupHitSensor();
     info.setupHitSensorParam(1, ::sSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
-    info.setupNerve(&NrvManholeCover::HostTypeWait::sInstance);
+    info.setupNerve(GET_NERVE(ManholeCover, HostTypeWait));
     MapObjActor::initialize(rIter, info);
 }
 
 bool ManholeCover::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if ((MR::isMsgPlayerHipDropFloor(msg) || MR::isMsgPlayerUpperPunch(msg)) &&
-        (isNerve(&NrvManholeCover::HostTypeWait::sInstance) || isNerve(&NrvManholeCover::HostTypeRattle::sInstance))) {
-        setNerve(&NrvManholeCover::HostTypeOpen::sInstance);
+        (isNerve(GET_NERVE(ManholeCover, HostTypeWait)) || isNerve(GET_NERVE(ManholeCover, HostTypeRattle)))) {
+        setNerve(GET_NERVE(ManholeCover, HostTypeOpen));
 
         return true;
     }
@@ -43,8 +43,8 @@ bool ManholeCover::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
 }
 
 bool ManholeCover::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isMsgSpinStormRange(msg) && isNerve(&NrvManholeCover::HostTypeWait::sInstance)) {
-        setNerve(&NrvManholeCover::HostTypeRattle::sInstance);
+    if (MR::isMsgSpinStormRange(msg) && isNerve(GET_NERVE(ManholeCover, HostTypeWait))) {
+        setNerve(GET_NERVE(ManholeCover, HostTypeRattle));
 
         return true;
     }
@@ -60,7 +60,7 @@ void ManholeCover::exeOpen() {
 
     if (MR::isBckStopped(this)) {
         MR::validateCollisionParts(this);
-        setNerve(&NrvManholeCover::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(ManholeCover, HostTypeWait));
     }
 }
 
@@ -71,7 +71,7 @@ void ManholeCover::exeRattle() {
     }
 
     if (MR::isGreaterStep(this, ::sRattleTime) && MR::isBckStopped(this)) {
-        setNerve(&NrvManholeCover::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(ManholeCover, HostTypeWait));
     }
 }
 

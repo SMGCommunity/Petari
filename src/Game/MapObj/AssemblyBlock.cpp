@@ -123,7 +123,7 @@ void AssemblyBlock::init(const JMapInfoIter& rIter) {
     }
 
     MR::tryStartAllAnim(this, "Wait");
-    initNerve(&NrvAssemblyBlock::AssemblyBlockNrvWait::sInstance);
+    initNerve(GET_NERVE(AssemblyBlock, AssemblyBlockNrvWait));
     makeActorAppeared();
 }
 
@@ -174,7 +174,7 @@ void AssemblyBlock::exeAssemble() {
             MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_END");
         }
 
-        setNerve(&NrvAssemblyBlock::AssemblyBlockNrvWait::sInstance);
+        setNerve(GET_NERVE(AssemblyBlock, AssemblyBlockNrvWait));
     }
 }
 
@@ -190,7 +190,7 @@ void AssemblyBlock::exeAssembleWait() {
     }
 
     if (mObjArg7 == 0) {
-        setNerve(&NrvAssemblyBlock::AssemblyBlockNrvTimer::sInstance);
+        setNerve(GET_NERVE(AssemblyBlock, AssemblyBlockNrvTimer));
     } else {
         tryStartReturn();
     }
@@ -214,7 +214,7 @@ void AssemblyBlock::exeReturn() {
     MR::blendMtx(_BC.toMtxPtr(), _EC.toMtxPtr(), MR::calcNerveRate(this, ::sStepForReturn), _8C.toMtxPtr());
 
     if (MR::isStep(this, ::sStepForReturn)) {
-        setNerve(&NrvAssemblyBlock::AssemblyBlockNrvWait::sInstance);
+        setNerve(GET_NERVE(AssemblyBlock, AssemblyBlockNrvWait));
     }
 }
 
@@ -253,7 +253,7 @@ bool AssemblyBlock::tryStartAssemble() {
         return false;
     }
 
-    setNerve(&NrvAssemblyBlock::AssemblyBlockNrvAssemble::sInstance);
+    setNerve(GET_NERVE(AssemblyBlock, AssemblyBlockNrvAssemble));
 
     return true;
 }
@@ -271,7 +271,7 @@ bool AssemblyBlock::tryStartReturn() {
         return false;
     }
 
-    setNerve(&NrvAssemblyBlock::AssemblyBlockNrvReturn::sInstance);
+    setNerve(GET_NERVE(AssemblyBlock, AssemblyBlockNrvReturn));
 
     return true;
 }

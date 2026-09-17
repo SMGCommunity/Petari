@@ -28,7 +28,7 @@ void PurpleCoinCounter::init(const JMapInfoIter& rIter) {
     mLayoutAppearer = new CounterLayoutAppearer(this, TVec2f(-50.0f, 0.0f));
     mPaneRumbler = new CountUpPaneRumbler(this, "Counter");
 
-    initNerve(&NrvPurpleCoinCounter::PurpleCoinCounterNrvAppear::sInstance);
+    initNerve(GET_NERVE(PurpleCoinCounter, PurpleCoinCounterNrvAppear));
     MR::connectToSceneLayout(this);
 }
 
@@ -47,7 +47,7 @@ void PurpleCoinCounter::appear() {
     mInvalidCountUpFrame = 0;
 
     MR::setTextBoxFormatRecursive(this, "Counter", L"%03d", mPurpleCoinDisplayNum);
-    setNerve(&NrvPurpleCoinCounter::PurpleCoinCounterNrvAppear::sInstance);
+    setNerve(GET_NERVE(PurpleCoinCounter, PurpleCoinCounterNrvAppear));
     LayoutActor::appear();
     MR::requestMovementOn(this);
 }
@@ -70,7 +70,7 @@ void PurpleCoinCounter::updateCounter() {
     if (mInvalidCountUpFrame > 0) {
         mInvalidCountUpFrame--;
     } else if (mPurpleCoinDisplayNum < mPurpleCoinNum) {
-        if (isNerve(&NrvPurpleCoinCounter::PurpleCoinCounterNrvWait::sInstance)) {
+        if (isNerve(GET_NERVE(PurpleCoinCounter, PurpleCoinCounterNrvWait))) {
             mInvalidCountUpFrame = ::cInvalidCountUpInterval;
             mPurpleCoinDisplayNum++;
 
@@ -79,11 +79,11 @@ void PurpleCoinCounter::updateCounter() {
             mPaneRumbler->start();
         }
 
-        if (!isNerve(&NrvPurpleCoinCounter::PurpleCoinCounterNrvAppear::sInstance)) {
-            if (!isNerve(&NrvPurpleCoinCounter::PurpleCoinCounterNrvWait::sInstance)) {
-                setNerve(&NrvPurpleCoinCounter::PurpleCoinCounterNrvAppear::sInstance);
+        if (!isNerve(GET_NERVE(PurpleCoinCounter, PurpleCoinCounterNrvAppear))) {
+            if (!isNerve(GET_NERVE(PurpleCoinCounter, PurpleCoinCounterNrvWait))) {
+                setNerve(GET_NERVE(PurpleCoinCounter, PurpleCoinCounterNrvAppear));
             } else {
-                setNerve(&NrvPurpleCoinCounter::PurpleCoinCounterNrvWait::sInstance);
+                setNerve(GET_NERVE(PurpleCoinCounter, PurpleCoinCounterNrvWait));
             }
         }
     }
@@ -99,7 +99,7 @@ void PurpleCoinCounter::exeAppear() {
     }
 
     if (mLayoutAppearer->isAppeared()) {
-        setNerve(&NrvPurpleCoinCounter::PurpleCoinCounterNrvWait::sInstance);
+        setNerve(GET_NERVE(PurpleCoinCounter, PurpleCoinCounterNrvWait));
     }
 }
 

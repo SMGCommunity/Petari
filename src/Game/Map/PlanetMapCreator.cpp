@@ -1,31 +1,48 @@
 #include "Game/Map/PlanetMapCreator.hpp"
-#include "Game/AreaObj.hpp"
-#include "Game/Boss.hpp"
-#include "Game/Enemy.hpp"
-#include "Game/Gravity.hpp"
 #include "Game/Map.hpp"
 #include "Game/MapObj.hpp"
-#include "Game/NPC.hpp"
-#include "Game/NameObj.hpp"
-#include "Game/Ride.hpp"
-#include "Game/Scene.hpp"
-#include "Game/Util.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/NameObj/NameObjFactory.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
 #include <cstdio>
-#include <cstring>
 
 namespace {
+    static const char* const sArcName = "PlanetMapDataTable.arc";
+    static const char* const sFileName = "PlanetMapDataTable.bcsv";
+
+    void makeSubModelName(const char** ppDst, const JMapInfo* pIter, s32 idx, const char* pKey, const char* a3) {
+        s32 data;
+        MR::getCsvDataS32(&data, pIter, pKey, idx);
+
+        const char* pPlanetName;
+        MR::getCsvDataStr(&pPlanetName, pIter, "PlanetName", idx);
+
+        if (data != 0) {
+            s32 size = strlen(pPlanetName) + strlen(a3) + 1;
+            char* buf = new char[size];
+            snprintf(buf, size, "%s%s", pPlanetName, a3);
+
+            *ppDst = buf;
+        } else {
+            *ppDst = nullptr;
+        }
+    }
+
     static const PlanetEntry sUniquePlanetCreateFuncTable[] = {
         {
             "BeamGoRoundPlanet",
-            /* createNameObj<BeamGoRoundPlanet>, */
+            createNameObj< BeamGoRoundPlanet >,
         },
         {
             "BumpAppearPlanet",
-            /* createNameObj<BumpAppearPlanet>, */
+            createNameObj< BumpAppearPlanet >,
         },
         {
             "ChoConveyorPlanetB",
-            /* createNameObj<RailPlanetMap>, */
+            createNameObj< RailPlanetMap >,
         },
         {
             "ChoConveyorPlanetD",
@@ -33,7 +50,7 @@ namespace {
         },
         {
             "DinoPackunBattlePlanet",
-            /* createNameObj<FurPlanetMap>, */
+            createNameObj< FurPlanetMap >,
         },
         {
             "DarkHopperPlanetA",
@@ -57,11 +74,11 @@ namespace {
         },
         {
             "FlagDiscPlanetB",
-            /* createNameObj<PlanetMapFarClippable>, */
+            createNameObj< PlanetMapFarClippable >,
         },
         {
             "FlagDiscPlanetC",
-            /* createNameObj<PlanetMapFarClippable>, */
+            createNameObj< PlanetMapFarClippable >,
         },
         {
             "FlagDiscPlanetD",
@@ -69,7 +86,7 @@ namespace {
         },
         {
             "FlagDiscPlanetE",
-            /* createNameObj<PlanetMapFarClippable>, */
+            createNameObj< PlanetMapFarClippable >,
         },
         {
             "HatchWaterPlanet",
@@ -81,7 +98,7 @@ namespace {
         },
         {
             "HoneyQueenPlanet",
-            /* createNameObj<FurPlanetMap>, */
+            createNameObj< FurPlanetMap >,
         },
         {
             "LavaJamboSunPlanet",
@@ -117,7 +134,7 @@ namespace {
         },
         {
             "TeresaRoomPlanet",
-            /* createNameObj<PlanetMapAnimLow>, */
+            createNameObj< PlanetMapAnimLow >,
         },
         {
             "TridentPlanet",
@@ -125,27 +142,27 @@ namespace {
         },
         {
             "QuestionBoxPlanetA",
-            /* createNameObj<QuestionBoxGalleryObj>, */
+            createNameObj< QuestionBoxGalleryObj >,
         },
         {
             "QuestionBoxPlanetB",
-            /* createNameObj<QuestionBoxGalleryObj>, */
+            createNameObj< QuestionBoxGalleryObj >,
         },
         {
             "QuestionBoxPlanetC",
-            /* createNameObj<QuestionBoxGalleryObj>, */
+            createNameObj< QuestionBoxGalleryObj >,
         },
         {
             "QuestionBoxPlanetD",
-            /* createNameObj<QuestionBoxGalleryObj>, */
+            createNameObj< QuestionBoxGalleryObj >,
         },
         {
             "QuestionBoxPlanetE",
-            /* createNameObj<QuestionBoxGalleryObj>, */
+            createNameObj< QuestionBoxGalleryObj >,
         },
         {
             "Quicksand2DPlanet",
-            /* createNameObj<RailPlanetMap>, */
+            createNameObj< RailPlanetMap >,
         },
         {
             "ReverseGravityRoomPlanet",
@@ -153,15 +170,15 @@ namespace {
         },
         {
             "SandStreamHighTowerPlanet",
-            /* createNameObj<RailPlanetMap>, */
+            createNameObj< RailPlanetMap >,
         },
         {
             "SandStreamJointPlanetA",
-            /* createNameObj<RailPlanetMap>, */
+            createNameObj< RailPlanetMap >,
         },
         {
             "SandStreamJointPlanetB",
-            /* createNameObj<RailPlanetMap>, */
+            createNameObj< RailPlanetMap >,
         },
         {
             "StarDustStartPlanet",
@@ -172,6 +189,7 @@ namespace {
             createNameObj< WormEatenPlanet >,
         },
     };
+
     static const UniqueEntry sUniquePlanetUniqueArchiveName[] = {
         {
             "BeamGoRoundPlanet",
@@ -226,11 +244,6 @@ namespace {
             "WormEatenPlanetLow",
         },
     };
-    static const char* sArcName = "PlanetMapDataTable.arc";
-    static const char* sFileName = "PlanetMapDataTable.bcsv";
-
-    void makeSubModelName(const char**, const JMapInfo*, s32, const char*, const char*) {
-    }
 
     static bool isDataForceLow(const PlanetMapData* pMapData) {
         for (int i = 0; i < 8; i++) {
@@ -254,7 +267,7 @@ PlanetMapCreator::PlanetMapCreator(const char* pName) : NameObj(pName), mPlanetM
 
 CreatorFuncPtr PlanetMapCreator::getCreateFunc(const char* pParam1) {
     if (isScenarioForceLow(getTableData(pParam1))) {
-        return nullptr;  // createNameObj<PlanetMapWithoutHighModel>
+        return createNameObj< PlanetMapWithoutHighModel >;
     }
 
     const PlanetEntry* pEntry = nullptr;
@@ -262,7 +275,7 @@ CreatorFuncPtr PlanetMapCreator::getCreateFunc(const char* pParam1) {
     for (u32 i = 0; i < ARRAY_SIZE(::sUniquePlanetCreateFuncTable); i++) {
         pEntry = &::sUniquePlanetCreateFuncTable[i];
 
-        if (!MR::isEqualString(pParam1, ::sUniquePlanetCreateFuncTable[i].mName)) {
+        if (!MR::isEqualString(pParam1, pEntry->mName)) {
             break;
         }
     }
@@ -271,47 +284,48 @@ CreatorFuncPtr PlanetMapCreator::getCreateFunc(const char* pParam1) {
         return pEntry->mCreateFunc;
     }
 
-    return nullptr;  // createNameObj<PlanetMap>
+    return createNameObj< PlanetMap >;
 }
 
 void PlanetMapCreator::makeArchiveListPlanet(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter, const char* pName) {
     PlanetMapData* pTableData = getTableData(pName);
     if (isScenarioForceLow(pTableData)) {
         pCollector->addArchive(pTableData->mData[0]);
-    } else {
-        pCollector->addArchive(pTableData->mPlanetName);
+        return;
+    }
 
-        const char* pData0 = pTableData->mData[0];
-        if (pData0 != nullptr) {
-            pCollector->addArchive(pData0);
-        }
+    pCollector->addArchive(pTableData->mPlanetName);
 
-        const char* pData1 = pTableData->mData[1];
-        if (pData1 != nullptr) {
-            pCollector->addArchive(pData1);
-        }
+    const char* pData0 = pTableData->mData[0];
+    if (pData0 != nullptr) {
+        pCollector->addArchive(pData0);
+    }
 
-        const char* pData2 = pTableData->mData[2];
-        if (pData2 != nullptr) {
-            pCollector->addArchive(pData2);
-        }
+    const char* pData1 = pTableData->mData[1];
+    if (pData1 != nullptr) {
+        pCollector->addArchive(pData1);
+    }
 
-        const char* pData3 = pTableData->mData[3];
-        if (pData3 != nullptr) {
-            pCollector->addArchive(pData3);
-        }
+    const char* pData2 = pTableData->mData[2];
+    if (pData2 != nullptr) {
+        pCollector->addArchive(pData2);
+    }
 
-        const char* pData4 = pTableData->mData[4];
-        if (pData4 != nullptr) {
-            pCollector->addArchive(pData4);
-        }
+    const char* pData3 = pTableData->mData[3];
+    if (pData3 != nullptr) {
+        pCollector->addArchive(pData3);
+    }
 
-        const char* pPlanetName = pTableData->mPlanetName;
-        for (u32 i = 0; i < ARRAY_SIZE(::sUniquePlanetUniqueArchiveName); i++) {
-            const UniqueEntry* pUniqueEntry = &::sUniquePlanetUniqueArchiveName[i];
-            if (MR::isEqualString(pPlanetName, pUniqueEntry->_0)) {
-                pCollector->addArchive(pUniqueEntry->_4);
-            }
+    const char* pData4 = pTableData->mData[4];
+    if (pData4 != nullptr) {
+        pCollector->addArchive(pData4);
+    }
+
+    const char* pPlanetName = pTableData->mPlanetName;
+    for (u32 i = 0; i < ARRAY_SIZE(::sUniquePlanetUniqueArchiveName); i++) {
+        const UniqueEntry* pUniqueEntry = &::sUniquePlanetUniqueArchiveName[i];
+        if (MR::isEqualString(pPlanetName, pUniqueEntry->_0)) {
+            pCollector->addArchive(pUniqueEntry->_4);
         }
     }
 }
@@ -386,7 +400,9 @@ void PlanetMapCreatorFunction::makeArchiveList(NameObjArchiveListCollector* pCol
     MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->makeArchiveListPlanet(pCollector, rIter, pName);
 }
 
-// PlanetMapCreatorFunction::getPlanetMapCreator
+CreatorFuncPtr PlanetMapCreatorFunction::getPlanetMapCreator(const char* pParam1) {
+    return MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->getCreateFunc(pParam1);
+}
 
 bool PlanetMapCreatorFunction::isLoadArchiveAfterScenarioSelected(const char* pArchive) {
     bool isExistTableData = MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->getTableData(pArchive);

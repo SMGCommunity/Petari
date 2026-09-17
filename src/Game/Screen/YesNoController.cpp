@@ -29,19 +29,19 @@ YesNoController::YesNoController(LayoutActor* pHost)
     mButtonNoPaneCtrl = new ButtonPaneController(mHost, "Left", "BoxLeft", 0, true);
     mButtonNoPaneCtrl->_22 = false;
 
-    initNerve(&NrvYesNoController::YesNoControllerNrvSelecting::sInstance);
+    initNerve(GET_NERVE(YesNoController, YesNoControllerNrvSelecting));
 }
 
 void YesNoController::appear() {
     _C = true;
 
-    setNerve(&NrvYesNoController::YesNoControllerNrvSelecting::sInstance);
+    setNerve(GET_NERVE(YesNoController, YesNoControllerNrvSelecting));
 }
 
 void YesNoController::kill() {
     _C = false;
 
-    setNerve(&NrvYesNoController::YesNoControllerNrvNotSelected::sInstance);
+    setNerve(GET_NERVE(YesNoController, YesNoControllerNrvNotSelected));
 }
 
 void YesNoController::update() {
@@ -53,7 +53,7 @@ void YesNoController::update() {
 }
 
 bool YesNoController::isSelected() const {
-    return isNerve(&NrvYesNoController::YesNoControllerNrvSelected::sInstance);
+    return isNerve(GET_NERVE(YesNoController, YesNoControllerNrvSelected));
 }
 
 bool YesNoController::isSelectedYes() const {
@@ -61,7 +61,7 @@ bool YesNoController::isSelectedYes() const {
 }
 
 bool YesNoController::isDisappearStart() const {
-    return isNerve(&NrvYesNoController::YesNoControllerNrvDisappear::sInstance) && MR::isFirstStep(this);
+    return isNerve(GET_NERVE(YesNoController, YesNoControllerNrvDisappear)) && MR::isFirstStep(this);
 }
 
 void YesNoController::setSE(const char* pCursorSE, const char* pYesSE, const char* pNoSE) {
@@ -134,7 +134,7 @@ void YesNoController::exeSelecting() {
     }
 
     if (trySelect()) {
-        setNerve(&NrvYesNoController::YesNoControllerNrvDecided::sInstance);
+        setNerve(GET_NERVE(YesNoController, YesNoControllerNrvDecided));
     }
 }
 
@@ -163,7 +163,7 @@ void YesNoController::exeDecided() {
     }
 
     if ((isSelectedYes && mButtonYesPaneCtrl->isDecidedWait()) || (!isSelectedYes && mButtonNoPaneCtrl->isDecidedWait())) {
-        setNerve(&NrvYesNoController::YesNoControllerNrvDisappear::sInstance);
+        setNerve(GET_NERVE(YesNoController, YesNoControllerNrvDisappear));
     }
 }
 
@@ -175,9 +175,9 @@ void YesNoController::exeDisappear() {
 
     if (mButtonYesPaneCtrl->isHidden() && mButtonNoPaneCtrl->isHidden()) {
         if (mButtonYesPaneCtrl->mIsSelected || mButtonNoPaneCtrl->mIsSelected) {
-            setNerve(&NrvYesNoController::YesNoControllerNrvSelected::sInstance);
+            setNerve(GET_NERVE(YesNoController, YesNoControllerNrvSelected));
         } else {
-            setNerve(&NrvYesNoController::YesNoControllerNrvNotSelected::sInstance);
+            setNerve(GET_NERVE(YesNoController, YesNoControllerNrvNotSelected));
         }
     }
 }

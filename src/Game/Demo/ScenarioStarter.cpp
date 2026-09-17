@@ -64,7 +64,7 @@ void ScenarioStarter::init(const JMapInfoIter& rIter) {
     _10C.set(*MR::getPlayerPos());
     _118.set(*MR::getPlayerRotate());
     mPosition.set(_10C);
-    initNerve(&NrvScenarioStarter::ScenarioStarterWaitScenarioCameraEnd::sInstance);
+    initNerve(GET_NERVE(ScenarioStarter, ScenarioStarterWaitScenarioCameraEnd));
     if (MR::isBeginScenarioStarter()) {
         appear();
     } else {
@@ -84,7 +84,7 @@ void ScenarioStarter::exeCinemaFrameBlank() {
         MR::stopStageBGM(0);
         MR::startStageBGMFromStageName("Game", MR::getCurrentStageName(), MR::getCurrentScenarioNo());
     }
-    MR::setNerveAtStep(this, &NrvScenarioStarter::ScenarioStarterRailMove::sInstance, 0);
+    MR::setNerveAtStep(this, GET_NERVE(ScenarioStarter, ScenarioStarterRailMove), 0);
 }
 
 void ScenarioStarter::exeRailMove() {
@@ -120,7 +120,7 @@ void ScenarioStarter::exeRailMove() {
         _124 = true;
     }
     if (_124 && MR::isStopCinemaFrame()) {
-        setNerve(&NrvScenarioStarter::ScenarioStarterRailMoveCanceled::sInstance);
+        setNerve(GET_NERVE(ScenarioStarter, ScenarioStarterRailMoveCanceled));
         return;
     }
     s32 bgmStartTime = 0;
@@ -139,7 +139,7 @@ void ScenarioStarter::exeRailMove() {
         MR::endBindAndSpinDriverJump(this, _9C);
         _8C = nullptr;
         mSpinDriverCamera->end();
-        setNerve(&NrvScenarioStarter::ScenarioStarterShowWelcomeLayout::sInstance);
+        setNerve(GET_NERVE(ScenarioStarter, ScenarioStarterShowWelcomeLayout));
     }
 }
 
@@ -153,7 +153,7 @@ void ScenarioStarter::exeRailMoveCanceled() {
             MR::stopStageBGM(0);
             MR::startStageBGMFromStageName("Game", MR::getCurrentStageName(), MR::getCurrentScenarioNo());
         }
-        setNerve(&NrvScenarioStarter::ScenarioStarterShowWelcomeLayout::sInstance);
+        setNerve(GET_NERVE(ScenarioStarter, ScenarioStarterShowWelcomeLayout));
     }
 }
 
@@ -202,7 +202,7 @@ void ScenarioStarter::updateBindPosition() {
 }
 
 void ScenarioStarter::updateBindActorMtx() {
-    if (isNerve(&NrvScenarioStarter::ScenarioStarterRailMove::sInstance)) {
+    if (isNerve(GET_NERVE(ScenarioStarter, ScenarioStarterRailMove))) {
         TPos3f mtx1;
         mtx1.identity();
         mtx1.setEulerY(_E4);
@@ -267,7 +267,7 @@ void ScenarioStarter::calcShootMotionTime() {
 
         return;
     }
-    
+
     if (mFlightTime < endMaxFrame + 20) {
         mFlyMotionStartStep = -1;
         _F8 = 0;
@@ -280,7 +280,7 @@ void ScenarioStarter::calcShootMotionTime() {
     mFallMotionStartStep = mFlightTime - 20;
 
     // FIXME
-    s32 val3 = MR::max(static_cast<s32>(0.2f * mFlightTime), 90) % startMaxFrame;
+    s32 val3 = MR::max(static_cast< s32 >(0.2f * mFlightTime), 90) % startMaxFrame;
 
     mFlyMotionStartStep = val3;
     if (_F8 <= val3) {
@@ -289,13 +289,13 @@ void ScenarioStarter::calcShootMotionTime() {
 
     // FIXME
     _E4 = 0.0f;
-    _E8 = 2 * MR::pi() * (0.05f * static_cast<f32>(_F8 - mFlyMotionStartStep)) / (2 * MR::pi());
+    _E8 = 2 * MR::pi() * (0.05f * static_cast< f32 >(_F8 - mFlyMotionStartStep)) / (2 * MR::pi());
 }
 
 bool ScenarioStarter::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (_8C == nullptr && MR::isMsgAutoRushBegin(msg) && isNerve(&NrvScenarioStarter::ScenarioStarterWaitToStart::sInstance)) {
+    if (_8C == nullptr && MR::isMsgAutoRushBegin(msg) && isNerve(GET_NERVE(ScenarioStarter, ScenarioStarterWaitToStart))) {
         _8C = MR::getSensorHost(pSender);
-        setNerve(&NrvScenarioStarter::ScenarioStarterCinemaFrameBlank::sInstance);
+        setNerve(GET_NERVE(ScenarioStarter, ScenarioStarterCinemaFrameBlank));
         return true;
     }
 
@@ -338,6 +338,6 @@ bool ScenarioStarter::isStartBgmOnWelcome() {
 
 void ScenarioStarter::exeWaitScenarioCameraEnd() {
     if (!MR::isStageStateScenarioOpeningCamera()) {
-        setNerve(&NrvScenarioStarter::ScenarioStarterWaitToStart::sInstance);
+        setNerve(GET_NERVE(ScenarioStarter, ScenarioStarterWaitToStart));
     }
 }

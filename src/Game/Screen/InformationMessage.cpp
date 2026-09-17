@@ -29,7 +29,7 @@ void InformationMessage::init(const JMapInfoIter& rIter) {
         MR::registerDemoSimpleCastAll(mAButtonIcon);
     }
 
-    initNerve(&NrvInformationMessage::InformationMessageNrvAppear::sInstance);
+    initNerve(GET_NERVE(InformationMessage, InformationMessageNrvAppear));
 }
 
 void InformationMessage::appear() {
@@ -44,7 +44,7 @@ void InformationMessage::appear() {
     MR::startAnim(this, "Appear", 0);
     MR::startAnim(this, "Line", 1);
     MR::setAnimFrameAndStopAdjustTextHeight(this, mIsCenter ? "InfConfirmC" : "InfConfirmU", 1);
-    setNerve(&NrvInformationMessage::InformationMessageNrvAppear::sInstance);
+    setNerve(GET_NERVE(InformationMessage, InformationMessageNrvAppear));
     LayoutActor::appear();
 }
 
@@ -56,7 +56,7 @@ void InformationMessage::appearWithButtonLayout() {
 }
 
 void InformationMessage::disappear() {
-    setNerve(&NrvInformationMessage::InformationMessageNrvDisappear::sInstance);
+    setNerve(GET_NERVE(InformationMessage, InformationMessageNrvDisappear));
 }
 
 void InformationMessage::setMessage(const char* pMessageId) {
@@ -72,7 +72,7 @@ void InformationMessage::setReplaceString(const wchar_t* pMessage, s32 param2) {
 }
 
 void InformationMessage::exeAppear() {
-    MR::setNerveAtAnimStopped(this, &NrvInformationMessage::InformationMessageNrvWait::sInstance, 0);
+    MR::setNerveAtAnimStopped(this, GET_NERVE(InformationMessage, InformationMessageNrvWait), 0);
 }
 
 void InformationMessage::exeWait() {

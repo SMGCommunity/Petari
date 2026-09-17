@@ -39,13 +39,13 @@ void MechaKoopaPartsHead::init(const JMapInfoIter& rIter) {
     initInfo.setupConnectToScene();
     initInfo.setupEffect(nullptr);
     initInfo.setupSound(6);
-    initInfo.setupNerve(&NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvWait::sInstance);
+    initInfo.setupNerve(GET_NERVE(MechaKoopaPartsHead, MechaKoopaPartsHeadNrvWait));
     initialize(rIter, initInfo);
     MR::declarePowerStar(this);
-    MR::registerDemoActionNerve(this, &NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvDemoBreak::sInstance, ::sDemoPartNameBreak);
-    MR::registerDemoActionNerve(this, &NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvDemoWhiteFadeOut::sInstance, ::sDemoPartNameFadeOut);
-    MR::registerDemoActionNerve(this, &NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvDemoWhiteWait::sInstance, ::sDemoPartNameWhite);
-    MR::registerDemoActionNerve(this, &NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvDemoWhiteFadeIn::sInstance, ::sDemoPartNameFadeIn);
+    MR::registerDemoActionNerve(this, GET_NERVE(MechaKoopaPartsHead, MechaKoopaPartsHeadNrvDemoBreak), ::sDemoPartNameBreak);
+    MR::registerDemoActionNerve(this, GET_NERVE(MechaKoopaPartsHead, MechaKoopaPartsHeadNrvDemoWhiteFadeOut), ::sDemoPartNameFadeOut);
+    MR::registerDemoActionNerve(this, GET_NERVE(MechaKoopaPartsHead, MechaKoopaPartsHeadNrvDemoWhiteWait), ::sDemoPartNameWhite);
+    MR::registerDemoActionNerve(this, GET_NERVE(MechaKoopaPartsHead, MechaKoopaPartsHeadNrvDemoWhiteFadeIn), ::sDemoPartNameFadeIn);
 
     if (MR::isValidSwitchA(this)) {
         MR::onSwitchA(this);
@@ -112,7 +112,7 @@ void MechaKoopaPartsHead::exeDemoWhiteFadeIn() {
     }
 
     if (MR::isDemoPartLastStep(::sDemoPartNameFadeIn)) {
-        setNerve(&NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvDemoAppearStar::sInstance);
+        setNerve(GET_NERVE(MechaKoopaPartsHead, MechaKoopaPartsHeadNrvDemoAppearStar));
     }
 }
 

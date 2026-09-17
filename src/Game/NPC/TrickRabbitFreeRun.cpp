@@ -72,7 +72,7 @@ void TrickRabbitFreeRun::init(const JMapInfoIter& rIter) {
     initSound(4, false);
     MR::onCalcGravity(this);
     MR::declarePowerStar(this);
-    initNerve(&NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvWaitStart::sInstance);
+    initNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitFreeRunNrvWaitStart));
     makeActorAppeared();
 }
 
@@ -142,8 +142,8 @@ bool TrickRabbitFreeRun::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitS
 }
 
 bool TrickRabbitFreeRun::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvWaitStart::sInstance) ||
-        isNerve(&NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvGiveUp::sInstance)) {
+    if (isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitFreeRunNrvWaitStart)) ||
+        isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitFreeRunNrvGiveUp))) {
         return mStateWaitStart->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
 
@@ -161,8 +161,8 @@ bool TrickRabbitFreeRun::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, Hit
 }
 
 bool TrickRabbitFreeRun::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvWaitStart::sInstance) ||
-        isNerve(&NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvGiveUp::sInstance)) {
+    if (isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitFreeRunNrvWaitStart)) ||
+        isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitFreeRunNrvGiveUp))) {
         return mStateWaitStart->receiveOtherMsg(msg, pSender, pReceiver);
     }
 
@@ -172,7 +172,7 @@ bool TrickRabbitFreeRun::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor*
 bool TrickRabbitFreeRun::receiveMsgBlowDamage(HitSensor* pSender, HitSensor* pReceiver) {
     if (isEnableBlowDamage()) {
         MR::setVelocitySeparateHV(this, pSender, pReceiver, 20.0f, 20.0f);
-        setNerve(&NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvBlowDamage::sInstance);
+        setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitFreeRunNrvBlowDamage));
 
         return true;
     }
@@ -184,7 +184,7 @@ bool TrickRabbitFreeRun::requestCaught() {
     if (isEnableCaught()) {
         MR::invalidateClipping(this);
         MR::forwardNode(mMsgCtrl);
-        setNerve(&NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvCaught::sInstance);
+        setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitFreeRunNrvCaught));
 
         return true;
     }
@@ -199,8 +199,8 @@ void TrickRabbitFreeRun::exeWaitStart() {
     }
 
     if (MR::updateActorState(this, mStateWaitStart)) {
-        MR::requestStartDemoMarioPuppetable(this, "逃走", &NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvRunawayStart::sInstance,
-                                            &NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvTryDemo::sInstance);
+        MR::requestStartDemoMarioPuppetable(this, "逃走", GET_NERVE(TrickRabbitFreeRun, TrickRabbitFreeRunNrvRunawayStart),
+                                            GET_NERVE(TrickRabbitFreeRun, TrickRabbitFreeRunNrvTryDemo));
     }
 }
 
@@ -222,7 +222,7 @@ void TrickRabbitFreeRun::exeRunawayStart() {
 
     if (MR::isGreaterStep(this, 120)) {
         MR::endDemo(this, "逃走");
-        setNerve(&NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvRunaway::sInstance);
+        setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitFreeRunNrvRunaway));
     }
 }
 
@@ -251,7 +251,7 @@ void TrickRabbitFreeRun::exeRunaway() {
 }
 
 void TrickRabbitFreeRun::exeBlowDamage() {
-    MR::updateActorStateAndNextNerve(this, mStateBlowDamage, &NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvRunaway::sInstance);
+    MR::updateActorStateAndNextNerve(this, mStateBlowDamage, GET_NERVE(TrickRabbitFreeRun, TrickRabbitFreeRunNrvRunaway));
 }
 
 void TrickRabbitFreeRun::exeCaught() {
@@ -260,7 +260,7 @@ void TrickRabbitFreeRun::exeCaught() {
     }
 
     if (MR::updateActorState(this, mStateCaught)) {
-        setNerve(&NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvPowerStarDemo::sInstance);
+        setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitFreeRunNrvPowerStarDemo));
     }
 }
 
@@ -278,7 +278,7 @@ void TrickRabbitFreeRun::exePowerStarDemo() {
 
     if (MR::isEndPowerStarAppearDemo(this)) {
         MR::forwardNode(mMsgCtrl);
-        setNerve(&NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvGiveUp::sInstance);
+        setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitFreeRunNrvGiveUp));
     }
 }
 
@@ -292,8 +292,8 @@ void TrickRabbitFreeRun::exeGiveUp() {
 }
 
 bool TrickRabbitFreeRun::isEnableCaught() const {
-    if (isNerve(&NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvRunaway::sInstance) ||
-        isNerve(&NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvBlowDamage::sInstance)) {
+    if (isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitFreeRunNrvRunaway)) ||
+        isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitFreeRunNrvBlowDamage))) {
         return true;
     }
 
@@ -301,7 +301,7 @@ bool TrickRabbitFreeRun::isEnableCaught() const {
 }
 
 bool TrickRabbitFreeRun::isEnableBlowDamage() const {
-    return isNerve(&NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvRunaway::sInstance);
+    return isNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitFreeRunNrvRunaway));
 }
 
 void TrickRabbitFreeRun::startJumpSound() {

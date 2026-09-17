@@ -55,7 +55,7 @@ void HipDropTimerSwitch::init(const JMapInfoIter& rIter) {
     MR::initCollisionParts(this, "HipDropTimerSwitch", getSensor("body"), nullptr);
     mCollisionParts = MR::createCollisionPartsFromLiveActor(this, "Move", getSensor("hit"), MR::CollisionScaleType_Unk2);
     MR::validateCollisionParts(mCollisionParts);
-    initNerve(&NrvHipDropSwitch::HipDropTimerSwitchNrvOff::sInstance);
+    initNerve(GET_NERVE(HipDropSwitch, HipDropTimerSwitchNrvOff));
     MR::needStageSwitchWriteA(this, rIter);
     MR::tryRegisterDemoCast(this, rIter);
     MR::getJMapInfoArg0NoInit(rIter, &mTimerMax);
@@ -156,10 +156,9 @@ bool HipDropTimerSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, Hit
         return true;
     }
 
-    if (MR::isMsgPlayerHipDropFloor(msg) && mCollisionParts->mHitSensor == pReceiver &&
-        isNerve(&NrvHipDropSwitch::HipDropTimerSwitchNrvOff::sInstance)) {
+    if (MR::isMsgPlayerHipDropFloor(msg) && mCollisionParts->mHitSensor == pReceiver && isNerve(GET_NERVE(HipDropSwitch, HipDropTimerSwitchNrvOff))) {
         MR::invalidateClipping(this);
-        setNerve(&NrvHipDropSwitch::HipDropTimerSwitchNrvSwitchDown::sInstance);
+        setNerve(GET_NERVE(HipDropSwitch, HipDropTimerSwitchNrvSwitchDown));
         mSpring->reset();
         return true;
     }
@@ -205,7 +204,7 @@ void HipDropTimerSwitch::exeSwitchDown() {
     }
 
     if (MR::isGreaterStep(this, 0) && MR::isBckStopped(this)) {
-        setNerve(&NrvHipDropSwitch::HipDropTimerSwitchNrvOn::sInstance);
+        setNerve(GET_NERVE(HipDropSwitch, HipDropTimerSwitchNrvOn));
     }
 }
 
@@ -219,7 +218,7 @@ void HipDropTimerSwitch::exeOn() {
     updateTimerSE();
 
     if (MR::isGreaterStep(this, mTimerMax)) {
-        setNerve(&NrvHipDropSwitch::HipDropTimerSwitchNrvSwitchUp::sInstance);
+        setNerve(GET_NERVE(HipDropSwitch, HipDropTimerSwitchNrvSwitchUp));
     }
 }
 
@@ -230,7 +229,7 @@ void HipDropTimerSwitch::exeSwitchUp() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvHipDropSwitch::HipDropTimerSwitchNrvOff::sInstance);
+        setNerve(GET_NERVE(HipDropSwitch, HipDropTimerSwitchNrvOff));
     }
 }
 

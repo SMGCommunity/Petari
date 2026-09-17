@@ -101,7 +101,7 @@ MarioLauncher::MarioLauncher(const char* pName)
 void MarioLauncher::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("MarioLauncher", nullptr, false);
-    initNerve(&NrvMarioLauncher::MarioLauncherNrvWait::sInstance);
+    initNerve(GET_NERVE(MarioLauncher, MarioLauncherNrvWait));
 
     mShell = new MarioLauncherShell("移動用弾丸");
     mShell->init(rIter);
@@ -176,7 +176,7 @@ void MarioLauncher::exeReady() {
     mLauncherBaseMtx.getYDir(up);
 
     if (MR::isBckStoppedPlayer()) {
-        setNerve(&NrvMarioLauncher::MarioLauncherNrvPlayerIn::sInstance);
+        setNerve(GET_NERVE(MarioLauncher, MarioLauncherNrvPlayerIn));
     }
 }
 
@@ -193,7 +193,7 @@ void MarioLauncher::exePlayerIn() {
     }
 
     if (MR::isBckStoppedPlayer() && doPrep()) {
-        setNerve(&NrvMarioLauncher::MarioLauncherNrvPrep::sInstance);
+        setNerve(GET_NERVE(MarioLauncher, MarioLauncherNrvPrep));
     }
 }
 
@@ -217,7 +217,7 @@ void MarioLauncher::exePrep() {
     if (MR::isGreaterStep(this, ::sStartActiveFrame) && MR::isBckStopped(this)) {
         if (doAim()) {
             MR::setPlayerFrontVec(front, ::sFrontVecFrame);
-            setNerve(&NrvMarioLauncher::MarioLauncherNrvAim::sInstance);
+            setNerve(GET_NERVE(MarioLauncher, MarioLauncherNrvAim));
         }
     }
 }
@@ -234,14 +234,14 @@ void MarioLauncher::exeAim() {
 
     if (MR::testSystemTriggerA() || MR::testCorePadTriggerA(WPAD_CHAN0)) {
         if (doEject()) {
-            setNerve(&NrvMarioLauncher::MarioLauncherNrvFlight::sInstance);
+            setNerve(GET_NERVE(MarioLauncher, MarioLauncherNrvFlight));
         }
         return;
     }
 
     if (MR::testSystemTriggerB() || MR::testCorePadTriggerB(WPAD_CHAN0)) {
         if (doReject()) {
-            setNerve(&NrvMarioLauncher::MarioLauncherNrvReject::sInstance);
+            setNerve(GET_NERVE(MarioLauncher, MarioLauncherNrvReject));
         }
         return;
     }
@@ -270,7 +270,7 @@ void MarioLauncher::exeFlight() {
 
     if (MR::isGreaterEqualStep(this, ::sKillFrame)) {
         MR::forceKillPlayerByAbyss();
-        setNerve(&NrvMarioLauncher::MarioLauncherNrvKill::sInstance);
+        setNerve(GET_NERVE(MarioLauncher, MarioLauncherNrvKill));
         return;
     }
 
@@ -349,7 +349,7 @@ void MarioLauncher::exeReject() {
 
     if (MR::isStep(this, ::sWaitFrame)) {
         MR::validateHitSensor(this, "Bind");
-        setNerve(&NrvMarioLauncher::MarioLauncherNrvWait::sInstance);
+        setNerve(GET_NERVE(MarioLauncher, MarioLauncherNrvWait));
     }
 }
 
@@ -358,7 +358,7 @@ void MarioLauncher::exeLand() {
         MR::endLauncherFlightCamera();
         MR::validateClipping(this);
         MR::validateClipping(mShell);
-        setNerve(&NrvMarioLauncher::MarioLauncherNrvWait::sInstance);
+        setNerve(GET_NERVE(MarioLauncher, MarioLauncherNrvWait));
     }
 }
 
@@ -390,7 +390,7 @@ bool MarioLauncher::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
 bool MarioLauncher::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgAutoRushBegin(msg)) {
         if (doReady(pSender)) {
-            setNerve(&NrvMarioLauncher::MarioLauncherNrvReady::sInstance);
+            setNerve(GET_NERVE(MarioLauncher, MarioLauncherNrvReady));
             return true;
         }
     }
@@ -408,7 +408,7 @@ bool MarioLauncher::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRec
 }
 
 bool MarioLauncher::doReady(HitSensor* pSensor) {
-    if (!isNerve(&NrvMarioLauncher::MarioLauncherNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(MarioLauncher, MarioLauncherNrvWait))) {
         return false;
     }
 
@@ -423,7 +423,7 @@ bool MarioLauncher::doReady(HitSensor* pSensor) {
 }
 
 bool MarioLauncher::doPrep() {
-    if (!isNerve(&NrvMarioLauncher::MarioLauncherNrvPlayerIn::sInstance)) {
+    if (!isNerve(GET_NERVE(MarioLauncher, MarioLauncherNrvPlayerIn))) {
         return false;
     }
 
@@ -472,7 +472,7 @@ bool MarioLauncher::doAim() {
     }
 
     MR::startStarPointerModeMarioLauncher(this);
-    setNerve(&NrvMarioLauncher::MarioLauncherNrvAim::sInstance);
+    setNerve(GET_NERVE(MarioLauncher, MarioLauncherNrvAim));
 
     return true;
 }
@@ -639,7 +639,7 @@ bool MarioLauncher::doLanding(s32 msg) {
     mHost = nullptr;
 
     MR::startBck(this, "Wait", nullptr);
-    setNerve(&NrvMarioLauncher::MarioLauncherNrvLand::sInstance);
+    setNerve(GET_NERVE(MarioLauncher, MarioLauncherNrvLand));
 
     return true;
 }

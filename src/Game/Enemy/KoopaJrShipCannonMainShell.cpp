@@ -47,7 +47,7 @@ void KoopaJrShipCannonMainShell::init(const JMapInfoIter& rIter) {
     MR::addHitSensorEnemyAttack(this, "attack", 8, ::sAttackSensorRadius * getBaseScale(), TVec3f(0.0f, 0.0f, 0.0f));
 
     initBinder(::sBinderRadius * getBaseScale(), 0.0f, 0);
-    initNerve(&NrvKoopaJrShipCannonMainShell::HostTypeFly::sInstance);
+    initNerve(GET_NERVE(KoopaJrShipCannonMainShell, HostTypeFly));
 
     MR::connectToSceneEnemy(this);
     MR::invalidateClipping(this);
@@ -83,7 +83,7 @@ void KoopaJrShipCannonMainShell::attackSensor(HitSensor* pSender, HitSensor* pRe
         return;
     }
 
-    bool isFly = isNerve(&NrvKoopaJrShipCannonMainShell::HostTypeFly::sInstance) && MR::isGreaterEqualStep(this, 0);
+    bool isFly = isNerve(GET_NERVE(KoopaJrShipCannonMainShell, HostTypeFly)) && MR::isGreaterEqualStep(this, 0);
 
     if (!isFly) {
         return;
@@ -115,7 +115,7 @@ void KoopaJrShipCannonMainShell::launch(const TVec3f& rStartPos, const TVec3f& r
     MR::makeMtxFrontUp(&mtx, dir, -mGravity);
     mtx.getQuat(_8C);
     mVelocity.set< f32 >(rVelocity);
-    setNerve(&NrvKoopaJrShipCannonMainShell::HostTypeFly::sInstance);
+    setNerve(GET_NERVE(KoopaJrShipCannonMainShell, HostTypeFly));
 }
 
 f32 KoopaJrShipCannonMainShell::getBaseScale() const {

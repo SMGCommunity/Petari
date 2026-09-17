@@ -35,16 +35,16 @@ void WatchTowerRotateStep::init(const JMapInfoIter& rIter) {
     bool isRegisteredDemoCast = MR::tryRegisterDemoCast(this, rIter);
 
     if (isRegisteredDemoCast) {
-        MR::registerDemoActionNerve(this, &NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMoveStart::sInstance, nullptr);
+        MR::registerDemoActionNerve(this, GET_NERVE(WatchTowerRotateStep, WatchTowerRotateStepNrvMoveStart), nullptr);
     }
 
     MR::calcUpVec(&mRotateVec, this);
     initLift(rIter);
 
     if (isRegisteredDemoCast) {
-        initNerve(&NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait::sInstance);
+        initNerve(GET_NERVE(WatchTowerRotateStep, WatchTowerRotateStepNrvWait));
     } else {
-        initNerve(&NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMove::sInstance);
+        initNerve(GET_NERVE(WatchTowerRotateStep, WatchTowerRotateStepNrvMove));
     }
 
     makeActorAppeared();
@@ -69,7 +69,7 @@ void WatchTowerRotateStep::exeMoveStart() {
     attachLift();
 
     if (MR::isStep(this, ::sStepForMoveStart)) {
-        setNerve(&NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMove::sInstance);
+        setNerve(GET_NERVE(WatchTowerRotateStep, WatchTowerRotateStepNrvMove));
     }
 }
 

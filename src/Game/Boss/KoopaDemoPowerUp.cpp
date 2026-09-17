@@ -35,13 +35,13 @@ void KoopaDemoPowerUp::init() {
     KoopaFunction::initKoopaCamera(getHost(), "最終パワーアップデモ");
 
     MR::createCenterScreenBlur();
-    initNerve(&NrvKoopaDemoPowerUp::KoopaDemoPowerUpNrvWaitDemo::sInstance);
+    initNerve(GET_NERVE(KoopaDemoPowerUp, KoopaDemoPowerUpNrvWaitDemo));
 }
 
 void KoopaDemoPowerUp::appear() {
     mIsDead = false;
 
-    setNerve(&NrvKoopaDemoPowerUp::KoopaDemoPowerUpNrvWaitDemo::sInstance);
+    setNerve(GET_NERVE(KoopaDemoPowerUp, KoopaDemoPowerUpNrvWaitDemo));
 }
 
 void KoopaDemoPowerUp::kill() {
@@ -87,7 +87,7 @@ void KoopaDemoPowerUp::exeWaitDemo() {
 
     KoopaFunction::endFaceCtrl(getHost(), -1);
 
-    setNerve(&NrvKoopaDemoPowerUp::KoopaDemoPowerUpNrvDemo::sInstance);
+    setNerve(GET_NERVE(KoopaDemoPowerUp, KoopaDemoPowerUpNrvDemo));
 }
 
 void KoopaDemoPowerUp::exeDemo() {

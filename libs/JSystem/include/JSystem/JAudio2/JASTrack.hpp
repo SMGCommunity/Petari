@@ -47,14 +47,18 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded< JASTrack > {
         /* 0x4c */ JASTrack* mTrack;
     };
 
-    struct TList : JGadget::TLinkList< JASTrack, -0x248 > {
-        TList() : mCallbackRegistered(false) {
+    struct TList {
+        typedef JGadget::TLinkList< JASTrack, -0x248 > TrackList;
+        typedef TrackList::iterator iterator;
+        TList() : mCallbackRegistered() {
         }
+
         void append(JASTrack*);
         void seqMain();
 
         static s32 cbSeqMain(void*);
 
+        /* 0x0 */ TrackList mTracks;
         /* 0xC */ bool mCallbackRegistered;
     };
 
@@ -136,138 +140,183 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded< JASTrack > {
     JASSeqCtrl* getSeqCtrl() {
         return &mSeqCtrl;
     }
+
     u16 getPort(u32 param_0) const {
         return mTrackPort.get(param_0);
     }
+
     void setPort(u32 param_0, u16 param_1) {
         mTrackPort.set(param_0, param_1);
     }
+
     u32 checkPortIn(u32 param_0) const {
         return mTrackPort.checkImport(param_0);
     }
+
     u32 checkPort(u32 param_0) const {
         return mTrackPort.checkExport(param_0);
     }
+
     u32 readReg(JASRegisterParam::RegID param_0) {
         return mRegisterParam.read(param_0);
     }
+
     void writeReg(JASRegisterParam::RegID param_0, u32 param_1) {
         mRegisterParam.write(param_0, param_1);
     }
+
     JASTrack* getParent() {
         return mParent;
     }
+
     JASTrack* getChild(u32 index) {
         return mChildren[index];
     }
+
     int getChannelMgrCount() const {
         return mChannelMgrCount;
     }
+
     f32 getVibDepth() const {
         return mVibDepth;
     }
+
     void setVibDepth(f32 param_0) {
         mVibDepth = param_0;
     }
+
     f32 getVibPitch() const {
         return mVibPitch;
     }
+
     void setVibPitch(f32 param_0) {
         mVibPitch = param_0;
     }
+
     f32 getTremDepth() const {
         return mTremDepth;
     }
+
     void setTremDepth(f32 param_0) {
         mTremDepth = param_0;
     }
+
     f32 getTremPitch() const {
         return mTremPitch;
     }
+
     void setTremPitch(f32 param_0) {
         mTremPitch = param_0;
     }
+
     u32 getVibDelay() const {
         return mVibDelay;
     }
+
     void setVibDelay(u32 param_0) {
         mVibDelay = param_0;
     }
+
     u32 getTremDelay() const {
         return mTremDelay;
     }
+
     void setTremDelay(u32 param_0) {
         mTremDelay = param_0;
     }
+
     int getStatus() const {
         return mStatus;
     }
+
     void setStatus(int status) {
         mStatus = status;
     }
+
     void setAutoDelete(bool param_0) {
         mIsOwnedByParent = param_0;
     }
+
     f32 getPanPower() const {
         return mPanPower;
     }
+
     void setPanPower(f32 param_0) {
         mPanPower = param_0;
     }
+
     u32 getSkipSample() const {
         return mSkipSample;
     }
+
     void setSkipSample(u32 param_0) {
         mSkipSample = param_0;
     }
+
     u16 getDirectRelease() const {
         return mDirectRelease;
     }
+
     void setDirectRelease(u16 param_0) {
         mDirectRelease = param_0;
     }
+
     u16 getTimebase() const {
         return mTimebase;
     }
+
     int getTranspose() const {
         return mTranspose;
     }
+
     void setTranspose(s32 param_0) {
         mTranspose = param_0;
     }
+
     u16 getBankNumber() const {
         return mBankNumber;
     }
+
     void setBankNumber(u16 param_0) {
         mBankNumber = param_0;
     }
+
     u16 getProgNumber() const {
         return mProgNumber;
     }
+
     void setProgNumber(u16 param_0) {
         mProgNumber = param_0;
     }
+
     u8 getBendSense() const {
         return mBendSense;
     }
+
     void setBendSense(u8 param_0) {
         mBendSense = param_0;
     }
+
     u8 getNoteOnPrio() const {
         return mNoteOnPrio;
     }
+
     void setNoteOnPrio(u8 param_0) {
         mNoteOnPrio = param_0;
     }
+
     u8 getReleasePrio() const {
         return mReleasePrio;
     }
+
     void setReleasePrio(u8 param_0) {
         mReleasePrio = param_0;
     }
+
     u8 getGateRate() const {
         return mGateRate;
     }
+
     void setGateRate(u8 param_0) {
         mGateRate = param_0;
     }
@@ -336,7 +385,7 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded< JASTrack > {
     /* 0x232 */ u8 mReleasePrio;
     /* 0x233 */ u8 mGateRate;
     /* 0x234 */ u16 mMixConfig[6];
-    /* 0x240 */ s32 mStatus;
+    /* 0x240 */ volatile s32 mStatus;
     /* 0x244 */ union {
         struct {
             bool mPauseFlag : 1;
@@ -345,7 +394,7 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded< JASTrack > {
             bool mIsOwnedByParent : 1;
             bool mReadyToPlay : 1;
             bool mInvalidateSeq : 1;
-            bool mIsStopped : 1;
+            volatile bool mIsStopped : 1;
             bool flag7 : 1;
         };
         volatile u8 byteRepr;

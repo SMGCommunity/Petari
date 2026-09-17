@@ -47,9 +47,9 @@ void SubmarineSteam::init(const JMapInfoIter& rIter) {
     initSound(4, false);
 
     if (MR::isValidSwitchA(this)) {
-        initNerve(&NrvSubmarineSteam::HostTypeWaitForSwitchOn::sInstance);
+        initNerve(GET_NERVE(SubmarineSteam, HostTypeWaitForSwitchOn));
     } else {
-        initNerve(&NrvSubmarineSteam::HostTypeSteam::sInstance);
+        initNerve(GET_NERVE(SubmarineSteam, HostTypeSteam));
     }
 
     appear();
@@ -64,7 +64,7 @@ void SubmarineSteam::initAfterPlacement() {
 }
 
 void SubmarineSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvSubmarineSteam::HostTypeWaitForSwitchOn::sInstance)) {
+    if (isNerve(GET_NERVE(SubmarineSteam, HostTypeWaitForSwitchOn))) {
         return;
     }
 
@@ -107,7 +107,7 @@ void SubmarineSteam::startClipped() {
 void SubmarineSteam::endClipped() {
     LiveActor::endClipped();
 
-    if (!isNerve(&NrvSubmarineSteam::HostTypeWaitForSwitchOn::sInstance)) {
+    if (!isNerve(GET_NERVE(SubmarineSteam, HostTypeWaitForSwitchOn))) {
         MR::emitEffect(this, "Steam");
     }
 }
@@ -126,6 +126,6 @@ void SubmarineSteam::exeSteam() {
 
 void SubmarineSteam::exeWaitForSwitchOn() {
     if (MR::isOnSwitchA(this)) {
-        setNerve(&NrvSubmarineSteam::HostTypeSteam::sInstance);
+        setNerve(GET_NERVE(SubmarineSteam, HostTypeSteam));
     }
 }

@@ -137,7 +137,7 @@ void Metbo::init(const JMapInfoIter& rIter) {
     MR::calcFrontVec(&_A4, this);
     mSpinHitController = new SpinHitController(this, 20, 20, 4, 0.2f, 40.0f, 20.0f, 3, false);
     _98.set(mPosition);
-    initNerve(&NrvMetbo::MetboNrvWait::sInstance);
+    initNerve(GET_NERVE(Metbo, MetboNrvWait));
     makeActorAppeared();
 }
 
@@ -160,7 +160,7 @@ void Metbo::exeNonActive() {
     }
 
     if (MR::isNearPlayerAnyTime(this, 3000.0f)) {
-        setNerve(&NrvMetbo::MetboNrvWait::sInstance);
+        setNerve(GET_NERVE(Metbo, MetboNrvWait));
     }
 }
 
@@ -179,7 +179,7 @@ void Metbo::exeWait() {
 
     moveOrFall(::sDontMoveParam, nullptr);
     if ((!MR::isValidSwitchA(this) || MR::isOnSwitchA(this)) && !trySearch() && !tryNonActive() && MR::isStep(this, ::sStepForWait)) {
-        setNerve(&NrvMetbo::MetboNrvWalkAround::sInstance);
+        setNerve(GET_NERVE(Metbo, MetboNrvWalkAround));
     }
 }
 
@@ -208,9 +208,9 @@ void Metbo::exeWalkAround() {
     moveOrFall(::sWalkAroundParam, &v);
     if (!trySearch() && MR::isStep(this, ::sStepForWalkAround)) {
         if (MR::getRandom(0l, 2l)) {
-            setNerve(&NrvMetbo::MetboNrvWait::sInstance);
+            setNerve(GET_NERVE(Metbo, MetboNrvWait));
         } else {
-            setNerve(&NrvMetbo::MetboNrvWalkAround::sInstance);
+            setNerve(GET_NERVE(Metbo, MetboNrvWalkAround));
         }
     }
 }
@@ -223,7 +223,7 @@ void Metbo::exeSearch() {
 
     moveOrFall(::sSearchParam, nullptr);
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvMetbo::MetboNrvChaseStart::sInstance);
+        setNerve(GET_NERVE(Metbo, MetboNrvChaseStart));
     }
 }
 
@@ -238,7 +238,7 @@ void Metbo::exeChaseStart() {
 
     moveOrFall(::sDontMoveParam, nullptr);
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvMetbo::MetboNrvChase::sInstance);
+        setNerve(GET_NERVE(Metbo, MetboNrvChase));
     }
 }
 
@@ -253,7 +253,7 @@ void Metbo::exeChase() {
 
     moveOrFall(::sChaseParam, nullptr);
     if (MR::isFallNextMove(mPosition, _A4, mGravity, 200.0f, 100.0f, 300.0f, nullptr)) {
-        setNerve(&NrvMetbo::MetboNrvRest::sInstance);
+        setNerve(GET_NERVE(Metbo, MetboNrvRest));
         return;
     }
 
@@ -263,7 +263,7 @@ void Metbo::exeChase() {
 
     bool isNear = MR::isNearPlayer(this, 1200.0f) == false;
     if (isNear || MR::isBindedWallOfMoveLimit(this) || MR::isStep(this, ::sStepForChaseMax) || !MR::getRandom(0l, 50l)) {
-        setNerve(&NrvMetbo::MetboNrvRest::sInstance);
+        setNerve(GET_NERVE(Metbo, MetboNrvRest));
     }
 }
 
@@ -278,7 +278,7 @@ void Metbo::exeGuard() {
 
     moveOrFall(::sDontMoveParam, nullptr);
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvMetbo::MetboNrvWait::sInstance);
+        setNerve(GET_NERVE(Metbo, MetboNrvWait));
     }
 }
 
@@ -312,7 +312,7 @@ void Metbo::exeAttack() {
 
     moveOrFall(::sDontMoveParam, nullptr);
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvMetbo::MetboNrvRest::sInstance);
+        setNerve(GET_NERVE(Metbo, MetboNrvRest));
     }
 }
 
@@ -323,7 +323,7 @@ void Metbo::exeRest() {
 
     moveOrFall(::sDontMoveParam, nullptr);
     if (MR::isStep(this, ::sStepForRest)) {
-        setNerve(&NrvMetbo::MetboNrvWait::sInstance);
+        setNerve(GET_NERVE(Metbo, MetboNrvWait));
     }
 }
 
@@ -334,7 +334,7 @@ void Metbo::exeSwoonStart() {
     } else {
         MR::moveAndTurnToPlayer(this, &_A4, ::sFallParam._0, ::sFallParam._4, ::sFallParam._8, ::sFallParam._C);
         if (MR::isBindedGround(this)) {
-            setNerve(&NrvMetbo::MetboNrvSwoonLand::sInstance);
+            setNerve(GET_NERVE(Metbo, MetboNrvSwoonLand));
         }
     }
 }
@@ -347,7 +347,7 @@ void Metbo::exeSwoonLand() {
     MR::startLevelSoundSeVer(this, "SE_EM_LV_METBO_STAGGER");
     moveOrFall(::sSkateMoveParam, nullptr);
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvMetbo::MetboNrvSwoonSpin::sInstance);
+        setNerve(GET_NERVE(Metbo, MetboNrvSwoonSpin));
     }
 }
 
@@ -359,7 +359,7 @@ void Metbo::exeSwoonSpin() {
     MR::startLevelSoundSeVer(this, "SE_EM_LV_METBO_STAGGER");
     moveOrFall(::sSkateMoveParam, nullptr);
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvMetbo::MetboNrvSwoonWait::sInstance);
+        setNerve(GET_NERVE(Metbo, MetboNrvSwoonWait));
     }
 }
 
@@ -371,7 +371,7 @@ void Metbo::exeSwoonWait() {
     MR::startLevelSoundSeVer(this, "SE_EM_LV_METBO_SWOON");
     moveOrFall(::sDontMoveParam, nullptr);
     if (MR::isStep(this, ::sStepForSwoonWait)) {
-        setNerve(&NrvMetbo::MetboNrvRecover::sInstance);
+        setNerve(GET_NERVE(Metbo, MetboNrvRecover));
     }
 }
 
@@ -383,12 +383,12 @@ void Metbo::exeRecover() {
 
     moveOrFall(::sDontMoveParam, nullptr);
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvMetbo::MetboNrvWait::sInstance);
+        setNerve(GET_NERVE(Metbo, MetboNrvWait));
     }
 }
 
 void Metbo::exeDPDSwoon() {
-    MR::updateActorStateAndNextNerve(this, mStarPointerBind, &NrvMetbo::MetboNrvWait::sInstance);
+    MR::updateActorStateAndNextNerve(this, mStarPointerBind, GET_NERVE(Metbo, MetboNrvWait));
 }
 
 void Metbo::endDPDSwoon() {
@@ -424,7 +424,7 @@ void Metbo::control() {
         return;
     }
 
-    if (!isNerve(&NrvMetbo::MetboNrvSwoonStart::sInstance)) {
+    if (!isNerve(GET_NERVE(Metbo, MetboNrvSwoonStart))) {
         if (!isNrvDown()) {
             MR::restrictVelocity(this, 30.0f);
         }
@@ -438,7 +438,7 @@ void Metbo::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         if (MR::isSensorPlayer(pReceiver) && MR::isSensorEnemyAttack(pSender)) {
             if (isNrvNormal() && MR::sendMsgEnemyAttack(pReceiver, pSender)) {
                 MR::emitEffectHitBetweenSensors(this, pSender, pReceiver, 0.0f, nullptr);
-                setNerve(&NrvMetbo::MetboNrvAttack::sInstance);
+                setNerve(GET_NERVE(Metbo, MetboNrvAttack));
             } else {
                 MR::sendMsgPush(pReceiver, pSender);
             }
@@ -471,8 +471,8 @@ bool Metbo::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRece
         return true;
     } else if (MR::isMsgStarPieceReflect(msg)) {
         MR::startSoundSeVer(this, "SE_EM_METBO_TRAMPLE");
-        if (!isNrvSwoon() && !isNerve(&NrvMetbo::MetboNrvRecover::sInstance)) {
-            setNerve(&NrvMetbo::MetboNrvGuard::sInstance);
+        if (!isNrvSwoon() && !isNerve(GET_NERVE(Metbo, MetboNrvRecover))) {
+            setNerve(GET_NERVE(Metbo, MetboNrvGuard));
         }
         return true;
     } else {
@@ -480,15 +480,15 @@ bool Metbo::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRece
             return false;
         } else if (MR::isMsgPlayerHipDrop(msg)) {
             MR::startSoundSeVer(this, "SE_EM_METBO_TRAMPLE");
-            if (isNerve(&NrvMetbo::MetboNrvRecover::sInstance)) {
+            if (isNerve(GET_NERVE(Metbo, MetboNrvRecover))) {
                 return false;
-            } else if (isNerve(&NrvMetbo::MetboNrvSwoonStart::sInstance)) {
+            } else if (isNerve(GET_NERVE(Metbo, MetboNrvSwoonStart))) {
                 return false;
             } else {
                 if (isNrvSwoon()) {
-                    setNerve(&NrvMetbo::MetboNrvTrampleDown::sInstance);
+                    setNerve(GET_NERVE(Metbo, MetboNrvTrampleDown));
                 } else {
-                    setNerve(&NrvMetbo::MetboNrvGuard::sInstance);
+                    setNerve(GET_NERVE(Metbo, MetboNrvGuard));
                     MR::tryRumbleDefaultHit(this, 0);
                     MR::sendMsgEnemyAttackCounterHipDrop(pSender, pReceiver);
                 }
@@ -496,21 +496,21 @@ bool Metbo::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRece
             }
         } else if (MR::isMsgPlayerTrample(msg)) {
             MR::startSoundSeVer(this, "SE_EM_METBO_TRAMPLE");
-            if (isNerve(&NrvMetbo::MetboNrvRecover::sInstance)) {
+            if (isNerve(GET_NERVE(Metbo, MetboNrvRecover))) {
                 return true;
-            } else if (isNerve(&NrvMetbo::MetboNrvSwoonStart::sInstance)) {
+            } else if (isNerve(GET_NERVE(Metbo, MetboNrvSwoonStart))) {
                 return false;
             } else {
                 MR::tryRumbleDefaultHit(this, 0);
                 if (isNrvSwoon()) {
-                    setNerve(&NrvMetbo::MetboNrvTrampleDown::sInstance);
+                    setNerve(GET_NERVE(Metbo, MetboNrvTrampleDown));
                 } else {
-                    setNerve(&NrvMetbo::MetboNrvGuard::sInstance);
+                    setNerve(GET_NERVE(Metbo, MetboNrvGuard));
                 }
                 return true;
             }
         } else if (MR::isMsgPlayerSpinAttack(msg)) {
-            if (isNerve(&NrvMetbo::MetboNrvSwoonStart::sInstance)) {
+            if (isNerve(GET_NERVE(Metbo, MetboNrvSwoonStart))) {
                 return false;
             } else {
                 MR::stopScene(3);
@@ -521,7 +521,7 @@ bool Metbo::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRece
             }
         } else if (MR::isMsgInvincibleAttack(msg)) {
             mSpinHitController->start(this, pSender->mPosition, pReceiver->mPosition);
-            setNerve(&NrvMetbo::MetboNrvBlowDown::sInstance);
+            setNerve(GET_NERVE(Metbo, MetboNrvBlowDown));
             return true;
         } else {
             return false;
@@ -536,7 +536,7 @@ bool Metbo::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRecei
         return false;
     } else if (MR::isMsgExplosionAttack(msg)) {
         mSpinHitController->startWithoutStopScene(this, pSender->mPosition, pReceiver->mPosition);
-        setNerve(&NrvMetbo::MetboNrvBlowDown::sInstance);
+        setNerve(GET_NERVE(Metbo, MetboNrvBlowDown));
         return true;
     }
 
@@ -575,13 +575,13 @@ void Metbo::startSwoon(bool isFromPlayer) {
     } else {
         MR::turnDirectionToPlayerDegree(this, &_A4, 180.0f);
     }
-    setNerve(&NrvMetbo::MetboNrvSwoonStart::sInstance);
+    setNerve(GET_NERVE(Metbo, MetboNrvSwoonStart));
 }
 
 bool Metbo::tryNonActive() {
     bool isNearPlayer = MR::isNearPlayerAnyTime(this, 3000.0f) == false;
     if (isNearPlayer && MR::isBindedGround(this)) {
-        setNerve(&NrvMetbo::MetboNrvNonActive::sInstance);
+        setNerve(GET_NERVE(Metbo, MetboNrvNonActive));
         return true;
     }
     return false;
@@ -611,16 +611,16 @@ bool Metbo::trySearch() {
         return false;
     }
 
-    setNerve(&NrvMetbo::MetboNrvSearch::sInstance);
+    setNerve(GET_NERVE(Metbo, MetboNrvSearch));
     return true;
 }
 
 bool Metbo::tryDPDSwoon() {
-    if (isNerve(&NrvMetbo::MetboNrvDPDSwoon::sInstance)) {
+    if (isNerve(GET_NERVE(Metbo, MetboNrvDPDSwoon))) {
         return false;
     }
 
-    if (isNerve(&NrvMetbo::MetboNrvRecover::sInstance)) {
+    if (isNerve(GET_NERVE(Metbo, MetboNrvRecover))) {
         return false;
     }
 
@@ -636,23 +636,22 @@ bool Metbo::tryDPDSwoon() {
         return false;
     }
 
-    setNerve(&NrvMetbo::MetboNrvDPDSwoon::sInstance);
+    setNerve(GET_NERVE(Metbo, MetboNrvDPDSwoon));
     return true;
 }
 
 bool Metbo::isNrvNormal() const {
-    return isNerve(&NrvMetbo::MetboNrvWait::sInstance) || isNerve(&NrvMetbo::MetboNrvWalkAround::sInstance) ||
-           isNerve(&NrvMetbo::MetboNrvSearch::sInstance) || isNerve(&NrvMetbo::MetboNrvChaseStart::sInstance) ||
-           isNerve(&NrvMetbo::MetboNrvChase::sInstance);
+    return isNerve(GET_NERVE(Metbo, MetboNrvWait)) || isNerve(GET_NERVE(Metbo, MetboNrvWalkAround)) || isNerve(GET_NERVE(Metbo, MetboNrvSearch)) ||
+           isNerve(GET_NERVE(Metbo, MetboNrvChaseStart)) || isNerve(GET_NERVE(Metbo, MetboNrvChase));
 }
 
 inline bool Metbo::isNrvDown() const {
-    return isNerve(&NrvMetbo::MetboNrvTrampleDown::sInstance) || isNerve(&NrvMetbo::MetboNrvBlowDown::sInstance);
+    return isNerve(GET_NERVE(Metbo, MetboNrvTrampleDown)) || isNerve(GET_NERVE(Metbo, MetboNrvBlowDown));
 }
 
 inline bool Metbo::isNrvSwoon() const {
-    return isNerve(&NrvMetbo::MetboNrvSwoonStart::sInstance) || isNerve(&NrvMetbo::MetboNrvSwoonLand::sInstance) ||
-           isNerve(&NrvMetbo::MetboNrvSwoonSpin::sInstance) || isNerve(&NrvMetbo::MetboNrvSwoonWait::sInstance);
+    return isNerve(GET_NERVE(Metbo, MetboNrvSwoonStart)) || isNerve(GET_NERVE(Metbo, MetboNrvSwoonLand)) ||
+           isNerve(GET_NERVE(Metbo, MetboNrvSwoonSpin)) || isNerve(GET_NERVE(Metbo, MetboNrvSwoonWait));
 }
 
 inline TVec3f makeZeroVec() {

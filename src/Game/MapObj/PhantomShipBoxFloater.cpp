@@ -34,7 +34,7 @@ void PhantomShipBoxFloater::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
     MR::initCollisionParts(this, mObjectName, MR::addBodyMessageSensorMapObj(this), nullptr);
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
-    initNerve(&NrvPhantomShipBoxFloater::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(PhantomShipBoxFloater, HostTypeWait));
 
     mFloatingForce = new FloaterFloatingForceTypeSpring(this, mObjectName);
     mFloatingForce->init(rIter);
@@ -59,7 +59,7 @@ f32 PhantomShipBoxFloater::getCurrentSinkDepth() const {
 
 void PhantomShipBoxFloater::exeWait() {
     if (floaterIsMoving(mFloatingForce)) {
-        setNerve(&NrvPhantomShipBoxFloater::HostTypeMove::sInstance);
+        setNerve(GET_NERVE(PhantomShipBoxFloater, HostTypeMove));
     }
 }
 
@@ -87,12 +87,12 @@ void PhantomShipBoxFloater::exeMove() {
 
         if (sinkDepth < getCurrentSinkDepth()) {
             MR::deleteEffect(this, ::cEffectName);
-            setNerve(&NrvPhantomShipBoxFloater::HostTypeMoveUnderWater::sInstance);
+            setNerve(GET_NERVE(PhantomShipBoxFloater, HostTypeMoveUnderWater));
         }
     } else {
         if (!floaterIsMoving(mFloatingForce)) {
             MR::deleteEffect(this, ::cEffectName);
-            setNerve(&NrvPhantomShipBoxFloater::HostTypeWait::sInstance);
+            setNerve(GET_NERVE(PhantomShipBoxFloater, HostTypeWait));
         }
     }
 }
@@ -113,7 +113,7 @@ void PhantomShipBoxFloater::exeMoveUnderWater() {
         }
 
         if (getCurrentSinkDepth() < sinkDepth) {
-            setNerve(&NrvPhantomShipBoxFloater::HostTypeMove::sInstance);
+            setNerve(GET_NERVE(PhantomShipBoxFloater, HostTypeMove));
         }
     }
 }

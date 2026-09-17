@@ -44,7 +44,7 @@ void Fountain::init(const JMapInfoIter& rIter) {
     MR::addHitSensorMapObj(this, "body", 16, ::sSensorRadius, TVec3f(0.0f, ::sSensorOffsetY, 0.0f));
     MR::setClippingTypeSphere(this, ::sClippingRadius);
     MR::useStageSwitchReadA(this, rIter);
-    initNerve(&NrvFountain::HostTypeMove::sInstance);
+    initNerve(GET_NERVE(Fountain, HostTypeMove));
     MR::connectToSceneMapObjMovement(this);
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
@@ -59,16 +59,16 @@ void Fountain::appear() {
     LiveActor::appear();
 
     if (MR::isValidSwitchA(this)) {
-        setNerve(&NrvFountain::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(Fountain, HostTypeWait));
     } else {
-        setNerve(&NrvFountain::HostTypeMove::sInstance);
+        setNerve(GET_NERVE(Fountain, HostTypeMove));
     }
 }
 
 void Fountain::startClipped() {
     LiveActor::startClipped();
 
-    if (!isNerve(&NrvFountain::HostTypeWait::sInstance)) {
+    if (!isNerve(GET_NERVE(Fountain, HostTypeWait))) {
         MR::deleteEffectAll(this);
     }
 }
@@ -76,7 +76,7 @@ void Fountain::startClipped() {
 void Fountain::endClipped() {
     LiveActor::endClipped();
 
-    if (!isNerve(&NrvFountain::HostTypeWait::sInstance)) {
+    if (!isNerve(GET_NERVE(Fountain, HostTypeWait))) {
         MR::emitEffect(this, mFountainName);
     }
 }
@@ -112,7 +112,7 @@ void Fountain::exeWait() {
     }
 
     if (MR::isOnSwitchA(this)) {
-        setNerve(&NrvFountain::HostTypeMove::sInstance);
+        setNerve(GET_NERVE(Fountain, HostTypeMove));
     }
 }
 

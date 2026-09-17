@@ -46,13 +46,13 @@ void LavaSteam::init(const JMapInfoIter& rIter) {
     MR::setClippingTypeSphere(this, ::sSensorRadius, &pSensor->mPosition);
 
     MR::setGroupClipping(this, rIter, ::sMaxNumGroupClipping);
-    initNerve(&NrvLavaSteam::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(LavaSteam, HostTypeWait));
 
     if (MR::useStageSwitchReadA(this, rIter)) {
-        setNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance);
+        setNerve(GET_NERVE(LavaSteam, HostTypeWaitForSwitchOn));
         MR::listenStageSwitchOnA(this, MR::Functor(this, &LavaSteam::startSteam));
     } else if (MR::tryRegisterDemoCast(this, rIter)) {
-        setNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance);
+        setNerve(GET_NERVE(LavaSteam, HostTypeWaitForSwitchOn));
         MR::registerDemoActionFunctor(this, MR::Functor(this, &LavaSteam::startSteam), nullptr);
     }
     MR::useStageSwitchSleep(this, rIter);
@@ -73,18 +73,18 @@ void LavaSteam::initAfterPlacement() {
 }
 
 void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvLavaSteam::HostTypeWait::sInstance)) {
+    if (isNerve(GET_NERVE(LavaSteam, HostTypeWait))) {
         return;
     }
 
-    if (isNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance)) {
+    if (isNerve(GET_NERVE(LavaSteam, HostTypeWaitForSwitchOn))) {
         return;
     }
 
     if (MR::isSensorPlayerOrRide(pReceiver)) {
         f32 playerRadius = pReceiver->getRadius() * 0.7f;
 
-        if (isNerve(&NrvLavaSteam::HostTypeSteam::sInstance)) {
+        if (isNerve(GET_NERVE(LavaSteam, HostTypeSteam))) {
             HitSphere sphere(mPosition + mUp * ::sHitSphereOffsetY, ::sHitSphereRadius);
 
             if (sphere.isHit(HitSphere(pReceiver->getPosition(), playerRadius))) {
@@ -94,7 +94,7 @@ void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             }
         }
 
-        if (isNerve(&NrvLavaSteam::HostTypeSteam::sInstance)) {
+        if (isNerve(GET_NERVE(LavaSteam, HostTypeSteam))) {
             HitCylinder cyl(mPosition, mUp * ::sHitCylinderHeight);
 
             f32 proj, ortho;
@@ -117,13 +117,13 @@ void LavaSteam::startClipped() {
 void LavaSteam::endClipped() {
     LiveActor::endClipped();
 
-    if (isNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance)) {
+    if (isNerve(GET_NERVE(LavaSteam, HostTypeWaitForSwitchOn))) {
         return;
     }
 }
 
 void LavaSteam::startSteam() {
-    setNerve(&NrvLavaSteam::HostTypeSteam::sInstance);
+    setNerve(GET_NERVE(LavaSteam, HostTypeSteam));
 }
 
 void LavaSteam::exeWait() {
@@ -143,7 +143,7 @@ void LavaSteam::exeWait() {
     }
 
     if (MR::isStep(this, ::sSteamWaitTime)) {
-        setNerve(&NrvLavaSteam::HostTypeSteam::sInstance);
+        setNerve(GET_NERVE(LavaSteam, HostTypeSteam));
     }
 }
 
@@ -160,12 +160,12 @@ void LavaSteam::exeSteam() {
 
     if (MR::isStep(this, ::sSteamTime)) {
         MR::deleteEffect(this, "Steam");
-        setNerve(&NrvLavaSteam::HostTypeSteamEnd::sInstance);
+        setNerve(GET_NERVE(LavaSteam, HostTypeSteamEnd));
     }
 }
 
 void LavaSteam::exeSteamEnd() {
     if (MR::isStep(this, ::sSteamEndTime)) {
-        setNerve(&NrvLavaSteam::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(LavaSteam, HostTypeWait));
     }
 }

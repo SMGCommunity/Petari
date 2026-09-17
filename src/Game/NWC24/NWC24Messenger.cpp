@@ -215,7 +215,7 @@ namespace NWC24MessengerSub {
 
     SendState::SendState(NWC24Messenger* pHost)
         : NerveExecutor("送信状態"), mHost(pHost), mTask(nullptr), mWindow(nullptr), mMiniWindow(nullptr), _18(nullptr) {
-        initNerve(&SendStateNrvWait::sInstance);
+        initNerve(GET_NERVE_GLOBAL(SendStateNrvWait));
     }
 
     void SendState::initAfterResourceLoaded() {
@@ -259,7 +259,7 @@ namespace NWC24MessengerSub {
     }
 
     void SendState::reset() {
-        setNerve(&SendStateNrvWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(SendStateNrvWait));
 
         mTask = nullptr;
         _18 = nullptr;
@@ -287,15 +287,15 @@ namespace NWC24MessengerSub {
                 }
             }
 
-            setNerve(&SendStateNrvOpenFG::sInstance);
+            setNerve(GET_NERVE_GLOBAL(SendStateNrvOpenFG));
         } else {
-            setNerve(&SendStateNrvOpenBG::sInstance);
+            setNerve(GET_NERVE_GLOBAL(SendStateNrvOpenBG));
         }
     }
 
     void SendState::exeRetry() {
         if (MR::isStep(this, 60)) {
-            setNerve(&SendStateNrvWait::sInstance);
+            setNerve(GET_NERVE_GLOBAL(SendStateNrvWait));
         }
     }
 
@@ -306,16 +306,16 @@ namespace NWC24MessengerSub {
 
                 if (mTask->mRetryNo >= ::sRetryMax) {
                     mHost->clearBackgroundTask();
-                    setNerve(&SendStateNrvWait::sInstance);
+                    setNerve(GET_NERVE_GLOBAL(SendStateNrvWait));
                 } else {
-                    setNerve(&SendStateNrvRetry::sInstance);
+                    setNerve(GET_NERVE_GLOBAL(SendStateNrvRetry));
                 }
             } else {
                 mHost->clearBackgroundTask();
-                setNerve(&SendStateNrvWait::sInstance);
+                setNerve(GET_NERVE_GLOBAL(SendStateNrvWait));
             }
         } else {
-            setNerve(&SendStateNrvRunBG::sInstance);
+            setNerve(GET_NERVE_GLOBAL(SendStateNrvRunBG));
         }
     }
 
@@ -332,18 +332,18 @@ namespace NWC24MessengerSub {
 
         if (mTask->mErr != NWC24_OK) {
             mHost->clearBackgroundTask();
-            setNerve(&SendStateNrvWait::sInstance);
+            setNerve(GET_NERVE_GLOBAL(SendStateNrvWait));
         } else {
             doneTask();
 
             if (selectTask() != nullptr) {
                 if (!mTask->mIsBG) {
-                    setNerve(&SendStateNrvRunFG::sInstance);
+                    setNerve(GET_NERVE_GLOBAL(SendStateNrvRunFG));
                 } else {
-                    setNerve(&SendStateNrvRunBG::sInstance);
+                    setNerve(GET_NERVE_GLOBAL(SendStateNrvRunBG));
                 }
             } else {
-                setNerve(&SendStateNrvCloseBG::sInstance);
+                setNerve(GET_NERVE_GLOBAL(SendStateNrvCloseBG));
             }
         }
     }
@@ -351,7 +351,7 @@ namespace NWC24MessengerSub {
     void SendState::exeCloseBG() {
         closeSystem();
         mHost->clearBackgroundTask();
-        setNerve(&SendStateNrvWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(SendStateNrvWait));
     }
 
     void SendState::exeOpenFG() {
@@ -360,15 +360,15 @@ namespace NWC24MessengerSub {
                 mTask->mRetryNo++;
 
                 if (mTask->mRetryNo >= ::sRetryMax) {
-                    setNerveAfterSysInfoWindowMiniDisappear(&SendStateNrvRetryErrorFG::sInstance);
+                    setNerveAfterSysInfoWindowMiniDisappear(GET_NERVE_GLOBAL(SendStateNrvRetryErrorFG));
                 } else {
-                    setNerve(&SendStateNrvRetry::sInstance);
+                    setNerve(GET_NERVE_GLOBAL(SendStateNrvRetry));
                 }
             } else {
-                setNerveAfterSysInfoWindowMiniDisappear(&SendStateNrvOpenErrorFG::sInstance);
+                setNerveAfterSysInfoWindowMiniDisappear(GET_NERVE_GLOBAL(SendStateNrvOpenErrorFG));
             }
         } else {
-            setNerve(&SendStateNrvRunFG::sInstance);
+            setNerve(GET_NERVE_GLOBAL(SendStateNrvRunFG));
         }
     }
 
@@ -384,19 +384,19 @@ namespace NWC24MessengerSub {
         }
 
         if (hasFatalErrorOccured()) {
-            setNerveAfterSysInfoWindowMiniDisappear(&SendStateNrvSendFatalErrorFG::sInstance);
+            setNerveAfterSysInfoWindowMiniDisappear(GET_NERVE_GLOBAL(SendStateNrvSendFatalErrorFG));
         } else {
-            setNerve(&SendStateNrvCloseFG::sInstance);
+            setNerve(GET_NERVE_GLOBAL(SendStateNrvCloseFG));
         }
     }
 
     void SendState::exeCloseFG() {
         if (!closeSystem()) {
-            setNerveAfterSysInfoWindowMiniDisappear(&SendStateNrvCloseErrorFG::sInstance);
+            setNerveAfterSysInfoWindowMiniDisappear(GET_NERVE_GLOBAL(SendStateNrvCloseErrorFG));
         } else if (mTask->mErr != NWC24_OK) {
-            setNerveAfterSysInfoWindowMiniDisappear(&SendStateNrvSendFullErrorFG::sInstance);
+            setNerveAfterSysInfoWindowMiniDisappear(GET_NERVE_GLOBAL(SendStateNrvSendFullErrorFG));
         } else {
-            setNerveAfterSysInfoWindowMiniDisappear(&SendStateNrvUpdateLimitFG::sInstance);
+            setNerveAfterSysInfoWindowMiniDisappear(GET_NERVE_GLOBAL(SendStateNrvUpdateLimitFG));
         }
     }
 
@@ -411,7 +411,7 @@ namespace NWC24MessengerSub {
         }
 
         doneTask();
-        setNerve(&SendStateNrvWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(SendStateNrvWait));
     }
 
     void SendState::exeRetryErrorFG() {
@@ -425,7 +425,7 @@ namespace NWC24MessengerSub {
 
         if (MR::isDead(mWindow)) {
             doneTask();
-            setNerve(&SendStateNrvWait::sInstance);
+            setNerve(GET_NERVE_GLOBAL(SendStateNrvWait));
         }
     }
 
@@ -461,7 +461,7 @@ namespace NWC24MessengerSub {
 
         if (MR::isDead(mWindow)) {
             doneTask();
-            setNerve(&SendStateNrvWait::sInstance);
+            setNerve(GET_NERVE_GLOBAL(SendStateNrvWait));
         }
     }
 
@@ -505,7 +505,7 @@ namespace NWC24MessengerSub {
 
         if (MR::isDead(mWindow)) {
             doneTask();
-            setNerve(&SendStateNrvWait::sInstance);
+            setNerve(GET_NERVE_GLOBAL(SendStateNrvWait));
         }
     }
 
@@ -539,7 +539,7 @@ namespace NWC24MessengerSub {
 
         if (MR::isDead(mWindow)) {
             doneTask();
-            setNerve(&SendStateNrvWait::sInstance);
+            setNerve(GET_NERVE_GLOBAL(SendStateNrvWait));
         }
     }
 
@@ -567,7 +567,7 @@ namespace NWC24MessengerSub {
 
         if (MR::isDead(mWindow)) {
             doneTask();
-            setNerve(&SendStateNrvWait::sInstance);
+            setNerve(GET_NERVE_GLOBAL(SendStateNrvWait));
         }
     }
 
@@ -602,7 +602,7 @@ namespace NWC24MessengerSub {
     bool SendState::send() {
         if (!mHost->mSystem->send(reinterpret_cast< const u16* >(mTask->mMessage), reinterpret_cast< const u16* >(mTask->mAltName), nullptr, 0,
                                   mTask->mPicture, mTask->mPictureSize, mTask->mTag, mTask->mIsMsgLedPattern, mTask->mDelayHours)) {
-            setNerve(&SendStateNrvRetry::sInstance);
+            setNerve(GET_NERVE_GLOBAL(SendStateNrvRetry));
 
             return false;
         }
@@ -669,7 +669,7 @@ namespace NWC24MessengerSub {
         } else {
             _18 = pNerve;
 
-            setNerve(&SendStateNrvWaitCloseSysInfoMini::sInstance);
+            setNerve(GET_NERVE_GLOBAL(SendStateNrvWaitCloseSysInfoMini));
         }
     }
 };  // namespace NWC24MessengerSub

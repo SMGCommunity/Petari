@@ -149,7 +149,7 @@ void Pole::init(const JMapInfoIter& rIter) {
 
     initSound(4, false);
     MR::initActorCamera(this, rIter, &mCameraInfo);
-    initNerve(&NrvPole::PoleNrvFree::sInstance);
+    initNerve(GET_NERVE(Pole, PoleNrvFree));
     mCenterPos.set< f32 >(mUp);
     mCenterPos.scale(mPoleLength / 2.0f);
     mCenterPos.add(mBasePos);
@@ -165,7 +165,7 @@ void Pole::init(const JMapInfoIter& rIter) {
 
 void Pole::appear() {
     LiveActor::appear();
-    setNerve(&NrvPole::PoleNrvDemoAppear::sInstance);
+    setNerve(GET_NERVE(Pole, PoleNrvDemoAppear));
 }
 
 void Pole::calcAnim() {
@@ -190,7 +190,7 @@ void Pole::exeDemoAppear() {
         Pole::updateTopPos(mPoleLength);
         MR::validateCollisionParts(this);
         MR::validateHitSensors(this);
-        setNerve(&NrvPole::PoleNrvFree::sInstance);
+        setNerve(GET_NERVE(Pole, PoleNrvFree));
     }
 }
 
@@ -207,7 +207,7 @@ void Pole::exeFreeInvalid() {
 
     if (MR::isOnGroundPlayer() || MR::calcDistanceToPlayer(this) > 300.0f || MR::isGreaterStep(this, 45)) {
         MR::validateHitSensors(this);
-        setNerve(&NrvPole::PoleNrvFree::sInstance);
+        setNerve(GET_NERVE(Pole, PoleNrvFree));
     }
 }
 
@@ -222,7 +222,7 @@ void Pole::exeBindStart() {
 
     if (!mIsSquare) {
         f32 rotateSpeed = 5.0f;
-        if (isNerve(&NrvPole::PoleNrvBindStartFast::sInstance)) {
+        if (isNerve(GET_NERVE(Pole, PoleNrvBindStartFast))) {
             rotateSpeed = 9.0f;
         }
 
@@ -231,7 +231,7 @@ void Pole::exeBindStart() {
     }
 
     if (!tryJump(false, 0.0f) && MR::isBckStopped(mRider)) {
-        setNerve(&NrvPole::PoleNrvBindWait::sInstance);
+        setNerve(GET_NERVE(Pole, PoleNrvBindWait));
     }
 }
 
@@ -251,12 +251,12 @@ void Pole::exeBindWait() {
         return;
     }
 
-    if (!isNerve(&NrvPole::PoleNrvBindTurnEnd::sInstance)) {
+    if (!isNerve(GET_NERVE(Pole, PoleNrvBindTurnEnd))) {
         if (tryTurn()) {
             return;
         }
     } else if (!isEnableTurn()) {
-        setNerve(&NrvPole::PoleNrvBindWait::sInstance);
+        setNerve(GET_NERVE(Pole, PoleNrvBindWait));
         return;
     }
 
@@ -270,7 +270,7 @@ void Pole::exeBindWait() {
 void Pole::exeBindTurn() {
     if (MR::isFirstStep(this)) {
         if (mIsSquare) {
-            if (isNerve(&NrvPole::PoleNrvBindTurnLeft::sInstance)) {
+            if (isNerve(GET_NERVE(Pole, PoleNrvBindTurnLeft))) {
                 MR::startBckPlayer("SquarePoleTurnL", static_cast< const char* >(nullptr));
             } else {
                 MR::startBckPlayer("SquarePoleTurnR", static_cast< const char* >(nullptr));
@@ -288,7 +288,7 @@ void Pole::exeBindTurn() {
     f32 jump = 0.0f;
 
     if (mIsSquare && MR::isGreaterStep(this, 7)) {
-        if (isNerve(&NrvPole::PoleNrvBindTurnLeft::sInstance)) {
+        if (isNerve(GET_NERVE(Pole, PoleNrvBindTurnLeft))) {
             jump = -90.0f;
         } else {
             jump = 90.0f;
@@ -301,7 +301,7 @@ void Pole::exeBindTurn() {
 
     if (mIsSquare) {
         if (MR::isBckStopped(mRider)) {
-            if (isNerve(&NrvPole::PoleNrvBindTurnRight::sInstance)) {
+            if (isNerve(GET_NERVE(Pole, PoleNrvBindTurnRight))) {
                 mRotation.y += 90.0f;
             } else {
                 mRotation.y -= 90.0f;
@@ -310,12 +310,12 @@ void Pole::exeBindTurn() {
             mRotation.y = MR::repeat(mRotation.y, 0.0f, 360.0f);
 
             MR::startBckPlayer("SquarePoleWait", "SquarePoleTurnEnd");
-            setNerve(&NrvPole::PoleNrvBindTurnEnd::sInstance);
+            setNerve(GET_NERVE(Pole, PoleNrvBindTurnEnd));
         } else {
             return;
         }
     } else if (!isEnableTurn()) {
-        setNerve(&NrvPole::PoleNrvBindWait::sInstance);
+        setNerve(GET_NERVE(Pole, PoleNrvBindWait));
     }
 }
 
@@ -333,7 +333,7 @@ void Pole::exeBindClimbUp() {
 
     if (!tryJump(false, 0) && !tryTurn() && !tryFallDown()) {
         if (0.0f == getPoleSubPadStickY()) {
-            setNerve(&NrvPole::PoleNrvBindWait::sInstance);
+            setNerve(GET_NERVE(Pole, PoleNrvBindWait));
         } else {
             mClimbCoord += 6.0f;
             if (mClimbCoord > mPoleLength) {
@@ -341,7 +341,7 @@ void Pole::exeBindClimbUp() {
 
                 if (!mDisableHandstand) {
                     updateBindTrans();
-                    setNerve(&NrvPole::PoleNrvBindHandstandStart::sInstance);
+                    setNerve(GET_NERVE(Pole, PoleNrvBindHandstandStart));
                     return;
                 } else if (mIsSquare) {
                     if (!MR::isBckPlaying(mRider, "SquarePolePushWait")) {
@@ -401,13 +401,13 @@ void Pole::exeBindFallDown() {
         MR::endBindAndPlayerWait(this);
 
         mRider = nullptr;
-        setNerve(&NrvPole::PoleNrvFreeInvalid::sInstance);
+        setNerve(GET_NERVE(Pole, PoleNrvFreeInvalid));
         return;
     }
 
     if (!tryJump(false, 0.0f) && !tryTurn() && !tryClimbUp()) {
         if (0.0f == getPoleSubPadStickY()) {
-            setNerve(&NrvPole::PoleNrvBindWait::sInstance);
+            setNerve(GET_NERVE(Pole, PoleNrvBindWait));
         }
     }
 }
@@ -431,7 +431,7 @@ void Pole::exeBindHandstandStart() {
 
     if (!Pole::tryHandstandTurn()) {
         if (MR::isBckStopped(mRider)) {
-            setNerve(&NrvPole::PoleNrvBindHandstandWait::sInstance);
+            setNerve(GET_NERVE(Pole, PoleNrvBindHandstandWait));
         }
     }
 }
@@ -443,7 +443,7 @@ void Pole::exeBindHandstandWait() {
 
     if (!Pole::tryJump(true, 0.0f) && !Pole::tryHandstandTurn()) {
         if (getPoleSubPadStickY() < -0.8f) {
-            setNerve(&NrvPole::PoleNrvBindHandstandEnd::sInstance);
+            setNerve(GET_NERVE(Pole, PoleNrvBindHandstandEnd));
         }
     }
 }
@@ -463,7 +463,7 @@ void Pole::exeBindHandstandEnd() {
 
     if (!tryTurn()) {
         if (MR::isBckStopped(mRider)) {
-            setNerve(&NrvPole::PoleNrvBindWait::sInstance);
+            setNerve(GET_NERVE(Pole, PoleNrvBindWait));
         }
     }
 }
@@ -477,7 +477,7 @@ void Pole::exeBindHandstandTurn() {
     mRotation.y = MR::repeat(mRotation.y, 0.0f, 360.0f);
 
     if (!tryJump(true, 0.0f) && !isEnableTurn()) {
-        setNerve(&NrvPole::PoleNrvBindHandstandWait::sInstance);
+        setNerve(GET_NERVE(Pole, PoleNrvBindHandstandWait));
     }
 }
 
@@ -487,7 +487,7 @@ void Pole::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    if (!MR::isSensorPush(pSender) || isNerve(&NrvPole::PoleNrvFreeInvalid::sInstance)) {
+    if (!MR::isSensorPush(pSender) || isNerve(GET_NERVE(Pole, PoleNrvFreeInvalid))) {
         return;
     }
 
@@ -502,7 +502,7 @@ bool Pole::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiv
         MR::endBindAndPlayerDamageMsg(this, msg);
 
         mRider = nullptr;
-        setNerve(&NrvPole::PoleNrvFreeInvalid::sInstance);
+        setNerve(GET_NERVE(Pole, PoleNrvFreeInvalid));
         return true;
     }
     return false;
@@ -514,7 +514,7 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (MR::isMsgAutoRushBegin(msg)) {
-        if (MR::isOnGroundPlayer() || isNerve(&NrvPole::PoleNrvFreeInvalid::sInstance)) {
+        if (MR::isOnGroundPlayer() || isNerve(GET_NERVE(Pole, PoleNrvFreeInvalid))) {
             return false;
         }
 
@@ -575,12 +575,12 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
 
         if (horizSpeed > 10.0f) {
-            setNerve(&NrvPole::PoleNrvBindStartFast::sInstance);
+            setNerve(GET_NERVE(Pole, PoleNrvBindStartFast));
         } else {
             if (horizSpeed > 6.0f) {
-                setNerve(&NrvPole::PoleNrvBindStart::sInstance);
+                setNerve(GET_NERVE(Pole, PoleNrvBindStart));
             } else {
-                setNerve(&NrvPole::PoleNrvBindWait::sInstance);
+                setNerve(GET_NERVE(Pole, PoleNrvBindWait));
             }
         }
         return true;
@@ -606,7 +606,7 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
             MR::startSound(mRider, "SE_PV_JUMP_JOY");
         }
         mRider = nullptr;
-        setNerve(&NrvPole::PoleNrvFree::sInstance);
+        setNerve(GET_NERVE(Pole, PoleNrvFree));
         return true;
     }
 
@@ -658,7 +658,7 @@ bool Pole::tryJump(bool handstand, f32 angleOffset) {
         }
 
         mRider = nullptr;
-        setNerve(&NrvPole::PoleNrvFreeInvalid::sInstance);
+        setNerve(GET_NERVE(Pole, PoleNrvFreeInvalid));
         return true;
     }
     return false;
@@ -667,9 +667,9 @@ bool Pole::tryJump(bool handstand, f32 angleOffset) {
 bool Pole::tryTurn() {
     if (isEnableTurn()) {
         if (getPoleSubPadStickX() > 0.0f) {
-            setNerve(&NrvPole::PoleNrvBindTurnRight::sInstance);
+            setNerve(GET_NERVE(Pole, PoleNrvBindTurnRight));
         } else {
-            setNerve(&NrvPole::PoleNrvBindTurnLeft::sInstance);
+            setNerve(GET_NERVE(Pole, PoleNrvBindTurnLeft));
         }
         return true;
     }
@@ -678,7 +678,7 @@ bool Pole::tryTurn() {
 
 bool Pole::tryClimbUp() {
     if (getPoleSubPadStickY() > 0.0f) {
-        setNerve(&NrvPole::PoleNrvBindClimbUp::sInstance);
+        setNerve(GET_NERVE(Pole, PoleNrvBindClimbUp));
         return true;
     }
     return false;
@@ -686,7 +686,7 @@ bool Pole::tryClimbUp() {
 
 bool Pole::tryFallDown() {
     if (getPoleSubPadStickY() < 0.0f) {
-        setNerve(&NrvPole::PoleNrvBindFallDown::sInstance);
+        setNerve(GET_NERVE(Pole, PoleNrvBindFallDown));
         return true;
     }
     return false;
@@ -694,7 +694,7 @@ bool Pole::tryFallDown() {
 
 bool Pole::tryHandstandTurn() {
     if (isEnableTurn()) {
-        setNerve(&NrvPole::PoleNrvBindHandstandTurn::sInstance);
+        setNerve(GET_NERVE(Pole, PoleNrvBindHandstandTurn));
         return true;
     }
     return false;

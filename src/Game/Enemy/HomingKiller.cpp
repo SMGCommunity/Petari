@@ -181,7 +181,7 @@ void HomingKiller::init(const JMapInfoIter& rIter) {
 
     MR::addToAttributeGroupSearchTurtle(this);
     MR::invalidateClipping(this);
-    initNerve(&NrvHomingKiller::HomingKillerNrvAppear::sInstance);
+    initNerve(GET_NERVE(HomingKiller, HomingKillerNrvAppear));
     makeActorDead();
 }
 
@@ -198,7 +198,7 @@ void HomingKiller::appear() {
     MR::validateHitSensors(this);
     MR::invalidateShadow(this, nullptr);
     LiveActor::appear();
-    setNerve(&NrvHomingKiller::HomingKillerNrvAppear::sInstance);
+    setNerve(GET_NERVE(HomingKiller, HomingKillerNrvAppear));
 }
 
 void HomingKiller::appear(const TVec3f& rPos, const TVec3f& rFront) {
@@ -210,7 +210,7 @@ void HomingKiller::appear(const TVec3f& rPos, const TVec3f& rFront) {
 }
 
 bool HomingKiller::isMoveStart() const {
-    return isNerve(&NrvHomingKiller::HomingKillerNrvMoveStart::sInstance) && mMoveTime == 0;
+    return isNerve(GET_NERVE(HomingKiller, HomingKillerNrvMoveStart)) && mMoveTime == 0;
 }
 
 void HomingKiller::setChaseStartEndDistance(f32 startDist, f32 endDist) {
@@ -219,11 +219,11 @@ void HomingKiller::setChaseStartEndDistance(f32 startDist, f32 endDist) {
 }
 
 bool HomingKiller::isInactive() const {
-    return isNerve(&NrvHomingKiller::HomingKillerNrvAppear::sInstance) || isNerve(&NrvHomingKiller::HomingKillerNrvBreak::sInstance);
+    return isNerve(GET_NERVE(HomingKiller, HomingKillerNrvAppear)) || isNerve(GET_NERVE(HomingKiller, HomingKillerNrvBreak));
 }
 
 bool HomingKiller::isMoveNormal() const {
-    return isNerve(&NrvHomingKiller::HomingKillerNrvMoveStart::sInstance) || isNerve(&NrvHomingKiller::HomingKillerNrvMove::sInstance);
+    return isNerve(GET_NERVE(HomingKiller, HomingKillerNrvMoveStart)) || isNerve(GET_NERVE(HomingKiller, HomingKillerNrvMove));
 }
 
 bool HomingKiller::isGravityIgnored() const {
@@ -261,12 +261,12 @@ void HomingKiller::control() {
         }
     }
 
-    if (!isNerve(&NrvHomingKiller::HomingKillerNrvBreak::sInstance)) {
+    if (!isNerve(GET_NERVE(HomingKiller, HomingKillerNrvBreak))) {
         if (!isGravityIgnored() || isChasing()) {
             TVec3f up;
             up.negate(mGravity);
-            if (isNerve(&NrvHomingKiller::HomingKillerNrvChaseStart::sInstance) || isNerve(&NrvHomingKiller::HomingKillerNrvChase::sInstance) ||
-                isNerve(&NrvHomingKiller::HomingKillerNrvFreeze::sInstance) || isNerve(&NrvHomingKiller::HomingKillerNrvGoToTarget::sInstance)) {
+            if (isNerve(GET_NERVE(HomingKiller, HomingKillerNrvChaseStart)) || isNerve(GET_NERVE(HomingKiller, HomingKillerNrvChase)) ||
+                isNerve(GET_NERVE(HomingKiller, HomingKillerNrvFreeze)) || isNerve(GET_NERVE(HomingKiller, HomingKillerNrvGoToTarget))) {
                 MR::turnVecToVecCos(&mUp, mUp.copy(), up, MR::cosDegree(::cUpVecRotateSpeed), mFront);
             } else {
                 mUp.set(up);
@@ -289,35 +289,35 @@ void HomingKiller::calcAndSetBaseMtx() {
 }
 
 void HomingKiller::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvHomingKiller::HomingKillerNrvBreak::sInstance)) {
+    if (isNerve(GET_NERVE(HomingKiller, HomingKillerNrvBreak))) {
         return;
     }
 
     if (pSender == getSensor("eye")) {
-        if (!isNerve(&NrvHomingKiller::HomingKillerNrvAppear::sInstance)) {
-            if (isNerve(&NrvHomingKiller::HomingKillerNrvChase::sInstance) &&
+        if (!isNerve(GET_NERVE(HomingKiller, HomingKillerNrvAppear))) {
+            if (isNerve(GET_NERVE(HomingKiller, HomingKillerNrvChase)) &&
                 ::isSensorType(pReceiver, ::cSensorTableTarget, ARRAY_SIZE(::cSensorTableTarget))) {
                 mTargetSensor = pReceiver;
-                setNerve(&NrvHomingKiller::HomingKillerNrvGoToTarget::sInstance);
+                setNerve(GET_NERVE(HomingKiller, HomingKillerNrvGoToTarget));
             }
         }
         return;
     }
 
-    if (isNerve(&NrvHomingKiller::HomingKillerNrvAppear::sInstance)) {
+    if (isNerve(GET_NERVE(HomingKiller, HomingKillerNrvAppear))) {
         MR::sendMsgPush(pReceiver, pSender);
         return;
     }
 
     if (MR::isSensorPlayerOrRide(pReceiver)) {
         if (MR::sendMsgEnemyAttackExplosion(pReceiver, pSender)) {
-            setNerve(&NrvHomingKiller::HomingKillerNrvBreak::sInstance);
+            setNerve(GET_NERVE(HomingKiller, HomingKillerNrvBreak));
         }
         return;
     }
 
     if (!pReceiver->isType(ATYPE_KARIKARI) && tryToExplosion(pSender, pReceiver) && mType != Type_MagnumKiller) {
-        setNerve(&NrvHomingKiller::HomingKillerNrvBreak::sInstance);
+        setNerve(GET_NERVE(HomingKiller, HomingKillerNrvBreak));
     }
 }
 
@@ -335,7 +335,7 @@ bool HomingKiller::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
     }
 
     if (MR::isMsgJetTurtleAttack(msg) || MR::isMsgInvincibleAttack(msg)) {
-        setNerve(&NrvHomingKiller::HomingKillerNrvBreak::sInstance);
+        setNerve(GET_NERVE(HomingKiller, HomingKillerNrvBreak));
         return true;
     }
 
@@ -348,7 +348,7 @@ bool HomingKiller::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor*
     }
 
     if (mType != Type_MagnumKiller) {
-        setNerve(&NrvHomingKiller::HomingKillerNrvBreak::sInstance);
+        setNerve(GET_NERVE(HomingKiller, HomingKillerNrvBreak));
     }
 
     return true;
@@ -445,7 +445,7 @@ bool HomingKiller::processMove() {
     mMoveTime++;
 
     if (tryBindedBreak() || mMoveTime > ::cForceKillFrame || (isGravityIgnored() && isWaterBreak())) {
-        setNerve(&NrvHomingKiller::HomingKillerNrvBreak::sInstance);
+        setNerve(GET_NERVE(HomingKiller, HomingKillerNrvBreak));
         return false;
     }
 
@@ -470,7 +470,7 @@ bool HomingKiller::processChase() {
     startMoveLevelSound(true);
 
     if (tryBindedBreak() || !MR::isNearPlayer(this, mChaseEndDist) || isWaterBreak()) {
-        setNerve(&NrvHomingKiller::HomingKillerNrvBreak::sInstance);
+        setNerve(GET_NERVE(HomingKiller, HomingKillerNrvBreak));
         return false;
     }
 
@@ -536,7 +536,7 @@ bool HomingKiller::tryChaseStart() {
 
     if (isChaseStart()) {
         MR::deleteEffect(this, mType == Type_Torpedo ? "Bubble" : "Smoke");
-        setNerve(&NrvHomingKiller::HomingKillerNrvChaseStart::sInstance);
+        setNerve(GET_NERVE(HomingKiller, HomingKillerNrvChaseStart));
         return true;
     }
 
@@ -556,7 +556,7 @@ bool HomingKiller::tryFreeze(const Nerve* pUnfreezeNerve) {
         mFreezeTime = 0;
         mFreezePos.set(mPosition);
         mUnfreezeNerve = pUnfreezeNerve;
-        setNerve(&NrvHomingKiller::HomingKillerNrvFreeze::sInstance);
+        setNerve(GET_NERVE(HomingKiller, HomingKillerNrvFreeze));
         return true;
     }
 
@@ -616,7 +616,7 @@ void HomingKiller::sendMsgExplosionToNearActor() {
 }
 
 bool HomingKiller::isUpdateChaseFrontVec(const TVec3f& rFront) const {
-    if (!isNerve(&NrvHomingKiller::HomingKillerNrvGoToTarget::sInstance)) {
+    if (!isNerve(GET_NERVE(HomingKiller, HomingKillerNrvGoToTarget))) {
         return true;
     }
 
@@ -695,15 +695,14 @@ void HomingKiller::setBckRate(f32 rate, bool setPropellerRate) {
 }
 
 bool HomingKiller::isChasing() const {
-    if (isNerve(&NrvHomingKiller::HomingKillerNrvChaseStart::sInstance) || isNerve(&NrvHomingKiller::HomingKillerNrvChase::sInstance) ||
-        isNerve(&NrvHomingKiller::HomingKillerNrvGoToTarget::sInstance)) {
+    if (isNerve(GET_NERVE(HomingKiller, HomingKillerNrvChaseStart)) || isNerve(GET_NERVE(HomingKiller, HomingKillerNrvChase)) ||
+        isNerve(GET_NERVE(HomingKiller, HomingKillerNrvGoToTarget))) {
         return true;
     }
 
-    if (isNerve(&NrvHomingKiller::HomingKillerNrvFreeze::sInstance)) {
-        if (mUnfreezeNerve == &NrvHomingKiller::HomingKillerNrvChaseStart::sInstance ||
-            mUnfreezeNerve == &NrvHomingKiller::HomingKillerNrvChase::sInstance ||
-            mUnfreezeNerve == &NrvHomingKiller::HomingKillerNrvGoToTarget::sInstance) {
+    if (isNerve(GET_NERVE(HomingKiller, HomingKillerNrvFreeze))) {
+        if (mUnfreezeNerve == GET_NERVE(HomingKiller, HomingKillerNrvChaseStart) || mUnfreezeNerve == GET_NERVE(HomingKiller, HomingKillerNrvChase) ||
+            mUnfreezeNerve == GET_NERVE(HomingKiller, HomingKillerNrvGoToTarget)) {
             return true;
         }
     }
@@ -761,17 +760,17 @@ void HomingKiller::exeAppear() {
         MR::validateShadow(this, nullptr);
         if (mType == Type_MagnumKiller) {  // FIXME
             MR::startSound(this, "SE_EM_MAGKILLER_FIRING");
-            setNerve(&NrvHomingKiller::HomingKillerNrvMove::sInstance);
+            setNerve(GET_NERVE(HomingKiller, HomingKillerNrvMove));
         } else {
             MR::startSound(this, "SE_EM_KILLER_FIRING");
-            setNerve(&NrvHomingKiller::HomingKillerNrvMoveStart::sInstance);
+            setNerve(GET_NERVE(HomingKiller, HomingKillerNrvMoveStart));
         }
     }
 }
 
 void HomingKiller::exeMoveStart() {
-    if (processMove() && !tryFreeze(&NrvHomingKiller::HomingKillerNrvMoveStart::sInstance) && !tryChaseStart() && MR::isBckStopped(this)) {
-        setNerve(&NrvHomingKiller::HomingKillerNrvMove::sInstance);
+    if (processMove() && !tryFreeze(GET_NERVE(HomingKiller, HomingKillerNrvMoveStart)) && !tryChaseStart() && MR::isBckStopped(this)) {
+        setNerve(GET_NERVE(HomingKiller, HomingKillerNrvMove));
     }
 }
 
@@ -780,7 +779,7 @@ void HomingKiller::exeMove() {
         MR::tryStartBck(this, "Move", nullptr);
     }
 
-    if (processMove() && !tryFreeze(&NrvHomingKiller::HomingKillerNrvMove::sInstance) && !tryChaseStart()) {
+    if (processMove() && !tryFreeze(GET_NERVE(HomingKiller, HomingKillerNrvMove)) && !tryChaseStart()) {
         return;
     }
 }
@@ -792,8 +791,8 @@ void HomingKiller::exeChaseStart() {
         MR::startSound(this, "SE_EM_KILLER_JET");
     }
 
-    if (processChase() && !tryFreeze(&NrvHomingKiller::HomingKillerNrvChaseStart::sInstance) && MR::isBckStopped(this)) {
-        setNerve(&NrvHomingKiller::HomingKillerNrvChase::sInstance);
+    if (processChase() && !tryFreeze(GET_NERVE(HomingKiller, HomingKillerNrvChaseStart)) && MR::isBckStopped(this)) {
+        setNerve(GET_NERVE(HomingKiller, HomingKillerNrvChase));
     }
 }
 
@@ -802,7 +801,7 @@ void HomingKiller::exeChase() {
         MR::tryStartBck(this, "Chase", nullptr);
     }
 
-    if (processChase() && !tryFreeze(&NrvHomingKiller::HomingKillerNrvChase::sInstance)) {
+    if (processChase() && !tryFreeze(GET_NERVE(HomingKiller, HomingKillerNrvChase))) {
         return;
     }
 }
@@ -820,7 +819,7 @@ void HomingKiller::exeFreeze() {
     }
 
     if (tryBindedBreak()) {
-        setNerve(&NrvHomingKiller::HomingKillerNrvBreak::sInstance);
+        setNerve(GET_NERVE(HomingKiller, HomingKillerNrvBreak));
         return;
     }
 
@@ -843,7 +842,7 @@ void HomingKiller::exeFreeze() {
     }
 
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        setNerve(&NrvHomingKiller::HomingKillerNrvFreeze::sInstance);
+        setNerve(GET_NERVE(HomingKiller, HomingKillerNrvFreeze));
         return;
     }
 
@@ -916,7 +915,7 @@ void HomingKiller::exeBreak() {
 void HomingKiller::exeGoToTarget() {
     startMoveLevelSound(false);
 
-    if (processChase() && !tryFreeze(&NrvHomingKiller::HomingKillerNrvGoToTarget::sInstance)) {
+    if (processChase() && !tryFreeze(GET_NERVE(HomingKiller, HomingKillerNrvGoToTarget))) {
         HitSensor* eyeSensor = getSensor("eye");
         bool foundTarget = false;
         for (s32 idx = 0; idx < eyeSensor->mSensorCount; idx++) {
@@ -927,7 +926,7 @@ void HomingKiller::exeGoToTarget() {
         }
 
         if (!foundTarget) {
-            setNerve(&NrvHomingKiller::HomingKillerNrvChase::sInstance);
+            setNerve(GET_NERVE(HomingKiller, HomingKillerNrvChase));
         }
     }
 }
@@ -940,7 +939,7 @@ void HomingKillerLauncher::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::needStageSwitchReadAppear(this, rIter);
     MR::invalidateClipping(this);
-    initNerve(&NrvHomingKiller::HomingKillerLauncherNrvAppearKiller::sInstance);
+    initNerve(GET_NERVE(HomingKiller, HomingKillerLauncherNrvAppearKiller));
     MR::syncStageSwitchAppear(this);
     mKiller = new HomingKiller("ホーミングキラー");
     mKiller->init(rIter);
@@ -949,7 +948,7 @@ void HomingKillerLauncher::init(const JMapInfoIter& rIter) {
 
 void HomingKillerLauncher::appear() {
     LiveActor::appear();
-    setNerve(&NrvHomingKiller::HomingKillerLauncherNrvAppearKiller::sInstance);
+    setNerve(GET_NERVE(HomingKiller, HomingKillerLauncherNrvAppearKiller));
 }
 
 bool HomingKillerLauncher::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
@@ -962,12 +961,12 @@ void HomingKillerLauncher::exeAppearKiller() {
     }
 
     if (MR::isDead(mKiller)) {
-        setNerve(&NrvHomingKiller::HomingKillerLauncherNrvDeadKiller::sInstance);
+        setNerve(GET_NERVE(HomingKiller, HomingKillerLauncherNrvDeadKiller));
     }
 }
 
 void HomingKillerLauncher::exeDeadKiller() {
     if (MR::isStep(this, ::cAppearIntervalFrame)) {
-        setNerve(&NrvHomingKiller::HomingKillerLauncherNrvAppearKiller::sInstance);
+        setNerve(GET_NERVE(HomingKiller, HomingKillerLauncherNrvAppearKiller));
     }
 }

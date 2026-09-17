@@ -66,26 +66,26 @@ DinoPackunDemo::DinoPackunDemo(DinoPackun* pBoss) : DinoPackunAction("ディノ�
 }
 
 void DinoPackunDemo::init() {
-    initNerve(&NrvDinoPackunDemo::DinoPackunDemoNrvOpeningDemo::sInstance);
+    initNerve(GET_NERVE(DinoPackunDemo, DinoPackunDemoNrvOpeningDemo));
 }
 
 void DinoPackunDemo::control() {
 }
 
 void DinoPackunDemo::startOpeningDemo() {
-    startTryDemo("ディノパックン開始デモ", &NrvDinoPackunDemo::DinoPackunDemoNrvOpeningDemo::sInstance);
+    startTryDemo("ディノパックン開始デモ", GET_NERVE(DinoPackunDemo, DinoPackunDemoNrvOpeningDemo));
 }
 
 void DinoPackunDemo::startCryDemo() {
-    startTryDemo("ディノパックン泣きデモ", &NrvDinoPackunDemo::DinoPackunDemoNrvCryDemo::sInstance);
+    startTryDemo("ディノパックン泣きデモ", GET_NERVE(DinoPackunDemo, DinoPackunDemoNrvCryDemo));
 }
 
 void DinoPackunDemo::startAngryDemo() {
-    startTryDemo("ディノパックン怒りデモ", &NrvDinoPackunDemo::DinoPackunDemoNrvAngryDemo::sInstance);
+    startTryDemo("ディノパックン怒りデモ", GET_NERVE(DinoPackunDemo, DinoPackunDemoNrvAngryDemo));
 }
 
 void DinoPackunDemo::startDownDemo() {
-    startTryDemo("ディノパックンダウン", &NrvDinoPackunDemo::DinoPackunDemoNrvDownDemo::sInstance);
+    startTryDemo("ディノパックンダウン", GET_NERVE(DinoPackunDemo, DinoPackunDemoNrvDownDemo));
 }
 
 void DinoPackunDemo::startTryDemo(const char* pName, const Nerve* pNerve) {
@@ -97,7 +97,7 @@ void DinoPackunDemo::startTryDemo(const char* pName, const Nerve* pNerve) {
     } else {
         _14 = pNerve;
         mDemoName = pName;
-        setNerve(&NrvDinoPackunDemo::DinoPackunDemoNrvTryStartDemo::sInstance);
+        setNerve(GET_NERVE(DinoPackunDemo, DinoPackunDemoNrvTryStartDemo));
     }
 }
 
@@ -237,7 +237,7 @@ void DinoPackunDemo::exeDownDemo() {
         MR::startSound(getHost(), "SE_BM_D_PAKKUN_EXPLODE");
         MR::tryRumblePadVeryStrong(getHost(), WPAD_CHAN0);
         MR::hideModel(getHost());
-        setNerve(&NrvDinoPackunDemo::DinoPackunDemoNrvAppearPowerStar::sInstance);
+        setNerve(GET_NERVE(DinoPackunDemo, DinoPackunDemoNrvAppearPowerStar));
     }
 }
 

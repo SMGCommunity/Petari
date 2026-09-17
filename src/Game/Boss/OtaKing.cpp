@@ -133,7 +133,7 @@ void OtaKing::init(const JMapInfoIter& rIter) {
 
     MR::tryRegisterDemoCast(this, rIter);
     mScaleController = new AnimScaleController(nullptr);
-    initNerve(&NrvOtaKing::OtaKingNrvWait::sInstance);
+    initNerve(GET_NERVE(OtaKing, OtaKingNrvWait));
     makeActorAppeared();
 }
 
@@ -151,15 +151,15 @@ void OtaKing::makeActorAppeared() {
     MR::startBpk(this, "Wait");
 
     if (MR::isValidSwitchA(this)) {
-        setNerve(&NrvOtaKing::OtaKingNrvWaitOnSwitch::sInstance);
+        setNerve(GET_NERVE(OtaKing, OtaKingNrvWaitOnSwitch));
     } else {
-        setNerve(&NrvOtaKing::OtaKingNrvThrowFireBallWait::sInstance);
+        setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBallWait));
     }
 }
 
 void OtaKing::startAppearDemo() {
-    if (isNerve(&NrvOtaKing::OtaKingNrvWaitOnSwitch::sInstance)) {
-        invalidateClippingAndStartDemo("出現", &NrvOtaKing::OtaKingNrvAppearDemo::sInstance, &NrvOtaKing::OtaKingNrvWaitStartDemo::sInstance);
+    if (isNerve(GET_NERVE(OtaKing, OtaKingNrvWaitOnSwitch))) {
+        invalidateClippingAndStartDemo("出現", GET_NERVE(OtaKing, OtaKingNrvAppearDemo), GET_NERVE(OtaKing, OtaKingNrvWaitStartDemo));
     }
 }
 
@@ -185,9 +185,9 @@ void OtaKing::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMa
 }
 
 void OtaKing::control() {
-    if (isNerve(&NrvOtaKing::OtaKingNrvDown::sInstance) || isNerve(&NrvOtaKing::OtaKingNrvAppearStar::sInstance) ||
-        isNerve(&NrvOtaKing::OtaKingNrvDead::sInstance) || isNerve(&NrvOtaKing::OtaKingNrvAppearDemo::sInstance) ||
-        isNerve(&NrvOtaKing::OtaKingNrvDownDemo::sInstance)) {
+    if (isNerve(GET_NERVE(OtaKing, OtaKingNrvDown)) || isNerve(GET_NERVE(OtaKing, OtaKingNrvAppearStar)) ||
+        isNerve(GET_NERVE(OtaKing, OtaKingNrvDead)) || isNerve(GET_NERVE(OtaKing, OtaKingNrvAppearDemo)) ||
+        isNerve(GET_NERVE(OtaKing, OtaKingNrvDownDemo))) {
         mTurnSpeed = 0.0f;
     } else {
         dirToPlayer();
@@ -209,7 +209,7 @@ void OtaKing::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver) && isSensorBodyOrFace(pSender)) {
         if (isNerveValidNearAttack() && MR::sendMsgEnemyAttackMaximum(pReceiver, pSender)) {
             MR::sendMsgPush(pReceiver, pSender);
-            setNerve(&NrvOtaKing::OtaKingNrvNearAttack::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvNearAttack));
         } else {
             MR::sendMsgPush(pReceiver, pSender);
         }
@@ -243,8 +243,8 @@ bool OtaKing::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
 
     if (isReceiverBody) {
         if (b1) {
-            if (!isNerve(&NrvOtaKing::OtaKingNrvHitBack::sInstance)) {
-                setNerve(&NrvOtaKing::OtaKingNrvHitBack::sInstance);
+            if (!isNerve(GET_NERVE(OtaKing, OtaKingNrvHitBack))) {
+                setNerve(GET_NERVE(OtaKing, OtaKingNrvHitBack));
             }
 
             rallyBall->hitBackToPlayer();
@@ -257,8 +257,8 @@ bool OtaKing::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
             return true;
         }
     } else {
-        if (b1 && !isNerve(&NrvOtaKing::OtaKingNrvHitBackStart::sInstance)) {
-            setNerve(&NrvOtaKing::OtaKingNrvHitBackStart::sInstance);
+        if (b1 && !isNerve(GET_NERVE(OtaKing, OtaKingNrvHitBackStart))) {
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvHitBackStart));
         }
     }
 
@@ -270,16 +270,16 @@ bool OtaKing::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
     case ACTMES_RUSH_END:
         if (pSender->isType(ATYPE_COCO_NUT)) {
             if (!isDamageNerve()) {
-                if (isNerve(&NrvOtaKing::OtaKingNrvWait::sInstance) || isNerve(&NrvOtaKing::OtaKingNrvThrowCocoNutWait::sInstance) ||
-                    isNerve(&NrvOtaKing::OtaKingNrvHitBackStart::sInstance)) {
+                if (isNerve(GET_NERVE(OtaKing, OtaKingNrvWait)) || isNerve(GET_NERVE(OtaKing, OtaKingNrvThrowCocoNutWait)) ||
+                    isNerve(GET_NERVE(OtaKing, OtaKingNrvHitBackStart))) {
                     if (isValidBubbleAttack()) {
-                        setNerve(&NrvOtaKing::OtaKingNrvBubbleAttack::sInstance);
+                        setNerve(GET_NERVE(OtaKing, OtaKingNrvBubbleAttack));
                     } else {
-                        mHits > 0 && isValidThrowFireBall() ? setNerve(&NrvOtaKing::OtaKingNrvThrowFireBall::sInstance) :
-                                                              setNerve(&NrvOtaKing::OtaKingNrvThrowFireBallWait::sInstance);
+                        mHits > 0 && isValidThrowFireBall() ? setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBall)) :
+                                                              setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBallWait));
                     }
                     return true;
-                } else if (isNerve(&NrvOtaKing::OtaKingNrvThrowCocoNut::sInstance) || isNerve(&NrvOtaKing::OtaKingNrvHitBack::sInstance)) {
+                } else if (isNerve(GET_NERVE(OtaKing, OtaKingNrvThrowCocoNut)) || isNerve(GET_NERVE(OtaKing, OtaKingNrvHitBack))) {
                     _EC = 2;
                     return true;
                 }
@@ -490,8 +490,8 @@ bool OtaKing::isValidBubbleAttack() const {
 
 // fabricated inline used in multiple functions
 bool OtaKing::isDamageNerve() {
-    return isNerve(&NrvOtaKing::OtaKingNrvDamage::sInstance) || isNerve(&NrvOtaKing::OtaKingNrvPowerUp::sInstance) ||
-           isNerve(&NrvOtaKing::OtaKingNrvDown::sInstance);
+    return isNerve(GET_NERVE(OtaKing, OtaKingNrvDamage)) || isNerve(GET_NERVE(OtaKing, OtaKingNrvPowerUp)) ||
+           isNerve(GET_NERVE(OtaKing, OtaKingNrvDown));
 }
 
 void OtaKing::damage() {
@@ -517,12 +517,12 @@ void OtaKing::damage() {
         }
 
         if (isOneHP()) {
-            setNerve(&NrvOtaKing::OtaKingNrvPowerUp::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvPowerUp));
         } else {
-            setNerve(&NrvOtaKing::OtaKingNrvDamage::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvDamage));
         }
     } else {
-        setNerve(&NrvOtaKing::OtaKingNrvDown::sInstance);
+        setNerve(GET_NERVE(OtaKing, OtaKingNrvDown));
     }
 }
 
@@ -589,9 +589,9 @@ void OtaKing::startBckWithFrontFoot(const char* bckName) {
 }
 
 bool OtaKing::isNerveValidNearAttack() const {
-    return isNerve(&NrvOtaKing::OtaKingNrvWait::sInstance) || isNerve(&NrvOtaKing::OtaKingNrvThrowCocoNutWait::sInstance) ||
-           isNerve(&NrvOtaKing::OtaKingNrvThrowCocoNut::sInstance) || isNerve(&NrvOtaKing::OtaKingNrvThrowFireBallWait::sInstance) ||
-           isNerve(&NrvOtaKing::OtaKingNrvThrowFireBall::sInstance) || isNerve(&NrvOtaKing::OtaKingNrvBubbleAttack::sInstance);
+    return isNerve(GET_NERVE(OtaKing, OtaKingNrvWait)) || isNerve(GET_NERVE(OtaKing, OtaKingNrvThrowCocoNutWait)) ||
+           isNerve(GET_NERVE(OtaKing, OtaKingNrvThrowCocoNut)) || isNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBallWait)) ||
+           isNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBall)) || isNerve(GET_NERVE(OtaKing, OtaKingNrvBubbleAttack));
 }
 
 void OtaKing::appearBubble() {
@@ -664,12 +664,12 @@ void OtaKing::initLongFoot(const JMapInfoIter& rIter) {
 
 bool OtaKing::tryThrowCocoNutOrFireBallIfWait(s32 a1) {
     if (MR::isGreaterStep(this, a1) && isValidThrowCocoNut()) {
-        setNerve(&NrvOtaKing::OtaKingNrvThrowCocoNut::sInstance);
+        setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowCocoNut));
         return true;
     }
 
     if (MR::isGreaterStep(this, a1 * 2) && isValidThrowFireBall()) {
-        setNerve(&NrvOtaKing::OtaKingNrvThrowFireBall::sInstance);
+        setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBall));
         return false;
     }
 
@@ -794,7 +794,7 @@ void OtaKing::exeAppearDemo() {
 
         mRotation.y = MR::repeatDegree(MR::toDegree(MR::atan2(vec.x, vec.z)));
 
-        setNerve(&NrvOtaKing::OtaKingNrvThrowFireBallWait::sInstance);
+        setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBallWait));
     }
 }
 
@@ -834,20 +834,20 @@ void OtaKing::exeThrowCocoNut() {
 
     if (MR::isBckStopped(this)) {
         if (isValidBubbleAttack()) {
-            setNerve(&NrvOtaKing::OtaKingNrvBubbleAttack::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvBubbleAttack));
             return;
         }
 
         if (mHits > 0) {
             if (isValidThrowFireBall()) {
-                setNerve(&NrvOtaKing::OtaKingNrvThrowFireBall::sInstance);
+                setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBall));
             } else {
-                setNerve(&NrvOtaKing::OtaKingNrvThrowFireBallWait::sInstance);
+                setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBallWait));
             }
         } else if (_EC >= 2) {
-            setNerve(&NrvOtaKing::OtaKingNrvThrowFireBallWait::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBallWait));
         } else {
-            setNerve(&NrvOtaKing::OtaKingNrvThrowCocoNutWait::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowCocoNutWait));
         }
     }
 }
@@ -857,7 +857,7 @@ void OtaKing::exeThrowFireBallWait() {
         startBckWaitIfNotPlaying();
     }
     if (MR::isGreaterStep(this, ::cThrowFireBallWaitFrame) && isValidThrowFireBall()) {
-        setNerve(&NrvOtaKing::OtaKingNrvThrowFireBall::sInstance);
+        setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBall));
     }
 }
 
@@ -881,11 +881,11 @@ void OtaKing::exeThrowFireBall() {
 
     if (MR::isBckStopped(this)) {
         if (isValidBubbleAttack()) {
-            setNerve(&NrvOtaKing::OtaKingNrvBubbleAttack::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvBubbleAttack));
         } else if (mHits > 0 && isValidThrowCocoNut()) {
-            setNerve(&NrvOtaKing::OtaKingNrvThrowCocoNut::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowCocoNut));
         } else {
-            setNerve(&NrvOtaKing::OtaKingNrvWait::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvWait));
         }
     }
 }
@@ -908,11 +908,11 @@ void OtaKing::exeDamage() {
 
     if (MR::isBckStopped(this)) {
         if (isValidBubbleAttack()) {
-            setNerve(&NrvOtaKing::OtaKingNrvBubbleAttack::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvBubbleAttack));
         } else if (isValidThrowFireBall()) {
-            setNerve(&NrvOtaKing::OtaKingNrvThrowFireBall::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBall));
         } else {
-            setNerve(&NrvOtaKing::OtaKingNrvThrowFireBallWait::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBallWait));
         }
     }
 }
@@ -984,13 +984,13 @@ void OtaKing::exePowerUp() {
         }
 
         if (isValidBubbleAttack()) {
-            setNerve(&NrvOtaKing::OtaKingNrvBubbleAttack::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvBubbleAttack));
             return;
         } else if (isValidThrowFireBall()) {
-            setNerve(&NrvOtaKing::OtaKingNrvThrowFireBall::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBall));
             return;
         } else {
-            setNerve(&NrvOtaKing::OtaKingNrvThrowFireBallWait::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBallWait));
             return;
         }
     }
@@ -1046,7 +1046,7 @@ void OtaKing::exeDown() {
     }
 
     if (MR::isStep(this, 3)) {
-        invalidateClippingAndStartDemo("ダウン", &NrvOtaKing::OtaKingNrvDownDemo::sInstance, &NrvOtaKing::OtaKingNrvWaitStartDemo::sInstance);
+        invalidateClippingAndStartDemo("ダウン", GET_NERVE(OtaKing, OtaKingNrvDownDemo), GET_NERVE(OtaKing, OtaKingNrvWaitStartDemo));
     }
 }
 
@@ -1105,7 +1105,7 @@ void OtaKing::exeDownDemo() {
 
     if (MR::isStep(this, ::cDownDemoFrame)) {
         validateClippingAndEndDemo("ダウン");
-        setNerve(&NrvOtaKing::OtaKingNrvAppearStar::sInstance);
+        setNerve(GET_NERVE(OtaKing, OtaKingNrvAppearStar));
     }
 }
 
@@ -1129,7 +1129,7 @@ void OtaKing::exeAppearStar() {
         MR::pauseOffEffectAll(mMagma);
     } else if (MR::isEndPowerStarAppearDemo(this)) {
         MR::showPlayer();
-        setNerve(&NrvOtaKing::OtaKingNrvDead::sInstance);
+        setNerve(GET_NERVE(OtaKing, OtaKingNrvDead));
     }
 }
 
@@ -1156,20 +1156,20 @@ void OtaKing::exeHitBack() {
 
     if (MR::isBckStopped(this)) {
         if (isValidBubbleAttack()) {
-            setNerve(&NrvOtaKing::OtaKingNrvBubbleAttack::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvBubbleAttack));
             return;
         }
 
         if (mHits > 0) {
             if (isValidThrowFireBall()) {
-                setNerve(&NrvOtaKing::OtaKingNrvThrowFireBall::sInstance);
+                setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBall));
             } else {
-                setNerve(&NrvOtaKing::OtaKingNrvThrowFireBallWait::sInstance);
+                setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBallWait));
             }
         } else if (_EC >= 2) {
-            setNerve(&NrvOtaKing::OtaKingNrvThrowFireBallWait::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowFireBallWait));
         } else {
-            setNerve(&NrvOtaKing::OtaKingNrvThrowCocoNutWait::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvThrowCocoNutWait));
         }
     }
 }
@@ -1187,9 +1187,9 @@ void OtaKing::exeNearAttack() {
 
     if (MR::isBckStopped(this)) {
         if (isValidBubbleAttack()) {
-            setNerve(&NrvOtaKing::OtaKingNrvBubbleAttack::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvBubbleAttack));
         } else {
-            setNerve(&NrvOtaKing::OtaKingNrvWait::sInstance);
+            setNerve(GET_NERVE(OtaKing, OtaKingNrvWait));
         }
     }
 }
@@ -1211,7 +1211,7 @@ void OtaKing::exeBubbleAttack() {
         mMagma->attack();
     }
 
-    MR::setNerveAtBckStopped(this, &NrvOtaKing::OtaKingNrvWait::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE(OtaKing, OtaKingNrvWait));
 }
 
 void OtaKing::exeWaitStartDemo() {

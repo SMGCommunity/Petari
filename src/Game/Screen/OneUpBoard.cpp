@@ -21,7 +21,7 @@ OneUpBoard::OneUpBoard() : LayoutActor("1UPボード", true) {
 
 void OneUpBoard::init(const JMapInfoIter& rIter) {
     initLayoutManager("OneUp", 2);
-    initNerve(&NrvOneUpBoard::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(OneUpBoard, HostTypeWait));
     MR::connectToSceneLayout(this);
     MR::registerDemoSimpleCastAll(this);
     initEffectKeeper(1, "OneUp", nullptr);
@@ -35,7 +35,7 @@ void OneUpBoard::popup(s32 oneUpNum) {
 
 void OneUpBoard::appear() {
     LayoutActor::appear();
-    setNerve(&NrvOneUpBoard::HostTypeAppear::sInstance);
+    setNerve(GET_NERVE(OneUpBoard, HostTypeAppear));
 }
 
 void OneUpBoard::calcPos() {

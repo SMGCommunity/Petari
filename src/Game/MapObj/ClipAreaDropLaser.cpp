@@ -37,10 +37,10 @@ void ClipAreaDropLaser::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &mSpeed);
     initEffectKeeper(0, "ClipAreaDropLaser", false);
     initSound(4, false);
-    initNerve(&NrvClipAreaDropLaser::ClipAreaDropLaserNrvMove::sInstance);
+    initNerve(GET_NERVE(ClipAreaDropLaser, ClipAreaDropLaserNrvMove));
     MR::invalidateClipping(this);
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        setNerve(&NrvClipAreaDropLaser::ClipAreaDropLaserNrvWait::sInstance);
+        setNerve(GET_NERVE(ClipAreaDropLaser, ClipAreaDropLaserNrvWait));
     }
     makeActorAppeared();
 }
@@ -74,7 +74,7 @@ void ClipAreaDropLaser::exeWait() {
     }
 
     if (MR::isValidSwitchAppear(this) && MR::isOnSwitchAppear(this))
-        setNerve(&NrvClipAreaDropLaser::ClipAreaDropLaserNrvMove::sInstance);
+        setNerve(GET_NERVE(ClipAreaDropLaser, ClipAreaDropLaserNrvMove));
 }
 
 void ClipAreaDropLaser::exeMove() {
@@ -105,7 +105,7 @@ void ClipAreaDropLaser::exeMove() {
     }
 
     if (MR::isValidSwitchAppear(this) && !MR::isOnSwitchAppear(this))
-        setNerve(&NrvClipAreaDropLaser::ClipAreaDropLaserNrvWait::sInstance);
+        setNerve(GET_NERVE(ClipAreaDropLaser, ClipAreaDropLaserNrvWait));
 }
 
 void ClipAreaDropLaser::incrementDrawCount() {

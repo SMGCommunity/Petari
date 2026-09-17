@@ -84,16 +84,16 @@ void Rabbit::init(const JMapInfoIter& rIter) {
         MR::getJMapInfoArg1NoInit(rIter, &arg1);
         if (arg1 == 2) {
             _15C = 4;
-            initNerve(&NrvRabbit::RabbitNrvTalk::sInstance);
+            initNerve(GET_NERVE(Rabbit, RabbitNrvTalk));
         } else if (arg1 > 2) {
             if (arg1 < 4) {
                 _15C = 5;
-                initNerve(&NrvRabbit::RabbitNrvTalk::sInstance);
+                initNerve(GET_NERVE(Rabbit, RabbitNrvTalk));
             }
         } else if (arg1) {
             if (arg1 >= 0) {
                 _15C = 1;
-                initNerve(&NrvRabbit::RabbitNrvTalk::sInstance);
+                initNerve(GET_NERVE(Rabbit, RabbitNrvTalk));
             }
         } else {
         }
@@ -154,7 +154,7 @@ bool Rabbit::isNeedTurn(const TVec3f& a1) {
 }
 
 void Rabbit::updateJump() {
-    if (isNerve(&NrvRabbit::RabbitNrvAppear::sInstance)) {
+    if (isNerve(GET_NERVE(Rabbit, RabbitNrvAppear))) {
         if (_162) {
             _168 = 0.0f;
         }
@@ -164,7 +164,7 @@ void Rabbit::updateJump() {
                 _160 = true;
             }
         } else {
-            if (isNerve(&NrvRabbit::RabbitNrvMove::sInstance) || isNerve(&NrvRabbit::RabbitNrvNear::sInstance)) {
+            if (isNerve(GET_NERVE(Rabbit, RabbitNrvMove)) || isNerve(GET_NERVE(Rabbit, RabbitNrvNear))) {
                 _16C = -20.0f * _180;
             } else {
                 _16C = 0.0f;
@@ -189,10 +189,10 @@ void Rabbit::exeForwardLand() {
 
     if (MR::isBckStopped(this)) {
         if (MR::isNearPlayer(mTalkCtrl, 500.0f)) {
-            setNerve(&NrvRabbit::RabbitNrvPreJump::sInstance);
+            setNerve(GET_NERVE(Rabbit, RabbitNrvPreJump));
         } else {
             _164 = 120;
-            setNerve(&NrvRabbit::RabbitNrvWait::sInstance);
+            setNerve(GET_NERVE(Rabbit, RabbitNrvWait));
         }
     }
 }
@@ -206,7 +206,7 @@ void Rabbit::exePreJump() {
 
     MR::blendQuatUpFront(&_A0, -mGravity, MR::getRailDirection(this), 0.5f, 0.5f);
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvRabbit::RabbitNrvMove::sInstance);
+        setNerve(GET_NERVE(Rabbit, RabbitNrvMove));
     }
 }
 
@@ -220,9 +220,9 @@ void Rabbit::exeBackwardLand() {
 
     if (MR::isBckStopped(this)) {
         if (MR::isNearPlayer(mTalkCtrl, 500.0f)) {
-            setNerve(&NrvRabbit::RabbitNrvWait::sInstance);
+            setNerve(GET_NERVE(Rabbit, RabbitNrvWait));
         } else {
-            setNerve(&NrvRabbit::RabbitNrvPreJumpBack::sInstance);
+            setNerve(GET_NERVE(Rabbit, RabbitNrvPreJumpBack));
         }
     }
 }
@@ -235,7 +235,7 @@ void Rabbit::exePreJumpBack() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvRabbit::RabbitNrvNear::sInstance);
+        setNerve(GET_NERVE(Rabbit, RabbitNrvNear));
     }
 }
 
@@ -256,13 +256,13 @@ void Rabbit::exeNear() {
     mPosition += _174 * _170;
     _170 *= 0.98f;
     if (MR::isNearPlayer(mTalkCtrl, 500.0f)) {
-        setNerve(&NrvRabbit::RabbitNrvWait::sInstance);
+        setNerve(GET_NERVE(Rabbit, RabbitNrvWait));
     } else if (MR::isRailReachedGoal(this) && -mPosition.length() < 10.0f) {
-        setNerve(&NrvRabbit::RabbitNrvWait::sInstance);
+        setNerve(GET_NERVE(Rabbit, RabbitNrvWait));
     } else {
         MR::calcNearestRailCoord(this, *MR::getPlayerPos());
         if (_162) {
-            setNerve(&NrvRabbit::RabbitNrvBackwardLand::sInstance);
+            setNerve(GET_NERVE(Rabbit, RabbitNrvBackwardLand));
         }
     }
 }
@@ -299,13 +299,13 @@ void Rabbit::exeTalk() {
     if (MR::isFirstStep(this)) {
     }
 
-    if (!MR::tryStartReactionAndPushNerve(this, &NrvRabbit::RabbitNrvReaction::sInstance)) {
+    if (!MR::tryStartReactionAndPushNerve(this, GET_NERVE(Rabbit, RabbitNrvReaction))) {
         if (!MR::tryTalkNearPlayerAndStartTalkAction(this) || MR::isShortTalk(mTalkCtrl)) {
             if (_15C == 4 && MR::isGreaterStep(this, 180)) {
-                pushNerve(&NrvRabbit::RabbitNrvJumpV::sInstance);
+                pushNerve(GET_NERVE(Rabbit, RabbitNrvJumpV));
             } else if (_15C == 5) {
                 if (MR::isGreaterStep(this, 180)) {
-                    pushNerve(&NrvRabbit::RabbitNrvJumpH::sInstance);
+                    pushNerve(GET_NERVE(Rabbit, RabbitNrvJumpH));
                 }
             }
         }

@@ -12,22 +12,8 @@ namespace {
 }  // namespace
 
 namespace NrvUnizoLauncher {
-    INIT_NERVE(UnizoLauncherNrvWait);
-    INIT_NERVE(UnizoLauncherNrvLaunch);
-
-    inline void UnizoLauncherNrvWait::execute(Spine* pSpine) const {
-        UnizoLauncher* pActor = static_cast< UnizoLauncher* >(pSpine->mExecutor);
-        if (MR::isFirstStep(pActor)) {
-        }
-
-        if (MR::isGreaterStep(pActor, sUnizoInter)) {
-            pActor->setNerve(&UnizoLauncherNrvLaunch::sInstance);
-        }
-    }
-
-    inline void UnizoLauncherNrvLaunch::execute(Spine* pSpine) const {
-        static_cast< UnizoLauncher* >(pSpine->mExecutor)->exeLaunch();
-    }
+    NEW_NERVE(UnizoLauncherNrvWait, UnizoLauncher, Wait);
+    NEW_NERVE(UnizoLauncherNrvLaunch, UnizoLauncher, Launch);
 }  // namespace NrvUnizoLauncher
 
 UnizoLauncher::UnizoLauncher(const char* pName) : LiveActor(pName) {
@@ -39,7 +25,7 @@ void UnizoLauncher::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
     MR::addHitSensorEnemy(this, "Body", 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initSound(8, false);
-    initNerve(&NrvUnizoLauncher::UnizoLauncherNrvWait::sInstance);
+    initNerve(GET_NERVE(UnizoLauncher, UnizoLauncherNrvWait));
 
     mUnizoNum = sUnizoNumber;
     mUnizos = new Unizo*[sUnizoNumber];
@@ -68,7 +54,16 @@ void UnizoLauncher::exeLaunch() {
         }
     }
 
-    setNerve(&NrvUnizoLauncher::UnizoLauncherNrvWait::sInstance);
+    setNerve(GET_NERVE(UnizoLauncher, UnizoLauncherNrvWait));
+}
+
+void UnizoLauncher::exeWait() {
+    if (MR::isFirstStep(this)) {
+    }
+
+    if (MR::isGreaterStep(this, sUnizoInter)) {
+        setNerve(GET_NERVE(UnizoLauncher, UnizoLauncherNrvLaunch));
+    }
 }
 
 UnizoLauncher::~UnizoLauncher() {

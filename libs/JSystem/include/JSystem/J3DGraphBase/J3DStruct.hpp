@@ -7,6 +7,7 @@
 struct J3DGXColor : public GXColor {
     J3DGXColor() {
     }
+
     J3DGXColor(const J3DGXColor& other) : GXColor(other) {
     }
 
@@ -17,6 +18,7 @@ struct J3DGXColor : public GXColor {
         *(GXColor*)this = color;
         return *this;
     }
+
     J3DGXColor& operator=(const J3DGXColor& other) {
         GXColor::operator=(other);
         return *this;
@@ -48,6 +50,7 @@ struct J3DBlendInfo {
     void operator=(J3DBlendInfo const& other) {
         __memcpy(this, &other, sizeof(J3DBlendInfo));
     }
+
     /* 0x0 */ u8 mType;
     /* 0x1 */ u8 mSrcFactor;
     /* 0x2 */ u8 mDstFactor;
@@ -272,12 +275,11 @@ struct J3DGXColorS10 : public GXColorS10 {
     J3DGXColorS10(const GXColorS10& color) : GXColorS10(color) {
     }
 
-    J3DGXColorS10& operator=(const GXColorS10& color) {
+    J3DGXColorS10& operator=(const GXColorS10& color) NO_INLINE {
         __memcpy(this, &color, sizeof(GXColorS10));
         return *this;
     }
 };
-
 
 inline u16 calcColorChanID(u16 enable, u8 matSrc, u8 lightMask, u8 diffuseFn, u8 attnFn, u8 ambSrc) {
     u32 reg = 0;
@@ -297,4 +299,3 @@ inline u16 calcColorChanID(u16 enable, u8 matSrc, u8 lightMask, u8 diffuseFn, u8
     reg = (reg & ~0x0400) | (attnFn != GX_AF_SPEC) << 10;
     return reg;
 }
-

@@ -37,7 +37,7 @@ void KoopaSequencerVs2::init(Koopa* pKoopa, const JMapInfoIter& rIter) {
     KoopaFunction::setKoopaPos(mKoopa, "デモ中心");
     MR::startBck(mKoopa, "DemoKoopaVs2Start", nullptr);
 
-    initNerve(&NrvKoopaSequencerVs2::KoopaSequencerVs2NrvWaitDemoBattleStart::sInstance);
+    initNerve(GET_NERVE(KoopaSequencerVs2, KoopaSequencerVs2NrvWaitDemoBattleStart));
     KoopaFunction::initKoopaPartsVs2(mKoopa);
 
     mBattleMain = new KoopaBattleMain("クッパ戦闘（Ｖｓ２）", mKoopa);
@@ -58,7 +58,7 @@ void KoopaSequencerVs2::exeWaitDemoBattleStart() {
     }
 
     if (MR::tryStartTimeKeepDemoMarioPuppetable(mKoopa, "クッパＶｓ２本戦開始", nullptr)) {
-        setNerve(&NrvKoopaSequencerVs2::KoopaSequencerVs2NrvDemoBattleStart::sInstance);
+        setNerve(GET_NERVE(KoopaSequencerVs2, KoopaSequencerVs2NrvDemoBattleStart));
     }
 }
 
@@ -71,26 +71,26 @@ void KoopaSequencerVs2::exeDemoBattleStart() {
         KoopaFunction::startFaceCtrl(mKoopa);
         mJumpToPlanet->startReady();
 
-        setNerve(&NrvKoopaSequencerVs2::KoopaSequencerVs2NrvDemoJumpToPlanet::sInstance);
+        setNerve(GET_NERVE(KoopaSequencerVs2, KoopaSequencerVs2NrvDemoJumpToPlanet));
     }
 }
 
 void KoopaSequencerVs2::exeDemoJumpToPlanet() {
-    MR::updateActorStateAndNextNerve(this, mJumpToPlanet, &NrvKoopaSequencerVs2::KoopaSequencerVs2NrvBattle::sInstance);
+    MR::updateActorStateAndNextNerve(this, mJumpToPlanet, GET_NERVE(KoopaSequencerVs2, KoopaSequencerVs2NrvBattle));
 }
 
 void KoopaSequencerVs2::exeBattle() {
-    MR::updateActorStateAndNextNerve(this, mSubSequenceBattle, &NrvKoopaSequencerVs2::KoopaSequencerVs2NrvWaitDemoDown::sInstance);
+    MR::updateActorStateAndNextNerve(this, mSubSequenceBattle, GET_NERVE(KoopaSequencerVs2, KoopaSequencerVs2NrvWaitDemoDown));
 }
 
 void KoopaSequencerVs2::exeWaitDemoDown() {
     if (MR::isFirstStep(this)) {
         KoopaFunction::setKoopaPos(mKoopa, "デモ中心");
 
-        setNerve(&NrvKoopaSequencerVs2::KoopaSequencerVs2NrvWaitDemo::sInstance);
+        setNerve(GET_NERVE(KoopaSequencerVs2, KoopaSequencerVs2NrvWaitDemo));
 
-        MR::requestStartTimeKeepDemoMarioPuppetable(this, mKoopa, "クッパＶｓ２ダウン",
-                                                    &NrvKoopaSequencerVs2::KoopaSequencerVs2NrvDemoDown::sInstance, nullptr, nullptr);
+        MR::requestStartTimeKeepDemoMarioPuppetable(this, mKoopa, "クッパＶｓ２ダウン", GET_NERVE(KoopaSequencerVs2, KoopaSequencerVs2NrvDemoDown),
+                                                    nullptr, nullptr);
     }
 }
 
@@ -129,13 +129,13 @@ void KoopaSequencerVs2::exeWaitDemo() {
 }
 
 void KoopaSequencerVs2::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvKoopaSequencerVs2::KoopaSequencerVs2NrvBattle::sInstance) && !mSubSequenceBattle->isDemo()) {
+    if (isNerve(GET_NERVE(KoopaSequencerVs2, KoopaSequencerVs2NrvBattle)) && !mSubSequenceBattle->isDemo()) {
         mBattleMain->attackSensor(pSender, pReceiver);
     }
 }
 
 bool KoopaSequencerVs2::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvKoopaSequencerVs2::KoopaSequencerVs2NrvBattle::sInstance) && !mSubSequenceBattle->isDemo()) {
+    if (isNerve(GET_NERVE(KoopaSequencerVs2, KoopaSequencerVs2NrvBattle)) && !mSubSequenceBattle->isDemo()) {
         return mBattleMain->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
 
@@ -147,7 +147,7 @@ bool KoopaSequencerVs2::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSe
 }
 
 bool KoopaSequencerVs2::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvKoopaSequencerVs2::KoopaSequencerVs2NrvBattle::sInstance) && !mSubSequenceBattle->isDemo()) {
+    if (isNerve(GET_NERVE(KoopaSequencerVs2, KoopaSequencerVs2NrvBattle)) && !mSubSequenceBattle->isDemo()) {
         return mBattleMain->receiveOtherMsg(msg, pSender, pReceiver);
     }
 

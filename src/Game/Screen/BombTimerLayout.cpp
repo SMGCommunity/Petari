@@ -23,7 +23,7 @@ BombTimerLayout::BombTimerLayout(bool isConnectToScene)
 
 void BombTimerLayout::init(const JMapInfoIter& rIter) {
     initLayoutManager("BombTimer", 2);
-    initNerve(&NrvBombTimerLayout::BombTimerLayoutNrvAppear::sInstance);
+    initNerve(GET_NERVE(BombTimerLayout, BombTimerLayoutNrvAppear));
     kill();
 }
 
@@ -31,7 +31,7 @@ void BombTimerLayout::appear() {
     mFrame = 0;
 
     LayoutActor::appear();
-    setNerve(&NrvBombTimerLayout::BombTimerLayoutNrvAppear::sInstance);
+    setNerve(GET_NERVE(BombTimerLayout, BombTimerLayoutNrvAppear));
 }
 
 void BombTimerLayout::setTimeLimit(u32 timeLimit) {
@@ -70,7 +70,7 @@ bool BombTimerLayout::update() {
     addFrame();
 
     if (isReadyToTimeUp()) {
-        setNerve(&NrvBombTimerLayout::BombTimerLayoutNrvEnd::sInstance);
+        setNerve(GET_NERVE(BombTimerLayout, BombTimerLayoutNrvEnd));
 
         return true;
     }
@@ -94,7 +94,7 @@ void BombTimerLayout::exeAppear() {
     update();
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&NrvBombTimerLayout::BombTimerLayoutNrvWait::sInstance);
+        setNerve(GET_NERVE(BombTimerLayout, BombTimerLayoutNrvWait));
     }
 }
 
@@ -106,7 +106,7 @@ void BombTimerLayout::exeWait() {
     update();
 
     if (getRestTime() < mDangerTransFrame) {
-        setNerve(&NrvBombTimerLayout::BombTimerLayoutNrvDanger::sInstance);
+        setNerve(GET_NERVE(BombTimerLayout, BombTimerLayoutNrvDanger));
     }
 }
 

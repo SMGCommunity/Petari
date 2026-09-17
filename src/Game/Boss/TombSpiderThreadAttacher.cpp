@@ -17,7 +17,7 @@ TombSpiderThreadAttacher::TombSpiderThreadAttacher(LiveActor* pActor, const char
 
 void TombSpiderThreadAttacher::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemyMovement(this);
-    initNerve(&NrvTombSpiderThreadAttacher::TombSpiderThreadAttacherNrvFree::sInstance);
+    initNerve(GET_NERVE(TombSpiderThreadAttacher, TombSpiderThreadAttacherNrvFree));
     MR::invalidateClipping(this);
     makeActorDead();
 }

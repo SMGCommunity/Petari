@@ -17,7 +17,7 @@ RosettaDemoEpilogue::RosettaDemoEpilogue(Rosetta* pRosetta, const JMapInfoIter& 
     DemoFunction::registerDemoTalkMessageCtrl(mRosetta, mRosetta->mMsgCtrl);
     MR::registerDemoActionFunctor(mRosetta, MR::Functor_Inline(this, &RosettaDemoEpilogue::startDemo), "エピローグ[開始]");
     mRosetta->mLodCtrl->invalidate();
-    initNerve(&NrvRosettaDemoEpilogue::RosettaDemoEpilogueNrvDemo::sInstance);
+    initNerve(GET_NERVE(RosettaDemoEpilogue, RosettaDemoEpilogueNrvDemo));
 }
 
 void RosettaDemoEpilogue::startDemo() {

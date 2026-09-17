@@ -25,7 +25,7 @@ void CameraInfo::init(const JMapInfoIter& rIter) {
     MR::createAndAddPaneCtrl(this, "Forbid", 1);
     MR::hidePane(this, "Forbid");
     MR::connectToSceneLayout(this);
-    initNerve(&NrvCameraInfo::CameraInfoNrvHide::sInstance);
+    initNerve(GET_NERVE(CameraInfo, CameraInfoNrvHide));
     appear();
 }
 
@@ -143,7 +143,7 @@ void CameraInfo::exeEnd() {
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&NrvCameraInfo::CameraInfoNrvHide::sInstance);
+        setNerve(GET_NERVE(CameraInfo, CameraInfoNrvHide));
     }
 }
 
@@ -178,15 +178,15 @@ bool CameraInfo::tryAnimShortCut() {
 }
 
 bool CameraInfo::tryShow() {
-    if (isNerve(&NrvCameraInfo::CameraInfoNrvAppear::sInstance)) {
+    if (isNerve(GET_NERVE(CameraInfo, CameraInfoNrvAppear))) {
         return false;
     }
 
-    if (isNerve(&NrvCameraInfo::CameraInfoNrvNormal::sInstance)) {
+    if (isNerve(GET_NERVE(CameraInfo, CameraInfoNrvNormal))) {
         return false;
     }
 
-    if (isNerve(&NrvCameraInfo::CameraInfoNrvFirstPerson::sInstance)) {
+    if (isNerve(GET_NERVE(CameraInfo, CameraInfoNrvFirstPerson))) {
         return false;
     }
 
@@ -197,21 +197,21 @@ bool CameraInfo::tryShow() {
         return false;
     }
 
-    setNerve(&NrvCameraInfo::CameraInfoNrvAppear::sInstance);
+    setNerve(GET_NERVE(CameraInfo, CameraInfoNrvAppear));
 
     return true;
 }
 
 bool CameraInfo::tryHide() {
-    if (isNerve(&NrvCameraInfo::CameraInfoNrvEnd::sInstance)) {
+    if (isNerve(GET_NERVE(CameraInfo, CameraInfoNrvEnd))) {
         return false;
     }
 
-    if (isNerve(&NrvCameraInfo::CameraInfoNrvHide::sInstance)) {
+    if (isNerve(GET_NERVE(CameraInfo, CameraInfoNrvHide))) {
         return false;
     }
 
-    if (isNerve(&NrvCameraInfo::CameraInfoNrvFirstPerson::sInstance)) {
+    if (isNerve(GET_NERVE(CameraInfo, CameraInfoNrvFirstPerson))) {
         return false;
     }
 
@@ -223,7 +223,7 @@ bool CameraInfo::tryHide() {
     }
 
     if (mStep >= ::sLifeTime) {
-        setNerve(&NrvCameraInfo::CameraInfoNrvEnd::sInstance);
+        setNerve(GET_NERVE(CameraInfo, CameraInfoNrvEnd));
 
         return true;
     }
@@ -235,15 +235,15 @@ bool CameraInfo::tryHide() {
 
 bool CameraInfo::tryChangeCameraStateNerve() {
     if (MR::isFirstPersonCamera()) {
-        if (!isNerve(&NrvCameraInfo::CameraInfoNrvFirstPerson::sInstance)) {
-            setNerve(&NrvCameraInfo::CameraInfoNrvFirstPerson::sInstance);
+        if (!isNerve(GET_NERVE(CameraInfo, CameraInfoNrvFirstPerson))) {
+            setNerve(GET_NERVE(CameraInfo, CameraInfoNrvFirstPerson));
 
             return true;
         }
 
         return false;
-    } else if (!isNerve(&NrvCameraInfo::CameraInfoNrvNormal::sInstance)) {
-        setNerve(&NrvCameraInfo::CameraInfoNrvNormal::sInstance);
+    } else if (!isNerve(GET_NERVE(CameraInfo, CameraInfoNrvNormal))) {
+        setNerve(GET_NERVE(CameraInfo, CameraInfoNrvNormal));
 
         return true;
     }

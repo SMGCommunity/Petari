@@ -14,27 +14,31 @@ public:
     bool playsOnlyForward() const {
         return (mFlags & 1) != 0;  // 0x01
     }
+
     bool playsOnlyReverse() const {
         return (mFlags & 2) != 0;  // 0x02
     }
+
     bool stopsWhenAnimationChanges() const {
         return (mFlags & 4) != 0;  // 0x04
     }
+
     bool playsOnlyOnce() const {
         return (mFlags & 8) != 0;  // 0x08
     }
+
     bool stopsWhenNoteOff() const {
         return (mFlags & 0x10) != 0;  // 0x10
     }
+
     bool stopsWhenSpeedIsZero() const {
         return (mFlags & 0x20) != 0;  // 0x20
     }
+
     bool setsLifeTime() const {
-        return (mFlags & 0x40) != 0;  // 0x40
+        return mFlags & 0x40;  // 0x40
     }
-    bool setsLifeTime2() const {
-        return (mFlags >> 6) & 1;  // 0x40
-    }
+
     bool playsAtIntervals() const {
         return (mFlags & 0x80) != 0;  // 0x80
     }
@@ -43,6 +47,7 @@ public:
         if (mNoteOnTime == mNoteOffTime) {
             return true;
         }
+
         if (mNoteOnTime > mNoteOffTime) {
             if (mNoteOffTime <= time && time < mNoteOnTime) {
                 return true;
@@ -52,6 +57,7 @@ public:
                 return true;
             }
         }
+
         return false;
     }
 
@@ -59,6 +65,7 @@ public:
         if (setsLifeTime()) {
             return isNoting(time);
         }
+
         if (reversed) {
             return time <= mNoteOnTime;
         } else {
@@ -70,9 +77,11 @@ public:
         if (setsLifeTime()) {
             return !isNoting(time);
         }
+
         if (mNoteOnTime == mNoteOffTime) {
             return false;
         }
+
         if (reversed) {
             return time <= mNoteOffTime;
         } else {
@@ -162,6 +171,7 @@ public:
         mLoopEndFrame = loopEndFrame;
         mLoopEndSoundIndex = mSoundAnimation->getEndSoundIndex(loopEndFrame);
     }
+
     void startAnimation(const JAUSoundAnimation* pAnimation, bool reversed, f32 loopStartFrame, f32 loopEndFrame);
     void removeAnimation();
     void updateSoundLifeTime_(f32 time, f32 speed);

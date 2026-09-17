@@ -22,8 +22,8 @@
 #include "Game/Player/RushEndInfo.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Screen/GameSceneLayoutHolder.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
@@ -44,6 +44,7 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include <JSystem/JKernel/JKRHeap.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
+
 
 void MarioActor_FORCE_MATCH_SDATA2() {
     (void)1.0f;
@@ -364,7 +365,7 @@ void MarioActor::init2(const TVec3f& rA, const TVec3f& rB, s32 initialAnimation)
     mMario->initAfterConst();
     mGravityInfo = new GravityInfo();
     mGravityRatio = 1.0f;
-    initNerve(&NrvMarioActor::MarioActorNrvWait::sInstance);
+    initNerve(GET_NERVE(MarioActor, MarioActorNrvWait));
     _FB4 = 0;
     _FB8 = 0;
     initActionMatrix();
@@ -643,7 +644,7 @@ void MarioActor::changeGameOverAnimation() {
         animation = 7;
     }
 
-    if (isNerve(&NrvMarioActor::MarioActorNrvGameOverSink::sInstance)) {
+    if (isNerve(GET_NERVE(MarioActor, MarioActorNrvGameOverSink))) {
         animation = 8;
     }
 
@@ -1621,7 +1622,7 @@ bool MarioActor::doPressing() {
     case 0:
         if (!mMario->checkVerticalPress(false)) {
             if (--_390 == 0x1e && !mHealth && isEnableNerveChange()) {
-                setNerve(&NrvMarioActor::MarioActorNrvGameOver::sInstance);
+                setNerve(GET_NERVE(MarioActor, MarioActorNrvGameOver));
             }
 
             if (!_390) {
@@ -1634,7 +1635,7 @@ bool MarioActor::doPressing() {
     case 2:
     case 3:
         if (--_390 == 0x1e && !mHealth && isEnableNerveChange()) {
-            setNerve(&NrvMarioActor::MarioActorNrvGameOver::sInstance);
+            setNerve(GET_NERVE(MarioActor, MarioActorNrvGameOver));
         }
 
         if (!_390) {
@@ -2791,7 +2792,7 @@ void MarioActor::setPress(u8 myChar, s32 myInt) {
     mMario->playSound("プレスダメージ");
     mMario->playSound("声大ダメージ");
 
-    _FB4 = &NrvMarioActor::MarioActorNrvGameOver::sInstance;
+    _FB4 = GET_NERVE(MarioActor, MarioActorNrvGameOver);
     _FB8 = 60;
 
     if (_39C != 4) {
@@ -2810,15 +2811,15 @@ XanimeResourceTable* MarioActor::getResourceTable() const {
 }
 
 bool MarioActor::isEnableMoveMario() const {
-    if (isNerve(&NrvMarioActor::MarioActorNrvWait::sInstance)) {
+    if (isNerve(GET_NERVE(MarioActor, MarioActorNrvWait))) {
         return true;
     }
 
-    if (isNerve(&NrvMarioActor::MarioActorNrvNoRush::sInstance)) {
+    if (isNerve(GET_NERVE(MarioActor, MarioActorNrvNoRush))) {
         return true;
     }
 
-    if (isNerve(&NrvMarioActor::MarioActorNrvGameOverNonStop::sInstance)) {
+    if (isNerve(GET_NERVE(MarioActor, MarioActorNrvGameOverNonStop))) {
         return true;
     }
 
@@ -2826,11 +2827,11 @@ bool MarioActor::isEnableMoveMario() const {
 }
 
 bool MarioActor::isEnableNerveChange() const {
-    if (isNerve(&NrvMarioActor::MarioActorNrvWait::sInstance)) {
+    if (isNerve(GET_NERVE(MarioActor, MarioActorNrvWait))) {
         return true;
     }
 
-    if (isNerve(&NrvMarioActor::MarioActorNrvNoRush::sInstance)) {
+    if (isNerve(GET_NERVE(MarioActor, MarioActorNrvNoRush))) {
         return true;
     }
 
@@ -2842,7 +2843,7 @@ void MarioActor::forceGameOver() {
         return;
     }
 
-    setNerve(&NrvMarioActor::MarioActorNrvGameOver::sInstance);
+    setNerve(GET_NERVE(MarioActor, MarioActorNrvGameOver));
 }
 
 void MarioActor::forceGameOverAbyss() {
@@ -2850,7 +2851,7 @@ void MarioActor::forceGameOverAbyss() {
         return;
     }
 
-    setNerve(&NrvMarioActor::MarioActorNrvGameOverAbyss::sInstance);
+    setNerve(GET_NERVE(MarioActor, MarioActorNrvGameOverAbyss));
 }
 
 void MarioActor::forceGameOverBlackHole() {
@@ -2858,7 +2859,7 @@ void MarioActor::forceGameOverBlackHole() {
         return;
     }
 
-    setNerve(&NrvMarioActor::MarioActorNrvGameOverBlackHole::sInstance);
+    setNerve(GET_NERVE(MarioActor, MarioActorNrvGameOverBlackHole));
 }
 
 void MarioActor::forceGameOverNonStop() {
@@ -2866,7 +2867,7 @@ void MarioActor::forceGameOverNonStop() {
         return;
     }
 
-    setNerve(&NrvMarioActor::MarioActorNrvGameOverNonStop::sInstance);
+    setNerve(GET_NERVE(MarioActor, MarioActorNrvGameOverNonStop));
 }
 
 void MarioActor::forceGameOverSink() {
@@ -2874,7 +2875,7 @@ void MarioActor::forceGameOverSink() {
         return;
     }
 
-    setNerve(&NrvMarioActor::MarioActorNrvGameOverSink::sInstance);
+    setNerve(GET_NERVE(MarioActor, MarioActorNrvGameOverSink));
 }
 
 void MarioActor::updateCameraInfo() {

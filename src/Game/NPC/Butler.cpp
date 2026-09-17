@@ -149,13 +149,13 @@ void Butler::startDemoButlerReport(const char* event) {
     DemoFunction::setDemoTalkMessageCtrlDirect(this, mTalkMessage[eventNum << 0], event);
     MR::invalidateClipping(this);
     LiveActor::appear();
-    setNerve(&NrvButler::ButlerNrvDemo::sInstance);
+    setNerve(GET_NERVE(Butler, ButlerNrvDemo));
 }
 
 void Butler::startDemoDomeLecture1() {
     MR::invalidateClipping(this);
     LiveActor::appear();
-    setNerve(&NrvButler::ButlerNrvDemo::sInstance);
+    setNerve(GET_NERVE(Butler, ButlerNrvDemo));
     MR::endStartPosCamera();
 }
 
@@ -169,8 +169,8 @@ void Butler::startDemoDomeLecture2() {
     DemoFunction::setDemoTalkMessageCtrlDirect(this, mTalkMessage[i], "ドームレクチャー２");
     MR::invalidateClipping(this);
     LiveActor::appear();
-    setNerve(&NrvButler::ButlerNrvDemo::sInstance);
-    setNerve(&NrvButler::ButlerNrvDemoDomeLecture2::sInstance);
+    setNerve(GET_NERVE(Butler, ButlerNrvDemo));
+    setNerve(GET_NERVE(Butler, ButlerNrvDemoDomeLecture2));
 }
 
 void Butler::startDemoStarPiece1() {
@@ -181,7 +181,7 @@ void Butler::startDemoStarPiece1() {
     MR::onSwitchB(this);
     MR::invalidateClipping(this);
     LiveActor::appear();
-    setNerve(&NrvButler::ButlerNrvDemo::sInstance);
+    setNerve(GET_NERVE(Butler, ButlerNrvDemo));
     MR::endStartPosCamera();
 }
 
@@ -195,14 +195,14 @@ void Butler::startDemoStarPiece2() {
 
     MR::invalidateClipping(this);
     LiveActor::appear();
-    setNerve(&NrvButler::ButlerNrvDemo::sInstance);
-    setNerve(&NrvButler::ButlerNrvDemoStarPiece2::sInstance);
+    setNerve(GET_NERVE(Butler, ButlerNrvDemo));
+    setNerve(GET_NERVE(Butler, ButlerNrvDemoStarPiece2));
 }
 
 void Butler::tryStartShowGalaxyMap() {
     bool storySequence = GameSequenceFunction::getExecutingStorySequenceEventNum() == 8;
     if (storySequence) {
-        setNerve(&NrvButler::ButlerNrvDemoShowGalaxyMap::sInstance);
+        setNerve(GET_NERVE(Butler, ButlerNrvDemoShowGalaxyMap));
     }
 }
 
@@ -276,10 +276,10 @@ bool Butler::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
                     MR::startSystemSE("SE_SY_STAR_PIECE_STOCK_MAX");
                 }
             } else {
-                bool v1 = isNerve(mWaitNerve) || isNerve(&NrvButler::ButlerNrvStarPieceReaction::sInstance);
+                bool v1 = isNerve(mWaitNerve) || isNerve(GET_NERVE(Butler, ButlerNrvStarPieceReaction));
 
                 if (v1) {
-                    setNerve(&NrvButler::ButlerNrvStarPieceReaction::sInstance);
+                    setNerve(GET_NERVE(Butler, ButlerNrvStarPieceReaction));
                 }
             }
             return true;
@@ -403,23 +403,21 @@ void Butler::tryReplaceStarPieceIfExecLecture() {
 }
 
 bool Butler::tryStartStarPieceReaction() {
-    bool isNerveOn = isNerve(mWaitNerve) || isNerve(&NrvButler::ButlerNrvStarPieceReaction::sInstance);
+    bool isNerveOn = isNerve(mWaitNerve) || isNerve(GET_NERVE(Butler, ButlerNrvStarPieceReaction));
 
     if (isNerveOn && _164 <= 5) {
-        setNerve(&NrvButler::ButlerNrvStarPieceReaction::sInstance);
+        setNerve(GET_NERVE(Butler, ButlerNrvStarPieceReaction));
         return (_164 >= 5);
     } else {
-        isNerveOn = isNerve(mWaitNerve) || isNerve(&NrvButler::ButlerNrvStarPieceReaction::sInstance);
+        isNerveOn = isNerve(mWaitNerve) || isNerve(GET_NERVE(Butler, ButlerNrvStarPieceReaction));
 
         if (!isNerveOn && _164 == 5) {
-            MR::requestStartTimeKeepDemoMarioPuppetable(this, "スターピース解説後半", nullptr, &NrvButler::ButlerNrvWaitStartDemo::sInstance,
-                                                        nullptr);
+            MR::requestStartTimeKeepDemoMarioPuppetable(this, "スターピース解説後半", nullptr, GET_NERVE(Butler, ButlerNrvWaitStartDemo), nullptr);
             return true;
         }
 
-        if (_164 > 5 && !isNerve(&NrvButler::ButlerNrvStarPieceReaction::sInstance) && !isNerve(&NrvButler::ButlerNrvWaitStartDemo::sInstance)) {
-            MR::requestStartTimeKeepDemoMarioPuppetable(this, "スターピース解説後半", nullptr, &NrvButler::ButlerNrvWaitStartDemo::sInstance,
-                                                        nullptr);
+        if (_164 > 5 && !isNerve(GET_NERVE(Butler, ButlerNrvStarPieceReaction)) && !isNerve(GET_NERVE(Butler, ButlerNrvWaitStartDemo))) {
+            MR::requestStartTimeKeepDemoMarioPuppetable(this, "スターピース解説後半", nullptr, GET_NERVE(Butler, ButlerNrvWaitStartDemo), nullptr);
             return true;
         } else {
             return false;
@@ -440,8 +438,7 @@ void Butler::exeStarPieceReaction() {
 
     if (mButlerState->update()) {
         if (reaction) {
-            MR::requestStartTimeKeepDemoMarioPuppetable(this, "スターピース解説後半", nullptr, &NrvButler::ButlerNrvWaitStartDemo::sInstance,
-                                                        nullptr);
+            MR::requestStartTimeKeepDemoMarioPuppetable(this, "スターピース解説後半", nullptr, GET_NERVE(Butler, ButlerNrvWaitStartDemo), nullptr);
         } else {
             forceNerveToWait();
         }
@@ -472,7 +469,7 @@ void Butler::exeDemoStarPiece2() {
 
     if (MR::isDemoPartLastStep("終了")) {
         MR::onGameEventFlagEndButlerStarPieceLecture();
-        setNerve(&NrvButler::ButlerNrvDemo::sInstance);
+        setNerve(GET_NERVE(Butler, ButlerNrvDemo));
     }
 }
 
@@ -487,7 +484,7 @@ void Butler::exeDemoShowGalaxyMap() {
 
     if (MR::isStep(this, 70)) {
         MR::resumeTimeKeepDemo(this);
-        setNerve(&NrvButler::ButlerNrvDemo::sInstance);
+        setNerve(GET_NERVE(Butler, ButlerNrvDemo));
     }
 }
 

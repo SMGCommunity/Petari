@@ -2,7 +2,6 @@
 #include "Game/LiveActor/AnimationRandomPlayer.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/MapObj/BenefitItemObj.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/JointRumbler.hpp"
 #include "revolution/wpad.h"
@@ -162,7 +161,7 @@ void Kanina::init(const JMapInfoIter& rIter) {
     }
 
     MR::initStarPointerTarget(this, ::sSensorRadius);
-    initNerve(&NrvKanina::HostTypeAppear::sInstance);
+    initNerve(GET_NERVE(Kanina, HostTypeAppear));
     MR::needStageSwitchReadAppear(this, rIter);
     MR::syncStageSwitchAppear(this);
     makeActorDead();
@@ -232,7 +231,7 @@ bool Kanina::tryAttack(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     MR::emitEffectHitBetweenSensors(this, pSender, pReceiver, 0.0f, nullptr);
-    setNerve(&NrvKanina::HostTypeAttack::sInstance);
+    setNerve(GET_NERVE(Kanina, HostTypeAttack));
 
     return true;
 }
@@ -250,7 +249,7 @@ bool Kanina::tryPushEach(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    if (isNerve(&NrvKanina::HostTypeReboundEach::sInstance)) {
+    if (isNerve(GET_NERVE(Kanina, HostTypeReboundEach))) {
         return false;
     }
 
@@ -265,7 +264,7 @@ bool Kanina::tryPushEach(HitSensor* pSender, HitSensor* pReceiver) {
     MR::vecKillElement(diff, upVec, &diff);
 
     mVelocity.add(diff * ::sPushAccel + upVec * ::sPushAccel);
-    setNerve(&NrvKanina::HostTypeReboundEach::sInstance);
+    setNerve(GET_NERVE(Kanina, HostTypeReboundEach));
     return true;
 }
 
@@ -303,7 +302,7 @@ bool Kanina::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
     }
 
     if (MR::isMsgStarPieceReflect(msg)) {
-        setNerve(&NrvKanina::HostTypeGuard::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeGuard));
         return true;
     }
 
@@ -318,15 +317,15 @@ bool Kanina::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     MR::addVelocityFromPush(this, ::sPushAccel, pSender, pReceiver);
 
     if (!pSender->isType(ATYPE_COCO_NUT)) {
-        setNerve(&NrvKanina::HostTypeReboundEach::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeReboundEach));
     }
 
     return true;
 }
 
 bool Kanina::receiveTrample(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvKanina::HostTypeAttack::sInstance)) {
-        setNerve(&NrvKanina::HostTypeGuard::sInstance);
+    if (!isNerve(GET_NERVE(Kanina, HostTypeAttack))) {
+        setNerve(GET_NERVE(Kanina, HostTypeGuard));
         return true;
     }
 
@@ -344,12 +343,12 @@ bool Kanina::receivePunch(HitSensor* pSender, HitSensor* pReceiver) {
         return true;
     }
 
-    if (!isNerve(&NrvKanina::HostTypeAttack::sInstance)) {
+    if (!isNerve(GET_NERVE(Kanina, HostTypeAttack))) {
         if (!isStateDamageNoFireBall()) {
             TVec3f vec;
             MR::calcVecFromTargetPosH(&vec, this, pSender->mPosition, nullptr);
             mVelocity.add(vec * ::sPunchAccel);
-            setNerve(&NrvKanina::HostTypeGuard::sInstance);
+            setNerve(GET_NERVE(Kanina, HostTypeGuard));
             return true;
         }
     }
@@ -373,7 +372,7 @@ void Kanina::doDamageFireBall(HitSensor* pSender, HitSensor* pReceiver) {
     MR::vecKillElement(mVelocity, -mGravity, &vec);
     MR::normalizeOrZero(&vec);
     _D0.set(-vec);
-    setNerve(&NrvKanina::HostTypeDamageFireBall::sInstance);
+    setNerve(GET_NERVE(Kanina, HostTypeDamageFireBall));
 }
 
 void Kanina::startRun() {
@@ -430,7 +429,7 @@ void Kanina::startRun() {
 void Kanina::startRunAwayLevelSound() {
     if (mType == KaninaType_Blue) {
         MR::startLevelSound(this, "SE_EM_LV_KANINA_AWAY");
-    } else if (mType == KaninaType_Red && isNerve(&NrvKanina::HostTypeRunAwayReboundDirection::sInstance)) {
+    } else if (mType == KaninaType_Red && isNerve(GET_NERVE(Kanina, HostTypeRunAwayReboundDirection))) {
         MR::startLevelSound(this, "SE_EM_LV_KANINA_AWAY");
     }
 }
@@ -458,7 +457,7 @@ void Kanina::calcAndSetBaseMtx() {
     TQuat4f quat;
     baseMtx.getQuat(quat);
 
-    if (isNerve(&NrvKanina::HostTypeDamageFireBall::sInstance)) {
+    if (isNerve(GET_NERVE(Kanina, HostTypeDamageFireBall))) {
         quat.set< f32 >(_A4);
     } else {
         quat.slerp(_A4, ::sPoseLerpRate);
@@ -484,19 +483,19 @@ void Kanina::control() {
 }
 
 bool Kanina::isStateStayOnGround() const {
-    if (isNerve(&NrvKanina::HostTypeWalk::sInstance)) {
+    if (isNerve(GET_NERVE(Kanina, HostTypeWalk))) {
         return false;
     }
 
-    if (isNerve(&NrvKanina::HostTypeRunAway::sInstance)) {
+    if (isNerve(GET_NERVE(Kanina, HostTypeRunAway))) {
         return false;
     }
 
-    if (isNerve(&NrvKanina::HostTypeRunAwayReboundDirection::sInstance)) {
+    if (isNerve(GET_NERVE(Kanina, HostTypeRunAwayReboundDirection))) {
         return false;
     }
 
-    if (isNerve(&NrvKanina::HostTypeDamageFireBall::sInstance)) {
+    if (isNerve(GET_NERVE(Kanina, HostTypeDamageFireBall))) {
         return false;
     }
 
@@ -511,7 +510,9 @@ void Kanina::initForType(const JMapInfoIter& rIter, KaninaType type) {
     }
 
     if (mType == KaninaType_Blue) {
-        mKinokoOneUp = MR::createKinokoOneUp();
+        // Likely FAKEMATCH, however including the BenefitItemOneUp header (and by proxy BenefitItemObj)
+        // will emit the nerve instances in sinit.
+        mKinokoOneUp = reinterpret_cast< BenefitItemObj* >(MR::createKinokoOneUp());
     }
 }
 
@@ -523,7 +524,7 @@ bool Kanina::isPlayerBackward(f32 angle) const {
 }
 
 bool Kanina::isStatePossibleToAttack() const {
-    if (isNerve(&NrvKanina::HostTypeAttack::sInstance)) {
+    if (isNerve(GET_NERVE(Kanina, HostTypeAttack))) {
         return false;
     }
 
@@ -539,19 +540,19 @@ bool Kanina::isStatePossibleToAttack() const {
 }
 
 bool Kanina::isStateBlink() const {
-    return isNerve(&NrvKanina::HostTypeWait::sInstance) || isNerve(&NrvKanina::HostTypeVauntAttackSuccess::sInstance) ||
-           isNerve(&NrvKanina::HostTypeWalk::sInstance) || isNerve(&NrvKanina::HostTypeRunAway::sInstance) ||
-           isNerve(&NrvKanina::HostTypeRunAwayReboundDirection::sInstance) || isNerve(&NrvKanina::HostTypeRunAwayBreak::sInstance) ||
-           isNerve(&NrvKanina::HostTypeReboundEach::sInstance) || isNerve(&NrvKanina::HostTypeTurn::sInstance) ||
-           isNerve(&NrvKanina::HostTypeTurnEnd::sInstance) || isNerve(&NrvKanina::HostTypeFindPlayer::sInstance);
+    return isNerve(GET_NERVE(Kanina, HostTypeWait)) || isNerve(GET_NERVE(Kanina, HostTypeVauntAttackSuccess)) ||
+           isNerve(GET_NERVE(Kanina, HostTypeWalk)) || isNerve(GET_NERVE(Kanina, HostTypeRunAway)) ||
+           isNerve(GET_NERVE(Kanina, HostTypeRunAwayReboundDirection)) || isNerve(GET_NERVE(Kanina, HostTypeRunAwayBreak)) ||
+           isNerve(GET_NERVE(Kanina, HostTypeReboundEach)) || isNerve(GET_NERVE(Kanina, HostTypeTurn)) ||
+           isNerve(GET_NERVE(Kanina, HostTypeTurnEnd)) || isNerve(GET_NERVE(Kanina, HostTypeFindPlayer));
 }
 
 bool Kanina::isStateGuard() const {
-    return isNerve(&NrvKanina::HostTypeGuard::sInstance) || isNerve(&NrvKanina::HostTypeGuardEnd::sInstance);
+    return isNerve(GET_NERVE(Kanina, HostTypeGuard)) || isNerve(GET_NERVE(Kanina, HostTypeGuardEnd));
 }
 
 bool Kanina::isStateDamageNoFireBall() const {
-    return isNerve(&NrvKanina::HostTypeDamageHipDrop::sInstance) || isNerve(&NrvKanina::HostTypeDamageTrampleInvincivle::sInstance);
+    return isNerve(GET_NERVE(Kanina, HostTypeDamageHipDrop)) || isNerve(GET_NERVE(Kanina, HostTypeDamageTrampleInvincivle));
 }
 
 bool Kanina::isBindedGroundWaterBottom() const {
@@ -561,9 +562,9 @@ bool Kanina::isBindedGroundWaterBottom() const {
 void Kanina::updateMovement() {
     if (!MR::isOnGround(this)) {
         f32 gravityAccel = ::sGravityAccel;
-        if (isNerve(&NrvKanina::HostTypeDamageFireBall::sInstance)) {
+        if (isNerve(GET_NERVE(Kanina, HostTypeDamageFireBall))) {
             gravityAccel = ::sDownGravityAccel;
-        } else if (isNerve(&NrvKanina::HostTypeHitWall::sInstance)) {
+        } else if (isNerve(GET_NERVE(Kanina, HostTypeHitWall))) {
             gravityAccel = ::sGravityAccelHitWall;
         }
         MR::addVelocityToGravity(this, gravityAccel);
@@ -599,7 +600,7 @@ bool Kanina::tryFindPlayer() {
         return false;
     }
 
-    setNerve(&NrvKanina::HostTypeFindPlayer::sInstance);
+    setNerve(GET_NERVE(Kanina, HostTypeFindPlayer));
     return true;
 }
 
@@ -618,7 +619,7 @@ bool Kanina::tryHitWall() {
 
     _C0.set(mVelocity);
     MR::normalizeOrZero(&_C0);
-    setNerve(&NrvKanina::HostTypeHitWall::sInstance);
+    setNerve(GET_NERVE(Kanina, HostTypeHitWall));
     return true;
 }
 
@@ -631,13 +632,13 @@ bool Kanina::tryTurn() {
         return false;
     }
 
-    setNerve(&NrvKanina::HostTypeTurn::sInstance);
+    setNerve(GET_NERVE(Kanina, HostTypeTurn));
     return true;
 }
 
 bool Kanina::tryPointing() {
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        setNerve(&NrvKanina::HostTypePointing::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypePointing));
         return true;
     }
 
@@ -654,7 +655,7 @@ void Kanina::exeAppear() {
     MR::startLevelSound(this, "SE_EM_LV_KANINA_PRE_APPEAR");
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvKanina::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeWait));
     }
 }
 
@@ -666,16 +667,16 @@ void Kanina::exeWait() {
 
     if (!tryFindPlayer() && !tryPointing() && MR::isStep(this, ::sWaitTime)) {
         if (isBindedGroundWaterBottom()) {
-            setNerve(&NrvKanina::HostTypeDig::sInstance);
+            setNerve(GET_NERVE(Kanina, HostTypeDig));
             return;
         }
 
         if (mType == KaninaType_Blue && _DC >= ::sWalkCount) {
-            setNerve(&NrvKanina::HostTypeDig::sInstance);
+            setNerve(GET_NERVE(Kanina, HostTypeDig));
             return;
         }
 
-        setNerve(&NrvKanina::HostTypeWalk::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeWalk));
     }
 }
 
@@ -708,7 +709,7 @@ void Kanina::exeWalk() {
 
     if (!tryFindPlayer() && !tryPointing() && MR::isStep(this, ::sWalkTime)) {
         MR::zeroVelocity(this);
-        setNerve(&NrvKanina::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeWait));
     }
 }
 
@@ -723,13 +724,13 @@ void Kanina::exeRunAway() {
         if (::sTerritoryRadius < MR::calcDistanceToPlayerH(this)) {
             MR::zeroVelocity(this);
             if ((mType == KaninaType_Red && MR::isHalfProbability()) || mType == KaninaType_Blue) {
-                setNerve(&NrvKanina::HostTypeDig::sInstance);
+                setNerve(GET_NERVE(Kanina, HostTypeDig));
             } else {
-                setNerve(&NrvKanina::HostTypeWait::sInstance);
+                setNerve(GET_NERVE(Kanina, HostTypeWait));
             }
         } else if (MR::isStep(this, _B4)) {
             MR::zeroVelocity(this);
-            setNerve(&NrvKanina::HostTypeRunAwayBreak::sInstance);
+            setNerve(GET_NERVE(Kanina, HostTypeRunAwayBreak));
         }
     }
 }
@@ -752,12 +753,12 @@ void Kanina::exeRunAwayReboundDirection() {
 
     if (!tryHitWall() && !tryPointing()) {
         if (::sTerritoryRadius < MR::calcDistanceToPlayer(this)) {
-            setNerve(&NrvKanina::HostTypeWait::sInstance);
+            setNerve(GET_NERVE(Kanina, HostTypeWait));
             return;
         }
 
         if (MR::isStep(this, _B4)) {
-            setNerve(&NrvKanina::HostTypeRunAwayBreak::sInstance);
+            setNerve(GET_NERVE(Kanina, HostTypeRunAwayBreak));
         }
     }
 }
@@ -770,10 +771,10 @@ void Kanina::exeRunAwayBreak() {
 
     if (!tryTurn() && !tryPointing() && MR::isStep(this, _B8)) {
         if (isBindedGroundWaterBottom()) {
-            setNerve(&NrvKanina::HostTypeDig::sInstance);
+            setNerve(GET_NERVE(Kanina, HostTypeDig));
             return;
         }
-        setNerve(&NrvKanina::HostTypeRunAway::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeRunAway));
     }
 }
 
@@ -785,7 +786,7 @@ void Kanina::exeAttack() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvKanina::HostTypeVauntAttackSuccess::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeVauntAttackSuccess));
     }
 }
 
@@ -796,7 +797,7 @@ void Kanina::exeVauntAttackSuccess() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvKanina::HostTypeRunAwayBreak::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeRunAwayBreak));
     }
 }
 
@@ -815,7 +816,7 @@ void Kanina::exeHitWall() {
     startRunAwayLevelSound();
 
     if (MR::isGreaterStep(this, ::sHitWallTime) && MR::isBindedGround(this)) {
-        setNerve(&NrvKanina::HostTypeRunAwayReboundDirection::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeRunAwayReboundDirection));
     }
 }
 
@@ -826,7 +827,7 @@ void Kanina::exeReboundEach() {
     }
 
     if (MR::isGreaterStep(this, ::sHitWallTime) && MR::isBindedGround(this)) {
-        setNerve(&NrvKanina::HostTypeRunAwayReboundDirection::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeRunAwayReboundDirection));
     }
 }
 
@@ -839,7 +840,7 @@ void Kanina::exeGuard() {
     }
 
     if (MR::isStep(this, ::sGuardTime)) {
-        setNerve(&NrvKanina::HostTypeGuardEnd::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeGuardEnd));
     }
 }
 
@@ -848,13 +849,13 @@ void Kanina::exeGuardEnd() {
         MR::startBck(this, "GuardReturn", nullptr);
     }
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvKanina::HostTypeRunAwayBreak::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeRunAwayBreak));
     }
 }
 
 void Kanina::exeDamageHipDrop() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvKanina::HostTypeDamageHipDrop::sInstance) || isNerve(&NrvKanina::HostTypeDamageTrampleInvincivle::sInstance)) {
+        if (isNerve(GET_NERVE(Kanina, HostTypeDamageHipDrop)) || isNerve(GET_NERVE(Kanina, HostTypeDamageTrampleInvincivle))) {
             MR::startBck(this, "HipDropDown", nullptr);
         }
 
@@ -896,7 +897,7 @@ void Kanina::exeDig() {
     MR::startLevelSound(this, "SE_EM_LV_KANINA_DIG");
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvKanina::HostTypeWaitUnderGround::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeWaitUnderGround));
     }
 }
 
@@ -909,7 +910,7 @@ void Kanina::exeWaitUnderGround() {
 
     if (MR::isGreaterStep(this, ::sWaitUnderGroundTime) && ::sKeepUnderGroundDistance < MR::calcDistanceToPlayer(this)) {
         MR::validateShadow(this, nullptr);
-        setNerve(&NrvKanina::HostTypeAppear::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeAppear));
     }
 }
 
@@ -921,7 +922,7 @@ void Kanina::exeFindPlayer() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvKanina::HostTypeRunAway::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeRunAway));
     }
 }
 
@@ -931,7 +932,7 @@ void Kanina::exeTurn() {
     }
 
     if (MR::turnDirectionToTargetUseGroundNormalDegree(this, &_D0, *MR::getPlayerPos(), ::sTurnSpeed)) {
-        setNerve(&NrvKanina::HostTypeTurnEnd::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeTurnEnd));
     }
 }
 
@@ -941,7 +942,7 @@ void Kanina::exeTurnEnd() {
     }
 
     if (MR::isStep(this, ::sTurnEndTime)) {
-        setNerve(&NrvKanina::HostTypeRunAway::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypeRunAway));
     }
 }
 
@@ -957,7 +958,7 @@ void Kanina::exePointing() {
     }
 
     if (!MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        setNerve(&NrvKanina::HostTypePointingEnd::sInstance);
+        setNerve(GET_NERVE(Kanina, HostTypePointingEnd));
     }
 }
 

@@ -33,7 +33,7 @@ void FloaterFloatingForceTypeNormal::init(const JMapInfoIter& rIter) {
     MR::getMapPartsArgRotateSpeed(&mRotateSpeed, rIter);
     MR::getMapPartsArgRotateAngle(&mRotateAngle, rIter);
     MR::useStageSwitchReadA(mHost, rIter);
-    MapPartsFunction::initNerve(&NrvFloaterFloatingForceTypeNormal::HostTypeWait::sInstance);
+    MapPartsFunction::initNerve(GET_NERVE(FloaterFloatingForceTypeNormal, HostTypeWait));
 }
 
 void FloaterFloatingForceTypeNormal::start() {
@@ -70,7 +70,7 @@ void FloaterFloatingForceTypeNormal::updateVelocity(bool param1) {
     f = _44;
 
     if (FloaterFunction::isExistImpactOnRide(_18)) {
-        if (isNerve(&NrvFloaterFloatingForceTypeNormal::HostTypeMoveFirst::sInstance)) {
+        if (isNerve(GET_NERVE(FloaterFloatingForceTypeNormal, HostTypeMoveFirst))) {
             f = 10.0f;
 
             if (getStep() > 5) {
@@ -83,7 +83,7 @@ void FloaterFloatingForceTypeNormal::updateVelocity(bool param1) {
         bool isValidAndOnSwitchA = MR::isValidSwitchA(mHost) && MR::isOnSwitchA(mHost);
 
         if (!isValidAndOnSwitchA) {
-            bool b = isNerve(&NrvFloaterFloatingForceTypeNormal::HostTypeMoveOnPlayer::sInstance) && getStep() < 7;
+            bool b = isNerve(GET_NERVE(FloaterFloatingForceTypeNormal, HostTypeMoveOnPlayer)) && getStep() < 7;
 
             if (b) {
                 f += (7 - getStep()) * 0.8f;
@@ -119,9 +119,9 @@ void FloaterFloatingForceTypeNormal::soundMoveSE() {
 
 void FloaterFloatingForceTypeNormal::setStateMove() {
     if (MR::isOnPlayer(MR::getBodySensor(mHost))) {
-        MapPartsFunction::setNerve(&NrvFloaterFloatingForceTypeNormal::HostTypeMoveOnPlayer::sInstance);
+        MapPartsFunction::setNerve(GET_NERVE(FloaterFloatingForceTypeNormal, HostTypeMoveOnPlayer));
     } else {
-        MapPartsFunction::setNerve(&NrvFloaterFloatingForceTypeNormal::HostTypeMoveOffPlayer::sInstance);
+        MapPartsFunction::setNerve(GET_NERVE(FloaterFloatingForceTypeNormal, HostTypeMoveOffPlayer));
     }
 }
 
@@ -156,14 +156,14 @@ void FloaterFloatingForceTypeNormal::exeMove() {
     bool isOnPlayer = MR::isOnPlayer(MR::getBodySensor(mHost));
 
     if (isOnPlayer && MR::isNearZero(_40) && !FloaterFunction::isExistSpeedUpLanding(_18)) {
-        MapPartsFunction::setNerve(&NrvFloaterFloatingForceTypeNormal::HostTypeMoveFirst::sInstance);
+        MapPartsFunction::setNerve(GET_NERVE(FloaterFloatingForceTypeNormal, HostTypeMoveFirst));
     }
 
     updateVelocity(isOnPlayer);
     soundMoveSE();
 
-    if (!isOnPlayer && isNerve(&NrvFloaterFloatingForceTypeNormal::HostTypeMoveOnPlayer::sInstance) && MapPartsFunction::getStep() >= 7 ||
-        isOnPlayer && MapPartsFunction::isNerve(&NrvFloaterFloatingForceTypeNormal::HostTypeMoveOffPlayer::sInstance)) {
+    if (!isOnPlayer && isNerve(GET_NERVE(FloaterFloatingForceTypeNormal, HostTypeMoveOnPlayer)) && MapPartsFunction::getStep() >= 7 ||
+        isOnPlayer && MapPartsFunction::isNerve(GET_NERVE(FloaterFloatingForceTypeNormal, HostTypeMoveOffPlayer))) {
         setStateMove();
     }
 }

@@ -61,7 +61,7 @@ void ScrewSwitch::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     MR::tryRegisterDemoCast(this, rIter);
-    initNerve(&NrvScrewSwitch::ScrewSwitchNrvWait::sInstance);
+    initNerve(GET_NERVE(ScrewSwitch, ScrewSwitchNrvWait));
     makeActorAppeared();
 }
 
@@ -80,7 +80,7 @@ void ScrewSwitch::exeAdjust() {
 
     _90->mPosition.lerp(_90->mPosition, getSensor("binder")->mPosition, static_cast< f32 >(getNerveStep()) / ::sStepForAdjust);
     if (MR::isStep(this, ::sStepForAdjust)) {
-        setNerve(&NrvScrewSwitch::ScrewSwitchNrvScrew::sInstance);
+        setNerve(GET_NERVE(ScrewSwitch, ScrewSwitchNrvScrew));
     }
 }
 
@@ -100,7 +100,7 @@ void ScrewSwitch::exeScrew() {
     }
     if (MR::isBckStopped(this)) {
         MR::onSwitchA(this);
-        setNerve(&NrvScrewSwitch::ScrewSwitchNrvEnd::sInstance);
+        setNerve(GET_NERVE(ScrewSwitch, ScrewSwitchNrvEnd));
     }
 }
 
@@ -132,11 +132,11 @@ bool ScrewSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
         _90 = pSender->mHost;
         MR::startSound(_90, "SE_PV_TWIST_START");
         MR::startSound(_90, "SE_PM_SPIN_ATTACK");
-        setNerve(&NrvScrewSwitch::ScrewSwitchNrvAdjust::sInstance);
+        setNerve(GET_NERVE(ScrewSwitch, ScrewSwitchNrvAdjust));
         return true;
     }
 
-    if (MR::isMsgUpdateBaseMtx(msg) && _90 && isNerve(&NrvScrewSwitch::ScrewSwitchNrvScrew::sInstance)) {
+    if (MR::isMsgUpdateBaseMtx(msg) && _90 && isNerve(GET_NERVE(ScrewSwitch, ScrewSwitchNrvScrew))) {
         updateBindActorMtx();
         return true;
     }

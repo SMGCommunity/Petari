@@ -49,9 +49,9 @@ void LavaGeyser::init(const JMapInfoIter& iter) {
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     MR::setGroupClipping(this, iter, 16);
     if (MR::isValidSwitchA(this)) {
-        initNerve(&NrvLavaGeyser::LavaGeyserNrvWaitSwitch::sInstance);
+        initNerve(GET_NERVE(LavaGeyser, LavaGeyserNrvWaitSwitch));
     } else {
-        initNerve(&NrvLavaGeyser::LavaGeyserNrvWait::sInstance);
+        initNerve(GET_NERVE(LavaGeyser, LavaGeyserNrvWait));
     }
     makeActorAppeared();
 }
@@ -59,8 +59,8 @@ void LavaGeyser::init(const JMapInfoIter& iter) {
 void LavaGeyser::startClipped() {
     LiveActor::startClipped();
     MR::forceDeleteEffectAll(this);
-    if (!isNerve(&NrvLavaGeyser::LavaGeyserNrvWaitSwitch::sInstance)) {
-        setNerve(&NrvLavaGeyser::LavaGeyserNrvWait::sInstance);
+    if (!isNerve(GET_NERVE(LavaGeyser, LavaGeyserNrvWaitSwitch))) {
+        setNerve(GET_NERVE(LavaGeyser, LavaGeyserNrvWait));
     }
 }
 
@@ -99,7 +99,7 @@ void LavaGeyser::exeWaitSwitch() {
         MR::invalidateHitSensors(this);
     }
     if (MR::isOnSwitchA(this)) {
-        setNerve(&NrvLavaGeyser::LavaGeyserNerveSign::sInstance);
+        setNerve(GET_NERVE(LavaGeyser, LavaGeyserNerveSign));
     }
 }
 
@@ -110,9 +110,9 @@ void LavaGeyser::exeWait() {
         _94.set(mPosition);
     }
     if (MR::isValidSwitchA(this) && !MR::isOnSwitchA(this)) {
-        setNerve(&NrvLavaGeyser::LavaGeyserNrvWaitSwitch::sInstance);
+        setNerve(GET_NERVE(LavaGeyser, LavaGeyserNrvWaitSwitch));
     } else if (MR::isStep(this, mArg0)) {
-        setNerve(&NrvLavaGeyser::LavaGeyserNerveSign::sInstance);
+        setNerve(GET_NERVE(LavaGeyser, LavaGeyserNerveSign));
     }
 }
 
@@ -125,7 +125,7 @@ void LavaGeyser::exeSign() {
     MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN");
     if (MR::isStep(this, 90)) {
         MR::deleteEffect(this, "Sign");
-        setNerve(&NrvLavaGeyser::LavaGeyserNerveShootUp::sInstance);
+        setNerve(GET_NERVE(LavaGeyser, LavaGeyserNerveShootUp));
     }
 }
 
@@ -140,7 +140,7 @@ void LavaGeyser::exeShootUp() {
     MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN");
     MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_KEEP");
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvLavaGeyser::LavaGeyserNerveShootKeep::sInstance);
+        setNerve(GET_NERVE(LavaGeyser, LavaGeyserNerveShootKeep));
     }
 }
 
@@ -152,7 +152,7 @@ void LavaGeyser::exeShootKeep() {
     MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN");
     MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_KEEP");
     if (MR::isStep(this, mArg1)) {
-        setNerve(&NrvLavaGeyser::LavaGeyserNerveShootDown::sInstance);
+        setNerve(GET_NERVE(LavaGeyser, LavaGeyserNerveShootDown));
     }
 }
 
@@ -164,6 +164,6 @@ void LavaGeyser::exeShootDown() {
     MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_KEEP");
     if (MR::isBckStopped(this)) {
         MR::hideModel(this);
-        setNerve(&NrvLavaGeyser::LavaGeyserNrvWait::sInstance);
+        setNerve(GET_NERVE(LavaGeyser, LavaGeyserNrvWait));
     }
 }

@@ -23,7 +23,7 @@ void TimeAppearObj::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
     info.setupModelName("KoopaBattleMapStairTurn");
     info.setupSound(4);
-    info.setupNerve(&NrvTimeAppearObj::TimeAppearObjNrvHide::sInstance);
+    info.setupNerve(GET_NERVE(TimeAppearObj, TimeAppearObjNrvHide));
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     initialize(rIter, info);
     MR::getJMapInfoArg0NoInit(rIter, &mTimer);
@@ -32,7 +32,7 @@ void TimeAppearObj::init(const JMapInfoIter& rIter) {
 
 void TimeAppearObj::exeHide() {
     if (MR::isStep(this, mTimer)) {
-        setNerve(&NrvTimeAppearObj::TimeAppearObjNrvEnd::sInstance);
+        setNerve(GET_NERVE(TimeAppearObj, TimeAppearObjNrvEnd));
     }
 }
 
@@ -55,5 +55,5 @@ void TimeAppearObj::appear() {
     MapObjActor::appear();
     MR::hideModel(this);
     MR::invalidateCollisionParts(this);
-    setNerve(&NrvTimeAppearObj::TimeAppearObjNrvHide::sInstance);
+    setNerve(GET_NERVE(TimeAppearObj, TimeAppearObjNrvHide));
 }

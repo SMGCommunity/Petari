@@ -63,7 +63,7 @@ BossKameckStateBattle::BossKameckStateBattle(BossKameck* pBoss)
 }
 
 void BossKameckStateBattle::init() {
-    initNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance);
+    initNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvWait));
 }
 
 void BossKameckStateBattle::appear() {
@@ -83,7 +83,7 @@ void BossKameckStateBattle::setBattlePattarn(BossKameckBattlePattarn* pBattlePat
 
 void BossKameckStateBattle::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isEnableGuard() && MR::isSensorPlayer(pReceiver)) {
-        if (isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvGuard::sInstance)) {
+        if (isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvGuard))) {
             if (MR::sendMsgEnemyAttackFlipRot(pReceiver, pSender)) {
                 return;
             }
@@ -120,7 +120,7 @@ bool BossKameckStateBattle::requestDamage(HitSensor* pSender, HitSensor* pReceiv
 
         mHost->killAllBeam();
         MR::emitEffectHitBetweenSensors(mHost, pSender, pReceiver, 0.0f, "HitMarkNormal");
-        setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvDamage::sInstance);
+        setNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvDamage));
 
         return true;
     }
@@ -135,7 +135,7 @@ bool BossKameckStateBattle::requestGuard(HitSensor* pSender, HitSensor* pReceive
             mBeam = nullptr;
         }
 
-        setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvGuard::sInstance);
+        setNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvGuard));
 
         return true;
     }
@@ -150,7 +150,7 @@ void BossKameckStateBattle::control() {
 bool BossKameckStateBattle::tryAttackWait() {
     if (MR::isGreaterStep(this, 120) && MR::isNear(mHost, _20, 100.0f)) {
         if (tryChargeBram()) {
-            setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttackWait::sInstance);
+            setNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvAttackWait));
         } else {
             startMove();
         }
@@ -203,9 +203,9 @@ bool BossKameckStateBattle::tryChargeBram() {
 
 void BossKameckStateBattle::startMove() {
     if (mIsVs2) {
-        setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveStart::sInstance);
+        setNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvHideMoveStart));
     } else {
-        setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvMove::sInstance);
+        setNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvMove));
     }
 }
 
@@ -262,7 +262,7 @@ void BossKameckStateBattle::exeHideMoveStart() {
 
     if (MR::isActionEnd(mHost)) {
         MR::startSound(mHost, "SE_BM_KAMECK_HIDE_SMOKE");
-        setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMove::sInstance);
+        setNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvHideMove));
     }
 }
 
@@ -294,7 +294,7 @@ void BossKameckStateBattle::exeHideMove() {
         s32 v4 = _34;
 
         if (v4 <= v3) {
-            setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveEnd::sInstance);
+            setNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvHideMoveEnd));
         } else {
             _34 = v3 + 1;
 
@@ -320,9 +320,9 @@ void BossKameckStateBattle::exeHideMoveEnd() {
 
     if (MR::isActionEnd(mHost)) {
         if (trySummonKameck()) {
-            setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameckWait::sInstance);
+            setNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvSummonKameckWait));
         } else if (tryChargeBram()) {
-            setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttackWait::sInstance);
+            setNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvAttackWait));
         } else {
             startMove();
         }
@@ -338,7 +338,7 @@ void BossKameckStateBattle::exeSummonKameckWait() {
     MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, ::sTurnPlayerDegree);
 
     if (MR::isActionEnd(mHost)) {
-        setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameck::sInstance);
+        setNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvSummonKameck));
     }
 }
 
@@ -349,7 +349,7 @@ void BossKameckStateBattle::exeSummonKameck() {
     }
 
     if (MR::isActionEnd(mHost)) {
-        setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance);
+        setNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvWait));
     }
 }
 
@@ -365,7 +365,7 @@ void BossKameckStateBattle::exeAttackWait() {
     MR::attenuateVelocity(mHost, 0.9f);
 
     if (MR::isGreaterStep(this, ::sAttackWaitTime)) {
-        setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttack::sInstance);
+        setNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvAttack));
     }
 }
 
@@ -389,7 +389,7 @@ void BossKameckStateBattle::exeAttack() {
     MR::attenuateVelocity(mHost, 0.96f);
 
     if (MR::isGreaterStep(this, ::sAttackTime)) {
-        setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance);
+        setNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvWait));
     }
 }
 
@@ -459,14 +459,14 @@ void BossKameckStateBattle::selectPosition() {
 }
 
 bool BossKameckStateBattle::isEnableDamage() const {
-    if (isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance) ||
-        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvMove::sInstance) ||
-        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveStart::sInstance) ||
-        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveEnd::sInstance) ||
-        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameckWait::sInstance) ||
-        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameck::sInstance) ||
-        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttackWait::sInstance) ||
-        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttack::sInstance)) {
+    if (isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvWait)) ||
+        isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvMove)) ||
+        isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvHideMoveStart)) ||
+        isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvHideMoveEnd)) ||
+        isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvSummonKameckWait)) ||
+        isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvSummonKameck)) ||
+        isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvAttackWait)) ||
+        isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvAttack))) {
         return true;
     }
 
@@ -474,14 +474,14 @@ bool BossKameckStateBattle::isEnableDamage() const {
 }
 
 bool BossKameckStateBattle::isEnableGuard() const {
-    if (isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance) ||
-        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvMove::sInstance) ||
-        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveStart::sInstance) ||
-        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveEnd::sInstance) ||
-        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameckWait::sInstance) ||
-        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameck::sInstance) ||
-        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttackWait::sInstance) ||
-        isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttack::sInstance)) {
+    if (isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvWait)) ||
+        isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvMove)) ||
+        isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvHideMoveStart)) ||
+        isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvHideMoveEnd)) ||
+        isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvSummonKameckWait)) ||
+        isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvSummonKameck)) ||
+        isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvAttackWait)) ||
+        isNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvAttack))) {
         return true;
     }
 

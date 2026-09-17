@@ -101,7 +101,7 @@ void GalaxyMapController::init(const JMapInfoIter& rIter) {
         MR::waitForEndFunctionAsyncExecute("GalaxyMapController::capture");
     }
 
-    initNerve(&::GalaxyMapControllerDisplayAstroMap::sInstance);
+    initNerve(GET_NERVE_ANON(GalaxyMapControllerDisplayAstroMap));
     kill();
 }
 
@@ -120,7 +120,7 @@ void GalaxyMapController::movement() {
     mMap->movement();
     mMapBackground->movement();
 
-    if (!isNerve(&::GalaxyMapControllerDisappearPowerStarList::sInstance)) {
+    if (!isNerve(GET_NERVE_ANON(GalaxyMapControllerDisappearPowerStarList))) {
         mPowerStarList->movement();
     }
 
@@ -157,7 +157,7 @@ void GalaxyMapController::draw() const {
     mMapSelectButton->draw();
     mMap->drawGalaxyInfo();
 
-    if (isNerve(&::GalaxyMapControllerReadyGame::sInstance) && MR::isFirstStep(this)) {
+    if (isNerve(GET_NERVE_ANON(GalaxyMapControllerReadyGame)) && MR::isFirstStep(this)) {
         const_cast< GalaxyMapController* >(this)->capture();
     }
 
@@ -190,7 +190,7 @@ void GalaxyMapController::startGalaxyMap() {
 
     mMode = Mode_GalaxyMap;
 
-    setNerve(&::GalaxyMapControllerReadyModeMap::sInstance);
+    setNerve(GET_NERVE_ANON(GalaxyMapControllerReadyModeMap));
 }
 
 void GalaxyMapController::startAstroMap() {
@@ -200,7 +200,7 @@ void GalaxyMapController::startAstroMap() {
 
     mMode = Mode_AstroMap;
 
-    setNerve(&::GalaxyMapControllerReadyModeMap::sInstance);
+    setNerve(GET_NERVE_ANON(GalaxyMapControllerReadyModeMap));
 }
 
 void GalaxyMapController::startNewGalaxyDiscover() {
@@ -210,7 +210,7 @@ void GalaxyMapController::startNewGalaxyDiscover() {
 
     mMode = Mode_NewGalaxyDiscover;
 
-    setNerve(&::GalaxyMapControllerReadyModeMap::sInstance);
+    setNerve(GET_NERVE_ANON(GalaxyMapControllerReadyModeMap));
 }
 
 void GalaxyMapController::startNewTicoGalaxyDiscover() {
@@ -221,7 +221,7 @@ void GalaxyMapController::startNewTicoGalaxyDiscover() {
 
     mMode = Mode_NewTicoGalaxyDiscover;
 
-    setNerve(&::GalaxyMapControllerReadyModeMap::sInstance);
+    setNerve(GET_NERVE_ANON(GalaxyMapControllerReadyModeMap));
 }
 
 void GalaxyMapController::startNewDomeDiscover() {
@@ -234,7 +234,7 @@ void GalaxyMapController::startNewDomeDiscover() {
 
     mWipe->forceClose();
 
-    setNerve(&::GalaxyMapControllerFadeinModeMap::sInstance);
+    setNerve(GET_NERVE_ANON(GalaxyMapControllerFadeinModeMap));
 }
 
 static const GXColor sTicoCometPrayWipeColor = {255, 255, 255, 255};
@@ -249,7 +249,7 @@ void GalaxyMapController::startTicoCometPray() {
 
     mWipe->forceClose();
 
-    setNerve(&::GalaxyMapControllerTicoCometWaitWhite::sInstance);
+    setNerve(GET_NERVE_ANON(GalaxyMapControllerTicoCometWaitWhite));
 }
 
 void GalaxyMapController::startChallengeGalaxyDiscover() {
@@ -260,7 +260,7 @@ void GalaxyMapController::startChallengeGalaxyDiscover() {
 
     mMode = Mode_ChallengeGalaxyDiscover;
 
-    setNerve(&::GalaxyMapControllerReadyModeMap::sInstance);
+    setNerve(GET_NERVE_ANON(GalaxyMapControllerReadyModeMap));
 }
 
 void GalaxyMapController::exeReadyModeMap() {
@@ -270,7 +270,7 @@ void GalaxyMapController::exeReadyModeMap() {
     }
 
     if (mWipe->isClose()) {
-        setNerve(&::GalaxyMapControllerFadeinModeMap::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerFadeinModeMap));
     }
 }
 
@@ -301,25 +301,25 @@ void GalaxyMapController::exeFadeinModeMap() {
     if (mWipe->isOpen()) {
         switch (mMode) {
         case Mode_AstroMap:
-            setNerve(&::GalaxyMapControllerDisplayAstroMap::sInstance);
+            setNerve(GET_NERVE_ANON(GalaxyMapControllerDisplayAstroMap));
             break;
         case Mode_GalaxyMap:
-            setNerve(&::GalaxyMapControllerDisplayGalaxyMap::sInstance);
+            setNerve(GET_NERVE_ANON(GalaxyMapControllerDisplayGalaxyMap));
             break;
         case Mode_NewGalaxyDiscover:
-            setNerve(&::GalaxyMapControllerNewGalaxyDiscoverPhaseAstroMap::sInstance);
+            setNerve(GET_NERVE_ANON(GalaxyMapControllerNewGalaxyDiscoverPhaseAstroMap));
             break;
         case Mode_NewTicoGalaxyDiscover:
-            setNerve(&::GalaxyMapControllerNewTicoGalaxyDiscoverPhaseAstroMap::sInstance);
+            setNerve(GET_NERVE_ANON(GalaxyMapControllerNewTicoGalaxyDiscoverPhaseAstroMap));
             break;
         case Mode_NewDomeDiscover:
-            setNerve(&::GalaxyMapControllerNewDomeDiscoverPhaseAstroMap::sInstance);
+            setNerve(GET_NERVE_ANON(GalaxyMapControllerNewDomeDiscoverPhaseAstroMap));
             break;
         case Mode_TicoCometPray:
-            setNerve(&::GalaxyMapControllerTicoCometPray::sInstance);
+            setNerve(GET_NERVE_ANON(GalaxyMapControllerTicoCometPray));
             break;
         case Mode_ChallengeGalaxyDiscover:
-            setNerve(&::GalaxyMapControllerChallengeGalaxyDiscoverPhaseAstroMap::sInstance);
+            setNerve(GET_NERVE_ANON(GalaxyMapControllerChallengeGalaxyDiscoverPhaseAstroMap));
             break;
         }
     }
@@ -327,7 +327,7 @@ void GalaxyMapController::exeFadeinModeMap() {
 
 void GalaxyMapController::exeAppearGalaxyMap() {
     if (tryAppearGalaxyMap()) {
-        setNerve(&::GalaxyMapControllerDisplayGalaxyMap::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerDisplayGalaxyMap));
     }
 }
 
@@ -337,7 +337,7 @@ void GalaxyMapController::exeDisplayGalaxyMap() {
     }
 
     if (!mMap->isShowDetail() && tryPushBackButton()) {
-        setNerve(&::GalaxyMapControllerFadeout::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerFadeout));
     } else if (tryChangeMode()) {
         setNerveAccordingToNextModeFromMap();
     }
@@ -352,7 +352,7 @@ void GalaxyMapController::exeAppearAstroMap() {
         return;
     }
 
-    setNerve(&::GalaxyMapControllerDisplayAstroMap::sInstance);
+    setNerve(GET_NERVE_ANON(GalaxyMapControllerDisplayAstroMap));
 }
 
 void GalaxyMapController::exeDisplayAstroMap() {
@@ -361,7 +361,7 @@ void GalaxyMapController::exeDisplayAstroMap() {
     }
 
     if (!mMap->isShowDetail() && tryPushBackButton()) {
-        setNerve(&::GalaxyMapControllerFadeout::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerFadeout));
     } else if (tryChangeMode()) {
         setNerveAccordingToNextModeFromMap();
     }
@@ -377,7 +377,7 @@ void GalaxyMapController::exeReadyPowerStarList() {
     }
 
     if (mWipe->isClose()) {
-        setNerve(&::GalaxyMapControllerAppearPowerStarList::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerAppearPowerStarList));
     }
 }
 
@@ -394,7 +394,7 @@ void GalaxyMapController::exeAppearPowerStarList() {
     }
 
     if (mWipe->isOpen()) {
-        setNerve(&::GalaxyMapControllerDisplayPowerStarList::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerDisplayPowerStarList));
     }
 }
 
@@ -402,9 +402,9 @@ void GalaxyMapController::exeDisplayPowerStarList() {
     if (!mPowerStarList->isExecCapture() && tryPushBackButton()) {
         mMode = Mode_AstroMap;
 
-        setNerve(&::GalaxyMapControllerDisappearPowerStarList::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerDisappearPowerStarList));
     } else if (tryChangeMode()) {
-        setNerve(&::GalaxyMapControllerDisappearPowerStarList::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerDisappearPowerStarList));
     }
 }
 
@@ -427,7 +427,7 @@ void GalaxyMapController::exeDisappearPowerStarList() {
             break;
         }
 
-        setNerve(&::GalaxyMapControllerFadeinModeMap::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerFadeinModeMap));
     }
 }
 
@@ -435,13 +435,13 @@ void GalaxyMapController::exeNewGalaxyDiscoverPhaseAstroMap() {
     if (MR::isGreaterStep(this, ::sWaitForNewGalaxyDiscoverPhaseAstroMap)) {
         mMode = Mode_GalaxyMap;
 
-        setNerve(&::GalaxyMapControllerNewGalaxyDiscoverPhaseAppearGalaxyMap::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerNewGalaxyDiscoverPhaseAppearGalaxyMap));
     }
 }
 
 void GalaxyMapController::exeNewGalaxyDiscoverPhaseAppearGalaxyMap() {
     if (tryAppearGalaxyMap()) {
-        setNerve(&::GalaxyMapControllerNewGalaxyDiscoverPhaseDisplayGalaxyMap::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerNewGalaxyDiscoverPhaseDisplayGalaxyMap));
     }
 }
 
@@ -469,12 +469,12 @@ void GalaxyMapController::exeTicoCometFadeoutWhite() {
     }
 
     if (mWipe->isClose()) {
-        setNerve(&::GalaxyMapControllerTicoCometWaitWhite::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerTicoCometWaitWhite));
     }
 }
 
 void GalaxyMapController::exeTicoCometWaitWhite() {
-    MR::setNerveAtStep(this, &::GalaxyMapControllerFadeinModeMap::sInstance, ::sTicoCometWaitFrame);
+    MR::setNerveAtStep(this, GET_NERVE_ANON(GalaxyMapControllerFadeinModeMap), ::sTicoCometWaitFrame);
 }
 
 void GalaxyMapController::exeTicoCometPray() {
@@ -494,7 +494,7 @@ void GalaxyMapController::exeFadeout() {
     }
 
     if (mWipe->isClose()) {
-        setNerve(&::GalaxyMapControllerReadyGame::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerReadyGame));
     }
 }
 
@@ -590,7 +590,7 @@ bool GalaxyMapController::tryDisplayAndKeyWait() {
     }
 
     if (MR::isGreaterStep(this, ::sDisplayKeepFrame) && MR::testCorePadTriggerA(WPAD_CHAN0)) {
-        setNerve(&::GalaxyMapControllerFadeout::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerFadeout));
 
         return true;
     }
@@ -601,13 +601,13 @@ bool GalaxyMapController::tryDisplayAndKeyWait() {
 void GalaxyMapController::setNerveAccordingToNextModeFromMap() {
     switch (mMode) {
     case Mode_PowerStarList:
-        setNerve(&::GalaxyMapControllerReadyPowerStarList::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerReadyPowerStarList));
         break;
     case Mode_GalaxyMap:
-        setNerve(&::GalaxyMapControllerAppearGalaxyMap::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerAppearGalaxyMap));
         break;
     case Mode_AstroMap:
-        setNerve(&::GalaxyMapControllerAppearAstroMap::sInstance);
+        setNerve(GET_NERVE_ANON(GalaxyMapControllerAppearAstroMap));
         break;
     }
 }

@@ -54,7 +54,7 @@ void MogucchiHillPiece::init(const JMapInfoIter& rIter) {
     }
 
     initSound(1, false);
-    initNerve(&::MogucchiHillPieceNrvPieceWait::sInstance);
+    initNerve(GET_NERVE_ANON(MogucchiHillPieceNrvPieceWait));
     makeActorDead();
 }
 
@@ -72,7 +72,7 @@ void MogucchiHillPiece::control() {
 
 void MogucchiHillPiece::appear() {
     LiveActor::appear();
-    setNerve(&::MogucchiHillPieceNrvPieceAppear::sInstance);
+    setNerve(GET_NERVE_ANON(MogucchiHillPieceNrvPieceAppear));
     MR::hideModel(this);
 
     _CC = false;
@@ -97,11 +97,11 @@ void MogucchiHillPiece::exeAppear() {
         MR::startSound(this, "SE_EM_MOGHILL_APPEAR");
     }
 
-    MR::setNerveAtBckStopped(this, &::MogucchiHillPieceNrvPieceWait::sInstance);
+    MR::setNerveAtBckStopped(this, GET_NERVE_ANON(MogucchiHillPieceNrvPieceWait));
 }
 
 void MogucchiHillPiece::exeWait() {
-    if (mHost->isNerve(&::MogucchiHillNrvWait::sInstance)) {
+    if (mHost->isNerve(GET_NERVE_ANON(MogucchiHillNrvWait))) {
         return;
     }
 
@@ -133,12 +133,12 @@ void MogucchiHillPiece::crumble() {
         return;
     }
 
-    if (isNerve(&::MogucchiHillPieceNrvPieceCrumble::sInstance)) {
+    if (isNerve(GET_NERVE_ANON(MogucchiHillPieceNrvPieceCrumble))) {
         return;
     }
 
     MR::invalidateClipping(this);
-    setNerve(&::MogucchiHillPieceNrvPieceCrumble::sInstance);
+    setNerve(GET_NERVE_ANON(MogucchiHillPieceNrvPieceCrumble));
 }
 
 void MogucchiHillPiece::destroy() {
@@ -159,7 +159,7 @@ void MogucchiHillPiece::calcAndSetBaseMtx() {
 }
 
 void MogucchiHillPiece::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    bool isCrumbleEnd = isNerve(&::MogucchiHillPieceNrvPieceCrumble::sInstance) && MR::isGreaterEqualStep(this, ::sCrumbleFrame);
+    bool isCrumbleEnd = isNerve(GET_NERVE_ANON(MogucchiHillPieceNrvPieceCrumble)) && MR::isGreaterEqualStep(this, ::sCrumbleFrame);
 
     if (isCrumbleEnd) {
         return;
@@ -171,11 +171,11 @@ void MogucchiHillPiece::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             return;
         }
 
-        if (isNerve(&::MogucchiHillPieceNrvPieceAppear::sInstance) && mHost->notifyAppearAttackToPlayer(pSender, pReceiver)) {
+        if (isNerve(GET_NERVE_ANON(MogucchiHillPieceNrvPieceAppear)) && mHost->notifyAppearAttackToPlayer(pSender, pReceiver)) {
             return;
         }
 
-        if (isNerve(&::MogucchiHillPieceNrvPieceWait::sInstance) && mHost->notifyWaitAttackToPlayer(pSender, pReceiver)) {
+        if (isNerve(GET_NERVE_ANON(MogucchiHillPieceNrvPieceWait)) && mHost->notifyWaitAttackToPlayer(pSender, pReceiver)) {
             return;
         }
 
@@ -196,7 +196,7 @@ bool MogucchiHillPiece::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitS
         return false;
     }
 
-    bool isCrumbleEnd = isNerve(&::MogucchiHillPieceNrvPieceCrumble::sInstance) && MR::isGreaterEqualStep(this, ::sCrumbleFrame);
+    bool isCrumbleEnd = isNerve(GET_NERVE_ANON(MogucchiHillPieceNrvPieceCrumble)) && MR::isGreaterEqualStep(this, ::sCrumbleFrame);
 
     if (isCrumbleEnd) {
         return false;
@@ -237,7 +237,7 @@ bool MogucchiHillPiece::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitS
 }
 
 bool MogucchiHillPiece::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    bool isCrumbleEnd = isNerve(&::MogucchiHillPieceNrvPieceCrumble::sInstance) && MR::isGreaterEqualStep(this, ::sCrumbleFrame);
+    bool isCrumbleEnd = isNerve(GET_NERVE_ANON(MogucchiHillPieceNrvPieceCrumble)) && MR::isGreaterEqualStep(this, ::sCrumbleFrame);
 
     if (isCrumbleEnd) {
         return false;
@@ -276,7 +276,7 @@ MogucchiHill::MogucchiHill(LiveActor* pHost, s32 param2, const char* pName)
 
 void MogucchiHill::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemyMovement(this);
-    initNerve(&::MogucchiHillNrvMove::sInstance);
+    initNerve(GET_NERVE_ANON(MogucchiHillNrvMove));
     createPieces();
     makeActorDead();
 }
@@ -287,13 +287,13 @@ void MogucchiHill::start() {
         appear();
     }
 
-    setNerve(&::MogucchiHillNrvMove::sInstance);
+    setNerve(GET_NERVE_ANON(MogucchiHillNrvMove));
 
     _F0 = 3;
 }
 
 void MogucchiHill::end() {
-    setNerve(&::MogucchiHillNrvWait::sInstance);
+    setNerve(GET_NERVE_ANON(MogucchiHillNrvWait));
 }
 
 void MogucchiHill::startNaturally() {
@@ -390,7 +390,7 @@ void MogucchiHill::appearPiece() {
 
         if (_F0 <= 0) {
             _F0 = 0;
-            setNerve(&::MogucchiHillNrvWait::sInstance);
+            setNerve(GET_NERVE_ANON(MogucchiHillNrvWait));
             _EC = 0;
             return;
         }

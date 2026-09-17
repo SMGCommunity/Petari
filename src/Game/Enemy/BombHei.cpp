@@ -162,9 +162,9 @@ void BombHei::init(const JMapInfoIter& rIter) {
     MR::addHitSensorEnemyAttack(this, "explode", 32, mExplodeRadius * scl, TVec3f(0.0f, scl * 200.0f, 0.0f));
 
     if (mType == BOMB) {
-        initNerve(&NrvBombHei::HostTypeNrvPhysics::sInstance);
+        initNerve(GET_NERVE(BombHei, HostTypeNrvPhysics));
     } else {
-        initNerve(&NrvBombHei::HostTypeNrvWait::sInstance);
+        initNerve(GET_NERVE(BombHei, HostTypeNrvWait));
     }
 
     MR::initShadowVolumeSphere(this, 60.0f);
@@ -196,7 +196,7 @@ void BombHei::appear() {
     getSensor("body")->validate();
 
     if (mType == BOMB_HEI || mType == BOMB) {
-        setNerve(&NrvBombHei::HostTypeNrvLaunch::sInstance);
+        setNerve(GET_NERVE(BombHei, HostTypeNrvLaunch));
     }
 
     MR::showModel(this);
@@ -254,9 +254,9 @@ void BombHei::exeLaunch() {
 
         if (mGravity.dot(mVelocity) < 5.0f) {
             if (mType == BOMB_HEI) {
-                setNerve(&NrvBombHei::HostTypeNrvStarting::sInstance);
+                setNerve(GET_NERVE(BombHei, HostTypeNrvStarting));
             } else if (mType == BOMB) {
-                setNerve(&NrvBombHei::HostTypeNrvPhysics::sInstance);
+                setNerve(GET_NERVE(BombHei, HostTypeNrvPhysics));
             }
             return;
         }
@@ -279,7 +279,7 @@ void BombHei::exeStarting() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvBombHei::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(BombHei, HostTypeNrvWait));
     }
 }
 
@@ -292,7 +292,7 @@ void BombHei::exeWait() {
                             ::hNoMoveNoTurnParam.mTurnRate);
 
     if (MR::isGreaterStep(this, ::hWaitTime)) {
-        setNerve(&NrvBombHei::HostTypeNrvWalk::sInstance);
+        setNerve(GET_NERVE(BombHei, HostTypeNrvWalk));
         return;
     }
 
@@ -302,9 +302,9 @@ void BombHei::exeWait() {
 
     if (MR::calcDistanceToPlayer(this) < 1000.0f && (!MR::isValidSwitchA(this) || MR::isOnSwitchA(this))) {
         if (mCountdown > 0 && mCountdown < ::hBrkRateUpTime) {
-            setNerve(&NrvBombHei::HostTypeNrvPursueFast::sInstance);
+            setNerve(GET_NERVE(BombHei, HostTypeNrvPursueFast));
         } else {
-            setNerve(&NrvBombHei::HostTypeNrvPursue::sInstance);
+            setNerve(GET_NERVE(BombHei, HostTypeNrvPursue));
         }
     }
 }
@@ -325,7 +325,7 @@ void BombHei::exeWalk() {
                                ::hWalkParam.mTurnRate);
 
     if (MR::isGreaterStep(this, ::hWalkTime)) {
-        setNerve(&NrvBombHei::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(BombHei, HostTypeNrvWait));
         return;
     }
 
@@ -335,9 +335,9 @@ void BombHei::exeWalk() {
 
     if (MR::calcDistanceToPlayer(this) < 1000.0f && (!MR::isValidSwitchA(this) || MR::isOnSwitchA(this))) {
         if (mCountdown > 0 && mCountdown < ::hBrkRateUpTime) {
-            setNerve(&NrvBombHei::HostTypeNrvPursueFast::sInstance);
+            setNerve(GET_NERVE(BombHei, HostTypeNrvPursueFast));
         } else {
-            setNerve(&NrvBombHei::HostTypeNrvPursue::sInstance);
+            setNerve(GET_NERVE(BombHei, HostTypeNrvPursue));
         }
     }
 }
@@ -353,7 +353,7 @@ void BombHei::exePursue() {
     if (MR::calcDistanceToPlayer(this) < 0.0f) {
     }
 
-    if (isNerve(&NrvBombHei::HostTypeNrvPursueFast::sInstance)) {
+    if (isNerve(GET_NERVE(BombHei, HostTypeNrvPursueFast))) {
         MR::tryStartBck(this, "CountDown", nullptr);
         MR::moveAndTurnToPlayer(this, &mFront, ::hPursueFastFarParam.mSpeedH, ::hPursueFastFarParam.mGravAccel, ::hPursueFastFarParam.mFriction,
                                 ::hPursueFastFarParam.mTurnRate);
@@ -363,8 +363,8 @@ void BombHei::exePursue() {
                                 ::hPursueFarParam.mTurnRate);
     }
 
-    if (isNerve(&NrvBombHei::HostTypeNrvPursue::sInstance) && mCountdown > 0 && mCountdown < ::hBrkRateUpTime) {
-        setNerve(&NrvBombHei::HostTypeNrvPursueFast::sInstance);
+    if (isNerve(GET_NERVE(BombHei, HostTypeNrvPursue)) && mCountdown > 0 && mCountdown < ::hBrkRateUpTime) {
+        setNerve(GET_NERVE(BombHei, HostTypeNrvPursueFast));
         return;
     }
 
@@ -388,9 +388,9 @@ void BombHei::exePursueHit() {
 
     if (MR::isGreaterStep(this, ::hPursueHitTime)) {
         if (mCountdown > 0 && mCountdown < ::hBrkRateUpTime) {
-            setNerve(&NrvBombHei::HostTypeNrvPursueFast::sInstance);
+            setNerve(GET_NERVE(BombHei, HostTypeNrvPursueFast));
         } else {
-            setNerve(&NrvBombHei::HostTypeNrvPursue::sInstance);
+            setNerve(GET_NERVE(BombHei, HostTypeNrvPursue));
         }
     }
 }
@@ -412,7 +412,7 @@ void BombHei::exeSpinHit() {
 
     if (MR::isOnGroundCos(this, ::hGroundCosine)) {
         if (MR::isBckStopped(this)) {
-            setNerve(&NrvBombHei::HostTypeNrvPhysics::sInstance);
+            setNerve(GET_NERVE(BombHei, HostTypeNrvPhysics));
         }
     } else {
         mVelocity.add(mGravity.multiplyOperatorInline(::hGravity));
@@ -432,7 +432,7 @@ void BombHei::exeTrample() {
     MR::killVelocityOnGroundCosH(this, ::hGroundCosine);
 
     if (MR::isGreaterStep(this, ::hTrampleTime)) {
-        setNerve(&NrvBombHei::HostTypeNrvPursue::sInstance);
+        setNerve(GET_NERVE(BombHei, HostTypeNrvPursue));
     }
 }
 
@@ -462,7 +462,7 @@ void BombHei::exePhysics() {
         MR::rotateQuatRollBall(&mRotQuat, mVelocity, *MR::getGroundNormal(this), radius);
 
         if (MR::isBckStopped(this) && mVelocity.length() < ::hToStopVelLen) {
-            setNerve(&NrvBombHei::HostTypeNrvStop::sInstance);
+            setNerve(GET_NERVE(BombHei, HostTypeNrvStop));
             return;
         }
 
@@ -525,7 +525,7 @@ void BombHei::exeThrown() {
     } else {
         startBoundSound();
         MR::startBck(this, "Bound", nullptr);
-        setNerve(&NrvBombHei::HostTypeNrvPhysics::sInstance);
+        setNerve(GET_NERVE(BombHei, HostTypeNrvPhysics));
         return;
     }
 
@@ -544,7 +544,7 @@ void BombHei::exeTaken() {
             MR::startSoundPlayer("SE_PV_LIFT_UP", -1);
             MR::startSound(this, "SE_EM_BOMB_LIFT");
         } else {
-            setNerve(&NrvBombHei::HostTypeNrvPhysics::sInstance);
+            setNerve(GET_NERVE(BombHei, HostTypeNrvPhysics));
             return;
         }
     }
@@ -582,7 +582,7 @@ void BombHei::exeExplode() {
 }
 
 void BombHei::exeBindStarPointer() {
-    MR::updateActorStateAndNextNerve(this, mBindStarPointerState, &NrvBombHei::HostTypeNrvWait::sInstance);
+    MR::updateActorStateAndNextNerve(this, mBindStarPointerState, GET_NERVE(BombHei, HostTypeNrvWait));
 }
 
 void BombHei::endBindStarPointer() {
@@ -626,8 +626,8 @@ bool BombHei::calcJoint(TPos3f* pMtx, const JointControllerInfo& rJointInfo) {
 void BombHei::control() {
     mScaleController->updateNerve();
 
-    if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f)) && !isNerve(&NrvBombHei::HostTypeNrvExplode::sInstance)) {
-        setNerve(&NrvBombHei::HostTypeNrvExplode::sInstance);
+    if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f)) && !isNerve(GET_NERVE(BombHei, HostTypeNrvExplode))) {
+        setNerve(GET_NERVE(BombHei, HostTypeNrvExplode));
         return;
     }
 
@@ -651,17 +651,17 @@ void BombHei::control() {
         }
 
         if (--mCountdown == 0) {
-            setNerve(&NrvBombHei::HostTypeNrvExplode::sInstance);
+            setNerve(GET_NERVE(BombHei, HostTypeNrvExplode));
             return;
         }
     }
 
     if (mType != BOMB &&
-        (isNerve(&NrvBombHei::HostTypeNrvWait::sInstance) || isNerve(&NrvBombHei::HostTypeNrvWalk::sInstance) ||
-         isNerve(&NrvBombHei::HostTypeNrvPursue::sInstance) || isNerve(&NrvBombHei::HostTypeNrvPursueFast::sInstance) ||
-         isNerve(&NrvBombHei::HostTypeNrvPursueHit::sInstance)) &&
+        (isNerve(GET_NERVE(BombHei, HostTypeNrvWait)) || isNerve(GET_NERVE(BombHei, HostTypeNrvWalk)) ||
+         isNerve(GET_NERVE(BombHei, HostTypeNrvPursue)) || isNerve(GET_NERVE(BombHei, HostTypeNrvPursueFast)) ||
+         isNerve(GET_NERVE(BombHei, HostTypeNrvPursueHit))) &&
         mBindStarPointerState->tryStartPointBind()) {
-        setNerve(&NrvBombHei::HostTypeNrvBindStarPointer::sInstance);
+        setNerve(GET_NERVE(BombHei, HostTypeNrvBindStarPointer));
     }
 }
 
@@ -689,7 +689,7 @@ void BombHei::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    if (isNerve(&NrvBombHei::HostTypeNrvLaunch::sInstance) || isNerve(&NrvBombHei::HostTypeNrvExplode::sInstance)) {
+    if (isNerve(GET_NERVE(BombHei, HostTypeNrvLaunch)) || isNerve(GET_NERVE(BombHei, HostTypeNrvExplode))) {
         return;
     }
 
@@ -705,12 +705,12 @@ void BombHei::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (MR::isSensorRide(pReceiver)) {
-        setNerve(&NrvBombHei::HostTypeNrvExplode::sInstance);
+        setNerve(GET_NERVE(BombHei, HostTypeNrvExplode));
         return;
     }
 
     if (MR::isSensorNpc(pReceiver) || MR::isSensorEnemy(pReceiver)) {
-        if (isNerve(&NrvBombHei::HostTypeNrvThrown::sInstance)) {
+        if (isNerve(GET_NERVE(BombHei, HostTypeNrvThrown))) {
             TVec3f direction = pSender->mPosition;
             direction -= pReceiver->mPosition;
             MR::normalizeOrZero(&direction);
@@ -722,7 +722,7 @@ void BombHei::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool BombHei::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvBombHei::HostTypeNrvExplode::sInstance)) {
+    if (isNerve(GET_NERVE(BombHei, HostTypeNrvExplode))) {
         return false;
     }
 
@@ -731,12 +731,12 @@ bool BombHei::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
     }
 
     if (MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg)) {
-        if (isNerve(&NrvBombHei::HostTypeNrvThrown::sInstance) || isNerve(&NrvBombHei::HostTypeNrvPhysics::sInstance) ||
-            isNerve(&NrvBombHei::HostTypeNrvStop::sInstance) || isNerve(&NrvBombHei::HostTypeNrvSpinHit::sInstance)) {
+        if (isNerve(GET_NERVE(BombHei, HostTypeNrvThrown)) || isNerve(GET_NERVE(BombHei, HostTypeNrvPhysics)) ||
+            isNerve(GET_NERVE(BombHei, HostTypeNrvStop)) || isNerve(GET_NERVE(BombHei, HostTypeNrvSpinHit))) {
             return false;
         }
 
-        if (isNerve(&NrvBombHei::HostTypeNrvLaunch::sInstance)) {
+        if (isNerve(GET_NERVE(BombHei, HostTypeNrvLaunch))) {
             if (MR::isMsgPlayerHipDrop(msg)) {
                 MR::sendMsgAwayJump(pSender, pReceiver);
             }
@@ -744,15 +744,15 @@ bool BombHei::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
         }
 
         startCountdown();
-        setNerve(&NrvBombHei::HostTypeNrvTrample::sInstance);
+        setNerve(GET_NERVE(BombHei, HostTypeNrvTrample));
         if (MR::isMsgPlayerHipDrop(msg)) {
             MR::sendMsgAwayJump(pSender, pReceiver);
         }
         return true;
     }
 
-    if (MR::isMsgPlayerSpinAttack(msg) && mType == BOMB_HEI && !isNerve(&NrvBombHei::HostTypeNrvSpinHit::sInstance)) {
-        setNerve(&NrvBombHei::HostTypeNrvSpinHit::sInstance);
+    if (MR::isMsgPlayerSpinAttack(msg) && mType == BOMB_HEI && !isNerve(GET_NERVE(BombHei, HostTypeNrvSpinHit))) {
+        setNerve(GET_NERVE(BombHei, HostTypeNrvSpinHit));
         startCountdown();
         MR::stopScene(::hStopFrame);
         return true;
@@ -762,14 +762,14 @@ bool BombHei::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
 }
 
 bool BombHei::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isMsgExplosionAttack(msg) && !isNerve(&NrvBombHei::HostTypeNrvExplode::sInstance)) {
-        setNerve(&NrvBombHei::HostTypeNrvExplode::sInstance);
+    if (MR::isMsgExplosionAttack(msg) && !isNerve(GET_NERVE(BombHei, HostTypeNrvExplode))) {
+        setNerve(GET_NERVE(BombHei, HostTypeNrvExplode));
         return true;
     }
 
     if ((MR::isMsgEnemyAttack(msg) || MR::isMsgToEnemyAttackBlow(msg) || MR::isMsgToEnemyAttackTrample(msg)) &&
-        !isNerve(&NrvBombHei::HostTypeNrvExplode::sInstance) && pSender->isType(ATYPE_WANWAN)) {
-        setNerve(&NrvBombHei::HostTypeNrvExplode::sInstance);
+        !isNerve(GET_NERVE(BombHei, HostTypeNrvExplode)) && pSender->isType(ATYPE_WANWAN)) {
+        setNerve(GET_NERVE(BombHei, HostTypeNrvExplode));
         return true;
     }
 
@@ -781,7 +781,7 @@ bool BombHei::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    if (isNerve(&NrvBombHei::HostTypeNrvSpinHit::sInstance)) {
+    if (isNerve(GET_NERVE(BombHei, HostTypeNrvSpinHit))) {
         return false;
     }
 
@@ -791,25 +791,25 @@ bool BombHei::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool BombHei::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgItemGet(msg) && getSensor("body") == pReceiver) {
-        if (!isNerve(&NrvBombHei::HostTypeNrvStop::sInstance) && !isNerve(&NrvBombHei::HostTypeNrvPhysics::sInstance) &&
-            !isNerve(&NrvBombHei::HostTypeNrvThrown::sInstance) &&
-            !(isNerve(&NrvBombHei::HostTypeNrvSpinHit::sInstance) && MR::isGreaterStep(this, ::hSpinHitCanGetTime))) {
+        if (!isNerve(GET_NERVE(BombHei, HostTypeNrvStop)) && !isNerve(GET_NERVE(BombHei, HostTypeNrvPhysics)) &&
+            !isNerve(GET_NERVE(BombHei, HostTypeNrvThrown)) &&
+            !(isNerve(GET_NERVE(BombHei, HostTypeNrvSpinHit)) && MR::isGreaterStep(this, ::hSpinHitCanGetTime))) {
             return false;
         }
 
-        if (isNerve(&NrvBombHei::HostTypeNrvThrown::sInstance) && MR::isLessEqualStep(this, ::hThrownCanNotGotTime)) {
+        if (isNerve(GET_NERVE(BombHei, HostTypeNrvThrown)) && MR::isLessEqualStep(this, ::hThrownCanNotGotTime)) {
             return false;
         }
 
         mCarrySensor = pSender;
-        setNerve(&NrvBombHei::HostTypeNrvTaken::sInstance);
+        setNerve(GET_NERVE(BombHei, HostTypeNrvTaken));
         startCountdown();
         return true;
     }
 
     if (msg == ACTMES_DAMAGEDROP || msg == ACTMES_RUSHDROP || msg == ACTMES_ATTACKDROP) {
-        if (isNerve(&NrvBombHei::HostTypeNrvTaken::sInstance)) {
-            setNerve(&NrvBombHei::HostTypeNrvThrown::sInstance);
+        if (isNerve(GET_NERVE(BombHei, HostTypeNrvTaken))) {
+            setNerve(GET_NERVE(BombHei, HostTypeNrvThrown));
         }
         return true;
     }
@@ -823,11 +823,11 @@ bool BombHei::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
 }
 
 bool BombHei::receiveMsgThrow(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvBombHei::HostTypeNrvExplode::sInstance)) {
+    if (isNerve(GET_NERVE(BombHei, HostTypeNrvExplode))) {
         return true;
     }
 
-    setNerve(&NrvBombHei::HostTypeNrvThrown::sInstance);
+    setNerve(GET_NERVE(BombHei, HostTypeNrvThrown));
     mCarrySensor = nullptr;
     TVec3f throwVec;
     MR::getPlayerThrowVec(&throwVec);

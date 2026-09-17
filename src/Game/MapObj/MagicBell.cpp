@@ -30,7 +30,7 @@ void MagicBell::init(const JMapInfoIter& rIter) {
     MR::addEffect(this, "StarWandHitMark");
     MR::setEffectHostSRT(this, "StarWandHitMark", &mHitMarkPosition, nullptr, nullptr);
     initSound(4, false);
-    initNerve(&NrvMagicBell::MagicBellNrvWait::sInstance);
+    initNerve(GET_NERVE(MagicBell, MagicBellNrvWait));
     MR::initShadowVolumeSphere(this, 100.0f);
     MR::useStageSwitchWriteA(this, rIter);
     MR::initStarPointerTarget(this, 100.0f, TVec3f(0.0f, -80.0f, 0.0f));
@@ -120,7 +120,7 @@ void MagicBell::exeRing() {
     }
 
     MR::deleteEffect(this, "Ring");
-    setNerve(&NrvMagicBell::MagicBellNrvWait::sInstance);
+    setNerve(GET_NERVE(MagicBell, MagicBellNrvWait));
 }
 
 void MagicBell::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -134,7 +134,7 @@ bool MagicBell::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
         return false;
     }
 
-    if (isNerve(&NrvMagicBell::MagicBellNrvWait::sInstance) || (isNerve(&NrvMagicBell::MagicBellNrvRing::sInstance) && MR::isGreaterStep(this, 10))) {
+    if (isNerve(GET_NERVE(MagicBell, MagicBellNrvWait)) || (isNerve(GET_NERVE(MagicBell, MagicBellNrvRing)) && MR::isGreaterStep(this, 10))) {
         TVec3f v15(mPosition);
         v15.sub(*MR::getPlayerPos());
         v15.y += 100.0f;
@@ -178,7 +178,7 @@ void MagicBell::startRing(const TVec3f& a1, const TVec3f& a2) {
     mHitMarkPosition.set< f32 >(a2);
     MR::emitEffect(this, "StarWandHitMark");
     MR::emitEffect(this, "Ring");
-    setNerve(&NrvMagicBell::MagicBellNrvRing::sInstance);
+    setNerve(GET_NERVE(MagicBell, MagicBellNrvRing));
 }
 
 MagicBell::~MagicBell() {

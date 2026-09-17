@@ -41,7 +41,7 @@ void GameStageClearSequence::init(const JMapInfoIter& rIter) {
     MR::setFollowTypeAdd(mEffectLayout, nullptr);
     mEffectLayout->kill();
 
-    initNerve(&NrvGameStageClearSequence::GameStageClearSequencePowerStarGetDemo::sInstance);
+    initNerve(GET_NERVE(GameStageClearSequence, GameStageClearSequencePowerStarGetDemo));
     kill();
 }
 
@@ -49,14 +49,14 @@ void GameStageClearSequence::startPowerStarGetDemo() {
     LayoutActor::appear();
     mEffectFollowPos.set(TVec2f(0.0f, ::sLayoutOffsetYPowerStar));
     MR::setTextBoxGameMessageRecursive(mEffectLayout, "GetStar", "GetStar_PowerStar");
-    setNerve(&NrvGameStageClearSequence::GameStageClearSequencePowerStarGetDemo::sInstance);
+    setNerve(GET_NERVE(GameStageClearSequence, GameStageClearSequencePowerStarGetDemo));
 }
 
 void GameStageClearSequence::startGrandStarGetDemo() {
     LayoutActor::appear();
     mEffectFollowPos.set(TVec2f(0.0f, ::sLayoutOffsetYGrandStar));
     MR::setTextBoxGameMessageRecursive(mEffectLayout, "GetStar", "GetStar_GrandStar");
-    setNerve(&NrvGameStageClearSequence::GameStageClearSequenceGrandStarGetDemo::sInstance);
+    setNerve(GET_NERVE(GameStageClearSequence, GameStageClearSequenceGrandStarGetDemo));
 }
 
 void GameStageClearSequence::appearGetStarLayout() {

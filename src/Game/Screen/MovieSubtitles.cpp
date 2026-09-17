@@ -19,13 +19,13 @@ MovieSubtitles::MovieSubtitles(const char* pMessageId, s32 appearTime) : LayoutA
     mFormerText = new TalkTextFormer(this, "Text00");
     mFormerText->formMessage(MR::getLayoutMessageDirect(pMessageId), 2);
 
-    initNerve(&NrvMovieSubtitles::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(MovieSubtitles, HostTypeWait));
     kill();
 }
 
 void MovieSubtitles::appear() {
     LayoutActor::appear();
-    setNerve(&NrvMovieSubtitles::HostTypeTalk::sInstance);
+    setNerve(GET_NERVE(MovieSubtitles, HostTypeTalk));
 }
 
 void MovieSubtitles::exeWait() {
@@ -35,7 +35,7 @@ void MovieSubtitles::exeTalk() {
     mFormerText->updateTalking();
 
     if (mFormerText->isTextAppearedAll()) {
-        setNerve(&NrvMovieSubtitles::HostTypeTalkWait::sInstance);
+        setNerve(GET_NERVE(MovieSubtitles, HostTypeTalkWait));
     }
 }
 
@@ -45,7 +45,7 @@ void MovieSubtitles::exeTalkWait() {
     if (MR::isStep(this, mAppearTime)) {
         if (mFormerText->hasNextPage()) {
             mFormerText->nextPage();
-            setNerve(&NrvMovieSubtitles::HostTypeTalk::sInstance);
+            setNerve(GET_NERVE(MovieSubtitles, HostTypeTalk));
         } else {
             kill();
         }

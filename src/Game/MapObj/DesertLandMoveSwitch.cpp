@@ -54,11 +54,11 @@ void DesertLandMoveSwitch::init(const JMapInfoIter& rIter) {
     initModelAndCollision(rIter);
     MR::connectToSceneMapObj(this);
     if (stack_C == -1) {
-        initNerve(&NrvDesertLandMoveSwitch::HostTypeWait::sInstance);
+        initNerve(GET_NERVE(DesertLandMoveSwitch, HostTypeWait));
     } else {
         MR::startBck(this, "On", 0);
         MR::setAllAnimFrameAtEnd(this, "On");
-        initNerve(&NrvDesertLandMoveSwitch::HostTypeOn::sInstance);
+        initNerve(GET_NERVE(DesertLandMoveSwitch, HostTypeOn));
     }
     f32 stack_8 = -1.0f;
     MR::calcModelBoundingRadius(&stack_8, this);
@@ -135,7 +135,7 @@ bool DesertLandMoveSwitch::tryOn() {
     if (MR::isGreaterStep(this, 6) && MR::isBckStopped(this)) {
         MR::startSound(this, "SE_OJ_HIPDROP_SWITCH_ON");
         MR::shakeCameraNormal();
-        setNerve(&NrvDesertLandMoveSwitch::HostTypeOn::sInstance);
+        setNerve(GET_NERVE(DesertLandMoveSwitch, HostTypeOn));
         return true;
     }
     return false;
@@ -145,7 +145,7 @@ bool DesertLandMoveSwitch::trySwitchDown() {
     if (!_98)
         return false;
 
-    setNerve(&NrvDesertLandMoveSwitch::HostTypeSwitchDown::sInstance);
+    setNerve(GET_NERVE(DesertLandMoveSwitch, HostTypeSwitchDown));
     return true;
 }
 
@@ -225,9 +225,9 @@ void DesertLandMoveSwitch::exeOn() {
     if (_9C > 0) {
         updateTimerSE();
         if (MR::isStep(this, _9C))
-            setNerve(&NrvDesertLandMoveSwitch::HostTypeReturn::sInstance);
+            setNerve(GET_NERVE(DesertLandMoveSwitch, HostTypeReturn));
     } else if (!MR::isOnSwitchA(this))
-        setNerve(&NrvDesertLandMoveSwitch::HostTypeReturn::sInstance);
+        setNerve(GET_NERVE(DesertLandMoveSwitch, HostTypeReturn));
 }
 
 void DesertLandMoveSwitch::exeReturn() {
@@ -246,7 +246,7 @@ void DesertLandMoveSwitch::exeReturn() {
     if (trySwitchDown())
         mSpringValue->reset();
     else if (MR::isBckStopped(this)) {
-        setNerve(&NrvDesertLandMoveSwitch::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(DesertLandMoveSwitch, HostTypeWait));
     }
 }
 

@@ -33,7 +33,7 @@ void AnmModelObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
-    info.setupNerve(&NrvAnmModelObj::HostTypeWait::sInstance);
+    info.setupNerve(GET_NERVE(AnmModelObj, HostTypeWait));
     MapObjActorUtil::setupInitInfoTypical(&info, mObjectName);
     initialize(rIter, info);
 
@@ -54,7 +54,7 @@ bool AnmModelObj::isDone() const {
 
 void AnmModelObj::exeWait() {
     if (isOnStartAnmTrigger()) {
-        setNerve(&NrvAnmModelObj::HostTypeMove::sInstance);
+        setNerve(GET_NERVE(AnmModelObj, HostTypeMove));
     }
 }
 
@@ -111,9 +111,9 @@ void AnmModelObj::exeMove() {
         if (isKilledAtMoveDone()) {
             kill();
         } else if (isRepeat()) {
-            setNerve(&NrvAnmModelObj::HostTypeWait::sInstance);
+            setNerve(GET_NERVE(AnmModelObj, HostTypeWait));
         } else {
-            setNerve(&NrvAnmModelObj::HostTypeDone::sInstance);
+            setNerve(GET_NERVE(AnmModelObj, HostTypeDone));
         }
     }
 }
@@ -139,8 +139,8 @@ void AnmModelSwitchMove::init(const JMapInfoIter& rIter) {
     AnmModelObj::init(rIter);
 
     if (MR::isDemoCast(this, nullptr)) {
-        if (MR::tryRegisterDemoActionNerve(this, &NrvAnmModelObj::HostTypeMove::sInstance, nullptr)) {
-            setNerve(&NrvAnmModelObj::HostTypeWait::sInstance);
+        if (MR::tryRegisterDemoActionNerve(this, GET_NERVE(AnmModelObj, HostTypeMove), nullptr)) {
+            setNerve(GET_NERVE(AnmModelObj, HostTypeWait));
         }
     }
 }
@@ -166,7 +166,7 @@ void AnmModelGroundOnMove::init(const JMapInfoIter& rIter) {
 }
 
 void AnmModelGroundOnMove::control() {
-    if (MR::isValidSwitchB(this) && isNerve(&NrvAnmModelObj::HostTypeMove::sInstance) && MR::isFirstStep(this) && !MR::isOnSwitchB(this)) {
+    if (MR::isValidSwitchB(this) && isNerve(GET_NERVE(AnmModelObj, HostTypeMove)) && MR::isFirstStep(this) && !MR::isOnSwitchB(this)) {
         MR::onSwitchB(this);
     }
 }
@@ -184,7 +184,7 @@ void AnmModelBindMove::init(const JMapInfoIter& rIter) {
 }
 
 void AnmModelBindMove::control() {
-    if (MR::isValidSwitchB(this) && isNerve(&NrvAnmModelObj::HostTypeMove::sInstance) && MR::isFirstStep(this) && !MR::isOnSwitchB(this)) {
+    if (MR::isValidSwitchB(this) && isNerve(GET_NERVE(AnmModelObj, HostTypeMove)) && MR::isFirstStep(this) && !MR::isOnSwitchB(this)) {
         MR::onSwitchB(this);
     }
 }
@@ -209,8 +209,8 @@ AnmModelSwitchMoveEventCamera::AnmModelSwitchMoveEventCamera(const char* pName) 
 void AnmModelSwitchMoveEventCamera::init(const JMapInfoIter& rIter) {
     AnmModelObj::init(rIter);
 
-    if (MR::isDemoCast(this, nullptr) && MR::tryRegisterDemoActionNerve(this, &NrvAnmModelObj::HostTypeMove::sInstance, nullptr)) {
-        setNerve(&NrvAnmModelObj::HostTypeWait::sInstance);
+    if (MR::isDemoCast(this, nullptr) && MR::tryRegisterDemoActionNerve(this, GET_NERVE(AnmModelObj, HostTypeMove), nullptr)) {
+        setNerve(GET_NERVE(AnmModelObj, HostTypeWait));
     }
 
     MR::initActorCamera(this, rIter, &mCameraInfo);

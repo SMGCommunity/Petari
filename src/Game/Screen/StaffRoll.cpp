@@ -120,13 +120,13 @@ void StaffRollLine::init(const JMapInfoIter& rIter) {
     MR::createAndAddPaneCtrl(this, ::cPaneNameText, 1);
     MR::setFollowPos(&mPosition, this, ::cPaneNameText);
     MR::setPaneScale(this, ::getStaffRollParam()->mPaneScale, ::getStaffRollParam()->mPaneScale, ::cPaneNameText);
-    initNerve(&NrvStaffRollLine::StaffRollLineNrvScroll::sInstance);
+    initNerve(GET_NERVE(StaffRollLine, StaffRollLineNrvScroll));
     kill();
 }
 
 void StaffRollLine::appear() {
     LayoutActor::appear();
-    setNerve(&NrvStaffRollLine::StaffRollLineNrvScroll::sInstance);
+    setNerve(GET_NERVE(StaffRollLine, StaffRollLineNrvScroll));
 }
 
 void StaffRollLine::exeScroll() {
@@ -156,7 +156,7 @@ void StaffRollPicture::init(const JMapInfoIter& rIter) {
     MR::createAndAddPaneCtrl(this, "PictureRD", 1);
     disappearAllPane();
     initReplaceTexture();
-    initNerve(&NrvStaffRollPicture::StaffRollPictureNrvWork::sInstance);
+    initNerve(GET_NERVE(StaffRollPicture, StaffRollPictureNrvWork));
     kill();
 }
 
@@ -277,7 +277,7 @@ void StaffRoll::init(const JMapInfoIter& rIter) {
     mPicture = new StaffRollPicture("スタッフロール写真");
     mPicture->initWithoutIter();
 
-    initNerve(&NrvStaffRoll::StaffRollNrvPrepareDemo::sInstance);
+    initNerve(GET_NERVE(StaffRoll, StaffRollNrvPrepareDemo));
     kill();
 }
 
@@ -285,7 +285,7 @@ void StaffRoll::appear() {
     GameSystemFunction::setPermissionToCheckWiiRemoteConnectAndScreenDimming(false);
     MR::deactivateGameSceneDraw3D();
     LayoutActor::appear();
-    setNerve(&NrvStaffRoll::StaffRollNrvPrepareDemo::sInstance);
+    setNerve(GET_NERVE(StaffRoll, StaffRollNrvPrepareDemo));
 }
 
 void StaffRoll::kill() {
@@ -303,11 +303,11 @@ void StaffRoll::kill() {
 }
 
 void StaffRoll::startInfo() {
-    setNerve(&NrvStaffRoll::StaffRollNrvRestart::sInstance);
+    setNerve(GET_NERVE(StaffRoll, StaffRollNrvRestart));
 }
 
 bool StaffRoll::isPauseOrEnd() const {
-    return isNerve(&NrvStaffRoll::StaffRollNrvPauseForEndingMovie::sInstance) || isNerve(&NrvStaffRoll::StaffRollNrvEnd::sInstance);
+    return isNerve(GET_NERVE(StaffRoll, StaffRollNrvPauseForEndingMovie)) || isNerve(GET_NERVE(StaffRoll, StaffRollNrvEnd));
 }
 
 bool StaffRoll::isNextLineEmpty() const {
@@ -323,7 +323,7 @@ bool StaffRoll::isNextLineEmpty() const {
 
 void StaffRoll::exePrepareDemo() {
     if (MR::tryStartDemo(this, ::cStaffRollDemoName)) {
-        setNerve(&NrvStaffRoll::StaffRollNrvPrepareBgm::sInstance);
+        setNerve(GET_NERVE(StaffRoll, StaffRollNrvPrepareBgm));
     }
 }
 
@@ -339,7 +339,7 @@ void StaffRoll::exePrepareBgm() {
     if (MR::isGreaterStep(this, ::sStepForTitleLogoAppear)) {
         MR::unlockStageBGM();
         _4C = 0;
-        setNerve(&NrvStaffRoll::StaffRollNrvTitleLogoAppear::sInstance);
+        setNerve(GET_NERVE(StaffRoll, StaffRollNrvTitleLogoAppear));
     }
 }
 
@@ -350,7 +350,7 @@ void StaffRoll::exeTitleLogoAppear() {
     }
 
     if (MR::isStep(this, 240)) {
-        setNerve(&NrvStaffRoll::StaffRollNrvTitleLogoScroll::sInstance);
+        setNerve(GET_NERVE(StaffRoll, StaffRollNrvTitleLogoScroll));
     }
 }
 
@@ -365,7 +365,7 @@ void StaffRoll::exeTitleLogoScroll() {
 
     if (mTitleLogoPos.y < -210.0f) {
         MR::hidePane(this, ::cPaneNameTitleLogo);
-        setNerve(&NrvStaffRoll::StaffRollNrvLineScroll::sInstance);
+        setNerve(GET_NERVE(StaffRoll, StaffRollNrvLineScroll));
     }
 }
 
@@ -378,7 +378,7 @@ void StaffRoll::exeLineScroll() {
         return;
     }
 
-    setNerve(&NrvStaffRoll::StaffRollNrvEndLogoScroll::sInstance);
+    setNerve(GET_NERVE(StaffRoll, StaffRollNrvEndLogoScroll));
 }
 */
 
@@ -396,7 +396,7 @@ void StaffRoll::exeEndLogoScroll() {
     if (mEndLogoPos.y < ::sEndLogoPosY) {
         mEndLogoPos.y = ::sEndLogoPosY;
 
-        setNerve(&NrvStaffRoll::StaffRollNrvAllRights::sInstance);
+        setNerve(GET_NERVE(StaffRoll, StaffRollNrvAllRights));
     }
 }
 
@@ -417,7 +417,7 @@ void StaffRoll::exeAllRights() {
         MR::stopStageBGM(0);
         mPicture->kill();
         MR::hidePane(this, ::cPaneNameTheEnd);
-        setNerve(&NrvStaffRoll::StaffRollNrvPrepareInfo::sInstance);
+        setNerve(GET_NERVE(StaffRoll, StaffRollNrvPrepareInfo));
     }
 }
 
@@ -431,11 +431,11 @@ void StaffRoll::exeInfoAppear() {
     const char* pMessageId;
 
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvStaffRoll::StaffRollNrvInfoPictureBookAppear::sInstance)) {
+        if (isNerve(GET_NERVE(StaffRoll, StaffRollNrvInfoPictureBookAppear))) {
             pMessageId = "System_Result005";
-        } else if (isNerve(&NrvStaffRoll::StaffRollNrvInfoCometAppear::sInstance)) {
+        } else if (isNerve(GET_NERVE(StaffRoll, StaffRollNrvInfoCometAppear))) {
             pMessageId = "StaffRollInfo_Comet";
-        } else if (isNerve(&NrvStaffRoll::StaffRollNrvInfoLuigiAppear::sInstance)) {
+        } else if (isNerve(GET_NERVE(StaffRoll, StaffRollNrvInfoLuigiAppear))) {
             if (MR::isPlayerLuigi()) {
                 pMessageId = "StaffRollInfo_FinalGalaxyOpen";
             } else {
@@ -445,7 +445,7 @@ void StaffRoll::exeInfoAppear() {
 
         MR::startSubBGM("BGM_NEW_GALAXY", false);
 
-        if (isNerve(&NrvStaffRoll::StaffRollNrvInfoLuigiAppear::sInstance) && !MR::isPlayerLuigi()) {
+        if (isNerve(GET_NERVE(StaffRoll, StaffRollNrvInfoLuigiAppear)) && !MR::isPlayerLuigi()) {
             MR::startSystemSE("SE_SY_LUIGI_MODE_APPEAR");
         }
 
@@ -460,12 +460,12 @@ void StaffRoll::exeInfoAppear() {
 
     MR::startSystemSE("SE_SY_TALK_OK");
 
-    if (isNerve(&NrvStaffRoll::StaffRollNrvInfoPictureBookAppear::sInstance)) {
-        setNerve(&NrvStaffRoll::StaffRollNrvInfoPictureBookDisappear::sInstance);
-    } else if (isNerve(&NrvStaffRoll::StaffRollNrvInfoCometAppear::sInstance)) {
-        setNerve(&NrvStaffRoll::StaffRollNrvInfoCometDisappear::sInstance);
-    } else if (isNerve(&NrvStaffRoll::StaffRollNrvInfoLuigiAppear::sInstance)) {
-        setNerve(&NrvStaffRoll::StaffRollNrvInfoLuigiDisappear::sInstance);
+    if (isNerve(GET_NERVE(StaffRoll, StaffRollNrvInfoPictureBookAppear))) {
+        setNerve(GET_NERVE(StaffRoll, StaffRollNrvInfoPictureBookDisappear));
+    } else if (isNerve(GET_NERVE(StaffRoll, StaffRollNrvInfoCometAppear))) {
+        setNerve(GET_NERVE(StaffRoll, StaffRollNrvInfoCometDisappear));
+    } else if (isNerve(GET_NERVE(StaffRoll, StaffRollNrvInfoLuigiAppear))) {
+        setNerve(GET_NERVE(StaffRoll, StaffRollNrvInfoLuigiDisappear));
     }
 }
 
@@ -500,7 +500,7 @@ void StaffRoll::exePrepareSave() {
     }
 
     if (MR::tryStartDemoWithoutCinemaFrameValidHandPointerFinger(this, ::cSaveAfterStaffRollDemoName)) {
-        setNerve(&NrvStaffRoll::StaffRollNrvSave::sInstance);
+        setNerve(GET_NERVE(StaffRoll, StaffRollNrvSave));
     }
 }
 
@@ -516,7 +516,7 @@ void StaffRoll::exeSave() {
     MR::endDemo(this, ::cSaveAfterStaffRollDemoName);
     MR::offPlayerControl();
     MR::deactivateDefaultGameLayout();
-    setNerve(&NrvStaffRoll::StaffRollNrvEnd::sInstance);
+    setNerve(GET_NERVE(StaffRoll, StaffRollNrvEnd));
 }
 
 void StaffRoll::exeEnd() {
@@ -576,18 +576,18 @@ void StaffRoll::draw() const {
 }
 
 void StaffRoll::setNrvNextInfo() {
-    if (isNerve(&NrvStaffRoll::StaffRollNrvPrepareInfo::sInstance)) {
-        setNerve(&NrvStaffRoll::StaffRollNrvPauseForEndingMovie::sInstance);
-    } else if (!MR::isOnGameEventFlagViewNormalEnding() && isNerve(&NrvStaffRoll::StaffRollNrvRestart::sInstance)) {
-        setNerve(&NrvStaffRoll::StaffRollNrvInfoPictureBookAppear::sInstance);
-    } else if (isNerve(&NrvStaffRoll::StaffRollNrvInfoPictureBookDisappear::sInstance)) {
+    if (isNerve(GET_NERVE(StaffRoll, StaffRollNrvPrepareInfo))) {
+        setNerve(GET_NERVE(StaffRoll, StaffRollNrvPauseForEndingMovie));
+    } else if (!MR::isOnGameEventFlagViewNormalEnding() && isNerve(GET_NERVE(StaffRoll, StaffRollNrvRestart))) {
+        setNerve(GET_NERVE(StaffRoll, StaffRollNrvInfoPictureBookAppear));
+    } else if (isNerve(GET_NERVE(StaffRoll, StaffRollNrvInfoPictureBookDisappear))) {
         MR::onGameEventFlagViewNormalEnding();
-        setNerve(&NrvStaffRoll::StaffRollNrvInfoCometAppear::sInstance);
+        setNerve(GET_NERVE(StaffRoll, StaffRollNrvInfoCometAppear));
     } else if (!MR::isOnGameEventFlagViewCompleteEnding() && MR::isStarCompleteAllGalaxy()) {
-        setNerve(&NrvStaffRoll::StaffRollNrvInfoLuigiAppear::sInstance);
+        setNerve(GET_NERVE(StaffRoll, StaffRollNrvInfoLuigiAppear));
         MR::onGameEventFlagViewCompleteEnding();
     } else {
-        setNerve(&NrvStaffRoll::StaffRollNrvPrepareSave::sInstance);
+        setNerve(GET_NERVE(StaffRoll, StaffRollNrvPrepareSave));
     }
 }
 

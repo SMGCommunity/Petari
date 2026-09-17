@@ -43,14 +43,14 @@ void FireMarioBall::init(const JMapInfoIter& rIter) {
     MR::onShadowVolumeCutDropLength(this, 0);
     MR::setShadowVolumeEndDropOffset(this, 0, 50.0f);
     MR::invalidateClipping(this);
-    initNerve(&NrvFireMarioBall::FireMarioBallNrvThrow::sInstance);
+    initNerve(GET_NERVE(FireMarioBall, FireMarioBallNrvThrow));
     _90 = 0;
     makeActorDead();
 }
 
 void FireMarioBall::appear() {
     LiveActor::appear();
-    setNerve(&NrvFireMarioBall::FireMarioBallNrvThrow::sInstance);
+    setNerve(GET_NERVE(FireMarioBall, FireMarioBallNrvThrow));
     MR::onCalcGravity(this);
     MR::onCalcShadow(this, 0);
 }

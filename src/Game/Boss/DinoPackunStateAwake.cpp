@@ -9,12 +9,12 @@ namespace NrvDinoPackunStateAwake {
 };  // namespace NrvDinoPackunStateAwake
 
 DinoPackunStateAwake::DinoPackunStateAwake(DinoPackun* pHost) : ActorStateBase< DinoPackun >("ディノパックン気付く", pHost) {
-    initNerve(&NrvDinoPackunStateAwake::DinoPackunStateAwakeNrvFind::sInstance);
+    initNerve(GET_NERVE(DinoPackunStateAwake, DinoPackunStateAwakeNrvFind));
 }
 
 void DinoPackunStateAwake::appear() {
     mIsDead = false;
-    setNerve(&NrvDinoPackunStateAwake::DinoPackunStateAwakeNrvFind::sInstance);
+    setNerve(GET_NERVE(DinoPackunStateAwake, DinoPackunStateAwakeNrvFind));
 }
 
 void DinoPackunStateAwake::kill() {

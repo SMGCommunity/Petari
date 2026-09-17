@@ -61,7 +61,7 @@ void HoneyBee::init(const JMapInfoIter& rIter) {
     caps.mSensorOffset.x = 0.0f;
     caps.mSensorOffset.y = -20.0f;
     caps.mSensorOffset.z = 0.0f;
-    caps.mWaitNerve = &NrvHoneyBee::HoneyBeeNrvWait::sInstance;
+    caps.mWaitNerve = GET_NERVE(HoneyBee, HoneyBeeNrvWait);
     caps._70 = "Center";
 
     s32 arg0 = 0;
@@ -77,10 +77,10 @@ void HoneyBee::init(const JMapInfoIter& rIter) {
         _128 = 1;
         break;
     case InitAction_JumpLecture:
-        caps.mWaitNerve = &NrvHoneyBee::HoneyBeeNrvJumpLecture::sInstance;
+        caps.mWaitNerve = GET_NERVE(HoneyBee, HoneyBeeNrvJumpLecture);
         break;
     case InitAction_Fly:
-        caps.mWaitNerve = &NrvHoneyBee::HoneyBeeNrvFly::sInstance;
+        caps.mWaitNerve = GET_NERVE(HoneyBee, HoneyBeeNrvFly);
         break;
     case InitAction_Sleep:
         mParam.setNoTurnAction("SleepWait");
@@ -93,19 +93,19 @@ void HoneyBee::init(const JMapInfoIter& rIter) {
         _128 = 1;
         break;
     case InitAction_DropLecture:
-        caps.mWaitNerve = &NrvHoneyBee::HoneyBeeNrvDropLecture::sInstance;
+        caps.mWaitNerve = GET_NERVE(HoneyBee, HoneyBeeNrvDropLecture);
         break;
     case InitAction_Flustered:
         mParam.setSingleAction("Flustered");
         _128 = 1;
         break;
     case InitAction_FlyLectureA:
-        caps.mWaitNerve = &NrvHoneyBee::HoneyBeeNrvFlyLectureA::sInstance;
+        caps.mWaitNerve = GET_NERVE(HoneyBee, HoneyBeeNrvFlyLectureA);
         caps.mTalkMtx = _160;
         caps.mMessageOffset.zero();
         break;
     case InitAction_FlyLectureB:
-        caps.mWaitNerve = &NrvHoneyBee::HoneyBeeNrvFlyLectureB::sInstance;
+        caps.mWaitNerve = GET_NERVE(HoneyBee, HoneyBeeNrvFlyLectureB);
         caps.mTalkMtx = _160;
         caps.mMessageOffset.zero();
         break;
@@ -172,7 +172,7 @@ void HoneyBee::control() {
 }
 
 void HoneyBee::exeWait() {
-    if (!MR::tryStartReactionAndPushNerve(this, &NrvHoneyBee::HoneyBeeNrvReaction::sInstance)) {
+    if (!MR::tryStartReactionAndPushNerve(this, GET_NERVE(HoneyBee, HoneyBeeNrvReaction))) {
         MR::tryTalkNearPlayerAndStartMoveTalkAction(this);
     }
 }
@@ -225,7 +225,7 @@ void HoneyBee::exeDropLecture() {
             MR::startBck(this, "HipDropWait", nullptr);
         }
     } else if (MR::isBckLooped(this)) {
-        setNerve(&NrvHoneyBee::HoneyBeeNrvDropLecture::sInstance);
+        setNerve(GET_NERVE(HoneyBee, HoneyBeeNrvDropLecture));
     }
 }
 
@@ -243,7 +243,7 @@ void HoneyBee::exeJumpLecture() {
             MR::startBck(this, "FlyLectureWait", nullptr);
         }
     } else if (MR::isBckLooped(this)) {
-        setNerve(&NrvHoneyBee::HoneyBeeNrvJumpLecture::sInstance);
+        setNerve(GET_NERVE(HoneyBee, HoneyBeeNrvJumpLecture));
     }
 }
 

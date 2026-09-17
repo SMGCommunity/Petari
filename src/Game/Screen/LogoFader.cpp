@@ -14,7 +14,7 @@ namespace {
 };  // namespace
 
 LogoFader::LogoFader(const char* pName) : LayoutActor(pName, true), _20(true), mMaxStep(30), mRate(0.0f) {
-    initNerve(&LogoFaderNrvDisplay::sInstance);
+    initNerve(GET_NERVE_GLOBAL(LogoFaderNrvDisplay));
     kill();
 }
 
@@ -52,7 +52,7 @@ void LogoFader::exeFadeIn() {
     }
 
     if (MR::isStep(this, mMaxStep)) {
-        setNerve(&LogoFaderNrvDisplay::sInstance);
+        setNerve(GET_NERVE_GLOBAL(LogoFaderNrvDisplay));
     }
 }
 
@@ -68,22 +68,22 @@ void LogoFader::exeFadeOut() {
     }
 
     if (MR::isStep(this, mMaxStep)) {
-        setNerve(&LogoFaderNrvBlank::sInstance);
+        setNerve(GET_NERVE_GLOBAL(LogoFaderNrvBlank));
     }
 }
 
 void LogoFader::setBlank() {
-    setNerve(&LogoFaderNrvBlank::sInstance);
+    setNerve(GET_NERVE_GLOBAL(LogoFaderNrvBlank));
 }
 
 void LogoFader::startFadeIn() {
-    setNerve(&LogoFaderNrvFadeIn::sInstance);
+    setNerve(GET_NERVE_GLOBAL(LogoFaderNrvFadeIn));
 }
 
 void LogoFader::startFadeOut() {
-    setNerve(&LogoFaderNrvFadeOut::sInstance);
+    setNerve(GET_NERVE_GLOBAL(LogoFaderNrvFadeOut));
 }
 
 bool LogoFader::isFadeEnd() const {
-    return isNerve(&LogoFaderNrvDisplay::sInstance) || isNerve(&LogoFaderNrvBlank::sInstance);
+    return isNerve(GET_NERVE_GLOBAL(LogoFaderNrvDisplay)) || isNerve(GET_NERVE_GLOBAL(LogoFaderNrvBlank));
 }

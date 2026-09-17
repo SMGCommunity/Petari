@@ -18,7 +18,7 @@ namespace NrvWalkerStateBindStarPointer {
 
 WalkerStateBindStarPointer::WalkerStateBindStarPointer(LiveActor* pHost, AnimScaleController* pController)
     : ActorStateBase("歩行型スターポインタ拘束", pHost), mScaleController(pController), mUpdateCounter(0), mHasEffect(false) {
-    initNerve(&NrvWalkerStateBindStarPointer::WalkerStateBindStarPointerNrvBind::sInstance);
+    initNerve(GET_NERVE(WalkerStateBindStarPointer, WalkerStateBindStarPointerNrvBind));
 
     if (!MR::isRegisteredEffect(pHost, "Touch")) {
         mHasEffect = true;
@@ -28,7 +28,7 @@ WalkerStateBindStarPointer::WalkerStateBindStarPointer(LiveActor* pHost, AnimSca
 
 void WalkerStateBindStarPointer::appear() {
     mIsDead = false;
-    setNerve(&NrvWalkerStateBindStarPointer::WalkerStateBindStarPointerNrvBind::sInstance);
+    setNerve(GET_NERVE(WalkerStateBindStarPointer, WalkerStateBindStarPointerNrvBind));
 }
 
 void WalkerStateBindStarPointer::kill() {

@@ -17,3 +17,6 @@ public:
 
     virtual ~ShadowSurfaceDrawer();
 };
+
+inline ShadowSurfaceDrawer::~ShadowSurfaceDrawer() {
+}

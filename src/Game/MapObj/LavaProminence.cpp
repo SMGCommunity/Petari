@@ -88,9 +88,9 @@ void LavaProminence::init(const JMapInfoIter& rIter) {
     MR::initAndSetRailClipping(&_12C, this, 300.0f, 300.0f);
 
     if (MR::isValidSwitchA(this)) {
-        initNerve(&NrvLavaProminence::HostTypeNrvWaitSwitch::sInstance);
+        initNerve(GET_NERVE(LavaProminence, HostTypeNrvWaitSwitch));
     } else {
-        initNerve(&NrvLavaProminence::HostTypeNrvWait::sInstance);
+        initNerve(GET_NERVE(LavaProminence, HostTypeNrvWait));
     }
 
     initEffectKeeper(0, nullptr, false);
@@ -147,8 +147,8 @@ void LavaProminence::startClipped() {
     mEmitDropEffect = true;
     MR::forceDeleteEffectAll(this);
 
-    if (!isNerve(&NrvLavaProminence::HostTypeNrvWaitSwitch::sInstance)) {
-        setNerve(&NrvLavaProminence::HostTypeNrvWait::sInstance);
+    if (!isNerve(GET_NERVE(LavaProminence, HostTypeNrvWaitSwitch))) {
+        setNerve(GET_NERVE(LavaProminence, HostTypeNrvWait));
     }
 }
 
@@ -200,7 +200,7 @@ void LavaProminence::exeWaitSwitch() {
     }
 
     if (MR::isOnSwitchA(this)) {
-        setNerve(&NrvLavaProminence::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(LavaProminence, HostTypeNrvWait));
     }
 }
 
@@ -215,9 +215,9 @@ void LavaProminence::exeWait() {
     }
 
     if (MR::isValidSwitchA(this) && !MR::isOnSwitchA(this)) {
-        setNerve(&NrvLavaProminence::HostTypeNrvWaitSwitch::sInstance);
+        setNerve(GET_NERVE(LavaProminence, HostTypeNrvWaitSwitch));
     } else if (MR::isStep(this, mWaitTime)) {
-        setNerve(&NrvLavaProminence::HostTypeNrvSign::sInstance);
+        setNerve(GET_NERVE(LavaProminence, HostTypeNrvSign));
     }
 }
 
@@ -233,7 +233,7 @@ void LavaProminence::exeSign() {
 
     if (MR::isStep(this, ::sTimeSign)) {
         MR::deleteEffect(this, "Sign");
-        setNerve(&NrvLavaProminence::HostTypeNrvMoveStartExtra::sInstance);
+        setNerve(GET_NERVE(LavaProminence, HostTypeNrvMoveStartExtra));
     }
 }
 
@@ -259,7 +259,7 @@ void LavaProminence::exeMoveStartExtra() {
 
     if (MR::isGreaterStep(this, endStartStep - 1)) {
         MR::deleteEffect(this, "Start");
-        setNerve(&NrvLavaProminence::HostTypeNrvMoveLoop::sInstance);
+        setNerve(GET_NERVE(LavaProminence, HostTypeNrvMoveLoop));
     }
 }
 
@@ -281,7 +281,7 @@ void LavaProminence::exeMoveStart() {
 
     if (mMoveRailCoord >= 300.0f) {
         MR::deleteEffect(this, "Start");
-        setNerve(&NrvLavaProminence::HostTypeNrvMoveLoop::sInstance);
+        setNerve(GET_NERVE(LavaProminence, HostTypeNrvMoveLoop));
     }
 }
 
@@ -290,7 +290,7 @@ void LavaProminence::exeMoveLoop() {
     moveOnRail();
 
     if (mMoveRailCoord >= MR::getRailTotalLength(this) - mMoveRailEndOffset) {
-        setNerve(&NrvLavaProminence::HostTypeNrvMoveEndExtra::sInstance);
+        setNerve(GET_NERVE(LavaProminence, HostTypeNrvMoveEndExtra));
     }
 }
 
@@ -305,7 +305,7 @@ void LavaProminence::exeMoveEnd() {
     moveOnRail();
 
     if (mMoveRailCoord >= MR::getRailTotalLength(this)) {
-        setNerve(&NrvLavaProminence::HostTypeNrvMoveEndExtra::sInstance);
+        setNerve(GET_NERVE(LavaProminence, HostTypeNrvMoveEndExtra));
     }
 }
 
@@ -323,7 +323,7 @@ void LavaProminence::exeMoveEndExtra() {
         MR::deleteEffect(this, "DropEffect");
         mEmitDropEffect = true;
         MR::deleteEffect(this, "End");
-        setNerve(&NrvLavaProminence::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(LavaProminence, HostTypeNrvWait));
     }
 }
 
@@ -354,6 +354,6 @@ void LavaProminence::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool LavaProminence::isNrvMove() {
-    return isNerve(&NrvLavaProminence::HostTypeNrvMoveStartExtra::sInstance) || isNerve(&NrvLavaProminence::HostTypeNrvMoveLoop::sInstance) ||
-           isNerve(&NrvLavaProminence::HostTypeNrvMoveEndExtra::sInstance);
+    return isNerve(GET_NERVE(LavaProminence, HostTypeNrvMoveStartExtra)) || isNerve(GET_NERVE(LavaProminence, HostTypeNrvMoveLoop)) ||
+           isNerve(GET_NERVE(LavaProminence, HostTypeNrvMoveEndExtra));
 }

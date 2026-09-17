@@ -79,7 +79,7 @@ void SkeletalFishBaby::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("SnakeFish", nullptr, false);
     initRail(rIter);
     initJoint();
-    initNerve(&::SkeletalFishBabyNrvSwim::sInstance);
+    initNerve(GET_NERVE_ANON(SkeletalFishBabyNrvSwim));
     initSensor();
     MR::setClippingTypeSphere(this, 500.0f);
     MR::addToAttributeGroupSearchTurtle(this);
@@ -114,7 +114,7 @@ void SkeletalFishBaby::init(const JMapInfoIter& rIter) {
 void SkeletalFishBaby::makeActorAppeared() {
     LiveActor::makeActorAppeared();
     MR::startBck(this, "Swim", nullptr);
-    setNerve(&::SkeletalFishBabyNrvSwim::sInstance);
+    setNerve(GET_NERVE_ANON(SkeletalFishBabyNrvSwim));
     MR::validateClipping(this);
 }
 
@@ -137,7 +137,7 @@ void SkeletalFishBaby::control() {
     mRailControl->getPos(&mPosition, 0.0f);
     mScaleController->updateNerve();
 
-    if (isNerve(&::SkeletalFishBabyNrvSwim::sInstance)) {
+    if (isNerve(GET_NERVE_ANON(SkeletalFishBabyNrvSwim))) {
         MR::startLevelSound(this, "SE_EM_LV_SNAKEFISH_SWIM");
     }
 }
@@ -198,7 +198,7 @@ void SkeletalFishBaby::exeSwim() {
     }
 
     if (isStarPointerPointing()) {
-        setNerve(&::SkeletalFishBabyNrvBind::sInstance);
+        setNerve(GET_NERVE_ANON(SkeletalFishBabyNrvBind));
     }
 }
 
@@ -213,7 +213,7 @@ void SkeletalFishBaby::exeBind() {
     MR::startDPDFreezeLevelSound(this);
 
     if (!isStarPointerPointing()) {
-        setNerve(&::SkeletalFishBabyNrvSwim::sInstance);
+        setNerve(GET_NERVE_ANON(SkeletalFishBabyNrvSwim));
     }
 }
 
@@ -231,7 +231,7 @@ void SkeletalFishBaby::exeBreak() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&::SkeletalFishBabyNrvDead::sInstance);
+        setNerve(GET_NERVE_ANON(SkeletalFishBabyNrvDead));
     }
 }
 
@@ -255,7 +255,7 @@ bool SkeletalFishBaby::calcJoint(TPos3f* pJointPos, const JointControllerInfo& r
 }
 
 bool SkeletalFishBaby::damage(const TVec3f& rAirBubblePos, bool shakeCameraNormal) {
-    bool isDeadOrBroke = isNerve(&::SkeletalFishBabyNrvDead::sInstance) || isNerve(&::SkeletalFishBabyNrvBreak::sInstance);
+    bool isDeadOrBroke = isNerve(GET_NERVE_ANON(SkeletalFishBabyNrvDead)) || isNerve(GET_NERVE_ANON(SkeletalFishBabyNrvBreak));
 
     if (!isDeadOrBroke) {
         if (shakeCameraNormal) {
@@ -265,7 +265,7 @@ bool SkeletalFishBaby::damage(const TVec3f& rAirBubblePos, bool shakeCameraNorma
         }
 
         MR::appearAirBubble(rAirBubblePos, -1);
-        setNerve(&::SkeletalFishBabyNrvBreak::sInstance);
+        setNerve(GET_NERVE_ANON(SkeletalFishBabyNrvBreak));
         return true;
     }
 
@@ -321,8 +321,8 @@ void SkeletalFishBaby::initSensor() {
 }
 
 bool SkeletalFishBaby::isAttackable() const {
-    return !isNerve(&::SkeletalFishBabyNrvDead::sInstance) && !isNerve(&::SkeletalFishBabyNrvBreak::sInstance) &&
-           !isNerve(&::SkeletalFishBabyNrvBind::sInstance);
+    return !isNerve(GET_NERVE_ANON(SkeletalFishBabyNrvDead)) && !isNerve(GET_NERVE_ANON(SkeletalFishBabyNrvBreak)) &&
+           !isNerve(GET_NERVE_ANON(SkeletalFishBabyNrvBind));
 }
 
 bool SkeletalFishBaby::isStarPointerPointing() const {

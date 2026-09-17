@@ -1009,25 +1009,14 @@ public:
 // header defined since these actually get defined in CamHeliEffector
 // and in sinit of NameObjFactory
 namespace NrvMarioActor {
-    NERVE_DECL_EXE(MarioActorNrvWait, MarioActor, Wait);
-    NERVE_DECL_EXE(MarioActorNrvGameOver, MarioActor, GameOver);
-    NERVE_DECL_EXE(MarioActorNrvGameOverAbyss, MarioActor, GameOverAbyss);
-    NERVE_DECL_EXE(MarioActorNrvGameOverAbyss2, MarioActor, GameOverAbyss);
-    NERVE_DECL_EXE(MarioActorNrvGameOverFire, MarioActor, GameOverFire);
-    NERVE_DECL_EXE(MarioActorNrvGameOverBlackHole, MarioActor, GameOverBlackHole2);
-    NERVE_DECL_EXE(MarioActorNrvGameOverNonStop, MarioActor, GameOverNonStop);
-    NERVE_DECL_EXE(MarioActorNrvGameOverSink, MarioActor, GameOverSink);
-    NERVE_DECL_EXE(MarioActorNrvTimeWait, MarioActor, TimeWait);
-    NERVE_DECL_EXE(MarioActorNrvNoRush, MarioActor, Wait);
-
-    __declspec(weak) MarioActorNrvWait MarioActorNrvWait::sInstance;
-    __declspec(weak) MarioActorNrvGameOver MarioActorNrvGameOver::sInstance;
-    __declspec(weak) MarioActorNrvGameOverAbyss MarioActorNrvGameOverAbyss::sInstance;
-    __declspec(weak) MarioActorNrvGameOverAbyss2 MarioActorNrvGameOverAbyss2::sInstance;
-    __declspec(weak) MarioActorNrvGameOverFire MarioActorNrvGameOverFire::sInstance;
-    __declspec(weak) MarioActorNrvGameOverBlackHole MarioActorNrvGameOverBlackHole::sInstance;
-    __declspec(weak) MarioActorNrvGameOverNonStop MarioActorNrvGameOverNonStop::sInstance;
-    __declspec(weak) MarioActorNrvGameOverSink MarioActorNrvGameOverSink::sInstance;
-    __declspec(weak) MarioActorNrvTimeWait MarioActorNrvTimeWait::sInstance;
-    __declspec(weak) MarioActorNrvNoRush MarioActorNrvNoRush::sInstance;
+    NEW_NERVE(MarioActorNrvWait, MarioActor, Wait);
+    NEW_NERVE(MarioActorNrvGameOver, MarioActor, GameOver);
+    NEW_NERVE(MarioActorNrvGameOverAbyss, MarioActor, GameOverAbyss);
+    NEW_NERVE(MarioActorNrvGameOverAbyss2, MarioActor, GameOverAbyss);
+    NEW_NERVE(MarioActorNrvGameOverFire, MarioActor, GameOverFire);
+    NEW_NERVE(MarioActorNrvGameOverBlackHole, MarioActor, GameOverBlackHole2);
+    NEW_NERVE(MarioActorNrvGameOverNonStop, MarioActor, GameOverNonStop);
+    NEW_NERVE(MarioActorNrvGameOverSink, MarioActor, GameOverSink);
+    NEW_NERVE(MarioActorNrvTimeWait, MarioActor, TimeWait);
+    NEW_NERVE(MarioActorNrvNoRush, MarioActor, Wait);
 };  // namespace NrvMarioActor

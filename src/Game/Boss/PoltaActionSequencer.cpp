@@ -24,7 +24,7 @@ namespace NrvPoltaActionSequencer {
 PoltaActionSequencer::PoltaActionSequencer(Polta* pPolta, const JMapInfoIter& rIter)
     : NerveExecutor("ポルタアクション管理"), mPoltaPtr(pPolta), mActionDemo(nullptr), mCurrentAction(nullptr), mActionWaitStart(nullptr),
       mActionPoltaBattleLv1(nullptr), mActionPoltaBattleLv2(nullptr) {
-    initNerve(&NrvPoltaActionSequencer::PoltaActionSequencerNrvWaitStart::sInstance);
+    initNerve(GET_NERVE(PoltaActionSequencer, PoltaActionSequencerNrvWaitStart));
     mActionDemo = new PoltaDemo(pPolta);
     mActionDemo->init();
     mActionWaitStart = new PoltaWaitStart(pPolta);
@@ -65,8 +65,8 @@ bool PoltaActionSequencer::updateAction() {
 }
 
 bool PoltaActionSequencer::startAction() {
-    if (isNerve(&NrvPoltaActionSequencer::PoltaActionSequencerNrvWaitStart::sInstance)) {
-        setNerve(&NrvPoltaActionSequencer::PoltaActionSequencerNrvOpeningDemo::sInstance);
+    if (isNerve(GET_NERVE(PoltaActionSequencer, PoltaActionSequencerNrvWaitStart))) {
+        setNerve(GET_NERVE(PoltaActionSequencer, PoltaActionSequencerNrvOpeningDemo));
         return true;
     }
     return false;
@@ -84,7 +84,7 @@ void PoltaActionSequencer::exeOpeningDemo() {
         mCurrentAction = mActionDemo;
         mActionDemo->startOpeningDemo();
     }
-    MR::updateActorStateAndNextNerve(this, mActionDemo, &NrvPoltaActionSequencer::PoltaActionSequencerNrvBattleLv1::sInstance);
+    MR::updateActorStateAndNextNerve(this, mActionDemo, GET_NERVE(PoltaActionSequencer, PoltaActionSequencerNrvBattleLv1));
 }
 
 void PoltaActionSequencer::exeBattleLv1() {
@@ -93,7 +93,7 @@ void PoltaActionSequencer::exeBattleLv1() {
         mCurrentAction = mActionPoltaBattleLv1;
     }
     if (updateAction()) {
-        setNerve(&NrvPoltaActionSequencer::PoltaActionSequencerNrvPowerUpDemo::sInstance);
+        setNerve(GET_NERVE(PoltaActionSequencer, PoltaActionSequencerNrvPowerUpDemo));
     }
 }
 
@@ -102,7 +102,7 @@ void PoltaActionSequencer::exePowerUpDemo() {
         mCurrentAction = mActionDemo;
         mActionDemo->startPowerUpDemo();
     }
-    MR::updateActorStateAndNextNerve(this, mActionDemo, &NrvPoltaActionSequencer::PoltaActionSequencerNrvBattleLv2::sInstance);
+    MR::updateActorStateAndNextNerve(this, mActionDemo, GET_NERVE(PoltaActionSequencer, PoltaActionSequencerNrvBattleLv2));
 }
 
 void PoltaActionSequencer::exeBattleLv2() {
@@ -112,7 +112,7 @@ void PoltaActionSequencer::exeBattleLv2() {
         mPoltaPtr->appearStarPiece(10);
     }
     if (updateAction()) {
-        setNerve(&NrvPoltaActionSequencer::PoltaActionSequencerNrvDownDemo::sInstance);
+        setNerve(GET_NERVE(PoltaActionSequencer, PoltaActionSequencerNrvDownDemo));
     }
 }
 

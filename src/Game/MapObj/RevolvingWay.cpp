@@ -33,7 +33,7 @@ void RevolvingWay::init(const JMapInfoIter& rIter) {
     MR::addHitSensorMapObj(this, "body", 0x10u, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::initCollisionParts(this, "RevolvingWay", getSensor("body"), nullptr);
     MR::initStarPointerTarget(this, mRadius, TVec3f(0.0f, 0.0f, 0.0f));
-    initNerve(&NrvRevolvingWay::RevolvingWayNrvWait::sInstance);
+    initNerve(GET_NERVE(RevolvingWay, RevolvingWayNrvWait));
     makeActorAppeared();
 }
 

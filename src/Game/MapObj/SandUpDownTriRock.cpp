@@ -29,7 +29,7 @@ void SandUpDownTriRock::init(const JMapInfoIter& rIter) {
     info.setupHitSensor();
     info.setupEffect(nullptr);
     info.setupSound(4);
-    info.setupNerve(&NrvSandUpDownTriRock::SandUpDownTriRockNrvWait::sInstance);
+    info.setupNerve(GET_NERVE(SandUpDownTriRock, SandUpDownTriRockNrvWait));
     initialize(rIter, info);
 
     MR::getJMapInfoArg0NoInit(rIter, &mRestStep);
@@ -53,7 +53,7 @@ void SandUpDownTriRock::exeDown() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvSandUpDownTriRock::SandUpDownTriRockNrvRest::sInstance);
+        setNerve(GET_NERVE(SandUpDownTriRock, SandUpDownTriRockNrvRest));
     }
 }
 
@@ -64,7 +64,7 @@ void SandUpDownTriRock::exeRest() {
 
     if (MR::isStep(this, mRestStep)) {
         MR::validateClipping(this);
-        setNerve(&NrvSandUpDownTriRock::SandUpDownTriRockNrvUp::sInstance);
+        setNerve(GET_NERVE(SandUpDownTriRock, SandUpDownTriRockNrvUp));
     }
 }
 
@@ -74,7 +74,7 @@ void SandUpDownTriRock::exeUp() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvSandUpDownTriRock::SandUpDownTriRockNrvWait::sInstance);
+        setNerve(GET_NERVE(SandUpDownTriRock, SandUpDownTriRockNrvWait));
     }
 }
 
@@ -83,7 +83,7 @@ void SandUpDownTriRock::exeStop() {
 
 bool SandUpDownTriRock::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStartPowerStarGet(msg)) {
-        setNerve(&NrvSandUpDownTriRock::SandUpDownTriRockNrvStop::sInstance);
+        setNerve(GET_NERVE(SandUpDownTriRock, SandUpDownTriRockNrvStop));
 
         return true;
     }
@@ -102,5 +102,5 @@ void SandUpDownTriRock::control() {
 }
 
 void SandUpDownTriRock::startDown() {
-    setNerve(&NrvSandUpDownTriRock::SandUpDownTriRockNrvDown::sInstance);
+    setNerve(GET_NERVE(SandUpDownTriRock, SandUpDownTriRockNrvDown));
 }

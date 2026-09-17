@@ -98,7 +98,7 @@ void PauseMenu::init(const JMapInfoIter& rIter) {
         MR::hidePaneRecursive(this, "LetterButton");
     }
 
-    initNerve(&NrvPauseMenu::PauseMenuNrvSelecting::sInstance);
+    initNerve(GET_NERVE(PauseMenu, PauseMenuNrvSelecting));
 }
 
 void PauseMenu::appear() {
@@ -135,7 +135,7 @@ void PauseMenu::appear() {
         _38->appear();
     }
 
-    setNerve(&NrvPauseMenu::PauseMenuNrvSelecting::sInstance);
+    setNerve(GET_NERVE(PauseMenu, PauseMenuNrvSelecting));
     LayoutActor::appear();
 
     const char* pCoinPanePos = "CPosition1";
@@ -267,7 +267,7 @@ void PauseMenu::exeConfirm() {
             }
         } else {
             forceToWaitAllButton();
-            setNerve(&NrvPauseMenu::PauseMenuNrvSelecting::sInstance);
+            setNerve(GET_NERVE(PauseMenu, PauseMenuNrvSelecting));
         }
     }
 }
@@ -282,10 +282,10 @@ void PauseMenu::exeGameDataSave() {
     }
 
     if (GameSequenceFunction::isSuccessSaveDataHandleSequence()) {
-        setNerve(&NrvPauseMenu::PauseMenuNrvConfirm::sInstance);
+        setNerve(GET_NERVE(PauseMenu, PauseMenuNrvConfirm));
     } else {
         forceToWaitAllButton();
-        setNerve(&NrvPauseMenu::PauseMenuNrvSelecting::sInstance);
+        setNerve(GET_NERVE(PauseMenu, PauseMenuNrvSelecting));
     }
 }
 
@@ -296,6 +296,6 @@ void PauseMenu::exeLuigiLetter() {
 
     if (MR::isDead(mLuigiLetter)) {
         forceToWaitAllButton();
-        setNerve(&NrvPauseMenu::PauseMenuNrvSelecting::sInstance);
+        setNerve(GET_NERVE(PauseMenu, PauseMenuNrvSelecting));
     }
 }

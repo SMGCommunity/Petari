@@ -14,7 +14,6 @@ public:
     /// @param pModelName A pointer to the null-terminated name of the model.
     BenefitItemObj(const char* pName, const char* pModelName);
 
-    virtual ~BenefitItemObj();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void appear();
@@ -88,18 +87,6 @@ public:
     /* 0x13A */ u16 _13A;
 };
 
-class BenefitItemOneUp : public BenefitItemObj {
-public:
-    /// @brief Creates a new `BenefitItemOneUp`.
-    /// @param pName A pointer to the null-terminated name of the object.
-    /// @param pModelName A pointer to the null-terminated name of the model.
-    BenefitItemOneUp(const char* pName) : BenefitItemObj(pName, "KinokoOneUp") {
-    }
-
-    BenefitItemOneUp(const char* pName, const char* pModelName) : BenefitItemObj(pName, pModelName) {
-    }
-};
-
 class ShadowClipActor : public LiveActor {
 public:
     virtual void endClipped();
@@ -109,10 +96,10 @@ public:
 };
 
 namespace NrvBenefitItemObj {
-    NERVE_DECL_EXE(HostTypeNrvWait, BenefitItemObj, Wait);
-    NERVE_DECL_EXE(HostTypeNrvShoot, BenefitItemObj, Shoot);
-    NERVE_DECL_EXE(HostTypeNrvCatch, BenefitItemObj, Catch);
-    NERVE_DECL_EXE(HostTypeNrvAppearGround, BenefitItemObj, AppearGround);
-    NERVE_DECL_EXE(HostTypeNrvPreEscape, BenefitItemObj, PreEscape);
-    NERVE_DECL_EXE(HostTypeNrvEscape, BenefitItemObj, Escape);
+    NEW_NERVE(HostTypeNrvWait, BenefitItemObj, Wait);
+    NEW_NERVE(HostTypeNrvShoot, BenefitItemObj, Shoot);
+    NEW_NERVE(HostTypeNrvCatch, BenefitItemObj, Catch);
+    NEW_NERVE(HostTypeNrvAppearGround, BenefitItemObj, AppearGround);
+    NEW_NERVE(HostTypeNrvPreEscape, BenefitItemObj, PreEscape);
+    NEW_NERVE(HostTypeNrvEscape, BenefitItemObj, Escape);
 };  // namespace NrvBenefitItemObj

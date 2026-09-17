@@ -70,8 +70,8 @@ bool LuigiNPC::eventFunc(u32 msg) {
 }
 
 void LuigiNPC::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensorPlayer(pReceiver) && isNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeWait::sInstance)) {
-        setNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeTouch::sInstance);
+    if (MR::isSensorPlayer(pReceiver) && isNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvOnTreeWait))) {
+        setNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvOnTreeTouch));
     }
 
     NPCActor::attackSensor(pSender, pReceiver);
@@ -98,8 +98,8 @@ bool LuigiNPC::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pR
         }
 
         if ((MR::isMsgPlayerSpinAttack(msg) || MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg) || MR::isMsgStarPieceReflect(msg)) &&
-            (isNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeWait::sInstance) || isNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeTouch::sInstance))) {
-            setNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeFall::sInstance);
+            (isNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvOnTreeWait)) || isNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvOnTreeTouch)))) {
+            setNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvOnTreeFall));
         }
     }
 
@@ -113,7 +113,7 @@ void LuigiNPC::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps(objName);
     caps.setDefault();
     caps.mObjectName = "LuigiNPC";
-    caps.mWaitNerve = &NrvLuigiNPC::LuigiNPCNrvWait::sInstance;
+    caps.mWaitNerve = GET_NERVE(LuigiNPC, LuigiNPCNrvWait);
 
     MR::getJMapInfoArg0NoInit(rIter, &mType);
 
@@ -125,11 +125,11 @@ void LuigiNPC::init(const JMapInfoIter& rIter) {
     MR::registerBranchFunc(mMsgCtrl, TalkMessageFunc(this, &LuigiNPC::branchFunc));
     MR::registerEventFunc(mMsgCtrl, TalkMessageFunc(this, &LuigiNPC::eventFunc));
     setWaitAction();
-    setNerve(&NrvLuigiNPC::LuigiNPCNrvWait::sInstance);
+    setNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvWait));
 
     switch (mType) {
     case Type_Afraid:
-        setNerve(&NrvLuigiNPC::LuigiNPCNrvAfraidWait::sInstance);
+        setNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvAfraidWait));
         setAfraidAction();
         break;
     case Type_Normal:
@@ -144,13 +144,13 @@ void LuigiNPC::init(const JMapInfoIter& rIter) {
     case Type_Arrested:
         MR::useStageSwitchReadA(this, rIter);
         MR::useStageSwitchWriteB(this, rIter);
-        setNerve(&NrvLuigiNPC::LuigiNPCNrvArrestedWait::sInstance);
+        setNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvArrestedWait));
         break;
     case Type_OnTree:
         MR::onCalcShadowDropPrivateGravity(this, nullptr);
         TVec3f offset(0.0f, 0.0f, ::sShadowOffset);
         MR::setShadowDropPositionAtJoint(this, nullptr, "Center", offset);
-        setNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeWait::sInstance);
+        setNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvOnTreeWait));
         break;
     default:
         break;
@@ -158,7 +158,7 @@ void LuigiNPC::init(const JMapInfoIter& rIter) {
 
     if (isDeclarePowerStarType()) {
         MR::declarePowerStar(this);
-        mTakeOutStar = new TakeOutStar(this, "TakeOutStar", "TakeOutStar", &NrvLuigiNPC::LuigiNPCNrvTakeOutStar::sInstance);
+        mTakeOutStar = new TakeOutStar(this, "TakeOutStar", "TakeOutStar", GET_NERVE(LuigiNPC, LuigiNPCNrvTakeOutStar));
     }
 
     bool stat = mType > Type_Afraid && mType < Type_Count;
@@ -204,14 +204,14 @@ void LuigiNPC::control() {
 
 bool LuigiNPC::trySetNerveAfraid() {
     if (MR::isNearPlayer(mMsgCtrl, -1.0f) && !MR::inMessageArea(mMsgCtrl) && !MR::isPlayerElementModeTeresa()) {
-        return MR::trySetNerve(this, &NrvLuigiNPC::LuigiNPCNrvAfraidWait::sInstance);
+        return MR::trySetNerve(this, GET_NERVE(LuigiNPC, LuigiNPCNrvAfraidWait));
     }
 
     if (MR::isNearPlayer(mMsgCtrl, -1.0f) && MR::isPlayerElementModeTeresa()) {
-        return MR::trySetNerve(this, &NrvLuigiNPC::LuigiNPCNrvAfraidSquat::sInstance);
+        return MR::trySetNerve(this, GET_NERVE(LuigiNPC, LuigiNPCNrvAfraidSquat));
     }
 
-    return MR::trySetNerve(this, &NrvLuigiNPC::LuigiNPCNrvAfraidWait::sInstance);
+    return MR::trySetNerve(this, GET_NERVE(LuigiNPC, LuigiNPCNrvAfraidWait));
 }
 
 void LuigiNPC::setWaitAction() {
@@ -237,12 +237,12 @@ void LuigiNPC::setAfraidAction() {
 }
 
 bool LuigiNPC::trySetNerveArrested() {
-    if (isNerve(&NrvLuigiNPC::LuigiNPCNrvArrestedWait::sInstance) && MR::isOnSwitchA(this)) {
-        return MR::trySetNerve(this, &NrvLuigiNPC::LuigiNPCNrvArrestedJump::sInstance);
+    if (isNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvArrestedWait)) && MR::isOnSwitchA(this)) {
+        return MR::trySetNerve(this, GET_NERVE(LuigiNPC, LuigiNPCNrvArrestedJump));
     }
 
-    if (isNerve(&NrvLuigiNPC::LuigiNPCNrvArrestedJump::sInstance) && MR::isBckOneTimeAndStopped(this)) {
-        return MR::trySetNerve(this, &NrvLuigiNPC::LuigiNPCNrvWait::sInstance);
+    if (isNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvArrestedJump)) && MR::isBckOneTimeAndStopped(this)) {
+        return MR::trySetNerve(this, GET_NERVE(LuigiNPC, LuigiNPCNrvWait));
     }
 
     return false;
@@ -259,7 +259,7 @@ void LuigiNPC::exeWait() {
 
     MR::tryTalkNearPlayerAndStartTalkAction(this);
 
-    if (MR::tryStartReactionAndPushNerve(this, &NrvLuigiNPC::LuigiNPCNrvReaction::sInstance)) {
+    if (MR::tryStartReactionAndPushNerve(this, GET_NERVE(LuigiNPC, LuigiNPCNrvReaction))) {
         return;
     }
 }
@@ -321,7 +321,7 @@ void LuigiNPC::exeAfraidSquat() {
     }
 
     if (trySetNerveAfraid()) {
-        setNerve(&NrvLuigiNPC::LuigiNPCNrvAfraidRise::sInstance);
+        setNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvAfraidRise));
     } else {
         MR::tryTalkNearPlayer(mMsgCtrl);
     }
@@ -333,7 +333,7 @@ void LuigiNPC::exeAfraidRise() {
     }
 
     if (MR::isBckOneTimeAndStopped(this)) {
-        setNerve(&NrvLuigiNPC::LuigiNPCNrvAfraidWait::sInstance);
+        setNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvAfraidWait));
     }
 }
 
@@ -375,7 +375,7 @@ void LuigiNPC::exeOnTreeTouch() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeWait::sInstance);
+        setNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvOnTreeWait));
     }
 }
 
@@ -398,7 +398,7 @@ void LuigiNPC::exeOnTreeFall() {
 
     if (MR::isOnGround(this)) {
         mVelocity.zero();
-        setNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeLand::sInstance);
+        setNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvOnTreeLand));
     }
 }
 
@@ -409,6 +409,6 @@ void LuigiNPC::exeOnTreeLand() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvLuigiNPC::LuigiNPCNrvWait::sInstance);
+        setNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvWait));
     }
 }

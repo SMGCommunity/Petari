@@ -80,7 +80,7 @@ void PenguinRacer::init(const JMapInfoIter& rIter) {
     mMsgCtrl = MR::createTalkCtrl(this, rIter, "PenguinRacer", TVec3f(0.0f, 130.0f, 0.0f), nullptr);
     MR::onRootNodeAutomatic(mMsgCtrl);
 
-    initNerve(&NrvPenguinRacer::PenguinRacerNrvWait::sInstance);
+    initNerve(GET_NERVE(PenguinRacer, PenguinRacerNrvWait));
 
     if (mRaceDisabled == 0) {
         initRailRider(rIter);
@@ -129,7 +129,7 @@ void PenguinRacer::initEtc(const JMapInfoIter& rIter) {
 }
 
 bool PenguinRacer::tryReaction() {
-    return MR::tryStartReactionAndPushNerve(this, &NrvPenguinRacer::PenguinRacerNrvReaction::sInstance);
+    return MR::tryStartReactionAndPushNerve(this, GET_NERVE(PenguinRacer, PenguinRacerNrvReaction));
 }
 
 void PenguinRacer::exeReaction() {
@@ -158,7 +158,7 @@ void PenguinRacer::exeReaction() {
 
 bool PenguinRacer::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if ((MR::isMsgJetTurtleAttack(msg) || MR::isMsgStarPieceReflect(msg)) && isInRace()) {
-        setNerve(&NrvPenguinRacer::PenguinRacerNrvRaceFall::sInstance);
+        setNerve(GET_NERVE(PenguinRacer, PenguinRacerNrvRaceFall));
         return true;
     }
 
@@ -258,7 +258,7 @@ void PenguinRacer::exeRaceStoW() {
 
     updateMove();
 
-    if (!isNerve(&NrvPenguinRacer::PenguinRacerNrvRaceStoW::sInstance)) {
+    if (!isNerve(GET_NERVE(PenguinRacer, PenguinRacerNrvRaceStoW))) {
         MR::emitEffect(this, "WaterColumn");
     }
 }
@@ -271,7 +271,7 @@ void PenguinRacer::exeRaceWtoS() {
 
     updateMove();
 
-    if (!isNerve(&NrvPenguinRacer::PenguinRacerNrvRaceWtoS::sInstance)) {
+    if (!isNerve(GET_NERVE(PenguinRacer, PenguinRacerNrvRaceWtoS))) {
         MR::emitEffect(this, "WaterColumn");
     }
 }
@@ -313,18 +313,18 @@ void PenguinRacer::exeRaceGoal() {
     if (mVelocity.length() > 5.0f) {
         updateVelocity();
 
-        if (getMoveNerve() != &NrvPenguinRacer::PenguinRacerNrvRaceSwim::sInstance && !MR::isBindedGround(this)) {
+        if (getMoveNerve() != GET_NERVE(PenguinRacer, PenguinRacerNrvRaceSwim) && !MR::isBindedGround(this)) {
             MR::addVelocityToGravity(this, 1.0f);
         }
 
-        if (getMoveNerve() != &NrvPenguinRacer::PenguinRacerNrvRaceSwim::sInstance) {
+        if (getMoveNerve() != GET_NERVE(PenguinRacer, PenguinRacerNrvRaceSwim)) {
             MR::onBind(this);
         }
 
         MR::decidePose(this, -mGravity, MR::getRailDirection(this), mPosition, 1.0f, 0.1f, 1.0f);
     } else {
         mVelocity.zero();
-        setNerve(&NrvPenguinRacer::PenguinRacerNrvRaceTurn::sInstance);
+        setNerve(GET_NERVE(PenguinRacer, PenguinRacerNrvRaceTurn));
     }
 }
 
@@ -345,11 +345,11 @@ void PenguinRacer::exeRaceTurn() {
 void PenguinRacer::updateMove() {
     updateVelocity();
 
-    if (getMoveNerve() != &NrvPenguinRacer::PenguinRacerNrvRaceSwim::sInstance && !MR::isBindedGround(this)) {
+    if (getMoveNerve() != GET_NERVE(PenguinRacer, PenguinRacerNrvRaceSwim) && !MR::isBindedGround(this)) {
         MR::addVelocityToGravity(this, 1.0f);
     }
 
-    if (getMoveNerve() != &NrvPenguinRacer::PenguinRacerNrvRaceSwim::sInstance) {
+    if (getMoveNerve() != GET_NERVE(PenguinRacer, PenguinRacerNrvRaceSwim)) {
         MR::onBind(this);
     }
 
@@ -374,7 +374,7 @@ void PenguinRacer::updateVelocity() {
     velV.zero();
     velH.zero();
 
-    if (getMoveNerve() != &NrvPenguinRacer::PenguinRacerNrvRaceSwim::sInstance) {
+    if (getMoveNerve() != GET_NERVE(PenguinRacer, PenguinRacerNrvRaceSwim)) {
         MR::normalizeOrZero(&grav);
         const TVec3f& v = mVelocity;
         velV.scale(grav.dot(v), grav);
@@ -387,7 +387,7 @@ void PenguinRacer::updateVelocity() {
     f32 speedMaxV = mMoveSpeed;
     f32 speedMaxH = mMoveSpeed;
 
-    if (getMoveNerve() != &NrvPenguinRacer::PenguinRacerNrvRaceSwim::sInstance) {
+    if (getMoveNerve() != GET_NERVE(PenguinRacer, PenguinRacerNrvRaceSwim)) {
         speedMaxH = mMoveSpeed;
         speedMaxV = mMoveSpeed * 5.0f;
     }
@@ -411,7 +411,7 @@ void PenguinRacer::updateRail() {
     mRailPointNo = MR::getCurrentRailPointNo(this);
     mMoveSpeed = getMoveSpeed();
 
-    if (isNerve(&NrvPenguinRacer::PenguinRacerNrvRaceFall::sInstance)) {
+    if (isNerve(GET_NERVE(PenguinRacer, PenguinRacerNrvRaceFall))) {
         return;
     }
 
@@ -430,13 +430,13 @@ const Nerve* PenguinRacer::getMoveNerve() const {
     MR::getNextRailPointArg1NoInit(this, &next);
 
     if (curr != 0 && next != 0) {
-        return &NrvPenguinRacer::PenguinRacerNrvRaceWalk::sInstance;
+        return GET_NERVE(PenguinRacer, PenguinRacerNrvRaceWalk);
     } else if (curr == 0 && next == 0) {
-        return &NrvPenguinRacer::PenguinRacerNrvRaceSwim::sInstance;
+        return GET_NERVE(PenguinRacer, PenguinRacerNrvRaceSwim);
     } else if (curr != 0 && next == 0) {
-        return &NrvPenguinRacer::PenguinRacerNrvRaceWtoS::sInstance;
+        return GET_NERVE(PenguinRacer, PenguinRacerNrvRaceWtoS);
     } else {  // (curr == 0 && next != 0)
-        return &NrvPenguinRacer::PenguinRacerNrvRaceStoW::sInstance;
+        return GET_NERVE(PenguinRacer, PenguinRacerNrvRaceStoW);
     }
 }
 
@@ -447,8 +447,8 @@ f32 PenguinRacer::getMoveSpeed() const {
 }
 
 bool PenguinRacer::isInRace() const {
-    if (isNerve(&NrvPenguinRacer::PenguinRacerNrvRaceWalk::sInstance) || isNerve(&NrvPenguinRacer::PenguinRacerNrvRaceSwim::sInstance) ||
-        isNerve(&NrvPenguinRacer::PenguinRacerNrvRaceStoW::sInstance) || isNerve(&NrvPenguinRacer::PenguinRacerNrvRaceWtoS::sInstance)) {
+    if (isNerve(GET_NERVE(PenguinRacer, PenguinRacerNrvRaceWalk)) || isNerve(GET_NERVE(PenguinRacer, PenguinRacerNrvRaceSwim)) ||
+        isNerve(GET_NERVE(PenguinRacer, PenguinRacerNrvRaceStoW)) || isNerve(GET_NERVE(PenguinRacer, PenguinRacerNrvRaceWtoS))) {
         return true;
     }
     return false;
@@ -491,7 +491,7 @@ void PenguinRacer::prepRacer(const RaceManager* pRaceManager) {
         MR::requestMovementOn(_98);
     }
 
-    setNerve(&NrvPenguinRacer::PenguinRacerNrvRacePrep::sInstance);
+    setNerve(GET_NERVE(PenguinRacer, PenguinRacerNrvRacePrep));
 }
 
 void PenguinRacer::startRacer() {
@@ -515,12 +515,12 @@ bool PenguinRacer::updateRacer(const RaceManager* pRaceManager) {
 }
 
 bool PenguinRacer::goalRacer() {
-    setNerve(&NrvPenguinRacer::PenguinRacerNrvRaceGoal::sInstance);
+    setNerve(GET_NERVE(PenguinRacer, PenguinRacerNrvRaceGoal));
     return false;
 }
 
 void PenguinRacer::loseRacer() {
-    setNerve(&NrvPenguinRacer::PenguinRacerNrvRacePrep::sInstance);
+    setNerve(GET_NERVE(PenguinRacer, PenguinRacerNrvRacePrep));
 }
 
 void PenguinRacer::resetRacer(const RaceManager* pRaceManager) {
@@ -537,7 +537,7 @@ void PenguinRacer::resetRacer(const RaceManager* pRaceManager) {
     }
 
     MR::deleteEffectAll(this);
-    setNerve(&NrvPenguinRacer::PenguinRacerNrvWait::sInstance);
+    setNerve(GET_NERVE(PenguinRacer, PenguinRacerNrvWait));
 }
 
 void PenguinRacer::exitRacer() {

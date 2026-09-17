@@ -109,7 +109,7 @@ void Penguin::init(const JMapInfoIter& rIter) {
     caps._70 = "CenterJoint";
     initialize(rIter, caps);
 
-    initNerve(&NrvPenguin::PenguinNrvWait::sInstance);
+    initNerve(GET_NERVE(Penguin, PenguinNrvWait));
 
     if (MR::isConnectedWithRail(rIter)) {
         initRailRider(rIter);
@@ -175,7 +175,7 @@ void Penguin::init(const JMapInfoIter& rIter) {
     default:
         break;
     }
-    setNerve(&NrvPenguin::PenguinNrvWait::sInstance);
+    setNerve(GET_NERVE(Penguin, PenguinNrvWait));
     makeActorAppeared();
 }
 
@@ -234,7 +234,7 @@ void Penguin::exeWait() {
         }
     }
 
-    if (MR::tryStartReactionAndPushNerve(this, &NrvPenguin::PenguinNrvReaction::sInstance)) {
+    if (MR::tryStartReactionAndPushNerve(this, GET_NERVE(Penguin, PenguinNrvReaction))) {
         return;
     }
 
@@ -254,7 +254,7 @@ void Penguin::exeWait() {
     }
 
     if (mBehavior == Behavior_Dive && MR::isStep(this, mStepToDive)) {
-        setNerve(&NrvPenguin::PenguinNrvDive::sInstance);
+        setNerve(GET_NERVE(Penguin, PenguinNrvDive));
     }
 }
 
@@ -265,7 +265,7 @@ void Penguin::exeDive() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvPenguin::PenguinNrvWait::sInstance);
+        setNerve(GET_NERVE(Penguin, PenguinNrvWait));
     }
 }
 
@@ -283,7 +283,7 @@ void Penguin::exeFlow() {
         _11C = "SwimTurtle";
         _120 = "SwimTurtle";
         _10C = ::sSpeedSwimTurtle;
-        setNerve(&NrvPenguin::PenguinNrvWait::sInstance);
+        setNerve(GET_NERVE(Penguin, PenguinNrvWait));
     }
 }
 
@@ -304,8 +304,8 @@ bool Penguin::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
 }
 
 bool Penguin::tryReleaseTurtle() {
-    if (mBehavior == Behavior_SwimTurtle && isNerve(&NrvPenguin::PenguinNrvWait::sInstance) && mTurtle->isPullRange() && mTurtle->tryRemove()) {
-        setNerve(&NrvPenguin::PenguinNrvFlow::sInstance);
+    if (mBehavior == Behavior_SwimTurtle && isNerve(GET_NERVE(Penguin, PenguinNrvWait)) && mTurtle->isPullRange() && mTurtle->tryRemove()) {
+        setNerve(GET_NERVE(Penguin, PenguinNrvFlow));
         return true;
     }
 

@@ -92,18 +92,7 @@ public:
     const bool getValue(int entryIndex, const char* pKey, T* pValueOut) const;
 
     template < typename T >
-    JMapInfoIter findElement(const char* pKey, T searchValue, int startIndex) const {
-        int entryIndex = startIndex;
-        T value;
-        while (entryIndex < getNumEntries()) {
-            getValue< T >(entryIndex, pKey, &value);
-            if (compareValues< T >(value, searchValue)) {
-                return JMapInfoIter(this, entryIndex);
-            }
-            entryIndex++;
-        }
-        return end();
-    }
+    JMapInfoIter findElement(const char* pKey, T searchValue, int startIndex) const;
 
     inline JMapInfoIter end() const;
 
@@ -148,6 +137,20 @@ public:
     /* 0x00 */ const JMapInfo* mInfo;
     /* 0x04 */ s32 mIndex;
 };
+
+template < typename T >
+JMapInfoIter JMapInfo::findElement(const char* pKey, T searchValue, int startIndex) const {
+    int entryIndex = startIndex;
+    T value;
+    while (entryIndex < getNumEntries()) {
+        getValue< T >(entryIndex, pKey, &value);
+        if (compareValues< T >(value, searchValue)) {
+            return JMapInfoIter(this, entryIndex);
+        }
+        entryIndex++;
+    }
+    return end();
+}
 
 JMapInfoIter JMapInfo::end() const {
     return JMapInfoIter(this, getNumEntries());

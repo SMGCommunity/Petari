@@ -75,7 +75,7 @@ void BeeFlowerHover::init(const JMapInfoIter& rIter) {
     _BC /= 100.0f;
     mLodCtrlPlanet = MR::createLodCtrlPlanet(this, rIter, 100.0f, -1);
     mLodCtrlPlanet->validate();
-    initNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvWait::sInstance);
+    initNerve(GET_NERVE(BeeFlowerHover, BeeFlowerHoverNrvWait));
     makeActorAppeared();
 }
 
@@ -92,7 +92,7 @@ void BeeFlowerHover::exeSoftTouch() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvSoftTouchWait::sInstance);
+        setNerve(GET_NERVE(BeeFlowerHover, BeeFlowerHoverNrvSoftTouchWait));
     }
 }
 
@@ -102,9 +102,9 @@ void BeeFlowerHover::exeSoftTouchWait() {
     }
 
     if (!MR::isPlayerElementModeBee()) {
-        setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvHardTouch::sInstance);
+        setNerve(GET_NERVE(BeeFlowerHover, BeeFlowerHoverNrvHardTouch));
     } else if (!MR::isOnPlayer(getSensor(nullptr))) {
-        setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvWait::sInstance);
+        setNerve(GET_NERVE(BeeFlowerHover, BeeFlowerHoverNrvWait));
     }
 }
 
@@ -121,7 +121,7 @@ void BeeFlowerHover::exeHardTouch() {
 
     if (MR::isBckStopped(this)) {
         MR::hideModel(this);
-        setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvRecover::sInstance);
+        setNerve(GET_NERVE(BeeFlowerHover, BeeFlowerHoverNrvRecover));
     }
 }
 
@@ -136,12 +136,12 @@ void BeeFlowerHover::exeRecover() {
 
     if (MR::isGreaterEqualStep(this, ::sStepToRecoverStart) && MR::isBckStopped(this) && !MR::isHiddenModel(this)) {
         MR::validateCollisionParts(this);
-        setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvWait::sInstance);
+        setNerve(GET_NERVE(BeeFlowerHover, BeeFlowerHoverNrvWait));
     }
 }
 
 void BeeFlowerHover::control() {
-    if (!isNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvRecover::sInstance)) {
+    if (!isNerve(GET_NERVE(BeeFlowerHover, BeeFlowerHoverNrvRecover))) {
         mLodCtrlPlanet->update();
 
         if (mLodCtrlPlanet->isShowLowModel()) {
@@ -178,15 +178,15 @@ void BeeFlowerHover::calcAndSetBaseMtx() {
 }
 
 bool BeeFlowerHover::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(BeeFlowerHover, BeeFlowerHoverNrvWait))) {
         return false;
     }
 
     if (MR::isMsgFloorTouch(msg)) {
         if (MR::isPlayerElementModeBee()) {
-            setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvSoftTouch::sInstance);
+            setNerve(GET_NERVE(BeeFlowerHover, BeeFlowerHoverNrvSoftTouch));
         } else {
-            setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvHardTouch::sInstance);
+            setNerve(GET_NERVE(BeeFlowerHover, BeeFlowerHoverNrvHardTouch));
         }
 
         return true;

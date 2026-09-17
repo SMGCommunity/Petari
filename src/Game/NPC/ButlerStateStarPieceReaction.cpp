@@ -17,14 +17,14 @@ ButlerStateStarPieceReaction::ButlerStateStarPieceReaction(LiveActor* pHost, con
 }
 
 void ButlerStateStarPieceReaction::init() {
-    initNerve(&NrvButlerStateStarPieceReaction::ButlerStateStarPieceReactionNrvWait::sInstance);
+    initNerve(GET_NERVE(ButlerStateStarPieceReaction, ButlerStateStarPieceReactionNrvWait));
 }
 
 void ButlerStateStarPieceReaction::appear() {
     _14 = true;
     mIsDead = false;
 
-    setNerve(&NrvButlerStateStarPieceReaction::ButlerStateStarPieceReactionNrvWait::sInstance);
+    setNerve(GET_NERVE(ButlerStateStarPieceReaction, ButlerStateStarPieceReactionNrvWait));
 }
 
 void ButlerStateStarPieceReaction::exeWait() {

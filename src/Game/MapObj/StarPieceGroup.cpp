@@ -74,10 +74,10 @@ void StarPieceGroup::init(const JMapInfoIter& rIter) {
     bool isFlow;
 
     if (MR::isEqualString(objectName, "StarPieceFlow")) {
-        initNerve(&NrvStarPieceGroup::HostTypeNrvFlow::sInstance);
+        initNerve(GET_NERVE(StarPieceGroup, HostTypeNrvFlow));
         isFlow = true;
     } else {
-        initNerve(&NrvStarPieceGroup::HostTypeNrvGroup::sInstance);
+        initNerve(GET_NERVE(StarPieceGroup, HostTypeNrvGroup));
         isFlow = false;
     }
 

@@ -115,10 +115,10 @@ void StarPiece::init(const JMapInfoIter& rIter) {
     switch (mGroupType) {
     case groupType_noGroup:
     case groupType_FloatingGroup:
-        initNerve(&NrvStarPiece::HostTypeNrvFloating::sInstance);
+        initNerve(GET_NERVE(StarPiece, HostTypeNrvFloating));
         break;
     case groupType_RailMoveGroup:
-        initNerve(&NrvStarPiece::HostTypeNrvRailMove::sInstance);
+        initNerve(GET_NERVE(StarPiece, HostTypeNrvRailMove));
         break;
     }
 
@@ -193,10 +193,10 @@ void StarPiece::appearFromGroup() {
     appear();
     switch (mGroupType) {
     case groupType_FloatingGroup:
-        setNerve(&NrvStarPiece::HostTypeNrvFloating::sInstance);
+        setNerve(GET_NERVE(StarPiece, HostTypeNrvFloating));
         break;
     case groupType_RailMoveGroup:
-        setNerve(&NrvStarPiece::HostTypeNrvRailMove::sInstance);
+        setNerve(GET_NERVE(StarPiece, HostTypeNrvRailMove));
         break;
     }
 }
@@ -247,7 +247,7 @@ void StarPiece::makeActorDead() {
 
 void StarPiece::startClipped() {
     LiveActor::startClipped();
-    if (!isNerve(&NrvStarPiece::HostTypeNrvFloating::sInstance) && !isNerve(&NrvStarPiece::HostTypeNrvRailMove::sInstance)) {
+    if (!isNerve(GET_NERVE(StarPiece, HostTypeNrvFloating)) && !isNerve(GET_NERVE(StarPiece, HostTypeNrvRailMove))) {
         makeActorDead();
     }
     _C8 = -1;
@@ -273,7 +273,7 @@ void StarPiece::changeScale(f32 scale) {
 
 void StarPiece::control() {
     if (MR::isFirstStep(this)) {
-        if (!isNerve(&NrvStarPiece::HostTypeNrvToTarget::sInstance) || mFlags.isGoToPlayer) {
+        if (!isNerve(GET_NERVE(StarPiece, HostTypeNrvToTarget)) || mFlags.isGoToPlayer) {
             MR::setBtkFrameAndStop(this, 5.0f);
         }
     }
@@ -282,7 +282,7 @@ void StarPiece::control() {
         mGettableDelayCounter -= 1;
     }
 
-    if (isNerve(&NrvStarPiece::HostTypeNrvFall::sInstance) || isNerve(&NrvStarPiece::HostTypeNrvFallAfterReflect::sInstance)) {
+    if (isNerve(GET_NERVE(StarPiece, HostTypeNrvFall)) || isNerve(GET_NERVE(StarPiece, HostTypeNrvFallAfterReflect))) {
         if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
             kill();
             return;
@@ -293,9 +293,9 @@ void StarPiece::control() {
         }
     }
 
-    if (isNerve(&NrvStarPiece::HostTypeNrvFall::sInstance) || isNerve(&NrvStarPiece::HostTypeNrvFallAfterReflect::sInstance) ||
-        isNerve(&NrvStarPiece::HostTypeNrvThrow::sInstance) || isNerve(&NrvStarPiece::HostTypeNrvThrowNoFall::sInstance) ||
-        isNerve(&NrvStarPiece::HostTypeNrvThrowFall::sInstance)) {
+    if (isNerve(GET_NERVE(StarPiece, HostTypeNrvFall)) || isNerve(GET_NERVE(StarPiece, HostTypeNrvFallAfterReflect)) ||
+        isNerve(GET_NERVE(StarPiece, HostTypeNrvThrow)) || isNerve(GET_NERVE(StarPiece, HostTypeNrvThrowNoFall)) ||
+        isNerve(GET_NERVE(StarPiece, HostTypeNrvThrowFall))) {
         changeScale(calcNearCameraScale());
     }
 }
@@ -343,7 +343,7 @@ void StarPiece::appearHop(const TVec3f& rVec1, const TVec3f& rVec2) {
     mPosition.set(rVec1);
     makeActorAppeared();
     mVelocity.set(rVec2 * 30.0f);
-    setNerve(&NrvStarPiece::HostTypeNrvHop::sInstance);
+    setNerve(GET_NERVE(StarPiece, HostTypeNrvHop));
 }
 
 void StarPiece::exeHop() {
@@ -427,14 +427,14 @@ void StarPiece::exeFall() {
         }
     }
 
-    if (isNerve(&NrvStarPiece::HostTypeNrvFallAfterReflect::sInstance)) {
+    if (isNerve(GET_NERVE(StarPiece, HostTypeNrvFallAfterReflect))) {
         if (MR::isGreaterStep(this, 9)) {
             kill();
             return;
         }
     }
 
-    if (!isNerve(&NrvStarPiece::HostTypeNrvFallAfterReflect::sInstance)) {
+    if (!isNerve(GET_NERVE(StarPiece, HostTypeNrvFallAfterReflect))) {
         tryGotJudge();
     }
 }
@@ -693,7 +693,7 @@ void StarPiece::exeThrow() {
     }
 
     if (MR::isGreaterStep(this, 30)) {
-        setNerve(&NrvStarPiece::HostTypeNrvThrowFall::sInstance);
+        setNerve(GET_NERVE(StarPiece, HostTypeNrvThrowFall));
     }
 }
 
@@ -774,7 +774,7 @@ void StarPiece::exeRailMove() {
 void StarPiece::setFollowPlayerAndAppear() {
     appear();
     MR::invalidateClipping(this);
-    setNerve(&NrvStarPiece::HostTypeNrvFollowPlayer::sInstance);
+    setNerve(GET_NERVE(StarPiece, HostTypeNrvFollowPlayer));
 }
 
 bool StarPiece::tryCalcGravity() {
@@ -819,9 +819,9 @@ bool StarPiece::throwToTargetCore(const TVec3f& rVec1, const TVec3f& rVec2, cons
     makeActorAppeared();
 
     if (a1) {
-        setNerve(&NrvStarPiece::HostTypeNrvThrow::sInstance);
+        setNerve(GET_NERVE(StarPiece, HostTypeNrvThrow));
     } else {
-        setNerve(&NrvStarPiece::HostTypeNrvThrowNoFall::sInstance);
+        setNerve(GET_NERVE(StarPiece, HostTypeNrvThrowNoFall));
     }
 
     MR::addStarPiece(-1);
@@ -841,7 +841,7 @@ void StarPiece::giftToTarget(StarPieceReceiverInfo* receiverInfo, u32 numGift, H
     MR::resetPosition(this);
     appear();
     MR::invalidateClipping(this);
-    setNerve(&NrvStarPiece::HostTypeNrvToTarget::sInstance);
+    setNerve(GET_NERVE(StarPiece, HostTypeNrvToTarget));
 
     f32 scale = 1.0f;
     if (numGift != 1) {
@@ -860,13 +860,13 @@ void StarPiece::goToPlayer(TVec3f vec) {
         MR::calcFrontVec(&_8C, this);
     }
 
-    if (isNerve(&NrvStarPiece::HostTypeNrvFloating::sInstance)) {
+    if (isNerve(GET_NERVE(StarPiece, HostTypeNrvFloating))) {
         if (isEffectLight()) {
             MR::emitEffect(this, "StarPieceLightS");
         } else {
             MR::emitEffect(this, "StarPieceLight");
         }
-    } else if (isNerve(&NrvStarPiece::HostTypeNrvFollowPlayer::sInstance)) {
+    } else if (isNerve(GET_NERVE(StarPiece, HostTypeNrvFollowPlayer))) {
         f32 dot = _8C.dot(mGravity);
         if (0.0f < dot) {
             _8C -= mGravity * dot * 2.0f;
@@ -879,7 +879,7 @@ void StarPiece::goToPlayer(TVec3f vec) {
     _8C.set(vec);
 
     MR::invalidateClipping(this);
-    setNerve(&NrvStarPiece::HostTypeNrvToTarget::sInstance);
+    setNerve(GET_NERVE(StarPiece, HostTypeNrvToTarget));
 }
 
 void StarPiece::launch(const TVec3f& rVec, f32 f1, f32 f2, bool notCheckInWater, bool a2) {
@@ -907,7 +907,7 @@ void StarPiece::launch(const TVec3f& rVec, f32 f1, f32 f2, bool notCheckInWater,
 
     MR::resetPosition(this, rVec);
     appear();
-    setNerve(&NrvStarPiece::HostTypeNrvFall::sInstance);
+    setNerve(GET_NERVE(StarPiece, HostTypeNrvFall));
     MR::invalidateClipping(this);
 
     mGettableDelayCounter = 25;
@@ -936,7 +936,7 @@ void StarPiece::launch(const TVec3f& rVec1, const TVec3f& rVec2, f32 f1, f32 f2,
 
     MR::resetPosition(this, rVec1);
     appear();
-    setNerve(&NrvStarPiece::HostTypeNrvFall::sInstance);
+    setNerve(GET_NERVE(StarPiece, HostTypeNrvFall));
     MR::invalidateClipping(this);
 
     mGettableDelayCounter = 25;
@@ -962,7 +962,7 @@ void StarPiece::launch(const TVec3f& rVec1, const TVec3f& rVec2, bool notCheckIn
 
     MR::resetPosition(this, rVec1);
     appear();
-    setNerve(&NrvStarPiece::HostTypeNrvFall::sInstance);
+    setNerve(GET_NERVE(StarPiece, HostTypeNrvFall));
     MR::invalidateClipping(this);
 
     mGettableDelayCounter = 25;
@@ -1046,7 +1046,7 @@ void StarPiece::tryGotJudge() {
 }
 
 bool StarPiece::isFollowing() {
-    return isNerve(&NrvStarPiece::HostTypeNrvFollowPlayer::sInstance);
+    return isNerve(GET_NERVE(StarPiece, HostTypeNrvFollowPlayer));
 }
 
 bool StarPiece::setFall() {
@@ -1054,9 +1054,9 @@ bool StarPiece::setFall() {
         return false;
     }
 
-    if (isNerve(&NrvStarPiece::HostTypeNrvRailMove::sInstance) || isNerve(&NrvStarPiece::HostTypeNrvFloating::sInstance)) {
+    if (isNerve(GET_NERVE(StarPiece, HostTypeNrvRailMove)) || isNerve(GET_NERVE(StarPiece, HostTypeNrvFloating))) {
         mFlags._1 = true;
-        setNerve(&NrvStarPiece::HostTypeNrvFall::sInstance);
+        setNerve(GET_NERVE(StarPiece, HostTypeNrvFall));
         return true;
     }
 
@@ -1068,7 +1068,7 @@ bool StarPiece::isOnRailMove() {
         return false;
     }
 
-    if (isNerve(&NrvStarPiece::HostTypeNrvRailMove::sInstance)) {
+    if (isNerve(GET_NERVE(StarPiece, HostTypeNrvRailMove))) {
         return true;
     }
 
@@ -1080,7 +1080,7 @@ bool StarPiece::isFloat() {
         return false;
     }
 
-    if (isNerve(&NrvStarPiece::HostTypeNrvFloating::sInstance)) {
+    if (isNerve(GET_NERVE(StarPiece, HostTypeNrvFloating))) {
         return true;
     }
 
@@ -1092,8 +1092,8 @@ void StarPiece::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    if (!isNerve(&NrvStarPiece::HostTypeNrvThrow::sInstance) && !isNerve(&NrvStarPiece::HostTypeNrvThrowNoFall::sInstance) &&
-        !isNerve(&NrvStarPiece::HostTypeNrvThrowFall::sInstance)) {
+    if (!isNerve(GET_NERVE(StarPiece, HostTypeNrvThrow)) && !isNerve(GET_NERVE(StarPiece, HostTypeNrvThrowNoFall)) &&
+        !isNerve(GET_NERVE(StarPiece, HostTypeNrvThrowFall))) {
         return;
     }
 
@@ -1129,33 +1129,33 @@ void StarPiece::setReflect(const TVec3f& rVec1, const TVec3f& rVec2) {
         MR::startSound(this, "SE_OJ_STAR_PIECE_REFLECT");
     }
 
-    setNerve(&NrvStarPiece::HostTypeNrvFallAfterReflect::sInstance);
+    setNerve(GET_NERVE(StarPiece, HostTypeNrvFallAfterReflect));
 }
 
 bool StarPiece::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgInhaleBlackHole(msg)) {
-        if (isNerve(&NrvStarPiece::HostTypeNrvFall::sInstance) || isNerve(&NrvStarPiece::HostTypeNrvFallAfterReflect::sInstance) ? true : false) {
+        if (isNerve(GET_NERVE(StarPiece, HostTypeNrvFall)) || isNerve(GET_NERVE(StarPiece, HostTypeNrvFallAfterReflect)) ? true : false) {
             kill();
             return true;
         }
     }
 
     if (MR::isMsgItemGet(msg)) {
-        if (isNerve(&NrvStarPiece::HostTypeNrvThrow::sInstance) || isNerve(&NrvStarPiece::HostTypeNrvThrowNoFall::sInstance) ||
-            isNerve(&NrvStarPiece::HostTypeNrvThrowFall::sInstance)) {
+        if (isNerve(GET_NERVE(StarPiece, HostTypeNrvThrow)) || isNerve(GET_NERVE(StarPiece, HostTypeNrvThrowNoFall)) ||
+            isNerve(GET_NERVE(StarPiece, HostTypeNrvThrowFall))) {
             return false;
         }
 
-        if (isNerve(&NrvStarPiece::HostTypeNrvToPlayerEnd::sInstance)) {
+        if (isNerve(GET_NERVE(StarPiece, HostTypeNrvToPlayerEnd))) {
             return true;
         }
 
-        if (mFlags.isGoToPlayer && isNerve(&NrvStarPiece::HostTypeNrvToTarget::sInstance)) {
+        if (mFlags.isGoToPlayer && isNerve(GET_NERVE(StarPiece, HostTypeNrvToTarget))) {
             return true;
         }
 
-        if (isNerve(&NrvStarPiece::HostTypeNrvFloating::sInstance) || isNerve(&NrvStarPiece::HostTypeNrvFall::sInstance) ||
-            isNerve(&NrvStarPiece::HostTypeNrvSpinDrained::sInstance) || isNerve(&NrvStarPiece::HostTypeNrvRailMove::sInstance)) {
+        if (isNerve(GET_NERVE(StarPiece, HostTypeNrvFloating)) || isNerve(GET_NERVE(StarPiece, HostTypeNrvFall)) ||
+            isNerve(GET_NERVE(StarPiece, HostTypeNrvSpinDrained)) || isNerve(GET_NERVE(StarPiece, HostTypeNrvRailMove))) {
             if (mGettableDelayCounter < 0) {
                 touchPlayer();
                 MR::notifyDirectGetStarPiecePlayer();
@@ -1165,8 +1165,8 @@ bool StarPiece::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
     }
 
     if (MR::isMsgItemPull(msg) && mGettableDelayCounter < 0) {
-        if (isNerve(&NrvStarPiece::HostTypeNrvSpinDrained::sInstance) || isNerve(&NrvStarPiece::HostTypeNrvToPlayerEnd::sInstance) ||
-            isNerve(&NrvStarPiece::HostTypeNrvToTarget::sInstance)) {
+        if (isNerve(GET_NERVE(StarPiece, HostTypeNrvSpinDrained)) || isNerve(GET_NERVE(StarPiece, HostTypeNrvToPlayerEnd)) ||
+            isNerve(GET_NERVE(StarPiece, HostTypeNrvToTarget))) {
             return false;
         }
 
@@ -1177,13 +1177,13 @@ bool StarPiece::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
             mFlags.isGoToPlayer = false;
         }
 
-        setNerve(&NrvStarPiece::HostTypeNrvSpinDrained::sInstance);
+        setNerve(GET_NERVE(StarPiece, HostTypeNrvSpinDrained));
         return true;
     }
 
     if (MR::isMsgStartPowerStarGet(msg)) {
-        if ((isNerve(&NrvStarPiece::HostTypeNrvToTarget::sInstance) && mFlags.isGoToPlayer) ||
-            isNerve(&NrvStarPiece::HostTypeNrvSpinDrained::sInstance) || isNerve(&NrvStarPiece::HostTypeNrvToPlayerEnd::sInstance)) {
+        if ((isNerve(GET_NERVE(StarPiece, HostTypeNrvToTarget)) && mFlags.isGoToPlayer) || isNerve(GET_NERVE(StarPiece, HostTypeNrvSpinDrained)) ||
+            isNerve(GET_NERVE(StarPiece, HostTypeNrvToPlayerEnd))) {
             MR::gotByPlayer();
         }
 
@@ -1213,7 +1213,7 @@ bool StarPiece::touchPlayer() {
     MR::stopSound(this, "SE_OJ_STAR_PIECE_FLY");
 
     MR::forceDeleteEffect(this, "StarPieceFlyingBlur");
-    setNerve(&NrvStarPiece::HostTypeNrvToPlayerEnd::sInstance);
+    setNerve(GET_NERVE(StarPiece, HostTypeNrvToPlayerEnd));
     getSensor("body")->invalidate();
     return true;
 }

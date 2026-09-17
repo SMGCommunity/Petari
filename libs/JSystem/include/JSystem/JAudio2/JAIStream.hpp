@@ -53,6 +53,6 @@ public:
     /* 0x2BC */ JAISoundStrategy< JAIStream >* soundStrategy;
     /* 0x2C0 */ JAISoundStrategyMgr< JAIStream >* soundStrategyMgr;
     /* 0x2C4 */ bool mIsPaused;
-    /* 0x2C5 */ bool mIsStreamStopped;
-    /* 0x2C6 */ bool mIsStreamStarted;
+    /* 0x2C5 */ volatile bool mIsStreamStopped;
+    /* 0x2C6 */ volatile bool mIsStreamStarted;
 };

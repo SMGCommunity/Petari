@@ -44,7 +44,7 @@ void SimpleFloaterObj::init(const JMapInfoIter& rrIter) {
     _90->init(rrIter);
     _90->setObjectName(_8C);
     _90->start();
-    initNerve(&NrvSimpleFloaterObj::SimpleFloaterObjNrvWait::sInstance);
+    initNerve(GET_NERVE(SimpleFloaterObj, SimpleFloaterObjNrvWait));
     makeActorAppeared();
 }
 

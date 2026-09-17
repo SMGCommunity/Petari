@@ -20,20 +20,20 @@ void GalaxySelectBackButton::init(const JMapInfoIter&) {
     mPaneCtrl = new ButtonPaneController(this, "Back", "BoxButton", 0, true);
     mPaneCtrl->_23 = true;
 
-    initNerve(&NrvGalaxySelectBackButton::GalaxySelectBackButtonNrvAppear::sInstance);
+    initNerve(GET_NERVE(GalaxySelectBackButton, GalaxySelectBackButtonNrvAppear));
 }
 
 void GalaxySelectBackButton::appear() {
     LayoutActor::appear();
-    setNerve(&NrvGalaxySelectBackButton::GalaxySelectBackButtonNrvAppear::sInstance);
+    setNerve(GET_NERVE(GalaxySelectBackButton, GalaxySelectBackButtonNrvAppear));
 }
 
 void GalaxySelectBackButton::disappear() {
-    setNerve(&NrvGalaxySelectBackButton::GalaxySelectBackButtonNrvDisappear::sInstance);
+    setNerve(GET_NERVE(GalaxySelectBackButton, GalaxySelectBackButtonNrvDisappear));
 }
 
 void GalaxySelectBackButton::decide() {
-    setNerve(&NrvGalaxySelectBackButton::GalaxySelectBackButtonNrvDecide::sInstance);
+    setNerve(GET_NERVE(GalaxySelectBackButton, GalaxySelectBackButtonNrvDecide));
 }
 
 bool GalaxySelectBackButton::isPointing() const {

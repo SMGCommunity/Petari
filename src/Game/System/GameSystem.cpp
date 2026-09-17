@@ -82,7 +82,7 @@ void GameSystem::init() {
     mObjHolder = new GameSystemObjHolder();
     mFontHolder = new GameSystemFontHolder();
     mFontHolder->createFontFromEmbeddedData();
-    initNerve(&NrvGameSystem::GameSystemInitializeAudio::sInstance);
+    initNerve(GET_NERVE(GameSystem, GameSystemInitializeAudio));
     mSequenceDirector = new GameSequenceDirector();
     initGX();
     DrawSyncManager::start(0x300, 15);
@@ -96,7 +96,7 @@ void GameSystem::init() {
     mHomeButtonLayout = new HomeButtonLayout();
     mHomeButtonStateNotifier = new HomeButtonStateNotifier();
     mDimmingWatcher = new GameSystemDimmingWatcher();
-    setNerve(&NrvGameSystem::GameSystemInitializeAudio::sInstance);
+    setNerve(GET_NERVE(GameSystem, GameSystemInitializeAudio));
 }
 
 bool GameSystem::isExecuteLoadSystemArchive() const {
@@ -104,7 +104,7 @@ bool GameSystem::isExecuteLoadSystemArchive() const {
 }
 
 bool GameSystem::isDoneLoadSystemArchive() const {
-    return isNerve(&NrvGameSystem::GameSystemNormal::sInstance);
+    return isNerve(GET_NERVE(GameSystem, GameSystemNormal));
 }
 
 void GameSystem::startToLoadSystemArchive() {
@@ -112,7 +112,7 @@ void GameSystem::startToLoadSystemArchive() {
 
     SingletonHolder< HeapMemoryWatcher >::get()->setCurrentHeapToStationedHeap();
     SingletonHolder< NameObjRegister >::get()->setCurrentHolder(mObjHolder->mObjHolder);
-    setNerve(&NrvGameSystem::GameSystemLoadStationedArchive::sInstance);
+    setNerve(GET_NERVE(GameSystem, GameSystemLoadStationedArchive));
 }
 
 void GameSystem::exeInitializeAudio() {
@@ -124,13 +124,13 @@ void GameSystem::exeInitializeAudio() {
 
     if (MR::isEndFunctionAsyncExecute(INIT_AUDIO_KEY) && mObjHolder->mAudioSystem->isLoadDoneWaveDataAtSystemInit()) {
         MR::waitForEndFunctionAsyncExecute(INIT_AUDIO_KEY);
-        setNerve(&NrvGameSystem::GameSystemInitializeLogoScene::sInstance);
+        setNerve(GET_NERVE(GameSystem, GameSystemInitializeLogoScene));
     }
 }
 
 void GameSystem::exeInitializeLogoScene() {
     if (GameSystemFunction::isResetProcessing()) {
-        setNerve(&NrvGameSystem::GameSystemWaitForReboot::sInstance);
+        setNerve(GET_NERVE(GameSystem, GameSystemWaitForReboot));
     } else {
         if (MR::isFirstStep(this)) {
             MR::requestChangeScene("Logo");
@@ -145,7 +145,7 @@ void GameSystem::exeLoadStationedArchive() {
     updateSceneController();
 
     if (mStationedArchiveLoader->isDone()) {
-        setNerve(&NrvGameSystem::GameSystemNormal::sInstance);
+        setNerve(GET_NERVE(GameSystem, GameSystemNormal));
     }
 }
 
@@ -180,11 +180,11 @@ void GameSystem::prepareReset() {
 }
 
 inline bool isSystemWaitForReboot(const GameSystem* pGameSystem) {
-    return pGameSystem->isNerve(&NrvGameSystem::GameSystemWaitForReboot::sInstance);
+    return pGameSystem->isNerve(GET_NERVE(GameSystem, GameSystemWaitForReboot));
 }
 
 inline bool isSystemNormal(const GameSystem* pGameSystem) {
-    return pGameSystem->isNerve(&NrvGameSystem::GameSystemNormal::sInstance);
+    return pGameSystem->isNerve(GET_NERVE(GameSystem, GameSystemNormal));
 }
 
 bool GameSystem::isPreparedReset() const {

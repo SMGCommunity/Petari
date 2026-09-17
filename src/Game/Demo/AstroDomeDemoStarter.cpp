@@ -60,11 +60,11 @@ void AstroDomeDemoStarter::init(const JMapInfoIter& rIter) {
     MR::startBtpAndSetFrameAndStop(this, "SuperSpinDriver", 0.0f);
     MR::startBrk(this, "Yellow");
 
-    initNerve(&NrvAstroDomeDemoStarter::AstroDomeDemoStarterNrvSpinDriverAppear::sInstance);
+    initNerve(GET_NERVE(AstroDomeDemoStarter, AstroDomeDemoStarterNrvSpinDriverAppear));
 
     MR::tryRegisterDemoCast(this, rIter);
-    MR::registerDemoActionNerve(this, &NrvAstroDomeDemoStarter::AstroDomeDemoStarterNrvSpinDriverStart::sInstance, "スピンドライバ起動");
-    MR::registerDemoActionNerve(this, &NrvAstroDomeDemoStarter::AstroDomeDemoStarterNrvJumpOut::sInstance, "飛び出す");
+    MR::registerDemoActionNerve(this, GET_NERVE(AstroDomeDemoStarter, AstroDomeDemoStarterNrvSpinDriverStart), "スピンドライバ起動");
+    MR::registerDemoActionNerve(this, GET_NERVE(AstroDomeDemoStarter, AstroDomeDemoStarterNrvJumpOut), "飛び出す");
     MR::registerDemoActionFunctor(this, MR::Functor_Inline(this, &AstroDomeDemoStarter::startJumpOut), nullptr);
     MR::needStageSwitchWriteA(this, rIter);
 
@@ -165,7 +165,7 @@ void AstroDomeDemoStarter::exeSpinDriverStart() {
         MR::setBckRate(MR::getPlayerDemoActor(), 0.0f);
     }
 
-    MR::setNerveAtStep(this, &NrvAstroDomeDemoStarter::AstroDomeDemoStarterNrvSpinDriverShoot::sInstance, 58);
+    MR::setNerveAtStep(this, GET_NERVE(AstroDomeDemoStarter, AstroDomeDemoStarterNrvSpinDriverShoot), 58);
 }
 
 void AstroDomeDemoStarter::exeSpinDriverShoot() {
@@ -210,7 +210,7 @@ void AstroDomeDemoStarter::exeJumpOut() {
     }
 
     if (MR::isStep(this, ::cWhiteOutFrame)) {
-        setNerve(&NrvAstroDomeDemoStarter::AstroDomeDemoStarterNrvWhiteOut::sInstance);
+        setNerve(GET_NERVE(AstroDomeDemoStarter, AstroDomeDemoStarterNrvWhiteOut));
     }
 }
 

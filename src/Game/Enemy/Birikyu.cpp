@@ -53,9 +53,9 @@ void Birikyu::init(const JMapInfoIter& rIter) {
     MR::initStarPointerTarget(this, 100.0f, offset);
 
     if (_A9) {
-        initNerve(&NrvBirikyu::HostTypeMove::sInstance);
+        initNerve(GET_NERVE(Birikyu, HostTypeMove));
     } else {
-        initNerve(&NrvBirikyu::HostTypeMoveCircle::sInstance);
+        initNerve(GET_NERVE(Birikyu, HostTypeMoveCircle));
     }
 
     appear();
@@ -100,7 +100,7 @@ void Birikyu::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayerOrRide(pReceiver) || MR::isSensorEnemy(pReceiver)) {
         if (MR::sendMsgEnemyAttackElectric(pReceiver, pSender)) {
             MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_STOP, this, getSensor("body"), "body");
-            setNerve(&NrvBirikyu::HostTypeAttack::sInstance);
+            setNerve(GET_NERVE(Birikyu, HostTypeAttack));
         } else {
             MR::sendMsgPush(pReceiver, pSender);
         }
@@ -113,17 +113,17 @@ bool Birikyu::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
 
 bool Birikyu::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_GROUP_MOVE_STOP) {
-        bool bool4 = isNerve(&NrvBirikyu::HostTypeMove::sInstance) || isNerve(&NrvBirikyu::HostTypeMoveCircle::sInstance);
+        bool bool4 = isNerve(GET_NERVE(Birikyu, HostTypeMove)) || isNerve(GET_NERVE(Birikyu, HostTypeMoveCircle));
 
         if (bool4) {
-            setNerve(&NrvBirikyu::HostTypeAttackWait::sInstance);
+            setNerve(GET_NERVE(Birikyu, HostTypeAttackWait));
 
             return true;
         }
     }
 
     if (msg == ACTMES_GROUP_MOVE_START) {
-        bool bool5 = isNerve(&NrvBirikyu::HostTypeMove::sInstance) || isNerve(&NrvBirikyu::HostTypeMoveCircle::sInstance);
+        bool bool5 = isNerve(GET_NERVE(Birikyu, HostTypeMove)) || isNerve(GET_NERVE(Birikyu, HostTypeMoveCircle));
 
         if (!bool5) {
             goMove();
@@ -180,7 +180,7 @@ void Birikyu::initShadow() {
 bool Birikyu::tryStopPointing() {
     if (MR::isStarPointerPointing2POnPressButton(this, "Hit", true, false)) {
         MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_STOP, this, getSensor("body"), "body");
-        setNerve(&NrvBirikyu::HostTypeStopPointing::sInstance);
+        setNerve(GET_NERVE(Birikyu, HostTypeStopPointing));
 
         return true;
     }
@@ -190,9 +190,9 @@ bool Birikyu::tryStopPointing() {
 
 void Birikyu::goMove() {
     if (_A9) {
-        setNerve(&NrvBirikyu::HostTypeMove::sInstance);
+        setNerve(GET_NERVE(Birikyu, HostTypeMove));
     } else {
-        setNerve(&NrvBirikyu::HostTypeMoveCircle::sInstance);
+        setNerve(GET_NERVE(Birikyu, HostTypeMoveCircle));
     }
 }
 
@@ -206,7 +206,7 @@ void Birikyu::exeMove() {
             MR::getCurrentRailPointArg0NoInit(this, &arg);
 
             if (arg > 0) {
-                setNerve(&NrvBirikyu::HostTypeWaitAtEdge::sInstance);
+                setNerve(GET_NERVE(Birikyu, HostTypeWaitAtEdge));
             } else {
                 MR::emitEffect(this, "Clash");
             }
@@ -236,7 +236,7 @@ void Birikyu::exeWaitAtEdge() {
     MR::getCurrentRailPointArg0NoInit(this, &arg);
 
     if (MR::isStep(this, arg)) {
-        setNerve(&NrvBirikyu::HostTypeMove::sInstance);
+        setNerve(GET_NERVE(Birikyu, HostTypeMove));
     }
 }
 

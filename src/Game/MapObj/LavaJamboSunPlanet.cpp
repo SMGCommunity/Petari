@@ -29,7 +29,7 @@ void LavaJamboSunPlanet::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
     HitSensor* bodySensor = MR::addBodyMessageSensorMapObj(this);
     MR::initCollisionParts(this, "LavaJamboSunPlanet", bodySensor, nullptr);
-    initNerve(&NrvLavaJamboSunPlanet::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(LavaJamboSunPlanet, HostTypeWait));
     initRailRider(rIter);
     MR::initAndSetRailClipping(&_98, this, 100.0f, 500.0f);
     MR::needStageSwitchReadA(this, rIter);
@@ -54,12 +54,12 @@ void LavaJamboSunPlanet::control() {
 }
 
 void LavaJamboSunPlanet::exeWait() {
-    if (isNerve(&NrvLavaJamboSunPlanet::HostTypeWait::sInstance) && MR::isOnSwitchA(this)) {
-        setNerve(&NrvLavaJamboSunPlanet::HostTypeMove::sInstance);
+    if (isNerve(GET_NERVE(LavaJamboSunPlanet, HostTypeWait)) && MR::isOnSwitchA(this)) {
+        setNerve(GET_NERVE(LavaJamboSunPlanet, HostTypeMove));
         return;
     }
-    if (isNerve(&NrvLavaJamboSunPlanet::HostTypePause::sInstance) && MR::isOnSwitchB(this)) {
-        setNerve(&NrvLavaJamboSunPlanet::HostTypeMove::sInstance);
+    if (isNerve(GET_NERVE(LavaJamboSunPlanet, HostTypePause)) && MR::isOnSwitchB(this)) {
+        setNerve(GET_NERVE(LavaJamboSunPlanet, HostTypeMove));
     }
 }
 
@@ -71,9 +71,9 @@ void LavaJamboSunPlanet::exeMove() {
     s32 v3 = -1;
     MR::getCurrentRailPointArg1NoInit(this, &v3);
     if (v3 == 1) {
-        setNerve(&NrvLavaJamboSunPlanet::HostTypePause::sInstance);
+        setNerve(GET_NERVE(LavaJamboSunPlanet, HostTypePause));
     } else if (MR::isRailReachedGoal(this)) {
-        setNerve(&NrvLavaJamboSunPlanet::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(LavaJamboSunPlanet, HostTypeWait));
     }
 }
 

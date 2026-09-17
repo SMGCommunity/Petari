@@ -146,7 +146,75 @@ void GalaxyInfoLayoutSetter::updateInfoWithoutComet(const char* pGalaxyName, Gal
     }
 }
 
-// GalaxyInfoLayoutSetter::setTextBoxStarNum
+void GalaxyInfoLayoutSetter::setTextBoxStarNum(const char* pGalaxyName) {
+    GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
+
+    wchar_t starBaseBuffer[16];
+    wchar_t starIconBuffer[16];
+    
+    wchar_t* pStarBase = starIconBuffer;
+    wchar_t* pStarIcon = starBaseBuffer;
+
+    starIconBuffer[0] = '\0';
+    starBaseBuffer[0] = '\0';
+
+    for (s32 i = 1; i <= accessor.getNormalScenarioNum(); i++) {
+        if (MR::isOnGameEventFlagPowerStarSuccess(pGalaxyName, i)) {
+            addPictureFontStar(&pStarBase, &pStarIcon, pGalaxyName, i);
+        } else {
+            pStarBase = MR::addPictureFontCode(pStarBase, 'R');
+            pStarIcon = MR::addPictureFontCode(pStarIcon, '7');
+        }
+    }
+
+    if (MR::isStarComplete(pGalaxyName)) {
+        MR::showPaneRecursive(mHost, "Complete");
+
+        for (s32 i = accessor.getNormalScenarioNum() + 1; i <= accessor.getPowerStarNum(); i++) {
+            addPictureFontStar(&pStarBase, &pStarIcon, pGalaxyName, i);
+        }
+    } else {
+        MR::hidePaneRecursive(mHost, "Complete");
+
+        if (MR::isStarCompleteNormalScenario(pGalaxyName)) {
+            for (s32 i = accessor.getNormalScenarioNum() + 1; i <= accessor.getPowerStarNum(); i++) {
+                if (MR::isOnGameEventFlagPowerStarSuccess(pGalaxyName, i)) {
+                    addPictureFontStar(&pStarBase, &pStarIcon, pGalaxyName, i);
+                    continue;
+                }
+
+                if (GameDataConst::isPowerStarLuigiHas(pGalaxyName, i) && !MR::isLuigiHidingGalaxyAndScenario(pGalaxyName, i)) {
+                    continue;
+                }
+
+                if (accessor.isValidNormalComet(i) && !MR::canAppearNormalComet(pGalaxyName)) {
+                    continue;
+                }
+
+                if (accessor.isValidCoin100(i) && !MR::canAppearCoin100Comet(pGalaxyName)) {
+                    continue;
+                }
+
+                if (accessor.isCometStar(i)) {
+                    pStarBase = MR::addPictureFontCode(pStarBase, 'R');
+                    pStarIcon = MR::addPictureFontCode(pStarIcon, 'e');
+                } else {
+                    pStarBase = MR::addPictureFontCode(pStarBase, MR::isPowerStarGreen(pGalaxyName, i) ? 'f' : 'Z');
+                    pStarIcon = MR::addPictureFontCode(pStarIcon, '7');
+                }
+            }
+        } else {
+            for (s32 i = accessor.getNormalScenarioNum() + 1; i <= accessor.getPowerStarNum(); i++) {
+                if (MR::isOnGameEventFlagPowerStarSuccess(pGalaxyName, i)) {
+                    addPictureFontStar(&pStarBase, &pStarIcon, pGalaxyName, i);
+                }
+            }
+        }
+    }
+    
+    MR::setTextBoxMessageRecursive(mHost, "StarIcon", starIconBuffer);
+    MR::setTextBoxMessageRecursive(mHost, "TxtStarBase", starBaseBuffer);
+}
 
 void GalaxyInfoLayoutSetter::showCometWindow(int cometId) {
     char messageId[256];

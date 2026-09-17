@@ -8,7 +8,7 @@
 #include "Game/Map/SwitchWatcherHolder.hpp"
 #include "Game/Map/WaterInfo.hpp"
 #include "Game/MapObj/BenefitItemLifeUp.hpp"
-#include "Game/MapObj/BenefitItemObj.hpp"
+#include "Game/MapObj/BenefitItemOneUp.hpp"
 #include "Game/MapObj/CoinHolder.hpp"
 #include "Game/MapObj/PowerStar.hpp"
 #include "Game/MapObj/StarPieceDirector.hpp"
@@ -170,8 +170,7 @@ void MR::connectToSceneMapObjNoCalcAnimStrongLight(LiveActor* pActor) {
 }
 
 void MR::connectToSceneMapObjDecoration(LiveActor* pActor) {
-    MR::connectToScene(pActor, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_MapObj,
-                       MR::DrawType_None);
+    MR::connectToScene(pActor, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_MapObj, MR::DrawType_None);
 }
 
 void MR::connectToSceneMapObjDecorationStrongLight(LiveActor* pActor) {
@@ -231,8 +230,7 @@ void MR::connectToSceneItem(LiveActor* pActor) {
 }
 
 void MR::connectToSceneItemStrongLight(LiveActor* pActor) {
-    MR::connectToScene(pActor, MR::MovementType_Item, MR::CalcAnimType_Item, MR::DrawBufferType_NoSilhouettedMapObjStrongLight,
-                       MR::DrawType_None);
+    MR::connectToScene(pActor, MR::MovementType_Item, MR::CalcAnimType_Item, MR::DrawBufferType_NoSilhouettedMapObjStrongLight, MR::DrawType_None);
 }
 
 void MR::connectToSceneIndirectEnemy(LiveActor* pActor) {
@@ -313,8 +311,7 @@ void MR::connectToSceneMirrorMapObj(LiveActor* pActor) {
 }
 
 void MR::connectToSceneMirrorMapObjDecoration(LiveActor* pActor) {
-    MR::connectToScene(pActor, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MirrorMapObj, MR::DrawBufferType_MirrorMapObj,
-                       MR::DrawType_None);
+    MR::connectToScene(pActor, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MirrorMapObj, MR::DrawBufferType_MirrorMapObj, MR::DrawType_None);
 }
 
 void MR::connectToSceneMirrorMapObjNoMovement(LiveActor* pActor) {
@@ -330,8 +327,7 @@ void MR::connectToSceneNoShadowedMapObj(LiveActor* pActor) {
 }
 
 void MR::connectToSceneNoShadowedMapObjStrongLight(LiveActor* pActor) {
-    MR::connectToScene(pActor, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_NoShadowedMapObjStrongLight,
-                       MR::DrawType_None);
+    MR::connectToScene(pActor, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_NoShadowedMapObjStrongLight, MR::DrawType_None);
 }
 
 void MR::connectToSceneNoSilhouettedMapObj(LiveActor* pActor) {
@@ -344,8 +340,7 @@ void MR::connectToSceneNoSilhouettedMapObjStrongLight(LiveActor* pActor) {
 }
 
 void MR::connectToSceneNoSilhouettedMapObjWeakLightNoMovement(LiveActor* pActor) {
-    MR::connectToScene(pActor, MR::MovementType_None, MR::CalcAnimType_MapObj, MR::DrawBufferType_NoSilhouettedMapObjWeakLight,
-                       MR::DrawType_None);
+    MR::connectToScene(pActor, MR::MovementType_None, MR::CalcAnimType_MapObj, MR::DrawBufferType_NoSilhouettedMapObjWeakLight, MR::DrawType_None);
 }
 
 void MR::connectToSceneSky(LiveActor* pActor) {
@@ -441,7 +436,7 @@ void MR::listenNameObjStageSwitchOnAppear(const NameObj* pObj, const StageSwitch
 }
 
 void MR::listenNameObjStageSwitchOnOffAppear(const NameObj* pObj, const StageSwitchCtrl* pSwitchCtrl, const MR::FunctorBase& rOnFunctor,
-                                         const MR::FunctorBase& rOffFunctor) {
+                                             const MR::FunctorBase& rOffFunctor) {
     SwitchEventFunctorListener* pListener;
 
     pListener = new SwitchEventFunctorListener();
@@ -461,7 +456,7 @@ void MR::listenNameObjStageSwitchOnA(const NameObj* pObj, const StageSwitchCtrl*
 }
 
 void MR::listenNameObjStageSwitchOnOffA(const NameObj* pObj, const StageSwitchCtrl* pSwitchCtrl, const MR::FunctorBase& rOnFunctor,
-                                    const MR::FunctorBase& rOffFunctor) {
+                                        const MR::FunctorBase& rOffFunctor) {
     SwitchEventFunctorListener* pListener;
 
     pListener = new SwitchEventFunctorListener();
@@ -490,7 +485,7 @@ void MR::listenNameObjStageSwitchOffB(const NameObj* pObj, const StageSwitchCtrl
 }
 
 void MR::listenNameObjStageSwitchOnOffB(const NameObj* pObj, const StageSwitchCtrl* pSwitchCtrl, const MR::FunctorBase& rOnFunctor,
-                                    const MR::FunctorBase& rOffFunctor) {
+                                        const MR::FunctorBase& rOffFunctor) {
     SwitchEventFunctorListener* pListener;
 
     pListener = new SwitchEventFunctorListener();

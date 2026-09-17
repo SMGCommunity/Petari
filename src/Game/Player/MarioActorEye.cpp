@@ -68,7 +68,7 @@ void MarioActor::updateBlink() {
         }
     }
 
-    if (isNerve(&NrvMarioActor::MarioActorNrvGameOver::sInstance) && !mEyeRes) {
+    if (isNerve(GET_NERVE(MarioActor, MarioActorNrvGameOver)) && !mEyeRes) {
         if (mMario->isAnimationTerminate(nullptr)) {
             _B6A = 2;
         } else {

@@ -31,6 +31,7 @@
 #include "Game/Map/OceanRingBloomDrawer.hpp"
 #include "Game/Map/OceanRingDrawer.hpp"
 #include "Game/Map/OceanRingPipe.hpp"
+#include "Game/Map/PlanetMap.hpp"
 #include "Game/Map/PlanetMapCreator.hpp"
 #include "Game/Map/PlanetMapWithoutHighModel.hpp"
 #include "Game/Map/QuakeEffectGenerator.hpp"

@@ -2,7 +2,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/MapObj/BenefitItemLifeUp.hpp"
-#include "Game/MapObj/BenefitItemObj.hpp"
+#include "Game/MapObj/BenefitItemOneUp.hpp"
 #include "Game/NPC/NPCActorItem.hpp"
 #include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
@@ -71,7 +71,7 @@ void TicoShop::init(const JMapInfoIter& rIter) {
     MR::registerBranchFunc(mMsgCtrl, TalkMessageFunc(this, &TicoShop::branchFunc));
     MR::registerEventFunc(mMsgCtrl, TalkMessageFunc(this, &TicoShop::eventFunc));
     MR::setDistanceToTalk(mMsgCtrl, 350.0f);
-    _180 = &NrvTicoShop::TicoShopNrvDemo::sInstance;
+    _180 = GET_NERVE(TicoShop, TicoShopNrvDemo);
     mOneUp = MR::createKinokoOneUp();
     mLifeUp = MR::createKinokoSuper();
     MR::setShadowDropLength(mOneUp, nullptr, ::sShadowLength);

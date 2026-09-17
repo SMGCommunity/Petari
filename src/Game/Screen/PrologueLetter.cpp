@@ -22,13 +22,13 @@ void PrologueLetter::init(const JMapInfoIter& rIter) {
     mAButtonIcon = MR::createAndSetupIconAButton(this, false, false);
 
     MR::connectToSceneLayoutDecoration(mAButtonIcon);
-    initNerve(&PrologueLetterNrvAppear::sInstance);
+    initNerve(GET_NERVE_GLOBAL(PrologueLetterNrvAppear));
     MR::connectToSceneLayout(this);
 }
 
 void PrologueLetter::appear() {
     LayoutActor::appear();
-    setNerve(&PrologueLetterNrvAppear::sInstance);
+    setNerve(GET_NERVE_GLOBAL(PrologueLetterNrvAppear));
 }
 
 void PrologueLetter::kill() {
@@ -52,7 +52,7 @@ void PrologueLetter::exeAppear() {
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(&PrologueLetterNrvWait::sInstance);
+        setNerve(GET_NERVE_GLOBAL(PrologueLetterNrvWait));
     }
 }
 
@@ -64,7 +64,7 @@ void PrologueLetter::exeWait() {
 
     if (MR::testSystemPadTriggerDecide()) {
         MR::startSystemSE("SE_SY_TALK_OK");
-        setNerve(&PrologueLetterNrvDisappear::sInstance);
+        setNerve(GET_NERVE_GLOBAL(PrologueLetterNrvDisappear));
     }
 }
 

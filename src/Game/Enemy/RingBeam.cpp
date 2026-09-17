@@ -182,7 +182,7 @@ void RingBeam::init(const JMapInfoIter& rIter) {
     initSound(2, true);
     mSoundObject->setTrans(&_cc);
     MR::invalidateClipping(this);
-    initNerve(&NrvRingBeam::RingBeamNrvSpread::sInstance);
+    initNerve(GET_NERVE(RingBeam, RingBeamNrvSpread));
 
     initPos(this);
     mtx.setInline(this->getBaseMtx());
@@ -210,7 +210,7 @@ void RingBeam::appear() {
 }
 
 void RingBeam::kill() {
-    setNerve(&NrvRingBeam::RingBeamNrvSpread::sInstance);
+    setNerve(GET_NERVE(RingBeam, RingBeamNrvSpread));
     initPos(_8c);
     setRadius(0.0f);
     LiveActor::kill();

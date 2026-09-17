@@ -22,13 +22,13 @@ void FireBall::init(const JMapInfoIter& rIter) {
     initSound(6, false);
     MR::initShadowVolumeCylinder(this, 60.0f);
     MR::invalidateClipping(this);
-    initNerve(&NrvFireBall::FireBallNrvThrow::sInstance);
+    initNerve(GET_NERVE(FireBall, FireBallNrvThrow));
     makeActorDead();
 }
 
 void FireBall::appear() {
     LiveActor::appear();
-    setNerve(&NrvFireBall::FireBallNrvThrow::sInstance);
+    setNerve(GET_NERVE(FireBall, FireBallNrvThrow));
 }
 
 void FireBall::kill() {
@@ -155,7 +155,7 @@ void FireBall::exeThrow() {
         TVec2f pointerScreenVel = *MR::getStarPointerScreenVelocity(*starPointerLastPointedPort);
         if (30.0f < pointerScreenVel.length()) {
             calcReflectVelocity();
-            setNerve(&NrvFireBall::FireBallNrvReflect::sInstance);
+            setNerve(GET_NERVE(FireBall, FireBallNrvReflect));
             return;
         }
     }

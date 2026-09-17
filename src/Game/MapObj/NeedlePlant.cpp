@@ -34,7 +34,7 @@ void NeedlePlant::init(const JMapInfoIter& rIter) {
     info.setupHitSensor();
     info.setupHitSensorParam(4, 180.0f, TVec3f(0.0f, mScale.x * 150.0f, 0.0f));
     info.setupShadow(nullptr);
-    info.setupNerve(&NrvNeedlePlant::NeedlePlantNrvWait::sInstance);
+    info.setupNerve(GET_NERVE(NeedlePlant, NeedlePlantNrvWait));
     initialize(rIter, info);
     initEffectKeeper(1, "NeedlePlant", false);
     MR::addEffectHitNormal(this, nullptr);
@@ -62,7 +62,7 @@ void NeedlePlant::exeShake() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvNeedlePlant::NeedlePlantNrvWait::sInstance);
+        setNerve(GET_NERVE(NeedlePlant, NeedlePlantNrvWait));
     }
 }
 
@@ -88,7 +88,7 @@ void NeedlePlant::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
     if (MR::isSensorPlayerOrRide(pReceiver) && MR::sendMsgEnemyAttack(pReceiver, pSender)) {
         MR::emitEffectHitBetweenSensors(this, pSender, pReceiver, 0.0f, nullptr);
-        setNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance);
+        setNerve(GET_NERVE(NeedlePlant, NeedlePlantNrvShake));
     } else if (MR::isSensorPlayerOrRide(pReceiver) || MR::isSensorEnemy(pReceiver)) {
         f32 radius = getSensor(nullptr)->mRadius;
         getSensor(nullptr)->mRadius = ::sAttackSensorSize * mScale.x;
@@ -98,7 +98,7 @@ void NeedlePlant::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool NeedlePlant::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance)) {
+    if (isNerve(GET_NERVE(NeedlePlant, NeedlePlantNrvShake))) {
         return false;
     }
 
@@ -106,14 +106,14 @@ bool NeedlePlant::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    setNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance);
+    setNerve(GET_NERVE(NeedlePlant, NeedlePlantNrvShake));
 
     return true;
 }
 
 bool NeedlePlant::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceReflect(msg)) {
-        setNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance);
+        setNerve(GET_NERVE(NeedlePlant, NeedlePlantNrvShake));
 
         return true;
     }

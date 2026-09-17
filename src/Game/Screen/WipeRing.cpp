@@ -29,7 +29,7 @@ void WipeRing::init(const JMapInfoIter& rIter) {
     initLayoutManager("WipeRing", 1);
     MR::createAndAddPaneCtrl(this, "Ring", 1);
     MR::setFollowPos(&mCenterPos, this, "Ring");
-    initNerve(&::WipeRingNrvOpen::sInstance);
+    initNerve(GET_NERVE_ANON(WipeRingNrvOpen));
     kill();
 }
 
@@ -52,7 +52,7 @@ void WipeRing::exeWipeIn() {
     MR::getAnimCtrl(this, 0)->setFrame(mWipeInFrame * (1.0f - f));
 
     if (MR::isStep(this, mAnimFrame)) {
-        setNerve(&::WipeRingNrvOpen::sInstance);
+        setNerve(GET_NERVE_ANON(WipeRingNrvOpen));
     }
 }
 
@@ -79,7 +79,7 @@ void WipeRing::exeWipeOut() {
     MR::getAnimCtrl(this, 0)->setFrame(mWipeOutFrame * (1.0f - f) + f * MR::getAnimCtrl(this, 0)->getEnd());
 
     if (MR::isStep(this, mAnimFrame)) {
-        setNerve(&::WipeRingNrvClose::sInstance);
+        setNerve(GET_NERVE_ANON(WipeRingNrvClose));
     }
 }
 
@@ -90,21 +90,21 @@ void WipeRing::wipe(s32 frame) {
         mAnimFrame = frame;
     }
 
-    if (isNerve(&::WipeRingNrvClose::sInstance)) {
-        setNerve(&::WipeRingNrvWipeIn::sInstance);
+    if (isNerve(GET_NERVE_ANON(WipeRingNrvClose))) {
+        setNerve(GET_NERVE_ANON(WipeRingNrvWipeIn));
         startAnim(::sInAnimName);
-    } else if (isNerve(&::WipeRingNrvWipeIn::sInstance)) {
-        setNerve(&::WipeRingNrvWipeOut::sInstance);
+    } else if (isNerve(GET_NERVE_ANON(WipeRingNrvWipeIn))) {
+        setNerve(GET_NERVE_ANON(WipeRingNrvWipeOut));
         startAnim(::sOutAnimName);
-    } else if (isNerve(&::WipeRingNrvOpen::sInstance)) {
+    } else if (isNerve(GET_NERVE_ANON(WipeRingNrvOpen))) {
         if (MR::isDead(this)) {
             appear();
         }
 
-        setNerve(&::WipeRingNrvWipeOut::sInstance);
+        setNerve(GET_NERVE_ANON(WipeRingNrvWipeOut));
         startAnim(::sOutAnimName);
-    } else if (isNerve(&::WipeRingNrvWipeOut::sInstance)) {
-        setNerve(&::WipeRingNrvWipeIn::sInstance);
+    } else if (isNerve(GET_NERVE_ANON(WipeRingNrvWipeOut))) {
+        setNerve(GET_NERVE_ANON(WipeRingNrvWipeIn));
         startAnim(::sInAnimName);
     }
 }
@@ -116,28 +116,28 @@ void WipeRing::forceClose() {
 
     MR::startAnim(this, ::sInAnimName, 0);
     MR::setAnimFrameAndStop(this, 0.0f, 0);
-    setNerve(&::WipeRingNrvClose::sInstance);
+    setNerve(GET_NERVE_ANON(WipeRingNrvClose));
 }
 
 void WipeRing::forceOpen() {
     kill();
-    setNerve(&::WipeRingNrvOpen::sInstance);
+    setNerve(GET_NERVE_ANON(WipeRingNrvOpen));
 }
 
 bool WipeRing::isOpen() const {
-    return isNerve(&::WipeRingNrvOpen::sInstance);
+    return isNerve(GET_NERVE_ANON(WipeRingNrvOpen));
 }
 
 bool WipeRing::isClose() const {
-    return isNerve(&::WipeRingNrvClose::sInstance);
+    return isNerve(GET_NERVE_ANON(WipeRingNrvClose));
 }
 
 bool WipeRing::isWipeIn() const {
-    return isNerve(&::WipeRingNrvWipeIn::sInstance);
+    return isNerve(GET_NERVE_ANON(WipeRingNrvWipeIn));
 }
 
 bool WipeRing::isWipeOut() const {
-    return isNerve(&::WipeRingNrvWipeOut::sInstance);
+    return isNerve(GET_NERVE_ANON(WipeRingNrvWipeOut));
 }
 
 void WipeRing::setCenterPos(const TVec3f& rPos) {

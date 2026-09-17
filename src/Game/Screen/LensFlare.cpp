@@ -28,7 +28,7 @@ LensFlareModel::LensFlareModel(const char* pName, const char* pArcName)
     initModelManagerWithAnm(pArcName, nullptr, false);
     MR::connectToScene3DModelFor2D(this);
     MR::invalidateClipping(this);
-    initNerve(&::LensFlareModelNrvKill::sInstance);
+    initNerve(GET_NERVE_ANON(LensFlareModelNrvKill));
     kill();
 }
 
@@ -38,17 +38,17 @@ void LensFlareModel::update(bool param1, bool param2) {
     if (_98->getOnTrigger()) {
         notifyInArea();
     } else if (_98->getOffTrigger()) {
-        setNerve(&::LensFlareModelNrvFadeOut::sInstance);
+        setNerve(GET_NERVE_ANON(LensFlareModelNrvFadeOut));
     }
 
     _9C->update(param2 && param1);
 
     if (_9C->getOnTrigger()) {
-        if (isNerve(&::LensFlareModelNrvHide::sInstance)) {
-            setNerve(&::LensFlareModelNrvShow::sInstance);
+        if (isNerve(GET_NERVE_ANON(LensFlareModelNrvHide))) {
+            setNerve(GET_NERVE_ANON(LensFlareModelNrvShow));
         }
-    } else if (_9C->getOffTrigger() && (isNerve(&::LensFlareModelNrvShow::sInstance) || isNerve(&::LensFlareModelNrvFadeIn::sInstance))) {
-        setNerve(&::LensFlareModelNrvHide::sInstance);
+    } else if (_9C->getOffTrigger() && (isNerve(GET_NERVE_ANON(LensFlareModelNrvShow)) || isNerve(GET_NERVE_ANON(LensFlareModelNrvFadeIn)))) {
+        setNerve(GET_NERVE_ANON(LensFlareModelNrvHide));
     }
 }
 
@@ -85,7 +85,7 @@ void LensFlareModel::exeFadeIn() {
     if (_90 >= 1.0f) {
         _90 = 1.0f;
 
-        setNerve(&::LensFlareModelNrvShow::sInstance);
+        setNerve(GET_NERVE_ANON(LensFlareModelNrvShow));
     }
 }
 
@@ -95,7 +95,7 @@ void LensFlareModel::exeFadeOut() {
     if (_90 <= 0.0f) {
         _90 = 0.0f;
 
-        setNerve(&::LensFlareModelNrvKill::sInstance);
+        setNerve(GET_NERVE_ANON(LensFlareModelNrvKill));
     }
 }
 
@@ -114,9 +114,9 @@ void LensFlareModel::notifyInArea() {
     }
 
     if (_9C->getLevel() > 0.0f) {
-        setNerve(&::LensFlareModelNrvFadeIn::sInstance);
+        setNerve(GET_NERVE_ANON(LensFlareModelNrvFadeIn));
     } else {
-        setNerve(&::LensFlareModelNrvHide::sInstance);
+        setNerve(GET_NERVE_ANON(LensFlareModelNrvHide));
     }
 }
 

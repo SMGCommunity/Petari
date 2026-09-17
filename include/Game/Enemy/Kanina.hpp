@@ -3,7 +3,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 
 class AnimationRandomPlayer;
-class BenefitItemOneUp;
+class BenefitItemObj;
 class JointRumbler;
 
 class Kanina : public LiveActor {
@@ -83,7 +83,7 @@ public:
     }
 
     /* 0x8C */ JointRumbler* mJointRumbler;
-    /* 0x90 */ BenefitItemOneUp* mKinokoOneUp;
+    /* 0x90 */ BenefitItemObj* mKinokoOneUp;
     /* 0x94 */ AnimationRandomPlayer* mAnimationRandomPlayer;
     /* 0x98 */ TVec3f _98;
     /* 0xA4 */ TQuat4f _A4;

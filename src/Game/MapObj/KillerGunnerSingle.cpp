@@ -35,16 +35,16 @@ void KillerGunnerSingle::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
-    initNerve(&NrvKillerGunnerSingle::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(KillerGunnerSingle, HostTypeWait));
     makeActorAppeared();
 }
 
 void KillerGunnerSingle::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvKillerGunnerSingle::HostTypeShoot::sInstance)) {
+    if (isNerve(GET_NERVE(KillerGunnerSingle, HostTypeShoot))) {
         if (MR::isSensorPlayer(pReceiver)) {
             if (MR::isNear(pSender, pReceiver, pSender->mRadius)) {
                 if (MR::sendMsgEnemyAttackMaximum(pReceiver, pSender)) {
-                    setNerve(&NrvKillerGunnerSingle::HostTypeAttack::sInstance);
+                    setNerve(GET_NERVE(KillerGunnerSingle, HostTypeAttack));
                 }
             }
         }
@@ -57,7 +57,7 @@ void KillerGunnerSingle::exeWait() {
     }
 
     if (MR::isStep(this, 120)) {
-        setNerve(&NrvKillerGunnerSingle::HostTypeCharge::sInstance);
+        setNerve(GET_NERVE(KillerGunnerSingle, HostTypeCharge));
     }
 }
 
@@ -72,7 +72,7 @@ void KillerGunnerSingle::exeCharge() {
         MR::startBck(this, "KillerGunnerSingleShoot", nullptr);
         MR::emitEffect(this, "KillerGunnerSingleSmoke");
         MR::startSound(this, "SE_OJ_K_GUNNER_FIRE");
-        setNerve(&NrvKillerGunnerSingle::HostTypeShoot::sInstance);
+        setNerve(GET_NERVE(KillerGunnerSingle, HostTypeShoot));
     }
 }
 
@@ -90,13 +90,13 @@ void KillerGunnerSingle::exeShoot() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvKillerGunnerSingle::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(KillerGunnerSingle, HostTypeWait));
     }
 }
 
 inline void KillerGunnerSingle::exeAttack() {
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvKillerGunnerSingle::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(KillerGunnerSingle, HostTypeWait));
     }
 }
 

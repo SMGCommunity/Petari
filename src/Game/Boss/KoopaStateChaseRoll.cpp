@@ -41,7 +41,7 @@ KoopaStateChaseRoll::KoopaStateChaseRoll(Koopa* pKoopa)
 }
 
 void KoopaStateChaseRoll::init() {
-    initNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvStart::sInstance);
+    initNerve(GET_NERVE(KoopaStateChaseRoll, KoopaStateChaseRollNrvStart));
 
     KoopaFunction::initKoopaCamera(mHost, "ロール追跡開始");
 
@@ -71,9 +71,9 @@ void KoopaStateChaseRoll::appear() {
     }
 
     if (mRollDelay >= 0) {
-        setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvWaitToStart::sInstance);
+        setNerve(GET_NERVE(KoopaStateChaseRoll, KoopaStateChaseRollNrvWaitToStart));
     } else {
-        setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvStart::sInstance);
+        setNerve(GET_NERVE(KoopaStateChaseRoll, KoopaStateChaseRollNrvStart));
     }
 }
 
@@ -93,8 +93,8 @@ void KoopaStateChaseRoll::kill() {
 }
 
 bool KoopaStateChaseRoll::tryCalcAndSetBaseMtx() {
-    if (isNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvRollAir::sInstance) ||
-        isNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvRollGround::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaStateChaseRoll, KoopaStateChaseRollNrvRollAir)) ||
+        isNerve(GET_NERVE(KoopaStateChaseRoll, KoopaStateChaseRollNrvRollGround))) {
         Koopa* pKoopa = mHost;
         MR::setBaseTRMtx(pKoopa, mFigureBall->getBaseMtx());
 
@@ -121,7 +121,7 @@ bool KoopaStateChaseRoll::tryDamage(u32 msg, HitSensor* pSender, HitSensor* pRec
         return false;
     }
 
-    if (isNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvRollGround::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaStateChaseRoll, KoopaStateChaseRollNrvRollGround))) {
         KoopaRockBreak* pKoopaRockBreak = KoopaFunction::getKoopaRockBreak(mHost);
         pKoopaRockBreak->mIsCalcOwnMtx = true;
         KoopaFunction::getKoopaRockBreak(mHost)->appear();
@@ -140,9 +140,9 @@ bool KoopaStateChaseRoll::tryDamage(u32 msg, HitSensor* pSender, HitSensor* pRec
 }
 
 bool KoopaStateChaseRoll::isEnableGuard() const {
-    if (isNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvWaitToStart::sInstance) ||
-        isNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvEndAir::sInstance) ||
-        isNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvEndLand::sInstance)) {
+    if (isNerve(GET_NERVE(KoopaStateChaseRoll, KoopaStateChaseRollNrvWaitToStart)) ||
+        isNerve(GET_NERVE(KoopaStateChaseRoll, KoopaStateChaseRollNrvEndAir)) ||
+        isNerve(GET_NERVE(KoopaStateChaseRoll, KoopaStateChaseRollNrvEndLand))) {
         return true;
     }
 
@@ -155,7 +155,7 @@ void KoopaStateChaseRoll::exeWaitToStart() {
     }
 
     if (MR::isStep(this, mRollDelay)) {
-        setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvStart::sInstance);
+        setNerve(GET_NERVE(KoopaStateChaseRoll, KoopaStateChaseRollNrvStart));
     }
 }
 
@@ -187,9 +187,9 @@ void KoopaStateChaseRoll::exeStart() {
 
     if (MR::isActionEnd(mHost)) {
         mFigureBall->appear();
-        setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvRollAir::sInstance);
+        setNerve(GET_NERVE(KoopaStateChaseRoll, KoopaStateChaseRollNrvRollAir));
     } else if (MR::isPlayerDamaging()) {
-        setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvEndAir::sInstance);
+        setNerve(GET_NERVE(KoopaStateChaseRoll, KoopaStateChaseRollNrvEndAir));
     }
 }
 
@@ -205,9 +205,9 @@ void KoopaStateChaseRoll::exeRollAir() {
     mHost->mPosition.set(mFigureBall->mPosition);
 
     if (MR::isBindedGround(mFigureBall)) {
-        setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvRollGround::sInstance);
+        setNerve(GET_NERVE(KoopaStateChaseRoll, KoopaStateChaseRollNrvRollGround));
     } else if (MR::isPlayerDamaging()) {
-        setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvEndAir::sInstance);
+        setNerve(GET_NERVE(KoopaStateChaseRoll, KoopaStateChaseRollNrvEndAir));
     }
 }
 
@@ -230,7 +230,7 @@ void KoopaStateChaseRoll::exeRollGround() {
 
         mFigureBall->kill();
 
-        setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvEndAir::sInstance);
+        setNerve(GET_NERVE(KoopaStateChaseRoll, KoopaStateChaseRollNrvEndAir));
     }
 }
 
@@ -258,7 +258,7 @@ void KoopaStateChaseRoll::exeEndAir() {
 
     if (!MR::isFirstStep(this) && MR::isBindedGround(mHost)) {
         MR::zeroVelocity(mHost);
-        setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvEndLand::sInstance);
+        setNerve(GET_NERVE(KoopaStateChaseRoll, KoopaStateChaseRollNrvEndLand));
     }
 }
 

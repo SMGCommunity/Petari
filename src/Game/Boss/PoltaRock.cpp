@@ -37,7 +37,7 @@ void PoltaRock::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     MR::initShadowFromCSV(this, "Shadow");
-    initNerve(&NrvPoltaRock::PoltaRockNrvFloat::sInstance);
+    initNerve(GET_NERVE(PoltaRock, PoltaRockNrvFloat));
     MR::invalidateClipping(this);
     makeActorDead();
 }
@@ -68,7 +68,7 @@ void PoltaRock::start(Polta* pPolta, const TVec3f& rPosition, const TVec3f& rVec
     mOwner = pPolta;
     mPosition.set(rPosition);
     _AC.set(rVec2);
-    setNerve(&NrvPoltaRock::PoltaRockNrvFloat::sInstance);
+    setNerve(GET_NERVE(PoltaRock, PoltaRockNrvFloat));
     appear();
     MR::offBind(this);
 }
@@ -143,7 +143,7 @@ void PoltaRock::exeFloat() {
     MR::addVelocityKeepHeightUseShadow(this, 800.0f, 1.5f, 300.0f, nullptr);
     MR::attenuateVelocity(this, 0.92f);
     if (MR::isGreaterStep(this, 90)) {
-        setNerve(&NrvPoltaRock::PoltaRockNrvSign::sInstance);
+        setNerve(GET_NERVE(PoltaRock, PoltaRockNrvSign));
         MR::onBind(this);
     }
 }
@@ -159,7 +159,7 @@ void PoltaRock::exeSign() {
     MR::addVelocityKeepHeightUseShadow(this, 800.0f, 1.5f, 300.0f, nullptr);
     MR::attenuateVelocity(this, 0.92f);
     if (MR::isGreaterStep(this, 60)) {
-        setNerve(&NrvPoltaRock::PoltaRockNrvMove::sInstance);
+        setNerve(GET_NERVE(PoltaRock, PoltaRockNrvMove));
         MR::onBind(this);
     }
 }
@@ -203,11 +203,11 @@ void PoltaRock::generateKill() {
 }
 
 bool PoltaRock::isEnableAttack() const {
-    return isNerve(&NrvPoltaRock::PoltaRockNrvMove::sInstance);
+    return isNerve(GET_NERVE(PoltaRock, PoltaRockNrvMove));
 }
 
 bool PoltaRock::isEnableExplosion() const {
-    if (isNerve(&NrvPoltaRock::PoltaRockNrvFloat::sInstance) && MR::isLessStep(this, 200)) {
+    if (isNerve(GET_NERVE(PoltaRock, PoltaRockNrvFloat)) && MR::isLessStep(this, 200)) {
         return false;
     }
     return true;

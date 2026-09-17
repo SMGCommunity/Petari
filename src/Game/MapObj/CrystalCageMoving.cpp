@@ -40,7 +40,7 @@ void CrystalCageMoving::init(const JMapInfoIter& rIter) {
     info.setupConnectToScene();
     info.setupEffect(0);
     info.setupSound(4);
-    info.setupNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvWaitBig::sInstance);
+    info.setupNerve(GET_NERVE(CrystalCageMoving, CrystalCageMovingNrvWaitBig));
     info.setupRailMover();
     info.setupHitSensorCallBack();
 
@@ -56,7 +56,7 @@ void CrystalCageMoving::init(const JMapInfoIter& rIter) {
     MR::startBck(this, "Wait", nullptr);
 
     if (MR::isDemoExist("脱出スピドラ出現")) {
-        MR::registerDemoActionNerve(this, &NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoMove::sInstance, nullptr);
+        MR::registerDemoActionNerve(this, GET_NERVE(CrystalCageMoving, CrystalCageMovingNrvDemoTicoMove), nullptr);
     }
 }
 
@@ -74,7 +74,7 @@ void CrystalCageMoving::exeBreakBig() {
     }
 
     if (MR::isStep(this, 10)) {
-        setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvWaitSmall::sInstance);
+        setNerve(GET_NERVE(CrystalCageMoving, CrystalCageMovingNrvWaitSmall));
     }
 }
 
@@ -113,7 +113,7 @@ void CrystalCageMoving::exeDemoTicoMove() {
     _C8.setTrans(stack_8);
 
     if (MR::isStep(this, 30)) {
-        setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoStop::sInstance);
+        setNerve(GET_NERVE(CrystalCageMoving, CrystalCageMovingNrvDemoTicoStop));
     }
 }
 
@@ -125,7 +125,7 @@ void CrystalCageMoving::exeDemoTicoStop() {
     }
 
     if (MR::isStep(this, 30)) {
-        setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoChange::sInstance);
+        setNerve(GET_NERVE(CrystalCageMoving, CrystalCageMovingNrvDemoTicoChange));
     }
 }
 
@@ -182,15 +182,15 @@ void CrystalCageMoving::crashMario(HitSensor* pSender, HitSensor* pReceiver) {
     MR::shakeCameraVeryStrong();
 
     if (_108) {
-        setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakSmall::sInstance);
+        setNerve(GET_NERVE(CrystalCageMoving, CrystalCageMovingNrvBreakSmall));
     } else {
         f32 sensorDist = pReceiver->mPosition.distance(pSender->mPosition);
         f32 sensorObjDist = mPosition.distance(pSender->mPosition);
 
         if (sensorDist < 30.0f && sensorObjDist < 450.0f) {
-            setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakAll::sInstance);
+            setNerve(GET_NERVE(CrystalCageMoving, CrystalCageMovingNrvBreakAll));
         } else {
-            setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakBig::sInstance);
+            setNerve(GET_NERVE(CrystalCageMoving, CrystalCageMovingNrvBreakBig));
         }
     }
 }
@@ -253,12 +253,12 @@ void CrystalCageMoving::startBreakDemo() {
 bool CrystalCageMoving::isNerveTypeEnd() const {
     bool ret = false;
 
-    if (isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakBig::sInstance) ||
-        isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakSmall::sInstance) ||
-        isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakAll::sInstance) ||
-        isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoMove::sInstance) ||
-        isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoStop::sInstance) ||
-        isNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoChange::sInstance)) {
+    if (isNerve(GET_NERVE(CrystalCageMoving, CrystalCageMovingNrvBreakBig)) ||
+        isNerve(GET_NERVE(CrystalCageMoving, CrystalCageMovingNrvBreakSmall)) ||
+        isNerve(GET_NERVE(CrystalCageMoving, CrystalCageMovingNrvBreakAll)) ||
+        isNerve(GET_NERVE(CrystalCageMoving, CrystalCageMovingNrvDemoTicoMove)) ||
+        isNerve(GET_NERVE(CrystalCageMoving, CrystalCageMovingNrvDemoTicoStop)) ||
+        isNerve(GET_NERVE(CrystalCageMoving, CrystalCageMovingNrvDemoTicoChange))) {
         ret = true;
     }
 

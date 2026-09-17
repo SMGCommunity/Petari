@@ -43,7 +43,7 @@ void DinoPackunTrackFire::init(const JMapInfoIter& rIter) {
     spOffs.z = 0.0f;
     MR::initStarPointerTarget(this, 60.0f, spOffs);
     initBinder(60.0f, 0.0f, 0);
-    initNerve(&NrvDinoPackunFire::DinoPackunTrackFireNrvWait::sInstance);
+    initNerve(GET_NERVE(DinoPackunFire, DinoPackunTrackFireNrvWait));
     MR::onCalcGravity(this);
     MR::invalidateClipping(this);
     initEffectKeeper(0, "DinoPackunTrackFire", false);
@@ -74,7 +74,7 @@ void DinoPackunTrackFire::appearAndSetPos(const TVec3f& rPos) {
     mPosition.set(rPos);
     MR::zeroVelocity(this);
     MR::startSound(this, "SE_BM_D_PAKKUN_FIREBALL_S_ON");
-    setNerve(&NrvDinoPackunFire::DinoPackunTrackFireNrvWait::sInstance);
+    setNerve(GET_NERVE(DinoPackunFire, DinoPackunTrackFireNrvWait));
     appear();
 }
 
@@ -86,7 +86,7 @@ void DinoPackunTrackFire::exeWait() {
     MR::addVelocityToGravity(this, 2.0f);
     MR::attenuateVelocity(this, 0.992f);
     if (MR::isBindedGround(this)) {
-        setNerve(&NrvDinoPackunFire::DinoPackunTrackFireNrvGround::sInstance);
+        setNerve(GET_NERVE(DinoPackunFire, DinoPackunTrackFireNrvGround));
         MR::zeroVelocity(this);
     } else if (MR::isGreaterStep(this, 300)) {
         MR::deleteEffect(this, "TrackFire");

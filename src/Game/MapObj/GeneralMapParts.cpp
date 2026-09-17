@@ -39,7 +39,7 @@ void GeneralMapParts::init(const JMapInfoIter& rIter) {
     MR::getMapPartsArgSignMotionType(&mSignMotionType, rIter);
     initMapPartsFunction(rIter);
     MR::initActorCamera(this, rIter, &mCameraInfo);
-    initNerve(&NrvGeneralMapParts::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(GeneralMapParts, HostTypeWait));
     initSensorType(rIter);
     initGravity(rIter);
     MR::useStageSwitchWriteDead(this, rIter);
@@ -79,9 +79,9 @@ void GeneralMapParts::appear() {
     }
 
     if (MR::isValidSwitchB(this)) {
-        setNerve(&NrvGeneralMapParts::HostTypeWait::sInstance);
+        setNerve(GET_NERVE(GeneralMapParts, HostTypeWait));
     } else if (!MR::isMoveStartTypeUnconditional(mMoveConditionType)) {
-        setNerve(&NrvGeneralMapParts::HostTypeWaitForPlayerOn::sInstance);
+        setNerve(GET_NERVE(GeneralMapParts, HostTypeWaitForPlayerOn));
     } else {
         startMove();
     }
@@ -241,7 +241,7 @@ void GeneralMapParts::receiveMsgSwitchBOn() {
         return;
     }
 
-    if (!isNerve(&NrvGeneralMapParts::HostTypeWait::sInstance)) {
+    if (!isNerve(GET_NERVE(GeneralMapParts, HostTypeWait))) {
         _E5 = 0;
     }
 
@@ -252,7 +252,7 @@ void GeneralMapParts::receiveMsgSwitchBOn() {
     if (MR::getGroupFromArray(this)) {
         MR::invalidateClipping(this);
         bool flag = false;
-        if (isNerve(&NrvGeneralMapParts::HostTypeWait::sInstance) || isNerve(&NrvGeneralMapParts::HostTypeWaitForPlayerOn::sInstance)) {
+        if (isNerve(GET_NERVE(GeneralMapParts, HostTypeWait)) || isNerve(GET_NERVE(GeneralMapParts, HostTypeWaitForPlayerOn))) {
             flag = true;
         }
     }
@@ -277,7 +277,7 @@ bool GeneralMapParts::isFixed() const {
 
 void GeneralMapParts::startMove() {
     if (!MR::hasMapPartsMoveStartSignMotion(mSignMotionType)) {
-        setNerve(&NrvGeneralMapParts::HostTypeMoveStart::sInstance);
+        setNerve(GET_NERVE(GeneralMapParts, HostTypeMoveStart));
     } else {
         if (mRailPosture) {
             mRailPosture->start();
@@ -295,12 +295,12 @@ void GeneralMapParts::startMove() {
             mRailRotator->start();
         }
 
-        setNerve(&NrvGeneralMapParts::HostTypeMove::sInstance);
+        setNerve(GET_NERVE(GeneralMapParts, HostTypeMove));
     }
 }
 
 void GeneralMapParts::exeWait() {
-    if (isNerve(&NrvGeneralMapParts::HostTypeMove::sInstance) && MR::isExistActorCamera(mCameraInfo) && !_E4) {
+    if (isNerve(GET_NERVE(GeneralMapParts, HostTypeMove)) && MR::isExistActorCamera(mCameraInfo) && !_E4) {
         if (MR::isStep(this, MR::getActorCameraFrames(this, mCameraInfo))) {
             MR::endActorCamera(this, mCameraInfo, false, -1);
             _E4 = 1;
@@ -335,7 +335,7 @@ void GeneralMapParts::exeMoveStart() {
             mRailMover->cancelSignalMotion();
         }
 
-        setNerve(&NrvGeneralMapParts::HostTypeWaitForPlayerOn::sInstance);
+        setNerve(GET_NERVE(GeneralMapParts, HostTypeWaitForPlayerOn));
     } else {
         if (MR::isStep(this, MapParts::getMoveStartSignalTime())) {
             if (mRailMover) {
@@ -346,7 +346,7 @@ void GeneralMapParts::exeMoveStart() {
                 mRailRotator->start();
             }
 
-            setNerve(&NrvGeneralMapParts::HostTypeMove::sInstance);
+            setNerve(GET_NERVE(GeneralMapParts, HostTypeMove));
         }
     }
 }

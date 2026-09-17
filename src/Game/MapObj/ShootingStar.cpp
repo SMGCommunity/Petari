@@ -66,7 +66,7 @@ void ShootingStar::init(const JMapInfoIter& rIter) {
     MR::declareStarPiece(this, arg0);
     initBinder(100.0f, 0.0f, 0);
     MR::setBindTriangleFilter(this, MR::createTriangleFilterFunc(MR::isWallCodeNoAction));
-    initNerve(&NrvShootingStar::HostTypeNrvPreShooting::sInstance);
+    initNerve(GET_NERVE(ShootingStar, HostTypeNrvPreShooting));
     initEffectKeeper(0, "ShootingStar", false);
     initSound(4, false);
     initHitSensor(1);
@@ -90,7 +90,7 @@ void ShootingStar::init(const JMapInfoIter& rIter) {
 void ShootingStar::appearPreShooting() {
     appear();
     MR::invalidateClipping(this);
-    setNerve(&NrvShootingStar::HostTypeNrvPreShooting::sInstance);
+    setNerve(GET_NERVE(ShootingStar, HostTypeNrvPreShooting));
 }
 
 void ShootingStar::control() {
@@ -113,7 +113,7 @@ void ShootingStar::exePreShooting() {
     mScale.set(static_cast< f32 >(getNerveStep()) / ::sPreShootingTime);
 
     if (MR::isGreaterStep(this, ::sPreShootingTime)) {
-        setNerve(&NrvShootingStar::HostTypeNrvShooting::sInstance);
+        setNerve(GET_NERVE(ShootingStar, HostTypeNrvShooting));
     }
 }
 
@@ -126,13 +126,13 @@ void ShootingStar::exeShooting() {
 
     MR::startLevelSound(this, "SE_OJ_LV_STAR_PIECE_FALL");
     if (MR::isGreaterStep(this, ::sShootingLimitTime)) {
-        setNerve(&NrvShootingStar::HostTypeNrvPreShooting::sInstance);
+        setNerve(GET_NERVE(ShootingStar, HostTypeNrvPreShooting));
         MR::deleteEffect(this, "ShootingStarBlur");
         return;
     }
 
     if (MR::isBinded(this)) {
-        setNerve(&NrvShootingStar::HostTypeNrvWaitForNextShoot::sInstance);
+        setNerve(GET_NERVE(ShootingStar, HostTypeNrvWaitForNextShoot));
 
         if (MR::appearStarPiece(this, mPosition, mNumBurstStarPiece, 15.0f, ::sLaunchYVel, false)) {
             MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
@@ -165,6 +165,6 @@ void ShootingStar::exeWaitForNextShoot() {
     if (MR::isGreaterStep(this, mWaitForNextShootTime)) {
         MR::onCalcAnim(this);
         MR::validateShadow(this, nullptr);
-        setNerve(&NrvShootingStar::HostTypeNrvPreShooting::sInstance);
+        setNerve(GET_NERVE(ShootingStar, HostTypeNrvPreShooting));
     }
 }

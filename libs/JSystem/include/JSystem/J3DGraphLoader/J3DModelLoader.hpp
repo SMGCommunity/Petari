@@ -204,6 +204,7 @@ public:
     virtual void setupBBoardInfo();
     virtual ~J3DModelLoader() {
     }
+
     virtual void readMaterial(J3DMaterialBlock const*, u32) {
     }
 
@@ -239,7 +240,7 @@ public:
     u32 calcSizeInformation(J3DModelInfoBlock const*, u32);
     u32 calcSizeJoint(J3DJointBlock const*);
     u32 calcSizeEnvelope(J3DEnvelopeBlock const*);
-    u32 calcSizeDraw(J3DDrawBlock const*);
+    u32 calcSizeDraw(J3DDrawBlock const*) NO_INLINE;
     u32 calcSizeShape(J3DShapeBlock const*, u32);
     u32 calcSizeTexture(J3DTextureBlock const*);
     u32 calcSizeTextureTable(J3DTextureBlock const*);
@@ -260,6 +261,7 @@ class J3DModelLoader_v26 : public J3DModelLoader {
 public:
     J3DModelLoader_v26() {
     }
+
     ~J3DModelLoader_v26() {
     }
 
@@ -291,15 +293,19 @@ public:
 static inline u32 getMdlDataFlag_TevStageNum(u32 flags) {
     return (flags & 0x001f0000) >> 0x10;
 }
+
 static inline u32 getMdlDataFlag_TexGenFlag(u32 flags) {
     return flags & 0x0c000000;
 }
+
 static inline u32 getMdlDataFlag_ColorFlag(u32 flags) {
     return flags & 0xc0000000;
 }
+
 static inline u32 getMdlDataFlag_PEFlag(u32 flags) {
     return flags & 0x30000000;
 }
+
 static inline u32 getMdlDataFlag_MtxLoadType(u32 flags) {
     return flags & 0x10;
 }

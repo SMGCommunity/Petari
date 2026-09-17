@@ -86,7 +86,7 @@ void StarReturnDemoStarter::init(const JMapInfoIter& rIter) {
     tryRegisterDemo("パワースター帰還", rIter);
     tryRegisterDemo("天文ドームスター帰還", rIter);
 
-    initNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvAppearWait::sInstance);
+    initNerve(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvAppearWait));
     makeActorDead();
 }
 
@@ -99,7 +99,7 @@ void StarReturnDemoStarter::appear() {
         MR::onDrawSpinDriverPathAtOpa();
     }
 
-    setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvAppearWait::sInstance);
+    setNerve(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvAppearWait));
 }
 
 void StarReturnDemoStarter::kill() {
@@ -126,7 +126,7 @@ void StarReturnDemoStarter::makeArchiveList(NameObjArchiveListCollector* pCollec
 }
 
 void StarReturnDemoStarter::control() {
-    if (!isNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvStageResultAfter::sInstance)) {
+    if (!isNerve(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvStageResultAfter))) {
         MR::setPlayerBaseMtx(mTransform);
     }
 }
@@ -164,7 +164,7 @@ void StarReturnDemoStarter::tryStartStageResult() {
         }
 
         MR::pauseTimeKeepDemo(this);
-        setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvStageResult::sInstance);
+        setNerve(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvStageResult));
     }
 }
 
@@ -204,7 +204,7 @@ void StarReturnDemoStarter::exeAppearWait() {
         MR::startSound(mPowerStar, "SE_PM_DEMO_RETURN_LIGHT");
     }
 
-    MR::setNerveAtStep(this, &NrvStarReturnDemoStarter::StarReturnDemoStarterNrvMove::sInstance, ::cDemoAppearWaitFrame);
+    MR::setNerveAtStep(this, GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvMove), ::cDemoAppearWaitFrame);
 }
 
 void StarReturnDemoStarter::exeMove() {
@@ -222,8 +222,8 @@ void StarReturnDemoStarter::exeMove() {
     MR::startLevelSoundPlayer("SE_PM_LV_SPIN_DRV_FLY", -1);
 
     if (MR::isDemoPartLastStep(pDemoName)) {
-        ::isGrandStar() ? setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvFlyWaitPowerStar::sInstance) :
-                          setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvFlyWaitGrandStar::sInstance);
+        ::isGrandStar() ? setNerve(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvFlyWaitPowerStar)) :
+                          setNerve(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvFlyWaitGrandStar));
     }
 }
 
@@ -245,7 +245,7 @@ void StarReturnDemoStarter::exeFlyWaitPowerStar() {
     }
 
     if (MR::isBckStoppedPlayer()) {
-        setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvFall::sInstance);
+        setNerve(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvFall));
     }
 }
 
@@ -268,7 +268,7 @@ void StarReturnDemoStarter::exeFlyWaitGrandStar() {
     }
 
     if (MR::isStep(this, ::cFallStartFrameGrandStar)) {
-        setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvFall::sInstance);
+        setNerve(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvFall));
     }
 }
 
@@ -297,7 +297,7 @@ void StarReturnDemoStarter::exeFall() {
     if (position.y < mPosition.y) {
         position.set(mPosition);
 
-        setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvLand::sInstance);
+        setNerve(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvLand));
     }
 
     mTransform.setTrans(position);
@@ -319,7 +319,7 @@ void StarReturnDemoStarter::exeLand() {
             MR::startAllAnim(hairModel, playerAnimName());
         }
 
-        setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvWait::sInstance);
+        setNerve(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvWait));
     }
 }
 
@@ -343,8 +343,8 @@ void StarReturnDemoStarter::exeStageResult() {
 
     if (MR::isDead(mStageResultInformer) && MR::isEqualStringCase(MR::getPlayerCurrentBckName(), "ResultWait")) {
         GameSequenceFunction::hasNextDemoForStorySequenceEvent() ?
-            setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvFadeOut::sInstance) :
-            setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvStageResultAfter::sInstance);
+            setNerve(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvFadeOut)) :
+            setNerve(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvStageResultAfter));
     }
 }
 
@@ -354,7 +354,7 @@ void StarReturnDemoStarter::exeFadeOut() {
     }
 
     if (!MR::isWipeActive()) {
-        setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvStageResultAfter::sInstance);
+        setNerve(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvStageResultAfter));
     }
 }
 

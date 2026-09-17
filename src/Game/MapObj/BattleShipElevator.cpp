@@ -25,7 +25,7 @@ void BattleShipElevator::init(const JMapInfoIter& rIter) {
     info.setupEffect(nullptr);
     info.setupSound(4);
     info.setupRailMover();
-    info.setupNerve(&NrvBattleShipElevator::BattleShipElevatorNrvWait::sInstance);
+    info.setupNerve(GET_NERVE(BattleShipElevator, BattleShipElevatorNrvWait));
     MapObjActor::initialize(rIter, info);
 }
 
@@ -40,7 +40,7 @@ void BattleShipElevator::exeMove() {
     MR::startLevelSound(this, "SE_OJ_LV_B_SHIP_ELEV_MOVE");
     if (!MapObjActorUtil::isRailMoverWorking(this)) {
         MR::startSound(this, "SE_OJ_B_SHIP_ELEV_STOP");
-        setNerve(&NrvBattleShipElevator::BattleShipElevatorNrvEnd::sInstance);
+        setNerve(GET_NERVE(BattleShipElevator, BattleShipElevatorNrvEnd));
     }
 }
 
@@ -48,20 +48,20 @@ void BattleShipElevator::exeEnd() {
 }
 
 void BattleShipElevator::control() {
-    if (!isNerve(&NrvBattleShipElevator::BattleShipElevatorNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(BattleShipElevator, BattleShipElevatorNrvWait))) {
         MapObjActor::control();
     }
 }
 
 bool BattleShipElevator::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvBattleShipElevator::BattleShipElevatorNrvWait::sInstance)) {
+    if (!isNerve(GET_NERVE(BattleShipElevator, BattleShipElevatorNrvWait))) {
         return false;
     }
 
     if (MR::isMsgFloorTouch(msg)) {
         if (MR::isOnPlayer(getSensor("body"))) {
-            MR::requestStartTimeKeepDemoMarioPuppetable(this, "エレベーター上昇", &NrvBattleShipElevator::BattleShipElevatorNrvMove::sInstance,
-                                                        nullptr, nullptr);
+            MR::requestStartTimeKeepDemoMarioPuppetable(this, "エレベーター上昇", GET_NERVE(BattleShipElevator, BattleShipElevatorNrvMove), nullptr,
+                                                        nullptr);
         }
     }
 

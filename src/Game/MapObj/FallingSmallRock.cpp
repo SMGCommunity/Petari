@@ -22,21 +22,21 @@ void FallingSmallRock::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, "FallingSmallRock", false);
     MR::needStageSwitchReadA(this, rIter);
     MR::setClippingTypeSphere(this, 800.0f);
-    initNerve(&NrvFallingSmallRock::HostTypeWait::sInstance);
+    initNerve(GET_NERVE(FallingSmallRock, HostTypeWait));
     MR::connectToSceneMapObjMovement(this);
     makeActorAppeared();
 }
 
 void FallingSmallRock::startClipped() {
     LiveActor::startClipped();
-    if (isNerve(&NrvFallingSmallRock::HostTypeMove::sInstance)) {
+    if (isNerve(GET_NERVE(FallingSmallRock, HostTypeMove))) {
         MR::deleteEffectAll(this);
     }
 }
 
 void FallingSmallRock::endClipped() {
     LiveActor::endClipped();
-    if (isNerve(&NrvFallingSmallRock::HostTypeMove::sInstance)) {
+    if (isNerve(GET_NERVE(FallingSmallRock, HostTypeMove))) {
         MR::emitEffect(this, "FallingSmallRock");
     }
 }
@@ -55,7 +55,7 @@ void FallingSmallRock::exeMove() {
 
 void FallingSmallRock::exeWait() {
     if (MR::isOnSwitchA(this)) {
-        setNerve(&NrvFallingSmallRock::HostTypeMove::sInstance);
+        setNerve(GET_NERVE(FallingSmallRock, HostTypeMove));
     }
 }
 

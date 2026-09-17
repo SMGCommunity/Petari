@@ -27,7 +27,7 @@ DinoPackunVs1::DinoPackunVs1(DinoPackun* pPackun) : DinoPackunSequencer("ディ�
 }
 
 void DinoPackunVs1::init() {
-    initNerve(&NrvDinoPackunVs1::DinoPackunVs1NrvWaitStart::sInstance);
+    initNerve(GET_NERVE(DinoPackunVs1, DinoPackunVs1NrvWaitStart));
     mDemo = new DinoPackunDemo(mParent);
     mDemo->init();
     mEgg = new DinoPackunBattleEgg(mParent);
@@ -40,8 +40,8 @@ void DinoPackunVs1::init() {
 }
 
 void DinoPackunVs1::start() {
-    if (isNerve(&NrvDinoPackunVs1::DinoPackunVs1NrvWaitStart::sInstance)) {
-        setNerve(&NrvDinoPackunVs1::DinoPackunVs1NrvOpeningDemo::sInstance);
+    if (isNerve(GET_NERVE(DinoPackunVs1, DinoPackunVs1NrvWaitStart))) {
+        setNerve(GET_NERVE(DinoPackunVs1, DinoPackunVs1NrvOpeningDemo));
     }
 }
 
@@ -51,7 +51,7 @@ void DinoPackunVs1::exeOpeningDemo() {
         mDemo->startOpeningDemo();
     }
 
-    MR::updateActorStateAndNextNerve(this, mDemo, &NrvDinoPackunVs1::DinoPackunVs1NrvBattleEgg::sInstance);
+    MR::updateActorStateAndNextNerve(this, mDemo, GET_NERVE(DinoPackunVs1, DinoPackunVs1NrvBattleEgg));
 }
 
 void DinoPackunVs1::exeBattleEgg() {
@@ -59,7 +59,7 @@ void DinoPackunVs1::exeBattleEgg() {
         mCurrentAction = mEgg;
     }
 
-    MR::updateActorStateAndNextNerve(this, mEgg, &NrvDinoPackunVs1::DinoPackunVs1NrvCryDemo::sInstance);
+    MR::updateActorStateAndNextNerve(this, mEgg, GET_NERVE(DinoPackunVs1, DinoPackunVs1NrvCryDemo));
 }
 
 void DinoPackunVs1::exeCryDemo() {
@@ -68,7 +68,7 @@ void DinoPackunVs1::exeCryDemo() {
         mDemo->startCryDemo();
     }
 
-    MR::updateActorStateAndNextNerve(this, mDemo, &NrvDinoPackunVs1::DinoPackunVs1NrvBattleLv1::sInstance);
+    MR::updateActorStateAndNextNerve(this, mDemo, GET_NERVE(DinoPackunVs1, DinoPackunVs1NrvBattleLv1));
 }
 
 void DinoPackunVs1::exeBattleLv1() {
@@ -77,7 +77,7 @@ void DinoPackunVs1::exeBattleLv1() {
         mCurrentAction = mBattleLv1;
     }
 
-    MR::updateActorStateAndNextNerve(this, mBattleLv1, &NrvDinoPackunVs1::DinoPackunVs1NrvAngryDemo::sInstance);
+    MR::updateActorStateAndNextNerve(this, mBattleLv1, GET_NERVE(DinoPackunVs1, DinoPackunVs1NrvAngryDemo));
 }
 
 void DinoPackunVs1::exeAngryDemo() {
@@ -86,7 +86,7 @@ void DinoPackunVs1::exeAngryDemo() {
         mDemo->startAngryDemo();
     }
 
-    MR::updateActorStateAndNextNerve(this, mDemo, &NrvDinoPackunVs1::DinoPackunVs1NrvBattleLv2::sInstance);
+    MR::updateActorStateAndNextNerve(this, mDemo, GET_NERVE(DinoPackunVs1, DinoPackunVs1NrvBattleLv2));
 }
 
 void DinoPackunVs1::exeBattleLv2() {
@@ -97,7 +97,7 @@ void DinoPackunVs1::exeBattleLv2() {
         mCurrentAction = mBattleLv2;
     }
 
-    MR::updateActorStateAndNextNerve(this, mBattleLv2, &NrvDinoPackunVs1::DinoPackunVs1NrvBattleLv3::sInstance);
+    MR::updateActorStateAndNextNerve(this, mBattleLv2, GET_NERVE(DinoPackunVs1, DinoPackunVs1NrvBattleLv3));
 }
 
 void DinoPackunVs1::exeBattleLv3() {
@@ -108,7 +108,7 @@ void DinoPackunVs1::exeBattleLv3() {
         mCurrentAction = mBattleLv2;
     }
 
-    MR::updateActorStateAndNextNerve(this, mBattleLv2, &NrvDinoPackunVs1::DinoPackunVs1NrvDownDemo::sInstance);
+    MR::updateActorStateAndNextNerve(this, mBattleLv2, GET_NERVE(DinoPackunVs1, DinoPackunVs1NrvDownDemo));
 }
 
 void DinoPackunVs1::exeDownDemo() {

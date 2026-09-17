@@ -34,9 +34,9 @@ void TicoDomeLecture::init(const JMapInfoIter& rIter) {
     initSound(4, false);
     MR::initShadowFromCSV(this, "Shadow");
     MR::tryRegisterDemoCast(this, rIter);
-    MR::tryRegisterDemoActionNerve(this, &NrvTicoDomeLecture::TicoDomeLectureNrvMove::sInstance, nullptr);
+    MR::tryRegisterDemoActionNerve(this, GET_NERVE(TicoDomeLecture, TicoDomeLectureNrvMove), nullptr);
     MR::needStageSwitchWriteDead(this, rIter);
-    initNerve(&NrvTicoDomeLecture::TicoDomeLectureNrvWait::sInstance);
+    initNerve(GET_NERVE(TicoDomeLecture, TicoDomeLectureNrvWait));
     makeActorDead();
 }
 
@@ -45,7 +45,7 @@ void TicoDomeLecture::appear() {
     mRotation.set< f32 >(_98);
     MR::offSwitchDead(this);
     LiveActor::appear();
-    setNerve(&NrvTicoDomeLecture::TicoDomeLectureNrvWait::sInstance);
+    setNerve(GET_NERVE(TicoDomeLecture, TicoDomeLectureNrvWait));
 }
 
 void TicoDomeLecture::exeWait() {
@@ -69,7 +69,7 @@ void TicoDomeLecture::exeMove() {
         mPosition.lerp(_8C, ::cMoveEndPos, easeOut);
         mRotation.lerp(_98, ::cMoveEndRotate, easeOut);
         if (MR::isDemoPartLastStep(demoName)) {
-            setNerve(&NrvTicoDomeLecture::TicoDomeLectureNrvMetamorphosis::sInstance);
+            setNerve(GET_NERVE(TicoDomeLecture, TicoDomeLectureNrvMetamorphosis));
         }
     }
 }

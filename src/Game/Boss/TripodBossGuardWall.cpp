@@ -76,7 +76,7 @@ void TripodBossGuardWall::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("TripodBossGuardWall", nullptr, false);
     MR::getJMapInfoArg0NoInit(rIter, &mJointID);
     initSound(4, false);
-    initNerve(&NrvTriPodBossGuardWall::TripodBossGuardWallNrvWait::sInstance);
+    initNerve(GET_NERVE(TriPodBossGuardWall, TripodBossGuardWallNrvWait));
     mCameraInfo = MR::createActorCameraInfo(rIter);
     MR::initAnimCamera(this, mCameraInfo, "2ndDemo");
     mCameraTargetMtx = new CameraTargetMtx("カメラターゲットダミー");
@@ -122,10 +122,10 @@ bool TripodBossGuardWall::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor
 }
 
 void TripodBossGuardWall::requestStart() {
-    setNerve(&NrvTriPodBossGuardWall::TripodBossGuardWallNrvTryDemo::sInstance);
+    setNerve(GET_NERVE(TriPodBossGuardWall, TripodBossGuardWallNrvTryDemo));
 
     if (MR::tryDamageDemoTripodBoss()) {
-        setNerve(&NrvTriPodBossGuardWall::TripodBossGuardWallNrvDemo::sInstance);
+        setNerve(GET_NERVE(TriPodBossGuardWall, TripodBossGuardWallNrvDemo));
     }
 }
 
@@ -134,7 +134,7 @@ void TripodBossGuardWall::exeWait() {
 
 void TripodBossGuardWall::exeTryDemo() {
     if (MR::tryDamageDemoTripodBoss()) {
-        setNerve(&NrvTriPodBossGuardWall::TripodBossGuardWallNrvDemo::sInstance);
+        setNerve(GET_NERVE(TriPodBossGuardWall, TripodBossGuardWallNrvDemo));
     }
 }
 
@@ -171,7 +171,7 @@ void TripodBossGuardWall::exeDemo() {
         if (isAnyPartDemoEnd) {
             MR::endAnimCamera(this, mCameraInfo, "2ndDemo", ::sEndCameraBlendTime, true);
             MR::requestEndDamageDemoTripodBoss();
-            setNerve(&NrvTriPodBossGuardWall::TripodBossGuardWallNrvRotate::sInstance);
+            setNerve(GET_NERVE(TriPodBossGuardWall, TripodBossGuardWallNrvRotate));
         }
     }
 }

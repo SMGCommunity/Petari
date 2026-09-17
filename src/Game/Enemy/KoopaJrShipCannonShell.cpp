@@ -60,7 +60,7 @@ void KoopaJrShipCannonShell::init(const JMapInfoIter& rIter) {
 
     initBinder(::sBinderRadius * getBaseScale(), 0.0f, 0);
     initEffectKeeper(0, nullptr, false);
-    initNerve(&NrvKoopaJrShipCannonShell::HostTypeFly::sInstance);
+    initNerve(GET_NERVE(KoopaJrShipCannonShell, HostTypeFly));
 
     MR::connectToSceneEnemy(this);
     MR::invalidateClipping(this);
@@ -105,17 +105,17 @@ bool KoopaJrShipCannonShell::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender,
         return false;
 
     if (MR::isMsgPlayerTrample(msg)) {
-        if (isNerve(&NrvKoopaJrShipCannonShell::HostTypeDown::sInstance))
+        if (isNerve(GET_NERVE(KoopaJrShipCannonShell, HostTypeDown)))
             return false;
 
         MR::tryRumblePad(this, "中", WPAD_CHAN0);
-        setNerve(&NrvKoopaJrShipCannonShell::HostTypeDown::sInstance);
+        setNerve(GET_NERVE(KoopaJrShipCannonShell, HostTypeDown));
         return true;
     }
 
     if (MR::isMsgPlayerHipDrop(msg)) {
         MR::tryRumblePad(this, "中", WPAD_CHAN0);
-        setNerve(&NrvKoopaJrShipCannonShell::HostTypeHipDropDown::sInstance);
+        setNerve(GET_NERVE(KoopaJrShipCannonShell, HostTypeHipDropDown));
         return true;
     }
 
@@ -174,7 +174,7 @@ void KoopaJrShipCannonShell::launch(const TVec3f& rStartPos, const TVec3f& rVelo
     mtx.getQuat(_8C);
     mVelocity.set< f32 >(rVelocity);
     MR::startSound(this, "SE_BM_KOOPAJR_SHIP_SHOOT_NORMAL");
-    setNerve(&NrvKoopaJrShipCannonShell::HostTypeFly::sInstance);
+    setNerve(GET_NERVE(KoopaJrShipCannonShell, HostTypeFly));
 }
 
 bool KoopaJrShipCannonShell::tryFreeze() {
@@ -187,14 +187,14 @@ bool KoopaJrShipCannonShell::tryFreeze() {
     _9C.set(mPosition);
     _A8.set(mVelocity);
     _B4 = 0;
-    setNerve(&NrvKoopaJrShipCannonShell::HostTypeFreeze::sInstance);
+    setNerve(GET_NERVE(KoopaJrShipCannonShell, HostTypeFreeze));
     return true;
 }
 
 bool KoopaJrShipCannonShell::isStateEnableExplosion() const {
-    return (isNerve(&NrvKoopaJrShipCannonShell::HostTypeFly::sInstance) && MR::isGreaterEqualStep(this, 0)) ||
-           isNerve(&NrvKoopaJrShipCannonShell::HostTypeFreeze::sInstance) || isNerve(&NrvKoopaJrShipCannonShell::HostTypeDown::sInstance) ||
-           isNerve(&NrvKoopaJrShipCannonShell::HostTypeHipDropDown::sInstance);
+    return (isNerve(GET_NERVE(KoopaJrShipCannonShell, HostTypeFly)) && MR::isGreaterEqualStep(this, 0)) ||
+           isNerve(GET_NERVE(KoopaJrShipCannonShell, HostTypeFreeze)) || isNerve(GET_NERVE(KoopaJrShipCannonShell, HostTypeDown)) ||
+           isNerve(GET_NERVE(KoopaJrShipCannonShell, HostTypeHipDropDown));
 }
 
 void KoopaJrShipCannonShell::explosion() {
@@ -236,7 +236,7 @@ void KoopaJrShipCannonShell::exeDown() {
     if (MR::isFirstStep(this)) {
         MR::onCalcGravity(this);
         MR::startSound(this, "SE_EM_STOMPED_S");
-        if (isNerve(&NrvKoopaJrShipCannonShell::HostTypeHipDropDown::sInstance)) {
+        if (isNerve(GET_NERVE(KoopaJrShipCannonShell, HostTypeHipDropDown))) {
             MR::jumpPlayer(-mGravity);
         }
     }
@@ -269,14 +269,14 @@ void KoopaJrShipCannonShell::exeFreeze() {
     mPosition.add(_9C, vec14);
 
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        setNerve(&NrvKoopaJrShipCannonShell::HostTypeFreeze::sInstance);
+        setNerve(GET_NERVE(KoopaJrShipCannonShell, HostTypeFreeze));
         return;
     }
 
     if (MR::isStep(this, ::sFreezeFrame)) {
         mPosition.set< f32 >(_9C);
         mVelocity.set< f32 >(_A8);
-        setNerve(&NrvKoopaJrShipCannonShell::HostTypeFly::sInstance);
+        setNerve(GET_NERVE(KoopaJrShipCannonShell, HostTypeFly));
     }
 }
 

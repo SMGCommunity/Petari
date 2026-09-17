@@ -29,7 +29,7 @@ void JumpHole::init(const JMapInfoIter& rIter) {
     initSound(4, false);
     MR::initCollisionParts(this, "JumpHole", getSensor(nullptr), 0);
     mCone->setPosition(mPosition);
-    initNerve(&NrvJumpHole::JumpHoleNrvWait::sInstance);
+    initNerve(GET_NERVE(JumpHole, JumpHoleNrvWait));
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
@@ -70,7 +70,7 @@ bool JumpHole::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver
 void JumpHole::exeWait() {
     if (_90 != nullptr) {
         bindHole();
-        setNerve(&NrvJumpHole::JumpHoleNrvSetCenter::sInstance);
+        setNerve(GET_NERVE(JumpHole, JumpHoleNrvSetCenter));
         MR::invalidateClipping(this);
     }
 }
@@ -91,7 +91,7 @@ void JumpHole::exeSetCenter() {
     MR::startLevelSound(this, "SE_OJ_LV_JUMP_HOLE_SETTING");
 
     if (_E4 > 10 || MR::isGreaterStep(this, 180)) {
-        setNerve(&NrvJumpHole::JumpHoleNrvSetUp::sInstance);
+        setNerve(GET_NERVE(JumpHole, JumpHoleNrvSetUp));
         _A4.zero();
     }
 }
@@ -102,7 +102,7 @@ void JumpHole::exeSetUp() {
     }
 
     if (MR::isGreaterStep(this, 45)) {
-        setNerve(&NrvJumpHole::JumpHoleNrvRailMove::sInstance);
+        setNerve(GET_NERVE(JumpHole, JumpHoleNrvRailMove));
     }
 }
 

@@ -68,13 +68,13 @@ void TamakoroTutorial::init(const JMapInfoIter& rIter) {
     if (omitTutorial == -1) {
         mTalkCtrl = MR::createTalkCtrlDirect(this, rIter, "Common_TamakoroTutorial000", TVec3f(0.0f, 0.0f, 0.0f), nullptr);
 
-        initNerve(&NrvTamakoroTutorial::HostTypeNrvFirst::sInstance);
+        initNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvFirst));
 
         _A5 = false;
     } else {
         mTalkCtrl = MR::createTalkCtrl(this, rIter, "SignBoard", TVec3f(0.0f, 0.0f, 0.0f), nullptr);
 
-        initNerve(&NrvTamakoroTutorial::HostTypeNrvWait::sInstance);
+        initNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvWait));
 
         _A5 = true;
 
@@ -92,16 +92,16 @@ void TamakoroTutorial::init(const JMapInfoIter& rIter) {
 }
 
 bool TamakoroTutorial::isNeedTutorial() {
-    return isNerve(&NrvTamakoroTutorial::HostTypeNrvWaitRide::sInstance);
+    return isNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvWaitRide));
 }
 
 void TamakoroTutorial::requestStart() {
     MR::forwardNode(mTalkCtrl);
-    setNerve(&NrvTamakoroTutorial::HostTypeNrvWaitRaiseTalk::sInstance);
+    setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvWaitRaiseTalk));
 }
 
 void TamakoroTutorial::requestEnd() {
-    setNerve(&NrvTamakoroTutorial::HostTypeNrvDirectRide::sInstance);
+    setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvDirectRide));
 }
 
 void TamakoroTutorial::control() {
@@ -122,7 +122,7 @@ void TamakoroTutorial::exeFirst() {
 
         if (MR::isOnGroundPlayer() && !MR::isExecScenarioStarter() &&
             (distPlayerToTutorial < ::hDistToStartTutorial || distPlayerToTamakoro < ::hDistToStartTutorial)) {
-            setNerve(&NrvTamakoroTutorial::HostTypeNrvFirstForceTalk::sInstance);
+            setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvFirstForceTalk));
         }
     } else {
         if (MR::isFirstStep(this)) {
@@ -133,7 +133,7 @@ void TamakoroTutorial::exeFirst() {
         if (MR::tryTalkNearPlayerAtEnd(mTalkCtrlAutomatic) && MR::tryTalkSelectLeft(mTalkCtrlAutomatic)) {
             MR::resetNode(mTalkCtrl);
             MR::forwardNode(mTalkCtrl);
-            setNerve(&NrvTamakoroTutorial::HostTypeNrvWaitRide::sInstance);
+            setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvWaitRide));
         }
     }
 }
@@ -141,7 +141,7 @@ void TamakoroTutorial::exeFirst() {
 void TamakoroTutorial::exeDenyTalk() {
     if (MR::tryTalkForceAtEnd(mTalkCtrlAutomatic)) {
         MR::resetNode(mTalkCtrlAutomatic);
-        setNerve(&NrvTamakoroTutorial::HostTypeNrvFirst::sInstance);
+        setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvFirst));
     }
 }
 
@@ -151,7 +151,7 @@ void TamakoroTutorial::exeFirstForceTalk() {
     }
 
     if (MR::tryTalkForceAtEnd(mTalkCtrl)) {
-        setNerve(&NrvTamakoroTutorial::HostTypeNrvWaitRideTalk::sInstance);
+        setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvWaitRideTalk));
     }
 }
 
@@ -163,7 +163,7 @@ void TamakoroTutorial::exeWaitRideTalk() {
     if (MR::tryTalkForceAtEnd(mTalkCtrl)) {
         getSensor("push")->invalidate();
         mHost->startRide();
-        setNerve(&NrvTamakoroTutorial::HostTypeNrvWaitRide::sInstance);
+        setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvWaitRide));
     }
 }
 
@@ -189,7 +189,7 @@ void TamakoroTutorial::exeWaitRaiseTalk() {
     if (MR::isGreaterStep(this, 90)) {
         if (MR::isNearAngleDegree(::hRaiseAcc, mPadAccel, ::hRaiseCheckDegree)) {
             MR::startSystemSE("SE_SY_SURF_TUTORIAL_OK");
-            setNerve(&NrvTamakoroTutorial::HostTypeNrvWaitRaiseStable::sInstance);
+            setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvWaitRaiseStable));
         }
     }
 }
@@ -203,14 +203,14 @@ void TamakoroTutorial::exeWaitRaiseStable() {
     MR::tryTalkForceWithoutDemoAtEnd(mTalkCtrl);
 
     if (!MR::isNearAngleDegree(::hRaiseAcc, mPadAccel, ::hRaiseCheckDegree)) {
-        setNerve(&NrvTamakoroTutorial::HostTypeNrvWaitRaiseTalk::sInstance);
+        setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvWaitRaiseTalk));
         MR::startSystemSE("SE_SY_SURF_TUTORIAL_NG");
     } else {
         startTimerSound(getNerveStep(), 1);
 
         if (MR::isGreaterStep(this, 60)) {
             MR::startSystemSE("SE_SY_SURF_TUTORIAL_GONEXT");
-            setNerve(&NrvTamakoroTutorial::HostTypeNrvRaiseOk::sInstance);
+            setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvRaiseOk));
         }
     }
 }
@@ -222,7 +222,7 @@ void TamakoroTutorial::exeRaiseOk() {
     pPlayerActionGuidance->_36 = true;
 
     if (MR::isGreaterStep(this, 60)) {
-        setNerve(&NrvTamakoroTutorial::HostTypeNrvRaiseOkTalk::sInstance);
+        setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvRaiseOkTalk));
     }
 }
 
@@ -237,7 +237,7 @@ void TamakoroTutorial::exeRaiseOkTalk() {
     }
 
     if (MR::tryTalkForceWithoutDemoAtEnd(mTalkCtrl)) {
-        setNerve(&NrvTamakoroTutorial::HostTypeNrvFinalTalk::sInstance);
+        setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvFinalTalk));
     }
 }
 
@@ -253,20 +253,20 @@ void TamakoroTutorial::exeFinalTalk() {
 
     if (MR::tryTalkForceWithoutDemoAtEnd(mTalkCtrl)) {
         if (MR::isExistNextNode(mTalkCtrl)) {
-            setNerve(&NrvTamakoroTutorial::HostTypeNrvFinalTalk::sInstance);
+            setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvFinalTalk));
         } else {
             mHost->requestTutorialEnd();
             MR::onGameEventFlagTamakoroTutorialAtFirst();
-            setNerve(&NrvTamakoroTutorial::HostTypeNrvWait::sInstance);
+            setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvWait));
         }
     }
 }
 
 void TamakoroTutorial::exeWait() {
-    if (isNerve(&NrvTamakoroTutorial::HostTypeNrvDirectRide::sInstance) && MR::isFirstStep(this)) {
+    if (isNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvDirectRide)) && MR::isFirstStep(this)) {
         mHost->requestTutorialEnd();
         MR::onGameEventFlagTamakoroTutorialAtFirst();
-        setNerve(&NrvTamakoroTutorial::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvWait));
     } else if (_A5 && MR::tryTalkNearPlayerAtEnd(mTalkCtrl)) {
         MR::tryForwardNode(mTalkCtrl);
     }
@@ -276,7 +276,7 @@ void TamakoroTutorial::exeTrample() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_SIGN_BOARD_TRAMP_BALL");
 
-        if (isNerve(&NrvTamakoroTutorial::HostTypeNrvTrampleFront::sInstance)) {
+        if (isNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvTrampleFront))) {
             MR::startAction(this, "DownFront");
         } else {
             MR::startAction(this, "DownBack");
@@ -284,10 +284,10 @@ void TamakoroTutorial::exeTrample() {
     }
 
     if (MR::isActionEnd(this) && MR::isGreaterStep(this, 60) && !_A4) {
-        if (isNerve(&NrvTamakoroTutorial::HostTypeNrvTrampleFront::sInstance)) {
-            setNerve(&NrvTamakoroTutorial::HostTypeNrvRecoverFront::sInstance);
+        if (isNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvTrampleFront))) {
+            setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvRecoverFront));
         } else {
-            setNerve(&NrvTamakoroTutorial::HostTypeNrvRecoverBack::sInstance);
+            setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvRecoverBack));
         }
     } else {
         _A4 = false;
@@ -298,7 +298,7 @@ void TamakoroTutorial::exeRecover() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_SIGN_BOARD_RECOVER");
 
-        if (isNerve(&NrvTamakoroTutorial::HostTypeNrvRecoverFront::sInstance)) {
+        if (isNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvRecoverFront))) {
             MR::startAction(this, "RevivalFront");
         } else {
             MR::startAction(this, "RevivalBack");
@@ -306,12 +306,12 @@ void TamakoroTutorial::exeRecover() {
     }
 
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvTamakoroTutorial::HostTypeNrvWait::sInstance);
+        setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvWait));
     }
 }
 
 void TamakoroTutorial::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvTamakoroTutorial::HostTypeNrvTrampleFront::sInstance) && !isNerve(&NrvTamakoroTutorial::HostTypeNrvTrampleBack::sInstance)) {
+    if (!isNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvTrampleFront)) && !isNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvTrampleBack))) {
         MR::sendMsgPush(pReceiver, pSender);
     }
 
@@ -328,8 +328,8 @@ bool TamakoroTutorial::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSe
             return true;
         }
 
-        if (isNerve(&NrvTamakoroTutorial::HostTypeNrvWait::sInstance) || isNerve(&NrvTamakoroTutorial::HostTypeNrvRecoverFront::sInstance) ||
-            isNerve(&NrvTamakoroTutorial::HostTypeNrvRecoverBack::sInstance)) {
+        if (isNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvWait)) || isNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvRecoverFront)) ||
+            isNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvRecoverBack))) {
             TVec3f v1 = pSender->mPosition;
             v1 -= pReceiver->mPosition;
             TVec3f v2;
@@ -337,9 +337,9 @@ bool TamakoroTutorial::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSe
             MR::calcFrontVec(&v2, this);
 
             if (0.0f < v2.dot(v1)) {
-                setNerve(&NrvTamakoroTutorial::HostTypeNrvTrampleBack::sInstance);
+                setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvTrampleBack));
             } else {
-                setNerve(&NrvTamakoroTutorial::HostTypeNrvTrampleFront::sInstance);
+                setNerve(GET_NERVE(TamakoroTutorial, HostTypeNrvTrampleFront));
             }
 
             MR::emitEffectHitBetweenSensors(this, pSender, pReceiver, 0.0f, nullptr);

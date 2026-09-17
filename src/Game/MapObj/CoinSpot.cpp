@@ -1,26 +1,29 @@
 #include "Game/MapObj/CoinSpot.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 namespace NrvCoinSpot {
     NEW_NERVE(CoinSpotNrvWait, CoinSpot, Wait);
     NEW_NERVE(CoinSpotNrvIsInTornado, CoinSpot, IsInTornado);
 };  // namespace NrvCoinSpot
 
-CoinSpot::CoinSpot(const char* pName) : LiveActor(pName) {
-    _8C = 8;
-    _90 = 0;
-    _94 = 4;
-    _98 = 0;
+CoinSpot::CoinSpot(const char* pName) : LiveActor(pName), _8C(8), mIsInTornado(), _94(4), _98() {
 }
 
 void CoinSpot::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovementCalcAnim(this);
+
     MR::initDefaultPos(this, rIter);
+
     s32 arg = 0;
     MR::getJMapInfoArg0NoInit(rIter, &arg);
 
-    if (arg <= 0) {
+    if (arg > 0) {
         _8C = arg;
     } else {
         _8C = 8;
@@ -28,29 +31,28 @@ void CoinSpot::init(const JMapInfoIter& rIter) {
 
     initSound(4, false);
     initSensor();
-    initNerve(&NrvCoinSpot::CoinSpotNrvWait::sInstance);
+
+    initNerve(GET_NERVE(CoinSpot, CoinSpotNrvWait));
+
     appear();
 }
 
 void CoinSpot::initSensor() {
-    f32 scale_y = mScale.y;
+    f32 scale = mScale.y;
     initHitSensor(1);
-    TVec3f offs;
-    offs.x = 0.0f;
-    offs.y = 60.0f * scale_y;
-    offs.z = 0.0f;
-    MR::addHitSensorMapObj(this, "body", 32, offs.y, offs);
+    TVec3f offset(0.0f, 60.0f * scale, 0.0f);
+    MR::addHitSensorMapObj(this, "body", 32, offset.y, offset);
 }
 
 void CoinSpot::exeWait() {
     if (MR::isFirstStep(this)) {
         _94 = 0;
         _98 = 0;
-        _90 = 0;
+        mIsInTornado = false;
     }
 
-    if (_90 == 1) {
-        setNerve(&NrvCoinSpot::CoinSpotNrvIsInTornado::sInstance);
+    if (mIsInTornado == true) {
+        setNerve(GET_NERVE(CoinSpot, CoinSpotNrvIsInTornado));
     }
 }
 
@@ -60,17 +62,14 @@ void CoinSpot::exeIsInTornado() {
         _98 = 0;
     }
 
-    if (_90) {
-        s32 v2 = _94;
-        _94 = v2 - 1;
-
-        if (v2 - 1 <= 0) {
+    if (mIsInTornado) {
+        if (--_94 <= 0) {
             MR::appearCoinFix(this, mPosition, 1);
             _94 = 4;
-            _98 = _98 + 1;
+            _98++;
         }
 
-        _90 = 0;
+        mIsInTornado = false;
     } else {
         _94 = 0;
     }
@@ -81,8 +80,5 @@ void CoinSpot::exeIsInTornado() {
     }
 }
 
-void CoinSpot::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-}
-
-CoinSpot::~CoinSpot() {
+void CoinSpot::attackSensor(HitSensor*, HitSensor*) {
 }

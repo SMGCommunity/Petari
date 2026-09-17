@@ -64,7 +64,7 @@ void JetTurtle::becomeFastType() {
 void JetTurtle::appearAndTryTaken() {
     appear();
     MR::validateHitSensors(this);
-    setNerve(&NrvJetTurtle::JetTurtleNrvTakenReserve::sInstance);
+    setNerve(GET_NERVE(JetTurtle, JetTurtleNrvTakenReserve));
     MR::tryPlayerPullActor(getSensor("body"));
 }
 
@@ -83,7 +83,7 @@ void JetTurtle::resetPosition() {
     mVelocity.zero();
     mRotation.zero();
     _94 = nullptr;
-    setNerve(&NrvJetTurtle::JetTurtleNrvRestart::sInstance);
+    setNerve(GET_NERVE(JetTurtle, JetTurtleNrvRestart));
     MR::hideModel(this);
     _98 = nullptr;
 }
@@ -300,7 +300,7 @@ void JetTurtle::exeTakenReserve() {
 
     f32 v2;
 
-    if (isNerve(&NrvJetTurtle::JetTurtleNrvTakenReserveD::sInstance)) {
+    if (isNerve(GET_NERVE(JetTurtle, JetTurtleNrvTakenReserveD))) {
         v2 = 0.5f;
     } else {
         v2 = 0.25f;
@@ -310,15 +310,15 @@ void JetTurtle::exeTakenReserve() {
     MR::getPlayerTakePos(&takePos);
     mPosition = mPosition * (1.0f - v2) + takePos * v2;
 
-    if (isNerve(&NrvJetTurtle::JetTurtleNrvTakenReserveD::sInstance)) {
+    if (isNerve(GET_NERVE(JetTurtle, JetTurtleNrvTakenReserveD))) {
         if (MR::isStep(this, 2)) {
-            setNerve(&NrvJetTurtle::JetTurtleNrvTakenStart::sInstance);
+            setNerve(GET_NERVE(JetTurtle, JetTurtleNrvTakenStart));
         }
         return;
     }
 
     if (MR::isStep(this, 8)) {
-        setNerve(&NrvJetTurtle::JetTurtleNrvTakenStart::sInstance);
+        setNerve(GET_NERVE(JetTurtle, JetTurtleNrvTakenStart));
     }
 }
 
@@ -338,7 +338,7 @@ void JetTurtle::exeTakenStart() {
             MR::emitEffect(this, "HandyGlow");
         }
 
-        setNerve(&NrvJetTurtle::JetTurtleNrvWait::sInstance);
+        setNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait));
         MR::invalidateShadow(this, nullptr);
     } else {
         reset(0);
@@ -385,7 +385,7 @@ void JetTurtle::exeRestart() {
 
         if (MR::isStep(this, 105)) {
             MR::showModel(this);
-            setNerve(&NrvJetTurtle::JetTurtleNrvWait::sInstance);
+            setNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait));
             MR::emitEffect(this, "KouraRevival");
             MR::startSound(this, "SE_EM_NOKOLAND_REVIVE_APPEAR");
         }
@@ -421,13 +421,13 @@ bool JetTurtle::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         } else {
             bool v7 = false;
 
-            if (isNerve(&NrvJetTurtle::JetTurtleNrvWait::sInstance) || isNerve(&NrvJetTurtle::JetTurtleNrvWait2::sInstance)) {
+            if (isNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait)) || isNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait2))) {
                 v7 = true;
             }
 
-            if (v7 || isNerve(&NrvJetTurtle::JetTurtleNrvTakenReserve::sInstance)) {
+            if (v7 || isNerve(GET_NERVE(JetTurtle, JetTurtleNrvTakenReserve))) {
                 _94 = pSender;
-                setNerve(&NrvJetTurtle::JetTurtleNrvTakenReserveD::sInstance);
+                setNerve(GET_NERVE(JetTurtle, JetTurtleNrvTakenReserveD));
                 return true;
             } else {
                 return false;
@@ -442,33 +442,33 @@ bool JetTurtle::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
             reset(0);
             return true;
         } else if (msg == ACTMES_RUSHDROP) {
-            setNerve(&NrvJetTurtle::JetTurtleNrvDrop::sInstance);
+            setNerve(GET_NERVE(JetTurtle, JetTurtleNrvDrop));
             MR::startBck(this, "Drop", nullptr);
             return true;
         } else if (msg == ACTMES_IS_PULL_ENABLE) {
             bool v8 = false;
 
-            if (isNerve(&NrvJetTurtle::JetTurtleNrvWait::sInstance) || isNerve(&NrvJetTurtle::JetTurtleNrvWait2::sInstance)) {
+            if (isNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait)) || isNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait2))) {
                 v8 = true;
             }
 
             if (v8) {
                 return true;
             } else {
-                return isNerve(&NrvJetTurtle::JetTurtleNrvTakenReserve::sInstance);
+                return isNerve(GET_NERVE(JetTurtle, JetTurtleNrvTakenReserve));
             }
         } else {
             if (MR::isMsgItemPull(msg)) {
                 bool v9 = false;
 
-                if (isNerve(&NrvJetTurtle::JetTurtleNrvWait::sInstance) || isNerve(&NrvJetTurtle::JetTurtleNrvWait2::sInstance)) {
+                if (isNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait)) || isNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait2))) {
                     v9 = true;
                 }
 
                 if (v9) {
                     bool v10 = false;
 
-                    if (isNerve(&NrvJetTurtle::JetTurtleNrvWait::sInstance) || isNerve(&NrvJetTurtle::JetTurtleNrvWait2::sInstance)) {
+                    if (isNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait)) || isNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait2))) {
                         v10 = true;
                     }
 
@@ -476,7 +476,7 @@ bool JetTurtle::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
                         MR::startBck(this, "YRotation", nullptr);
                     }
 
-                    setNerve(&NrvJetTurtle::JetTurtleNrvTakenReserve::sInstance);
+                    setNerve(GET_NERVE(JetTurtle, JetTurtleNrvTakenReserve));
                     MR::offBind(this);
                 }
 
@@ -489,7 +489,7 @@ bool JetTurtle::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
 }
 
 bool JetTurtle::receiveMsgThrow(HitSensor* pSender, HitSensor* pReceiver) {
-    setNerve(&NrvJetTurtle::JetTurtleNrvThrowing::sInstance);
+    setNerve(GET_NERVE(JetTurtle, JetTurtleNrvThrowing));
     MR::deleteEffect(this, "BrakeLamp");
 
     if (MR::isSensorPlayer(pSender)) {
@@ -527,7 +527,7 @@ bool JetTurtle::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
         return true;
     }
 
-    if (isNerve(&NrvJetTurtle::JetTurtleNrvWait::sInstance) || isNerve(&NrvJetTurtle::JetTurtleNrvWait2::sInstance)) {
+    if (isNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait)) || isNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait2))) {
         if (MR::isMsgPlayerHipDrop(msg)) {
             reset(0);
             return true;
@@ -548,8 +548,8 @@ bool JetTurtle::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
 }
 
 bool JetTurtle::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvJetTurtle::JetTurtleNrvTakenReserve::sInstance) || isNerve(&NrvJetTurtle::JetTurtleNrvTakenReserveD::sInstance) ||
-        isNerve(&NrvJetTurtle::JetTurtleNrvTakenStart::sInstance)) {
+    if (isNerve(GET_NERVE(JetTurtle, JetTurtleNrvTakenReserve)) || isNerve(GET_NERVE(JetTurtle, JetTurtleNrvTakenReserveD)) ||
+        isNerve(GET_NERVE(JetTurtle, JetTurtleNrvTakenStart))) {
         return false;
     }
 
@@ -562,7 +562,7 @@ bool JetTurtle::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pR
 bool JetTurtle::isWait() const {
     bool isWait = false;
 
-    if (isNerve(&NrvJetTurtle::JetTurtleNrvWait::sInstance) || isNerve(&NrvJetTurtle::JetTurtleNrvWait2::sInstance)) {
+    if (isNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait)) || isNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait2))) {
         isWait = true;
     }
 
@@ -570,7 +570,7 @@ bool JetTurtle::isWait() const {
 }
 
 bool JetTurtle::isRestart() const {
-    return isNerve(&NrvJetTurtle::JetTurtleNrvRestart::sInstance);
+    return isNerve(GET_NERVE(JetTurtle, JetTurtleNrvRestart));
 }
 
 void GoldenTurtle::init(const JMapInfoIter& rIter) {

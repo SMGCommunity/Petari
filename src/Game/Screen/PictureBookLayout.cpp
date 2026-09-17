@@ -108,7 +108,7 @@ void PictureBookLayout::init(const JMapInfoIter& rIter) {
         mCloseButton->initWithoutIter();
     }
 
-    initNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeIn::sInstance);
+    initNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvFadeIn));
 }
 
 void PictureBookLayout::appear() {
@@ -131,9 +131,9 @@ void PictureBookLayout::appear() {
     LayoutActor::appear();
 
     if (mContentsButtonPaneController == nullptr) {
-        setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeIn::sInstance);
+        setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvFadeIn));
     } else {
-        setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvOpen::sInstance);
+        setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvOpen));
     }
 
     MR::requestMovementOn(this);
@@ -464,9 +464,9 @@ bool PictureBookLayout::isValidCloseButton() const {
         return false;
     }
 
-    return isNerve(&NrvPictureBookLayout::PictureBookLayoutNrvOpen::sInstance) ||
-           isNerve(&NrvPictureBookLayout::PictureBookLayoutNrvContentsSelect::sInstance) ||
-           isNerve(&NrvPictureBookLayout::PictureBookLayoutNrvOpen::sInstance) || mPageNo == 0;
+    return isNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvOpen)) ||
+           isNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvContentsSelect)) ||
+           isNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvOpen)) || mPageNo == 0;
 }
 
 bool PictureBookLayout::isSelectedCloseButton() const {
@@ -543,7 +543,7 @@ void PictureBookLayout::exeOpen() {
         }
     }
 
-    MR::setNerveAtStep(this, &NrvPictureBookLayout::PictureBookLayoutNrvContentsSelect::sInstance, stepMax);
+    MR::setNerveAtStep(this, GET_NERVE(PictureBookLayout, PictureBookLayoutNrvContentsSelect), stepMax);
 }
 
 void PictureBookLayout::exeContentsSelect() {
@@ -552,7 +552,7 @@ void PictureBookLayout::exeContentsSelect() {
     }
 
     if (mCloseButton->trySelect()) {
-        setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvContentsFadeOut::sInstance);
+        setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvContentsFadeOut));
     } else {
         for (s32 i = 0; i < mChapterMax; i++) {
             if (mContentsButtonPaneController[i]->isPointingTrigger()) {
@@ -563,7 +563,7 @@ void PictureBookLayout::exeContentsSelect() {
                 MR::startSystemSE("SE_SY_TALK_OK");
                 mChapterNo = i + 1;
                 mCloseButton->disappear();
-                setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvContentsFadeOut::sInstance);
+                setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvContentsFadeOut));
                 break;
             }
         }
@@ -588,7 +588,7 @@ void PictureBookLayout::exeContentsFadeOut() {
         if (MR::isGreaterStep(this, stepMax)) {
             if (MR::isDead(mCloseButton)) {
                 hideContents();
-                setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvClose::sInstance);
+                setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvClose));
             }
         }
     } else {
@@ -598,7 +598,7 @@ void PictureBookLayout::exeContentsFadeOut() {
 
         if (MR::isGreaterStep(this, stepMax) && !MR::isWipeActive()) {
             hideContents();
-            setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeIn::sInstance);
+            setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvFadeIn));
         }
     }
 }
@@ -641,14 +641,14 @@ void PictureBookLayout::exeFadeIn() {
     }
 
     if (!MR::isWipeActive()) {
-        setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvWaitNoText::sInstance);
+        setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvWaitNoText));
     }
 }
 
 void PictureBookLayout::exeWaitNoText() {
     bool b = mContentsButtonPaneController != nullptr || mIsNextItemFast;
 
-    MR::setNerveAtStep(this, &NrvPictureBookLayout::PictureBookLayoutNrvFadeInText::sInstance, b ? 0 : ::cWaitNoTextFrame);
+    MR::setNerveAtStep(this, GET_NERVE(PictureBookLayout, PictureBookLayoutNrvFadeInText), b ? 0 : ::cWaitNoTextFrame);
 }
 
 void PictureBookLayout::exeFadeInText() {
@@ -719,7 +719,7 @@ void PictureBookLayout::exeFadeInText() {
     MR::setPaneAlphaFloat(this, "Title", alpha);
     MR::setPaneAlphaFloat(this, "Contents", alpha);
     MR::setPaneAlphaFloat(this, "PicToneDown", getFadeInAlphaTextBG(alpha));
-    MR::setNerveAtStep(this, &NrvPictureBookLayout::PictureBookLayoutNrvWaitWithText::sInstance, step);
+    MR::setNerveAtStep(this, GET_NERVE(PictureBookLayout, PictureBookLayoutNrvWaitWithText), step);
 }
 
 void PictureBookLayout::exeWaitWithText() {
@@ -732,7 +732,7 @@ void PictureBookLayout::exeWaitWithText() {
     }
 
     if (isValidCloseButton() && mCloseButton->trySelect()) {
-        setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeOutText::sInstance);
+        setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvFadeOutText));
     } else {
         bool isTriggerNextPage =
             MR::testCorePadTriggerA(WPAD_CHAN0) || MR::testCorePadTriggerRight(WPAD_CHAN0) || MR::testSubPadStickTriggerRight(WPAD_CHAN0);
@@ -752,7 +752,7 @@ void PictureBookLayout::exeWaitWithText() {
 
             mNextItemDir = 1;
 
-            setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeOutText::sInstance);
+            setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvFadeOutText));
         } else {
             bool isTriggerPrevPage = MR::testCorePadTriggerLeft(WPAD_CHAN0) || MR::testSubPadStickTriggerLeft(WPAD_CHAN0);
 
@@ -767,7 +767,7 @@ void PictureBookLayout::exeWaitWithText() {
                     mIsNextItemFast = true;
                     mNextItemDir = -1;
 
-                    setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeOutText::sInstance);
+                    setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvFadeOutText));
                 }
             }
         }
@@ -793,23 +793,23 @@ void PictureBookLayout::exeFadeOutText() {
 
     if (isSelectedCloseButton()) {
         if (MR::isGreaterStep(this, step) && MR::isDead(mCloseButton)) {
-            setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvClose::sInstance);
+            setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvClose));
         }
     } else if (MR::isStep(this, step)) {
         if (textNext()) {
-            setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeInText::sInstance);
+            setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvFadeInText));
         } else if (pageNext()) {
-            setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvPageNext::sInstance);
+            setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvPageNext));
         } else if (chapterNext()) {
             if (MR::isPlayingStageBgmName("STM_PROLOGUE_01_B")) {
                 MR::stopStageBGM(120);
             }
 
-            setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeOut::sInstance);
+            setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvFadeOut));
         } else if (mContentsButtonPaneController == nullptr) {
-            setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeOut::sInstance);
+            setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvFadeOut));
         } else {
-            setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvClose::sInstance);
+            setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvClose));
         }
     }
 }
@@ -844,7 +844,7 @@ void PictureBookLayout::exePageNext() {
         MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_ED");
     }
 
-    MR::setNerveAtAnimStopped(this, &NrvPictureBookLayout::PictureBookLayoutNrvWaitNoText::sInstance, 0);
+    MR::setNerveAtAnimStopped(this, GET_NERVE(PictureBookLayout, PictureBookLayoutNrvWaitNoText), 0);
 }
 
 void PictureBookLayout::exeFadeOut() {
@@ -861,7 +861,7 @@ void PictureBookLayout::exeFadeOut() {
     }
 
     if (mChapterMax >= mChapterNo) {
-        setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvFadeIn::sInstance);
+        setNerve(GET_NERVE(PictureBookLayout, PictureBookLayoutNrvFadeIn));
     } else {
         kill();
     }

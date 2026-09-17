@@ -127,7 +127,7 @@ void TripodBoss::init(const JMapInfoIter& rIter) {
     initSound(8, false);
     initEffectKeeper(0, "TripodBoss", false);
     MR::setEffectHostMtx(this, "BreakLight", mBodyMtx);
-    initNerve(&NrvTripodBoss::TripodBossNrvNonActive::sInstance);
+    initNerve(GET_NERVE(TripodBoss, TripodBossNrvNonActive));
     MR::invalidateClipping(this);
     MR::needStageSwitchReadA(this, rIter);
     MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &TripodBoss::requestOpeningDemo));
@@ -315,7 +315,7 @@ void TripodBoss::control() {
     MR::addTransMtxLocal(_BC, _5BC);
     mDummyModel->mRotation.y = MR::repeatDegree(mDummyModel->mRotation.y - _620);
 
-    if (isNerve(&NrvTripodBoss::TripodBossNrvNonActive::sInstance)) {
+    if (isNerve(GET_NERVE(TripodBoss, TripodBossNrvNonActive))) {
         clippingModel();
     } else {
         mNextStepSeq = -1;
@@ -335,7 +335,7 @@ bool TripodBoss::tryStartStep() {
 
     mCurrentStepSeq = mNextStepSeq;
     mStepSequence[mCurrentStepSeq].reset();
-    setNerve(&NrvTripodBoss::TripodBossNrvStep::sInstance);
+    setNerve(GET_NERVE(TripodBoss, TripodBossNrvStep));
 
     return true;
 }
@@ -366,9 +366,9 @@ bool TripodBoss::tryChangeSequence() {
     mCurrentStepSeq = mNextStepSeq;
 
     if (!v10) {
-        setNerve(&NrvTripodBoss::TripodBossNrvStep::sInstance);
+        setNerve(GET_NERVE(TripodBoss, TripodBossNrvStep));
     } else {
-        setNerve(&NrvTripodBoss::TripodBossNrvChangeSequence::sInstance);
+        setNerve(GET_NERVE(TripodBoss, TripodBossNrvChangeSequence));
     }
 
     return true;
@@ -380,7 +380,7 @@ bool TripodBoss::tryEndSequence() {
     }
 
     mCurrentStepSeq = -1;
-    setNerve(&NrvTripodBoss::TripodBossNrvWait::sInstance);
+    setNerve(GET_NERVE(TripodBoss, TripodBossNrvWait));
 
     return true;
 }
@@ -388,7 +388,7 @@ bool TripodBoss::tryEndSequence() {
 bool TripodBoss::tryNextSequence() {
     if (isStopAllLeg()) {
         if (!isStateSomething()) {
-            setNerve(&NrvTripodBoss::TripodBossNrvStep::sInstance);
+            setNerve(GET_NERVE(TripodBoss, TripodBossNrvStep));
 
             return true;
         }
@@ -401,7 +401,7 @@ bool TripodBoss::tryDamage() {
     s32 leg = getCurrentStepSequence()->getCurrentLeg();
 
     if (mLegs[leg]->isDamage()) {
-        setNerve(&NrvTripodBoss::TripodBossNrvDamage::sInstance);
+        setNerve(GET_NERVE(TripodBoss, TripodBossNrvDamage));
 
         return true;
     }
@@ -413,7 +413,7 @@ bool TripodBoss::tryWaitStep() {
     s32 leg = getCurrentStepSequence()->getCurrentLeg();
 
     if (mLegs[leg]->isLanding()) {
-        setNerve(&NrvTripodBoss::TripodBossNrvWaitStep::sInstance);
+        setNerve(GET_NERVE(TripodBoss, TripodBossNrvWaitStep));
 
         return true;
     }
@@ -431,7 +431,7 @@ bool TripodBoss::tryNextStep() {
 
     if (MR::isGreaterStep(this, stepSequence->getCurrentWaitTime()) || mLegs[leg]->isBroken()) {
         stepSequence->nextStep();
-        setNerve(&NrvTripodBoss::TripodBossNrvStep::sInstance);
+        setNerve(GET_NERVE(TripodBoss, TripodBossNrvStep));
 
         return true;
     }
@@ -452,7 +452,7 @@ bool TripodBoss::tryLeaveLegOutOfPlayer() {
         }
 
         if (isPressed) {
-            setNerve(&NrvTripodBoss::TripodBossNrvLeaveLegOutOfPlayer::sInstance);
+            setNerve(GET_NERVE(TripodBoss, TripodBossNrvLeaveLegOutOfPlayer));
 
             return true;
         }
@@ -463,7 +463,7 @@ bool TripodBoss::tryLeaveLegOutOfPlayer() {
 
 bool TripodBoss::tryEndLeaveLegOutOfPlayer() {
     if (!MR::isPlayerOnPress()) {
-        setNerve(&NrvTripodBoss::TripodBossNrvWait::sInstance);
+        setNerve(GET_NERVE(TripodBoss, TripodBossNrvWait));
 
         return true;
     }
@@ -473,7 +473,7 @@ bool TripodBoss::tryEndLeaveLegOutOfPlayer() {
 
 bool TripodBoss::tryEndDamage() {
     if (MR::isGreaterStep(this, 129)) {
-        setNerve(&NrvTripodBoss::TripodBossNrvWait::sInstance);
+        setNerve(GET_NERVE(TripodBoss, TripodBossNrvWait));
 
         return true;
     }
@@ -487,8 +487,8 @@ bool TripodBoss::tryBreak() {
             mLegs[i]->requestBreak();
         }
 
-        setNerve(&NrvTripodBoss::TripodBossNrvTryStartDemo::sInstance);
-        MR::requestStartDemoMarioPuppetable(this, "破壊", &NrvTripodBoss::TripodBossNrvPainDemo::sInstance, nullptr);
+        setNerve(GET_NERVE(TripodBoss, TripodBossNrvTryStartDemo));
+        MR::requestStartDemoMarioPuppetable(this, "破壊", GET_NERVE(TripodBoss, TripodBossNrvPainDemo), nullptr);
 
         return true;
     }
@@ -497,23 +497,23 @@ bool TripodBoss::tryBreak() {
 }
 
 void TripodBoss::requestOpeningDemo() {
-    if (isNerve(&NrvTripodBoss::TripodBossNrvNonActive::sInstance)) {
+    if (isNerve(GET_NERVE(TripodBoss, TripodBossNrvNonActive))) {
         if (!MR::isDead(mLowModel)) {
             mLowModel->makeActorDead();
         }
 
         _638 = 0;
         MR::activeTripodBossParts();
-        setNerve(&NrvTripodBoss::TripodBossNrvTryStartDemo::sInstance);
-        MR::requestStartDemoMarioPuppetable(this, "開始", &NrvTripodBoss::TripodBossNrvStartDemo::sInstance, nullptr);
+        setNerve(GET_NERVE(TripodBoss, TripodBossNrvTryStartDemo));
+        MR::requestStartDemoMarioPuppetable(this, "開始", GET_NERVE(TripodBoss, TripodBossNrvStartDemo), nullptr);
     }
 }
 
 bool TripodBoss::tryDamageDemo() {
-    setNerve(&NrvTripodBoss::TripodBossNrvTryStartDemo::sInstance);
+    setNerve(GET_NERVE(TripodBoss, TripodBossNrvTryStartDemo));
 
     if (MR::tryStartDemo(this, "ダメージ")) {
-        setNerve(&NrvTripodBoss::TripodBossNrvDamageDemo::sInstance);
+        setNerve(GET_NERVE(TripodBoss, TripodBossNrvDamageDemo));
 
         return true;
     }
@@ -523,7 +523,7 @@ bool TripodBoss::tryDamageDemo() {
 
 void TripodBoss::requestEndDamageDemo() {
     endDemo("ダメージ");
-    setNerve(&NrvTripodBoss::TripodBossNrvWait::sInstance);
+    setNerve(GET_NERVE(TripodBoss, TripodBossNrvWait));
 
     TVec3f trans;
     mBodyMtx.mult(::sAppearStarPieceOffset, trans);
@@ -660,7 +660,7 @@ void TripodBoss::exeStartDemo() {
         endDemo("開始");
         MR::endAnimCamera(this, mEventCamera, "StartDemo", 150, true);
         initLegIKPlacement();
-        setNerve(&NrvTripodBoss::TripodBossNrvWait::sInstance);
+        setNerve(GET_NERVE(TripodBoss, TripodBossNrvWait));
     }
 }
 
@@ -731,7 +731,7 @@ void TripodBoss::exePainDemo() {
 
         if (MR::isBckStopped(this)) {
             mDummyModel->kill();
-            setNerve(&NrvTripodBoss::TripodBossNrvBreakDownDemo::sInstance);
+            setNerve(GET_NERVE(TripodBoss, TripodBossNrvBreakDownDemo));
         }
     }
 }
@@ -744,7 +744,7 @@ void TripodBoss::exeBreakDownDemo() {
     }
 
     if (MR::isGreaterStep(this, ::sBreakDownTime)) {
-        setNerve(&NrvTripodBoss::TripodBossNrvExplosionDemo::sInstance);
+        setNerve(GET_NERVE(TripodBoss, TripodBossNrvExplosionDemo));
     }
 }
 
@@ -785,7 +785,7 @@ bool TripodBoss::isStopAllLeg() const {
 }
 
 bool TripodBoss::isStarted() const {
-    return !isNerve(&NrvTripodBoss::TripodBossNrvNonActive::sInstance);
+    return !isNerve(GET_NERVE(TripodBoss, TripodBossNrvNonActive));
 }
 
 bool TripodBoss::isDemo() const {
@@ -797,11 +797,11 @@ bool TripodBoss::isDemo() const {
 }
 
 bool TripodBoss::isStartDemo() const {
-    return isNerve(&NrvTripodBoss::TripodBossNrvStartDemo::sInstance);
+    return isNerve(GET_NERVE(TripodBoss, TripodBossNrvStartDemo));
 }
 
 bool TripodBoss::isDamageDemo() const {
-    return isNerve(&NrvTripodBoss::TripodBossNrvDamageDemo::sInstance);
+    return isNerve(GET_NERVE(TripodBoss, TripodBossNrvDamageDemo));
 }
 
 bool TripodBoss::isEndDemo() const {
@@ -813,15 +813,15 @@ bool TripodBoss::isEndDemo() const {
 }
 
 bool TripodBoss::isEndPainDemo() const {
-    return isNerve(&NrvTripodBoss::TripodBossNrvPainDemo::sInstance);
+    return isNerve(GET_NERVE(TripodBoss, TripodBossNrvPainDemo));
 }
 
 bool TripodBoss::isEndBreakDownDemo() const {
-    return isNerve(&NrvTripodBoss::TripodBossNrvBreakDownDemo::sInstance);
+    return isNerve(GET_NERVE(TripodBoss, TripodBossNrvBreakDownDemo));
 }
 
 bool TripodBoss::isEndExplosionDemo() const {
-    return isNerve(&NrvTripodBoss::TripodBossNrvExplosionDemo::sInstance);
+    return isNerve(GET_NERVE(TripodBoss, TripodBossNrvExplosionDemo));
 }
 
 bool TripodBoss::isBroken() const {

@@ -23,7 +23,7 @@ void LavaBallRisingPlanetLava::init(const JMapInfoIter& rIter) {
     info.setupConnectToScene();
     info.setupEffect(nullptr);
     info.setupSound(4);
-    info.setupNerve(&NrvLavaBallRisingPlanetLava::LavaBallRisingPlanetLavaNrvWaitSmall::sInstance);
+    info.setupNerve(GET_NERVE(LavaBallRisingPlanetLava, LavaBallRisingPlanetLavaNrvWaitSmall));
     initialize(rIter, info);
 }
 
@@ -31,10 +31,10 @@ void LavaBallRisingPlanetLava::exeWait() {
     MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND_RISING");
 
     if (!MR::isLessStep(this, 120)) {
-        if (isNerve(&NrvLavaBallRisingPlanetLava::LavaBallRisingPlanetLavaNrvWaitSmall::sInstance)) {
-            setNerve(&NrvLavaBallRisingPlanetLava::LavaBallRisingPlanetLavaNrvScaleUp::sInstance);
+        if (isNerve(GET_NERVE(LavaBallRisingPlanetLava, LavaBallRisingPlanetLavaNrvWaitSmall))) {
+            setNerve(GET_NERVE(LavaBallRisingPlanetLava, LavaBallRisingPlanetLavaNrvScaleUp));
         } else {
-            setNerve(&NrvLavaBallRisingPlanetLava::LavaBallRisingPlanetLavaNrvScaleDown::sInstance);
+            setNerve(GET_NERVE(LavaBallRisingPlanetLava, LavaBallRisingPlanetLavaNrvScaleDown));
         }
     }
 }
@@ -45,7 +45,7 @@ void LavaBallRisingPlanetLava::exeScaleUp() {
     mScale.setAll< f32 >(MR::calcNerveValue(this, 240, 1.0f, 1.1f));
 
     if (MR::isStep(this, 240)) {
-        setNerve(&NrvLavaBallRisingPlanetLava::LavaBallRisingPlanetLavaNrvWaitBig::sInstance);
+        setNerve(GET_NERVE(LavaBallRisingPlanetLava, LavaBallRisingPlanetLavaNrvWaitBig));
     }
 }
 
@@ -55,7 +55,7 @@ void LavaBallRisingPlanetLava::exeScaleDown() {
     mScale.setAll< f32 >(MR::calcNerveValue(this, 240, 1.1f, 1.0f));
 
     if (MR::isStep(this, 240)) {
-        setNerve(&NrvLavaBallRisingPlanetLava::LavaBallRisingPlanetLavaNrvWaitSmall::sInstance);
+        setNerve(GET_NERVE(LavaBallRisingPlanetLava, LavaBallRisingPlanetLavaNrvWaitSmall));
     }
 }
 

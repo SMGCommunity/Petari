@@ -114,7 +114,7 @@ void KuriboMini::init(const JMapInfoIter& rIter) {
     MR::initShadowVolumeSphere(this, 40.0f);
     initSensor();
     initBinder(60.0f, 60.0f, 0);
-    initNerve(&NrvKuriboMini::KuriboMiniNrvWander::sInstance);
+    initNerve(GET_NERVE(KuriboMini, KuriboMiniNrvWander));
     initState();
 
     if (MR::isValidInfo(rIter)) {
@@ -300,7 +300,7 @@ bool KuriboMini::requestHipDropDown(HitSensor* pSender, HitSensor* pReceiver) {
 
     MR::startSound(this, "SE_EM_STOMPED_S");
     MR::startAction(this, "FlatDown");
-    setNerve(&NrvKuriboMini::KuriboMiniNrvHipDropDown::sInstance);
+    setNerve(GET_NERVE(KuriboMini, KuriboMiniNrvHipDropDown));
     MR::offBind(this);
     return true;
 }
@@ -312,7 +312,7 @@ bool KuriboMini::requestFlatDown(HitSensor* pSender, HitSensor* pReceiver) {
 
     MR::startSound(this, "SE_EM_STOMPED_S");
     MR::startAction(this, "FlatDown");
-    setNerve(&NrvKuriboMini::KuriboMiniNrvFlatDown::sInstance);
+    setNerve(GET_NERVE(KuriboMini, KuriboMiniNrvFlatDown));
     MR::offBind(this);
     return true;
 }
@@ -324,7 +324,7 @@ bool KuriboMini::requestPressDown() {
 
     MR::startSound(this, "SE_EM_STOMPED_S");
     MR::startAction(this, "FlatDown");
-    setNerve(&NrvKuriboMini::KuriboMiniNrvPressDown::sInstance);
+    setNerve(GET_NERVE(KuriboMini, KuriboMiniNrvPressDown));
     MR::offBind(this);
     return true;
 }
@@ -340,7 +340,7 @@ bool KuriboMini::requestBlowDown(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     MR::setVelocityBlowAttack(this, pSender, pReceiver, 22.0f, 25.0f, 4);
-    setNerve(&NrvKuriboMini::KuriboMiniNrvBlowDown::sInstance);
+    setNerve(GET_NERVE(KuriboMini, KuriboMiniNrvBlowDown));
     return true;
 }
 
@@ -352,7 +352,7 @@ bool KuriboMini::requestStagger(HitSensor* pSender, HitSensor* pReceiver) {
     bool isDwn = isDown() == false;
     if (isDwn) {
         mStateStagger->setPunchDirection(pSender, pReceiver);
-        setNerve(&NrvKuriboMini::KuriboMiniNrvStagger::sInstance);
+        setNerve(GET_NERVE(KuriboMini, KuriboMiniNrvStagger));
         return true;
     }
 
@@ -365,7 +365,7 @@ bool KuriboMini::requestAttackSuccess() {
     }
 
     if (isEnableAttack()) {
-        setNerve(&NrvKuriboMini::KuriboMiniNrvAttackSuccess::sInstance);
+        setNerve(GET_NERVE(KuriboMini, KuriboMiniNrvAttackSuccess));
         return true;
     }
 
@@ -374,7 +374,7 @@ bool KuriboMini::requestAttackSuccess() {
 
 bool KuriboMini::tryFind() {
     if (mStateFindPlayer->isInSightPlayer()) {
-        setNerve(&NrvKuriboMini::KuriboMiniNrvFindPlayer::sInstance);
+        setNerve(GET_NERVE(KuriboMini, KuriboMiniNrvFindPlayer));
         return true;
     }
 
@@ -383,7 +383,7 @@ bool KuriboMini::tryFind() {
 
 bool KuriboMini::tryPointBind() {
     if (mStateBindStarPointer->tryStartPointBind()) {
-        setNerve(&NrvKuriboMini::KuriboMiniNrvBindStarPointer::sInstance);
+        setNerve(GET_NERVE(KuriboMini, KuriboMiniNrvBindStarPointer));
         return true;
     }
 
@@ -408,7 +408,7 @@ void KuriboMini::exeWander() {
 }
 
 void KuriboMini::exeFindPlayer() {
-    if (!MR::updateActorStateAndNextNerve(this, mStateFindPlayer, &NrvKuriboMini::KuriboMiniNrvChase::sInstance)) {
+    if (!MR::updateActorStateAndNextNerve(this, mStateFindPlayer, GET_NERVE(KuriboMini, KuriboMiniNrvChase))) {
         if (mStateFindPlayer->isFindJumpBegin()) {
             MR::startSound(this, "SE_EM_KURIBOMINI_FIND");
         }
@@ -420,7 +420,7 @@ void KuriboMini::exeFindPlayer() {
 }
 
 void KuriboMini::exeChase() {
-    if (MR::updateActorStateAndNextNerve(this, mStateChase, &NrvKuriboMini::KuriboMiniNrvWander::sInstance)) {
+    if (MR::updateActorStateAndNextNerve(this, mStateChase, GET_NERVE(KuriboMini, KuriboMiniNrvWander))) {
         mStateWander->setWanderCenter(mPosition);
     }
 
@@ -434,7 +434,7 @@ void KuriboMini::exeChase() {
 }
 
 void KuriboMini::exeStagger() {
-    if (!MR::updateActorStateAndNextNerve(this, mStateStagger, &NrvKuriboMini::KuriboMiniNrvWander::sInstance)) {
+    if (!MR::updateActorStateAndNextNerve(this, mStateStagger, GET_NERVE(KuriboMini, KuriboMiniNrvWander))) {
         if (mStateStagger->isStaggerStart()) {
             MR::startSound(this, "SE_EM_CRASH_S");
             MR::startBlowHitSound(this);
@@ -455,7 +455,7 @@ void KuriboMini::exeStagger() {
 }
 
 void KuriboMini::exeBindStarPointer() {
-    if (!MR::updateActorStateAndNextNerve(this, mStateBindStarPointer, &NrvKuriboMini::KuriboMiniNrvWander::sInstance)) {
+    if (!MR::updateActorStateAndNextNerve(this, mStateBindStarPointer, GET_NERVE(KuriboMini, KuriboMiniNrvWander))) {
         tryDeadMap();
     }
 }
@@ -476,7 +476,7 @@ void KuriboMini::exeAttackSuccess() {
     }
 
     if (MR::isGreaterStep(this, 60)) {
-        setNerve(&NrvKuriboMini::KuriboMiniNrvWander::sInstance);
+        setNerve(GET_NERVE(KuriboMini, KuriboMiniNrvWander));
     }
 }
 
@@ -547,8 +547,8 @@ void KuriboMini::calcPassiveMovement() {
 }
 
 bool KuriboMini::isEnableAttack() const {
-    if (isNerve(&NrvKuriboMini::KuriboMiniNrvWander::sInstance) || isNerve(&NrvKuriboMini::KuriboMiniNrvFindPlayer::sInstance) ||
-        isNerve(&NrvKuriboMini::KuriboMiniNrvChase::sInstance)) {
+    if (isNerve(GET_NERVE(KuriboMini, KuriboMiniNrvWander)) || isNerve(GET_NERVE(KuriboMini, KuriboMiniNrvFindPlayer)) ||
+        isNerve(GET_NERVE(KuriboMini, KuriboMiniNrvChase))) {
         return true;
     }
 
@@ -556,12 +556,12 @@ bool KuriboMini::isEnableAttack() const {
 }
 
 bool KuriboMini::isEnableKick() const {
-    return isNerve(&NrvKuriboMini::KuriboMiniNrvStagger::sInstance);
+    return isNerve(GET_NERVE(KuriboMini, KuriboMiniNrvStagger));
 }
 
 bool KuriboMini::isDown() const {
-    if (isNerve(&NrvKuriboMini::KuriboMiniNrvFlatDown::sInstance) || isNerve(&NrvKuriboMini::KuriboMiniNrvHipDropDown::sInstance) ||
-        isNerve(&NrvKuriboMini::KuriboMiniNrvPressDown::sInstance) || isNerve(&NrvKuriboMini::KuriboMiniNrvBlowDown::sInstance)) {
+    if (isNerve(GET_NERVE(KuriboMini, KuriboMiniNrvFlatDown)) || isNerve(GET_NERVE(KuriboMini, KuriboMiniNrvHipDropDown)) ||
+        isNerve(GET_NERVE(KuriboMini, KuriboMiniNrvPressDown)) || isNerve(GET_NERVE(KuriboMini, KuriboMiniNrvBlowDown))) {
         return true;
     }
     return false;

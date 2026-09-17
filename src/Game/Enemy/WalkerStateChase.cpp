@@ -25,12 +25,12 @@ WalkerStateChase::WalkerStateChase(LiveActor* pHost, TVec3f* pDirection, WalkerS
         mChaseParam = &::sDefaultParam;
     }
 
-    initNerve(&NrvWalkerStateChase::WalkerStateChaseNrvStart::sInstance);
+    initNerve(GET_NERVE(WalkerStateChase, WalkerStateChaseNrvStart));
 }
 
 void WalkerStateChase::appear() {
     mIsDead = false;
-    setNerve(&NrvWalkerStateChase::WalkerStateChaseNrvStart::sInstance);
+    setNerve(GET_NERVE(WalkerStateChase, WalkerStateChaseNrvStart));
 }
 
 void WalkerStateChase::exeStart() {
@@ -48,9 +48,9 @@ void WalkerStateChase::exeStart() {
 
     if (MR::isFallNextMove(getHost(), 150.0f, 150.0f, 150.0f, nullptr)) {
         MR::zeroVelocity(getHost());
-        setNerve(&NrvWalkerStateChase::WalkerStateChaseNrvEnd::sInstance);
+        setNerve(GET_NERVE(WalkerStateChase, WalkerStateChaseNrvEnd));
     } else if (MR::isGreaterStep(this, mChaseParam->mForceChaseEndTime) || (MR::isGreaterStep(this, mChaseParam->mChaseTime) && !isInSight)) {
-        setNerve(&NrvWalkerStateChase::WalkerStateChaseNrvEnd::sInstance);
+        setNerve(GET_NERVE(WalkerStateChase, WalkerStateChaseNrvEnd));
     }
 }
 
@@ -66,5 +66,5 @@ void WalkerStateChase::exeEnd() {
 }
 
 bool WalkerStateChase::isRunning() const {
-    return isNerve(&NrvWalkerStateChase::WalkerStateChaseNrvStart::sInstance) && MR::isBindedGround(getHost());
+    return isNerve(GET_NERVE(WalkerStateChase, WalkerStateChaseNrvStart)) && MR::isBindedGround(getHost());
 }

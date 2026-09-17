@@ -27,14 +27,14 @@ void PressureMessenger::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
     MR::invalidateClipping(this);
-    initNerve(&NrvPressureMessenger::PressureMessengerNrvSync::sInstance);
+    initNerve(GET_NERVE(PressureMessenger, PressureMessengerNrvSync));
     makeActorAppeared();
 }
 
 void PressureMessenger::exeSync() {
     if (MR::isStep(this, _90)) {
         mSharedGroup->sendMsgToGroupMember(ACTMES_GROUP_MOVE_START, getSensor("body"), "body");
-        setNerve(&NrvPressureMessenger::PressureMessengerNrvSync::sInstance);
+        setNerve(GET_NERVE(PressureMessenger, PressureMessengerNrvSync));
     }
 }
 
@@ -96,9 +96,9 @@ void PressureBase::init(const JMapInfoIter& rIter) {
 
     if (MR::useStageSwitchReadA(this, rIter)) {
         MR::listenStageSwitchOnOffA(this, MR::Functor(this, &PressureBase::startRelax), MR::Functor(this, &PressureBase::startWait));
-        initNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
+        initNerve(GET_NERVE(PressureBase, PressureBaseNrvRelax));
     } else {
-        initNerve(&NrvPressureBase::PressureBaseNrvFirstWait::sInstance);
+        initNerve(GET_NERVE(PressureBase, PressureBaseNrvFirstWait));
     }
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
@@ -138,7 +138,7 @@ void PressureBase::control() {
 
 void PressureBase::exeBound() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance)) {
+        if (isNerve(GET_NERVE(PressureBase, PressureBaseNrvRelaxStart))) {
             MR::startBck(this, "SwitchOff", nullptr);
         } else {
             MR::startBck(this, "SwitchOn", nullptr);
@@ -149,17 +149,17 @@ void PressureBase::exeBound() {
     f32 scale = MR::getScaleWithReactionValueZeroToOne(rate, 1.0f, -2.0f);
     scale *= (-45.0f - mNozzleRotation);
 
-    if (isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance)) {
+    if (isNerve(GET_NERVE(PressureBase, PressureBaseNrvRelaxStart))) {
         _9C = mNozzleRotation + scale;
     } else {
         _9C = -45.0f - scale;
     }
 
     if (MR::isStep(this, 20)) {
-        if (isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance)) {
-            setNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
+        if (isNerve(GET_NERVE(PressureBase, PressureBaseNrvRelaxStart))) {
+            setNerve(GET_NERVE(PressureBase, PressureBaseNrvRelax));
         } else {
-            setNerve(&NrvPressureBase::PressureBaseNrvWait::sInstance);
+            setNerve(GET_NERVE(PressureBase, PressureBaseNrvWait));
         }
     }
 }
@@ -175,15 +175,15 @@ void PressureBase::exeSyncWait() {
 
 void PressureBase::exeFirstWait() {
     if (MR::isStep(this, mWaitTime)) {
-        setNerve(&NrvPressureBase::PressureBaseNrvPrepareToShot::sInstance);
+        setNerve(GET_NERVE(PressureBase, PressureBaseNrvPrepareToShot));
     }
 }
 
 void PressureBase::exeWait() {
     if (mWaitTime == MR::getBckFrameMax(this, "ShotStart") + getNerveStep()) {
-        setNerve(&NrvPressureBase::PressureBaseNrvPrepareToShot::sInstance);
+        setNerve(GET_NERVE(PressureBase, PressureBaseNrvPrepareToShot));
     } else if (MR::isStep(this, mWaitTime)) {
-        setNerve(&NrvPressureBase::PressureBaseNrvShot::sInstance);
+        setNerve(GET_NERVE(PressureBase, PressureBaseNrvShot));
     }
 }
 
@@ -193,7 +193,7 @@ void PressureBase::exePrepareToShot() {
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvPressureBase::PressureBaseNrvShot::sInstance);
+        setNerve(GET_NERVE(PressureBase, PressureBaseNrvShot));
     }
 }
 
@@ -218,9 +218,9 @@ void PressureBase::exeShot() {
 
     if (MR::isBckStopped(this)) {
         if (mGroup != nullptr) {
-            setNerve(&NrvPressureBase::PressureBaseNrvSyncWait::sInstance);
+            setNerve(GET_NERVE(PressureBase, PressureBaseNrvSyncWait));
         } else {
-            setNerve(&NrvPressureBase::PressureBaseNrvWait::sInstance);
+            setNerve(GET_NERVE(PressureBase, PressureBaseNrvWait));
         }
     }
 }
@@ -237,13 +237,13 @@ bool PressureBase::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
 
 bool PressureBase::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_GROUP_MOVE_START) {
-        bool v5 = isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance) || isNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
+        bool v5 = isNerve(GET_NERVE(PressureBase, PressureBaseNrvRelaxStart)) || isNerve(GET_NERVE(PressureBase, PressureBaseNrvRelax));
 
         if (v5) {
             return false;
         }
 
-        setNerve(&NrvPressureBase::PressureBaseNrvWait::sInstance);
+        setNerve(GET_NERVE(PressureBase, PressureBaseNrvWait));
 
         return true;
     }
@@ -252,17 +252,17 @@ bool PressureBase::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
 }
 
 void PressureBase::startWait() {
-    if (isNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance)) {
-        setNerve(&NrvPressureBase::PressureBaseNrvWaitStart::sInstance);
+    if (isNerve(GET_NERVE(PressureBase, PressureBaseNrvRelax))) {
+        setNerve(GET_NERVE(PressureBase, PressureBaseNrvWaitStart));
     }
 }
 
 void PressureBase::startRelax() {
-    bool isRelax = isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance) || isNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
+    bool isRelax = isNerve(GET_NERVE(PressureBase, PressureBaseNrvRelaxStart)) || isNerve(GET_NERVE(PressureBase, PressureBaseNrvRelax));
 
     if (!isRelax) {
         MR::startSound(this, "SE_OJ_W_PRESS_HEAD_OFF");
-        setNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance);
+        setNerve(GET_NERVE(PressureBase, PressureBaseNrvRelaxStart));
     }
 }
 
