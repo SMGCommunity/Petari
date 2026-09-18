@@ -2415,13 +2415,13 @@ Game/Effect/EffectObjGravityDust.cpp:
 
 Game/Effect/EffectSystem.cpp:
 	.text       start:0x800C54FC end:0x800C590C
-	.data       start:0x80578460 end:0x805784B8
+	.data       start:0x80578460 end:0x80578490
 	.sdata2     start:0x806B9D10 end:0x806B9D18
 
 Game/Effect/EffectSystemUtil.cpp:
 	.text       start:0x800C590C end:0x800C64F0
 	.rodata     start:0x80531A90 end:0x80531A98
-	.data       start:0x805784B8 end:0x80578540
+	.data       start:0x80578490 end:0x80578540
 	.sdata      start:0x806B1890 end:0x806B18A0
 	.sdata2     start:0x806B9D18 end:0x806B9D28
 
@@ -2458,11 +2458,11 @@ Game/Effect/ParticleEmitter.cpp:
 	.text       start:0x800C9FB4 end:0x800CA05C
 
 Game/Effect/ParticleEmitterHolder.cpp:
-	.text       start:0x800CA05C end:0x800CA448
+	.text       start:0x800CA05C end:0x800CA47C
 	.data       start:0x805787C8 end:0x805787D8
 
 Game/Effect/ParticleResourceHolder.cpp:
-	.text       start:0x800CA448 end:0x800CA934
+	.text       start:0x800CA47C end:0x800CA934
 	.data       start:0x805787D8 end:0x80578820
 	.sdata      start:0x806B18A0 end:0x806B18A8
 

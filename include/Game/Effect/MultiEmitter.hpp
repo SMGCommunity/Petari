@@ -111,7 +111,7 @@ public:
     /* 0x1C */ MultiEmitterCallBack* mCallBack;
     /* 0x20 */ MultiEmitterParticleCallBack* mParticleCallBack;
     /* 0x24 */ SyncBckEffectInfo* _24;
-    /* 0x28 */ AutoEffectInfo* _28;
+    /* 0x28 */ const AutoEffectInfo* _28;
     /* 0x2C */ f32 _2C;
     /* 0x30 */ f32 _30;
     /* 0x34 */ u16 mHash;

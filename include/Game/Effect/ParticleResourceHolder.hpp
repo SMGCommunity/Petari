@@ -1,29 +1,33 @@
 #pragma once
 
-#include "Game/Util/JMapInfo.hpp"
-#include "JSystem/JParticle/JPAResourceManager.hpp"
-#include <revolution.h>
+#include <revolution/types.h>
 
-class ResTIMG;
+class JMapInfo;
+class JPAResourceManager;
+struct ResTIMG;
 
 class ParticleResourceHolder {
 public:
-    struct Particle {
-        const char* mGroupName;  // 0x0
-        int mCount;              // 0x4
+    struct EffectNum {
+        EffectNum(const char* pGroupName) : mGroupName(pGroupName), mCount(1) {
+        }
+
+        /* 0x00 */ const char* mGroupName;
+        /* 0x04 */ int mCount;
     };
 
-    ParticleResourceHolder(const char*);
+    ParticleResourceHolder(const char* pArchiveName);
 
+    u16 getUserIndex(const char* pName) const;
     void countAutoEffectNum();
-    void swapTexture(const ResTIMG*, const char*);
-    bool isExistInResource(const char*, u16*) const;
+    void swapTexture(const ResTIMG* pImage, const char* pName);
+    bool isExistInResource(const char* pName, u16* pIndex) const;
     JMapInfo* getAutoEffectListBinary() const;
-    int getAutoEffectNum(const char*) const;
+    int getAutoEffectNum(const char* pGroupName) const;
 
-    JPAResourceManager* mResourceMgr;  // 0x0
-    JMapInfo* mAutoEffectList;         // 0x4
-    JMapInfo* mParticleNames;          // 0x8
-    Particle mParticles[512];          // 0xC
-    int mNumParticles;                 // 0x100C
+    /* 0x0000 */ JPAResourceManager* mResourceMgr;
+    /* 0x0004 */ JMapInfo* mAutoEffectList;
+    /* 0x0008 */ JMapInfo* mParticleNames;
+    /* 0x000C */ EffectNum* mEffectNums[1024];
+    /* 0x100C */ int mNumEffectNums;
 };

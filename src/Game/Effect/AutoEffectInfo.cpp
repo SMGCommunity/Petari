@@ -19,17 +19,17 @@ namespace {
         {6, "2D"}, {7, "2D_PAUSE_IGNORE"}, {8, "FOR_2D_MODEL"},
     };
 
-    const DrawOrderData* getDrawOrderData(const JMapInfoIter& rIter) {
+    s32 getDrawOrderData(const JMapInfoIter& rIter) {
         const char* drawOrder = "";
         rIter.getValue("DrawOrder", &drawOrder);
 
         for (u32 i = 0; i < ARRAY_SIZE(sDrawOrderDataTable); i++) {
             if (MR::isEqualString(drawOrder, sDrawOrderDataTable[i]._4)) {
-                return &sDrawOrderDataTable[i];
+                return sDrawOrderDataTable[i]._0;
             }
         }
 
-        return nullptr;
+        return 0;
     }
 };  // namespace
 
@@ -73,8 +73,8 @@ namespace {
 
 AutoEffectInfo::AutoEffectInfo()
     : mGroupName(), mAnimName(), mUniqueName(), mEffectName(), mParentName(), mJointName(), mFlag(), mPrmColor(-1), mIsValidPrmColor(), mEnvColor(),
-      mIsValidEnvColor(), mOffsetX(), mOffsetY(), mOffsetZ(), mStartFrame(), mEndFrame(-1), mScaleValue(1.0f), mRateValue(1.0f), mLightAffectValue(),
-      mDrawOrderData() {
+      mIsValidEnvColor(), mOffset(0.0f, 0.0f, 0.0f), mStartFrame(), mEndFrame(-1), mScaleValue(1.0f), mRateValue(1.0f), mLightAffectValue(),
+      mDrawOrder() {
 }
 
 void AutoEffectInfo::init(const JMapInfoIter& rIter) {
@@ -94,9 +94,9 @@ void AutoEffectInfo::init(const JMapInfoIter& rIter) {
     mJointName = ::getStringValue(rIter, "JointName");
     mEffectName = ::getStringValue(rIter, "EffectName");
     mParentName = ::getStringValue(rIter, "ParentName");
-    rIter.getValue("OffsetX", &mOffsetX);
-    rIter.getValue("OffsetY", &mOffsetY);
-    rIter.getValue("OffsetZ", &mOffsetZ);
+    rIter.getValue("OffsetX", &mOffset.x);
+    rIter.getValue("OffsetY", &mOffset.y);
+    rIter.getValue("OffsetZ", &mOffset.z);
     rIter.getValue("StartFrame", &mStartFrame);
     rIter.getValue("EndFrame", &mEndFrame);
 
@@ -160,7 +160,7 @@ void AutoEffectInfo::init(const JMapInfoIter& rIter) {
     }
 
     rIter.getValue("LightAffectValue", &mLightAffectValue);
-    mDrawOrderData = ::getDrawOrderData(rIter);
+    mDrawOrder = ::getDrawOrderData(rIter);
 }
 
 const char* AutoEffectInfo::getName() const {

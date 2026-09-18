@@ -15,19 +15,19 @@
 class JMapInfoIter;
 
 struct JMapItem {
-    u32 mHash;      // 0x0
-    u32 mMask;      // 0x4
-    u16 mOffsData;  // 0x8
-    u8 mShift;      // 0xA
-    u8 mType;       // 0xB
+    /* 0x00 */ u32 mHash;
+    /* 0x04 */ u32 mMask;
+    /* 0x08 */ u16 mOffsData;
+    /* 0x0A */ u8 mShift;
+    /* 0x0B */ u8 mType;
 };
 
 struct JMapData {
-    s32 mNumEntries;          // 0x0
-    s32 mNumFields;           // 0x4
-    s32 mDataOffset;          // 0x8
-    u32 mEntrySize;           // 0xC
-    const JMapItem mItems[];  // 0x10
+    /* 0x00 */ s32 mNumEntries;
+    /* 0x04 */ s32 mNumFields;
+    /* 0x08 */ s32 mDataOffset;
+    /* 0x0C */ u32 mEntrySize;
+    /* 0x10 */ const JMapItem mItems[];
 };
 
 template < typename T >
@@ -36,8 +36,8 @@ inline bool compareValues(const T a, const T b) {
 }
 
 template <>
-inline bool compareValues< const char* >(const char* a, const char* b) {
-    return strcmp(a, b) == 0;
+inline bool compareValues< const char* >(const char* pA, const char* pB) {
+    return strcmp(pA, pB) == 0;
 }
 
 inline const char* getEntryAddress(const JMapData* pData, s32 dataOffset, int entryIndex) {
@@ -65,14 +65,14 @@ public:
         return dataExists() ? mData->mNumFields : 0;
     }
 
-    bool attach(const void*);
-    void setName(const char*);
+    bool attach(const void* pData);
+    void setName(const char* pName);
     const char* getName() const;
-    s32 searchItemInfo(const char*) const;
-    s32 getValueType(const char*) const;
-    bool getValueFast(int, int, const char**) const;
-    bool getValueFast(int, int, u32*) const;
-    bool getValueFast(int, int, s32*) const;
+    s32 searchItemInfo(const char* pKey) const;
+    s32 getValueType(const char* pKey) const;
+    bool getValueFast(int entryIndex, int itemIndex, const char** pValueOut) const;
+    bool getValueFast(int entryIndex, int itemIndex, u32* pValueOut) const;
+    bool getValueFast(int entryIndex, int itemIndex, s32* pValueOut) const;
     bool getValueFast(int entryIndex, int itemIndex, f32* pValueOut) const {
         const JMapItem* pItem = &mData->mItems[itemIndex];
         const char* pValue = getEntryAddress(mData, mData->mDataOffset, entryIndex) + pItem->mOffsData;
@@ -86,7 +86,7 @@ public:
         return true;
     }
 
-    JMapInfoIter findElementBinary(const char*, const char*) const;
+    JMapInfoIter findElementBinary(const char* pKey, const char* pValue) const;
 
     template < typename T >
     const bool getValue(int entryIndex, const char* pKey, T* pValueOut) const;
@@ -94,6 +94,7 @@ public:
     template < typename T >
     JMapInfoIter findElement(const char* pKey, T searchValue, int startIndex) const;
 
+    inline JMapInfoIter begin() const;
     inline JMapInfoIter end() const;
 
     /* 0x00 */ const JMapData* mData;
@@ -106,6 +107,7 @@ const bool JMapInfo::getValue(int entryIndex, const char* pKey, T* pValueOut) co
     if (itemIndex < 0) {
         return false;
     }
+
     return getValueFast(entryIndex, itemIndex, pValueOut);
 }
 
@@ -126,7 +128,7 @@ public:
     }
 
     bool isValid() const {
-        return mInfo && mIndex >= 0 && mIndex < mInfo->getNumEntries();
+        return mInfo != nullptr && mIndex >= 0 && mIndex < mInfo->getNumEntries();
     }
 
     template < typename T >
@@ -142,14 +144,21 @@ template < typename T >
 JMapInfoIter JMapInfo::findElement(const char* pKey, T searchValue, int startIndex) const {
     int entryIndex = startIndex;
     T value;
+
     while (entryIndex < getNumEntries()) {
         getValue< T >(entryIndex, pKey, &value);
         if (compareValues< T >(value, searchValue)) {
             return JMapInfoIter(this, entryIndex);
         }
+
         entryIndex++;
     }
+
     return end();
+}
+
+JMapInfoIter JMapInfo::begin() const {
+    return JMapInfoIter(this, 0);
 }
 
 JMapInfoIter JMapInfo::end() const {
@@ -157,5 +166,5 @@ JMapInfoIter JMapInfo::end() const {
 }
 
 namespace MR {
-    JMapInfoIter findJMapInfoElementNoCase(const JMapInfo*, const char*, const char*, int);
+    JMapInfoIter findJMapInfoElementNoCase(const JMapInfo* pInfo, const char* pKey, const char* pValue, int startIndex);
 };  // namespace MR
