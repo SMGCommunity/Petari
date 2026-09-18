@@ -1195,7 +1195,7 @@ config.libs = [
             Object(Matching, "Game/Effect/SingleEmitter.cpp"),
             Object(NonMatching, "Game/Effect/SpinPullParticleCallBack.cpp"),
             Object(Matching, "Game/Effect/SyncBckEffectChecker.cpp"),
-            Object(NonMatching, "Game/Effect/SyncBckEffectInfo.cpp"),
+            Object(Matching, "Game/Effect/SyncBckEffectInfo.cpp"),
         ],
     ),
     GameLib(
