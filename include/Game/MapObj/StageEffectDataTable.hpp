@@ -1,44 +1,33 @@
 #pragma once
 
-#include <revolution.h>
+#include <revolution/types.h>
 
 class NameObj;
 class LiveActor;
 
-struct StageEffectSoundData {
-    const char* objectName;         // 0x0
-    const char* startSoundEffect;   // 0x4
-    const char* movingSoundEffect;  // 0x8
-    const char* stopSoundEffect;    // 0xC
-    u32 stopSoundEffectSteps;       // 0x10
-    s32 soundEffectType;            // 0x14
-};
-
 namespace MR {
     class StageEffect {
     public:
-        static const char* getStartSe(const char*);
-        static const char* getMovingSe(const char*);
-        static const char* getStopSe(const char*);
+        static const char* getStartSe(const char* pObjectName);
+        static const char* getMovingSe(const char* pObjectName);
+        static const char* getStopSe(const char* pObjectName);
+        static s32 getStopSeSteps(const char* pObjectName);
+        static bool isRiddleSeTypeStop(const char* pObjectName);
 
-        static s32 getStopSeSteps(const char*);
+        static bool isExistStageEffectSeData(const char* pObjectName);
+        static bool isExistStageEffectData(const char* pObjectName);
+    
+        static void shakeStartCamera(LiveActor* pActor, const char* pObjectName);
+        static void shakeStopCamera(LiveActor* pActor, const char* pObjectName);
+        static void shakeCameraMoving(NameObj* pActor, const char* pObjectName);
+        static void stopShakingCameraMoving(NameObj* pActor, const char* pObjectName);
 
-        static bool isRiddleSeTypeStop(const char*);
+        static void rumblePadStart(LiveActor* pActor, const char* pObjectName);
+        static void rumblePadStop(LiveActor* pActor, const char* pObjectName);
+        static void rumblePadMoving(LiveActor* pActor, const char* pObjectName);
 
-        static bool tryStageEffectStart(LiveActor*, const char*);
-        static bool tryStageEffectMoving(LiveActor*, const char*);
-        static bool tryStageEffectStop(LiveActor*, const char*);
-
-        static bool isExistStageEffectData(const char*);
-
-        static bool isExistStageEffectSeData(const char*);
-
-        static void rumblePadMoving(LiveActor*, const char*);
-        static void rumblePadStart(LiveActor*, const char*);
-        static void rumblePadStop(LiveActor*, const char*);
-
-        static void shakeCameraMoving(NameObj*, const char*);
-        static void shakeStopCamera(LiveActor*, const char*);
-        static void stopShakingCameraMoving(NameObj*, const char*);
+        static bool tryStageEffectStart(LiveActor* pActor, const char* pObjectName);
+        static bool tryStageEffectMoving(LiveActor* pActor, const char* pObjectName);
+        static bool tryStageEffectStop(LiveActor* pActor, const char* pObjectName);
     };
 };  // namespace MR

@@ -5956,13 +5956,14 @@ Game/MapObj/SpringWaterFloaterSpot.cpp:
 	.text       start:0x8023B98C end:0x8023C59C
 	.ctors      start:0x8052EED4 end:0x8052EED8
 	.rodata     start:0x805338B8 end:0x805338C0
-	.data       start:0x805A12A0 end:0x805A3720
+	.data       start:0x805A12A0 end:0x805A1420
 	.sbss       start:0x806B5920 end:0x806B5930
 	.sdata2     start:0x806BE370 end:0x806BE3B0
 
 Game/MapObj/StageEffectDataTable.cpp:
 	.text       start:0x8023C59C end:0x8023D084
 	.rodata     start:0x805338C0 end:0x80534C18
+	.data       start:0x805A1420 end:0x805A3720
 	.sdata      start:0x806B2040 end:0x806B2050
 	.sdata2     start:0x806BE3B0 end:0x806BE3B8
 
