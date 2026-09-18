@@ -1,9 +1,5 @@
 #include "Game/Enemy/OnimasuJump.hpp"
 #include "Game/Util.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/MathUtil.hpp"
-#include "Game/Util/RailUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 void OnimasuJump_FORCE_MATCH_SDATA2() {
     (void) 0.0f;
