@@ -2145,7 +2145,7 @@ config.libs = [
             Object(Matching, "Game/Ride/Pole.cpp"),
             Object(Matching, "Game/Ride/SledRopePoint.cpp"),
             Object(Matching, "Game/Ride/SlingShooter.cpp"),
-            Object(NonMatching, "Game/Ride/SpaceCocoon.cpp"),
+            Object(Matching, "Game/Ride/SpaceCocoon.cpp"),
             Object(NonMatching, "Game/Ride/SphereAccelSensorController.cpp"),
             Object(Matching, "Game/Ride/SphereController.cpp"),
             Object(NonMatching, "Game/Ride/SpherePadController.cpp"),

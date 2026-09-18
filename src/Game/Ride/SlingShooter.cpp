@@ -40,9 +40,9 @@ namespace {
     static const f32 sAimDistanceToWait = 200.0f;
     static const f32 sBindAttackSpeed = 45.0f;
     static const f32 sBindAttackFrictionRate = 1.0f;
-    // static const s32 sStepBindAttack =
+    static const s32 sStepBindAttack = 120;
     static const s32 sBindAttackInvalidTime = 10;
-    static const s32 sStepToStopScene = 120;
+    static const s32 sStepToStopScene = 1;
     static const s32 sStepStopSceneAttackSuccess = 15;
     static const s32 sStepStopSceneLastDamage = 30;
     static const s32 sStepToEnableBindCancel = 10;
@@ -239,7 +239,7 @@ void SlingShooter::exeAim() {
 void SlingShooter::exeAttack() {
     mVelocity.mult(::sBindAttackFrictionRate);
 
-    if (tryAttackMap() || MR::isStep(this, ::sStepToStopScene)) {
+    if (tryAttackMap() || MR::isStep(this, ::sStepBindAttack)) {
         if (!mIsKinopioAttached) {
             MR::endEventCamera(mCameraInfo, "プレーヤー射出者[攻撃中]", true, -1);
             endBindAndPlayerNoJump(this);
@@ -257,7 +257,7 @@ void SlingShooter::exeAttackSuccess() {
 
     mVelocity.mult(::sBindAttackFrictionRate);
 
-    if (MR::isStep(this, 1)) {
+    if (MR::isStep(this, ::sStepToStopScene)) {
         if (mIsLastDamage) {
             MR::stopScene(::sStepStopSceneLastDamage);
         } else {

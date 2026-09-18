@@ -34,8 +34,54 @@
 #include <revolution/mtx.h>
 #include <revolution/wpad.h>
 
+void SpaceCocoon_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)3.0f;
+    (void)-1.0f;
+    (void)2.0f;
+}
+
 namespace {
-    static Color8 sColor(0xC8, 0xC8, 0xD7, 0xFF);
+    static const s32 sAimAnimInterpole = 10;
+    static const f32 sAimDistanceToStretch = 300.0f;
+    static const f32 sAimDistanceToWait = 200.0f;
+    static const f32 sAccelRate = 0.02f;
+    static const f32 sFrictionRate = 0.95f;
+    static const f32 sDistanceToStop = 1.0f;
+    static const f32 sSpeedMinToStop = 0.1f;
+    static const f32 sPointerSpeedMin = 5.0f;
+    static const f32 sPointerSpeedAccelRate = 5.0f;
+    static const f32 sDistanceBindInvalid = 300.0f;
+    static const s32 sTouchTimerMax = 20;
+    static const s32 sStepFreeInvalidMin = 5;
+    static const f32 sPlayerDistanceToHang = 100.0f;
+    static const f32 sDistanceMax = 500.0f;
+    static const f32 sFollowRate = 0.03f;
+    static const f32 sAimDistanceMin = 100.0f;
+    static const f32 sAimRumbleDistanceWeak = 100.0f;
+    static const f32 sAimRumbleDistanceStrong = 500.0f;
+    static const f32 sBindAttackSpeed = 60.0f;
+    static const f32 sBindAttackFrictionRate = 0.98f;
+    static const s32 sDefaultStepBindAttack = 60;
+    static const s32 sStepFriction = 90;
+    static const s32 sBindAttackInvalidTime = 20;
+    static const s32 sStepToStopScene = 1;
+    static const s32 sStepStopScene = 8;
+    static const f32 sDistanceBindCancel = 3000.0f;
+    static const f32 sCancelJumpSpeedXZ = 0.0f;
+    static const f32 sCancelJumpSpeedY = 0.0f;
+    static const s32 sWidthBottomPointNum = 3;
+    static const f32 sWidthTop = 2.0f;
+    static const f32 sWidthBottom = 1.0f;
+    static const f32 sStarPieceAccel = 5.0f;
+    static const f32 sDefaultHeight = 100.0f;
+    static const f32 sPointInterval = 10.0f;
+    static const f32 sDrawScaleX = 25.0f;
+    static const f32 sDrawScaleZ0 = 10.0f;
+    static const f32 sDrawScaleZ1 = 25.0f;
+    static const f32 sTexDiffU = -0.5f;
+
 };  // namespace
 
 namespace NrvSpaceCocoon {
@@ -55,18 +101,21 @@ namespace NrvSpaceCocoon {
     NEW_NERVE(SpaceCocoonNrvBindAttackSuccess, SpaceCocoon, BindAttackSuccess);
 };  // namespace NrvSpaceCocoon
 
+namespace {
+    static const f32 sTexStartU = 0.0f;
+    static Color8 sColor(0xC8, 0xC8, 0xD7, 0xFF);
+};  // namespace
+
 SpaceCocoon::SpaceCocoon(const char* pName)
-    : LiveActor(pName), mIsKinopioCameraFocused(false), mNeutralPos(0.0f, 0.0f, 0.0f), mBasePos(0.0f, 0.0f, 0.0f), mSide(1.0f, 0.0f, 0.0f),
-      mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f), mHeight(100.0f), mPointerPos(0.0f, 0.0f, 0.0f), mPadChannel(-1), mCocoonPos(0.0f, 0.0f, 0.0f),
-      mSpringVel(0.0f, 0.0f, 0.0f), mAttackTime(60), mTouchTime(0), mRider(nullptr), mNumPoints(0), mPlantPoints(nullptr), mCameraTargetMtx(nullptr),
-      mCameraInfo(nullptr), mCocoonModel(nullptr), mTexture(nullptr) {
+    : LiveActor(pName), mIsKinopioCameraFocused(), mNeutralPos(0.0f, 0.0f, 0.0f), mBasePos(0.0f, 0.0f, 0.0f), mSide(1.0f, 0.0f, 0.0f),
+      mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f), mHeight(::sDefaultHeight), mPointerPos(0.0f, 0.0f, 0.0f), mPadChannel(-1),
+      mCocoonPos(0.0f, 0.0f, 0.0f), mSpringVel(0.0f, 0.0f, 0.0f), mAttackTime(::sDefaultStepBindAttack), mTouchTime(), mRider(), mNumPoints(),
+      mPlantPoints(), mCameraTargetMtx(), mCameraInfo(), mCocoonModel(), mTexture() {
     mBaseMtx.identity();
     mTopMtx.identity();
 }
 
 void SpaceCocoon::init(const JMapInfoIter& rIter) {
-    // FIXME : annoying regswap, idx should be in r30
-    // https://decomp.me/scratch/kjwvE
     MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_Ride, MR::DrawBufferType_None, MR::DrawType_SpaceCocoon);
 
     MR::initDefaultPos(this, rIter);
@@ -101,31 +150,28 @@ void SpaceCocoon::init(const JMapInfoIter& rIter) {
 
     initNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvStop));
 
-    mNumPoints = mHeight / 10.0f;
+    mNumPoints = mHeight / ::sPointInterval;
     mPlantPoints = new PlantPoint*[mNumPoints];
 
     f32 delta = mHeight / (mNumPoints + 1);
 
     for (s32 idx = 0; idx < mNumPoints; idx++) {
-        TVec3f spawnPos(mUp);
-        s32 revIdx = mNumPoints - idx;
-        spawnPos.scale(delta * revIdx);
+        TVec3f spawnPos = mUp;
+        spawnPos.scale((mNumPoints - idx) * delta);
         spawnPos.add(mBasePos);
 
-        // something got optimized out here, or this is what was written
-        f32 f = MR::getEaseInValue((f32)idx / mNumPoints, 0.0f, 1.0f, 1.0f);
+        f32 f = MR::getEaseInValue(static_cast< f32 >(idx) / mNumPoints, 0.0f, 1.0f, 1.0f);
 
         f32 thickness = 1.0f;
-        s32 prevRevIdx = (mNumPoints - 1) - idx;
-        if (prevRevIdx < 3) {
-            thickness = MR::getEaseOutValue(prevRevIdx / 3.0f, 2.0f, 1.0f, 1.0f);
+        if ((mNumPoints - 1) - idx < ::sWidthBottomPointNum) {
+            thickness = MR::getEaseOutValue(static_cast< f32 >((mNumPoints - 1) - idx) / ::sWidthBottomPointNum, ::sWidthTop, ::sWidthBottom, 1.0f);
         }
 
         mPlantPoints[idx] = new PlantPoint(spawnPos, mUp, thickness);
     }
 
     PlantPoint* topPoint = mPlantPoints[0];
-    mTopMtx.setXYZDir(topPoint->mFront, topPoint->mUp, topPoint->mSide);
+    mTopMtx.setXYZDir(topPoint->mSide, topPoint->mUp, topPoint->mFront);
     mTopMtx.setTrans(topPoint->mPosition);
 
     mCocoonModel = new PartsModel(this, "先端", "SpaceCocoon", mTopMtx, MR::DrawBufferType_NoSilhouettedMapObj, false);
@@ -183,15 +229,13 @@ void SpaceCocoon::exeFreeInvalid() {
     updateSpringPoint();
     mPosition.set(mCocoonPos);
 
-    if (!MR::isGreaterStep(this, 5)) {
-        return;
-    }
-
-    if (mRider->mPosition.distance(mPosition) > 300.0f || MR::isOnGroundPlayer()) {
-        mRider = nullptr;
-        MR::validateClipping(this);
-        MR::validateHitSensors(this);
-        setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvFree));
+    if (MR::isGreaterStep(this, ::sStepFreeInvalidMin)) {
+        if (mRider->mPosition.distance(mPosition) > ::sDistanceBindInvalid || MR::isOnGroundPlayer()) {
+            mRider = nullptr;
+            MR::validateClipping(this);
+            MR::validateHitSensors(this);
+            setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvFree));
+        }
     }
 }
 
@@ -225,9 +269,9 @@ void SpaceCocoon::exeBindLand() {
 void SpaceCocoon::exeBindWait() {
     if (MR::isFirstStep(this)) {
         if (!isKinopioAttached()) {
-            MR::startBckPlayer("CocoonWait", static_cast< const char* >(0));
+            MR::startBckPlayer("CocoonWait", static_cast< const char* >(nullptr));
         } else {
-            MR::startBck(mRider, "CocoonWait", static_cast< const char* >(0));
+            MR::startBck(mRider, "CocoonWait", static_cast< const char* >(nullptr));
             MR::validateClipping(this);
             MR::validateClipping(mRider);
             MR::sendSimpleMsgToActor(ACTMES_NPC_EVENT_TALK_ENABLE, mRider);
@@ -241,11 +285,11 @@ void SpaceCocoon::exeBindWait() {
 
     if (tryTouch()) {
         if (!isKinopioAttached()) {
-            MR::startBckPlayer("CocoonReaction", static_cast< const char* >(0));
+            MR::startBckPlayer("CocoonReaction", static_cast< const char* >(nullptr));
         }
     } else {
         if (!isKinopioAttached() && MR::isBckOneTimeAndStopped(mRider)) {
-            MR::startBckPlayer("CocoonWait", static_cast< const char* >(0));
+            MR::startBckPlayer("CocoonWait", static_cast< const char* >(nullptr));
         }
     }
 }
@@ -271,8 +315,8 @@ void SpaceCocoon::exeBindAim() {
     }
 
     f32 dist = mPosition.distance(mNeutralPos);
-    if (dist >= 100.0f) {
-        MR::startLevelSound(this, "SE_OJ_LV_SPACE_COCOON_DRAG", ((dist - 100.0f) / 400.0f) * 100.0f);
+    if (dist >= ::sAimDistanceMin) {
+        MR::startLevelSound(this, "SE_OJ_LV_SPACE_COCOON_DRAG", ((dist - ::sAimDistanceMin) / (::sDistanceMax - ::sAimDistanceMin)) * 100.0f);
     }
 
     if (!tryRelease()) {
@@ -283,10 +327,10 @@ void SpaceCocoon::exeBindAim() {
 void SpaceCocoon::exeBindAttack() {
     if (MR::isFirstStep(this)) {
         if (!isKinopioAttached()) {
-            MR::startBckPlayer("CocoonFly", static_cast< const char* >(0));
+            MR::startBckPlayer("CocoonFly", static_cast< const char* >(nullptr));
             MR::startSound(mRider, "SE_PV_JUMP_JOY");
         } else {
-            MR::startBck(mRider, "CocoonFly", static_cast< const char* >(0));
+            MR::startBck(mRider, "CocoonFly", static_cast< const char* >(nullptr));
             MR::invalidateClipping(this);
             MR::invalidateClipping(mRider);
             MR::startSound(mRider, "SE_SV_KINOPIO_TALK_GLAD_FLY");
@@ -301,7 +345,7 @@ void SpaceCocoon::exeBindAttack() {
         MR::endMultiActorCamera(this, mCameraInfo, "攻撃中", true, -1);
 
         if (MR::isStep(this, mAttackTime) && !isKinopioAttached()) {
-            MR::startBckPlayer("AirRotation", static_cast< const char* >(0));
+            MR::startBckPlayer("AirRotation", static_cast< const char* >(nullptr));
         }
 
         endBind(TVec3f(0.0f, 0.0f, 0.0f), false);
@@ -314,11 +358,11 @@ void SpaceCocoon::exeBindAttackSuccess() {
 
     updateBindAttack();
 
-    if (MR::isStep(this, 1)) {
-        MR::stopScene(8);
+    if (MR::isStep(this, ::sStepToStopScene)) {
+        MR::stopScene(::sStepStopScene);
     }
 
-    if (MR::isStep(this, 2)) {
+    if (MR::isStep(this, ::sStepToStopScene + 1)) {
         if (isKinopioAttached()) {
             setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvKinopioAttack));
         } else {
@@ -339,8 +383,8 @@ void SpaceCocoon::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (!isKinopioAttached() && mRider == nullptr && MR::isSensorNpc(pReceiver) && pReceiver->receiveMessage(ACTMES_NPC_EVENT_START, pSender)) {
         mRider = pReceiver->mHost;
         MR::emitEffect(mCocoonModel, "Stick");
-        TVec3f side(mSide);
-        TVec3f front(mFront);
+        TVec3f side = mSide;
+        TVec3f front = mFront;
         side.scale(mSide.dot(mRider->mVelocity));
         front.scale(mFront.dot(mRider->mVelocity));
         mSpringVel.set(side);
@@ -370,7 +414,7 @@ bool SpaceCocoon::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
     }
 
     if (isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvFree)) || isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvFreeInvalid))) {
-        MR::addVelocitySeparateHV(this, pSender, pReceiver, 5.0f, 0.0f);
+        MR::addVelocitySeparateHV(this, pSender, pReceiver, ::sStarPieceAccel, 0.0f);
         mSpringVel.add(mVelocity);
         MR::zeroVelocity(this);
     }
@@ -393,10 +437,11 @@ bool SpaceCocoon::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
         if (isNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvFreeInvalid)) || isKinopioAttached()) {
             return false;
         }
+
         mRider = pSender->mHost;
         MR::invalidateClipping(this);
-        TVec3f side(mSide);
-        TVec3f front(mFront);
+        TVec3f side = mSide;
+        TVec3f front = mFront;
         side.scale(mSide.dot(*MR::getPlayerVelocity()));
         front.scale(mFront.dot(*MR::getPlayerVelocity()));
         mSpringVel.set(side);
@@ -424,7 +469,7 @@ bool SpaceCocoon::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
     }
 
     if (MR::isMsgRushCancel(msg)) {
-        endBind(TVec3f(0.0f, 0.0f, 0.0f), false);
+        endBind(TVec3f(::sCancelJumpSpeedXZ, ::sCancelJumpSpeedY, ::sCancelJumpSpeedXZ), false);
         return true;
     }
 
@@ -432,7 +477,7 @@ bool SpaceCocoon::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
 }
 
 bool SpaceCocoon::updateBindWait() {
-    if (MR::getPlayerPos()->distance(mPosition) < 3000.0f && (!isKinopioAttached() || MR::isOnGroundPlayer())) {
+    if (MR::getPlayerPos()->distance(mPosition) < ::sDistanceBindCancel && (!isKinopioAttached() || MR::isOnGroundPlayer())) {
         if (MR::isStarPointerPointing(this, WPAD_CHAN0, true, "弱")) {
             MR::requestStarPointerModeBlueStarReady(this);
         }
@@ -467,16 +512,16 @@ bool SpaceCocoon::updateBindWait() {
 }
 
 bool SpaceCocoon::updateSpringPoint() {
-    mSpringVel.mult(0.95);
+    mSpringVel.mult(::sFrictionRate);
 
-    TVec3f v1(mNeutralPos - mCocoonPos);
+    TVec3f springDiff = mNeutralPos - mCocoonPos;
 
-    mSpringVel.add(v1 * 0.02f);
+    mSpringVel.add(springDiff * ::sAccelRate);
     mCocoonPos.add(mSpringVel);
 
     updateDrawPoints();
 
-    if (mSpringVel.length() < 0.1f && mCocoonPos.distance(mNeutralPos) < 1.0f) {
+    if (mSpringVel.length() < ::sSpeedMinToStop && mCocoonPos.distance(mNeutralPos) < ::sDistanceToStop) {
         mCocoonPos.set(mNeutralPos);
         mSpringVel.zero();
         return true;
@@ -488,13 +533,13 @@ bool SpaceCocoon::updateSpringPoint() {
 void SpaceCocoon::updateHang() {
     f32 dist = mPosition.distance(mNeutralPos);
 
-    if (MR::isStarPointerInScreen(mPadChannel) && 100.0f > dist) {
+    if (MR::isStarPointerInScreen(mPadChannel) && ::sPlayerDistanceToHang > dist) {
         f32 dummy = 0.0f;
     }
 
-    if (dist >= 500.0f) {
+    if (dist >= ::sAimRumbleDistanceStrong) {
         MR::startLevelSound(this, "SE_OJ_LV_SPACE_COCOON_DRAG3");
-    } else if (dist >= 100.0f) {
+    } else if (dist >= ::sAimRumbleDistanceWeak) {
         MR::startLevelSound(this, "SE_OJ_LV_SPACE_COCOON_DRAG2");
     }
 
@@ -502,16 +547,16 @@ void SpaceCocoon::updateHang() {
         MR::calcStarPointerPosOnPlane(&mPointerPos, mNeutralPos, mUp, mPadChannel, false);
     }
 
-    TVec3f pos(mPointerPos);
-    if (pos.distance(mNeutralPos) > 500.0f) {
+    TVec3f pos = mPointerPos;
+    if (pos.distance(mNeutralPos) > ::sDistanceMax) {
         pos.set(mPointerPos);
         pos.sub(mNeutralPos);
         MR::normalize(&pos);
-        pos.scale(500.0f);
+        pos.scale(::sDistanceMax);
         pos.add(mNeutralPos);
     }
 
-    mPosition = pos * 0.03f + mPosition * 0.97f;
+    mPosition = pos * ::sFollowRate + mPosition * (1.0f - ::sFollowRate);
     mCocoonPos.set(mPosition);
     updateDrawPoints();
 
@@ -519,26 +564,26 @@ void SpaceCocoon::updateHang() {
         return;
     }
 
-    if (dist < 200.0f && !MR::isBckPlaying(mRider, "CocoonWait")) {
+    if (dist < ::sAimDistanceToWait && !MR::isBckPlaying(mRider, "CocoonWait")) {
         if (isKinopioAttached()) {
-            MR::startBckWithInterpole(mRider, "CocoonWait", 10);
+            MR::startBckWithInterpole(mRider, "CocoonWait", ::sAimAnimInterpole);
         } else {
-            MR::startBckPlayer("CocoonWait", 10);
+            MR::startBckPlayer("CocoonWait", ::sAimAnimInterpole);
         }
     }
 
-    if (dist > 300.0f && !MR::isBckPlaying(mRider, "CocoonStretch")) {
+    if (dist > ::sAimDistanceToStretch && !MR::isBckPlaying(mRider, "CocoonStretch")) {
         if (isKinopioAttached()) {
-            MR::startBckWithInterpole(mRider, "CocoonStretch", 10);
+            MR::startBckWithInterpole(mRider, "CocoonStretch", ::sAimAnimInterpole);
         } else {
-            MR::startBckPlayer("CocoonStretch", 10);
+            MR::startBckPlayer("CocoonStretch", ::sAimAnimInterpole);
         }
     }
 }
 
 void SpaceCocoon::updateBindAttack() {
-    if (getNerveStep() >= mAttackTime - 90) {
-        mVelocity.mult(0.98);
+    if (getNerveStep() >= mAttackTime - ::sStepFriction) {
+        mVelocity.mult(::sBindAttackFrictionRate);
     }
     updateSpringPoint();
 }
@@ -553,14 +598,14 @@ void SpaceCocoon::updateActorMtx() {
 }
 
 void SpaceCocoon::updateDrawPoints() {
-    TVec3f prevPos(mCocoonPos);
+    TVec3f prevPos = mCocoonPos;
     f32 delta = mHeight / (mNumPoints + 1);
 
     for (s32 idx = 0; idx < mNumPoints; idx++) {
         f32 t = MR::getEaseOutValue(static_cast< f32 >(idx + 1) / static_cast< f32 >(mNumPoints + 1), 0.0f, 1.0f, 1.0f);
         t = MR::getEaseOutValue(t, 0.0f, 1.0f, 1.0f);
 
-        TVec3f baseUp(mUp * ((idx + 1) * delta));
+        TVec3f baseUp = mUp * ((idx + 1) * delta);
 
         TVec3f pos;
         pos.x = mCocoonPos.x * (1.0f - t) + mNeutralPos.x * t;
@@ -569,11 +614,11 @@ void SpaceCocoon::updateDrawPoints() {
 
         pos.sub(baseUp);
 
-        TVec3f up(prevPos - pos);
+        TVec3f up = prevPos - pos;
         MR::normalize(&up);
 
-        TVec3f side(mSide);
-        TVec3f front(mFront);
+        TVec3f side = mSide;
+        TVec3f front = mFront;
 
         if (MR::isNearZero(side.dot(up))) {
             side.cross(up, front);
@@ -599,7 +644,7 @@ void SpaceCocoon::updateDrawPoints() {
 
 namespace {
     bool tryTouchPointer(LiveActor* pActor, s32 padChannel) {
-        if (MR::isStarPointerPointing(pActor, padChannel, false, "弱") && MR::getStarPointerScreenSpeed(padChannel) > 5.0f) {
+        if (MR::isStarPointerPointing(pActor, padChannel, false, "弱") && MR::getStarPointerScreenSpeed(padChannel) > ::sPointerSpeedMin) {
             return true;
         }
         return false;
@@ -622,7 +667,7 @@ bool SpaceCocoon::tryTouch() {
     if (touchChannel >= 0) {
         TVec3f pointerVel(0.0f, 0.0f, 0.0f);
         MR::calcStarPointerWorldVelocityDirectionOnPlane(&pointerVel, mNeutralPos, mUp, touchChannel);
-        pointerVel.scale(5.0f);
+        pointerVel.scale(::sPointerSpeedAccelRate);
         mSpringVel.add(pointerVel);
 
         MR::startSound(this, "SE_OJ_SPACE_COCOON_BOUND");
@@ -631,7 +676,7 @@ bool SpaceCocoon::tryTouch() {
             setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvFree));
         }
 
-        mTouchTime = 20;
+        mTouchTime = ::sTouchTimerMax;
         return true;
     }
 
@@ -646,7 +691,7 @@ bool SpaceCocoon::tryRelease() {
     endCommandStream();
     MR::endMultiActorCamera(this, mCameraInfo, "狙い中", true, -1);
 
-    if (mPosition.distance(mNeutralPos) < 100.0f) {
+    if (mPosition.distance(mNeutralPos) < ::sAimDistanceMin) {
         if (isKinopioAttached()) {
             MR::endDemo(this, "キノピオ狙い中");
             setNerve(GET_NERVE(SpaceCocoon, SpaceCocoonNrvKinopioWait));
@@ -669,15 +714,15 @@ bool SpaceCocoon::tryRelease() {
     MR::normalize(&mVelocity);
 
     // turn mario so he flies feet-first
-    TVec3f reaxisUp(mVelocity * -1.0f);
-    TVec3f reaxisFront(mUp);
+    TVec3f reaxisUp = mVelocity * -1.0f;
+    TVec3f reaxisFront = mUp;
     TVec3f reaxisSide = reaxisUp.cross(reaxisFront);
     MR::normalize(&reaxisSide);
     reaxisFront.cross(reaxisSide, reaxisUp);
     MR::normalize(&reaxisFront);
     mBaseMtx.setXYZDir(reaxisSide, reaxisUp, reaxisFront);
 
-    mVelocity.mult(60.0f);
+    mVelocity.mult(::sBindAttackSpeed);
     MR::emitEffect(mRider, "SpaceCocoonBlur");
 
     MR::startMultiActorCameraNoTarget(this, mCameraInfo, "攻撃中", -1);
@@ -696,7 +741,7 @@ bool SpaceCocoon::tryAttackMap() {
         return false;
     }
 
-    if (MR::isLessStep(this, 20)) {
+    if (MR::isLessStep(this, ::sBindAttackInvalidTime)) {
         return false;
     }
 
@@ -732,13 +777,13 @@ bool SpaceCocoon::isKinopioAttached() const {
     return false;
 }
 
-void SpaceCocoon::endBind(const TVec3f& rJumpVec, bool b) {
+void SpaceCocoon::endBind(const TVec3f& rJumpVec, bool attackSuccess) {
     MR::endMultiActorCamera(this, mCameraInfo, "ウェイト", true, -1);
     MR::endMultiActorCamera(this, mCameraInfo, "狙い中", true, -1);
     MR::endMultiActorCamera(this, mCameraInfo, "攻撃中", true, -1);
     MR::deleteEffect(mRider, "SpaceCocoonBlur");
 
-    if (!b) {
+    if (!attackSuccess) {
         if (isKinopioAttached()) {
             MR::validateClipping(mRider);
             mRider->mVelocity.set(mVelocity);
@@ -763,37 +808,34 @@ void SpaceCocoon::endCommandStream() {
 }
 
 void SpaceCocoon::draw() const {
-    // FIXME: shenanigans afoot at the beginning here, and honestly all over...
-    // https://decomp.me/scratch/6froM
-
     initDraw();
 
-    f32 f1 = -0.5f;
-    f32 f2 = 0.0f;
+    f32 texU2 = ::sTexStartU;
+    f32 texU1 = texU2 + ::sTexDiffU;
 
-    drawPlane(25.0f, -10.0f, 0.0f, -25.0f, ::sColor, ::sColor, f1, f2);  // -0.5f, 0.0f
-    f2 = f1;
-    f1 += -0.5f;
-    drawPlane(25.0f, 10.0f, 25.0f, -10.0f, ::sColor, ::sColor, f1, f2);  // -1.0f, -0.5f
-    f2 = f1;
-    f1 += -0.5f;
-    drawPlane(0.0f, 25.0f, 25.0f, 10.0f, ::sColor, ::sColor, f1, f2);  // -1.5f, -1.0f
-    f2 = f1;
-    f1 += -0.5f;
-    drawPlane(-25.0f, 10.0f, 0.0f, 25.0f, ::sColor, ::sColor, f1, f2);  // -2.0f, -1.5f
-    f2 = f1;
-    f1 += -0.5f;
-    drawPlane(-25.0f, -10.0f, -25.0f, 10.0f, ::sColor, ::sColor, f1, f2);  // -2.5f, -2.0f
-    f2 = f1;
-    f1 += -0.5f;
-    drawPlane(0.0f, -25.0f, -25.0f, -10.0f, ::sColor, ::sColor, f1, f2);  // -3.0f, -2.5f
+    drawPlane(::sDrawScaleX, -::sDrawScaleZ0, 0.0f, -::sDrawScaleZ1, ::sColor, ::sColor, texU1, texU2);
+    texU2 = texU1;
+    texU1 += ::sTexDiffU;
+    drawPlane(::sDrawScaleX, ::sDrawScaleZ0, ::sDrawScaleX, -sDrawScaleZ0, ::sColor, ::sColor, texU1, texU2);
+    texU2 = texU1;
+    texU1 += ::sTexDiffU;
+    drawPlane(0.0f, ::sDrawScaleZ1, ::sDrawScaleX, ::sDrawScaleZ0, ::sColor, ::sColor, texU1, texU2);
+    texU2 = texU1;
+    texU1 += ::sTexDiffU;
+    drawPlane(-::sDrawScaleX, ::sDrawScaleZ0, 0.0f, ::sDrawScaleZ1, ::sColor, ::sColor, texU1, texU2);
+    texU2 = texU1;
+    texU1 += ::sTexDiffU;
+    drawPlane(-::sDrawScaleX, -::sDrawScaleZ0, -::sDrawScaleX, sDrawScaleZ0, ::sColor, ::sColor, texU1, texU2);
+    texU2 = texU1;
+    texU1 += ::sTexDiffU;
+    drawPlane(0.0f, -::sDrawScaleZ1, -::sDrawScaleX, -sDrawScaleZ0, ::sColor, ::sColor, texU1, texU2);
 }
 
 namespace {
     void drawPoints(const TVec3f& rPos, const TVec3f& rSide, const TVec3f& rFront, f32 thickness, f32 x1, f32 y1, f32 x2, f32 y2, Color8 color1,
                     Color8 color2, f32 texX1, f32 texX2, f32 texY) {
-        TVec3f side(rSide);
-        TVec3f front(rFront);
+        TVec3f side = rSide;
+        TVec3f front = rFront;
         side.scale(thickness);
         front.scale(thickness);
 
@@ -813,7 +855,7 @@ void SpaceCocoon::drawPlane(f32 x1, f32 y1, f32 x2, f32 y2, Color8 color1, Color
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, numPoints * 2);
     {
-        ::drawPoints(mCocoonPos, mSide, mFront, 1.0f, x1, y1, x2, y2, color1, color2, texX1, texX2, 0.0f);
+        ::drawPoints(mCocoonPos, mSide, mFront, ::sWidthBottom, x1, y1, x2, y2, color1, color2, texX1, texX2, 0.0f);
 
         for (s32 idx = 0; idx < mNumPoints; idx++) {
             f32 thickness = mPlantPoints[idx]->mThickness;
@@ -822,7 +864,7 @@ void SpaceCocoon::drawPlane(f32 x1, f32 y1, f32 x2, f32 y2, Color8 color1, Color
                          texX1, texX2, (idx + 1) * delta);
         }
 
-        ::drawPoints(mBasePos, mSide, mFront, 2.0f, x1, y1, x2, y2, color1, color2, texX1, texX2, 1.0f);
+        ::drawPoints(mBasePos, mSide, mFront, ::sWidthTop, x1, y1, x2, y2, color1, color2, texX1, texX2, 1.0f);
     }
     GXEnd();
 }
