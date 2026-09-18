@@ -3,9 +3,14 @@
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/Array.hpp"
 
-struct GalaxyNamePlateDrawerEntry {
-    /* 0x0 */ LayoutActor* mHostActor;
+class LayoutActor;
+
+struct GalaxyNamePlatePrioritied {
+    /* 0x0 */ const LayoutActor* mHostActor;
     /* 0x4 */ u32 mZ;
+
+    GalaxyNamePlatePrioritied(const LayoutActor* pActor) : mHostActor(pActor), mZ() {
+    }
 };
 
 class GalaxyNamePlateDrawer : public NameObj {
@@ -16,12 +21,12 @@ public:
     virtual void init(const JMapInfoIter& rIter);
     virtual void draw() const;
 
-    GalaxyNamePlateDrawerEntry* registerPlate(const LayoutActor*);
+    GalaxyNamePlatePrioritied* registerPlate(const LayoutActor*);
 
 private:
-    /* 0xC */ MR::Vector< MR::FixedArray< GalaxyNamePlateDrawerEntry*, 16 > > mPlateArray;
+    /* 0xC */ MR::Vector< MR::FixedArray< GalaxyNamePlatePrioritied*, 16 > > mPlateArray;
 };
 
 namespace MR {
-    GalaxyNamePlateDrawerEntry* registerToGalaxyNamePlateDrawer(const LayoutActor*);
+    GalaxyNamePlatePrioritied* registerToGalaxyNamePlateDrawer(const LayoutActor*);
 };  // namespace MR
