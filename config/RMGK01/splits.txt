@@ -2488,11 +2488,11 @@ Game/Effect/SpinPullParticleCallBack.cpp:
 
 Game/Effect/SyncBckEffectChecker.cpp:
 	.text       start:0x800CB670 end:0x800CBA84
+	.rodata     start:0x80531BD0 end:0x80531BD8
 	.sdata2     start:0x806B9D88 end:0x806B9D90
 
 Game/Effect/SyncBckEffectInfo.cpp:
 	.text       start:0x800CBA84 end:0x800CBD24
-	.rodata     start:0x80531BD0 end:0x80531BD8
 	.sdata2     start:0x806B9D90 end:0x806B9D98
 
 Game/Enemy/AnimScaleController.cpp:
