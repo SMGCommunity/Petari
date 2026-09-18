@@ -2,7 +2,7 @@
 
 #include "Game/MapObj/AnmModelObj.hpp"
 
-class LavaBreakColumn : public AnmModelSwitchMove {
+class LavaBreakColumn : public AnmModelSwitchMoveEndKill {
 public:
     LavaBreakColumn(const char*);
 
