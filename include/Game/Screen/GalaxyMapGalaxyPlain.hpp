@@ -22,7 +22,7 @@ public:
     void adjustTransInScreen();
     void show(const wchar_t*, const char*);
 
-private:
+public:
     /* 0x20 */ const LayoutActor* mHost;
     /* 0x24 */ const char* mPaneName;
     /* 0x28 */ GalaxyNamePlate* mNamePlate;

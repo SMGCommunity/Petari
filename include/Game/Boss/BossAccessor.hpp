@@ -18,7 +18,7 @@ public:
         mBoss = pBoss;
     }
 
-private:
+public:
     /* 0x00 */ LiveActor* mBoss;
 };
 

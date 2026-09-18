@@ -20,7 +20,7 @@ namespace {
             __GDCurrentDL = mObj;
         }
 
-    private:
+    public:
         /* 0x0 */ GDLObj* mObj;
     };
 };  // namespace

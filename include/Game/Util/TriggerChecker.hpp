@@ -26,7 +26,7 @@ public:
     /// @return `true` if the trigger was just turned off, `false` otherwise.
     bool getOffTrigger() const;
 
-private:
+public:
     /// @brief The previous state of the trigger.
     /* 0x00 */ bool mPrevLevel;
 

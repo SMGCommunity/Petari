@@ -20,7 +20,7 @@ public:
     void exeSelected();
     void exeNotSelected();
 
-private:
+public:
     /* 0x20 */ ButtonPaneController* mPaneCtrl;
     /* 0x24 */ bool mCanCloseWithPad;
 };

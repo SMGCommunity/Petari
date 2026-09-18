@@ -12,7 +12,7 @@ namespace nw4r {
 struct MEMAllocator;
 
 class IsbnManager {
-private:
+public:
     /* 0x00 */ bool _0;
     /* 0x04 */ MEMAllocator* mpAllocator;
     /* 0x08 */ nw4r::lyt::Layout* mpLayout;

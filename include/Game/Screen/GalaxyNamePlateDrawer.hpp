@@ -23,7 +23,7 @@ public:
 
     GalaxyNamePlatePrioritied* registerPlate(const LayoutActor*);
 
-private:
+public:
     /* 0xC */ MR::Vector< MR::FixedArray< GalaxyNamePlatePrioritied*, 16 > > mPlateArray;
 };
 

@@ -21,7 +21,7 @@ public:
     void exeSelectedBackButton();
     void exeSelected();
 
-private:
+public:
     /* 0x20 */ ButtonPaneController* mPaneCtrl;
     /* 0x24 */ BackButton* mBackButton;
 };

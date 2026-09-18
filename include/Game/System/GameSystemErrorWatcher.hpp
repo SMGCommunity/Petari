@@ -35,7 +35,7 @@ public:
     const Message* getProperMessageId() const;
     const nw4r::lyt::TexMap* getProperErrorTexMap() const;
 
-private:
+public:
     /* 0x08 */ ErrorMessageWindow* mWindow;
     /* 0x0C */ const Message* mMessage;
     /* 0x10 */ const nw4r::lyt::TexMap* mUnplaggedTexMap;

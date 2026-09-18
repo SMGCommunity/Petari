@@ -22,7 +22,7 @@ public:
     OSTime getLastModified() const;
     void updateLastModified();
 
-private:
+public:
     /* 0x04 */ u8 mFlag;
     /* 0x08 */ OSTime mLastModified;
 };

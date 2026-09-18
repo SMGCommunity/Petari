@@ -4,7 +4,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 
 class ActorStateKeeper {
-private:
+public:
     struct State {
         ActorStateBaseInterface* mInterface;
         const Nerve* mNerve;

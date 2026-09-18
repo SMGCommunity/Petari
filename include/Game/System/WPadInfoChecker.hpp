@@ -14,7 +14,7 @@ public:
     void reset();
     void update();
 
-private:
+public:
     /* 0x00 */ WPad* mPad;
     /* 0x04 */ WPADInfo mPadInfo;
     /* 0x1C */ s32 mCheckInfoFrame;

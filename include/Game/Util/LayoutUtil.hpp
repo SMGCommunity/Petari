@@ -46,7 +46,7 @@ public:
         LayoutCoreUtil::setTextBoxMessage(pTextBox, mMessage);
     }
 
-private:
+public:
     /* 0x4 */ const wchar_t* mMessage;
 };
 
@@ -60,7 +60,7 @@ public:
         static_cast< CustomTagProcessor* >(pTextBox->mpTagProcessor)->setArgNumber(mArg, _8);
     }
 
-private:
+public:
     /* 0x4 */ s32 mArg;
     /* 0x8 */ s32 _8;
 };
@@ -75,7 +75,7 @@ public:
         static_cast< CustomTagProcessor* >(pTextBox->mpTagProcessor)->setArgString(mArg, _8);
     }
 
-private:
+public:
     /* 0x4 */ const wchar_t* mArg;
     /* 0x8 */ s32 _8;
 };
@@ -90,7 +90,7 @@ public:
         pTextBox->SetTextPositionV(mPosition);
     }
 
-private:
+public:
     /* 0x4 */ u8 mPosition;
 };
 
@@ -104,7 +104,7 @@ public:
         pTextBox->SetTextPositionH(mPosition);
     }
 
-private:
+public:
     /* 0x4 */ u8 mPosition;
 };
 
@@ -120,7 +120,7 @@ public:
         pTextBox->SetFontSize(size);
     }
 
-private:
+public:
     /* 0x4 */ nw4r::ut::Font* mFont;
 };
 

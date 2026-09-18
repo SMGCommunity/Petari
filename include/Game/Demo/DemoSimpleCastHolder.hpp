@@ -15,7 +15,7 @@ public:
     void registerNameObj(NameObj*);
     void movementOnAllCasts();
 
-private:
+public:
     MR::Vector< MR::AssignableArray< LiveActor* > > mLiveActors;      // 0x0
     MR::Vector< MR::AssignableArray< LayoutActor* > > mLayoutActors;  // 0xC
     MR::Vector< MR::AssignableArray< NameObj* > > mNameObjs;          // 0x18

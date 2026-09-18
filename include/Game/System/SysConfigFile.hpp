@@ -21,7 +21,7 @@ public:
 
     void initHeaderSerializer();
 
-private:
+public:
     /* 0x08 */ OSTime mTimeAnnounced;
     /* 0x10 */ OSTime mTimeSent;
     /* 0x18 */ u32 mSentBytes;
@@ -42,7 +42,7 @@ public:
     void makeDataBinary(u8*, u32) const;
     void loadFromDataBinary(const u8*, u32);
 
-private:
+public:
     /* 0x00 */ SysConfigChunk* mChunk;
     /* 0x04 */ BinaryDataChunkHolder* mChunkHolder;
 };

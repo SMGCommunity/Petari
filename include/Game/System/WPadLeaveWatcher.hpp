@@ -13,7 +13,7 @@ public:
     void stop();
     void restart();
 
-private:
+public:
     /* 0x00 */ WPad* mPad;
     /* 0x04 */ s32 mStep;
     /* 0x08 */ bool mIsSuspend;

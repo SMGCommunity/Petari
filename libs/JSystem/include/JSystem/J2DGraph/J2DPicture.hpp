@@ -205,7 +205,7 @@ public:
         setCornerColor(c0, c0, c0, c0);
     }
 
-protected:
+public:
     /* CHANGED IN SMG1 -- supports 4 tex ptrs instead of 2 */
     /* 0x100 */ JUTTexture* mTexture[4];
     /* 0x108 */ u8 mTextureNum;

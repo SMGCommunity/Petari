@@ -7,6 +7,6 @@ public:
     SpringWaterFloaterSpot(const char*);
     virtual ~SpringWaterFloaterSpot();
 
-private:
+public:
     u8 mPad[(0x100) - sizeof(LiveActor)];
 };

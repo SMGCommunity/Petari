@@ -26,7 +26,7 @@ public:
 
     bool isCurrentAlive() const;
 
-private:
+public:
     /* 0x1C */ bool _1C;
 };
 

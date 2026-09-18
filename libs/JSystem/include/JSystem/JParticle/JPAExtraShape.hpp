@@ -153,7 +153,7 @@ public:
         return mpData->mFlags & 0x1000000;
     }
 
-private:
+public:
     /* 0x00 */ const JPAExtraShapeData* mpData;
     /* 0x04 */ f32 mAlphaIncRate;
     /* 0x08 */ f32 mAlphaDecRate;

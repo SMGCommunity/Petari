@@ -22,7 +22,7 @@ public:
     /// @brief Updates the object when transitioning off screen.
     void exeDisappear();
 
-private:
+public:
     /// @brief The pointer to the actor instance for the A Button.
     /* 0x20 */ IconAButton* mAButtonIcon;
 };

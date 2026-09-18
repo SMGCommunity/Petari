@@ -30,7 +30,7 @@ public:
     void exeDisappear();
     void reflectInfo();
 
-private:
+public:
     /* 0x20 */ s32 mNumber;
     /* 0x24 */ s32 mStarNum;
     /* 0x28 */ s32 mStarPieceNum;
@@ -59,7 +59,7 @@ namespace FileSelectInfoSub {
         void exeSlidePos();
         void exeSlidingBack();
 
-    private:
+    public:
         /* 0x8 */ FileSelectInfo* mHost;
     };
 
@@ -74,7 +74,7 @@ namespace FileSelectInfoSub {
         void exeLuigi();
         void exeToMario();
 
-    private:
+    public:
         /* 0x8 */ FileSelectInfo* mHost;
     };
 };  // namespace FileSelectInfoSub

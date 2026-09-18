@@ -26,7 +26,7 @@ public:
     void exeReading();
     void exeFadeIn();
 
-private:
+public:
     /* 0x8C */ PictureBookLayout* mLayout;
     /* 0x90 */ IconAButton* mIconAButton;
     /* 0x94 */ bool mIsValidOpenIconAButton;

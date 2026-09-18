@@ -10,7 +10,7 @@ public:
     void clearCurrentPlacementZoneId();
     int getCurrentPlacementZoneId() const;
 
-private:
+public:
     /* 0xC */ int mCurrentZoneId;
 };
 

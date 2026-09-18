@@ -19,7 +19,7 @@ public:
     /// @param pIcon The reference to the resource creator for the icon of a Mii character.
     void registerIcon(MiiFaceIcon* pIcon);
 
-private:
+public:
     /// @brief The maximum number of icon resource creator instances.
     /* 0x0C */ u32 mIconNumMax;
 

@@ -23,7 +23,7 @@ public:
     void exeWait();
     void exeDemoGrandStarAppear();
 
-private:
+public:
     /* 0x8C */ const char* mModelName;
     /* 0x90 */ TPos3f mBaseMtx;
     /* 0xC0 */ TVec3f _C0;

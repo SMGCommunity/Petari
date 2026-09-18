@@ -45,7 +45,7 @@ public:
     void endDPDSwoon();
     void exeRotate();
 
-private:
+public:
     /* 0x8C */ AnimScaleController* mScaleController;
     /* 0x90 */ WalkerStateBindStarPointer* mStateBindStarPointer;
     /* 0x94 */ TVec3f _94;

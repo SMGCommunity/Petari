@@ -39,6 +39,6 @@ public:
     ResFileInfo* mFileInfoTable;  // 0x0
     u32 mCount;                   // 0x4
 
-private:
+public:
     void* findRes(const char*) const;
 };

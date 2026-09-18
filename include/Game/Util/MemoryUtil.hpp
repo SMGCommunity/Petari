@@ -13,7 +13,7 @@ namespace MR {
 
         ~CurrentHeapRestorer();
 
-    private:
+    public:
         /* 0x00 */ JKRHeap* _0;
     };
 

@@ -72,7 +72,7 @@ public:
     /// @return The identifier of the Mario character.
     EFellowID getFellowID() const;
 
-private:
+public:
     /// @brief Determines if the icon represents a Mii character.
     /* 0x0 */ bool mIsMii;
 

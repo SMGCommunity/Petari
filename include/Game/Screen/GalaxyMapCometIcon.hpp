@@ -21,7 +21,7 @@ public:
     void calcAnimForCapture(const nw4r::lyt::DrawInfo&);
     void syncStatus();
 
-private:
+public:
     /* 0x20 */ const char* _20;
     /* 0x24 */ LayoutActor* _24;
     /* 0x28 */ const char* _28;

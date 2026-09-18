@@ -72,7 +72,7 @@ public:
     virtual void load() const;
     virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
 
-private:
+public:
     /* 0x8 */ u16 mUseMtxNum;
     /* 0xC */ u16* mUseMtxIndexTable;
 };
@@ -125,7 +125,7 @@ public:
     }
     virtual void loadNrmMtx(int, u16, f32 (*)[4]) const;
 
-private:
+public:
     /* 0x8 */ u16 mUseMtxNum;
     /* 0xC */ u16* mUseMtxIndexTable;
 };

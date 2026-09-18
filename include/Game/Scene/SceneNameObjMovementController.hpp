@@ -27,7 +27,7 @@ public:
     void exeNone();
     void exeStopped();
 
-private:
+public:
     /* 0x08 */ MR::MovementControlType _8;
     /* 0x0C */ const NameObj* _C;
 };
@@ -44,7 +44,7 @@ public:
     void requestPlaySceneFor(MR::MovementControlType, const NameObj*);
     void notifyRequestNameObjMovementOnOff(bool);
 
-private:
+public:
     /* 0x0C */ bool _C;
     /* 0x10 */ StopSceneStateControl* mStopSceneStateControl;
 };

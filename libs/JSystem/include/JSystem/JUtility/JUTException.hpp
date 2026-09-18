@@ -12,7 +12,7 @@ class JUTExternalFB {
 public:
     JUTExternalFB(_GXRenderModeObj*, GXGamma, void*, u32);
 
-private:
+public:
     /* 0x00 */ _GXRenderModeObj* mRenderMode;
     /* 0x04 */ u32 mSize;
     /* 0x08 */ u32 field_0x08;

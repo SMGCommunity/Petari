@@ -31,7 +31,7 @@ public:
     void exeTurnRightSuccess();
     void exeFadeOut();
 
-private:
+public:
     /* 0x20 */ u32 _20;
     /* 0x24 */ f32 _24;
     /* 0x28 */ u32 _28;

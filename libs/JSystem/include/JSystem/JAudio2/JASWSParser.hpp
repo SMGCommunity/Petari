@@ -16,7 +16,7 @@ public:
             return JSUConvertOffsetToPtr< T >(param_0, mOffset);
         }
 
-    private:
+    public:
         /* 0x0 */ u32 mOffset;
     };
 

@@ -27,7 +27,7 @@ public:
     static void makeArchiveListForMenu(NameObjArchiveListCollector*, const JMapInfoIter&);
     static void makeArchiveListCommon(NameObjArchiveListCollector*, const char*);
 
-private:
+public:
     /* 0x20 */ nw4r::lyt::TexMap* mTexture;
     /* 0x24 */ IconAButton* mAButtonIcon;
     /* 0x28 */ const char* _28;

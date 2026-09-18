@@ -23,6 +23,6 @@ public:
     void exeDisappearToAnother() NO_INLINE;
     bool tryDisappear();
 
-private:
+public:
     /* 0x20 */ const char* mMessageID;
 };

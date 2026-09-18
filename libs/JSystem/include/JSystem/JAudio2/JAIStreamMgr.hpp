@@ -59,7 +59,7 @@ public:
         return mStreamList.getNumLinks();
     }
 
-private:
+public:
     /* 0x00 */ JAISoundActivity mActivity;
     /* 0x04 */ JAISoundParamsMove mParams;
     /* 0x54 */ JAIAudience* mAudience;

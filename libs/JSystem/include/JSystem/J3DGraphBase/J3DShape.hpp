@@ -101,7 +101,7 @@ public:
     }
     static void resetMtxLoadCache();
 
-protected:
+public:
     /* 0x04 */ u16 mUseMtxIndex;
 };
 

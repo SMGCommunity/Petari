@@ -9,6 +9,6 @@ public:
 
     virtual void draw() const;
 
-private:
+public:
     /* 0x0C */ const MR::FunctorBase* mFunc;
 };

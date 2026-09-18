@@ -18,7 +18,7 @@ namespace FileSelectNumberSub {
         void exeSelectOutStart();
         void exeSelectOut();
 
-    private:
+    public:
         /* 0x8 */ LayoutActor* mHost;
         /* 0xC */ Nerve* _C;
     };
@@ -42,7 +42,7 @@ public:
     void exeWait();
     void exeEnd();
 
-private:
+public:
     /* 0x20 */ s32 mNumber;
     /* 0x24 */ u8 _24[8];
     /* 0x2C */ FileSelectNumberSub::SelectAnimController* mSelectAnimCtrl;

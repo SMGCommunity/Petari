@@ -12,6 +12,6 @@ public:
     virtual void calcAndSetBaseMtx();
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-private:
+public:
     /* 0x8C */ TPos3f mBaseMtx;
 };

@@ -7,6 +7,6 @@ public:
     SideSpikeMoveStep(const char*);
     virtual ~SideSpikeMoveStep();
 
-private:
+public:
     u8 mPad[(0xD8) - sizeof(MapObjActor)];
 };

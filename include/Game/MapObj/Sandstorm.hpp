@@ -14,7 +14,7 @@ public:
 
     void exeTrap();
 
-private:
+public:
     /* 0x90 */ LiveActor* mHost;
     /* 0x94 */ TVec3f _94;
 };
@@ -59,7 +59,7 @@ public:
     void exeStormFix();
     void exeStormEnd();
 
-private:
+public:
     /* 0x8C */ ActorCameraInfo* _8C;
     /* 0x90 */ LiveActor* mBindActor;
     /* 0x94 */ TVec3f _94;

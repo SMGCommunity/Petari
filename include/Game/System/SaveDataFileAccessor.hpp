@@ -33,6 +33,6 @@ public:
     SaveDataFileInfo* getFileInfo(int);
     void makeUserFileInfo(SaveDataUserFileInfo*, const char*);
 
-private:
+public:
     /* 0x00 */ SaveDataFile* mFile;
 };

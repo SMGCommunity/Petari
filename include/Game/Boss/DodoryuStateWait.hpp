@@ -10,6 +10,6 @@ public:
 
     void exeWait();
 
-private:
+public:
     /* 0x90 */ s32 mNextStateCounter;
 };

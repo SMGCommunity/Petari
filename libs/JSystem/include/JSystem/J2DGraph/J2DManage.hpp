@@ -9,7 +9,7 @@ struct J2DataManageLink {
 };
 
 class J2DDataManage {
-private:
+public:
     /* 0x00 */ J2DataManageLink* mList;
 
 public:

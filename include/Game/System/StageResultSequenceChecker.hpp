@@ -10,7 +10,7 @@ class StageResultSequenceCheckList {
 public:
     void init();
 
-private:
+public:
     /* 0x00 */ s32 mTicoGalaxyNum;
     /* 0x04 */ s32 mPictureBookChapterCanRead;
     /* 0x08 */ s32 mGalaxyNumCanOpen;
@@ -37,7 +37,7 @@ public:
     static void fillCheckListIfComplete(StageResultSequenceCheckList*, const GameDataHolder*, const char*);
     bool isJustOpenGalaxyWithoutChallengeGalaxy() const;
 
-private:
+public:
     /* 0x00 */ StageResultSequenceCheckList mCheckListPrev;
     /* 0x18 */ StageResultSequenceCheckList mCheckListAfter;
 };

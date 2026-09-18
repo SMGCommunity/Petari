@@ -18,7 +18,7 @@ public:
     void add(NameObj*, const JMapInfoIter&, SwitchEventListener*);
     void initSync();
 
-private:
+public:
     /* 0x0C */ MR::Vector< MR::FixedArray< SleepController*, 1024 > > mSleepControl;
 };
 

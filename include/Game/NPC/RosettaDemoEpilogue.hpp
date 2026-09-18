@@ -15,7 +15,7 @@ public:
     void startDemo();
     void exeDemo();
 
-private:
+public:
     /// @brief The pointer to the actor instance for Rosalina.
     /* 0x08 */ Rosetta* mRosetta;
 

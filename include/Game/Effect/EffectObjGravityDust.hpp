@@ -20,7 +20,7 @@ public:
         return true;
     }
 
-private:
+public:
     GravityDustParticleCallBack* _9C;
     f32 _A0;
 };

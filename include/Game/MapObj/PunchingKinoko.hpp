@@ -53,7 +53,7 @@ public:
 
     void addVelocityKeepHeight();
 
-private:
+public:
     GroundChecker* mGroundChecker;                        // 0x8C
     AnimScaleController* mScaleController;                // 0x90
     JointControlDelegator< PunchingKinoko >* mDelegator;  // 0x94

@@ -15,7 +15,7 @@ public:
 
     s32 getRandomTime() const;
 
-private:
+public:
     /* 0x9C */ s32 mStep;
     /* 0xA0 */ s32 mSeStep;
     /* 0xA4 */ s32 mLifeTime;

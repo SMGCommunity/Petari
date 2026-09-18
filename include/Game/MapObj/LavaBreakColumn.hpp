@@ -7,6 +7,6 @@ public:
     LavaBreakColumn(const char*);
     virtual ~LavaBreakColumn();
 
-private:
+public:
     u8 mPad[(0xE0) - sizeof(AnmModelSwitchMove)];
 };

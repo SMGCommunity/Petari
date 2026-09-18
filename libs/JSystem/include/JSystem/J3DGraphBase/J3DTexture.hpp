@@ -5,7 +5,7 @@
 #include <stdint.h>
 
 class J3DTexture {
-private:
+public:
     /* 0x0 */ u16 mNum;
     /* 0x2 */ u16 unk_0x2;
     /* 0x4 */ ResTIMG* mpRes;
@@ -66,6 +66,6 @@ public:
 
     /* 0x00 */ J3DTexMtxInfo mTexMtxInfo;
 
-private:
+public:
     /* 0x64 */ Mtx mMtx;
 };  // Size: 0x94

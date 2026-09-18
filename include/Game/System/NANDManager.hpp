@@ -46,7 +46,7 @@ public:
 
     bool addRequest(NANDRequestInfo*);
 
-private:
+public:
     /* 0x00 */ OSMutex mMutex;
     /* 0x18 */ NANDManagerThread* mManagerThread;
 };
@@ -66,7 +66,7 @@ public:
     bool isBusyOrAllocFailed() const;
     bool isUnknown() const;
 
-private:
+public:
     /* 0x0 */ s32 mCode;
 };
 

@@ -28,7 +28,7 @@ public:
         return mShapeNodePointer[idx];
     }
 
-private:
+public:
     friend class J3DModelLoader;
 
     /* 0x4 */ u16 mShapeNum;

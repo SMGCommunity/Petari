@@ -13,7 +13,7 @@ public:
 
     void addRequest(HitSensor* pReceiver, u32 msg);
 
-private:
+public:
     /* 0x0C */ HitSensor* mSender;
     /* 0x10 */ HitSensor** mReceiverArray;
     /* 0x14 */ u32* mMsgArray;

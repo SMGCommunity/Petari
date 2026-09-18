@@ -16,6 +16,6 @@ public:
     NameObjGroup* createGroup(const char*, u32);
     NameObjGroup* findGroupFromName(const char*) const;
 
-private:
+public:
     /* 0x0C */ MR::Vector< MR::FixedArray< NameObjGroup*, 32 > > mGroups;
 };

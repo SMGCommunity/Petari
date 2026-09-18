@@ -53,7 +53,7 @@ public:
     void exeCaptureWait();
     void exeCaptureSend();
 
-private:
+public:
     /* 0x20 */ ButtonPaneController* mArrowUpButtonCtrl;
     /* 0x24 */ ButtonPaneController* mArrowDownButtonCtrl;
     /* 0x28 */ ButtonPaneController* mCaptureButtonCtrl;

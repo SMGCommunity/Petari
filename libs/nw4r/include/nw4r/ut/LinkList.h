@@ -163,7 +163,7 @@ namespace nw4r {
                         return !(it1 == it2);
                     }
 
-                private:
+                public:
                     explicit ConstIterator(pointer p) : mPointer(p) {
                     }
 
@@ -331,7 +331,7 @@ namespace nw4r {
                     return !(it1 == it2);
                 }
 
-            protected:
+            public:
                 explicit ConstIterator(TItC_base_ it) : it_(it) {
                 }
 

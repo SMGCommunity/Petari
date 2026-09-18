@@ -33,7 +33,7 @@ public:
     void exeRecoverSign();
     void exeRecover();
 
-private:
+public:
     /* 0x8C */ f32 mRailCoordSpeed;
     /* 0x90 */ TVec3f mRailVec;
     /* 0x9C */ TVec3f mFront;

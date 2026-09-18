@@ -27,7 +27,7 @@ public:
     void exeEndAir();
     void exeEndLand();
 
-private:
+public:
     /* 0x10 */ KoopaFigureBall* mFigureBall;
     /* 0x14 */ s32 mRollDelay;
 };

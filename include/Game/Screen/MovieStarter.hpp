@@ -13,6 +13,6 @@ public:
     virtual void kill();
     virtual void control();
 
-private:
+public:
     /* 0x8C */ s32 mMovieType;
 };

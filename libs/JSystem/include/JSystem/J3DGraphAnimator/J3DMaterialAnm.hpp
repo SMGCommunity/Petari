@@ -35,7 +35,7 @@ public:
         mAnmColor->getColor(field_0x0, pColor);
     }
 
-private:
+public:
     /* 0x0 */ u16 field_0x0;
     /* 0x2 */ u16 mAnmFlag;
     /* 0x4 */ J3DAnmColor* mAnmColor;
@@ -72,7 +72,7 @@ public:
         return mAnmFlag;
     }
 
-private:
+public:
     /* 0x0 */ u16 field_0x0;
     /* 0x2 */ u16 mAnmFlag;
     /* 0x4 */ J3DAnmTextureSRTKey* mAnmTransform;
@@ -111,7 +111,7 @@ public:
         return mAnmTexPattern;
     }
 
-private:
+public:
     /* 0x4 */ u16 field_0x4;
     /* 0x6 */ u16 mAnmFlag;
     /* 0x8 */ J3DAnmTexPattern* mAnmTexPattern;
@@ -147,7 +147,7 @@ public:
         mAnmTevReg->getTevColorReg(field_0x0, pColor);
     }
 
-private:
+public:
     /* 0x0 */ u16 field_0x0;
     /* 0x2 */ u16 mAnmFlag;
     /* 0x4 */ J3DAnmTevRegKey* mAnmTevReg;
@@ -183,7 +183,7 @@ public:
         mAnmTevReg->getTevKonstReg(field_0x0, pColor);
     }
 
-private:
+public:
     /* 0x0 */ u16 field_0x0;
     /* 0x2 */ u16 mAnmFlag;
     /* 0x4 */ J3DAnmTevRegKey* mAnmTevReg;
@@ -210,7 +210,7 @@ public:
         return mTexMtxAnm[i];
     }
 
-private:
+public:
     /* 0x04 */ J3DMatColorAnm mMatColorAnm[2];
     /* 0x14 */ J3DTexMtxAnm mTexMtxAnm[8];
     /* 0x54 */ J3DTexNoAnm mTexNoAnm[8];

@@ -25,7 +25,7 @@ public:
     void exeBurySmoke();
     void exeBuryEnd();
 
-private:
+public:
     /* 0x8C */ f32 _8C;
     /* 0x90 */ f32 _90;
     /* 0x94 */ TVec3f _94;

@@ -56,7 +56,7 @@ public:
     /// @return `true` if a new nerve action was set, `false` otherwise.
     bool tryChangeNerveWithBatteryLeftAlreadyAppear();
 
-private:
+public:
     /// @brief The pointer to the owning actor instance.
     /* 0x08 */ LayoutActor* mHost;
 
@@ -77,7 +77,7 @@ public:
     virtual void appear();
     virtual void control();
 
-private:
+public:
     /* 0x20 */ BatteryInfo* mInfo1P;
     /* 0x24 */ BatteryInfo* mInfo2P;
 };

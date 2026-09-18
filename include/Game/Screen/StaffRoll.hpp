@@ -21,7 +21,7 @@ public:
 
     void exeScroll();
 
-private:
+public:
     /* 0x20 */ TVec2f mPosition;
 };
 
@@ -38,7 +38,7 @@ public:
     void disappearAllPane();
     void exeWork();
 
-private:
+public:
     /* 0x20 */ nw4r::lyt::TexMap** mReplaceTexture;
 };
 
@@ -78,7 +78,7 @@ public:
     void exeSave();
     void exeEnd();
 
-private:
+public:
     /* 0x20 */ InformationMessage* mInfo;
     /* 0x24 */ StaffRollLine** mLine;
     /* 0x28 */ StaffRollPicture* mPicture;

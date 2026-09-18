@@ -44,7 +44,7 @@ public:
 
     void convert();
 
-private:
+public:
     /// @brief The width of the frame buffer, in bytes.
     /* 0x20 */ u32 mCaptureWidth;
 

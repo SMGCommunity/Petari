@@ -9,6 +9,6 @@ public:
     virtual void calcAnim();
     virtual void appear();
 
-private:
+public:
     /* 0x20 */ const LayoutActor* mActor;
 };

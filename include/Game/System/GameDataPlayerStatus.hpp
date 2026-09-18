@@ -58,7 +58,7 @@ public:
     /// @brief TODO.
     /* 0x0C */ u8 mStoryProgress;
 
-private:
+public:
     /// @brief The number of extra lives from the previous session.
     /* 0x0E */ u16 mPlayerLeftSupply;
 };

@@ -21,7 +21,7 @@ public:
     void exeCountUp();
     void exeDisappear();
 
-private:
+public:
     /* 0x20 */ s32 mPowerStarNum;
     /* 0x24 */ CounterLayoutAppearer* mLayoutAppearer;
     /* 0x28 */ CountUpPaneRumbler* mPaneRumbler;

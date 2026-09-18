@@ -18,7 +18,7 @@ public:
     void exeWait();
     void exeEnd();
 
-private:
+public:
     /* 0x20 */ CounterLayoutAppearer* mLayoutAppearer;
     /* 0x24 */ CountUpPaneRumbler* mPaneRumbler;
 };

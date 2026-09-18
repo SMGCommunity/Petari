@@ -41,7 +41,7 @@ public:
     /// @brief Updates the working nerve action when the Prankster Comet is in orbit.
     void exeLand();
 
-private:
+public:
     /// @brief Determines if the working nerve action should be updated.
     /* 0x08 */ bool mIsUpdateNerve;
 };

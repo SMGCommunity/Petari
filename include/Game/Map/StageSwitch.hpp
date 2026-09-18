@@ -50,7 +50,7 @@ public:
     ZoneSwitch* getZoneSwitch(const SwitchIdInfo&);
     ZoneSwitch* findZoneSwitchFromTable(const SwitchIdInfo&);
 
-private:
+public:
     MR::Vector< MR::FixedArray< ContainerSwitch, 20 > > mSwitches;  // 0x0C
     ZoneSwitch* mGlobalSwitches;                                    // 0xB0
 };

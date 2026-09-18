@@ -43,7 +43,7 @@ public:
     void exeAppearPowerStar();
     void exeEnd();
 
-private:
+public:
     /* 0x8C */ TPos3f mBaseMtx;
     /* 0xBC */ ActorCameraInfo* mCameraInfo;
     /* 0xC0 */ ModelObj* mPowerStarDemoModel;
@@ -75,6 +75,6 @@ public:
         mHost->noticeGiveUp(pSubject);
     }
 
-private:
+public:
     /* 0x04 */ TrickRabbitSnowCollect* mHost;
 };

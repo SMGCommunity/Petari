@@ -46,7 +46,7 @@ public:
     void exePstTalk();
     void exeAppearedStar();
 
-private:
+public:
     /* 0x15C */ TakeOutStar* mTakeOutStar;
     /* 0x160 */ ActorCameraInfo* mCameraInfo;
     /* 0x164 */ BombTimerLayout* mBombTimerLayout;

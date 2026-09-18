@@ -27,7 +27,7 @@ public:
     const TimingInfo* getCurrentTiming() const;
     const TimingInfo* findFromName(const char* pName) const;
 
-private:
+public:
     /* 0x0C */ const char* _C;
     /* 0x10 */ const char* mTimingType;
     /* 0x14 */ JUTTexture* mTexture;
@@ -44,6 +44,6 @@ public:
     /// @brief Draws the `CaptureScreenActor` to the screen.
     virtual void draw() const;
 
-private:
+public:
     /* 0xC */ const char* mCameraName;
 };

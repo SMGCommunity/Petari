@@ -28,7 +28,7 @@ public:
     void exeDecide();
     void exeDead();
 
-private:
+public:
     /* 0x08 */ TitleSequenceProductSub::LogoLayout* mLogoLayout;
     /* 0x0C */ SimpleLayout* mPressStartLayout;
     /* 0x10 */ EncouragePal60Window* mEncouragePal60Window;

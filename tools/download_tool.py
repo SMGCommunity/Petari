@@ -21,82 +21,16 @@ import zipfile
 from typing import Callable, Dict
 from pathlib import Path
 
-
-def binutils_url(tag):
-    uname = platform.uname()
-    system = uname.system.lower()
-    arch = uname.machine.lower()
-    if system == "darwin":
-        system = "macos"
-        arch = "universal"
-    elif arch == "amd64":
-        arch = "x86_64"
-
-    repo = "https://github.com/encounter/gc-wii-binutils"
-    return f"{repo}/releases/download/{tag}/{system}-{arch}.zip"
-
-
 def compilers_url(tag: str) -> str:
     return f"https://files.decomp.dev/compilers_{tag}.zip"
 
-
-def dtk_url(tag: str) -> str:
-    uname = platform.uname()
-    suffix = ""
-    system = uname.system.lower()
-    if system == "darwin":
-        system = "macos"
-    elif system == "windows":
-        suffix = ".exe"
-    arch = uname.machine.lower()
-    if arch == "amd64":
-        arch = "x86_64"
-
-    repo = "https://github.com/encounter/decomp-toolkit"
-    return f"{repo}/releases/download/{tag}/dtk-{system}-{arch}{suffix}"
-
-
-def objdiff_cli_url(tag: str) -> str:
-    uname = platform.uname()
-    suffix = ""
-    system = uname.system.lower()
-    if system == "darwin":
-        system = "macos"
-    elif system == "windows":
-        suffix = ".exe"
-    arch = uname.machine.lower()
-    if arch == "amd64":
-        arch = "x86_64"
-
-    repo = "https://github.com/encounter/objdiff"
-    return f"{repo}/releases/download/{tag}/objdiff-cli-{system}-{arch}{suffix}"
-
-
-def sjiswrap_url(tag: str) -> str:
-    repo = "https://github.com/encounter/sjiswrap"
-    return f"{repo}/releases/download/{tag}/sjiswrap-windows-x86.exe"
-
-
-def wibo_url(tag: str) -> str:
-    uname = platform.uname()
-    arch = uname.machine.lower()
-    system = uname.system.lower()
-    if system == "darwin":
-        arch = "macos"
-
-    repo = "https://github.com/decompals/wibo"
-    return f"{repo}/releases/download/{tag}/wibo-{arch}"
-
+def kamek_url(tag: str) -> str:
+    return f"https://github.com/Treeki/Kamek/releases/download/{tag}/win-x64.zip"
 
 TOOLS: Dict[str, Callable[[str], str]] = {
-    "binutils": binutils_url,
     "compilers": compilers_url,
-    "dtk": dtk_url,
-    "objdiff-cli": objdiff_cli_url,
-    "sjiswrap": sjiswrap_url,
-    "wibo": wibo_url,
+    "kamek": kamek_url,
 }
-
 
 def download(url, response, output) -> None:
     if url.endswith(".zip"):

@@ -12,7 +12,7 @@ public:
     void unregisterMoviePlayerSimple(MoviePlayerSimple* pMoviePlayer);
     void notifyHomeButtonDeactive();
 
-private:
+public:
     /* 0x00 */ bool _0;
     /* 0x04 */ MoviePlayerSimple* mMoviePlayer;
 };

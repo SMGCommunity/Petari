@@ -13,7 +13,7 @@ public:
     bool requestSend(const u16*, const u16*, const u8*, u32, const u8*, u32, u16, bool, u8);
     bool isDone(NWC24Err*, u32*);
 
-private:
+public:
     struct MsgSendStatus {
         /* 0x00 */ const u16* mText;
         /* 0x04 */ const u16* mAltName;
@@ -35,7 +35,7 @@ private:
     static bool checkTotalSize(NWC24SendThread::MsgSendStatus*);
     static NWC24Err setToMyself(NWC24MsgObj*);
 
-private:
+public:
     static OSMessage* mMessage;
     static s32 mMessageMax;
     static OSMessageQueue mMessageQueue;

@@ -20,7 +20,7 @@ public:
     void clearArray();
     NameObj* find(const char* pName);
 
-private:
+public:
     /* 0x00 */ MR::Vector< MR::AssignableArray< NameObj* > > mObjArray1;
     /* 0x0C */ MR::Vector< MR::FixedArray< NameObj*, 16 > > mObjArray2;
 };

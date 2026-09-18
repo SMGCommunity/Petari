@@ -36,7 +36,7 @@ public:
     bool tryFadeinLayout();
     bool tryFadeoutLayout();
 
-private:
+public:
     /* 0x14 */ IsbnManager* mIsbnManager;
     /* 0x18 */ SimpleLayout* mStrapLayout;
     /* 0x1C */ LogoFader* mLogoFader;

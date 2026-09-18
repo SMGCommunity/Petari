@@ -17,7 +17,7 @@ public:
     void prepareMessage();
     u8 calcDelayHours() const;
 
-private:
+public:
     /// @brief The number of characters in the message describing Luigi as having gone missing.
     /* 0x00 */ u32 mLostMessageLength;
 

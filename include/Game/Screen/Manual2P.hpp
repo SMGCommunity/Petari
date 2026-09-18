@@ -26,7 +26,7 @@ public:
     void reflectPageIndex();
     bool checkSelectedBackButton();
 
-private:
+public:
     /* 0x20 */ s32 mPageIndex;
     /* 0x24 */ s32 _24;
     /* 0x28 */ ButtonPaneController* mLeftPaneCtrl;

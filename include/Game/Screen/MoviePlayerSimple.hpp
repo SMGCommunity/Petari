@@ -50,7 +50,7 @@ public:
     u32 calcNeedMemoryForMovieWorks();
     void drawCinemaFrame() const;
 
-private:
+public:
     /* 0x38 */ Movie* mMovie;
     /* 0x3C */ JKRExpHeap* mHeap;
     /* 0x40 */ THPSimplePlayerWrapper* mPlayerWrapper;

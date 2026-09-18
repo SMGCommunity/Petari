@@ -15,7 +15,7 @@ public:
         return mArchiveNum;
     }
 
-private:
+public:
     /* 0x000 */ char mArchive[32][64];
     /* 0x800 */ s32 mArchiveNum;
 };

@@ -176,7 +176,7 @@ namespace MR {
             return pItem - begin();
         }
 
-    private:
+    public:
         /// @brief The array of elements.
         /* 0x0 */ T mArr[N];
     };

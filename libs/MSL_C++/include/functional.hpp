@@ -34,7 +34,7 @@ namespace std {
             return mf_(rArg, v_);
         }
 
-    private:
+    public:
         Func mf_;
         Type v_;
     };
@@ -56,7 +56,7 @@ namespace std {
             return mf_(rArg, v_);
         }
 
-    private:
+    public:
         Func mf_;
         Type v_;
     };
@@ -82,7 +82,7 @@ namespace std {
             return (pObject->*mf_)();
         }
 
-    private:
+    public:
         Return (Type::*mf_)();
     };
 
@@ -95,7 +95,7 @@ namespace std {
             return (rObject.*mf_)();
         }
 
-    private:
+    public:
         Return (Type::*mf_)();
     };
 
@@ -108,7 +108,7 @@ namespace std {
             return (pObject->*mf_)();
         }
 
-    private:
+    public:
         Return (Type::*mf_)() const;
     };
 
@@ -121,7 +121,7 @@ namespace std {
             return (pObject->*mf_)(a);
         }
 
-    private:
+    public:
         Result (Type::*mf_)(Arg);
     };
 
@@ -134,7 +134,7 @@ namespace std {
             return (rObject.*mf_)(a);
         }
 
-    private:
+    public:
         Result (Type::*mf_)(Arg);
     };
 
@@ -147,7 +147,7 @@ namespace std {
             return (pObject->*mf_)(a);
         }
 
-    private:
+    public:
         Result (Type::*mf_)(Arg) const;
     };
 

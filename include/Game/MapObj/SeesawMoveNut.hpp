@@ -7,6 +7,6 @@ public:
     SeesawMoveNut(const char*);
     virtual ~SeesawMoveNut();
 
-private:
+public:
     u8 mPad[(0xD0) - sizeof(MapObjActor)];
 };

@@ -15,7 +15,7 @@ public:
     bool isDone() const;
     bool isError() const;
 
-private:
+public:
     /* 0x00 */ const char* mTaskName;
     /* 0x04 */ const char* mMessageID;
     /* 0x08 */ const char* mSenderID;

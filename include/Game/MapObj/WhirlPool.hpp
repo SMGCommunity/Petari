@@ -7,6 +7,6 @@ public:
     WhirlPool(const char*);
     virtual ~WhirlPool();
 
-private:
+public:
     u8 mPad[(0xD8) - sizeof(LiveActor)];
 };

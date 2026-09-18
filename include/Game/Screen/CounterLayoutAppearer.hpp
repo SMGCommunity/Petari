@@ -27,7 +27,7 @@ public:
     void exeShow();
     void exeDisappear();
 
-private:
+public:
     /* 0x08 */ LayoutActor* mLayout;
     /* 0x0C */ TVec2f mAppearOffset;
     /* 0x14 */ TVec2f mFollowPos;

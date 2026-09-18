@@ -44,6 +44,6 @@ public:
     /* 0xB8 */ bool _B8;
     /* 0xBC */ s32 _BC;
 
-private:
+public:
     static WPadRumble** sInstanceForCallback;
 };

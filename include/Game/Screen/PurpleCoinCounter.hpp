@@ -18,7 +18,7 @@ public:
     void exeAppear();
     void exeWait();
 
-private:
+public:
     /* 0x20 */ s32 mPurpleCoinNum;
     /* 0x24 */ s32 mPurpleCoinDisplayNum;
     /* 0x28 */ s32 mInvalidCountUpFrame;

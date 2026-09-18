@@ -70,7 +70,7 @@ public:
     void onSelectDummy();
     s32 getIconNum();
 
-private:
+public:
     /* 0x020 */ ButtonPaneController* _20[2];
     /* 0x028 */ MR::BitArray* _28;
     /* 0x02C */ u16 _2C;

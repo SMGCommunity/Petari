@@ -17,7 +17,7 @@ public:
     void loadScreenTexture(s32, GXTexMapID);
     JUTTexture* getTexture(s32);
 
-private:
+public:
     /* 0x0C */ JUTTexture* mTexture[5];
 };
 

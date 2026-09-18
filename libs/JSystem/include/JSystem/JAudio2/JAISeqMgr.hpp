@@ -73,7 +73,7 @@ public:
         mSoundActivity.pause(paused);
     }
 
-private:
+public:
     /* 0x08 */ JAIAudience* mAudience;
     /* 0x0C */ JAISeqDataMgr* seqDataMgr;
     /* 0x10 */ JAISoundStrategyMgr< JAISeq >* soundStrategyMgr;

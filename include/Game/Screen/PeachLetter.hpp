@@ -20,7 +20,7 @@ public:
     void exeEnd();
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 
-private:
+public:
     /// @brief The pointer to the actor instance for the A Button.
     /* 0x20 */ IconAButton* mAButtonIcon;
 };

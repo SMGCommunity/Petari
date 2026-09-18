@@ -20,7 +20,7 @@ public:
     void exeCreate();
     void exeInterval();
 
-private:
+public:
     /* 0x8C */ MeteorStrike** mMeteorStrikeArray;
     /* 0x90 */ s32 mMeteorStrikeCount;
     /* 0x94 */ s32 mIntervalStep;  // Obj_arg1, in seconds

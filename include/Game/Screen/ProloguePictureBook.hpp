@@ -19,7 +19,7 @@ public:
     void exeEnd();
     bool isEnd() const;
 
-private:
+public:
     /* 0x20 */ IconAButton* mIconAButton;
     /* 0x24 */ u32 mPage;
 };

@@ -26,7 +26,7 @@ public:
     void exeWait();
     void exeDisp();
 
-private:
+public:
     /* 0x8C */ TYPE mType;
     /* 0x90 */ bool _90;
     /* 0x94 */ LiveActor* _94;

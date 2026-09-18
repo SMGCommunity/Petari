@@ -1,15 +1,16 @@
----
 Language:        Cpp
 AccessModifierOffset: -4
 AlignAfterOpenBracket: Align
 AlignConsecutiveAssignments: false
 AlignConsecutiveDeclarations: false
+AlignEscapedNewlines: Left
 AlignOperands:   true
-AlignTrailingComments: true
+AlignTrailingComments: Always
 AllowAllParametersOfDeclarationOnNextLine: true
 AllowShortCaseLabelsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: None
+AllowShortFunctionsOnASingleLine: Inline
 AllowShortIfStatementsOnASingleLine: Never
+AllowShortEnumsOnASingleLine: false
 AlwaysBreakAfterDefinitionReturnType: None
 AlwaysBreakAfterReturnType: None
 AlwaysBreakBeforeMultilineStrings: false
@@ -36,8 +37,6 @@ IncludeCategories:
     Priority:        1
   - Regex:           '^<'
     Priority:        2
-  - Regex:           '^<[Ww]indows\.h>$'
-    Priority:        3
 IndentCaseLabels: false
 IndentWidth:     4
 IndentWrappedFunctionNames: false
@@ -62,8 +61,8 @@ SpaceAfterCStyleCast: false
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeParens: ControlStatements
 SpaceInEmptyParentheses: false
-SpacesBeforeTrailingComments: 2
-SpacesInAngles:  true
+SpacesBeforeTrailingComments: 1
+SpacesInAngles:  false
 SpacesInContainerLiterals: true
 SpacesInCStyleCastParentheses: false
 SpacesInParentheses: false

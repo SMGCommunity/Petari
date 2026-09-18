@@ -18,6 +18,6 @@ public:
     void start(const TVec3f&, bool);
     void exeWait();
 
-private:
+public:
     /* 0x8C */ TPos3f _8C;
 };

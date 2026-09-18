@@ -20,7 +20,7 @@ public:
     void emitStarPieces();
     void exeWait();
 
-private:
+public:
     /* 0x8C */ StarPiece** mStarPieceArray;
     /* 0x90 */ f32* _90;
     /* 0x94 */ s32 _94;

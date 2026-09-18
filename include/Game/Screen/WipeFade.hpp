@@ -20,7 +20,7 @@ public:
 
     void setColor(GXColor);
 
-private:
+public:
     /* 0x20 */ bool mIsWipeIn;
     /* 0x24 */ s32 mFrame;
     /* 0x28 */ s32 mStep;

@@ -132,7 +132,7 @@ public:
     /// @return Packed state value, or `-1` when the galaxy is absent.
     s32 getStateValueIncluded(const char*);
 
-private:
+public:
     /* 0x0 */ MR::AssignableArray< GalaxyCometTimeTable* > mTimeTables;
     /* 0x8 */ bool mEnabled;
 };

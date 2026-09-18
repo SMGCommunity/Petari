@@ -26,7 +26,7 @@ public:
     void exeOpen();
     void exeWipeOut();
 
-private:
+public:
     /* 0x20 */ TVec2f mCenterPos;
     /* 0x28 */ s32 mAnimFrame;
     /* 0x2C */ f32 mWipeOutFrame;

@@ -122,7 +122,7 @@ public:
     /// @return `true` if any button was just pressed or released, `false` otherwise.
     bool isChangeAnyState() const;
 
-private:
+public:
     /// @brief The pointer to the state of the owning Wii Remote.
     /* 0x00 */ const WPad* mPad;
 

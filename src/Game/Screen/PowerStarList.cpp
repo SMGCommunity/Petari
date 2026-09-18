@@ -399,7 +399,7 @@ namespace {
             MR::setTextBoxMessageRecursive(mActor, _4[v1], mBuffer);
         }
 
-    private:
+    public:
         /* 0x000 */ LayoutActor* mActor;
         /* 0x004 */ const char* const* _4;
         /* 0x008 */ s32 _8;

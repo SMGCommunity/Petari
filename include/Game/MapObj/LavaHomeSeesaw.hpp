@@ -7,6 +7,6 @@ public:
     LavaHomeSeesaw(const char*);
     virtual ~LavaHomeSeesaw();
 
-private:
+public:
     u8 mPad[(0xA4) - sizeof(LiveActor)];
 };

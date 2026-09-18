@@ -48,7 +48,7 @@ public:
     void exeHideWait();
     void exeShow();
 
-private:
+public:
     /* 0x8C */ bool mNoThrowCocoNut;
     /* 0x90 */ CocoNutBall* mCocoNutArray;
     /* 0x94 */ FireBall* mFireBallArray;

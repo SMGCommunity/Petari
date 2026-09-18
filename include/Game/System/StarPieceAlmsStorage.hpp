@@ -25,6 +25,6 @@ public:
     s32 getMaxValue(int) const;
     void addValue(int, int);
 
-private:
+public:
     /* 0x8 */ u16* mValueArray;
 };

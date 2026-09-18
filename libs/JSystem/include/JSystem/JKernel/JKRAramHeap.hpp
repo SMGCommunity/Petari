@@ -35,7 +35,7 @@ public:
         return mHeap;
     }
 
-private:
+public:
     void lock() {
         OSLockMutex(&mMutex);
     }

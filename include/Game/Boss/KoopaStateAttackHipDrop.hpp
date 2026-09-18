@@ -27,7 +27,7 @@ public:
     void exeLand();
     void exeDamage();
 
-private:
+public:
     /* 0x10 */ TVec3f mGroundPosition;
     /* 0x1C */ s32 mMaxAttacks;
     /* 0x20 */ s32 mAttacks;

@@ -777,7 +777,7 @@ public:
     virtual ~J3DTevBlock() {
     }
 
-protected:
+public:
     void indexToPtr_private(u32);
 
     /* 0x4 */ u32 mTexNoOffset;

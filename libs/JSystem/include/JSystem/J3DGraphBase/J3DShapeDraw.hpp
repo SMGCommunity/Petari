@@ -21,7 +21,7 @@ public:
         mDisplayListSize = size;
     }
 
-private:
+public:
     /* 0x04 */ u32 mDisplayListSize;
     /* 0x08 */ void* mDisplayList;
 };

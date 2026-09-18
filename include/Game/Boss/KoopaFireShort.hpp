@@ -26,7 +26,7 @@ public:
     void updateFly();
     void updateFrontAndVelocity();
 
-private:
+public:
     /* 0x8C */ const Koopa* mKoopa;
     /* 0x90 */ TVec3f mFront;
     /* 0x9C */ f32 mSpeed;

@@ -40,7 +40,7 @@ public:
 
     static JUTDbPrint* sDebugPrint;
 
-private:
+public:
     /* 0x00 */ unk_print* mFirst;
     /* 0x04 */ JUTFont* mFont;
     /* 0x08 */ JUtility::TColor mColor;

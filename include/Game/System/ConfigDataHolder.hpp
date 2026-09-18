@@ -30,7 +30,7 @@ public:
     s32 makeFileBinary(u8*, u32);
     bool loadFromFileBinary(const char*, const u8*, u32);
 
-private:
+public:
     /* 0x00 */ BinaryDataChunkHolder* mChunkHolder;
     /* 0x04 */ ConfigDataCreateChunk* mCreateChunk;
     /* 0x08 */ ConfigDataMii* mMii;
@@ -50,6 +50,6 @@ public:
     virtual s32 deserialize(const u8*, u32);
     virtual void initializeData();
 
-private:
+public:
     /* 0x04 */ bool mIsCreated;
 };

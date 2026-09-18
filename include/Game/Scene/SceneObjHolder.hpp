@@ -158,7 +158,7 @@ public:
     /// @return A pointer to the object.
     NameObj* newEachObj(int id);
 
-private:
+public:
     /// @brief The array of objects.
     /* 0x00 */ NameObj* mObj[SceneObj_NumMax];
 };

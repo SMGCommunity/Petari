@@ -17,7 +17,7 @@ public:
     void exeStartEvent();
     u32 getTimeLimit() const;
 
-private:
+public:
     /// @brief The pointer to the actor instance for the timer.
     /* 0x8C */ TimeLimitLayout* mTimeLimitLayout;
 

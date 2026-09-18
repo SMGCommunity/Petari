@@ -48,7 +48,7 @@ class CArGBAOdh {
 public:
     u32 compressGbaOdh(u8*, u8*, int, int, int, u32, u8*, int);
 
-private:
+public:
     /* 0x00 */ u8* mOutputCursor;
 
     u32 cdj_c_initializeCompressOdh(SArCDJ_OdhMaster*, u16*, u8, u8*, u8*, u32);

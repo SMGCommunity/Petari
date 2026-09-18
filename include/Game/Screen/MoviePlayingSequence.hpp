@@ -74,7 +74,7 @@ public:
     void exeCloseWipeOnPlaying();
     void exeEndWait();
 
-private:
+public:
     /* 0x20 */ const MoviePlayingInfo* mInfo;
     /* 0x24 */ MR::Vector< MR::AssignableArray< MovieSubtitles* > > mSubtitles;
     /* 0x30 */ DemoPadRumbler* mPadRumbler;
@@ -89,7 +89,7 @@ public:
     MoviePlayingSequence* getSequence(int) const;
     s32 getSequenceNum() const;
 
-private:
+public:
     /* 0x0C */ MR::AssignableArray< MoviePlayingSequence* > mSequence;
 };
 

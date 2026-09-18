@@ -29,7 +29,7 @@ public:
     void exeDemo();
     void exeReaction();
 
-private:
+public:
     /* 0x15C */ FadeStarter mFadeStarter;
     /* 0x170 */ NerveExecutor* mDemoExecutor;
     /* 0x174 */ NerveExecutor* mTalkDemoExecutor;

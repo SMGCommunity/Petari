@@ -22,7 +22,7 @@ public:
     void exeDecided();
     void exeEnd();
 
-private:
+public:
     /* 0x20 */ ButtonPaneController* mButtonYesPaneCtrl;
     /* 0x24 */ ButtonPaneController* mButtonNoPaneCtrl;
     /* 0x28 */ PlayerMissLeft* mPlayerMissLeft;

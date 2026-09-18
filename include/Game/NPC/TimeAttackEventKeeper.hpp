@@ -11,6 +11,6 @@ public:
     void startEventIfExecute();
     void endEvent();
 
-private:
+public:
     /* 0x00 */ LiveActor* _0;
 };

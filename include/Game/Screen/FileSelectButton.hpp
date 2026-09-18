@@ -30,7 +30,7 @@ public:
     void createButtonController();
     void createOthers();
 
-private:
+public:
     /* 0x20 */ ButtonPaneController* mButtonCtrl[5];
     /* 0x34 */ MR::FunctorBase* mCallbackFunctor[5];
     /* 0x48 */ GalaxyMapGalaxyPlain* _48;

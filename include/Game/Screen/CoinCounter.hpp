@@ -24,7 +24,7 @@ public:
     void exeWait();
     void exeDisappear();
 
-private:
+public:
     /* 0x20 */ s32 mCoinNum;
     /* 0x24 */ s32 mCoinDisplayNum;
     /* 0x28 */ s32 mInvalidCountUpFrame;

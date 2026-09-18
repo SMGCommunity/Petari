@@ -25,7 +25,7 @@ public:
     void exeWait();
     void exeActive();
 
-private:
+public:
     /* 0x8C */ ActorCameraInfo* mCameraInfo;
     /* 0x90 */ RunawayRabbit** mRabbit;
     /* 0x94 */ s32 mRabbitNum;

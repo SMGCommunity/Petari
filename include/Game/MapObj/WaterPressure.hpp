@@ -7,6 +7,6 @@ public:
     WaterPressure(const char*);
     virtual ~WaterPressure();
 
-private:
+public:
     u8 mPad[(0xC8) - sizeof(PressureBase)];
 };

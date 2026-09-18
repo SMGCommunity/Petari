@@ -37,7 +37,7 @@ public:
 };
 
 class JKRAramStream : public JKRThread {
-private:
+public:
     JKRAramStream(s32);
     virtual ~JKRAramStream();
 
@@ -52,7 +52,7 @@ public:
     static JKRAramStreamCommand* sync(JKRAramStreamCommand*, BOOL);
     static void setTransBuffer(u8*, u32, JKRHeap*);
 
-private:
+public:
     static JKRAramStream* sAramStreamObject;
     static OSMessage sMessageBuffer[4];
     static OSMessageQueue sMessageQueue;

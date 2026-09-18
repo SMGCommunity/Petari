@@ -64,12 +64,12 @@ public:
         return mRenderObj;
     }
 
-private:
+public:
     static JUTVideo* sManager;
     static OSTick sVideoLastTick;
     static OSTick sVideoInterval;
 
-private:
+public:
     /* 0x04 */ _GXRenderModeObj* mRenderObj;
     /* 0x08 */ u32 field_0x8;
     /* 0x0C */ u32 mRetraceCount;

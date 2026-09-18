@@ -28,7 +28,7 @@ public:
     bool tryHide();
     bool tryChangeCameraStateNerve();
 
-private:
+public:
     /* 0x20 */ s32 mStep;
     /* 0x24 */ bool mIsActive;
     /* 0x25 */ bool _25;

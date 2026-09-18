@@ -37,7 +37,7 @@ public:
     void createButton();
     void createFaceImageObj();
 
-private:
+public:
     /* 0x20 */ ButtonPaneController* _20;
     /* 0x24 */ ButtonPaneController* _24;
     /* 0x28 */ ButtonPaneController* _28;

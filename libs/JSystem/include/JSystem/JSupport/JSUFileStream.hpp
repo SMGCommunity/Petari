@@ -15,7 +15,7 @@ public:
     s32 getLength() const;
     s32 getPosition() const;
 
-private:
+public:
     /* 0x08 */ JKRFile* mFile;
     /* 0x0C */ s32 mPosition;
 };  // Size = 0x10

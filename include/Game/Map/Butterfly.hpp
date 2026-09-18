@@ -27,7 +27,7 @@ public:
     void exeReadyToPerchOnSleepingMario();
     void exePerchOnSleepingMario();
 
-private:
+public:
     /* 0x8C */ TVec3f mHomePos;
     /* 0x98 */ TQuat4f mQuat;
     /* 0xA8 */ s32 mColorIndex;

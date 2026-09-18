@@ -54,7 +54,7 @@ public:
     void exeCaught();
     void exeGiveUp();
 
-private:
+public:
     /* 0x8C */ TQuat4f mFinishQuat;
     /* 0x9C */ TVec3f mFinishPos;
     /* 0xA8 */ TQuat4f mRotateQuat;

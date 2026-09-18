@@ -45,7 +45,7 @@ namespace nw4r {
 
             virtual FontEncoding GetEncoding() const;
 
-        private:
+        public:
             const static int CHAR_PTR_BUFFER_SIZE = 3;
 
             static u16 mFontEncode;

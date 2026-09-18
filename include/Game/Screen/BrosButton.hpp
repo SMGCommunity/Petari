@@ -22,7 +22,7 @@ public:
     void exeDecide();
     void exeDisappear();
 
-private:
+public:
     /* 0x20 */ bool mIsSelectedMario;
     /* 0x24 */ ButtonPaneController* mPaneCtrl;
 };

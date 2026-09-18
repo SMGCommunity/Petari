@@ -25,7 +25,7 @@ public:
     void pauseOffAll() const;
     void initObjArray(int);
 
-private:
+public:
     /* 0x0C */ s32 mObjNumMax;
     /* 0x10 */ s32 mObjNum;
     /* 0x14 */ NameObj** mObjArray;

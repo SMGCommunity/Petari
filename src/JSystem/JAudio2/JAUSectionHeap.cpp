@@ -28,7 +28,7 @@ namespace {
             JKRSetCurrentHeap(mHeap);
         }
 
-    private:
+    public:
         JKRHeap* mHeap;
     };
 

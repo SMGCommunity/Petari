@@ -522,7 +522,7 @@ public:
         mCurrentTable = tbl;
     }
 
-private:
+public:
     /// @brief The array of player character constant tables.
     /* 0x00 */ MarioConstTable* mTable[2];
 

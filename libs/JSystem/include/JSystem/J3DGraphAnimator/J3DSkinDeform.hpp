@@ -63,7 +63,7 @@ public:
     static f32* sWorkArea_WEvlpMixWeight[1024];
     static u16 sWorkArea_MtxReg[1024];
 
-private:
+public:
     /* 0x04 */ u16* mPosData;
     /* 0x08 */ u16* mNrmData;
     /* 0x0C */ Mtx* mPosMtx;

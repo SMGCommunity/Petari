@@ -23,6 +23,6 @@ public:
     void exeDisappear();
     void exeDecide();
 
-private:
+public:
     /* 0x20 */ ButtonPaneController* mPaneCtrl;
 };

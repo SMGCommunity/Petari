@@ -27,7 +27,7 @@ public:
     AreaObjMgr* getManager(const char*) const;
     AreaObj* getAreaObj(const char*, const TVec3f&) const;
 
-private:
+public:
     /* 0x00C */ AreaObjMgr* mManagerArray[0x50];
     /* 0x14C */ u32 mNumManagers;
 };

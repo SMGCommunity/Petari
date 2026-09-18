@@ -22,7 +22,7 @@ namespace std {
         bool test(size_t pos) const;
         bool any() const;
 
-    private:
+    public:
         size_t data[N];
     };
 
@@ -54,7 +54,7 @@ namespace std {
             return *this;
         }
 
-    private:
+    public:
         size_t data;
     };
 

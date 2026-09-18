@@ -26,7 +26,7 @@ namespace MR {
             return mArraySize;
         }
 
-    private:
+    public:
         /// @brief The pointer to the array of bytes.
         /* 0x0 */ u8* mArray;
 

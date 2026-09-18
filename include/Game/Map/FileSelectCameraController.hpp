@@ -26,7 +26,7 @@ public:
     void exeMoveToNearPoint();
     void exeNearPoint();
 
-private:
+public:
     /* 0x8C */ TVec3f mNearTarget;
     /* 0x98 */ TVec3f mPrevNearTarget;
     /* 0xA4 */ TVec3f mWPoint;

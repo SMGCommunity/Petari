@@ -13,6 +13,6 @@ public:
     void calc();
     J3DAnmVisibilityFull* getAnmVisibility();
 
-private:
+public:
     /* 0x20 */ J3DModel* mModel;
 };

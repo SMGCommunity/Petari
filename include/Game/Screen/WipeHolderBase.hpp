@@ -24,7 +24,7 @@ public:
 
     WipeLayoutBase* findWipe(const char*) const;
 
-private:
+public:
     /* 0x0C */ WipeLayoutBase* mCurrentWipeLayout;
     /* 0x10 */ MR::Vector< MR::AssignableArray< WipeLayoutBase* > > mWipeLayoutArray;
 };

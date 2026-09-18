@@ -46,7 +46,7 @@ public:
     const Timing* getCurrentTiming() const;
     bool updateNormal();
 
-private:
+public:
     /* 0x20 */ u32 mTime;
     /* 0x24 */ u32 mTimeLimit;
     /* 0x28 */ ValueControl* mScaleControl;

@@ -42,7 +42,7 @@ public:
     bool tryCheckEnableToCreate();
     bool tryVerifyNANDCheckResult() NO_INLINE;
 
-private:
+public:
     /* 0x10 */ const char* mSystemMessageId;
     /* 0x14 */ bool _14;
     /* 0x15 */ bool _15;

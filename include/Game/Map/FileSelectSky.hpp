@@ -21,7 +21,7 @@ public:
 
     void exeWait();
 
-private:
+public:
     /* 0x8C */ f32 mAngleX;
     /* 0x90 */ f32 mAngleY;
     /* 0x94 */ TPos3f mBaseMtx;

@@ -229,7 +229,7 @@ public:
         mpField->calc(work, this, ptcl);
     }
 
-private:
+public:
     /* 0x00 */ const JPAFieldBlockData* mpData;
     /* 0x04 */ JPAFieldBase* mpField;
     /* 0x08 */ f32 mFadeInRate;

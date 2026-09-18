@@ -68,7 +68,7 @@ public:
     /// @brief The sign of the direction of progression.
     /* 0x8 */ s32 mDirection;
 
-private:
+public:
     /// @brief Determines if the given direction of progression suggests approaching `0.0`.
     /// @param direction The sign of the direction of progression to test.
     /// @return `true` if the direction suggests approaching `0.0`, `false` otherwise.

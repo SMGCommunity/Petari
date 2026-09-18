@@ -104,7 +104,7 @@ public:
         return false;
     }
 
-private:
+public:
     /* 0x08C */ SphereAccelSensorController* mAccelSensorCtrl;
     /* 0x090 */ TamakoroTutorial* mTutorial;
     /* 0x094 */ JointController* mJointCtrl;

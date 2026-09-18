@@ -105,7 +105,7 @@ namespace NWC24MessengerSub {
         bool isEndSysInfoMini() const;
         void setNerveAfterSysInfoWindowMiniDisappear(const Nerve*);
 
-    private:
+    public:
         /* 0x08 */ NWC24Messenger* mHost;
         /* 0x0C */ SendTask* mTask;
         /* 0x10 */ SysInfoWindow* mWindow;
@@ -131,7 +131,7 @@ namespace MR {
         void setDelay(u8);
         void send();
 
-    private:
+    public:
         /* 0x00 */ const char* mTaskName;
         /* 0x04 */ const wchar_t* mMessage;
         /* 0x08 */ const wchar_t* mSenderID;

@@ -24,7 +24,7 @@ public:
 
     void forceOff();
 
-private:
+public:
     /* 0x04 */ ImageEffectDirector* mHost;
 };
 
@@ -63,7 +63,7 @@ namespace ImageEffectStateImpl {
         void setIntensity2(u8 intensity2);
         void setIntensity2Default();
 
-    private:
+    public:
         /* 0x08 */ bool _8;
         /* 0x0C */ u32 _C;
         /* 0x10 */ f32 _10;

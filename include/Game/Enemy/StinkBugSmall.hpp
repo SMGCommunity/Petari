@@ -41,6 +41,6 @@ public:
     /* 0xBC */ AnimScaleController* mScaleController;
     /* 0xC0 */ WalkerStateBindStarPointer* mBindStarPointer;
 
-private:
+public:
     /* 0xC4 */ bool _C4;
 };

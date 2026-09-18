@@ -59,7 +59,7 @@ public:
     // inline bool isAlreadyReadPage() const;
     // inline bool isNotReadPage() const;
 
-private:
+public:
     /* 0x20 */ s32 mChapterMin;
     /* 0x24 */ s32 mChapterMax;
     /* 0x28 */ s32 mChapterRosettaMax;

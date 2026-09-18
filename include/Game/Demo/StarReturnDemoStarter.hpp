@@ -36,7 +36,7 @@ public:
     void exeFadeOut();
     void exeStageResultAfter();
 
-private:
+public:
     /* 0x8C */ ReturnDemoRailMove* mReturnDemoRailMove;
     /* 0x90 */ StageResultInformer* mStageResultInformer;
     /* 0x94 */ TPos3f mTransform;

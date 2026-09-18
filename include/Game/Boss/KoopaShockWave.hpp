@@ -21,7 +21,7 @@ public:
 
     void exeWaveAttack();
 
-private:
+public:
     /* 0x08C */ Koopa* mKoopa;
     /* 0x090 */ f32 mAngle;
     /* 0x094 */ TPos3f _94;

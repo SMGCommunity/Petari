@@ -14,7 +14,7 @@ public:
     virtual void appear();
     virtual void control();
 
-private:
+public:
     /* 0x8C */ f32 _8C;
 };
 
@@ -27,6 +27,6 @@ public:
     virtual void init(const JMapInfoIter& rIter);
     virtual void movement();
 
-private:
+public:
     /* 0x0C */ HeatHazeEffect* mEffect;
 };

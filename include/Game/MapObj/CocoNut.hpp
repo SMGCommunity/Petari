@@ -73,7 +73,7 @@ public:
         return _D0;
     }
 
-private:
+public:
     f32 _8C;
     f32 _90;
     TVec3f _94;

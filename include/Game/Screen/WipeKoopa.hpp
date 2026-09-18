@@ -23,6 +23,6 @@ public:
     void exeWipeOut();
     void exeClose();
 
-private:
+public:
     /* 0x20 */ s32 mFrame;
 };

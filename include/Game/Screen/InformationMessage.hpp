@@ -24,7 +24,7 @@ public:
         mIsCenter = isCenter;
     }
 
-private:
+public:
     /* 0x20 */ IconAButton* mAButtonIcon;
     /* 0x24 */ bool mIsCenter;
 };

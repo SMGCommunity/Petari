@@ -12,7 +12,7 @@ public:
     void update(HitSensor* pSensor);
     void initSensor();
 
-private:
+public:
     /// @brief The pointer to the owning Bowser actor instance.
     /* 0x0 */ Koopa* mHost;
 };

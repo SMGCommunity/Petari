@@ -39,7 +39,7 @@ public:
     void exeDownLand();
     void exeDownEnd();
 
-private:
+public:
     /* 0x10 */ s32 mEscapeTime;
     /* 0x14 */ s32 mMaxEscapeTime;
     /* 0x18 */ s32 _18;

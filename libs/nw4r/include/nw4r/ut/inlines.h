@@ -3,13 +3,13 @@
 namespace nw4r {
     namespace ut {
         class NonCopyable {
-        protected:
+        public:
             inline NonCopyable() {
             }
             inline ~NonCopyable() {
             }
 
-        private:
+        public:
             NonCopyable(const NonCopyable&);
             const NonCopyable& operator=(const NonCopyable&);
         };

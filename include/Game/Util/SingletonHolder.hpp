@@ -13,12 +13,12 @@ public:
         return sInstance;
     }
 
-private:
+public:
     static T* sInstance;
 };
 
-template < typename T >
-T* SingletonHolder< T >::sInstance;
+// template < typename T >
+// T* SingletonHolder< T >::sInstance;
 
 template < typename T >
 class AudSingletonHolder {
@@ -33,9 +33,9 @@ public:
         return sInstance;
     }
 
-private:
+public:
     static T* sInstance;
 };
 
-template < typename T >
-T* AudSingletonHolder< T >::sInstance;
+// template < typename T >
+// T* AudSingletonHolder< T >::sInstance;

@@ -53,7 +53,7 @@ public:
     static void startCreateResourceHolderOnMainThread(const char*, CreateResourceHolderArgs*);
     static void startCreateLayoutHolderOnMainThread(const char*, CreateResourceHolderArgs*);
 
-private:
+public:
     ResourceHolderManagerName2Resource* createAndAddInner(const char*, MakeArchiveFileNameFuncPtr, FuncPtrB);
     ResourceHolderManagerName2Resource* createAndAddInnerStationed(const char*, FuncPtrC);
     void createResourceHolder(const char*, CreateResourceHolderArgs*);
@@ -61,6 +61,6 @@ private:
     ResourceHolderManagerName2Resource* add(const char*, const CreateResourceHolderArgs&);
     ResourceHolderManagerName2Resource* find(const char*);
 
-private:
+public:
     /* 0x0 */ MR::Vector< MR::FixedArray< ResourceHolderManagerName2Resource, 512 > > mResourceArray;
 };

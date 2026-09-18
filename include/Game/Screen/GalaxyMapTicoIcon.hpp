@@ -15,7 +15,7 @@ public:
     void setModeDiscover();
     bool isModeDiscoverAndIsAppear() const;
 
-private:
+public:
     /* 0x20 */ int mExclamationGalaxyIndex;
     /* 0x24 */ const char* mGalaxyName;
     /* 0x28 */ LayoutActor* mHost;

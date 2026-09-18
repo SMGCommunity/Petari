@@ -54,7 +54,7 @@ public:
     bool tryShowAndKeyWaitInformationWindow(const char*, const Nerve*);
     void setCounterPaneShowHide(bool, bool, bool);
 
-private:
+public:
     /* 0x20 */ DisplayInformationForResult* mInformationDisplayer;
     /* 0x24 */ StageResultSequenceChecker* mSequenceChecker;
     /* 0x28 */ IconAButton* mIconAButton;

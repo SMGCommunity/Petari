@@ -15,7 +15,7 @@ public:
     bool send(const u16*, const u16*, const u8*, u32, const u8*, u32, u16, bool, u8);
     bool isSent(NWC24Err*, u32*);
 
-private:
+public:
     /* 0x0 */ bool _0;
     /* 0x4 */ u8* mWorkBuffer;
     /* 0x8 */ u8* mVFWorkBuffer;

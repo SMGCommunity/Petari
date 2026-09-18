@@ -36,7 +36,7 @@ public:
     void createCameraTarget();
     void pauseOff();
 
-private:
+public:
     /* 0x8C */ ProloguePictureBook* mPictureBook;
     /* 0x90 */ PrologueLetter* mLetter;
     /* 0x94 */ ModelObj* mScenery;
@@ -55,7 +55,7 @@ public:
     void registerPrologueObj(PrologueDirector* pDirector);
     void start();
 
-private:
+public:
     /* 0xC */ PrologueDirector* mDirector;
 };
 

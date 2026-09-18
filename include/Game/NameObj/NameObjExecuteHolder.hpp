@@ -27,7 +27,7 @@ public:
     void connectToDraw();
     void disconnectToDraw();
 
-private:
+public:
     /* 0x0 */ NameObj* mExecutedObj;
     /* 0x4 */ s8 _4;
     /* 0x5 */ s8 _5;
@@ -58,7 +58,7 @@ public:
     void requestMovementOff(int);
     NameObjExecuteInfo* getConnectToSceneInfo(const NameObj*) const;
 
-private:
+public:
     /* 0x0C */ NameObjExecuteInfo* mExecuteArray;
     /* 0x10 */ s32 mExecuteArrayMaxSize;
     /* 0x14 */ s32 mExecuteArraySize;

@@ -7,7 +7,7 @@
 typedef void (*JASThreadCallback)(void*);
 
 class JASTaskThread : public JKRThread {
-private:
+public:
     struct JASThreadCallStack {
         /* 0x00 */ JASThreadCallback callback_;
         /* 0x04 */ u32 msgType_;

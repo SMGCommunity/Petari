@@ -24,7 +24,7 @@ public:
     void exeTimeUp();
     void exeFadeoutAfterTimeUp();
 
-private:
+public:
     /* 0x14 */ TimeLimitLayout* mTimeLimitLayout;
     /* 0x18 */ TimeUpLayout* mTimeUpLayout;
     /* 0x1C */ u32 mTimeUpWaitFrame;

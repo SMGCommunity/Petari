@@ -17,7 +17,7 @@ namespace JGadget {
                 return other == end;
             }
 
-        private:
+        public:
             T end;
         };
 
@@ -31,7 +31,7 @@ namespace JGadget {
                 return &other == ptr;
             }
 
-        private:
+        public:
             const T* ptr;
         };
 

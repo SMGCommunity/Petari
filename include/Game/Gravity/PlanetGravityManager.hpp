@@ -39,7 +39,7 @@ public:
     /// @param pGravity The PlanetGravity instance to be registered.
     void registerGravity(PlanetGravity* pGravity);
 
-private:
+public:
     /// @brief Sorts all PlanetGravity instances by their priority in reverse order. The higher the priority is, the lower
     /// it gets positioned in the array.
     void sortGravities();
