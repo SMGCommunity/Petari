@@ -9,14 +9,14 @@ SledRopePoint::SledRopePoint(const TVec3f& rPos, f32 bindRadius) : SwingRopePoin
     mBinder = new Binder(nullptr, &mPosition, new TVec3f(0.0f, -1.0f, 0.0f), bindRadius, 0.0f, 8);
 }
 
-void SledRopePoint::updatePos(f32 vel) {
+void SledRopePoint::updatePos(f32 friction) {
     if (!mNoBind) {
         mPosition.add(mBinder->bind(mVelocity));
     } else {
         mBinder->clear();
         mPosition.add(mVelocity);
     }
-    mVelocity.scale(vel);
+    mVelocity.scale(friction);
 }
 
 bool SledRopePoint::bindToMapCollision(f32 rebound) {

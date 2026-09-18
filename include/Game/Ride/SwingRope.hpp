@@ -32,10 +32,11 @@ public:
     f32 calcFriction(s32) const;
 
     void addPointGravity();
-    void restrictPointToTail(s32, const TVec3f*, f32);
-    void restrictPointToHead(s32, const TVec3f&, f32);
+    void restrictPointToTail(s32, const TVec3f*, f32 length = 0.0f);
+    void restrictPointToHead(s32, const TVec3f&, f32 length = 0.0f);
 
     bool isAllPointsStop() const;
+    bool isAllPointsSlow() const;
     bool isStretched() const;
     bool tryJump();
     void updateHangPoint();
@@ -52,6 +53,10 @@ public:
     void drawStop() const;
     void drawFree() const;
     void drawBind() const;
+
+    const TVec3f& getBasePos() const {
+        return mBasePos;
+    }
 
     /* 0x8C */ TVec3f mBasePos;
     /* 0x98 */ f32 mRopeLength;

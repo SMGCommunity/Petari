@@ -18,7 +18,7 @@ public:
     void setPosAndAxis(const TVec3f&, const TVec3f&, const TVec3f&, const TVec3f&);
     void setAndUpdatePosAndAxis(const TVec3f&, const TVec3f&, const TVec3f&);
 
-    const TVec3f getSide() const {
+    const TVec3f& getSide() const {
         return mSide;
     }
 
@@ -26,8 +26,12 @@ public:
         return mUp;
     }
 
-    const TVec3f getFront() const {
+    const TVec3f& getFront() const {
         return mFront;
+    }
+
+    const TVec3f& getPosition() const {
+        return mPosition;
     }
 
     /* 0x04 */ TVec3f mPosition;
