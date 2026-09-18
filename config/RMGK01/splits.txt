@@ -7799,7 +7799,7 @@ Game/Ride/TamakoroTutorial.cpp:
 	.text       start:0x8033B384 end:0x8033C42C
 	.ctors      start:0x8052F1F8 end:0x8052F1FC
 	.data       start:0x805D0FC8 end:0x805D1290
-	.bss        start:0x8060B118 end:0x8060B140
+	.bss        start:0x8060B118 end:0x8060B128
 	.sbss       start:0x806B6538 end:0x806B6578
 	.sdata2     start:0x806C0D28 end:0x806C0D48
 

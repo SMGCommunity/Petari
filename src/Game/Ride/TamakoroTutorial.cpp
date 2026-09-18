@@ -18,6 +18,11 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
+void TamakoroTutorial_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)-1.0f;
+}
+
 namespace NrvTamakoroTutorial {
     NEW_NERVE(HostTypeNrvFirst, TamakoroTutorial, First);
     NEW_NERVE(HostTypeNrvDenyTalk, TamakoroTutorial, DenyTalk);
@@ -38,7 +43,7 @@ namespace NrvTamakoroTutorial {
 };  // namespace NrvTamakoroTutorial
 
 namespace {
-    static TVec3f hRaiseAcc = TVec3f(0.0f, -1.0f, 0.0f);
+    static const TVec3f hRaiseAcc = TVec3f(0.0f, -1.0f, 0.0f);
     static const f32 hRaiseCheckDegree = 30.0f;
     static const f32 hDistToStartTutorial = 400.0f;
 };  // namespace
