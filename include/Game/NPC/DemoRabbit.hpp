@@ -1,11 +1,6 @@
 #pragma once
 
 #include "Game/NPC/NPCActor.hpp"
-#include "Game/Util/GravityUtil.hpp"
-#include "Game/Util/MapUtil.hpp"
-#include "Game/Util/NPCUtil.hpp"
-#include "Game/Util/RailUtil.hpp"
-#include "revolution/types.h"
 
 class DemoRabbit : public NPCActor {
 public:
