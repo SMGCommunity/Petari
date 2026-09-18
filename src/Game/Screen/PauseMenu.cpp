@@ -4,13 +4,16 @@
 #include "Game/Screen/LuigiLetter.hpp"
 #include "Game/Screen/SysInfoWindow.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
+#include "Game/System/GalaxyStatusAccessor.hpp"
 #include "Game/Util/EventUtil.hpp"
+#include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SequenceUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     const s32 cBackSequenceFadeFrame = 90;
@@ -192,7 +195,51 @@ void PauseMenu::control() {
     mStageTitleOffset.y = 39.0f;
 }
 
-// PauseMenu::updateStarPane
+void PauseMenu::updateStarPane() {
+    GalaxyStatusAccessor accessor = MR::makeCurrentGalaxyStatusAccessor();
+    const char* starPaneNames[7] = {
+        "ShaStarA", "ShaStarB", "ShaStarC", "ShaStarD", "ShaStarE", "ShaStarF", "ShaStarG"
+    };
+    const char* starPicPaneNames[7] = {
+        "PicStarA", "PicStarB", "PicStarC", "PicStarD", "PicStarE", "PicStarF", "PicStarG"
+    };
+
+    for (s32 i = 0; i < 7; i++) {
+        MR::hidePaneRecursive(this, starPaneNames[i]);
+    }
+
+    if (::isStageHideScenarioTitle()) {
+        return;
+    }
+
+    s32 extraStarCount = 0;
+    bool isInvalidAstroDome = !MR::isOnGameEventFlagUseAstroDome();
+
+    for (s32 i = 0; i < 7; i++) {
+        if (i < accessor.getPowerStarNum()) {
+            if (MR::hasPowerStarInCurrentStage(i + 1)) {
+                if (i < accessor.getNormalScenarioNum()) {
+                    MR::showPaneRecursive(this, starPaneNames[i]);
+                } else {
+                    MR::showPaneRecursive(this, starPaneNames[accessor.getNormalScenarioNum() + extraStarCount]);
+                    extraStarCount++;
+                }
+            } else if (i < accessor.getNormalScenarioNum()) {
+                MR::showPaneRecursive(this, starPaneNames[i]);
+                MR::hidePaneRecursive(this, starPicPaneNames[i]);
+            }
+        }
+
+        if (isInvalidAstroDome) {
+            break;
+        }
+    }
+
+    MR::startPaneAnim(this, "Stars", "Star", 1);
+
+    f32 frame = isInvalidAstroDome ? 0.0f : accessor.getNormalScenarioNum() + extraStarCount - 1;
+    MR::setPaneAnimFrameAndStop(this, "Stars", frame, 1);
+}
 
 void PauseMenu::startPaneAnimWithoutButton(const char* pAnimName) {
     MR::startPaneAnim(this, "BG", pAnimName, 0);
@@ -221,8 +268,70 @@ void PauseMenu::forceToWaitAllButton() {
     }
 }
 
-// PauseMenu::exeSelecting
-// PauseMenu::exeDecided
+void PauseMenu::exeSelecting() {
+    bool isPointingTrigger = _20->isPointingTrigger() || (_24 != nullptr && _24->isPointingTrigger()) ||
+                             (!(_38 == nullptr || _38->isHidden()) && _38->isPointingTrigger());
+
+    if (isPointingTrigger) {
+        MR::startSystemSE("SE_SY_SELECT_PAUSE_ITEM", -1, -1);
+    }
+
+    bool isLetterHidden;
+
+    if (_20->trySelect() || (_24 != nullptr && _24->trySelect()) ||
+        (!(isLetterHidden = (_38 == nullptr || _38->isHidden())) && _38->trySelect())) {
+        setNerve(GET_NERVE(PauseMenu, PauseMenuNrvDecided));
+        return;
+    }
+
+    bool isAnimStopped = isPaneAnimStoppedWithoutButton() && !_20->isAppearing() && (_24 == nullptr || !_24->isAppearing()) &&
+                         ((_38 == nullptr || _38->isHidden()) || !_38->isAppearing());
+
+    if (isAnimStopped && (MR::testCorePadTriggerPlus(0) || MR::testCorePadTriggerMinus(0))) {
+        MR::startSystemSE("SE_SY_PAUSE_OFF", -1, -1);
+        MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
+        setNerve(GET_NERVE(PauseMenu, PauseMenuNrvDisappear));
+    }
+}
+
+void PauseMenu::exeDecided() {
+    if (_20->mIsSelected) {
+        if (_20->isTimingForSelectedSe()) {
+            MR::startSystemSE("SE_SY_PAUSE_OFF", -1, -1);
+            MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
+        }
+
+        if (_20->isDecidedWait()) {
+            setNerve(GET_NERVE(PauseMenu, PauseMenuNrvDisappear));
+        }
+    } else if (_24 != nullptr && _24->mIsSelected) {
+        if (_24->isTimingForSelectedSe()) {
+            MR::startSystemSE("SE_SY_PAUSE_OFF", -1, -1);
+            MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
+        }
+
+        if (_24->isDecidedWait()) {
+            if (::isInvalidBackAstroDome()) {
+                setNerve(GET_NERVE(PauseMenu, PauseMenuNrvGameDataSave));
+            } else {
+                setNerve(GET_NERVE(PauseMenu, PauseMenuNrvConfirm));
+            }
+        }
+    } else {
+        bool isLetterHidden = _38 == nullptr || _38->isHidden();
+
+        if (!isLetterHidden && _38->mIsSelected) {
+            if (_38->isTimingForSelectedSe()) {
+                MR::startSystemSE("SE_SY_FILE_SEL_UPPER_DECIDE", -1, -1);
+                MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
+            }
+
+            if (_38->isDecidedWait()) {
+                setNerve(GET_NERVE(PauseMenu, PauseMenuNrvLuigiLetter));
+            }
+        }
+    }
+}
 
 void PauseMenu::exeDisappear() {
     if (MR::isFirstStep(this)) {
