@@ -144,6 +144,3 @@ void CollectTico::startAppearPowerStar() {
 
 void CollectTico::exeTryStartDemo() {
 }
-
-CollectTico::~CollectTico() {
-}

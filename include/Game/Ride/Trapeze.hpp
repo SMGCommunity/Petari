@@ -48,11 +48,11 @@ public:
     /* 0x98 */ TVec3f mUp;
     /* 0xA4 */ TVec3f mFront;
     /* 0xB0 */ f32 mRopeLength;
-    /* 0xB4 */ SwingRopePoint* mSwingPoint;
+    /* 0xB4 */ SwingRopePoint* mStickPoint;
     /* 0xB8 */ PartsModel* mTrapezeModel;
     /* 0xBC */ TPos3f mPosMtx;
     /* 0xEC */ LiveActor* mRider;
-    /* 0xF0 */ SwingRopePoint* mGrabPoint;
+    /* 0xF0 */ SwingRopePoint* mHangPoint;
     /* 0xF4 */ f32 mGrabCoord;
     /* 0xF8 */ f32 mSwingVel;
     /* 0xFC */ bool mSwingReverse;

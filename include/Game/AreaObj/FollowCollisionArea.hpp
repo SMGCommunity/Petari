@@ -7,22 +7,20 @@ class AreaPolygon;
 
 class FollowCollisionArea : public NameObj {
 public:
-    FollowCollisionArea(const TVec3f&, MtxPtr, f32);
+    FollowCollisionArea(const TVec3f& rSize, MtxPtr pMatrix, f32 offset);
 
     virtual ~FollowCollisionArea();
     virtual void movement();
 
-    bool hitCheck(const TVec3f&, f32, TVec3f*, TVec3f*);
+    bool hitCheck(const TVec3f& rPos, f32 radius, TVec3f* pPoint, TVec3f* pNormal);
 
     /* 0x0C */ u32 _C;
     /* 0x10 */ f32 _10;
-    /* 0x14 */ u32 _14;
-    /* 0x18 */ u32 _18;
-    /* 0x1C */ u32 _1C;
+    /* 0x14 */ TVec3f _14;
     /* 0x20 */ s32 _20;
     /* 0x24 */ s32 _24;
     /* 0x28 */ bool _28;
-    /* 0x2C */ u32 _2C;
+    /* 0x2C */ s32 _2C;
     /* 0x30 */ AreaPolygon* _30;
     /* 0x34 */ MtxPtr _34;
     /* 0x38 */ TVec3f _38;

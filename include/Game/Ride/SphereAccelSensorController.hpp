@@ -2,23 +2,26 @@
 
 #include "Game/Ride/SpherePadController.hpp"
 
-class SphereAccelSensorController : SpherePadController {
+class SphereAccelSensorController : public SpherePadController {
 public:
+    enum Pad {
+        Pad_Core = 0,
+        Pad_Sub = 1,
+    };
+
     SphereAccelSensorController();
 
     virtual f32 calcJumpPower() const;
-    virtual f32 calcMoveVector(TVec3f*, const TVec3f&);
     virtual bool doBrake() const;
     virtual void update(const TVec3f&);
-    virtual void notifyActivate();
-    virtual void notifyDeactivate();
     virtual void clacXY(f32*, f32*);
-    // void drawDebug(); // DEBUG
-    // virtual void genMessage(JORMContext*); // DEBUG
 
     void getPadAcceleration(TVec3f*) const;
     bool testBrake() const;
-    // void listenPropertyEvent(const JORPropertyEvent*); // DEBUG
+
+    bool isCorePad() const {
+        return mPad == Pad_Core;
+    }
 
     // everything up to 0x58 seems like it may be inhereted memory
     // however none of the inhereted classes use anything near
@@ -60,5 +63,5 @@ public:
 
     /* 0xB0 */ u16 _B0;
     /* 0xB4 */ f32 _B4;
-    /* 0xB8 */ u32 _B8;  // determines whether wiimote or nunchuck is used for control
+    /* 0xB8 */ Pad mPad;  // determines whether wiimote or nunchuck is used for control
 };

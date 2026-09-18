@@ -6,10 +6,10 @@ class AudAnmSoundObject;
 
 class SoundEmitterSphere : public AreaObj {
 public:
-    SoundEmitterSphere(int, const char*);
+    SoundEmitterSphere(int formType, const char* pName);
 
     virtual ~SoundEmitterSphere();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void movement();
 
     /* 0x3C */ AudAnmSoundObject* mSoundObj;

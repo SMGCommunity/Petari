@@ -48,7 +48,7 @@ bool Mario::doObjWarp(LiveActor* pActor) {
         MR::getRotatedAxisZ(&mWarp->_38, pPod->mRotation);
         MR::getRotatedAxisY(&mWarp->_2C, pPod->mRotation);
 
-        mWarp->_45 = pPod->mArg1;
+        mWarp->_45 = pPod->mVisibilityState;
         mWarp->_44 = pPod->mArg2;
 
         stopWalk();

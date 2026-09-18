@@ -314,9 +314,6 @@ void AudSceneMgr::loadScenarioResource(const char* pSceneName, const char* pStag
 }
 
 void AudSceneMgr::loadScenarioResource(const AudSceneSoundInfo* pSoundInfo, s32 scenarioNo) {
-    // FIXME: reg load
-    // https://decomp.me/scratch/yx2Kb
-
     if (scenarioNo <= 0) {
         mSeScenarioWaveSetId = -1;
         return;
@@ -332,7 +329,7 @@ void AudSceneMgr::loadScenarioResource(const AudSceneSoundInfo* pSoundInfo, s32 
     }
 
     const s8* scenarioSet = ::cScenarioNoToWaveSet[pSoundInfo->mScenarioId];
-    s8 scenarioWaveSetId = scenarioSet[scenarioNo - 1];
+    s32 scenarioWaveSetId = scenarioSet[scenarioNo - 1];
     if (scenarioWaveSetId < 0) {
         mSeScenarioWaveSetId = -1;
         return;
@@ -371,6 +368,7 @@ void AudSceneMgr::startScene() {
     if (effector != nullptr) {
         effector->initParams();
     }
+
     _1D = false;
     SpkSystem::reconnect(-1);
 }
@@ -446,6 +444,7 @@ bool AudSceneMgr::loadPlayerResource() {
     case PlayerMode_Luigi:
         return mSectionHeap->loadWaveArc(34, 4);
     }
+
     return false;
 }
 
@@ -456,5 +455,6 @@ bool AudSceneMgr::isPlayerResourceLoaded() {
     case PlayerMode_Luigi:
         return mSectionHeap->isWaveLoaded(34, 2);
     }
+
     return true;
 }

@@ -1,28 +1,63 @@
 #include "Game/Enemy/FireBall.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LightUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+
+namespace {
+    const f32 cSensorRadius = 40.0f;
+    const f32 cBinderRadius = 60.0f;
+    const f32 cForceKillDistance = 5000.0f;
+    const f32 cStarWandRadius3d = 150.0f;
+    const f32 cThrowOffsetY = 120.0f;
+    const f32 cReflectSpeed = 100.0f;
+    const f32 cReflectReduceRate = 0.96f;
+    const s32 cReflectFrame = 30;
+    const s32 cReflectInvalidFrame = 60;
+    const f32 cReflectCursorSpeed = 30.0f;
+    const f32 cReflectRandomVelocityY = 1.0f;
+};  // namespace
 
 namespace NrvFireBall {
     NEW_NERVE(FireBallNrvThrow, FireBall, Throw);
     NEW_NERVE(FireBallNrvReflect, FireBall, Reflect);
 };  // namespace NrvFireBall
 
-FireBall::FireBall(const char* pName) : LiveActor(pName), _8C(nullptr), _90(0.0f, 1.0f, 0.0f) {
+FireBall::FireBall(const char* pName) : LiveActor(pName), mHost(), mUp(0.0f, 1.0f, 0.0f) {
 }
 
 void FireBall::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("FireBall", nullptr, false);
+
     MR::connectToSceneEnemyDecoration(this);
+
     initHitSensor(1);
-    MR::addHitSensorEnemy(this, "body", 8, 40.0, TVec3f(0.0f, 0.0f, 0.0f));
-    initBinder(60.0f, 0.0f, 0);
+    MR::addHitSensorEnemy(this, "body", 8, ::cSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
+
+    initBinder(::cBinderRadius, 0.0f, 0);
+
     initEffectKeeper(4, "FireBall", false);
-    MR::initStarPointerTarget(this, 150.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    
+    MR::initStarPointerTarget(this, ::cStarWandRadius3d, TVec3f(0.0f, 0.0f, 0.0f));
+    
     initSound(6, false);
-    MR::initShadowVolumeCylinder(this, 60.0f);
+    
+    MR::initShadowVolumeCylinder(this, ::cBinderRadius);
+
     MR::invalidateClipping(this);
+
     initNerve(GET_NERVE(FireBall, FireBallNrvThrow));
+
     makeActorDead();
 }
 
@@ -33,26 +68,42 @@ void FireBall::appear() {
 
 void FireBall::kill() {
     MR::forceDeleteEffect(this, "FireBall");
+
     MR::emitEffect(this, "FireBallBreak");
+
     MR::startSound(this, "SE_OJ_FIRE_BALL_BREAK");
+
     LiveActor::kill();
 }
 
-// FireBall::appearAndThrow(const TVec3f &, f32, f32)
+void FireBall::appearAndThrow(const TVec3f& rAppearPos, f32 speed, f32 angle) {
+    mPosition.set(rAppearPos);
+
+    MR::calcGravity(this);
+
+    mUp.negate(mGravity);
+
+    setVelocityToPlayer(speed);
+
+    TPos3f mtx;
+    mtx.makeRotate(mUp, MR::toRadian(angle));
+    mtx.mult33(mVelocity, mVelocity);
+
+    appear();
+}
 
 void FireBall::control() {
-    Color8 color;
-    color.set(255, 192, 0, 255);
+    GXColor color = {255, 192, 0, 255};
     MR::requestPointLight(this, mPosition, color, 1.0f, -1);
 }
 
 void FireBall::calcAndSetBaseMtx() {
     if (!MR::isNearZero(mVelocity)) {
-        TVec3f stack_8;
-        TPos3f stack_14;
-        MR::normalize(mVelocity, &stack_8);
-        MR::makeMtxFrontUpPos(&stack_14, stack_8, _90, mPosition);
-        MR::setBaseTRMtx(this, stack_14);
+        TVec3f frontVec;
+        TPos3f baseMtx;
+        MR::normalize(mVelocity, &frontVec);
+        MR::makeMtxFrontUpPos(&baseMtx, frontVec, mUp, mPosition);
+        MR::setBaseTRMtx(this, baseMtx);
     }
 }
 
@@ -61,7 +112,8 @@ void FireBall::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         kill();
         return;
     }
-    if (MR::isSensorEnemy(pReceiver) && pReceiver->mHost != this->_8C && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
+
+    if (MR::isSensorEnemy(pReceiver) && pReceiver->mHost != mHost && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
         kill();
     }
 }
@@ -71,6 +123,7 @@ bool FireBall::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pR
         kill();
         return false;
     }
+
     if (MR::isMsgLockOnStarPieceShoot(msg)) {
         return true;
     }
@@ -79,6 +132,7 @@ bool FireBall::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pR
         kill();
         return true;
     }
+
     return false;
 }
 
@@ -86,24 +140,30 @@ HitSensor* FireBall::isBindedAny() const {
     if (MR::isBindedGround(this)) {
         return MR::getGroundSensor(this);
     }
+
     if (MR::isBindedWall(this)) {
         return MR::getWallSensor(this);
     }
+
     if (MR::isBindedRoof(this)) {
         return MR::getRoofSensor(this);
     }
+
     return nullptr;
 }
 
 bool FireBall::tryToKill() {
     HitSensor* bindedSensor = isBindedAny();
 
-    if (bindedSensor) {
+    if (bindedSensor != nullptr) {
         MR::sendMsgEnemyAttack(bindedSensor, getSensor("body"));
+
         kill();
+
         return true;
     }
-    if (!MR::isNearPlayer(this, 5000.0f)) {
+
+    if (!MR::isNearPlayer(this, ::cForceKillDistance)) {
         kill();
         return true;
     }
@@ -111,32 +171,37 @@ bool FireBall::tryToKill() {
     return false;
 }
 
-void FireBall::setVelocityToPlayer(f32 param1) {
-    TVec3f stack_14;
-    stack_14.scale(120.0f, _90);
-    stack_14.add(*MR::getPlayerPos());
-    TVec3f a1;
-    a1.sub(stack_14, mPosition);
-    MR::normalize(&a1);
-    mVelocity.scale(param1, a1);
+void FireBall::setVelocityToPlayer(f32 magnitude) {
+    TVec3f target;
+    target.scale(::cThrowOffsetY, mUp);
+    target.add(*MR::getPlayerPos());
+
+    TVec3f dir;
+    dir.sub(target, mPosition);
+    MR::normalize(&dir);
+    mVelocity.scale(magnitude, dir);
 }
 
 void FireBall::calcReflectVelocity() {
     MR::getStarPointerWorldVelocityDirection(&mVelocity, *MR::getStarPointerLastPointedPort(this));
+
     if (MR::isNearZero(mVelocity)) {
-        mVelocity.set(_90);
+        mVelocity.set(mUp);
     } else {
-        MR::vecKillElement(mVelocity, _90, &mVelocity);
-        TVec3f v7;
-        v7.scale(MR::getRandom(0.0f, 1.0f), _90);
-        mVelocity.add(v7);
+        MR::vecKillElement(mVelocity, mUp, &mVelocity);
+
+        TVec3f accel;
+        accel.scale(MR::getRandom(0.0f, ::cReflectRandomVelocityY), mUp);
+        mVelocity.add(accel);
+
         if (MR::isNearZero(mVelocity)) {
-            mVelocity.set(_90);
+            mVelocity.set(mUp);
         } else {
             MR::normalize(&mVelocity);
         }
     }
-    mVelocity.mult(100.0f);
+
+    mVelocity.mult(::cReflectSpeed);
 }
 
 void FireBall::exeThrow() {
@@ -150,12 +215,13 @@ void FireBall::exeThrow() {
         MR::deleteEffect(this, "FireBall");
     }
 
-    if (MR::isGreaterStep(this, 30) && MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        s32* starPointerLastPointedPort = MR::getStarPointerLastPointedPort(this);
-        TVec2f pointerScreenVel = *MR::getStarPointerScreenVelocity(*starPointerLastPointedPort);
-        if (30.0f < pointerScreenVel.length()) {
+    if (MR::isGreaterStep(this, ::cReflectFrame) && MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
+        TVec2f screenVelocity(*MR::getStarPointerScreenVelocity(*MR::getStarPointerLastPointedPort(this)));
+        if (::cReflectCursorSpeed < screenVelocity.length()) {
             calcReflectVelocity();
+
             setNerve(GET_NERVE(FireBall, FireBallNrvReflect));
+
             return;
         }
     }
@@ -170,11 +236,10 @@ void FireBall::exeReflect() {
         MR::start2PAttackAssistSound();
         MR::startSound(this, "SE_EM_FIRE_BUBBLE_REFLECT");
     }
-    mVelocity.mult(0.96f);
 
-    if (!tryToKill()) {
-        if (MR::isStep(this, 60)) {
-            kill();
-        }
+    mVelocity.mult(::cReflectReduceRate);
+
+    if (!tryToKill() && MR::isStep(this, ::cReflectInvalidFrame)) {
+        kill();
     }
 }

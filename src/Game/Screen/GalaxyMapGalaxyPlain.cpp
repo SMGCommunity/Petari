@@ -6,7 +6,6 @@
 #include "Game/Util/MessageUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include <JSystem/JGeometry/TBox.hpp>
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 
 #define GALAXY_NAME_BUFFER_SIZE 128
@@ -18,24 +17,20 @@ extern int swprintf(wchar_t*, size_t, const wchar_t*, ...);
 #endif
 
 GalaxyMapGalaxyPlain::GalaxyMapGalaxyPlain(const LayoutActor* pHost)
-    : LayoutActor("Galaxy情報簡易表示", true), mHost(pHost), mPaneName(nullptr), mNamePlate(nullptr), mGalaxyName(nullptr), _30(false) {
+    : LayoutActor("Galaxy情報簡易表示", true), mHost(pHost), mPaneName(), mNamePlate(), mGalaxyName(), mIsShow() {
 }
 
 void GalaxyMapGalaxyPlain::show(const char* pGalaxyName, const char* pPaneName) {
-    wchar_t* pDstGalaxyName;
-    const wchar_t* pShortGalaxyName;
-    wchar_t* pFontTagIter;
-
     appear();
 
     mPaneName = pPaneName;
-    pDstGalaxyName = mGalaxyName;
+    wchar_t* pDstGalaxyName = mGalaxyName;
 
     if (!MR::isOnGameEventFlagGalaxyOpen(pGalaxyName)) {
         swprintf(pDstGalaxyName, GALAXY_NAME_BUFFER_SIZE, L"?");
     } else {
-        pShortGalaxyName = MR::getGalaxyNameShortOnCurrentLanguage(pGalaxyName);
-        pFontTagIter = pDstGalaxyName + swprintf(pDstGalaxyName, GALAXY_NAME_BUFFER_SIZE, L"%ls ", pShortGalaxyName);
+        const wchar_t* pShortGalaxyName = MR::getGalaxyNameShortOnCurrentLanguage(pGalaxyName);
+        wchar_t* pFontTagIter = pDstGalaxyName + swprintf(pDstGalaxyName, GALAXY_NAME_BUFFER_SIZE, L"%ls ", pShortGalaxyName);
 
         if (MR::isStarComplete(pGalaxyName)) {
             MR::addPictureFontTag(pFontTagIter, 80);
@@ -47,10 +42,28 @@ void GalaxyMapGalaxyPlain::show(const char* pGalaxyName, const char* pPaneName) 
         }
     }
 
-    _30 = true;
+    mIsShow = true;
 }
 
-// GalaxyMapGalaxyPlain::adjustTransInScreen
+void GalaxyMapGalaxyPlain::adjustTransInScreen() {
+    TBox2f galaxyNameBox;
+    MR::calcTextBoxRectRecursive(&galaxyNameBox, mNamePlate, "GalaxyName");
+
+    TVec2f paneTrans;
+    MR::copyPaneTrans(&paneTrans, mHost, mPaneName);
+
+    TVec2f plateTrans(paneTrans);
+
+    if (galaxyNameBox.i.x < MR::getSafetyFrameLeft()) {
+        plateTrans.x += -(galaxyNameBox.i.x - MR::getSafetyFrameLeft());
+    }
+
+    if (MR::getSafetyFrameRight() < galaxyNameBox.f.x) {
+        plateTrans.x += MR::getSafetyFrameRight() - galaxyNameBox.f.x;
+    }
+
+    mNamePlate->setTrans(plateTrans);
+}
 
 void GalaxyMapGalaxyPlain::init(const JMapInfoIter& rIter) {
     mNamePlate = new GalaxyNamePlate(nullptr, false);
@@ -97,7 +110,7 @@ void GalaxyMapGalaxyPlain::show(const wchar_t* pGalaxyName, const char* pPaneNam
 
     MR::copyString(mGalaxyName, pGalaxyName, GALAXY_NAME_BUFFER_SIZE);
 
-    _30 = true;
+    mIsShow = true;
 }
 
 void GalaxyMapGalaxyPlain::control() {
@@ -105,9 +118,9 @@ void GalaxyMapGalaxyPlain::control() {
         MR::setLayoutScalePosAtPaneScaleTrans(mNamePlate, mHost, mPaneName);
     }
 
-    if (_30) {
+    if (mIsShow) {
         mNamePlate->show(mGalaxyName, true);
     }
 
-    _30 = false;
+    mIsShow = false;
 }

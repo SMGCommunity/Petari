@@ -20,7 +20,6 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
 
 namespace NrvJellyfish {
     NEW_NERVE(JellyfishNrvWait, Jellyfish, Wait);
@@ -37,82 +36,94 @@ namespace NrvJellyfish {
 };  // namespace NrvJellyfish
 
 namespace {
-    static Color8 sPointLightColor(0xFF, 0x32, 0xCA, 0xFF);
+    static Color8 sPointLightColor(255, 50, 202, 255);
 };  // namespace
 
-Jellyfish::Jellyfish(const char* pName) : LiveActor(pName) {
-    mController = nullptr;
-    _94 = 0;
-    _98.set(0.0f, 0.0f, 1.0f);
-    mIsConnectedRail = false;
-    _A8 = 5.0f;
-    _AC = 60;
-    _B0 = 0;
-    _B4.set(0.0f, 0.0f, 0.0f);
+Jellyfish::Jellyfish(const char* pName)
+    : LiveActor(pName), mController(), _94(), _98(0.0f, 0.0f, 1.0f), mIsConnectedRail(), _A8(5.0f), _AC(60), _B0(), _B4(0.0f, 0.0f, 0.0f) {
 }
 
 void Jellyfish::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
+
     initModelManagerWithAnm("Jellyfish", nullptr, false);
+
     MR::connectToSceneEnemy(this);
+
     MR::addToAttributeGroupSearchTurtle(this);
+
     initHitSensor(1);
-    TVec3f sensorOffs;
-    sensorOffs.set(0.0f, 30.0f, 0.0f);
-    MR::addHitSensor(this, "body", ATYPE_KILLER_TARGET_ENEMY, 8, 100.0f, sensorOffs);
+    TVec3f offset;
+    offset.set(0.0f, 30.0f, 0.0f);
+    MR::addHitSensor(this, "body", ATYPE_KILLER_TARGET_ENEMY, 8, 100.0f, offset);
+
     initBinder(130.0f, 0.0f, 0);
     MR::offBind(this);
+
     mController = new AnimScaleController(nullptr);
+
     initEffectKeeper(2, nullptr, false);
+
     MR::addEffectHitNormal(this, nullptr);
+
     initSound(4, false);
+
     MR::initShadowVolumeSphere(this, 100.0f);
     MR::setShadowDropLength(this, nullptr, 1900.0f);
+
     MR::declareCoin(this, 1);
+
     MR::initStarPointerTarget(this, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
+
     mController = new AnimScaleController(nullptr);
     mBindStarPtr = new WalkerStateBindStarPointer(this, mController);
 
     if (MR::isConnectedWithRail(rIter)) {
         mIsConnectedRail = true;
+
         initRailRider(rIter);
         MR::initAndSetRailClipping(&_B4, this, 100.0f, 500.0f);
         MR::moveCoordToNearestPos(this, mPosition);
+
         MR::getJMapInfoArg0NoInit(rIter, &_A8);
         MR::getJMapInfoArg1NoInit(rIter, &_AC);
+
         s32 arg2 = 0;
         MR::getJMapInfoArg2NoInit(rIter, &arg2);
         _B0 = arg2 == 1;
     }
 
     MR::calcFrontVec(&_98, this);
+
     initNerve(GET_NERVE(Jellyfish, JellyfishNrvWait));
+
     makeActorAppeared();
 }
 
 void Jellyfish::kill() {
     MR::emitEffect(this, "Death");
+
     MR::appearCoinPop(this, mPosition, 1);
+
     LiveActor::kill();
 }
 
 void Jellyfish::control() {
-    Color8 clr = ::sPointLightColor;
-    MR::requestPointLight(this, TVec3f(mPosition), clr, 0.0998f, -1);
+    MR::requestPointLight(this, TVec3f(mPosition), ::sPointLightColor, 0.0998f, -1);
+
     mController->updateNerve();
 
     if (!isNerve(GET_NERVE(Jellyfish, JellyfishNrvDeath))) {
         if (mIsConnectedRail) {
             MR::moveCoordAndFollowTrans(this, _A8);
-            if (MR::isRailReachedGoal(this)) {
-                if (!isNerve(GET_NERVE(Jellyfish, JellyfishNrvRailGoal))) {
-                    setNerve(GET_NERVE(Jellyfish, JellyfishNrvRailGoal));
-                    return;
-                }
+            if (MR::isRailReachedGoal(this) && !isNerve(GET_NERVE(Jellyfish, JellyfishNrvRailGoal))) {
+                setNerve(GET_NERVE(Jellyfish, JellyfishNrvRailGoal));
+                return;
             }
         }
 
-        mVelocity.scale(MR::sin(_94 + 0x2D), mGravity);
+        mVelocity.scale(MR::sin(_94 + 46), mGravity);
+
         _94++;
     }
 
@@ -121,11 +132,11 @@ void Jellyfish::control() {
 }
 
 void Jellyfish::calcAndSetBaseMtx() {
-    TPos3f pos;
-    MR::makeMtxFrontUpPos(&pos, _98, -mGravity, mPosition);
-    MR::setBaseTRMtx(this, pos);
-    TVec3f scale = mController->_C * mScale;
-    MR::setBaseScale(this, scale);
+    TPos3f baseMtx;
+    MR::makeMtxFrontUpPos(&baseMtx, _98, -mGravity, mPosition);
+    MR::setBaseTRMtx(this, baseMtx);
+    TVec3f baseScale(mController->_C * mScale);
+    MR::setBaseScale(this, baseScale);
 }
 
 void Jellyfish::exeWait() {
@@ -134,7 +145,7 @@ void Jellyfish::exeWait() {
         MR::startBrk(this, "Wait");
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_JELYFISH_WAIT");
+    MR::startLevelSound(this, "SE_EM_LV_JELLYFISH_WAIT");
     selectNerveAfterWait();
 }
 
@@ -142,7 +153,8 @@ void Jellyfish::exeFind() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "SearchOn", nullptr);
         MR::startBrk(this, "SearchOn");
-        MR::startSound(this, "SE_EM_JELYFISH_FIND");
+
+        MR::startSound(this, "SE_EM_JELLYFISH_FIND");
     }
 
     faceToMario();
@@ -159,6 +171,7 @@ void Jellyfish::exeThreat() {
     }
 
     MR::startLevelSound(this, "SE_EM_LV_JELLYFISH_WAIT");
+
     faceToMario();
 
     if (selectNerveThreat()) {
@@ -169,12 +182,17 @@ void Jellyfish::exeThreat() {
 void Jellyfish::exeDeath() {
     if (MR::isFirstStep(this)) {
         MR::onBind(this);
+
         MR::invalidateHitSensors(this);
         MR::invalidateClipping(this);
+
         MR::stopScene(5);
+
         MR::startBck(this, "Death", nullptr);
         MR::startBrk(this, "Death");
+
         MR::startBlowHitSound(this);
+
         MR::startSound(this, "SE_EM_JELLYFISH_HIT_PUNCH");
     }
 
@@ -188,6 +206,7 @@ void Jellyfish::exeAttack() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Attack", nullptr);
         MR::startBrk(this, "Attack");
+
         MR::startSound(this, "SE_EM_JELLYFISH_ATTACK");
     }
 
@@ -204,10 +223,7 @@ void Jellyfish::exeRailGoal() {
     if (MR::isStep(this, _AC)) {
         if (_B0) {
             MR::moveCoordAndTransToRailPoint(this, 0);
-            const TVec3f& railDir = MR::getRailDirection(this);
-            _98.x = railDir.x;
-            _98.y = railDir.y;
-            _98.z = railDir.z;
+            _98.set(MR::getRailDirection(this));
         } else {
             MR::reverseRailDirection(this);
         }
@@ -238,7 +254,22 @@ void Jellyfish::exeWaitWithRightTurn() {
     selectNerveAfterWait();
 }
 
-// Jellyfish::attackSensor
+void Jellyfish::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (isNerve(GET_NERVE(Jellyfish, JellyfishNrvDeath))) {
+        return;
+    }
+
+    if (MR::isSensorEnemy(pSender) && MR::isSensorPlayer(pReceiver)) {
+        if (!isNerve(GET_NERVE(Jellyfish, JellyfishNrvDPDSwoon)) && MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
+            MR::emitEffectHitBetweenSensors(this, pSender, pReceiver, 0.0f, nullptr);
+            setNerve(GET_NERVE(Jellyfish, JellyfishNrvAttack));
+        } else {
+            MR::sendMsgPush(pReceiver, pSender);
+        }
+    } else if ((MR::isSensorEnemy(pReceiver) || MR::isSensorMapObj(pReceiver)) && MR::isSensorEnemy(pSender)) {
+        MR::sendMsgPush(pReceiver, pSender);
+    }
+}
 
 bool Jellyfish::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgLockOnStarPieceShoot(msg)) {
@@ -272,6 +303,7 @@ void Jellyfish::threatTurn() {
     }
 
     MR::startLevelSound(this, "SE_EM_LV_JELLYFISH_WAIT");
+
     faceToMario();
 
     if (MR::isBckStopped(this)) {
@@ -316,14 +348,98 @@ bool Jellyfish::faceToMario() {
 void Jellyfish::knockOut(HitSensor* pSender, HitSensor* pReceiver) {
     TVec3f toReceiverDir;
     MR::normalize(pReceiver->mPosition - pSender->mPosition, &toReceiverDir);
+
     mVelocity.scale(50.0f, toReceiverDir);
+
     _98.negate(toReceiverDir);
+
     setNerve(GET_NERVE(Jellyfish, JellyfishNrvDeath));
 }
 
-// Jellyfish::selectNerveAfterWait
-// Jellyfish::selectNerveThreat
-// Jellyfish::tryDPDSwoon
+bool Jellyfish::selectNerveAfterWait() {
+    if (MR::isNearPlayer(this, 1000.0f)) {
+        setNerve(GET_NERVE(Jellyfish, JellyfishNrvFind));
+        return true;
+    }
 
-Jellyfish::~Jellyfish() {
+    if (mIsConnectedRail && _B0) {
+        return false;
+    }
+
+    if (MR::isStep(this, 280)) {
+        s32 randomVal;
+        if (isNerve(GET_NERVE(Jellyfish, JellyfishNrvWait))) {
+            randomVal = MR::getRandom(0l, 3l);
+        } else {
+            randomVal = 0;
+        }
+
+        if (randomVal == 0) {
+            setNerve(GET_NERVE(Jellyfish, JellyfishNrvWait));
+        } else if (randomVal == 1) {
+            setNerve(GET_NERVE(Jellyfish, JellyfishNrvWaitWithRightTurn));
+        } else {
+            setNerve(GET_NERVE(Jellyfish, JellyfishNrvWaitWithLeftTurn));
+        }
+
+        return true;
+    }
+
+    return false;
+}
+
+bool Jellyfish::selectNerveThreat() {
+    if (!MR::isNearPlayer(this, 1500.0f)) {
+        setNerve(GET_NERVE(Jellyfish, JellyfishNrvWait));
+        return true;
+    }
+
+    TVec3f vec2C;
+    vec2C.sub(*MR::getPlayerPos(), mPosition);
+    MR::normalizeOrZero(&vec2C);
+
+    TVec3f vec38;
+    MR::turnVecToPlane(&vec38, vec2C, mGravity);
+
+    TVec3f vec44;
+    MR::turnVecToPlane(&vec44, _98, mGravity);
+
+    if (vec44.angle(vec38) * PI_180 < 35.0f) {
+        if (isNerve(GET_NERVE(Jellyfish, JellyfishNrvThreat))) {
+            return false;
+        }
+
+        setNerve(GET_NERVE(Jellyfish, JellyfishNrvThreat));
+    } else {
+        TVec3f vec50;
+        vec50.sub(*MR::getPlayerPos(), mPosition);
+
+        TVec3f sideVec;
+        MR::calcSideVec(&sideVec, this);
+
+        if (vec50.dot(sideVec) > 0.0f) {
+            setNerve(GET_NERVE(Jellyfish, JellyfishNrvThreatWithLeftTurn));
+        } else {
+            setNerve(GET_NERVE(Jellyfish, JellyfishNrvThreatWithRightTurn));
+        }
+    }
+
+    return true;
+}
+
+bool Jellyfish::tryDPDSwoon() {
+    if (isNerve(GET_NERVE(Jellyfish, JellyfishNrvDPDSwoon))) {
+        return false;
+    }
+
+    if (isNerve(GET_NERVE(Jellyfish, JellyfishNrvDeath))) {
+        return false;
+    }
+
+    if (!mBindStarPtr->tryStartPointBind()) {
+    return false;
+    }
+
+        setNerve(GET_NERVE(Jellyfish, JellyfishNrvDPDSwoon));
+        return true;
 }

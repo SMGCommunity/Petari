@@ -12,10 +12,13 @@ namespace nw4r {
 
             const math::MTX34& GetViewMtx() const { return mViewMtx; }
             bool IsMultipleViewMtxOnDraw() const { return mFlag.mulViewDraw; }
+            void SetMultipleViewMtxOnDraw(bool bEnable) { mFlag.mulViewDraw = bEnable; }
             bool IsInfluencedAlpha() const { return mFlag.influencedAlpha; }
             void SetInfluencedAlpha(bool bEnable) { mFlag.influencedAlpha = bEnable; }
             bool IsLocationAdjust() const { return mFlag.locationAdjust; }
+            void SetLocationAdjust(bool bEnable) { mFlag.locationAdjust = bEnable; }
             const math::VEC2& GetLocationAdjustScale() const { return mLocationAdjustScale; }
+            void SetLocationAdjustScale(const math::VEC2& scale) { mLocationAdjustScale = scale; }
             f32 GetGlobalAlpha() const { return mGlobalAlpha; }
             void SetGlobalAlpha(f32 alpha) { mGlobalAlpha = alpha; }
             bool IsInvisiblePaneCalculateMtx() const { return mFlag.invisiblePaneCalculateMtx; }

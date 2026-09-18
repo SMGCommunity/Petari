@@ -10,7 +10,7 @@ public:
     /* 0x00 */ const char* mPartName;
     /* 0x04 */ const char* mBgm;
     /* 0x08 */ const char* mSystemSe;
-    /* 0x0C */ s32 mReturnBgm;
+    /* 0x0C */ bool mReturnBgm;
     /* 0x10 */ s32 mBgmWipeoutFrame;
 };
 
@@ -26,10 +26,10 @@ public:
         return "Sound";
     }
 
-    virtual void start();
     virtual void update();
 
     virtual void executeType(const DemoSoundInfo* pInfo);
 
+    void addInfo(const char* pPartName);
     bool isPermitBgmChange();
 };

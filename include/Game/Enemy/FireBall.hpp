@@ -24,6 +24,6 @@ public:
     void exeThrow();
     void exeReflect();
 
-    LiveActor* _8C;
-    TVec3f _90;
+    /* 0x8C */ LiveActor* mHost;
+    /* 0x90 */ TVec3f mUp;
 };

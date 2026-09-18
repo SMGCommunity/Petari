@@ -76,9 +76,6 @@ MechanicKoopaMini::MechanicKoopaMini(const char* pName) : LiveActor(pName) {
     mBindStarPointer = nullptr;
 }
 
-MechanicKoopaMini::~MechanicKoopaMini() {
-}
-
 void MechanicKoopaMini::onAppearSwitchOn() {
     if (mIsAppearJumping) {
         setNerve(GET_NERVE(MechanicKoopaMini, HostTypeNrvJumpStart));

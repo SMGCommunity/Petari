@@ -27,5 +27,5 @@ private:
     /* 0x24 */ const char* mPaneName;
     /* 0x28 */ GalaxyNamePlate* mNamePlate;
     /* 0x2C */ wchar_t* mGalaxyName;
-    /* 0x30 */ bool _30;
+    /* 0x30 */ bool mIsShow;
 };

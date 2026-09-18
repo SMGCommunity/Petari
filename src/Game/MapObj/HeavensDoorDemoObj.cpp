@@ -19,9 +19,6 @@ HeavensDoorDemoObj::HeavensDoorDemoObj(const char* pName) : MapObjActor(pName) {
     _C4 = false;
 }
 
-HeavensDoorDemoObj::~HeavensDoorDemoObj() {
-}
-
 void HeavensDoorDemoObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;

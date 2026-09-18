@@ -55,6 +55,7 @@ public:
                 diff.x = 0.002f;
             }
         }
+
         if (diff.y > -0.002f && diff.y < 0.002f) {
             if (diff.y < 0.0f) {
                 diff.y = -0.002f;
@@ -62,6 +63,7 @@ public:
                 diff.y = 0.002f;
             }
         }
+
         if (diff.z > -0.002f && diff.z < 0.002f) {
             if (diff.z < 0.0f) {
                 diff.z = -0.002f;
@@ -173,9 +175,11 @@ public:
             if (pChannel->mPitch > pitch * mSetting.mPitchDeltaRatioRange) {
                 return pChannel->mPitch;
             }
+
             if (pitch > pChannel->mPitch * mSetting.mPitchDeltaRatioRange) {
                 return pChannel->mPitch;
             }
+
             pChannel->mPitch = pitch;
             return pitch;
         }
@@ -271,6 +275,7 @@ public:
                     mStates[i].convertAbsToRel(audible->getPos(), &audible->mChannels[i]->mRelPos);
                 }
             }
+
             return 0;
         }
 
@@ -283,7 +288,7 @@ public:
             if (channel != nullptr) {
                 u32 volDistBit = audible->getAudibleParam().getVolDistBit();
                 mStates[i].convertAbsToRel(audible->getPos(), &audible->mChannels[i]->mRelPos);
-                bool bit = !audible->getAudibleParam().get_BIT8();
+                bool bit = audible->getAudibleParam().get_BIT8();
                 deltaPriority[i] = Audience::calcDeltaPriority_(channel->mRelPos.getDist(), bit, volDistBit);
                 if (deltaPriority[i] < priority) {
                     priority = deltaPriority[i];
@@ -311,7 +316,6 @@ public:
         JASSoundParams params;
 
         if (audible->getAudibleParam().calcVolume()) {
-            // FIXME: needs a double-load
             params.mVolume = Audience::calcVolume_(channel->mRelPos.getDist(), audible->getVolDistBit());
 
             f32 vol = params.mVolume;
@@ -326,6 +330,7 @@ public:
                     }
                 }
             }
+
             audible->mVolume = vol;
             params.mVolume = vol;
         } else {
@@ -347,6 +352,7 @@ public:
                     }
                 }
             }
+
             audible->mDolby = dolby;
             params.mDolby = dolby;
         } else {
@@ -372,6 +378,7 @@ public:
                     }
                 }
             }
+
             audible->mPan = pan;
             params.mPan = pan;
         } else {
@@ -386,25 +393,25 @@ public:
         audible->mIsResetting = false;
     }
 
-    f32 calcPitch(JAUDopplerAudibleChannel* channel, Audible* audible, AudienceState* pState) {
-        JAUAudibleParam param = audible->getAudibleParam();
+    f32 calcPitch(JAUDopplerAudibleChannel* pChannel, Audible* pAudible, AudienceState* pState) {
+        JAUAudibleParam param = pAudible->getAudibleParam();
         if (param.getDoppler() != 0) {
             f32 doppler = param.getDopplerPower();
 
-            f32 vel1 = doppler * channel->getDir().dot(pState->getVelocity());
-            f32 vel2 = doppler * channel->getDir().dot(audible->getVelocity());
+            f32 vel1 = doppler * pChannel->getDir().dot(pState->getVelocity());
+            f32 vel2 = doppler * pChannel->getDir().dot(pAudible->getVelocity());
 
             f32 pitch = Audience::calcDopplerPitch_(vel1, vel2);
 
-            return Audience::calcPitch_(channel, pitch);
+            return Audience::calcPitch_(pChannel, pitch);
         } else {
             return 1.0f;
         }
     }
 
-    f32 calcFxMix(JAUDopplerAudibleChannel* channel, Audible* audible) {
-        if (audible->getAudibleParam().calcFxMix()) {
-            return Audience::calcFxMix_(channel->mRelPos.getDist());
+    f32 calcFxMix(JAUDopplerAudibleChannel* pChannel, Audible* pAudible) {
+        if (pAudible->getAudibleParam().calcFxMix()) {
+            return Audience::calcFxMix_(pChannel->mRelPos.getDist());
         } else {
             return 0.0f;
         }

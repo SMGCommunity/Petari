@@ -1,19 +1,5 @@
 #include "Game/RhythmLib/AudMeSeqReader.hpp"
 
-void AudMeSeqReader::init(void* pBuff) {
-    // FIXME: this function does not match specifically if
-    // it appears before call(u32).
-
-    mSeqBuff = (u8*)pBuff;
-    mSeqCursor = (u8*)pBuff;
-    mNumStacks = 0;
-
-    for (u32 i = 0; i < 8; i++) {
-        mStackPtrs[i] = nullptr;
-        mLoopCounts[i] = 0;
-    }
-}
-
 bool AudMeSeqReader::call(u32 addr) {
     if (mNumStacks >= 8) {
         return false;
@@ -24,12 +10,24 @@ bool AudMeSeqReader::call(u32 addr) {
     return true;
 }
 
+void AudMeSeqReader::init(void* pBuff) {
+    mSeqBuff = (u8*)pBuff;
+    mSeqCursor = (u8*)pBuff;
+    mNumStacks = 0;
+
+    for (u32 i = 0; i < 8; i++) {
+        mStackPtrs[i] = nullptr;
+        mLoopCounts[i] = 0;
+    }
+}
+
 bool AudMeSeqReader::ret() {
     if (mNumStacks == 0) {
         return false;
     }
 
-    mSeqCursor = mStackPtrs[--mNumStacks];
+    mNumStacks--;
+    mSeqCursor = mStackPtrs[mNumStacks];
     return true;
 }
 
@@ -52,10 +50,12 @@ bool AudMeSeqReader::loopEnd() {
     if (loopCount > 0) {
         loopCount--;
     }
+
     if (loopCount == 0) {
         mNumStacks--;
         return true;
     }
+
     mLoopCounts[mNumStacks - 1] = loopCount;
     mSeqCursor = mStackPtrs[mNumStacks - 1];
     return true;

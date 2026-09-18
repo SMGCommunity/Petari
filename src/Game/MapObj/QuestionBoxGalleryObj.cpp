@@ -9,6 +9,10 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
+void QuestionBoxGalleryObj_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
+
 namespace NrvQuestionBoxGalleryObj {
     NEW_NERVE(QuestionBoxGalleryObjNrvOnStart, QuestionBoxGalleryObj, OnStart);
     NEW_NERVE(QuestionBoxGalleryObjNrvOnWait, QuestionBoxGalleryObj, OnWait);

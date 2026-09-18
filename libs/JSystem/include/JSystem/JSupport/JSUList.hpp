@@ -200,7 +200,7 @@ public:
     __inline JSUTree(T* pOwner) : JSUList< T >(), JSULink< T >(pOwner) {
     }
 
-    ~JSUTree() NO_INLINE {
+    ~JSUTree() {
     }
 
     bool appendChild(JSUTree< T >* pChild) {
@@ -295,4 +295,3 @@ public:
 
     JSUTree< T >* mTree;  // 0x0
 };
-

@@ -17,7 +17,7 @@ namespace {
         }
     };
 
-    struct HasGroupId : std::binary_function< const MsgSharedGroup*, JMapIdInfo, bool > {
+    struct HasGroupId : std::binary_function< const MsgSharedGroup*, const JMapIdInfo&, bool > {
         bool operator()(const MsgSharedGroup* pGroup, const JMapIdInfo& rIdInfo) const {
             return *pGroup->mIdInfo == rIdInfo;
         }

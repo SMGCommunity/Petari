@@ -2,7 +2,7 @@
 
 #include "Game/Ride/SphereController.hpp"
 
-class SpherePadController : SphereController {
+class SpherePadController : public SphereController {
 public:
     SpherePadController();
 
@@ -10,7 +10,6 @@ public:
     virtual f32 calcJumpPower() const;
     virtual void update(const TVec3f&);
     virtual void clacXY(f32*, f32*) NO_INLINE;
-    // virtual void genMessage(JORMContext*); // DEBUG
 
     f32 calcDirSphereMove(TVec3f*, const TVec3f&, u32);
 };

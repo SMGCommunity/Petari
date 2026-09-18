@@ -6,10 +6,11 @@ class AudAnmSoundObject;
 
 class SoundEmitterCube : public AreaObj {
 public:
-    SoundEmitterCube(int, const char*);
+    SoundEmitterCube(int formType, const char* pName);
+
     virtual ~SoundEmitterCube();
 
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void movement();
 
     /* 0x3C */ AudAnmSoundObject* mSoundObj;

@@ -15,6 +15,9 @@ public:
         Type_Bowl,
     };
 
+    AreaForm() : _4() {
+    }
+
     virtual void init(const JMapInfoIter&);
     virtual bool isInVolume(const TVec3f&) const;
 
@@ -32,7 +35,20 @@ public:
     void calcWorldRotate(TVec3f*) const;
     void calcWorldBox(TDirBox3f*) const;
     void calcLocalPos(TVec3f*, const TVec3f&) const;
-    f32 getBaseSize();
+    static f32 getBaseSize();
+
+    f32 getSizeX() const {
+        return mScale.x * getBaseSize();
+    }
+
+    f32 getSizeY() const {
+        return mScale.y * getBaseSize();
+    }
+
+    f32 getSizeZ() const {
+        return mScale.z * getBaseSize();
+    }
+
     void updateBoxParam();
     void calcWorldMtx(TPos3f*) const;
 

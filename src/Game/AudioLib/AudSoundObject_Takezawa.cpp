@@ -12,7 +12,7 @@ void AudSoundObject_Takezawa_FORCE_MATCH_SDATA2() {
 }
 
 namespace {
-    static const s32 cMagicPntGVolMinPrm = 500;
+    static const s32 cMagicPntGVolMinPrm = 100;
     static const s32 cMagicPntGVolMaxPrm = 1500;
     static const f32 cMagicPntGVolMin = 0.8f;
     static const f32 cMagicPntGVolMax = 1.0f;
@@ -45,9 +45,6 @@ namespace {
 };  // namespace
 
 void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 levelB) {
-    // FIXME: a few minor swaps and compiler optimizations
-    // https://decomp.me/scratch/qpcVz
-
     f32 volume = 1.0f;
     f32 pitch = 1.0f;
     u32 steps = 0;
@@ -60,12 +57,14 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         volume = AudUtil::linerMax(levelA, 100, 1.0f);
         break;
     }
+
     case SE_SM_LV_BALLOONSPH_ROLL: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 1000000);
         volume = AudUtil::linerMax(levelA, 10000, 1.0f);
         break;
     }
+
     case SE_SM_IRONSPH_HIT_WALL:
     case SE_SM_BALLOONSPH_HIT_WALL: {
         levelA = MR::max(levelA, 0);
@@ -73,12 +72,14 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         volume = AudUtil::linerMax(levelA, 20, 1.0f);
         break;
     }
+
     case SE_SM_LV_SLED_YOS_RUN1: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 10000);
         volume = AudUtil::linerMax(levelA, 2000, 1.0f);
         break;
     }
+
     case SE_SM_LV_SLED_MOVE: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 10000);
@@ -86,27 +87,30 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         pitch = AudUtil::linerMinMax(levelA, 1600, 3000, 0.85f, 1.5f);
         break;
     }
+
     case SE_SM_LV_SLED_YOS_WATER_RUN: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 10000);
         volume = AudUtil::linerMinMax(levelA, 500, 3000, 0.4f, 1.0f);
         break;
     }
+
     case SE_EM_LV_OTAJACK_PULL: {
-        // FIXME: regswap
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100000);
         volume = AudUtil::linerMinMax(levelA, 2000, 40000, 0.5f, 1.0f);
         pitch = AudUtil::linerMinMax(levelA, 2000, 40000, 0.8f, 1.1f);
         break;
     }
+
     case SE_SM_LV_FOLLOWKIKKI_MOVE: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100000);
         volume = AudUtil::linerMax(levelA, 2500, 1.0f);
-        pitch = AudUtil::linerMinMax(levelA, 0, 2000, 0.8f, 1.1f);
+        pitch = AudUtil::linerMinMax(levelA, 0, 2000, 1.0f, 1.5f);
         break;
     }
+
     case SE_SM_LV_KART_ENGINE_LOW: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100000);
@@ -115,9 +119,11 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         } else {
             volume = AudUtil::linerMinMax(levelA, 1500, 2500, 1.0f, 0.0f);
         }
+
         pitch = AudUtil::linerMinMax(levelA, 0, 2000, 1.0f, 2.0f);
         break;
     }
+
     case SE_SM_LV_KART_ENGINE_HIGH: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100000);
@@ -125,12 +131,14 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         pitch = AudUtil::linerMinMax(levelA, 1500, 4000, 1.0f, 2.0f);
         break;
     }
+
     case SE_SM_KART_LAND: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100000);
         volume = AudUtil::linerMinMax(levelA, 1000, 2500, 0.7f, 1.0f);
         break;
     }
+
     case SE_SM_LV_HELIBIRD_FLY: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100000);
@@ -138,6 +146,7 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         pitch = AudUtil::linerMinMax(levelA, 500, 3000, 1.0f, 1.5f);
         break;
     }
+
     case SE_SM_LV_MOCINA_PULL2: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100000);
@@ -145,6 +154,7 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         pitch = AudUtil::linerMinMax(levelA, 10, 70, 1.2f, 1.8f);
         break;
     }
+
     case SE_SM_LV_JETSWING_ENGINE: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100000);
@@ -152,6 +162,7 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         pitch = AudUtil::linerMinMax(levelA, 1600, 8000, 0.9f, 1.4f);
         break;
     }
+
     case SE_SM_LV_JETSWING_MOVE: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100000);
@@ -159,12 +170,14 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         pitch = AudUtil::linerMinMax(levelA, 1600, 8000, 0.85f, 1.7f);
         break;
     }
+
     case SE_SM_JETSWING_LAND: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100000);
         volume = AudUtil::linerMinMax(levelA, 1000, 2500, 0.7f, 1.0f);
         break;
     }
+
     case SE_SM_LV_FOOFIGHTER_MOVE1: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100000);
@@ -172,16 +185,19 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         pitch = AudUtil::linerMinMax(levelA, 500, 2500, 1.0f, 1.7f);
         break;
     }
+
     case SE_SM_LV_FOOFIGHTER_MOVE2: {
-        // FIXME: compiler optimizing 16-bit compare with 100000
         s32 lvlA = levelA >> 16;
-        lvlA = MR::min(MR::max(lvlA, 0), 100000);
         s32 lvlB = levelA & 0xFFFF;
+        lvlA = MR::max(lvlA, 0);
+        lvlA = MR::min(lvlA, 100000);
+        lvlB = MR::max(lvlB, 0);
         lvlB = MR::min(lvlB, 100000);
         volume = AudUtil::linerMinMax(lvlA, 500, 10000, 0.3f, 1.0f);
         pitch = AudUtil::linerMinMax(MR::max(lvlB - lvlA / 10, 0), 5000, 11000, 1.0f, 0.5f);
         break;
     }
+
     case SE_OJ_LV_MAGIC_PNT_G_PULL: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100000);
@@ -195,16 +211,22 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
             f32 t = levelA - ::cMagicPntGPitMinPrm;
             pitch = (t * t) / (d * d) * (::cMagicPntGPitMax - ::cMagicPntGPitMin) + ::cMagicPntGPitMin;
         }
+
         break;
     }
+
     case SE_OJ_LV_SPIDER_THREAD_PULL: {
-        // FIXME: compiler optimizing 16-bit compare with 100000
-        s32 pitchLvl = MR::min(levelA >> 16, 100000);
-        s32 volLvl = MR::min(levelA & 0xFFFF, 100000);
+        s32 pitchLvl = static_cast< u32 >(levelA) >> 16;
+        s32 volLvl = levelA & 0xFFFF;
+        pitchLvl = MR::max(pitchLvl, 0);
+        pitchLvl = MR::min(pitchLvl, 100000);
+        volLvl = MR::max(volLvl, 0);
+        volLvl = MR::min(volLvl, 100000);
         volume = AudUtil::linerMinMax(volLvl, 10, 600, 0.0f, 1.0f);
         pitch = AudUtil::linerMinMax(pitchLvl, 10, 500, 1.0f, 1.5f);
         break;
     }
+
     case SE_SY_BLUECHIP_GET:
     case SE_SY_YELLOWCHIP_GET:
     case SE_OJ_BLUECHIP_COMPLETE:
@@ -214,6 +236,7 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         writePort(pHandle, 11, levelA);
         break;
     }
+
     case SE_EM_LV_UNIZO_ROLL_GROUND: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100000);
@@ -222,9 +245,11 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         } else {
             volume = 0.0f;
         }
+
         pitch = AudUtil::linerMinMax(levelA, ::cUnizoRollPitMinPrm, ::cUnizoRollPitMaxPrm, ::cUnizoRollGroundPitMin, ::cUnizoRollGroundPitMax);
         break;
     }
+
     case SE_EM_LV_UNIZO_ROLL_SHALLOW:
     case SE_EM_LV_UNIZO_ROLL_WATER: {
         levelA = MR::max(levelA, 0);
@@ -234,9 +259,11 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         } else {
             volume = 0.0f;
         }
+
         pitch = AudUtil::linerMinMax(levelA, ::cUnizoRollPitMinPrm, ::cUnizoRollPitMaxPrm, ::cUnizoRollPitMin, ::cUnizoRollPitMax);
         break;
     }
+
     case SE_EM_LV_UNIZO_LAND_WATER:
     case SE_EM_LV_UNIZO_LAND: {
         levelA = MR::max(levelA, 0);
@@ -246,9 +273,11 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         } else {
             volume = 0.0f;
         }
+
         pitch = AudUtil::linerMinMax(levelA, 5, 100, 0.9f, 1.0f);
         break;
     }
+
     case SE_EM_LV_UNIZO_COLLISION_WATER:
     case SE_EM_LV_UNIZO_COLLISION: {
         levelA = MR::max(levelA, 0);
@@ -258,9 +287,11 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         } else {
             volume = 0.0f;
         }
+
         pitch = AudUtil::linerMinMax(levelA, 100, 800, 0.9f, 1.0f);
         break;
     }
+
     case SE_BM_LV_KAMECK_FLOAT: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100000);
@@ -268,8 +299,8 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         pitch = AudUtil::linerMinMax(levelA, 100, 2000, 0.6f, 1.0f);
         break;
     }
+
     case SE_EM_LV_TORPEDO_ALARM: {
-        // FIXME: regswap
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100000);
         pitch = AudUtil::linerMinMax(levelA, ::cTorpedoPitMinPrm, ::cTorpedoPitMaxPrm, ::cTorpedoPitMin, ::cTorpedoPitMax);
@@ -277,6 +308,7 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         writePort(pHandle, 11, wait);
         break;
     }
+
     case SE_EM_BOMB_BOUND: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 10000);
@@ -285,8 +317,10 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         } else {
             volume = 0.0f;
         }
+
         break;
     }
+
     case SE_RS_LV_NOTE_TIMER_SLOW:
     case SE_RS_LV_NOTE_TIMER_MIDDLE:
     case SE_RS_LV_NOTE_TIMER_FAST: {
@@ -295,6 +329,7 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         writePort(pHandle, 13, levelA);
         break;
     }
+
     case SE_SM_LV_TICO_FLOAT:
     case SE_SM_LV_TICO_FLOAT_DEMO: {
         levelA = MR::max(levelA, 0);
@@ -302,6 +337,7 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         volume = levelA / 100.0f;
         break;
     }
+
     case SE_EM_LV_STRSPIDER_SWING1:
     case SE_EM_LV_STRSPIDER_SWING2: {
         levelA = MR::max(levelA, 0);
@@ -309,30 +345,35 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         volume = levelA / 100.0f;
         break;
     }
+
     case SE_BM_LV_BBEGO_ROT_NEEDLE: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100);
         volume = levelA / 100.0f;
         break;
     }
+
     case SE_SM_STRAYTICO_GET: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 127);
         writePort(pHandle, 11, levelA);
         break;
     }
+
     case SE_SM_LV_RABBIT_NEAR: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 127);
         writePort(pHandle, 13, levelA);
         break;
     }
+
     case SE_SM_LV_RABBIT_NEAR2: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100);
         volume = levelA / 100.0f;
         break;
     }
+
     case SE_SV_LV_RABBIT_NEAR:
     case SE_SM_LV_RABBIT_RUS_LEAVES:
     case SE_SM_LV_RABBIT_RUS_HOLE: {
@@ -343,8 +384,10 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
             levelB = MR::min(levelB, 100);
             pHandle->getSound()->getAuxiliary().moveFxMix(levelB / 100.0f, 0);
         }
+
         break;
     }
+
     case SE_SV_LV_RABBIT_NEAR2: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100);
@@ -353,8 +396,10 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
             levelB = MR::min(levelB, 100);
             pHandle->getSound()->getAuxiliary().moveFxMix(levelB / 100.0f, 0);
         }
+
         break;
     }
+
     case SE_SM_LV_TICOFAT_EATING:
     case SE_SM_LV_TICOFAT_GLAD: {
         levelA = MR::max(levelA, 0);
@@ -362,12 +407,14 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         writePort(pHandle, 11, levelA);
         break;
     }
+
     case SE_EM_STRSPIDER_COLLISION: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100);
         volume = levelA / 100.0f;
         break;
     }
+
     case SE_EM_LV_STRSPIDER_SPIN: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100);
@@ -377,24 +424,28 @@ void AudSoundObject::modifySe_Takezawa(JAISoundHandle* pHandle, s32 levelA, s32 
         writePort(pHandle, 13, levelB);
         break;
     }
+
     case SE_SY_TRAMPLE_COMBO: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 6);
         writePort(pHandle, 11, levelA);
         break;
     }
+
     case SE_EM_LV_WATERBAZ_STORM: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100);
         volume = levelA / 100.0f;
         break;
     }
+
     case SE_EM_LV_MAGKILLER_FLY: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 200);
         pitch = levelA / 100.0f;
         break;
     }
+
     case SE_BM_LV_ICEMERAKING_ROLL: {
         levelA = MR::max(levelA, 0);
         levelA = MR::min(levelA, 100);
@@ -420,11 +471,14 @@ bool AudSoundObject::modifyLimitedSound_Takezawa(JAISoundID soundID) {
             if (isPlayingID(SE_RS_LV_NOTE_TIMER_SLOW) || isPlayingID(SE_RS_LV_NOTE_TIMER_MIDDLE) || isPlayingID(SE_RS_LV_NOTE_TIMER_FAST)) {
                 return true;
             }
+
             break;
         }
+
         default:
             return false;
         }
     }
+
     return false;
 }

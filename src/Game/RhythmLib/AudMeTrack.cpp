@@ -34,6 +34,7 @@ AudMeTrack::~AudMeTrack() {
     if (mParent == nullptr) {
         sTrackList.Remove(this);
     }
+
     noteOffAll(0);
 
     for (s32 i = 0; i < MAX_CHILDREN; i++) {
@@ -48,6 +49,7 @@ void AudMeTrack::init() {
     for (s32 i = 0; i < MAX_CHILDREN; i++) {
         mChildren[i] = nullptr;
     }
+
     mBrotherNo = -1;
     mTrackInfo.init();
     initPlayParam();
@@ -65,6 +67,7 @@ void AudMeTrack::init() {
     for (s32 i = 0; i < MAX_CHILDREN; i++) {
         _163[i] = 0;
     }
+
     mIsProcStopped = false;
     mStatus = STATUS_FREE;
 }
@@ -121,14 +124,11 @@ AudMeTrack* AudMeTrack::newChild(s32 childNo) {
 }
 
 bool AudMeTrack::deleteChild(s32 childNo) {
-    // FIXME: reg alloc
-    // https://decomp.me/scratch/um0oF
-
     if (mChildren[childNo] == nullptr) {
         return false;
     }
 
-    mChildren[childNo]->noteOffAll(0);
+    noteOffAll(0);
     delete mChildren[childNo];
     mChildren[childNo] = nullptr;
     return true;
@@ -140,6 +140,7 @@ bool AudMeTrack::isHaveChild() const {
             return true;
         }
     }
+
     return false;
 }
 
@@ -163,6 +164,7 @@ void AudMeTrack::stopSeq() {
             mChildren[i]->noteOffAll(0);
         }
     }
+
     sTrackList.Remove(this);
     mStatus = STATUS_FREE;
 }
@@ -175,6 +177,7 @@ void AudMeTrack::suspendSeq() {
             mChildren[i]->noteOffAll(0);
         }
     }
+
     mStatus = STATUS_FREE;
 }
 
@@ -292,9 +295,11 @@ bool AudMeTrack::noteOn(u32 channelNo, u32 pitch, u32 velocity) {
             if (channel == nullptr) {
                 success = false;
             }
+
             mChannelMgrs[i]->mChannels[channelNo] = channel;
         }
     }
+
     return success;
 }
 
@@ -307,6 +312,7 @@ bool AudMeTrack::noteOff(u32 channelNo, u16 directRelease) {
             }
         }
     }
+
     return success;
 }
 
@@ -324,6 +330,7 @@ void AudMeTrack::startNote() {
         noteOn(1, mBaseNote, getVelocity());
         sReg[mTrackInfo.mNoteReg] = mBaseNote;
     }
+
     mBaseNotePrev = mBaseNote;
 
     if (mIsInStart) {
@@ -333,10 +340,13 @@ void AudMeTrack::startNote() {
             if (track != nullptr && track != nullptr) {
                 track->suspendSeq();
             }
+
             parent->mStatus = STATUS_START;
         }
+
         mStatus = STATUS_START;
     }
+
     mIsInStart = false;
 }
 
@@ -360,6 +370,7 @@ void AudMeTrack::channelUpdateCallback(u32 callbackType, JASChannel* pChannel, J
                 return;
             }
         }
+
         break;
     }
 }
@@ -430,6 +441,7 @@ void AudMeTrack::updateChannelParams() {
             if (pmgr == nullptr) {
                 pmgr = mParent->mChannelMgrs[0];
             }
+
             mgr->mChannelParams.mVolume = pmgr->mChannelParams.mVolume * vol;
             mgr->mChannelParams.mPitch = pmgr->mChannelParams.mPitch * pitch;
             mgr->mChannelParams.mPan = (pmgr->mChannelParams.mPan - 0.5f) + pan;
@@ -437,6 +449,7 @@ void AudMeTrack::updateChannelParams() {
             mgr->mChannelParams.mDolby = pmgr->mChannelParams.mDolby + dolby;
             mgr->mChannelParams._8 = pmgr->mChannelParams._8 + bend;
         }
+
         mgr->mChannelParams.mPan += 0.5f;
     }
 }
@@ -457,11 +470,6 @@ bool AudMeTrack::gframeProc() {
 }
 
 void AudMeTrack::setBaseNoteFromChord(u8* pChordData, s32 numNotes, bool random) {
-    // FIXME: regswap
-    // https://decomp.me/scratch/TRQbR
-
-    u8 chordNote;
-
     AudChordInfo* chordInfo = AudSystem::get()->getChordInfo();
     if (!chordInfo->isAvailable()) {
         mBaseNote = 0x7F;
@@ -477,7 +485,7 @@ void AudMeTrack::setBaseNoteFromChord(u8* pChordData, s32 numNotes, bool random)
     for (s32 i = 0; i < numNotes; i++) {
         u8 ctrl = pChordData[ctrlList[i]];  // allowed chord tones
         for (s32 j = 0; j < 8; j++) {
-            chordNote = chordInfo->mChordNoteList[chordNotes[j]];
+            const u8 chordNote = chordInfo->mChordNoteList[chordNotes[j]];
             if (chordNote == 0x7F) {
                 continue;
             }
@@ -486,36 +494,44 @@ void AudMeTrack::setBaseNoteFromChord(u8* pChordData, s32 numNotes, bool random)
                 mBaseNote = chordNote;
                 return;
             }
+
             if ((ctrl & 0x02) != 0 && chordInfo->isRoot(chordNote)) {
                 mBaseNote = chordNote;
                 return;
             }
+
             if ((ctrl & 0x04) != 0 && chordInfo->isThird(chordNote)) {
                 mBaseNote = chordNote;
                 return;
             }
+
             if ((ctrl & 0x08) != 0 && chordInfo->isFifth(chordNote)) {
                 mBaseNote = chordNote;
                 return;
             }
+
             if ((ctrl & 0x10) != 0 && chordInfo->isSixth(chordNote)) {
                 mBaseNote = chordNote;
                 return;
             }
+
             if ((ctrl & 0x20) != 0 && chordInfo->isSeventh(chordNote)) {
                 mBaseNote = chordNote;
                 return;
             }
+
             if ((ctrl & 0x40) != 0 && chordInfo->isNinth(chordNote)) {
                 mBaseNote = chordNote;
                 return;
             }
+
             if ((ctrl & 0x80) != 0 && chordInfo->isEleventh(chordNote)) {
                 mBaseNote = chordNote;
                 return;
             }
         }
     }
+
     mBaseNote = 0x7F;
 }
 
@@ -538,11 +554,13 @@ void AudMeTrack::setBaseNoteFromScale(u8* pScaleData, s32 numNotes, bool random)
         } else {
             note = chordInfo->mCurScale->down[ctrl];  // getScaleNoteDown
         }
+
         if (note != 0x7F) {
             mBaseNote = note;
             return;
         }
     }
+
     mBaseNote = 0x7F;
 }
 
@@ -600,8 +618,10 @@ void AudMeTrack::adjustNote(s32 direction, s32 type) {
             note = chordInfo->getNearestChordNote(note);
             break;
         }
+
         break;
     }
+
     case ModifyType_Scale: {
         switch (direction) {
         case ModifyDir_Up:
@@ -614,6 +634,7 @@ void AudMeTrack::adjustNote(s32 direction, s32 type) {
             note = chordInfo->getNearestScaleNote(note);
             break;
         }
+
         break;
     }
     }
@@ -645,8 +666,10 @@ void AudMeTrack::modifyNote(s32 direction, s32 type, s32 steps) {
             mBaseNote = chordInfo->getLowerNoteOnChord(mBaseNote, steps);
             break;
         }
+
         break;
     }
+
     case ModifyType_Scale: {
         switch (direction) {
         case ModifyDir_Up:
@@ -656,22 +679,27 @@ void AudMeTrack::modifyNote(s32 direction, s32 type, s32 steps) {
             mBaseNote = chordInfo->getLowerNoteOnScale(mBaseNote, steps);
             break;
         }
+
         break;
     }
+
     case ModifyType_Steps: {
         if (direction == ModifyDir_Up) {
             mBaseNote += steps;
         } else {
             mBaseNote -= steps;
         }
+
         break;
     }
+
     case ModifyType_Octave: {
         if (direction == ModifyDir_Up) {
             mBaseNote += steps * 12;
         } else {
             mBaseNote -= steps * 12;
         }
+
         break;
     }
     }
@@ -762,20 +790,22 @@ void AudMeTrack::TTrackInfo::init() {
     mNoteRangeStart = 12 * 5;
 }
 
-s32 AudMeTrack::TList::cbSeqMain(s32 type, s32 time, void* self) {
-    ((AudMeTrack::TList*)self)->seqMain(type, time);
+s32 AudMeTrack::TList::cbSeqMain(s32 type, s32 time, void* pSelf) {
+    ((AudMeTrack::TList*)pSelf)->seqMain(type, time);
     return 0;
 }
 
-void AudMeTrack::TList::append(AudMeTrack* track) {
+void AudMeTrack::TList::append(AudMeTrack* pTrack) {
     if (!mCallbackRegistered) {
         if (!AudMeTrackCallback::regist(cbSeqMain, this)) {
             return;
         }
-        track->initRegister();
+
+        pTrack->initRegister();
         mCallbackRegistered = true;
     }
-    Push_front(track);
+
+    Push_front(pTrack);
 }
 
 void AudMeTrack::TList::seqMain(s32 type, s32 time) {
@@ -796,5 +826,6 @@ AudMeTrack* AudMeTrack::TList::getSameME(AudMeTrack* pTrack, u32 meId) {
             return track;
         }
     }
+
     return nullptr;
 }

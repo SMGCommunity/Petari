@@ -24,9 +24,14 @@ public:
     virtual const char* getName() const = 0;
     virtual const char* getTypeString() const = 0;
     virtual void initCast(LiveActor*, const JMapInfoIter&) {};
-    virtual void start() {};
-    virtual void end() {};
-    virtual void update() {};
+    virtual void start() NO_INLINE {
+    }
+
+    virtual void end() NO_INLINE {
+    }
+
+    virtual void update() NO_INLINE {
+    }
 
     /* 0x04 */ DemoExecutor* mExecutor;
 };

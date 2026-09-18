@@ -18,6 +18,12 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+void AstroDomeBlueStar_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+}
+
 namespace {
     const Vec cZoomInOffset = {400.0f, 2550.0f, -7600.0f};
     const s32 cTryStartBindFrame = 30;

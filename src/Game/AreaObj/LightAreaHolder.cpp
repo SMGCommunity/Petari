@@ -7,24 +7,28 @@ LightAreaHolder::LightAreaHolder(s32 maxNum, const char* pName) : AreaObjMgr(max
     LightFunction::registerLightAreaHolder(this);
 }
 
-// for some reason the register movement for isTargetArea are wrong
 bool LightAreaHolder::tryFindLightID(const TVec3f& rArea, ZoneLightID* pLightID) const {
-    const LightArea* lightArea = static_cast< LightArea* >(find_in(rArea));
+    AreaObj* pArea = find_in(rArea);
 
-    if (lightArea == nullptr) {
+    if (pArea == nullptr) {
         if (pLightID->isOutOfArea()) {
             pLightID->clear();
+
             return false;
         } else {
             pLightID->clear();
+
             return true;
         }
     } else {
-        if (pLightID->isTargetArea(lightArea)) {
+        const LightArea* pLightArea = static_cast< LightArea* >(pArea);
+
+        if (pLightID->isTargetArea(pLightArea)) {
             return false;
         } else {
-            pLightID->_0 = lightArea->mPlacedZoneID;
-            pLightID->mLightID = lightArea->mObjArg0;
+            pLightID->_0 = pLightArea->mPlacedZoneID;
+            pLightID->mLightID = pLightArea->mObjArg0;
+
             return true;
         }
     }
@@ -32,4 +36,26 @@ bool LightAreaHolder::tryFindLightID(const TVec3f& rArea, ZoneLightID* pLightID)
 
 void LightAreaHolder::initAfterPlacement() {
     sort();
+}
+
+void LightAreaHolder::sort() {
+    for (s32 i = 0; i < mArray.size() - 1; i++) {
+        AreaObj* pOriginal = mArray[i];
+        AreaObj* pSelected = pOriginal;
+        s32 selected = i;
+
+        for (s32 j = i + 1; j < mArray.size(); j++) {
+            AreaObj* pCandidate = mArray[j];
+
+            if (pSelected->mObjArg1 > pCandidate->mObjArg1) {
+                selected = j;
+                pSelected = pCandidate;
+            }
+        }
+
+        if (i != selected) {
+            mArray[i] = pSelected;
+            mArray[selected] = pOriginal;
+        }
+    }
 }

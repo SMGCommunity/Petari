@@ -629,6 +629,10 @@ namespace JGeometry {
             setRotate(x, y, z);
         }
 
+        void setEuler(const TVec3f& rRot) {
+            setRotate(rRot);
+        }
+
         void setRotate(f32 rx, f32 ry, f32 rz) {
             // NOTE: setEulerXYZ?
             f32 sinX, sinY, sinZ;
@@ -778,20 +782,17 @@ namespace JGeometry {
             this->mMtx[1][1] = rLookAt.get(1, 1);
             this->mMtx[2][2] = -rLookAt.get(2, 2);
 
-            f32 xy = -rLookAt.get(0, 1);
-            this->mMtx[0][1] = rLookAt.get(1, 0);
-            this->mMtx[1][0] = xy;
+            f32 yx = rLookAt.get(1, 0);
+            this->mMtx[1][0] = -rLookAt.get(0, 1);
+            this->mMtx[0][1] = yx;
 
             f32 zx = rLookAt.get(2, 0);
-            f32 xz = rLookAt.get(0, 2);
-            zx = -zx;
-            xz = -xz;
-            this->mMtx[0][2] = zx;
-            this->mMtx[2][0] = xz;
+            this->mMtx[2][0] = -rLookAt.get(0, 2);
+            this->mMtx[0][2] = -zx;
 
-            f32 zy = -rLookAt.get(2, 1);
-            this->mMtx[2][1] = rLookAt.get(1, 2);
-            this->mMtx[1][2] = zy;
+            f32 yz = rLookAt.get(1, 2);
+            this->mMtx[1][2] = -rLookAt.get(2, 1);
+            this->mMtx[2][1] = yz;
 
             TVec3f pos;
             rLookAt.getTrans(pos);

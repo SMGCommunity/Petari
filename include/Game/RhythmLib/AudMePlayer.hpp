@@ -98,7 +98,7 @@ public:
 
 struct AudMeTable {
     /* 0x0 */ s32 mNumEntries;
-    /* 0x4 */ s32* mSeqStartPos;
+    /* 0x4 */ s32 mSeqStartPos[1];
 };
 
 class AudMeMgr : public JASGlobalInstance< AudMeMgr > {

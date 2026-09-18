@@ -37,7 +37,7 @@ void BigFan::init(const JMapInfoIter& rIter) {
     if (MR::isExistCollisionResource(this, object_name)) {
         initHitSensor(1);
         MR::addBodyMessageSensorReceiver(this);
-        MR::initCollisionParts(this, object_name, getSensor(0), 0);
+        MR::initCollisionParts(this, object_name, getSensor(nullptr), nullptr);
     }
 
     MR::getJMapInfoArg0NoInit(rIter, &mWindLength);
@@ -45,7 +45,7 @@ void BigFan::init(const JMapInfoIter& rIter) {
     initWindModel();
     TVec3f front;
     MR::calcFrontVec(&front, this);
-    mClippingCenter.scaleAdd(0.5f * mWindLength, front, mPosition);
+    mClippingCenter.scaleAdd(mWindLength * 0.5f, front, mPosition);
     MR::setClippingTypeSphere(this, 400.0f + mWindLength, &mClippingCenter);
     initSound(4, false);
 
@@ -86,11 +86,11 @@ void BigFan::calcWindInfo(TVec3f* pWindInfo, const TVec3f& rPos) {
         return;
     }
 
-    TVec3f front_vec;
-    MR::calcFrontVec(&front_vec, this);
-    MR::normalize(&front_vec);
+    TVec3f front;
+    MR::calcFrontVec(&front, this);
+    MR::normalize(&front);
     TVec3f offset = rPos - mPosition;
-    f32 dot = front_vec.dot(offset);
+    f32 dot = front.dot(offset);
 
     if (dot < 0.0f) {
         pWindInfo->zero();
@@ -98,7 +98,7 @@ void BigFan::calcWindInfo(TVec3f* pWindInfo, const TVec3f& rPos) {
     }
 
     TVec3f ortho;
-    ortho = offset - (front_vec * dot);
+    ortho = offset - front * dot;
     f32 mag = ortho.length();
 
     if (mag >= ::sBaseWindWidth * mScale.x) {
@@ -106,13 +106,13 @@ void BigFan::calcWindInfo(TVec3f* pWindInfo, const TVec3f& rPos) {
         return;
     }
 
-    f32 scalar = (1.0f - (dot / mWindLength));
+    f32 scalar = 1.0f - (dot / mWindLength);
     if (scalar < 0.0f) {
         pWindInfo->zero();
         return;
     }
 
-    pWindInfo->set(front_vec * scalar);
+    pWindInfo->set(front * scalar);
     return;
 }
 

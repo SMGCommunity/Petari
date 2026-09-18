@@ -17,7 +17,7 @@ public:
 template < class T >
 class JAUDisposerObject_ : public T, public JAUDisposer_, public JSULink< JAUDisposer_ > {
 public:
-    JAUDisposerObject_(bool set) : T(set), JAUDisposer_(), JSULink< JAUDisposer_ >(this) {};
+    JAUDisposerObject_(bool set) : T(set), JAUDisposer_(), JSULink< JAUDisposer_ >(static_cast< JAUDisposer_* >(this)) {};
     virtual ~JAUDisposerObject_() {};
 };
 

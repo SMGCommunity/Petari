@@ -35,7 +35,7 @@ void TypicalDoor::init(const JMapInfoIter& rIter) {
     info.setupNerve(GET_NERVE(TypicalDoor, HostTypeClose));
     MapObjActor::initialize(rIter, info);
 
-    if (info.mHasSensors) {
+    if (!info.mHasSensors) {
         initHitSensor(1);
         MR::addBodyMessageSensorMapObj(this);
     }

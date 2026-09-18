@@ -9,7 +9,6 @@ class QuestionCoin : public LiveActor {
 public:
     QuestionCoin(const char*);
 
-    virtual ~QuestionCoin();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void appear();
