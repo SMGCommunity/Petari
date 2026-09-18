@@ -1777,7 +1777,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/Shellfish.cpp"),
             Object(Matching, "Game/MapObj/ShockWaveGenerator.cpp"),
             Object(Matching, "Game/MapObj/ShootingStar.cpp"),
-            Object(NonMatching, "Game/MapObj/SideSpikeMoveStep.cpp"),
+            Object(Matching, "Game/MapObj/SideSpikeMoveStep.cpp"),
             Object(NonMatching, "Game/MapObj/SimpleBreakableObj.cpp"),
             Object(NonMatching, "Game/MapObj/SimpleClipPartsObj.cpp"),
             Object(NonMatching, "Game/MapObj/SimpleFloaterObj.cpp"),
