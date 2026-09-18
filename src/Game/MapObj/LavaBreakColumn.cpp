@@ -10,7 +10,7 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/types.h"
 
-void TimerMoveWall_FORCE_MATCH_SDATA2() {
+void LavaBreakColumn_FORCE_MATCH_SDATA2() {
     (void)0.0f;
 }
 
