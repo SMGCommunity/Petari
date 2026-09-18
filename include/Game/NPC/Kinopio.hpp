@@ -39,14 +39,15 @@ public:
     void exeEventAndTalk();
     void exeEventFall();
 
-private:
-    /* 0x15C */ s32 mObjArg1;
-    /* 0x160 */ s32 mObjArg2;
-    /* 0x164 */ s32 mObjArg4;
-    /* 0x168 */ s32 mObjArg7;
+    inline bool isPlayerNotNearKinopio();
+
+    /* 0x15C */ s32 mObjArg0;
+    /* 0x160 */ s32 mBehavior;
+    /* 0x164 */ s32 mAppearBehavior;
+    /* 0x168 */ s32 mEquipment;
     /* 0x16C */ TQuat4f _16C;
     /* 0x17C */ MapObjConnector* _17C;
     /* 0x180 */ TakeOutStar* mTakeOutStar;
-    /* 0x184 */ bool mObjArg3;
+    /* 0x184 */ bool mIsSpawnPowerStarMode;
     /* 0x185 */ bool _185;
 };
