@@ -28,16 +28,59 @@
 #include <revolution/gx/GXVert.h>
 #include <revolution/mtx.h>
 
+void Trapeze_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)-1.0f;
+}
+
 namespace {
+    static const f32 sStickLength = 120.0f;
+    static const f32 sDrawWidthX = 12.0f;
+    static const f32 sDrawWidthZ = 12.0f;
+    static const f32 sDrawWidthLongOffsetX = 7.0f;
+    static const f32 sDrawWidthShortOffsetX = 0.0f;
+    static const f32 sDrawWidthShortOffsetZ = 7.0f;
+    static const f32 sTexRate = 0.003f;
+    static const f32 sTexRateDiff1 = 0.7f;
+    static const f32 sTexRateDiff2 = 0.5f;
+    static const f32 sHangAccelRate = 5.0f;
+    static const f32 sHangPointGravity = 0.8f;
+    static const f32 sHangPointFrictionRate = 0.995f;
+    static const f32 sHangCoordSpeed = 0.5f;
+    static const f32 sSensorOffsetY = -70.0f;
+    static const s32 sAnimInterpoleFrame = 12;
+    // static const f32 sSpeedWaitToEndAnim =
+    static const f32 sSpeedToSwingWait = 10.0f;
+    static const f32 sAxisToSwingWait = 0.99f;
+    static const f32 sJumpSpeedRate = 1.0f;
+    static const f32 sJumpSpeedMinXZ = 15.0f;
+    static const f32 sJumpSpeedMaxXZ = 20.0f;
+    static const f32 sJumpSpeedMinY = 20.0f;
+    static const f32 sJumpSpeedMaxY = 50.0f;
+    static const f32 sStickPointGravity = 1.0f;
+    static const f32 sStickPointFrictionRate = 0.995f;
+    static const f32 sPointSpeedMin = 1.0f;
+    static const f32 sPointNormalMin = 0.001f;
+    static const f32 sDistanceToValid = 500.0f;
+    static const s32 sStepToValid = 40;
+    static const f32 sDistanceStartBindZ = 80.0f;
+    static const s32 sStepSlideToRumble = 20;
+    static const f32 sSpeedMinToKeepFreeSwing = 80.0f;
+    static const f32 sTransDiffMinY = 1.0f;
+    static const f32 sTexRateDiff0 = 0.0f;
+
     static Color8 sColorPlusZ(0xFF, 0xFF, 0xFF, 0xFF);
     static Color8 sColorPlusX(0xB4, 0xB4, 0xB4, 0xFF);
     static Color8 sColorMinusX(0x64, 0x64, 0x64, 0xFF);
 };  // namespace
 
 Trapeze::Trapeze(const char* pName)
-    : LiveActor(pName), mSide(1.0f, 0.0f, 0.0f), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f), mRopeLength(0.0f), mSwingPoint(nullptr),
-      mTrapezeModel(nullptr), mRider(nullptr), mGrabPoint(nullptr), mGrabCoord(0.0f), mSwingVel(0.0f), mSwingReverse(false), mIsSwingFront(false),
-      mIsSwingBack(false), mWasSwingFront(false), mWasSwingBack(false), mCameraInfo(nullptr), mPrevSoundLvl(0) {
+    : LiveActor(pName), mSide(1.0f, 0.0f, 0.0f), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f), mRopeLength(), mStickPoint(), mTrapezeModel(),
+      mRider(), mHangPoint(), mGrabCoord(), mSwingVel(), mSwingReverse(), mIsSwingFront(), mIsSwingBack(), mWasSwingFront(), mWasSwingBack(),
+      mCameraInfo(), mPrevSoundLvl() {
     mPosMtx.identity();
 }
 
@@ -48,7 +91,7 @@ void Trapeze::init(const JMapInfoIter& rIter) {
 
     TPos3f mtx;
     mtx.identity();
-    MR::makeMtxTR(reinterpret_cast< MtxPtr >(&mtx), this);
+    MR::makeMtxTR(mtx, this);
 
     mtx.getXDir(mSide);
     mtx.getYDir(mUp);
@@ -58,11 +101,11 @@ void Trapeze::init(const JMapInfoIter& rIter) {
     mScale.set(1.0f, 1.0f, 1.0f);
 
     TVec3f spawnPos(mPosition.x, mPosition.y - mRopeLength, mPosition.z);
-    mSwingPoint = new SwingRopePoint(spawnPos);
-    mGrabPoint = new SwingRopePoint(mPosition);
+    mStickPoint = new SwingRopePoint(spawnPos);
+    mHangPoint = new SwingRopePoint(mPosition);
 
-    mSwingPoint->updatePosAndAxis(mFront, 0.995f);
-    mGrabPoint->updatePosAndAxis(mFront, 0.995f);
+    mStickPoint->updatePosAndAxis(mFront, ::sStickPointFrictionRate);
+    mHangPoint->updatePosAndAxis(mFront, ::sHangPointFrictionRate);
 
     initNerve(GET_NERVE(Trapeze, TrapezeNrvFree));
 
@@ -91,32 +134,32 @@ void Trapeze::draw() const {
         return;
     }
 
-    TVec3f left(mSide * -60.0f);
-    TVec3f right(mSide * 60.0f);
+    TVec3f left = mSide * -(::sStickLength / 2.0f);
+    TVec3f right = mSide * (::sStickLength / 2.0f);
 
-    TVec3f grabLeft(left);
-    TVec3f grabRight(right);
-    TVec3f swingLeft(left);
-    TVec3f swingRight(right);
+    TVec3f grabLeft = left;
+    TVec3f grabRight = right;
+    TVec3f swingLeft = left;
+    TVec3f swingRight = right;
 
     left.add(mPosition);
     right.add(mPosition);
-    grabLeft.add(mGrabPoint->mPosition);
-    grabRight.add(mGrabPoint->mPosition);
-    swingLeft.add(mSwingPoint->mPosition);
-    swingRight.add(mSwingPoint->mPosition);
+    grabLeft.add(mHangPoint->mPosition);
+    grabRight.add(mHangPoint->mPosition);
+    swingLeft.add(mStickPoint->mPosition);
+    swingRight.add(mStickPoint->mPosition);
 
     if (mRider != nullptr) {
-        drawRope(left, grabLeft, mGrabPoint->mSide, mGrabPoint->mFront, 0.0f, mGrabCoord * 0.003f);
-        drawRope(right, grabRight, mGrabPoint->mSide, mGrabPoint->mFront, 0.0f, mGrabCoord * 0.003f);
+        drawRope(left, grabLeft, mHangPoint->mSide, mHangPoint->mFront, 0.0f, mGrabCoord * ::sTexRate);
+        drawRope(right, grabRight, mHangPoint->mSide, mHangPoint->mFront, 0.0f, mGrabCoord * ::sTexRate);
 
         if (mGrabCoord < mRopeLength) {
-            drawRope(grabLeft, swingLeft, mSwingPoint->mSide, mSwingPoint->mFront, mGrabCoord * 0.003f, mRopeLength * 0.003f);
-            drawRope(grabRight, swingRight, mSwingPoint->mSide, mSwingPoint->mFront, mGrabCoord * 0.003f, mRopeLength * 0.003f);
+            drawRope(grabLeft, swingLeft, mStickPoint->mSide, mStickPoint->mFront, mGrabCoord * ::sTexRate, mRopeLength * ::sTexRate);
+            drawRope(grabRight, swingRight, mStickPoint->mSide, mStickPoint->mFront, mGrabCoord * ::sTexRate, mRopeLength * ::sTexRate);
         }
     } else {
-        drawRope(left, swingLeft, mSwingPoint->mSide, mSwingPoint->mFront, 0.0f, mRopeLength * 0.003f);
-        drawRope(right, swingRight, mSwingPoint->mSide, mSwingPoint->mFront, 0.0f, mRopeLength * 0.003f);
+        drawRope(left, swingLeft, mStickPoint->mSide, mStickPoint->mFront, 0.0f, mRopeLength * ::sTexRate);
+        drawRope(right, swingRight, mStickPoint->mSide, mStickPoint->mFront, 0.0f, mRopeLength * ::sTexRate);
     }
 }
 
@@ -136,7 +179,7 @@ void Trapeze::exeFree() {
     updateStickMtx();
 
     if (isNerve(GET_NERVE(Trapeze, TrapezeNrvFree))) {
-        if (mSwingPoint->mVelocity.squared() < 1.0f && 1.0f - MR::abs(mSwingPoint->mUp.y) < 0.001f) {
+        if (mStickPoint->mVelocity.squared() < ::sPointSpeedMin * ::sPointSpeedMin && 1.0f - MR::abs(mStickPoint->mUp.y) < ::sPointNormalMin) {
             setNerve(GET_NERVE(Trapeze, TrapezeNrvStop));
         }
     }
@@ -144,18 +187,18 @@ void Trapeze::exeFree() {
 
 void Trapeze::exeFreeInvalid() {
     exeFree();
-    TVec3f posDiffHoriz(*MR::getPlayerPos());
-    posDiffHoriz.sub(mSwingPoint->mPosition);
+    TVec3f posDiffHoriz = *MR::getPlayerPos();
+    posDiffHoriz.sub(mStickPoint->mPosition);
     posDiffHoriz.y = 0.0f;
 
-    if (MR::isOnGroundPlayer() || MR::isGreaterStep(this, 40) || posDiffHoriz.squared() > 250000.0f) {
+    if (MR::isOnGroundPlayer() || MR::isGreaterStep(this, ::sStepToValid) || posDiffHoriz.squared() > ::sDistanceToValid * ::sDistanceToValid) {
         setNerve(GET_NERVE(Trapeze, TrapezeNrvFree));
     }
 }
 
 void Trapeze::exeSwingWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("TrapezeWait", 12);
+        MR::startBckPlayer("TrapezeWait", ::sAnimInterpoleFrame);
     }
 
     if (updateBind()) {
@@ -192,9 +235,9 @@ void Trapeze::exeSwingSlideDown() {
 void Trapeze::exeSwingFrontStart() {
     if (MR::isFirstStep(this)) {
         if (isNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingFrontStart))) {
-            MR::startBckPlayer("TrapezeSlowSwingFrontStart", 12);
+            MR::startBckPlayer("TrapezeSlowSwingFrontStart", ::sAnimInterpoleFrame);
         } else {
-            MR::startBckPlayer("TrapezeSwingFrontStart", 12);
+            MR::startBckPlayer("TrapezeSwingFrontStart", ::sAnimInterpoleFrame);
         }
     }
 
@@ -203,7 +246,7 @@ void Trapeze::exeSwingFrontStart() {
     }
 
     if (MR::isBckStopped(mRider) && !(mIsSwingFront && mSwingVel < 0.0f)) {
-        if (!mIsSwingFront && mSwingVel < 80.0f) {
+        if (!mIsSwingFront && mSwingVel < ::sSpeedMinToKeepFreeSwing) {
             setNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingFrontEnd));
             return;
         }
@@ -234,9 +277,9 @@ void Trapeze::exeSwingFrontStart() {
 void Trapeze::exeSwingFrontEnd() {
     if (MR::isFirstStep(this)) {
         if (isNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingFrontEnd))) {
-            MR::startBckPlayer("TrapezeSlowSwingFrontEnd", 12);
+            MR::startBckPlayer("TrapezeSlowSwingFrontEnd", ::sAnimInterpoleFrame);
         } else {
-            MR::startBckPlayer("TrapezeSwingFrontEnd", 12);
+            MR::startBckPlayer("TrapezeSwingFrontEnd", ::sAnimInterpoleFrame);
         }
     }
 
@@ -266,9 +309,9 @@ void Trapeze::exeSwingFrontEnd() {
 void Trapeze::exeSwingBackStart() {
     if (MR::isFirstStep(this)) {
         if (isNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingBackStart))) {
-            MR::startBckPlayer("TrapezeSlowSwingBackStart", 12);
+            MR::startBckPlayer("TrapezeSlowSwingBackStart", ::sAnimInterpoleFrame);
         } else {
-            MR::startBckPlayer("TrapezeSwingBackStart", 12);
+            MR::startBckPlayer("TrapezeSwingBackStart", ::sAnimInterpoleFrame);
         }
     }
 
@@ -277,7 +320,7 @@ void Trapeze::exeSwingBackStart() {
     }
 
     if (MR::isBckStopped(mRider) && !(mIsSwingBack && mSwingVel > 0.0f)) {
-        if (!mIsSwingBack && mSwingVel > -80.0f) {
+        if (!mIsSwingBack && mSwingVel > -::sSpeedMinToKeepFreeSwing) {
             setNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingBackEnd));
             return;
         }
@@ -308,9 +351,9 @@ void Trapeze::exeSwingBackStart() {
 void Trapeze::exeSwingBackEnd() {
     if (MR::isFirstStep(this)) {
         if (isNerve(GET_NERVE(Trapeze, TrapezeNrvSlowSwingBackEnd))) {
-            MR::startBckPlayer("TrapezeSlowSwingBackEnd", 12);
+            MR::startBckPlayer("TrapezeSlowSwingBackEnd", ::sAnimInterpoleFrame);
         } else {
-            MR::startBckPlayer("TrapezeSwingBackEnd", 12);
+            MR::startBckPlayer("TrapezeSwingBackEnd", ::sAnimInterpoleFrame);
         }
     }
 
@@ -348,7 +391,7 @@ void Trapeze::updateHitSensor(HitSensor* pSensor) {
         }
 
         if (isNerve(GET_NERVE(Trapeze, TrapezeNrvFree))) {
-            MR::calcPerpendicFootToLineInside(&pSensor->mPosition, *MR::getPlayerPos(), mPosition, mSwingPoint->mPosition);
+            MR::calcPerpendicFootToLineInside(&pSensor->mPosition, *MR::getPlayerPos(), mPosition, mStickPoint->mPosition);
             return;
         }
         return;
@@ -356,7 +399,7 @@ void Trapeze::updateHitSensor(HitSensor* pSensor) {
 
     if (mRider != nullptr) {
         pSensor->mPosition.set(mRider->mPosition);
-        pSensor->mPosition.add(mGrabPoint->mUp * -70.0f);
+        pSensor->mPosition.add(mHangPoint->mUp * ::sSensorOffsetY);
     }
 }
 
@@ -375,16 +418,16 @@ bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
             return false;
         }
 
-        TVec3f posDiff(pSender->mHost->mPosition);
+        TVec3f posDiff = pSender->mHost->mPosition;
         posDiff.sub(pReceiver->mPosition);
 
-        if (MR::abs(posDiff.dot(mFront)) > 80.0f) {
+        if (MR::abs(posDiff.dot(mFront)) > ::sDistanceStartBindZ) {
             return false;
         }
 
         mRider = pSender->mHost;
 
-        TVec3f grabPos(pSender->mHost->mPosition);
+        TVec3f grabPos = pSender->mHost->mPosition;
         grabPos.sub(mPosition);
 
         f32 dotUp = mUp.dot(grabPos);
@@ -404,23 +447,23 @@ bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
             mSwingReverse = false;
         }
 
-        f32 projGrabPointVel = mGrabPoint->mVelocity.dot(mFront);
+        f32 projGrabPointVel = mHangPoint->mVelocity.dot(mFront);
         f32 vel = MR::getPlayerVelocity()->dot(mFront);
 
-        TVec3f swingVel(mFront);
+        TVec3f swingVel = mFront;
         if (MR::abs(vel) < 3.0f && 3.0f < projGrabPointVel) {  // is this a bug??
             vel = projGrabPointVel;
         }
         swingVel.scale(vel);
 
-        TVec3f grabFront(mFront);
-        if (MR::abs(mPosition.y - grabPos.y) < 1.0f) {
+        TVec3f grabFront = mFront;
+        if (MR::abs(mPosition.y - grabPos.y) < ::sTransDiffMinY) {
             grabFront.set< f32 >(0.0f, -1.0f, 0.0f);
         }
 
-        mGrabPoint->mFront.set(grabFront);
-        mGrabPoint->setInfo(grabPos, swingVel, mPosition, mGrabCoord);
-        mGrabPoint->mUp.set(mUp);
+        mHangPoint->mFront.set(grabFront);
+        mHangPoint->setInfo(grabPos, swingVel, mPosition, mGrabCoord);
+        mHangPoint->mUp.set(mUp);
 
         MR::startBckPlayer("TrapezeWait", static_cast< const char* >(nullptr));
         MR::invalidateClipping(this);
@@ -439,15 +482,15 @@ bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
     }
 
     if (MR::isMsgUpdateBaseMtx(msg)) {
-        TVec3f side(mGrabPoint->mSide);
-        TVec3f front(mGrabPoint->mFront);
+        TVec3f side = mHangPoint->mSide;
+        TVec3f front = mHangPoint->mFront;
         if (mSwingReverse) {
             side.scale(-1.0f);
             front.scale(-1.0f);
         }
         TPos3f mtx;
-        mtx.setXYZDir(side, mGrabPoint->mUp, front);
-        mtx.setTrans(mGrabPoint->mPosition);
+        mtx.setXYZDir(side, mHangPoint->mUp, front);
+        mtx.setTrans(mHangPoint->mPosition);
         MR::setBaseTRMtx(mRider, mtx);
         return true;
     }
@@ -464,28 +507,28 @@ bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
 
 bool Trapeze::tryJump() {
     if (MR::testCorePadTriggerA(WPAD_CHAN0) || MR::testSystemTriggerA()) {
-        TVec3f jumpVel(mGrabPoint->mVelocity * 1.0f);
-        jumpVel.y = MR::clamp(jumpVel.y, 20.0f, 50.0f);
+        TVec3f jumpVel = mHangPoint->mVelocity * ::sJumpSpeedRate;
+        jumpVel.y = MR::clamp(jumpVel.y, ::sJumpSpeedMinY, ::sJumpSpeedMaxY);
 
         TVec3f grabVel(jumpVel.x, 0.0f, jumpVel.z);
         if (grabVel.squared() > 300.0f) {
             MR::normalize(&grabVel);
-            grabVel.scale(20.0f);
+            grabVel.scale(::sJumpSpeedMaxXZ);
             jumpVel.x = grabVel.x;
             jumpVel.z = grabVel.z;
-        } else if (grabVel.squared() < 225.0f && MR::isGamePadStickOperated(WPAD_CHAN0)) {
+        } else if (grabVel.squared() < ::sJumpSpeedMinXZ * ::sJumpSpeedMinXZ && MR::isGamePadStickOperated(WPAD_CHAN0)) {
             TVec3f stick(0.0f, 0.0f, 0.0f);
             MR::calcWorldStickDirectionXZ(&stick, WPAD_CHAN0);
             if (stick.dot(mFront) > 0.0f) {
-                jumpVel.x = mFront.x * 15.0f;
-                jumpVel.z = mFront.z * 15.0f;
+                jumpVel.x = mFront.x * ::sJumpSpeedMinXZ;
+                jumpVel.z = mFront.z * ::sJumpSpeedMinXZ;
             } else {
-                jumpVel.x = -mFront.x * 15.0f;
-                jumpVel.z = -mFront.z * 15.0f;
+                jumpVel.x = -mFront.x * ::sJumpSpeedMinXZ;
+                jumpVel.z = -mFront.z * ::sJumpSpeedMinXZ;
             }
         }
 
-        TVec3f frontDir(mFront);
+        TVec3f frontDir = mFront;
         if (mSwingReverse) {
             frontDir.scale(-1.0f);
         }
@@ -516,19 +559,19 @@ bool Trapeze::tryJump() {
 }
 
 void Trapeze::updateStick(const TVec3f& rAnchor, f32 length) {
-    mSwingPoint->addAccel(mGravity * 1.0f);
-    mSwingPoint->strain(rAnchor, length);
-    mSwingPoint->updatePosAndAxis(mSwingPoint->mFront, 0.995f);
+    mStickPoint->addAccel(mGravity * ::sStickPointGravity);
+    mStickPoint->strain(rAnchor, length);
+    mStickPoint->updatePosAndAxis(mStickPoint->mFront, ::sStickPointFrictionRate);
 }
 
 void Trapeze::updateStickMtx() {
-    mPosMtx.setXYZDir(mSwingPoint->mSide, mSwingPoint->mUp, mSwingPoint->mFront);
-    mPosMtx.setTrans(mSwingPoint->mPosition);
+    mPosMtx.setXYZDir(mStickPoint->mSide, mStickPoint->mUp, mStickPoint->mFront);
+    mPosMtx.setTrans(mStickPoint->mPosition);
 }
 
 void Trapeze::updateHangPoint() {
     if (mGrabCoord < mRopeLength) {
-        mGrabCoord += 5.0f;
+        mGrabCoord += ::sHangAccelRate;
         mGrabCoord = mGrabCoord >= mRopeLength ? mRopeLength : mGrabCoord;
     }
 
@@ -540,13 +583,13 @@ void Trapeze::updateHangPoint() {
     if (MR::isGamePadStickOperated(WPAD_CHAN0)) {
         TVec3f stick(0.0f, 0.0f, 0.0f);
         MR::calcWorldStickDirectionXZ(&stick, WPAD_CHAN0);
-        TVec3f frontAccel(mFront);
+        TVec3f frontAccel = mFront;
         if (stick.dot(mFront) < 0.0f) {
             frontAccel.scale(-1.0f);
         }
         MR::vecKillElement(frontAccel, mSide, &frontAccel);
-        frontAccel.scale(0.5f);
-        mGrabPoint->addAccel(frontAccel);
+        frontAccel.scale(::sHangCoordSpeed);
+        mHangPoint->addAccel(frontAccel);
 
         if (frontAccel.dot(mFront) > 0.0f) {
             if (mSwingReverse) {
@@ -563,17 +606,17 @@ void Trapeze::updateHangPoint() {
         }
     }
 
-    mGrabPoint->addAccel(mGravity * 1.0f);
-    mGrabPoint->strain(mPosition, mGrabCoord);
-    MR::vecKillElement(mGrabPoint->mVelocity, mSide, &mGrabPoint->mVelocity);
-    mGrabPoint->updatePosAndAxis(mGrabPoint->mFront, 0.995f);
+    mHangPoint->addAccel(mGravity * ::sHangPointGravity);
+    mHangPoint->strain(mPosition, mGrabCoord);
+    MR::vecKillElement(mHangPoint->mVelocity, mSide, &mHangPoint->mVelocity);
+    mHangPoint->updatePosAndAxis(mHangPoint->mFront, ::sHangPointFrictionRate);
 
-    mSwingVel = mGrabPoint->mVelocity.dot(mGrabPoint->mFront);
+    mSwingVel = mHangPoint->mVelocity.dot(mHangPoint->mFront);
     if (mSwingReverse) {
         mSwingVel *= -1.0f;
     }
 
-    s32 soundLvl = (mGrabPoint->mVelocity.length() / 40.0f) * 100.0f;
+    s32 soundLvl = (mHangPoint->mVelocity.length() / 40.0f) * 100.0f;
     if (soundLvl > 100) {
         soundLvl = 100;
     }
@@ -598,11 +641,11 @@ bool Trapeze::updateBind() {
     mPosMtx.identity();
 
     if (mGrabCoord < mRopeLength) {
-        updateStick(mGrabPoint->mPosition, mRopeLength - mGrabCoord);
+        updateStick(mHangPoint->mPosition, mRopeLength - mGrabCoord);
     } else {
-        mSwingPoint->setPosAndAxis(mGrabPoint->mPosition, mGrabPoint->mSide, mGrabPoint->mUp, mGrabPoint->mFront);
+        mStickPoint->setPosAndAxis(mHangPoint->mPosition, mHangPoint->mSide, mHangPoint->mUp, mHangPoint->mFront);
         TVec3f vel(0.0f, 0.0f, 0.0f);
-        mSwingPoint->mVelocity.set(vel);
+        mStickPoint->mVelocity.set(vel);
     }
 
     updateStickMtx();
@@ -614,7 +657,7 @@ bool Trapeze::updateSwing() {
         return true;
     }
 
-    if (!mIsSwingFront && !mIsSwingBack && MR::abs(mSwingVel) < 10.0f && mGrabPoint->mUp.y >= 0.99f) {
+    if (!mIsSwingFront && !mIsSwingBack && MR::abs(mSwingVel) < ::sSpeedToSwingWait && mHangPoint->mUp.y >= ::sAxisToSwingWait) {
         setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingWait));
         return true;
     }
@@ -630,7 +673,7 @@ bool Trapeze::updateSlideDown() {
     MR::startLevelSound(mRider, "SE_OJ_LV_SLIDE_ROPE_SLIDE");
 
     if (mGrabCoord == mRopeLength) {
-        if (MR::isGreaterStep(this, 20)) {
+        if (MR::isGreaterStep(this, ::sStepSlideToRumble)) {
             MR::startSound(mRider, "SE_PM_GRAB_OBJ");
         }
 
@@ -661,84 +704,111 @@ bool Trapeze::isStartSwingBack() const {
     return false;
 }
 
+namespace {
+    void drawPolygon0(const TVec3f& rPosA, const TVec3f& rPosB, const TVec3f& rSide, const TVec3f& rFront, f32 x1, f32 y1, f32 x2, f32 y2, f32 texA,
+                      f32 texB) {
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
+        {
+            GXPosition3f32(rPosA.x - x1 * rSide.x + y1 * rFront.x,   //
+                           rPosA.y - x1 * rSide.y + y1 * rFront.y,   //
+                           rPosA.z - x1 * rSide.z + y1 * rFront.z);  //
+            GXColor1u32(::sColorPlusZ);
+            GXTexCoord2f32(0.0f, texA);
+
+            GXPosition3f32(rPosA.x + x2 * rSide.x - y2 * rFront.x,   //
+                           rPosA.y + x2 * rSide.y - y2 * rFront.y,   //
+                           rPosA.z + x2 * rSide.z - y2 * rFront.z);  //
+            GXColor1u32(::sColorPlusX);
+            GXTexCoord2f32(1.0f, texA);
+
+            GXPosition3f32(rPosB.x - x1 * rSide.x + y1 * rFront.x,   //
+                           rPosB.y - x1 * rSide.y + y1 * rFront.y,   //
+                           rPosB.z - x1 * rSide.z + y1 * rFront.z);  //
+            GXColor1u32(::sColorPlusZ);
+            GXTexCoord2f32(0.0f, texB);
+
+            GXPosition3f32(rPosB.x + x2 * rSide.x - y2 * rFront.x,   //
+                           rPosB.y + x2 * rSide.y - y2 * rFront.y,   //
+                           rPosB.z + x2 * rSide.z - y2 * rFront.z);  //
+            GXColor1u32(::sColorPlusX);
+            GXTexCoord2f32(1.0f, texB);
+        }
+        GXEnd();
+    }
+
+    void drawPolygon1(const TVec3f& rPosA, const TVec3f& rPosB, const TVec3f& rSide, const TVec3f& rFront, f32 x1, f32 y1, f32 x2, f32 y2, f32 texA,
+                      f32 texB) {
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
+        {
+            GXPosition3f32(rPosA.x - x1 * rSide.x - y1 * rFront.x,   //
+                           rPosA.y - x1 * rSide.y - y1 * rFront.y,   //
+                           rPosA.z - x1 * rSide.z - y1 * rFront.z);  //
+            GXColor1u32(::sColorMinusX);
+            GXTexCoord2f32(0.0f, texA);
+
+            GXPosition3f32(rPosA.x + x2 * rSide.x + y2 * rFront.x,   //
+                           rPosA.y + x2 * rSide.y + y2 * rFront.y,   //
+                           rPosA.z + x2 * rSide.z + y2 * rFront.z);  //
+            GXColor1u32(::sColorPlusZ);
+            GXTexCoord2f32(1.0f, texA);
+
+            GXPosition3f32(rPosB.x - x1 * rSide.x - y1 * rFront.x,   //
+                           rPosB.y - x1 * rSide.y - y1 * rFront.y,   //
+                           rPosB.z - x1 * rSide.z - y1 * rFront.z);  //
+            GXColor1u32(::sColorMinusX);
+            GXTexCoord2f32(0.0f, texB);
+
+            GXPosition3f32(rPosB.x + x2 * rSide.x + y2 * rFront.x,   //
+                           rPosB.y + x2 * rSide.y + y2 * rFront.y,   //
+                           rPosB.z + x2 * rSide.z + y2 * rFront.z);  //
+            GXColor1u32(::sColorPlusZ);
+            GXTexCoord2f32(1.0f, texB);
+        }
+        GXEnd();
+    }
+
+    void drawPolygon2(const TVec3f& rPosA, const TVec3f& rPosB, const TVec3f& rSide, const TVec3f& rFront, f32 x1, f32 y1, f32 x2, f32 y2, f32 texA,
+                      f32 texB) {
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
+        {
+            GXPosition3f32(rPosA.x + x1 * rSide.x - y1 * rFront.x,   //
+                           rPosA.y + x1 * rSide.y - y1 * rFront.y,   //
+                           rPosA.z + x1 * rSide.z - y1 * rFront.z);  //
+            GXColor1u32(::sColorPlusX);
+            GXTexCoord2f32(0.0f, texA);
+
+            GXPosition3f32(rPosA.x - x2 * rSide.x - y2 * rFront.x,   //
+                           rPosA.y - x2 * rSide.y - y2 * rFront.y,   //
+                           rPosA.z - x2 * rSide.z - y2 * rFront.z);  //
+            GXColor1u32(::sColorMinusX);
+            GXTexCoord2f32(1.0f, texA);
+
+            GXPosition3f32(rPosB.x + x1 * rSide.x - y1 * rFront.x,   //
+                           rPosB.y + x1 * rSide.y - y1 * rFront.y,   //
+                           rPosB.z + x1 * rSide.z - y1 * rFront.z);  //
+            GXColor1u32(::sColorPlusX);
+            GXTexCoord2f32(0.0f, texB);
+
+            GXPosition3f32(rPosB.x - x2 * rSide.x - y2 * rFront.x,   //
+                           rPosB.y - x2 * rSide.y - y2 * rFront.y,   //
+                           rPosB.z - x2 * rSide.z - y2 * rFront.z);  //
+            GXColor1u32(::sColorMinusX);
+            GXTexCoord2f32(1.0f, texB);
+        }
+        GXEnd();
+    }
+}  // namespace
+
 void Trapeze::drawRope(const TVec3f& rPosA, const TVec3f& rPosB, const TVec3f& rSide, const TVec3f& rFront, f32 texA, f32 texB) const {
-    // FIXME: some math shenanigans going on here. Some of these match while others are stubborn.
-    // https://decomp.me/scratch/IgiYF
+    ::drawPolygon0(rPosA, rPosB, rSide, rFront, ::sDrawWidthX + ::sDrawWidthShortOffsetX, ::sDrawWidthZ + ::sDrawWidthShortOffsetZ,
+                   ::sDrawWidthX + ::sDrawWidthLongOffsetX, ::sDrawWidthZ + ::sDrawWidthShortOffsetZ, texA + ::sTexRateDiff0, texB + ::sTexRateDiff0);
 
-    // strip 1
-    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-    {
-        GXPosition3f32(rPosA.x - rSide.x * 12.0f + rFront.x * 19.0f, rPosA.y - rSide.y * 12.0f + rFront.y * 19.0f,
-                       rPosA.z - rSide.z * 12.0f + rFront.z * 19.0f);
-        GXColor1u32(::sColorPlusZ);
-        GXTexCoord2f32(0.0f, texA);
+    ::drawPolygon1(rPosA, rPosB, rSide, rFront, ::sDrawWidthX + ::sDrawWidthLongOffsetX, ::sDrawWidthZ + ::sDrawWidthShortOffsetZ,
+                   ::sDrawWidthX + ::sDrawWidthShortOffsetX, ::sDrawWidthZ + ::sDrawWidthShortOffsetZ, texA + ::sTexRateDiff1,
+                   texB + ::sTexRateDiff1);
 
-        GXPosition3f32(rPosA.x + rSide.x * 19.0f - rFront.x * 19.0f, rPosA.y + rSide.y * 19.0f - rFront.y * 19.0f,
-                       rPosA.z + rSide.z * 19.0f - rFront.z * 19.0f);
-        GXColor1u32(::sColorPlusX);
-        GXTexCoord2f32(1.0f, texA);
-
-        GXPosition3f32(rPosB.x - rSide.x * 12.0f + rFront.x * 19.0f, rPosB.y - rSide.y * 12.0f + rFront.y * 19.0f,
-                       rPosB.z - rSide.z * 12.0f + rFront.z * 19.0f);
-        GXColor1u32(::sColorPlusZ);
-        GXTexCoord2f32(0.0f, texB);
-
-        GXPosition3f32(rPosB.x + rSide.x * 19.0f - rFront.x * 19.0f, rPosB.y + rSide.y * 19.0f - rFront.y * 19.0f,
-                       rPosB.z + rSide.z * 19.0f - rFront.z * 19.0f);
-        GXColor1u32(::sColorPlusX);
-        GXTexCoord2f32(1.0f, texB);
-    }
-    GXEnd();
-
-    // strip 2
-    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-    {
-        GXPosition3f32(rPosA.x - rSide.x * 19.0f - rFront.x * 19.0f, rPosA.y - rSide.y * 19.0f - rFront.y * 19.0f,
-                       rPosA.z - rSide.z * 19.0f - rFront.z * 19.0f);
-        GXColor1u32(::sColorMinusX);
-        GXTexCoord2f32(0.0f, texA + 0.7f);
-
-        GXPosition3f32(rPosA.x + rSide.x * 12.0f + rFront.x * 19.0f, rPosA.y + rSide.y * 12.0f + rFront.y * 19.0f,
-                       rPosA.z + rSide.z * 12.0f + rFront.z * 19.0f);
-        GXColor1u32(::sColorPlusZ);
-        GXTexCoord2f32(1.0f, texA + 0.7f);
-
-        GXPosition3f32(rPosB.x - rSide.x * 19.0f - rFront.x * 19.0f, rPosB.y - rSide.y * 19.0f - rFront.y * 19.0f,
-                       rPosB.z - rSide.z * 19.0f - rFront.z * 19.0f);
-        GXColor1u32(::sColorMinusX);
-        GXTexCoord2f32(0.0f, texB + 0.7f);
-
-        GXPosition3f32(rPosB.x + rSide.x * 12.0f + rFront.x * 19.0f, rPosB.y + rSide.y * 12.0f + rFront.y * 19.0f,
-                       rPosB.z + rSide.z * 12.0f + rFront.z * 19.0f);
-        GXColor1u32(::sColorPlusZ);
-        GXTexCoord2f32(1.0f, texB + 0.7f);
-    }
-    GXEnd();
-
-    // strip 3
-    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-    {
-        GXPosition3f32(rPosA.x + rSide.x * 19.0f - rFront.x * 7.0f, rPosA.y + rSide.y * 19.0f - rFront.y * 7.0f,
-                       rPosA.z + rSide.z * 19.0f - rFront.z * 7.0f);
-        GXColor1u32(::sColorPlusX);
-        GXTexCoord2f32(0.0f, texA + 0.5f);
-
-        GXPosition3f32(rPosA.x - rSide.x * 19.0f - rFront.x * 7.0f, rPosA.y - rSide.y * 19.0f - rFront.y * 7.0f,
-                       rPosA.z - rSide.z * 19.0f - rFront.z * 7.0f);
-        GXColor1u32(::sColorMinusX);
-        GXTexCoord2f32(1.0f, texA + 0.5f);
-
-        GXPosition3f32(rPosB.x + rSide.x * 19.0f - rFront.x * 7.0f, rPosB.y + rSide.y * 19.0f - rFront.y * 7.0f,
-                       rPosB.z + rSide.z * 19.0f - rFront.z * 7.0f);
-        GXColor1u32(::sColorPlusX);
-        GXTexCoord2f32(0.0f, texB + 0.5f);
-
-        GXPosition3f32(rPosB.x - rSide.x * 19.0f - rFront.x * 7.0f, rPosB.y - rSide.y * 19.0f - rFront.y * 7.0f,
-                       rPosB.z - rSide.z * 19.0f - rFront.z * 7.0f);
-        GXColor1u32(::sColorMinusX);
-        GXTexCoord2f32(1.0f, texB + 0.5f);
-    }
-    GXEnd();
+    ::drawPolygon2(rPosA, rPosB, rSide, rFront, ::sDrawWidthX + ::sDrawWidthLongOffsetX, ::sDrawWidthShortOffsetZ,
+                   ::sDrawWidthX + ::sDrawWidthLongOffsetX, ::sDrawWidthShortOffsetZ, texA + ::sTexRateDiff2, texB + ::sTexRateDiff2);
 }
 
 TrapezeRopeDrawInit::TrapezeRopeDrawInit(const char* pName) : NameObj(pName) {
