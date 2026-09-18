@@ -24,6 +24,12 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/VectorUtil.hpp"
 
+void NokonokoLand_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)2.0f;
+}
+
 namespace {
     const Vec sSensorOffsetNormal = {0.0f, 0.0f, 30.0f};
     const f32 sSensorRadiusNormal = 120.0f;
@@ -87,9 +93,6 @@ NokonokoLand::NokonokoLand(const char* pName)
     : LiveActor(pName), mJetTurtle(new JetTurtle("陸ノコ用ジェット亀")), mRailPointPassChecker(new MapPartsRailPointPassChecker(this)),
       mAnimScaleController(nullptr), mBindStarPointerState(nullptr), mTurtleType(0), mAppearPos(gZeroVec), mTurnAxis(TVec3f(0.0f, 1.0f, 0.0f)) {
     mTargetQuat.set(0.0f, 0.0f, 0.0f, 1.0f);
-}
-
-NokonokoLand::~NokonokoLand() {
 }
 
 void NokonokoLand::init(const JMapInfoIter& rIter) {

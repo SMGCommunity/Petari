@@ -7,6 +7,14 @@
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+void Coin_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)-1.0f;
+    (void)2.0f;
+}
+
 namespace NrvCoin {
     NEW_NERVE(CoinNrvNonActive, Coin, NonActive);
     NEW_NERVE(CoinNrvFix, Coin, Fix);
@@ -676,6 +684,3 @@ namespace MR {
         return coin;
     }
 };  // namespace MR
-
-Coin::~Coin() {
-}

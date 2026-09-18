@@ -629,6 +629,10 @@ namespace JGeometry {
             setRotate(x, y, z);
         }
 
+        void setEuler(const TVec3f& rRot) {
+            setRotate(rRot);
+        }
+
         void setRotate(f32 rx, f32 ry, f32 rz) {
             // NOTE: setEulerXYZ?
             f32 sinX, sinY, sinZ;
@@ -674,7 +678,7 @@ namespace JGeometry {
     template < class T >
     struct TPosition3 : public TRotation3< T > {
     public:
-        TPosition3() {};
+        TPosition3(){};
 
         TPosition3(MtxPtr rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
@@ -1074,7 +1078,7 @@ namespace JGeometry {
     template < class T >
     struct TProjection3 : public T {
     public:
-        TProjection3() {};
+        TProjection3(){};
 
         TProjection3(const Mtx44Ptr rSrc) {
             JMath::gekko_ps_copy16(this, rSrc);

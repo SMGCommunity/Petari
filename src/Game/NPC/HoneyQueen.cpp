@@ -15,8 +15,15 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
+void HoneyQueen_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+    (void)2.0f;
+}
+
 namespace {
-    static const f32 sTalkBalloonOffset = 95.0f;
+    static const f32 sTalkBalloonOffset = 950.0f;
 };  // namespace
 
 namespace NrvHoneyQueen {

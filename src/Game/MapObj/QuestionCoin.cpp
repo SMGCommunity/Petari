@@ -4,6 +4,14 @@
 #include "Game/MapObj/CoinRotater.hpp"
 #include "Game/MapObj/SpinDriverUtil.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/MathUtil.hpp"
+
+void NrvQuestionCoin_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)MR::epsilon();
+    (void)0.0f;
+    (void)2.0f;
+}
 
 namespace {
     // cPoseTypeString
@@ -75,7 +83,7 @@ void QuestionCoin::initAfterPlacement() {
     }
 
     TPos3f rotation;
-    rotation.setRotateDegree(mRotation);
+    rotation.setEuler(mRotation * (MR::pi() / 180.0f));
     TVec3f up;
     rotation.getYDir(up);
     TVec3f side;
@@ -260,7 +268,4 @@ void QuestionCoin::exeCaught() {
         MR::hideModel(this);
         kill();
     }
-}
-
-QuestionCoin::~QuestionCoin() {
 }

@@ -25,7 +25,6 @@ class Coin : public LiveActor {
 public:
     Coin(const char*);
 
-    virtual ~Coin();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void appear();

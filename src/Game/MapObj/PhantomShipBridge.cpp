@@ -39,11 +39,11 @@ void PhantomShipBridge::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &PhantomShipBridge::startMoveB));
+        MR::listenStageSwitchOnB(this, MR::Functor(this, &PhantomShipBridge::startMoveB));
     }
 
     if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &PhantomShipBridge::startMoveA));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &PhantomShipBridge::startMoveA));
     } else {
         setStateMoveA();
     }
@@ -129,7 +129,4 @@ void PhantomShipBridge::exeMoveB() {
 }
 
 void PhantomShipBridge::exeWait() {
-}
-
-PhantomShipBridge::~PhantomShipBridge() {
 }

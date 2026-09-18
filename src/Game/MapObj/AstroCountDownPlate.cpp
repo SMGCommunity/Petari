@@ -12,6 +12,10 @@
 #include "Game/Util/SoundUtil.hpp"
 #include <JSystem/J3DGraphBase/J3DTevs.hpp>
 
+void AstroCountDownPlate_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
+
 namespace NrvAstroCountDownPlate {
     NEW_NERVE(AstroCountDownPlateNrvDead, AstroCountDownPlate, Wait);
     NEW_NERVE(AstroCountDownPlateNrvAlive, AstroCountDownPlate, Wait);

@@ -6,7 +6,6 @@ class HeavensDoorDemoObj : public MapObjActor {
 public:
     HeavensDoorDemoObj(const char*);
 
-    virtual ~HeavensDoorDemoObj();
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void control();

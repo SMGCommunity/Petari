@@ -14,6 +14,11 @@
 #include "Game/Util/StringUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 
+void StarPieceGroup_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 namespace NrvStarPieceGroup {
     NEW_NERVE(HostTypeNrvGroup, StarPieceGroup, Group);
     NEW_NERVE(HostTypeNrvFlow, StarPieceGroup, Flow);

@@ -11,7 +11,7 @@ public:
     class Separator {
     public:
         /// @brief Creates a new `Separator`.
-        Separator() {};
+        Separator();
 
         /* 0x00 */ f32 _0;
         /* 0x04 */ TVec2f _4;

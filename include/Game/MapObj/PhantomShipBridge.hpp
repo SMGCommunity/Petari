@@ -6,7 +6,6 @@ class PhantomShipBridge : public LiveActor {
 public:
     PhantomShipBridge(const char*);
 
-    virtual ~PhantomShipBridge();
     virtual void init(const JMapInfoIter&);
     virtual void calcAnim();
 

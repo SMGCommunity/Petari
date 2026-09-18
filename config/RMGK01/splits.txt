@@ -3045,6 +3045,7 @@ Game/Enemy/NokonokoLand.cpp:
 	.ctors      start:0x8052EB18 end:0x8052EB1C
 	.rodata     start:0x80532428 end:0x80532440
 	.data       start:0x80582730 end:0x80582B50
+	.sdata      start:0x806B1A30 end:0x806B1A38
 	.sbss       start:0x806B4568 end:0x806B45C0
 	.sdata2     start:0x806BB198 end:0x806BB1E0
 
@@ -5719,7 +5720,7 @@ Game/MapObj/ShockWaveGenerator.cpp:
 Game/MapObj/ShootingStar.cpp:
 	.text       start:0x80224E88 end:0x8022571C
 	.ctors      start:0x8052EE80 end:0x8052EE84
-	.rodata     start:0x80533710 end:0x80533728
+	.rodata     start:0x80533710 end:0x80533720
 	.data       start:0x8059EE08 end:0x8059EF90
 	.sbss       start:0x806B57F0 end:0x806B5800
 	.sdata2     start:0x806BDE80 end:0x806BDEB0
@@ -5755,7 +5756,7 @@ Game/MapObj/SimpleFloaterObj.cpp:
 
 Game/MapObj/SimpleMapObj.cpp:
 	.text       start:0x80226F50 end:0x80227A08
-	.rodata     start:0x80533728 end:0x80533788
+	.rodata     start:0x80533720 end:0x80533788
 	.data       start:0x8059F438 end:0x8059FC10
 	.sdata2     start:0x806BDEF0 end:0x806BDEF8
 

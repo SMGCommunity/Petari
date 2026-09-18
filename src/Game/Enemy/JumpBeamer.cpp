@@ -17,6 +17,10 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void JumpBeamer_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 namespace NrvJumpBeamer {
     NEW_NERVE(JumpBeamerNrvHide, JumpBeamer, Hide);
     NEW_NERVE(JumpBeamerNrvUp, JumpBeamer, Up);
@@ -342,7 +346,4 @@ void JumpBeamer::exeInter() {
 
         setNerve(GET_NERVE(JumpBeamer, JumpBeamerNrvWait));
     }
-}
-
-JumpBeamer::~JumpBeamer() {
 }

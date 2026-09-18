@@ -8,7 +8,6 @@ class JumpBeamer : public JumpEmitter {
 public:
     JumpBeamer(const char*);
 
-    virtual ~JumpBeamer();
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void attackSensor(HitSensor*, HitSensor*);

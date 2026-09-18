@@ -213,6 +213,9 @@ PowerStarList::PowerStarList()
     mSeparatorArray = new Separator[4]();
 }
 
+PowerStarList::Separator::Separator() {
+}
+
 void PowerStarList::init(const JMapInfoIter& rIter) {
     initLayoutManager("AllStarList", 1);
     MR::createAndAddPaneCtrl(this, "PicBG", 1);

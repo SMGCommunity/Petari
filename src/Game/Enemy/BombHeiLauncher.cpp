@@ -26,7 +26,7 @@ namespace NrvBombHeiLauncher {
     NEW_NERVE(HostTypeNrvStop, BombHeiLauncher, Stop);
 };  // namespace NrvBombHeiLauncher
 
-BombHeiLauncher::BombHeiLauncher(const char* pName) : LiveActor(pName), mBomb(nullptr), mCountdown(0), mConnector(nullptr), mIsActive(true) {
+BombHeiLauncher::BombHeiLauncher(const char* pName) : LiveActor(pName), mBomb(), mCountdown(), mConnector(), mIsActive(true) {
     mConnector = new MapObjConnector(this);
 }
 

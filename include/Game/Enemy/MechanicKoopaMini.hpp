@@ -9,7 +9,6 @@ class MechanicKoopaMini : public LiveActor {
 public:
     MechanicKoopaMini(const char*);
 
-    virtual ~MechanicKoopaMini();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void makeActorAppeared();
