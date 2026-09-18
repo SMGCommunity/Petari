@@ -1,10 +1,41 @@
 #include "Game/Enemy/OnimasuJump.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+
+void OnimasuJump_FORCE_MATCH_SDATA2() {
+    (void) 0.0f;
+}
 
 OnimasuJump::OnimasuJump(const char* pName) : Onimasu(pName), mCurNormal(), mNormals() {
 }
 
-// OnimasuJump::calcJumpVelocity
+void OnimasuJump::calcJumpVelocity() {
+    TVec3f railPointPos;
+    MR::calcRailPointPos(&railPointPos, this, mCurNormal);
+    MR::onCalcGravity(this);
+    f32 distToMoveThisFrame = mPosition.distance(railPointPos) / getTimeToNextPoint();
+    f32 jumpStrength = 0.5f * (getGravityScalar() * getTimeToNextPoint());
+
+    TVec3f dirToRailPointPos(railPointPos - mPosition);
+    
+    if(MR::isNearZero(dirToRailPointPos)) {
+        dirToRailPointPos.zero();
+    } else {
+        MR::normalize(&dirToRailPointPos);
+    }
+
+    TVec3f gravityDir;
+    calcGravityDir(&gravityDir);
+
+    TVec3f moveToRailPos(dirToRailPointPos * distToMoveThisFrame);
+
+    TVec3f moveJump(-gravityDir * jumpStrength);
+
+    mVelocity.set(moveToRailPos + moveJump);
+}
 
 s32 OnimasuJump::getLastPointNo() const {
     s32 n = mCurNormal - 1;
@@ -53,7 +84,7 @@ void OnimasuJump::updatePoseInner() {
     TVec3f gravityDir;
     calcGravityDir(&gravityDir);
 
-    mVelocity += gravityDir * getGravityScalar();
+    mVelocity.add(gravityDir * getGravityScalar());
 }
 
 s32 OnimasuJump::getNextPointNo() const {
