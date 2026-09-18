@@ -44,10 +44,10 @@ namespace MR {
     void makeMtxUpSide(TPos3f*, const TVec3f&, const TVec3f&);
     void makeMtxUpSidePos(TPos3f*, const TVec3f&, const TVec3f&, const TVec3f&);
     void makeMtxUpFront(TPos3f*, const TVec3f&, const TVec3f&);
-    void makeMtxUpFrontPos(TPos3f*, const TVec3f&, const TVec3f&, const TVec3f&);
+    void makeMtxUpFrontPos(TPos3f*, const TVec3f&, const TVec3f&, const TVec3f&) NO_INLINE;
     void makeMtxFrontSidePos(TPos3f*, const TVec3f&, const TVec3f&, const TVec3f&);
     void makeMtxFrontUp(TPos3f*, const TVec3f&, const TVec3f&);
-    void makeMtxFrontUpPos(TPos3f*, const TVec3f&, const TVec3f&, const TVec3f&);
+    void makeMtxFrontUpPos(TPos3f*, const TVec3f&, const TVec3f&, const TVec3f&) NO_INLINE;
     void makeMtxUpNoSupport(TPos3f*, const TVec3f&);
     void makeMtxUpNoSupportPos(TPos3f*, const TVec3f&, const TVec3f&);
     void makeMtxFrontNoSupport(TPos3f*, const TVec3f&);
@@ -89,8 +89,8 @@ namespace MR {
 
     void makeMtxTR(MtxPtr, const LiveActor*);
 
-    void setMtxTrans(MtxPtr mtx, const TVec3f& rVec); /*{
-        MR::setMtxTrans(mtx, rVec.x, rVec.y, rVec.z);
+    void setMtxTrans(MtxPtr pMtx, const TVec3f& rVec); /*{
+        MR::setMtxTrans(pMtx, rVec.x, rVec.y, rVec.z);
     }*/
 
     // Non-official symbol.
