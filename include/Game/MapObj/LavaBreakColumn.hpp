@@ -5,8 +5,11 @@
 class LavaBreakColumn : public AnmModelSwitchMove {
 public:
     LavaBreakColumn(const char*);
-    virtual ~LavaBreakColumn();
 
-public:
-    u8 mPad[(0xE0) - sizeof(AnmModelSwitchMove)];
+    virtual void init(const JMapInfoIter&);
+    virtual void makeActorAppeared();
+    virtual void control();
+
+    /* 0xD0 */ TVec3f mEffectPos;
+    /* 0xDC */ bool mIsPillarFallen;
 };
