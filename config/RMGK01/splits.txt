@@ -2397,6 +2397,7 @@ Game/Effect/AstroEffectObj.cpp:
 
 Game/Effect/AutoEffectGroup.cpp:
 	.text       start:0x800C46E8 end:0x800C4A98
+	.data       start:0x80578290 end:0x805782A0
 
 Game/Effect/AutoEffectGroupHolder.cpp:
 	.text       start:0x800C4A98 end:0x800C4D2C
