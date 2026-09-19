@@ -43,10 +43,6 @@ namespace {
         return new T(AreaForm::Type_Bowl, pName);
     }
 
-    const char* cPlayerArchiveLoaderObjTable[] = {
-        "Hopper",          "BenefitItemInvincible", "MorphItemNeoBee", "MorphItemNeoFire",
-        "MorphItemNeoFoo", "MorphItemNeoHopper",    "MorphItemNeoIce", "MorphItemNeoTeresa",
-    };
     const NameObjFactory::Name2CreateFunc cCreateTable[] = {
         {
             "SwitchCube",
@@ -8095,6 +8091,11 @@ namespace {
             "MorphItemNeoTeresa",
             MorphItemObjNeo::makeArchiveList,
         },
+    };
+
+    const char* cPlayerArchiveLoaderObjTable[] = {
+        "Hopper",          "BenefitItemInvincible", "MorphItemNeoBee", "MorphItemNeoFire",
+        "MorphItemNeoFoo", "MorphItemNeoHopper",    "MorphItemNeoIce", "MorphItemNeoTeresa",
     };
 };  // namespace
 
