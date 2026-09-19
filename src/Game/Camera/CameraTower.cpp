@@ -17,7 +17,7 @@ void CameraTower_FORCE_MATCH_SDATA2() {
 namespace {
     static const f32 sAttenuation = 0.05f;
     static const f32 sRoundAddition = 0.08f;
-    static f32 sRoundInterval = JGeometry::TUtil< f32 >::PI() / 4.0f;
+    static const f32 sRoundInterval = JGeometry::TUtil< f32 >::PI() / 4.0f;
 };  // namespace
 
 CameraTower::CameraTower(const char* pName)
@@ -123,6 +123,7 @@ void CameraTower::calcIdealPos() {
     if (MR::isNearZero(front)) {
         return;
     }
+
     MR::normalize(&front);
 
     TVec3f up(0.0f, 1.0f, 0.0f);
