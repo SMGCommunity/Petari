@@ -1,4 +1,4 @@
-#include <revolution.h>
+#include "revolution.h"
 
 static s32 IpcFdArray[32];
 static u32 IpcReqPtrArray[32];

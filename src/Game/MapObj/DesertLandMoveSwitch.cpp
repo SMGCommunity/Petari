@@ -17,10 +17,10 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/SpringValue.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JMath/JMath.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JMath/JMath.hpp>
+#include <revolution/mtx.h>
+#include <revolution/types.h>
 
 void DesertLandMoveSwitch_FORCE_MATCH_SDATA2() {
     (void)0.0f;

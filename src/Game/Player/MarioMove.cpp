@@ -9,8 +9,8 @@
 #include "Game/Player/MarioState.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
+#include <revolution/mtx.h>
+#include <revolution/types.h>
 
 void Mario::mainMove() {
     TVec3f vec1;

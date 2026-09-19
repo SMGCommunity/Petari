@@ -1,6 +1,6 @@
-#include <revolution/dvd.h>
-#include <revolution/os.h>
-#include <revolution/os/OSBootInfo.h>
+#include "revolution/dvd.h"
+#include "revolution/os.h"
+#include "revolution/os/OSBootInfo.h"
 #include <ctype.h>
 #include <locale.h>
 

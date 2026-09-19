@@ -1,8 +1,8 @@
 #include "Game/Effect/SpinPullParticleCallBack.hpp"
 
 #include "Game/Util/PlayerUtil.hpp"
-#include "JSystem/JParticle/JPAEmitter.hpp"
-#include "JSystem/JParticle/JPAParticle.hpp"
+#include <JSystem/JParticle/JPAEmitter.hpp>
+#include <JSystem/JParticle/JPAParticle.hpp>
 
 SpinPullParticleCallBack::SpinPullParticleCallBack() : MultiEmitterParticleCallBack() {
     _4 = 1.0f;

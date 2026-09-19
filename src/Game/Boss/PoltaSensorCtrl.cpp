@@ -4,8 +4,8 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 #include <JSystem/JKernel/JKRHeap.hpp>
 
 namespace {

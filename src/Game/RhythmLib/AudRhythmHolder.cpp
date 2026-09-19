@@ -1,7 +1,7 @@
 #include "Game/RhythmLib/AudRhythmHolder.hpp"
 #include "Game/RhythmLib/AudRhythmSeqParser.hpp"
-#include "JSystem/JAudio2/JASCriticalSection.hpp"
-#include "revolution/os/OSTime.h"
+#include <JSystem/JAudio2/JASCriticalSection.hpp>
+#include <revolution/os/OSTime.h>
 
 AudRhythmHolder::AudRhythmHolder() : mIsPaused(), mSeqParser(), _168() {
     init();

@@ -2,8 +2,8 @@
 #include "Game/System/FindingLuigiEventScheduler.hpp"
 #include "Game/Util/HashUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/JSupport/JSUMemoryInputStream.hpp"
-#include "JSystem/JSupport/JSUMemoryOutputStream.hpp"
+#include <JSystem/JSupport/JSUMemoryInputStream.hpp>
+#include <JSystem/JSupport/JSUMemoryOutputStream.hpp>
 
 namespace {
     const GameEventValue cGameEventValueTable[] = {

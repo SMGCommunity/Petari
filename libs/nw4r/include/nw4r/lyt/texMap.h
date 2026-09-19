@@ -1,7 +1,7 @@
 #pragma once
 
 #include "nw4r/lyt/types.h"
-#include "revolution/tpl.h"
+#include <revolution/tpl.h>
 #include <revolution.h>
 
 namespace nw4r {

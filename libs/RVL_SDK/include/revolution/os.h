@@ -2,7 +2,7 @@
 #define OS_H
 
 #include <cstdarg>
-#include <revolution/types.h>
+#include "revolution/types.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -173,28 +173,28 @@ inline void OSf32tou8(f32* f, u8* out) {
 }
 #endif
 
-#include <revolution/base/PPCArch.h>
-#include <revolution/gx.h>
-#include <revolution/os/OSAlarm.h>
-#include <revolution/os/OSAlloc.h>
-#include <revolution/os/OSCache.h>
-#include <revolution/os/OSContext.h>
-#include <revolution/os/OSException.h>
-#include <revolution/os/OSExecParams.h>
-#include <revolution/os/OSFastCast.h>
-#include <revolution/os/OSFont.h>
-#include <revolution/os/OSInterrupt.h>
-#include <revolution/os/OSMessage.h>
-#include <revolution/os/OSMutex.h>
-#include <revolution/os/OSPlayRecord.h>
-#include <revolution/os/OSPlayTime.h>
-#include <revolution/os/OSReset.h>
-#include <revolution/os/OSResetSW.h>
-#include <revolution/os/OSRtc.h>
-#include <revolution/os/OSStateFlags.h>
-#include <revolution/os/OSStateTM.h>
-#include <revolution/os/OSThread.h>
-#include <revolution/os/OSTime.h>
+#include "revolution/base/PPCArch.h"
+#include "revolution/gx.h"
+#include "revolution/os/OSAlarm.h"
+#include "revolution/os/OSAlloc.h"
+#include "revolution/os/OSCache.h"
+#include "revolution/os/OSContext.h"
+#include "revolution/os/OSException.h"
+#include "revolution/os/OSExecParams.h"
+#include "revolution/os/OSFastCast.h"
+#include "revolution/os/OSFont.h"
+#include "revolution/os/OSInterrupt.h"
+#include "revolution/os/OSMessage.h"
+#include "revolution/os/OSMutex.h"
+#include "revolution/os/OSPlayRecord.h"
+#include "revolution/os/OSPlayTime.h"
+#include "revolution/os/OSReset.h"
+#include "revolution/os/OSResetSW.h"
+#include "revolution/os/OSRtc.h"
+#include "revolution/os/OSStateFlags.h"
+#include "revolution/os/OSStateTM.h"
+#include "revolution/os/OSThread.h"
+#include "revolution/os/OSTime.h"
 
 /* PRIVATE OS FUNCTIONS */
 void __OSInitSystemCall(void);

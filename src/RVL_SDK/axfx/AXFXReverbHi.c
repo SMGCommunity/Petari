@@ -1,5 +1,5 @@
 #include "revolution/axfx.h"
-#include <revolution.h>
+#include "revolution.h"
 
 static void __ParamConvert(AXFX_REVERBHI* fx) {
     fx->exp.earlyMode = 5;

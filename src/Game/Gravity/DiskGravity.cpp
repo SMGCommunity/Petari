@@ -2,7 +2,7 @@
 #include "Game/Util.hpp"
 #include "Inline.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
-#include <math_types.hpp>
+#include "math_types.hpp"
 
 void DiskGravity_FORCE_MATCH_SDATA2() {
     (void)1.0f;

@@ -1,5 +1,5 @@
 #include "private/flipper.h"
-#include <revolution/os.h>
+#include "revolution/os.h"
 #include <cstring>
 
 #define PPCACR_OFFSET (OS_BASE_UNCACHED + 0x800000)

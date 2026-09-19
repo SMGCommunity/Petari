@@ -1,7 +1,7 @@
 #ifndef PF_DETACH_H
 #define PF_DETACH_H
 
-#include <revolution.h>
+#include "revolution.h"
 
 int VFipf2_detach(s8);
 

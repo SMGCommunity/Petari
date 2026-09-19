@@ -7,7 +7,7 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include "revolution/mtx.h"
+#include <revolution/mtx.h>
 
 void Mario::checkBeeStick() {
     return;

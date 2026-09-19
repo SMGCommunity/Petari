@@ -3,7 +3,7 @@
 #include "Game/Camera/CameraShakeTask.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
-#include "JSystem/JUtility/JUTVideo.hpp"
+#include <JSystem/JUtility/JUTVideo.hpp>
 
 namespace {
     static const f32 sInfinityIntensity = 1.0f;

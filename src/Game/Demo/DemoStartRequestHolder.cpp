@@ -2,7 +2,7 @@
 #include "Game/Demo/DemoStartRequestUtil.hpp"
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 DemoStartInfo::DemoStartInfo() {
     _0 = nullptr;

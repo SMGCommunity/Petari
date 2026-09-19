@@ -1,5 +1,5 @@
-#include <revolution/nwc24.h>
-#include <revolution/nwc24/NWC24Internal.h>
+#include "revolution/nwc24.h"
+#include "revolution/nwc24/NWC24Internal.h"
 
 void NWC24Data_Init(NWC24Data* pData) {
     pData->pData = NULL;

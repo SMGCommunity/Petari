@@ -1,8 +1,8 @@
 #ifndef OSTHREAD_H
 #define OSTHREAD_H
 
-#include <revolution/os/OSContext.h>
-#include <revolution/os/OSTime.h>
+#include "revolution/os/OSContext.h"
+#include "revolution/os/OSTime.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -11,8 +11,8 @@
 #include "Game/Util/ParabolicPath.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "revolution/mtx.h"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <revolution/mtx.h>
 
 namespace {
     const static f32 hAddHeight = 200.0f;

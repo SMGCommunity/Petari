@@ -1,4 +1,4 @@
-#include "l2c_int.h"
+#include <l2c_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -32,19 +32,19 @@
 #include "revolution/types.h"
 #include <cstring>
 
-#include "bt_target.h"
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
-#include "gki_target.h"
+#include <bt_target.h>
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
+#include <gki_target.h>
 
-#include "btm_api.h"
-#include "btm_int.h"
-#include "btu.h"
-#include "gki.h"
-#include "hcimsgs.h"
-#include "l2c_api.h"
-#include "l2cdefs.h"
+#include <btm_api.h>
+#include <btm_int.h>
+#include <btu.h>
+#include <gki.h>
+#include <hcimsgs.h>
+#include <l2c_api.h>
+#include <l2cdefs.h>
 
 /*******************************************************************************
  * functions

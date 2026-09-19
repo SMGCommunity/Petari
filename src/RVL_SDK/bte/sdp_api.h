@@ -30,9 +30,9 @@
  * headers
  */
 
-#include "bt_target.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_types.h>
+#include <data_types.h>
 
 /*******************************************************************************
  * macros

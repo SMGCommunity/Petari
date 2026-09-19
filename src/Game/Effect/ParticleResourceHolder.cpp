@@ -3,8 +3,8 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/JKernel/JKRMemArchive.hpp"
-#include "JSystem/JParticle/JPAResourceManager.hpp"
+#include <JSystem/JKernel/JKRMemArchive.hpp>
+#include <JSystem/JParticle/JPAResourceManager.hpp>
 #include <cstring>
 
 ParticleResourceHolder::ParticleResourceHolder(const char* pArchiveName)

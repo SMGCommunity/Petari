@@ -2,7 +2,7 @@
 
 #include "Game/AudioLib/AudBgmRhythmStrategy.hpp"
 #include "Game/AudioLib/AudTrackController.hpp"
-#include "JSystem/JAudio2/JAISound.hpp"
+#include <JSystem/JAudio2/JAISound.hpp>
 
 class JAISoundID;
 class AudBgmVolumeController;

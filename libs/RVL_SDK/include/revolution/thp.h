@@ -1,7 +1,7 @@
 #ifndef THP_H
 #define THP_H
 
-#include <revolution.h>
+#include "revolution.h"
 
 #ifdef __cplusplus
 extern "C" {

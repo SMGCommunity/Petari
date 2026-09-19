@@ -14,9 +14,9 @@
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include <JSystem/JMath/JMath.hpp>
 #include "math_types.hpp"
-#include "revolution/mtx.h"
+#include <revolution/mtx.h>
 
 namespace MR {
     void initShadowVolumeBox(LiveActor* pActor, const TVec3f& size) {

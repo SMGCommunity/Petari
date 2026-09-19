@@ -1,6 +1,6 @@
-#include <JSystem/JKernel/JKRHeap.hpp>
-#include <JSystem/JUtility/JUTPalette.hpp>
-#include <JSystem/JUtility/JUTTexture.hpp>
+#include "JSystem/JKernel/JKRHeap.hpp"
+#include "JSystem/JUtility/JUTPalette.hpp"
+#include "JSystem/JUtility/JUTTexture.hpp"
 
 JUTTexture::JUTTexture(int width, int height, GXTexFmt format) {
     mFlag = mFlag & 2 | 1;

@@ -3,7 +3,7 @@
 #include "Game/Util.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 #include <cstddef>
 
 namespace {

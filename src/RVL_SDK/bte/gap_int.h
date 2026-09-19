@@ -32,15 +32,15 @@
  * headers
  */
 
-#include "bt_target.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "btm_api.h"
-#include "btm_int.h"
-#include "gap_api.h"
-#include "gki.h"
-#include "l2c_api.h"
+#include <btm_api.h>
+#include <btm_int.h>
+#include <gap_api.h>
+#include <gki.h>
+#include <l2c_api.h>
 
 /*******************************************************************************
  * macros

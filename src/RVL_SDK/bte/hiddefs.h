@@ -30,10 +30,10 @@
  * headers
  */
 
-#include "bt_target.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <data_types.h>
 
-#include "sdp_api.h"
+#include <sdp_api.h>
 
 /*******************************************************************************
  * macros

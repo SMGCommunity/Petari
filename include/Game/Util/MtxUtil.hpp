@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry.hpp"
-#include "revolution/mtx.h"
+#include <JSystem/JGeometry.hpp>
+#include <revolution/mtx.h>
 #include <revolution.h>
 
 class LiveActor;

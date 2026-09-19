@@ -1,6 +1,6 @@
 #pragma once
 
-#include <JSystem/JAudio2/JASDSPInterface.hpp>
+#include "JSystem/JAudio2/JASDSPInterface.hpp"
 
 struct JASDSPChannel {
     typedef s32 (*Callback)(u32, JASDsp::TChannel*, void*);

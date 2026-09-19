@@ -1,4 +1,4 @@
-#include "bta_hh_int.h"
+#include <bta_hh_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>

@@ -8,7 +8,7 @@
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "revolution/mtx.h"
+#include <revolution/mtx.h>
 #include <JSystem/JMath/JMATrigonometric.hpp>
 
 namespace {

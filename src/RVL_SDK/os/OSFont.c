@@ -1,5 +1,5 @@
-#include <revolution/os.h>
-#include <private/flipper.h>
+#include "revolution/os.h"
+#include "private/flipper.h"
 
 static u16 FontEncode = 0xFFFF;
 static OSFontHeader* FontDataAnsi;

@@ -3,8 +3,8 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioState.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
+#include <revolution/mtx.h>
+#include <revolution/types.h>
 
 extern "C" {}
 

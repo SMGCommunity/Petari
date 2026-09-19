@@ -1,7 +1,7 @@
 #pragma once
 
 #include "JSystem/JGeometry/TBox.hpp"
-#include <JSystem/J2DGraph/J2DGrafContext.hpp>
+#include "JSystem/J2DGraph/J2DGrafContext.hpp"
 
 class J2DOrthoGraph : public J2DGrafContext {
 public:

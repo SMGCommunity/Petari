@@ -1,4 +1,4 @@
-#include "bta_prm_int.h"
+#include <bta_prm_int.h>
 
 /*******************************************************************************
  * headers
@@ -6,15 +6,15 @@
 
 #include <string.h>
 
-#include "BCM2045.h"
+#include <BCM2045.h>
 
-#include "bt_trace.h"
-#include "bt_types.h" // BT_HDR
-#include "data_types.h"
+#include <bt_trace.h>
+#include <bt_types.h> // BT_HDR
+#include <data_types.h>
 
-#include "bta_fs_co.h"
-#include "bta_sys.h" // bta_sys_sendmsg
-#include "gki.h"
+#include <bta_fs_co.h>
+#include <bta_sys.h> // bta_sys_sendmsg
+#include <gki.h>
 
 /*******************************************************************************
  * local function declarations

@@ -1,6 +1,6 @@
-#include <revolution/os/OSAlarm.h>
-#include <revolution/dvd.h>
-#include <revolution/os.h>
+#include "revolution/os/OSAlarm.h"
+#include "revolution/dvd.h"
+#include "revolution/os.h"
 
 BOOL __DVDTestAlarm(const OSAlarm *);
 static void DecrementerExceptionHandler(__OSException, OSContext *);

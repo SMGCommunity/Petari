@@ -1,6 +1,6 @@
-#include <revolution/db.h>
-#include <revolution/os/OSCache.h>
-#include <revolution/os.h>
+#include "revolution/db.h"
+#include "revolution/os/OSCache.h"
+#include "revolution/os.h"
 
 //needs to be a char[] to prevent something from showing up in .sdata
 static char error[] = ">>> L2 INVALIDATE : SHOULD NEVER HAPPEN\n";

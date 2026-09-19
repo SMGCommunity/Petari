@@ -4,7 +4,7 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 #include <revolution/mtx.h>
 
 void BezierRail_FORCE_MATCH_SDATA2() {

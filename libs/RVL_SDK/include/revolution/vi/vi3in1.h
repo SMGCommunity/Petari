@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include <revolution/vi/vi3in1types.h>
+#include "revolution/vi/vi3in1types.h"
 
 typedef enum _VIGamma {
     VI_GM_0_1 = 1,

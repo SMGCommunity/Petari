@@ -1,7 +1,7 @@
 #ifndef __METROTRK_TRK_H__
 #define __METROTRK_TRK_H__
 
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -1,7 +1,7 @@
 #include <cstring>
-#include <revolution/dvd.h>
-#include <revolution/os.h>
-#include <revolution/os/OSBootInfo.h>
+#include "revolution/dvd.h"
+#include "revolution/os.h"
+#include "revolution/os/OSBootInfo.h"
 
 
 extern DVDErrorInfo __ErrorInfo;

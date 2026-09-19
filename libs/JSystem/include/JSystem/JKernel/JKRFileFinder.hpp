@@ -1,6 +1,6 @@
 #pragma once
 
-#include "revolution.h"
+#include <revolution.h>
 
 class JKRArchive;
 

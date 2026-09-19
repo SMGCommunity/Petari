@@ -1,4 +1,4 @@
-#include "bta_pbs_int.h"
+#include <bta_pbs_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -29,9 +29,9 @@
  * headers
  */
 
-#include "data_types.h"
+#include <data_types.h>
 
-#include "bta_pbs_api.h"
+#include <bta_pbs_api.h>
 
 /*******************************************************************************
  * macros

@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include <revolution/os/OSThread.h>
+#include "revolution/os/OSThread.h"
 
 typedef struct OSMessageQueue OSMessageQueue;
 typedef void* OSMessage;

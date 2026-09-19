@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 
 #define VI_DISPLAY_PIX_SZ 2
 

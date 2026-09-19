@@ -1,6 +1,6 @@
 #include "Game/Map/OceanSpherePoint.hpp"
 #include "Game/Util.hpp"
-#include "revolution/mtx.h"
+#include <revolution/mtx.h>
 
 OceanSpherePoint::OceanSpherePoint(const TVec3f* pCenter, const TVec3f& rNormal, f32 wave1Pos, f32 wave2Pos, const TVec2f& rTexCoord)
     : mPos(*pCenter), mCenter(pCenter), mNormal(rNormal), mWave1Pos(wave1Pos), mWave2Pos(wave2Pos), mTexCoord(rTexCoord) {

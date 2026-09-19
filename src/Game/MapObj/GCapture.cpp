@@ -23,11 +23,11 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/SpringValue.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 #include "math_types.hpp"
-#include "revolution/types.h"
-#include "revolution/wpad.h"
+#include <revolution/types.h>
+#include <revolution/wpad.h>
 
 void GCapture_FORCE_MATCH_SDATA2() {
     (void)1.0f;

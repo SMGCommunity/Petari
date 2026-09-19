@@ -1,5 +1,5 @@
 #include "Game/Speaker/SpkWave.hpp"
-#include "JSystem/JAudio2/JASCriticalSection.hpp"
+#include <JSystem/JAudio2/JASCriticalSection.hpp>
 #include <revolution/os.h>
 
 SpkWave::SpkWave() : mResource(nullptr) {

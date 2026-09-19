@@ -1,5 +1,5 @@
-#include <revolution/os.h>
-#include <revolution/nand.h>
+#include "revolution/os.h"
+#include "revolution/nand.h"
 #include <cstdio>
 #include <mem.h>
 

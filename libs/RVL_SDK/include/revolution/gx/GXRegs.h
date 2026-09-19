@@ -5,24 +5,24 @@
 extern "C" {
 #endif
 
-#include <private/bp_reg.h>
-#include <private/cp_reg.h>
-#include <private/gen_reg.h>
-#include <private/pe_reg.h>
-#include <private/pi_reg.h>
-#include <private/ras_reg.h>
-#include <private/su_reg.h>
-#include <private/tev_reg.h>
-#include <private/tx_reg.h>
-#include <revolution/base/PPCWGPipe.h>
-#include <revolution/gx/shortcut_bp_reg.h>
-#include <revolution/gx/shortcut_cp_reg.h>
-#include <revolution/gx/shortcut_gen_reg.h>
-#include <revolution/gx/shortcut_pe_reg.h>
-#include <revolution/gx/shortcut_pi_cp_reg.h>
-#include <revolution/gx/shortcut_ras_reg.h>
-#include <revolution/gx/shortcut_su_reg.h>
-#include <revolution/gx/shortcut_tev_reg.h>
+#include "private/bp_reg.h"
+#include "private/cp_reg.h"
+#include "private/gen_reg.h"
+#include "private/pe_reg.h"
+#include "private/pi_reg.h"
+#include "private/ras_reg.h"
+#include "private/su_reg.h"
+#include "private/tev_reg.h"
+#include "private/tx_reg.h"
+#include "revolution/base/PPCWGPipe.h"
+#include "revolution/gx/shortcut_bp_reg.h"
+#include "revolution/gx/shortcut_cp_reg.h"
+#include "revolution/gx/shortcut_gen_reg.h"
+#include "revolution/gx/shortcut_pe_reg.h"
+#include "revolution/gx/shortcut_pi_cp_reg.h"
+#include "revolution/gx/shortcut_ras_reg.h"
+#include "revolution/gx/shortcut_su_reg.h"
+#include "revolution/gx/shortcut_tev_reg.h"
 
 #ifdef __MWERKS__
 extern volatile PPCWGPipe gxfifo : 0xCC008000;

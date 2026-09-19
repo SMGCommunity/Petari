@@ -1,5 +1,5 @@
-#include <revolution/dsp/dsp_task.h>
-#include <revolution/dsp/dsp_debug.h>
+#include "revolution/dsp/dsp_task.h"
+#include "revolution/dsp/dsp_debug.h"
 
 #define WAIT_FOR_MAIL  \
     while (DSPCheckMailToDSP()) { }

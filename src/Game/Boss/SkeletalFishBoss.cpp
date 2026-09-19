@@ -35,7 +35,7 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/J3DGraphAnimator/J3DJoint.hpp"
+#include <JSystem/J3DGraphAnimator/J3DJoint.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
 #include <JSystem/JMath/JMath.hpp>
 #include <cstdio>

@@ -1,5 +1,5 @@
 #include <mem.h>
-#include <revolution/wenc.h>
+#include "revolution/wenc.h"
 
 s32 WENCGetEncodeData(WENCInfo* info, u32 flag, const s16* pcmData, s32 samples, u8* adpcmData) {
     const f64 table[] = {0.89843750, 0.89843750, 0.89843750, 0.89843750, 1.19921875, 1.59765625, 2.00000000, 2.39843750};

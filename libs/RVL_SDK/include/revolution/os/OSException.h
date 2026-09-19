@@ -1,8 +1,8 @@
 #ifndef OSEXCEPTION_H
 #define OSEXCEPTION_H
 
-#include <revolution/os/OSContext.h>
-#include <revolution/types.h>
+#include "revolution/os/OSContext.h"
+#include "revolution/types.h"
 
 
 #ifdef __cplusplus

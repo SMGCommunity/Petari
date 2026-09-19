@@ -8,7 +8,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "revolution/mtx.h"
+#include <revolution/mtx.h>
 
 namespace {
     static const char* cDemoName = "砂漠ＵＦＯ上昇";

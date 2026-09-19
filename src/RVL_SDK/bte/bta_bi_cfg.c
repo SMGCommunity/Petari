@@ -1,12 +1,12 @@
-#include "bta_bi_int.h"
+#include <bta_bi_int.h>
 
 /*******************************************************************************
  * headers
  */
 
-#include "data_types.h"
+#include <data_types.h>
 
-#include "bta_bi_api.h"
+#include <bta_bi_api.h>
 
 /*******************************************************************************
  * variables

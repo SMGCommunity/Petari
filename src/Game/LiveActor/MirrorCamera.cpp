@@ -3,8 +3,8 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
-#include "JSystem/JGeometry/TPartition3.hpp"
+#include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
+#include <JSystem/JGeometry/TPartition3.hpp>
 
 void MirrorCamera_FORCE_MATCH_SDATA2() {
     1.0f;

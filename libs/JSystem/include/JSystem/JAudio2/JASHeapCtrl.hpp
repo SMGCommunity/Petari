@@ -3,7 +3,7 @@
 #include "JSystem/JAudio2/JASCriticalSection.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include "JSystem/JSupport/JSUList.hpp"
-#include "revolution/os/OSInterrupt.h"
+#include <revolution/os/OSInterrupt.h>
 #include <revolution/os.h>
 #include <revolution/types.h>
 

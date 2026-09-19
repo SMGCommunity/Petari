@@ -1,5 +1,5 @@
-#include <revolution/db.h>
-#include <revolution/os.h>
+#include "revolution/db.h"
+#include "revolution/os.h"
 
 DBInterface* __DBInterface = NULL;
 BOOL DBVerbose;

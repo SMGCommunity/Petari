@@ -1,7 +1,7 @@
 #include "revolution/gx/GXTev.h"
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXRegs.h"
-#include <revolution/gx.h>
+#include "revolution/gx.h"
 
 static tev_color_env_t TEVCOpTableST0[] = {
     {

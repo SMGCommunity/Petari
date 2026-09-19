@@ -13,9 +13,9 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JMath/JMath.hpp"
-#include "JSystem/JUtility/JUTVideo.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <JSystem/JMath/JMath.hpp>
+#include <JSystem/JUtility/JUTVideo.hpp>
 
 void TalkBalloon_DUMMY() {
     (void)JGeometry::TUtil< f32 >::acos(1.0f);

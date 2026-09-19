@@ -1,6 +1,6 @@
-#include <revolution/gx.h>
-#include <revolution/gx/GXRegs.h>
-#include <revolution/gx/GXTypes.h>
+#include "revolution/gx.h"
+#include "revolution/gx/GXRegs.h"
+#include "revolution/gx/GXTypes.h"
 
 void GXSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor color) {
     u32 fogclr = 0, fog0 = 0, fog1 = 0, fog2 = 0, fog3 = 0;

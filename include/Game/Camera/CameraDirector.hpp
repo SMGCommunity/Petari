@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraHolder.hpp"
 #include "Game/NameObj/NameObj.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class CameraCover;
 class CameraDirector;

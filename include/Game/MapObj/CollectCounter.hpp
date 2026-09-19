@@ -2,7 +2,7 @@
 
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/LayoutActor.hpp"
-#include "JSystem/JGeometry.hpp"
+#include <JSystem/JGeometry.hpp>
 
 class CollectCounter : public LayoutActor {
 public:

@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include <revolution.h>
+#include "revolution.h"
 
 void IPCiProfInit(void);
 void IPCiProfQueueReq(void *, s32);

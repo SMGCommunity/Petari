@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/Camera/Camera.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class CameraDPD : public Camera {
 public:

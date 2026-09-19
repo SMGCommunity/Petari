@@ -6,9 +6,9 @@
 #include "Game/Util/MessageUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
-#include "runtime.h"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
+#include <runtime.h>
 
 namespace {
     const s32 cAppearReadyFrame = 40;

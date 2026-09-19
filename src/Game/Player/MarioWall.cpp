@@ -8,7 +8,7 @@
 #include "Game/Player/MarioSwim.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include <JSystem/JMath/JMath.hpp>
 #include <cstring>
 
 bool Mario::isWalling() const {

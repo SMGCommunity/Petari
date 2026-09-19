@@ -1,8 +1,8 @@
 #include "stdarg.h"
 #include "stdio_api.h"
 #include "va_list.h"
-#include <cctype>
-#include <cmath>
+#include "cctype"
+#include "cmath"
 #pragma exceptions on
 
 enum argument_options {

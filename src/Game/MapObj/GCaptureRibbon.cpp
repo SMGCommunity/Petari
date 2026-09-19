@@ -5,13 +5,13 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
-#include "revolution/gx/GXEnum.h"
-#include "revolution/gx/GXGeometry.h"
-#include "revolution/gx/GXPixel.h"
-#include "revolution/gx/GXVert.h"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
+#include <revolution/gx/GXEnum.h>
+#include <revolution/gx/GXGeometry.h>
+#include <revolution/gx/GXPixel.h>
+#include <revolution/gx/GXVert.h>
+#include <revolution/types.h>
 
 GCaptureRibbon::GCaptureRibbon(const char* pName) : LiveActor(pName), mTexture(), _990(), _994() {
 }

@@ -1,10 +1,10 @@
 #ifndef RVL_SDK_NWC24_DOWNLOAD_H
 #define RVL_SDK_NWC24_DOWNLOAD_H
-#include <revolution/types.h>
+#include "revolution/types.h"
 #include <cstdlib>
 
-#include <revolution/fs.h>
-#include <revolution/nwc24/NWC24Types.h>
+#include "revolution/fs.h"
+#include "revolution/nwc24/NWC24Types.h"
 
 #ifdef __cplusplus
 extern "C" {

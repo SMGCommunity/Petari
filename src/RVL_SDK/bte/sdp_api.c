@@ -1,4 +1,4 @@
-#include "sdp_api.h"
+#include <sdp_api.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -32,13 +32,13 @@
 #include "revolution/types.h"
 #include <cstring>
 
-#include "bt_target.h"
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "sdp_int.h"
-#include "sdpdefs.h"
+#include <sdp_int.h>
+#include <sdpdefs.h>
 
 /*******************************************************************************
  * local function declarations

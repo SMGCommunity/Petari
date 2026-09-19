@@ -1,6 +1,6 @@
-#include <revolution/si.h>
-#include <revolution/vi.h>
-#include <private/flipper.h>
+#include "revolution/si.h"
+#include "revolution/vi.h"
+#include "private/flipper.h"
 
 static u32 SamplingRate;
 

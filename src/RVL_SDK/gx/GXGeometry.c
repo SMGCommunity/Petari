@@ -1,6 +1,6 @@
 #include "revolution/gx/GXEnum.h"
-#include <revolution/gx.h>
-#include <revolution/gx/GXRegs.h>
+#include "revolution/gx.h"
+#include "revolution/gx/GXRegs.h"
 
 inline void __GXSetAmbMat(u32 amState) {
     if (amState & 0x100) {

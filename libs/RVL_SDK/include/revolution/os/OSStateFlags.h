@@ -1,7 +1,7 @@
 #ifndef OSSTATEFLAGS_H
 #define OSSTATEFLAGS_H
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 
 typedef struct {
     u32 checkSum;

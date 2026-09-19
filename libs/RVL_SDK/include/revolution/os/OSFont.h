@@ -1,4 +1,4 @@
-#include <revolution/types.h>
+#include "revolution/types.h"
 
 typedef struct OSFontHeader {
     u16 fontType;

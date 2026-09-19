@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-#include <revolution/gx/GXEnum.h>
-#include <revolution/types.h>
+#include "revolution/gx/GXEnum.h"
+#include "revolution/types.h"
 
 void GXPokeAlphaMode(GXCompare, u8);
 void GXPokeAlphaRead(GXAlphaReadMode);

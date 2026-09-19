@@ -1,7 +1,7 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util.hpp"
 #include "Inline.hpp"
-#include "JSystem/JMath.hpp"
+#include <JSystem/JMath.hpp>
 
 void ParallelGravity_FORCE_MATCH(const TVec3f& rVector) {
     TVec3f negated = -rVector;

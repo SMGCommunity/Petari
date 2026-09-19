@@ -30,16 +30,16 @@
  * headers
  */
 
-#include "bt_target.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "gki.h"
-#include "hid_conn.h"
-#include "hiddefs.h"
-#include "hidh_api.h"
-#include "l2c_api.h"
-#include "sdp_api.h"
+#include <gki.h>
+#include <hid_conn.h>
+#include <hiddefs.h>
+#include <hidh_api.h>
+#include <l2c_api.h>
+#include <sdp_api.h>
 
 /*******************************************************************************
  * macros

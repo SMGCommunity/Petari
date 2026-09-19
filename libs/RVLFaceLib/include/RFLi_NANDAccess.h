@@ -1,6 +1,6 @@
 #ifndef RVL_FACE_LIBRARY_INTERNAL_NAND_ACCESS_H
 #define RVL_FACE_LIBRARY_INTERNAL_NAND_ACCESS_H
-#include <RFLi_Types.h>
+#include "RFLi_Types.h"
 #include <revolution/FS.h>
 #include <revolution/MEM.h>
 #include <revolution/NAND.h>

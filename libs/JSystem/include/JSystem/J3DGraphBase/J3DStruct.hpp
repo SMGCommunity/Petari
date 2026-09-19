@@ -1,7 +1,7 @@
 #pragma once
 
-#include <JSystem/JGeometry/TMatrix.hpp>
-#include <JSystem/JGeometry/TVec.hpp>
+#include "JSystem/JGeometry/TMatrix.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 #include <revolution.h>
 
 struct J3DGXColor : public GXColor {

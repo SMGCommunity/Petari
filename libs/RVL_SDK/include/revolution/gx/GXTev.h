@@ -5,9 +5,9 @@
 extern "C" {
 #endif
 
-#include <revolution/types.h>
-#include <revolution/gx/GXEnum.h>
-#include <revolution/gx/GXStruct.h>
+#include "revolution/types.h"
+#include "revolution/gx/GXEnum.h"
+#include "revolution/gx/GXStruct.h"
 
 void GXSetTevOp(GXTevStageID, GXTevMode);
 void GXSetTevColorIn(GXTevStageID, GXTevColorArg, GXTevColorArg, GXTevColorArg, GXTevColorArg);

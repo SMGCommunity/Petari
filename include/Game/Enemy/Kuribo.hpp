@@ -5,7 +5,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/JMapInfo.hpp"
-#include "JSystem/JGeometry/TQuat.hpp"
+#include <JSystem/JGeometry/TQuat.hpp>
 
 class ItemGenerator;
 class WalkerStateStagger;

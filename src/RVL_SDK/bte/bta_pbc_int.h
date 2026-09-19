@@ -5,7 +5,7 @@
  * headers
  */
 
-#include "bta_pbc_api.h"
+#include <bta_pbc_api.h>
 
 /*******************************************************************************
  * external globals

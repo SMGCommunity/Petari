@@ -1,4 +1,4 @@
-#include "btm_api.h"
+#include <btm_api.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -32,15 +32,15 @@
 #include "revolution/types.h"
 #include <cstring>
 
-#include "bt_target.h"
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "btm_int.h"
-#include "gki.h"
-#include "hcidefs.h"
-#include "hcimsgs.h"
+#include <btm_int.h>
+#include <gki.h>
+#include <hcidefs.h>
+#include <hcimsgs.h>
 
 /*******************************************************************************
  * types

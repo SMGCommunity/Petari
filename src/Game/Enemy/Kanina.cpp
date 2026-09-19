@@ -4,7 +4,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/JointRumbler.hpp"
-#include "revolution/wpad.h"
+#include <revolution/wpad.h>
 
 namespace NrvKanina {
     NEW_NERVE(HostTypeAppear, Kanina, Appear);

@@ -1,4 +1,4 @@
-#include "hidd_int.h"
+#include <hidd_int.h>
 
 /*******************************************************************************
  * headers
@@ -7,13 +7,13 @@
 #include "revolution/types.h"
 #include <cstring>
 
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "btu.h"
-#include "hidd_api.h"
-#include "hiddefs.h"
+#include <btu.h>
+#include <hidd_api.h>
+#include <hiddefs.h>
 
 /*******************************************************************************
  * local function declarations

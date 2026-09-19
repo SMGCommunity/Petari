@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-#include <revolution/types.h>
-#include <revolution/mem/heapCommon.h>
+#include "revolution/types.h"
+#include "revolution/mem/heapCommon.h"
 
 typedef struct MEMAllocator MEMAllocator;
 typedef void* (*MEMFuncAllocatorAlloc)( MEMAllocator* pAllocator, u32 size );

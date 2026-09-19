@@ -5,10 +5,10 @@
  * headers
  */
 
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "hiddefs.h"
+#include <hiddefs.h>
 
 /*******************************************************************************
  * types

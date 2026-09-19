@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-#include <revolution/types.h>
-#include <revolution/gx.h>
+#include "revolution/types.h"
+#include "revolution/gx.h"
 
 void GXGetViewportv(f32 *);
 

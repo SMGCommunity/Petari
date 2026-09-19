@@ -1,4 +1,4 @@
-#include "bta_dm_int.h"
+#include <bta_dm_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -29,10 +29,10 @@
  * headers
  */
 
-#include "bt_types.h" // BT_HDR
-#include "data_types.h"
+#include <bt_types.h> // BT_HDR
+#include <data_types.h>
 
-#include "bta_sys.h"
+#include <bta_sys.h>
 
 /*******************************************************************************
  * macros

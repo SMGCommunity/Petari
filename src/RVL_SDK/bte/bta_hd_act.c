@@ -1,4 +1,4 @@
-#include "bta_hd_int.h"
+#include <bta_hd_int.h>
 
 /*******************************************************************************
  * headers
@@ -6,18 +6,18 @@
 
 #include <string.h>
 
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "bd.h"
-#include "bta_hd_api.h"
-#include "bta_sys.h"
-#include "btm_api.h"
-#include "gki.h"
-#include "hidd_api.h"
-#include "hiddefs.h"
-#include "sdp_api.h"
+#include <bd.h>
+#include <bta_hd_api.h>
+#include <bta_sys.h>
+#include <btm_api.h>
+#include <gki.h>
+#include <hidd_api.h>
+#include <hiddefs.h>
+#include <sdp_api.h>
 
 /*******************************************************************************
  * types

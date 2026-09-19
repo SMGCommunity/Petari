@@ -2,7 +2,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include <Game/Util.hpp>
+#include "Game/Util.hpp"
 
 ClipAreaShape::ClipAreaShape(const char* pName) : mModelData(nullptr) {
     mModelData = MR::getJ3DModelData(pName);

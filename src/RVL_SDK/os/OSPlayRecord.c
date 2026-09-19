@@ -1,5 +1,5 @@
-#include <revolution/os.h>
-#include <revolution/nand.h>
+#include "revolution/os.h"
+#include "revolution/nand.h"
 
 static BOOL PlayRecordGet = FALSE;
 static OSPlayRecord PlayRecord __attribute__ ((aligned(32))) = {0};

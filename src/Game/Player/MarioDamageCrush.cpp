@@ -2,7 +2,7 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioCrush.hpp"
 #include "Game/Player/MarioState.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 bool Mario::requestCrush() {
     _10._18 = true;

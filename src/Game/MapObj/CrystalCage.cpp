@@ -4,8 +4,8 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/DummyDisplayModel.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JGeometry/TUtil.hpp"
-#include "JSystem/JMath.hpp"
+#include <JSystem/JGeometry/TUtil.hpp>
+#include <JSystem/JMath.hpp>
 #include "math_types.hpp"
 
 void CrystalCage_FORCE_MATCH_SDATA2() {

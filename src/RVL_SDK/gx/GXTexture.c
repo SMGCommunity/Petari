@@ -3,8 +3,8 @@
 #include "revolution/gx/GXTypes.h"
 #include "revolution/gx/shortcut_tx_reg.h"
 #include <mem.h>
-#include <revolution/gx.h>
-#include <revolution/gx/GXRegs.h>
+#include "revolution/gx.h"
+#include "revolution/gx/GXRegs.h"
 
 #define __GX_FLUSH_TEX_STATE() __GXFlushTextureState()
 

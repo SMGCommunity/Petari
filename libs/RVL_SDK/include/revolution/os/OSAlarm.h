@@ -1,9 +1,9 @@
 #ifndef OSALARM_H
 #define OSALARM_H
 
-#include <revolution/types.h>
-#include <revolution/os/OSContext.h>
-#include <revolution/os/OSTime.h>
+#include "revolution/types.h"
+#include "revolution/os/OSContext.h"
+#include "revolution/os/OSTime.h"
 
 #ifdef __cplusplus
 extern "C" {

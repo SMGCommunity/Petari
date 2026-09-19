@@ -3,9 +3,9 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
-#include "JSystem/J3DGraphAnimator/J3DAnimation.hpp"
-#include "JSystem/JGeometry/TUtil.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
+#include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
+#include <JSystem/JGeometry/TUtil.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
 
 namespace {
     f32 gxArray[] = {0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.2f, 1.0f, 0.2f, 0.0f, 0.5f, 1.0f, 0.5f, 0.0f, 1.0f, 1.0f, 1.0f};

@@ -1,4 +1,4 @@
-#include "hcimsgs.h"
+#include <hcimsgs.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -32,14 +32,14 @@
 #include "revolution/types.h"
 #include <cstring>
 
-#include <macros.h>  // ARRAY_LENGTH
+#include "macros.h"  // ARRAY_LENGTH
 
-#include "bt_target.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "btu.h"
-#include "hcidefs.h"
+#include <btu.h>
+#include <hcidefs.h>
 
 /*******************************************************************************
  * functions

@@ -5,9 +5,9 @@
 extern "C" {
 #endif
 
-#include <revolution/esp.h>
-#include <revolution/os.h>
-#include <revolution/types.h>
+#include "revolution/esp.h"
+#include "revolution/os.h"
+#include "revolution/types.h"
 #include <stdbool.h>
 
 typedef struct DVDDiskID DVDDiskID;

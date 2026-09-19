@@ -1,5 +1,5 @@
 #include "JSystem/JKernel/JKRFileLoader.hpp"
-#include "revolution.h"
+#include <revolution.h>
 
 JKRFileLoader* JKRFileLoader::sCurrentVolume;
 JSUList< JKRFileLoader > JKRFileLoader::sVolumeList = JSUList< JKRFileLoader >();

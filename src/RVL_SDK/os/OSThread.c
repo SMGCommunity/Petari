@@ -1,5 +1,5 @@
-#include <private/OSLoMem.h>
-#include <revolution/os.h>
+#include "private/OSLoMem.h"
+#include "revolution/os.h"
 
 extern OSErrorHandler __OSErrorTable[];
 

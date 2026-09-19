@@ -1,4 +1,4 @@
-#include "hidh_api.h"
+#include <hidh_api.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -32,19 +32,19 @@
 #include "revolution/types.h"
 #include <cstring>
 
-#include "bt_target.h"
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "btm_api.h"
-#include "btu.h"
-#include "gki.h"
-#include "hid_conn.h"
-#include "hiddefs.h"
-#include "hidh_int.h"
-#include "sdp_api.h"
-#include "sdpdefs.h"
+#include <btm_api.h>
+#include <btu.h>
+#include <gki.h>
+#include <hid_conn.h>
+#include <hiddefs.h>
+#include <hidh_int.h>
+#include <sdp_api.h>
+#include <sdpdefs.h>
 
 /*******************************************************************************
  * macros

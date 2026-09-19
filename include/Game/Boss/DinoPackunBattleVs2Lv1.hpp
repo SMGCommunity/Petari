@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/Boss/DinoPackunAction.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class DinoPackunStateDamage;
 class DinoPackunTrackFireHolder;

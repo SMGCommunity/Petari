@@ -5,9 +5,9 @@
  * headers
  */
 
-#include "data_types.h"
+#include <data_types.h>
 
-#include "bta_aa_api.h"
+#include <bta_aa_api.h>
 
 /*******************************************************************************
  * external globals

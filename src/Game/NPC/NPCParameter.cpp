@@ -3,8 +3,8 @@
 #include "Game/NPC/NPCActor.hpp"
 #include "Game/NPC/NPCActorItem.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 
 NPCParameterEdit::NPCParameterEdit(const char* pName, const char** ppChar, bool a3) : NPCParameterBase(pName), _8(ppChar), _C(a3) {
 }

@@ -1,4 +1,4 @@
-#include "goep_fs.h"
+#include <goep_fs.h>
 
 /*******************************************************************************
  * headers
@@ -6,10 +6,10 @@
 
 #include <string.h> // memset
 
-#include "gki_target.h" // PPC_TASK
-#include "data_types.h"
+#include <gki_target.h> // PPC_TASK
+#include <data_types.h>
 
-#include "gki.h"
+#include <gki.h>
 
 /*******************************************************************************
  * functions

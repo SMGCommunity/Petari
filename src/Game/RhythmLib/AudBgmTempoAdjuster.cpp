@@ -1,7 +1,7 @@
 #include "Game/RhythmLib/AudBgmTempoAdjuster.hpp"
 #include "Game/AudioLib/AudParams.hpp"
-#include "JSystem/JAudio2/JAIStream.hpp"
-#include "JSystem/JAudio2/JASCriticalSection.hpp"
+#include <JSystem/JAudio2/JAIStream.hpp>
+#include <JSystem/JAudio2/JASCriticalSection.hpp>
 
 AudBgmTempoAdjuster::AudBgmTempoAdjuster()
     : mStream(), mBeatMul(1.0f), mIntroBeats(), mLoopBeats(), mLoopStartSamples(), mLoopEndSamples(), mLoopSamples() {

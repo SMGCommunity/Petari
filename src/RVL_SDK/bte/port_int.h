@@ -30,13 +30,13 @@
  * headers
  */
 
-#include "bt_target.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "gki.h"
-#include "port_api.h"
-#include "rfcdefs.h"
+#include <gki.h>
+#include <port_api.h>
+#include <rfcdefs.h>
 
 /*******************************************************************************
  * types

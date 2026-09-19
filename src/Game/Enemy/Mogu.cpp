@@ -19,8 +19,8 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
-#include <math_types.hpp>
+#include <JSystem/JMath/JMath.hpp>
+#include "math_types.hpp"
 
 namespace {
     const f32 hThrowableSightParam[] = {900.0f, 10.0f, 90.0f};

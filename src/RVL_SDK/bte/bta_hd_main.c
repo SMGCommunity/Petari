@@ -1,4 +1,4 @@
-#include "bta_hd_int.h"
+#include <bta_hd_int.h>
 
 /* References:
  * esp-idf <github.com/espressif/esp-idf>
@@ -11,15 +11,15 @@
 
 #include <string.h>
 
-#include "bt_trace.h"
-#include "bt_types.h" // BT_HDR
-#include "data_types.h"
+#include <bt_trace.h>
+#include <bt_types.h> // BT_HDR
+#include <data_types.h>
 
-#include "bd.h" // bdcpy
-#include "bta_hd_api.h"
-#include "gki.h" // GKI_init_q
-#include "hidd_api.h"
-#include "hiddefs.h"
+#include <bd.h> // bdcpy
+#include <bta_hd_api.h>
+#include <gki.h> // GKI_init_q
+#include <hidd_api.h>
+#include <hiddefs.h>
 
 /*******************************************************************************
  * macros

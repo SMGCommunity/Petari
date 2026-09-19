@@ -1,7 +1,7 @@
 #ifndef FLIPPER_H
 #define FLIPPER_H
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 
 #ifdef __MWERKS__
 vu16 __VIRegs[0x3B] : 0xCC002000;

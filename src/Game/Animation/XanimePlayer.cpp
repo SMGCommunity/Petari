@@ -1,11 +1,11 @@
 #include "Game/Animation/XanimePlayer.hpp"
 #include "Game/Animation/XanimeCore.hpp"
 #include "Game/Animation/XanimeResource.hpp"
-#include "JSystem/J3DGraphAnimator/J3DAnimation.hpp"
-#include "JSystem/J3DGraphAnimator/J3DJoint.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModel.hpp"
-#include "JSystem/J3DGraphAnimator/J3DMtxCalc.hpp"
-#include "revolution/types.h"
+#include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
+#include <JSystem/J3DGraphAnimator/J3DJoint.hpp>
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
+#include <JSystem/J3DGraphAnimator/J3DMtxCalc.hpp>
+#include <revolution/types.h>
 
 namespace {
     const char* dummy_name = "NULL";

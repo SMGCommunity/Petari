@@ -1,8 +1,8 @@
-#include <revolution/ai.h>
-#include <revolution/os.h>
-#include <revolution/esp.h>
-#include <revolution/nand.h>
-#include <private/OSLoMem.h>
+#include "revolution/ai.h"
+#include "revolution/os.h"
+#include "revolution/esp.h"
+#include "revolution/nand.h"
+#include "private/OSLoMem.h"
 
 OSThread* __OSExpireThread;
 OSAlarm __OSExpireAlarm;

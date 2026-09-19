@@ -18,7 +18,7 @@
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
+#include <JSystem/JMath/JMATrigonometric.hpp>
 #include <cstring>
 
 MarioAnimator::MarioAnimator(MarioActor* pActor) : MarioModule(pActor) {
