@@ -37,10 +37,12 @@
 #include <cstring>
 #include <revolution/gd/GDBase.h>
 
+
 namespace MR {
     void showMaterial(J3DModel*, const char*);
-    template < class T >
-    FunctorV0M< const T*, void (T::*)() const > Functor(const T*, void (T::*)() const) NO_INLINE;
+    template <>
+    FunctorV0M< const MarioActor*, void (MarioActor::*)() const > Functor< MarioActor >(const MarioActor* pActor,
+                                                                                        void (MarioActor::*pFunc)() const) NO_INLINE;
 };  // namespace MR
 
 extern "C" {
