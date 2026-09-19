@@ -14,7 +14,7 @@ void MovieStarter::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &MovieStarter::appear));
+        MR::listenStageSwitchOnAppear(this, MR::Functor(this, &MovieStarter::appear));
     }
 
     MR::useStageSwitchWriteDead(this, rIter);

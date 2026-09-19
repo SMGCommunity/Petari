@@ -92,7 +92,7 @@ void TrickRabbitSnow::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchReadA(this, rIter);
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &TrickRabbitSnow::clearFootPrint));
+        MR::listenStageSwitchOnB(this, MR::Functor(this, &TrickRabbitSnow::clearFootPrint));
     }
 
     makeActorAppeared();

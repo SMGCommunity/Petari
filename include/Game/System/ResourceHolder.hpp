@@ -68,26 +68,26 @@ public:
     }
 
     const char* getModelName() const {
-        return mModelResTable->getResName((u32)0);
+        return mModelResTable->getResName(static_cast<u32>(0));
     }
 
-    ResTable* mModelResTable;         // 0x0
-    ResTable* mMotionResTable;        // 0x4
-    ResTable* mBtkResTable;           // 0x8
-    ResTable* mBpkResTable;           // 0xC
-    ResTable* mBtpResTable;           // 0x10
-    ResTable* mBlkResTable;           // 0x14
-    ResTable* mBrkResTable;           // 0x18
-    ResTable* mBasResTable;           // 0x1C
-    ResTable* mBmtResTable;           // 0x20
-    ResTable* mBvaResTable;           // 0x24
-    ResTable* mBanmtResTable;         // 0x28
-    ResTable* mFileInfoTable;         // 0x2C
-    ResTable mDefaultTable;           // 0x30
-    MaterialAnmBuffer* mMaterialBuf;  // 0x38
-    BckCtrl* mBckCtrl;                // 0x3C
-    Mtx44* mBackupMaterialData;       // 0x40
-    JKRArchive* mArchive;             // 0x44
-    JKRHeap* mHeap;                   // 0x48
-    u32 mTotalResourceSize;           // 0x4C
+    /* 0x00 */ ResTable* mModelResTable;
+    /* 0x04 */ ResTable* mMotionResTable;
+    /* 0x08 */ ResTable* mBtkResTable;
+    /* 0x0C */ ResTable* mBpkResTable;
+    /* 0x10 */ ResTable* mBtpResTable;
+    /* 0x14 */ ResTable* mBlkResTable;
+    /* 0x18 */ ResTable* mBrkResTable;
+    /* 0x1C */ ResTable* mBasResTable;
+    /* 0x20 */ ResTable* mBmtResTable;
+    /* 0x24 */ ResTable* mBvaResTable;
+    /* 0x28 */ ResTable* mBanmtResTable;
+    /* 0x2C */ ResTable* mFileInfoTable;
+    /* 0x30 */ ResTable mDefaultTable;
+    /* 0x38 */ MaterialAnmBuffer* mMaterialBuf;
+    /* 0x3C */ BckCtrl* mBckCtrl;
+    /* 0x40 */ Mtx44* mBackupMaterialData;
+    /* 0x44 */ JKRArchive* mArchive;
+    /* 0x48 */ JKRHeap* mHeap;
+    /* 0x4C */ u32 mTotalResourceSize;
 };

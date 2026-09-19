@@ -100,7 +100,7 @@ void ElectricRailMoving::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg3NoInit(rIter, &mStackHeight);
 
     if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &ElectricRailMoving::disappear));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &ElectricRailMoving::disappear));
     }
 }
 

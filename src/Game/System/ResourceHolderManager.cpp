@@ -87,17 +87,13 @@ void ResourceHolderManager::removeIfIsEqualHeap(JKRHeap* pHeap) {
 }
 
 void ResourceHolderManager::startCreateResourceHolderOnMainThread(const char* pParam1, CreateResourceHolderArgs* pArgs) {
-    MR::FunctorV2M< ResourceHolderManager*, FuncPtrC, const char*, CreateResourceHolderArgs* > func =
-        MR::Functor(SingletonHolder< ResourceHolderManager >::get(), createResourceHolder, pParam1, pArgs);
-
-    MR::startFunctionAsyncExecuteOnMainThread(func, pParam1);
+    MR::startFunctionAsyncExecuteOnMainThread(MR::Functor(SingletonHolder< ResourceHolderManager >::get(), createResourceHolder, pParam1, pArgs),
+                                              pParam1);
 }
 
 void ResourceHolderManager::startCreateLayoutHolderOnMainThread(const char* pParam1, CreateResourceHolderArgs* pArgs) {
-    MR::FunctorV2M< ResourceHolderManager*, FuncPtrC, const char*, CreateResourceHolderArgs* > func =
-        MR::Functor(SingletonHolder< ResourceHolderManager >::get(), createLayoutHolder, pParam1, pArgs);
-
-    MR::startFunctionAsyncExecuteOnMainThread(func, pParam1);
+    MR::startFunctionAsyncExecuteOnMainThread(MR::Functor(SingletonHolder< ResourceHolderManager >::get(), createLayoutHolder, pParam1, pArgs),
+                                              pParam1);
 }
 
 ResourceHolderManagerName2Resource* ResourceHolderManager::createAndAddInner(const char* pArcName,
@@ -125,9 +121,8 @@ ResourceHolderManagerName2Resource* ResourceHolderManager::createAndAddInner(con
 
 ResourceHolderManagerName2Resource* ResourceHolderManager::createAndAddInnerStationed(const char* pParam1, FuncPtrC pParam2) {
     CreateResourceHolderArgs args = CreateResourceHolderArgs();
-    MR::FunctorV2M< ResourceHolderManager*, FuncPtrC, const char*, CreateResourceHolderArgs* > func = MR::Functor(this, pParam2, pParam1, &args);
 
-    MR::startFunctionAsyncExecuteOnMainThread(func, pParam1);
+    MR::startFunctionAsyncExecuteOnMainThread(MR::Functor(this, pParam2, pParam1, &args), pParam1);
 
     ResourceHolderManagerName2Resource* pName2Resource = add(pParam1, args);
 

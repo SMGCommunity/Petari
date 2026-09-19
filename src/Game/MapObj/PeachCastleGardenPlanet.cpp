@@ -46,5 +46,5 @@ void PeachCastleGardenPlanet::exeDamage() {
 }
 
 void PeachCastleGardenPlanet::initCaseUseSwitchA(const MapObjActorInitInfo& rIter) {
-    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &PeachCastleGardenPlanet::startDamage));
+    MR::listenStageSwitchOnA(this, MR::Functor(this, &PeachCastleGardenPlanet::startDamage));
 }

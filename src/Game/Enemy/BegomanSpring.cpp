@@ -26,7 +26,6 @@
 #include "Game/Util/StringUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 
-
 namespace NrvBegomanSpring {
     NEW_NERVE_ONEND(HostTypeNrvNoCalcWait, BegomanSpring, NoCalcWait, NoCalcWait);
     NEW_NERVE_ONEND(HostTypeNrvWait, BegomanSpring, Wait, Wait);
@@ -123,7 +122,7 @@ void BegomanSpring::init(const JMapInfoIter& rIter) {
     initCore(rIter, "BegomanSpring", false);
     mHidePos.set(mPosition);
     const char* pObjectName = "\0";
-    initUseSwitchB(rIter, MR::Functor_Inline(this, &BegomanSpring::kill));
+    initUseSwitchB(rIter, MR::Functor(this, &BegomanSpring::kill));
     if (MR::isValidInfo(rIter)) {
         MR::getObjectName(&pObjectName, rIter);
         initEventCameras(rIter);

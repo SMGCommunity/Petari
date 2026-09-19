@@ -129,7 +129,7 @@ void TripodBoss::init(const JMapInfoIter& rIter) {
     initNerve(GET_NERVE(TripodBoss, TripodBossNrvNonActive));
     MR::invalidateClipping(this);
     MR::needStageSwitchReadA(this, rIter);
-    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &TripodBoss::requestOpeningDemo));
+    MR::listenStageSwitchOnA(this, MR::Functor(this, &TripodBoss::requestOpeningDemo));
     MR::useStageSwitchReadB(this, rIter);
     MR::useStageSwitchWriteDead(this, rIter);
     MR::declareStarPiece(this, 24);

@@ -13,6 +13,11 @@ namespace {
     NEW_NERVE(LogoFaderNrvFadeOut, LogoFader, FadeOut);
 };  // namespace
 
+void LogoFader_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 LogoFader::LogoFader(const char* pName) : LayoutActor(pName, true), _20(true), mMaxStep(30), mRate(0.0f) {
     initNerve(GET_NERVE_GLOBAL(LogoFaderNrvDisplay));
     kill();
@@ -40,7 +45,6 @@ void LogoFader::exeDisplay() {
     }
 }
 
-// FIXME: Conversion from integer to floating-point is not producing the correct instructions.
 void LogoFader::exeFadeIn() {
     f32 step = getNerveStep();
     f32 maxStep = mMaxStep;
@@ -56,7 +60,6 @@ void LogoFader::exeFadeIn() {
     }
 }
 
-// FIXME: Conversion from integer to floating-point is not producing the correct instructions.
 void LogoFader::exeFadeOut() {
     f32 step = getNerveStep();
     f32 maxStep = mMaxStep;

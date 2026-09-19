@@ -65,7 +65,7 @@ void AstroDomeDemoStarter::init(const JMapInfoIter& rIter) {
     MR::tryRegisterDemoCast(this, rIter);
     MR::registerDemoActionNerve(this, GET_NERVE(AstroDomeDemoStarter, AstroDomeDemoStarterNrvSpinDriverStart), "スピンドライバ起動");
     MR::registerDemoActionNerve(this, GET_NERVE(AstroDomeDemoStarter, AstroDomeDemoStarterNrvJumpOut), "飛び出す");
-    MR::registerDemoActionFunctor(this, MR::Functor_Inline(this, &AstroDomeDemoStarter::startJumpOut), nullptr);
+    MR::registerDemoActionFunctor(this, MR::Functor(this, &AstroDomeDemoStarter::startJumpOut), nullptr);
     MR::needStageSwitchWriteA(this, rIter);
 
     makeActorDead();

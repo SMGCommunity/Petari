@@ -65,7 +65,7 @@ void GravityLightRoad::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchReadA(this, rIter);
 
     if (MR::isValidSwitchA(this)) {
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &GravityLightRoad::startDisappear));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &GravityLightRoad::startDisappear));
     }
 
     MR::startAllAnim(this, "GravityLightRoad");

@@ -41,7 +41,7 @@ void Balloonfish::init(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         MR::initDefaultPos(this, rIter);
         MR::needStageSwitchReadAppear(this, rIter);
-        MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &Balloonfish::appear));
+        MR::listenStageSwitchOnAppear(this, MR::Functor(this, &Balloonfish::appear));
     }
 
     initModelManagerWithAnm("Balloonfish", nullptr, false);

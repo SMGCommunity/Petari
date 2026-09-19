@@ -5731,7 +5731,7 @@ Game/MapObj/SideSpikeMoveStep.cpp:
 	.ctors      start:0x8052EE84 end:0x8052EE88
 	.data       start:0x8059EF90 end:0x8059F098
 	.sbss       start:0x806B5800 end:0x806B5810
-	.sdata2     start:0x806BDEB0 end:0x806BDEC0
+	.sdata2     start:0x806BDEB0 end:0x806BDEBC
 
 Game/MapObj/SimpleBreakableObj.cpp:
 	.text       start:0x80225CA4 end:0x802269FC

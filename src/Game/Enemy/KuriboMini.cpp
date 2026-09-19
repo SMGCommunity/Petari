@@ -123,7 +123,7 @@ void KuriboMini::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchWriteDead(this, rIter);
     MR::useStageSwitchSleep(this, rIter);
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &KuriboMini::calcPassiveMovement));
+        MR::listenStageSwitchOnB(this, MR::Functor(this, &KuriboMini::calcPassiveMovement));
     }
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
