@@ -34,6 +34,7 @@ scripts/*
 .cache/*
 compile_commands.json
 objdiff.json
+*.bat
 
 # decompctx output
 ctx.*

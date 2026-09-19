@@ -5,6 +5,11 @@ namespace {
     // clang-format off
     static const MR::StationedFileInfo cStationedFileInfo[] = {
         {
+            MR::StationedFileInfo::HEAP_TYPE_GDDR,
+            MR::StationedFileInfo::LOAD_TYPE_MOUNT,
+            "/Debug/GameEventTable.byaml"
+        },
+        {
             static_cast<MR::StationedFileInfo::HeapType>(0),
             static_cast<MR::StationedFileInfo::LoadType>(255), 
             nullptr

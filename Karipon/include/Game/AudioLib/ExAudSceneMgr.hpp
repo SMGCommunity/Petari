@@ -6,7 +6,6 @@
 
 class JAUSectionHeap;
 
-// clickbait name we don't actually expand AudSceneMgr
 class ExAudSceneMgr : private AudSceneMgr {
 public:
     ExAudSceneMgr(JAUSectionHeap* pSectionHeap);
