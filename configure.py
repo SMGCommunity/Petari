@@ -2265,7 +2265,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/LayoutManager.cpp", extra_cflags=["-DNW4R_DEBUG"]),
             Object(NonMatching, "Game/Screen/LayoutPaneCtrl.cpp"),
             Object(NonMatching, "Game/Screen/LensFlare.cpp"),
-            Object(NonMatching, "Game/Screen/LogoFader.cpp"),
+            Object(Matching, "Game/Screen/LogoFader.cpp"),
             Object(Matching, "Game/Screen/LuigiLetter.cpp"),
             Object(NonMatching, "Game/Screen/Manual2P.cpp"),
             Object(Matching, "Game/Screen/MarioMeter.cpp"),
