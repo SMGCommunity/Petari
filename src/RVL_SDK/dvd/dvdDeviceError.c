@@ -1,6 +1,6 @@
-#include <revolution/os.h>
-#include <revolution/dvd.h>
-#include <revolution/sc.h>
+#include "revolution/os.h"
+#include "revolution/dvd.h"
+#include "revolution/sc.h"
 
 vu8 __OSDeviceCheckCode : (OS_BASE_CACHED + 0x319C);
 extern u16 OSSetFontEncode(u16);

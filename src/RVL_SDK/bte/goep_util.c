@@ -1,4 +1,4 @@
-#include "goep_api.h"
+#include <goep_api.h>
 
 /*******************************************************************************
  * headers
@@ -6,19 +6,19 @@
 
 #include <mem.h>
 
-#include <macros.h>  // ARRAY_LENGTH
+#include "macros.h"  // ARRAY_LENGTH
 
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
-#include "gki_target.h"  // PPC_TASK
-#include "wcassert.h"    // WCAssert_Line
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
+#include <gki_target.h>  // PPC_TASK
+#include <wcassert.h>    // WCAssert_Line
 
-#include "btm_api.h"  // BTM_SetSecurityLevel
-#include "gki.h"
-#include "goep_int.h"
-#include "sdp_api.h"
-#include "sdpdefs.h"
+#include <btm_api.h>  // BTM_SetSecurityLevel
+#include <gki.h>
+#include <goep_int.h>
+#include <sdp_api.h>
+#include <sdpdefs.h>
 
 /*******************************************************************************
  * macros

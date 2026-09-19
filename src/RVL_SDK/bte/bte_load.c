@@ -1,4 +1,4 @@
-#include "bte.h"
+#include <bte.h>
 
 /*******************************************************************************
  * headers
@@ -6,9 +6,9 @@
 
 #include <stddef.h> // NULL
 
-#include "data_types.h" // UINT32
+#include <data_types.h> // UINT32
 
-#include "gki.h"
+#include <gki.h>
 
 /*******************************************************************************
  * types

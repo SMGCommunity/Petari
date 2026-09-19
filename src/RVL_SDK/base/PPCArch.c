@@ -1,5 +1,5 @@
-#include <revolution/base/PPCArch.h>
-#include <revolution/os.h>
+#include "revolution/base/PPCArch.h"
+#include "revolution/os.h"
 
 union Fpscr {
     f64 f;

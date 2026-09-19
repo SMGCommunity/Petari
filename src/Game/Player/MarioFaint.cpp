@@ -6,7 +6,7 @@
 #include "Game/Player/MarioState.hpp"
 #include "Game/Player/MarioSwim.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 bool Mario::doFlipWeak(const TVec3f& rVec) {
     if (mMovementStates._1B) {

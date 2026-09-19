@@ -1,10 +1,10 @@
 #ifndef __OSINTERRUPT_H__
 #define __OSINTERRUPT_H__
 
-#include <revolution/os/OSContext.h>
-#include <revolution/os/OSException.h>
-#include <revolution/os/OSTime.h>
-#include <revolution/types.h>
+#include "revolution/os/OSContext.h"
+#include "revolution/os/OSException.h"
+#include "revolution/os/OSTime.h"
+#include "revolution/types.h"
 
 #ifdef __cplusplus
 extern "C" {

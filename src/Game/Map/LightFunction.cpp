@@ -6,7 +6,7 @@
 #include "Game/Map/LightPointCtrl.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
-#include "revolution/gx/GXEnum.h"
+#include <revolution/gx/GXEnum.h>
 #include <cstdio>
 #include <cstring>
 

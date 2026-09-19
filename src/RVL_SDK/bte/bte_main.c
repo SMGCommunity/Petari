@@ -1,4 +1,4 @@
-#include "bte.h"
+#include <bte.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -31,18 +31,18 @@
 
 #include <stddef.h>  // NULL
 
-#include <macros.h>  // ATTR_ALIGN
+#include "macros.h"  // ATTR_ALIGN
 
-#include "data_types.h"
+#include <data_types.h>
 
-#include "bta_api.h"
-#include "btu.h"
-#include "gki.h"
-#include "hci.h"
-#include "uusb.h"  // wait4hci
+#include <bta_api.h>
+#include <btu.h>
+#include <gki.h>
+#include <hci.h>
+#include <uusb.h>  // wait4hci
 
 #define IS_BTE
-#include <context_rvl.h>
+#include "context_rvl.h"
 
 /*******************************************************************************
  * local function declarations

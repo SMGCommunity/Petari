@@ -1,4 +1,4 @@
-#include "port_int.h"
+#include <port_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -32,17 +32,17 @@
 #include "revolution/types.h"
 #include <cstring>
 
-#include "bt_target.h"
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "gki.h"
-#include "hcidefs.h"
-#include "port_api.h"
-#include "rfc_int.h"
-#include "rfcdefs.h"
-#include "sdpdefs.h"
+#include <gki.h>
+#include <hcidefs.h>
+#include <port_api.h>
+#include <rfc_int.h>
+#include <rfcdefs.h>
+#include <sdpdefs.h>
 
 /*******************************************************************************
  * functions

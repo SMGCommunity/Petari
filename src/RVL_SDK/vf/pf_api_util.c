@@ -7,7 +7,7 @@ int VFipf_error_to_api_error[40] = {
     12, 22, 22, 8, 2, 8, 8, 27, 9, 46,
 };
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 
 u32 VFiPFAPI_ParseOpenModeString(const char* mode_str) {
     u32 open_mode_util;

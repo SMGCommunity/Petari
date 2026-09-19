@@ -11,7 +11,7 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
-#include "JSystem/JParticle/JPAParticle.hpp"
+#include <JSystem/JParticle/JPAParticle.hpp>
 #include <JSystem/JParticle/JPAEmitter.hpp>
 #include <JSystem/JParticle/JPAEmitterManager.hpp>
 

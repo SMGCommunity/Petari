@@ -1,10 +1,10 @@
 #pragma once
 
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
-#include "JSystem/J3DGraphBase/J3DStruct.hpp"
-#include "JSystem/J3DGraphBase/J3DTexture.hpp"
-#include "JSystem/JUtility/JUTNameTab.hpp"
+#include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
+#include <JSystem/J3DGraphBase/J3DStruct.hpp>
+#include <JSystem/J3DGraphBase/J3DTexture.hpp>
+#include <JSystem/JUtility/JUTNameTab.hpp>
 #include <revolution.h>
 
 class J3DTexMtx;

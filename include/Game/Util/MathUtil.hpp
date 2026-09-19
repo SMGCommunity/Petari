@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry/TUtil.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
+#include <JSystem/JGeometry/TUtil.hpp>
+#include <JSystem/JMath/JMATrigonometric.hpp>
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TQuat.hpp>
 #include <JSystem/JGeometry/TVec.hpp>

@@ -6,9 +6,9 @@
 #include "Game/MapObj/ElectricRailHolder.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/SchedulerUtil.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
-#include "revolution/gd/GDBase.h"
-#include "revolution/gx/GXEnum.h"
+#include <JSystem/JMath/JMATrigonometric.hpp>
+#include <revolution/gd/GDBase.h>
+#include <revolution/gx/GXEnum.h>
 
 namespace NrvElectricRailMoving {
     NEW_NERVE(ElectricRailMovingNrvWait, ElectricRailMoving, Wait);

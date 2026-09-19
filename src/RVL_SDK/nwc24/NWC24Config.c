@@ -1,7 +1,7 @@
-#include <revolution/DVD.h>
-#include <revolution/nwc24.h>
-#include <revolution/nwc24/NWC24Internal.h>
-#include <revolution/os.h>
+#include "revolution/DVD.h"
+#include "revolution/nwc24.h"
+#include "revolution/nwc24/NWC24Internal.h"
+#include "revolution/os.h"
 
 #define CONFIG_MAGIC FOURCC('W', 'c', 'C', 'f')
 #define CONFIG_VERSION 8

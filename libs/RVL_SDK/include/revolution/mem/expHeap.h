@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include <revolution/mem/heapCommon.h>
+#include "revolution/mem/heapCommon.h"
 
 typedef struct MEMiExpHeapMBlockHead MEMiExpHeapMBlockHead;
 

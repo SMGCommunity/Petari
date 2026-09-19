@@ -1,5 +1,5 @@
-#include <revolution.h>
-#include <revolution/os.h>
+#include "revolution.h"
+#include "revolution/os.h"
 #include <__ppc_eabi_init.h>
 #include <__ppc_eabi_linker.h>
 

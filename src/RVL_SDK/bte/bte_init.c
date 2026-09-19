@@ -1,4 +1,4 @@
-#include "bte.h"
+#include <bte.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -29,10 +29,10 @@
  * headers
  */
 
-#include "gap_api.h" // GAP_Init
-#include "hidd_api.h" // HID_DevInit
-#include "hidh_api.h" // HID_HostInit
-#include "port_api.h" // RFCOMM_Init
+#include <gap_api.h> // GAP_Init
+#include <hidd_api.h> // HID_DevInit
+#include <hidh_api.h> // HID_HostInit
+#include <port_api.h> // RFCOMM_Init
 
 /*******************************************************************************
  * functions

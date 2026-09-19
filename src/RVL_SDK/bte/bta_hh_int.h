@@ -30,14 +30,14 @@
  * headers
  */
 
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "bta_api.h"
-#include "bta_hh_api.h"
-#include "bta_sys.h"
-#include "hiddefs.h"
-#include "sdp_api.h"
+#include <bta_api.h>
+#include <bta_hh_api.h>
+#include <bta_sys.h>
+#include <hiddefs.h>
+#include <sdp_api.h>
 
 /*******************************************************************************
  * macros

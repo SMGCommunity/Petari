@@ -1,5 +1,5 @@
-#include <wchar_io.h>
-#include <types.h>
+#include "wchar_io.h"
+#include "types.h"
 
 int fwide(FILE *pFile, int file_mode) {
     int orientation;

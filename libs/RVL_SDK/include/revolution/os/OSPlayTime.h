@@ -1,7 +1,7 @@
 #ifndef OSPLAYTIME_H
 #define OSPLAYTIME_H
 
-#include <revolution/esp.h>
+#include "revolution/esp.h"
 
 typedef enum {
     OSPLAYTIME_PERMANENT        = 0,

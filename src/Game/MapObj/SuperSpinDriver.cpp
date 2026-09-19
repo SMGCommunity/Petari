@@ -24,10 +24,10 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 #include "math_types.hpp"
-#include "revolution/wpad.h"
+#include <revolution/wpad.h>
 
 /* it seems like this file was compiled with an earlier compiler version */
 

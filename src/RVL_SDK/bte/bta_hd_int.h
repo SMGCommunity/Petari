@@ -10,14 +10,14 @@
  * headers
  */
 
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "bta_hd_api.h"
-#include "bta_sys.h"
-#include "gki.h"
-#include "hidd_api.h"
-#include "hiddefs.h"
+#include <bta_hd_api.h>
+#include <bta_sys.h>
+#include <gki.h>
+#include <hidd_api.h>
+#include <hiddefs.h>
 
 /*******************************************************************************
  * macros

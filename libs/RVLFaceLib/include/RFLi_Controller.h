@@ -1,7 +1,7 @@
 #ifndef RVL_FACE_LIBRARY_INTERNAL_CONTROLLER_H
 #define RVL_FACE_LIBRARY_INTERNAL_CONTROLLER_H
-#include <RFL_MiddleDatabase.h>
-#include <RFLi_Types.h>
+#include "RFL_MiddleDatabase.h"
+#include "RFLi_Types.h"
 #include <revolution/card.h>
 #include <revolution/mem.h>
 #include <revolution/wpad.h>

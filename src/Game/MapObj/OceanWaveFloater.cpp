@@ -12,7 +12,7 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "math_types.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 namespace {
     struct Param {

@@ -2,8 +2,8 @@
 #define SC_H
 
 #include "revolution/bte.h"
-#include <revolution/nand.h>
-#include <revolution/os.h>
+#include "revolution/nand.h"
+#include "revolution/os.h"
 
 #ifdef __cplusplus
 extern "C" {

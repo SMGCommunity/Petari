@@ -1,7 +1,7 @@
 #include <RVLFaceLib.h>
 
-#include <revolution/nwc24.h>
-#include <revolution/nwc24/NWC24Internal.h>
+#include "revolution/nwc24.h"
+#include "revolution/nwc24/NWC24Internal.h"
 
 #define MSG_YEAR_MIN 2000
 #define MSG_YEAR_MAX 2035

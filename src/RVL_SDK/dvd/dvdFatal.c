@@ -1,8 +1,8 @@
-#include <revolution/os.h>
-#include <revolution/gx.h>
-#include <revolution/vi.h>
-#include <revolution/dvd.h>
-#include <revolution/sc.h>
+#include "revolution/os.h"
+#include "revolution/gx.h"
+#include "revolution/vi.h"
+#include "revolution/dvd.h"
+#include "revolution/sc.h"
 
 extern u16 OSSetFontEncode(u16);
 

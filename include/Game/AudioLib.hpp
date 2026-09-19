@@ -11,5 +11,5 @@
 #include "Game/AudioLib/AudSoundObject.hpp"
 #include "Game/AudioLib/AudSpeakerWrap.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
-#include "Game/AudioLib/AudSystemWrapper.hpp"
+#include <Game/AudioLib/AudSystemWrapper.hpp>
 #include "Game/AudioLib/AudWrap.hpp"

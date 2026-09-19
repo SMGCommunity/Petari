@@ -1,6 +1,6 @@
 #ifndef RVL_FACE_LIBRARY_MODEL_H
 #define RVL_FACE_LIBRARY_MODEL_H
-#include <RFL_Types.h>
+#include "RFL_Types.h"
 #include <revolution/gx.h>
 #include <revolution/mtx.h>
 #include <revolution/types.h>

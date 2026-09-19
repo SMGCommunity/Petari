@@ -1,5 +1,5 @@
-#include <revolution/dvd.h>
-#include <revolution/nand.h>
+#include "revolution/dvd.h"
+#include "revolution/nand.h"
 
 static BOOL ExistFlag = FALSE;
 static NANDCommandBlock NandCb;

@@ -3,12 +3,12 @@
 #include "Game/LiveActor/ShadowController.hpp"
 #include "Game/LiveActor/ShadowSurfaceDrawer.hpp"
 #include "Game/Util/DirectDraw.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/gx/GXEnum.h"
-#include "revolution/gx/GXGeometry.h"
-#include "revolution/gx/GXVert.h"
-#include "revolution/mtx.h"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/gx/GXEnum.h>
+#include <revolution/gx/GXGeometry.h>
+#include <revolution/gx/GXVert.h>
+#include <revolution/mtx.h>
 
 ShadowSurfaceBox::~ShadowSurfaceBox() {
 }

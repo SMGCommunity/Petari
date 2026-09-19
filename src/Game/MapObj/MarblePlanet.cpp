@@ -3,7 +3,7 @@
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JMath.hpp"
+#include <JSystem/JMath.hpp>
 
 namespace NrvMarblePlanet {
     NEW_NERVE(MarblePlanetNrvWait, MarblePlanet, Wait);

@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-#include <revolution/types.h>
-#include <revolution/os.h>
+#include "revolution/types.h"
+#include "revolution/os.h"
 
 typedef struct DBInterface {
     u32 _0;

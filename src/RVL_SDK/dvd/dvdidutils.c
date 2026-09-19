@@ -1,5 +1,5 @@
-#include <revolution/dvd.h>
-#include <revolution/os.h>
+#include "revolution/dvd.h"
+#include "revolution/os.h"
 #include <cstring>
 
 BOOL DVDCompareDiskID(const DVDDiskID* id1, const DVDDiskID* id2) {

@@ -7,7 +7,7 @@
 #include "Game/Map/RaceManager.hpp"
 #include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/Util/JointController.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry.hpp>
 
 class PlayerPoseSetterInWater;

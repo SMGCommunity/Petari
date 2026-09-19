@@ -3,8 +3,8 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/TriangleFilter.hpp"
-#include "JSystem/J3DGraphBase/J3DStruct.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/J3DGraphBase/J3DStruct.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 
 class HitSensor;
 // this function does not belong in this header, but will put here for now

@@ -11,7 +11,7 @@
 #include "nw4r/lyt/resources.h"
 #include "nw4r/lyt/util.h"
 #include "nw4r/ut/Rect.h"
-#include "revolution/mem/allocator.h"
+#include <revolution/mem/allocator.h>
 
 namespace {
     using namespace nw4r;

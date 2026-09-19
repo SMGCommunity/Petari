@@ -2,7 +2,7 @@
 #define PF_VOLUME_H
 
 #include "revolution/vf/vf_struct.h"
-#include <revolution.h>
+#include "revolution.h"
 
 s32 VFiPFVOL_InitModule(u32 config, void* param);
 s32 VFiPFVOL_errnum(void);

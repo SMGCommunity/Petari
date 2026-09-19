@@ -4,8 +4,8 @@
 #include "JSystem/JGeometry/TUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
-#include "revolution/mtx.h"
-#include <JSystem/JMath/JMATrigonometric.hpp>
+#include <revolution/mtx.h>
+#include "JSystem/JMath/JMATrigonometric.hpp"
 #include <cmath>
 
 namespace JGeometry {

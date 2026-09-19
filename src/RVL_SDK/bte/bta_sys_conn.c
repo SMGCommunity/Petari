@@ -1,4 +1,4 @@
-#include "bta_sys.h"
+#include <bta_sys.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -29,10 +29,10 @@
  * headers
  */
 
-#include "bt_types.h" // BD_ADDR
-#include "data_types.h" // UINT8
+#include <bt_types.h> // BD_ADDR
+#include <data_types.h> // UINT8
 
-#include "bta_sys_int.h" // bta_sys_cb
+#include <bta_sys_int.h> // bta_sys_cb
 
 /*******************************************************************************
  * functions

@@ -4,7 +4,7 @@
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include "revolution/mtx.h"
+#include <revolution/mtx.h>
 
 void Mario::check2DMode() {
     mMovementStates._37 = false;

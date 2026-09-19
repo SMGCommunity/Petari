@@ -1,4 +1,4 @@
-#include <RVLFaceLibInternal.h>
+#include "RVLFaceLibInternal.h"
 
 typedef struct RandomParam {
     u8 sex;     // at 0x0

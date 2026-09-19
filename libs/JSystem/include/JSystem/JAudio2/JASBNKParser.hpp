@@ -3,7 +3,7 @@
 #include "JSystem/JAudio2/JASBasicInst.hpp"
 #include "JSystem/JAudio2/JASOscillator.hpp"
 #include "JSystem/JSupport/JSupport.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 class JASBank;
 class JASBasicBank;

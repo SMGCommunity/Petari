@@ -2,7 +2,7 @@
 #include "Os/dolphin/DDH_Stubs.h"
 #include "Os/dolphin/GDEV_Stubs.h"
 #include "Os/dolphin/UDP_Stubs.h"
-#include "revolution/base/PPCArch.h"
+#include <revolution/base/PPCArch.h>
 #include "trk.h"
 
 void TRKInterruptHandler();

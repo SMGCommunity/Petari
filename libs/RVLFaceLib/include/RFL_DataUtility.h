@@ -1,6 +1,6 @@
 #ifndef RVL_FACE_LIBRARY_DATA_UTILITY_H
 #define RVL_FACE_LIBRARY_DATA_UTILITY_H
-#include <RFL_Types.h>
+#include "RFL_Types.h"
 #include <revolution/gx.h>
 #include <revolution/types.h>
 #include <cstdio>

@@ -1,9 +1,9 @@
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXGeometry.h"
-#include <private/xf_mem.h>
-#include <revolution/gx.h>
-#include <revolution/gx/GXRegs.h>
-#include <revolution/gx/shortcut_xf_mem.h>
+#include "private/xf_mem.h"
+#include "revolution/gx.h"
+#include "revolution/gx/GXRegs.h"
+#include "revolution/gx/shortcut_xf_mem.h"
 
 
 static inline void __GXXfVtxSpecs(void) {

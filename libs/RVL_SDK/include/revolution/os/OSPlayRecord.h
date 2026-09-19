@@ -1,8 +1,8 @@
 #ifndef OSPLAYRECORD_H
 #define OSPLAYRECORD_H
 
-#include <revolution/types.h>
-#include <revolution/os/OSTime.h>
+#include "revolution/types.h"
+#include "revolution/os/OSTime.h"
 
 typedef struct {
     u32 checkSum;

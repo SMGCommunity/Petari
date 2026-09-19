@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/Util/Color.hpp"
-#include "revolution/gx/GXEnum.h"
+#include <revolution/gx/GXEnum.h>
 #include <JSystem/JGeometry.hpp>
 #include <revolution.h>
 

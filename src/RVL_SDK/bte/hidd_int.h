@@ -5,14 +5,14 @@
  * headers
  */
 
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "gki.h"
-#include "hiddefs.h"
-#include "hidd_api.h"
-#include "hid_conn.h"
-#include "l2c_api.h"
+#include <gki.h>
+#include <hiddefs.h>
+#include <hidd_api.h>
+#include <hid_conn.h>
+#include <l2c_api.h>
 
 /*******************************************************************************
  * types

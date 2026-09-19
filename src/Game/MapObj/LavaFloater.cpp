@@ -14,10 +14,10 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 #include "math_types.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 namespace {
     const char* const cEffectName = "LavaBubble";

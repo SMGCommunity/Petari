@@ -1,6 +1,6 @@
 #ifndef RVL_SDK_WUD_DEBUG_MSG_H
 #define RVL_SDK_WUD_DEBUG_MSG_H
-#include <revolution/types.h>
+#include "revolution/types.h"
 #ifdef __cplusplus
 extern "C" {
 #endif

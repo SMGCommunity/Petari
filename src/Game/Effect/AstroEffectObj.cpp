@@ -2,8 +2,8 @@
 #include "Game/Effect/SimpleEffectObj.hpp"
 #include "Game/MapObj/AstroMapObjFunction.hpp"
 #include "Game/Util/DemoUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/mtx.h"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/mtx.h>
 
 AstroEffectObj::AstroEffectObj(const char* pName) : SimpleEffectObj(pName) {
     _9C = -1;

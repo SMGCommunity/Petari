@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JSystem/JAudio2/JASSeqReader.hpp"
+#include <JSystem/JAudio2/JASSeqReader.hpp>
 
 class AudMeSeqReader {
 public:

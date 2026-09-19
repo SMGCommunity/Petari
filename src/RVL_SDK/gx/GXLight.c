@@ -1,8 +1,8 @@
 #include <cmath>
-#include <private/xf_mem.h>
-#include <revolution/gx.h>
-#include <revolution/gx/GXRegs.h>
-#include <revolution/gx/shortcut_xf_mem.h>
+#include "private/xf_mem.h"
+#include "revolution/gx.h"
+#include "revolution/gx/GXRegs.h"
+#include "revolution/gx/shortcut_xf_mem.h"
 
 #define PI 3.14159265358979323846f
 #define BIG_NUMBER 1.0E+18f

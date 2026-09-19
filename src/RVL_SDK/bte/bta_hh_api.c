@@ -1,4 +1,4 @@
-#include "bta_hh_api.h"
+#include <bta_hh_api.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -32,16 +32,16 @@
 #include "revolution/types.h"
 #include <cstring>
 
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "bd.h"       // bdcpy
-#include "bta_api.h"  // tBTA_SEC
-#include "bta_hh_int.h"
-#include "bta_sys.h"
-#include "gki.h"
-#include "hiddefs.h"
+#include <bd.h>       // bdcpy
+#include <bta_api.h>  // tBTA_SEC
+#include <bta_hh_int.h>
+#include <bta_sys.h>
+#include <gki.h>
+#include <hiddefs.h>
 
 /*******************************************************************************
  * local function declarations

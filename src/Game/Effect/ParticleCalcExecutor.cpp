@@ -5,7 +5,7 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "JSystem/JParticle/JPAEmitterManager.hpp"
+#include <JSystem/JParticle/JPAEmitterManager.hpp>
 
 namespace {
     void connectToSceneCalcAnimAdaptor(NameObjAdaptor* pAdaptor, const MR::FunctorBase& rFunctor, int calcAnimType) {

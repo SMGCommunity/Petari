@@ -1,7 +1,7 @@
 #include "JSystem/J3DGraphBase/J3DSys.hpp"
 #include "JSystem/J3DGraphBase/J3DFifo.hpp"
 #include "JSystem/J3DGraphBase/J3DTevs.hpp"
-#include "revolution/gx/GXGeometry.h"
+#include <revolution/gx/GXGeometry.h>
 #include <revolution/os/OSFastCast.h>
 
 J3DSys j3dSys;

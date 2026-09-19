@@ -30,13 +30,13 @@
  * headers
  */
 
-#include "bt_target.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "l2c_api.h"
-#include "port_api.h"
-#include "port_int.h"
+#include <l2c_api.h>
+#include <port_api.h>
+#include <port_int.h>
 
 /*******************************************************************************
  * macros

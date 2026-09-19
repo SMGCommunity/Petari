@@ -1,8 +1,8 @@
 #ifndef HBM_BASE_H
 #define HBM_BASE_H
 
-#include <revolution/kpad.h>
-#include <revolution/mem.h>
+#include "revolution/kpad.h"
+#include "revolution/mem.h"
 
 #ifdef __cplusplus
 extern "C" {

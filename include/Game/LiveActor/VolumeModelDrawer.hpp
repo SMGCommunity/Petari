@@ -2,7 +2,7 @@
 
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/Color.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
+#include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
 #include <revolution.h>
 
 class VolumeModelDrawer : public NameObj {

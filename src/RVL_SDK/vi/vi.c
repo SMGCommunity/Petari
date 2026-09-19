@@ -1,8 +1,8 @@
 #include "private/flipper.h"
-#include <revolution/dvd.h>
-#include <revolution/os.h>
-#include <revolution/sc.h>
-#include <revolution/vi.h>
+#include "revolution/dvd.h"
+#include "revolution/os.h"
+#include "revolution/sc.h"
+#include "revolution/vi.h"
 
 const char* __VIVersion = "<< RVL_SDK - VI \trelease build: Aug  8 2007 02:07:17 (0x4199_60831) >>";
 

@@ -3,8 +3,8 @@
 #include "Game/Util/DirectDraw.hpp"
 #include "Game/Util/FurParam.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/JKernel/JKRHeap.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
 #include <cmath>
 
 FurDrawer::FurDrawer(u32 numLayers, ResTIMG* pBody, ResTIMG* pIndirect)

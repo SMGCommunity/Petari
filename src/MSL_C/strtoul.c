@@ -1,6 +1,6 @@
 #include "stdio_api.h"
-#include <cctype>
-#include <cerrno>
+#include "cctype"
+#include "cerrno"
 
 #pragma exceptions on
 

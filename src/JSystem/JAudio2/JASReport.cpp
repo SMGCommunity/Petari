@@ -1,7 +1,7 @@
 #include "JSystem/JAudio2/JASReport.hpp"
 #include "JSystem/JAudio2/JASCalc.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
-#include "revolution/os/OSThread.h"
+#include <revolution/os/OSThread.h>
 #include <cstdio>
 #include <revolution/os/OSMutex.h>
 

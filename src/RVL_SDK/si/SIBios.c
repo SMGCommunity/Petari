@@ -1,7 +1,7 @@
-#include <revolution/si.h>
-#include <revolution/os.h>
-#include <private/flipper.h>
-#include <private/io_reg.h>
+#include "revolution/si.h"
+#include "revolution/os.h"
+#include "private/flipper.h"
+#include "private/io_reg.h"
 
 #define OFFSET(n, a) (((u32) (n)) & ((a) - 1))
 #define ROUND(n, a) (((u32) (n) + (a) - 1) & ~((a) - 1))

@@ -4,7 +4,7 @@
 #include "Game/RhythmLib/AudMeChannelMgr.hpp"
 #include "Game/RhythmLib/AudMeSeqCtrl.hpp"
 #include "Game/RhythmLib/AudMeTrackCallback.hpp"
-#include "JSystem/JAudio2/JASBank.hpp"
+#include <JSystem/JAudio2/JASBank.hpp>
 #include <JSystem/JAudio2/JASChannel.hpp>
 #include <JSystem/JAudio2/JASCriticalSection.hpp>
 #include <JSystem/JMath/random.hpp>

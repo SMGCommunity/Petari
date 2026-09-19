@@ -5,7 +5,7 @@
  * headers
  */
 
-#include "bta_ss_api.h"
+#include <bta_ss_api.h>
 
 /*******************************************************************************
  * external globals

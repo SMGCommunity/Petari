@@ -1,7 +1,7 @@
 #ifndef PF_API_UTIL_H
 #define PF_API_UTIL_H
 
-#include <revolution.h>
+#include "revolution.h"
 
 u32 VFiPFAPI_ParseOpenModeString(const char*);
 int VFiPFAPI_convertError(int);

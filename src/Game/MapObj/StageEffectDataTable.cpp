@@ -5,7 +5,7 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 void StageEffectDataTable_FORCE_MATCH_SDATA2() {
     (void)0.0f;

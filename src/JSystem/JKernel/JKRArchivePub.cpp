@@ -5,7 +5,7 @@
 #include "JSystem/JKernel/JKRFileFinder.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include "JSystem/JKernel/JKRMemArchive.hpp"
-#include "revolution.h"
+#include <revolution.h>
 
 JKRArchive* JKRArchive::check_mount_already(long entryNum) {
     JSUPtrLink* current = JKRFileLoader::sVolumeList.mHead;

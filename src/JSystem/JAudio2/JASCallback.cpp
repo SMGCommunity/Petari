@@ -1,6 +1,6 @@
 #include "JSystem/JAudio2/JASCallback.hpp"
 #include "JSystem/JAudio2/JASTrack.hpp"
-#include <JSystem/JAudio2/JASCriticalSection.hpp>
+#include "JSystem/JAudio2/JASCriticalSection.hpp"
 
 bool JASCallbackMgr::regist(JASCallback* pCallback, void* pArgument) {
     JASCriticalSection criticalSection;

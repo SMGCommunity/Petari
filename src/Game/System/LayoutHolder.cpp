@@ -1,6 +1,6 @@
 #include "Game/System/LayoutHolder.hpp"
 #include "Game/Util/SystemUtil.hpp"
-#include "JSystem/JKernel/JKRFileFinder.hpp"
+#include <JSystem/JKernel/JKRFileFinder.hpp>
 #include <JSystem/JKernel/JKRArchive.hpp>
 #include <cstdio>
 #include <cstring>

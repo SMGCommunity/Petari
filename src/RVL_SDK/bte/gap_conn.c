@@ -1,4 +1,4 @@
-#include "gap_int.h"
+#include <gap_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -32,18 +32,18 @@
 #include <cstring>
 #include <stddef.h>  // NULL
 
-#include "bt_target.h"
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "btm_api.h"
-#include "btu.h"
-#include "gap_api.h"
-#include "gki.h"
-#include "l2c_api.h"
-#include "l2cdefs.h"
-#include "profiles_api.h"
+#include <btm_api.h>
+#include <btu.h>
+#include <gap_api.h>
+#include <gki.h>
+#include <l2c_api.h>
+#include <l2cdefs.h>
+#include <profiles_api.h>
 
 /*******************************************************************************
  * local function declarations

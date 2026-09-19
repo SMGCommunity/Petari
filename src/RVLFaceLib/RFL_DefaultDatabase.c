@@ -1,4 +1,4 @@
-#include <RVLFaceLibInternal.h>
+#include "RVLFaceLibInternal.h"
 
 static const u8 scDefaultData[][sizeof(RFLiCharData)] = {
     // "Guest A"

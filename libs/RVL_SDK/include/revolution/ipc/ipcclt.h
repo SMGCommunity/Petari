@@ -5,9 +5,9 @@
 extern "C" {
 #endif
 
-#include <revolution/types.h>
-#include <private/iosrestypes.h>
-#include <private/iosresclt.h>
+#include "revolution/types.h"
+#include "private/iosrestypes.h"
+#include "private/iosresclt.h"
 
 s32 IOS_Open(const char *, u32);
 s32 IOS_Close(s32);

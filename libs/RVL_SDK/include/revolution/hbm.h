@@ -1,7 +1,7 @@
 #ifndef HBM_H
 #define HBM_H
 
-#include <revolution/hbm/HBMBase.h>
+#include "revolution/hbm/HBMBase.h"
 
 #ifdef __cplusplus
 extern "C" {

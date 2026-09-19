@@ -5,11 +5,11 @@
 #include <cstdio>
 #include <cstring>
 #include <mem.h>
-#include <revolution/bte.h>
-#include <revolution/os.h>
-#include <revolution/sc.h>
-#include <revolution/wpad.h>
-#include <revolution/wud.h>
+#include "revolution/bte.h"
+#include "revolution/os.h"
+#include "revolution/sc.h"
+#include "revolution/wpad.h"
+#include "revolution/wud.h"
 
 #define DEBUGPrint WUD_DEBUGPrint
 

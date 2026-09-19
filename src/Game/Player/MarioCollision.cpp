@@ -17,7 +17,7 @@
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include "revolution/mtx.h"
+#include <revolution/mtx.h>
 #include <cstring>
 
 bool Mario::isIgnoreTriangle(const Triangle* triangle) {

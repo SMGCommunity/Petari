@@ -1,5 +1,5 @@
-#include <revolution/nwc24.h>
-#include <revolution/nwc24/NWC24Internal.h>
+#include "revolution/nwc24.h"
+#include "revolution/nwc24/NWC24Internal.h"
 
 #define SECRET_FRIEND_LIST_MAGIC FOURCC('W', 'c', 'F', 's')
 #define SECRET_FRIEND_LIST_VERSION 2

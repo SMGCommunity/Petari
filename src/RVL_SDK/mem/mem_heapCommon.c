@@ -1,6 +1,6 @@
-#include <revolution/mem/expHeap.h>
-#include <revolution/mem/heapCommon.h>
-#include <revolution/mem/list.h>
+#include "revolution/mem/expHeap.h"
+#include "revolution/mem/heapCommon.h"
+#include "revolution/mem/list.h"
 
 static MEMList sRootList;
 static BOOL sRootListInitialized = FALSE;

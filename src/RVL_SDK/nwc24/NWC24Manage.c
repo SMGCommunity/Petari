@@ -1,7 +1,7 @@
-#include <revolution/nwc24.h>
-#include <revolution/nwc24/NWC24Internal.h>
-#include <revolution/os.h>
-#include <revolution/vf.h>
+#include "revolution/nwc24.h"
+#include "revolution/nwc24/NWC24Internal.h"
+#include "revolution/os.h"
+#include "revolution/vf.h"
 
 typedef enum { NWC24_LIB_CLOSED, NWC24_LIB_OPENED, NWC24_LIB_OPENED_BY_TOOL, NWC24_LIB_BLOCKED } NWC24LibState;
 

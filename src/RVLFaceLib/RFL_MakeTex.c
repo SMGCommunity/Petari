@@ -1,4 +1,4 @@
-#include <RVLFaceLibInternal.h>
+#include "RVLFaceLibInternal.h"
 #include <cmath>
 #include <revolution/gx/GXVert.h>
 

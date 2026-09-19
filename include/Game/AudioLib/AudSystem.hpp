@@ -3,9 +3,9 @@
 #include "Game/AudioLib/AudAudience.hpp"
 #include "Game/AudioLib/AudBgmMgr.hpp"
 #include "Game/AudioLib/AudLimitedSound.hpp"
-#include "JSystem/JAudio2/JAIAudible.hpp"
-#include "JSystem/JAudio2/JAIAudience.hpp"
-#include "JSystem/JAudio2/JAUStdSoundInfo.hpp"
+#include <JSystem/JAudio2/JAIAudible.hpp>
+#include <JSystem/JAudio2/JAIAudience.hpp>
+#include <JSystem/JAudio2/JAUStdSoundInfo.hpp>
 #include <JSystem/JAudio2/JASAudioReseter.hpp>
 #include <JSystem/JAudio2/JAUSoundMgr.hpp>
 #include <JSystem/JGeometry/TMatrix.hpp>

@@ -4,8 +4,8 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JKernel/JKRHeap.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
 
 namespace {
     f32 debug1 = 0.003331f;

@@ -2,7 +2,7 @@
 #define AXFX_H
 
 #include <cstdio>
-#include <revolution.h>
+#include "revolution.h"
 
 #ifdef __cplusplus
 extern "C" {

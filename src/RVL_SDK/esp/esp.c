@@ -1,6 +1,6 @@
-#include <revolution/esp.h>
-#include <revolution/ipc/ipcclt.h>
-#include <private/iosrestypes.h>
+#include "revolution/esp.h"
+#include "revolution/ipc/ipcclt.h"
+#include "private/iosrestypes.h"
 
 static s32 __esFd = -1;
 

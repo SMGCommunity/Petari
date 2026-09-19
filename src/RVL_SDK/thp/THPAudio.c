@@ -1,4 +1,4 @@
-#include <revolution/thp.h>
+#include "revolution/thp.h"
 
 u32 THPAudioDecode(s16 *audioBuffer, u8 *audioFrame, s32 flag) {
     THPAudioRecordHeader *header;

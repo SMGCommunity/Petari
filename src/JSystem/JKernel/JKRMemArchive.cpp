@@ -4,7 +4,7 @@
 #include "JSystem/JKernel/JKRDvdRipper.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include "JSystem/JUtility/JUTException.hpp"
-#include "revolution.h"
+#include <revolution.h>
 #include <cstring>
 
 JKRMemArchive::JKRMemArchive() {

@@ -13,7 +13,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 void MarioActor::setPlayerMode(u16 playerMode, bool myBool) {
     if (mPlayerMode == playerMode) {

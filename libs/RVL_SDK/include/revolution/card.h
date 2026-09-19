@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include <revolution.h>
+#include "revolution.h"
 
 typedef struct CARDFileInfo {
     s32 chan;    // at 0x0

@@ -1,7 +1,7 @@
 #ifndef AI_H
 #define AI_H
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 
 #ifdef __cplusplus
 extern "C" {

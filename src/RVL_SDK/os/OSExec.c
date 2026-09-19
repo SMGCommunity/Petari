@@ -1,10 +1,10 @@
 #include <cstdio>
-#include <private/flipper.h>
-#include <revolution/dvd.h>
-#include <revolution/os.h>
-#include <revolution/os/OSExecParams.h>
-#include <revolution/os/OSTIme.h>
-#include <revolution/types.h>
+#include "private/flipper.h"
+#include "revolution/dvd.h"
+#include "revolution/os.h"
+#include "revolution/os/OSExecParams.h"
+#include "revolution/os/OSTIme.h"
+#include "revolution/types.h"
 #include <wstring.h>
 
 static volatile BOOL Prepared;

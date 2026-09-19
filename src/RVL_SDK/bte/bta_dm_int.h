@@ -30,18 +30,18 @@
  * headers
  */
 
-#include <decomp.h>
+#include "decomp.h"
 
-#include "bt_target.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "bta_api.h"
-#include "bta_sys.h"
-#include "btm_api.h"
-#include "gki.h"
-#include "hcidefs.h"
-#include "sdp_api.h"
+#include <bta_api.h>
+#include <bta_sys.h>
+#include <btm_api.h>
+#include <gki.h>
+#include <hcidefs.h>
+#include <sdp_api.h>
 
 /*******************************************************************************
  * macros

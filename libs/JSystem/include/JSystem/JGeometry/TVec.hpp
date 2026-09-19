@@ -5,10 +5,10 @@
 // #include "math_types.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
-#include "math_types.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
-#include <JSystem/JMath/JMath.hpp>
+#include <math_types.hpp>
+#include <revolution/mtx.h>
+#include <revolution/types.h>
+#include "JSystem/JMath/JMath.hpp"
 
 namespace JGeometry {
 #ifdef __MWERKS__

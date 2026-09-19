@@ -1,4 +1,4 @@
-#include "hidd_int.h"
+#include <hidd_int.h>
 
 /*******************************************************************************
  * headers
@@ -7,17 +7,17 @@
 #include "revolution/types.h"
 #include <cstring>
 
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "btm_api.h"  // BTM_SetQoS
-#include "btm_int.h"
-#include "gki.h"  // GKI_freebuf
-#include "hid_conn.h"
-#include "hidd_api.h"
-#include "hiddefs.h"
-#include "l2c_api.h"
+#include <btm_api.h>  // BTM_SetQoS
+#include <btm_int.h>
+#include <gki.h>  // GKI_freebuf
+#include <hid_conn.h>
+#include <hidd_api.h>
+#include <hiddefs.h>
+#include <l2c_api.h>
 
 /*******************************************************************************
  * local function declarations

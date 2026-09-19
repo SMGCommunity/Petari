@@ -1,6 +1,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/VectorUtil.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
+#include <JSystem/JMath/JMATrigonometric.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
 
 void CameraCalc_FORCE_MATCH_SDATA2() {

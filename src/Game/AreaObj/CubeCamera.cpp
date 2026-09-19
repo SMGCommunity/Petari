@@ -2,7 +2,7 @@
 #include "Game/AreaObj/AreaObj.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 #include <cstring>
 

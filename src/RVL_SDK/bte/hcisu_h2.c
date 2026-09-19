@@ -1,4 +1,4 @@
-#include "hci.h"
+#include <hci.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -31,18 +31,18 @@
 
 #include <stddef.h>
 
-#include <decomp.h>
+#include "decomp.h"
 
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
-#include "gki_target.h"
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
+#include <gki_target.h>
 
-#include "btu.h"
-#include "gki.h"
-#include "l2c_int.h"
-#include "misc.h"
-#include "uusb.h"
+#include <btu.h>
+#include <gki.h>
+#include <l2c_int.h>
+#include <misc.h>
+#include <uusb.h>
 
 /*******************************************************************************
  * macros

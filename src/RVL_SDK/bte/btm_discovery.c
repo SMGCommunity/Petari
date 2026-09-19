@@ -1,4 +1,4 @@
-#include "btm_api.h"
+#include <btm_api.h>
 
 /*******************************************************************************
  * headers
@@ -8,14 +8,14 @@
 #include <cstring>
 #include <mem.h>
 
-#include "bt_target.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "btm_int.h"
-#include "btu.h"  // btu_stop_timer
-#include "sdp_api.h"
-#include "sdpdefs.h"  // UUID_SERVCLASS_PUBLIC_BROWSE_GROUP
+#include <btm_int.h>
+#include <btu.h>  // btu_stop_timer
+#include <sdp_api.h>
+#include <sdpdefs.h>  // UUID_SERVCLASS_PUBLIC_BROWSE_GROUP
 
 /*******************************************************************************
  * local function declarations

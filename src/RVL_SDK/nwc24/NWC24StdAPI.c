@@ -1,5 +1,5 @@
-#include <revolution/nwc24.h>
-#include <revolution/nwc24/NWC24Internal.h>
+#include "revolution/nwc24.h"
+#include "revolution/nwc24/NWC24Internal.h"
 
 char* Mail_strcpy(char* pDst, const char* pSrc) {
     char* pOrigin = pDst;

@@ -1,5 +1,5 @@
-#include <revolution/os.h>
-#include <revolution/exi.h>
+#include "revolution/os.h"
+#include "revolution/exi.h"
 
 typedef struct SramControl {
     u8 sram[64];

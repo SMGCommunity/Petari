@@ -5,7 +5,7 @@
 #include "Game/Player/MarioConst.hpp"
 #include "Game/Player/MarioState.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 bool Mario::blown(const TVec3f& rVec) {
     if (getCurrentStatus() == MarioStatus_Blown) {

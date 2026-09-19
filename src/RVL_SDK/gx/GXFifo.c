@@ -3,9 +3,9 @@
 #include "revolution/gx/GXEnum.h"
 #include "revolution/os/OSInterrupt.h"
 #include "revolution/os/OSThread.h"
-#include <revolution/gx.h>
-#include <revolution/os.h>
-#include <revolution/gx/GXRegs.h>
+#include "revolution/gx.h"
+#include "revolution/os.h"
+#include "revolution/gx/GXRegs.h"
 #include <mem.h>
 
 #define TOPHYSICAL(a) (((u32)a) & 0x3FFFFFFF)

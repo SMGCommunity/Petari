@@ -1,4 +1,4 @@
-#include <NMWException.h>
+#include "NMWException.h"
 
 typedef struct ProcessInfo {
     __eti_init_info* exception_info;

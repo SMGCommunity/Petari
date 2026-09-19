@@ -1,9 +1,9 @@
 #ifndef RVL_FACE_LIBRARY_ICON_H
 #define RVL_FACE_LIBRARY_ICON_H
-#include <RFL_Types.h>
-#include <RFLi_Types.h>
-#include <RFL_Database.h>
-#include <RFL_MiddleDatabase.h>
+#include "RFL_Types.h"
+#include "RFLi_Types.h"
+#include "RFL_Database.h"
+#include "RFL_MiddleDatabase.h"
 #include <revolution/types.h>
 #ifdef __cplusplus
 extern "C" {

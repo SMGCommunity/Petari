@@ -30,11 +30,11 @@
  * headers
  */
 
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "hiddefs.h"
-#include "sdp_api.h"
+#include <hiddefs.h>
+#include <sdp_api.h>
 
 /*******************************************************************************
  * types

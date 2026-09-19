@@ -31,7 +31,7 @@
 #include "Game/Util/StringUtil.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
 #include <JSystem/JMath/JMath.hpp>
-#include <math_types.hpp>
+#include "math_types.hpp"
 #include <revolution/mtx.h>
 
 void WaterBazooka_FORCE_MATCH_SDATA2() {

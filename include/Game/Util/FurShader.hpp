@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/J3DGraphAnimator/J3DModel.hpp"
-#include "revolution/gx/GXEnum.h"
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
+#include <revolution/gx/GXEnum.h>
 #include <revolution.h>
 
 class J3DModel;

@@ -1,6 +1,6 @@
 #include <cstring>
 #include <mem.h>
-#include <revolution/sc.h>
+#include "revolution/sc.h"
 
 const char* __SCVersion = "<< RVL_SDK - SC \trelease build: Feb 22 2008 06:21:38 (0x4199_60831) >>";
 

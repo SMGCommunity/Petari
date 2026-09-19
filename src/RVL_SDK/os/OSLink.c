@@ -1,4 +1,4 @@
-#include <revolution/os/OSLink.h>
+#include "revolution/os/OSLink.h"
 
 void __OSModuleInit(void) {
     /* SMG1 doesn't use REL so these are never used */

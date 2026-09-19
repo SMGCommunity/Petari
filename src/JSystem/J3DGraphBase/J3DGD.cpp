@@ -3,11 +3,11 @@
 #include <revolution/mtx.h>
 #include <revolution/os.h>
 
-#include "revolution/gd/GDIndirect.h"
-#include "revolution/gd/GDLight.h"
-#include "revolution/gd/GDPixel.h"
-#include "revolution/gd/GDTev.h"
-#include "revolution/gd/GDTexture.h"
+#include <revolution/gd/GDIndirect.h>
+#include <revolution/gd/GDLight.h>
+#include <revolution/gd/GDPixel.h>
+#include <revolution/gd/GDTev.h>
+#include <revolution/gd/GDTexture.h>
 
 void J3DGDSetGenMode(u8 nTexGens, u8 nChans, u8 nTevs, u8 nInds, GXCullMode cm) {
     static u8 cm2hw[4] = {0, 2, 1, 3};

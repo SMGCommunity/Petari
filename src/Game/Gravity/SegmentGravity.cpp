@@ -1,6 +1,6 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JGeometry/TUtil.hpp"
+#include <JSystem/JGeometry/TUtil.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
 
 void SegmentGravity_FORCE_MATCH_SDATA2() {

@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-#include <revolution/os.h>
-#include <revolution/types.h>
+#include "revolution/os.h"
+#include "revolution/types.h"
 
 typedef void (*DSPCallback)(void*);
 

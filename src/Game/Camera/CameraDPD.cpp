@@ -5,7 +5,7 @@
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "revolution/wpad.h"
+#include <revolution/wpad.h>
 
 void CameraDPD_FORCE_MATCH_SDATA2() {
     (void)1.0f;

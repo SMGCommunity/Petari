@@ -19,7 +19,7 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
-#include <math_types.hpp>
+#include "math_types.hpp"
 
 namespace {
     const Vec cWeakSensorOffset = {0.0f, 0.0f, -150.0f};
