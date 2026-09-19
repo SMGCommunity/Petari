@@ -25,7 +25,7 @@ void SeesawMoveNut_FORCE_MATCH_SDATA2() {
     (void) 0.5f;
 }
 
-SeesawMoveNut::SeesawMoveNut(const char* pName) : MapObjActor(pName), _C4(100.0f), mPrevAngularSpeed() {
+SeesawMoveNut::SeesawMoveNut(const char* pName) : MapObjActor(pName), mSpeed(100.0f), mPrevAngularSpeed() {
 }
 
 void SeesawMoveNut::init(const JMapInfoIter& rIter) {
@@ -41,7 +41,7 @@ void SeesawMoveNut::init(const JMapInfoIter& rIter) {
 
     initialize(rIter, initInfo);
     MR::setBodySensorType(this, ATYPE_MAP_OBJ_PRESS);
-    MR::getJMapInfoArg0NoInit(rIter, &_C4);
+    MR::getJMapInfoArg0NoInit(rIter, &mSpeed);
 
     MR::calcNearestRailPos(&mPosition, this, mPosition);
 
@@ -63,7 +63,7 @@ void SeesawMoveNut::exeHalfway() {
         MR::setRailDirectionToStart(this);
     }
 
-    MR::moveCoordAndFollowTrans(this, MR::abs(angularSpeed * _C4 * 0.01f));
+    MR::moveCoordAndFollowTrans(this, MR::abs(angularSpeed * mSpeed * 0.01f));
 
     autoBackHome();
 
