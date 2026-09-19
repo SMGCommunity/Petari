@@ -1,19 +1,7 @@
 #include "Game/MapObj/SeesawMoveNut.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/MapObj/MapObjActor.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
-#include "Game/MapObj/MapPartsRailRotator.hpp"
 #include "Game/Util.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
-#include "Game/Util/JMapUtil.hpp"
-#include "Game/Util/MapPartsUtil.hpp"
-#include "Game/Util/MathUtil.hpp"
-#include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/PlayerUtil.hpp"
-#include "Game/Util/RailUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
-#include "revolution/types.h"
-#include "revolution/wpad.h"
 
 namespace NrvSeesawMoveNut {
     NEW_NERVE(SeesawMoveNutNrvHalfway, SeesawMoveNut, Halfway);
@@ -21,8 +9,8 @@ namespace NrvSeesawMoveNut {
 }  // namespace NrvSeesawMoveNut
 
 void SeesawMoveNut_FORCE_MATCH_SDATA2() {
-    (void) 0.0f;
-    (void) 0.5f;
+    (void)0.0f;
+    (void)0.5f;
 }
 
 SeesawMoveNut::SeesawMoveNut(const char* pName) : MapObjActor(pName), mSpeed(100.0f), mPrevAngularSpeed() {
@@ -100,7 +88,7 @@ void SeesawMoveNut::exeHalfway() {
 }
 
 void SeesawMoveNut::exeEdge() {
-    if(isEnableStart()) {
+    if (isEnableStart()) {
         MapObjActorUtil::startRotator(this);
         _CC = 0;
         setNerve(GET_NERVE(SeesawMoveNut, SeesawMoveNutNrvHalfway));
@@ -110,19 +98,19 @@ void SeesawMoveNut::exeEdge() {
 }
 
 void SeesawMoveNut::autoBackHome() {
-    if(_CC >= 180) {
-        if(isNerve(GET_NERVE(SeesawMoveNut, SeesawMoveNutNrvEdge)) && MR::getRailCoord(this) == MR::getRailTotalLength(this)) {
+    if (_CC >= 180) {
+        if (isNerve(GET_NERVE(SeesawMoveNut, SeesawMoveNutNrvEdge)) && MR::getRailCoord(this) == MR::getRailTotalLength(this)) {
             MapObjActorUtil::startRotator(this);
             setNerve(GET_NERVE(SeesawMoveNut, SeesawMoveNutNrvHalfway));
             return;
         }
 
-        if(MR::abs(MapObjActorUtil::getSeesaw1AxisAngularSpeed(this)) < 0.5f) {
+        if (MR::abs(MapObjActorUtil::getSeesaw1AxisAngularSpeed(this)) < 0.5f) {
             MapObjActorUtil::forceRotateSeesaw1Axis(this, -0.02f);
         }
     }
 
-    if(MR::isOnPlayer(this)) {
+    if (MR::isOnPlayer(this)) {
         _CC = 0;
     } else {
         _CC++;
@@ -130,7 +118,7 @@ void SeesawMoveNut::autoBackHome() {
 }
 
 bool SeesawMoveNut::isEnableStart() const {
-    if(!MR::isOnPlayer(this)) {
+    if (!MR::isOnPlayer(this)) {
         return false;
     }
 
@@ -146,6 +134,6 @@ bool SeesawMoveNut::isEnableStart() const {
     return dirToPlayerNoFront.cross(mGravity).dot(MR::getRailDirection(this)) > 0.0f;
 }
 
-bool SeesawMoveNut::isAtEdge() const  {
+bool SeesawMoveNut::isAtEdge() const {
     return MR::getRailCoord(this) == 0.0f || MR::getRailCoord(this) == MR::getRailTotalLength(this);
 }
