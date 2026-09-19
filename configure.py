@@ -1957,7 +1957,7 @@ config.libs = [
             Object(NonMatching, "Game/NPC/TurnJointCtrl.cpp"),
             Object(NonMatching, "Game/NPC/TalkState.cpp"),
             Object(NonMatching, "Game/NPC/TalkSupportPlayerWatcher.cpp"),
-            Object(NonMatching, "Game/NPC/TalkTextFormer.cpp"),
+            Object(Matching, "Game/NPC/TalkTextFormer.cpp", extra_cflags=["-DNW4R_DEBUG"]),
             Object(Matching, "Game/NPC/TimeAttackEventKeeper.cpp"),
         ],
     ),
