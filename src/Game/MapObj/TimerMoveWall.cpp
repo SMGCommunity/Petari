@@ -76,7 +76,7 @@ void TimerMoveWall::exeMove() {
 }
 
 void TimerMoveWall::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
-    MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &TimerMoveWall::startMove));
+    MR::listenStageSwitchOnB(this, MR::Functor(this, &TimerMoveWall::startMove));
 }
 
 void TimerMoveWall::startMove() {

@@ -92,7 +92,7 @@ bool SandUpDownTriRock::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
 }
 
 void SandUpDownTriRock::initCaseUseSwitchB(const MapObjActorInitInfo& info) {
-    MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &SandUpDownTriRock::startDown));
+    MR::listenStageSwitchOnB(this, MR::Functor(this, &SandUpDownTriRock::startDown));
 }
 
 void SandUpDownTriRock::control() {

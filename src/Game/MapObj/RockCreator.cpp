@@ -24,7 +24,7 @@ void RockCreator::init(const JMapInfoIter& rIter) {
     MR::syncStageSwitchAppear(this);
 
     if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &RockCreator::invalidate));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &RockCreator::invalidate));
     }
 
     Rock::Type rockType = Rock::getType(rIter);

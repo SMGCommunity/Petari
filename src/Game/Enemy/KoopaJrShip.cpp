@@ -106,7 +106,7 @@ void KoopaJrShip::init(const JMapInfoIter& rIter) {
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
         MR::registerDemoActionNerve(this, GET_NERVE(KoopaJrShip, HostTypeAppear), "出現");
-        MR::registerDemoActionFunctor(this, MR::Functor_Inline(this, &KoopaJrShip::setStateTurnFront), "旋廻");
+        MR::registerDemoActionFunctor(this, MR::Functor(this, &KoopaJrShip::setStateTurnFront), "旋廻");
         MR::tryRegisterDemoCast(mShipBreakModel, rIter);
         MR::tryRegisterDemoCast(mPodModel, rIter);
         initNerve(GET_NERVE(KoopaJrShip, HostTypeAppear));

@@ -76,7 +76,7 @@ void OceanSmallTurtle::init(const JMapInfoIter& rIter) {
     MR::onCalcGravity(this);
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &OceanSmallTurtle::startFloat));
+        MR::listenStageSwitchOnB(this, MR::Functor(this, &OceanSmallTurtle::startFloat));
     }
 
     MR::tryRegisterDemoCast(this, rIter);

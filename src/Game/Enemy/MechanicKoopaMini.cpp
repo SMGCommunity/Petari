@@ -94,7 +94,7 @@ void MechanicKoopaMini::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchSleep(this, rIter);
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &::MechanicKoopaMini::onAppearSwitchOn));
+        MR::listenStageSwitchOnAppear(this, MR::Functor(this, &::MechanicKoopaMini::onAppearSwitchOn));
     }
 
     s32 arg = -1;

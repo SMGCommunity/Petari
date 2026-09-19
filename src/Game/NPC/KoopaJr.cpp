@@ -63,7 +63,7 @@ void KoopaJr::init(const JMapInfoIter& rIter) {
     MR::declareStarPiece(this, ::sStarPieceNum);
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
-        MR::tryRegisterDemoActionFunctor(this, MR::Functor_Inline(this, &KoopaJr::startShipBattleTalk), "クッパJr会話");
+        MR::tryRegisterDemoActionFunctor(this, MR::Functor(this, &KoopaJr::startShipBattleTalk), "クッパJr会話");
 
         if (mLodCtrl != nullptr) {
             if (mLodCtrl->_10 != nullptr) {

@@ -90,7 +90,7 @@ void Coin::init(const JMapInfoIter& rIter) {
         }
 
         if (MR::useStageSwitchReadB(this, rIter)) {
-            MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &Coin::makeActorDead));
+            MR::listenStageSwitchOnB(this, MR::Functor(this, &Coin::makeActorDead));
         }
     } else {
         makeActorDead();

@@ -127,7 +127,7 @@ void DinoPackun::init(const JMapInfoIter& rIter) {
     MR::stopBck(this);
     MR::startBtp(this, "FlowerAll");
     MR::startBrk(this, "Normal");
-    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &DinoPackun::startSequence));
+    MR::listenStageSwitchOnA(this, MR::Functor(this, &DinoPackun::startSequence));
     MR::addBaseMatrixFollowTarget(this, rIter, nullptr, nullptr);
 
     if (mSequence != nullptr) {

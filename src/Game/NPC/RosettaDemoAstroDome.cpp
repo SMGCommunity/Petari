@@ -34,7 +34,7 @@ static void EntryDemo(T* caller, const char* pDemoName, const char* pRootName, c
         TalkMessageCtrl* ctrl = MR::createTalkCtrlDirectOnRootNodeAutomatic(caller->mRosetta, rIter, pRootName, offset, nullptr);
         MR::registerEventFunc(ctrl, TalkMessageFunc(caller->mRosetta, &Rosetta::eventFunc));
         DemoFunction::registerDemoTalkMessageCtrlDirect(caller->mRosetta, ctrl, pDemoName);
-        MR::registerDemoActionFunctorDirect(caller->mRosetta, MR::Functor_Inline(caller, &T::startDemo), pDemoName, "開始");
+        MR::registerDemoActionFunctorDirect(caller->mRosetta, MR::Functor(caller, &T::startDemo), pDemoName, "開始");
     }
 }
 
@@ -140,7 +140,7 @@ RosettaDemoAstroDomeExplain::RosettaDemoAstroDomeExplain(Rosetta* pRosetta, cons
     const char* sDemoExplain = "ロゼッタ状況説明デモ";
     DemoFunction::tryCreateDemoTalkAnimCtrlForSceneDirect(mRosetta, sDemoExplain, rIter, "DemoWithButler", nullptr, 0, 0);
     DemoFunction::registerDemoTalkMessageCtrlDirect(mRosetta, mRosetta->mMsgCtrl, sDemoExplain);
-    MR::registerDemoActionFunctorDirect(mRosetta, MR::Functor_Inline(this, &RosettaDemoAstroDomeExplain::startDemo), sDemoExplain, "状況説明[開始]");
+    MR::registerDemoActionFunctorDirect(mRosetta, MR::Functor(this, &RosettaDemoAstroDomeExplain::startDemo), sDemoExplain, "状況説明[開始]");
     mMonologue = new RosettaMonologue();
     initNerve(GET_NERVE(RosettaDemoAstroDomeExplain, RosettaDemoAstroDomeExplainNrvExplainDemo));
 }

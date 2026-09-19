@@ -39,7 +39,7 @@ void DemoExecutor::init(const JMapInfoIter& rIter) {
     _40 = MR::createStageSwitchCtrl(this, rIter);
 
     if (_40->isValidSwitchAppear()) {
-        MR::listenNameObjStageSwitchOnAppear(this, _40, MR::Functor_Inline(this, &DemoExecutor::startProperDemoSystem));
+        MR::listenNameObjStageSwitchOnAppear(this, _40, MR::Functor(this, &DemoExecutor::startProperDemoSystem));
     }
 
     DemoFunction::registerDemoExecutor(this);

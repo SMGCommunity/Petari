@@ -325,7 +325,7 @@ void GameScene::initSequences() {
     mPauseCtrl = new GameScenePauseControl(this);
     mPauseCtrl->registerNervePauseMenu(GET_NERVE(GameScene, GameScenePauseMenu));
 
-    mPauseSeq->initWindowMenu(MR::Functor_Inline(mPauseCtrl, &GameScenePauseControl::requestPauseMenuOff));
+    mPauseSeq->initWindowMenu(MR::Functor(mPauseCtrl, &GameScenePauseControl::requestPauseMenuOff));
 }
 
 void GameScene::initEffect() {

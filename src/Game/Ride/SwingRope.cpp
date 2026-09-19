@@ -816,7 +816,7 @@ SwingRopeGroup::SwingRopeGroup(const char* pName) : NameObj(pName) {
     mTexture = nullptr;
     mTexture = new JUTTexture(MR::loadTexFromArc("SwingRope.arc", "SwingRope.bti"), 0);
 
-    MR::registerPreDrawFunction(MR::Functor_Inline(this, &SwingRopeGroup::initDraw), MR::DrawType_SwingRope);
+    MR::registerPreDrawFunction(MR::Functor(this, &SwingRopeGroup::initDraw), MR::DrawType_SwingRope);
 }
 
 void SwingRopeGroup::initDraw() const {

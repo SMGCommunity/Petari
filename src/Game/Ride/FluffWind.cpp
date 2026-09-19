@@ -104,7 +104,7 @@ void FluffWind::init(const JMapInfoIter& rIter) {
     }
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &FluffWind::makeActorDead));
+        MR::listenStageSwitchOnB(this, MR::Functor(this, &FluffWind::makeActorDead));
     }
 
     makeActorAppeared();

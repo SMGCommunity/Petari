@@ -77,7 +77,7 @@ void JumpBeamer::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchReadA(this, rIter);
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::listenStageSwitchOffB(this, MR::Functor_Inline(this, &JumpBeamer::syncSwitchOffB));
+        MR::listenStageSwitchOffB(this, MR::Functor(this, &JumpBeamer::syncSwitchOffB));
     }
 
     initEventCamera(rIter);

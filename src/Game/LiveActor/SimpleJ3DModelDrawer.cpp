@@ -8,7 +8,7 @@ SimpleJ3DModelDrawer::SimpleJ3DModelDrawer(NameObj* pObj, const char* pName, con
     mShapeDraw = nullptr;
 
     if (drawType >= 0) {
-        MR::registerPreDrawFunction(MR::Functor_Inline(this, &SimpleJ3DModelDrawer::initDraw), drawType);
+        MR::registerPreDrawFunction(MR::Functor(this, &SimpleJ3DModelDrawer::initDraw), drawType);
     }
 
     initModelManagerWithAnm(pModelName, nullptr, false);

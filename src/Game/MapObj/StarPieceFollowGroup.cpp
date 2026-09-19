@@ -47,7 +47,7 @@ void StarPieceFollowGroup::init(const JMapInfoIter& rIter) {
     }
 
     MR::needStageSwitchWriteA(this, rIter);
-    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &StarPieceFollowGroup::onSwitchA));
+    MR::listenStageSwitchOnA(this, MR::Functor(this, &StarPieceFollowGroup::onSwitchA));
     MR::useStageSwitchReadB(this, rIter);
 
     MR::connectToSceneMapObjMovement(this);

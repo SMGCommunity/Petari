@@ -69,7 +69,7 @@ void EyeBeamer::init(const JMapInfoIter& rIter) {
     initStartNerve(rIter);
 
     if (MR::useStageSwitchReadA(this, rIter))
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &EyeBeamer::requestStartPatrol));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &EyeBeamer::requestStartPatrol));
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
         MR::registerDemoActionNerve(this, GET_NERVE(EyeBeamer, EyeBeamerNrvDemoTurn), "アイビーマー回転");

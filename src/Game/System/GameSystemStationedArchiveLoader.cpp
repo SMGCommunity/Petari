@@ -197,7 +197,7 @@ void GameSystemStationedArchiveLoader::exeLoadStationedArchivePlayer() {
 
 void GameSystemStationedArchiveLoader::exeLoadStationedArchiveOthers() {
     if (MR::isFirstStep(this)) {
-        if (!tryAsyncExecuteIfNotSuspend(MR::Functor_Inline(this, &GameSystemStationedArchiveLoader::startToLoadStationedArchiveOthers),
+        if (!tryAsyncExecuteIfNotSuspend(MR::Functor(this, &GameSystemStationedArchiveLoader::startToLoadStationedArchiveOthers),
                                          "常駐リソース読み込み")) {
             setNerve(GET_NERVE_ANON(GameSystemStationedArchiveLoaderSuspended));
             return;
@@ -233,7 +233,7 @@ void GameSystemStationedArchiveLoader::exeChangeArchivePlayer() {
     if (MR::isFirstStep(this)) {
         mHeapHolder->dispose();
         MR::startFunctionAsyncExecute(
-            MR::Functor_Inline(this, &GameSystemStationedArchiveLoader::startToLoadStationedArchivePlayer, mHeapHolder->mIsDataMario), 14,
+            MR::Functor(this, &GameSystemStationedArchiveLoader::startToLoadStationedArchivePlayer, mHeapHolder->mIsDataMario), 14,
             "プレイヤーリソース読み込み");
     }
 

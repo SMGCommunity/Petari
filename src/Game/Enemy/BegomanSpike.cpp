@@ -139,7 +139,7 @@ BegomanSpike::BegomanSpike(const char* pName) : BegomanBase(pName), mHead(), mBr
 
 void BegomanSpike::init(const JMapInfoIter& rIter) {
     initCore(rIter, "BegomanSpike", false);
-    initUseSwitchB(rIter, MR::Functor_Inline(this, &BegomanSpike::onSwitchB));
+    initUseSwitchB(rIter, MR::Functor(this, &BegomanSpike::onSwitchB));
     MR::declareCoin(this, 1);
     initBinder(100.0f, 100.0f, 0);
     initNerve(GET_NERVE(BegomanSpike, HostTypeNrvWait));

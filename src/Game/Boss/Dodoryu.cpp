@@ -681,7 +681,7 @@ void Dodoryu::initHitSensor() {
 
 void Dodoryu::initSwitch(const JMapInfoIter& rIter) {
     if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &Dodoryu::notifyOnSwitchA));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &Dodoryu::notifyOnSwitchA));
     }
 
     MR::useStageSwitchWriteB(this, rIter);
@@ -707,7 +707,7 @@ void Dodoryu::turnUpVecTo(const TVec3f& rVec) {
     TPos3f mtx;
     mtx.setQuat(q);
     mBaseMtx.concat(mtx, mBaseMtx);
-    
+
     // FIXME: probably an inline
     TVec3f xDir, yDir, zDir;
     mBaseMtx.getXYZDir(xDir, yDir, zDir);
