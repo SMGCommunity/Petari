@@ -15,9 +15,9 @@ bool GameEventFlagChecker::canOn(const char* pFlagName) const {
     const GameEventFlag* pFlag = GameEventFlagTable::findFlag(pFlagName);
 
     switch (pFlag->mType) {
-    case GameEventFlag::Type_0:
+    case GameEventFlag::Type_None:
         return true;
-    case GameEventFlag::Type_1:
+    case GameEventFlag::Type_StarNum:
         return mDataHolder->calcCurrentPowerStarNum() >= pFlag->mStarNum;
     case GameEventFlag::Type_GalaxyOpenStar:
         s32 currentPowerStarNum = mDataHolder->calcCurrentPowerStarNum();
@@ -26,21 +26,21 @@ bool GameEventFlagChecker::canOn(const char* pFlagName) const {
         return powerStarOpenNum <= currentPowerStarNum;
     case GameEventFlag::Type_SpecialStar:
         return mDataHolder->hasPowerStar(pFlag->mGalaxyName, pFlag->mStarID);
-    case GameEventFlag::Type_4:
+    case GameEventFlag::Type_EventFlag:
         const char* pRequirement1 = pFlag->mRequirement1;
         const char* pRequirement2 = pFlag->mRequirement2;
         bool isOnRequirement1 = pRequirement1 != nullptr ? isOn(pRequirement1) : true;
         bool isOnRequirement2 = pRequirement2 != nullptr ? isOn(pRequirement2) : true;
 
         return isOnRequirement1 && isOnRequirement2;
-    case GameEventFlag::Type_5:
-        return mDataHolder->isPassedStoryEvent(pFlag->mEventValueName);
+    case GameEventFlag::Type_StoryEvent:
+        return mDataHolder->isPassedStoryEvent(pFlag->mStoryEventName);
     case GameEventFlag::Type_Galaxy:
         return isOnGalaxy(pFlagName);
     case GameEventFlag::Type_Comet:
         return isOnComet(pFlag);
-    case GameEventFlag::Type_11:
-        return isOn(pFlag->mEventValueName);
+    case GameEventFlag::Type_StoryEventSync:
+        return isOn(pFlag->mEventFlagName);
     case GameEventFlag::Type_StarPiece:
         GameEventFlagAccessor accessor1 = GameEventFlagAccessor(pFlag);
         s32 needStarPieceNum = accessor1.getNeedStarPieceNum();
@@ -54,7 +54,7 @@ bool GameEventFlagChecker::canOn(const char* pFlagName) const {
         }
 
         return static_cast< u16 >(mDataHolder->getGameEventValue(accessor2.getEventValueName())) == 0;
-    case GameEventFlag::Type_10:
+    case GameEventFlag::Type_CompleteMarioAndLuigi:
         return mDataHolder->isCompleteMarioAndLuigi();
     default:
         return false;
@@ -68,19 +68,19 @@ bool GameEventFlagChecker::isOn(const char* pFlagName) const {
     }
 
     switch (pFlag->mType) {
-    case GameEventFlag::Type_0:
-    case GameEventFlag::Type_1:
+    case GameEventFlag::Type_None:
+    case GameEventFlag::Type_StarNum:
     case GameEventFlag::Type_GalaxyOpenStar:
     case GameEventFlag::Type_SpecialStar:
-    case GameEventFlag::Type_4:
-    case GameEventFlag::Type_5:
+    case GameEventFlag::Type_EventFlag:
+    case GameEventFlag::Type_StoryEvent:
     case GameEventFlag::Type_Galaxy:
     case GameEventFlag::Type_EventValueIsZero:
         return mFlagStorage->isOn(pFlag);
     case GameEventFlag::Type_Comet:
     case GameEventFlag::Type_StarPiece:
-    case GameEventFlag::Type_10:
-    case GameEventFlag::Type_11:
+    case GameEventFlag::Type_CompleteMarioAndLuigi:
+    case GameEventFlag::Type_StoryEventSync:
     default:
         return false;
     }
@@ -99,16 +99,16 @@ bool GameEventFlagChecker::tryOn(const char* pFlagName) {
 
     switch (pFlag->mType) {
     case GameEventFlag::Type_SpecialStar:
-    case GameEventFlag::Type_5:
+    case GameEventFlag::Type_StoryEvent:
     case GameEventFlag::Type_Comet:
     case GameEventFlag::Type_StarPiece:
-    case GameEventFlag::Type_10:
-    case GameEventFlag::Type_11:
+    case GameEventFlag::Type_CompleteMarioAndLuigi:
+    case GameEventFlag::Type_StoryEventSync:
         return false;
-    case GameEventFlag::Type_0:
-    case GameEventFlag::Type_1:
+    case GameEventFlag::Type_None:
+    case GameEventFlag::Type_StarNum:
     case GameEventFlag::Type_GalaxyOpenStar:
-    case GameEventFlag::Type_4:
+    case GameEventFlag::Type_EventFlag:
     case GameEventFlag::Type_Galaxy:
     case GameEventFlag::Type_EventValueIsZero:
     default:
