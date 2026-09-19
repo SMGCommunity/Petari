@@ -45,7 +45,7 @@ public:
     void setSRTFromHostMtx(JPABaseEmitter*, MtxPtr, const FlagSRT&, bool);
     void setSRTFromHostSRT(JPABaseEmitter*, const FlagSRT&, bool);
     void setScaleFromHostScale(JPABaseEmitter*, const TVec3f&, bool, bool);
-    bool effectLight(JPABaseEmitter*) NO_INLINE;
+    void effectLight(JPABaseEmitter*) NO_INLINE;
     void followSRT(JPABaseEmitter*, bool);
     void setColor(JPABaseEmitter*);
     void isFollowSRT(FlagSRT*, bool) const;

@@ -49,3 +49,13 @@ void DemoWipeKeeper::addInfo(const char* pPartName) {
     info.mPartName = pPartName;
     mInfo.push_back(info);
 }
+
+inline const char* DemoWipeKeeper::getTypeString() const {
+    return "Wipe";
+}
+
+inline const char* DemoWipeKeeper::getName() const {
+    return "ワイプ";
+}
+
+#include "Game/Demo/DemoSheetKeeperInfoHolder.hpp"

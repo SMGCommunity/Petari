@@ -24,6 +24,15 @@
 #include "Game/Util/SequenceUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void ScenarioStarter_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.000003814697265625f;
+    (void)0.5f;
+    (void)PI;
+    (void)2.0f;
+}
+
 namespace NrvScenarioStarter {
     NEW_NERVE(ScenarioStarterWaitScenarioCameraEnd, ScenarioStarter, WaitScenarioCameraEnd);
     NEW_NERVE(ScenarioStarterWaitToStart, ScenarioStarter, WaitToStart);
@@ -38,9 +47,6 @@ ScenarioStarter::ScenarioStarter(const char* pName)
       _D8(1.0f, 0.0f, 0.0f), _E4(), _E8(), _EC(), mFlightTime(300), mFlyMotionStartStep(), _F8(), mFallMotionStartStep(), mInitalPlayerRotation(),
       mWelcomeLayout(), mTitle(), _10C(0.0f, 0.0f, 0.0f), _118(0.0f, 0.0f, 0.0f), _124() {
     _A8.set(0.0f, 0.0f, 0.0f, 1.0f);
-}
-
-ScenarioStarter::~ScenarioStarter() {
 }
 
 void ScenarioStarter::init(const JMapInfoIter& rIter) {
@@ -84,6 +90,7 @@ void ScenarioStarter::exeCinemaFrameBlank() {
         MR::stopStageBGM(0);
         MR::startStageBGMFromStageName("Game", MR::getCurrentStageName(), MR::getCurrentScenarioNo());
     }
+
     MR::setNerveAtStep(this, GET_NERVE(ScenarioStarter, ScenarioStarterRailMove), 0);
 }
 
@@ -101,28 +108,34 @@ void ScenarioStarter::exeRailMove() {
         MR::makeMtxUpFront(&rotMtx, _C0, _CC);
         rotMtx.getQuat(_A8);
     }
+
     if (MR::isStep(this, 10)) {
         MR::tryBlankToFrameCinemaFrame();
         mTitle->start();
     }
+
     updateBindPosition();
     if (!MR::isNearZero(_90)) {
         turnBindHead(_90, 0.4f);
     }
+
     updateShootMotion();
     mSpinDriverCamera->update(_90, mPosition);
     if (mFlyMotionStartStep <= getNerveStep() && getNerveStep() <= _F8) {
         _E4 = _E8 * MR::getEaseOutValue(MR::normalize(getNerveStep(), mFlyMotionStartStep, _F8), 0.0f, 1.0f, 1.0f);
     }
+
     _EC = MR::pi() * MR::normalize(getNerveStep(), _F8, mFallMotionStartStep);
     if (trySkipTrigger()) {
         MR::tryFrameToBlankCinemaFrame();
         _124 = true;
     }
+
     if (_124 && MR::isStopCinemaFrame()) {
         setNerve(GET_NERVE(ScenarioStarter, ScenarioStarterRailMoveCanceled));
         return;
     }
+
     s32 bgmStartTime = 0;
     if (MR::isEqualStageName("EggStarGalaxy")) {
         bgmStartTime = 20;
@@ -131,10 +144,12 @@ void ScenarioStarter::exeRailMove() {
     } else if (MR::isEqualStageName("FactoryGalaxy")) {
         bgmStartTime = 11;
     }
+
     if (MR::isStep(this, mFlightTime - bgmStartTime) && isStartBgmOnWelcome()) {
         MR::stopStageBGM(0);
         MR::startStageBGMFromStageName("Game", MR::getCurrentStageName(), MR::getCurrentScenarioNo());
     }
+
     if (MR::isGreaterEqualStep(this, mFlightTime)) {
         MR::endBindAndSpinDriverJump(this, _9C);
         _8C = nullptr;
@@ -153,6 +168,7 @@ void ScenarioStarter::exeRailMoveCanceled() {
             MR::stopStageBGM(0);
             MR::startStageBGMFromStageName("Game", MR::getCurrentStageName(), MR::getCurrentScenarioNo());
         }
+
         setNerve(GET_NERVE(ScenarioStarter, ScenarioStarterShowWelcomeLayout));
     }
 }
@@ -166,12 +182,15 @@ void ScenarioStarter::exeShowWelcomeLayout() {
         if (!MR::isDead(mTitle)) {
             mTitle->end();
         }
+
         MR::startAnim(mWelcomeLayout, "Appear", 0);
         MR::executeOnWelcomeAndRetry();
     }
+
     if (MR::isStep(this, 90)) {
         MR::forceAppearDefaultGameLayout();
     }
+
     if (MR::isAnimStopped(mWelcomeLayout, 0)) {
         mWelcomeLayout->kill();
         kill();
@@ -193,9 +212,10 @@ void ScenarioStarter::updateBindPosition() {
     f32 nerveRate = MR::calcNerveRate(this, mFlightTime);
     _B8->calcPosition(&pathPos, nerveRate);
     _B8->calcDirection(&pathDir, nerveRate, 0.01f);
-    if (!MR::isNearZero(pathDir, 0.001f)) {
+    if (!MR::isNearZero(pathDir)) {
         _90 = pathDir;
     }
+
     _9C.set(pathPos);
     _9C -= mPosition;
     mPosition.set(pathPos);
@@ -203,26 +223,25 @@ void ScenarioStarter::updateBindPosition() {
 
 void ScenarioStarter::updateBindActorMtx() {
     if (isNerve(GET_NERVE(ScenarioStarter, ScenarioStarterRailMove))) {
-        TPos3f mtx1;
-        mtx1.identity();
-        mtx1.setEulerY(_E4);
-        mtx1.setTrans(0.0f, 0.0f, 0.0f);
+        TPos3f rotateY;
+        rotateY.identity();
+        rotateY.setEulerY(_E4);
+        rotateY.setTrans(0.0f, 0.0f, 0.0f);
 
-        TPos3f mtx2;
-        mtx2.identity();
-        mtx2.setEulerX(_EC);
+        TPos3f rotateX;
+        rotateX.identity();
+        const f32 angleX = _EC;
+        rotateX.setEulerX(angleX);
 
-        // FIXME
-        TPos3f baseMtx;
-        baseMtx.setQuat(_A8);
-        baseMtx.setTrans(mPosition);
-        baseMtx.concat(baseMtx, mtx2);
-        baseMtx.concat(baseMtx, mtx1);
-        MR::setBaseTRMtx(_8C, baseMtx);
+        TPos3f mtx;
+        mtx.setQT(_A8, mPosition);
+        mtx.concat(mtx, rotateX);
+        mtx.concat(mtx, rotateY);
+        MR::setBaseTRMtx(_8C, mtx);
     } else {
-        TPos3f baseMtx;
-        MR::makeMtxTR(baseMtx, _10C, _118);
-        MR::setBaseTRMtx(_8C, baseMtx);
+        TPos3f mtx;
+        MR::makeMtxTR(mtx.toMtxPtr(), _10C, _118);
+        MR::setBaseTRMtx(_8C, mtx);
     }
 }
 
@@ -230,66 +249,66 @@ void ScenarioStarter::updateShootMotion() {
     if (MR::isStep(this, mFlyMotionStartStep)) {
         MR::startBckWithInterpole(_8C, "SpaceFlyLoop", 5);
     }
+
     if (MR::isLessStep(this, _F8)) {
         MR::startLevelSound(_8C, "SE_PM_LV_S_SPIN_DRV_FLY");
     }
+
     if (MR::isStep(this, _F8)) {
         MR::startBckWithInterpole(_8C, "SpaceFlyEnd", 0);
         MR::startSound(_8C, "SE_PM_S_SPIN_DRV_COOL_DOWN");
         MR::startSound(_8C, "SE_PV_JUMP_S");
     }
+
     if (MR::isStep(this, mFallMotionStartStep)) {
         MR::startBckWithInterpole(_8C, "Fall", 20);
     }
 }
 
-void ScenarioStarter::turnBindHead(const TVec3f& rVec, f32 f1) {
-    MR::turnQuatYDirRad(&_A8, _A8, _90, MR::pi());
-
-    TVec3f yDir;
-    _A8.getYDir(yDir);
-
-    TQuat4f rotateQuat;
-    rotateQuat.setRotate(yDir, rVec, f1);
-    _A8.mult(rotateQuat);
+void ScenarioStarter::turnBindHead(const TVec3f& rHead, f32 rate) {
+    MR::turnQuatYDirRad(&_A8, _A8, _90, PI);
+    TVec3f head;
+    _A8.getYDir(head);
+    TQuat4f rotation;
+    rotation.setRotate(head, rHead, rate);
+    _A8.mult(rotation);
     _A8.normalize();
 }
 
 void ScenarioStarter::calcShootMotionTime() {
-    s32 startMaxFrame = MR::getBckFrameMax(_8C, "SpaceFlyStart");
-    s32 loopMaxFrame = MR::getBckFrameMax(_8C, "SpaceFlyLoop");
-    s32 endMaxFrame = MR::getBckFrameMax(_8C, "SpaceFlyEnd");
+    s32 startTime = MR::getBckFrameMax(_8C, "SpaceFlyStart");
+    MR::getBckFrameMax(_8C, "SpaceFlyLoop");
+    s32 endTime = MR::getBckFrameMax(_8C, "SpaceFlyEnd");
 
     if (mFlightTime < 20) {
         mFlyMotionStartStep = -1;
         _F8 = -1;
         mFallMotionStartStep = 0;
-
         return;
     }
 
-    if (mFlightTime < endMaxFrame + 20) {
+    if (mFlightTime < endTime + 20) {
         mFlyMotionStartStep = -1;
         _F8 = 0;
         mFallMotionStartStep = -1;
-
         return;
     }
 
-    _F8 = mFlightTime - (endMaxFrame + 20);
+    _F8 = mFlightTime - (endTime + 20);
     mFallMotionStartStep = mFlightTime - 20;
+    s32 flyTime = 0.2f * mFlightTime;
+    if (flyTime > 90) {
+        flyTime = 90;
+    }
 
-    // FIXME
-    s32 val3 = MR::max(static_cast< s32 >(0.2f * mFlightTime), 90) % startMaxFrame;
-
-    mFlyMotionStartStep = val3;
-    if (_F8 <= val3) {
+    mFlyMotionStartStep = startTime * (flyTime / startTime);
+    if (_F8 <= mFlyMotionStartStep) {
         mFlyMotionStartStep = 0;
     }
 
-    // FIXME
+    f32 duration = 0.05f * (_F8 - mFlyMotionStartStep);
     _E4 = 0.0f;
-    _E8 = 2 * MR::pi() * (0.05f * static_cast< f32 >(_F8 - mFlyMotionStartStep)) / (2 * MR::pi());
+    _E8 = static_cast< s32 >(duration / TWO_PI) * TWO_PI;
 }
 
 bool ScenarioStarter::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
@@ -317,6 +336,7 @@ bool ScenarioStarter::trySkipTrigger() const {
             result = true;
         }
     }
+
     return result;
 }
 
@@ -324,15 +344,19 @@ bool ScenarioStarter::isStartBgmOnWelcome() {
     if (MR::isGalaxyRedCometAppearInCurrentStage() || MR::isGalaxyBlackCometAppearInCurrentStage()) {
         return false;
     }
+
     if (MR::isEqualStageName("EggStarGalaxy") && MR::getCurrentScenarioNo() == 1) {
         return true;
     }
+
     if (MR::isEqualStageName("HoneyBeeKingdomGalaxy") && MR::getCurrentScenarioNo() == 1) {
         return true;
     }
+
     if (MR::isEqualStageName("FactoryGalaxy") && MR::getCurrentScenarioNo() <= 3) {
         return true;
     }
+
     return false;
 }
 
@@ -340,4 +364,7 @@ void ScenarioStarter::exeWaitScenarioCameraEnd() {
     if (!MR::isStageStateScenarioOpeningCamera()) {
         setNerve(GET_NERVE(ScenarioStarter, ScenarioStarterWaitToStart));
     }
+}
+
+ScenarioStarter::~ScenarioStarter() {
 }

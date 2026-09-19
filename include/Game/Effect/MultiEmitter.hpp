@@ -72,7 +72,7 @@ public:
     void setGlobalRotation(const TVec3s&, s32);
     void setGlobalTranslation(const TVec3f&, s32);
     void setGlobalScale(const TVec3f&, s32);
-    void setGlobalSRTMatrix(const MtxPtr, s32);
+    void setGlobalSRTMatrix(const Mtx, s32);
     void setGlobalPrmColor(u8, u8, u8, s32);
     void setGlobalEnvColor(u8, u8, u8, s32);
     void setLocalScale(const TVec3f&, s32);

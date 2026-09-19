@@ -1,9 +1,17 @@
+#include "Game/Util/Functor.hpp"
+
 #include "Game/Demo/AstroDomeDemoStarter.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
 #include "Game/MapObj/SpinDriverShootPath.hpp"
 #include "Game/Util.hpp"
 #include "math_types.hpp"
+
+void AstroDomeDemoStarter_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
 
 namespace {
     const char* const cJumpOutPartName = "飛び出す";
@@ -18,9 +26,8 @@ namespace {
     const s32 cBgmStartFrame = 108;
 
     f32 countRotations(f32 angle) {
-        // TODO: replace this with what the actual logic is supposed to be.
-        // This is a hack to match, but it is unclear if this is in fact correct
-        return TWO_PI * (volatile s32)(angle / TWO_PI);
+        s32 rotations = angle / TWO_PI;
+        return TWO_PI * rotations;
     }
 };  // namespace
 
@@ -73,7 +80,7 @@ void AstroDomeDemoStarter::init(const JMapInfoIter& rIter) {
 
 void AstroDomeDemoStarter::startJumpOut() {
     MR::onSwitchA(this);
-    mPosition.set(0.0f);
+    mPosition.zero();
     _94.identity();
 
     MR::startAnimCameraTargetSelf(this, _F4, "AstroDomeDemoCamera", 0, MR::getAnimCameraFrame(this, _F4, "AstroDomeDemoCamera") / 180.0f);

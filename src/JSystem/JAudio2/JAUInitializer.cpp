@@ -37,8 +37,8 @@ JAU_JASInitializer::JAU_JASInitializer() {
     waveArcDir_ = nullptr;
 }
 
-void JAU_JASInitializer::initJASystem(JKRSolidHeap* heap) {
-    JASKernel::setupRootHeap(heap, heapSize_);
+inline void JAU_JASInitializer::initJASystem(JKRSolidHeap* pHeap) {
+    JASKernel::setupRootHeap(pHeap, heapSize_);
 
     if (audioMemory_ == 0) {
         audioMemory_ = JKRAram::getManager()->getAudioMemory();
@@ -51,26 +51,28 @@ void JAU_JASInitializer::initJASystem(JKRSolidHeap* heap) {
     JASKernel::setupAramHeap(audioMemory_, audioMemSize_);
 
     JASTrack::newMemPool(field_0x1c);
+
     if (field_0x20 > 0) {
         JASTrack::TChannelMgr::newMemPool(field_0x20);
     }
 
     JASDvd::createThread(dvdThreadPriority_, 0x80, 0x1000);
     JASAudioThread::create(audioThreadPriority_);
-    JKRThreadSwitch* threadSwitch = JKRThreadSwitch::getManager();
-    if (threadSwitch) {
+    JKRThreadSwitch* pThreadSwitch = JKRThreadSwitch::getManager();
+    if (pThreadSwitch != nullptr) {
         if (dvdThreadId_ >= 0) {
-            threadSwitch->enter(JASDvd::getThreadPointer(), dvdThreadId_);
+            pThreadSwitch->enter(JASDvd::getThreadPointer(), dvdThreadId_);
         }
+
         if (audioThreadId_ >= 0) {
-            threadSwitch->enter(JASAudioThread::getThreadPointer(), audioThreadId_);
+            pThreadSwitch->enter(JASAudioThread::getThreadPointer(), audioThreadId_);
         }
     }
 
     JASDriver::setDSPLevel(dspLevel_);
     JASAramStream::initSystem(aramBlockSize_, aramChannelNum_);
 
-    if (waveArcDir_) {
+    if (waveArcDir_ != nullptr) {
         JASWaveArcLoader::setCurrentDir(waveArcDir_);
     }
 

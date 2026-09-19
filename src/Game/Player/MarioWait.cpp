@@ -183,7 +183,7 @@ bool MarioWait::checkStart() {
     }
 
     if (_16 == 1800) {
-        if (MR::getAreaObj("NonSleepCube", getTrans())) {
+        if (MR::getAreaObj("NonSleepCube", getTrans()) != nullptr) {
             _12 = 1;
             return true;
         }
@@ -268,6 +268,7 @@ bool MarioWait::update() {
 
         break;
     case 1:
+    case 2:
         break;
     }
 

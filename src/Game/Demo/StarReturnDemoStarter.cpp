@@ -222,8 +222,8 @@ void StarReturnDemoStarter::exeMove() {
     MR::startLevelSoundPlayer("SE_PM_LV_SPIN_DRV_FLY", -1);
 
     if (MR::isDemoPartLastStep(pDemoName)) {
-        ::isGrandStar() ? setNerve(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvFlyWaitPowerStar)) :
-                          setNerve(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvFlyWaitGrandStar));
+        setNerve(::isGrandStar() ? static_cast< const Nerve* >(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvFlyWaitGrandStar)) :
+                                   GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvFlyWaitPowerStar));
     }
 }
 

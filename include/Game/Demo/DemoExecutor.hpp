@@ -39,8 +39,7 @@ public:
 template < class T >
 class DemoSheetKeeperInfoHolder {
 public:
-    virtual void executeType(const T* pInfo) {
-    }
+    virtual void executeType(const T* pInfo);
 
     void update() {
         for (T* pInfo = mInfo.begin(); pInfo != mInfo.end(); pInfo++) {

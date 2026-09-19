@@ -22,13 +22,19 @@ namespace AstroDemoFunction {
     }
 
     int getActiveGrandStarReturnDemoIndex() {
-        for (u32 i = 0; i < ARRAY_SIZE(::cGrandStarReturnDemoTable); i++) {
-            if (MR::isDemoActive(::cGrandStarReturnDemoTable[i])) {
-                return i;
+        s32 result;
+        for (u32 index = 0; index < ARRAY_SIZE(::cGrandStarReturnDemoTable); index++) {
+            if (MR::isDemoActive(::cGrandStarReturnDemoTable[index])) {
+                result = index;
+                // only way I could get this to match
+                // TODO -- fix me
+                goto found;
             }
         }
 
-        return -1;
+        result = -1;
+    found:
+        return result;
     }
 
     void tryRegisterDemo(LiveActor* pParam1, const char* pParam2, const JMapInfoIter& rIter) {

@@ -1,4 +1,5 @@
 #include "Game/Effect/MultiEmitterCallBack.hpp"
+#include "Game/Effect/AutoEffectInfo.hpp"
 #include "Game/Effect/EffectSystemUtil.hpp"
 #include "Game/Effect/MultiEmitter.hpp"
 #include "Game/Util/MathUtil.hpp"
@@ -123,7 +124,7 @@ void MultiEmitterCallBack::setSRTFromHostSRT(JPABaseEmitter* pEmitter, const Fla
         if (rFlag.mRotation) {
             TRot3f mtxD4;
             mtxD4.identity();
-            mtxD4.setRotate(*mRotation * PI_180);
+            mtxD4.setRotateDegree(*mRotation);
             mtxD4.mult33(_18, vecE0);
         } else {
             vecE0.set(_18);
@@ -139,7 +140,10 @@ void MultiEmitterCallBack::setSRTFromHostSRT(JPABaseEmitter* pEmitter, const Fla
     }
 
     if (rFlag.mRotation) {
-        MR::makeMtxRotate(pEmitter->mGlobalRot, mRotation->x, mRotation->y, mRotation->z);
+        s16 z = DEGREE_TO_S16 * mRotation->z;
+        s16 y = DEGREE_TO_S16 * mRotation->y;
+        s16 x = DEGREE_TO_S16 * mRotation->x;
+        JPAGetXYZRotateMtx(x, y, z, pEmitter->mGlobalRot);
     }
 
     setScaleFromHostScale(pEmitter, TVec3f(1.0f, 1.0f, 1.0f), rFlag.mTranslation, b2);
@@ -163,8 +167,10 @@ void MultiEmitterCallBack::setScaleFromHostScale(JPABaseEmitter* pEmitter, const
     }
 }
 
-bool MultiEmitterCallBack::effectLight(JPABaseEmitter*) {
-    return MR::isNearZero(mEmitter->_2C);
+void MultiEmitterCallBack::effectLight(JPABaseEmitter* pEmitter) {
+    if (MR::isNearZero(mEmitter->_2C)) {
+        return;
+    }
 }
 
 void MultiEmitterCallBack::followSRT(JPABaseEmitter* pEmitter, bool b2) {
@@ -181,49 +187,63 @@ void MultiEmitterCallBack::followSRT(JPABaseEmitter* pEmitter, bool b2) {
 }
 
 void MultiEmitterCallBack::setColor(JPABaseEmitter* pEmitter) {
-    // FIXME: something goes wrong with GXColor/Color8
     if (MR::isNearZero(mEmitter->_2C)) {
         pEmitter->setGlobalPrmColor(mPrmColor.r, mPrmColor.g, mPrmColor.b);
         pEmitter->setGlobalEnvColor(mEnvColor.r, mEnvColor.g, mEnvColor.b);
-
         return;
     }
 
-    GXColor colorC = pEmitter->mGlobalPrmClr;
-    GXColor color10 = pEmitter->mGlobalEnvClr;
-
-    GXColor col = getSyntheticColor(colorC, color10);
-
-    pEmitter->setGlobalPrmColor(col.r, col.g, col.g);
-
-    col = getSyntheticColor(colorC, mEnvColor);
-    pEmitter->setGlobalEnvColor(col.r, col.g, col.b);
+    GXColor prmColor;
+    GXColor envColor;
+    prmColor = pEmitter->mGlobalPrmClr;
+    envColor = pEmitter->mGlobalEnvClr;
+    Color8 syntheticPrm = getSyntheticColor(prmColor, mPrmColor);
+    pEmitter->setGlobalPrmColor(syntheticPrm.r, syntheticPrm.g, syntheticPrm.b);
+    Color8 syntheticEnv = getSyntheticColor(prmColor, mEnvColor);
+    pEmitter->setGlobalEnvColor(syntheticEnv.r, syntheticEnv.g, syntheticEnv.b);
 }
 
-void MultiEmitterCallBack::isFollowSRT(FlagSRT* rFlag, bool b2) const {
-    // FIXME: missing class at _28 in MultiEmitter
+void MultiEmitterCallBack::isFollowSRT(FlagSRT* pFlag, bool b2) const {
+    if (b2) {
+        if (mEmitter->_28 != nullptr) {
+            pFlag->mScale = !((mEmitter->_28->mFlag & AutoEffectInfo::FLAG_AFFECT_TRANS) - AutoEffectInfo::FLAG_AFFECT_TRANS);
+            pFlag->mRotation = !((mEmitter->_28->mFlag & AutoEffectInfo::FLAG_AFFECT_ROTATE) - AutoEffectInfo::FLAG_AFFECT_ROTATE);
+            pFlag->mTranslation = !((mEmitter->_28->mFlag & AutoEffectInfo::FLAG_AFFECT_SCALE) - AutoEffectInfo::FLAG_AFFECT_SCALE);
+        }
+    } else {
+        if ((mFlags & (FORCE_FOLLOW_OFF | RESET_FOLLOW_CURRENT)) != 0) {
+            pFlag->mScale = pFlag->mRotation = pFlag->mTranslation = false;
+            return;
+        }
+
+        if (mEmitter->_28 != nullptr) {
+            pFlag->mScale = !((mEmitter->_28->mFlag & AutoEffectInfo::FLAG_FOLLOW_TRANS) - AutoEffectInfo::FLAG_FOLLOW_TRANS);
+            pFlag->mRotation = !((mEmitter->_28->mFlag & AutoEffectInfo::FLAG_FOLLOW_ROTATE) - AutoEffectInfo::FLAG_FOLLOW_ROTATE);
+            pFlag->mTranslation = !((mEmitter->_28->mFlag & AutoEffectInfo::FLAG_FOLLOW_SCALE) - AutoEffectInfo::FLAG_FOLLOW_SCALE);
+        }
+    }
 
     if (mMtx == nullptr && mScale == nullptr) {
-        rFlag->mScale = false;
-    } else if (rFlag->mScale == false) {
-        rFlag->mScale = !((mFlags & 0x1) - 0x1);
+        pFlag->mScale = false;
+    } else if (pFlag->mScale == false) {
+        pFlag->mScale = !((mFlags & 0x1) - 0x1);
     }
 
     if (mMtx == nullptr && mRotation == nullptr) {
-        rFlag->mRotation = false;
-    } else if (rFlag->mRotation == false) {
-        rFlag->mRotation = !((mFlags & 0x4) - 0x4);
+        pFlag->mRotation = false;
+    } else if (pFlag->mRotation == false) {
+        pFlag->mRotation = !((mFlags & 0x4) - 0x4);
     }
 
     if (mMtx == nullptr && mTranslation == nullptr) {
-        rFlag->mTranslation = false;
+        pFlag->mTranslation = false;
 
         return;
     }
 
-    if (rFlag->mTranslation) {
+    if (pFlag->mTranslation) {
         return;
     }
 
-    rFlag->mTranslation = !((mFlags & 0x10) - 0x10);
+    pFlag->mTranslation = !((mFlags & 0x10) - 0x10);
 }

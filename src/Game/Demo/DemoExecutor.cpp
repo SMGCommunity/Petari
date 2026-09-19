@@ -1,6 +1,8 @@
-#include "Game/Demo/DemoExecutor.hpp"
+#include "Game/Util/Functor.hpp"
+
 #include "Game/Demo/DemoActionKeeper.hpp"
 #include "Game/Demo/DemoCameraKeeper.hpp"
+#include "Game/Demo/DemoExecutor.hpp"
 #include "Game/Demo/DemoFunction.hpp"
 #include "Game/Demo/DemoPlayerKeeper.hpp"
 #include "Game/Demo/DemoSoundKeeper.hpp"
@@ -12,7 +14,6 @@
 #include "Game/Map/StageSwitch.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"

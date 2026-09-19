@@ -2405,6 +2405,7 @@ Game/Effect/AutoEffectGroupHolder.cpp:
 Game/Effect/AutoEffectInfo.cpp:
 	.text       start:0x800C4D2C end:0x800C5328
 	.rodata     start:0x80531A48 end:0x80531A90
+	.data       start:0x805782A0 end:0x805783D0
 	.sdata      start:0x806B1880 end:0x806B1890
 	.sdata2     start:0x806B9CF0 end:0x806B9CF8
 

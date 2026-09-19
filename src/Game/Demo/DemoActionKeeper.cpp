@@ -6,17 +6,23 @@
 #include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/Functor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
+// done due to inlining
+template const bool JMapInfo::getValue< s32 >(int, const char*, s32*) const;
+template const bool JMapInfo::getValue< const char* >(int, const char*, const char**) const;
+
 namespace {
     TalkMessageCtrl* findTalkMessageCtrl(LiveActor* pActor) {
         DemoExecutor* executor = DemoFunction::findDemoExecutorActive(pActor);
-        if (executor) {
+        if (executor != nullptr) {
             return executor->findTalkMessageCtrl(pActor);
         }
+
         return nullptr;
     }
 
@@ -79,16 +85,17 @@ void DemoActionInfo::executeActionFirst() const {
         ::setTalkAnimCtrlInterpole(mCastList[0], 0);
     }
 
+    LiveActor* actor;
     for (s32 i = 0; i < mCastCount; i++) {
-        LiveActor* actor = mCastList[i];
+        actor = mCastList[i];
         if (mActionType == 2) {
             mFunctors[i]->operator()();
         } else if (mActionType == 3) {
             actor->setNerve(mNerves[i]);
         } else if (mActionType == 0) {
-            actor->makeActorAppeared();
+            actor->appear();
         } else if (mActionType == 1) {
-            actor->makeActorDead();
+            actor->kill();
         } else if (mActionType == 4) {
             MR::onSwitchA(actor);
         } else if (mActionType == 5) {
@@ -127,7 +134,7 @@ void DemoActionInfo::executeActionLast() const {
     }
 
     for (s32 i = 0; i < mCastCount; i++) {
-        LiveActor* actor = mCastList[i];
+        LiveActor* const actor = mCastList[i];
         if (mActionType == 9) {
             ::setTalkAnimCtrlInterpole(actor, -1);
         }
@@ -189,19 +196,6 @@ void DemoActionKeeper::update() {
     }
 }
 
-bool DemoActionKeeper::isRegisteredDemoAction(const LiveActor* pActor, s32 actionType) const {
-    for (s32 i = 0; i < mNumInfos; i++) {
-        DemoActionInfo* info = mInfoArray[i];
-        for (s32 j = 0; j < info->mCastCount; j++) {
-            if (pActor == info->mCastList[j] && info->mActionType == actionType) {
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
-
 bool DemoActionKeeper::isRegisteredDemoActionAppear(const LiveActor* pActor) const {
     return isRegisteredDemoAction(pActor, 0);
 }
@@ -212,6 +206,21 @@ bool DemoActionKeeper::isRegisteredDemoActionFunctor(const LiveActor* pActor) co
 
 bool DemoActionKeeper::isRegisteredDemoActionNerve(const LiveActor* pActor) const {
     return isRegisteredDemoAction(pActor, 3);
+}
+
+bool DemoActionKeeper::isRegisteredDemoAction(const LiveActor* pActor, s32 actionType) const {
+    DemoActionInfo* info;
+    const s32 count = mNumInfos;
+    for (s32 i = 0; i < count; i++) {
+        info = mInfoArray[i];
+        for (s32 j = 0; j < info->mCastCount; j++) {
+            if (pActor == info->mCastList[j] && info->mActionType == actionType) {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 DemoActionKeeper::DemoActionKeeper(const DemoExecutor* pExector) {

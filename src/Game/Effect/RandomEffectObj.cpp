@@ -10,8 +10,7 @@ namespace {
     static const s32 sRandWidth = 180;
 };  // namespace
 
-RandomEffectObj::RandomEffectObj(const char* pName)
-    : SimpleEffectObj(pName), mStep(0), mSeStep(-1), mLifeTime(::sLifeTime), mRandWidth(::sRandWidth) {
+RandomEffectObj::RandomEffectObj(const char* pName) : SimpleEffectObj(pName), mStep(), mSeStep(-1), mLifeTime(::sLifeTime), mRandWidth(::sRandWidth) {
 }
 
 void RandomEffectObj::init(const JMapInfoIter& rIter) {
@@ -28,7 +27,10 @@ void RandomEffectObj::appear() {
     mStep = getRandomTime();
 }
 
-// RandomEffectObj::getRandomTime
+s32 RandomEffectObj::getRandomTime() const {
+    s32 time = MR::repeat(mPosition.z + (mPosition.x + mPosition.y), 0.0f, mRandWidth);
+    return time < 0 ? -time : time;
+}
 
 void RandomEffectObj::control() {
     if (!isStateMove()) {
