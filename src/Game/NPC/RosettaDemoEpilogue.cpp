@@ -14,7 +14,7 @@ RosettaDemoEpilogue::RosettaDemoEpilogue(Rosetta* pRosetta, const JMapInfoIter& 
     : NerveExecutor("ロゼッタデモ実行者"), mRosetta(pRosetta), mIsFadeOut() {
     DemoFunction::tryCreateDemoTalkAnimCtrlForScene(pRosetta, rIter, "DemoEpilogueB", nullptr, 0, 0);
     DemoFunction::registerDemoTalkMessageCtrl(mRosetta, mRosetta->mMsgCtrl);
-    MR::registerDemoActionFunctor(mRosetta, MR::Functor_Inline(this, &RosettaDemoEpilogue::startDemo), "エピローグ[開始]");
+    MR::registerDemoActionFunctor(mRosetta, MR::Functor(this, &RosettaDemoEpilogue::startDemo), "エピローグ[開始]");
     mRosetta->mLodCtrl->invalidate();
     initNerve(GET_NERVE(RosettaDemoEpilogue, RosettaDemoEpilogueNrvDemo));
 }

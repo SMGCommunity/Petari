@@ -91,7 +91,7 @@ void PunchBox::init(const JMapInfoIter& rIter) {
     MR::addToAttributeGroupSearchTurtle(this);
 
     if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &PunchBox::kill));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &PunchBox::kill));
     }
 
     getSensor("body")->invalidate();

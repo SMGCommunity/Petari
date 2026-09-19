@@ -71,7 +71,7 @@ void CannonFortressBreakStep::startFall() {
 }
 
 void CannonFortressBreakStep::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
-    MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &CannonFortressBreakStep::startFall));
+    MR::listenStageSwitchOnB(this, MR::Functor(this, &CannonFortressBreakStep::startFall));
 }
 
 void CannonFortressBreakStep::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {

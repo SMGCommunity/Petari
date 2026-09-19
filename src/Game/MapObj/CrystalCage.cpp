@@ -249,7 +249,7 @@ void CrystalCage::initMapToolInfo(const JMapInfoIter& rIter) {
         MR::useStageSwitchWriteDead(this, rIter);
 
         if (MR::useStageSwitchReadA(this, rIter)) {
-            MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &CrystalCage::forceBreak));
+            MR::listenStageSwitchOnA(this, MR::Functor(this, &CrystalCage::forceBreak));
         }
 
         MR::getJMapInfoArg0NoInit(rIter, &mIsBreakObjVisible);

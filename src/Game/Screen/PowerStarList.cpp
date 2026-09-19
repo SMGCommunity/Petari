@@ -231,8 +231,7 @@ void PowerStarList::init(const JMapInfoIter& rIter) {
         MR::setFollowTypeAdd(this, pPaneName);
     }
 
-    MR::createAdaptorAndConnectToWiiMessageBoard("全パワースターリスト(伝言板用描画)",
-                                                 MR::Functor_Inline(this, &PowerStarList::drawForMessageBoardCapture));
+    MR::createAdaptorAndConnectToWiiMessageBoard("全パワースターリスト(伝言板用描画)", MR::Functor(this, &PowerStarList::drawForMessageBoardCapture));
 
     mArrowUpButtonCtrl = createButtonController("ArrowUpButton", "BoxButton1_00");
     mArrowDownButtonCtrl = createButtonController("ArrowDownButton", "BoxButton1_01");

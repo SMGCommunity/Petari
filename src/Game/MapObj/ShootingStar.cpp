@@ -74,8 +74,7 @@ void ShootingStar::init(const JMapInfoIter& rIter) {
     MR::initShadowVolumeSphere(this, 30.0f);
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::listenStageSwitchOnOffAppear(this, MR::Functor_Inline(this, &ShootingStar::appearPreShooting),
-                                         MR::Functor_Inline< LiveActor >(this, &LiveActor::kill));
+        MR::listenStageSwitchOnOffAppear(this, MR::Functor(this, &ShootingStar::appearPreShooting), MR::Functor< LiveActor >(this, &LiveActor::kill));
         makeActorDead();
     } else {
         makeActorAppeared();

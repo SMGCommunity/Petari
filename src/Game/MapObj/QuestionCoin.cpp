@@ -70,7 +70,7 @@ void QuestionCoin::init(const JMapInfoIter& rIter) {
     MR::needStageSwitchWriteDead(this, rIter);
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::listenStageSwitchOnAppear(this, MR::FunctorV0M< QuestionCoin*, void (QuestionCoin::*)() >(this, &QuestionCoin::appear));
+        MR::listenStageSwitchOnAppear(this, MR::Functor(this, &QuestionCoin::appear));
         makeActorDead();
     } else {
         makeActorAppeared();

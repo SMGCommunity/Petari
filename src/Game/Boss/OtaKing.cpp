@@ -128,7 +128,7 @@ void OtaKing::init(const JMapInfoIter& rIter) {
     MR::createCenterScreenBlur();
 
     if (MR::isValidSwitchA(this)) {
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &OtaKing::startAppearDemo));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &OtaKing::startAppearDemo));
     }
 
     MR::tryRegisterDemoCast(this, rIter);

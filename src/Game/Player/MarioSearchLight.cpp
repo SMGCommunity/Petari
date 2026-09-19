@@ -135,7 +135,7 @@ void MarioActor::initSearchLight() {
         model->mExtraMtxBuffer[i] = new (0x20) Mtx[drawMtxNum];
     }
 
-    mDrawSearchLight = new DrawAdaptor(MR::Functor_InlineC(this, &MarioActor::drawSearchLight), MR::DrawType_0x33);
+    mDrawSearchLight = new DrawAdaptor(MR::Functor(this, &MarioActor::drawSearchLight), MR::DrawType_0x33);
 }
 
 void MarioActor::updateThrowing() {
