@@ -131,7 +131,7 @@ void NokonokoLand::init(const JMapInfoIter& rIter) {
     mBindStarPointerState = new WalkerStateBindStarPointer(this, mAnimScaleController);
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
-        MR::registerDemoActionFunctor(this, MR::FunctorV0M< NokonokoLand*, void (NokonokoLand::*)() >(this, &NokonokoLand::appear), nullptr);
+        MR::registerDemoActionFunctor(this, MR::Functor_Inline(this, &NokonokoLand::appear), nullptr);
         makeActorDead();
     } else if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);

@@ -268,7 +268,7 @@ WaterPlantDrawInit::WaterPlantDrawInit()
     mPlantCTex = new JUTTexture(MR::loadTexFromArc("WaterPlant.arc", "WaterPlantC.bti"), nullptr);
     mPlantDTex = new JUTTexture(MR::loadTexFromArc("WaterPlant.arc", "WaterPlantD.bti"), nullptr);
 
-    MR::registerPreDrawFunction(MR::Functor_InlineC(this, &WaterPlantDrawInit::initDraw), MR::DrawType_WaterPlant);
+    MR::registerPreDrawFunction(MR::Functor_Inline(this, &WaterPlantDrawInit::initDraw), MR::DrawType_WaterPlant);
 
     mSwingPosTable = new f32[::sSwingPosTableSize];
     updateSwingPos();

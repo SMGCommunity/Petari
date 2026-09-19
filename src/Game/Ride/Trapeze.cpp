@@ -815,11 +815,7 @@ TrapezeRopeDrawInit::TrapezeRopeDrawInit(const char* pName) : NameObj(pName) {
     mTexture = nullptr;
     mTexture = new JUTTexture(MR::loadTexFromArc("Trapeze.arc", "TrapezeRope.bti"), 0);
 
-    MR::FunctorV0M< const TrapezeRopeDrawInit*, void (TrapezeRopeDrawInit::*)() const > preDrawFunctor(this, &TrapezeRopeDrawInit::initDraw);
-    MR::registerPreDrawFunction(preDrawFunctor, MR::DrawType_Trapeze);
-    // The above should probably be this instead, but MR::Functor_Inline does not like consts at the moment
-    // MR::registerPreDrawFunction(MR::Functor_Inline(const_cast< const TrapezeRopeDrawInit* >(this), &TrapezeRopeDrawInit::initDraw),
-    // MR::DrawType_Trapeze);
+    MR::registerPreDrawFunction(MR::Functor_Inline(this, &TrapezeRopeDrawInit::initDraw), MR::DrawType_Trapeze);
 }
 
 void TrapezeRopeDrawInit::initDraw() const {

@@ -166,7 +166,7 @@ void ElectricRailHolder::init(const JMapInfoIter& rIter) {
 
     MR::registerDemoSimpleCastAll(this);
 
-    MR::createAdaptorAndConnectToDrawBloomModel("電撃レールブルーム描画", MR::Functor_InlineC(this, &ElectricRailHolder::draw));
+    MR::createAdaptorAndConnectToDrawBloomModel("電撃レールブルーム描画", MR::Functor_Inline(this, &ElectricRailHolder::draw));
 
     makeActorAppeared();
 }

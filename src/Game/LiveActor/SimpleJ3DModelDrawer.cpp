@@ -8,7 +8,7 @@ SimpleJ3DModelDrawer::SimpleJ3DModelDrawer(NameObj* pObj, const char* pName, con
     mShapeDraw = nullptr;
 
     if (drawType >= 0) {
-        MR::registerPreDrawFunction(MR::Functor_InlineC(this, &SimpleJ3DModelDrawer::initDraw), drawType);
+        MR::registerPreDrawFunction(MR::Functor_Inline(this, &SimpleJ3DModelDrawer::initDraw), drawType);
     }
 
     initModelManagerWithAnm(pModelName, nullptr, false);
@@ -28,6 +28,3 @@ void SimpleJ3DModelDrawer::initDraw() const {
     mShape->loadPreDrawSetting();
     mShape->loadVtxArray();
 }
-
-template void MR::FunctorV0M< const SimpleJ3DModelDrawer*, void (SimpleJ3DModelDrawer::*)() const >::operator()() const;
-template MR::FunctorBase* MR::FunctorV0M< const SimpleJ3DModelDrawer*, void (SimpleJ3DModelDrawer::*)() const >::clone(JKRHeap*) const;
