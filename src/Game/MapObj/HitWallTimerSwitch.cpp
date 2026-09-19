@@ -108,7 +108,7 @@ bool HitWallTimerSwitch::trySwitchUp() {
             if (mTimer == getNerveStep()) {
                 MR::startSystemSE("SE_SY_TIMER_A_0");
             } else if (!(getNerveStep() % 60)) {
-                if (getNerveStep() >= mTimer - 120) {
+                if (getNerveStep() < mTimer - 120) {
                     MR::startSystemSE("SE_SY_TIMER_A_2");
                 } else {
                     MR::startSystemSE("SE_SY_TIMER_A_1");
