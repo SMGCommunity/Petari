@@ -13,7 +13,11 @@ void SpherePadController_FORCE_MATCH_SDATA2() {
     (void)2.0f;
 }
 
-template void TRot3f::setRotate(const TVec3f&, const TVec3f&);
+void SpherePadController_DUMMY() {
+    TPos3f m;
+    TVec3f a, b;
+    m.setRotate(a, b);
+}
 
 SpherePadController::SpherePadController() : SphereController() {
 }
@@ -82,9 +86,7 @@ f32 SpherePadController::calcDirSphereMove(TVec3f* pMoveDir, const TVec3f& rBase
 
         MR::separateScalarAndDirection(&mag, pMoveDir, *pMoveDir);
     } else {
-        pMoveDir->z = 0.0f;
-        pMoveDir->y = 0.0f;
-        pMoveDir->x = 0.0f;
+        pMoveDir->zero();
     }
 
     if (mag > 1.0f) {
