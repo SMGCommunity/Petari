@@ -216,7 +216,7 @@ void SwingRope::exeBindSlideDownStart() {
 
 void SwingRope::exeBindSlideDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("SwingRopeSlideDown", 10);
+        MR::startBckPlayer("SwingRopeSlideDown", ::sAnimInterpoleFrame);
     }
 
     if (!updateSlideDown()) {

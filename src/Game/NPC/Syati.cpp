@@ -167,7 +167,7 @@ void Syati::exeWaitBlank() {
         mPlayerPoseSetterInWater->update();
 
         MR::tryPlayerKillTakingActor();
-        MR::startBckPlayer("SwimWait", (const char*)nullptr);
+        MR::startBckPlayer("SwimWait");
         MR::makeQuatFromRotate(&_8C, this);
     }
 
@@ -261,7 +261,7 @@ void Syati::exeReadyToStart() {
         MR::startBtk(this, "Normal");
         MR::startBva(this, "Open");
         MR::startSound(this, "SE_SM_SYATI_TURN", -1, -1);
-        MR::startBckPlayer("SwimWait", (const char*)nullptr);
+        MR::startBckPlayer("SwimWait");
         MR::onCalcShadow(this, nullptr);
     }
 

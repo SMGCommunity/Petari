@@ -70,7 +70,7 @@ void RabbitStateCaught::exeTryStartDemo() {
 void RabbitStateCaught::exeCaught() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "Caught");
-        MR::startBckPlayer("Catch", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("Catch");
         MR::zeroVelocity(mHost);
         MR::startSound(mHost, "SE_SM_RABBIT_CAUGHT");
         setCaughtStartMarioPose();
@@ -108,7 +108,7 @@ void RabbitStateCaught::exeCaughtLand() {
         }
 
         MR::startAction(mHost, "CaughtLand");
-        MR::startBckPlayer("CatchLand", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("CatchLand");
     }
 
     MR::startLevelSound(mHost, "SE_SM_LV_RABBIT_STRUGGLE");
@@ -125,7 +125,7 @@ void RabbitStateCaught::exeCaughtLand() {
 void RabbitStateCaught::exeCaughtEvent() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "CaughtWait");
-        MR::startBckPlayer("CatchWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("CatchWait");
 
         if (mPowerStarModel != nullptr) {
             MR::requestMovementOn(mPowerStarModel);

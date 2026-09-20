@@ -210,7 +210,7 @@ void PrologueDirector::exeArrive() {
         baseMtx.getTrans(trans);
 
         MR::setPlayerBaseMtx(baseMtx);
-        MR::startBckPlayer("DemoPeachCastleGate", (const char*)nullptr);
+        MR::startBckPlayer("DemoPeachCastleGate");
         MR::openWipeFade(::sArriveStartWipeFrame);
         MR::setImageEffectControlAuto();
     }

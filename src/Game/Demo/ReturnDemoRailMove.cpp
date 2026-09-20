@@ -74,7 +74,7 @@ void ReturnDemoRailMove::setupPathDrawForGraneStarReturnDemo() {
 
 void ReturnDemoRailMove::start() {
     const char* pBckName = (mIsGrandStar) ? "ResultFlyGrandStar" : "ResultFly";
-    MR::startBckPlayer(pBckName, static_cast< const char* >(nullptr));
+    MR::startBckPlayer(pBckName);
 
     MR::startBck(mPowerStar, pBckName, nullptr);
     mPathDrawer->_B0 = 0.0f;
@@ -91,7 +91,7 @@ void ReturnDemoRailMove::update(s32 currentStep, s32 maxSteps) {
     if ((startStepFirstDemo < 0 && MR::isFirstStep(mDemoStarter)) || MR::isStep(mDemoStarter, startStepFirstDemo)) {
         const char* pBckName = (mIsGrandStar) ? "ResultFlyGrandStarEnd" : "ResultFlyEnd";
 
-        MR::startBckPlayer(pBckName, static_cast< const char* >(nullptr));
+        MR::startBckPlayer(pBckName);
         MR::startBck(mPowerStar, pBckName, nullptr);
 
         if (!mIsGrandStar) {

@@ -374,7 +374,7 @@ void TrampleStar::exeWait() {
 
 void TrampleStar::exeBindingCapture() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("Wait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("Wait");
         MR::startSoundPlayer("SE_OJ_TRAMPOLINE_LAND_L", -1);
     }
 
@@ -433,7 +433,7 @@ void TrampleStar::exeBindingShoot() {
                     }
 
                     MR::endBindAndPlayerJump(this, up * mJumpVel, 0);
-                    MR::startBckPlayer("Jump2", static_cast< const char* >(nullptr));
+                    MR::startBckPlayer("Jump2");
                     setNerve(GET_NERVE_GLOBAL(TrampleStarNrvWait));
                 }
             }

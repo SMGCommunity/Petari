@@ -242,7 +242,7 @@ void SpaceCocoon::exeFreeInvalid() {
 void SpaceCocoon::exeBindLand() {
     if (MR::isFirstStep(this)) {
         if (!isKinopioAttached()) {
-            MR::startBckPlayer("CocoonLand", 1);
+            MR::startBckPlayer("CocoonLand", 1L);
             MR::startMultiActorCameraTargetOther(this, mCameraInfo, "ウェイト", CameraTargetArg(mCameraTargetMtx), -1);
             MR::startSound(mRider, "SE_PV_CATCH");
         } else {
@@ -269,7 +269,7 @@ void SpaceCocoon::exeBindLand() {
 void SpaceCocoon::exeBindWait() {
     if (MR::isFirstStep(this)) {
         if (!isKinopioAttached()) {
-            MR::startBckPlayer("CocoonWait", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("CocoonWait");
         } else {
             MR::startBck(mRider, "CocoonWait", static_cast< const char* >(nullptr));
             MR::validateClipping(this);
@@ -285,11 +285,11 @@ void SpaceCocoon::exeBindWait() {
 
     if (tryTouch()) {
         if (!isKinopioAttached()) {
-            MR::startBckPlayer("CocoonReaction", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("CocoonReaction");
         }
     } else {
         if (!isKinopioAttached() && MR::isBckOneTimeAndStopped(mRider)) {
-            MR::startBckPlayer("CocoonWait", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("CocoonWait");
         }
     }
 }
@@ -327,7 +327,7 @@ void SpaceCocoon::exeBindAim() {
 void SpaceCocoon::exeBindAttack() {
     if (MR::isFirstStep(this)) {
         if (!isKinopioAttached()) {
-            MR::startBckPlayer("CocoonFly", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("CocoonFly");
             MR::startSound(mRider, "SE_PV_JUMP_JOY");
         } else {
             MR::startBck(mRider, "CocoonFly", static_cast< const char* >(nullptr));
@@ -345,7 +345,7 @@ void SpaceCocoon::exeBindAttack() {
         MR::endMultiActorCamera(this, mCameraInfo, "攻撃中", true, -1);
 
         if (MR::isStep(this, mAttackTime) && !isKinopioAttached()) {
-            MR::startBckPlayer("AirRotation", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("AirRotation");
         }
 
         endBind(TVec3f(0.0f, 0.0f, 0.0f), false);

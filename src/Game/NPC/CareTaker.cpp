@@ -378,7 +378,7 @@ void Caretaker::exePreTalk() {
     if (MR::tryTalkSelectLeft(mMsgCtrl)) {
         MR::tryStartDemoMarioPuppetableWithoutCinemaFrame(this, "ゴミ掃除タイムアタック");
         MR::startAction(this, "Wait");
-        MR::startBckPlayer("Watch", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("Watch");
         setNerve(GET_NERVE(Caretaker, CaretakerNrvPreWipeOut));
     } else {
         MR::endNPCTalkCamera(false, -1);
@@ -510,7 +510,7 @@ void Caretaker::exePstWipeOut() {
     MR::Effect::forceDeleteAllEmitters(MR::getEffectSystem());
     MR::tryPlayerKillTakingActor();
     MR::setPlayerPosOnGroundAndWait("バトルシップ・タイムアタック後位置");
-    MR::startBckPlayer("Watch", static_cast< const char* >(nullptr));
+    MR::startBckPlayer("Watch");
     MR::startNPCTalkCamera(mMsgCtrl, getBaseMtx(), 1.3f, 1);
     setNerve(GET_NERVE(Caretaker, CaretakerNrvPstWipeIn));
 }

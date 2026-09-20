@@ -700,7 +700,7 @@ void PowerStar::exeAppearDemoKoopa() {
     }
 
     if (MR::isStep(this, 1)) {
-        MR::startBckPlayer(MR::isStageKoopaVs3() ? "DemoKoopaGrandStarVs3" : "DemoKoopaGrandStar", 0l);
+        MR::startBckPlayer(MR::isStageKoopaVs3() ? "DemoKoopaGrandStarVs3" : "DemoKoopaGrandStar", 0L);
     }
 
     if (MR::isStageKoopaVs3()) {
@@ -811,7 +811,7 @@ void PowerStar::exeStageClearDemo() {
 
         MR::hideModelIfShown(this);
 
-        MR::startBckPlayer(mIsGrandStar ? "GrandStarGet" : "PowerStarGet", 0l);
+        MR::startBckPlayer(mIsGrandStar ? "GrandStarGet" : "PowerStarGet", 0L);
 
         mBaseMtx.setTrans(mPosition);
 
@@ -831,7 +831,7 @@ void PowerStar::exeStageClearDemo() {
     }
 
     if (mIsGrandStar && MR::isStageKoopaVs3() && MR::isStep(this, 600)) {
-        MR::startBckPlayer(::cStageClearAnimNameKoopaVs3, static_cast< const char* >(nullptr));
+        MR::startBckPlayer(::cStageClearAnimNameKoopaVs3);
         MR::startBck(mPowerStarModelObj, ::cStageClearAnimNameKoopaVs3, nullptr);
         MR::startAnimCameraTargetSelf(mPowerStarModelObj, mCameraInfo, ::cStageClearAnimNameKoopaVs3, 1, 1.0f);
     }

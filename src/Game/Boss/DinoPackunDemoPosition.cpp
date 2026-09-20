@@ -43,15 +43,15 @@ void DinoPackunDemoPosition::exeOpeningDemo() {
     }
 
     if (MR::isStep(this, 0)) {
-        MR::startBckPlayer("CocoonFly", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("CocoonFly");
     }
 
     if (MR::isStep(this, ::sLandMotionStartTime)) {
-        MR::startBckPlayer("LandStiffen", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("LandStiffen");
     }
 
     if (MR::isStep(this, ::sJumpBackTime)) {
-        MR::startBckPlayer("JumpBack", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("JumpBack");
     }
 
     calcAnim();

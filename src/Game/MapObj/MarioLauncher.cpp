@@ -162,7 +162,7 @@ void MarioLauncher::exeWait() {
 
 void MarioLauncher::exeReady() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("EarthenPipeReady", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("EarthenPipeReady");
         MR::startSound(this, "SE_PM_MARIO_LAUNCHER_PREP");
     }
 
@@ -524,7 +524,7 @@ bool MarioLauncher::doEject() {
     mShell->makeActorAppeared();
 
     MR::showPlayer();
-    MR::startBckPlayer("CannonFlyStart", static_cast< const char* >(nullptr));
+    MR::startBckPlayer("CannonFlyStart");
 
     MR::shakeCameraStrong();
     MR::tryRumblePadStrong(this, WPAD_CHAN0);

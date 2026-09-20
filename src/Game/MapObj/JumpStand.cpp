@@ -257,11 +257,11 @@ void JumpStand::endBindAndShootUp(f32 v1, JumpType type) {
         }
 
         if (type == UNK_0) {
-            MR::startBckPlayer("TrampolineJumpLow", (const char*)0);
+            MR::startBckPlayer("TrampolineJumpLow");
         } else if (type == UNK_1) {
-            MR::startBckPlayer("TrampolineJumpMiddle", (const char*)0);
+            MR::startBckPlayer("TrampolineJumpMiddle");
         } else if (type == UNK_2) {
-            MR::startBckPlayer("TrampolineJumpHigh", (const char*)0);
+            MR::startBckPlayer("TrampolineJumpHigh");
         }
 
         MR::endBindAndPlayerJump(this, v28, 0);

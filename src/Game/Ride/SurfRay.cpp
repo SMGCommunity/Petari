@@ -344,7 +344,7 @@ void SurfRay::exeTutorial() {
         }
 
         if (MR::isBckOneTimeAndStoppedPlayer()) {
-            MR::startBckPlayer("SurfLectureUnbalance", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("SurfLectureUnbalance");
         }
 
         if (MR::isBckOneTimeAndStopped(this)) {
@@ -353,13 +353,13 @@ void SurfRay::exeTutorial() {
         break;
     case 2:
         if (MR::isFirstStep(this)) {
-            MR::startBckPlayer("SurfLectureUnbalance", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("SurfLectureUnbalance");
             MR::startBck(this, "LectureUnbalance", nullptr);
         }
         break;
     case 3:
         if (MR::isFirstStep(this)) {
-            MR::startBckPlayer("SurfRide", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("SurfRide");
             MR::startBck(this, "Wait", nullptr);
         }
         break;
@@ -367,13 +367,13 @@ void SurfRay::exeTutorial() {
     case 8:
     case 12:
         if (MR::isFirstStep(this)) {
-            MR::startBckPlayer("SurfLectureAnswer", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("SurfLectureAnswer");
             MR::startBck(this, "LectureAnswer", nullptr);
             MR::startSound(this, "SE_SM_SURF_RAY_JUMPOUT1");
         }
 
         if (MR::isBckOneTimeAndStoppedPlayer()) {
-            MR::startBckPlayer("SurfRideLoop", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("SurfRideLoop");
         }
 
         if (MR::isBckOneTimeAndStopped(this)) {
@@ -385,7 +385,7 @@ void SurfRay::exeTutorial() {
     case 9:
     case 10:
         if (MR::isFirstStep(this)) {
-            MR::startBckPlayer("SurfRideLoop", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("SurfRideLoop");
             MR::startBck(this, "Wait", nullptr);
         }
         break;
@@ -418,7 +418,7 @@ void SurfRay::exeWipeOut() {
     if (!updateRide() && !MR::isWipeActive()) {
         MR::resetPosition(this, "スタート位置（サーフィン）");
         resetAllInfo();
-        MR::startBckPlayer("SurfRide", static_cast< s32 >(0));
+        MR::startBckPlayer("SurfRide", 0L);
         MR::resetCameraMan();
         setNerve(GET_NERVE(SurfRay, SurfRayNrvWipeIn));
     }
@@ -438,7 +438,7 @@ void SurfRay::exeReady() {
     if (MR::isFirstStep(this)) {
         MR::endStartPosCamera();
         MR::startBck(this, "WaitRaceStart", nullptr);
-        MR::startBckPlayer("SurfRide", static_cast< s32 >(0));
+        MR::startBckPlayer("SurfRide", 0L);
         MR::tryEmitEffect(this, "Ripple");
         MR::tryDeleteEffect(this, "RunDashSplash");
         MR::tryDeleteEffect(this, "SwimSplash");
@@ -504,7 +504,7 @@ bool SurfRay::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         }
 
         MR::startBckNoInterpole(this, "Wait");
-        MR::startBckPlayer("SurfRideLoop", static_cast< s32 >(0));
+        MR::startBckPlayer("SurfRideLoop", 0L);
         MR::calcAnimDirect(this);
         mActorJointCtrl->resetDynamicCtrl();
 
@@ -557,7 +557,7 @@ bool SurfRay::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         MR::resetPosition(this, "スタート位置（サーフィン）");
         resetAllInfo();
         MR::setPlayerPos(mPosition);
-        MR::startBckPlayer("SurfRide", static_cast< s32 >(0));
+        MR::startBckPlayer("SurfRide", 0L);
         MR::resetCameraMan();
         return true;
     }

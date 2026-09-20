@@ -83,7 +83,7 @@ void ScrewSwitchReverse::exeAdjust() {
 void ScrewSwitchReverse::exeScrew() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "ScrewSwitchReverseOn", nullptr);
-        MR::startBckPlayer("ScrewSwitchReverseOn", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("ScrewSwitchReverseOn");
     }
 
     if (MR::isLessStep(this, ::sStepToRumbleCamera)) {

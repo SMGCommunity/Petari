@@ -379,7 +379,7 @@ void AstroDomeBlueStar::exeBindTraction() {
         MR::emitEffect(mCaptureActor, "LightGrow");
         MR::emitEffect(mCaptureActor, "LightSplash");
 
-        MR::startBckPlayer("SpaceStruggle", 20);
+        MR::startBckPlayer("SpaceStruggle", 20L);
 
         mBindStartMtx.set(mHostMtx);
 
@@ -420,7 +420,7 @@ void AstroDomeBlueStar::exeBindHold() {
 
         MR::deleteEffect(mCaptureActor, "LightSplash");
 
-        MR::startBckPlayer("SpaceWait", 20);
+        MR::startBckPlayer("SpaceWait", 20L);
 
         mCaptureActor->setPosAll(mPosition);
 

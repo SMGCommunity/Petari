@@ -90,7 +90,7 @@ void ValveSwitch::exeValve() {
         }
 
         MR::startBrk(this, "ValveSwitchOn");
-        MR::startBckPlayer("ScrewSwitchOn", (s32)0);
+        MR::startBckPlayer("ScrewSwitchOn", 0L);
     }
 
     if (MR::isLessStep(this, 30)) {

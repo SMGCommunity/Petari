@@ -35,7 +35,7 @@ void BossStinkBugOpeningDemo::exeDemo() {
     if (MR::isFirstStep(this)) {
         MR::overlayWithPreviousScreen(2);
         MR::stopStageBGM(60);
-        MR::startBckPlayer("BattleWait", (const char*)nullptr);
+        MR::startBckPlayer("BattleWait");
         mDemoPositionController->startDemo("OpeningDemo");
         getHost()->reuestMovementOnParts();
         MR::startBck(getHost(), "OpeningDemo", nullptr);

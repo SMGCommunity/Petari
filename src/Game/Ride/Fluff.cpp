@@ -184,7 +184,7 @@ void Fluff::exeFreeWaitInvalid() {
 void Fluff::exeRideStart() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Fly", nullptr);
-        MR::startBckPlayer("FluffStart", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("FluffStart");
         MR::offBind(this);
     }
 
@@ -207,9 +207,9 @@ void Fluff::exeRideFly() {
     if (MR::isFirstStep(this)) {
         MR::tryStartBck(this, "Fly", nullptr);
         if (mSpinsRemaining > 0) {
-            MR::startBckPlayer("FluffFly", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("FluffFly");
         } else {
-            MR::startBckPlayer("FluffFlyLast", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("FluffFlyLast");
         }
         MR::deleteEffect(this, "HardWind");
         MR::onBind(this);
@@ -225,7 +225,7 @@ void Fluff::exeRideFly() {
 void Fluff::exeRideFlyOnWind() {
     if (MR::isFirstStep(this)) {
         MR::tryStartBck(this, "FlyWind", static_cast< const char* >(nullptr));
-        MR::startBckPlayer("FluffFlyWind", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("FluffFlyWind");
         MR::emitEffect(this, "HardWind");
     }
 
@@ -249,7 +249,7 @@ void Fluff::exeRideSpinUp() {
         }
 
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
-        MR::startBckPlayer("FluffSpin", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("FluffSpin");
         MR::tryPlayerCoinPull();
         if (mSpinsRemaining > 0) {
             mSpinsRemaining--;
@@ -416,7 +416,7 @@ void Fluff::endBind(f32 jumpY) {
         TVec3f jumpVec = mUp * jumpY;
         MR::vecKillElement(mVelocity, mGravity, &mVelocity);
         jumpVec.add(mVelocity);
-        MR::startBckPlayer("Fall", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("Fall");
         MR::endBindAndPlayerJump(this, jumpVec, 0);
         MR::startSound(mRider, "SE_PV_JUMP_S");
         MR::startSound(mRider, "SE_PM_JUMP_M");

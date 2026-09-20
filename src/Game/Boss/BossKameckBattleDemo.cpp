@@ -127,7 +127,7 @@ void BossKameckBattleDemo::startDemoDownVs2() {
 
 void BossKameckBattleDemo::exeWaitAppearVs1() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         MR::stopStageBGM(90);
         mHost->startDemo();
     }
@@ -174,7 +174,7 @@ void BossKameckBattleDemo::exeAppearVs1() {
 
 void BossKameckBattleDemo::exeWaitAppearVs2() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         MR::stopStageBGM(90);
         mHost->startDemo();
     }
@@ -230,7 +230,7 @@ void BossKameckBattleDemo::exePowerUpVs1() {
         MR::startAnimCameraTargetSelf(pos, pos->mCameraInfo, powerUpName, 0, 1.0f);
         MR::startBck(pos, powerUpName, nullptr);
         MR::startAction(mHost, powerUpName);
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         mHost->startDemo();
     }
 
@@ -260,7 +260,7 @@ void BossKameckBattleDemo::exePowerUpVs2() {
         MR::startAnimCameraTargetSelf(pos, pos->mCameraInfo, powerUpName, 0, 1.0f);
         MR::startBck(pos, powerUpName, nullptr);
         MR::startAction(mHost, powerUpName);
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         mHost->startDemo();
     }
 
@@ -294,7 +294,7 @@ void BossKameckBattleDemo::exeDownVs1() {
         MR::startAction(mHost, powerUpName);
         mHost->deadKameck();
         mHost->startDemo();
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         MR::stopStageBGM(30);
     }
 
@@ -340,7 +340,7 @@ void BossKameckBattleDemo::exeDownVs2() {
         MR::startAction(mHost, powerUpName);
         mHost->deadKameck();
         mHost->startDemo();
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         MR::stopStageBGM(30);
     }
 
