@@ -41,22 +41,21 @@ namespace {
     NEW_NERVE(LogoSceneDeactive, LogoScene, Deactive);
 };  // namespace
 
-LogoScene::LogoScene() : Scene("LogoScene"), mIsbnManager(nullptr), mStrapLayout(nullptr), mLogoFader(nullptr) {
-    MainLoopFramework::sManager->mUseVFilter = false;
-    MainLoopFramework::sManager->mUseAlpha = false;
+LogoScene::LogoScene() : Scene("LogoScene"), mIsbnManager(), mStrapLayout(), mLogoFader() {
+    MainLoopFramework::getManager()->mUseVFilter = false;
+    MainLoopFramework::getManager()->mUseAlpha = false;
 }
 
-// FIXME: Missing and improperly ordered instructions.
 LogoScene::~LogoScene() {
-    MainLoopFramework::sManager->mUseVFilter = true;
-    MainLoopFramework::sManager->mUseAlpha = true;
+    MainLoopFramework::getManager()->mUseVFilter = true;
+    MainLoopFramework::getManager()->mUseAlpha = true;
 }
 
 void LogoScene::init() {
     if (MR::isEqualString(MR::getCurrentRegionPrefix(), "Cn")) {
-        initNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipFadein));
+        initNerve(GET_NERVE_ANON(LogoSceneCensorshipFadein));
     } else {
-        initNerve(GET_NERVE_GLOBAL(LogoSceneStrapFadein));
+        initNerve(GET_NERVE_ANON(LogoSceneStrapFadein));
     }
 
     SceneFunction::createHioBasicNode(this);
@@ -90,8 +89,8 @@ void LogoScene::draw() const {
     MR::clearZBuffer();
     MR::drawInitFor2DModel();
 
-    bool isCensorship = isNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipFadein)) || isNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipDisplay)) ||
-                        isNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipFadeout));
+    bool isCensorship = isNerve(GET_NERVE_ANON(LogoSceneCensorshipFadein)) || isNerve(GET_NERVE_ANON(LogoSceneCensorshipDisplay)) ||
+                        isNerve(GET_NERVE_ANON(LogoSceneCensorshipFadeout));
 
     if (isCensorship) {
         MR::setupDrawForNW4RLayout(1.0f, true);
@@ -108,10 +107,10 @@ void LogoScene::draw() const {
 }
 
 bool LogoScene::isDisplayStrapRemineder() const {
-    return isNerve(GET_NERVE_GLOBAL(LogoSceneDeactive)) || isNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipFadein)) ||
-           isNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipDisplay)) || isNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipFadeout)) ||
-           isNerve(GET_NERVE_GLOBAL(LogoSceneStrapFadein)) || isNerve(GET_NERVE_GLOBAL(LogoSceneStrapDisplay)) ||
-           isNerve(GET_NERVE_GLOBAL(LogoSceneStrapFadeout)) || isNerve(GET_NERVE_GLOBAL(LogoSceneWaitReadDoneSystemArchive));
+    return isNerve(GET_NERVE_ANON(LogoSceneDeactive)) || isNerve(GET_NERVE_ANON(LogoSceneCensorshipFadein)) ||
+           isNerve(GET_NERVE_ANON(LogoSceneCensorshipDisplay)) || isNerve(GET_NERVE_ANON(LogoSceneCensorshipFadeout)) ||
+           isNerve(GET_NERVE_ANON(LogoSceneStrapFadein)) || isNerve(GET_NERVE_ANON(LogoSceneStrapDisplay)) ||
+           isNerve(GET_NERVE_ANON(LogoSceneStrapFadeout)) || isNerve(GET_NERVE_ANON(LogoSceneWaitReadDoneSystemArchive));
 }
 
 void LogoScene::exeCensorshipFadein() {
@@ -122,7 +121,7 @@ void LogoScene::exeCensorshipFadein() {
     mIsbnManager->calc(true);
 
     if (tryFadeinLayout()) {
-        setNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipDisplay));
+        setNerve(GET_NERVE_ANON(LogoSceneCensorshipDisplay));
     }
 }
 
@@ -134,7 +133,7 @@ void LogoScene::exeCensorshipDisplay() {
     mIsbnManager->calc(true);
 
     if (MR::isGreaterStep(this, CENSORSHIP_DISPLAY_FRAME)) {
-        setNerve(GET_NERVE_GLOBAL(LogoSceneCensorshipFadeout));
+        setNerve(GET_NERVE_ANON(LogoSceneCensorshipFadeout));
     }
 }
 
@@ -142,7 +141,7 @@ void LogoScene::exeCensorshipFadeout() {
     mIsbnManager->calc(true);
 
     if (tryFadeoutLayout()) {
-        setNerve(GET_NERVE_GLOBAL(LogoSceneStrapFadein));
+        setNerve(GET_NERVE_ANON(LogoSceneStrapFadein));
     }
 }
 
@@ -155,7 +154,7 @@ void LogoScene::exeStrapFadein() {
     }
 
     if (tryFadeinLayout(mStrapLayout)) {
-        setNerve(GET_NERVE_GLOBAL(LogoSceneStrapDisplay));
+        setNerve(GET_NERVE_ANON(LogoSceneStrapDisplay));
     }
 }
 
@@ -170,13 +169,13 @@ void LogoScene::exeStrapDisplay() {
 
     if (MR::isGreaterStep(this, STRAP_DISPLAY_MIN_FRAME) &&
         (MR::testCorePadTriggerAnyWithoutHome(WPAD_CHAN0) || MR::isGreaterEqualStep(this, STRAP_DISPLAY_MAX_FRAME))) {
-        setNerve(GET_NERVE_GLOBAL(LogoSceneStrapFadeout));
+        setNerve(GET_NERVE_ANON(LogoSceneStrapFadeout));
     }
 }
 
 void LogoScene::exeStrapFadeout() {
     if (tryFadeoutLayout(mStrapLayout)) {
-        setNerve(GET_NERVE_GLOBAL(LogoSceneWaitReadDoneSystemArchive));
+        setNerve(GET_NERVE_ANON(LogoSceneWaitReadDoneSystemArchive));
     }
 }
 
@@ -189,12 +188,12 @@ void LogoScene::exeMountGameData() {
         return;
     }
 
-    setNerve(GET_NERVE_GLOBAL(LogoSceneDeactive));
+    setNerve(GET_NERVE_ANON(LogoSceneDeactive));
 }
 
 void LogoScene::exeWaitReadDoneSystemArchive() {
     if (GameSystemFunction::isDoneLoadSystemArchive()) {
-        setNerve(GET_NERVE_GLOBAL(LogoSceneMountGameData));
+        setNerve(GET_NERVE_ANON(LogoSceneMountGameData));
     }
 }
 

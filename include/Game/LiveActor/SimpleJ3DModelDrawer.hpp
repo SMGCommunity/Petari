@@ -7,9 +7,6 @@ class SimpleJ3DModelDrawer : public LiveActor {
 public:
     SimpleJ3DModelDrawer(NameObj*, const char*, const char*, int);
 
-    virtual ~SimpleJ3DModelDrawer() {
-    }
-
     void initDraw() const;
 
     /* 0x8C */ J3DMaterial* mMaterial;

@@ -1,10 +1,10 @@
 #include "ansi_fp.h"
 #include "wchar_io.h"
-#include <cctype>
-#include <cmath>
-#include <cstdarg>
-#include <cstdio>
-#include <cstdlib>
+#include "cctype"
+#include "cmath"
+#include "cstdarg"
+#include "cstdio"
+#include "cstdlib"
 
 #pragma exceptions on
 

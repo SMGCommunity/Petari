@@ -43,7 +43,7 @@ void Banekiti::init(const JMapInfoIter& rIter) {
 
 void Banekiti::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
     MR::startLevelSound(this, "SE_OJ_LV_BANEKITI_MOVE");
 }
@@ -52,7 +52,7 @@ void Banekiti::exeRepel() {
     if (MR::isFirstStep(this)) {
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
         MR::shakeCameraWeak();
-        MR::startBck(this, "Repel", nullptr);
+        MR::startBck(this, "Repel");
         MR::startSound(this, "SE_OJ_BANEKITI_REPEL");
     }
     if (MR::isBckStopped(this)) {

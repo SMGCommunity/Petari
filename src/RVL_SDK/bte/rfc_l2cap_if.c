@@ -1,4 +1,4 @@
-#include "rfc_int.h"
+#include <rfc_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -31,16 +31,16 @@
 
 #include <stddef.h>
 
-#include "bt_target.h"
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "gki.h"
-#include "l2cdefs.h"
-#include "rfcdefs.h"
-#include "l2c_api.h"
-#include "port_int.h"
+#include <gki.h>
+#include <l2cdefs.h>
+#include <rfcdefs.h>
+#include <l2c_api.h>
+#include <port_int.h>
 
 /*******************************************************************************
  * local function declarations

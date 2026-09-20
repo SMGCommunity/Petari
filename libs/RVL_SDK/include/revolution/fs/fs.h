@@ -1,9 +1,9 @@
 #ifndef FS_H
 #define FS_H
 
-#include <private/iosrestypes.h>
-#include <private/iostypes.h>
-#include <revolution/types.h>
+#include "private/iosrestypes.h"
+#include "private/iostypes.h"
+#include "revolution/types.h"
 
 
 #ifdef __cplusplus

@@ -1,4 +1,4 @@
-#include <revolution.h>
+#include "revolution.h"
 
 static void* __OSArenaHi = (void*)0x00000000;
 static void* __OSArenaLo = (void*)0xFFFFFFFF;

@@ -8,8 +8,8 @@
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JMath/JMath.hpp>
 
 namespace {
     const static DummyDisplayModelInfo cDummyDisplayModelInfoTable[14] = {
@@ -75,7 +75,7 @@ void DummyDisplayModel::init(const JMapInfoIter& rIter) {
     PartsModel::init(rIter);
 
     if (mModelInfo->mAnim != nullptr) {
-        MR::startBck(this, mModelInfo->mAnim, nullptr);
+        MR::startBck(this, mModelInfo->mAnim);
     }
 
     if (mModelInfo->mHasColorChange) {

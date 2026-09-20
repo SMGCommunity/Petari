@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 
 typedef struct {
     BOOL valid;

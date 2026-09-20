@@ -30,9 +30,9 @@
  * headers
  */
 
-#include "data_types.h"
+#include <data_types.h>
 
-#include "bta_av_api.h"
+#include <bta_av_api.h>
 
 /*******************************************************************************
  * external globals

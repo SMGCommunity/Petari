@@ -45,13 +45,13 @@ FileSelectInfo::FileSelectInfo(s32 nameBufferSize, const char* pName)
 void FileSelectInfo::init(const JMapInfoIter& rIter) {
     initLayoutManager("FileInfo", 3);
     MR::connectToSceneLayout(this);
-    initNerve(GET_NERVE_GLOBAL(FileSelectInfoNrvAppear));
+    initNerve(GET_NERVE_ANON(FileSelectInfoNrvAppear));
 }
 
 void FileSelectInfo::appear() {
     f32 animFrame;
 
-    if (!MR::isDead(this) && isNerve(GET_NERVE_GLOBAL(FileSelectInfoNrvDisappear))) {
+    if (!MR::isDead(this) && isNerve(GET_NERVE_ANON(FileSelectInfoNrvDisappear))) {
         animFrame = MR::getAnimFrame(this, 0);
 
         MR::startAnim(this, "Appear", 0);
@@ -60,15 +60,15 @@ void FileSelectInfo::appear() {
         MR::startAnim(this, "Appear", 0);
     }
 
-    setNerve(GET_NERVE_GLOBAL(FileSelectInfoNrvAppear));
+    setNerve(GET_NERVE_ANON(FileSelectInfoNrvAppear));
     LayoutActor::appear();
 }
 
 void FileSelectInfo::disappear() {
     f32 animFrame;
 
-    if (!MR::isDead(this) && !isNerve(GET_NERVE_GLOBAL(FileSelectInfoNrvDisappear))) {
-        if (isNerve(GET_NERVE_GLOBAL(FileSelectInfoNrvAppear))) {
+    if (!MR::isDead(this) && !isNerve(GET_NERVE_ANON(FileSelectInfoNrvDisappear))) {
+        if (isNerve(GET_NERVE_ANON(FileSelectInfoNrvAppear))) {
             animFrame = MR::getAnimFrame(this, 0);
         } else {
             MR::startAnim(this, "Appear", 0);
@@ -79,7 +79,7 @@ void FileSelectInfo::disappear() {
         MR::startAnim(this, "Appear", 0);
         MR::setAnimFrame(this, animFrame, 0);
         MR::setAnimRate(this, 0.0f, 0);
-        setNerve(GET_NERVE_GLOBAL(FileSelectInfoNrvDisappear));
+        setNerve(GET_NERVE_ANON(FileSelectInfoNrvDisappear));
     }
 }
 
@@ -149,7 +149,7 @@ void FileSelectInfo::exeAppear() {
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(GET_NERVE_GLOBAL(FileSelectInfoNrvDisplay));
+        setNerve(GET_NERVE_ANON(FileSelectInfoNrvDisplay));
     }
 }
 

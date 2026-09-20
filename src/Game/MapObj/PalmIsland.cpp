@@ -8,8 +8,8 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
-#include "revolution/types.h"
+#include <JSystem/JMath/JMATrigonometric.hpp>
+#include <revolution/types.h>
 
 namespace NrvPalmIsland {
     NEW_NERVE(PalmIslandNrvWait, PalmIsland, Wait);

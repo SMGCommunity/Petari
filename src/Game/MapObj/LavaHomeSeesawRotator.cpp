@@ -9,7 +9,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
+#include <JSystem/JMath/JMATrigonometric.hpp>
 
 void LavaHomeSeesawRotator_FORCE_MATCH_SDATA2() {
     (void)1.0f;

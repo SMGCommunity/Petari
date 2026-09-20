@@ -1,4 +1,4 @@
-#include "btm_int.h"
+#include <btm_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -31,9 +31,9 @@
 
 #include <mem.h>  // memset
 
-#include "bt_trace.h"
+#include <bt_trace.h>
 
-#include "btm_api.h"  // BTM_SEC_MODE_SERVICE
+#include <btm_api.h>  // BTM_SEC_MODE_SERVICE
 
 /*******************************************************************************
  * variables

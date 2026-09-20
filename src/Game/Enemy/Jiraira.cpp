@@ -12,7 +12,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 void Jiraira_FORCE_MATCH_SDATA2() {
     (void)0.0f;
@@ -89,7 +89,7 @@ void Jiraira::control() {
 
 void Jiraira::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::startBrk(this, "Wait");
     }
 
@@ -100,7 +100,7 @@ void Jiraira::exeWait() {
 
 void Jiraira::exeStepped() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Stepped", nullptr);
+        MR::startBck(this, "Stepped");
         MR::startBrk(this, "Stepped");
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::startSound(this, "SE_OJ_JIRAIRA_STEPPED");
@@ -117,7 +117,7 @@ void Jiraira::exeExplode() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "Explosion");
         MR::startSound(this, "SE_OJ_JIRAIRA_EXPLODE");
-        MR::startBck(this, "Down", nullptr);
+        MR::startBck(this, "Down");
         MR::startBrk(this, "Down");
         getSensor("explode")->validate();
         MR::tryRumblePadAndCameraDistanceStrong(this, 800.0f, 1200.0f, 2000.0f);
@@ -136,7 +136,7 @@ void Jiraira::exeExplode() {
 
 void Jiraira::exePreRecover() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Down", 0);
+        MR::startBck(this, "Down");
         MR::startBrk(this, "RecoveryLoop");
     }
 
@@ -149,7 +149,7 @@ void Jiraira::exePreRecover() {
 
 void Jiraira::exeRecover() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Recovery", 0);
+        MR::startBck(this, "Recovery");
         MR::startBrk(this, "Recovery");
         MR::startSound(this, "SE_OJ_JIRAIRA_RECOVER");
     }

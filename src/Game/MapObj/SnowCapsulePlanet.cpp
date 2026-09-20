@@ -42,7 +42,7 @@ void SnowCapsulePlanet::exeOpenWait() {
 
 void SnowCapsulePlanet::exeOpen() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Open", nullptr);
+        MR::startBck(this, "Open");
         MR::invalidateCollisionParts(mDoor2);
         MR::validateCollisionParts(mDoor1);
         MR::shakeCameraWeak();

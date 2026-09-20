@@ -4,8 +4,8 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 
 void dummy() {
     // to emit TVec3f init

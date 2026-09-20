@@ -1,7 +1,7 @@
 #ifndef NANDLOGGING_H
 #define NANDLOGGING_H
 
-#include <revolution/os.h>
+#include "revolution/os.h"
 
 #ifdef __cplusplus
 extern "C" {

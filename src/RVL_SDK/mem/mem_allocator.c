@@ -1,5 +1,5 @@
-#include <revolution/mem/allocator.h>
-#include <revolution/mem/expHeap.h>
+#include "revolution/mem/allocator.h"
+#include "revolution/mem/expHeap.h"
 
 static void* AllocatorAllocForExpHeap_(MEMAllocator *pAllocator, u32 size) {
     return MEMAllocFromExpHeapEx(pAllocator->pHeap, size, pAllocator->heapParam1);

@@ -1,7 +1,7 @@
 #ifndef PF_SYSTEM_H
 #define PF_SYSTEM_H
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 #include "revolution/vf/vf_struct.h"
 
 void VFiPFSYS_initializeSYS(void);

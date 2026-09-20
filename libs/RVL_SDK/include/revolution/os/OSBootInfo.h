@@ -1,7 +1,7 @@
 #ifndef OSBOOTINFO_H
 #define OSBOOTINFO_H
 
-#include <revolution/dvd.h>
+#include "revolution/dvd.h"
 
 typedef struct OSBootInfo_s {
     DVDDiskID DVDDiskID;

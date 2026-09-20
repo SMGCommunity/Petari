@@ -5,6 +5,12 @@
 #include "Game/Util.hpp"
 #include "math_types.hpp"
 
+void AstroDomeDemoStarter_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
+
 namespace {
     const char* const cJumpOutPartName = "飛び出す";
     const Vec cAppearRotate = {90.0f, -5.0f, 0.0f};
@@ -18,9 +24,8 @@ namespace {
     const s32 cBgmStartFrame = 108;
 
     f32 countRotations(f32 angle) {
-        // TODO: replace this with what the actual logic is supposed to be.
-        // This is a hack to match, but it is unclear if this is in fact correct
-        return TWO_PI * (volatile s32)(angle / TWO_PI);
+        s32 rotations = angle / TWO_PI;
+        return TWO_PI * rotations;
     }
 };  // namespace
 
@@ -65,7 +70,7 @@ void AstroDomeDemoStarter::init(const JMapInfoIter& rIter) {
     MR::tryRegisterDemoCast(this, rIter);
     MR::registerDemoActionNerve(this, GET_NERVE(AstroDomeDemoStarter, AstroDomeDemoStarterNrvSpinDriverStart), "スピンドライバ起動");
     MR::registerDemoActionNerve(this, GET_NERVE(AstroDomeDemoStarter, AstroDomeDemoStarterNrvJumpOut), "飛び出す");
-    MR::registerDemoActionFunctor(this, MR::Functor_Inline(this, &AstroDomeDemoStarter::startJumpOut), nullptr);
+    MR::registerDemoActionFunctor(this, MR::Functor(this, &AstroDomeDemoStarter::startJumpOut), nullptr);
     MR::needStageSwitchWriteA(this, rIter);
 
     makeActorDead();
@@ -73,7 +78,7 @@ void AstroDomeDemoStarter::init(const JMapInfoIter& rIter) {
 
 void AstroDomeDemoStarter::startJumpOut() {
     MR::onSwitchA(this);
-    mPosition.set(0.0f);
+    mPosition.zero();
     _94.identity();
 
     MR::startAnimCameraTargetSelf(this, _F4, "AstroDomeDemoCamera", 0, MR::getAnimCameraFrame(this, _F4, "AstroDomeDemoCamera") / 180.0f);
@@ -134,8 +139,8 @@ void AstroDomeDemoStarter::exeSpinDriverAppear() {
         _94.concat(rotateMtx);
         MR::setBaseTRMtx(this, _94);
         MR::showModel(this);
-        MR::startBck(this, "Appear", nullptr);
-        MR::startBckPlayer("SpinDriverWait", 20);
+        MR::startBck(this, "Appear");
+        MR::startBckPlayer("SpinDriverWait", 20L);
         MR::startSound(this, "SE_OJ_S_SPIN_DRV_APPEAR");
     }
 
@@ -150,8 +155,8 @@ void AstroDomeDemoStarter::exeSpinDriverAppear() {
 
 void AstroDomeDemoStarter::exeSpinDriverStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Start", nullptr);
-        MR::startBckPlayer("SuperSpinDriverStart", static_cast< const char* >(nullptr));
+        MR::startBck(this, "Start");
+        MR::startBckPlayer("SuperSpinDriverStart");
         MR::setPlayerBaseMtx(_94);
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::startCSSound("CS_SPIN_DRIVE_LONG", "SE_SY_CS_S_SPIN_DRV_START", 0);
@@ -171,7 +176,7 @@ void AstroDomeDemoStarter::exeSpinDriverStart() {
 void AstroDomeDemoStarter::exeSpinDriverShoot() {
     if (MR::isFirstStep(this)) {
         MR::setBckRate(this, 1.0f);
-        MR::startBckPlayer("SpaceFlyStart", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("SpaceFlyStart");
         MR::emitEffect(MR::getPlayerDemoActor(), "SuperSpinDriverFlyGlow");
         MR::shakeCameraNormal();
         MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
@@ -198,7 +203,7 @@ void AstroDomeDemoStarter::exeJumpOut() {
     if (MR::isFirstStep(this)) {
         MR::hideModel(this);
         MR::resetPlayerEffect();
-        MR::startBckPlayer("SpaceFlyLoop", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("SpaceFlyLoop");
         MR::emitEffect(MR::getPlayerDemoActor(), "SuperSpinDriverFlyGlow");
         _90->appear();
     }

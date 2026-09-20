@@ -2,7 +2,7 @@
 extern "C" {
 #endif
 
-#include <runtime.h>
+#include "runtime.h"
 
 /* macros for GPR/FPR resting and saving */
 #define SAVE_FPR(reg) _savefpr_ ## reg

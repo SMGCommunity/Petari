@@ -30,9 +30,9 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/os.h"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/os.h>
+#include <revolution/types.h>
 
 void KuriboChief_FORCE_MATCH_SDATA2() {
     (void)1.0f;

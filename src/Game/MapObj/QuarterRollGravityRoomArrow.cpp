@@ -28,13 +28,13 @@ void QuarterRollGravityRoomArrow::exeWait() {
 
 void QuarterRollGravityRoomArrow::exeRollOnA() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "RollGravityA", 0);
+        MR::startBck(this, "RollGravityA");
     }
 }
 
 void QuarterRollGravityRoomArrow::exeRollOffA() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "RollGravityAReverse", 0);
+        MR::startBck(this, "RollGravityAReverse");
     }
     if (MR::isBckStopped(this)) {
         setNerve(GET_NERVE(QuarterRollGravityRoomArrow, QuarterRollGravityRoomArrowNrvWait));
@@ -43,13 +43,13 @@ void QuarterRollGravityRoomArrow::exeRollOffA() {
 
 void QuarterRollGravityRoomArrow::exeRollOnB() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "RollGravityB", 0);
+        MR::startBck(this, "RollGravityB");
     }
 }
 
 void QuarterRollGravityRoomArrow::exeRollOffB() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "RollGravityBReverse", 0);
+        MR::startBck(this, "RollGravityBReverse");
     }
 }
 

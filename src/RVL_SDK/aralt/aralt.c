@@ -1,7 +1,7 @@
 #include "revolution/os/OSInterrupt.h"
 #include <cstring>
-#include <revolution/aralt.h>
-#include <revolution/os.h>
+#include "revolution/aralt.h"
+#include "revolution/os.h"
 
 static u32 __AR_init_flag;
 static s32 __ARQ_init_flag;

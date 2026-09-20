@@ -119,7 +119,7 @@ void DinoPackunDemo::exeOpeningDemo() {
         MR::startAction(getHost(), "OpeningDemo");
         MR::startBva(getHost()->getEggShell(), "OpeningDemo");
         MR::invalidateCollisionParts(getHost()->getEggShell());
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
     }
 
     getHost()->mDemoPos->movement();
@@ -160,7 +160,7 @@ void DinoPackunDemo::exeCryDemo() {
         getHost()->startDemoAndReset();
         MR::startAnimCameraTargetSelf(getHost(), getHost()->mCameraInfo, "CryDemo", 0, 1.0f);
         MR::startAction(getHost(), "CryDemo");
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(0));
+        MR::startBckPlayer("BattleWait");
     }
 
     if (MR::isStep(this, ::sCryBlurStart)) {
@@ -184,7 +184,7 @@ void DinoPackunDemo::exeAngryDemo() {
         MR::startAction(getHost(), "AngryDemo");
         MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_GROAN");
         MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
     }
 
     if (getHost()->mSequence->getVsCount() == 1) {
@@ -222,7 +222,7 @@ void DinoPackunDemo::exeDownDemo() {
         MR::startAnimCameraTargetSelf(getHost(), getHost()->mCameraInfo, "DownDemo", 0, 1.0f);
         MR::startSound(getHost(), "SE_BV_D_PAKKUN_DIE");
         MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
     }
 
     if (MR::isStep(this, ::sDeathBlurStart)) {

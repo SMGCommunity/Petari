@@ -12,15 +12,15 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JKernel/JKRSolidHeap.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
-#include "JSystem/JUtility/JUTVideo.hpp"
-#include "revolution/gx/GXBump.h"
-#include "revolution/gx/GXEnum.h"
-#include "revolution/gx/GXRegs.h"
-#include "revolution/gx/GXStruct.h"
-#include "revolution/gx/GXTransform.h"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JKernel/JKRSolidHeap.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
+#include <JSystem/JUtility/JUTVideo.hpp>
+#include <revolution/gx/GXBump.h>
+#include <revolution/gx/GXEnum.h>
+#include <revolution/gx/GXRegs.h>
+#include <revolution/gx/GXStruct.h>
+#include <revolution/gx/GXTransform.h>
 
 namespace NrvWaterCameraFilter {
     NEW_NERVE(WaterCameraFilterNrvAir, WaterCameraFilter, Air);

@@ -9,7 +9,7 @@ class ParticleDrawExecutor {
 public:
     ParticleDrawExecutor(const EffectSystem*, bool);
 
-    void initDraw();
+    static void initDraw();
     void draw3D() const;
     void draw2D() const;
     void drawIndirect() const;

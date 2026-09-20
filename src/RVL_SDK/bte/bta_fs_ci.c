@@ -1,4 +1,4 @@
-#include "bta_fs_ci.h"
+#include <bta_fs_ci.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -31,11 +31,11 @@
 
 #include <stddef.h> // NULL
 
-#include "data_types.h"
+#include <data_types.h>
 
-#include "bta_fs_co.h"
-#include "bta_sys.h" // bta_sys_sendmsg
-#include "gki.h" // GKI_getbuf
+#include <bta_fs_co.h>
+#include <bta_sys.h> // bta_sys_sendmsg
+#include <gki.h> // GKI_getbuf
 
 /*******************************************************************************
  * functions

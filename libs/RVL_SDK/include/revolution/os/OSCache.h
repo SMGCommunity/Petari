@@ -1,9 +1,9 @@
 #ifndef OSCACHE_H
 #define OSCACHE_H
 
-#include <revolution/types.h>
-#include <revolution/os/OSContext.h>
-#include <revolution/os/OSError.h>
+#include "revolution/types.h"
+#include "revolution/os/OSContext.h"
+#include "revolution/os/OSError.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -24,8 +24,8 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include <JSystem/JMath/JMATrigonometric.hpp>
+#include <JSystem/JMath/JMath.hpp>
 #include <cstdio>
 
 namespace {
@@ -129,7 +129,7 @@ void TripodBoss::init(const JMapInfoIter& rIter) {
     initNerve(GET_NERVE(TripodBoss, TripodBossNrvNonActive));
     MR::invalidateClipping(this);
     MR::needStageSwitchReadA(this, rIter);
-    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &TripodBoss::requestOpeningDemo));
+    MR::listenStageSwitchOnA(this, MR::Functor(this, &TripodBoss::requestOpeningDemo));
     MR::useStageSwitchReadB(this, rIter);
     MR::useStageSwitchWriteDead(this, rIter);
     MR::declareStarPiece(this, 24);
@@ -142,7 +142,7 @@ void TripodBoss::init(const JMapInfoIter& rIter) {
     MR::setBrkFrameAndStop(mDummyModel, 0.0f);
 
     makeActorAppeared();
-    MR::startBck(this, "StartDemo", nullptr);
+    MR::startBck(this, "StartDemo");
     MR::setBckFrameAndStop(this, 0.0f);
     initPose();
     MR::offCalcAnim(this);
@@ -634,11 +634,11 @@ void TripodBoss::exeDamage() {
 void TripodBoss::exeStartDemo() {
     if (MR::isFirstStep(this)) {
         startDemo();
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         MR::stopStageBGM(10);
         _600 = 1.0f;
         MR::startAnimCameraTargetSelf(this, mEventCamera, "StartDemo", 0, 1.0f);
-        MR::startBck(this, "StartDemo", nullptr);
+        MR::startBck(this, "StartDemo");
     }
 
     if (MR::isLessStep(this, 120)) {
@@ -688,7 +688,7 @@ void TripodBoss::exePainDemo() {
         startDemo();
 
         if (isOnGround) {
-            MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("BattleWait");
         }
 
         MR::startBrk(mDummyModel, "Recover");
@@ -705,9 +705,9 @@ void TripodBoss::exePainDemo() {
         mtx.mMtx[1][3] = v5.y;
         mtx.mMtx[2][3] = v5.z;
         MR::setPlayerBaseMtx(mtx);
-        MR::startBckPlayer("Wait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("Wait");
         MR::startAnimCameraTargetSelf(this, mEventCamera, "EndDemo", 0, 1.0f);
-        MR::startBck(this, "EndDemo", nullptr);
+        MR::startBck(this, "EndDemo");
         MR::emitEffect(this, "BreakLight");
     }
 

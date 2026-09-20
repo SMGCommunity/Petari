@@ -1,5 +1,5 @@
-#include <cerrno>
-#include <cmath>
+#include "cerrno"
+#include "cmath"
 
 static const double one	= 1.0;
 static const double tiny = 1.0e-300;

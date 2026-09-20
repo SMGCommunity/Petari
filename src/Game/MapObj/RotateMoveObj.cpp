@@ -51,7 +51,7 @@ void RotateMoveObj::init(const JMapInfoIter& rIter) {
 
 void RotateMoveObj::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
     MR::listenStageSwitchOnOffB(this, MR::Functor(this, &RotateMoveObj::setStateMove),
-                                MR::Functor_Inline< MapObjActor >(this, &MapObjActor::pauseMapPartsFunctions));
+                                MR::Functor< MapObjActor >(this, &MapObjActor::pauseMapPartsFunctions));
 }
 
 void RotateMoveObj::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {

@@ -3,7 +3,7 @@
 #include "Game/System/ResourceInfo.hpp"
 #include "Game/Util/HashUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 #include <cstring>
 
 static bool unknownByte;

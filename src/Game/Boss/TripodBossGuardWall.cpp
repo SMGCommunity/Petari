@@ -15,7 +15,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include <JSystem/JMath/JMath.hpp>
 
 namespace {
     struct WallPartPlacementAngle {
@@ -81,7 +81,7 @@ void TripodBossGuardWall::init(const JMapInfoIter& rIter) {
     mCameraTargetMtx = new CameraTargetMtx("カメラターゲットダミー");
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &TripodBossGuardWall::requestStart));
+        MR::listenStageSwitchOnAppear(this, MR::Functor(this, &TripodBossGuardWall::requestStart));
     }
 
     MR::invalidateClipping(this);

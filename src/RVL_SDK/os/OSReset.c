@@ -1,11 +1,11 @@
 #include <mem.h>
-#include <private/OSLoMem.h>
-#include <private/flipper.h>
-#include <revolution/dvd.h>
-#include <revolution/os.h>
-#include <revolution/os/OSExecParams.h>
-#include <revolution/pad.h>
-#include <revolution/sc.h>
+#include "private/OSLoMem.h"
+#include "private/flipper.h"
+#include "revolution/dvd.h"
+#include "revolution/os.h"
+#include "revolution/os/OSExecParams.h"
+#include "revolution/pad.h"
+#include "revolution/sc.h"
 
 extern BOOL __OSInNandBoot;
 extern BOOL __OSInReboot;

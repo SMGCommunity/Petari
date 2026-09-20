@@ -140,7 +140,7 @@ bool MarioFoo::start() {
     _30 = getFrontVec();
     MR::normalize(&_30);
 
-    stopAnimationUpper(nullptr, nullptr);
+    stopAnimationUpper(nullptr);
     getPlayer()->mMovementStates._1 = false;
     getPlayer()->mMovementStates._A = false;
     _18 = 0;
@@ -393,23 +393,23 @@ bool MarioFoo::close() {
     stopEffect("フーマリオグロー右");
     playEffect("フーマリオ解除左");
     playEffect("フーマリオ解除右");
-    stopAnimationUpper(nullptr, nullptr);
+    stopAnimationUpper(nullptr);
     setYangleOffset(0.0f);
     u16 upperJoint = getAnimator()->getUpperJointID();
     setJointGlobalMtx(upperJoint, nullptr);
 
     switch (_59) {
     case 0:
-        changeAnimation("飛び込み失敗回転着地", static_cast< const char* >(nullptr));
+        changeAnimation("飛び込み失敗回転着地");
         break;
     case 1:
-        changeAnimation("フーファイター着地", static_cast< const char* >(nullptr));
+        changeAnimation("フーファイター着地");
         break;
     case 2:
-        stopAnimation(nullptr, static_cast< const char* >(nullptr));
+        stopAnimation(nullptr);
         break;
     case 3:
-        changeAnimation("フーファイター解除", static_cast< const char* >(nullptr));
+        changeAnimation("フーファイター解除");
         getPlayer()->mJumpVec = TVec3f(0.0f, 0.0f, 0.0f);
         getPlayer()->_10._21 = true;
         break;
@@ -454,7 +454,7 @@ void MarioFoo::jet() {
         slowDown = 0.9f;
         _AC++;
         if (!isAnimationRun("フーファイタースピン")) {
-            changeAnimation("フーファイター静止", static_cast< const char* >(nullptr));
+            changeAnimation("フーファイター静止");
         }
 
         playEffect("フーマリオブレーキ左");
@@ -481,7 +481,7 @@ void MarioFoo::jet() {
                 playSound("フー加速");
                 _AE = 0;
                 if (isAnimationRun("フーファイター静止")) {
-                    changeAnimation("フーファイター飛行再開", static_cast< const char* >(nullptr));
+                    changeAnimation("フーファイター飛行再開");
                 }
             }
 
@@ -594,7 +594,7 @@ void MarioFoo::spin() {
                 playSound("スピンジャンプ");
             }
 
-            changeAnimation("フーファイタースピン", static_cast< const char* >(nullptr));
+            changeAnimation("フーファイタースピン");
             MarioActor* actor = mActor;
             if (!actor->_944) {
                 actor->_945 = 0;
@@ -615,7 +615,7 @@ bool MarioFoo::passRing(const HitSensor* pSensor) {
     const TVec3f& center = pSensor->mPosition;
     if (!_4E) {
         _50 = mActor->getConst().getTable()->mSwimRingDashChargeTime;
-        changeAnimation("リングダッシュ準備", static_cast< const char* >(nullptr));
+        changeAnimation("リングダッシュ準備");
     }
 
     if (_50) {
@@ -643,7 +643,7 @@ f32 MarioFoo::calcRingAcc() {
 
             if (!_50) {
                 startPadVib(3);
-                changeAnimation("リングダッシュ", static_cast< const char* >(nullptr));
+                changeAnimation("リングダッシュ");
             }
 
             return 1.0f;

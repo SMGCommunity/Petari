@@ -7,7 +7,7 @@
 #include "Game/Util/JointController.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include <JSystem/JMath/JMath.hpp>
 
 namespace NrvDinoPackunTailPart {
     NEW_NERVE(DinoPackunTailPartNrvWait, DinoPackunTailPart, Wait);

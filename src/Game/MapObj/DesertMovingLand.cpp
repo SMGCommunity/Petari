@@ -8,7 +8,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "revolution/mtx.h"
+#include <revolution/mtx.h>
 
 namespace {
     static const char* cDemoName = "砂漠ＵＦＯ上昇";
@@ -165,7 +165,7 @@ void DesertMovingLand::exeMoveUp() {
 
 void DesertMovingLand::exeMoveSign() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Vibration", 0);
+        MR::startBck(this, "Vibration");
 
         if (MR::isDemoActive("砂ＵＦＯ下降"))
             MR::stopStageBGM(60);

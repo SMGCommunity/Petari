@@ -1,6 +1,6 @@
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
-#include "JSystem/J3DGraphBase/J3DMaterial.hpp"
+#include <JSystem/J3DGraphBase/J3DMaterial.hpp>
 #include <JSystem/J3DGraphAnimator/J3DJoint.hpp>
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <JSystem/J3DGraphAnimator/J3DModelData.hpp>

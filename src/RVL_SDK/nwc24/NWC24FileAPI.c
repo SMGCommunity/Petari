@@ -1,6 +1,6 @@
-#include <revolution/nand.h>
-#include <revolution/nwc24.h>
-#include <revolution/nwc24/NWC24Internal.h>
+#include "revolution/nand.h"
+#include "revolution/nwc24.h"
+#include "revolution/nwc24/NWC24Internal.h"
 
 #include <mem.h>
 

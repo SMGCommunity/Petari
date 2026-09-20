@@ -1,7 +1,7 @@
 #ifndef OSRTC_H
 #define OSRTC_H
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 
 typedef struct OSSram {
     u16 checkSum;

@@ -1,4 +1,4 @@
-#include <revolution/thp.h>
+#include "revolution/thp.h"
 
 const char* __THPVersion = "<< RVL_SDK - THP \trelease build: Aug  8 2007 01:31:54 (0x4199_60831) >>";
 

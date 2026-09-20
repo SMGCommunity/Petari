@@ -1,4 +1,4 @@
-#include "gki.h"
+#include <gki.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -32,17 +32,17 @@
 #include <cstring>
 #include <mem.h>
 
-#include "data_types.h"
-#include "gki_target.h"
+#include <data_types.h>
+#include <gki_target.h>
 
-#include "gki_common.h"
-#include "gki_int.h"
+#include <gki_common.h>
+#include <gki_int.h>
 
-#include <revolution/os.h>
-#include <revolution/types.h>
+#include "revolution/os.h"
+#include "revolution/types.h"
 
 #define IS_BTE
-#include <context_rvl.h>
+#include "context_rvl.h"
 
 /*******************************************************************************
  * local function declarations

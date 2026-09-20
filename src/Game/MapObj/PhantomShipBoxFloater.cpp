@@ -2,7 +2,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/FloaterFloatingForceTypeSpring.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 namespace {
     const char* const cEffectName = "Ripple";

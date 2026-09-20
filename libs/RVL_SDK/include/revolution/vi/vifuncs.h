@@ -1,9 +1,9 @@
 #ifndef VIFUNCS_H
 #define VIFUNCS_H
 
-#include <revolution/types.h>
-#include <revolution/vi/vitypes.h>
-#include <revolution/gx/GXStruct.h>
+#include "revolution/types.h"
+#include "revolution/vi/vitypes.h"
+#include "revolution/gx/GXStruct.h"
 
 #ifdef __cplusplus
 extern "C" {

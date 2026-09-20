@@ -1,14 +1,14 @@
-#include "bt_types.h"
-#include "bta_sys.h"
-#include "bte.h"
-#include "btm_int.h"
-#include "btu.h"
-#include "gki_target.h"
-#include "hidh_int.h"
-#include "l2c_int.h"
-#include "rfc_int.h"
-#include "sdp_int.h"
-#include <revolution/os.h>
+#include <bt_types.h>
+#include <bta_sys.h>
+#include <bte.h>
+#include <btm_int.h>
+#include <btu.h>
+#include <gki_target.h>
+#include <hidh_int.h>
+#include <l2c_int.h>
+#include <rfc_int.h>
+#include <sdp_int.h>
+#include "revolution/os.h"
 
 tBTU_CB btu_cb;
 

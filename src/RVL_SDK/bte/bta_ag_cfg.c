@@ -1,4 +1,4 @@
-#include "bta_ag_int.h"
+#include <bta_ag_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -29,7 +29,7 @@
  * headers
  */
 
-#include "bta_ag_api.h"
+#include <bta_ag_api.h>
 
 /*******************************************************************************
  * macros

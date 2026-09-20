@@ -1,4 +1,4 @@
-#include "bd.h"
+#include <bd.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -29,7 +29,7 @@
  * headers
  */
 
-#include "bt_types.h"
+#include <bt_types.h>
 
 /*******************************************************************************
  * variables

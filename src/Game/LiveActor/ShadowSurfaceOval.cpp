@@ -7,10 +7,10 @@
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/gx/GXEnum.h"
-#include "revolution/gx/GXLighting.h"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/gx/GXEnum.h>
+#include <revolution/gx/GXLighting.h>
 
 
 ShadowSurfaceOval::~ShadowSurfaceOval() {

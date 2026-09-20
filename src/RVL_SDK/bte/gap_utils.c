@@ -1,4 +1,4 @@
-#include "gap_int.h"
+#include <gap_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -32,15 +32,15 @@
 #include "revolution/types.h"
 #include <cstring>
 
-#include <macros.h>
+#include "macros.h"
 
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "btm_api.h"
-#include "gap_api.h"
-#include "profiles_api.h"
+#include <btm_api.h>
+#include <gap_api.h>
+#include <profiles_api.h>
 
 /*******************************************************************************
  * macros

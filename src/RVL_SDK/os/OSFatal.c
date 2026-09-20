@@ -1,8 +1,8 @@
-#include <revolution/os.h>
-#include <revolution/exi.h>
-#include <revolution/os/OSBootInfo.h>
-#include <revolution/vi.h>
-#include <private/flipper.h>
+#include "revolution/os.h"
+#include "revolution/exi.h"
+#include "revolution/os/OSBootInfo.h"
+#include "revolution/vi.h"
+#include "private/flipper.h"
 #include <cstring>
 
 typedef struct OSFatalParam {

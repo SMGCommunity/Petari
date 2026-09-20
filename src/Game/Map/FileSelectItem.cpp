@@ -111,7 +111,7 @@ void FileSelectItem::init(const JMapInfoIter& rIter) {
     createNumber();
     MR::initStarPointerTarget(this, 1000.0f, TVec3f(0.0f, 900.0f, 0.0f));
     MR::invalidateClipping(this);
-    initNerve(GET_NERVE_GLOBAL(FileSelectItemNrvNewWait));
+    initNerve(GET_NERVE_ANON(FileSelectItemNrvNewWait));
     MR::createCenterScreenBlur();
     makeActorAppeared();
 }
@@ -122,7 +122,7 @@ void FileSelectItem::appear() {
     if (_8C) {
         killAllModels();
         mPlanetMapObj->makeActorAppeared();
-        setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvNewWait));
+        setNerve(GET_NERVE_ANON(FileSelectItemNrvNewWait));
     } else {
         if (mIconID->isMii()) {
             killAllModels();
@@ -131,7 +131,7 @@ void FileSelectItem::appear() {
             appearFellowModel();
         }
 
-        setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvExistWait));
+        setNerve(GET_NERVE_ANON(FileSelectItemNrvExistWait));
     }
 }
 
@@ -153,15 +153,15 @@ void FileSelectItem::makeActorDead() {
 }
 
 bool FileSelectItem::isNew() const {
-    return isNerve(GET_NERVE_GLOBAL(FileSelectItemNrvNewWait));
+    return isNerve(GET_NERVE_ANON(FileSelectItemNrvNewWait));
 }
 
 bool FileSelectItem::isExist() const {
-    return isNerve(GET_NERVE_GLOBAL(FileSelectItemNrvExistWait));
+    return isNerve(GET_NERVE_ANON(FileSelectItemNrvExistWait));
 }
 
 void FileSelectItem::format() {
-    setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvFormat));
+    setNerve(GET_NERVE_ANON(FileSelectItemNrvFormat));
     deleteCompleteEffect();
     _8C = 1;
 }
@@ -170,9 +170,9 @@ void FileSelectItem::change(const FileSelectIconID& rID, bool a2) {
     mIconID->set(rID);
 
     if (rID.isMii()) {
-        setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvChangeMii));
+        setNerve(GET_NERVE_ANON(FileSelectItemNrvChangeMii));
     } else {
-        setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvChangeFellow));
+        setNerve(GET_NERVE_ANON(FileSelectItemNrvChangeFellow));
     }
 
     deleteCompleteEffect();
@@ -194,7 +194,7 @@ void FileSelectItem::forceChange(const FileSelectIconID& rID, bool a2) {
 
     _147 = a2;
     emitCompleteEffect();
-    setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvExistWait));
+    setNerve(GET_NERVE_ANON(FileSelectItemNrvExistWait));
     _8C = 0;
 }
 
@@ -228,7 +228,7 @@ void FileSelectItem::setSelectDelegator(FileSelectItemDelegatorBase* pDele) {
 
 void FileSelectItem::onPointing() {
     if (!mIsInvalidateSelect) {
-        if (isNerve(GET_NERVE_GLOBAL(FileSelectItemNrvNewWait))) {
+        if (isNerve(GET_NERVE_ANON(FileSelectItemNrvNewWait))) {
             playPointedNotUsingME();
         } else {
             playPointedME();
@@ -352,7 +352,7 @@ void FileSelectItem::exeChangeMii() {
     }
 
     if (MR::isStep(this, 150)) {
-        setNerve(GET_NERVE_GLOBAL(FileSelectItemNrvExistWait));
+        setNerve(GET_NERVE_ANON(FileSelectItemNrvExistWait));
     }
 }
 

@@ -1,4 +1,4 @@
-#include "ptim.h"
+#include <ptim.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -31,12 +31,12 @@
 
 #include <stddef.h>
 
-#include "gki_target.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <gki_target.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "bta_sys.h"
-#include "gki.h"
+#include <bta_sys.h>
+#include <gki.h>
 
 /*******************************************************************************
  * functions

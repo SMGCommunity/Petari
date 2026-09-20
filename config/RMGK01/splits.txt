@@ -2405,6 +2405,7 @@ Game/Effect/AutoEffectGroupHolder.cpp:
 Game/Effect/AutoEffectInfo.cpp:
 	.text       start:0x800C4D2C end:0x800C5328
 	.rodata     start:0x80531A48 end:0x80531A90
+	.data       start:0x805782A0 end:0x805783D0
 	.sdata      start:0x806B1880 end:0x806B1890
 	.sdata2     start:0x806B9CF0 end:0x806B9CF8
 
@@ -3099,7 +3100,7 @@ Game/Enemy/Poihana.cpp:
 	.text       start:0x80133FAC end:0x801369B0
 	.ctors      start:0x8052EB2C end:0x8052EB30
 	.rodata     start:0x80532490 end:0x805324B0
-	.data       start:0x80583568 end:0x80583AD8
+	.data       start:0x80583568 end:0x80583920
 	.sdata      start:0x806B1A58 end:0x806B1A60
 	.sbss       start:0x806B4678 end:0x806B46C8
 	.sdata2     start:0x806BB350 end:0x806BB3E0
@@ -3108,7 +3109,7 @@ Game/Enemy/Pukupuku.cpp:
 	.text       start:0x801369B0 end:0x80138838
 	.ctors      start:0x8052EB30 end:0x8052EB34
 	.rodata     start:0x805324B0 end:0x805324D8
-	.data       start:0x80583AD8 end:0x80583C40
+	.data       start:0x80583920 end:0x80583C40
 	.sbss       start:0x806B46C8 end:0x806B46F8
 	.sdata2     start:0x806BB3E0 end:0x806BB438
 
@@ -6297,13 +6298,13 @@ Game/MapObj/MapPartsFunction.cpp:
 Game/MapObj/MapPartsRailGuideDrawer.cpp:
 	.text       start:0x8025BEEC end:0x8025C4D0
 	.ctors      start:0x8052EF5C end:0x8052EF60
-	.data       start:0x805A70B8 end:0x805A7178
+	.data       start:0x805A70B8 end:0x805A7158
 	.sbss       start:0x806B5B48 end:0x806B5B58
 	.sdata2     start:0x806BE8F0 end:0x806BE900
 
 Game/MapObj/MapPartsRailGuideHolder.cpp:
 	.text       start:0x8025C4D0 end:0x8025C69C
-	.data       start:0x805A7178 end:0x805A71A0
+	.data       start:0x805A7158 end:0x805A71A0
 
 Game/MapObj/MapPartsRailGuidePoint.cpp:
 	.text       start:0x8025C69C end:0x8025C8A0

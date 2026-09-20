@@ -1,8 +1,8 @@
 #pragma once
 
-#include "JSystem/J3DGraphAnimator/J3DModel.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
-#include "JSystem/JGeometry/TBox.hpp"
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
+#include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
+#include <JSystem/JGeometry/TBox.hpp>
 #include <revolution.h>
 
 class J3DModel;

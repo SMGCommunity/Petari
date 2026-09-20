@@ -4,7 +4,7 @@
 #include "nw4r/lyt/texMap.h"
 #include "nw4r/lyt/types.h"
 #include "nw4r/ut/Color.h"
-#include "revolution/vi.h"
+#include <revolution/vi.h>
 
 namespace nw4r {
     namespace lyt {

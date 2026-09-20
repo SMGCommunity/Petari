@@ -1,5 +1,5 @@
-#include "bta_api.h"
-#include "bta_dm_int.h"
+#include <bta_api.h>
+#include <bta_dm_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -30,11 +30,11 @@
  * headers
  */
 
-#include "bt_target.h"
+#include <bt_target.h>
 
-#include "bta_sys.h"
-#include "btm_api.h"
-#include "hcidefs.h"
+#include <bta_sys.h>
+#include <btm_api.h>
+#include <hcidefs.h>
 
 /*******************************************************************************
  * macros

@@ -55,7 +55,7 @@ public:
 
 private:
     ResourceHolderManagerName2Resource* createAndAddInner(const char*, MakeArchiveFileNameFuncPtr, FuncPtrB);
-    ResourceHolderManagerName2Resource* createAndAddInnerStationed(const char*, FuncPtrC);
+    ResourceHolderManagerName2Resource* createAndAddInnerStationed(const char*, FuncPtrC) NO_INLINE;
     void createResourceHolder(const char*, CreateResourceHolderArgs*);
     void createLayoutHolder(const char*, CreateResourceHolderArgs*);
     ResourceHolderManagerName2Resource* add(const char*, const CreateResourceHolderArgs&);

@@ -6,9 +6,9 @@
 #include "Game/MapObj/ElectricRailHolder.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/SchedulerUtil.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
-#include "revolution/gd/GDBase.h"
-#include "revolution/gx/GXEnum.h"
+#include <JSystem/JMath/JMATrigonometric.hpp>
+#include <revolution/gd/GDBase.h>
+#include <revolution/gx/GXEnum.h>
 
 namespace NrvElectricRailMoving {
     NEW_NERVE(ElectricRailMovingNrvWait, ElectricRailMoving, Wait);
@@ -100,7 +100,7 @@ void ElectricRailMoving::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg3NoInit(rIter, &mStackHeight);
 
     if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &ElectricRailMoving::disappear));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &ElectricRailMoving::disappear));
     }
 }
 

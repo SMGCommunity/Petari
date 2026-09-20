@@ -100,7 +100,7 @@ void DodoryuDemoOpening::exeDemoWait() {
     MR::startAnimCameraTargetOther(mHost, &mActorCameraInfo, "OpeningDemo", CameraTargetArg(mHost->_148), 0, 1.0f);
     mHost->pauseOff();
     MR::hidePlayer();
-    MR::startBck(mHost, "EffectWalk", nullptr);
+    MR::startBck(mHost, "EffectWalk");
     mHost->startLeadHillBck("EffectWalk");
     MR::startBva(mHost, "Normal");
     MR::requestMovementOnImageEffect();
@@ -132,7 +132,7 @@ void DodoryuDemoOpening::exeUnderground() {
 
 void DodoryuDemoOpening::exeUndergroundHide() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHost, "EffectWalkHide", nullptr);
+        MR::startBck(mHost, "EffectWalkHide");
         mHost->startLeadHillBck("EffectWalkHide");
     }
 
@@ -145,7 +145,7 @@ void DodoryuDemoOpening::exeUndergroundHide() {
 
 void DodoryuDemoOpening::exeAppear() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHost, "OpeningAppear", nullptr);
+        MR::startBck(mHost, "OpeningAppear");
         MR::startBtk(mHost, "OpeningAppear");
         mHost->startLeadHillBck("Appear");
         MR::startSound(mHost, "SE_BV_DODORYU_APPEAR_1");
@@ -167,7 +167,7 @@ void DodoryuDemoOpening::exeAppear() {
 
 void DodoryuDemoOpening::exeWalk() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHost, "OpeningWalk", nullptr);
+        MR::startBck(mHost, "OpeningWalk");
         MR::startBtk(mHost, "OpeningWalk");
         mHost->startLeadHillBck("Walk");
     }
@@ -184,7 +184,7 @@ void DodoryuDemoOpening::exeWalk() {
 
 void DodoryuDemoOpening::exeHideReady() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHost, "Hide", nullptr);
+        MR::startBck(mHost, "Hide");
         mHost->startLeadHillBck("Walk");
     }
 
@@ -192,7 +192,7 @@ void DodoryuDemoOpening::exeHideReady() {
     turnToRabbit();
 
     if (MR::isBckStopped(mHost)) {
-        MR::startBck(mHost, "EffectWalkAppear", nullptr);
+        MR::startBck(mHost, "EffectWalkAppear");
         setNerve(GET_NERVE_ANON(DodoryuDemoOpeningNrvOpeningHide));
     }
 }
@@ -201,7 +201,7 @@ void DodoryuDemoOpening::exeHide() {
     turnToRabbit();
 
     if (MR::isBckOneTimeAndStopped(mHost)) {
-        MR::startBck(mHost, "EffectWalk", nullptr);
+        MR::startBck(mHost, "EffectWalk");
 
         Dodoryu* pHost = mHost;
         pHost->_150 = true;
@@ -261,7 +261,7 @@ void DodoryuDemoAppear::exeDemoWait() {
 
 void DodoryuDemoAppear::exePlay() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHost, "AppearDemo", nullptr);
+        MR::startBck(mHost, "AppearDemo");
         MR::startBtp(mHost, "AppearDemo");
         MR::startBtk(mHost, "AppearDemo");
         MR::startBrk(mHost, "Normal");
@@ -319,7 +319,7 @@ void DodoryuDemoAngry::exeDemoWait() {
 
 void DodoryuDemoAngry::exePlay() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHost, "AngryDemo", nullptr);
+        MR::startBck(mHost, "AngryDemo");
         MR::startBrk(mHost, "AngryStart");
         MR::startBva(mHost, "Angry");
         MR::stopStageBGM(60);
@@ -379,7 +379,7 @@ void DodoryuDemoDown::exeDemoWait() {
 
 void DodoryuDemoDown::exePlay() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHost, "DownDemo", nullptr);
+        MR::startBck(mHost, "DownDemo");
         MR::startBrk(mHost, "Normal");
         MR::startBva(mHost, "Cry");
         MR::stopStageBGM(30);

@@ -29,9 +29,9 @@
 #include "Game/Util/SequenceUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
+#include "math_types.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
 #include <JSystem/JMath/JMath.hpp>
-#include <math_types.hpp>
 #include <revolution/mtx.h>
 
 void WaterBazooka_FORCE_MATCH_SDATA2() {
@@ -259,7 +259,7 @@ bool WaterBazooka::isBazookaLifeOut() const {
 
 void WaterBazooka::exeWaitForBattle() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
     }
 
     mBaseMtx.setInline(MR::getJointMtx(this, "Cannon1"));
@@ -292,7 +292,7 @@ void WaterBazooka::exeWait() {
 
 void WaterBazooka::exeAim() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "ShotStart", nullptr);
+        MR::tryStartBck(this, "ShotStart");
     }
 
     MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_TURN");
@@ -313,7 +313,7 @@ void WaterBazooka::exeAim() {
 
 void WaterBazooka::exeAimEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "SwingStop", nullptr);
+        MR::startBck(this, "SwingStop");
         MR::startSound(this, "SE_EM_WATERBAZ_TURN_END");
     }
 
@@ -332,7 +332,7 @@ void WaterBazooka::exeAimEnd() {
 
 void WaterBazooka::exeShot() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Shot", nullptr);
+        MR::startBck(this, "Shot");
         mShotNum++;
     }
 
@@ -363,7 +363,7 @@ void WaterBazooka::exeShot() {
 void WaterBazooka::exeShotNoMotion() {
     if (MR::isFirstStep(this)) {
         mShotNum++;
-        MR::startBck(this, "ShortShot", nullptr);
+        MR::startBck(this, "ShortShot");
         MR::startSound(this, "SE_EM_WATERBAZ_SHOT");
         tryShotBullet();
     }
@@ -388,7 +388,7 @@ void WaterBazooka::exeShotNoMotion() {
 
 void WaterBazooka::exeTire() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Tire", nullptr);
+        MR::startBck(this, "Tire");
     }
 
     if (mShooter->isLaughed()) {
@@ -404,7 +404,7 @@ void WaterBazooka::exeTire() {
 void WaterBazooka::exeDemoCrackCapsule() {
     if (MR::isFirstStep(this)) {
         tryJumpBackPlayerFromBazooka();
-        MR::startBck(this, "1stDamage", nullptr);
+        MR::startBck(this, "1stDamage");
         mShooter->hitShock();
     }
 
@@ -427,7 +427,7 @@ void WaterBazooka::exeDemoCrackCapsule() {
 void WaterBazooka::exeDemoAnger() {
     if (MR::isFirstStep(this)) {
         tryJumpBackPlayerFromBazooka();
-        MR::startBck(this, "2ndDamage", nullptr);
+        MR::startBck(this, "2ndDamage");
         mShooter->anger();
         startBrk("PowerUp");
     }
@@ -484,7 +484,7 @@ void WaterBazooka::exeDemoBreakWait() {
 
 void WaterBazooka::exeDemoBreakSign() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Down", nullptr);
+        MR::startBck(this, "Down");
         tryJumpBackPlayerFromBazooka();
         if (mIsElectric) {
             MR::deleteEffect(this, "Angry");
@@ -518,7 +518,7 @@ void WaterBazooka::exeDemoBreakExplosion() {
         mCapsule->kill();
         mBreakModel->makeActorAppeared();
         MR::invalidateClipping(mBreakModel);
-        MR::startBck(mBreakModel, "Break", nullptr);
+        MR::startBck(mBreakModel, "Break");
         MR::startBrk(mBreakModel, "Break");
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
@@ -562,7 +562,7 @@ void WaterBazooka::exeWaitForLaugh() {
 
 void WaterBazooka::exePanic() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
         mShotNum = 0;
     }
 

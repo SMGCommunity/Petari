@@ -1,4 +1,4 @@
-#include <cstring>
+#include "cstring"
 #include "mem_funcs.h"
 #include "string_api.h"
 #pragma exceptions on

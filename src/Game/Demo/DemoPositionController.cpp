@@ -22,7 +22,7 @@ void DemoPositionController::initAnimCamera(const char* pCameraName) {
 
 void DemoPositionController::startDemo(const char* pBckName) {
     appear();
-    MR::startBck(this, pBckName, nullptr);
+    MR::startBck(this, pBckName);
     MR::startAnimCameraTargetSelf(this, pCameraInfo, pBckName, 0, 1.0f);
 }
 

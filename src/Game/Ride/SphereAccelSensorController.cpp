@@ -9,10 +9,7 @@ void SphereAccelSensorController_FORCE_MATCH_SDATA2() {
     (void)1.0f;
     (void)0.0f;
     (void)MR::epsilon();
-}
-
-void SphereAccelSensorController_DUMMY() {
-    (void)JGeometry::TUtil< f32 >::acos(1.0f);
+    (void)-1.0f;
 }
 
 namespace {
@@ -36,18 +33,19 @@ namespace {
     static const f32 sSubAccelDegreeRangeY = 22.5f;
 };  // namespace
 
-inline f32 diffAngleAbs(const TVec2f& v1, const TVec2f& v2) {
-    f32 orientation = v1.y * v2.x - v1.x * v2.y;
-    f32 angle = MR::acos(v1.dot(v2));
+inline f32 diffAngleAbs(const TVec2f& rV1, const TVec2f& rV2) {
+    f32 orientation = rV1.y * rV2.x - rV1.x * rV2.y;
+    f32 angle = MR::acos(rV1.dot(rV2));
     if (orientation < 0.0f) {
         angle = -angle;
     }
+
     return angle;
 }
 
 SphereAccelSensorController::SphereAccelSensorController()
-    : _58(0), _5C(0), _74(0), _78(0), _7C(0.15f), _80(1.0f), _84(1.7f), _88(2.5f), _8C(0), _90(0), _94(1.0f), _98(0.0f), _9C(0.0f), _A0(0.0f),
-      _A4(-1.0f), _A8(0.0f), _AC(1.0f), _B0(0), _B4(0.0f), mPad() {
+    : _58(), _5C(), _74(), _78(), _7C(0.15f), _80(1.0f), _84(1.7f), _88(2.5f), _8C(), _90(), _94(1.0f), _98(), _9C(), _A0(), _A4(-1.0f), _A8(),
+      _AC(1.0f), _B0(), _B4(), mPad() {
 }
 
 void SphereAccelSensorController::getPadAcceleration(TVec3f* pAccel) const {
@@ -78,9 +76,6 @@ void SphereAccelSensorController::update(const TVec3f&) {
 }
 
 void SphereAccelSensorController::clacXY(f32* pX, f32* pY) {
-    // FIXME: need to multi-load mPad
-    // https://decomp.me/scratch/kLxae
-
     f32 accelMargine = isCorePad() ? MR::toRadian(::sCoreAccelDegreMargine) : MR::toRadian(::sSubAccelDegreMargine);
     f32 accelRange = isCorePad() ? MR::toRadian(::sCoreAccelDegreeRange) : MR::toRadian(::sSubAccelDegreeRange);
     f32 accelRangeY = isCorePad() ? MR::toRadian(::sCoreAccelDegreeRangeY) : MR::toRadian(::sSubAccelDegreeRangeY);
@@ -111,6 +106,7 @@ void SphereAccelSensorController::clacXY(f32* pX, f32* pY) {
         } else {
             angleXY += accelMargine;
         }
+
         angleXY /= accelRange - accelMargine;
     }
 
@@ -125,6 +121,7 @@ void SphereAccelSensorController::clacXY(f32* pX, f32* pY) {
             angleYZ += accelMargine;
             range = accelRangeY;
         }
+
         angleYZ /= range - accelMargine;
     }
 

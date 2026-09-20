@@ -160,7 +160,7 @@ void Dossun::exeUpper() {
 
 void Dossun::exeFallSign() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "FallStart", nullptr);
+        MR::startBck(this, "FallStart");
         MR::startBva(this, "Attack");
 
         if (MR::isGalaxyQuickCometAppearInCurrentStage()) {

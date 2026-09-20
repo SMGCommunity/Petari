@@ -57,7 +57,7 @@ void BigFan::init(const JMapInfoIter& rIter) {
 
     initNerve(GET_NERVE(BigFan, BigFanNrvWait));
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &BigFan::start));
+        MR::listenStageSwitchOnAppear(this, MR::Functor(this, &BigFan::start));
         setNerve(GET_NERVE(BigFan, BigFanNrvStop));
         mWindModel->kill();
     }

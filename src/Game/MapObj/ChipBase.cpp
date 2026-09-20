@@ -80,7 +80,7 @@ void ChipBase::initModel(const JMapInfoIter& rIter) {
     if (isNeedBubble(rIter)) {
         mAirBubble = MR::createPartsModelNoSilhouettedMapObj(this, "アワ", "AirBubble", 0);
         mAirBubble->initFixedPosition(TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f), 0);
-        MR::startBck(mAirBubble, "Move", 0);
+        MR::startBck(mAirBubble, "Move");
     }
 }
 
@@ -263,7 +263,7 @@ bool ChipBase::requestGet(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool ChipBase::requestShow() {
     if (isNerve(GET_NERVE(ChipBase, ChipBaseNrvHide))) {
-        MR::startBck(this, "Wait", 0);
+        MR::startBck(this, "Wait");
         MR::showModel(this);
 
         setNerve(GET_NERVE(ChipBase, ChipBaseNrvWait));
@@ -314,7 +314,7 @@ void ChipBase::exeDeactive() {
 
 void ChipBase::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", 0);
+        MR::startBck(this, "Wait");
         MR::validateHitSensors(this);
     }
 }
@@ -325,7 +325,7 @@ void ChipBase::exeControled() {
 
 void ChipBase::exeFlashing() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", 0);
+        MR::startBck(this, "Wait");
         MR::validateHitSensors(this);
     }
 

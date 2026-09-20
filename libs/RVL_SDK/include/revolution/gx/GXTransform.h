@@ -5,9 +5,9 @@
 extern "C" {
 #endif
 
-#include <revolution/gx/GXEnum.h>
-#include <revolution/gx/GXStruct.h>
-#include <revolution/types.h>
+#include "revolution/gx/GXEnum.h"
+#include "revolution/gx/GXStruct.h"
+#include "revolution/types.h"
 
 void GXProject(f32 x, f32 y, f32 z, const f32 pMtx[3][4], const f32* pProjection, const f32* pViewport, f32* pScreenX, f32* pScreenY, f32* pScreenZ);
 

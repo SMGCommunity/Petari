@@ -90,11 +90,6 @@ public:
         return radius * mScale.x;
     }
 
-    inline f32 getSize2() {
-        f32 radius = getBaseRadius();
-        return radius * mScale.x;
-    }
-
     inline f32 getRadius(f32 volume) {
         return pow(volume, 1.0f / 3.0f);
     }

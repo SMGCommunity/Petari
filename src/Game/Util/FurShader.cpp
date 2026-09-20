@@ -1,11 +1,11 @@
 #include "Game/Util/FurShader.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/J3DGraphBase/J3DMaterial.hpp"
-#include "JSystem/J3DGraphBase/J3DShape.hpp"
-#include "JSystem/J3DGraphBase/J3DShapeDraw.hpp"
-#include "JSystem/JUtility/JUTNameTab.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
-#include "revolution/gx/GXEnum.h"
+#include <JSystem/J3DGraphBase/J3DMaterial.hpp>
+#include <JSystem/J3DGraphBase/J3DShape.hpp>
+#include <JSystem/J3DGraphBase/J3DShapeDraw.hpp>
+#include <JSystem/JUtility/JUTNameTab.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
+#include <revolution/gx/GXEnum.h>
 #include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
 #include <cstring>
 

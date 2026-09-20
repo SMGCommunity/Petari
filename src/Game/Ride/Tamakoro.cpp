@@ -396,7 +396,7 @@ bool Tamakoro::requestBind(HitSensor* pSensor) {
 
 bool Tamakoro::requestEndBind() {
     if (!isNerve(GET_NERVE(Tamakoro, TamakoroNrvBindEnd)) && !isNerve(GET_NERVE(Tamakoro, TamakoroNrvStandByBind))) {
-        MR::startBckPlayer("SwingRopeSpin", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("SwingRopeSpin");
         MR::endBindAndPlayerForceJump(this, mMarioFront * (-::sEndBindFrontPower) + mGravity * (-::sEndBindJumpPower), 0);
         MR::hideModel(this);
         MR::invalidateHitSensors(this);
@@ -537,7 +537,7 @@ void Tamakoro::exeStandByBind() {
 
 void Tamakoro::exeBindStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("SlideStomachRecover", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("SlideStomachRecover");
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
         mDirectionToMario.set(-mGravity);
         if (MR::normalizeOrZero(&mMarioFront)) {
@@ -586,7 +586,7 @@ void Tamakoro::exeBindStartLand() {
         }
         mMarioPos.scaleAdd(mBaseRadius, mDirectionToMario, mPosition);
 
-        mMarioUp = (mDirectionToMario - mGravity).multiplyOperatorInline(0.5f);
+        mMarioUp = (mDirectionToMario - mGravity) / 2.0f;
         if (MR::normalizeOrZero(&mMarioUp)) {
             mMarioUp.set(-mGravity);
         }
@@ -694,7 +694,7 @@ void Tamakoro::exeJump() {
 
 void Tamakoro::exeBumpWall() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BallHit", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BallHit");
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::shakeCameraNormalWeak();
     }
@@ -713,7 +713,7 @@ void Tamakoro::exeBumpWall() {
 
 void Tamakoro::exeLand() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("Land", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("Land");
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::shakeCameraNormalWeak();
         MR::startSound(this, "SE_SM_IRONSPH_LAND");
@@ -756,7 +756,7 @@ void Tamakoro::exeJumpHoleSetUp() {
 
 void Tamakoro::exeJumpHoleLaunch() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BallJump", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BallJump");
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraStrong();
         MR::emitEffect(this, "BigJumpBlur");
@@ -777,7 +777,7 @@ void Tamakoro::endJumpHoleLaunch() {
 
 void Tamakoro::exeDashRail() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BallRoll", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BallRoll");
         MR::startSoundPlayer("SE_PV_JUMP_JOY", -1);
         MR::startSound(this, "SE_SM_IRONSPH_RAILDASH");
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
@@ -829,7 +829,7 @@ void Tamakoro::exeRideRail() {
 
 void Tamakoro::exeRideRailFastStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BallRollStart", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BallRollStart");
         MR::setBckRatePlayer(::sRollBckRate);
     }
     updateRideRail();
@@ -841,7 +841,7 @@ void Tamakoro::exeRideRailFastStart() {
 
 void Tamakoro::exeRideRailFast() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BallRoll", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BallRoll");
         MR::setBckRatePlayer(::sRollBckRate);
     }
     mControlDisabled = true;
@@ -856,7 +856,7 @@ void Tamakoro::exeRideRailFast() {
 
 void Tamakoro::exeRideRailFastEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BallRollEnd", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BallRollEnd");
         MR::setBckRatePlayer(::sRollBckRate);
     }
     updateRideRail();

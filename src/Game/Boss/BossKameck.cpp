@@ -216,7 +216,7 @@ void BossKameck::init(const JMapInfoIter& rIter) {
     MR::startBrk(this, "Star");
     MR::setBrkFrameAndStop(this, hasPowerStar);
     MR::needStageSwitchReadA(this, rIter);
-    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &BossKameck::startSequence));
+    MR::listenStageSwitchOnA(this, MR::Functor(this, &BossKameck::startSequence));
     makeActorDead();
 }
 

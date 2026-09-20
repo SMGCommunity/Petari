@@ -1,5 +1,5 @@
 #include "Game/RhythmLib/AudMeChannelMgr.hpp"
-#include "JSystem/JAudio2/JASChannel.hpp"
+#include <JSystem/JAudio2/JASChannel.hpp>
 
 AudMeChannelMgr::AudMeChannelMgr(AudMeTrack* pTrack) : mTrack(pTrack) {
     mParams.init();

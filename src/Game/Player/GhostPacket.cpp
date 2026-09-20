@@ -1,5 +1,5 @@
 #include "Game/Player/GhostPacket.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 #include <cstdio>
 
 GhostPacket::GhostPacket(void* pData, u32 len) {

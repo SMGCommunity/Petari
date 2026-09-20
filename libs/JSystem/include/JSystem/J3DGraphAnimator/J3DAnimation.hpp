@@ -4,7 +4,7 @@
 
 #include "JSystem/J3DGraphBase/J3DTransform.hpp"
 #include "JSystem/JUtility/JUTNameTab.hpp"
-#include "revolution.h"
+#include <revolution.h>
 
 struct JUTDataBlockHeader {
     /* 0x0 */ u32 mType;

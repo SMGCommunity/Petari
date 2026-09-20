@@ -460,7 +460,7 @@ bool MarioWarp::update() {
 
             _58 = 1;
             mActor->_481 = false;
-            changeAnimation("ポッドワープ終了", static_cast< const char* >(nullptr));
+            changeAnimation("ポッドワープ終了");
             WarpPodMgr* manager = MR::getWarpPodManager();
             if (manager != nullptr) {
                 manager->endEventCamera();
@@ -495,7 +495,7 @@ bool MarioWarp::close() {
         stopEffect("ワープポッドブラー");
         break;
     case 2:
-        changeAnimation("しゃがみジャンプ着地", static_cast< const char* >(nullptr));
+        changeAnimation("しゃがみジャンプ着地");
         break;
     }
 
@@ -544,7 +544,7 @@ bool MarioWarp::close() {
         getPlayer()->mMovementStates._2B = true;
         getPlayer()->_402 = 0;
         getPlayer()->mJumpVec = TVec3f(0.0f, 0.0f, 0.0f);
-        changeAnimation("落下", static_cast< const char* >(nullptr));
+        changeAnimation("落下");
         Mario* player = getPlayer();
         player->_42A = 0;
         player->_430 = 0;

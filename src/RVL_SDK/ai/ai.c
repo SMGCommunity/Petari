@@ -1,6 +1,6 @@
-#include <private/flipper.h>
-#include <revolution/ai.h>
-#include <revolution/os.h>
+#include "private/flipper.h"
+#include "revolution/ai.h"
+#include "revolution/os.h"
 
 static AIDCallback __AID_Callback;
 static u8* __CallbackStack;

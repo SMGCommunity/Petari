@@ -1,7 +1,7 @@
-#include <revolution/net.h>
-#include <revolution/nwc24.h>
-#include <revolution/nwc24/NWC24Internal.h>
-#include <revolution/os.h>
+#include "revolution/net.h"
+#include "revolution/nwc24.h"
+#include "revolution/nwc24/NWC24Internal.h"
+#include "revolution/os.h"
 
 #define B64_STEP (60 - (NWC24i_KSTRLEN(" ") - 1 + NWC24i_KSTRLEN("\r\n") - 1))
 

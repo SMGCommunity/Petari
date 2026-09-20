@@ -5,7 +5,7 @@
 #include "Game/MapObj/PurpleCoinHolder.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include <JSystem/JMath/JMath.hpp>
 
 void Coin_FORCE_MATCH_SDATA2() {
     (void)1.0f;
@@ -74,7 +74,7 @@ void Coin::init(const JMapInfoIter& rIter) {
         mAirBubble->initFixedPosition(TVec3f(0.0f, 70.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f), nullptr);
         mAirBubble->makeActorDead();
         MR::registerDemoSimpleCastAll(mAirBubble);
-        MR::startBck(mAirBubble, "Move", nullptr);
+        MR::startBck(mAirBubble, "Move");
     }
 
     mFlashCtrl = new FlashingCtrl(this, true);
@@ -90,7 +90,7 @@ void Coin::init(const JMapInfoIter& rIter) {
         }
 
         if (MR::useStageSwitchReadB(this, rIter)) {
-            MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &Coin::makeActorDead));
+            MR::listenStageSwitchOnB(this, MR::Functor(this, &Coin::makeActorDead));
         }
     } else {
         makeActorDead();

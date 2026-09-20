@@ -250,9 +250,9 @@ void Pole::exeFreeInvalid() {
 void Pole::exeBindStart() {
     if (MR::isFirstStep(this)) {
         if (mIsSquare) {
-            MR::startBckPlayer("SquarePoleStart", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("SquarePoleStart");
         } else {
-            MR::startBckPlayer("TreeClimbStart", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("TreeClimbStart");
         }
     }
 
@@ -275,10 +275,10 @@ void Pole::exeBindWait() {
     if (MR::isFirstStep(this)) {
         if (mIsSquare) {
             if (!MR::isBckPlaying(mRider, "SquarePoleWait")) {
-                MR::startBckPlayer("SquarePoleWait", static_cast< const char* >(nullptr));
+                MR::startBckPlayer("SquarePoleWait");
             }
         } else {
-            MR::startBckPlayer("TreeWait", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("TreeWait");
         }
         mClimbSpeed = 0.0f;
     }
@@ -307,12 +307,12 @@ void Pole::exeBindTurn() {
     if (MR::isFirstStep(this)) {
         if (mIsSquare) {
             if (isNerve(GET_NERVE(Pole, PoleNrvBindTurnLeft))) {
-                MR::startBckPlayer("SquarePoleTurnL", static_cast< const char* >(nullptr));
+                MR::startBckPlayer("SquarePoleTurnL");
             } else {
-                MR::startBckPlayer("SquarePoleTurnR", static_cast< const char* >(nullptr));
+                MR::startBckPlayer("SquarePoleTurnR");
             }
         } else {
-            MR::startBckPlayer("ClimbTurn", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("ClimbTurn");
         }
     }
 
@@ -358,10 +358,10 @@ void Pole::exeBindTurn() {
 void Pole::exeBindClimbUp() {
     if (MR::isFirstStep(this)) {
         if (mIsSquare) {
-            MR::startBckPlayer("SquarePoleClimb", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("SquarePoleClimb");
             MR::setBckRate(mRider, ::sSquareClimbUpAnimFrameRate);
         } else {
-            MR::startBckPlayer("TreeClimb", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("TreeClimb");
             MR::setBckRate(mRider, ::sClimbUpAnimFrameRate);
         }
         mClimbSpeed = 0.0f;
@@ -385,7 +385,7 @@ void Pole::exeBindClimbUp() {
 
             if (mIsSquare) {
                 if (!MR::isBckPlaying(mRider, "SquarePolePushWait")) {
-                    MR::startBckPlayer("SquarePolePushWait", static_cast< const char* >(nullptr));
+                    MR::startBckPlayer("SquarePolePushWait");
                 }
             }
         } else {
@@ -398,9 +398,9 @@ void Pole::exeBindClimbUp() {
 void Pole::exeBindFallDown() {
     if (MR::isFirstStep(this)) {
         if (mIsSquare) {
-            MR::startBckPlayer("SquarePoleFall", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("SquarePoleFall");
         } else {
-            MR::startBckPlayer("TreeFall", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("TreeFall");
         }
     }
 
@@ -452,7 +452,7 @@ void Pole::exeBindFallDown() {
 
 void Pole::exeBindHandstandStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("TreeHandstandStart", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("TreeHandstandStart");
         MR::startSound(mRider, "SE_PM_POLE_STAND");
         MR::startSound(mRider, "SE_PV_LIFT_UP");
     }
@@ -476,7 +476,7 @@ void Pole::exeBindHandstandStart() {
 
 void Pole::exeBindHandstandWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("TreeHandstandWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("TreeHandstandWait");
     }
 
     if (!Pole::tryJump(true, 0.0f) && !Pole::tryHandstandTurn()) {
@@ -488,7 +488,7 @@ void Pole::exeBindHandstandWait() {
 
 void Pole::exeBindHandstandEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("TreeHandstandEnd", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("TreeHandstandEnd");
     }
 
     if (MR::isLessStep(this, ::sStepJumpReverseHandstandEnd)) {
@@ -508,7 +508,7 @@ void Pole::exeBindHandstandEnd() {
 
 void Pole::exeBindHandstandTurn() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("TreeHandstandTurn", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("TreeHandstandTurn");
     }
 
     mRotation.y += getPoleSubPadStickX() * ::sRotateSpeedRate;
@@ -673,9 +673,9 @@ bool Pole::tryJump(bool handstand, f32 rotateSpeed) {
         MR::setPlayerFrontTargetVec(jumpFront, 1);
 
         if (handstand) {
-            MR::startBckPlayer("TreeHandStandJump", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("TreeHandStandJump");
         } else {
-            MR::startBckPlayer("WallJump", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("WallJump");
         }
 
         MR::startSound(mRider, "SE_PM_JUMP_M");

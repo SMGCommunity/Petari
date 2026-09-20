@@ -24,7 +24,7 @@ SurfingGuidance::SurfingGuidance() : LayoutActor("サーフィンガイダンス
 void SurfingGuidance::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
     initLayoutManager("TiltGuidance", 3);
-    initNerve(GET_NERVE_GLOBAL(SurfingGuidanceFadeIn));
+    initNerve(GET_NERVE_ANON(SurfingGuidanceFadeIn));
 
     _20 = 0;
 
@@ -36,62 +36,62 @@ void SurfingGuidance::activate() {
 }
 
 void SurfingGuidance::levelOffReady() {
-    if (!isNerve(GET_NERVE_GLOBAL(SurfingGuidanceLevelOffReady))) {
-        setNerve(GET_NERVE_GLOBAL(SurfingGuidanceLevelOffReady));
+    if (!isNerve(GET_NERVE_ANON(SurfingGuidanceLevelOffReady))) {
+        setNerve(GET_NERVE_ANON(SurfingGuidanceLevelOffReady));
     }
 }
 
 void SurfingGuidance::levelOffHold() {
-    if (!isNerve(GET_NERVE_GLOBAL(SurfingGuidanceLevelOffHold))) {
-        setNerve(GET_NERVE_GLOBAL(SurfingGuidanceLevelOffHold));
+    if (!isNerve(GET_NERVE_ANON(SurfingGuidanceLevelOffHold))) {
+        setNerve(GET_NERVE_ANON(SurfingGuidanceLevelOffHold));
     }
 }
 
 void SurfingGuidance::levelOffSuccess() {
-    if (!isNerve(GET_NERVE_GLOBAL(SurfingGuidanceLevelOffSuccess))) {
-        setNerve(GET_NERVE_GLOBAL(SurfingGuidanceLevelOffSuccess));
+    if (!isNerve(GET_NERVE_ANON(SurfingGuidanceLevelOffSuccess))) {
+        setNerve(GET_NERVE_ANON(SurfingGuidanceLevelOffSuccess));
     }
 }
 
 void SurfingGuidance::turnLeftReady() {
-    if (!isNerve(GET_NERVE_GLOBAL(SurfingGuidanceTurnLeftReady))) {
-        setNerve(GET_NERVE_GLOBAL(SurfingGuidanceTurnLeftReady));
+    if (!isNerve(GET_NERVE_ANON(SurfingGuidanceTurnLeftReady))) {
+        setNerve(GET_NERVE_ANON(SurfingGuidanceTurnLeftReady));
     }
 }
 
 void SurfingGuidance::turnLeftHold() {
-    if (!isNerve(GET_NERVE_GLOBAL(SurfingGuidanceTurnLeftHold))) {
-        setNerve(GET_NERVE_GLOBAL(SurfingGuidanceTurnLeftHold));
+    if (!isNerve(GET_NERVE_ANON(SurfingGuidanceTurnLeftHold))) {
+        setNerve(GET_NERVE_ANON(SurfingGuidanceTurnLeftHold));
     }
 }
 
 void SurfingGuidance::turnLeftSuccess() {
-    if (!isNerve(GET_NERVE_GLOBAL(SurfingGuidanceTurnLeftSuccess))) {
-        setNerve(GET_NERVE_GLOBAL(SurfingGuidanceTurnLeftSuccess));
+    if (!isNerve(GET_NERVE_ANON(SurfingGuidanceTurnLeftSuccess))) {
+        setNerve(GET_NERVE_ANON(SurfingGuidanceTurnLeftSuccess));
     }
 }
 
 void SurfingGuidance::turnRightReady() {
-    if (!isNerve(GET_NERVE_GLOBAL(SurfingGuidanceTurnRightReady))) {
-        setNerve(GET_NERVE_GLOBAL(SurfingGuidanceTurnRightReady));
+    if (!isNerve(GET_NERVE_ANON(SurfingGuidanceTurnRightReady))) {
+        setNerve(GET_NERVE_ANON(SurfingGuidanceTurnRightReady));
     }
 }
 
 void SurfingGuidance::turnRightHold() {
-    if (!isNerve(GET_NERVE_GLOBAL(SurfingGuidanceTurnRightHold))) {
-        setNerve(GET_NERVE_GLOBAL(SurfingGuidanceTurnRightHold));
+    if (!isNerve(GET_NERVE_ANON(SurfingGuidanceTurnRightHold))) {
+        setNerve(GET_NERVE_ANON(SurfingGuidanceTurnRightHold));
     }
 }
 
 void SurfingGuidance::turnRightSuccess() {
-    if (!isNerve(GET_NERVE_GLOBAL(SurfingGuidanceTurnRightSuccess))) {
-        setNerve(GET_NERVE_GLOBAL(SurfingGuidanceTurnRightSuccess));
+    if (!isNerve(GET_NERVE_ANON(SurfingGuidanceTurnRightSuccess))) {
+        setNerve(GET_NERVE_ANON(SurfingGuidanceTurnRightSuccess));
     }
 }
 
 void SurfingGuidance::deactivate() {
-    if (!isNerve(GET_NERVE_GLOBAL(SurfingGuidanceFadeOut))) {
-        setNerve(GET_NERVE_GLOBAL(SurfingGuidanceFadeOut));
+    if (!isNerve(GET_NERVE_ANON(SurfingGuidanceFadeOut))) {
+        setNerve(GET_NERVE_ANON(SurfingGuidanceFadeOut));
     }
 }
 
@@ -193,7 +193,7 @@ void SurfingGuidance::exeFadeOut() {
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(GET_NERVE_GLOBAL(SurfingGuidanceFadeIn));
+        setNerve(GET_NERVE_ANON(SurfingGuidanceFadeIn));
         kill();
     }
 }

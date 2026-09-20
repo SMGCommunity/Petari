@@ -115,7 +115,7 @@ void RailMoveObj::startMoveInner() {
     MR::StageEffect::tryStageEffectStart(this, mObjectName);
 
     if (MR::isExistBck(this, ::cMoveBckName)) {
-        MR::startBck(this, ::cMoveBckName, 0);
+        MR::startBck(this, ::cMoveBckName);
     }
 
     if (MR::StageEffect::isExistStageEffectData(mObjectName)) {
@@ -224,7 +224,7 @@ void RailMoveObjSwitchShadow::init(const JMapInfoIter& rIter) {
 }
 
 void RailMoveObjSwitchShadow::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
-    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &RailMoveObjSwitchShadow::startOnShadow));
+    MR::listenStageSwitchOnA(this, MR::Functor(this, &RailMoveObjSwitchShadow::startOnShadow));
 }
 
 void RailMoveObjSwitchShadow::startOnShadow() {
@@ -313,7 +313,7 @@ bool RailRotateMoveObj::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
 
 void RailRotateMoveObj::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
     setNerve(GET_NERVE(RailMoveObj, HostTypeWait));
-    MR::listenStageSwitchOffB(this, MR::Functor_Inline< MapObjActor >(this, &MapObjActor::pauseMapPartsFunctions));
+    MR::listenStageSwitchOffB(this, MR::Functor< MapObjActor >(this, &MapObjActor::pauseMapPartsFunctions));
 }
 
 bool RailRotateMoveObj::tryStartRotateAtPoint() {

@@ -6,7 +6,7 @@
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/GravityUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/JGeometry/TUtil.hpp"
+#include <JSystem/JGeometry/TUtil.hpp>
 
 void CameraMedianPlanet_FORCE_MATCH_SDATA2() {
     (void)1.0f;

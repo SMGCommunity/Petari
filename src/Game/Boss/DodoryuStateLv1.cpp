@@ -166,7 +166,7 @@ void DodoryuStateLv1::exeAppearEnd() {
 
 void DodoryuStateLv1::exeJumpOut() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHost, "SwoonStart", nullptr);
+        MR::startBck(mHost, "SwoonStart");
         MR::startSound(mHost, "SE_BM_DODORYU_JUMP_OUT");
         MR::startSound(mHost, "SE_BV_DODORYU_HIPDRP_DAMAGE");
         MR::validateShadowAll(mHost);
@@ -186,7 +186,7 @@ void DodoryuStateLv1::exeJumpOut() {
 
 void DodoryuStateLv1::exeDamage() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHost, "Swoon", nullptr);
+        MR::startBck(mHost, "Swoon");
         mHost->stopHillForce();
     }
 
@@ -201,7 +201,7 @@ void DodoryuStateLv1::exeDamage() {
 
 void DodoryuStateLv1::exeDive() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHost, "SwoonEnd", nullptr);
+        MR::startBck(mHost, "SwoonEnd");
         MR::startSound(mHost, "SE_BV_DODORYU_WAKEUP");
         MR::startBva(mHost, "Normal");
     }
@@ -220,7 +220,7 @@ void DodoryuStateLv1::exeDive() {
 
 void DodoryuStateLv1::exeSpinOut() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHost, "PunchDamage", nullptr);
+        MR::startBck(mHost, "PunchDamage");
         MR::startBlowHitSound(mHost);
         mHost->stopHillForce();
         MR::startBva(mHost, "Cry");
@@ -372,7 +372,7 @@ bool DodoryuStateLv1::isAttackable() const {
 
 void DodoryuStateLv1::executeHideJump() {
     mHost->appearBank();
-    MR::startBck(mHost, "Jump", nullptr);
+    MR::startBck(mHost, "Jump");
     mHost->startLeadHillBck("Jump");
     MR::startBva(mHost, "Cry");
     MR::startSound(mHost, "SE_BM_DODORYU_HIPDRP_REACTION");
@@ -452,7 +452,7 @@ void DodoryuStateLv1::setRailSpeed(f32 railSpeed) {
 }
 
 void DodoryuStateLv1::startAnimAppear() {
-    MR::startBck(mHost, "OpeningAppear", nullptr);
+    MR::startBck(mHost, "OpeningAppear");
     MR::startBtk(mHost, "OpeningAppear");
     mHost->startLeadHillBck("Appear");
     MR::startSound(mHost, "SE_BM_DODORYU_APPEAR_HEAD");
@@ -460,27 +460,27 @@ void DodoryuStateLv1::startAnimAppear() {
 }
 
 void DodoryuStateLv1::startAnimWalk() {
-    MR::startBck(mHost, "OpeningWalk", nullptr);
+    MR::startBck(mHost, "OpeningWalk");
     MR::startBtk(mHost, "OpeningWalk");
     mHost->startLeadHillBck("Walk");
 }
 
 void DodoryuStateLv1::startAnimHide() {
-    MR::startBck(mHost, "Hide", nullptr);
+    MR::startBck(mHost, "Hide");
     mHost->startLeadHillBck("Hide");
 }
 
 void DodoryuStateLv1::startAnimEffectWalkAppear() {
-    MR::startBck(mHost, "EffectWalkAppear", nullptr);
+    MR::startBck(mHost, "EffectWalkAppear");
     mHost->startLeadHillBck("EffectWalkAppear");
 }
 
 void DodoryuStateLv1::startAnimEffectWalk() {
-    MR::startBck(mHost, "EffectWalk", nullptr);
+    MR::startBck(mHost, "EffectWalk");
     mHost->startLeadHillBck("EffectWalk");
 }
 
 void DodoryuStateLv1::startAnimEffectWalkHide() {
-    MR::startBck(mHost, "EffectWalkHide", nullptr);
+    MR::startBck(mHost, "EffectWalkHide");
     mHost->startLeadHillBck("EffectWalkHide");
 }

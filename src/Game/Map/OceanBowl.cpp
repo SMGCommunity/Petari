@@ -11,7 +11,7 @@
 #include <JSystem/JMath/JMath.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
 #include <cmath>
-#include <math_types.hpp>
+#include "math_types.hpp"
 #include <revolution/gd/GDBase.h>
 #include <revolution/gx.h>
 #include <revolution/gx/GXVert.h>

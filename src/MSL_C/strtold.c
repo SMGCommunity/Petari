@@ -1,8 +1,8 @@
 #include "stdio_api.h"
 #include "ansi_fp.h"
 #include "locale.h"
-#include <cctype>
-#include <cmath>
+#include "cctype"
+#include "cmath"
 #include "mem.h"
 #pragma exceptions on
 

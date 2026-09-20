@@ -36,7 +36,7 @@ public:
     bool isPlayerModeHopper() const;
     bool isPlayerModeInvincible() const;
     bool isPlayerModeFoo() const;
-    void changeAnimation(const char*, const char*);
+    void changeAnimation(const char*, const char* = nullptr);
     void changeAnimationNonStop(const char*);
     void changeAnimationWithAttr(const char*, u32);
     void stopAnimation(const char*, const char* = nullptr);
@@ -47,9 +47,9 @@ public:
     bool isAnimationTerminateUpper(const char*) const;
     const char* getAnimationStringPointer(const char*) const;
     const char* getCurrentBckName() const;
-    void changeAnimationUpper(const char*, const char*);
-    void changeAnimationUpperWeak(const char*, const char*);
-    void stopAnimationUpper(const char*, const char*);
+    void changeAnimationUpper(const char*, const char* = nullptr);
+    void changeAnimationUpperWeak(const char*, const char* = nullptr);
+    void stopAnimationUpper(const char*, const char* = nullptr);
     void stopAnimationUpperForce();
     f32 getAnimationFrame() const;
     void changeAnimation(const char*, u32);

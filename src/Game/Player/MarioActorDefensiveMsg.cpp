@@ -115,7 +115,7 @@ bool MarioActor::tryAttackMsg(u32 msg, const HitSensor* pSensor, bool* myBool) {
     switch (msg) {
     case ACTMES_ENEMY_ATTACK_FLIP_VERYWEAK:
         if (getMovementStates()._1 && !isAnimationRun(nullptr)) {
-            changeAnimation("ノーダメージ", nullptr);
+            changeAnimation("ノーダメージ");
         }
 
         return true;
@@ -329,7 +329,7 @@ bool MarioActor::receiveOtherMsg(u32 msg, HitSensor* sender, HitSensor* receiver
         doTrampleJump(sender);
         mMario->startPadVib(3);
         mMario->mJumpVec -= mMario->mFrontVec * 10.0f;
-        changeAnimation("飛びすさりジャンプ", nullptr);
+        changeAnimation("飛びすさりジャンプ");
         break;
     case ACTMES_REFLECT: {
         TVec3f normal;
@@ -342,7 +342,7 @@ bool MarioActor::receiveOtherMsg(u32 msg, HitSensor* sender, HitSensor* receiver
     }
     case ACTMES_KICK:
         playSound("声ランニングキック", -1);
-        changeAnimation("ランニングキック", nullptr);
+        changeAnimation("ランニングキック");
         return true;
     case ACTMES_PASS_RING:
         if (mMario->_97C) {

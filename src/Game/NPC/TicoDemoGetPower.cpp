@@ -27,7 +27,7 @@ namespace NrvTicoDemoGetPower {
 TicoDemoGetPower::TicoDemoGetPower(Tico* pHost, const JMapInfoIter& rIter) : NerveExecutor("チコゲットパワーデモ実行者"), mHost(pHost) {
     initNerve(GET_NERVE(TicoDemoGetPower, TicoDemoGetPowerNrvWait));
     DemoFunction::tryCreateDemoTalkAnimCtrlForScene(mHost, rIter, "DemoGetPower", "スピンゲット[デモ1]", 0, 0);
-    MR::registerDemoActionFunctor(mHost, MR::Functor_Inline(this, &TicoDemoGetPower::startDemo), "スピンゲット[デモ1]");
+    MR::registerDemoActionFunctor(mHost, MR::Functor(this, &TicoDemoGetPower::startDemo), "スピンゲット[デモ1]");
     mHost->makeActorDead();
 }
 

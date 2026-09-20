@@ -1,8 +1,8 @@
 #include "nw4r/lyt/common.h"
 #include "nw4r/lyt/layout.h"
-#include "revolution/gx/GXEnum.h"
-#include "revolution/gx/GXGeometry.h"
-#include "revolution/gx/GXVert.h"
+#include <revolution/gx/GXEnum.h>
+#include <revolution/gx/GXGeometry.h>
+#include <revolution/gx/GXVert.h>
 #include <cstdio>
 
 namespace nw4r {

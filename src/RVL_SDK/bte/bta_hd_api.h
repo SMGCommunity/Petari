@@ -10,10 +10,10 @@
  * headers
  */
 
-#include <macros.h>
+#include "macros.h"
 
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_types.h>
+#include <data_types.h>
 
 /*******************************************************************************
  * types

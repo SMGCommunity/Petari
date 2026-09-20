@@ -37,7 +37,7 @@ SaveDataHandleSequence::SaveDataHandleSequence()
       mOnSaveSuccessFunc(nullptr), mJustBeforeSaveFunc(nullptr), mSaveIcon(nullptr) {
     mTempBuffer = new (32) u8[SaveDataHandler::getEnoughtTempBufferSize()];
 
-    initNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation));
+    initNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoOperation));
 }
 
 void SaveDataHandleSequence::initAfterResourceLoaded() {
@@ -102,7 +102,7 @@ void SaveDataHandleSequence::draw() const {
 }
 
 void SaveDataHandleSequence::startPreLoad() {
-    setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequencePreLoad));
+    setNerve(GET_NERVE_ANON(SaveDataHandleSequencePreLoad));
 }
 
 void SaveDataHandleSequence::startCreateUserFile(int index) {
@@ -111,14 +111,14 @@ void SaveDataHandleSequence::startCreateUserFile(int index) {
     mCurrentUserFile->setCreated();
     mCurrentUserFile->updateLastModified();
     mSaveDataHandler->initializeUserFileMemory(index, mCurrentUserFile);
-    setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveAllWithoutKeyWait));
+    setNerve(GET_NERVE_ANON(SaveDataHandleSequenceSaveAllWithoutKeyWait));
 }
 
 void SaveDataHandleSequence::startDeleteUserFile(int index) {
     restoreUserFile(mCurrentUserFile, index, true);
     mCurrentUserFile->resetAllData();
     mSaveDataHandler->initializeUserFileMemory(index, mCurrentUserFile);
-    setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveAllWithoutKeyWait));
+    setNerve(GET_NERVE_ANON(SaveDataHandleSequenceSaveAllWithoutKeyWait));
 }
 
 void SaveDataHandleSequence::startSave(bool isConfirmRemind, bool isSaveAndQuitMsg) {
@@ -126,7 +126,7 @@ void SaveDataHandleSequence::startSave(bool isConfirmRemind, bool isSaveAndQuitM
     mIsSaveAndQuitMsg = isSaveAndQuitMsg;
     mWorkUserFile = mCurrentUserFile;
 
-    setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveConfirm));
+    setNerve(GET_NERVE_ANON(SaveDataHandleSequenceSaveConfirm));
 }
 
 void SaveDataHandleSequence::startSaveBackup(bool isConfirmRemind, bool isSaveAndQuitMsg) {
@@ -134,16 +134,16 @@ void SaveDataHandleSequence::startSaveBackup(bool isConfirmRemind, bool isSaveAn
     mIsSaveAndQuitMsg = isSaveAndQuitMsg;
     mWorkUserFile = mBackupUserFile;
 
-    setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveConfirm));
+    setNerve(GET_NERVE_ANON(SaveDataHandleSequenceSaveConfirm));
 }
 
 void SaveDataHandleSequence::startSaveAll() {
-    setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveAllWithoutKeyWait));
+    setNerve(GET_NERVE_ANON(SaveDataHandleSequenceSaveAllWithoutKeyWait));
 }
 
 void SaveDataHandleSequence::startSaveTotalMailSize() {
     mSaveDataHandler->storeSysConfigFile(mSysConfigFile);
-    setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveAllWithoutWindow));
+    setNerve(GET_NERVE_ANON(SaveDataHandleSequenceSaveAllWithoutWindow));
 }
 
 void SaveDataHandleSequence::startLoad(int userFileIndex, bool isPlayerMario) {
@@ -151,7 +151,7 @@ void SaveDataHandleSequence::startLoad(int userFileIndex, bool isPlayerMario) {
 
     _24 = 2;
 
-    setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation));
+    setNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoOperation));
 }
 
 void SaveDataHandleSequence::storeMiiOrIconId(int userFileIndex, const void* pMiiId, const u32* pIconId) {
@@ -167,9 +167,9 @@ void SaveDataHandleSequence::storeCopyUserFile(int indexDst, int indexSrc) {
 
 bool SaveDataHandleSequence::tryNANDErrorSequence(s32 code) {
     if (mNANDErrorSequence->tryNoRecoverErroSequence(code)) {
-        mNerveForError = GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation);
+        mNerveForError = GET_NERVE_ANON(SaveDataHandleSequenceNoOperation);
 
-        setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceErrorHandling));
+        setNerve(GET_NERVE_ANON(SaveDataHandleSequenceErrorHandling));
 
         return true;
     }
@@ -178,7 +178,7 @@ bool SaveDataHandleSequence::tryNANDErrorSequence(s32 code) {
 }
 
 bool SaveDataHandleSequence::isActive() const {
-    return !isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation));
+    return !isNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoOperation));
 }
 
 bool SaveDataHandleSequence::isPermitToReset() const {
@@ -200,20 +200,20 @@ bool SaveDataHandleSequence::isPreparedReset() const {
         return false;
     }
 
-    if (isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation)) || isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveConfirm)) ||
-        isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveDoneKeyWait)) || isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceNoSaveConfirmRemind))) {
+    if (isNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoOperation)) || isNerve(GET_NERVE_ANON(SaveDataHandleSequenceSaveConfirm)) ||
+        isNerve(GET_NERVE_ANON(SaveDataHandleSequenceSaveDoneKeyWait)) || isNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoSaveConfirmRemind))) {
         return true;
     }
 
-    if (isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequencePreLoad)) || isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequencePreLoadDone)) ||
-        isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSave)) || isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveWindowDisappear)) ||
-        isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveAllWithoutKeyWait)) ||
-        isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveAllWithoutKeyWaitDisappear)) ||
-        isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveAllWithoutWindow))) {
+    if (isNerve(GET_NERVE_ANON(SaveDataHandleSequencePreLoad)) || isNerve(GET_NERVE_ANON(SaveDataHandleSequencePreLoadDone)) ||
+        isNerve(GET_NERVE_ANON(SaveDataHandleSequenceSave)) || isNerve(GET_NERVE_ANON(SaveDataHandleSequenceSaveWindowDisappear)) ||
+        isNerve(GET_NERVE_ANON(SaveDataHandleSequenceSaveAllWithoutKeyWait)) ||
+        isNerve(GET_NERVE_ANON(SaveDataHandleSequenceSaveAllWithoutKeyWaitDisappear)) ||
+        isNerve(GET_NERVE_ANON(SaveDataHandleSequenceSaveAllWithoutWindow))) {
         return false;
     }
 
-    if (isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceCheckEnableToCreate)) || isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceErrorHandling))) {
+    if (isNerve(GET_NERVE_ANON(SaveDataHandleSequenceCheckEnableToCreate)) || isNerve(GET_NERVE_ANON(SaveDataHandleSequenceErrorHandling))) {
         return mNANDErrorSequence->isPreparedReset();
     }
 
@@ -234,7 +234,7 @@ void SaveDataHandleSequence::restoreFromReset() {
     mSaveIcon->kill();
     _24 = 3;
 
-    setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation));
+    setNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoOperation));
 }
 
 bool SaveDataHandleSequence::isInitializedGameDataHolder() const {
@@ -278,7 +278,7 @@ void SaveDataHandleSequence::exeCheckEnableToCreate() {
 
     syncNoSaveFlagsFromErrorSequence();
     _24 = 2;
-    setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation));
+    setNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoOperation));
 }
 
 void SaveDataHandleSequence::exeSaveConfirm() {
@@ -287,7 +287,7 @@ void SaveDataHandleSequence::exeSaveConfirm() {
     if (b) {
         mWorkUserFile->setCreated();
         mWorkUserFile->updateLastModified();
-        setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSave));
+        setNerve(GET_NERVE_ANON(SaveDataHandleSequenceSave));
     } else {
         bool isSelectedYes = false;
         const char* pSystemMessageId = "System_Save00";
@@ -303,11 +303,11 @@ void SaveDataHandleSequence::exeSaveConfirm() {
         if (isSelectedYes) {
             mWorkUserFile->setCreated();
             mWorkUserFile->updateLastModified();
-            setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSave));
+            setNerve(GET_NERVE_ANON(SaveDataHandleSequenceSave));
         } else if (mIsConfirmRemind) {
-            setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceNoSaveConfirmRemind));
+            setNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoSaveConfirmRemind));
         } else {
-            setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation));
+            setNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoOperation));
 
             _24 = 3;
         }
@@ -331,16 +331,16 @@ void SaveDataHandleSequence::exeSave() {
     if (_2A) {
         bool isErr = true;
 
-        executeSaveFinish(&isErr, GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveConfirm));
+        executeSaveFinish(&isErr, GET_NERVE_ANON(SaveDataHandleSequenceSaveConfirm));
     } else if (trySave()) {
-        setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveWindowDisappear));
+        setNerve(GET_NERVE_ANON(SaveDataHandleSequenceSaveWindowDisappear));
     }
 }
 
 void SaveDataHandleSequence::exeSaveWindowDisappear() {
     bool isErr = false;
 
-    if (!trySaveWindowDisappear(&isErr, GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveConfirm))) {
+    if (!trySaveWindowDisappear(&isErr, GET_NERVE_ANON(SaveDataHandleSequenceSaveConfirm))) {
         return;
     }
 
@@ -352,7 +352,7 @@ void SaveDataHandleSequence::exeSaveWindowDisappear() {
         (*mOnSaveSuccessFunc)();
     }
 
-    setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveDoneKeyWait));
+    setNerve(GET_NERVE_ANON(SaveDataHandleSequenceSaveDoneKeyWait));
 }
 
 void SaveDataHandleSequence::exeSaveDoneKeyWait() {
@@ -362,7 +362,7 @@ void SaveDataHandleSequence::exeSaveDoneKeyWait() {
 
     _24 = 2;
 
-    setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation));
+    setNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoOperation));
 }
 
 void SaveDataHandleSequence::exeSaveAllWithoutKeyWait() {
@@ -381,16 +381,16 @@ void SaveDataHandleSequence::exeSaveAllWithoutKeyWait() {
     if (_2A) {
         bool isErr = true;
 
-        executeSaveFinish(&isErr, GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveAllWithoutKeyWait));
+        executeSaveFinish(&isErr, GET_NERVE_ANON(SaveDataHandleSequenceSaveAllWithoutKeyWait));
     } else if (trySave()) {
-        setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveAllWithoutKeyWaitDisappear));
+        setNerve(GET_NERVE_ANON(SaveDataHandleSequenceSaveAllWithoutKeyWaitDisappear));
     }
 }
 
 void SaveDataHandleSequence::exeSaveAllWithoutKeyWaitDisappear() {
     bool isErr = false;
 
-    if (!trySaveWindowDisappear(&isErr, GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveAllWithoutKeyWait))) {
+    if (!trySaveWindowDisappear(&isErr, GET_NERVE_ANON(SaveDataHandleSequenceSaveAllWithoutKeyWait))) {
         return;
     }
 
@@ -404,7 +404,7 @@ void SaveDataHandleSequence::exeSaveAllWithoutKeyWaitDisappear() {
 
     _24 = 2;
 
-    setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation));
+    setNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoOperation));
 }
 
 void SaveDataHandleSequence::exeSaveAllWithoutWindow() {
@@ -423,11 +423,11 @@ void SaveDataHandleSequence::exeSaveAllWithoutWindow() {
     if (_2A) {
         bool isErr = true;
 
-        executeSaveFinish(&isErr, GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveAllWithoutKeyWait));
+        executeSaveFinish(&isErr, GET_NERVE_ANON(SaveDataHandleSequenceSaveAllWithoutKeyWait));
     } else {
         bool isErr = false;
 
-        if (!trySaveWithoutWindow(&isErr, GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveAllWithoutWindow))) {
+        if (!trySaveWithoutWindow(&isErr, GET_NERVE_ANON(SaveDataHandleSequenceSaveAllWithoutWindow))) {
             return;
         }
 
@@ -441,7 +441,7 @@ void SaveDataHandleSequence::exeSaveAllWithoutWindow() {
 
         _24 = 2;
 
-        setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation));
+        setNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoOperation));
     }
 }
 
@@ -457,14 +457,14 @@ void SaveDataHandleSequence::exePreLoad() {
     NANDResultCode resultCode = mSaveDataHandler->getLastResultCode();
 
     if (resultCode.isSuccess()) {
-        setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequencePreLoadDone));
+        setNerve(GET_NERVE_ANON(SaveDataHandleSequencePreLoadDone));
     } else if (resultCode.isNoExistFile()) {
-        setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceCheckEnableToCreate));
+        setNerve(GET_NERVE_ANON(SaveDataHandleSequenceCheckEnableToCreate));
     } else if (resultCode.isSaveDataCorrupted()) {
-        mNerveForError = GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation);
+        mNerveForError = GET_NERVE_ANON(SaveDataHandleSequenceNoOperation);
 
         mNANDErrorSequence->startRemoveFile();
-        setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceErrorHandling));
+        setNerve(GET_NERVE_ANON(SaveDataHandleSequenceErrorHandling));
     } else if (tryNANDErrorSequence(resultCode.getCode())) {
         // FIXME: cmpwi instruction should not be optimized out.
     }
@@ -472,15 +472,15 @@ void SaveDataHandleSequence::exePreLoad() {
 
 void SaveDataHandleSequence::exePreLoadDone() {
     if (!mSaveDataHandler->requestVerifyAfterLoadGameDataFile()) {
-        mNerveForError = GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation);
+        mNerveForError = GET_NERVE_ANON(SaveDataHandleSequenceNoOperation);
         mNANDErrorSequence->startRemoveFile();
 
-        setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceErrorHandling));
+        setNerve(GET_NERVE_ANON(SaveDataHandleSequenceErrorHandling));
     } else {
         restoreSysConfigFile(mSysConfigFile);
         _24 = 2;
 
-        setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation));
+        setNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoOperation));
     }
 }
 
@@ -494,9 +494,9 @@ void SaveDataHandleSequence::exeNoSaveConfirmRemind() {
     if (isSelectedYes) {
         _24 = 2;
 
-        setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation));
+        setNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoOperation));
     } else {
-        setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceSaveConfirm));
+        setNerve(GET_NERVE_ANON(SaveDataHandleSequenceSaveConfirm));
     }
 }
 
@@ -631,7 +631,7 @@ bool SaveDataHandleSequence::tryNoSave() {
     bool b = _2C || _2B;
 
     if (b) {
-        setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation));
+        setNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoOperation));
 
         _24 = 2;
 
@@ -642,12 +642,12 @@ bool SaveDataHandleSequence::tryNoSave() {
 }
 
 bool SaveDataHandleSequence::isEnablePointer() const {
-    if (isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation)) || isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequencePreLoad)) ||
-        isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequencePreLoadDone))) {
+    if (isNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoOperation)) || isNerve(GET_NERVE_ANON(SaveDataHandleSequencePreLoad)) ||
+        isNerve(GET_NERVE_ANON(SaveDataHandleSequencePreLoadDone))) {
         return false;
     }
 
-    if (isNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceCheckEnableToCreate)) && !mNANDErrorSequence->isEnablePointer()) {
+    if (isNerve(GET_NERVE_ANON(SaveDataHandleSequenceCheckEnableToCreate)) && !mNANDErrorSequence->isEnablePointer()) {
         return false;
     }
 
@@ -678,7 +678,7 @@ bool SaveDataHandleSequence::executeSaveFinish(bool* pIsErr, const Nerve* pNerve
         mNerveForError = pNerveForError;
 
         mNANDErrorSequence->startRemoveFile();
-        setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceErrorHandling));
+        setNerve(GET_NERVE_ANON(SaveDataHandleSequenceErrorHandling));
 
         return true;
     }
@@ -687,10 +687,10 @@ bool SaveDataHandleSequence::executeSaveFinish(bool* pIsErr, const Nerve* pNerve
         return true;
     }
 
-    mNerveForError = GET_NERVE_GLOBAL(SaveDataHandleSequenceNoOperation);
+    mNerveForError = GET_NERVE_ANON(SaveDataHandleSequenceNoOperation);
 
     mNANDErrorSequence->startErrorToWiiMenu("NAND_11_2");
-    setNerve(GET_NERVE_GLOBAL(SaveDataHandleSequenceErrorHandling));
+    setNerve(GET_NERVE_ANON(SaveDataHandleSequenceErrorHandling));
 
     return true;
 }

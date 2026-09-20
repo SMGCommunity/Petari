@@ -179,7 +179,7 @@ void Creeper::init(const JMapInfoIter& rIter) {
     MR::registerDemoSimpleCastAll(mFlowerModel);
     MR::registerDemoSimpleCastAll(mLeafModel);
     MR::copyTransRotateScale(this, mLeafModel);
-    MR::startBck(mLeafModel, "Wait", static_cast< const char* >(nullptr));
+    MR::startBck(mLeafModel, "Wait");
     mLeafModel->makeActorAppeared();
     makeActorAppeared();
 }
@@ -405,7 +405,7 @@ bool Creeper::tryJump() {
     TVec3f launch;
     launch = launchFront * mJumpSpeedFront - mGravity * mJumpSpeedUp;
 
-    MR::startBckPlayer("GrowPlantJump", static_cast< const char* >(nullptr));
+    MR::startBckPlayer("GrowPlantJump");
     MR::endMultiActorCamera(this, mCameraInfo, "掴まり", true, -1);
     MR::endBindAndPlayerForceWeakGravityJump(this, launch);
 

@@ -1,4 +1,4 @@
-#include <RVLFaceLibInternal.h>
+#include "RVLFaceLibInternal.h"
 #include <revolution/wpad.h>
 #include <revolution/mem/expHeap.h>
 

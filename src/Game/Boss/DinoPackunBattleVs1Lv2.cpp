@@ -129,7 +129,7 @@ bool DinoPackunBattleVs1Lv2::tryFind() {
 
 void DinoPackunBattleVs1Lv2::exeStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "Find", nullptr);
+        MR::startBck(getHost(), "Find");
     }
 
     if (updateStart()) {
@@ -176,7 +176,7 @@ void DinoPackunBattleVs1Lv2::exeWalk() {
 
 void DinoPackunBattleVs1Lv2::exeChase() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "Chase", nullptr);
+        MR::startBck(getHost(), "Chase");
         MR::startSound(getHost(), "SE_BV_D_PAKKUN_CHASE");
         MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
     }

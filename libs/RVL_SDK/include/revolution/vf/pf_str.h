@@ -1,7 +1,7 @@
 #ifndef PF_STR_H
 #define PF_STR_H
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 #include "revolution/vf/vf_struct.h"
 
 s32 VFiPFSTR_InitStr(PF_STR *p_str, const s8 *s, u32 code_mode);

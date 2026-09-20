@@ -1,7 +1,7 @@
 #ifndef VI3IN1TYPES_H
 #define VI3IN1TYPES_H
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-#include <revolution/types.h>
-#include <private/iostypes.h>
+#include "revolution/types.h"
+#include "private/iostypes.h"
 
 typedef u32 ESId;
 typedef u32 ESContentId;

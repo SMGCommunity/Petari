@@ -75,7 +75,7 @@ void SubmarineVolcanoBigColumn::exeBreak() {
         MR::invalidateHitSensors(this);
         MR::invalidateCollisionParts(this);
         mBreakModel->appear();
-        MR::startBck(mBreakModel, "Break", nullptr);
+        MR::startBck(mBreakModel, "Break");
 
         if (mIsSmallColumn) {
             MR::startSound(this, "SE_OJ_SMN_VOLC_COL_S_BREAK");

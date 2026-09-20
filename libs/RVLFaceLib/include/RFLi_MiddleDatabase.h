@@ -1,7 +1,7 @@
 #ifndef RVL_FACE_LIBRARY_INTERNAL_MIDDLE_DATABASE_H
 #define RVL_FACE_LIBRARY_INTERNAL_MIDDLE_DATABASE_H
-#include <RFL_MiddleDatabase.h>
-#include <RFLi_Types.h>
+#include "RFL_MiddleDatabase.h"
+#include "RFLi_Types.h"
 #include <revolution/types.h>
 #ifdef __cplusplus
 extern "C" {

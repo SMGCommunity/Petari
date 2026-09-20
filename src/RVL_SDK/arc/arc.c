@@ -1,4 +1,4 @@
-#include <revolution.h>
+#include "revolution.h"
 #include <ctype.h>
 #include <locale.h>
 

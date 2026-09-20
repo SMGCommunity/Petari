@@ -1,4 +1,4 @@
-#include "hidd_api.h"
+#include <hidd_api.h>
 
 /*******************************************************************************
  * headers
@@ -7,18 +7,18 @@
 #include "revolution/types.h"
 #include <cstring>
 
-#include <macros.h>  // ARRAY_LENGTH
+#include "macros.h"  // ARRAY_LENGTH
 
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
-#include "wcassert.h"  // WCAssert_Line
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
+#include <wcassert.h>  // WCAssert_Line
 
-#include "btm_api.h"
-#include "gki.h"
-#include "hidd_int.h"
-#include "hiddefs.h"
-#include "sdp_api.h"
+#include <btm_api.h>
+#include <gki.h>
+#include <hidd_int.h>
+#include <hiddefs.h>
+#include <sdp_api.h>
 
 /*******************************************************************************
  * variables

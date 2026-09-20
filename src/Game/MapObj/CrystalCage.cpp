@@ -4,9 +4,10 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/DummyDisplayModel.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JGeometry/TUtil.hpp"
-#include "JSystem/JMath.hpp"
 #include "math_types.hpp"
+#include <JSystem/JGeometry/TUtil.hpp>
+#include <JSystem/JMath.hpp>
+
 
 void CrystalCage_FORCE_MATCH_SDATA2() {
     (void)1.0f;
@@ -249,7 +250,7 @@ void CrystalCage::initMapToolInfo(const JMapInfoIter& rIter) {
         MR::useStageSwitchWriteDead(this, rIter);
 
         if (MR::useStageSwitchReadA(this, rIter)) {
-            MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &CrystalCage::forceBreak));
+            MR::listenStageSwitchOnA(this, MR::Functor(this, &CrystalCage::forceBreak));
         }
 
         MR::getJMapInfoArg0NoInit(rIter, &mIsBreakObjVisible);
@@ -337,7 +338,7 @@ void CrystalCage::exeBreak() {
         }
 
         mBreakObj->appear();
-        MR::startBck(mBreakObj, "Break", nullptr);
+        MR::startBck(mBreakObj, "Break");
 
         if (mCrystalCageType == 2) {
             MR::startSound(this, "SE_OJ_CRYSTAL_CAGE_L_BREAK");

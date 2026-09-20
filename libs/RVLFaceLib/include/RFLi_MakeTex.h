@@ -1,6 +1,6 @@
 #ifndef RVL_FACE_LIBRARY_INTERNAL_MAKE_TEX_H
 #define RVL_FACE_LIBRARY_INTERNAL_MAKE_TEX_H
-#include <RFLi_Types.h>
+#include "RFLi_Types.h"
 #include <revolution/gx.h>
 #include <revolution/types.h>
 #ifdef __cplusplus

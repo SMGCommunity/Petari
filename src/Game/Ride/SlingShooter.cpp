@@ -145,7 +145,7 @@ void SlingShooter::exeFreeInvalid() {
 void SlingShooter::exeLand() {
     if (MR::isFirstStep(this)) {
         if (!mIsKinopioAttached) {
-            MR::startBckPlayer("SpiderCocoonLand", 1);
+            MR::startBckPlayer("SpiderCocoonLand", 1L);
             MR::startEventCamera(mCameraInfo, "プレーヤー射出者[ウェイト]", CameraTargetArg(mCameraTargetMtx), -1);
         } else {
             MR::startBckWithInterpole(mRider, "CocoonLand", 1);
@@ -177,9 +177,9 @@ void SlingShooter::exeLand() {
 void SlingShooter::exeWait() {
     if (MR::isFirstStep(this)) {
         if (!mIsKinopioAttached) {
-            MR::startBckPlayer("SpiderCocoonWait", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("SpiderCocoonWait");
         } else {
-            MR::startBck(mRider, "SpiderCocoonWait", nullptr);
+            MR::startBck(mRider, "SpiderCocoonWait");
             if (mIsKinopioTalkEnabled) {
                 MR::sendSimpleMsgToActor(ACTMES_NPC_EVENT_TALK_ENABLE, mRider);
             }
@@ -276,7 +276,7 @@ void SlingShooter::exeAttackSuccess() {
 
         if (!mIsKinopioAttached) {
             MR::endEventCamera(mCameraInfo, "プレーヤー射出者[攻撃中]", true, -1);
-            MR::startBckPlayer("AirRotation", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("AirRotation");
             endBindAndPlayerNoJump(this);
             endBind();
         } else {
@@ -344,7 +344,7 @@ void SlingShooter::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         }
 
         if (!mIsKinopioAttached) {
-            MR::startBckPlayer("WallHit", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("WallHit");
             MR::endEventCamera(mCameraInfo, "プレーヤー射出者[攻撃中]", true, -1);
 
             TVec3f jumpVec(0.0f, 0.0f, 0.0f);
@@ -447,7 +447,7 @@ bool SlingShooter::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
         if (isNerve(GET_NERVE(SlingShooter, SlingShooterNrvAim))) {
             MR::offBind(this);
             startCancelAim();
-            MR::startBckPlayer("Wait", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("Wait");
 
             endBindAndPlayerNoJump(this);
             endBind();
@@ -616,7 +616,7 @@ void SlingShooter::updateActorMtx() {
 bool SlingShooter::tryCancel() {
     if (!mIsKinopioAttached && MR::isPadSwing(WPAD_CHAN0) && MR::isGreaterStep(this, 10)) {
         MR::endEventCamera(mCameraInfo, "プレーヤー射出者[ウェイト]", true, -1);
-        MR::startBckPlayer("Spin2nd", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("Spin2nd");
         MR::emitEffect(this, "Stick");
         MR::startSound(mRider, "SE_PV_JUMP_S");
         MR::startSound(mRider, "SE_PM_JUMP_M");
@@ -675,7 +675,7 @@ bool SlingShooter::tryRelease() {
     MR::startSound(this, "SE_OJ_SPACE_COCOON_LAUNCH");
 
     if (!mIsKinopioAttached) {
-        MR::startBckPlayer("CocoonFly", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("CocoonFly");
         MR::endEventCamera(mCameraInfo, "プレーヤー射出者[狙い中]", true, -1);
         MR::startEventCameraNoTarget(mCameraInfo, "プレーヤー射出者[攻撃中]", -1);
         MR::startSound(mRider, "SE_PV_JUMP_JOY");

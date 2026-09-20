@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Game/Screen/LayoutActor.hpp"
+#include <revolution/types.h>
 
-struct CustomTagArg;
+class CustomTagArg;
+class LayoutActor;
 
 class TalkTextFormer {
 public:
@@ -17,7 +18,7 @@ public:
 
     /* 0x0 */ LayoutActor* mHostActor;
     /* 0x4 */ const wchar_t* mMsg;
-    s32 _8;
+    /* 0x8 */ s32 _8;
     /* 0xC */ const char* mPaneName;
 };
 

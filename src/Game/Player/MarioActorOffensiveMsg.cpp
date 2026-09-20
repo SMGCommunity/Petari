@@ -668,7 +668,7 @@ bool MarioActor::sendMsgUpperPunch(HitSensor* pSensor) {
         playSound("声蹴り", -1);
 
         if (!mMario->isSwimming()) {
-            changeAnimation("アッパーパンチ", nullptr);
+            changeAnimation("アッパーパンチ");
         }
 
         return true;

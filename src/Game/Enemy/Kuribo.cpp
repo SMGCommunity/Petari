@@ -25,7 +25,7 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/VectorUtil.hpp"
-#include "revolution/mtx.h"
+#include <revolution/mtx.h>
 
 void Kuribo_FORCE_MATCH_SDATA2() {
     (void)1.0f;

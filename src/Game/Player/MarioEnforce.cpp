@@ -569,7 +569,7 @@ void Mario::pushedByWind() {
             windMag *= table->mWindSlideFriction;
             _350 += windDir * windMag;
             _1C._15 = 1;
-            changeAnimation("向かい風ふんばり", static_cast< const char* >(nullptr));
+            changeAnimation("向かい風ふんばり");
         }
         return;
     }
@@ -600,7 +600,7 @@ void Mario::pushedByWind() {
 
     scaled = killed + windDir * element;
 
-    changeAnimation("向かい風走り", static_cast< const char* >(nullptr));
+    changeAnimation("向かい風走り");
     _350 += scaled;
     _1C._15 = 1;
 }

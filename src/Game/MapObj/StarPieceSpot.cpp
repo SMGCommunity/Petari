@@ -30,7 +30,7 @@ void StarPieceSpot::init(const JMapInfoIter& rIter) {
     initSound(1, false);
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &StarPieceSpot::emit));
+        MR::listenStageSwitchOnAppear(this, MR::Functor(this, &StarPieceSpot::emit));
         kill();
     } else {
         initHitSensor(1);

@@ -27,10 +27,11 @@ namespace NrvFountain {
 Fountain::Fountain(const char* pName) : LiveActor(pName), mFountainName(), mUp(0.0f, 1.0f, 0.0f) {
 }
 
-void Fountain::init(const JMapInfoIter& rIter) {
-    // FIXME: stack order issue
-    // https://decomp.me/scratch/y0a6l
+inline void Fountain::initHitSensors(const char* hitSensor) {
+    MR::addHitSensorMapObj(this, hitSensor, 16, ::sSensorRadius, TVec3f(0.0f, ::sSensorOffsetY, 0.0f));
+}
 
+void Fountain::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     TPos3f mtx;
     mtx.identity();
@@ -41,7 +42,7 @@ void Fountain::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, mFountainName, false);
     initSound(4, false);
     initHitSensor(1);
-    MR::addHitSensorMapObj(this, "body", 16, ::sSensorRadius, TVec3f(0.0f, ::sSensorOffsetY, 0.0f));
+    initHitSensors("body");
     MR::setClippingTypeSphere(this, ::sClippingRadius);
     MR::useStageSwitchReadA(this, rIter);
     initNerve(GET_NERVE(Fountain, HostTypeMove));

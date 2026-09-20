@@ -102,7 +102,7 @@ void SwingLight::init(const JMapInfoIter& rIter) {
 }
 
 void SwingLight::initCaseUseSwitchA(const MapObjActorInitInfo&) {
-    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &SwingLight::appearLight));
+    MR::listenStageSwitchOnA(this, MR::Functor(this, &SwingLight::appearLight));
 }
 
 void SwingLight::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {

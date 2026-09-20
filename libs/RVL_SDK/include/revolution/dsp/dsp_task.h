@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-#include <revolution/dsp.h>
-#include <revolution/os.h>
+#include "revolution/dsp.h"
+#include "revolution/os.h"
 
 void __DSPHandler(__OSInterrupt, OSContext *);
 

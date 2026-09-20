@@ -25,7 +25,7 @@ void GalaxyMapSelectButton::init(const JMapInfoIter& rIter) {
     mPaneCtrl = new ButtonPaneController(this, "MapList", "BoxLButton", 0, true);
     mPaneCtrl->_22 = false;
 
-    initNerve(GET_NERVE_GLOBAL(GalaxyMapSelectButtonHide));
+    initNerve(GET_NERVE_ANON(GalaxyMapSelectButtonHide));
     kill();
 }
 
@@ -37,9 +37,9 @@ void GalaxyMapSelectButton::appear() {
 void GalaxyMapSelectButton::startAstroMap() {
     appear();
 
-    _20 = GET_NERVE_GLOBAL(GalaxyMapSelectButtonAstroMapWait);
+    _20 = GET_NERVE_ANON(GalaxyMapSelectButtonAstroMapWait);
 
-    setNerve(GET_NERVE_GLOBAL(GalaxyMapSelectButtonBetweenAstroMapAndGalaxyMapFadein));
+    setNerve(GET_NERVE_ANON(GalaxyMapSelectButtonBetweenAstroMapAndGalaxyMapFadein));
 }
 
 bool GalaxyMapSelectButton::isPointingAnything() const {
@@ -51,23 +51,23 @@ bool GalaxyMapSelectButton::isDecidedList() const {
 }
 
 void GalaxyMapSelectButton::changeToStarList() {
-    _20 = GET_NERVE_GLOBAL(GalaxyMapSelectButtonStarListWait);
+    _20 = GET_NERVE_ANON(GalaxyMapSelectButtonStarListWait);
 }
 
 void GalaxyMapSelectButton::exeHide() {
 }
 
 void GalaxyMapSelectButton::exeAstroMapWait() {
-    if (_20 != nullptr && _20 == GET_NERVE_GLOBAL(GalaxyMapSelectButtonStarListWait)) {
-        setNerve(GET_NERVE_GLOBAL(GalaxyMapSelectButtonBetweenMapToListFadeout));
+    if (_20 != nullptr && _20 == GET_NERVE_ANON(GalaxyMapSelectButtonStarListWait)) {
+        setNerve(GET_NERVE_ANON(GalaxyMapSelectButtonBetweenMapToListFadeout));
     } else if (mPaneCtrl->trySelect()) {
         MR::startSystemSE("SE_SY_GALAMAP_DECIDE");
     }
 }
 
 void GalaxyMapSelectButton::exeStarListWait() {
-    if (_20 != nullptr && _20 == GET_NERVE_GLOBAL(GalaxyMapSelectButtonAstroMapWait)) {
-        setNerve(GET_NERVE_GLOBAL(GalaxyMapSelectButtonBetweenListToMapFadeout));
+    if (_20 != nullptr && _20 == GET_NERVE_ANON(GalaxyMapSelectButtonAstroMapWait)) {
+        setNerve(GET_NERVE_ANON(GalaxyMapSelectButtonBetweenListToMapFadeout));
     }
 }
 
@@ -86,7 +86,7 @@ void GalaxyMapSelectButton::exeBetweenAstroMapAndGalaxyMapFadein() {
 }
 
 void GalaxyMapSelectButton::exeBetweenListToMapFadeout() {
-    setNerve(GET_NERVE_GLOBAL(GalaxyMapSelectButtonBetweenListToMapFadein));
+    setNerve(GET_NERVE_ANON(GalaxyMapSelectButtonBetweenListToMapFadein));
 }
 
 void GalaxyMapSelectButton::exeBetweenListToMapFadein() {
@@ -113,7 +113,7 @@ void GalaxyMapSelectButton::exeBetweenMapToListFadeout() {
     }
 
     mPaneCtrl->forceToHide();
-    setNerve(GET_NERVE_GLOBAL(GalaxyMapSelectButtonBetweenMapToListFadein));
+    setNerve(GET_NERVE_ANON(GalaxyMapSelectButtonBetweenMapToListFadein));
 }
 
 void GalaxyMapSelectButton::exeBetweenMapToListFadein() {

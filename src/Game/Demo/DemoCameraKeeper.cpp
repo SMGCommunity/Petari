@@ -11,6 +11,10 @@
 #include "Game/Util/StringUtil.hpp"
 #include <cstdio>
 
+namespace {
+    extern char sSheetName[];
+}
+
 DemoCameraInfo::DemoCameraInfo()
     : mPartName(), mCameraTargetName(), mCameraTargetCastID(-1), mAnimCameraName(), mAnimCameraStartFrame(-1), mAnimCameraEndFrame(-1),
       mIsContinuous(), _1C(), _20(), _24() {
@@ -22,6 +26,7 @@ void DemoCameraKeeper::initCast(LiveActor* pActor, const JMapInfoIter& rIter) {
         if (!DemoFunction::isTargetDemoCast(pActor, rIter, curInfo->mCameraTargetName, curInfo->mCameraTargetCastID)) {
             continue;
         }
+
         curInfo->_24 = pActor;
         initActorCamera(curInfo, rIter);
     }
@@ -31,12 +36,8 @@ void DemoCameraKeeper::start() {
     _C = 0;
 }
 
-// https://decomp.me/scratch/eRSVw
 void DemoCameraKeeper::update() {
-    if (_C < 0) {
-        return;
-    }
-    if (_4 > _C) {
+    if (_C < 0 || _4 <= _C) {
         return;
     }
 
@@ -55,8 +56,9 @@ void DemoCameraKeeper::initActorCamera(DemoCameraInfo* pInfo, const JMapInfoIter
     ActorCameraInfo* cameraInfo = new ActorCameraInfo(-1, MR::getPlacedZoneId(rIter));
     pInfo->_20 = cameraInfo;
     MR::declareEventCamera(cameraInfo, pInfo->_1C);
-    if (pInfo->mAnimCameraName == nullptr)
+    if (pInfo->mAnimCameraName == nullptr) {
         return;
+    }
 
     char animCameraName[256];
     DemoCameraFunction::makeAnimCameraName(animCameraName, sizeof(animCameraName), pInfo);
@@ -71,8 +73,10 @@ void DemoCameraKeeper::executeType(const DemoCameraInfo* pInfo) {
         executeFirst(_10);
         return;
     }
-    if (!MR::isDemoPartLastStep(pInfo->mPartName))
+
+    if (!MR::isDemoPartLastStep(pInfo->mPartName)) {
         return;
+    }
 
     executeLast(_10);
     _C++;
@@ -97,8 +101,9 @@ void DemoCameraKeeper::executeFirst(const DemoCameraInfo* pInfo) {
 
 void DemoCameraKeeper::executeLast(const DemoCameraInfo* pInfo) {
     char animCameraName[256];
-    if (pInfo->mAnimCameraName == nullptr)
+    if (pInfo->mAnimCameraName == nullptr) {
         return;
+    }
 
     MR::removeExtensionString(animCameraName, sizeof(animCameraName), pInfo->mAnimCameraName);
     MR::endAnimCamera(pInfo->_24, pInfo->_20, animCameraName, pInfo->mAnimCameraEndFrame, true);
@@ -108,13 +113,13 @@ void DemoCameraKeeper::endCurrentCamera() {
     if (_10 != nullptr) {
         MR::endEventCamera(_10->_20, _10->_1C, _10->mIsContinuous != false, -1);
     }
+
     _10 = nullptr;
 }
 
-// https://decomp.me/scratch/2zGrk
-DemoCameraKeeper::DemoCameraKeeper(DemoExecutor* pExecutor, const JMapInfoIter& rIter) : mExecutor(pExecutor), _4(-1), _8(), _C(-1), _10() {
+DemoCameraKeeper::DemoCameraKeeper(DemoExecutor* pExecutor, const JMapInfoIter& rIter) : mExecutor(pExecutor), _4(), _8(), _C(-1), _10() {
     JMapInfo* map = nullptr;
-    _4 = DemoFunction::createSheetParser(mExecutor, "Camera", &map);
+    _4 = DemoFunction::createSheetParser(mExecutor, sSheetName, &map);
 
     _8 = new DemoCameraInfo[_4];
 
@@ -146,4 +151,8 @@ DemoCameraKeeper::DemoCameraKeeper(DemoExecutor* pExecutor, const JMapInfoIter& 
             initActorCamera(curInfo, rIter);
         }
     }
+}
+
+namespace {
+    char sSheetName[] = "Camera";
 }

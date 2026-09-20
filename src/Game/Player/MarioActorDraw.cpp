@@ -26,20 +26,18 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SchedulerUtil.hpp"
-#include "JSystem/J3DGraphAnimator/J3DJoint.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
-#include "JSystem/J3DGraphBase/J3DMaterial.hpp"
-#include "JSystem/J3DGraphBase/J3DTexture.hpp"
-#include "JSystem/JKernel/JKRSolidHeap.hpp"
-#include "JSystem/JUtility/JUTNameTab.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
+#include <JSystem/J3DGraphAnimator/J3DJoint.hpp>
+#include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
+#include <JSystem/J3DGraphBase/J3DMaterial.hpp>
+#include <JSystem/J3DGraphBase/J3DTexture.hpp>
+#include <JSystem/JKernel/JKRSolidHeap.hpp>
+#include <JSystem/JUtility/JUTNameTab.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
 #include <cstring>
 #include <revolution/gd/GDBase.h>
 
 namespace MR {
     void showMaterial(J3DModel*, const char*);
-    template < class T >
-    FunctorV0M< const T*, void (T::*)() const > Functor(const T*, void (T::*)() const) NO_INLINE;
 };  // namespace MR
 
 extern "C" {
@@ -1031,23 +1029,6 @@ void MarioActor::copyMaterial(J3DModel* pModel, u16 materialNo, s32 packetIndex)
         matPacket->mpTexture = modelData->mMaterialTable.mTexture;
         matPacket->mpDisplayListObj = modelData->getMaterialNodePointer(materialIndex)->mSharedDLObj;
     }
-}
-
-namespace MR {
-    template <>
-    FunctorV0M< const MarioActor*, void (MarioActor::*)() const > Functor< MarioActor >(const MarioActor* pActor, void (MarioActor::*pFunc)() const) {
-        return FunctorV0M< const MarioActor*, void (MarioActor::*)() const >(pActor, pFunc);
-    }
-};  // namespace MR
-
-template <>
-void MR::FunctorV0M< const MarioActor*, void (MarioActor::*)() const >::operator()() const {
-    (mCaller->*mCallee)();
-}
-
-template <>
-MR::FunctorBase* MR::FunctorV0M< const MarioActor*, void (MarioActor::*)() const >::clone(JKRHeap* pHeap) const {
-    return new (pHeap, 0) FunctorV0M< const MarioActor*, void (MarioActor::*)() const >(*this);
 }
 
 void J3DModelX::copyExtraMtxBuffer(const J3DModelX* pModel) {

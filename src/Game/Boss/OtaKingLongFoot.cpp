@@ -105,7 +105,7 @@ bool OtaKingLongFoot::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSens
 
 void OtaKingLongFoot::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::setBckFrameAtRandom(this);
     }
 }

@@ -57,7 +57,7 @@ void NeedlePlant::exeWait() {
 
 void NeedlePlant::exeShake() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Shake", nullptr);
+        MR::startBck(this, "Shake");
         MR::startSound(this, "SE_OJ_LEAVES_SWING");
     }
 

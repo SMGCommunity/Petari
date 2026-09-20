@@ -7,12 +7,12 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModel.hpp"
-#include "JSystem/J3DGraphBase/J3DMaterial.hpp"
-#include "JSystem/J3DGraphBase/J3DShape.hpp"
-#include "JSystem/JKernel/JKRSolidHeap.hpp"
-#include "JSystem/JUtility/JUTNameTab.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
+#include <JSystem/J3DGraphBase/J3DMaterial.hpp>
+#include <JSystem/J3DGraphBase/J3DShape.hpp>
+#include <JSystem/JKernel/JKRSolidHeap.hpp>
+#include <JSystem/JUtility/JUTNameTab.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
 #include <cstring>
 
 namespace {

@@ -2,7 +2,7 @@
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/Util/MutexHolder.hpp"
 #include "Game/Util/SingletonHolder.hpp"
-#include "JSystem/JAudio2/JASMutex.hpp"
+#include <JSystem/JAudio2/JASMutex.hpp>
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 #include <mem.h>

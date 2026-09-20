@@ -5,7 +5,7 @@
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/JMath.hpp"
+#include <JSystem/JMath.hpp>
 #include "math_types.hpp"
 
 namespace NrvCocoNut {

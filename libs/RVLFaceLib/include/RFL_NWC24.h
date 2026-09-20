@@ -1,6 +1,6 @@
 #ifndef RVL_FACE_LIBRARY_NWC24_H
 #define RVL_FACE_LIBRARY_NWC24_H
-#include <RFL_Types.h>
+#include "RFL_Types.h"
 #include <revolution/types.h>
 #ifdef __cplusplus
 extern "C" {

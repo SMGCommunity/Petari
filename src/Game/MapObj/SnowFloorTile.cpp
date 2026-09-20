@@ -3,7 +3,7 @@
 #include "Game/Util.hpp"
 #include "Game/Util/Color.hpp"
 #include "Game/Util/DirectDraw.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
+#include <JSystem/JUtility/JUTTexture.hpp>
 
 namespace {
     u16 sTextureSize = 32;

@@ -1,7 +1,7 @@
 #ifndef METROTRK_PORTABLE_MEM_TRK_H
 #define METROTRK_PORTABLE_MEM_TRK_H
 
-#include "revolution/types.h"
+#include <revolution/types.h>
 #include <size_t.h>
 
 void* TRK_memset(void* dest, int val, size_t count);

@@ -17,7 +17,7 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/J3DGraphAnimator/J3DJoint.hpp"
+#include <JSystem/J3DGraphAnimator/J3DJoint.hpp>
 #include <cstdio>
 
 void SkeletalFishBaby_FORCE_MATCH_SDATA2() {
@@ -113,7 +113,7 @@ void SkeletalFishBaby::init(const JMapInfoIter& rIter) {
 
 void SkeletalFishBaby::makeActorAppeared() {
     LiveActor::makeActorAppeared();
-    MR::startBck(this, "Swim", nullptr);
+    MR::startBck(this, "Swim");
     setNerve(GET_NERVE_ANON(SkeletalFishBabyNrvSwim));
     MR::validateClipping(this);
 }
@@ -188,7 +188,7 @@ bool SkeletalFishBaby::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* p
 
 void SkeletalFishBaby::exeSwim() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Swim", nullptr);
+        MR::startBck(this, "Swim");
     }
 
     mSpeed += ::sAccel;
@@ -224,7 +224,7 @@ void SkeletalFishBaby::endBind() {
 
 void SkeletalFishBaby::exeBreak() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Death", nullptr);
+        MR::startBck(this, "Death");
         MR::startSound(this, "SE_EM_EXPLODE_UNDER_WATER");
         MR::startSound(this, "SE_EV_SNAKEHEAD_DAMAGE");
         MR::invalidateClipping(this);

@@ -1,6 +1,6 @@
-#include "bt_target.h"
-#include "gki.h"
-#include "rfc_int.h"
+#include <bt_target.h>
+#include <gki.h>
+#include <rfc_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -34,14 +34,14 @@
 #include "revolution/types.h"
 #include <cstring>
 
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "l2c_api.h"
-#include "l2cdefs.h"
-#include "port_int.h"
-#include "rfcdefs.h"
+#include <l2c_api.h>
+#include <l2cdefs.h>
+#include <port_int.h>
+#include <rfcdefs.h>
 
 /*******************************************************************************
  * macros

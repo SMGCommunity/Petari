@@ -1,4 +1,4 @@
-#include "Game\MapObj\PhantomTorch.hpp"
+#include "Game/MapObj/PhantomTorch.hpp"
 #include "Game/Effect/SpinPullParticleCallBack.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/LiveActor/Nerve.hpp"
@@ -11,7 +11,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 namespace NrvPhantomTorch {
     NEW_NERVE(HostTypeWait, PhantomTorch, Wait);

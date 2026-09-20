@@ -17,7 +17,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include <JSystem/JMath/JMath.hpp>
 
 namespace NrvTicoEat {
     NEW_NERVE(TicoEatNrvEatPre, TicoEat, EatPre);

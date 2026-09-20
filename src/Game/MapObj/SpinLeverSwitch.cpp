@@ -35,7 +35,7 @@ void SpinLeverSwitch::init(const JMapInfoIter& rIter) {
     if (isWait) {
         initNerve(GET_NERVE(SpinLeverSwitch, SpinLeverSwitchNrvWait));
     } else {
-        MR::startBck(this, "On", nullptr);
+        MR::startBck(this, "On");
         MR::setBckFrameAndStop(this, MR::getBckFrameMax(this));
         MR::startBrk(this, "On");
         MR::setBrkFrameAndStop(this, MR::getBrkFrameMax(this));
@@ -88,7 +88,7 @@ bool SpinLeverSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSen
 
 void SpinLeverSwitch::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::startBrk(this, "On");
         MR::setBrkFrameAndStop(this, 0.0f);
     }
@@ -96,7 +96,7 @@ void SpinLeverSwitch::exeWait() {
 
 void SpinLeverSwitch::exeSwitchOn() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "On", nullptr);
+        MR::startBck(this, "On");
         MR::startBrk(this, "On");
 
         if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {

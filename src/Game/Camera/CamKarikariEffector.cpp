@@ -4,7 +4,7 @@
 #include "Game/Enemy/KarikariDirector.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "JSystem/JGeometry/TUtil.hpp"
+#include <JSystem/JGeometry/TUtil.hpp>
 
 namespace {
     static const f32 sKarikariViewRate = 0.8f;

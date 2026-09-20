@@ -1,7 +1,7 @@
 #pragma once
 
 #include "JSystem/JKernel/JKRArchive.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 class JKRDvdFile;
 

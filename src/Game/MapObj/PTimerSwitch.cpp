@@ -21,7 +21,7 @@ void PTimerSwitch::reset() {
     LiveActor::appear();
     setNerve(GET_NERVE(PTimerSwitch, PTimerSwitchNrvOff));
     MR::validateCollisionParts(mSwitchCollision);
-    MR::startBck(this, "Wait", 0);
+    MR::startBck(this, "Wait");
     _94 = 0;
     _98 = false;
 }
@@ -39,7 +39,7 @@ void PTimerSwitch::init(const JMapInfoIter& rIter) {
     MR::needStageSwitchWriteA(this, rIter);
     initNerve(GET_NERVE(PTimerSwitch, PTimerSwitchNrvOff));
     initEffectKeeper(0, nullptr, false);
-    MR::startBck(this, "Move", 0);
+    MR::startBck(this, "Wait");
     mConnector = new MapObjConnector(this);
     appear();
 }
@@ -132,7 +132,7 @@ void PTimerSwitch::exeOff() {
 
 void PTimerSwitch::exeSwitchDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "On", nullptr);
+        MR::startBck(this, "On");
         MR::invalidateClipping(this);
     }
 

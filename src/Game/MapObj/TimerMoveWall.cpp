@@ -4,12 +4,11 @@
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 void TimerMoveWall_FORCE_MATCH_SDATA2() {
     (void)0.0f;
@@ -76,7 +75,7 @@ void TimerMoveWall::exeMove() {
 }
 
 void TimerMoveWall::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
-    MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &TimerMoveWall::startMove));
+    MR::listenStageSwitchOnB(this, MR::Functor(this, &TimerMoveWall::startMove));
 }
 
 void TimerMoveWall::startMove() {

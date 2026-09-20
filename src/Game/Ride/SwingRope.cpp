@@ -216,7 +216,7 @@ void SwingRope::exeBindSlideDownStart() {
 
 void SwingRope::exeBindSlideDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("SwingRopeSlideDown", 10);
+        MR::startBckPlayer("SwingRopeSlideDown", ::sAnimInterpoleFrame);
     }
 
     if (!updateSlideDown()) {
@@ -816,11 +816,7 @@ SwingRopeGroup::SwingRopeGroup(const char* pName) : NameObj(pName) {
     mTexture = nullptr;
     mTexture = new JUTTexture(MR::loadTexFromArc("SwingRope.arc", "SwingRope.bti"), 0);
 
-    MR::FunctorV0M< const SwingRopeGroup*, void (SwingRopeGroup::*)() const > preDrawFunctor(this, &SwingRopeGroup::initDraw);
-    MR::registerPreDrawFunction(preDrawFunctor, MR::DrawType_SwingRope);
-    // The above should probably be this instead, but MR::Functor_Inline does not like consts at the moment
-    // MR::registerPreDrawFunction(MR::Functor_Inline(const_cast< const SwingRopeGroup* >(this), &SwingRopeGroup::initDraw),
-    // MR::DrawType_SwingRope);
+    MR::registerPreDrawFunction(MR::Functor(this, &SwingRopeGroup::initDraw), MR::DrawType_SwingRope);
 }
 
 void SwingRopeGroup::initDraw() const {

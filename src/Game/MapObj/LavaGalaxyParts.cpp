@@ -7,6 +7,12 @@
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+
+void FORCE_SUB_NO_INLINE() {
+    TVec3f a, b;
+    a = a - b;
+}
 
 LavaGalaxyParts::~LavaGalaxyParts() {
 }
@@ -16,18 +22,17 @@ LavaGalaxyParts::LavaGalaxyParts(const char* pName) : LiveActor(pName), mLodCtrl
 
 void LavaGalaxyParts::initAfterPlacement() {
     if (mMtxSetter != nullptr) {
+
         TVec3f groundVec;
         MR::calcMapGroundUpper(&groundVec, this);
 
-        // FIXME: - is inlining
         f32 yOffset = mPosition.distance(groundVec);
         if ((mPosition - groundVec).dot(mGravity) < 0.0f) {
             yOffset *= -1.0f;
         }
 
-        TVec3f offset(0.0f, yOffset, 0.0f);
-        mMtxSetter->updateMtxUseBaseMtxWithLocalOffset(offset);
-
+        TVec3f uselessVec(0.0f, yOffset, 0.0f);
+        mMtxSetter->updateMtxUseBaseMtxWithLocalOffset(TVec3f(0.0f, yOffset, 0.0f));
         MR::offCalcGravity(this);
     }
 }

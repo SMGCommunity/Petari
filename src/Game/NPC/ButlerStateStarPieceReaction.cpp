@@ -29,7 +29,7 @@ void ButlerStateStarPieceReaction::appear() {
 
 void ButlerStateStarPieceReaction::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHost, "StarPieceReaction", nullptr);
+        MR::startBck(mHost, "StarPieceReaction");
         MR::limitedStarPieceHitSound();
         MR::startSound(mHost, "SE_SM_BUTLER_ABSORB");
     }

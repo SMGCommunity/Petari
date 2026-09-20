@@ -214,7 +214,7 @@ void Trapeze::exeSwingWait() {
 
 void Trapeze::exeSwingSlideDownStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("TrapezeSlideDownStart", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("TrapezeSlideDownStart");
     }
 
     if (!updateSlideDown() && MR::isBckStopped(mRider)) {
@@ -224,7 +224,7 @@ void Trapeze::exeSwingSlideDownStart() {
 
 void Trapeze::exeSwingSlideDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("TrapezeSlideDown", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("TrapezeSlideDown");
     }
 
     if (updateSlideDown()) {
@@ -465,7 +465,7 @@ bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         mHangPoint->setInfo(grabPos, swingVel, mPosition, mGrabCoord);
         mHangPoint->mUp.set(mUp);
 
-        MR::startBckPlayer("TrapezeWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("TrapezeWait");
         MR::invalidateClipping(this);
         getSensor("body")->validate();
         getSensor("bind")->invalidate();
@@ -534,9 +534,9 @@ bool Trapeze::tryJump() {
         }
 
         if (frontDir.dot(jumpVel) >= 0.0f) {
-            MR::startBckPlayer("TrapezeFrontSpin", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("TrapezeFrontSpin");
         } else {
-            MR::startBckPlayer("TrapezeBackSpin", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("TrapezeBackSpin");
         }
 
         MR::setPlayerFrontTargetVec(frontDir, 1);
@@ -815,11 +815,7 @@ TrapezeRopeDrawInit::TrapezeRopeDrawInit(const char* pName) : NameObj(pName) {
     mTexture = nullptr;
     mTexture = new JUTTexture(MR::loadTexFromArc("Trapeze.arc", "TrapezeRope.bti"), 0);
 
-    MR::FunctorV0M< const TrapezeRopeDrawInit*, void (TrapezeRopeDrawInit::*)() const > preDrawFunctor(this, &TrapezeRopeDrawInit::initDraw);
-    MR::registerPreDrawFunction(preDrawFunctor, MR::DrawType_Trapeze);
-    // The above should probably be this instead, but MR::Functor_Inline does not like consts at the moment
-    // MR::registerPreDrawFunction(MR::Functor_Inline(const_cast< const TrapezeRopeDrawInit* >(this), &TrapezeRopeDrawInit::initDraw),
-    // MR::DrawType_Trapeze);
+    MR::registerPreDrawFunction(MR::Functor(this, &TrapezeRopeDrawInit::initDraw), MR::DrawType_Trapeze);
 }
 
 void TrapezeRopeDrawInit::initDraw() const {

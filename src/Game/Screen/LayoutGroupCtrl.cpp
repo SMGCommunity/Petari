@@ -1,7 +1,7 @@
 #include "Game/Screen/LayoutGroupCtrl.hpp"
 #include "Game/Animation/LayoutAnmPlayer.hpp"
 #include "Game/Screen/LayoutManager.hpp"
-#include "nw4r/lyt/group.h"
+#include <nw4r/lyt/group.h>
 
 LayoutGroupCtrl::LayoutGroupCtrl(LayoutManager* pManager, const char* pName, u32 animLayerCount)
     : mManager(pManager), mGroup(), mAnmPlayerArray(animLayerCount), _10(true) {

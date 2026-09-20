@@ -1,4 +1,4 @@
-#include "utl.h"
+#include <utl.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -31,11 +31,11 @@
 
 #include <stddef.h> // NULL
 
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "btm_api.h"
-#include "gki.h"
+#include <btm_api.h>
+#include <gki.h>
 
 /*******************************************************************************
  * functions

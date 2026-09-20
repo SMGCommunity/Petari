@@ -1,4 +1,4 @@
-#include "wbt_api.h"
+#include <wbt_api.h>
 
 /*******************************************************************************
  * headers
@@ -6,13 +6,13 @@
 
 #include <mem.h>
 
-#include <macros.h>  // ARRAY_LENGTH
+#include "macros.h"  // ARRAY_LENGTH
 
-#include "data_types.h"
+#include <data_types.h>
 
-#include "hcidefs.h"  // LMP_COMPID_BROADCOM
-#include "sdp_api.h"
-#include "sdpdefs.h"
+#include <hcidefs.h>  // LMP_COMPID_BROADCOM
+#include <sdp_api.h>
+#include <sdpdefs.h>
 
 /*******************************************************************************
  * functions

@@ -1,4 +1,4 @@
-#include "xml_api.h"
+#include <xml_api.h>
 
 /*******************************************************************************
  * headers
@@ -7,8 +7,8 @@
 #include <stdlib.h> // strtoul
 #include <string.h>
 
-#include "bt_trace.h"
-#include "data_types.h"
+#include <bt_trace.h>
+#include <data_types.h>
 
 /*******************************************************************************
  * macros

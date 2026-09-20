@@ -1,7 +1,7 @@
 #include <mem.h>
-#include <private/flipper.h>
-#include <revolution/os.h>
-#include <revolution/os/OSInterrupt.h>
+#include "private/flipper.h"
+#include "revolution/os.h"
+#include "revolution/os/OSInterrupt.h"
 
 static __OSInterruptHandler* InterruptHandlerTable;
 

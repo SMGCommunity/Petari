@@ -1,5 +1,5 @@
-#include <revolution/os/OSIpc.h>
-#include <revolution/os.h>
+#include "revolution/os/OSIpc.h"
+#include "revolution/os.h"
 
 static void* IpcBufferHi;
 static void* IpcBufferLo = (void*)0xFFFFFFFF;

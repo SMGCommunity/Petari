@@ -1,9 +1,9 @@
 #pragma once
 
-#include <JSystem/JAudio2/JAIStreamDataMgr.hpp>
-#include <JSystem/JAudio2/JASAramStream.hpp>
-#include <JSystem/JAudio2/JASHeapCtrl.hpp>
-#include <JSystem/JAudio2/JAUStreamFileTable.hpp>
+#include "JSystem/JAudio2/JAIStreamDataMgr.hpp"
+#include "JSystem/JAudio2/JASAramStream.hpp"
+#include "JSystem/JAudio2/JASHeapCtrl.hpp"
+#include "JSystem/JAudio2/JAUStreamFileTable.hpp"
 #include <bitset>
 
 template < int N >

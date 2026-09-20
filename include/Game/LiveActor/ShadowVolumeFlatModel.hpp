@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/ShadowVolumeModel.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class J3DModelData;
 

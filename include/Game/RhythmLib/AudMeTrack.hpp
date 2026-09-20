@@ -3,9 +3,9 @@
 #include "Game/RhythmLib/AudMeChannelMgr.hpp"
 #include "Game/RhythmLib/AudMeSeqCtrl.hpp"
 #include "Game/RhythmLib/AudMeTrackCallback.hpp"
-#include "JSystem/JAudio2/JASBankTable.hpp"
-#include "JSystem/JAudio2/JASDSPInterface.hpp"
-#include "JSystem/JGadget/linklist.hpp"
+#include <JSystem/JAudio2/JASBankTable.hpp>
+#include <JSystem/JAudio2/JASDSPInterface.hpp>
+#include <JSystem/JGadget/linklist.hpp>
 #include <JSystem/JAudio2/JASHeapCtrl.hpp>
 #include <JSystem/JAudio2/JASOscillator.hpp>
 

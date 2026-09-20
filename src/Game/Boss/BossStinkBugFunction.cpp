@@ -5,8 +5,8 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <JSystem/JMath/JMath.hpp>
 
 void BossStinkBugFunction_FORCE_MATCH_SDATA2() {
     (void)1.0f;

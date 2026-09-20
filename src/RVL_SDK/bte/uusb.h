@@ -5,9 +5,9 @@
  * headers
  */
 
-#include <decomp.h>
+#include "decomp.h"
 
-#include "data_types.h"
+#include <data_types.h>
 
 /*******************************************************************************
  * types

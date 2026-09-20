@@ -40,7 +40,7 @@ void PicketSwitch::exeWait() {
 
 void PicketSwitch::exeFirstDrop() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "First", nullptr);
+        MR::startBck(this, "First");
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::startSound(this, "SE_OJ_PICKET_SWITCH_DROP");
     }
@@ -48,7 +48,7 @@ void PicketSwitch::exeFirstDrop() {
 
 void PicketSwitch::exeLastDrop() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Second", nullptr);
+        MR::startBck(this, "Second");
         MR::startBrk(this, "Second");
         MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
         MR::startSound(this, "SE_OJ_PICKET_SWITCH_DROP");

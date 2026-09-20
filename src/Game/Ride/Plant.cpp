@@ -36,11 +36,6 @@ void Plant_FORCE_MATCH_SDATA2() {
     (void)-1.0f;
 }
 
-void DUMMY() {
-    f32 a;
-    MR::clampMax(&a, 0.0f);
-}
-
 namespace {
     static const f32 sDistanceNear = 700.0f;
     static const f32 sDistanceBody = 300.0f;
@@ -168,7 +163,7 @@ void Plant::appear() {
 
 void Plant::exeWaitFar() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mSeedPartsModel, "Wait", 0);
+        MR::startBck(mSeedPartsModel, "Wait");
     }
 
     if (MR::isNear(this, *MR::getPlayerPos(), ::sDistanceNear)) {
@@ -178,7 +173,7 @@ void Plant::exeWaitFar() {
 
 void Plant::exeSeedWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mSeedPartsModel, "Bud", 0);
+        MR::startBck(mSeedPartsModel, "Bud");
         MR::startSound(this, "SE_OJ_PLANT_BUD");
         mTopPartsModel->kill();
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
@@ -195,7 +190,7 @@ void Plant::exeWaitDemoWaitGrowUp() {
 
 void Plant::exeDemoWaitGrowUp() {
     if (MR::isStep(this, ::sStepDemoAppearEffect)) {
-        MR::startBck(mSeedPartsModel, "Bud", 0);
+        MR::startBck(mSeedPartsModel, "Bud");
         MR::startSound(this, "SE_OJ_PLANT_BUD");
     }
 
@@ -206,7 +201,7 @@ void Plant::exeDemoWaitGrowUp() {
 
 void Plant::exeGrowUp() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mSeedPartsModel, "GrowUp", 0);
+        MR::startBck(mSeedPartsModel, "GrowUp");
         MR::startSound(this, "SE_OJ_PLANT_SEED_BREAK");
         MR::startSystemSE("SE_SY_ITEM_APPEAR");
         MR::startSound(this, "SE_OJ_PLANT_GROW_START");
@@ -219,7 +214,7 @@ void Plant::exeGrowUp() {
 
 void Plant::exeHangWaitGrowUp() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("GrowPlantCatch", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("GrowPlantCatch");
     }
 
     if (updateGrowUp()) {
@@ -236,7 +231,7 @@ void Plant::exeHangWaitGrowUp() {
 
 void Plant::exeHangUpGrowUp() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("GrowPlantHangUp", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("GrowPlantHangUp");
         mAccelTimer = 0;
         mRideVelocity = ::sGrowUpPlayerSpeed;
     }
@@ -251,7 +246,7 @@ void Plant::exeHangUpGrowUp() {
 
     if (mRideVelocity <= 0.0f) {
         mRideVelocity = 0.0f;
-        MR::startBckPlayer("GrowPlantHangDown", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("GrowPlantHangDown");
         setNerve(GET_NERVE(Plant, PlantNrvHangWaitGrowUp));
         return;
     }
@@ -311,7 +306,7 @@ void Plant::exeGrowthWaitInvalid() {
 
 void Plant::exeHangStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("GrowPlantCatch", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("GrowPlantCatch");
     }
 
     if (!updateHangUp(::sHangStartRotateSpeed) && MR::isBckStopped(mRider)) {
@@ -321,7 +316,7 @@ void Plant::exeHangStart() {
 
 void Plant::exeHangUp() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("GrowPlantHangUp", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("GrowPlantHangUp");
         MR::setRailDirectionToEnd(this);
         mAccelTimer = 0;
     }
@@ -337,7 +332,7 @@ void Plant::exeHangUp() {
 
 void Plant::exeHangDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("GrowPlantHangDown", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("GrowPlantHangDown");
         MR::setRailDirectionToStart(this);
     }
 
@@ -351,7 +346,7 @@ void Plant::exeHangDown() {
 
     if (MR::isRailReachedNearGoal(this, ::sHangReachedDistance)) {
         MR::endMultiActorCameraAtLanding(this, mCameraInfo, "掴まり", -1);
-        MR::startBckPlayer("GrowPlantJump", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("GrowPlantJump");
         MR::endBindAndPlayerJump(this, TVec3f(0.0f, 0.0f, 0.0f), 0);
         mRider = nullptr;
         setNerve(GET_NERVE(Plant, PlantNrvGrowthWaitInvalid));
@@ -473,6 +468,7 @@ bool Plant::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRece
             startGrowUp();
             return true;
         }
+
         return false;
     }
 
@@ -588,6 +584,7 @@ bool Plant::updateGrowUp() {
         } else {
             setNerve(GET_NERVE(Plant, PlantNrvGrowthWait));
         }
+
         return true;
     }
 
@@ -627,6 +624,7 @@ void Plant::updateBindLeaf() {
     if (MR::isRailGoingToEnd(this)) {
         railDir.scale(-1.0f);
     }
+
     railDir.add(mPosition);
 
     for (s32 leaf = 0; leaf < mNumLeaves; leaf++) {
@@ -648,6 +646,7 @@ bool Plant::tryHangUp() {
         if (mGrabbedTop) {
             mGrabbedTop = false;
         }
+
         return false;
     }
 
@@ -685,7 +684,7 @@ bool Plant::tryReachGoal() {
 
     endUp.add(mGravity * -mJumpSpeedOffsetY);
 
-    MR::startBckPlayer("GrowPlantJump", static_cast< const char* >(nullptr));
+    MR::startBckPlayer("GrowPlantJump");
     MR::stopSound(mRider, "SE_OJ_PLANT_MARIO_UP_START");
     MR::startSound(mRider, "SE_PM_JUMP_L");
     MR::startSound(mRider, "SE_PV_JUMP_JOY");
@@ -713,6 +712,7 @@ bool Plant::tryAccelHangUp() {
         } else {
             speed = ::sHangUpPlayerSpeedMin;
         }
+
         mRideVelocity = speed;
         return true;
     }

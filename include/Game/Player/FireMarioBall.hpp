@@ -3,8 +3,8 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/JMapInfo.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 
 class FireMarioBall : public LiveActor {
 public:

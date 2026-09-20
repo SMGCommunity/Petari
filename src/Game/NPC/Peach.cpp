@@ -18,7 +18,7 @@ void Peach::init(const JMapInfoIter& rIter) {
 
 void Peach::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Help", nullptr);
+        MR::startBck(this, "Help");
     }
 
     if (mMsgCtrl != nullptr) {

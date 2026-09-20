@@ -11,8 +11,8 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
-#include "revolution/types.h"
+#include <JSystem/JMath/JMATrigonometric.hpp>
+#include <revolution/types.h>
 
 namespace NrvBossStinkBugActionFlyLow {
     NEW_NERVE(BossStinkBugActionFlyLowNrvFly, BossStinkBugActionFlyLow, Fly);
@@ -47,7 +47,7 @@ void BossStinkBugActionFlyLow::appear() {
     setNerve(GET_NERVE(BossStinkBugActionFlyLow, BossStinkBugActionFlyLowNrvDash));
     MR::offBind(getHost());
     getHost()->validateCollisionFly();
-    MR::startBck(getHost()->getBombLauncher(), "Open", nullptr);
+    MR::startBck(getHost()->getBombLauncher(), "Open");
     MR::tryStartAllAnim(getHost()->getWingModel(), "Fly");
 }
 

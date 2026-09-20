@@ -54,16 +54,19 @@ void SimpleEffectObj::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, _8C, false);
     initSound(4, false);
     initNerve(GET_NERVE(SimpleEffectObj, HostTypeWait));
+
     if (MR::useStageSwitchReadA(this, rIter)) {
         MR::listenStageSwitchOnOffA(this, MR::Functor(this, &SimpleEffectObj::setStateMove), MR::Functor(this, &SimpleEffectObj::setStateWait));
     } else {
         setNerve(GET_NERVE(SimpleEffectObj, HostTypeMove));
     }
+
     if (MR::tryRegisterDemoCast(this, rIter)) {
         MR::tryRegisterDemoActionFunctor(this, MR::Functor(this, &SimpleEffectObj::setStateMove), nullptr);
     } else {
         MR::registerDemoSimpleCastAll(this);
     }
+
     _90.set(mPosition + *getClippingCenterOffset());
     MR::setClippingTypeSphere(this, getClippingRadius(), &_90);
     MR::setGroupClipping(this, rIter, 0x40);
@@ -78,6 +81,7 @@ bool SimpleEffectObj::isStateMove() const {
 
 void SimpleEffectObj::startClipped() {
     LiveActor::startClipped();
+
     if (isSyncClipping() && isNerve(GET_NERVE(SimpleEffectObj, HostTypeMove))) {
         MR::deleteEffectAll(this);
     }
@@ -85,6 +89,7 @@ void SimpleEffectObj::startClipped() {
 
 void SimpleEffectObj::endClipped() {
     LiveActor::endClipped();
+
     if (isSyncClipping() && isNerve(GET_NERVE(SimpleEffectObj, HostTypeMove))) {
         MR::emitEffect(this, _8C);
     }
@@ -108,11 +113,12 @@ void SimpleEffectObj::exeMove() {
         MR::emitEffect(this, _8C);
         v1 = ::findDataElement(_8C);
         s32 v4;
-        if (v1) {
+        if (v1 != nullptr) {
             v4 = v1->_C;
         } else {
             v4 = -1;
         }
+
         if (v4 != -1 && v4 != -1) {
             if (v4 == 0) {
                 MR::shakeCameraStrong();
@@ -122,46 +128,53 @@ void SimpleEffectObj::exeMove() {
                 MR::shakeCameraWeak();
             }
         }
+
         v1 = ::findDataElement(_8C);
         const char* Sound;
-        if (v1) {
+        if (v1 != nullptr) {
             Sound = v1->_4;
         } else {
             Sound = nullptr;
         }
-        if (Sound) {
+
+        if (Sound != nullptr) {
             MR::startSound(this, Sound);
         }
     }
     v1 = ::findDataElement(_8C);
     const char* levelSound;
-    if (v1) {
+    if (v1 != nullptr) {
         levelSound = v1->_8;
     } else {
         levelSound = nullptr;
     }
-    if (levelSound) {
+
+    if (levelSound != nullptr) {
         MR::startLevelSound(this, levelSound);
     }
+
     v1 = ::findDataElement(_8C);
     s32 v13;
-    if (v1) {
+    if (v1 != nullptr) {
         v13 = v1->_14;
     } else {
         v13 = -1;
     }
+
     if (v13 < 0) {
         return;
     }
+
     if (MR::isStep(this, v13)) {
         v1 = ::findDataElement(_8C);
         const char* v15;
-        if (v1) {
+        if (v1 != nullptr) {
             v15 = v1->_10;
         } else {
             v15 = nullptr;
         }
-        if (v15) {
+
+        if (v15 != nullptr) {
             MR::tryRumblePad(this, v15, WPAD_CHAN0);
         }
     }

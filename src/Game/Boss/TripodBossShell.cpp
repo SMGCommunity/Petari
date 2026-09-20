@@ -99,7 +99,7 @@ void TripodBossShell::exeBreak() {
         MR::invalidateClipping(this);
         mBreakModel->appear();
         MR::requestMovementOn(mBreakModel);
-        MR::startBck(mBreakModel, "Break", nullptr);
+        MR::startBck(mBreakModel, "Break");
 
         f32 playerDistance;
         TVec3f toPlayerDir = *MR::getPlayerPos() - mPosition;

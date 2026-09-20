@@ -715,15 +715,15 @@ void HomingKiller::exeAppear() {
     // https://decomp.me/scratch/lM12w
 
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Start", nullptr);
+        MR::startBck(this, "Start");
         if (mType == Type_MagnumKiller) {  // FIXME
             MR::startBpk(this, "Move");
             MR::startBrk(this, "Move");
         }
         if (mType == Type_Torpedo) {  // FIXME
-            MR::startBck(mPropeller, "RotateTorpedo", nullptr);
+            MR::startBck(mPropeller, "RotateTorpedo");
             mTorpedoLight->appear();
-            MR::startBck(mTorpedoLight, "Appear", nullptr);
+            MR::startBck(mTorpedoLight, "Appear");
         }
         setBckRate(0.0f, true);
     }
@@ -776,7 +776,7 @@ void HomingKiller::exeMoveStart() {
 
 void HomingKiller::exeMove() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Move", nullptr);
+        MR::tryStartBck(this, "Move");
     }
 
     if (processMove() && !tryFreeze(GET_NERVE(HomingKiller, HomingKillerNrvMove)) && !tryChaseStart()) {
@@ -785,7 +785,7 @@ void HomingKiller::exeMove() {
 }
 
 void HomingKiller::exeChaseStart() {
-    if (MR::isFirstStep(this) && MR::tryStartBck(this, "ChaseStart", nullptr)) {
+    if (MR::isFirstStep(this) && MR::tryStartBck(this, "ChaseStart")) {
         MR::startBpk(this, "Chase");
         MR::startBrk(this, "Chase");
         MR::startSound(this, "SE_EM_KILLER_JET");
@@ -798,7 +798,7 @@ void HomingKiller::exeChaseStart() {
 
 void HomingKiller::exeChase() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Chase", nullptr);
+        MR::tryStartBck(this, "Chase");
     }
 
     if (processChase() && !tryFreeze(GET_NERVE(HomingKiller, HomingKillerNrvChase))) {

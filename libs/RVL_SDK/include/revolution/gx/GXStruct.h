@@ -5,9 +5,9 @@
 extern "C" {
 #endif
 
-#include <revolution/gx/GXEnum.h>
-#include <revolution/types.h>
-#include <revolution/vi/vitypes.h>
+#include "revolution/gx/GXEnum.h"
+#include "revolution/types.h"
+#include "revolution/vi/vitypes.h"
 
 typedef struct _GXColor {
     u8 r, g, b, a;

@@ -1,7 +1,7 @@
 #ifndef OSMODULE_H
 #define OSMODULE_H
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 
 #ifdef __cplusplus
 extern "C" {

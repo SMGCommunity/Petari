@@ -2,7 +2,7 @@
 #define CONSOLE_IO_H
 
 #include "ansi_params.h"
-#include <cstdio>
+#include "cstdio"
 
 int __read_console(__std(unsigned long), unsigned char *, __std(size_t) *, __std(void *));
 int __write_console(__std(unsigned long), unsigned char *, __std(size_t) *, __std(void *));

@@ -1,9 +1,9 @@
 #ifndef WPAD_H
 #define WPAD_H
 
-#include <revolution/os.h>
-#include <revolution/sc.h>
-#include <revolution/types.h>
+#include "revolution/os.h"
+#include "revolution/sc.h"
+#include "revolution/types.h"
 
 #ifdef __cplusplus
 extern "C" {

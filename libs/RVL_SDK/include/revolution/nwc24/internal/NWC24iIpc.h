@@ -1,10 +1,10 @@
 #ifndef RVL_SDK_NWC24_INTERNAL_IPC_H
 #define RVL_SDK_NWC24_INTERNAL_IPC_H
-#include <revolution/types.h>
+#include "revolution/types.h"
 #include <cstdlib>
 
-#include <revolution/ipc.h>
-#include <revolution/nwc24/NWC24Types.h>
+#include "revolution/ipc.h"
+#include "revolution/nwc24/NWC24Types.h"
 #ifdef __cplusplus
 extern "C" {
 #endif

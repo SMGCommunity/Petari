@@ -91,7 +91,7 @@ void PomponPlant::exeWait() {
 void PomponPlant::exeSwingDpd() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_POMPON_PLANT_DPD_HIT");
-        MR::startBck(this, "DpdHit", nullptr);
+        MR::startBck(this, "DpdHit");
     }
 
     if (MR::isBckStopped(this)) {
@@ -102,7 +102,7 @@ void PomponPlant::exeSwingDpd() {
 void PomponPlant::exeSwingPlayer() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_POMPON_PLANT_HIT");
-        MR::startBck(this, "Hit", nullptr);
+        MR::startBck(this, "Hit");
         tryGenItem();
     }
 

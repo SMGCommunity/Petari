@@ -1,4 +1,4 @@
-#include "bta_dm_int.h"
+#include <bta_dm_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -31,30 +31,30 @@
 
 #include <cstring>
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 
-#include <decomp.h>  // unk_t
+#include "decomp.h"  // unk_t
 
-#include "bt_target.h"
-#include "bt_trace.h"  // APPL_TRACE
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_trace.h>  // APPL_TRACE
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "bd.h"
-#include "bta_api.h"
-#include "bta_dm_co.h"  // bta_dm_co_get_compress_memory
-#include "bta_sys.h"
-#include "bta_sys_int.h"  // bta_sys_cb
-#include "btm_api.h"
-#include "btm_int.h"
-#include "btu.h"  // BT_BD_ANY
-#include "gki.h"
-#include "hcidefs.h"
-#include "hcimsgs.h"  // btsnd_hcic_write_scan_enable
-#include "l2c_api.h"
-#include "sdp_api.h"
-#include "sdpdefs.h"
-#include "wbt_api.h"
+#include <bd.h>
+#include <bta_api.h>
+#include <bta_dm_co.h>  // bta_dm_co_get_compress_memory
+#include <bta_sys.h>
+#include <bta_sys_int.h>  // bta_sys_cb
+#include <btm_api.h>
+#include <btm_int.h>
+#include <btu.h>  // BT_BD_ANY
+#include <gki.h>
+#include <hcidefs.h>
+#include <hcimsgs.h>  // btsnd_hcic_write_scan_enable
+#include <l2c_api.h>
+#include <sdp_api.h>
+#include <sdpdefs.h>
+#include <wbt_api.h>
 
 /*******************************************************************************
  * local function declarations

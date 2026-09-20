@@ -333,7 +333,7 @@ void ElectricRail::initMapToolInfo(const JMapInfoIter& iter) {
     MR::getJMapInfoArg0NoInit(iter, &mRailHeight);
 
     if (MR::useStageSwitchReadA(this, iter)) {
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &ElectricRail::disappear));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &ElectricRail::disappear));
     }
 }
 

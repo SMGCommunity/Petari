@@ -31,7 +31,7 @@ void ItemAppearStone::init(const JMapInfoIter& rIter) {
     MR::needStageSwitchReadB(this, rIter);
     initNerve(GET_NERVE(ItemAppearStone, HostTypeWait));
     makeActorAppeared();
-    MR::startBck(this, model_name, 0);
+    MR::startBck(this, model_name);
 }
 
 void ItemAppearStone::kill() {

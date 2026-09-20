@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JSystem/JAudio2/JAUStdSoundInfo.hpp"
+#include <JSystem/JAudio2/JAUStdSoundInfo.hpp>
 
 // TODO: JAUStdSoundInfo or just JAUSoundInfo?
 class AudSoundInfo : public JAUSoundInfo {

@@ -24,8 +24,8 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 
 void KuriboMini_FORCE_MATCH_SDATA2() {
     (void)1.0f;
@@ -123,7 +123,7 @@ void KuriboMini::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchWriteDead(this, rIter);
     MR::useStageSwitchSleep(this, rIter);
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &KuriboMini::calcPassiveMovement));
+        MR::listenStageSwitchOnB(this, MR::Functor(this, &KuriboMini::calcPassiveMovement));
     }
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {

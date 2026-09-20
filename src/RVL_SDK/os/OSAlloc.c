@@ -1,4 +1,4 @@
-#include <revolution.h>
+#include "revolution.h"
 
 #define TRUNC(n, a) (((u32)(n)) & ~((a) - 1))
 #define ROUND(n, a) (((u32)(n) + (a) - 1) & ~((a) - 1))

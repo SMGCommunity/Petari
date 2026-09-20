@@ -97,7 +97,7 @@ void DemoKoopaJrShip::exeAppear() {
 void DemoKoopaJrShip::exeTalk() {
     if (MR::isFirstStep(this)) {
         mKoopaJrObj->startShipBattleTalk();
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MOVE");
@@ -166,9 +166,9 @@ bool DemoKoopaJrShip::tryDemoEnd() {
 
 void DemoKoopaJrShip::startEntryAnim() {
     if (mAnimCameraIndex == -1) {
-        MR::startBck(this, "Arrival", nullptr);
+        MR::startBck(this, "Arrival");
     } else {
-        MR::startBck(this, ::sAnim[mAnimCameraIndex].mEntryAnimName, nullptr);
+        MR::startBck(this, ::sAnim[mAnimCameraIndex].mEntryAnimName);
 
         ActorCameraInfo cameraInfo = ActorCameraInfo();
         MR::startAnimCameraTargetSelf(this, &cameraInfo, ::sAnim[mAnimCameraIndex].mEntryAnimName, 0, 1.0f);
@@ -177,11 +177,11 @@ void DemoKoopaJrShip::startEntryAnim() {
 
 void DemoKoopaJrShip::startLeaveAnim() {
     if (mAnimCameraIndex == -1) {
-        MR::startBck(this, "Arrival", nullptr);
+        MR::startBck(this, "Arrival");
         MR::setBckFrame(this, MR::getBckCtrl(this)->getEnd() - 1.0f);
         MR::setBckRate(this, -1.0f);
     } else {
-        MR::startBck(this, ::sAnim[mAnimCameraIndex].mLeaveAnimName, nullptr);
+        MR::startBck(this, ::sAnim[mAnimCameraIndex].mLeaveAnimName);
 
         ActorCameraInfo cameraInfo = ActorCameraInfo();
         MR::startAnimCameraTargetSelf(this, &cameraInfo, ::sAnim[mAnimCameraIndex].mLeaveAnimName, 0, 1.0f);

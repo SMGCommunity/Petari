@@ -7,8 +7,8 @@
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 
 void LavaBreakColumn_FORCE_MATCH_SDATA2() {
     (void)0.0f;

@@ -30,10 +30,10 @@
  * headers
  */
 
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "profiles_api.h"
+#include <profiles_api.h>
 
 /*******************************************************************************
  * macros

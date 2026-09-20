@@ -25,7 +25,7 @@ RosettaDemoHeavensDoor1::RosettaDemoHeavensDoor1(Rosetta* pHost, const JMapInfoI
     mLightDomeModel->makeActorAppeared();
     mLightDomeModel->initFixedPosition(TVec3f(0.0f, -13.0f, -30.0f), TVec3f(0.0f, 0.0f, 0.0f), "Center");
     MR::startBrk(mLightDomeModel, "LightDome");
-    MR::startBck(mLightDomeModel, "Appear", nullptr);
+    MR::startBck(mLightDomeModel, "Appear");
 
     if (MR::isDemoCast(mHost, nullptr)) {
         MR::tryRegisterDemoCast(mLightDomeModel, rIter);

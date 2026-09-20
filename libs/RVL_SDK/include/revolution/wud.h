@@ -8,10 +8,10 @@
 extern "C" {
 #endif
 
-#include <revolution/wud/WUDHidHost.h>
-#include <revolution/wud/WUDInternal.h>
-#include <revolution/wud/debug_msg.h>
-#include <revolution/wud/wud.h>
+#include "revolution/wud/WUDHidHost.h"
+#include "revolution/wud/WUDInternal.h"
+#include "revolution/wud/debug_msg.h"
+#include "revolution/wud/wud.h"
 
 #ifdef __cplusplus
 }
