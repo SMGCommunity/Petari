@@ -4,6 +4,7 @@
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/NPC/Rosetta.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/System/NerveExecutor.hpp"
 #include "Game/Util.hpp"
 namespace {
     static const s32 sRosettaSwingVoiceFrame = 70;
@@ -50,7 +51,9 @@ RosettaDemoHeavensDoor1::RosettaDemoHeavensDoor1(Rosetta* pHost, const JMapInfoI
     MR::registerDemoActionFunctor(mHost, MR::Functor(this, &RosettaDemoHeavensDoor1::pstDemo), "高楼出現[デモ後]");
     MR::registerDemoActionFunctor(mHost, MR::Functor(this, &RosettaDemoHeavensDoor1::fadeOut), "高楼出現[フェードアウト]");
     MR::registerDemoActionFunctor(mHost, MR::Functor(this, &RosettaDemoHeavensDoor1::fadeIn), "高楼出現[フェードイン]");
-    MR::registerDemoActionFunctor(mHost, MR::Functor(this, &RosettaDemoHeavensDoor1::changeNerve< RosettaDemoHeavensDoor1 >), "スピンゲット[デモ1]");
+    MR::registerDemoActionFunctor(
+        mHost, MR::Functor(this, &RosettaDemoHeavensDoor1::changeNerve< NrvRosettaDemoHeavensDoor1::RosettaDemoHeavensDoor1NrvDemo >),
+        "スピンゲット[デモ1]");
     MR::invalidateShadowAll(mHost);
     MR::invalidateHitSensors(mHost);
     MR::setClippingTypeSphere(mHost, 1500.0f);
@@ -146,8 +149,8 @@ RosettaDemoHeavensDoor2::RosettaDemoHeavensDoor2(Rosetta* pHost, const JMapInfoI
     : NerveExecutor("ロゼッタデモ実行者"), mDemoStarter(pHost), mHost(pHost) {
     DemoFunction::tryCreateDemoTalkAnimCtrlForScene(mHost, rIter, "DemoRedStar", "郷愁[開始]", 0, 0);
     DemoFunction::registerDemoTalkMessageCtrl(mHost, mHost->mMsgCtrl);
-    // MR::registerDemoActionFunctor(mHost, MR::Functor(this, &RosettaDemoHeavensDoor2::changeNerve<
-    // NrvRosettaDemoHeavensDoor2::RosettaDemoHeavensDoor2 >), "郷愁[開始]");
+    MR::registerDemoActionFunctor(
+        mHost, MR::Functor(this, &RosettaDemoHeavensDoor2::changeNerve< NrvRosettaDemoHeavensDoor2::RosettaDemoHeavensDoor2NrvDemo >), "郷愁[開始]");
     MR::needStageSwitchWriteA(mHost, rIter);
 
     if (MR::isOnGameEventFlagRosettaTalkAboutTicoInTower()) {
@@ -181,4 +184,14 @@ void RosettaDemoHeavensDoor2::exeWait() {
 }
 
 void RosettaDemoHeavensDoor2::exeDemo() {
+}
+
+template < typename T >
+void RosettaDemoHeavensDoor1::changeNerve() {
+    NerveExecutor::setNerve(&NrvRosettaDemoHeavensDoor1::RosettaDemoHeavensDoor1NrvDemo::sInstance);
+}
+
+template < typename T >
+void RosettaDemoHeavensDoor2::changeNerve() {
+    NerveExecutor::setNerve(&NrvRosettaDemoHeavensDoor2::RosettaDemoHeavensDoor2NrvDemo::sInstance);
 }
