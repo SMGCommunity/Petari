@@ -15,6 +15,11 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void Onimasu_DUMMY() {
+    TVec3f a;
+    a.scale(1.0f);
+}
+
 namespace {
     static const s32 sWaitTime = 90;
     static const s32 sTimeToNextPoint = 30;
@@ -80,7 +85,7 @@ void Onimasu::init(const JMapInfoIter& rIter) {
     }
 
     MR::useStageSwitchSleep(this, rIter);
-    
+
     makeActorAppeared();
 }
 
@@ -223,13 +228,11 @@ bool Onimasu::calcTurnDirection(f32* pTurnDir) const {
 }
 
 void Onimasu::updateStompVelocity() {
-    //FIXME: regswap
     f32 speed = getGravityScalar() * getTimeToNextPoint() * 0.5f;
 
     TVec3f gravityDir;
-    calcGravityDir(&gravityDir);
-
-    mVelocity.set((-gravityDir).scaleInline(speed));
+    gravityDir.set(-getNextPointNormal());
+    mVelocity.set(-gravityDir * speed);
 }
 
 void Onimasu::calcGravityDir(TVec3f* pDir) const {

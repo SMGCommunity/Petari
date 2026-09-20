@@ -66,7 +66,7 @@ void PrologueDirector::init(const JMapInfoIter& rIter) {
 
     MR::connectToSceneMapObjMovement(this);
     MR::invalidateClipping(this);
-    initNerve(GET_NERVE_GLOBAL(PrologueDirectorNrvWait));
+    initNerve(GET_NERVE_ANON(PrologueDirectorNrvWait));
     createPictureBook();
     createLetter();
     createScenery();
@@ -86,7 +86,7 @@ void PrologueDirector::initAfterPlacement() {
 
 void PrologueDirector::appear() {
     LiveActor::appear();
-    setNerve(GET_NERVE_GLOBAL(PrologueDirectorNrvWait));
+    setNerve(GET_NERVE_ANON(PrologueDirectorNrvWait));
     MR::forceCloseWipeFade();
     MR::forceOffImageEffect();
 
@@ -106,7 +106,7 @@ void PrologueDirector::kill() {
 void PrologueDirector::exeWait() {
     if (MR::tryStartDemoWithoutCinemaFrame(this, ::sPictureBookDemoName)) {
         MR::submitLevelSE();
-        setNerve(GET_NERVE_GLOBAL(PrologueDirectorNrvPictureBook));
+        setNerve(GET_NERVE_ANON(PrologueDirectorNrvPictureBook));
         pauseOff();
         _A0.set(MR::getPlayerBaseMtx());
     }
@@ -129,7 +129,7 @@ void PrologueDirector::exePictureBook() {
         MR::forceCloseWipeFade();
         mPictureBook->kill();
         MR::stopStageBGM(90);
-        setNerve(GET_NERVE_GLOBAL(PrologueDirectorNrvPeachLetterStart));
+        setNerve(GET_NERVE_ANON(PrologueDirectorNrvPeachLetterStart));
     }
 }
 
@@ -139,7 +139,7 @@ void PrologueDirector::exePeachLetterStart() {
     }
 
     if (MR::isStep(this, 90)) {
-        setNerve(GET_NERVE_GLOBAL(PrologueDirectorNrvPeachLetter));
+        setNerve(GET_NERVE_ANON(PrologueDirectorNrvPeachLetter));
     }
 }
 
@@ -153,13 +153,13 @@ void PrologueDirector::exePeachLetter() {
 
     if (MR::isDead(mLetter)) {
         MR::stopSystemSE("SE_SV_PEACH_OPENING_LETTER");
-        setNerve(GET_NERVE_GLOBAL(PrologueDirectorNrvPeachLetterWait));
+        setNerve(GET_NERVE_ANON(PrologueDirectorNrvPeachLetterWait));
     }
 }
 
 void PrologueDirector::exePeachLetterWait() {
     if (MR::isGreaterEqualStep(this, ::sPeachLetterWait)) {
-        setNerve(GET_NERVE_GLOBAL(PrologueDirectorNrvPeachLetterEnd));
+        setNerve(GET_NERVE_ANON(PrologueDirectorNrvPeachLetterEnd));
     }
 }
 
@@ -176,7 +176,7 @@ void PrologueDirector::exePeachLetterEnd() {
 
     MR::endAnimCamera(mScenery, &cameraInfo, "DemoLetter", 0, true);
     mScenery->kill();
-    setNerve(GET_NERVE_GLOBAL(PrologueDirectorNrvBindWait));
+    setNerve(GET_NERVE_ANON(PrologueDirectorNrvBindWait));
 }
 
 void PrologueDirector::exeBindWait() {
@@ -193,7 +193,7 @@ void PrologueDirector::exeBindWait() {
         CameraTargetArg cameraTarget = CameraTargetArg(nullptr, mCameraTarget, nullptr, nullptr);
 
         MR::startAnimCameraTargetOther(mMarioPosDummyModel, &cameraInfo, "DemoPeachCastleGate", cameraTarget, 0, 1.0f);
-        setNerve(GET_NERVE_GLOBAL(PrologueDirectorNrvArrive));
+        setNerve(GET_NERVE_ANON(PrologueDirectorNrvArrive));
     }
 }
 
@@ -231,7 +231,7 @@ void PrologueDirector::exeArrive() {
     if (MR::isBckStoppedPlayer()) {
         MR::endAnimCamera(mMarioPosDummyModel, &cameraInfo, "DemoPeachCastleGate", 0, true);
         mMarioPosDummyModel->kill();
-        setNerve(GET_NERVE_GLOBAL(PrologueDirectorNrvGameStart));
+        setNerve(GET_NERVE_ANON(PrologueDirectorNrvGameStart));
     }
 }
 

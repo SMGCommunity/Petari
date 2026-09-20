@@ -433,7 +433,7 @@ void MorphItemObjNeo::calcAndSetBaseMtx() {
 
             TVec3f yDir;
             reinterpret_cast< TPos3f* >(getBaseMtx())->getYDir(yDir);
-            MR::addTransMtx(getBaseMtx(), yDir.scaleInline(-60.0f));
+            MR::addTransMtx(getBaseMtx(), yDir * -60.0f);
 
             pMtx = MR::tmpMtxScale(0.8f, 0.8f, 0.8f);
             PSMTXConcat(getBaseMtx(), pMtx, getBaseMtx());

@@ -586,7 +586,7 @@ void Tamakoro::exeBindStartLand() {
         }
         mMarioPos.scaleAdd(mBaseRadius, mDirectionToMario, mPosition);
 
-        mMarioUp = (mDirectionToMario - mGravity).multiplyOperatorInline(0.5f);
+        mMarioUp = (mDirectionToMario - mGravity) / 2.0f;
         if (MR::normalizeOrZero(&mMarioUp)) {
             mMarioUp.set(-mGravity);
         }

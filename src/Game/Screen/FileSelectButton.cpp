@@ -26,7 +26,7 @@ void FileSelectButton::init(const JMapInfoIter& rIter) {
     createButtonController();
     createOthers();
     MR::connectToSceneLayout(this);
-    initNerve(GET_NERVE_GLOBAL(FileSelectButtonNrvSelect));
+    initNerve(GET_NERVE_ANON(FileSelectButtonNrvSelect));
 }
 
 void FileSelectButton::appear() {
@@ -36,7 +36,7 @@ void FileSelectButton::appear() {
         mButtonCtrl[i]->appear();
     }
 
-    setNerve(GET_NERVE_GLOBAL(FileSelectButtonNrvSelect));
+    setNerve(GET_NERVE_ANON(FileSelectButtonNrvSelect));
 }
 
 void FileSelectButton::kill() {
@@ -48,7 +48,7 @@ void FileSelectButton::disappear() {
         mButtonCtrl[i]->disappear();
     }
 
-    setNerve(GET_NERVE_GLOBAL(FileSelectButtonNrvDisappear));
+    setNerve(GET_NERVE_ANON(FileSelectButtonNrvDisappear));
 }
 
 void FileSelectButton::setCallbackFunctor(const MR::FunctorBase& rStartFunctor, const MR::FunctorBase& rCopyFunctor,
@@ -62,7 +62,7 @@ void FileSelectButton::setCallbackFunctor(const MR::FunctorBase& rStartFunctor, 
 }
 
 void FileSelectButton::shiftSelect() {
-    setNerve(GET_NERVE_GLOBAL(FileSelectButtonNrvSelect));
+    setNerve(GET_NERVE_ANON(FileSelectButtonNrvSelect));
 }
 
 void FileSelectButton::exeSelect() {
@@ -76,7 +76,7 @@ void FileSelectButton::exeSelect() {
                 (*mCallbackFunctor[i])();
             }
 
-            setNerve(GET_NERVE_GLOBAL(FileSelectButtonNrvWait));
+            setNerve(GET_NERVE_ANON(FileSelectButtonNrvWait));
             break;
         }
     }

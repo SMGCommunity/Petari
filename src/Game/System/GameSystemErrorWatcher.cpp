@@ -68,7 +68,7 @@ GameSystemErrorWatcher::GameSystemErrorWatcher()
     _1C = new TriggerChecker();
     _1C->setInput(false);
 
-    initNerve(GET_NERVE_GLOBAL(GameSystemErrorWatcherNoError));
+    initNerve(GET_NERVE_ANON(GameSystemErrorWatcherNoError));
 }
 
 void GameSystemErrorWatcher::initAfterResourceLoaded() {
@@ -102,7 +102,7 @@ void GameSystemErrorWatcher::draw() const {
 }
 
 bool GameSystemErrorWatcher::isWarning() const {
-    return !isNerve(GET_NERVE_GLOBAL(GameSystemErrorWatcherNoError));
+    return !isNerve(GET_NERVE_ANON(GameSystemErrorWatcherNoError));
 }
 
 bool GameSystemErrorWatcher::setPermissionUpdateWiiRemoteStatus(bool permission) {
@@ -133,7 +133,7 @@ void GameSystemErrorWatcher::exeNoError() {
     if (pMessage != nullptr) {
         mMessage = pMessage;
 
-        setNerve(GET_NERVE_GLOBAL(GameSystemErrorWatcherErrorWindowIn));
+        setNerve(GET_NERVE_ANON(GameSystemErrorWatcherErrorWindowIn));
 
         if (AudWrap::getSystem() != nullptr) {
             AudWrap::getSystem()->doDvdErrorProcess();
@@ -147,7 +147,7 @@ void GameSystemErrorWatcher::exeErrorWindowIn() {
     }
 
     if (mWindow->isAnimEnd()) {
-        setNerve(GET_NERVE_GLOBAL(GameSystemErrorWatcherErrorWindowDisplay));
+        setNerve(GET_NERVE_ANON(GameSystemErrorWatcherErrorWindowDisplay));
     }
 
     MR::requestStarPointerModeErrorWindow(this);
@@ -159,11 +159,11 @@ void GameSystemErrorWatcher::exeErrorWindowDisplay() {
     if (pMessage != nullptr && pMessage != mMessage) {
         mMessage = pMessage;
 
-        setNerve(GET_NERVE_GLOBAL(GameSystemErrorWatcherErrorWindowIn));
+        setNerve(GET_NERVE_ANON(GameSystemErrorWatcherErrorWindowIn));
     }
 
     if (pMessage == nullptr) {
-        setNerve(GET_NERVE_GLOBAL(GameSystemErrorWatcherErrorWindowOut));
+        setNerve(GET_NERVE_ANON(GameSystemErrorWatcherErrorWindowOut));
         mWindow->disappear();
 
         mMessage = nullptr;
@@ -179,13 +179,13 @@ void GameSystemErrorWatcher::exeErrorWindowOut() {
         if (pMessage != nullptr) {
             mMessage = pMessage;
 
-            setNerve(GET_NERVE_GLOBAL(GameSystemErrorWatcherErrorWindowIn));
+            setNerve(GET_NERVE_ANON(GameSystemErrorWatcherErrorWindowIn));
         } else {
             if (AudWrap::getSystem() != nullptr) {
                 AudWrap::getSystem()->exitDvdErrorProcess();
             }
 
-            setNerve(GET_NERVE_GLOBAL(GameSystemErrorWatcherNoError));
+            setNerve(GET_NERVE_ANON(GameSystemErrorWatcherNoError));
         }
     } else {
         MR::requestStarPointerModeErrorWindow(this);

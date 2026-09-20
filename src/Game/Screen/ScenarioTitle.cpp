@@ -14,7 +14,7 @@ ScenarioTitle::ScenarioTitle() : LayoutActor("シナリオ名表示", true) {
 }
 
 void ScenarioTitle::init(const JMapInfoIter& rInfo) {
-    initNerve(GET_NERVE_GLOBAL(ScenarioTitleAppear));
+    initNerve(GET_NERVE_ANON(ScenarioTitleAppear));
     MR::connectToSceneLayout(this);
     initLayoutManager("StageTitle", 1);
     kill();
@@ -22,11 +22,11 @@ void ScenarioTitle::init(const JMapInfoIter& rInfo) {
 
 void ScenarioTitle::start() {
     appear();
-    setNerve(GET_NERVE_GLOBAL(ScenarioTitleAppear));
+    setNerve(GET_NERVE_ANON(ScenarioTitleAppear));
 }
 
 void ScenarioTitle::end() {
-    setNerve(GET_NERVE_GLOBAL(ScenarioTitleEnd));
+    setNerve(GET_NERVE_ANON(ScenarioTitleEnd));
 }
 
 void ScenarioTitle::exeAppear() {
@@ -36,7 +36,7 @@ void ScenarioTitle::exeAppear() {
         MR::startAnim(this, "Appear", 0);
     }
 
-    MR::setNerveAtAnimStopped(this, GET_NERVE_GLOBAL(ScenarioTitleWait), 0);
+    MR::setNerveAtAnimStopped(this, GET_NERVE_ANON(ScenarioTitleWait), 0);
 }
 
 void ScenarioTitle::exeWait() {
