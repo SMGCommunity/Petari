@@ -179,7 +179,7 @@ void Creeper::init(const JMapInfoIter& rIter) {
     MR::registerDemoSimpleCastAll(mFlowerModel);
     MR::registerDemoSimpleCastAll(mLeafModel);
     MR::copyTransRotateScale(this, mLeafModel);
-    MR::startBck(mLeafModel, "Wait", static_cast< const char* >(nullptr));
+    MR::startBck(mLeafModel, "Wait");
     mLeafModel->makeActorAppeared();
     makeActorAppeared();
 }

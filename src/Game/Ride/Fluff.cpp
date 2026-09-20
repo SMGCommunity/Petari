@@ -115,14 +115,14 @@ void Fluff::exeFreeBloom() {
         MR::calcGravity(this);
         MR::offCalcGravity(this);
         MR::offBind(this);
-        MR::startBck(mModel, "Bloom", nullptr);
+        MR::startBck(mModel, "Bloom");
         MR::setShadowVolumeSphereRadius(this, nullptr, 30.0f);
         MR::invalidateHitSensors(this);
         MR::validateHitSensor(this, "WindReceiver");
         MR::hideModel(this);
     }
     if (MR::isBckStopped(mModel)) {
-        MR::startBck(mModel, "Wait", nullptr);
+        MR::startBck(mModel, "Wait");
         setNerve(GET_NERVE(Fluff, FluffNrvFreeWaitOnGround));
     }
 }
@@ -141,8 +141,8 @@ void Fluff::exeFreeWaitOnGround() {
 void Fluff::exeFreeWaitAir() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
-        MR::startBck(this, "WaitAir", nullptr);
-        MR::startBck(mModel, "Spin", 0);
+        MR::startBck(this, "WaitAir");
+        MR::startBck(mModel, "Spin");
         MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_BLOW");
         MR::onBind(this);
         MR::validateHitSensor(this, "bind");
@@ -183,7 +183,7 @@ void Fluff::exeFreeWaitInvalid() {
 
 void Fluff::exeRideStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Fly", nullptr);
+        MR::startBck(this, "Fly");
         MR::startBckPlayer("FluffStart");
         MR::offBind(this);
     }
@@ -257,15 +257,15 @@ void Fluff::exeRideSpinUp() {
             MR::startSpinHitSound(this);
             if (mSpinsRemaining == 2) {
                 MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_1");
-                MR::startBck(this, "Spin1st", nullptr);
+                MR::startBck(this, "Spin1st");
                 MR::startBrk(this, "Spin1st");
             } else if (mSpinsRemaining == 1) {
                 MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_2");
-                MR::startBck(this, "Spin2nd", nullptr);
+                MR::startBck(this, "Spin2nd");
                 MR::startBrk(this, "Spin2nd");
             } else {
                 MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_4");
-                MR::startBck(this, "Spin3rd", nullptr);
+                MR::startBck(this, "Spin3rd");
                 MR::startBrk(this, "Spin3rd");
             }
         }

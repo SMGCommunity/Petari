@@ -221,7 +221,7 @@ void BreakableCage::initModel(const char* pName, const JMapInfoIter& rIter) {
 
             switch (model_id) {
             case 4:
-                MR::startBck(mItemModel, "Rotation", nullptr);
+                MR::startBck(mItemModel, "Rotation");
                 break;
             case 7:
                 break;
@@ -345,7 +345,7 @@ void BreakableCage::exeBreak() {
 
         if (isTypeCage()) {
             mBreakModel->appear();
-            MR::startBck(mBreakModel, "Break", nullptr);
+            MR::startBck(mBreakModel, "Break");
         } else {
             MR::emitEffect(this, "Break");
         }

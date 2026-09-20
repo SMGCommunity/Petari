@@ -179,7 +179,7 @@ void SlingShooter::exeWait() {
         if (!mIsKinopioAttached) {
             MR::startBckPlayer("SpiderCocoonWait");
         } else {
-            MR::startBck(mRider, "SpiderCocoonWait", nullptr);
+            MR::startBck(mRider, "SpiderCocoonWait");
             if (mIsKinopioTalkEnabled) {
                 MR::sendSimpleMsgToActor(ACTMES_NPC_EVENT_TALK_ENABLE, mRider);
             }

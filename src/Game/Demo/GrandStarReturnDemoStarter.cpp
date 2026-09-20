@@ -222,7 +222,7 @@ void GrandStarReturnDemoStarter::exeRushToCore() {
 
     if (MR::isFirstStep(this)) {
         MR::startBckPlayer("ResultFlyGrandStarRush");
-        MR::startBck(mPowerStar, "ResultFlyGrandStarRush", nullptr);
+        MR::startBck(mPowerStar, "ResultFlyGrandStarRush");
         MR::startSound(mPowerStar, "SE_OJ_GND_STAR_RUSH");
 
         MR::hideJointAndChildren(mPowerStar, "PowerStar");

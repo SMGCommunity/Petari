@@ -87,7 +87,7 @@ void TombSpider::init(const JMapInfoIter& rIter) {
 
 void TombSpider::exeWaitPlayer() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::hideModel(this);
         MR::invalidateHitSensors(this);
     }

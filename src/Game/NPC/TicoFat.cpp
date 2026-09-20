@@ -921,7 +921,7 @@ void TicoFat::exeWipeIn() {
                 MR::onSwitchA(this);
             }
 
-            MR::startBck(this, getActionName("Dummy"), nullptr);
+            MR::startBck(this, getActionName("Dummy"));
             MR::hideModelAndOnCalcAnim(this);
             MR::deleteEffect(this, "TicoFatLight");
             if (_94) {

@@ -42,7 +42,7 @@ void BossStinkBugActionGround::appear() {
     MR::moveCoordToNearestPos(getHost(), getHost()->mPosition);
     MR::offBind(getHost());
     getHost()->validateCollisionGround();
-    MR::startBck(getHost()->getBombLauncher(), "Close", nullptr);
+    MR::startBck(getHost()->getBombLauncher(), "Close");
     MR::tryStartAllAnim(getHost()->getWingModel(), "Ground");
     ActorStateBase::appear();
     setNerve(GET_NERVE(BossStinkBugGroundBattle, BossStinkBugActionGroundNrvStart));

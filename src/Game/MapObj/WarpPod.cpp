@@ -102,7 +102,7 @@ void WarpPodMgr::endEventCamera() {
 
     WarpPod* pPairPod = getPairPod(_C);
     pPairPod->mDelay = 60;
-    MR::startBck(pPairPod, "Wait", nullptr);
+    MR::startBck(pPairPod, "Wait");
     MR::startBrk(pPairPod, "Wait");
 
     _C = nullptr;
@@ -115,7 +115,7 @@ void WarpPodMgr::notifyWarpEnd(WarpPod* pWarpPod) {
 
     WarpPod* pPairPod = getPairPod(pWarpPod);
     pPairPod->mDelay = 60;
-    MR::startBck(pPairPod, "Wait", nullptr);
+    MR::startBck(pPairPod, "Wait");
     MR::startBrk(pPairPod, "Wait");
 
     _C = nullptr;
@@ -210,7 +210,7 @@ void WarpPod::init(const JMapInfoIter& rIter) {
     _A4 = 0;
 
     if (mVisibilityState != 0) {
-        MR::startBck(this, "Active", nullptr);
+        MR::startBck(this, "Active");
         MR::startBrk(this, "Active");
     }
 
@@ -232,7 +232,7 @@ void WarpPod::init(const JMapInfoIter& rIter) {
     }
 
     if (isNonActive) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::startBrk(this, "Wait");
 
         mIsInactive = true;
@@ -318,7 +318,7 @@ void WarpPod::appear() {
         mIsInactive = false;
 
         MR::startSound(this, "SE_OJ_WARP_POD_PATH_APPEAR");
-        MR::startBck(this, "Active", nullptr);
+        MR::startBck(this, "Active");
         MR::startBrk(this, "Active");
         glowEffect();
     }
@@ -366,7 +366,7 @@ void WarpPod::control() {
     mIsInactive = false;
     _CC = true;
 
-    MR::startBck(this, "Active", nullptr);
+    MR::startBck(this, "Active");
     MR::startBrk(this, "Active");
 
     glowEffect();
@@ -382,7 +382,7 @@ void WarpPod::movement() {
             }
 
             mPairPod->glowEffect();
-            MR::startBck(mPairPod, "Active", nullptr);
+            MR::startBck(mPairPod, "Active");
             MR::startBrk(mPairPod, "Active");
         }
     } else {
@@ -394,7 +394,7 @@ void WarpPod::movement() {
             if (--mDelay == 0) {
                 MR::validateClipping(this);
 
-                MR::startBck(this, "Active", nullptr);
+                MR::startBck(this, "Active");
                 MR::startBrk(this, "Active");
 
                 if (mVisibilityState != 0) {

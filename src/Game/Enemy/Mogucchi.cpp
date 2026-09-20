@@ -64,7 +64,7 @@ void Mogucchi::init(const JMapInfoIter& rIter) {
     MR::initStarPointerTargetAtJoint(this, "Head", 83.0f, TVec3f(::sHeadOffset));
     createMogucchiHill();
     createHole();
-    MR::startBck(this, "Walk", nullptr);
+    MR::startBck(this, "Walk");
     MR::startBtp(this, "EyeOpen");
     calcAnim();
     makeActorAppeared();
@@ -117,9 +117,9 @@ bool Mogucchi::checkHipDrop() const {
 
 void Mogucchi::exeStroll() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Walk", nullptr);
+        MR::startBck(this, "Walk");
         MR::startBtp(this, "EyeOpen");
-        MR::startBck(mHole, "Walk", nullptr);
+        MR::startBck(mHole, "Walk");
         mHill->start();
         _E4 = 0.0f;
         mStrollSpeed = mMaxStrollSpeed;
@@ -142,9 +142,9 @@ void Mogucchi::exeStroll() {
 void Mogucchi::exeAppearDown() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
-        MR::startBck(this, "SwoonStart", nullptr);
+        MR::startBck(this, "SwoonStart");
         MR::startBtp(this, "EyeClose");
-        MR::startBck(mHole, "SwoonStart", nullptr);
+        MR::startBck(mHole, "SwoonStart");
         MR::startSound(this, "SE_EM_MOGUCCHI_APPEAR");
         MR::startSound(this, "SE_EV_MOGUCCHI_SWOON");
 
@@ -159,9 +159,9 @@ void Mogucchi::exeAppearDown() {
 
 void Mogucchi::exeDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Swoon", nullptr);
+        MR::startBck(this, "Swoon");
         MR::startBtp(this, "EyeClose");
-        MR::startBck(mHole, "Swoon", nullptr);
+        MR::startBck(mHole, "Swoon");
     }
     MR::startLevelSound(this, "SE_EM_LV_SWOON_S");
     MR::setNerveAtStep(this, GET_NERVE_GLOBAL(MogucchiNrvDive), 30);
@@ -169,9 +169,9 @@ void Mogucchi::exeDown() {
 
 void Mogucchi::exeDive() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Hide", nullptr);
+        MR::startBck(this, "Hide");
         MR::startBtp(this, "EyeOpen");
-        MR::startBck(mHole, "Hide", nullptr);
+        MR::startBck(mHole, "Hide");
         MR::startSound(this, "SE_EM_MOGUCCHI_HIDE");
     }
 
@@ -183,9 +183,9 @@ void Mogucchi::exeDive() {
 void Mogucchi::exeScatter() {
     if (MR::isFirstStep(this)) {
         mHill->end();
-        MR::startBck(this, "PunchDown", nullptr);
+        MR::startBck(this, "PunchDown");
         MR::startBtp(this, "EyeClose");
-        MR::startBck(mHole, "PunchDown", nullptr);
+        MR::startBck(mHole, "PunchDown");
         MR::startBlowHitSound(this);
         mScatterPropulsionSpeed = 50.0f;
         MR::invalidateClipping(this);
@@ -414,7 +414,7 @@ bool Mogucchi::receiveAttackByBodySensor(u32 msg, HitSensor* pSender, HitSensor*
     }
 
     if (MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg)) {
-        MR::startBck(this, "Bounce", nullptr);
+        MR::startBck(this, "Bounce");
         MR::startBtp(this, "EyeOpen");
         return true;
     }

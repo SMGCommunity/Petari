@@ -207,7 +207,7 @@ void BegomanBaby::exeWait() {
 
 void BegomanBaby::exeSignAttack() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "SignAttack", 0);
+        MR::startBck(this, "SignAttack");
         MR::startSound(this, "SE_EM_BABYBEGO_PRE_PURSUE");
     }
 
@@ -257,7 +257,7 @@ void BegomanBaby::exeProvoke() {
 
 void BegomanBaby::exeTrample() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Trample", nullptr);
+        MR::startBck(this, "Trample");
         MR::startSound(this, "SE_EM_BABYBEGO_STOMPED");
     }
 
@@ -285,7 +285,7 @@ void BegomanBaby::exeTired() {
 void BegomanBaby::exeBlow() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_EM_BEGOMAN_ROT_STOP");
-        MR::startBck(this, "Stop", nullptr);
+        MR::startBck(this, "Stop");
         MR::stopScene(2);
         MR::invalidateExCollisionParts(this);
     }
@@ -304,7 +304,7 @@ void BegomanBaby::exeBlow() {
 
 void BegomanBaby::exeAfterLaunch() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Fly", nullptr);
+        MR::startBck(this, "Fly");
     }
 
     if (MR::isLessStep(this, 80)) {
@@ -323,7 +323,7 @@ void BegomanBaby::exeAfterLaunch() {
 
 void BegomanBaby::exeAfterLaunchOnGround() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Bound", nullptr);
+        MR::startBck(this, "Bound");
     }
     reboundWallAndGround(&mFaceVec, false);
     MR::applyVelocityDampAndGravity(this, 3.0f, 0.8f, 0.98f, 0.98f, 1.0f);
@@ -339,7 +339,7 @@ void BegomanBaby::exeLaunchFromGuarder() {
 
 void BegomanBaby::exeLaunchTurn() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Turn", nullptr);
+        MR::startBck(this, "Turn");
         mFaceVec.set(mTargetVec);
     }
 
@@ -471,7 +471,7 @@ bool BegomanBaby::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
 
         if (!isNerve(GET_NERVE(BegomanBaby, HostTypeNrvTrample)) && !isNerve(GET_NERVE(BegomanBaby, HostTypeNrvProvoke)) &&
             !isNerve(GET_NERVE(BegomanBaby, HostTypeNrvBlow)) && MR::isOnGround(this)) {
-            MR::startBck(this, "Turn", nullptr);
+            MR::startBck(this, "Turn");
             setNerve(GET_NERVE(BegomanBaby, HostTypeNrvTurn));
         }
 

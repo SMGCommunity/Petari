@@ -148,7 +148,7 @@ void SearchBeamer::exeCloseWaitNear() {
 
 void SearchBeamer::exeOpenMouth() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Open", nullptr);
+        MR::startBck(this, "Open");
         MR::startSound(this, "SE_EM_SEARCHBEAMER_PRE_BEAM");
     }
 
@@ -161,7 +161,7 @@ void SearchBeamer::exeOpenMouth() {
 
 void SearchBeamer::exeBeamPrepare() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Attack", nullptr);
+        MR::startBck(this, "Attack");
     }
 
     if (MR::isStep(this, 10)) {
@@ -228,7 +228,7 @@ void SearchBeamer::exeBeamAim() {
 
 void SearchBeamer::exeCloseMouth() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Close", nullptr);
+        MR::startBck(this, "Close");
         MR::deleteEffectAll(this);
         MR::invalidateHitSensor(this, "beam");
         MR::invalidateShadow(this, "beam");

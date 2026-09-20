@@ -75,7 +75,7 @@ void DummyDisplayModel::init(const JMapInfoIter& rIter) {
     PartsModel::init(rIter);
 
     if (mModelInfo->mAnim != nullptr) {
-        MR::startBck(this, mModelInfo->mAnim, nullptr);
+        MR::startBck(this, mModelInfo->mAnim);
     }
 
     if (mModelInfo->mHasColorChange) {

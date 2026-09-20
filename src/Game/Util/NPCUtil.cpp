@@ -660,7 +660,7 @@ void TakeOutStar::exeAnim() {
         mStarModel->appear();
         MR::invalidateClipping(mStarModel);
         MR::requestMovementOn(mStarModel);
-        MR::startBck(mStarModel, mAnimName, nullptr);
+        MR::startBck(mStarModel, mAnimName);
         MR::startAction(mActor, mActionName);
     }
 

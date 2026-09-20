@@ -45,7 +45,6 @@
 #include <JSystem/JKernel/JKRHeap.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
 
-
 void MarioActor_FORCE_MATCH_SDATA2() {
     (void)1.0f;
     (void)0.0f;
@@ -541,7 +540,7 @@ bool MarioActor::isAnimationRun(const char* pName) const {
 
 void MarioActor::changeNullAnimation(const char* pName, s8 num) {
     mNullAnimation->appear();
-    MR::startBck(mNullAnimation, pName, nullptr);
+    MR::startBck(mNullAnimation, pName);
     _B92 = num;
 }
 

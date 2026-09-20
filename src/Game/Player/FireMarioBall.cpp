@@ -134,7 +134,7 @@ bool FireMarioBall::tryToKill() {
 
 void FireMarioBall::exeThrow() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Roll", 0);
+        MR::startBck(this, "Roll");
         MR::startBtk(this, "Roll");
         MR::startBrk(this, "Roll");
         MR::startSound(this, "SE_OJ_MARIO_FIRE_BALL_OUT");

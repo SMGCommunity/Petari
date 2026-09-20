@@ -200,7 +200,7 @@ bool StrayTico::requestCompleteDemo(const TVec3f& rParam1, const TVec3f& rParam2
 
 void StrayTico::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     if (MR::isNearPlayer(this, 1000.0f)) {
@@ -210,7 +210,7 @@ void StrayTico::exeWait() {
 
 void StrayTico::exeGlad() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Glad", nullptr);
+        MR::startBck(this, "Glad");
         s32 noRescuedCount = mHost->calcNoRescuedCount();
         MR::startSound(this, "SE_SM_STRAYTICO_SPIN");
         MR::startSound(this, "SE_SM_STRAYTICO_GET", mHost->mTicoNum - noRescuedCount);

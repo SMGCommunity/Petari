@@ -262,7 +262,7 @@ void StarReturnDemoStarter::exeFlyWaitGrandStar() {
 
     if (MR::isBckOneTimeAndStoppedPlayer()) {
         MR::startBckPlayer("ResultFlyGrandStarFlyAway");
-        MR::startBck(mPowerStar, "ResultFlyGrandStarFlyAway", nullptr);
+        MR::startBck(mPowerStar, "ResultFlyGrandStarFlyAway");
         MR::shakeCameraWeak();
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
     }

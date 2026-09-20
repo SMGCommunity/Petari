@@ -49,7 +49,7 @@ void SandUpDownTriRock::exeWait() {
 
 void SandUpDownTriRock::exeDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "On", nullptr);
+        MR::startBck(this, "On");
     }
 
     if (MR::isBckStopped(this)) {
@@ -70,7 +70,7 @@ void SandUpDownTriRock::exeRest() {
 
 void SandUpDownTriRock::exeUp() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Return", nullptr);
+        MR::startBck(this, "Return");
     }
 
     if (MR::isBckStopped(this)) {

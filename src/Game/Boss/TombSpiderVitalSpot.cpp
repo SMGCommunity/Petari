@@ -54,20 +54,20 @@ bool TombSpiderVitalSpot::isDamage() const {
 
 void TombSpiderVitalSpot::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 }
 
 void TombSpiderVitalSpot::exeChanceWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "ChanceWait", nullptr);
+        MR::startBck(this, "ChanceWait");
         MR::startBrk(this, "TombSpiderVitalSpot");
     }
 }
 
 void TombSpiderVitalSpot::exeDamageStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "DamageStart", nullptr);
+        MR::startBck(this, "DamageStart");
         MR::startBrk(this, "TombSpiderVitalSpot");
         MR::startSound(this, "SE_BM_TSPIDER_DAMAGE_VITAL");
     }
@@ -75,13 +75,13 @@ void TombSpiderVitalSpot::exeDamageStart() {
 
 void TombSpiderVitalSpot::exeDamageWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "DamageWait", nullptr);
+        MR::startBck(this, "DamageWait");
     }
 }
 
 void TombSpiderVitalSpot::exeRecover() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "DamageEnd", nullptr);
+        MR::startBck(this, "DamageEnd");
         MR::startBrk(this, "TombSpiderVitalSpot");
     }
 

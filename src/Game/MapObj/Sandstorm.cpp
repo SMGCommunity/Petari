@@ -173,7 +173,7 @@ void Sandstorm::exeWait() {
 void Sandstorm::exeStorm() {
     if (MR::isFirstStep(this)) {
         if (isSunakazeKun()) {
-            MR::startBck(this, "Spin", nullptr);
+            MR::startBck(this, "Spin");
         }
     }
 

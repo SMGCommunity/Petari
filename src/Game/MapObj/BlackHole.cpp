@@ -164,7 +164,7 @@ void BlackHole::updateModelScale(f32 a1, f32 a2) {
 
 void BlackHole::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "BlackHoleRange", 0);
+        MR::startBck(this, "BlackHoleRange");
         MR::startBtk(this, "BlackHoleRange");
         MR::startBtk(mBlackHoleModel, "BlackHole");
     }

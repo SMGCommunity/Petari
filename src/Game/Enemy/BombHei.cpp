@@ -228,7 +228,7 @@ void BombHei::endCountdown() {
 
 void BombHei::exeLaunch() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Stop", nullptr);
+        MR::startBck(this, "Stop");
         mRotQuat.set< f32 >(0.0f, 0.0f, 0.0f, 1.0f);
     }
 
@@ -268,7 +268,7 @@ void BombHei::exeLaunch() {
 void BombHei::exeStarting() {
     if (MR::isFirstStep(this)) {
         MR::validateExCollisionParts(this);
-        MR::startBck(this, "Starting", nullptr);
+        MR::startBck(this, "Starting");
         mVelocity.z = 0.0f;
         mVelocity.y = 0.0f;
         mVelocity.x = 0.0f;
@@ -285,7 +285,7 @@ void BombHei::exeStarting() {
 
 void BombHei::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     MR::moveAndTurnToPlayer(this, &mFront, ::hNoMoveNoTurnParam.mSpeedH, ::hNoMoveNoTurnParam.mGravAccel, ::hNoMoveNoTurnParam.mFriction,
@@ -311,7 +311,7 @@ void BombHei::exeWait() {
 
 void BombHei::exeWalk() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Walk", nullptr);
+        MR::startBck(this, "Walk");
         TVec3f randDir;
         MR::getRandomVector(&randDir, 1.0f);
         MR::vecKillElement(randDir, mGravity, &randDir);
@@ -375,7 +375,7 @@ void BombHei::exePursue() {
 
 void BombHei::exePursueHit() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Hit", nullptr);
+        MR::startBck(this, "Hit");
         MR::startSound(this, "SE_EM_BOMBHEI_HIT");
     }
 
@@ -397,7 +397,7 @@ void BombHei::exePursueHit() {
 
 void BombHei::exeSpinHit() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Spin", nullptr);
+        MR::startBck(this, "Spin");
         MR::startBlowHitSound(this);
         mVelocity.set(mGravity.multiplyOperatorInline(-::hSpinHitJumpVel));
         MR::invalidateExCollisionParts(this);
@@ -475,7 +475,7 @@ void BombHei::exePhysics() {
 
 void BombHei::exeStop() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Stop", nullptr);
+        MR::startBck(this, "Stop");
     }
 
     MR::addVelocityToGravityOrGround(this, ::hGravity);
@@ -496,7 +496,7 @@ void BombHei::exeStop() {
 
 void BombHei::exeThrown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Stop", nullptr);
+        MR::startBck(this, "Stop");
         MR::startSoundPlayer("SE_PV_THROW", -1);
         MR::startSound(this, "SE_EM_BOMB_THROW");
         MR::invalidateExCollisionParts(this);
@@ -524,7 +524,7 @@ void BombHei::exeThrown() {
         mVelocity.add(mGravity.multiplyOperatorInline2(::hGravityThrown));
     } else {
         startBoundSound();
-        MR::startBck(this, "Bound", nullptr);
+        MR::startBck(this, "Bound");
         setNerve(GET_NERVE(BombHei, HostTypeNrvPhysics));
         return;
     }
@@ -538,7 +538,7 @@ void BombHei::endThrown() {
 
 void BombHei::exeTaken() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Carry", nullptr);
+        MR::startBck(this, "Carry");
         if (MR::sendMsgTaken(mCarrySensor, getSensor("body"))) {
             getSensor("body")->invalidate();
             MR::startSoundPlayer("SE_PV_LIFT_UP", -1);
@@ -815,7 +815,7 @@ bool BombHei::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
     }
 
     if (msg == ACTMES_TAKE_TOUCH) {
-        MR::startBck(this, "Carry", nullptr);
+        MR::startBck(this, "Carry");
         return true;
     }
 

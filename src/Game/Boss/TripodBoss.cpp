@@ -142,7 +142,7 @@ void TripodBoss::init(const JMapInfoIter& rIter) {
     MR::setBrkFrameAndStop(mDummyModel, 0.0f);
 
     makeActorAppeared();
-    MR::startBck(this, "StartDemo", nullptr);
+    MR::startBck(this, "StartDemo");
     MR::setBckFrameAndStop(this, 0.0f);
     initPose();
     MR::offCalcAnim(this);
@@ -638,7 +638,7 @@ void TripodBoss::exeStartDemo() {
         MR::stopStageBGM(10);
         _600 = 1.0f;
         MR::startAnimCameraTargetSelf(this, mEventCamera, "StartDemo", 0, 1.0f);
-        MR::startBck(this, "StartDemo", nullptr);
+        MR::startBck(this, "StartDemo");
     }
 
     if (MR::isLessStep(this, 120)) {
@@ -707,7 +707,7 @@ void TripodBoss::exePainDemo() {
         MR::setPlayerBaseMtx(mtx);
         MR::startBckPlayer("Wait");
         MR::startAnimCameraTargetSelf(this, mEventCamera, "EndDemo", 0, 1.0f);
-        MR::startBck(this, "EndDemo", nullptr);
+        MR::startBck(this, "EndDemo");
         MR::emitEffect(this, "BreakLight");
     }
 

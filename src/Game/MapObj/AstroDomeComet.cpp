@@ -64,12 +64,12 @@ void AstroDomeComet::appear() {
     LiveActor::appear();
 
     const char* cometName = ::cCometBrkName[MiniatureGalaxyFunction::getCometNameId()];
-    MR::startBck(this, "AstroDomeComet", nullptr);
+    MR::startBck(this, "AstroDomeComet");
     MR::startBtk(this, "AstroDomeComet");
     MR::startBrk(this, cometName);
 
     mBloomModel->appear();
-    MR::startBck(mBloomModel, "AstroDomeCometBloom", nullptr);
+    MR::startBck(mBloomModel, "AstroDomeCometBloom");
     MR::startBrk(mBloomModel, cometName);
 
     for (s32 i = 0; i < ::cPointingActorNum; i++) {

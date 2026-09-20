@@ -12,7 +12,7 @@ MarioNullBck::~MarioNullBck() {
 
 void MarioNullBck::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("MarioDummyItem", nullptr, false);
-    MR::startBck(this, "PickUpBall", nullptr);
+    MR::startBck(this, "PickUpBall");
     makeActorDead();
 }
 

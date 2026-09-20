@@ -63,7 +63,7 @@ void PhantomShipBridge::startMoveB() {
 }
 
 void PhantomShipBridge::setStateMoveA() {
-    MR::startBck(this, "MoveA", nullptr);
+    MR::startBck(this, "MoveA");
     MR::setBckFrameAndStop(this, MR::getBckCtrl(this)->getEnd());
     MR::calcAnimDirect(this);
     _8C->forceResetAllMtxAndSetUpdateMtxOneTime();
@@ -76,7 +76,7 @@ void PhantomShipBridge::exeMoveA() {
             MR::startSystemSE("SE_SY_READ_RIDDLE_S");
         }
 
-        MR::startBck(this, "MoveA", nullptr);
+        MR::startBck(this, "MoveA");
     }
 
     if (MR::isLessStep(this, 55)) {
@@ -106,7 +106,7 @@ void PhantomShipBridge::exeMoveB() {
             MR::startSound(this, "SE_OJ_PTM_SHIP_BRIDGE_FALL");
         }
 
-        MR::startBck(this, "MoveB", nullptr);
+        MR::startBck(this, "MoveB");
     }
 
     if (MR::isLessStep(this, 55)) {

@@ -58,7 +58,7 @@ void DragonHeadFlower::init(const JMapInfoIter& rIter) {
 
     appear();
 
-    MR::startBck(this, "Wait", nullptr);
+    MR::startBck(this, "Wait");
 }
 
 void DragonHeadFlower::control() {
@@ -95,7 +95,7 @@ void DragonHeadFlower::exeWait() {
 
 void DragonHeadFlower::exeSetCenter() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Breathe", nullptr);
+        MR::startBck(this, "Breathe");
         MR::invalidateClipping(this);
     }
 
@@ -141,7 +141,7 @@ void DragonHeadFlower::exeSetCenter() {
 
 void DragonHeadFlower::exeLaunchReady() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "In", nullptr);
+        MR::startBck(this, "In");
 
         MR::hidePlayer();
         MR::hideModel(mPlayerSensor->mHost);
@@ -164,7 +164,7 @@ void DragonHeadFlower::exeLaunchReady() {
 
 void DragonHeadFlower::exeRailMove() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Out", nullptr);
+        MR::startBck(this, "Out");
 
         MR::shakeCameraNormal();
 

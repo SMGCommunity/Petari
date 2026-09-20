@@ -249,7 +249,7 @@ bool FireBubble::isMovingDown() {
 
 void FireBubble::exeAppear() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Appear", 0);
+        MR::startBck(this, "Appear");
         MR::emitEffect(this, "Wait");
         MR::startSound(this, "SE_EM_FIRE_BUBBLE_LAUNCH");
         MR::showModel(this);
@@ -280,7 +280,7 @@ void FireBubble::exeAppear() {
 
 void FireBubble::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", 0);
+        MR::startBck(this, "Wait");
         mVelocity.zero();
         mActFrame = MR::getRandom((s32)0, ::cRandomActFrame) + ::cForceKillFrame;
     }
@@ -300,7 +300,7 @@ void FireBubble::exeWait() {
 
 void FireBubble::exeChase() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::emitEffect(this, "Wait");
     }
 
@@ -319,7 +319,7 @@ void FireBubble::exeChase() {
 
 void FireBubble::exeReflect() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "DPDHit", nullptr);
+        MR::startBck(this, "DPDHit");
         calcReflectVelocity(&mVelocity);
         MR::deleteEffect(this, "Wait");
         MR::emitEffect(this, "WaitS");
@@ -339,7 +339,7 @@ void FireBubble::exeReflect() {
 
 void FireBubble::exeReflectLand() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "DPDHitDown", nullptr);
+        MR::startBck(this, "DPDHitDown");
         mVelocity.zero();
         MR::offCalcGravity(this);
     }
@@ -351,7 +351,7 @@ void FireBubble::exeReflectLand() {
 
 void FireBubble::exeReflectWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "DPDHitDownWait", nullptr);
+        MR::startBck(this, "DPDHitDownWait");
     }
 
     if (!tryChaseEnd() && !tryReflect() && MR::isStep(this, ::cReflectWaitFrame)) {
@@ -363,7 +363,7 @@ void FireBubble::exeReflectWait() {
 
 void FireBubble::exeDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Down", nullptr);
+        MR::startBck(this, "Down");
         MR::deleteEffect(this, "Wait");
         MR::deleteEffect(this, "WaitS");
         MR::startSound(this, "SE_EM_FIRE_BUBBLE_DIE");

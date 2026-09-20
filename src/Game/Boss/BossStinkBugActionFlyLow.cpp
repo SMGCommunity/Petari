@@ -47,7 +47,7 @@ void BossStinkBugActionFlyLow::appear() {
     setNerve(GET_NERVE(BossStinkBugActionFlyLow, BossStinkBugActionFlyLowNrvDash));
     MR::offBind(getHost());
     getHost()->validateCollisionFly();
-    MR::startBck(getHost()->getBombLauncher(), "Open", nullptr);
+    MR::startBck(getHost()->getBombLauncher(), "Open");
     MR::tryStartAllAnim(getHost()->getWingModel(), "Fly");
 }
 

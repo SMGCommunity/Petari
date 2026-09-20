@@ -968,7 +968,7 @@ void DodoryuStateLv2::shiftHideAttack() {
 
 void DodoryuStateLv2::startAnim(const DodoryuAnimSet& rAnim) {
     if (rAnim.mBckName != nullptr) {
-        MR::startBck(mHost, rAnim.mBckName, nullptr);
+        MR::startBck(mHost, rAnim.mBckName);
     }
 
     startBtk(rAnim);

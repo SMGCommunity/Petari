@@ -270,7 +270,7 @@ void AstroDomeBlueStar::calcZoomInPos(TVec3f* pZoomVec) const {
 
 void AstroDomeBlueStar::exeAppear() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Appear", nullptr);
+        MR::startBck(this, "Appear");
 
         MR::emitEffect(this, "TargetLight");
 
@@ -339,7 +339,7 @@ void AstroDomeBlueStar::exePointing() {
 
 void AstroDomeBlueStar::exeTryStartBind() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "React", nullptr);
+        MR::startBck(this, "React");
 
         MR::deleteEffect(this, "Target");
         MR::emitEffect(this, "Active");

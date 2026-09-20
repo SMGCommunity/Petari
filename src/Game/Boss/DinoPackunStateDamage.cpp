@@ -108,13 +108,13 @@ void DinoPackunStateDamage::exePulled() {
             MR::normalizeOrZero(&stack_14);
 
             if (v19.dot(stack_14) > 0.7f) {
-                MR::startBck(getHost(), "PunchedTailTop", nullptr);
+                MR::startBck(getHost(), "PunchedTailTop");
                 _10 = 3;
             } else if (v20.dot(stack_14) < 0.0f) {
-                MR::startBck(getHost(), "PunchedTailRight", nullptr);
+                MR::startBck(getHost(), "PunchedTailRight");
                 _10 = 2;
             } else {
-                MR::startBck(getHost(), "PunchedTailLeft", nullptr);
+                MR::startBck(getHost(), "PunchedTailLeft");
                 _10 = 1;
             }
         }
@@ -153,9 +153,9 @@ void DinoPackunStateDamage::exeEggBroken() {
     if (MR::isStep(this, 30)) {
         getHost()->getEggShell()->kill();
         getHost()->getEggBrokenModel()->appear();
-        MR::startBck(getHost()->getEggBrokenModel(), "Break", nullptr);
+        MR::startBck(getHost()->getEggBrokenModel(), "Break");
         MR::startBrk(getHost()->getEggBrokenModel(), "Break");
-        MR::startBck(getHost(), "EggDamageTop", nullptr);
+        MR::startBck(getHost(), "EggDamageTop");
         MR::startSound(getHost(), "SE_BM_D_PAKKUN_HEAD_EGG_BRK");
         getHost()->mTail->unlockEndNodePosition();
         getHost()->mTail->unlockNodePosition(1);
@@ -180,13 +180,13 @@ void DinoPackunStateDamage::exeDamage() {
 
         switch (_10) {
         case 3:
-            MR::startBck(getHost(), "DamageTop", nullptr);
+            MR::startBck(getHost(), "DamageTop");
             break;
         case 2:
-            MR::startBck(getHost(), "DamageRight", nullptr);
+            MR::startBck(getHost(), "DamageRight");
             break;
         case 1:
-            MR::startBck(getHost(), "DamageLeft", nullptr);
+            MR::startBck(getHost(), "DamageLeft");
             break;
         }
     }
@@ -203,13 +203,13 @@ void DinoPackunStateDamage::exeLastDamage() {
 
         switch (_10) {
         case 3:
-            MR::startBck(getHost(), "LastDamageTop", nullptr);
+            MR::startBck(getHost(), "LastDamageTop");
             break;
         case 2:
-            MR::startBck(getHost(), "LastDamageRight", nullptr);
+            MR::startBck(getHost(), "LastDamageRight");
             break;
         case 1:
-            MR::startBck(getHost(), "LastDamageLeft", nullptr);
+            MR::startBck(getHost(), "LastDamageLeft");
             break;
         }
     }

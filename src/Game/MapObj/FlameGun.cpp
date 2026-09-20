@@ -97,7 +97,7 @@ void FlameGun::exeSwitchWait() {
 
 void FlameGun::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     if (MR::isGreaterStep(this, 120)) {
@@ -107,7 +107,7 @@ void FlameGun::exeWait() {
 
 void FlameGun::exePreRadiate() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "ShootingBefore", nullptr);
+        MR::startBck(this, "ShootingBefore");
         MR::startBrk(this, "ShootingBefore");
     }
 
@@ -119,7 +119,7 @@ void FlameGun::exePreRadiate() {
 
 void FlameGun::exeRadiate() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Shooting", nullptr);
+        MR::startBck(this, "Shooting");
         MR::validateHitSensor(this, "attack");
     }
 
@@ -134,7 +134,7 @@ void FlameGun::exeRadiate() {
 
 void FlameGun::exeRotate() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Shooting", nullptr);
+        MR::startBck(this, "Shooting");
         MR::validateHitSensor(this, "attack");
     }
 
@@ -148,7 +148,7 @@ void FlameGun::exeRotate() {
 
 void FlameGun::exeRadiateOnly() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Shooting", nullptr);
+        MR::startBck(this, "Shooting");
         MR::validateHitSensor(this, "attack");
     }
 

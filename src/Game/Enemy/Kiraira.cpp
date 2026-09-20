@@ -118,7 +118,7 @@ void Kiraira::exeFaceToMario() {
     } else {
         MR::turnDirectionToPlayerDegree(this, &mFront, ::sTurnRate);
         if (MR::isFaceToPlayerHorizontalDegree(this, mFront, ::sTurnRate)) {
-            MR::startBck(this, "Stop", static_cast< const char* >(nullptr));
+            MR::startBck(this, "Stop");
             setNerve(GET_NERVE(Kiraira, KirairaNrvFaceToMarioAndStare));
         } else {
             drift();
@@ -156,9 +156,9 @@ void Kiraira::exeDead() {
             MR::onSwitchB(this);
         }
         if (mIsRail) {
-            MR::startBck(this, "RailDown", static_cast< const char* >(nullptr));
+            MR::startBck(this, "RailDown");
         } else {
-            MR::startBck(this, "Down", static_cast< const char* >(nullptr));
+            MR::startBck(this, "Down");
         }
         MR::startBrk(this, "Down");
         MR::setShadowVolumeSphereRadius(this, static_cast< const char* >(nullptr), 50.0f);
@@ -176,9 +176,9 @@ void Kiraira::exeDead() {
 void Kiraira::exeRecoverSign() {
     if (MR::isFirstStep(this)) {
         if (mIsRail) {
-            MR::startBck(this, "RailRevivalStart", static_cast< const char* >(nullptr));
+            MR::startBck(this, "RailRevivalStart");
         } else {
-            MR::startBck(this, "RevivalStart", static_cast< const char* >(nullptr));
+            MR::startBck(this, "RevivalStart");
         }
         MR::startBrk(this, "RevivalStart");
         MR::validateClipping(this);
@@ -193,9 +193,9 @@ void Kiraira::exeRecoverSign() {
 void Kiraira::exeRecover() {
     if (MR::isFirstStep(this)) {
         if (mIsRail) {
-            MR::startBck(this, "Revival", static_cast< const char* >(nullptr));
+            MR::startBck(this, "Revival");
         } else {
-            MR::startBck(this, "RailRevival", static_cast< const char* >(nullptr));
+            MR::startBck(this, "RailRevival");
         }
         MR::startBrk(this, "Revival");
         MR::startSound(this, "SE_OJ_KIRAIRA_RECOVER");

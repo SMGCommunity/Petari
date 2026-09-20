@@ -38,7 +38,7 @@ void BossStinkBugOpeningDemo::exeDemo() {
         MR::startBckPlayer("BattleWait");
         mDemoPositionController->startDemo("OpeningDemo");
         getHost()->reuestMovementOnParts();
-        MR::startBck(getHost(), "OpeningDemo", nullptr);
+        MR::startBck(getHost(), "OpeningDemo");
         MR::tryStartAllAnim(getHost()->getWingModel(), "OpeningDemo");
     }
     mDemoPositionController->movement();

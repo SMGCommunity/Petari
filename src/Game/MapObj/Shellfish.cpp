@@ -98,7 +98,7 @@ void Shellfish::control() {
 
 void Shellfish::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     if (MR::isStep(this, sStepToOpen)) {
@@ -108,7 +108,7 @@ void Shellfish::exeWait() {
 
 void Shellfish::exeOpen() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Open", nullptr);
+        MR::startBck(this, "Open");
         MR::startSound(this, "SE_OJ_SHELLFISH_OPEN");
         putItem();
     }
@@ -139,7 +139,7 @@ void Shellfish::exeOpenWait() {
 
 void Shellfish::exeCloseSignal() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "CloseSignal", nullptr);
+        MR::startBck(this, "CloseSignal");
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_SHELLFISH_SIGNAL");
@@ -151,7 +151,7 @@ void Shellfish::exeCloseSignal() {
 
 void Shellfish::exeClose() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Close", nullptr);
+        MR::startBck(this, "Close");
         MR::startSound(this, "SE_OJ_SHELLFISH_CLOSE");
     }
 

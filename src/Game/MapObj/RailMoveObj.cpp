@@ -115,7 +115,7 @@ void RailMoveObj::startMoveInner() {
     MR::StageEffect::tryStageEffectStart(this, mObjectName);
 
     if (MR::isExistBck(this, ::cMoveBckName)) {
-        MR::startBck(this, ::cMoveBckName, 0);
+        MR::startBck(this, ::cMoveBckName);
     }
 
     if (MR::StageEffect::isExistStageEffectData(mObjectName)) {

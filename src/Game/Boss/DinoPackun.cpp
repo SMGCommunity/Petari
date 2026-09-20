@@ -123,7 +123,7 @@ void DinoPackun::init(const JMapInfoIter& rIter) {
     MR::declarePowerStar(this);
     MR::needStageSwitchReadA(this, rIter);
     MR::useStageSwitchWriteDead(this, rIter);
-    MR::startBck(this, "OpeningDemo", nullptr);
+    MR::startBck(this, "OpeningDemo");
     MR::stopBck(this);
     MR::startBtp(this, "FlowerAll");
     MR::startBrk(this, "Normal");

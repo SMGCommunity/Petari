@@ -139,7 +139,7 @@ void AstroDomeDemoStarter::exeSpinDriverAppear() {
         _94.concat(rotateMtx);
         MR::setBaseTRMtx(this, _94);
         MR::showModel(this);
-        MR::startBck(this, "Appear", nullptr);
+        MR::startBck(this, "Appear");
         MR::startBckPlayer("SpinDriverWait", 20L);
         MR::startSound(this, "SE_OJ_S_SPIN_DRV_APPEAR");
     }
@@ -155,7 +155,7 @@ void AstroDomeDemoStarter::exeSpinDriverAppear() {
 
 void AstroDomeDemoStarter::exeSpinDriverStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Start", nullptr);
+        MR::startBck(this, "Start");
         MR::startBckPlayer("SuperSpinDriverStart");
         MR::setPlayerBaseMtx(_94);
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);

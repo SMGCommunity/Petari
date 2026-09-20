@@ -560,7 +560,7 @@ bool Meramera::requestForceRunaway() {
         return false;
     }
 
-    MR::startBck(this, "Damage", nullptr);
+    MR::startBck(this, "Damage");
 
     setNerve(GET_NERVE(Meramera, MerameraNrvRunaway));
 
@@ -863,7 +863,7 @@ void Meramera::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
 
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
 
         emitEffectHead(EffectType_Wait);
         emitEffectHeatBody();
@@ -905,7 +905,7 @@ void Meramera::exeShrink() {
     if (MR::isFirstStep(this)) {
         MR::invalidateClipping(this);
 
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
 
         emitEffectHead(EffectType_Wait);
         emitEffectHeatBody();
@@ -926,7 +926,7 @@ void Meramera::exeChaseStart() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
 
-        MR::startBck(this, "ChaseStart", nullptr);
+        MR::startBck(this, "ChaseStart");
         MR::startSound(this, "SE_EM_MERAMERA_FIND");
 
         if (mElementType == ElementType_Ice) {
@@ -955,7 +955,7 @@ void Meramera::exeChaseDash() {
     if (MR::isFirstStep(this)) {
         MR::invalidateClipping(this);
 
-        MR::startBck(this, "ChaseDash", nullptr);
+        MR::startBck(this, "ChaseDash");
 
         MR::startSound(this, "SE_EM_MERAMERA_DASH");
 
@@ -988,7 +988,7 @@ void Meramera::exeChaseTurn() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
 
-        MR::startBck(this, "ChaseTurn", nullptr);
+        MR::startBck(this, "ChaseTurn");
 
         emitEffectHead(EffectType_Chase);
         emitEffectHeatBody();
@@ -1010,7 +1010,7 @@ void Meramera::exeDamage() {
     if (MR::isFirstStep(this)) {
         MR::invalidateClipping(this);
 
-        MR::startBck(this, "Damage", nullptr);
+        MR::startBck(this, "Damage");
 
         MR::turnVecToVecCosOnPlane(&_138, getDistanceToPlayer(), mGravity, -1.0f);
 
@@ -1183,7 +1183,7 @@ void Meramera::exeSink() {
         }
 
         MR::startSound(this, "SE_EM_MERAMERA_LAVA_IN");
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
 
         MR::hideModel(this);
         MR::offBind(this);
@@ -1209,7 +1209,7 @@ void Meramera::exeFloat() {
 
         MR::onBind(this);
 
-        MR::startBck(this, "Float", nullptr);
+        MR::startBck(this, "Float");
         MR::emitEffect(this, "Fall");
         MR::startSound(this, "SE_EM_MERAMERA_LAVA_OUT");
 
@@ -1234,7 +1234,7 @@ void Meramera::exeIgnition() {
     if (MR::isStep(this, 15)) {
         MR::invalidateClipping(this);
 
-        MR::startBck(this, "FloatIgnition", nullptr);
+        MR::startBck(this, "FloatIgnition");
 
         if (mElementType == ElementType_Ice) {
             MR::startSound(this, "SE_EM_ICEMERA_IGNITION");
@@ -1258,7 +1258,7 @@ void Meramera::exeIgnitionForce() {
     if (MR::isFirstStep(this)) {
         MR::invalidateClipping(this);
 
-        MR::startBck(this, "FloatIgnition", nullptr);
+        MR::startBck(this, "FloatIgnition");
 
         MR::setVelocityJump(this, 15.0f);
 
@@ -1279,7 +1279,7 @@ void Meramera::exeAttackSuccess() {
     if (MR::isFirstStep(this)) {
         MR::invalidateClipping(this);
 
-        MR::startBck(this, "Attack", nullptr);
+        MR::startBck(this, "Attack");
 
         MR::zeroVelocity(this);
 
@@ -1300,7 +1300,7 @@ void Meramera::exeDown() {
     if (MR::isFirstStep(this)) {
         MR::invalidateClipping(this);
 
-        MR::startBck(this, "Down", nullptr);
+        MR::startBck(this, "Down");
 
         MR::stopScene(::sDownStopFrame);
 
@@ -1338,7 +1338,7 @@ void Meramera::exeFlatDown() {
     if (MR::isFirstStep(this)) {
         MR::invalidateClipping(this);
 
-        MR::startBck(this, "FlatDown", nullptr);
+        MR::startBck(this, "FlatDown");
 
         MR::stopScene(::sDownStopFrame);
 
@@ -1593,7 +1593,7 @@ void Meramera::resetAppear() {
         break;
 
     case Status_Float:
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::hideModel(this);
         MR::offBind(this);
 

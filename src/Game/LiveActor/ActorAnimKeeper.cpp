@@ -57,7 +57,7 @@ bool ActorAnimKeeper::start(const char* pName) {
 
     if (MR::isBckExist(mActor, BckName) && (!info->mBckInfo.mIsKeepAnim || !MR::isBckPlaying(mActor, BckName))) {
         if (MR::isEqualStringCase(BckName, info->mName)) {
-            MR::startBck(mActor, BckName, nullptr);
+            MR::startBck(mActor, BckName);
         } else {
             MR::startBck(mActor, BckName, info->mName);
         }

@@ -356,7 +356,7 @@ void SpinDriver::exeNonActive() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
 
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::startBpk(this, "Wait");
     }
 
@@ -376,7 +376,7 @@ void SpinDriver::exeAppear() {
             MR::startSound(this, "SE_OJ_SPIN_DRV_APPEAR");
         }
 
-        MR::startBck(this, "Appear", nullptr);
+        MR::startBck(this, "Appear");
         mSpinDriverCamera->startAppearCamera(this, _E8, _D0, mPosition);
     }
 
@@ -394,7 +394,7 @@ void SpinDriver::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
 
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::startBpk(this, "Wait");
     }
 
@@ -429,7 +429,7 @@ void SpinDriver::exeCapture() {
 
     if (MR::isFirstStep(this)) {
         MR::startBckPlayer("SpinDriverWait", "SpinDriverCapture");
-        MR::startBck(this, "Active", nullptr);
+        MR::startBck(this, "Active");
 
         MR::emitEffect(this, "SpinDriverLight");
     }
@@ -466,7 +466,7 @@ void SpinDriver::exeShootStart() {
         MR::emitEffect(this, "SpinDriverStart");
 
         MR::startBckPlayer("Spin", "SpinDriverShoot");
-        MR::startBck(this, "Active", nullptr);
+        MR::startBck(this, "Active");
         MR::startBpk(this, "Active");
 
         startCamera();

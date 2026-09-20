@@ -78,7 +78,7 @@ void HoneyQueen::init(const JMapInfoIter& rIter) {
 
     mWing = MR::createModelObjNpc("羽", "HoneyQueenWing", MR::getJointMtx(this, "Center"));
     mWing->makeActorAppeared();
-    MR::startBck(mWing, "HoneyQueenWing", nullptr);
+    MR::startBck(mWing, "HoneyQueenWing");
     MR::startBtk(mWing, "HoneyQueenWing");
 
     for (s32 i = 0; i < ARRAY_SIZE(mCollisionParts); i++) {

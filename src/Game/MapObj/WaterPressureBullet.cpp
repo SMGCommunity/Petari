@@ -123,11 +123,11 @@ void WaterPressureBullet::shotWaterBullet(LiveActor* pActor, const TPos3f& rPos,
 void WaterPressureBullet::exeFly() {
     // FIXME
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Shot", nullptr);
+        MR::startBck(this, "Shot");
     }
 
     if (MR::isBckOneTimeAndStopped(this)) {
-        MR::startBck(this, "Move", nullptr);
+        MR::startBck(this, "Move");
     }
 
     if (mHostActor != nullptr && MR::isBckOneTimeAndStopped(mHostActor)) {

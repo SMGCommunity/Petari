@@ -43,19 +43,19 @@ void JumpStand::init(const JMapInfoIter& rIter) {
 void JumpStand::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 }
 
 void JumpStand::exeTrampleBound() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Bound", nullptr);
+        MR::startBck(this, "Bound");
         MR::startSound(this, "SE_OJ_JUMP_STAND_LAND_S");
     }
 
     if (MR::isLessEqualStep(this, 5) && MR::testCorePadTriggerA(0)) {
         _C0 = 1;
-        MR::startBck(this, "BoundJump", nullptr);
+        MR::startBck(this, "BoundJump");
         MR::setBckFrame(this, getNerveStep());
     }
 
@@ -89,7 +89,7 @@ void JumpStand::exeTrampleBound() {
 
 void JumpStand::exeHipDropBound() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "BoundHipDrop", nullptr);
+        MR::startBck(this, "BoundHipDrop");
         MR::stopSound(mBindedActor, "SE_PM_HIPDROP", 0);
         MR::startSound(this, "SE_OJ_JUMP_STAND_LAND_L");
     }
@@ -119,7 +119,7 @@ void JumpStand::exeHipDropBound() {
 
 void JumpStand::exeStarPieceBound() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Bound", nullptr);
+        MR::startBck(this, "Bound");
         MR::startSound(this, "SE_OJ_JUMP_STAND_LAND_S");
     }
 

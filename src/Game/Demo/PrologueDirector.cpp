@@ -187,7 +187,7 @@ void PrologueDirector::exeBindWait() {
     if (MR::tryStartDemoMarioPuppetable(this, ::sArriveDemoName)) {
         pauseOff();
         mMarioPosDummyModel->appear();
-        MR::startBck(mMarioPosDummyModel, "DemoPeachCastleGate", 0);
+        MR::startBck(mMarioPosDummyModel, "DemoPeachCastleGate");
 
         ActorCameraInfo cameraInfo = ActorCameraInfo();
         CameraTargetArg cameraTarget = CameraTargetArg(nullptr, mCameraTarget, nullptr, nullptr);

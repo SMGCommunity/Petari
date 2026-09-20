@@ -165,7 +165,7 @@ void JumpBeamer::exeHide() {
     }
 
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHeadModel, "Wait", nullptr);
+        MR::startBck(mHeadModel, "Wait");
         MR::startBrk(mHeadModel, "Green");
         MR::validateClipping(this);
         MR::setShadowVolumeSphereRadius(this, nullptr, 110.0f);
@@ -178,7 +178,7 @@ void JumpBeamer::exeHide() {
 
 void JumpBeamer::exeUp() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Up", nullptr);
+        MR::startBck(this, "Up");
         MR::startSound(this, "SE_EM_JGUARDER_APPEAR");
         MR::validateShadow(this, nullptr);
     }
@@ -209,7 +209,7 @@ void JumpBeamer::exeWait() {
 
 void JumpBeamer::exeDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Down", nullptr);
+        MR::startBck(this, "Down");
         MR::startSound(this, "SE_EM_JGUARDER_HIDE");
     }
 
@@ -223,9 +223,9 @@ void JumpBeamer::exeDown() {
 
 void JumpBeamer::exeHopStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHeadModel, "HopStart", nullptr);
+        MR::startBck(mHeadModel, "HopStart");
         MR::startBrk(mHeadModel, "OnAndOff");
-        MR::startBck(this, "Damage", nullptr);
+        MR::startBck(this, "Damage");
         MR::deleteEffect(this, "Charge");
         MR::startSound(this, "SE_EM_JGUARDER_HIT");
         HitSensor* bodySensor = getSensor("Body");
@@ -242,7 +242,7 @@ void JumpBeamer::exeHopStart() {
 void JumpBeamer::exeHopWait() {
     if (MR::isFirstStep(this)) {
         MR::stopBck(this);
-        MR::startBck(mHeadModel, "HopWait", nullptr);
+        MR::startBck(mHeadModel, "HopWait");
         getSensor("Jump")->validate();
     }
 
@@ -255,7 +255,7 @@ void JumpBeamer::exeHopWait() {
 
 void JumpBeamer::exeHopJump() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHeadModel, "HopJump", nullptr);
+        MR::startBck(mHeadModel, "HopJump");
         MR::startSound(this, "SE_EM_JGUARDER_TRAMPLE");
     }
 
@@ -266,8 +266,8 @@ void JumpBeamer::exeHopJump() {
 
 void JumpBeamer::exeHopEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "HopEnd", nullptr);
-        MR::startBck(mHeadModel, "HopEnd", nullptr);
+        MR::startBck(this, "HopEnd");
+        MR::startBck(mHeadModel, "HopEnd");
         MR::startBrk(mHeadModel, "Green");
         MR::startSound(this, "SE_EM_JGUARDER_CLOSE_SPRING");
     }
@@ -297,7 +297,7 @@ void JumpBeamer::exePreOpen() {
 
 void JumpBeamer::exeOpen() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Open", nullptr);
+        MR::startBck(this, "Open");
     }
 
     if (MR::isGreaterEqualStep(this, 240)) {

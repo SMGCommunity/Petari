@@ -130,7 +130,7 @@ void SnowMan::exeWaitHead() {
 void SnowMan::exeMeltHead() {
     if (MR::isFirstStep(this)) {
         MR::invalidateCollisionParts(mHeadCollisionParts);
-        MR::startBck(this, "MeltHead", nullptr);
+        MR::startBck(this, "MeltHead");
         MR::startSound(this, "SE_OJ_SNOW_MAN_MELT");
         MR::shakeCameraWeak();
         if (MR::isValidSwitchA(this)) {
@@ -147,7 +147,7 @@ void SnowMan::exeMeltHead() {
 void SnowMan::exeMeltBody() {
     if (MR::isFirstStep(this)) {
         MR::invalidateCollisionParts(mBodyCollisionParts);
-        MR::startBck(this, "MeltBody", nullptr);
+        MR::startBck(this, "MeltBody");
         MR::startSound(this, "SE_OJ_SNOW_MAN_MELT");
         MR::shakeCameraWeak();
         if (MR::isValidSwitchA(this)) {
@@ -168,7 +168,7 @@ void SnowMan::exeDownHead() {
     if (MR::isFirstStep(this)) {
         MR::invalidateCollisionParts(mHeadCollisionParts);
         MR::invalidateCollisionParts(mBodyCollisionParts);
-        MR::startBck(this, "DownHead", nullptr);
+        MR::startBck(this, "DownHead");
         MR::startSound(this, "SE_OJ_SNOW_MAN_MELT");
         MR::shakeCameraWeak();
     }
@@ -182,7 +182,7 @@ void SnowMan::exeDownBody() {
     if (MR::isFirstStep(this)) {
         MR::invalidateCollisionParts(mHeadCollisionParts);
         MR::invalidateCollisionParts(mBodyCollisionParts);
-        MR::startBck(this, "DownBody", nullptr);
+        MR::startBck(this, "DownBody");
         MR::startSound(this, "SE_OJ_SNOW_MAN_MELT");
         MR::shakeCameraWeak();
         if (MR::isValidSwitchB(this)) {

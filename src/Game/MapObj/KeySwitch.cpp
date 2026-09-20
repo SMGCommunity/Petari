@@ -95,7 +95,7 @@ void KeySwitch::exeDemoStart() {
 
 void KeySwitch::exeAppear() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Rotation", 0);
+        MR::startBck(this, "Rotation");
         mVelocity.scale(-40.0f, mGravity);
         MR::invalidateClipping(this);
         MR::startSound(this, "SE_OJ_KEY_SWITCH_APPEAR");

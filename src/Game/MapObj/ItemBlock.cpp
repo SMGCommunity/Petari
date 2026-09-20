@@ -191,7 +191,7 @@ bool ItemBlock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
 bool ItemBlock::tryStartJumpPunch() {
     if (isNerve(GET_NERVE(ItemBlock, ItemBlockNrvStandby))) {
         if (mKind == 1 || mKind == 3) {
-            MR::startBck(this, "Appear", nullptr);
+            MR::startBck(this, "Appear");
             calcAnim();
             mNoCalcAnim = true;
             setNerve(GET_NERVE(ItemBlock, ItemBlockNrvAppearItem));
@@ -214,7 +214,7 @@ bool ItemBlock::tryStartJumpPunch() {
                 }
             }
 
-            MR::startBck(this, "Appear", nullptr);
+            MR::startBck(this, "Appear");
             calcAnim();
             mNoCalcAnim = true;
             setNerve(GET_NERVE(ItemBlock, ItemBlockNrvAppearItem));
@@ -228,13 +228,13 @@ bool ItemBlock::tryStartJumpPunch() {
 
 void ItemBlock::exeStandby() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 }
 
 void ItemBlock::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::invalidateClipping(this);
     }
 
@@ -245,7 +245,7 @@ void ItemBlock::exeAppearItem() {
     if (MR::isFirstStep(this)) {
         if (!mTimer) {
             MR::forceDeleteEffect(this, "Glow");
-            MR::startBck(this, "Bomb", nullptr);
+            MR::startBck(this, "Bomb");
         }
 
         MR::invalidateClipping(this);
@@ -295,7 +295,7 @@ void ItemBlock::exeAppearItem() {
 void ItemBlock::exeAppearItemSplash() {
     if (MR::isFirstStep(this)) {
         MR::forceDeleteEffect(this, "Glow");
-        MR::startBck(this, "Bomb", nullptr);
+        MR::startBck(this, "Bomb");
     }
 
     if (!MR::isBckStopped(this)) {

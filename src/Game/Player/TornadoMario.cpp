@@ -36,7 +36,7 @@ void TornadoMario::init(const JMapInfoIter& rIter) {
 void TornadoMario::hideForce() {
     if (mIsVisible) {
         mIsVisible = false;
-        MR::startBck(this, "MarioTornadoStart", nullptr);
+        MR::startBck(this, "MarioTornadoStart");
         MR::hideModel(this);
     }
 }
@@ -64,7 +64,7 @@ TornadoMario::~TornadoMario() {
 void TornadoMario::show() {
     if (!mIsVisible) {
         mIsVisible = true;
-        MR::startBck(this, "MarioTornadoStart", nullptr);
+        MR::startBck(this, "MarioTornadoStart");
         MR::startBtk(this, "MarioTornadoStart");
         _8E = false;
         MR::showModel(this);
@@ -75,7 +75,7 @@ void TornadoMario::show() {
 void TornadoMario::hide() {
     if (mIsVisible) {
         mIsVisible = false;
-        MR::startBck(this, "MarioTornadoEnd", nullptr);
+        MR::startBck(this, "MarioTornadoEnd");
         MR::startBtk(this, "MarioTornadoEnd");
     }
 }
@@ -83,8 +83,8 @@ void TornadoMario::hide() {
 void TornadoMario::control() {
     if (mIsVisible) {
         if (MR::isBckOneTimeAndStopped(this)) {
-            MR::startBck(this, "MarioTornadoLoop", nullptr);
-            MR::startBck(this, "MarioTornadoLoop", nullptr);
+            MR::startBck(this, "MarioTornadoLoop");
+            MR::startBck(this, "MarioTornadoLoop");
         }
 
         MR::startLevelSound(this, "SE_PM_LV_TORNADE_FLYING");

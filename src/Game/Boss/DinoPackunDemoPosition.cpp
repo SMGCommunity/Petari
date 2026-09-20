@@ -39,7 +39,7 @@ void DinoPackunDemoPosition::endDemo() {
 
 void DinoPackunDemoPosition::exeOpeningDemo() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "OpeningDemo", nullptr);
+        MR::startBck(this, "OpeningDemo");
     }
 
     if (MR::isStep(this, 0)) {

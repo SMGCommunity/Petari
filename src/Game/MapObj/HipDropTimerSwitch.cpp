@@ -179,7 +179,7 @@ void HipDropTimerSwitch::exeOff() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
         MR::offSwitchA(this);
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::startBrk(this, "Off");
         mSpring->reset();
     }
@@ -199,7 +199,7 @@ void HipDropTimerSwitch::exeOff() {
 
 void HipDropTimerSwitch::exeSwitchDown() {
     if (MR::isStep(this, 0)) {
-        MR::startBck(this, "On", nullptr);
+        MR::startBck(this, "On");
         MR::startBrk(this, "On");
     }
 
@@ -224,7 +224,7 @@ void HipDropTimerSwitch::exeOn() {
 
 void HipDropTimerSwitch::exeSwitchUp() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Off", nullptr);
+        MR::startBck(this, "Off");
         MR::startBrk(this, "Off");
     }
 

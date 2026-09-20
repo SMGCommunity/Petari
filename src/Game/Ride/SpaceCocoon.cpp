@@ -271,7 +271,7 @@ void SpaceCocoon::exeBindWait() {
         if (!isKinopioAttached()) {
             MR::startBckPlayer("CocoonWait");
         } else {
-            MR::startBck(mRider, "CocoonWait", static_cast< const char* >(nullptr));
+            MR::startBck(mRider, "CocoonWait");
             MR::validateClipping(this);
             MR::validateClipping(mRider);
             MR::sendSimpleMsgToActor(ACTMES_NPC_EVENT_TALK_ENABLE, mRider);
@@ -330,7 +330,7 @@ void SpaceCocoon::exeBindAttack() {
             MR::startBckPlayer("CocoonFly");
             MR::startSound(mRider, "SE_PV_JUMP_JOY");
         } else {
-            MR::startBck(mRider, "CocoonFly", static_cast< const char* >(nullptr));
+            MR::startBck(mRider, "CocoonFly");
             MR::invalidateClipping(this);
             MR::invalidateClipping(mRider);
             MR::startSound(mRider, "SE_SV_KINOPIO_TALK_GLAD_FLY");

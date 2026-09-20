@@ -487,7 +487,7 @@ void MiniatureGalaxy::appearUnknownModel(const char* brkName) {
     if (mStarPlateModel != nullptr) {
         mStarPlateModel->appear();
         MR::startBrk(mStarPlateModel, brkName);
-        MR::startBck(mStarPlateModel, "MiniatureGalaxyStarNumber", nullptr);
+        MR::startBck(mStarPlateModel, "MiniatureGalaxyStarNumber");
         MR::setBckFrameAndStop(mStarPlateModel, mType == MiniatureGalaxyType_Koopa ? 1.0f : 0.0f);
     }
 

@@ -86,7 +86,7 @@ void ScrewSwitch::exeAdjust() {
 
 void ScrewSwitch::exeScrew() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "ScrewSwitchOn", nullptr);
+        MR::startBck(this, "ScrewSwitchOn");
         MR::startBrk(this, "ScrewSwitchOn");
         MR::startBckPlayer("ScrewSwitchOn");
     }

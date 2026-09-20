@@ -40,7 +40,7 @@ void AstroDomeAsteroid::appear() {
 
 void AstroDomeAsteroid::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "AstroDomeAsteroid", nullptr);
+        MR::startBck(this, "AstroDomeAsteroid");
     }
 
     MR::setBckRate(this, ::cBckRate);

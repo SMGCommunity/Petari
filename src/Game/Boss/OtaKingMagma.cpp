@@ -79,8 +79,8 @@ void OtaKingMagma::control() {
 }
 
 void OtaKingMagma::startBckThisAndBloomModel(const char* BckName) {
-    MR::startBck(this, BckName, 0);
-    MR::startBck(mBloomModel, BckName, 0);
+    MR::startBck(this, BckName);
+    MR::startBck(mBloomModel, BckName);
 }
 
 void OtaKingMagma::exeWait() {

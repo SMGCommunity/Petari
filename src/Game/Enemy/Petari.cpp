@@ -216,7 +216,7 @@ void Petari::exeSwoonStart() {
     if (MR::isFirstStep(this)) {
         calcSpinOutVelocity(5.0f);
         MR::showModel(this);
-        MR::startBck(this, "Appearance", nullptr);
+        MR::startBck(this, "Appearance");
         MR::startBlowHitSound(this);
         MR::startSound(this, "SE_EM_PETARI_APPEAR");
         mRequestSmoke = true;
@@ -235,7 +235,7 @@ void Petari::exeSwoonStart() {
 void Petari::exeSwoon() {
     if (MR::isFirstStep(this)) {
         mVelocity.zero();
-        MR::startBck(this, "Swoon", nullptr);
+        MR::startBck(this, "Swoon");
     }
     calcCenter();
 
@@ -251,7 +251,7 @@ void Petari::exeSwoon() {
 
 void Petari::exeSwoonEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Hide", nullptr);
+        MR::startBck(this, "Hide");
         MR::startSound(this, "SE_EM_PETARI_WAKE_UP");
     }
     if (MR::checkPassBckFrame(this, 60.0f)) {
@@ -294,7 +294,7 @@ void Petari::exeLand() {
 void Petari::exeSmash() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
-        MR::startBck(this, "Press", nullptr);
+        MR::startBck(this, "Press");
         MR::startSound(this, "SE_EM_STOMPED_S");
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
@@ -311,7 +311,7 @@ void Petari::exeSmash() {
 void Petari::exeSpinOut() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
-        MR::startBck(this, "Damage", nullptr);
+        MR::startBck(this, "Damage");
         MR::startBlowHitSound(this);
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }

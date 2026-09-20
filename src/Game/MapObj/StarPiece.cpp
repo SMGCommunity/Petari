@@ -24,10 +24,11 @@
 #include "Game/Util/TriangleFilter.hpp"
 #include <JSystem/J3DGraphBase/J3DStruct.hpp>
 #include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JMath/JMATrigonometric.hpp>
 #include <revolution/gx/GXEnum.h>
 #include <revolution/gx/GXStruct.h>
 #include <revolution/mtx.h>
-#include <JSystem/JMath/JMATrigonometric.hpp>
+
 
 const GXColor effectColors[] = {{0x00, 0x55, 0xff, 0xFF}, {0xFF, 0xFF, 0x00, 0xFF}, {0x55, 0xFF, 0x00, 0xFF}, {0x7F, 0x7F, 0x00, 0xFF}};
 const GXColor initColors[] = {{0x80, 0x00, 0x99, 0xFF}, {0xE6, 0xA0, 0x00, 0xFF}, {0x46, 0xA1, 0x08, 0xFF},
@@ -398,7 +399,7 @@ void StarPiece::exeFall() {
             mVelocity.scale(gravity->dot(mVelocity), *gravity);
         }
 
-        MR::startBck(this, "Land", nullptr);
+        MR::startBck(this, "Land");
 
         if (!MR::isDemoActive()) {
             if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {

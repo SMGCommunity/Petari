@@ -163,7 +163,7 @@ void Plant::appear() {
 
 void Plant::exeWaitFar() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mSeedPartsModel, "Wait", 0);
+        MR::startBck(mSeedPartsModel, "Wait");
     }
 
     if (MR::isNear(this, *MR::getPlayerPos(), ::sDistanceNear)) {
@@ -173,7 +173,7 @@ void Plant::exeWaitFar() {
 
 void Plant::exeSeedWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mSeedPartsModel, "Bud", 0);
+        MR::startBck(mSeedPartsModel, "Bud");
         MR::startSound(this, "SE_OJ_PLANT_BUD");
         mTopPartsModel->kill();
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
@@ -190,7 +190,7 @@ void Plant::exeWaitDemoWaitGrowUp() {
 
 void Plant::exeDemoWaitGrowUp() {
     if (MR::isStep(this, ::sStepDemoAppearEffect)) {
-        MR::startBck(mSeedPartsModel, "Bud", 0);
+        MR::startBck(mSeedPartsModel, "Bud");
         MR::startSound(this, "SE_OJ_PLANT_BUD");
     }
 
@@ -201,7 +201,7 @@ void Plant::exeDemoWaitGrowUp() {
 
 void Plant::exeGrowUp() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mSeedPartsModel, "GrowUp", 0);
+        MR::startBck(mSeedPartsModel, "GrowUp");
         MR::startSound(this, "SE_OJ_PLANT_SEED_BREAK");
         MR::startSystemSE("SE_SY_ITEM_APPEAR");
         MR::startSound(this, "SE_OJ_PLANT_GROW_START");

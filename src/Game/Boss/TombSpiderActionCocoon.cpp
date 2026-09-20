@@ -66,7 +66,7 @@ bool TombSpiderActionCocoon::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSen
 void TombSpiderActionCocoon::exeWait() {
     if (MR::isFirstStep(this)) {
         mParent->getSensor("cocoon")->validate();
-        MR::startBck(TombSpiderFunction::getCocoon(mParent), "Wait", nullptr);
+        MR::startBck(TombSpiderFunction::getCocoon(mParent), "Wait");
     }
 }
 
