@@ -1687,12 +1687,13 @@ struct SoundSwapList {
 
 SoundSwapList soundswaplist[] = {{"", 0, 0, 0}};
 
-u32 Mario::initSoundTable(SoundList* list, u32 globalTablePosition) {
+u32 Mario::initSoundTable(SoundList* pList, u32 globalTablePosition) {
     u32* pSwapOffset = reinterpret_cast< u32* >(soundswaplist) + globalTablePosition;
+    SoundList* pEntry;
     u32 count = 0;
     s32 i = 0;
     while (true) {
-        SoundList* pEntry = list + i;
+        pEntry = pList + i;
         if (pEntry->name[0] == '\0') {
             break;
         }
@@ -1733,6 +1734,7 @@ void Mario::initSound() {
     for (u32 i = 0; i < count; i++) {
         _96C->add(soundlist[i].name, i, false);
     }
+
     _96C->sort();
     _970 = nullptr;
 }
@@ -1801,15 +1803,15 @@ void Mario::stopSoundJ(const char* pSoundName, u32 delay) {
 }
 
 void Mario::startBas(const char* pAnimName, bool arg2, f32 startFrame, f32 speed) {
-    if (mActor->mSoundObject) {
+    if (mActor->mSoundObject != nullptr) {
         ResourceHolder* pHolder = MR::getResourceHolder(mActor);
         const JAUSoundAnimation* pRes = nullptr;
 
-        if (pAnimName && pHolder->mBasResTable->isExistRes(pAnimName)) {
+        if (pAnimName != nullptr && pHolder->mBasResTable->isExistRes(pAnimName)) {
             pRes = static_cast< JAUSoundAnimation* >(pHolder->mBasResTable->getRes(pAnimName));
         }
 
-        if (pRes) {
+        if (pRes != nullptr) {
             mActor->mSoundObject->startAnimation(pRes, arg2, startFrame, speed);
         } else {
             mActor->mSoundObject->removeAnimation();
@@ -1820,7 +1822,7 @@ void Mario::startBas(const char* pAnimName, bool arg2, f32 startFrame, f32 speed
 }
 
 bool Mario::isRunningBas(const char* pAnimName) const {
-    if (!_970) {
+    if (_970 == nullptr) {
         return false;
     }
 
@@ -1859,6 +1861,7 @@ void Mario::playSoundTrampleCombo(u8 combo) {
     if (combo >= 7) {
         return;
     }
+
     MR::startSystemSE("SE_SY_TRAMPLE_COMBO", combo);
 }
 

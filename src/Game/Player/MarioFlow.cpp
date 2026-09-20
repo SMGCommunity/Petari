@@ -26,7 +26,7 @@ bool MarioFlow::start() {
 
     getPlayer()->mMovementStates._1 = false;
     getPlayer()->mMovementStates.jumping = true;
-    getPlayer()->mMovementStates._B = true;
+    getPlayer()->mMovementStates._B = false;
     getPlayer()->mMovementStates._2B = true;
 
     _18 = getFrontVec() * mActor->mConst->getTable()->mJumpDistFlow;

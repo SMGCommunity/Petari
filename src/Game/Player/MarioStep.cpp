@@ -86,6 +86,7 @@ void Mario::checkStep() {
             PSMTXRotAxisRad(rotMtx, &mSideVec, frontDot);
             PSMTXMultVec(rotMtx, &mVelocity, &mVelocity);
         }
+
         return;
     }
 
@@ -113,24 +114,20 @@ void Mario::startStep(const TVec3f& rVec) {
         return;
     }
 
-    TVec3f gravity(*getGravityVec());
-    const f32 gravityScale = 80.0f;
-    gravity.x *= gravityScale;
-    gravity.y *= gravityScale;
-    gravity.z *= gravityScale;
-
-    TVec3f checkPos = rVec - gravity;
+    TVec3f checkPos = rVec - *getGravityVec() * 80.0f;
     HitInfo hitInfo;
 
     if (MR::checkStrikePointToMap(checkPos, &hitInfo)) {
         return;
     }
 
-    if (Collision::checkStrikeBallToMap(checkPos, 20.0f, nullptr, nullptr)) {
+    const bool hitNear = Collision::checkStrikeBallToMap(checkPos, 20.0f, nullptr, nullptr);
+    if (hitNear) {
         return;
     }
 
-    if (Collision::checkStrikeBallToMap(checkPos, 50.0f, nullptr, nullptr)) {
+    const bool hitFar = Collision::checkStrikeBallToMap(checkPos, 50.0f, nullptr, nullptr);
+    if (hitFar) {
         return;
     }
 
@@ -160,7 +157,7 @@ void Mario::startStep(const TVec3f& rVec) {
         }
     }
 
-    setTrans(rVec, "段差");
+    setTrans(rVec, "階段");
     changeStatus(mStep);
     _3D0 = 0;
     const f32 zero = 0.0f;

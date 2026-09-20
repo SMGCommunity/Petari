@@ -2067,7 +2067,7 @@ config.libs = [
             Object(NonMatching, "Game/Player/MarioSearchLight.cpp"),
             Object(NonMatching, "Game/Player/MarioSideStep.cpp"),
             Object(NonMatching, "Game/Player/MarioSkate.cpp"),
-            Object(NonMatching, "Game/Player/MarioSound.cpp"),
+            Object(Matching, "Game/Player/MarioSound.cpp"),
             Object(NonMatching, "Game/Player/MarioSpecial.cpp"),
             Object(NonMatching, "Game/Player/MarioSpin.cpp"),
             Object(NonMatching, "Game/Player/MarioState.cpp"),
