@@ -2166,7 +2166,7 @@ config.libs = [
             Object(Matching, "Game/Scene/GameScenePauseControl.cpp"),
             Object(Matching, "Game/Scene/GameSceneScenarioOpeningCameraState.cpp"),
             Object(NonMatching, "Game/Scene/IntermissionScene.cpp"),
-            Object(NonMatching, "Game/Scene/LogoScene.cpp"),
+            Object(Matching, "Game/Scene/LogoScene.cpp"),
             Object(NonMatching, "Game/Scene/MultiSceneEffectKeeper.cpp"),
             Object(NonMatching, "Game/Scene/MultiSceneActor.cpp"),
             Object(NonMatching, "Game/Scene/PlayTimerScene.cpp"),
