@@ -1,6 +1,4 @@
 #include "Game/Util/ActorShadowUtil.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/ShadowSurfaceBox.hpp"
 #include "Game/LiveActor/ShadowSurfaceCircle.hpp"
 #include "Game/LiveActor/ShadowSurfaceOval.hpp"
 #include "Game/LiveActor/ShadowVolumeBox.hpp"
@@ -11,12 +9,11 @@
 #include "Game/LiveActor/ShadowVolumeSphere.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Util/ActorShadowLocalUtil.hpp"
+#include "Game/Util/CollisionPartsFilter.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
-#include "math_types.hpp"
-#include "revolution/mtx.h"
+#include "revolution/types.h"
 
 namespace MR {
     void initShadowVolumeBox(LiveActor* pActor, const TVec3f& size) {
@@ -253,6 +250,24 @@ namespace MR {
             excludeCalcShadowToCollision(pActor, pName, pCollisionParts);
         } else {
             excludeCalcShadowToSensorAll(pActor, pCollisionParts->mHitSensor);
+        }
+    }
+
+    inline void excludeCalcShadowToSensor(LiveActor* pActor, const char* pName, const HitSensor* pSensor) {
+        if (pName == nullptr) {
+            excludeCalcShadowToSensorAll(pActor, pSensor);
+        } else {
+            ShadowController* pShadowCtrl = ActorShadow::getShadowController(pActor, pName);
+            pShadowCtrl->setCollisionPartsFilter(new CollisionPartsFilterSensor(pSensor));
+        }
+    }
+
+    void excludeCalcShadowToCollision(LiveActor* pActor, const char* pName, CollisionParts* pCollision) {
+        if (pName != nullptr) {
+            const HitSensor* pSensor = pCollision->mHitSensor;
+            excludeCalcShadowToSensor(pActor, pName, pSensor);
+        } else {
+            excludeCalcShadowToSensorAll(pActor, pCollision->mHitSensor);
         }
     }
 
