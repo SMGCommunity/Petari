@@ -11,7 +11,6 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     Kinopio(const char* pName);
 
-    virtual ~Kinopio();
     virtual void init(const JMapInfoIter& rIter);
     virtual void calcAndSetBaseMtx();
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);

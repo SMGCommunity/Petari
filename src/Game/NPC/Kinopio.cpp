@@ -1,6 +1,5 @@
 #include "Game/NPC/Kinopio.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjConnector.hpp"
@@ -39,11 +38,22 @@ namespace {
 
     static Param sParam;
 
-    // const double sDistancePlayerIsNear = 0;
-    // const f32 sDistancePlayerIsFar = 0;
-    // const double sDistancePlayerIsEvent = 0;
-    // const double sTurnLimit = 0;
-    // const double sUpBlendRate
+    const f32 sDistancePlayerIsNear = 200.0f;
+    const f32 sDistancePlayerIsFar = 300.0f;
+    // const f32 sDistancePlayerIsEvent = 0;
+    // const s32 sTurnLimit = 0;
+    const f32 sUpVecBlendRate = 1.0f;
+    // const f32 sDistanceEventPlayerIsNear = 0;
+    const s32 sTimeToCancelEvent = 180;
+    const f32 sDistanceLodMiddle = 1500.0f;
+    const f32 sDistanceLodLow = 2500.0f;
+    const f32 sFallGravity = 0.6f;
+    const f32 sFallFrictionRate = 0.98f;
+    // const s32 sLandingTime = 0;
+    // const s32 sPickelIndex = 0;
+    const f32 sDefaultScale = 1.2f;
+    // const f32 sWalkSpeed = 0;
+    // const f32 sRunSpeed = 0;
 };  // namespace
 
 Kinopio::Kinopio(const char* pName)
@@ -61,28 +71,28 @@ void Kinopio::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg3NoInit(rIter, &mIsSpawnPowerStarMode);
     MR::getJMapInfoArg4NoInit(rIter, &mAppearBehavior);
     MR::getJMapInfoArg7NoInit(rIter, &mEquipment);
-    mScale.set(1.2f);
+    mScale.set(::sDefaultScale);
     initModelManagerWithAnm("Kinopio", nullptr, false);
     MR::connectToSceneNpc(this);
     MR::initLightCtrl(this);
     initSound(4, false);
     initHitSensor(2);
-    MR::addHitSensorNpc(this, "body", 8, 60, TVec3f(0.0f, (f32)60, 0.0f));
-    MR::addHitSensorNpc(this, "Pickel", 8, 60, TVec3f(0.0f, (f32)60, 48.0f));
+    MR::addHitSensorNpc(this, "body", 8, 60.0f, TVec3f(0.0f, 60.0f, 0.0f));
+    MR::addHitSensorNpc(this, "Pickel", 8, 60.0f, TVec3f(0.0f, 60.0f, 48.0f));
     MR::invalidateHitSensor(this, "Pickel");
     s32 isInvalidateSensor = -1;
     MR::getJMapInfoArg6NoInit(rIter, &isInvalidateSensor);
     if (isInvalidateSensor != -1) {
         MR::invalidateHitSensor(this, "body");
     }
-    initBinder(60, 60, 0);
+    initBinder(60.0f, 60.0f, 0);
     MR::offBind(this);
     MR::initShadowVolumeSphere(this, 36.0f);
     MR::onCalcShadowOneTime(this, nullptr);
     initEffectKeeper(0, nullptr, false);
     initNerve(&NrvKinopio::KinopioNrvWait::sInstance);
-    MR::createTalkCtrl(this, rIter, "Kinopio", TVec3f(0.0f, 146.40001f, 0.0f), nullptr);
-    MR::setDistanceToTalk(mMsgCtrl, 200.0f);
+    MR::createTalkCtrl(this, rIter, "Kinopio", TVec3f(0.0f, 146.4f, 0.0f), nullptr);
+    MR::setDistanceToTalk(mMsgCtrl, ::sDistancePlayerIsNear);
     MR::onRootNodeAutomatic(mMsgCtrl);
     MR::registerEventFunc(mMsgCtrl, TalkMessageFunc(this, &Kinopio::eventFunc));
     if (MR::isConnectedWithRail(rIter)) {
@@ -96,18 +106,125 @@ void Kinopio::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg5NoInit(rIter, &isStrictLodDistances);
     mLodCtrl = MR::createLodCtrlNPC(this, rIter);
     if (isStrictLodDistances != -1) {
-        mLodCtrl->setDistanceToMiddleAndLow(1500.0f, 2500.0f);
+        mLodCtrl->setDistanceToMiddleAndLow(::sDistanceLodMiddle, ::sDistanceLodLow);
     }
     NPCActorItem item("Kinopio");
     MR::getNPCItemData(&item, mEquipment);
     equipment(item, false);
     mScaleController = new AnimScaleController(&sParam);
-    JointController* controller = new JointController();
-    MR::setJointControllerParam(controller, this, "body");
+    JointControlDelegator< Kinopio >* delegator = new JointControlDelegator< Kinopio >(this, nullptr, nullptr);
+    MR::setJointControllerParam(delegator, this, "body");
+    mDelegator = (JointControlDelegator< NPCActor >*)delegator;
+
     MR::useStageSwitchReadA(this, rIter);
     MR::useStageSwitchReadB(this, rIter);
     MR::useStageSwitchWriteDead(this, rIter);
+    MR::tryRegisterDemoCast(this, rIter);
     setNerve(&NrvKinopio::KinopioNrvWait::sInstance);
+    _130 = "Spin";
+    _134 = "Trampled";
+    _138 = "Pointing";
+    _13C = "Reaction";
+    _12C = 450.0f;
+    mParam.setMoveAction("Wait", "Turn");
+    mParam.setTalkAction("Talk", "Walk");
+    _11C = "Walk";
+    _120 = "Walk";
+    _124 = true;
+    _10C = 0.83f;
+    switch (mBehavior) {
+    case 0:
+        if (mEquipment == 2) {
+            mParam.setMoveAction("WaitPickel", "WaitPickel");
+            mParam.setTalkAction("TalkPickel", "TalkPickel");
+            _11C = "WalkPickel";
+            _120 = "WalkPickel";
+            break;
+        }
+        setNerve(&NrvKinopio::KinopioNrvFar::sInstance);
+        break;
+    case 1:
+        mParam.setNoTurnAction("SpinWait1");
+        break;
+    case 2:
+        mParam.setNoTurnAction("SpinWait2");
+        break;
+    case 3:
+        mParam.setNoTurnAction("SpinWait3");
+        break;
+    case 4:
+        _128 = false;
+        MR::setDistanceToTalk(mMsgCtrl, 400.0f);
+        break;
+    case 6:
+        _128 = false;
+        mParam.setSingleAction("SwimWait");
+        break;
+    case 8:
+        _128 = false;
+        mParam.setNoTurnAction("Sleep");
+        break;
+    case 10:
+        mParam.setMoveAction("KinopioGoodsWeapon", "KinopioGoodsWeaponTurn");
+        mParam.setTalkAction("KinopioGoodsWeapon", "KinopioGoodsWeaponTurn");
+        _11C = "KinopioGoodsWeaponWalk";
+        _120 = "KinopioGoodsWeaponWalk";
+        break;
+    case 11:
+        mParam.setSingleAction("Joy");
+        break;
+    case 12:
+        mParam.setNoTurnAction("Rightened");
+        break;
+    case 13:
+        mParam.setSingleAction("StarPieceWait");
+        _11C = "StarPieceWait";
+        _120 = "KinopioGoodsStarPieceWalk";
+        break;
+    case 14:
+        _11C = "Getaway";
+        _120 = "Getaway";
+        _10C = 3.32f;
+        break;
+    case 9:
+        mIsSpawnPowerStarMode = true;
+        break;
+    case 7:
+        mParam.setNoTurnAction("Pickel");
+        MR::validateHitSensor(this, "Pickel");
+        break;
+    case 5:
+        _17C = new MapObjConnector(this);
+        MR::invalidateClipping(this);
+        mParam._0 = false;
+        mParam._1 = false;
+        MR::onBind(this);
+        MR::onCalcShadow(this, nullptr);
+        MR::onCalcGravity(this);
+        setNerve(&NrvKinopio::KinopioNrvMount::sInstance);
+        break;
+    }
+    if (mIsSpawnPowerStarMode) {
+        mTakeOutStar = new TakeOutStar(this, "TakeOutStar", "TakeOutStar", &NrvKinopio::KinopioNrvTakeOutStar::sInstance);
+        MR::declarePowerStar(this);
+        setNerve(&NrvKinopio::KinopioNrvStarWait::sInstance);
+    }
+    MR::useStageSwitchSleep(this, rIter);
+    if (MR::useStageSwitchReadAppear(this, rIter)) {
+        MR::syncStageSwitchAppear(this);
+        if (mBehavior != 4) {
+            if (mAppearBehavior == 0) {
+                pushNerve(&NrvKinopio::KinopioNrvEscape::sInstance);
+            } else {
+                pushNerve(&NrvKinopio::KinopioNrvAppear::sInstance);
+            }
+        }
+        makeActorDead();
+    } else {
+        makeActorAppeared();
+    }
+    MR::startBrk(this, "ColorChange");
+    MR::setBrkFrameAndStop(this, mObjArg0);
 }
 
 void Kinopio::exeReaction() {
@@ -150,7 +267,7 @@ void Kinopio::exeReaction() {
 }
 
 bool Kinopio::isPlayerNotNearKinopio() {
-    return !MR::isNearPlayer(this, 300.0f);
+    return !MR::isNearPlayer(this, ::sDistancePlayerIsFar);
 }
 
 void Kinopio::exeJump() {
@@ -179,7 +296,7 @@ void Kinopio::exeJump() {
         return;
     }
     if (isNerve(&NrvKinopio::KinopioNrvFar::sInstance)) {
-        if (MR::isNearPlayer(this, 200.0f)) {
+        if (MR::isNearPlayer(this, ::sDistancePlayerIsNear)) {
             MR::startAction(this, "Notice");
             setNerve(&NrvKinopio::KinopioNrvNear::sInstance);
             return;
@@ -207,9 +324,7 @@ void Kinopio::exeStop() {
             if (MR::isGreaterEqualStep(this, 60)) {
                 setDefaultNerve();
             }
-            return;
-        }
-        if (MR::isGreaterEqualStep(this, 120)) {
+        } else if (MR::isGreaterEqualStep(this, 120)) {
             setDefaultNerve();
         }
     }
@@ -258,9 +373,9 @@ void Kinopio::exeAppear() {
 
     MR::calcGravity(this);
     TVec3f fallSpeed(mGravity);
-    fallSpeed.scale(0.6f);
+    fallSpeed.scale(::sFallGravity);
     mVelocity.add(fallSpeed);
-    mVelocity.mult(0.98f);
+    mVelocity.mult(::sFallFrictionRate);
     faceToPlayer(0.997f);
 
     if (MR::isBinded(this)) {
@@ -329,15 +444,15 @@ void Kinopio::exeEventFall() {
 
     MR::calcGravity(this);
     TVec3f fallSpeed(mGravity);
-    fallSpeed.scale(0.6f);
+    fallSpeed.scale(::sFallGravity);
     mVelocity.add(fallSpeed);
-    mVelocity.mult(0.98f);
+    mVelocity.mult(::sFallFrictionRate);
     faceToPlayer(0.997f);
 
     if (!tryCancelEvent() && MR::isBindedGround(this) && MR::isGreaterStep(this, 3)) {
         mVelocity.zero();
         MR::validateClipping(this);
-        MR::turnQuatYDirRate(&_A0, _A0, -mGravity, 1.0f);
+        MR::turnQuatYDirRate(&_A0, _A0, -mGravity, ::sUpVecBlendRate);
         setInitPose();
         MR::tryForwardNode(mMsgCtrl);
         setNerve(&NrvKinopio::KinopioNrvWait::sInstance);
@@ -414,7 +529,7 @@ void Kinopio::setDefaultNerve() {
         _10C = 0.83f;
     }
     if (mBehavior == -1) {
-        if (MR::isNearPlayer(this, 200.0f)) {
+        if (MR::isNearPlayer(this, ::sDistancePlayerIsNear)) {
             setNerve(&NrvKinopio::KinopioNrvNear::sInstance);
         } else {
             setNerve(&NrvKinopio::KinopioNrvFar::sInstance);
@@ -450,7 +565,7 @@ bool Kinopio::tryStartArgs() {
 }
 
 bool Kinopio::tryCancelEvent() {
-    if (MR::isGreaterStep(this, 180)) {
+    if (MR::isGreaterStep(this, ::sTimeToCancelEvent)) {
         kill();
         return true;
     }
