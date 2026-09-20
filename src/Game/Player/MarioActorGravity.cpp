@@ -13,6 +13,11 @@ f32 JMAAcosRadian(f32) NO_INLINE;
 #include "Game/Util/MathUtil.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
 
+void MarioActorGravity_DUMMY() {
+    TVec3f a;
+    a *= 1.0f;
+}
+
 const TVec3f& MarioActor::getGravityVec() const {
     return *mMario->getGravityVec();
 }
@@ -317,7 +322,7 @@ bool MarioActor::checkBeeCeilStick(TVec3f& rVec) {
         if (out) {
             Triangle triangle = Triangle();
             TVec3f vec;
-            if (MR::getFirstPolyOnLineToMap(&vec, &triangle, mPosition, (-_240).multiplyOperatorInline(200.0f))) {
+            if (MR::getFirstPolyOnLineToMap(&vec, &triangle, mPosition, (-_240 * 200.0f))) {
                 entryWallWalkMode(vec, *(triangle.getNormal(0)));
             }
         }
