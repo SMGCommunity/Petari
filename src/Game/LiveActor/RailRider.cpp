@@ -289,7 +289,18 @@ s32 RailRider::getNextPointNo() const {
         return (offset + nextPoint) % pointNum;
     }
 
-    return MR::clamp(mCurPoint + step, 0, getPointNum() - 1);
+    s32 nextPoint = mCurPoint + step;
+    s32 lastPoint = getPointNum() - 1;
+    s32 result;
+    if (nextPoint < 0) {
+        result = 0;
+    } else if (nextPoint > lastPoint) {
+        result = lastPoint;
+    } else {
+        result = nextPoint;
+    }
+
+    return result;
 }
 
 void RailRider::syncPosDir() {

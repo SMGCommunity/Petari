@@ -72,8 +72,3 @@ public:
     /* 0x144 */ bool mPlayAppearDemo;
     /* 0x145 */ bool mGrabbedTop;
 };
-
-namespace MR {
-    // should this be in MathUtil?
-    void clampMax(f32*, f32);
-};  // namespace MR

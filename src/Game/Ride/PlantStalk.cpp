@@ -4,6 +4,7 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/Color.hpp"
+#include "Game/Util/Functor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -18,11 +19,6 @@
 #include <revolution/gx/GXTev.h>
 #include <revolution/gx/GXTransform.h>
 #include <revolution/gx/GXVert.h>
-
-void PlantStalk_DUMMY() {
-    s32 x;
-    s32 a = MR::clamp(x, 1, 2);
-}
 
 namespace {
     static const f32 sGrowSpeedMin = 15.0f;
@@ -88,10 +84,8 @@ void PlantStalk::draw() const {
 }
 
 bool PlantStalk::updateGrowUp() {
-    // issues with float to int conversion
-    // https://decomp.me/scratch/pe9bX
-
-    if (--mGrowAccelTime <= 0) {
+    mGrowAccelTime--;
+    if (mGrowAccelTime <= 0) {
         mGrowSpeed += MR::getRandom(::sGrowAccelMin, ::sGrowAccelMax);
         mGrowAccelTime = MR::getRandom(::sGrowAccelTimeMin, ::sGrowAccelTimeMax);
     }
@@ -117,8 +111,8 @@ bool PlantStalk::updateGrowUp() {
         return true;
     }
 
-    // FIXME: float to int conversion not wanting to play nice here :(
-    mGrownPlantPoints = (mStalkLength / ::sInterval);
+    mGrownPlantPoints = mStalkLength / ::sInterval;
+    (void)static_cast< f32 >(mGrownPlantPoints);
     mGrownPlantPoints = MR::clamp(mGrownPlantPoints, 2, mNumPlantPoints);
 
     TVec3f stalkPos;
@@ -190,6 +184,7 @@ void PlantStalk::drawGrowUp() const {
         GXColor1u32(::sColorPlusX);
         GXTexCoord2f32(1.0f, idx * ::sTexRate);
     }
+
     GXEnd();
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, mGrownPlantPoints * 2);
@@ -211,6 +206,7 @@ void PlantStalk::drawGrowUp() const {
         GXColor1u32(::sColorPlusZ);
         GXTexCoord2f32(1.0f, idx * ::sTexRate);
     }
+
     GXEnd();
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, mGrownPlantPoints * 2);
@@ -233,6 +229,7 @@ void PlantStalk::drawGrowUp() const {
         GXColor1u32(::sColorMinusX);
         GXTexCoord2f32(1.0f, idx * ::sTexRate);
     }
+
     GXEnd();
 }
 
@@ -240,7 +237,8 @@ PlantStalkDrawInit::PlantStalkDrawInit(const char* pName) : NameObj(pName) {
     mTexture = nullptr;
     mTexture = new JUTTexture(MR::loadTexFromArc("Plant.arc", "PlantStalk.bti"), 0);
 
-    MR::registerPreDrawFunction(MR::Functor(this, &PlantStalkDrawInit::initDraw), MR::DrawType_PlantStalk);
+    MR::FunctorV0M< const PlantStalkDrawInit*, void (PlantStalkDrawInit::*)() const > preDrawFunctor(this, &PlantStalkDrawInit::initDraw);
+    MR::registerPreDrawFunction(preDrawFunctor, MR::DrawType_PlantStalk);
 }
 
 void PlantStalkDrawInit::initDraw() const {

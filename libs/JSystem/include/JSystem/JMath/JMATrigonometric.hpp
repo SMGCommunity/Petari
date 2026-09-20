@@ -204,7 +204,7 @@ inline f32 JMASSin(s16 v) {
     return JMASinShort(v);
 }
 
-inline f32 JMAAcosRadian(f32 v) {
+inline f32 JMAAcosRadian(f32 v) NO_INLINE {
     return JMath::sAsinAcosTable.acos_(v);
 }
 

@@ -1,10 +1,10 @@
 #pragma once
 
-#include <JSystem/JGeometry/TUtil.hpp>
-#include <JSystem/JMath/JMATrigonometric.hpp>
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TQuat.hpp>
+#include <JSystem/JGeometry/TUtil.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
+#include <JSystem/JMath/JMATrigonometric.hpp>
 #include <revolution/types.h>
 
 namespace MR {
@@ -571,7 +571,7 @@ namespace MR {
     /// @retval `min` if the integer is less than or equal to `min`.
     /// @retval `max` if the integer is greater than or equal to `max`.
     /// @retval `x` if the integer is greater than `min` and less than `max`.
-    inline s32 clamp(s32 x, s32 min, s32 max) {
+    inline s32 clamp(s32 x, s32 min, s32 max) NO_INLINE {
         s32 ret;
         if (x < min) {
             ret = min;
@@ -604,14 +604,14 @@ namespace MR {
         *value = clamp(*value, min, max);
     }
 
-    inline void clampMax(f32* val, f32 max) {
+    inline void clampMax(f32* pValue, f32 max) NO_INLINE {
         f32 ret;
-        if (*val >= max) {
+        if (*pValue >= max) {
             ret = max;
         } else {
-            ret = *val;
+            ret = *pValue;
         }
-        *val = ret;
+        *pValue = ret;
     }
 
     inline f32 repeat(f32 value, f32 min, f32 max) {

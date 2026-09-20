@@ -36,11 +36,6 @@ void Plant_FORCE_MATCH_SDATA2() {
     (void)-1.0f;
 }
 
-void DUMMY() {
-    f32 a;
-    MR::clampMax(&a, 0.0f);
-}
-
 namespace {
     static const f32 sDistanceNear = 700.0f;
     static const f32 sDistanceBody = 300.0f;
@@ -473,6 +468,7 @@ bool Plant::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRece
             startGrowUp();
             return true;
         }
+
         return false;
     }
 
@@ -588,6 +584,7 @@ bool Plant::updateGrowUp() {
         } else {
             setNerve(GET_NERVE(Plant, PlantNrvGrowthWait));
         }
+
         return true;
     }
 
@@ -627,6 +624,7 @@ void Plant::updateBindLeaf() {
     if (MR::isRailGoingToEnd(this)) {
         railDir.scale(-1.0f);
     }
+
     railDir.add(mPosition);
 
     for (s32 leaf = 0; leaf < mNumLeaves; leaf++) {
@@ -648,6 +646,7 @@ bool Plant::tryHangUp() {
         if (mGrabbedTop) {
             mGrabbedTop = false;
         }
+
         return false;
     }
 
@@ -713,6 +712,7 @@ bool Plant::tryAccelHangUp() {
         } else {
             speed = ::sHangUpPlayerSpeedMin;
         }
+
         mRideVelocity = speed;
         return true;
     }

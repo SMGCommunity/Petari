@@ -13,6 +13,8 @@ void SpherePadController_FORCE_MATCH_SDATA2() {
     (void)2.0f;
 }
 
+template void TRot3f::setRotate(const TVec3f&, const TVec3f&);
+
 SpherePadController::SpherePadController() : SphereController() {
 }
 
@@ -24,15 +26,16 @@ f32 SpherePadController::calcJumpPower() const {
     if (MR::testSystemTriggerA()) {
         return 1.0f;
     }
+
     return 0.0f;
 }
 
 void SpherePadController::update(const TVec3f&) {
 }
 
-void SpherePadController::clacXY(f32* x, f32* y) {
-    *x = MR::getSubPadStickX(WPAD_CHAN0);
-    *y = MR::getSubPadStickY(WPAD_CHAN0);
+void SpherePadController::clacXY(f32* pX, f32* pY) NO_INLINE {
+    *pX = MR::getSubPadStickX(WPAD_CHAN0);
+    *pY = MR::getSubPadStickY(WPAD_CHAN0);
 }
 
 f32 SpherePadController::calcDirSphereMove(TVec3f* pMoveDir, const TVec3f& rBaseVec, u32 isFrontVec) {
@@ -76,6 +79,7 @@ f32 SpherePadController::calcDirSphereMove(TVec3f* pMoveDir, const TVec3f& rBase
             rotMtx.mult33(dirZ);
             pMoveDir->set(dirX * x - dirZ * y);
         }
+
         MR::separateScalarAndDirection(&mag, pMoveDir, *pMoveDir);
     } else {
         pMoveDir->z = 0.0f;
