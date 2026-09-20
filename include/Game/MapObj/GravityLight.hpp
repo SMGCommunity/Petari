@@ -9,15 +9,19 @@ class MapPartsRotator;
 
 class GravityLight : public LiveActor {
 public:
-    GravityLight(const char*);
+    GravityLight(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
+    virtual ~GravityLight() {
+    }
+
+    virtual void init(const JMapInfoIter& rIter);
     virtual void control();
     virtual MtxPtr getBaseMtx() const {
         return (MtxPtr)&mBaseMtx;
-    };
+    }
 
-    void exeWait() {};
+    void exeWait() {
+    }
 
     /* 0x8C */ TMtx34f mBaseMtx;
     /* 0xBC */ LightCylinder* mLightCylinder;

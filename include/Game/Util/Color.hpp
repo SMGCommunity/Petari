@@ -28,16 +28,16 @@ public:
         return mColor;
     }
 
-    inline const Color8& operator=(const GXColor& other) {
-        mGXColor = other;
+    inline const Color8& operator=(const GXColor& rOther) {
+        mGXColor = rOther;
         return *this;
     }
 
-    inline const Color8& operator=(const Color8& other) {
-        r = other.r;
-        g = other.g;
-        b = other.b;
-        a = other.a;
+    inline const Color8& operator=(const Color8& rOther) {
+        r = rOther.r;
+        g = rOther.g;
+        b = rOther.b;
+        a = rOther.a;
         return *this;
     }
 
@@ -49,7 +49,8 @@ public:
     }
 
     void set(GXColor color) {
-        mGXColor = color;
+        GXColor* const pColor = &mGXColor;
+        *pColor = color;
     }
 
     union {
