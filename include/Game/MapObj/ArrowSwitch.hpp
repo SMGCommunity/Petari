@@ -4,6 +4,20 @@
 
 class ArrowSwitch : public LiveActor {
 public:
+    enum SwitchType {
+        SwitchType_HalfPlus = 0,
+        SwitchType_HalfMinus = 1,
+        SwitchType_QuarterPlus = 2,
+        SwitchType_QuarterMinus = 3,
+    };
+
+    enum Direction {
+        Direction_Up = 0,
+        Direction_Right = 1,
+        Direction_Down = 2,
+        Direction_Left = 3,
+    };
+
     /// @brief Creates a new `ArrowSwitch`.
     /// @param pName A pointer to the null-terminated name of the object.
     ArrowSwitch(const char* pName);
@@ -25,12 +39,12 @@ public:
     bool isMinusLimit() const;
     s32 getOneStep() const;
 
-    /* 0x8C */ f32 _8C;
+    /* 0x8C */ f32 mRotAngle;
     /* 0x90 */ s32 mRotYTargetIndex;
-    /* 0x94 */ f32 _94;
-    /* 0x98 */ s32 mObjArg0;
-    /* 0x9C */ bool mObjArg1;
-    /* 0x9D */ bool _9D;
+    /* 0x94 */ f32 mRotSpeed;
+    /* 0x98 */ s32 mSwitchType;
+    /* 0x9C */ bool mLockAfterRotate;
+    /* 0x9D */ bool mIsRotPlus;
     /* 0x9E */ bool _9E;
-    /* 0x9F */ bool _9F;
+    /* 0x9F */ bool mIsPunch;
 };

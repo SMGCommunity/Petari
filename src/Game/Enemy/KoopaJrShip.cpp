@@ -130,20 +130,7 @@ void KoopaJrShip::kill() {
 void KoopaJrShip::control() {
     _EC = MR::repeat(_EC + mPropRotateSpeed, 0.0f, 360.0f);
 
-    f32 angle = MR::toRadian(_EC);
-    f32 s = sin(angle);
-    f32 c = cos(angle);
-
-    mPropellerMtx[0][0] = c;
-    mPropellerMtx[1][1] = 1.0f;
-    mPropellerMtx[0][2] = s;
-    mPropellerMtx[2][0] = -s;
-    mPropellerMtx[2][2] = c;
-    mPropellerMtx[2][1] = 0.0f;
-    mPropellerMtx[1][2] = 0.0f;
-    mPropellerMtx[1][0] = 0.0f;
-    mPropellerMtx[0][1] = 0.0f;
-
+    mPropellerMtx.setEulerY(MR::toRadian(_EC));
     mScrew00Mtx.setEulerZ(MR::toRadian(_EC));
     mScrew01Mtx.setEulerZ(MR::toRadian(_EC));
     MR::setRailCoordSpeed(this, _184);

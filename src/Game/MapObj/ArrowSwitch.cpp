@@ -7,12 +7,21 @@
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
+void ArrowSwitch_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 namespace {
     static const f32 sRotYTargetList[] = {0.0f, 90.0f, 180.0f, -90.0f};
+
+    static const f32 sTestScale = 1.0f;
+    static const f32 sPunchVelocit = 6.0f;
+    static const s32 sFreqRotY = 4;
 };  // namespace
 
 namespace NrvArrowSwitch {
@@ -21,20 +30,19 @@ namespace NrvArrowSwitch {
     NEW_NERVE(ArrowSwitchNrvLock, ArrowSwitch, Lock);
 };  // namespace NrvArrowSwitch
 
-ArrowSwitch::ArrowSwitch(const char* pName) : LiveActor(pName), _8C(), mRotYTargetIndex(), _94(), mObjArg0(-1), mObjArg1(), _9D(true), _9E(), _9F() {
+ArrowSwitch::ArrowSwitch(const char* pName)
+    : LiveActor(pName), mRotAngle(), mRotYTargetIndex(), mRotSpeed(), mSwitchType(-1), mLockAfterRotate(), mIsRotPlus(true), _9E(), mIsPunch() {
 }
 
 void ArrowSwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    mScale.x = 1.0f;
-    mScale.y = 1.0f;
-    mScale.z = 1.0f;
+    mScale.set(::sTestScale);
     initModelManagerWithAnm("ArrowSwitch", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
 
     TVec3f up;
     MR::calcUpVec(&up, this);
-    mGravity = -up;
+    mGravity.set(-up);
 
     MR::initShadowFromCSV(this, "Shadow");
     MR::onCalcShadow(this, nullptr);
@@ -52,20 +60,20 @@ void ArrowSwitch::init(const JMapInfoIter& rIter) {
 
     initSound(4, false);
     initNerve(GET_NERVE(ArrowSwitch, ArrowSwitchNrvWait));
-    MR::getJMapInfoArg0WithInit(rIter, &mObjArg0);
-    MR::getJMapInfoArg1WithInit(rIter, &mObjArg1);
+    MR::getJMapInfoArg0WithInit(rIter, &mSwitchType);
+    MR::getJMapInfoArg1WithInit(rIter, &mLockAfterRotate);
 
-    s32 arg2 = -1;
-    MR::getJMapInfoArg2WithInit(rIter, &arg2);
+    s32 shadowDropLength = -1;
+    MR::getJMapInfoArg2WithInit(rIter, &shadowDropLength);
 
-    if (arg2 >= 0) {
-        MR::setShadowDropLength(this, nullptr, arg2);
+    if (shadowDropLength >= 0) {
+        MR::setShadowDropLength(this, nullptr, shadowDropLength);
     }
 
     MR::needStageSwitchWriteA(this, rIter);
 
-    if (!mObjArg1) {
-        MR::listenStageSwitchOnOffA(this, MR::Functor(this, &ArrowSwitch::listenOffSwitch), MR::Functor(this, &ArrowSwitch::listenOnSwitch));
+    if (!mLockAfterRotate) {
+        MR::listenStageSwitchOnOffA(this, MR::Functor(this, &ArrowSwitch::listenOnSwitch), MR::Functor(this, &ArrowSwitch::listenOffSwitch));
     }
 
     makeActorAppeared();
@@ -76,25 +84,12 @@ void ArrowSwitch::control() {
 
 void ArrowSwitch::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
-    MtxPtr baseMtx = getBaseMtx();
     TPos3f pos;
-    pos.setInline(baseMtx);
-    TMtx34f tr_mtx;
-    tr_mtx.identity();
-    f32 v11 = _8C;
-    v11 = v11 * PI_180;
-    f32 v12 = sin(v11);
-    f32 v13 = cos(v11);
-    tr_mtx.mMtx[0][2] = v12;
-    tr_mtx.mMtx[1][1] = 1.0f;
-    tr_mtx.mMtx[0][0] = v13;
-    tr_mtx.mMtx[2][0] = -v12;
-    tr_mtx.mMtx[2][2] = v13;
-    tr_mtx.mMtx[2][1] = 0.0f;
-    tr_mtx.mMtx[1][2] = 0.0f;
-    tr_mtx.mMtx[1][0] = 0.0f;
-    tr_mtx.mMtx[0][1] = 0.0f;
-    pos.concat(pos, tr_mtx);
+    pos.set(getBaseMtx());
+    TPos3f rot;
+    rot.identity();
+    rot.setEulerY(MR::toRadian(mRotAngle));
+    pos.concat(pos, rot);
     MR::setBaseTRMtx(this, pos);
 }
 
@@ -132,19 +127,19 @@ bool ArrowSwitch::requestPunch(HitSensor* pSender, HitSensor* pReceiver) {
     MR::calcSensorDirection(&sensorDir, pSender, pReceiver);
 
     if (isPlusLimit()) {
-        _9D = false;
+        mIsRotPlus = false;
     } else if (isMinusLimit()) {
-        _9D = true;
+        mIsRotPlus = true;
     } else if (side.dot(sensorDir) > 0.0f) {
-        _9D = true;
+        mIsRotPlus = true;
     } else {
-        _9D = false;
+        mIsRotPlus = false;
     }
 
-    mRotYTargetIndex += _9D ? getOneStep() : -getOneStep();
-    mRotYTargetIndex = (mRotYTargetIndex + ARRAY_SIZE(::sRotYTargetList)) % ARRAY_SIZE(::sRotYTargetList);
-    _94 = _9D ? -6.0f : 6.0f;
-    _9F = true;
+    mRotYTargetIndex += mIsRotPlus ? getOneStep() : -getOneStep();
+    mRotYTargetIndex = (mRotYTargetIndex + ::sFreqRotY) % ::sFreqRotY;
+    mRotSpeed = mIsRotPlus ? ::sPunchVelocit : -::sPunchVelocit;
+    mIsPunch = true;
 
     MR::invalidateClipping(this);
     setNerve(GET_NERVE(ArrowSwitch, ArrowSwitchNrvRotate));
@@ -153,31 +148,31 @@ bool ArrowSwitch::requestPunch(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 void ArrowSwitch::listenOnSwitch() {
-    if (mRotYTargetIndex != 0) {
+    if (mRotYTargetIndex != Direction_Up) {
         return;
     }
 
-    switch (mObjArg0) {
-    case 2:
+    switch (mSwitchType) {
     case -1:
-        _9D = true;
-        _94 = 6.0f;
-        mRotYTargetIndex = 2;
+    case SwitchType_QuarterPlus:
+        mIsRotPlus = true;
+        mRotSpeed = ::sPunchVelocit;
+        mRotYTargetIndex = Direction_Down;
         break;
-    case 3:
-        _9D = false;
-        _94 = 6.0f;
-        mRotYTargetIndex = 2;
+    case SwitchType_QuarterMinus:
+        mIsRotPlus = false;
+        mRotSpeed = ::sPunchVelocit;
+        mRotYTargetIndex = Direction_Down;
         break;
-    case 0:
-        _9D = true;
-        _94 = -6.0f;
-        mRotYTargetIndex = 1;
+    case SwitchType_HalfPlus:
+        mIsRotPlus = true;
+        mRotSpeed = -::sPunchVelocit;
+        mRotYTargetIndex = Direction_Right;
         break;
-    case 1:
-        _9D = false;
-        _94 = -6.0f;
-        mRotYTargetIndex = 3;
+    case SwitchType_HalfMinus:
+        mIsRotPlus = false;
+        mRotSpeed = -::sPunchVelocit;
+        mRotYTargetIndex = Direction_Left;
         break;
     default:
         return;
@@ -188,23 +183,23 @@ void ArrowSwitch::listenOnSwitch() {
 }
 
 void ArrowSwitch::listenOffSwitch() {
-    if (mRotYTargetIndex == 0) {
+    if (mRotYTargetIndex == Direction_Up) {
         return;
     }
 
-    mRotYTargetIndex = 0;
+    mRotYTargetIndex = Direction_Up;
 
-    switch (mObjArg0) {
-    case 2:
-    case 0:
+    switch (mSwitchType) {
     case -1:
-        _9D = false;
-        _94 = -6.0f;
+    case SwitchType_HalfPlus:
+    case SwitchType_QuarterPlus:
+        mIsRotPlus = false;
+        mRotSpeed = -::sPunchVelocit;
         break;
-    case 1:
-    case 3:
-        _9D = true;
-        _94 = 6.0f;
+    case SwitchType_HalfMinus:
+    case SwitchType_QuarterMinus:
+        mIsRotPlus = true;
+        mRotSpeed = ::sPunchVelocit;
         break;
     default:
         return;
@@ -216,7 +211,7 @@ void ArrowSwitch::listenOffSwitch() {
 
 void ArrowSwitch::exeWait() {
     if (MR::isFirstStep(this)) {
-        if (mRotYTargetIndex == 0) {
+        if (mRotYTargetIndex == Direction_Up) {
             MR::startBtk(this, "Off");
         } else {
             MR::startBtk(this, "On");
@@ -227,12 +222,17 @@ void ArrowSwitch::exeWait() {
     }
 }
 
+void ArrowSwitch_FORCE_MATCH_SDATA2_2() {
+    // TODO: why?
+    (void)360.0f;
+}
+
 void ArrowSwitch::exeRotate() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_ARROW_SWITCH_ON");
         MR::onCalcShadow(this, nullptr);
 
-        if (mObjArg1) {
+        if (mLockAfterRotate) {
             MR::invalidateHitSensors(this);
 
             if (MR::isExistCollisionParts(this)) {
@@ -242,20 +242,15 @@ void ArrowSwitch::exeRotate() {
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_ARROW_SWITCH_MOVE");
-    f32 v2 = (_8C + _94) - -180.0f;
-    _8C += _94;
-    f32 v3 = fmod(360.0 + v2, 360.0);
-    f32 v4 = (-180.0f + v3);
-    f32 v5 = (::sRotYTargetList[mRotYTargetIndex] - (-180.0f + v3));
-    _8C = v4;
-    f32 v6 = (-180.0 + fmod((360.0 + (v5 - -180.0)), 360.0));
+    mRotAngle += mRotSpeed;
+    mRotAngle = MR::repeat(mRotAngle, -180.0f, 360.0f);
+    f32 diff = MR::repeat(::sRotYTargetList[mRotYTargetIndex] - mRotAngle, -180.0f, 360.0f);
 
-    if (_9D && v6 < 0.0f || !_9D && v6 > 0.0f) {
-        f32 rot = ::sRotYTargetList[mRotYTargetIndex];
-        _94 = 0.0f;
-        _8C = rot;
+    if (mIsRotPlus && diff < 0.0f || !mIsRotPlus && diff > 0.0f) {
+        mRotAngle = ::sRotYTargetList[mRotYTargetIndex];
+        mRotSpeed = 0.0f;
 
-        if (MR::isValidSwitchA(this) && _9F) {
+        if (MR::isValidSwitchA(this) && mIsPunch) {
             if (mRotYTargetIndex != 0) {
                 MR::onSwitchA(this);
             } else {
@@ -267,9 +262,9 @@ void ArrowSwitch::exeRotate() {
 
         MR::startSound(this, "SE_OJ_ARROW_SWITCH_STOP");
 
-        _9F = false;
+        mIsPunch = false;
 
-        if (mObjArg1) {
+        if (mLockAfterRotate) {
             setNerve(GET_NERVE(ArrowSwitch, ArrowSwitchNrvLock));
         } else {
             setNerve(GET_NERVE(ArrowSwitch, ArrowSwitchNrvWait));
@@ -279,7 +274,7 @@ void ArrowSwitch::exeRotate() {
 
 void ArrowSwitch::exeLock() {
     if (MR::isFirstStep(this)) {
-        if (mRotYTargetIndex == 0) {
+        if (mRotYTargetIndex == Direction_Up) {
             MR::startBtk(this, "Off");
         } else {
             MR::startBtk(this, "On");
@@ -291,43 +286,43 @@ void ArrowSwitch::exeLock() {
 }
 
 bool ArrowSwitch::isPlusLimit() const {
-    switch (mObjArg0) {
-    case 2:
-        return mRotYTargetIndex == 2;
-    case 0:
-        return mRotYTargetIndex == 1;
-    case 1:
-        return mRotYTargetIndex == 0;
-    case 3:
-        return mRotYTargetIndex == 0;
+    switch (mSwitchType) {
+    case SwitchType_QuarterPlus:
+        return mRotYTargetIndex == Direction_Down;
+    case SwitchType_HalfPlus:
+        return mRotYTargetIndex == Direction_Right;
+    case SwitchType_HalfMinus:
+        return mRotYTargetIndex == Direction_Up;
+    case SwitchType_QuarterMinus:
+        return mRotYTargetIndex == Direction_Up;
     default:
         return false;
     }
 }
 
 bool ArrowSwitch::isMinusLimit() const {
-    switch (mObjArg0) {
-    case 2:
-        return mRotYTargetIndex == 0;
-    case 0:
-        return mRotYTargetIndex == 0;
-    case 1:
-        return mRotYTargetIndex == 3;
-    case 3:
-        return mRotYTargetIndex == 2;
+    switch (mSwitchType) {
+    case SwitchType_QuarterPlus:
+        return mRotYTargetIndex == Direction_Up;
+    case SwitchType_HalfPlus:
+        return mRotYTargetIndex == Direction_Up;
+    case SwitchType_HalfMinus:
+        return mRotYTargetIndex == Direction_Left;
+    case SwitchType_QuarterMinus:
+        return mRotYTargetIndex == Direction_Down;
     default:
         return false;
     }
 }
 
 s32 ArrowSwitch::getOneStep() const {
-    switch (mObjArg0) {
+    switch (mSwitchType) {
     case -1:
-    case 2:
-    case 3:
+    case SwitchType_QuarterPlus:
+    case SwitchType_QuarterMinus:
         return 2;
-    case 0:
-    case 1:
+    case SwitchType_HalfPlus:
+    case SwitchType_HalfMinus:
         return 1;
     default:
         return 0;
