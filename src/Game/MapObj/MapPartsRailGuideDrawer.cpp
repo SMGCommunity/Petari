@@ -14,8 +14,8 @@ void MapPartsRailGuideDrawer_FORCE_MATCH_SDATA2() {
 }
 
 namespace NrvMapPartsRailGuideDrawer {
-    NEW_NERVE_NULL(HostTypeHideAll);
-    NEW_NERVE_NULL(HostTypeDrawAll);
+    NEW_NERVE(HostTypeHideAll, MapPartsRailGuideDrawer, HideAll);
+    NEW_NERVE(HostTypeDrawAll, MapPartsRailGuideDrawer, DrawAll);
     NEW_NERVE(HostTypeDrawForward, MapPartsRailGuideDrawer, DrawForward);
 }  // namespace NrvMapPartsRailGuideDrawer
 
@@ -93,6 +93,12 @@ void MapPartsRailGuideDrawer::initGuidePoints(const JMapInfoIter& rIter) {
             curPointNum++;
         }
     }
+}
+
+void MapPartsRailGuideDrawer::exeHideAll() {
+}
+
+void MapPartsRailGuideDrawer::exeDrawAll() {
 }
 
 void MapPartsRailGuideDrawer::exeDrawForward() {
