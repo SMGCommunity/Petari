@@ -1,8 +1,6 @@
-#include "Game/Util/Functor.hpp"
-
+#include "Game/Demo/DemoExecutor.hpp"
 #include "Game/Demo/DemoActionKeeper.hpp"
 #include "Game/Demo/DemoCameraKeeper.hpp"
-#include "Game/Demo/DemoExecutor.hpp"
 #include "Game/Demo/DemoFunction.hpp"
 #include "Game/Demo/DemoPlayerKeeper.hpp"
 #include "Game/Demo/DemoSoundKeeper.hpp"
@@ -18,6 +16,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include <algorithm>
+
 
 DemoExecutor::DemoExecutor(const char* pName)
     : DemoCastGroup(pName), mSheetName(), mTimeKeeper(), mSubPartKeeper(), mPlayerKeeper(), mCameraKeeper(), mActionKeeper(), mWipeKeeper(),

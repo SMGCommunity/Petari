@@ -2,7 +2,6 @@
 
 #include "Game/MapObj/MapObjActor.hpp"
 #include "Game/Util/Color.hpp"
-#include "Game/Util/Functor.hpp"
 
 class VolumeModelDrawer;
 

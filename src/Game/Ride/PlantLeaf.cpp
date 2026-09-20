@@ -1,6 +1,5 @@
 #include "Game/Ride/PlantLeaf.hpp"
 #include "Game/Scene/SceneFunction.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
@@ -41,8 +40,7 @@ PlantLeaf::PlantLeaf(f32 leafCoord, const TVec3f& rPosition, const TVec3f& rGrow
 }
 
 PlantLeafDrawInit::PlantLeafDrawInit(const char* pName) : LiveActor(pName), mMaterial(), mShape(), mShapeDraw() {
-    MR::FunctorV0M< const PlantLeafDrawInit*, void (PlantLeafDrawInit::*)() const > preDrawFunctor(this, &PlantLeafDrawInit::initDraw);
-    MR::registerPreDrawFunction(preDrawFunctor, MR::DrawType_Plant);
+    MR::registerPreDrawFunction(MR::Functor(this, &PlantLeafDrawInit::initDraw), MR::DrawType_Plant);
 
     initModelManagerWithAnm("PlantLeaf", 0, false);
     J3DModelData* pModelData = MR::getJ3DModelData(this);
