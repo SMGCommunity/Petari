@@ -1279,7 +1279,7 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/PackunPetit.cpp"),
             Object(NonMatching, "Game/Enemy/Petari.cpp"),
             Object(NonMatching, "Game/Enemy/Poihana.cpp"),
-            Object(NonMatching, "Game/Enemy/Pukupuku.cpp"),
+            Object(Matching, "Game/Enemy/Pukupuku.cpp"),
             Object(NonMatching, "Game/Enemy/RingBeam.cpp"),
             Object(NonMatching, "Game/Enemy/RingBeamer.cpp"),
             Object(NonMatching, "Game/Enemy/SamboFunction.cpp"),
