@@ -59,9 +59,9 @@ void ValveSwitch::exeWait() {
         MR::setBrkFrameAndStop(this, 0.0f);
 
         if (_C4) {
-            MR::startBck(this, "ValveSwitchReverseOn", nullptr);
+            MR::startBck(this, "ValveSwitchReverseOn");
         } else {
-            MR::startBck(this, "ValveSwitchOn", nullptr);
+            MR::startBck(this, "ValveSwitchOn");
         }
 
         MR::setBckFrameAndStop(this, 0.0f);
@@ -84,13 +84,13 @@ void ValveSwitch::exeAdjust() {
 void ValveSwitch::exeValve() {
     if (MR::isFirstStep(this)) {
         if (_C4) {
-            MR::startBck(this, "ValveSwitchReverseOn", nullptr);
+            MR::startBck(this, "ValveSwitchReverseOn");
         } else {
-            MR::startBck(this, "ValveSwitchOn", nullptr);
+            MR::startBck(this, "ValveSwitchOn");
         }
 
         MR::startBrk(this, "ValveSwitchOn");
-        MR::startBckPlayer("ScrewSwitchOn", (s32)0);
+        MR::startBckPlayer("ScrewSwitchOn", 0L);
     }
 
     if (MR::isLessStep(this, 30)) {

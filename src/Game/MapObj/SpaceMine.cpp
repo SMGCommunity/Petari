@@ -154,7 +154,7 @@ void SpaceMine::exeAppear() {
     MR::startLevelSound(this, "SE_OJ_LV_SPACEMINE_APPEAR");
 
     if (MR::isStep(this, 120)) {
-        MR::startBck(this, "Appear", nullptr);
+        MR::startBck(this, "Appear");
         MR::showModel(this);
         MR::startSound(this, "SE_OJ_SPACEMINE_APPEAR");
     }

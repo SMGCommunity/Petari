@@ -69,7 +69,7 @@ void MarioActor::updateBeeWingAnimation() {
 
     if (mMario->checkLvlA() && mMario->_402 && getMovementStates().jumping) {
         if (_9F0 != 1) {
-            MR::startBck(_9E8, "Fly", nullptr);
+            MR::startBck(_9E8, "Fly");
             MR::startBva(_9E8, "Fly");
             MR::startBtk(_9E8, "Fly");
         }
@@ -91,17 +91,17 @@ void MarioActor::updateBeeWingAnimation() {
 
     switch (val) {
     case 0:
-        MR::startBck(_9E8, "Wait", nullptr);
+        MR::startBck(_9E8, "Wait");
         MR::startBva(_9E8, "Wait");
         break;
 
     case 2:
-        MR::startBck(_9E8, "FlyWait", nullptr);
+        MR::startBck(_9E8, "FlyWait");
         MR::startBva(_9E8, "FlyWait");
         break;
 
     case 3:
-        MR::startBck(_9E8, "FlyFall", nullptr);
+        MR::startBck(_9E8, "FlyFall");
         MR::startBva(_9E8, "FlyFall");
         break;
     }
@@ -143,7 +143,7 @@ void MarioActor::updateTakingPosition() {
                 if (mMario->isAnimationTerminate("カブ抜き")) {
                     stopAnimation(nullptr);
                     _480 = false;
-                    mMario->changeAnimationUpper("カブウエイト", nullptr);
+                    mMario->changeAnimationUpper("カブウエイト");
                 }
                 break;
             case ATYPE_JET_TURTLE:
@@ -309,7 +309,7 @@ void MarioActor::shootFireBall() {
         return;
     if (getMovementStates()._8) {
         sendMsgToSensor(mMario->getWallPolygon()->mSensor, ACTMES_FIREBALL_ATTACK);
-        changeAnimation("ファイアスピン", nullptr);
+        changeAnimation("ファイアスピン");
         return;
     }
     u32 index;
@@ -331,17 +331,17 @@ void MarioActor::shootFireBall() {
     playSound("声投げ", -1);
     if (!isJumping()) {
         mMario->_420 = 45;
-        changeAnimation("ファイアスピン", nullptr);
+        changeAnimation("ファイアスピン");
         return;
     }
     if (mMario->_42C >= 3) {
-        changeAnimation("ファイア投げ", nullptr);
+        changeAnimation("ファイア投げ");
         return;
     }
     if (mMario->_42C == 0)
-        changeAnimation("ファイアスピン空中", nullptr);
+        changeAnimation("ファイアスピン空中");
     else
-        changeAnimation("ファイア投げ", nullptr);
+        changeAnimation("ファイア投げ");
     jumpHop();
     mMario->_42C++;
     f32 gravitySpeed = mMario->cutGravityElementFromJumpVec(true);
@@ -359,7 +359,7 @@ void MarioActor::showFreezeModel() {
 }
 
 void MarioActor::hideFreezeModel() {
-    MR::startBck(_9C4, "Break", nullptr);
+    MR::startBck(_9C4, "Break");
     MR::startBva(_9C4, "Break");
 
     mMario->startFreezeEnd();
@@ -379,7 +379,7 @@ void MarioActor::updateFairyStar() {
         if (MR::isDead(_994)) {
             _994->appear();
             _994->mRotation.set(0.0f, 0.0f, 0.0f);
-            MR::startBck(_994, "SpinTimer", nullptr);
+            MR::startBck(_994, "SpinTimer");
             playSound("スピン許可", -1);
         }
         TVec3f position;

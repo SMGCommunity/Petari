@@ -88,7 +88,7 @@ bool MarioParalyze::update() {
         }
 
         if (getPlayer()->getMovementStates()._1) {
-            changeAnimation("電気ダメージ終了", static_cast< const char* >(nullptr));
+            changeAnimation("電気ダメージ終了");
             playSound("声電気ダメージ終了");
         }
 

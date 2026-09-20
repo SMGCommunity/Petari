@@ -69,7 +69,7 @@ void TeresaWater::init(const JMapInfoIter& rIter) {
 
 void TeresaWater::exeMove() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     MR::moveAndTurnToTarget(this, &_94, *_B8, sMoveParam._0, sMoveParam._4, sMoveParam._8, sMoveParam._C);
@@ -86,7 +86,7 @@ void TeresaWater::exeMove() {
 
 void TeresaWater::exeHit() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Hit", nullptr);
+        MR::startBck(this, "Hit");
         mVelocity.zero();
         MR::startSound(this, "SE_EV_TERESA_ATTACK_SUCCESS");
     }
@@ -98,7 +98,7 @@ void TeresaWater::exeHit() {
 
 void TeresaWater::exeStun() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Reaction", nullptr);
+        MR::startBck(this, "Reaction");
     }
 
     if (MR::isBckStopped(this)) {

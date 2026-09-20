@@ -166,8 +166,8 @@ void SkeletalFishBoss::init(const JMapInfoIter& rIter) {
     MR::declarePowerStar(this);
     MR::declareStarPiece(this, 0x19);
     MR::createCenterScreenBlur();
-    MR::startBck(this, "Swim", nullptr);
-    MR::startBck(mBossHead, "Wait", nullptr);
+    MR::startBck(this, "Swim");
+    MR::startBck(mBossHead, "Wait");
     MR::startBrk(this, "Base");
     MR::startBrk(mBossHead, "Base");
     MR::startBva(this, "Normal");
@@ -326,7 +326,7 @@ void SkeletalFishBoss::exeSwim() {
 
 void SkeletalFishBoss::exeOpen() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mBossHead, "Open", nullptr);
+        MR::startBck(mBossHead, "Open");
         MR::startSound(mBossHead, "SE_BM_SKL_BOSS_MOUTH_OPEN");
     }
 
@@ -334,7 +334,7 @@ void SkeletalFishBoss::exeOpen() {
     MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR");
 
     if (MR::isBckStopped(mBossHead)) {
-        MR::startBck(mBossHead, "OpenWait", nullptr);
+        MR::startBck(mBossHead, "OpenWait");
         setNerve(GET_NERVE_ANON(SkeletalFishBossNrvOpenWait));
     }
 }
@@ -354,7 +354,7 @@ void SkeletalFishBoss::exeOpenWait() {
 
 void SkeletalFishBoss::exeClose() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mBossHead, "Close", nullptr);
+        MR::startBck(mBossHead, "Close");
         MR::startSound(mBossHead, "SE_BM_SKL_BOSS_MOUTH_CLOSE");
     }
 
@@ -362,21 +362,21 @@ void SkeletalFishBoss::exeClose() {
     MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR");
 
     if (MR::isBckStopped(mBossHead)) {
-        MR::startBck(mBossHead, "Wait", nullptr);
+        MR::startBck(mBossHead, "Wait");
         setNerve(GET_NERVE_ANON(SkeletalFishBossNrvSwim));
     }
 }
 
 void SkeletalFishBoss::exeBite() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mBossHead, "Bite", nullptr);
+        MR::startBck(mBossHead, "Bite");
     }
 
     MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR");
     MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR");
 
     if (MR::isBckStopped(mBossHead)) {
-        MR::startBck(mBossHead, "Wait", nullptr);
+        MR::startBck(mBossHead, "Wait");
         setNerve(GET_NERVE_ANON(SkeletalFishBossNrvSwim));
     }
 }
@@ -473,8 +473,8 @@ void SkeletalFishBoss::exeAppearWait() {
 void SkeletalFishBoss::exeAppearDemo() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
-        MR::startBck(this, "BattleStart", nullptr);
-        MR::startBck(mBossHead, "BattleStart", nullptr);
+        MR::startBck(this, "BattleStart");
+        MR::startBck(mBossHead, "BattleStart");
         MR::stopStageBGM(60);
         mBossDirector->appearBirdLouse();
         mGuardHolder->invalidate();
@@ -506,12 +506,12 @@ void SkeletalFishBoss::exePowerUpDemo() {
         mRailControl->_14 = 60.0f;
 
         if (_110 == 1) {
-            MR::startBck(this, "PowerUp1", nullptr);
-            MR::startBck(mBossHead, "PowerUp1", nullptr);
+            MR::startBck(this, "PowerUp1");
+            MR::startBck(mBossHead, "PowerUp1");
             mBossDirector->startPowerUpDemo1();
         } else {
-            MR::startBck(this, "PowerUp2", nullptr);
-            MR::startBck(mBossHead, "PowerUp2", nullptr);
+            MR::startBck(this, "PowerUp2");
+            MR::startBck(mBossHead, "PowerUp2");
             mBossDirector->startPowerUpDemo2();
         }
 
@@ -541,9 +541,9 @@ void SkeletalFishBoss::exePowerUpDemo() {
 
 void SkeletalFishBoss::exeDeadDemo() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Down", nullptr);
+        MR::startBck(this, "Down");
         MR::startBrk(this, "Down");
-        MR::startBck(mBossHead, "Down", nullptr);
+        MR::startBck(mBossHead, "Down");
         MR::startBrk(mBossHead, "Down");
         MR::startSound(mBossHead, "SE_BM_SKL_BOSS_MOUTH_OPEN");
         MR::setImageEffectControlAuto();
@@ -572,7 +572,7 @@ void SkeletalFishBoss::exeBreakDemo() {
         mBossHead->kill();
         mBreakModel->makeActorAppeared();
         MR::requestMovementOn(mBreakModel);
-        MR::startBck(mBreakModel, "Break", nullptr);
+        MR::startBck(mBreakModel, "Break");
         MR::startBrk(mBreakModel, "Break");
         MR::startSound(mBossHead, "SE_BM_SKL_BOSS_EXPLODE");
         mGuardHolder->invalidate();
@@ -789,8 +789,8 @@ void SkeletalFishBoss::powerUp() {
 }
 
 void SkeletalFishBoss::startDamageAnim() {
-    MR::startBck(this, "Damage", nullptr);
-    MR::startBck(mBossHead, "Damage", nullptr);
+    MR::startBck(this, "Damage");
+    MR::startBck(mBossHead, "Damage");
     mScarFlash->appear();
 }
 
@@ -941,8 +941,8 @@ void SkeletalFishBoss::endAppearDemo() {
         MR::endDemo(this, cameraName);
     }
 
-    MR::startBck(this, "Swim", nullptr);
-    MR::startBck(mBossHead, "Wait", nullptr);
+    MR::startBck(this, "Swim");
+    MR::startBck(mBossHead, "Wait");
     resetRail();
     setNerve(GET_NERVE_ANON(SkeletalFishBossNrvSwim));
 }
@@ -989,8 +989,8 @@ void SkeletalFishBoss::endPowerUpDemo() {
     }
 
     resetRail();
-    MR::startBck(this, "Swim", nullptr);
-    MR::startBck(mBossHead, "Wait", 0);
+    MR::startBck(this, "Swim");
+    MR::startBck(mBossHead, "Wait");
     mGuardHolder->forceAppearAll();
     setNerve(GET_NERVE_ANON(SkeletalFishBossNrvSwim));
 }
@@ -1163,7 +1163,7 @@ void SkeletalFishBossScarFlash::init(const JMapInfoIter& rIter) {
 
 void SkeletalFishBossScarFlash::appear() {
     LiveActor::appear();
-    MR::startBck(this, "Damage", nullptr);
+    MR::startBck(this, "Damage");
     MR::startBrk(this, "Damage");
 }
 

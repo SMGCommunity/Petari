@@ -116,7 +116,7 @@ bool MarioActor::doFreezeAttack(HitSensor* pSensor) {
 bool MarioActor::trySpinPunch() {
     bool out = true;
     if (getMovementStates().jumping) {
-        changeAnimation("空パンチ", static_cast< const char* >(nullptr));
+        changeAnimation("空パンチ");
         setPunchHitTimer(15);
         mMario->mWalkSpeed = 0.0f;
     } else if (isEnableSpinPunch()) {
@@ -126,7 +126,7 @@ bool MarioActor::trySpinPunch() {
 
         if (getMovementStates()._A) {
             if (mMario->calcDistToCeil(false) > 160.0f) {
-                changeAnimation("サマーソルト", static_cast< const char* >(nullptr));
+                changeAnimation("サマーソルト");
                 playSound("スピンジャンプ", -1);
                 playSound("声スピン", -1);
             } else {
@@ -205,7 +205,7 @@ bool MarioActor::sendBodyAttack(HitSensor* pSensor) {
 
         if (MR::sendArbitraryMsg(ACTMES_KICK, pSensor, getSensor("body"))) {
             playSound("声ランニングキック", -1);
-            changeAnimation("ランニングキック", static_cast< const char* >(nullptr));
+            changeAnimation("ランニングキック");
             mMario->startPadVib(2);
 
             if (!MR::sendArbitraryMsg(ACTMES_HITMARK_EMIT, pSensor, getSensor("body"))) {
@@ -233,7 +233,7 @@ void MarioActor::doFreezeAttack() {
 
     if (isJumping()) {
         if (mMario->_430 != 13) {
-            changeAnimation("アイスひねり空中", static_cast< const char* >(nullptr));
+            changeAnimation("アイスひねり空中");
             playSound("スピンジャンプ", -1);
             playSound("声スピン", -1);
 
@@ -257,5 +257,5 @@ void MarioActor::doFreezeAttack() {
         playSound("声パンチ", -1);
     }
 
-    changeAnimation("アイスひねり", static_cast< const char* >(nullptr));
+    changeAnimation("アイスひねり");
 }

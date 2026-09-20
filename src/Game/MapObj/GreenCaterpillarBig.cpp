@@ -25,7 +25,7 @@ void GreenCaterpillarBigBody::init(const JMapInfoIter& rIter) {
     mPlanetLOD = MR::createLodCtrlPlanet(this, rIter, -1.0f, -1);
     mPlanetLOD->validate();
     MR::calcFrontVec(&mFrontVec, mCaterpillar);
-    MR::startBck(this, "Wait", nullptr);
+    MR::startBck(this, "Wait");
     makeActorDead();
 }
 
@@ -113,7 +113,7 @@ void GreenCaterpillarBig::exeWriggle() {
             MR::showModel(this);
         }
 
-        MR::startBck(this, "Eat", nullptr);
+        MR::startBck(this, "Eat");
     }
 
     MR::moveCoordAndFollowTrans(this, 50.0f);
@@ -158,7 +158,7 @@ void GreenCaterpillarBig::exeEndAdjust() {
 
 void GreenCaterpillarBig::exeEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 }
 

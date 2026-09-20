@@ -842,7 +842,7 @@ void BenefitItemObj::setFollowMtx(MtxPtr pMtx) {
 }
 
 void BenefitItemObj::runBck(const char* pBckName) {
-    MR::startBck(this, pBckName, nullptr);
+    MR::startBck(this, pBckName);
 }
 
 void BenefitItemObj::runEfx(const char* pEfxName) {

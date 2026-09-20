@@ -294,7 +294,7 @@ void BegomanSpike::exeWait() {
 
 void BegomanSpike::exeSignAttack() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "SignAttack", nullptr);
+        MR::startBck(this, "SignAttack");
         MR::startSound(this, "SE_EM_BEGOMAN_PRE_PURSUE");
     }
 
@@ -355,7 +355,7 @@ void BegomanSpike::exeBrake() {
 
 void BegomanSpike::exeStepBack() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "electricshock", nullptr);
+        MR::startBck(this, "electricshock");
     }
 
     updateRotateY(0.2f, sCommonAddRotate);
@@ -375,7 +375,7 @@ void BegomanSpike::exeProvoke() {
 
 void BegomanSpike::exeTrampleReaction() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "TrampleReaction", nullptr);
+        MR::startBck(this, "TrampleReaction");
     }
 
     updateRotateY(sTrampleReactionRotate, sCommonAddRotate);
@@ -403,7 +403,7 @@ void BegomanSpike::exeTired() {
 void BegomanSpike::exeBlow() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_EM_BEGOMAN_ROT_STOP");
-        MR::startBck(this, "Damage", nullptr);
+        MR::startBck(this, "Damage");
         MR::stopScene(sStopSceneTime);
     }
 
@@ -417,7 +417,7 @@ void BegomanSpike::exeBlow() {
     MR::moveAndTurnToDirection(this, &mFaceVec, mTargetVec, hHitReactionParam._0, hHitReactionParam._4, hHitReactionParam._8, hHitReactionParam._C);
     reboundWallAndGround(&mFaceVec, false);
     if (MR::isGreaterStep(this, sBlowFrame) && MR::isOnGround(this)) {
-        MR::startBck(this, "Turn", nullptr);
+        MR::startBck(this, "Turn");
         mTurnAfterBlow = true;
         setNerve(GET_NERVE(BegomanSpike, HostTypeNrvTurn));
     }
@@ -425,7 +425,7 @@ void BegomanSpike::exeBlow() {
 
 void BegomanSpike::exeElectricDeath() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "electricshock", nullptr);
+        MR::startBck(this, "electricshock");
         mVelocity.zero();
         getSensor("body")->invalidate();
         MR::startSound(this, "SE_EM_BEGOMAN_ELEC_DAMAGE");
@@ -443,10 +443,10 @@ void BegomanSpike::exeElectricDeath() {
 
 void BegomanSpike::exeBrokenPiece() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::hideModel(this);
         mBrokenModel->appear();
-        MR::startBck(mBrokenModel, "Broken01", nullptr);
+        MR::startBck(mBrokenModel, "Broken01");
         generateItem();
     }
 
@@ -567,7 +567,7 @@ bool BegomanSpike::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor*
 
         if (!isNerve(GET_NERVE(BegomanSpike, HostTypeNrvProvoke)) && !isNerve(GET_NERVE(BegomanSpike, HostTypeNrvTrampleReaction)) &&
             !isNerve(GET_NERVE(BegomanSpike, HostTypeNrvBlow))) {
-            MR::startBck(this, "Turn", nullptr);
+            MR::startBck(this, "Turn");
             setNerve(GET_NERVE(BegomanSpike, HostTypeNrvTurn));
         }
 

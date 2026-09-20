@@ -80,7 +80,7 @@ bool KoopaJrShip::isStateBreak(void) const {
 void KoopaJrShip::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("KoopaJrShip", nullptr, false);
-    MR::startBck(this, "KoopaJrShip", nullptr);
+    MR::startBck(this, "KoopaJrShip");
     MR::setBckRate(this, 0.0f);
     MR::initJointTransform(this);
     MR::setJointTransformLocalMtx(this, ::cJointNamePropellerTop, mPropellerMtx);
@@ -130,20 +130,7 @@ void KoopaJrShip::kill() {
 void KoopaJrShip::control() {
     _EC = MR::repeat(_EC + mPropRotateSpeed, 0.0f, 360.0f);
 
-    f32 angle = MR::toRadian(_EC);
-    f32 s = sin(angle);
-    f32 c = cos(angle);
-
-    mPropellerMtx[0][0] = c;
-    mPropellerMtx[1][1] = 1.0f;
-    mPropellerMtx[0][2] = s;
-    mPropellerMtx[2][0] = -s;
-    mPropellerMtx[2][2] = c;
-    mPropellerMtx[2][1] = 0.0f;
-    mPropellerMtx[1][2] = 0.0f;
-    mPropellerMtx[1][0] = 0.0f;
-    mPropellerMtx[0][1] = 0.0f;
-
+    mPropellerMtx.setEulerY(MR::toRadian(_EC));
     mScrew00Mtx.setEulerZ(MR::toRadian(_EC));
     mScrew01Mtx.setEulerZ(MR::toRadian(_EC));
     MR::setRailCoordSpeed(this, _184);
@@ -495,7 +482,7 @@ void KoopaJrShip::setStateTurnFront() {
 void KoopaJrShip::exeAppear() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_BM_KOOPAJR_SHIP_ENTER");
-        MR::startBck(this, "Arrival", nullptr);
+        MR::startBck(this, "Arrival");
         MR::hideModel(this);
     }
 
@@ -635,7 +622,7 @@ void KoopaJrShip::exePowerUp() {
 void KoopaJrShip::exeDamage() {
     if (MR::isFirstStep(this)) {
         _184 = 0.0f;
-        MR::startBck(this, "Damage", nullptr);
+        MR::startBck(this, "Damage");
         mJr->setStateShipBattleShipDamage();
         emitDamageSmokeEffect();
         emitDamageHitEffect();
@@ -677,7 +664,7 @@ void KoopaJrShip::exeDamage() {
 
 void KoopaJrShip::exeBreakStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Damage", nullptr);
+        MR::startBck(this, "Damage");
         mJr->setStateShipBattleShipDamage();
         emitDamageHitEffect();
         MR::shakeCameraNormal();
@@ -706,10 +693,10 @@ void KoopaJrShip::exeBreakStart() {
         MR::requestStartDemoRegistered(this, nullptr, nullptr, "破壊");
         mShipMtx.set(getBaseMtx());
         mShipBreakModel->appear();
-        MR::startBck(mShipBreakModel, "Break", nullptr);
+        MR::startBck(mShipBreakModel, "Break");
         mPodMtx.set(getBaseMtx());
         mPodModel->appear();
-        MR::startBck(mPodModel, "Escape", nullptr);
+        MR::startBck(mPodModel, "Escape");
         setNerve(GET_NERVE(KoopaJrShip, HostTypeBreak));
     }
 }

@@ -8,10 +8,6 @@
 #include "Game/MapObj/SpinDriverShootPath.hpp"
 #include "Game/MapObj/SpinDriverUtil.hpp"
 #include "Game/Util.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/MathUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "math_types.hpp"
 
 void SuperSpinDriver_FORCE_MATCH_SDATA2() {
     (void)1.0f;
@@ -588,7 +584,7 @@ void SuperSpinDriver::exeEmptyWait() {
 
 void SuperSpinDriver::exeNonActive() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "NonActive", nullptr);
+        MR::startBck(this, "NonActive");
         MR::validateClipping(this);
     }
 
@@ -604,7 +600,7 @@ void SuperSpinDriver::exeAppear() {
             MR::startSound(this, "SE_OJ_S_SPIN_DRV_APPEAR");
         }
 
-        MR::startBck(this, "Appear", nullptr);
+        MR::startBck(this, "Appear");
         _144 = 0.0f;
     }
 
@@ -624,7 +620,7 @@ void SuperSpinDriver::exeAppear() {
 
 void SuperSpinDriver::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::validateClipping(this);
     }
 
@@ -708,7 +704,7 @@ void SuperSpinDriver::exeShootStart() {
 
         MR::deleteEffectAll(this);
         MR::emitEffect(this, "SuperSpinDriverStart");
-        MR::startBck(this, "Start", nullptr);
+        MR::startBck(this, "Start");
         MR::startBckPlayer("SuperSpinDriverStart", "SuperSpinDriverShoot");
         _118 = _C4;
         updateBindActorPoseToShoot(1.0f);

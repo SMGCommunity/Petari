@@ -158,7 +158,7 @@ void KoopaJr::exeWait() {
 
 void KoopaJr::exeReaction() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Damage", nullptr);
+        MR::startBck(this, "Damage");
         MR::startSound(this, "SE_BV_KOOPAJR_DAMAGE_S");
 
         if (!mIsInvalidAppearStarPiece) {
@@ -175,7 +175,7 @@ void KoopaJr::exeReaction() {
 
 void KoopaJr::exeReactionEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Recovery", nullptr);
+        MR::startBck(this, "Recovery");
     }
 
     if (MR::isBckStopped(this)) {
@@ -186,9 +186,9 @@ void KoopaJr::exeReactionEnd() {
 void KoopaJr::exeShipBattleAppear() {
     if (MR::isFirstStep(this)) {
         if (MR::isEqualStageName("TriLegLv1Galaxy")) {
-            MR::startBck(this, "RoboAppearDemo", nullptr);
+            MR::startBck(this, "RoboAppearDemo");
         } else {
-            MR::startBck(this, "AppearDemo", nullptr);
+            MR::startBck(this, "AppearDemo");
         }
     }
 
@@ -199,7 +199,7 @@ void KoopaJr::exeShipBattleAppear() {
 
 void KoopaJr::exeShipBattlePowerUp() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "AngryDemo", nullptr);
+        MR::startBck(this, "AngryDemo");
     }
 
     if (MR::isBckStopped(this)) {
@@ -210,7 +210,7 @@ void KoopaJr::exeShipBattlePowerUp() {
 
 void KoopaJr::exeShipBattleEscape() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "RunAwayDemo", nullptr);
+        MR::startBck(this, "RunAwayDemo");
     }
 
     if (MR::isBckStopped(this)) {
@@ -220,7 +220,7 @@ void KoopaJr::exeShipBattleEscape() {
 
 void KoopaJr::exeShipBattleShipDamage() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Stumble", nullptr);
+        MR::startBck(this, "Stumble");
     }
 
     if (MR::isBckStopped(this)) {
@@ -230,7 +230,7 @@ void KoopaJr::exeShipBattleShipDamage() {
 
 void KoopaJr::exeShipBattleDemoTalkStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Talk", nullptr);
+        MR::startBck(this, "Talk");
     }
 
     if (MR::isBckStopped(this)) {
@@ -240,7 +240,7 @@ void KoopaJr::exeShipBattleDemoTalkStart() {
 
 void KoopaJr::exeShipBattleDemoTalkWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "TalkWait", nullptr);
+        MR::startBck(this, "TalkWait");
     }
 }
 

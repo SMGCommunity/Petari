@@ -51,7 +51,7 @@ namespace MR {
     void setPlayerSwingInhibitTimer(u16);
     void setPlayerSwingPermission(bool);
     void setPlayerStateWait();
-    void startBckPlayer(const char*, const char*);
+    void startBckPlayer(const char*, const char* pBrkName = nullptr);
     void startBckPlayer(const char*, const BckCtrlData&);
     void startBckPlayer(const char*, s32);
     bool isBckStoppedPlayer();

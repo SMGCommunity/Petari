@@ -18,8 +18,9 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include <JSystem/JMath/JMATrigonometric.hpp>
 #include "math_types.hpp"
+#include <JSystem/JMath/JMATrigonometric.hpp>
+
 
 namespace {
     const Vec cWeakSensorOffset = {0.0f, 0.0f, -150.0f};
@@ -883,7 +884,7 @@ void Rock::exeBreak() {
         mBreakModel->appear();
 
         MR::invalidateClipping(mBreakModel);
-        MR::startBck(mBreakModel, "Break", nullptr);
+        MR::startBck(mBreakModel, "Break");
 
         if (mRockType == NormalRock) {
             MR::startSound(this, "SE_OJ_ROCK_BREAK");

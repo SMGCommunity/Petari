@@ -68,7 +68,7 @@ void HipDropRock::exeBreak() {
         }
         mModel->makeActorAppeared();
         MR::invalidateClipping(mModel);
-        MR::startBck(mModel, "HipDropRockBreak", nullptr);
+        MR::startBck(mModel, "HipDropRockBreak");
         if (MR::isValidSwitchB(this)) {
             MR::onSwitchB(this);
         }

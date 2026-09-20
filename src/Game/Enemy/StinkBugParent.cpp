@@ -110,7 +110,7 @@ void StinkBugParent::init(const JMapInfoIter& rIter) {
 
 void StinkBugParent::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::resetPosition(this, _98);
     }
 
@@ -126,9 +126,9 @@ void StinkBugParent::exeWait() {
 void StinkBugParent::exeSearch() {
     if (MR::isFirstStep(this)) {
         if (mIsChildAlive) {
-            MR::startBck(this, "Search", nullptr);
+            MR::startBck(this, "Search");
         } else {
-            MR::startBck(this, "AngerSearch", nullptr);
+            MR::startBck(this, "AngerSearch");
         }
     }
 
@@ -143,7 +143,7 @@ void StinkBugParent::exeSearch() {
 
 void StinkBugParent::exeDashSign() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "RushStart", nullptr);
+        MR::startBck(this, "RushStart");
         MR::startSound(this, "SE_EV_STINKBUG_L_FIND");
     }
 
@@ -164,7 +164,7 @@ void StinkBugParent::exeDashSignEnd() {
 
 void StinkBugParent::exeDash() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Rush", nullptr);
+        MR::startBck(this, "Rush");
         MR::validateHitSensors(this);
     }
 
@@ -181,7 +181,7 @@ void StinkBugParent::exeDash() {
 
 void StinkBugParent::exeDashEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "RushStop", nullptr);
+        MR::startBck(this, "RushStop");
     }
 
     mVelocity.zero();
@@ -193,7 +193,7 @@ void StinkBugParent::exeDashEnd() {
 
 void StinkBugParent::exeBack() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Back", nullptr);
+        MR::startBck(this, "Back");
         MR::invalidateHitSensor(this, "head");
     }
 
@@ -212,7 +212,7 @@ void StinkBugParent::exeBack() {
 
 void StinkBugParent::exeHipDropDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Death", nullptr);
+        MR::startBck(this, "Death");
         MR::startBrk(this, "Death");
         MR::invalidateCollisionParts(mParent);
         MR::invalidateHitSensors(this);
@@ -229,7 +229,7 @@ void StinkBugParent::exeHipDropDown() {
 
 void StinkBugParent::exeAttack() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Attack", nullptr);
+        MR::startBck(this, "Attack");
     }
 
     mVelocity.zero();
@@ -241,7 +241,7 @@ void StinkBugParent::exeAttack() {
 
 void StinkBugParent::exeSpinReaction() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "SpinAction", nullptr);
+        MR::startBck(this, "SpinAction");
         MR::startSound(this, "SE_EM_GUARD_S");
     }
 
@@ -254,7 +254,7 @@ void StinkBugParent::exeSpinReaction() {
 
 void StinkBugParent::exePanic() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Loss", nullptr);
+        MR::startBck(this, "Loss");
         MR::invalidateHitSensor(this, "head");
         MR::startSound(this, "SE_EV_STINKBUG_L_PANIC");
     }
@@ -280,7 +280,7 @@ void StinkBugParent::exeRecover() {
 
 void StinkBugParent::exeShakeStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Repel", nullptr);
+        MR::startBck(this, "Repel");
     }
 
     if (MR::isStep(this, ::sStepForShakeStart)) {
@@ -302,7 +302,7 @@ void StinkBugParent::exeDemoPrepare() {
 
 void StinkBugParent::exeDemoChildDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "ChildDeath", nullptr);
+        MR::startBck(this, "ChildDeath");
         MR::startBva(this, "ChildDeath");
         MR::startBrk(this, "ChildDeath");
         MR::startSound(this, "SE_EV_STINKBUG_S_STOMPED");
@@ -331,7 +331,7 @@ void StinkBugParent::exeDemoAnger() {
     if (MR::isFirstStep(this)) {
         TVec3f v1;
         MR::overlayWithPreviousScreen(2);
-        MR::startBck(this, "Anger", nullptr);
+        MR::startBck(this, "Anger");
         MR::startBrk(this, "Anger");
         MR::resetPosition(this, _98);
         MR::setPlayerPosAndWait("子連れカメムシデモ後ポイント");

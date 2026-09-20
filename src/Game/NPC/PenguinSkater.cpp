@@ -355,7 +355,7 @@ void PenguinSkater::exeProvoke() {
     if (!MR::isNearZero(MR::getRailCoordSpeed(mRail))) {
         stopRail(1.0f);
     } else {
-        MR::tryStartBck(this, "Congratulate1", static_cast< const char* >(nullptr));
+        MR::tryStartBck(this, "Congratulate1");
         if (MR::isNearPlayer(mMsgCtrl, 10000.0f)) {
             MR::tryTalkForce(mMsgCtrl);
             turnToPlayer();
@@ -377,7 +377,7 @@ void PenguinSkater::exeCaught() {
         MR::tryStartDemoMarioPuppetable(this, "捕まり");
         MR::startMultiActorCameraTargetPlayer(this, mCameraInfo, "終了", -1);
         MR::startAction(this, "Caught");
-        MR::startBckPlayer("TossStart", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("TossStart");
         MR::startSound(this, "SE_SM_PENGUIN_CAUGHT");
         MR::zeroVelocity(this);
         setCaughtStartMarioPose();
@@ -389,7 +389,7 @@ void PenguinSkater::exeCaught() {
     blendBaseMatrixToMario(MR::calcNerveRate(this, ::sMarioPoseBlendTime));
     if (MR::isActionEnd(this)) {
         setNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvFadeOut));
-        MR::startBckPlayer("TossWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("TossWait");
     }
 }
 
@@ -417,7 +417,7 @@ void PenguinSkater::exeFadeIn() {
         MR::startTalkingSequence(this);
         MR::startNPCTalkCamera(getMsgCtrl(), getBaseMtx(), pos, 1.0f, 0);
         MR::forwardNode(getMsgCtrl());
-        MR::startBckPlayer("Watch", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("Watch");
         MR::openWipeCircle();
         mParam.setMoveTalkNoTurnAction("SitDown", "SitDownTalk");
     }

@@ -573,19 +573,19 @@ void OtaKing::throwFireBall() {
 }
 
 void OtaKing::startBckWaitIfNotPlaying() {
-    MR::tryStartBck(this, "Wait", nullptr);
+    MR::tryStartBck(this, "Wait");
 
     for (int i = 0; i < ARRAY_SIZE(mFeet); i++) {
-        MR::tryStartBck(mFeet[i], i == 0 ? "WaitR" : "WaitL", nullptr);
+        MR::tryStartBck(mFeet[i], i == 0 ? "WaitR" : "WaitL");
     }
 }
 
 void OtaKing::startBckWithFrontFoot(const char* bckName) {
-    MR::startBck(this, bckName, nullptr);
+    MR::startBck(this, bckName);
     snprintf(mBckLBuffer, sizeof(mBckLBuffer), "%sR", bckName);
-    MR::startBck(mFeet[0], mBckLBuffer, nullptr);
+    MR::startBck(mFeet[0], mBckLBuffer);
     snprintf(mBckRBuffer, sizeof(mBckRBuffer), "%sL", bckName);
-    MR::startBck(mFeet[1], mBckRBuffer, nullptr);
+    MR::startBck(mFeet[1], mBckRBuffer);
 }
 
 bool OtaKing::isNerveValidNearAttack() const {
@@ -1007,7 +1007,7 @@ void OtaKing::exePowerUp() {
 
 void OtaKing::exeDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Down", 0);
+        MR::startBck(this, "Down");
         MR::startSound(this, "SE_BM_OTAKING_LAST_DAMAGE");
         MR::startSound(this, "SE_BM_OTAKING_DIE");
         MR::startSound(this, "SE_BV_OTAKING_DIE");

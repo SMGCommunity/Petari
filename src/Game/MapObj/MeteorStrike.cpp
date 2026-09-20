@@ -372,7 +372,7 @@ void MeteorStrike::exeBreak() {
 
         mBrokenModel->appear();
         MR::invalidateClipping(mBrokenModel);
-        MR::startBck(mBrokenModel, "Break", nullptr);
+        MR::startBck(mBrokenModel, "Break");
         MR::startBrk(mBrokenModel, "Break");
     }
 

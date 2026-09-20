@@ -132,7 +132,7 @@ void TripodBossCore::exeBreak() {
         MR::invalidateClipping(this);
         mBloomModel->kill();
         mBreakModel->appear();
-        MR::startBck(mBreakModel, "Break", nullptr);
+        MR::startBck(mBreakModel, "Break");
         MR::requestMovementOn(mBreakModel);
 
         if (MR::isValidSwitchDead(this)) {

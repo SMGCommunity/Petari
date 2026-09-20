@@ -87,7 +87,7 @@ bool MarioCrush::update() {
         }
 
         if (getPlayer()->getMovementStates()._1) {
-            changeAnimation("しびれ回復", static_cast< const char* >(nullptr));
+            changeAnimation("しびれ回復");
         }
     }
 

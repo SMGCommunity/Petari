@@ -8,8 +8,9 @@
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include <revolution/mtx.h>
 #include <JSystem/JMath/JMATrigonometric.hpp>
+#include <revolution/mtx.h>
+
 
 namespace {
     static const f32 sThrowSpdStraight[3] = {30.0f, 20.0f, 30.0f};
@@ -159,12 +160,12 @@ void JetTurtle::exeThrowing() {
 
             if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
                 MR::startSound(this, "SE_OJ_TURTLE_JET_LAUNCH_W");
-                MR::startBck(this, "BulletWater", nullptr);
+                MR::startBck(this, "BulletWater");
                 MR::emitEffect(this, "WaterBlur");
             } else {
                 MR::startSound(this, "SE_OJ_TURTLE_JET_LAUNCH_L");
                 MR::startSoundPlayer("SE_PV_THROW", -1);
-                MR::startBck(this, "Bullet", nullptr);
+                MR::startBck(this, "Bullet");
 
                 switch (mShellType) {
                 default:
@@ -200,9 +201,9 @@ void JetTurtle::exeThrowing() {
                 MR::vecBlendSphere(_9C, v21, &_9C, 0.2f);
                 if (MR::isBckOneTimeAndStopped(this)) {
                     if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-                        MR::startBck(this, "BulletWater", nullptr);
+                        MR::startBck(this, "BulletWater");
                     } else {
-                        MR::startBck(this, "Bullet", nullptr);
+                        MR::startBck(this, "Bullet");
                     }
                 }
                 v22 = _9C;
@@ -443,7 +444,7 @@ bool JetTurtle::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
             return true;
         } else if (msg == ACTMES_RUSHDROP) {
             setNerve(GET_NERVE(JetTurtle, JetTurtleNrvDrop));
-            MR::startBck(this, "Drop", nullptr);
+            MR::startBck(this, "Drop");
             return true;
         } else if (msg == ACTMES_IS_PULL_ENABLE) {
             bool v8 = false;
@@ -473,7 +474,7 @@ bool JetTurtle::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
                     }
 
                     if (v10) {
-                        MR::startBck(this, "YRotation", nullptr);
+                        MR::startBck(this, "YRotation");
                     }
 
                     setNerve(GET_NERVE(JetTurtle, JetTurtleNrvTakenReserve));

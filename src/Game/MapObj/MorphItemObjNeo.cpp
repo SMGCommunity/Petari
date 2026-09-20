@@ -195,7 +195,7 @@ void MorphItemObjNeo::init(const JMapInfoIter& rIter) {
         mContainerModel = new ModelObj("クリスタルボックス", "CrystalBox", mBaseMtx, MR::DrawBufferType_CrystalBox, -2, -2, false);
         mContainerModel->initWithoutIter();
         mContainerModel->appear();
-        MR::startBck(mContainerModel, "CrystalBox", nullptr);
+        MR::startBck(mContainerModel, "CrystalBox");
 
         mContainerBreakModel = new ModelObj("クリスタル破壊", "CrystalBoxBreak", mBaseMtx, MR::DrawBufferType_CrystalBox, -2, -2, false);
         mContainerBreakModel->makeActorDead();
@@ -208,7 +208,7 @@ void MorphItemObjNeo::init(const JMapInfoIter& rIter) {
 
         mContainerBreakModel = nullptr;
 
-        MR::startBck(mContainerModel, "Move", nullptr);
+        MR::startBck(mContainerModel, "Move");
     } else {
         mContainerModel = nullptr;
         mContainerBreakModel = nullptr;
@@ -379,7 +379,7 @@ void MorphItemObjNeo::appear() {
     case 4:
     case 5:
     case 6:
-        MR::startBck(this, "Appear", nullptr);
+        MR::startBck(this, "Appear");
 
         break;
     }
@@ -433,7 +433,7 @@ void MorphItemObjNeo::calcAndSetBaseMtx() {
 
             TVec3f yDir;
             reinterpret_cast< TPos3f* >(getBaseMtx())->getYDir(yDir);
-            MR::addTransMtx(getBaseMtx(), yDir.scaleInline(-60.0f));
+            MR::addTransMtx(getBaseMtx(), yDir * -60.0f);
 
             pMtx = MR::tmpMtxScale(0.8f, 0.8f, 0.8f);
             PSMTXConcat(getBaseMtx(), pMtx, getBaseMtx());
@@ -502,7 +502,7 @@ bool MorphItemObjNeo::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSen
             if (mContainerBreakModel != nullptr) {
                 mContainerBreakModel->appear();
 
-                MR::startBck(mContainerBreakModel, "Break", nullptr);
+                MR::startBck(mContainerBreakModel, "Break");
 
                 MR::startSound(this, "SE_OJ_CRYSTAL_CAGE_S_BREAK");
 
@@ -784,7 +784,7 @@ void MorphItemObjNeo::exeSwitchAppear() {
         MR::calcGravity(this);
 
         if (mAppearMode != 0) {
-            MR::startBck(this, "Appear", nullptr);
+            MR::startBck(this, "Appear");
 
             if (mMorphType == 3) {
                 MR::emitEffect(this, "AppearTeresa");
@@ -810,13 +810,13 @@ void MorphItemObjNeo::exeSwitchAppear() {
         MR::showModel(this);
 
         if (mMorphType == 4) {
-            MR::startBck(this, "Appear", nullptr);
+            MR::startBck(this, "Appear");
             MR::emitEffect(this, "AppearIceFlower");
             MR::startSound(this, "SE_OJ_MORPH_FLOWER_APPEAR");
         }
 
         if (mMorphType == 5) {
-            MR::startBck(this, "Appear", nullptr);
+            MR::startBck(this, "Appear");
             MR::emitEffect(this, "AppearFireFlower");
             MR::startSound(this, "SE_OJ_MORPH_FLOWER_APPEAR");
         }

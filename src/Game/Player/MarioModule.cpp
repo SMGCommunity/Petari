@@ -84,7 +84,7 @@ void MarioModule::changeAnimation(const char* pAnim1, const char* pAnim2) {
 void MarioModule::changeAnimationNonStop(const char* pAnim) {
     if (!mActor->_B90) {
         if (pAnim) {
-            changeAnimation(pAnim, static_cast< const char* >(nullptr));
+            changeAnimation(pAnim);
         }
         XanimeFrameCtrl* pFrameCtrl = mActor->mMarioAnim->mXanimePlayer->_20;
         if (pFrameCtrl->getAttribute() == 0) {
@@ -96,7 +96,7 @@ void MarioModule::changeAnimationNonStop(const char* pAnim) {
 void MarioModule::changeAnimationWithAttr(const char* pAnim, u32 attribute) {
     if (!mActor->_B90) {
         if (pAnim) {
-            changeAnimation(pAnim, static_cast< const char* >(nullptr));
+            changeAnimation(pAnim);
         }
         mActor->mMarioAnim->mXanimePlayer->_20->setAttribute(attribute);
     }
@@ -197,7 +197,7 @@ f32 MarioModule::getAnimationFrame() const {
 
 void MarioModule::changeAnimation(const char* pAnim, u32 index) {
     if (!mActor->_B90) {
-        changeAnimation(pAnim, static_cast< const char* >(nullptr));
+        changeAnimation(pAnim);
         getPlayer()->_A6C[index] = 1;
     }
 }
@@ -218,7 +218,7 @@ bool MarioModule::isAnimationRun(const char* pAnim, u32 index) {
 
 void MarioModule::stopAnimation(const char* pAnim, u32 index) {
     if (!mActor->_B90 && mActor->getMario()->_A6C[index]) {
-        stopAnimation(pAnim, static_cast< const char* >(nullptr));
+        stopAnimation(pAnim);
         getPlayer()->_A6C[index] = 0;
     }
 }

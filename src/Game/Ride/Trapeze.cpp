@@ -214,7 +214,7 @@ void Trapeze::exeSwingWait() {
 
 void Trapeze::exeSwingSlideDownStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("TrapezeSlideDownStart", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("TrapezeSlideDownStart");
     }
 
     if (!updateSlideDown() && MR::isBckStopped(mRider)) {
@@ -224,7 +224,7 @@ void Trapeze::exeSwingSlideDownStart() {
 
 void Trapeze::exeSwingSlideDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("TrapezeSlideDown", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("TrapezeSlideDown");
     }
 
     if (updateSlideDown()) {
@@ -465,7 +465,7 @@ bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         mHangPoint->setInfo(grabPos, swingVel, mPosition, mGrabCoord);
         mHangPoint->mUp.set(mUp);
 
-        MR::startBckPlayer("TrapezeWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("TrapezeWait");
         MR::invalidateClipping(this);
         getSensor("body")->validate();
         getSensor("bind")->invalidate();
@@ -534,9 +534,9 @@ bool Trapeze::tryJump() {
         }
 
         if (frontDir.dot(jumpVel) >= 0.0f) {
-            MR::startBckPlayer("TrapezeFrontSpin", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("TrapezeFrontSpin");
         } else {
-            MR::startBckPlayer("TrapezeBackSpin", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("TrapezeBackSpin");
         }
 
         MR::setPlayerFrontTargetVec(frontDir, 1);

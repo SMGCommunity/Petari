@@ -5,10 +5,10 @@
 // #include "math_types.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
+#include "JSystem/JMath/JMath.hpp"
 #include <math_types.hpp>
 #include <revolution/mtx.h>
 #include <revolution/types.h>
-#include "JSystem/JMath/JMath.hpp"
 
 namespace JGeometry {
 #ifdef __MWERKS__
@@ -518,20 +518,6 @@ namespace JGeometry {
 
         void operator/=(f32 scalar) {
             scale(1.0f / scalar);
-        }
-
-        // Same reason to expect to merge as translate()
-        TVec3 multiplyOperatorInline(f32 scalar) const {
-            TVec3 ret(*this);
-            ret *= scalar;
-            return ret;
-        }
-
-        // multiple copies of multiplyOperatorInline in the same instruction path dont behave well
-        TVec3 multiplyOperatorInline2(f32 scalar) const {
-            TVec3 ret(*this);
-            ret *= scalar;
-            return ret;
         }
 
         // appears to be needed in RingBeam to match stack in some places

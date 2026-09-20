@@ -97,7 +97,7 @@ void ScenarioStarter::exeCinemaFrameBlank() {
 void ScenarioStarter::exeRailMove() {
     if (MR::isFirstStep(this)) {
         calcShootMotionTime();
-        MR::startBck(_8C, "SpaceFlyStart", nullptr);
+        MR::startBck(_8C, "SpaceFlyStart");
         _90 = _C0;
         turnBindHead(_90, 1.0f);
         mPosition.set(MR::getRailPointPosStart(this));

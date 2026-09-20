@@ -392,7 +392,7 @@ bool Mario::isEnableStickWall() {
 bool MarioWall::start() {
     _18 = 0;
     _20 = 0.0f;
-    changeAnimation("壁くっつき", static_cast< const char* >(nullptr));
+    changeAnimation("壁くっつき");
     startPadVib(0UL);
     getPlayer()->mMovementStates._28 = false;
     getPlayer()->_20._28 = false;
@@ -445,7 +445,7 @@ bool MarioWall::update() {
         if (getPlayer()->mVerticalSpeed < 80.0f) {
             if (!isOnSlipGround()) {
                 getPlayer()->setFrontVecKeepUp(getPlayer()->getWallNorm());
-                changeAnimation("着地", static_cast< const char* >(nullptr));
+                changeAnimation("着地");
                 changeAnimationInterpoleFrame(1);
                 mActor->setBlendMtxTimer(4);
             }
@@ -491,7 +491,7 @@ bool MarioWall::update() {
 
     if (mActor->isRequestRush()) {
         getPlayer()->mMovementStates._2B = false;
-        changeAnimation("空中ひねり", static_cast< const char* >(nullptr));
+        changeAnimation("空中ひねり");
         getPlayer()->tryWallPunch();
         getPlayer()->setWallCancel();
         return false;
@@ -518,7 +518,7 @@ bool MarioWall::update() {
 
         _18 = 0;
         speed = mActor->getConst().getTable()->mWallDropSpeedStop;
-        changeAnimation("壁くっつき", static_cast< const char* >(nullptr));
+        changeAnimation("壁くっつき");
         stopEffect("共通壁手擦り");
         break;
     case 2:
@@ -541,7 +541,7 @@ bool MarioWall::update() {
             stopEffect("共通壁手擦り");
         } else {
             if (!isAnimationRun("壁くっつき")) {
-                changeAnimation("壁すべり", static_cast< const char* >(nullptr));
+                changeAnimation("壁すべり");
             }
 
             playSound("スリップ");

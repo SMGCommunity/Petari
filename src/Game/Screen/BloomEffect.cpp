@@ -7,6 +7,11 @@
 #include "Game/Util/Color.hpp"
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
+#include "JSystem/JUtility/JUTVideo.hpp"
+#include "revolution/gx/GXEnum.h"
+#include "revolution/gx/GXFrameBuf.h"
+#include "revolution/gx/GXStruct.h"
+#include "revolution/gx/GXTev.h"
 #include <JSystem/JUtility/JUTTexture.hpp>
 
 namespace {
@@ -73,13 +78,57 @@ void BloomEffect::preDraw() const {
         ImageEffectLocalUtil::capture(_24, 1, 0, GX_TF_RGBA8, false, 0);
     }
 
-    MR::fillScreen(Color8(0, 0, 0, 255));
+    MR::fillScreen(Color8(0, 0, 0, 0xFF).mGXColor);
     MR::loadViewMtx();
     MR::loadProjectionMtx();
     GXSetClipMode(GX_CLIP_ENABLE);
 }
 
-// BloomEffect::postDraw
+void BloomEffect::postDraw() const {
+    if (!isSomething()) {
+        return;
+    }
+
+    GXRenderModeObj* pRenderObj = JUTVideo::getManager()->getRenderMode();
+    GXSetCopyFilter(GX_FALSE, pRenderObj->sample_pattern, GX_FALSE, pRenderObj->vfilter);
+
+    ImageEffectLocalUtil::capture(_28, 1, 0, GX_TF_RGB565, true, 0);
+    initDraw();
+    GXSetCopyClear(Color8(0, 0, 0, 0xFF), 0xFFFFFF);
+    drawTexture(_28, 4, 0, 0xFF, DrawType_0);
+
+    ImageEffectLocalUtil::capture(_2C, 4, 0, GX_TF_RGB565, false, 0);
+    ImageEffectLocalUtil::capture(_40, 4, 0, GX_TF_I8, false, 0);
+    drawTexture(_2C, 4, 2, 0xFF, DrawType_0);
+
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_TEXC, GX_CC_RASC, GX_CC_ONE, GX_CC_ZERO);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_COMP_R8_GT, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_KONST);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    drawTexture(_40, 4, 2, _20, DrawType_2);
+
+    GXSetBlendMode(GX_BM_NONE, GX_BL_ZERO, GX_BL_ZERO, GX_LO_CLEAR);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+    GXSetTevOp(GX_TEVSTAGE0, GX_MODULATE);
+    ImageEffectLocalUtil::capture(_44, 4, 2, GX_TF_RGB565, false, 0);
+    blurTexture(_44, _48, 4, 3, 6, _18, 2, &::sL1RadAndOfs[0]._0);
+
+    ImageEffectLocalUtil::capture(_30, 4, 3, GX_TF_RGB565, false, 0);
+    ImageEffectLocalUtil::capture(_34, 4, 3, GX_TF_RGB565, true, 0);
+    blurTexture(_34, _4C, 8, 20, 12, _1C, 3, &::sL2RadAndOfs[0]._0);
+
+    ImageEffectLocalUtil::capture(_38, 8, 20, GX_TF_RGB565, false, 0);
+    // Not sure what's going on here
+    // drawTexture(_30, 4, 7, ?, DrawType_0);
+    // drawTexture(_38, 4, 7, ?, DrawType_1);
+
+    ImageEffectLocalUtil::capture(_3C, 4, 7, GX_TF_RGB565, false, 0);
+    GXSetCopyFilter(GX_FALSE, pRenderObj->sample_pattern, GX_TRUE, pRenderObj->vfilter);
+
+    drawTexture(_24, 1, 0, 0xFF, DrawType_0);
+    drawTexture(_3C, 1, 0, 0xFF, DrawType_1);
+}
 
 u8 BloomEffect::getIntensity1Default() const {
     return 42;

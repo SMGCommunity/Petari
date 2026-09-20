@@ -174,7 +174,7 @@ void Metbo::endNonActive() {
 
 void Metbo::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     moveOrFall(::sDontMoveParam, nullptr);
@@ -185,7 +185,7 @@ void Metbo::exeWait() {
 
 void Metbo::exeWalkAround() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Walk", nullptr);
+        MR::startBck(this, "Walk");
     }
 
     bool isNear = MR::isNear(this, _98, ::sWalkAroundRadius) == false;
@@ -217,7 +217,7 @@ void Metbo::exeWalkAround() {
 
 void Metbo::exeSearch() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Search", nullptr);
+        MR::startBck(this, "Search");
         MR::startSoundSeVer(this, "SE_EM_METBO_FIND");
     }
 
@@ -229,7 +229,7 @@ void Metbo::exeSearch() {
 
 void Metbo::exeChaseStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "RunStart", nullptr);
+        MR::startBck(this, "RunStart");
     }
 
     if (MR::isBindedGround(this)) {
@@ -244,7 +244,7 @@ void Metbo::exeChaseStart() {
 
 void Metbo::exeChase() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Run", nullptr);
+        MR::startBck(this, "Run");
     }
 
     if (MR::isBindedGround(this)) {
@@ -273,7 +273,7 @@ void Metbo::endChase() {
 
 void Metbo::exeGuard() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Guard", nullptr);
+        MR::startBck(this, "Guard");
     }
 
     moveOrFall(::sDontMoveParam, nullptr);
@@ -285,7 +285,7 @@ void Metbo::exeGuard() {
 void Metbo::exeTrampleDown() {
     if (MR::isFirstStep(this)) {
         MR::startSoundSeVer(this, "SE_EM_STOMPED_S");
-        MR::startBck(this, "Press", nullptr);
+        MR::startBck(this, "Press");
         MR::invalidateHitSensors(this);
     }
 
@@ -299,7 +299,7 @@ void Metbo::exeTrampleDown() {
 void Metbo::exeBlowDown() {
     if (MR::isFirstStep(this)) {
         MR::startBlowHitSound(this);
-        MR::startBck(this, "Blow", nullptr);
+        MR::startBck(this, "Blow");
         MR::invalidateHitSensors(this);
     }
     mSpinHitController->execute(this);
@@ -307,7 +307,7 @@ void Metbo::exeBlowDown() {
 
 void Metbo::exeAttack() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Attack", nullptr);
+        MR::startBck(this, "Attack");
     }
 
     moveOrFall(::sDontMoveParam, nullptr);
@@ -318,7 +318,7 @@ void Metbo::exeAttack() {
 
 void Metbo::exeRest() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     moveOrFall(::sDontMoveParam, nullptr);
@@ -329,7 +329,7 @@ void Metbo::exeRest() {
 
 void Metbo::exeSwoonStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "SwoonStart", nullptr);
+        MR::startBck(this, "SwoonStart");
         MR::startSoundSeVer(this, "SE_EM_CRASH_S");
     } else {
         MR::moveAndTurnToPlayer(this, &_A4, ::sFallParam._0, ::sFallParam._4, ::sFallParam._8, ::sFallParam._C);
@@ -341,7 +341,7 @@ void Metbo::exeSwoonStart() {
 
 void Metbo::exeSwoonLand() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "SwoonLand", nullptr);
+        MR::startBck(this, "SwoonLand");
     }
 
     MR::startLevelSoundSeVer(this, "SE_EM_LV_METBO_STAGGER");
@@ -353,7 +353,7 @@ void Metbo::exeSwoonLand() {
 
 void Metbo::exeSwoonSpin() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "SwoonSpin", nullptr);
+        MR::startBck(this, "SwoonSpin");
     }
 
     MR::startLevelSoundSeVer(this, "SE_EM_LV_METBO_STAGGER");
@@ -365,7 +365,7 @@ void Metbo::exeSwoonSpin() {
 
 void Metbo::exeSwoonWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "SwoonWait", nullptr);
+        MR::startBck(this, "SwoonWait");
     }
 
     MR::startLevelSoundSeVer(this, "SE_EM_LV_METBO_SWOON");
@@ -377,7 +377,7 @@ void Metbo::exeSwoonWait() {
 
 void Metbo::exeRecover() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Recover", nullptr);
+        MR::startBck(this, "Recover");
         MR::startSoundSeVer(this, "SE_EM_METBO_SWOON_RECOVER");
     }
 

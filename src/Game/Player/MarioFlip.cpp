@@ -18,7 +18,7 @@ bool Mario::doFlipJump(const TVec3f& rVec) {
     vec -= getGravityVec()->scaleInline(mActor->mConst->getTable()->mWallSpinHopGround);
     tryForcePowerJump(vec, true);
 
-    changeAnimation("壁はじき", static_cast< const char* >(nullptr));
+    changeAnimation("壁はじき");
 
     stopPunch();
     mMovementStates._2B = true;
@@ -54,7 +54,7 @@ bool MarioFlip::start() {
     _24 = 0.0f;
     _28 = -0.75f;
 
-    changeAnimation("はねとばされ", static_cast< const char* >(nullptr));
+    changeAnimation("はねとばされ");
 
     playSound("声小ダメージ");
     playSound("壁衝突");
@@ -123,7 +123,7 @@ bool MarioFlip::update() {
         playSound("はねとばされ");
         _24 += _28;
         if (MR::isAngleBetween(_24, -0.1f, 0.1f)) {
-            changeAnimation("はねとばされ終了", static_cast< const char* >(nullptr));
+            changeAnimation("はねとばされ終了");
             _14++;
         }
 
@@ -144,7 +144,7 @@ bool MarioFlip::update() {
         TVec3f tangent;
         f32 incoming = MR::vecKillElement(_18, normal, &tangent);
         if (incoming < 0.0f) {
-            stopAnimation(nullptr, static_cast< const char* >(nullptr));
+            stopAnimation(nullptr);
             changeAnimationNonStop("はねとばされ");
             playEffectTrans("壁ヒット", getPlayer()->getWallPos());
             _18 = tangent + normal * -incoming * 1.2f;

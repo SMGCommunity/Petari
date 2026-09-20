@@ -58,7 +58,7 @@ bool MarioTalk::start() {
     mActor->_B90 = false;
 
     if (mActor->_468 == 0) {
-        stopAnimationUpper(nullptr, nullptr);
+        stopAnimationUpper(nullptr);
     }
 
     changeAnimationNonStop("見る");

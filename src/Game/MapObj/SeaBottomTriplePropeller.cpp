@@ -59,7 +59,7 @@ void SeaBottomTriplePropeller::control() {
 
 void SeaBottomTriplePropeller::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "SeaBottomTriplePropeller", nullptr);
+        MR::startBck(this, "SeaBottomTriplePropeller");
     }
 
     MR::startLevelSoundSeKeeper(mAudSeKeeper, "Propeller1", "SE_OJ_LV_O_TRIPLE_PROP_MOVE");

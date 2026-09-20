@@ -127,7 +127,7 @@ void Teresa::initDummyModel(const JMapInfoIter& rIter) {
     }
 
     if (MR::isBckExist(mDisplayModel, "InTeresa")) {
-        MR::startBck(mDisplayModel, "InTeresa", nullptr);
+        MR::startBck(mDisplayModel, "InTeresa");
     }
 }
 

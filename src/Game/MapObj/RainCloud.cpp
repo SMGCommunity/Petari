@@ -108,7 +108,7 @@ void RainCloud::init(const JMapInfoIter& rIter) {
     MR::setClippingTypeSphere(this, boundRadius, &_F8);
     MR::setGroupClipping(this, rIter, 16);
     MR::joinToGroupArray(this, rIter, "雲集団", 16);
-    MR::startBck(this, "Wait", nullptr);
+    MR::startBck(this, "Wait");
 
     if (!_10D) {
         MR::startBpk(this, "Fine");
@@ -137,7 +137,7 @@ void RainCloud::makeArchiveList(NameObjArchiveListCollector* pCollector, const J
 
 void RainCloud::exeAppear() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Appear", nullptr);
+        MR::startBck(this, "Appear");
         MR::startBpk(this, "Appear");
         MR::validateCollisionParts(this);
         mCloudCylinder->appear();
@@ -156,7 +156,7 @@ void RainCloud::exeAppear() {
 
 void RainCloud::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
     }
 
     if (!MR::isOnPlayer(this) && mIsOnPlayer) {
@@ -167,7 +167,7 @@ void RainCloud::exeWait() {
 
 void RainCloud::exeDisappear() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Disappear", nullptr);
+        MR::startBck(this, "Disappear");
         MR::invalidateHitSensors(this);
         MR::invalidateCollisionParts(this);
         MR::startSound(this, "SE_OJ_RAIN_CLOUD_DISAPPEAR");
@@ -195,7 +195,7 @@ void RainCloud::exeEnd() {
 
 void RainCloud::exeSoftTouch() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "OnBee", nullptr);
+        MR::startBck(this, "OnBee");
     }
 
     if (MR::isBckStopped(this)) {

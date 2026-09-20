@@ -44,19 +44,19 @@ bool TombSpiderGland::isDamage() const {
 
 void TombSpiderGland::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 }
 
 void TombSpiderGland::exeActiveWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 }
 
 void TombSpiderGland::exeDamageStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "DamageStart", nullptr);
+        MR::startBck(this, "DamageStart");
     }
 
     if (MR::isBckStopped(this)) {
@@ -66,6 +66,6 @@ void TombSpiderGland::exeDamageStart() {
 
 void TombSpiderGland::exeDamageWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "DamageWait", nullptr);
+        MR::startBck(this, "DamageWait");
     }
 }

@@ -90,7 +90,7 @@ void FirePressureRadiate::calcAndSetBaseMtx() {
 
 void FirePressureRadiate::exeRelax() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "FireShotStart", nullptr);
+        MR::startBck(this, "FireShotStart");
         MR::setBckFrame(this, 1.0f);
         MR::forceDeleteEffectAll(this);
         MR::invalidateHitSensor(this, "radiate");
@@ -107,7 +107,7 @@ void FirePressureRadiate::exeSyncWait() {
 
 void FirePressureRadiate::exePrepareToRadiate() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "FireShotStart", nullptr);
+        MR::startBck(this, "FireShotStart");
     }
 
     if (MR::isStep(this, 34)) {
@@ -120,7 +120,7 @@ void FirePressureRadiate::exeRadiate() {
 
     if (MR::isBckOneTimeAndStopped(this)) {
         calcRadiateEffectMtx();
-        MR::startBck(this, "FireShot", nullptr);
+        MR::startBck(this, "FireShot");
     }
 
     if (MR::isStep(this, 25)) {
@@ -135,7 +135,7 @@ void FirePressureRadiate::exeRadiate() {
 
 void FirePressureRadiate::exeRadiateMargin() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "FireShotEnd", nullptr);
+        MR::startBck(this, "FireShotEnd");
     }
 
     if (MR::isStep(this, 50)) {

@@ -108,7 +108,7 @@ void IceStep::setOn(u32 a1, const TVec3f& rPosition, const TVec3f& rRotation) {
     TVec3f offset = upVec * static_cast< f32 >(scale) * 0.2f;
     mPosition = rPosition + offset;
 
-    MR::startBck(this, "Start", nullptr);
+    MR::startBck(this, "Start");
     MR::startBpk(this, "Start");
     MR::startSound(this, "SE_OJ_ICE_FLOOR_FREEZE");
 
@@ -127,7 +127,7 @@ void IceStep::setOn(u32 a1, const TVec3f& rPosition, const TVec3f& rRotation) {
 }
 
 void IceStep::destroy() {
-    MR::startBck(this, "End", nullptr);
+    MR::startBck(this, "End");
     MR::startBpk(this, "End");
     MR::startSound(this, "SE_OJ_ICE_FLOOR_MELT");
 
@@ -141,7 +141,7 @@ void IceStep::doHit() {
 
     MR::emitEffect(this, "Break");
     MR::startSound(this, "SE_OJ_ICE_FLOOR_BREAK");
-    MR::startBck(this, "End", nullptr);
+    MR::startBck(this, "End");
 
     mTimer = 0;
 }

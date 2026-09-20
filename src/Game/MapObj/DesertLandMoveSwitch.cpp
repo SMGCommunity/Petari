@@ -56,7 +56,7 @@ void DesertLandMoveSwitch::init(const JMapInfoIter& rIter) {
     if (stack_C == -1) {
         initNerve(GET_NERVE(DesertLandMoveSwitch, HostTypeWait));
     } else {
-        MR::startBck(this, "On", 0);
+        MR::startBck(this, "On");
         MR::setAllAnimFrameAtEnd(this, "On");
         initNerve(GET_NERVE(DesertLandMoveSwitch, HostTypeOn));
     }
@@ -191,7 +191,7 @@ void DesertLandMoveSwitch::updateTimerSE() {
 
 void DesertLandMoveSwitch::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", 0);
+        MR::startBck(this, "Wait");
         _98 = 0;
         mSpringValue->reset();
     }
@@ -212,7 +212,7 @@ void DesertLandMoveSwitch::exeSwitchDown() {
         MR::invalidateClipping(this);
 
     if (MR::isStep(this, 6))
-        MR::startBck(this, "On", 0);
+        MR::startBck(this, "On");
 
     if (tryOn())
         return;
@@ -232,7 +232,7 @@ void DesertLandMoveSwitch::exeOn() {
 
 void DesertLandMoveSwitch::exeReturn() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Return", 0);
+        MR::startBck(this, "Return");
         MR::offSwitchA(this);
         _98 = 0;
         mSpringValue->reset();

@@ -152,7 +152,7 @@ bool MarblePlanet::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor*
 void MarblePlanet::initCoreAndElectron() {
     mCorePlanetModel = MR::createModelObjMapObj("ビー玉惑星コア", "MarblePlanetCore", getBaseMtx());
     MR::invalidateClipping(mCorePlanetModel);
-    MR::startBck(mCorePlanetModel, "MarblePlanetCore", 0);
+    MR::startBck(mCorePlanetModel, "MarblePlanetCore");
     MR::startBtk(mCorePlanetModel, "MarblePlanetCore");
     MR::setBckFrameAndStop(mCorePlanetModel, 0.0f);
     MR::setBtkFrameAndStop(mCorePlanetModel, 0.0f);
@@ -213,7 +213,7 @@ void MarblePlanetElectron::init(const JMapInfoIter& rIter) {
     MR::makeMtxUpNoSupportPos(&mtx, mGravity, mPosition);
     MR::setBaseTRMtx(this, mtx);
     MR::calcFrontVec(&_94, this);
-    MR::startBck(this, "MarblePlanetElectron", 0);
+    MR::startBck(this, "MarblePlanetElectron");
     initNerve(GET_NERVE(MarblePlanetElectron, MarblePlanetElectronNrvMove));
     makeActorAppeared();
 }

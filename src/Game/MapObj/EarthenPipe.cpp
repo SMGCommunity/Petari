@@ -251,7 +251,7 @@ void EarthenPipe::exeWait() {
 
 void EarthenPipe::exeReady() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("EarthenPipeReady", (const char*)0);
+        MR::startBckPlayer("EarthenPipeReady");
     }
 
     MR::blendMtx(_120.mMtx, _150.mMtx, MR::calcNerveRate(this, MR::getBckFrameMaxPlayer()), _F0.mMtx);
@@ -264,7 +264,7 @@ void EarthenPipe::exeReady() {
 
 void EarthenPipe::exePlayerIn() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("EarthenPipeIn", (const char*)0);
+        MR::startBckPlayer("EarthenPipeIn");
         MR::startSystemSE("SE_DM_DOKAN_WARP");
         processBgmPlayerIn();
     }
@@ -293,7 +293,7 @@ void EarthenPipe::exeTargetPipeShowUp() {
 
 void EarthenPipe::exePlayerOut() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("EarthenPipeOut", (const char*)nullptr);
+        MR::startBckPlayer("EarthenPipeOut");
         MR::startSystemSE("SE_DM_DOKAN_WARP");
         processBgmPlayerOut();
     }
@@ -312,7 +312,7 @@ void EarthenPipe::exePlayerOut() {
 
         MR::startSound(mHostActor, "SE_PM_JUMP_M");
         MR::startSound(mHostActor, "SE_PV_JUMP_JOY");
-        MR::startBckPlayer("EarthenPipeJump", (s32)0);
+        MR::startBckPlayer("EarthenPipeJump", 0L);
         MR::endBindAndPlayerForceWeakGravityJumpInputOff(this, v4);
         mHostActor = nullptr;
         _B0->tryHideDown();

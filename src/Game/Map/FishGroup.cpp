@@ -70,7 +70,7 @@ void Fish::init(const JMapInfoIter& rIter) {
 
     const char* names[] = {"FishA", "FishB", "FishC", "FishD", "FishE", "FishF"};
     initModelManagerWithAnm(names[mFishType], nullptr, false);
-    MR::startBck(this, "Swim", nullptr);
+    MR::startBck(this, "Swim");
     MR::connectToSceneEnvironment(this);
     initNerve(GET_NERVE(Fish, FishNrvWander));
     MR::invalidateClipping(this);

@@ -15,12 +15,9 @@ public:
 
     virtual void movement();
 
-    virtual bool isWorking() const {
-        return true;
-    }
+    virtual bool isWorking() const;
 
-    virtual void start() {
-    }
+    virtual void start();
 
     virtual void end() {
     }

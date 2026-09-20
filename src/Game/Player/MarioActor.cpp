@@ -45,7 +45,6 @@
 #include <JSystem/JKernel/JKRHeap.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
 
-
 void MarioActor_FORCE_MATCH_SDATA2() {
     (void)1.0f;
     (void)0.0f;
@@ -421,13 +420,13 @@ void MarioActor::init2(const TVec3f& rA, const TVec3f& rB, s32 initialAnimation)
     _B48->setTexture(MR::getTexFromArc("Footprint.bti", this));
     switch (initialAnimation) {
     case 1:
-        mMario->changeAnimation("基本", (const char*)nullptr);
+        mMario->changeAnimation("基本");
         break;
     case 2:
         mMario->changeAnimationNonStop("ウォークイン");
         break;
     default:
-        mMario->changeAnimation("ステージインA", (const char*)nullptr);
+        mMario->changeAnimation("ステージインA");
         break;
     }
 
@@ -524,11 +523,11 @@ void MarioActor::changeAnimationNonStop(const char* pName) {
 
 void MarioActor::changeAnimationUpper(const char* pName) {
     if (mMario->mTargetWalkSpeedIndex == 0 && isAnimationRun("基本")) {
-        mMario->changeAnimation(pName, static_cast< const char* >(nullptr));
+        mMario->changeAnimation(pName);
         return;
     }
 
-    mMario->changeAnimationUpper(pName, nullptr);
+    mMario->changeAnimationUpper(pName);
 }
 
 void MarioActor::stopAnimation(const char* pName) {
@@ -541,7 +540,7 @@ bool MarioActor::isAnimationRun(const char* pName) const {
 
 void MarioActor::changeNullAnimation(const char* pName, s8 num) {
     mNullAnimation->appear();
-    MR::startBck(mNullAnimation, pName, nullptr);
+    MR::startBck(mNullAnimation, pName);
     _B92 = num;
 }
 
@@ -1062,7 +1061,7 @@ void MarioActor::updateBehavior() {
     updateBindRatio();
     updateEffect();
     if (_B94 && !--_B94) {
-        mMario->stopAnimationUpper("ハンマー投げ回転中", nullptr);
+        mMario->stopAnimationUpper("ハンマー投げ回転中");
         mMario->stopAnimation("ハンマー投げ回転中");
     }
 
@@ -1382,11 +1381,11 @@ void MarioActor::updateSwingAction() {
                     mMario->playSound("スピンジャンプ");
                 }
 
-                mMario->changeAnimation("ハチスピン空中", (const char*)nullptr);
+                mMario->changeAnimation("ハチスピン空中");
             } else if (getMovementStates()._A || mBeeWallWalk != 0) {
-                mMario->changeAnimation("サマーソルト", (const char*)nullptr);
+                mMario->changeAnimation("サマーソルト");
             } else {
-                mMario->changeAnimation("ハチスピン", (const char*)nullptr);
+                mMario->changeAnimation("ハチスピン");
             }
         }
 
@@ -1423,12 +1422,12 @@ void MarioActor::updateSwingAction() {
         }
 
         if (isJumping()) {
-            mMario->changeAnimation("ハチスピン空中", (const char*)nullptr);
+            mMario->changeAnimation("ハチスピン空中");
         } else {
             if (getMovementStates()._A || mBeeWallWalk != 0) {
-                mMario->changeAnimation("サマーソルト", (const char*)nullptr);  // Summersault
+                mMario->changeAnimation("サマーソルト");  // Summersault
             } else {
-                mMario->changeAnimation("ハチスピン", (const char*)nullptr);
+                mMario->changeAnimation("ハチスピン");
             }
         }
 
@@ -1626,7 +1625,7 @@ bool MarioActor::doPressing() {
             }
 
             if (!_390) {
-                mMario->changeAnimation("つぶれ解除", (const char*)nullptr);
+                mMario->changeAnimation("つぶれ解除");
                 _F44 = true;
             }
         }
@@ -1639,7 +1638,7 @@ bool MarioActor::doPressing() {
         }
 
         if (!_390) {
-            mMario->changeAnimation("つぶれ解除", (const char*)nullptr);
+            mMario->changeAnimation("つぶれ解除");
             _F44 = true;
         }
 

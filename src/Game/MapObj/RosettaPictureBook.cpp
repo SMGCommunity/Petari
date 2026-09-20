@@ -109,7 +109,7 @@ void RosettaPictureBook::exeFadeOut() {
         mIconAButton->term();
         MR::closeWipeCircle(::hFadeOutFrame);
         MR::stopStageBGM(::hFadeOutFrame);
-        MR::startBckPlayer("Wait", (const char*)nullptr);
+        MR::startBckPlayer("Wait");
     }
 
     if (MR::isGreaterStep(this, ::hFadeOutFrame)) {

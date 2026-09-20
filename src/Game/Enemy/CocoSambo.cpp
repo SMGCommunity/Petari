@@ -119,7 +119,7 @@ void CocoSamboHead::exeFall() {
         mFixedPosition->copyTrans(&mPosition);
         mRotation.zero();
         mIsCalcOwnMtx = false;
-        MR::startBck(this, "Fall", nullptr);
+        MR::startBck(this, "Fall");
         updateFrontVecToPlayer(gravity);
 
         TVec3f v15 = mHost->mPosition - mPosition;
@@ -141,7 +141,7 @@ void CocoSamboHead::exeFall() {
 
 void CocoSamboHead::exeFallLand() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Land", nullptr);
+        MR::startBck(this, "Land");
         MR::startSound(this, "SE_EM_SFSAMBO_HEAD_LAND");
         MR::tryRumblePadWeak(this, 0);
         MR::shakeCameraWeak();
@@ -152,7 +152,7 @@ void CocoSamboHead::exeFallLand() {
 
 void CocoSamboHead::exeSwoon() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Swoon", nullptr);
+        MR::startBck(this, "Swoon");
     }
 
     if (MR::isStep(this, ::cSwoonFrame)) {
@@ -163,7 +163,7 @@ void CocoSamboHead::exeSwoon() {
 void CocoSamboHead::exeSwoonEnd() {
     if (MR::isFirstStep(this)) {
         mVelocity.zero();
-        MR::startBck(this, "SwoonEnd", nullptr);
+        MR::startBck(this, "SwoonEnd");
     }
 
     if (MR::isStep(this, ::cSwoonEndDamagedFrame)) {
@@ -184,7 +184,7 @@ void CocoSamboHead::exeBlow() {
         mtx.identity();
         MR::makeMtxUpFront(&mtx, up, mFrontVec);
         mtx.mult33(TVec3f(::cBlowVelocity), mVelocity);
-        MR::startBck(this, "Blow", nullptr);
+        MR::startBck(this, "Blow");
     }
     TVec3f result;
     result.scale(1.0f, mGravity);
@@ -423,8 +423,8 @@ bool CocoSambo::isNerveDying() {
 }
 
 void CocoSambo::startBckThisAndHead(const char* pBckName) {
-    MR::startBck(this, pBckName, nullptr);
-    MR::startBck(mHead, pBckName, nullptr);
+    MR::startBck(this, pBckName);
+    MR::startBck(mHead, pBckName);
 }
 
 void CocoSambo::exeAppear() {
@@ -515,7 +515,7 @@ void CocoSambo::exeAttackInterval() {
 
 void CocoSambo::exeFallHead() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Hit", nullptr);
+        MR::startBck(this, "Hit");
         mHead->setNerve(GET_NERVE(CocoSamboHead, CocoSamboHeadNrvHeadFall));
         MR::emitEffect(this, "Hit");
         MR::startSound(this, "SE_EM_SFSAMBO_DAMAGE");
@@ -549,7 +549,7 @@ void CocoSambo::exeFallHeadHide() {
 
 void CocoSambo::exeRecoverWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Recover", nullptr);
+        MR::startBck(this, "Recover");
         MR::setBckRate(this, 0.0f);
         MR::invalidateHitSensors(mHead);
     }
@@ -559,7 +559,7 @@ void CocoSambo::exeRecoverWait() {
 void CocoSambo::exeRecover() {
     if (MR::isFirstStep(this)) {
         MR::setBckRate(this, 1.0f);
-        MR::startBck(mHead, "Recover", nullptr);
+        MR::startBck(mHead, "Recover");
         mHead->mIsCalcOwnMtx = true;
         MR::showMaterial(mHead, "SanboNeedleMat_v");
     }
@@ -570,7 +570,7 @@ void CocoSambo::exeRecover() {
 void CocoSambo::exePressY() {
     if (MR::isFirstStep(this)) {
         MR::setBckRate(this, 0.0f);
-        MR::startBck(mHead, "PressY", nullptr);
+        MR::startBck(mHead, "PressY");
         MR::startSound(this, "SE_EM_STOMPED_S");
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     }

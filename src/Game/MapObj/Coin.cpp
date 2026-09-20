@@ -74,7 +74,7 @@ void Coin::init(const JMapInfoIter& rIter) {
         mAirBubble->initFixedPosition(TVec3f(0.0f, 70.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f), nullptr);
         mAirBubble->makeActorDead();
         MR::registerDemoSimpleCastAll(mAirBubble);
-        MR::startBck(mAirBubble, "Move", nullptr);
+        MR::startBck(mAirBubble, "Move");
     }
 
     mFlashCtrl = new FlashingCtrl(this, true);

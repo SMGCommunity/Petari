@@ -50,7 +50,7 @@ bool MarioFlow::update() {
         _18 += mActor->_240 * mActor->getConst().getTable()->mGravityFlow;
 
         if (_12 == 20) {
-            changeAnimation("中ダメージ空中", static_cast< const char* >(nullptr));
+            changeAnimation("中ダメージ空中");
         }
 
         if (_12 > 30 && mActor->isRequestRush()) {
@@ -62,7 +62,7 @@ bool MarioFlow::update() {
         if (getPlayer()->getMovementStates()._1) {
             getPlayer()->mMovementStates.jumping = false;
 
-            changeAnimation("中ダメージ着地", static_cast< const char* >(nullptr));
+            changeAnimation("中ダメージ着地");
 
             playEffect("共通ダメージ着地");
             playSound("吹っ飛び倒れ");

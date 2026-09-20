@@ -173,7 +173,7 @@ void Sandstorm::exeWait() {
 void Sandstorm::exeStorm() {
     if (MR::isFirstStep(this)) {
         if (isSunakazeKun()) {
-            MR::startBck(this, "Spin", nullptr);
+            MR::startBck(this, "Spin");
         }
     }
 
@@ -200,7 +200,7 @@ void Sandstorm::exeStormAdjust() {
 
 void Sandstorm::exeStormFix() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("StormWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("StormWait");
 
         if (MR::isValidSwitchA(this)) {
             MR::offSwitchA(this);
@@ -495,7 +495,7 @@ bool Sandstorm::tryStartBind(HitSensor* pSensor) {
     MR::tryRumblePadStrong(this, 0);
     MR::shakeCameraNormal();
     MR::startActorCameraTargetSelf(this, _8C, -1);
-    MR::startBckPlayer("StormIn", static_cast< const char* >(nullptr));
+    MR::startBckPlayer("StormIn");
     MR::startSound(mBindActor, "SE_PV_UPSET");
     MR::invalidateClipping(this);
 

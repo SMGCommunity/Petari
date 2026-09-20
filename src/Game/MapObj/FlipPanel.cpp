@@ -49,7 +49,7 @@ void FlipPanel::init(const JMapInfoIter& rIter) {
     mDelegator = MR::createJointDelegatorWithNullChildFunc(this, &FlipPanel::calcJointMove, "Panel");
     mFlipPanelGroup = MR::joinToGroupArray(this, rIter, 0, 0x20);
     MR::invalidateClipping(this);
-    MR::startBck(this, "PanelB", 0);
+    MR::startBck(this, "PanelB");
     f32 frameMax = MR::getBckFrameMax(this);
     MR::setBckFrameAndStop(this, frameMax);
 
@@ -62,7 +62,7 @@ void FlipPanel::init(const JMapInfoIter& rIter) {
 
 void FlipPanel::exeFrontLand() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "PanelB", 0);
+        MR::startBck(this, "PanelB");
 
         if (mIsReverse) {
             MapObjActorUtil::appearBloomModel(this);
@@ -91,7 +91,7 @@ void FlipPanel::exeFrontLand() {
 
 void FlipPanel::exeBackLand() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "PanelA", 0);
+        MR::startBck(this, "PanelA");
 
         if (mIsReverse) {
             MapObjActorUtil::killBloomModel(this);
@@ -147,7 +147,7 @@ void FlipPanel::exeEndPrepare() {
 void FlipPanel::exeEnd() {
     if (MR::isFirstStep(this)) {
         MR::startSystemSE("SE_OJ_FLIP_PANEL_COMPLETE");
-        MR::startBck(this, "PanelEnd", 0);
+        MR::startBck(this, "PanelEnd");
         MapObjActorUtil::killBloomModel(this);
         _CC = 0;
     }

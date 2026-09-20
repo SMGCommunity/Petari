@@ -30,6 +30,11 @@ void BombHei_FORCE_MATCH_SDATA2() {
     (void)2.0f;
 }
 
+void BombHei_DUMMY() {
+    TVec3f a;
+    a *= 1.0f;
+}
+
 namespace {
     static const s32 hStartBrkTime = 600;
     static const s32 hBrkRateUpTime = 120;
@@ -228,7 +233,7 @@ void BombHei::endCountdown() {
 
 void BombHei::exeLaunch() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Stop", nullptr);
+        MR::startBck(this, "Stop");
         mRotQuat.set< f32 >(0.0f, 0.0f, 0.0f, 1.0f);
     }
 
@@ -244,9 +249,9 @@ void BombHei::exeLaunch() {
     mVelocity.mult(0.98f);
 
     if (!MR::isOnGroundCos(this, ::hGroundCosine)) {
-        mVelocity.add(mGravity.multiplyOperatorInline(::hGravity));
+        mVelocity.add(mGravity * ::hGravity);
         f32 radius = getSensor("body")->mRadius;
-        MR::rotateQuatRollBall(&mRotQuat, velH.multiplyOperatorInline2(::hMultVelAngle), -mGravity, radius);
+        MR::rotateQuatRollBall(&mRotQuat, velH * ::hMultVelAngle, -mGravity, radius);
     } else {
         startBoundSound();
         f32 radius = getSensor("body")->mRadius;
@@ -268,7 +273,7 @@ void BombHei::exeLaunch() {
 void BombHei::exeStarting() {
     if (MR::isFirstStep(this)) {
         MR::validateExCollisionParts(this);
-        MR::startBck(this, "Starting", nullptr);
+        MR::startBck(this, "Starting");
         mVelocity.z = 0.0f;
         mVelocity.y = 0.0f;
         mVelocity.x = 0.0f;
@@ -285,7 +290,7 @@ void BombHei::exeStarting() {
 
 void BombHei::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     MR::moveAndTurnToPlayer(this, &mFront, ::hNoMoveNoTurnParam.mSpeedH, ::hNoMoveNoTurnParam.mGravAccel, ::hNoMoveNoTurnParam.mFriction,
@@ -311,7 +316,7 @@ void BombHei::exeWait() {
 
 void BombHei::exeWalk() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Walk", nullptr);
+        MR::startBck(this, "Walk");
         TVec3f randDir;
         MR::getRandomVector(&randDir, 1.0f);
         MR::vecKillElement(randDir, mGravity, &randDir);
@@ -346,7 +351,7 @@ void BombHei::exePursue() {
     if (MR::isFirstStep(this)) {
         startCountdown();
         MR::invalidateClipping(this);
-        mVelocity.set(mGravity.multiplyOperatorInline(-::hPrePursueJumpVel));
+        mVelocity.set(mGravity * -::hPrePursueJumpVel);
     }
 
     // NOTE: this is a dummy line to emit the structure, this value is not real
@@ -375,7 +380,7 @@ void BombHei::exePursue() {
 
 void BombHei::exePursueHit() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Hit", nullptr);
+        MR::startBck(this, "Hit");
         MR::startSound(this, "SE_EM_BOMBHEI_HIT");
     }
 
@@ -397,9 +402,9 @@ void BombHei::exePursueHit() {
 
 void BombHei::exeSpinHit() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Spin", nullptr);
+        MR::startBck(this, "Spin");
         MR::startBlowHitSound(this);
-        mVelocity.set(mGravity.multiplyOperatorInline(-::hSpinHitJumpVel));
+        mVelocity.set(mGravity * -::hSpinHitJumpVel);
         MR::invalidateExCollisionParts(this);
     }
 
@@ -415,7 +420,7 @@ void BombHei::exeSpinHit() {
             setNerve(GET_NERVE(BombHei, HostTypeNrvPhysics));
         }
     } else {
-        mVelocity.add(mGravity.multiplyOperatorInline(::hGravity));
+        mVelocity.add(mGravity * ::hGravity);
     }
 }
 
@@ -453,11 +458,11 @@ void BombHei::exePhysics() {
     mVelocity.mult(0.98f);
 
     if (!MR::isOnGroundCos(this, ::hGroundCosine)) {
-        mVelocity.add(mGravity.multiplyOperatorInline(::hGravity));
+        mVelocity.add(mGravity * ::hGravity);
         f32 radius = getSensor("body")->mRadius;
-        MR::rotateQuatRollBall(&mRotQuat, velH.multiplyOperatorInline2(::hMultVelAngle), mGravity, radius);
+        MR::rotateQuatRollBall(&mRotQuat, velH * ::hMultVelAngle, mGravity, radius);
     } else {
-        mVelocity.add(mGravity.multiplyOperatorInline(::hGravityPhysicsOnGround));
+        mVelocity.add(mGravity * ::hGravityPhysicsOnGround);
         f32 radius = getSensor("body")->mRadius;
         MR::rotateQuatRollBall(&mRotQuat, mVelocity, *MR::getGroundNormal(this), radius);
 
@@ -475,7 +480,7 @@ void BombHei::exePhysics() {
 
 void BombHei::exeStop() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Stop", nullptr);
+        MR::startBck(this, "Stop");
     }
 
     MR::addVelocityToGravityOrGround(this, ::hGravity);
@@ -496,7 +501,7 @@ void BombHei::exeStop() {
 
 void BombHei::exeThrown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Stop", nullptr);
+        MR::startBck(this, "Stop");
         MR::startSoundPlayer("SE_PV_THROW", -1);
         MR::startSound(this, "SE_EM_BOMB_THROW");
         MR::invalidateExCollisionParts(this);
@@ -506,7 +511,7 @@ void BombHei::exeThrown() {
     TVec3f velH(0, 0, 0);
     MR::vecKillElement(mVelocity, mGravity, &velH);
     f32 radius = getSensor("body")->mRadius;
-    MR::rotateQuatRollBall(&mRotQuat, velH.multiplyOperatorInline(::hMultVelAngle), mGravity, radius);
+    MR::rotateQuatRollBall(&mRotQuat, velH * ::hMultVelAngle, mGravity, radius);
     mTargetFront.set(velH);
     MR::normalizeOrZero(&mTargetFront);
 
@@ -521,10 +526,10 @@ void BombHei::exeThrown() {
     mVelocity.mult(::hThrownDampVel);
 
     if (!MR::isOnGroundCos(this, ::hGroundCosine)) {
-        mVelocity.add(mGravity.multiplyOperatorInline2(::hGravityThrown));
+        mVelocity.add(mGravity * ::hGravityThrown);
     } else {
         startBoundSound();
-        MR::startBck(this, "Bound", nullptr);
+        MR::startBck(this, "Bound");
         setNerve(GET_NERVE(BombHei, HostTypeNrvPhysics));
         return;
     }
@@ -538,7 +543,7 @@ void BombHei::endThrown() {
 
 void BombHei::exeTaken() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Carry", nullptr);
+        MR::startBck(this, "Carry");
         if (MR::sendMsgTaken(mCarrySensor, getSensor("body"))) {
             getSensor("body")->invalidate();
             MR::startSoundPlayer("SE_PV_LIFT_UP", -1);
@@ -815,7 +820,7 @@ bool BombHei::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
     }
 
     if (msg == ACTMES_TAKE_TOUCH) {
-        MR::startBck(this, "Carry", nullptr);
+        MR::startBck(this, "Carry");
         return true;
     }
 

@@ -95,7 +95,7 @@ public:
     void initAfterOpeningDemo();
     void calcBaseFrontVec(const TVec3f&);
     void playSound(const char*, s32);
-    void changeAnimation(const char*, const char*);
+    void changeAnimation(const char*, const char* = nullptr);
     void changeAnimationNonStop(const char*);
     void changeAnimationUpper(const char*);
     void stopAnimation(const char*);

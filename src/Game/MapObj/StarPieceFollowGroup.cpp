@@ -12,9 +12,14 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
-#include <JSystem/JGeometry/TMatrix.hpp>
 #include "math_types.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 #include <revolution/mtx.h>
+
+void StarPieceFollowGroup_DUMMY() {
+    TVec3f a;
+    a *= 1.0f;
+}
 
 namespace NrvStarPieceFollowGroup {
     NEW_NERVE(HostTypeNrvFollowToPlayer, StarPieceFollowGroup, FollowToPlayer);
@@ -136,12 +141,12 @@ void StarPieceFollowGroup::followPieces() {
     TVec3f playerVelocity(*MR::getPlayerVelocity());
 
     playerPos.add(mLocalYAxis.multInLine(0.0f));
-    playerPos.add(playerVelocity.multiplyOperatorInline(10.0f));
+    playerPos.add(playerVelocity * 10.0f);
 
     s32 numPiecesNotFollowingAnymore = 0;
     f32 currentAngle = mAngle;
     f32 angleBetweenPieces = TWO_PI / mNumPiecesUse;
-    for (int i = 0; i < mNumPiecesUse; i++) {
+    for (u32 i = 0; i < mNumPiecesUse; i++) {
         StarPiece* currentPiece = mPieces[i];
         currentAngle += angleBetweenPieces;
         if (!currentPiece->isFollowing()) {
@@ -159,12 +164,12 @@ void StarPieceFollowGroup::followPieces() {
         TVec3f vec2(playerPos);
         TVec3f vec(0.0f, 0.0f, 0.0f);
 
-        vec.add(mLocalXAxis.multiplyOperatorInline(cos).multiplyOperatorInline(mRadius));
-        vec.add(mLocalZAxis.multiplyOperatorInline(sin).multiplyOperatorInline(mRadius));
+        vec.add(mLocalXAxis * cos * mRadius);
+        vec.add(mLocalZAxis * sin * mRadius);
 
         _90[i].set(vec);
 
-        vec2.add(vec.multiplyOperatorInline(cos2));
+        vec2.add(vec * cos2);
         currentPiece->mVelocity.set(vec2);
         currentPiece->mVelocity.sub(currentPiece->mPosition);
         currentPiece->mVelocity.mult(1.0f);

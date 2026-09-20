@@ -369,13 +369,13 @@ bool PlantMember::tryEmitHint() {
 
 void PlantMember::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 }
 
 void PlantMember::exeHint() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "HintShake", nullptr);
+        MR::startBck(this, "HintShake");
     }
 
     if (MR::isBckStopped(this)) {
@@ -385,7 +385,7 @@ void PlantMember::exeHint() {
 
 void PlantMember::exeShakeWeak() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Shake", nullptr);
+        MR::startBck(this, "Shake");
         MR::setBckFrame(this, hShakeStartFrame);
         MR::startSound(this, "SE_OJ_LEAVES_SWING");
         MR::setBckRate(this, hWeakRate);
@@ -398,7 +398,7 @@ void PlantMember::exeShakeWeak() {
 
 void PlantMember::exeShakeMiddle() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Shake", nullptr);
+        MR::startBck(this, "Shake");
         MR::setBckFrame(this, hShakeStartFrame);
         MR::startSound(this, "SE_OJ_LEAVES_SWING");
         MR::setBckRate(this, hMiddleRate);
@@ -411,7 +411,7 @@ void PlantMember::exeShakeMiddle() {
 
 void PlantMember::exeShakeStrong() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Shake", nullptr);
+        MR::startBck(this, "Shake");
         MR::setBckFrame(this, hShakeStartFrame);
         MR::startSound(this, "SE_OJ_LEAVES_SWING");
         MR::setBckRate(this, hStrongRate);

@@ -453,7 +453,7 @@ void SmallStoneMember::animControl() {
         if (!MR::isBckPlaying(this, "WindLoop")) {
             mAnimStopped = false;
             MR::onCalcAnim(this);
-            MR::startBck(this, "WindLoop", nullptr);
+            MR::startBck(this, "WindLoop");
         }
 
         mShakeRequested = 0;
@@ -461,7 +461,7 @@ void SmallStoneMember::animControl() {
         if (MR::isBckPlaying(this, "WindLoop")) {
             mAnimStopped = false;
             MR::onCalcAnim(this);
-            MR::startBck(this, "WindEnd", nullptr);
+            MR::startBck(this, "WindEnd");
             MR::setBckRate(this, mAnimRate);
         } else if (!mAnimStopped && MR::isBckStopped(this)) {
             mAnimStopped = true;

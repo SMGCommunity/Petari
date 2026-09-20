@@ -105,7 +105,7 @@ void MarioActor::tryReleaseDirect(const HitSensor* pSensor) {
     }
 
     if (_468 == 0) {
-        mMario->stopAnimationUpper(nullptr, nullptr);
+        mMario->stopAnimationUpper(nullptr);
         mMario->mSwim->resetJet();
 
         offTakingFlag();
@@ -461,7 +461,7 @@ void MarioActor::tryReleaseBombTeresa() {
 
     _B94 = 0;
 
-    mMario->stopAnimationUpper(nullptr, nullptr);
+    mMario->stopAnimationUpper(nullptr);
 
     if (!mMario->getMovementStates().jumping) {
         MarioStopWalk();
@@ -469,5 +469,5 @@ void MarioActor::tryReleaseBombTeresa() {
         mMario->_420 = 25;
     }
 
-    changeAnimation("ハンマー投げリリース", nullptr);
+    changeAnimation("ハンマー投げリリース");
 }

@@ -222,7 +222,7 @@ void JumpGuarder::exeHide() {
     updateRotate();
 
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHeadModel, "Wait", nullptr);
+        MR::startBck(mHeadModel, "Wait");
         MR::startBrk(mHeadModel, "Green");
         MR::validateClipping(this);
         MR::setShadowVolumeSphereRadius(this, nullptr, ::sHideShadowRadius);
@@ -235,7 +235,7 @@ void JumpGuarder::exeHide() {
 
 void JumpGuarder::exeUp() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Up", nullptr);
+        MR::startBck(this, "Up");
         MR::startSound(this, "SE_EM_JGUARDER_APPEAR");
     }
 
@@ -260,7 +260,7 @@ void JumpGuarder::exeWait() {
 
 void JumpGuarder::exeDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Down", nullptr);
+        MR::startBck(this, "Down");
         MR::startSound(this, "SE_EM_JGUARDER_HIDE");
     }
 
@@ -274,9 +274,9 @@ void JumpGuarder::exeDown() {
 
 void JumpGuarder::exeHopStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHeadModel, "HopStart", nullptr);
+        MR::startBck(mHeadModel, "HopStart");
         MR::startBrk(mHeadModel, "OnAndOff");
-        MR::startBck(this, "Damage", nullptr);
+        MR::startBck(this, "Damage");
         MR::startSound(this, "SE_EM_JGUARDER_HIT");
         HitSensor* body = getSensor("Body");
         body->mRadius = 120.0f;
@@ -300,7 +300,7 @@ void JumpGuarder::exeHopStart() {
 void JumpGuarder::exeHopWait() {
     if (MR::isFirstStep(this)) {
         MR::stopBck(this);
-        MR::startBck(mHeadModel, "HopWait", nullptr);
+        MR::startBck(mHeadModel, "HopWait");
         getSensor("Jump")->validate();
     }
 
@@ -313,7 +313,7 @@ void JumpGuarder::exeHopWait() {
 
 void JumpGuarder::exeHopJump() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHeadModel, "HopJump", nullptr);
+        MR::startBck(mHeadModel, "HopJump");
         MR::startSound(this, "SE_EM_JGUARDER_TRAMPLE");
     }
 
@@ -324,8 +324,8 @@ void JumpGuarder::exeHopJump() {
 
 void JumpGuarder::exeHopEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "HopEnd", nullptr);
-        MR::startBck(mHeadModel, "HopEnd", nullptr);
+        MR::startBck(this, "HopEnd");
+        MR::startBck(mHeadModel, "HopEnd");
         MR::startBrk(mHeadModel, "Green");
         MR::startSound(this, "SE_EM_JGUARDER_CLOSE_SPRING");
     }
@@ -359,7 +359,7 @@ void JumpGuarder::exeOpen() {
     }
 
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Open", nullptr);
+        MR::startBck(this, "Open");
         MR::startSound(this, "SE_EM_JGUARDER_SHUTTER_OPEN");
 
         mNumActiveBabies = 0;
@@ -432,7 +432,7 @@ void JumpGuarder::exeOpen() {
 
 void JumpGuarder::exeClose() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Close", nullptr);
+        MR::startBck(this, "Close");
     }
 
     MR::startLevelSound(this, "SE_EM_LV_JGUARDER_SHUTTER_CLOSE");
@@ -527,7 +527,7 @@ void JumpGuarder::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         if (isHit(pReceiver->mHost)) {
             MR::sendMsgEnemyAttack(pReceiver, pSender);
             if (isNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvWait)) && !MR::isOnGround(pReceiver->mHost)) {
-                MR::startBck(this, "Hit", nullptr);
+                MR::startBck(this, "Hit");
                 MR::startSound(this, "SE_EM_JGUARDER_HIT");
             }
         }
@@ -536,7 +536,7 @@ void JumpGuarder::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         if ((isNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvWait)) || isNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvHopWait))) &&
             MR::isPlayerStaggering() && mBumpCooldown == 0) {
             mBumpCooldown = ::sHitInt;
-            MR::startBck(this, "Hit", nullptr);
+            MR::startBck(this, "Hit");
             MR::startSound(this, "SE_EM_JGUARDER_HIT");
         }
     }

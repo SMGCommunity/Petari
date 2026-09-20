@@ -54,7 +54,7 @@ bool ManholeCover::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
 
 void ManholeCover::exeOpen() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Rotation", nullptr);
+        MR::startBck(this, "Rotation");
         MR::invalidateCollisionParts(this);
     }
 
@@ -66,7 +66,7 @@ void ManholeCover::exeOpen() {
 
 void ManholeCover::exeRattle() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Vibration", nullptr);
+        MR::startBck(this, "Vibration");
         MR::startSound(this, "SE_OJ_MANHOLE_RATTLE");
     }
 

@@ -14,9 +14,10 @@
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include <JSystem/JMath/JMath.hpp>
 #include "math_types.hpp"
+#include <JSystem/JMath/JMath.hpp>
 #include <revolution/mtx.h>
+
 
 namespace MR {
     void initShadowVolumeBox(LiveActor* pActor, const TVec3f& size) {
@@ -356,7 +357,7 @@ namespace MR {
         TVec3f projectionPos;
 
         if (ActorShadow::getShadowController(pActor, static_cast< const char* >(nullptr))->isProjected()) {
-            getShadowProjectionPos(pActor, static_cast< const char* >(nullptr), &projectionPos);
+            getShadowProjectionPos(pActor, nullptr, &projectionPos);
             pVecOutput->set((pActor->mPosition + projectionPos) * 0.5f);
             *pF32Output = projectionPos.distance(pActor->mPosition) * 0.5f + a4;
             return true;

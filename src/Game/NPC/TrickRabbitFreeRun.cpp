@@ -209,7 +209,7 @@ void TrickRabbitFreeRun::exeTryDemo() {
 
 void TrickRabbitFreeRun::exeRunawayStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         MR::startAction(this, "Run");
         MR::startEventBGM(MR::EventBgmID_Chase);
     }

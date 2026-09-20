@@ -105,7 +105,7 @@ bool DinoPackunAction::updateStart() {
     mHost->updateNormalVelocity();
 
     if (MR::isBckOneTimeAndStopped(mHost)) {
-        MR::startBck(mHost, "Wait", nullptr);
+        MR::startBck(mHost, "Wait");
     }
 
     if (MR::isGreaterStep(this, 60)) {
@@ -117,7 +117,7 @@ bool DinoPackunAction::updateStart() {
 
 bool DinoPackunAction::updateFind(s32 a1, f32 a2) {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHost, "Find", nullptr);
+        MR::startBck(mHost, "Find");
         MR::startSound(mHost, "SE_BV_PAKKUN_FIND");
         MR::startSound(mHost, "SE_BM_D_PAKKUN_SLAVER");
     }
@@ -138,7 +138,7 @@ bool DinoPackunAction::updateFind(s32 a1, f32 a2) {
 
 bool DinoPackunAction::updateCoolDown(s32 a1) {
     if (MR::isFirstStep(this)) {
-        MR::startBck(mHost, "CoolDown", nullptr);
+        MR::startBck(mHost, "CoolDown");
     }
 
     mHost->updateNormalVelocity();

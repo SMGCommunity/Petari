@@ -267,11 +267,11 @@ void StringSpider::doSwingAction(f32 a1, bool a2) {
         }
 
         if (MR::isFirstStep(this)) {
-            MR::startBck(this, "PreAttack", nullptr);
+            MR::startBck(this, "PreAttack");
         }
 
         if (MR::isStep(this, 30)) {
-            MR::startBck(this, "Attack", nullptr);
+            MR::startBck(this, "Attack");
         }
 
         if (MR::isLessStep(this, 30)) {
@@ -427,7 +427,7 @@ void StringSpider::calcPosture(f32 a1, bool a2) {
 void StringSpider::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     calcPosture(0.25f, false);
@@ -448,7 +448,7 @@ void StringSpider::endWait() {
 
 void StringSpider::exeDownStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "DownStart", nullptr);
+        MR::startBck(this, "DownStart");
     }
 
     calcPosture(0.25f, false);
@@ -461,7 +461,7 @@ void StringSpider::exeDownStart() {
 
 void StringSpider::exeDownEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "DownEnd", nullptr);
+        MR::startBck(this, "DownEnd");
     }
 
     calcPosture(0.25f, false);
@@ -474,7 +474,7 @@ void StringSpider::exeDownEnd() {
 
 void StringSpider::exeDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Down", nullptr);
+        MR::startBck(this, "Down");
     }
 
     MR::startLevelSound(this, "SE_EM_LV_STRSPIDER_DOWN");
@@ -483,7 +483,7 @@ void StringSpider::exeDown() {
     f32 v1;
     bool isOver = isOverStringLength(nullptr, &v1);
     if ((_B0 - 230.0f) < v1) {
-        MR::tryStartBck(this, "PreDownEnd", nullptr);
+        MR::tryStartBck(this, "PreDownEnd");
     }
 
     if (_B4 == _B0 && isOver) {
@@ -493,7 +493,7 @@ void StringSpider::exeDown() {
 
 void StringSpider::exeUp() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Up", nullptr);
+        MR::startBck(this, "Up");
     }
 
     MR::startLevelSound(this, "SE_EM_LV_STRSPIDER_UP");
@@ -511,7 +511,7 @@ void StringSpider::exeUp() {
 
 void StringSpider::exeSearch() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     calcPosture(0.25f, true);
@@ -540,7 +540,7 @@ void StringSpider::exeSearch() {
 
 void StringSpider::exeAttack() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     calcPosture(0.25f, true);
@@ -560,7 +560,7 @@ void StringSpider::exeAttack() {
 
 void StringSpider::exeHit() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Hit", nullptr);
+        MR::startBck(this, "Hit");
         MR::startSound(this, "SE_EV_STRSPIDER_HIT");
     }
 
@@ -575,7 +575,7 @@ void StringSpider::exeHit() {
 void StringSpider::exeSpinned() {
     if (MR::isFirstStep(this)) {
         MR::startBlowHitSound(this);
-        MR::startBck(this, "Spin", nullptr);
+        MR::startBck(this, "Spin");
     }
 
     f32 nerveRate = MR::calcNerveRate(this, 480);
@@ -609,7 +609,7 @@ void StringSpider::exeSpinned() {
 
 void StringSpider::exeTrampleFall() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Press", nullptr);
+        MR::startBck(this, "Press");
         MR::startSound(this, "SE_EM_STOMPED_S");
         MR::startSound(this, "SE_EV_STRSPIDER_DEAD");
         MR::calcReflectionVector(&mVelocity, mGravity, 0.25f, 1.0f);
@@ -636,7 +636,7 @@ void StringSpider::exeWallHitDeath() {
 
 void StringSpider::exeBlow() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Blow", nullptr);
+        MR::startBck(this, "Blow");
         MR::startSound(this, "SE_EV_STRSPIDER_DEAD");
         MR::startBlowHitSound(this);
         mString->kill();
@@ -647,7 +647,7 @@ void StringSpider::exeBlow() {
 
 void StringSpider::exeDpdGripped() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Spin", nullptr);
+        MR::startBck(this, "Spin");
         if (!MR::tryStartStarPointerCommandStream(this, &mPosition, *MR::getStarPointerLastPointedPort(this), false)) {
             setNerve(GET_NERVE(StringSpider, HostTypeNrvSearch));
             return;
