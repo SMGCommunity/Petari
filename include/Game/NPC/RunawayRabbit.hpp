@@ -17,18 +17,18 @@ public:
         /* 0x1 */ HideLocation_Leaves
     };
 
-    RunawayRabbit(const char*, RunawayRabbitCollect*);
+    RunawayRabbit(const char* pName, RunawayRabbitCollect* pCollect);
 
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
     virtual void appear();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPush(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void initSensor();
     void initFootPrint();
@@ -41,13 +41,13 @@ public:
     void setMessage();
     void setNotCaughtable();
     void startJumpSound();
-    void setMsgCtrl(TalkMessageCtrl*);
+    void setMsgCtrl(TalkMessageCtrl* pMsgCtrl);
     bool isCaught() const NO_INLINE;
     bool isCaughtable() const;
     bool isRunnaway() const;
     bool isChasing() const;
     bool isEnableBlow() const NO_INLINE;
-    bool isValidFollow(s32) const;
+    bool isValidFollow(s32 id) const;
 
     void exeNoActive();
     void exeHide();

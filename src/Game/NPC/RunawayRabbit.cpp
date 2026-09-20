@@ -111,8 +111,8 @@ namespace NrvRunawayRabbit {
     NEW_NERVE(RunawayRabbitNrvBlowDamage, RunawayRabbit, BlowDamage);
 };  // namespace NrvRunawayRabbit
 
-RunawayRabbit::RunawayRabbit(const char* pName, RunawayRabbitCollect* pRabbit)
-    : LiveActor(pName), mStateRunaway(), mStateBlowDamage(), mCollect(pRabbit), mFootPrint(), mSpotMarkLight(), mMsgCtrl(), mPoseQuat(0, 0, 0, 1),
+RunawayRabbit::RunawayRabbit(const char* pName, RunawayRabbitCollect* pCollect)
+    : LiveActor(pName), mStateRunaway(), mStateBlowDamage(), mCollect(pCollect), mFootPrint(), mSpotMarkLight(), mMsgCtrl(), mPoseQuat(0, 0, 0, 1),
       mFrontVec(0, 0, 1), mPlayerPoseQuat(0, 0, 0, 1), mPlayerBindPos(0, 0, 1), mGroupId(-1), mRunawayLevel(), mHideLocation(HideLocation_None),
       mPressureTimer(), mNotCaughtableTimer(), mIsActive(true), mIsLinked(), mNearSoundRadius(-1.0f) {
 }
@@ -532,7 +532,7 @@ bool RunawayRabbit::isEnableBlow() const {
     return isNerve(GET_NERVE(RunawayRabbit, RunawayRabbitNrvRunaway));
 }
 
-bool RunawayRabbit::isValidFollow(s32) const {
+bool RunawayRabbit::isValidFollow(s32 id) const {
     if (isNerve(GET_NERVE(RunawayRabbit, RunawayRabbitNrvNoActive)) || isNerve(GET_NERVE(RunawayRabbit, RunawayRabbitNrvHide)) ||
         isNerve(GET_NERVE(RunawayRabbit, RunawayRabbitNrvStop))) {
         return false;
