@@ -1,4 +1,4 @@
-#include <revolution/dsp/dsp_debug.h>
+#include "revolution/dsp/dsp_debug.h"
 #include <va_list.h>
 
 void __DSP_debug_printf(char *pFormat, ...) {

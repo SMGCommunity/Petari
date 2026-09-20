@@ -10,7 +10,7 @@
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 namespace NrvBossStinkBugOpeningDemo {
     NEW_NERVE(BossStinkBugOpeningDemoNrvTryStart, BossStinkBugOpeningDemo, TryStart);
@@ -35,10 +35,10 @@ void BossStinkBugOpeningDemo::exeDemo() {
     if (MR::isFirstStep(this)) {
         MR::overlayWithPreviousScreen(2);
         MR::stopStageBGM(60);
-        MR::startBckPlayer("BattleWait", (const char*)nullptr);
+        MR::startBckPlayer("BattleWait");
         mDemoPositionController->startDemo("OpeningDemo");
         getHost()->reuestMovementOnParts();
-        MR::startBck(getHost(), "OpeningDemo", nullptr);
+        MR::startBck(getHost(), "OpeningDemo");
         MR::tryStartAllAnim(getHost()->getWingModel(), "OpeningDemo");
     }
     mDemoPositionController->movement();

@@ -3,8 +3,8 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioState.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
+#include <revolution/mtx.h>
+#include <revolution/types.h>
 
 extern "C" {}
 
@@ -30,7 +30,7 @@ static struct {
 
 void Mario::delTask(MarioModuleTask* pTask) {
     MarioModuleTask* next = pTask->mNext;
-    if (!next) {
+    if (next == nullptr) {
         return;
     }
 
@@ -41,6 +41,7 @@ void Mario::delTask(MarioModuleTask* pTask) {
         } else {
             _974 = next;
         }
+
         pTask->mNext = nullptr;
         pTask->end();
         return;
@@ -58,6 +59,7 @@ void Mario::delTask(MarioModuleTask* pTask) {
             } else {
                 head->mNext = next;
             }
+
             pTask->mNext = nullptr;
             pTask->end();
             return;
@@ -194,6 +196,7 @@ bool Mario::taskOnHipDropBlurHopper(u32) {
         } else {
             stopEffect("ホッパー尻落");
         }
+
         return false;
     }
 
@@ -207,6 +210,7 @@ bool Mario::taskOnHipDropBlur(u32) {
         } else {
             stopEffect("尻落");
         }
+
         return false;
     }
 
@@ -293,6 +297,7 @@ void Mario::startHipDropBlur() {
         } else {
             playEffect("ホッパー尻落");
         }
+
         pushTask(sTaskHipDropBlurHopper, 0x80);
         return;
     }
@@ -302,6 +307,7 @@ void Mario::startHipDropBlur() {
     } else {
         playEffect("尻落");
     }
+
     pushTask(sTaskHipDropBlur, 0x80);
 }
 
@@ -332,7 +338,7 @@ void Mario::startHipDropSlide(const HitSensor* pSensor) {
     _A64 = pSensor->mRadius;
     _70C = getAirGravityVec();
 
-    changeAnimation("ヒップドロップ滑り", static_cast< const char* >(nullptr));
+    changeAnimation("ヒップドロップ滑り");
 }
 
 void Mario::startJumpDropSlide(const HitSensor* pSensor) {
@@ -370,18 +376,17 @@ void Mario::startJumpDropSlide(const HitSensor* pSensor) {
     _A64 = pSensor->mRadius;
     _70C = getAirGravityVec();
 
-    if (isPlayerModeHopper()) {
+    bool changeSlideAnimation = !isPlayerModeHopper();
+    if (changeSlideAnimation) {
         if (dot > sHopperJumpSlideDotMin) {
             f32 frontDot = mFrontVec.dot(slideDir);
             if (frontDot > sZero) {
-                changeAnimation("ジャンプ順滑り", static_cast< const char* >(nullptr));
+                changeAnimation("ジャンプ順滑り");
             } else {
-                changeAnimation("ジャンプ逆滑り", static_cast< const char* >(nullptr));
+                changeAnimation("ジャンプ逆滑り");
             }
         }
     }
 
-    mJumpVec.x = sZero;
-    mJumpVec.y = sZero;
-    mJumpVec.z = sZero;
+    mJumpVec.zero();
 }

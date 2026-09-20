@@ -15,7 +15,7 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TUtil.hpp"
+#include <JSystem/JGeometry/TUtil.hpp>
 
 void RingBeam_FORCE_MATCH_SDATA2() {
     (void)1.0f;

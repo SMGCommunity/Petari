@@ -57,7 +57,7 @@ void SimpleMapObjNoSilhouetted::connectToScene(const MapObjActorInitInfo& rInfo)
 }
 
 void SimpleTextureSwitchChangeObj::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
-    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &SimpleTextureSwitchChangeObj::changeTexture));
+    MR::listenStageSwitchOnA(this, MR::Functor(this, &SimpleTextureSwitchChangeObj::changeTexture));
 }
 
 void GlaringLight::connectToScene(const MapObjActorInitInfo& rInfo) {

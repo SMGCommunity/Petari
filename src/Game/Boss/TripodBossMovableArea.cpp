@@ -1,6 +1,6 @@
 #include "Game/Boss/TripodBossMovableArea.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 namespace {
     // unused

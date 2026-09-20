@@ -278,11 +278,11 @@ void MarioActor::trampleJump(f32 normal, f32 extra) {
         if (!mMario->mMovementStates._A) {
             _988++;
             if (_988 == 1) {
-                changeAnimation("ジャンプふみ1", nullptr);
+                changeAnimation("ジャンプふみ1");
             } else if (_988 == 2) {
-                changeAnimation("ジャンプふみ2", nullptr);
+                changeAnimation("ジャンプふみ2");
             } else if (_988 >= 3) {
-                changeAnimation("ジャンプふみ3", nullptr);
+                changeAnimation("ジャンプふみ3");
                 _988 = 0;
             }
         }
@@ -290,10 +290,10 @@ void MarioActor::trampleJump(f32 normal, f32 extra) {
         stopAnimation(nullptr);
         switch (mMario->mRabbit->_68) {
         case 0:
-            changeAnimation("ホッパーふみジャンプA", nullptr);
+            changeAnimation("ホッパーふみジャンプA");
             break;
         case 1:
-            changeAnimation("ホッパーふみジャンプB", nullptr);
+            changeAnimation("ホッパーふみジャンプB");
             break;
         }
     }

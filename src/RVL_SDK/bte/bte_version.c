@@ -1,4 +1,4 @@
-#include "bte.h"
+#include <bte.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>

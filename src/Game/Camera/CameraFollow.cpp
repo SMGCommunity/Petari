@@ -17,10 +17,10 @@ void CameraFollow_FORCE_MATCH_SDATA2() {
     (void)1.0f;
     (void)0.0f;
     (void)0.5f;
-    f32 f4 = MR::epsilon();
-    f32 f5 = JGeometry::TUtil< f32 >::PI();
-    f32 f6 = JGeometry::TUtil< f32 >::PI() / 2.0f;
-    f32 f7 = -JGeometry::TUtil< f32 >::PI() / 2.0f;
+    (void)MR::epsilon();
+    (void)JGeometry::TUtil< f32 >::PI();
+    (void)(JGeometry::TUtil< f32 >::PI() / 2.0f);
+    (void)(-JGeometry::TUtil< f32 >::PI() / 2.0f);
 }
 
 namespace {
@@ -31,9 +31,8 @@ namespace {
     static const f32 sRoundResetAddition = 0.2f;
     static const f32 sCollisionCheckOffset = 50.0f;
     static const f32 sCollisionCheckDist = 100.0f;
-    static f32 sRoundInterval = JGeometry::TUtil< f32 >::PI() / 4.0f;
-    // FIXME: sinit instruction order issue
-    static f32 sLookDownAngle = 75.0f * JGeometry::TUtil< f32 >::PI() / 180.0f;
+    static const f32 sRoundInterval = JGeometry::TUtil< f32 >::PI() / 4.0f;
+    static const f32 sLookDownAngle = 75.0f * JGeometry::TUtil< f32 >::PI() / 180.0f;
 };  // namespace
 
 CameraFollow::CameraFollow(const char* pName)
@@ -72,6 +71,7 @@ CameraTargetObj* CameraFollow::calc() {
     } else {
         calcIdealPos();
     }
+
     arrangeHeight();
     mVPan->arrange();
     checkValidityOfRound(CameraLocalUtil::getWatchPos(this), CameraLocalUtil::getPos(this));
@@ -180,6 +180,7 @@ void CameraFollow::constrainDistance(TVec3f* pPos, const TVec3f& rWatchPos) {
         if (MR::isNearZero(diff)) {
             diff.set(mPos - mWatchPos);
         }
+
         diff.setLength(mDistMin);
     } else if (!(diff.length() < mDistMax)) {
         f32 dist = diff.length();
@@ -299,6 +300,7 @@ bool CameraFollow::checkAscent(TVec3f* pVec) const {
     if (Collision::checkStrikeLineToMap(pos, dir, 0, nullptr, nullptr) == 0) {
         return false;
     }
+
     pVec->set(Collision::getStrikeInfoMap(0)->mHitPos);
     return true;
 }
@@ -329,6 +331,7 @@ bool CameraFollow::checkDescent(TVec3f* pVec) const {
     if (Collision::checkStrikeLineToMap(pos, dir, 0, nullptr, nullptr) == 0) {
         return false;
     }
+
     pVec->set(Collision::getStrikeInfoMap(0)->mHitPos);
     return true;
 }

@@ -4,7 +4,7 @@
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void CameraTargetObj_FORCE_MATCH_SDATA2() {
+void CameraInnerCylinder_FORCE_MATCH_SDATA2() {
     (void)1.0f;
 }
 
@@ -53,6 +53,7 @@ CameraTargetObj* CameraInnerCylinder::calc() {
     if (MR::isNearZero(front)) {
         return nullptr;
     }
+
     MR::normalize(&front);
 
     TVec3f up(0.0f, 1.0f, 0.0f);
@@ -60,6 +61,7 @@ CameraTargetObj* CameraInnerCylinder::calc() {
     if (MR::isNearZero(side)) {
         return nullptr;
     }
+
     MR::normalize(&side);
 
     TVec3f camUp = mAxis.cross(side);

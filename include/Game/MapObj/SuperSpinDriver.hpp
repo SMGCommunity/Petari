@@ -11,7 +11,6 @@ class SuperSpinDriver : public LiveActor {
 public:
     SuperSpinDriver(const char*, s32);
 
-    virtual ~SuperSpinDriver();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void appear();

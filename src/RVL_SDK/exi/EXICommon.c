@@ -1,4 +1,4 @@
-#include <revolution/exi.h>
+#include "revolution/exi.h"
 
 const u32 __EXIFreq = 4;
 

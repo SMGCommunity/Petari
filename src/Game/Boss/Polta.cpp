@@ -67,7 +67,7 @@ void Polta::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchWriteDead(this, rIter);
 
     if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &Polta::start));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &Polta::start));
     }
 
     MR::startBva(this, "BreakLevel");

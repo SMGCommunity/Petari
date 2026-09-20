@@ -109,7 +109,7 @@ void RaceRail::init(const JMapInfoIter& rIter) {
 
 void PlayerRacer::initRacer() {
     AbstractRacer::initRacer();
-    MR::startBckPlayer("Watch", (char*)nullptr);
+    MR::startBckPlayer("Watch");
 }
 
 void PlayerRacer::prepRacer(const RaceManager* pRaceManager) {
@@ -129,20 +129,20 @@ void PlayerRacer::prepRacer(const RaceManager* pRaceManager) {
         MR::getFirstPolyOnLineToWaterSurface(&pos, nullptr, s, grav * 1000.0f);
         pos -= grav * 15.0f;
         MR::makeMtxFrontUpPos(&mtx, MR::getRailDirection(this), -grav, pos);
-        MR::startBckPlayer("SwimDrift", 1);
+        MR::startBckPlayer("SwimDrift", 1L);
         break;
     }
     case RaceID_TeresaPhantom: {
         pos = mPosition;
         MR::convertPosOnGround(&pos, grav * 1000.0f);
         MR::makeMtxFrontUpPos(&mtx, MR::getRailDirection(this), -grav, pos);
-        MR::startBckPlayer("BattleWait", 1);
+        MR::startBckPlayer("BattleWait", 1L);
         break;
     }
     case RaceID_TeresaDeathPromenade: {
         pos = mPosition;
         MR::makeMtxFrontUpPos(&mtx, MR::getRailDirection(this), -grav, pos);
-        MR::startBckPlayer("Wait", 1);
+        MR::startBckPlayer("Wait", 1L);
         MR::onFollowDemoEffect();
         break;
     }

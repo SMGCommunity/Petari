@@ -18,7 +18,7 @@ public:
     /* 0x0C */ const char* mAnimCameraName;
     /* 0x10 */ s32 mAnimCameraStartFrame;
     /* 0x14 */ s32 mAnimCameraEndFrame;
-    /* 0x18 */ bool mIsContinuous;
+    /* 0x18 */ u8 mIsContinuous;
     /* 0x1C */ const char* _1C;
     /* 0x20 */ ActorCameraInfo* _20;
     /* 0x24 */ LiveActor* _24;

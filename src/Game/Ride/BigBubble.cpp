@@ -398,6 +398,7 @@ bool BigBubble::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
                 addDeformVelocityOuter(dir * (pushDeformRate * (::sPushDeformAccel / getBaseRadius())), false);
             }
         }
+
         return true;
     }
 
@@ -426,6 +427,7 @@ bool BigBubble::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
             updateBindActorMatrix();
             return true;
         }
+
         return false;
     }
 
@@ -441,6 +443,7 @@ bool BigBubble::requestBind(HitSensor* pSensor) {
     if (scale * scale * scale < 1.0f) {
         return false;
     }
+
     mRider = pSensor->mHost;
     mRiderPos = mRider->mPosition;
     mRiderBasePos = mRiderPos;
@@ -509,6 +512,7 @@ bool BigBubble::requestCancelBind() {
     if (mRider != nullptr) {
         mRider = nullptr;
     }
+
     mWarningColor.a = 0;
     MR::emitEffect(this, "Break");
     MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK");
@@ -524,6 +528,7 @@ bool BigBubble::tryAppearEnd() {
         setNerve(GET_NERVE(BigBubble, BigBubbleNrvWait));
         return true;
     }
+
     return false;
 }
 
@@ -543,6 +548,7 @@ bool BigBubble::tryBreak() {
             MR::endBindAndPlayerFireDamage(this);
             mRider = nullptr;
         }
+
         breakBubble = true;
     }
 
@@ -551,6 +557,7 @@ bool BigBubble::tryBreak() {
             MR::endBindAndPlayerElectricDamage(this);
             mRider = nullptr;
         }
+
         breakBubble = true;
     }
 
@@ -568,9 +575,11 @@ bool BigBubble::tryAutoBreak() {
             MR::endBindAndPlayerWeakGravityLimitJump(this, mVelocity);
             mRider = nullptr;
         }
+
         setNerve(GET_NERVE(BigBubble, BigBubbleNrvBreak));
         return true;
     }
+
     return false;
 }
 
@@ -579,6 +588,7 @@ bool BigBubble::tryBreakEnd() {
         kill();
         return true;
     }
+
     return false;
 }
 
@@ -587,6 +597,7 @@ bool BigBubble::tryEscape() {
         setNerve(GET_NERVE(BigBubble, BigBubbleNrvEscape));
         return true;
     }
+
     return false;
 }
 
@@ -597,11 +608,13 @@ bool BigBubble::tryEscapeEnd() {
             MR::endBindAndPlayerJump(this, mGravity * ::sEscapeVelocity, ::sEscapeTime);
             mRider = nullptr;
         }
+
         MR::emitEffect(this, "Break");
         MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK");
         kill();
         return true;
     }
+
     return false;
 }
 
@@ -610,6 +623,7 @@ bool BigBubble::tryMergedCancel() {
         kill();
         return true;
     }
+
     return false;
 }
 
@@ -621,6 +635,7 @@ bool BigBubble::tryMergedEnd() {
             return true;
         }
     }
+
     return false;
 }
 
@@ -630,6 +645,7 @@ bool BigBubble::tryGoal() {
             MR::endBindAndPlayerWeakGravityLimitJump(this, mVelocity);
             mRider = nullptr;
         }
+
         setNerve(GET_NERVE(BigBubble, BigBubbleNrvGoal));
         return true;
     }
@@ -732,8 +748,12 @@ void BigBubble::exeMerged() {
     mMergeBubble->calcMergePosition(&mergePos, &mergeDir, this);
 
     f32 mergeSize = getSize();
-    if (mMergeBubble->getSize() < mergeSize) {
-        mergeSize = mMergeBubble->getSize2();  // FAKEMATCH: using getSize twice here uninlines
+    BigBubble* pMergeBubble = mMergeBubble;
+    f32 mergeRadius = pMergeBubble->getBaseRadius();
+    if (mergeRadius * pMergeBubble->mScale.x < mergeSize) {
+        BigBubble* pMergeBubble = mMergeBubble;
+        f32 mergeRadius = pMergeBubble->getBaseRadius();
+        mergeSize = mergeRadius * pMergeBubble->mScale.x;
     }
 
     f32 deformAccel = mergeSize * MR::calcNerveRate(this, ::sTurchDeformTime) * (::sTurchDeformAccel);
@@ -765,6 +785,7 @@ void BigBubble::exeBreak() {
             MR::endBindAndPlayerWeakGravityLimitJump(this, mVelocity);
             mRider = nullptr;
         }
+
         mWarningColor.a = 0;
         MR::emitEffect(this, "Break");
         MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK");
@@ -877,6 +898,7 @@ void BigBubble::addDeformVelocityInternalOressure() {
     if (pressure < 0.0f) {
         pressure = 0.0f;
     }
+
     if (size > 0.01f) {
         for (s32 idx = 0; idx < 6; idx++) {
             mDeformSpeed[idx] += (1.0f - pressure / (size * size * size)) * ::sPressPower;
@@ -897,6 +919,7 @@ void BigBubble::addCoriolisAccel() {
     if (MR::isNearZero(mCoriolisAccel)) {
         MR::getRandomVector(&mCoriolisAccel, 1.0f);
     }
+
     MR::normalizeOrZero(&mCoriolisAccel);
     mVelocity.add(mCoriolisAccel * mScale.x * ::sCoriolisAccelPower);
 }
@@ -953,6 +976,7 @@ void BigBubble::doMoveLimit() {
         if (mMoveLimitter->limitPosition(&mPosition, getSize())) {
             mIsExitLimitter = true;
         }
+
         if (mMoveLimitter->limitVelocity(&mVelocity, mPosition, getSize())) {
             mIsExitLimitter = true;
         }
@@ -982,6 +1006,7 @@ void BigBubble::updateBindActorMatrix() {
     } else {
         mRiderPos.set(mPosition);
     }
+
     TPos3f mtx;
     mtx.setQT(mRiderQuat, mRiderPos);
     MR::setBaseTRMtx(mRider, mtx);
@@ -1062,15 +1087,11 @@ s32 BigBubble::getCycle() const {
     } else if (mReduceVolumeTimer > ::sReduceSizeInterval * 1) {
         return ::sWarningCycle / 2;
     } else {
-        f32 f1 = 0.0f;  // FAKEMATCH: possible strip here.
         return ::sWarningCycle / 1;
     }
 }
 
 void BigBubble::updateCaptureWarningColor() {
-    // FIXME: compiler optimization of warning cycle load and extra stack use
-    // https://decomp.me/scratch/SkVS9
-
     if (mVolume < ::sCaptureStartVolume) {
         s32 warningCycle = getCycle();
 
@@ -1125,6 +1146,7 @@ void BigBubble::calcLocalDirection(TVec3f* pDir, s32 mergeIndex) const {
         dir.negate();
         break;
     }
+
     pDir->set(dir);
 }
 
@@ -1144,6 +1166,7 @@ s32 BigBubble::getNearAxisIndex(const TVec3f& rPos) const {
         } else {
             return Side_Left;
         }
+
         break;
     case 1:
         if (axis.y >= 0.0f) {
@@ -1151,6 +1174,7 @@ s32 BigBubble::getNearAxisIndex(const TVec3f& rPos) const {
         } else {
             return Side_Bottom;
         }
+
         break;
     case 2:
         if (axis.z >= 0.0f) {
@@ -1158,6 +1182,7 @@ s32 BigBubble::getNearAxisIndex(const TVec3f& rPos) const {
         } else {
             return Side_Back;
         }
+
         break;
     default:
         return -1;
@@ -1170,6 +1195,7 @@ s32 BigBubble::getMergeIndex(const TVec3f& rPos) const {
     if (mMergeBubbles[index] == nullptr) {
         return index;
     }
+
     return -1;
 }
 
@@ -1177,6 +1203,7 @@ bool BigBubble::isPushable() const {
     if (isNerve(GET_NERVE(BigBubble, BigBubbleNrvWait)) || isNerve(GET_NERVE(BigBubble, BigBubbleNrvCapture))) {
         return true;
     }
+
     return false;
 }
 
@@ -1196,5 +1223,6 @@ bool BigBubble::isEnemyAttackBreakable() const {
     if (isNerve(GET_NERVE(BigBubble, BigBubbleNrvWait)) || isNerve(GET_NERVE(BigBubble, BigBubbleNrvCapture))) {
         return true;
     }
+
     return false;
 }

@@ -1,4 +1,4 @@
-#include "uusb.h"
+#include <uusb.h>
 
 /*******************************************************************************
  * headers
@@ -7,21 +7,21 @@
 #include <cstring>
 #include <mem.h>
 
-#include <decomp.h>
-#include <macros.h>
+#include "decomp.h"
+#include "macros.h"
 
-#include "data_types.h"
-#include "gki_target.h"
+#include <data_types.h>
+#include <gki_target.h>
 
-#include "bte.h"
-#include "gki.h"
-#include "hci.h"
-#include "l2c_int.h"
+#include <bte.h>
+#include <gki.h>
+#include <hci.h>
+#include <l2c_int.h>
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 
 #define IS_BTE
-#include <context_rvl.h>
+#include "context_rvl.h"
 
 /*******************************************************************************
  * macros

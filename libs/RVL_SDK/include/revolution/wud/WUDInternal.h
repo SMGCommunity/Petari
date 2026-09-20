@@ -1,10 +1,10 @@
 #ifndef WUDINTERNAL_H
 #define WUDINTERNAL_H
 
-#include <revolution/bte.h>
-#include <revolution/os.h>
-#include <revolution/sc.h>
-#include <revolution/wud/wud.h>
+#include "revolution/bte.h"
+#include "revolution/os.h"
+#include "revolution/sc.h"
+#include "revolution/wud/wud.h"
 
 #ifdef __cplusplus
 extern "C" {

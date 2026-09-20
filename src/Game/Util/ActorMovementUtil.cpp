@@ -12,12 +12,12 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
-#include "JSystem/JGeometry.hpp"
-#include "JSystem/JGeometry/TUtil.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include <JSystem/JGeometry.hpp>
+#include <JSystem/JGeometry/TUtil.hpp>
+#include <JSystem/JMath/JMATrigonometric.hpp>
+#include <JSystem/JMath/JMath.hpp>
 #include "math_types.hpp"
-#include "revolution/mtx.h"
+#include <revolution/mtx.h>
 #include <cmath>
 
 namespace {

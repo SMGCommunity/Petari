@@ -12,6 +12,7 @@ public:
     virtual void endClipped();
     virtual void attackSensor(HitSensor*, HitSensor*);
 
+    void initHitSensors(const char*);
     void exeWait();
     void exeMove();
 

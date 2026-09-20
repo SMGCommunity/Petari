@@ -2,7 +2,7 @@
 #include "Game/Camera/CamTranslatorBlackHole.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/JGeometry/TUtil.hpp"
+#include <JSystem/JGeometry/TUtil.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
 
 void CameraBlackHole_FORCE_MATCH_SDATA2() {

@@ -1,4 +1,4 @@
-#include <revolution/gx/GXFDLShortcut.h>
+#include "revolution/gx/GXFDLShortcut.h"
 
 #define SC_CP_OPCODE_SET_INDEX(cp_opcode,index) \
 	FAST_GPFLAGSET(cp_opcode,index,CP_OPCODE_INDEX)

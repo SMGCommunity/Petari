@@ -31,7 +31,7 @@ MiiSelectIcon::MiiSelectIcon(int movementType, int calcAnimType, int drawType, c
     MR::invalidateParentAnim(this);
     createButton();
     createFaceImageObj();
-    initNerve(GET_NERVE_GLOBAL(MiiSelectIconNrvCreate));
+    initNerve(GET_NERVE_ANON(MiiSelectIconNrvCreate));
 
     if (movementType < 0) {
         movementType = MR::MovementType_Layout;
@@ -66,7 +66,7 @@ void MiiSelectIcon::appear(const FileSelectIconID& rIconID) {
 
         MR::hidePane(this, "MiiIcon");
         MR::showPane(this, "MarioIcon");
-        setNerve(GET_NERVE_GLOBAL(MiiSelectIconNrvWait));
+        setNerve(GET_NERVE_ANON(MiiSelectIconNrvWait));
     } else if (rIconID.isMii()) {
         MR::hideLayout(this);
         mIcon->setIndex(rIconID.getMiiIndex());
@@ -81,7 +81,7 @@ void MiiSelectIcon::appear(const FileSelectIconID& rIconID) {
 
         MR::hidePane(this, "MarioIcon");
         MR::showPane(this, "MiiIcon");
-        setNerve(GET_NERVE_GLOBAL(MiiSelectIconNrvCreate));
+        setNerve(GET_NERVE_ANON(MiiSelectIconNrvCreate));
     }
 
     mIsMiiDummy = false;
@@ -105,7 +105,7 @@ void MiiSelectIcon::appearMiiDummy() {
     _20 = _24;
     MR::hidePane(this, "MiiIcon");
     MR::showPane(this, "MarioIcon");
-    setNerve(GET_NERVE_GLOBAL(MiiSelectIconNrvWait));
+    setNerve(GET_NERVE_ANON(MiiSelectIconNrvWait));
     mIsMiiDummy = true;
     MR::startPaneAnim(this, "MarioIcon", "Hide", 2);
     MR::setPaneAnimFrameAndStop(this, "MarioIcon", 0.0f, 2);
@@ -114,18 +114,18 @@ void MiiSelectIcon::appearMiiDummy() {
 }
 
 void MiiSelectIcon::validate() {
-    if (isNerve(GET_NERVE_GLOBAL(MiiSelectIconNrvSelected)) || isNerve(GET_NERVE_GLOBAL(MiiSelectIconNrvInvalid))) {
+    if (isNerve(GET_NERVE_ANON(MiiSelectIconNrvSelected)) || isNerve(GET_NERVE_ANON(MiiSelectIconNrvInvalid))) {
         _24->forceToWait();
         _28->forceToWait();
-        setNerve(GET_NERVE_GLOBAL(MiiSelectIconNrvWait));
+        setNerve(GET_NERVE_ANON(MiiSelectIconNrvWait));
     }
 
     _3D = true;
 }
 
 void MiiSelectIcon::invalidate() {
-    if (isNerve(GET_NERVE_GLOBAL(MiiSelectIconNrvSelected))) {
-        setNerve(GET_NERVE_GLOBAL(MiiSelectIconNrvInvalid));
+    if (isNerve(GET_NERVE_ANON(MiiSelectIconNrvSelected))) {
+        setNerve(GET_NERVE_ANON(MiiSelectIconNrvInvalid));
     }
 
     _3D = false;
@@ -140,7 +140,7 @@ void MiiSelectIcon::prohibit() {
 }
 
 bool MiiSelectIcon::isSelected() const {
-    return isNerve(GET_NERVE_GLOBAL(MiiSelectIconNrvSelected));
+    return isNerve(GET_NERVE_ANON(MiiSelectIconNrvSelected));
 }
 
 bool MiiSelectIcon::isMiiDummy() const {
@@ -174,7 +174,7 @@ void MiiSelectIcon::exeCreate() {
     }
 
     if (mIcon->mIsCreated) {
-        setNerve(GET_NERVE_GLOBAL(MiiSelectIconNrvWait));
+        setNerve(GET_NERVE_ANON(MiiSelectIconNrvWait));
     }
 }
 
@@ -193,7 +193,7 @@ void MiiSelectIcon::exeWait() {
     }
 
     if (_20->mIsSelected) {
-        setNerve(GET_NERVE_GLOBAL(MiiSelectIconNrvSelected));
+        setNerve(GET_NERVE_ANON(MiiSelectIconNrvSelected));
     }
 }
 

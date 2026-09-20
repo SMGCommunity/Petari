@@ -1,9 +1,9 @@
-#include <revolution/base/PPCArch.h>
-#include <revolution/os.h>
-#include <revolution/os/OSContext.h>
-#include <revolution/os/OSException.h>
-#include <revolution/db.h>
-#include <private/OSLoMem.h>
+#include "revolution/base/PPCArch.h"
+#include "revolution/os.h"
+#include "revolution/os/OSContext.h"
+#include "revolution/os/OSException.h"
+#include "revolution/db.h"
+#include "private/OSLoMem.h"
 
 #ifdef __MWERKS__
 volatile OSContext* __OSCurrentContext: (OS_BASE_CACHED | OS_CURRENTCONTEXT_ADDR);

@@ -42,7 +42,7 @@ void TicoReading::kill() {
 
 void TicoReading::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "DemoRosettaReadingWait", nullptr);
+        MR::startBck(this, "DemoRosettaReadingWait");
         MR::setBckFrameAtRandom(this);
     }
 }

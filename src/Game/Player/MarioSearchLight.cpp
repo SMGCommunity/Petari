@@ -26,8 +26,7 @@
 #include <revolution/gx/GXTev.h>
 #include <revolution/mtx.h>
 
-MarioSearchLight::MarioSearchLight(LiveActor* pActor)
-    : PartsModel(pActor, "サーチライト", "SearchLightCone", nullptr, -1, 0), _9C(0.0f), _A0(0), _A4(nullptr) {
+MarioSearchLight::MarioSearchLight(LiveActor* pActor) : PartsModel(pActor, "サーチライト", "SearchLightCone", nullptr, -1, 0), _9C(), _A0(), _A4() {
 }
 
 void MarioSearchLight::init(const JMapInfoIter& rParam1) {
@@ -135,7 +134,7 @@ void MarioActor::initSearchLight() {
         model->mExtraMtxBuffer[i] = new (0x20) Mtx[drawMtxNum];
     }
 
-    mDrawSearchLight = new DrawAdaptor(MR::Functor_Inline(this, &MarioActor::drawSearchLight), MR::DrawType_0x33);
+    mDrawSearchLight = new DrawAdaptor(MR::Functor(this, &MarioActor::drawSearchLight), MR::DrawType_0x33);
 }
 
 void MarioActor::updateThrowing() {
@@ -307,7 +306,7 @@ void MarioActor::drawSearchLight() const {
 
         TDDraw::setup(0, 1, 1);
         GXSetZMode(GX_TRUE, GX_LEQUAL, GX_FALSE);
-        GXSetAlphaCompare(GX_GREATER, 4u, GX_AOP_AND, GX_ALWAYS, 0);
+        GXSetAlphaCompare(GX_GREATER, 4, GX_AOP_AND, GX_ALWAYS, 0);
         bool res = model->simpleDrawSetup(material);
 
         GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_ONE, GX_LO_NOOP);

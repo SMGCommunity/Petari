@@ -16,8 +16,8 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 
 void GCaptureTarget_FORCE_MATCH_SDATA2() {
     (void)1.0f;
@@ -76,13 +76,13 @@ void GCaptureTarget::init(const JMapInfoIter& rIter) {
     }
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &GCaptureTarget::exeActive));
+        MR::listenStageSwitchOnB(this, MR::Functor(this, &GCaptureTarget::exeActive));
     }
 
     s32 arg;
     MR::getJMapInfoArg2WithInit(rIter, &arg);
     mFarAwayColor = arg != 0;
-    MR::startBck(this, "Wait", nullptr);
+    MR::startBck(this, "Wait");
     MR::startBrk(this, "Switch");
     MR::setBrkFrameAndStop(this, 1.0f);
 }
@@ -156,12 +156,12 @@ void GCaptureTarget::exeAppear() {
     if (MR::isStep(this, 30)) {
         emitNerveEffect();
         MR::showModel(this);
-        MR::startBck(this, "Appear", nullptr);
+        MR::startBck(this, "Appear");
         MR::startSound(this, "SE_OJ_GCAPTURE_APPEAR");
     }
 
     if (MR::isBckStopped(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     if (MR::isGreaterStep(this, 150)) {
@@ -263,7 +263,7 @@ void GCaptureTarget::exeHitPointer() {
 void GCaptureTarget::exeActive() {
     if (MR::isFirstStep(this)) {
         emitNerveEffect();
-        MR::startBck(this, "React", nullptr);
+        MR::startBck(this, "React");
         MR::startSound(this, "SE_OJ_MAGIC_PNT_G_ON");
         MR::setBrkFrameAndStop(this, 1.0f);
     }
@@ -281,7 +281,7 @@ void GCaptureTarget::decidedTarget() {
 
 void GCaptureTarget::releasedTarget() {
     if (!isNerve(GET_NERVE(GCaptureTarget, GCaptureTargetNrvWait))) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         setNerve(GET_NERVE(GCaptureTarget, GCaptureTargetNrvWait));
     }
 }

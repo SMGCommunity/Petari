@@ -1,17 +1,17 @@
-#include "bte.h"
+#include <bte.h>
 
 /*******************************************************************************
  * headers
  */
 
-#include <decomp.h> // unk_t
+#include "decomp.h" // unk_t
 
-#include "data_types.h" // UINT16
-#include "gki_target.h" // BTU_TASK
+#include <data_types.h> // UINT16
+#include <gki_target.h> // BTU_TASK
 
-#include "btu.h" // BTU_HCI_RCV_MBOX
-#include "gki.h"
-#include "hci.h"
+#include <btu.h> // BTU_HCI_RCV_MBOX
+#include <gki.h>
+#include <hci.h>
 
 /*******************************************************************************
  * variables

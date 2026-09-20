@@ -1,5 +1,5 @@
-#include <revolution/types.h>
-#include <revolution/os.h>
+#include "revolution/types.h"
+#include "revolution/os.h"
 
 u8  GameChoice : (OS_BASE_CACHED | 0x30E3);
 

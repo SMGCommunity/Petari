@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Game/AudioLib/AudAudience.hpp"
-#include "JSystem/JAudio2/JAISound.hpp"
-#include "JSystem/JAudio2/JASSoundParams.hpp"
+#include <JSystem/JAudio2/JAISound.hpp>
+#include <JSystem/JAudio2/JASSoundParams.hpp>
 #include <JSystem/JAudio2/JAIAudible.hpp>
 #include <JSystem/JAudio2/JASHeapCtrl.hpp>
 #include <JSystem/JAudio2/JAUAudible.hpp>

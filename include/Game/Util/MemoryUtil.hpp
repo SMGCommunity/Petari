@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JSystem/JKernel/JKRHeap.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
 #include <revolution/mem.h>
 
 class JKRExpHeap;

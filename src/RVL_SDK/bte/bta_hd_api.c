@@ -1,4 +1,4 @@
-#include "bta_hd_api.h"
+#include <bta_hd_api.h>
 
 /*******************************************************************************
  * headers
@@ -6,13 +6,13 @@
 
 #include <string.h>
 
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "bd.h" // bdcpy
-#include "bta_hd_int.h"
-#include "bta_sys.h"
-#include "gki.h"
+#include <bd.h> // bdcpy
+#include <bta_hd_int.h>
+#include <bta_sys.h>
+#include <gki.h>
 
 /*******************************************************************************
  * variables

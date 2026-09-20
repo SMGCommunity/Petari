@@ -28,10 +28,10 @@ namespace {
     static const f32 sSpringSpeedToStop = 0.001f;
 };  // namespace
 
-PlantLeaf::PlantLeaf(f32 leafCoord, const TVec3f& pPosition, const TVec3f& pGrowDirection, f32 leafSize)
+PlantLeaf::PlantLeaf(f32 leafCoord, const TVec3f& rPosition, const TVec3f& rGrowDirection, f32 leafSize)
     : LiveActor("葉（伸び植物）"), mSpringCoord(), mSpringSpeed(), mLeafCoord(leafCoord), mLeafSize(leafSize), mSide(1.0f, 0.0f, 0.0f),
-      mUp(0.0f, 1.0f, 0.0f), mFront(pGrowDirection) {
-    mPosition.set(pPosition);
+      mUp(0.0f, 1.0f, 0.0f), mFront(rGrowDirection) {
+    mPosition.set(rPosition);
     MR::makeAxisFrontUp(&mSide, &mUp, mFront, mUp);
     mBaseMtx.setXYZDir(mSide, mUp, mFront);
     mBaseMtx.scale(mLeafSize * ::sScaleMin);
@@ -39,15 +39,12 @@ PlantLeaf::PlantLeaf(f32 leafCoord, const TVec3f& pPosition, const TVec3f& pGrow
     mPosMtx.identity();
 }
 
-PlantLeafDrawInit::PlantLeafDrawInit(const char* pName) : LiveActor(pName), mMaterial(nullptr), mShape(nullptr), mShapeDraw(nullptr) {
-    MR::FunctorV0M< const PlantLeafDrawInit*, void (PlantLeafDrawInit::*)() const > preDrawFunctor(this, &PlantLeafDrawInit::initDraw);
-    MR::registerPreDrawFunction(preDrawFunctor, MR::DrawType_Plant);
-    // TODO: The above should probably be this instead, but MR::Functor_Inline does not like consts at the moment
-    // MR::registerPreDrawFunction(MR::Functor_Inline(const_cast<const PlantLeafDrawInit*>(this), &PlantLeafDrawInit::initDraw), MR::DrawType_Plant);
+PlantLeafDrawInit::PlantLeafDrawInit(const char* pName) : LiveActor(pName), mMaterial(), mShape(), mShapeDraw() {
+    MR::registerPreDrawFunction(MR::Functor(this, &PlantLeafDrawInit::initDraw), MR::DrawType_Plant);
 
     initModelManagerWithAnm("PlantLeaf", 0, false);
-    J3DModelData* modelData = MR::getJ3DModelData(this);
-    mMaterial = MR::getMaterial(modelData, 0);
+    J3DModelData* pModelData = MR::getJ3DModelData(this);
+    mMaterial = MR::getMaterial(pModelData, 0);
     mShape = mMaterial->mShape;
     mShapeDraw = *mShape->mShapeDraw;
 }
@@ -73,13 +70,15 @@ void PlantLeaf::updateGrowUp(const TVec3f& rStalkPos, const TVec3f& rAxisY, f32 
     mBaseMtx.setTrans(mPosition);
 }
 
-bool PlantLeaf::updateSpring(const TVec3f& v, f32 springPower, f32 growthPercent) {
-    if (mPosition.squared(v) < ::sDistancePush * ::sDistancePush) {
+bool PlantLeaf::updateSpring(const TVec3f& rPos, f32 springPower, f32 growthPercent) {
+    if (mPosition.squared(rPos) < ::sDistancePush * ::sDistancePush) {
         if (mSpringCoord == 0.0f && mSpringSpeed == 0.0f) {
             MR::tryRumblePadWeak(this, WPAD_CHAN0);
         }
+
         mSpringSpeed += springPower * ::sPlayerPushRate;
     }
+
     return updateSpring(growthPercent);
 }
 
@@ -120,10 +119,10 @@ void PlantLeafDrawInit::init(const JMapInfoIter& rIter) {
 }
 
 void PlantLeafDrawInit::initDraw() const {
-    J3DModelData* modelData = MR::getJ3DModelData(this);
-    j3dSys.mVtxPos = modelData->mVertexData.mVtxPosArray;
-    j3dSys.mVtxNrm = modelData->mVertexData.mVtxNrmArray;
-    j3dSys.mVtxCol = modelData->mVertexData.mVtxColorArray[0];
+    J3DModelData* pModelData = MR::getJ3DModelData(this);
+    j3dSys.mVtxPos = pModelData->mVertexData.mVtxPosArray;
+    j3dSys.mVtxNrm = pModelData->mVertexData.mVtxNrmArray;
+    j3dSys.mVtxCol = pModelData->mVertexData.mVtxColorArray[0];
     mShape->sOldVcdVatCmd = 0;
     mMaterial->loadSharedDL();
     mShape->loadPreDrawSetting();

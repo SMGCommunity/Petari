@@ -11,7 +11,7 @@ enum JASAudioMessage {
 };
 
 struct JASAudioThread : public JKRThread, public JASGlobalInstance< JASAudioThread > {
-    inline JASAudioThread(int, int, u32) NO_INLINE; /* Overwritten in Overwrite.cpp */
+    JASAudioThread(int, int, u32) NO_INLINE;
     static void create(s32);
     void stop();
     virtual void* run();

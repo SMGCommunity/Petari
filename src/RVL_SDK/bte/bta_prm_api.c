@@ -1,4 +1,4 @@
-#include "bta_prm_api.h"
+#include <bta_prm_api.h>
 
 /*******************************************************************************
  * headers
@@ -6,11 +6,11 @@
 
 #include <string.h>
 
-#include "data_types.h" // UINT8
+#include <data_types.h> // UINT8
 
-#include "bta_prm_int.h"
-#include "bta_sys.h"
-#include "gki.h"
+#include <bta_prm_int.h>
+#include <bta_sys.h>
+#include <gki.h>
 
 /*******************************************************************************
  * variables

@@ -23,8 +23,8 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/JGeometry/TUtil.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
+#include <JSystem/JGeometry/TUtil.hpp>
+#include <JSystem/JMath/JMATrigonometric.hpp>
 
 void NPCActor_DUMMY() {
     (void)JGeometry::TUtil< f32 >::acos(1.0f);

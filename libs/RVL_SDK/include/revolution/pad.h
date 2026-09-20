@@ -1,3 +1,3 @@
-#include <revolution/os.h>
+#include "revolution/os.h"
 
 BOOL __PADDisableRecalibration(BOOL disable);

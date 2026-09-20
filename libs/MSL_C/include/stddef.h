@@ -3,8 +3,8 @@
 
 // IWYU pragma: begin_exports
 
-#include <__internal/__NULL.h>
-#include <__internal/__size_t.h>
+#include "__internal/__NULL.h"
+#include "__internal/__size_t.h"
 
 #define offsetof(type, member_designator) ((size_t) & (((type*)0)->member_designator))
 

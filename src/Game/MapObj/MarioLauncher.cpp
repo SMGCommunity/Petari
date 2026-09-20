@@ -127,7 +127,7 @@ void MarioLauncher::init(const JMapInfoIter& rIter) {
     mLauncherType = LauncherType_Front;
     MR::getJMapInfoArg0NoInit(rIter, &mLauncherType);
 
-    MR::startBck(this, "Wait", nullptr);
+    MR::startBck(this, "Wait");
 
     if (MR::useStageSwitchReadA(this, rIter)) {
         MR::listenStageSwitchOnOffA(this, MR::Functor(this, &MarioLauncher::onSwitchA), MR::Functor(this, &MarioLauncher::offSwitchA));
@@ -162,7 +162,7 @@ void MarioLauncher::exeWait() {
 
 void MarioLauncher::exeReady() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("EarthenPipeReady", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("EarthenPipeReady");
         MR::startSound(this, "SE_PM_MARIO_LAUNCHER_PREP");
     }
 
@@ -199,9 +199,9 @@ void MarioLauncher::exePlayerIn() {
 void MarioLauncher::exePrep() {
     if (MR::isStep(this, ::sStartActiveFrame)) {
         if (mLauncherType == LauncherType_Up) {
-            MR::startBck(this, "LookUp", nullptr);
+            MR::startBck(this, "LookUp");
         } else {
-            MR::startBck(this, "Active", nullptr);
+            MR::startBck(this, "Active");
         }
         MR::startSound(this, "SE_OJ_MARIO_LAUNCHER_IN");
     }
@@ -524,7 +524,7 @@ bool MarioLauncher::doEject() {
     mShell->makeActorAppeared();
 
     MR::showPlayer();
-    MR::startBckPlayer("CannonFlyStart", static_cast< const char* >(nullptr));
+    MR::startBckPlayer("CannonFlyStart");
 
     MR::shakeCameraStrong();
     MR::tryRumblePadStrong(this, WPAD_CHAN0);
@@ -637,7 +637,7 @@ bool MarioLauncher::doLanding(s32 msg) {
     MR::showModel(this);
     mHost = nullptr;
 
-    MR::startBck(this, "Wait", nullptr);
+    MR::startBck(this, "Wait");
     setNerve(GET_NERVE(MarioLauncher, MarioLauncherNrvLand));
 
     return true;

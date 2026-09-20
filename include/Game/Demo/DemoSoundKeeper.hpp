@@ -18,13 +18,9 @@ class DemoSoundKeeper : public DemoSheetKeeperBase, public DemoSheetKeeperInfoHo
 public:
     DemoSoundKeeper(DemoExecutor* pExecutor);
 
-    virtual const char* getName() const {
-        return "サウンド";
-    }
+    virtual const char* getName() const;
 
-    virtual const char* getTypeString() const {
-        return "Sound";
-    }
+    virtual const char* getTypeString() const;
 
     virtual void update();
 

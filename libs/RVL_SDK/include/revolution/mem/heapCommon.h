@@ -6,8 +6,8 @@ extern "C" {
 #endif
 
 #include <mem.h>
-#include <revolution/mem/list.h>
-#include <revolution/os.h>
+#include "revolution/mem/list.h"
+#include "revolution/os.h"
 
 typedef struct MEMiHeapHead MEMiHeapHead;
 

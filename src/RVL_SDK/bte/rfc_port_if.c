@@ -1,7 +1,7 @@
-#include "bt_target.h"
-#include "bt_types.h"
-#include "port_api.h"
-#include "rfc_int.h"
+#include <bt_target.h>
+#include <bt_types.h>
+#include <port_api.h>
+#include <rfc_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -32,12 +32,12 @@
  * headers
  */
 
-#include "rfcdefs.h"
+#include <rfcdefs.h>
 #include <stddef.h>
 
-#include "data_types.h"
+#include <data_types.h>
 
-#include "port_int.h"
+#include <port_int.h>
 
 /*******************************************************************************
  * variables

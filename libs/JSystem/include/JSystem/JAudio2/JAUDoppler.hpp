@@ -1,8 +1,8 @@
 #pragma once
 
-#include <JSystem/JAudio2/JASSoundParams.hpp>
-#include <JSystem/JAudio2/JAUAudible.hpp>
-#include <JSystem/JGeometry/TVec.hpp>
+#include "JSystem/JAudio2/JASSoundParams.hpp"
+#include "JSystem/JAudio2/JAUAudible.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 class JAUDopplerAudibleAbsPos {
 public:

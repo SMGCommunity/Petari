@@ -110,7 +110,7 @@ void Butterfly::init(const JMapInfoIter& rIter) {
     MR::setClippingFar50m(this);
     initNerve(GET_NERVE(Butterfly, HostTypeWait));
     makeActorAppeared();
-    MR::startBck(this, "Butterfly", nullptr);
+    MR::startBck(this, "Butterfly");
     MR::setBckFrameAtRandom(this);
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
@@ -471,7 +471,7 @@ void Butterfly::exeReadyToPerchOnSleepingMario() {
 
 void Butterfly::exePerchOnSleepingMario() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     TPos3f jointMtx;
@@ -480,7 +480,7 @@ void Butterfly::exePerchOnSleepingMario() {
     jointMtx.mult(::sMarioCapPosOffset, mPosition);
 
     if (!MR::isPlayerSleeping()) {
-        MR::startBck(this, "Butterfly", nullptr);
+        MR::startBck(this, "Butterfly");
         setNerve(GET_NERVE(Butterfly, HostTypeWait));
     }
 }

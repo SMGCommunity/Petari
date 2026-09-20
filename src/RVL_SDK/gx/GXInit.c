@@ -9,11 +9,11 @@
 #include "revolution/gx/shortcut_xf_mem.h"
 #include "revolution/vi.h"
 #include "revolution/vi/vitypes.h"
-#include <revolution/gx.h>
-#include <revolution/gx/GXFifo.h>
-#include <revolution/gx/GXRegs.h>
-#include <revolution/mtx.h>
-#include <revolution/os.h>
+#include "revolution/gx.h"
+#include "revolution/gx/GXFifo.h"
+#include "revolution/gx/GXRegs.h"
+#include "revolution/mtx.h"
+#include "revolution/os.h"
 
 static GXFifoObj FifoObj;
 static GXData gxData;

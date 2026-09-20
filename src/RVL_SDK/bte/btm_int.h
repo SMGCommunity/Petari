@@ -30,16 +30,16 @@
  * headers
  */
 
-#include "bt_target.h"
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "btm_api.h"
-#include "gki.h"
-#include "hcidefs.h"
-#include "rfcdefs.h"
-#include "sdp_api.h"
+#include <btm_api.h>
+#include <gki.h>
+#include <hcidefs.h>
+#include <rfcdefs.h>
+#include <sdp_api.h>
 
 /*******************************************************************************
  * macros

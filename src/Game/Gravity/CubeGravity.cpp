@@ -1,6 +1,6 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include <JSystem/JMath/JMath.hpp>
 
 #define REGION_NEGATIVE_X 0
 #define REGION_BETWEEN_X 1

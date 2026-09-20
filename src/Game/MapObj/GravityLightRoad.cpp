@@ -65,7 +65,7 @@ void GravityLightRoad::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchReadA(this, rIter);
 
     if (MR::isValidSwitchA(this)) {
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &GravityLightRoad::startDisappear));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &GravityLightRoad::startDisappear));
     }
 
     MR::startAllAnim(this, "GravityLightRoad");
@@ -197,7 +197,7 @@ bool GravityLightRoad::tryStartBind(LiveActor* pActor) {
 
     mHost = pActor;
 
-    MR::startBckPlayer("Fall", static_cast< const char* >(nullptr));
+    MR::startBckPlayer("Fall");
 
     MR::invalidateClipping(this);
 

@@ -201,11 +201,11 @@ void HoneyBee::exeFly() {
 
         if (arg0 == 0) {
             if (!MR::isBckPlaying(this, "WalkWait")) {
-                MR::startBck(this, "Wait", nullptr);
+                MR::startBck(this, "Wait");
             }
         } else {
             if (!MR::isBckPlaying(this, "FlyWait")) {
-                MR::startBck(this, "FlyWait", nullptr);
+                MR::startBck(this, "FlyWait");
             }
         }
     }
@@ -213,7 +213,7 @@ void HoneyBee::exeFly() {
 
 void HoneyBee::exeDropLecture() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     if (MR::isBckPlaying(this, "Wait")) {
@@ -222,7 +222,7 @@ void HoneyBee::exeDropLecture() {
         }
 
         if (MR::isGreaterStep(this, ::sHipLectureWaitStep)) {
-            MR::startBck(this, "HipDropWait", nullptr);
+            MR::startBck(this, "HipDropWait");
         }
     } else if (MR::isBckLooped(this)) {
         setNerve(GET_NERVE(HoneyBee, HoneyBeeNrvDropLecture));
@@ -231,7 +231,7 @@ void HoneyBee::exeDropLecture() {
 
 void HoneyBee::exeJumpLecture() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     if (MR::isBckPlaying(this, "Wait")) {
@@ -240,7 +240,7 @@ void HoneyBee::exeJumpLecture() {
         }
 
         if (MR::isGreaterStep(this, ::sFlyLectureWaitStep)) {
-            MR::startBck(this, "FlyLectureWait", nullptr);
+            MR::startBck(this, "FlyLectureWait");
         }
     } else if (MR::isBckLooped(this)) {
         setNerve(GET_NERVE(HoneyBee, HoneyBeeNrvJumpLecture));
@@ -250,7 +250,7 @@ void HoneyBee::exeJumpLecture() {
 void HoneyBee::exeFlyLectureA() {
     if (MR::isFirstStep(this)) {
         MR::onCalcShadow(this, nullptr);
-        MR::startBck(this, "FlyLectureA", nullptr);
+        MR::startBck(this, "FlyLectureA");
     }
 
     MR::startLevelSound(this, "SE_SM_LV_HONEYBEE_FLY_SOFT");
@@ -260,7 +260,7 @@ void HoneyBee::exeFlyLectureA() {
 void HoneyBee::exeFlyLectureB() {
     if (MR::isFirstStep(this)) {
         MR::onCalcShadow(this, nullptr);
-        MR::startBck(this, "FlyLectureB", nullptr);
+        MR::startBck(this, "FlyLectureB");
     }
 
     MR::startLevelSound(this, "SE_SM_LV_HONEYBEE_FLY_SOFT");

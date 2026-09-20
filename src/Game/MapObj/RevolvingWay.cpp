@@ -7,7 +7,7 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "revolution/mtx.h"
+#include <revolution/mtx.h>
 #include <JSystem/JMath/JMath.hpp>
 
 namespace NrvRevolvingWay {

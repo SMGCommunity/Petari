@@ -11,7 +11,7 @@
 #include <revolution/dsp.h>
 #include <stdint.h>
 
-JASAudioThread::JASAudioThread(int stackSize, int msgCount, u32 threadPriority)
+inline JASAudioThread::JASAudioThread(int stackSize, int msgCount, u32 threadPriority)
     : JKRThread(JASDram, threadPriority, msgCount, stackSize), JASGlobalInstance< JASAudioThread >(true) {
     sbPauseFlag = false;
     OSInitThreadQueue(&sThreadQueue);
@@ -50,6 +50,7 @@ void* JASAudioThread::run() {
                 JASDriver::stopDMA();
                 OSSleepThread(&sThreadQueue);
             }
+
             JASDriver::updateDac();
             JASDriver::updateDacCallback();
             continue;
@@ -64,11 +65,12 @@ void* JASAudioThread::run() {
                 JASDriver::updateDSP();
                 JASProbe::stop(2);
             }
+
             continue;
 
         case AUDIOMSG_STOP:
             JASDriver::stopDMA();
-            OSExitThread(NULL);
+            OSExitThread(nullptr);
             continue;
         }
     }

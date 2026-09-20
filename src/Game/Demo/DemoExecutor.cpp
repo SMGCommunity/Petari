@@ -12,11 +12,11 @@
 #include "Game/Map/StageSwitch.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include <algorithm>
+
 
 DemoExecutor::DemoExecutor(const char* pName)
     : DemoCastGroup(pName), mSheetName(), mTimeKeeper(), mSubPartKeeper(), mPlayerKeeper(), mCameraKeeper(), mActionKeeper(), mWipeKeeper(),
@@ -39,7 +39,7 @@ void DemoExecutor::init(const JMapInfoIter& rIter) {
     _40 = MR::createStageSwitchCtrl(this, rIter);
 
     if (_40->isValidSwitchAppear()) {
-        MR::listenNameObjStageSwitchOnAppear(this, _40, MR::Functor_Inline(this, &DemoExecutor::startProperDemoSystem));
+        MR::listenNameObjStageSwitchOnAppear(this, _40, MR::Functor(this, &DemoExecutor::startProperDemoSystem));
     }
 
     DemoFunction::registerDemoExecutor(this);

@@ -1,4 +1,4 @@
-#include "btm_api.h"
+#include <btm_api.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -33,19 +33,19 @@
 #include <mem.h>
 #include <stddef.h>
 
-#include <macros.h>  // BOOLIFY_TERNARY
+#include "macros.h"  // BOOLIFY_TERNARY
 
-#include "bt_target.h"
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
-#include "gki_target.h"  // GKI_MAX_BUF_SIZE
+#include <bt_target.h>
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
+#include <gki_target.h>  // GKI_MAX_BUF_SIZE
 
-#include "btm_int.h"
-#include "btu.h"
-#include "gki.h"
-#include "hcidefs.h"
-#include "hcimsgs.h"
+#include <btm_int.h>
+#include <btu.h>
+#include <gki.h>
+#include <hcidefs.h>
+#include <hcimsgs.h>
 
 /*******************************************************************************
  * local function declarations

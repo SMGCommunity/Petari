@@ -66,12 +66,12 @@ void FirePressureBullet::shotFireBullet(LiveActor* pActor, const TPos3f& rPos, c
 
 void FirePressureBullet::exeFly() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Shot", nullptr);
+        MR::startBck(this, "Shot");
         MR::startBtk(this, "FireBullet");
     }
 
     if (MR::isBckOneTimeAndStopped(this)) {
-        MR::startBck(this, "Move", nullptr);
+        MR::startBck(this, "Move");
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_F_PRESSURE_BULLET");

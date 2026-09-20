@@ -17,6 +17,7 @@ class EffectSystem : public NameObj {
 public:
     EffectSystem(const char*, bool);
 
+    virtual ~EffectSystem();
     virtual void init(const JMapInfoIter& rIter);
 
     ParticleEmitter* createEmitter(u16, u8, u8);

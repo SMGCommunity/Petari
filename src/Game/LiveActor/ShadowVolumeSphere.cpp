@@ -1,7 +1,7 @@
 #include "Game/LiveActor/ShadowVolumeSphere.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/CameraUtil.hpp"
-#include "revolution/gx.h"
+#include <revolution/gx.h>
 
 namespace {
     const f32 sModelScale = 100.0f;

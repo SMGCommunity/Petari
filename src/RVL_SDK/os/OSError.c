@@ -1,9 +1,9 @@
 #include "revolution/os/OSThread.h"
 #include <cstdio>
-#include <private/OSLoMem.h>
-#include <private/flipper.h>
-#include <revolution/os.h>
-#include <revolution/types.h>
+#include "private/OSLoMem.h"
+#include "private/flipper.h"
+#include "revolution/os.h"
+#include "revolution/types.h"
 
 #ifdef __MWERKS__
 OSThread* __OSCurrentThread : (OS_BASE_CACHED | OS_CURRENTTHREAD_ADDR);

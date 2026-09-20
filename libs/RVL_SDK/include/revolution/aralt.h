@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 
 typedef void (*ARCallback)(void);
 typedef void (*ARQCallback)(u32);

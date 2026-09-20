@@ -1,4 +1,4 @@
-#include "rfc_int.h"
+#include <rfc_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -29,18 +29,18 @@
  * headers
  */
 
-#include "bt_trace.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_trace.h>
+#include <bt_types.h>
+#include <data_types.h>
 #include "revolution/types.h"
 #include <cstring>
 
-#include "btm_api.h"
-#include "btm_int.h"
-#include "gki.h"
-#include "port_api.h"
-#include "port_int.h"
-#include "rfcdefs.h"
+#include <btm_api.h>
+#include <btm_int.h>
+#include <gki.h>
+#include <port_api.h>
+#include <port_int.h>
+#include <rfcdefs.h>
 
 /*******************************************************************************
  * macros

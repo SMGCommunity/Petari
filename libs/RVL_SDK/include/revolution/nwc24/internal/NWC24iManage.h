@@ -1,15 +1,15 @@
 #ifndef RVL_SDK_NWC24_INTERNAL_MANAGE_H
 #define RVL_SDK_NWC24_INTERNAL_MANAGE_H
-#include <revolution/types.h>
+#include "revolution/types.h"
 #include <cstdlib>
 
-#include <revolution/nwc24/NWC24Mime.h>
-#include <revolution/nwc24/NWC24Types.h>
-#include <revolution/nwc24/internal/NWC24iConfig.h>
-#include <revolution/nwc24/internal/NWC24iDownload.h>
-#include <revolution/nwc24/internal/NWC24iFriendList.h>
-#include <revolution/nwc24/internal/NWC24iMBoxCtrl.h>
-#include <revolution/nwc24/internal/NWC24iSecretFList.h>
+#include "revolution/nwc24/NWC24Mime.h"
+#include "revolution/nwc24/NWC24Types.h"
+#include "revolution/nwc24/internal/NWC24iConfig.h"
+#include "revolution/nwc24/internal/NWC24iDownload.h"
+#include "revolution/nwc24/internal/NWC24iFriendList.h"
+#include "revolution/nwc24/internal/NWC24iMBoxCtrl.h"
+#include "revolution/nwc24/internal/NWC24iSecretFList.h"
 
 #ifdef __cplusplus
 extern "C" {

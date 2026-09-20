@@ -10,7 +10,7 @@ f32 JMAAcosRadian(f32) NO_INLINE;
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
+#include <JSystem/JMath/JMATrigonometric.hpp>
 
 bool Mario::checkPressDamage() {
     if (_5FC) {

@@ -30,7 +30,7 @@
  * headers
  */
 
-#include "bt_types.h"
+#include <bt_types.h>
 
 /*******************************************************************************
  * external globals

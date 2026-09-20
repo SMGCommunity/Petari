@@ -31,7 +31,7 @@ namespace {
 
 BatteryInfo::BatteryInfo(LayoutActor* pHost, const char* pPaneName, int channel)
     : NerveExecutor("BatteryInfo"), mHost(pHost), mPaneName(pPaneName), mChannel(channel) {
-    initNerve(GET_NERVE_GLOBAL(BatteryInfoNoneHide));
+    initNerve(GET_NERVE_ANON(BatteryInfoNoneHide));
     MR::createAndAddPaneCtrl(mHost, mPaneName, 1);
     MR::hidePane(mHost, mPaneName);
 }
@@ -42,11 +42,11 @@ void BatteryInfo::exeEnought() {
     }
 
     if (MR::getWPad(mChannel)->getBattery() == WPAD_BATTERY_LEVEL_EMPTY) {
-        setNerve(GET_NERVE_GLOBAL(BatteryInfoNoneHide));
+        setNerve(GET_NERVE_ANON(BatteryInfoNoneHide));
     } else if (MR::getWPad(mChannel)->getBattery() == WPAD_BATTERY_LEVEL_CRITICAL) {
-        setNerve(GET_NERVE_GLOBAL(BatteryInfoCriticalAppear));
+        setNerve(GET_NERVE_ANON(BatteryInfoCriticalAppear));
     } else if (MR::getWPad(mChannel)->getBattery() == WPAD_BATTERY_LEVEL_LOW) {
-        setNerve(GET_NERVE_GLOBAL(BatteryInfoLowAppear));
+        setNerve(GET_NERVE_ANON(BatteryInfoLowAppear));
     }
 }
 
@@ -56,7 +56,7 @@ void BatteryInfo::exeLowAppear() {
         MR::startSystemSE("SE_SY_BATTERY_LOW");
     }
 
-    exeStartAnimAndSetNerveIfStopped("AppearLow", GET_NERVE_GLOBAL(BatteryInfoLow));
+    exeStartAnimAndSetNerveIfStopped("AppearLow", GET_NERVE_ANON(BatteryInfoLow));
 }
 
 void BatteryInfo::exeLow() {
@@ -67,12 +67,12 @@ void BatteryInfo::exeLow() {
     tryChangeNerveWithBatteryLeftAlreadyAppear();
 
     if (MR::isGreaterStep(this, ::sDisplayFrameBatteryLow)) {
-        setNerve(GET_NERVE_GLOBAL(BatteryInfoLowDisappear));
+        setNerve(GET_NERVE_ANON(BatteryInfoLowDisappear));
     }
 }
 
 void BatteryInfo::exeLowDisappear() {
-    exeStartAnimAndSetNerveIfStopped("EndLow", GET_NERVE_GLOBAL(BatteryInfoLowHide));
+    exeStartAnimAndSetNerveIfStopped("EndLow", GET_NERVE_ANON(BatteryInfoLowHide));
 }
 
 void BatteryInfo::exeLowHide() {
@@ -82,16 +82,16 @@ void BatteryInfo::exeLowHide() {
 
     if (MR::getWPad(mChannel)->getBattery() == WPAD_BATTERY_LEVEL_EMPTY) {
         if (mChannel == WPAD_CHAN1) {
-            setNerve(GET_NERVE_GLOBAL(BatteryInfoNoneAppear));
+            setNerve(GET_NERVE_ANON(BatteryInfoNoneAppear));
         } else {
-            setNerve(GET_NERVE_GLOBAL(BatteryInfoNoneHide));
+            setNerve(GET_NERVE_ANON(BatteryInfoNoneHide));
         }
     } else if (MR::getWPad(mChannel)->getBattery() == WPAD_BATTERY_LEVEL_CRITICAL) {
-        setNerve(GET_NERVE_GLOBAL(BatteryInfoCriticalAppear));
+        setNerve(GET_NERVE_ANON(BatteryInfoCriticalAppear));
     } else if (MR::getWPad(mChannel)->getBattery() > WPAD_BATTERY_LEVEL_LOW) {
-        setNerve(GET_NERVE_GLOBAL(BatteryInfoEnought));
+        setNerve(GET_NERVE_ANON(BatteryInfoEnought));
     } else if (MR::isGreaterStep(this, ::sLowIntervalFrame)) {
-        setNerve(GET_NERVE_GLOBAL(BatteryInfoLowAppear));
+        setNerve(GET_NERVE_ANON(BatteryInfoLowAppear));
     }
 }
 
@@ -101,7 +101,7 @@ void BatteryInfo::exeCriticalAppear() {
         MR::startSystemSE("SE_SY_BATTERY_CRITICAL");
     }
 
-    exeStartAnimAndSetNerveIfStopped("AppearCritical", GET_NERVE_GLOBAL(BatteryInfoCritical));
+    exeStartAnimAndSetNerveIfStopped("AppearCritical", GET_NERVE_ANON(BatteryInfoCritical));
 }
 
 void BatteryInfo::exeCritical() {
@@ -113,7 +113,7 @@ void BatteryInfo::exeCritical() {
 }
 
 void BatteryInfo::exeDisappear() {
-    exeStartAnimAndSetNerveIfStopped("EndCritical", GET_NERVE_GLOBAL(BatteryInfoEnought));
+    exeStartAnimAndSetNerveIfStopped("EndCritical", GET_NERVE_ANON(BatteryInfoEnought));
 }
 
 void BatteryInfo::exeNoneAppear() {
@@ -122,7 +122,7 @@ void BatteryInfo::exeNoneAppear() {
         MR::startSystemSE("SE_SY_BATTERY_CRITICAL");
     }
 
-    exeStartAnimAndSetNerveIfStopped("AppearNone", GET_NERVE_GLOBAL(BatteryInfoNone));
+    exeStartAnimAndSetNerveIfStopped("AppearNone", GET_NERVE_ANON(BatteryInfoNone));
 }
 
 void BatteryInfo::exeNone() {
@@ -131,12 +131,12 @@ void BatteryInfo::exeNone() {
     }
 
     if (MR::isGreaterStep(this, ::sDisplayFrameBatteryNone)) {
-        setNerve(GET_NERVE_GLOBAL(BatteryInfoNoneDisappear));
+        setNerve(GET_NERVE_ANON(BatteryInfoNoneDisappear));
     }
 }
 
 void BatteryInfo::exeNoneDisappear() {
-    exeStartAnimAndSetNerveIfStopped("EndNone", GET_NERVE_GLOBAL(BatteryInfoNoneHide));
+    exeStartAnimAndSetNerveIfStopped("EndNone", GET_NERVE_ANON(BatteryInfoNoneHide));
 }
 
 void BatteryInfo::exeNoneHide() {
@@ -145,7 +145,7 @@ void BatteryInfo::exeNoneHide() {
     }
 
     if (MR::getWPad(mChannel)->getBattery() != -1) {
-        setNerve(GET_NERVE_GLOBAL(BatteryInfoEnought));
+        setNerve(GET_NERVE_ANON(BatteryInfoEnought));
     }
 }
 
@@ -169,19 +169,19 @@ bool BatteryInfo::tryChangeNerveWithBatteryLeftAlreadyAppear() {
     switch (MR::getWPad(mChannel)->getBattery()) {
     case WPAD_BATTERY_LEVEL_EMPTY:
         if (mChannel == WPAD_CHAN1) {
-            pNerve = GET_NERVE_GLOBAL(BatteryInfoNoneAppear);
+            pNerve = GET_NERVE_ANON(BatteryInfoNoneAppear);
         } else {
-            pNerve = GET_NERVE_GLOBAL(BatteryInfoDisappear);
+            pNerve = GET_NERVE_ANON(BatteryInfoDisappear);
         }
         break;
     case WPAD_BATTERY_LEVEL_CRITICAL:
-        pNerve = GET_NERVE_GLOBAL(BatteryInfoCritical);
+        pNerve = GET_NERVE_ANON(BatteryInfoCritical);
         break;
     case WPAD_BATTERY_LEVEL_LOW:
-        pNerve = GET_NERVE_GLOBAL(BatteryInfoLow);
+        pNerve = GET_NERVE_ANON(BatteryInfoLow);
         break;
     default:
-        pNerve = GET_NERVE_GLOBAL(BatteryInfoDisappear);
+        pNerve = GET_NERVE_ANON(BatteryInfoDisappear);
         break;
     }
 
@@ -208,8 +208,8 @@ void BatteryLayout::init(const JMapInfoIter& rIter) {
 
 void BatteryLayout::appear() {
     LayoutActor::appear();
-    mInfo1P->setNerve(GET_NERVE_GLOBAL(BatteryInfoNoneHide));
-    mInfo2P->setNerve(GET_NERVE_GLOBAL(BatteryInfoNoneHide));
+    mInfo1P->setNerve(GET_NERVE_ANON(BatteryInfoNoneHide));
+    mInfo2P->setNerve(GET_NERVE_ANON(BatteryInfoNoneHide));
 }
 
 void BatteryLayout::control() {

@@ -67,7 +67,7 @@ void Petari::init(const JMapInfoIter& rIter) {
     MR::initShadowFromCSV(this, "Shadow");
     mAnimScaleCtrl = new AnimScaleController(nullptr);
     initFootPrint(rIter);
-    initNerve(GET_NERVE_GLOBAL(PetariNrvLurk));
+    initNerve(GET_NERVE_ANON(PetariNrvLurk));
     initFrontVec();
     MR::onCalcGravity(this);
     if (MR::useStageSwitchReadAppear(this, rIter)) {
@@ -85,7 +85,7 @@ void Petari::initAfterPlacement() {
 
 void Petari::makeActorAppeared() {
     MR::hideModel(this);
-    setNerve(GET_NERVE_GLOBAL(PetariNrvLurk));
+    setNerve(GET_NERVE_ANON(PetariNrvLurk));
     LiveActor::makeActorAppeared();
     mMeanderStep = 0;
 }
@@ -115,7 +115,7 @@ void Petari::exeLurk() {
 }
 
 void Petari::exeJumpOut() {
-    setNerve(GET_NERVE_GLOBAL(PetariNrvWait));
+    setNerve(GET_NERVE_ANON(PetariNrvWait));
 }
 
 void Petari::exeWait() {
@@ -216,7 +216,7 @@ void Petari::exeSwoonStart() {
     if (MR::isFirstStep(this)) {
         calcSpinOutVelocity(5.0f);
         MR::showModel(this);
-        MR::startBck(this, "Appearance", nullptr);
+        MR::startBck(this, "Appearance");
         MR::startBlowHitSound(this);
         MR::startSound(this, "SE_EM_PETARI_APPEAR");
         mRequestSmoke = true;
@@ -229,13 +229,13 @@ void Petari::exeSwoonStart() {
     }
     MR::moveAndTurnToDirection(this, &mFront, mTargetDir, v3, 1.3, 0.92f, 3.0f);
 
-    MR::setNerveAtBckStopped(this, GET_NERVE_GLOBAL(PetariNrvSwoon));
+    MR::setNerveAtBckStopped(this, GET_NERVE_ANON(PetariNrvSwoon));
 }
 
 void Petari::exeSwoon() {
     if (MR::isFirstStep(this)) {
         mVelocity.zero();
-        MR::startBck(this, "Swoon", nullptr);
+        MR::startBck(this, "Swoon");
     }
     calcCenter();
 
@@ -246,12 +246,12 @@ void Petari::exeSwoon() {
     MR::moveAndTurnToDirection(this, &mFront, mTargetDir, v3, 1.3, 0.0f, 3.0f);
 
     MR::startLevelSound(this, "SE_EM_LV_SWOON_S");
-    MR::setNerveAtStep(this, GET_NERVE_GLOBAL(PetariNrvSwoonEnd), 180);
+    MR::setNerveAtStep(this, GET_NERVE_ANON(PetariNrvSwoonEnd), 180);
 }
 
 void Petari::exeSwoonEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Hide", nullptr);
+        MR::startBck(this, "Hide");
         MR::startSound(this, "SE_EM_PETARI_WAKE_UP");
     }
     if (MR::checkPassBckFrame(this, 60.0f)) {
@@ -268,7 +268,7 @@ void Petari::exeSwoonEnd() {
     if (MR::isBckOneTimeAndStopped(this)) {
         MR::startSound(this, "SE_EM_CHANGE_SMOKE");
         MR::hideModel(this);
-        setNerve(GET_NERVE_GLOBAL(PetariNrvLand));
+        setNerve(GET_NERVE_ANON(PetariNrvLand));
     }
 }
 
@@ -288,13 +288,13 @@ void Petari::exeLand() {
     }
     moveTowardTargetDirection(1.0f, 0.99f, v3);
 
-    MR::setNerveAtStep(this, GET_NERVE_GLOBAL(PetariNrvEscape), 45);
+    MR::setNerveAtStep(this, GET_NERVE_ANON(PetariNrvEscape), 45);
 }
 
 void Petari::exeSmash() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
-        MR::startBck(this, "Press", nullptr);
+        MR::startBck(this, "Press");
         MR::startSound(this, "SE_EM_STOMPED_S");
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
@@ -311,7 +311,7 @@ void Petari::exeSmash() {
 void Petari::exeSpinOut() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
-        MR::startBck(this, "Damage", nullptr);
+        MR::startBck(this, "Damage");
         MR::startBlowHitSound(this);
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
@@ -358,7 +358,7 @@ void Petari::exeFreeze() {
     MR::startDPDFreezeLevelSound(this);
 
     if (!MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        setNerve(GET_NERVE_GLOBAL(PetariNrvWait));
+        setNerve(GET_NERVE_ANON(PetariNrvWait));
     }
 }
 
@@ -428,7 +428,7 @@ bool Petari::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRece
 
     if (isSolidBody() && MR::isMsgToEnemyAttackBlow(msg)) {
         MR::setVelocityBlowAttack(this, pSender, pReceiver, 10.0f, 0.0f, 4);
-        setNerve(GET_NERVE_GLOBAL(PetariNrvSpinOut));
+        setNerve(GET_NERVE_ANON(PetariNrvSpinOut));
         return true;
     }
 
@@ -445,9 +445,9 @@ bool Petari::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool Petari::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensor(pReceiver, ::sBodySensorName) && isNerve(GET_NERVE_GLOBAL(PetariNrvSwoon)) && MR::isMsgPlayerKick(msg)) {
+    if (MR::isSensor(pReceiver, ::sBodySensorName) && isNerve(GET_NERVE_ANON(PetariNrvSwoon)) && MR::isMsgPlayerKick(msg)) {
         MR::setVelocityBlowAttack(this, pSender, pReceiver, 10.0f, 0.0f, 4);
-        setNerve(GET_NERVE_GLOBAL(PetariNrvKickOut));
+        setNerve(GET_NERVE_ANON(PetariNrvKickOut));
         return true;
     }
 
@@ -482,7 +482,7 @@ void Petari::initStarPiece(const JMapInfoIter& rIter) {
 bool Petari::tryShiftJumpOut() {
     TVec3f screenPosition;
     if (MR::calcDistanceToPlayer(mPosition) < 1500.0f && MR::calcScreenPosition(&screenPosition, mPosition)) {
-        setNerve(GET_NERVE_GLOBAL(PetariNrvJumpOut));
+        setNerve(GET_NERVE_ANON(PetariNrvJumpOut));
         return true;
     }
 
@@ -491,7 +491,7 @@ bool Petari::tryShiftJumpOut() {
 
 bool Petari::tryShiftApproach() {
     if (MR::calcDistanceToPlayer(mPosition) > 700.0f) {
-        setNerve(GET_NERVE_GLOBAL(PetariNrvApproach));
+        setNerve(GET_NERVE_ANON(PetariNrvApproach));
         return true;
     }
 
@@ -500,7 +500,7 @@ bool Petari::tryShiftApproach() {
 
 bool Petari::tryApproachEnd() {
     if (MR::calcDistanceToPlayer(mPosition) < 600.0f) {
-        setNerve(GET_NERVE_GLOBAL(PetariNrvWait));
+        setNerve(GET_NERVE_ANON(PetariNrvWait));
         return true;
     }
 
@@ -509,7 +509,7 @@ bool Petari::tryApproachEnd() {
 
 bool Petari::tryShiftEscape() {
     if (MR::calcDistanceToPlayer(mPosition) < 500.0f) {
-        setNerve(GET_NERVE_GLOBAL(PetariNrvEscape));
+        setNerve(GET_NERVE_ANON(PetariNrvEscape));
         return true;
     }
 
@@ -518,7 +518,7 @@ bool Petari::tryShiftEscape() {
 
 bool Petari::tryEscapeEnd() {
     if (MR::calcDistanceToPlayer(mPosition) > 710.0f) {
-        setNerve(GET_NERVE_GLOBAL(PetariNrvWait));
+        setNerve(GET_NERVE_ANON(PetariNrvWait));
         return true;
     }
 
@@ -527,17 +527,17 @@ bool Petari::tryEscapeEnd() {
 
 bool Petari::receivePlayerAttackAtBody(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceAttack(msg)) {
-        if (isNerve(GET_NERVE_GLOBAL(PetariNrvSwoon))) {
+        if (isNerve(GET_NERVE_ANON(PetariNrvSwoon))) {
             mAnimScaleCtrl->startHitReaction();
-            setNerve(GET_NERVE_GLOBAL(PetariNrvSwoon));
+            setNerve(GET_NERVE_ANON(PetariNrvSwoon));
             return true;
         }
-        if (isNerve(GET_NERVE_GLOBAL(PetariNrvSwoonStart)) || isNerve(GET_NERVE_GLOBAL(PetariNrvSwoonEnd))) {
+        if (isNerve(GET_NERVE_ANON(PetariNrvSwoonStart)) || isNerve(GET_NERVE_ANON(PetariNrvSwoonEnd))) {
             mAnimScaleCtrl->startHitReaction();
             return true;
         }
 
-        if (isNerve(GET_NERVE_GLOBAL(PetariNrvWait)) && !MR::isHiddenModel(this)) {
+        if (isNerve(GET_NERVE_ANON(PetariNrvWait)) && !MR::isHiddenModel(this)) {
             mAnimScaleCtrl->startHitReaction();
             return true;
         }
@@ -545,26 +545,26 @@ bool Petari::receivePlayerAttackAtBody(u32 msg, HitSensor* pSender, HitSensor* p
 
     if (isSolidBody() && (MR::isMsgJetTurtleAttack(msg) || MR::isMsgFireBallAttack(msg) || MR::isMsgInvincibleAttack(msg))) {
         MR::setVelocityBlowAttack(this, pSender, pReceiver, 10.0f, 0.0f, 4);
-        setNerve(GET_NERVE_GLOBAL(PetariNrvKickOut));
+        setNerve(GET_NERVE_ANON(PetariNrvKickOut));
         return true;
     }
 
-    if (isNerve(GET_NERVE_GLOBAL(PetariNrvFreeze)) && !MR::isHiddenModel(this) && (MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg))) {
-        setNerve(GET_NERVE_GLOBAL(PetariNrvSmash));
+    if (isNerve(GET_NERVE_ANON(PetariNrvFreeze)) && !MR::isHiddenModel(this) && (MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg))) {
+        setNerve(GET_NERVE_ANON(PetariNrvSmash));
         return true;
     }
 
-    if (!isNerve(GET_NERVE_GLOBAL(PetariNrvSwoon))) {
+    if (!isNerve(GET_NERVE_ANON(PetariNrvSwoon))) {
         return false;
     }
 
     if (MR::isMsgPlayerSpinAttack(msg) || MR::isMsgFreezeAttack(msg)) {
         MR::setVelocityBlowAttack(this, pSender, pReceiver, 10.0f, 0.0f, 4);
-        setNerve(GET_NERVE_GLOBAL(PetariNrvSpinOut));
+        setNerve(GET_NERVE_ANON(PetariNrvSpinOut));
         return true;
     }
     if (MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg)) {
-        setNerve(GET_NERVE_GLOBAL(PetariNrvSmash));
+        setNerve(GET_NERVE_ANON(PetariNrvSmash));
         return true;
     }
 
@@ -576,10 +576,10 @@ bool Petari::receivePlayerAttackAtSpin(u32 msg, HitSensor* pSender, HitSensor* p
         return false;
     }
 
-    bool v5 = isNerve(GET_NERVE_GLOBAL(PetariNrvWait)) || isNerve(GET_NERVE_GLOBAL(PetariNrvEscape)) || isNerve(GET_NERVE_GLOBAL(PetariNrvFreeze));
+    bool v5 = isNerve(GET_NERVE_ANON(PetariNrvWait)) || isNerve(GET_NERVE_ANON(PetariNrvEscape)) || isNerve(GET_NERVE_ANON(PetariNrvFreeze));
 
     if (v5) {
-        setNerve(GET_NERVE_GLOBAL(PetariNrvSwoonStart));
+        setNerve(GET_NERVE_ANON(PetariNrvSwoonStart));
         return true;
     }
 
@@ -591,8 +591,8 @@ bool Petari::isSolidBody() const {
         return false;
     }
 
-    return isNerve(GET_NERVE_GLOBAL(PetariNrvSwoonStart)) || isNerve(GET_NERVE_GLOBAL(PetariNrvSwoon)) ||
-           isNerve(GET_NERVE_GLOBAL(PetariNrvSwoonEnd)) || isNerve(GET_NERVE_GLOBAL(PetariNrvWait)) || isNerve(GET_NERVE_GLOBAL(PetariNrvFreeze));
+    return isNerve(GET_NERVE_ANON(PetariNrvSwoonStart)) || isNerve(GET_NERVE_ANON(PetariNrvSwoon)) || isNerve(GET_NERVE_ANON(PetariNrvSwoonEnd)) ||
+           isNerve(GET_NERVE_ANON(PetariNrvWait)) || isNerve(GET_NERVE_ANON(PetariNrvFreeze));
 }
 
 void Petari::moveTowardTargetDirection(f32 vel, f32 f2, f32 angle) {
@@ -751,7 +751,7 @@ bool Petari::reflectStarPointer2P() {
         return false;
     }
 
-    setNerve(GET_NERVE_GLOBAL(PetariNrvFreeze));
+    setNerve(GET_NERVE_ANON(PetariNrvFreeze));
     return true;
 }
 

@@ -1,6 +1,6 @@
 #include "Game/Map/RailPart.hpp"
 #include "Game/Map/BezierRail.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include <JSystem/JMath/JMath.hpp>
 
 void DUMMY() {
     TVec3f a, b;

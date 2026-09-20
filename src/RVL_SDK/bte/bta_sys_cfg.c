@@ -1,4 +1,4 @@
-#include "bta_sys_int.h"
+#include <bta_sys_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -29,9 +29,9 @@
  * headers
  */
 
-#include "bt_trace.h"
+#include <bt_trace.h>
 
-#include "gki.h"
+#include <gki.h>
 
 /*******************************************************************************
  * macros

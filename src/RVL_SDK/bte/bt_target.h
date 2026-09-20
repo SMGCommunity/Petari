@@ -30,10 +30,10 @@
  * headers
  */
 
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "gki_target.h"
+#include <gki_target.h>
 
 /*******************************************************************************
  * Configuration options, sorted as seen in bluedroid's bt_target.h

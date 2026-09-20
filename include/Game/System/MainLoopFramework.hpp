@@ -16,12 +16,16 @@ public:
 
 class MainLoopFramework {
 public:
-    MainLoopFramework(void* xfb1, void* xfb2, void* xfb3, bool useAlpha) : mClearColor(0xffffffff) {
+    MainLoopFramework(void* pXfb1, void* pXfb2, void* pXfb3, bool useAlpha) : mClearColor(0xffffffff) {
         ctor_subroutine(useAlpha);
-        JUTXfb::createManager(xfb1, xfb2, xfb3);
+        JUTXfb::createManager(pXfb1, pXfb2, pXfb3);
     }
 
     ~MainLoopFramework();
+
+    static MainLoopFramework* getManager() {
+        return sManager;
+    }
 
     static MainLoopFramework* createManager(const GXRenderModeObj*, void*, void*, void*, bool);
     void ctor_subroutine(bool);

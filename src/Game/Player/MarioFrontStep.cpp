@@ -72,7 +72,7 @@ bool Mario::doFrontStep() {
 }
 
 bool MarioFrontStep::start() {
-    changeAnimation("前壁ウエイト", static_cast< const char* >(nullptr));
+    changeAnimation("前壁ウエイト");
 
     mActor->setBlendMtxTimer(10);
 

@@ -81,7 +81,7 @@ void KoopaDemoPowerUp::exeWaitDemo() {
         MR::onSwitchA(KoopaFunction::getKoopaPowerUpSwitch(getHost()));
     }
 
-    MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+    MR::startBckPlayer("BattleWait");
     KoopaFunction::startRecoverKoopaArmor(getHost());
     KoopaFunction::startRecoverKoopaTailThorn(getHost());
 

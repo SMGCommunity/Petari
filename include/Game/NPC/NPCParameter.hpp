@@ -4,7 +4,7 @@
 #include "Game/NPC/NPCActorItem.hpp"
 #include "Game/Util/Array.hpp"
 #include "Game/Util/JMapInfo.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class JMapInfo;
 class NPCActorItem;

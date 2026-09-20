@@ -405,7 +405,7 @@ void MapObjActor::exeMove() {
     if (MR::isFirstStep(this)) {
         const char* moveName = ::cBckNameMove;
         if (MR::isExistBck(this, moveName)) {
-            MR::startBck(this, moveName, 0);
+            MR::startBck(this, moveName);
         }
     }
 

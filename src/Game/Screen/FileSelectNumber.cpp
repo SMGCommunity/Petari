@@ -17,7 +17,7 @@ FileSelectNumber::FileSelectNumber(const char* pName) : LayoutActor(pName, true)
 void FileSelectNumber::init(const JMapInfoIter& rIter) {
     initLayoutManager("FileNumber", 2);
     MR::connectToSceneLayout(this);
-    initNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvWait));
+    initNerve(GET_NERVE_ANON(FileSelectNumberNrvWait));
 
     mSelectAnimCtrl = new FileSelectNumberSub::SelectAnimController(this);
 }
@@ -28,29 +28,29 @@ void FileSelectNumber::appear() {
     if (MR::isDead(this)) {
         LayoutActor::appear();
         MR::startAnim(this, "Appear", 0);
-        setNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvAppear));
+        setNerve(GET_NERVE_ANON(FileSelectNumberNrvAppear));
         mSelectAnimCtrl->appear();
-    } else if (isNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvEnd))) {
+    } else if (isNerve(GET_NERVE_ANON(FileSelectNumberNrvEnd))) {
         animFrame = MR::getAnimFrame(this, 0);
 
         MR::startAnim(this, "Appear", 0);
         MR::setAnimFrame(this, MR::getAnimCtrl(this, 0)->getEnd() - animFrame, 0);
-        setNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvAppear));
+        setNerve(GET_NERVE_ANON(FileSelectNumberNrvAppear));
     }
 }
 
 void FileSelectNumber::disappear() {
     f32 animFrame;
 
-    if (isNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvAppear))) {
+    if (isNerve(GET_NERVE_ANON(FileSelectNumberNrvAppear))) {
         animFrame = MR::getAnimFrame(this, 0);
 
         MR::startAnim(this, "End", 0);
         MR::setAnimFrame(this, MR::getAnimCtrl(this, 0)->getEnd() - animFrame, 0);
-        setNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvEnd));
-    } else if (isNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvWait))) {
+        setNerve(GET_NERVE_ANON(FileSelectNumberNrvEnd));
+    } else if (isNerve(GET_NERVE_ANON(FileSelectNumberNrvWait))) {
         MR::startAnim(this, "End", 0);
-        setNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvEnd));
+        setNerve(GET_NERVE_ANON(FileSelectNumberNrvEnd));
     }
 }
 
@@ -77,7 +77,7 @@ void FileSelectNumber::exeAppear() {
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(GET_NERVE_GLOBAL(FileSelectNumberNrvWait));
+        setNerve(GET_NERVE_ANON(FileSelectNumberNrvWait));
     }
 }
 

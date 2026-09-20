@@ -41,7 +41,7 @@ void Balloonfish::init(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         MR::initDefaultPos(this, rIter);
         MR::needStageSwitchReadAppear(this, rIter);
-        MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &Balloonfish::appear));
+        MR::listenStageSwitchOnAppear(this, MR::Functor(this, &Balloonfish::appear));
     }
 
     initModelManagerWithAnm("Balloonfish", nullptr, false);
@@ -88,7 +88,7 @@ void Balloonfish::exeWait() {
         mVelocity.zero();
         if (mNerveBeforeBind != mSpine->getCurrentNerve()) {
             mNotBoundStep = 0;
-            MR::startBck(this, "appearance", nullptr);
+            MR::startBck(this, "appearance");
             MR::startSound(this, "SE_EM_BLNFISH_PRE_DASH");
         }
 
@@ -124,13 +124,13 @@ void Balloonfish::exeDash() {
         if (isNerve(GET_NERVE(Balloonfish, HostTypeNrvDash))) {
             if (mNerveBeforeBind != mSpine->getCurrentNerve()) {
                 mNotBoundStep = 0;
-                MR::startBck(this, "Attack", nullptr);
+                MR::startBck(this, "Attack");
                 MR::emitEffect(this, "SwimBubble");
             }
         } else {
             if (mNerveBeforeBind != mSpine->getCurrentNerve()) {
                 mNotBoundStep = 0;
-                MR::startBck(this, "AttackEnd", nullptr);
+                MR::startBck(this, "AttackEnd");
                 MR::emitEffect(this, "SwimBubble");
             }
         }

@@ -3,10 +3,9 @@
 #include <cstdio>
 #include <cstring>
 
-DotCamReader::~DotCamReader() {
-}
+template bool JMapInfoIter::getValue< s32 >(const char*, s32*) const;
 
-DotCamReaderInBin::DotCamReaderInBin(const void* pData) : mVersion(0), _8(nullptr), mMapInfo() {
+DotCamReaderInBin::DotCamReaderInBin(const void* pData) : mVersion(), _8(), mMapInfo() {
     init(pData);
 }
 
@@ -16,34 +15,8 @@ DotCamReaderInBin::~DotCamReaderInBin() {
     }
 }
 
-u32 DotCamReaderInBin::getVersion() const {
-    return mVersion;
-}
-
-// Stack issues
 bool DotCamReaderInBin::hasMoreChunk() const {
-    bool hasMore = false;
-
-    if (mMapIter.isValid()) {
-        const JMapData* mapData = mMapInfo.mData;
-        s32 iVar2 = mapData != nullptr ? mapData->mNumEntries : 0;
-
-        bool bVar1 = false;
-
-        const JMapInfo& mapInfo = mMapInfo;
-
-        if (mMapIter.mIndex == iVar2 && mMapIter.mInfo != nullptr && mapInfo.mData != nullptr) {
-            if (mMapIter.mInfo->mData == mapInfo.mData) {
-                bVar1 = true;
-            }
-        }
-
-        if (!bVar1) {
-            hasMore = true;
-        }
-    }
-
-    return hasMore;
+    return mMapIter.isValid() && mMapIter != mMapInfo.end();
 }
 
 void DotCamReaderInBin::nextToChunk() {
@@ -58,6 +31,24 @@ bool DotCamReaderInBin::getValueInt(const char* pName, s32* pOut) {
 
 bool DotCamReaderInBin::getValueFloat(const char* pName, f32* pOut) {
     return mMapIter.getValue< f32 >(pName, pOut);
+}
+
+bool DotCamReaderInBin::getValueString(const char* pName, const char** pOut) {
+    return mMapIter.getValue(pName, pOut);
+}
+
+DotCamReader::~DotCamReader() {
+}
+
+u32 DotCamReaderInBin::getVersion() const {
+    return mVersion;
+}
+
+void DotCamReaderInBin::init(const void* pData) {
+    mMapInfo.attach(pData);
+    mMapInfo.begin().getValue("version", &mVersion);
+
+    mMapIter = mMapInfo.begin();
 }
 
 bool DotCamReaderInBin::getValueVec(const char* pName, TVec3f* pOut) {
@@ -84,16 +75,4 @@ bool DotCamReaderInBin::getValueVec(const char* pName, TVec3f* pOut) {
     }
 
     return success;
-}
-
-bool DotCamReaderInBin::getValueString(const char* pName, const char** pOut) {
-    return mMapIter.getValue(pName, pOut);
-}
-
-// Stack issues
-void DotCamReaderInBin::init(const void* pData) {
-    mMapInfo.attach(pData);
-    mMapInfo.getValue(0, "version", &mVersion);
-
-    mMapIter = JMapInfoIter(&mMapInfo, 0);
 }

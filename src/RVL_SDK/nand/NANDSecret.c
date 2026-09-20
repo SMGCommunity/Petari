@@ -1,5 +1,5 @@
-#include <revolution/nand.h>
-#include <revolution/fs.h>
+#include "revolution/nand.h"
+#include "revolution/fs.h"
 
 s32 NANDSecretGetUsage(const char* path, u32* fsBlock, u32* inode) {
     if (!nandIsInitialized()) {

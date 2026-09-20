@@ -6,7 +6,7 @@
 #include "Game/Player/MarioState.hpp"
 #include "Game/Player/MarioSwim.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 bool Mario::doFlipWeak(const TVec3f& rVec) {
     if (mMovementStates._1B) {
@@ -112,14 +112,14 @@ bool MarioFaint::start() {
 
     if (_18.dot(getPlayer()->mFrontVec) > 0.0f) {
         getPlayer()->setFrontVecKeepUp(_18);
-        changeAnimation("後方小ダメージ", static_cast< const char* >(nullptr));
+        changeAnimation("後方小ダメージ");
     } else {
         getPlayer()->setFrontVecKeepUp(-_18);
-        changeAnimation("前方小ダメージ", static_cast< const char* >(nullptr));
+        changeAnimation("前方小ダメージ");
     }
 
     if (mNoDamage) {
-        changeAnimation("ノーダメージ", static_cast< const char* >(nullptr));
+        changeAnimation("ノーダメージ");
     }
 
     playSound("声小ダメージ");

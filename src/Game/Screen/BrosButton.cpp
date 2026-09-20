@@ -22,12 +22,12 @@ void BrosButton::init(const JMapInfoIter& rIter) {
     mPaneCtrl->_22 = false;
 
     MR::connectToSceneLayout(this);
-    initNerve(GET_NERVE_GLOBAL(BrosButtonNrvAppear));
+    initNerve(GET_NERVE_ANON(BrosButtonNrvAppear));
 }
 
 void BrosButton::appear(bool isSelectedMario) {
     appear();
-    setNerve(GET_NERVE_GLOBAL(BrosButtonNrvAppear));
+    setNerve(GET_NERVE_ANON(BrosButtonNrvAppear));
 
     mIsSelectedMario = isSelectedMario;
 
@@ -35,11 +35,11 @@ void BrosButton::appear(bool isSelectedMario) {
 }
 
 void BrosButton::disappear() {
-    setNerve(GET_NERVE_GLOBAL(BrosButtonNrvDisappear));
+    setNerve(GET_NERVE_ANON(BrosButtonNrvDisappear));
 }
 
 bool BrosButton::isSelected() const {
-    return isNerve(GET_NERVE_GLOBAL(BrosButtonNrvDecide));
+    return isNerve(GET_NERVE_ANON(BrosButtonNrvDecide));
 }
 
 bool BrosButton::isSelectedMario() const {
@@ -48,12 +48,12 @@ bool BrosButton::isSelectedMario() const {
 
 void BrosButton::resume() {
     mPaneCtrl->forceToWait();
-    setNerve(GET_NERVE_GLOBAL(BrosButtonNrvSelect));
+    setNerve(GET_NERVE_ANON(BrosButtonNrvSelect));
 }
 
 void BrosButton::exeAppear() {
     if (mPaneCtrl->isAppearing()) {
-        setNerve(GET_NERVE_GLOBAL(BrosButtonNrvSelect));
+        setNerve(GET_NERVE_ANON(BrosButtonNrvSelect));
     }
 }
 
@@ -74,7 +74,7 @@ void BrosButton::exeSelect() {
         MR::startSystemSE("SE_SY_FILE_SEL_SW_LUIGI");
     }
 
-    setNerve(GET_NERVE_GLOBAL(BrosButtonNrvDecide));
+    setNerve(GET_NERVE_ANON(BrosButtonNrvDecide));
 }
 
 void BrosButton::exeDecide() {

@@ -55,12 +55,12 @@ void ElectricPressureBullet::shotElectricBullet(LiveActor* actor, const TPos3f& 
 
 void ElectricPressureBullet::exeFly() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Shot", nullptr);
+        MR::startBck(this, "Shot");
         MR::startBtk(this, "ElectricBullet");
     }
 
     if (MR::isBckOneTimeAndStopped(this)) {
-        MR::startBck(this, "Move", nullptr);
+        MR::startBck(this, "Move");
     }
     MR::startLevelSound(this, "SE_EM_LV_ELECBUBLLET_FLY");
     if (MR::isGreaterEqualStep(this, 10)) {

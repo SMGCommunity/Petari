@@ -1,9 +1,9 @@
-#include <revolution/os.h>
-#include <revolution/dvd.h>
-#include <revolution/db.h>
-#include <revolution/ipc.h>
-#include <revolution/sc.h>
-#include <revolution/os/OSBootInfo.h>
+#include "revolution/os.h"
+#include "revolution/dvd.h"
+#include "revolution/db.h"
+#include "revolution/ipc.h"
+#include "revolution/sc.h"
+#include "revolution/os/OSBootInfo.h"
 #include <cstring>
 #include "private/flipper.h"
 

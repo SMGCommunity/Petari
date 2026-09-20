@@ -7,7 +7,7 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include "revolution/mtx.h"
+#include <revolution/mtx.h>
 
 void Mario::checkBeeStick() {
     return;
@@ -138,7 +138,7 @@ bool MarioStick::update() {
     PSMTXMultVec(secondRotMtx, &stack_2C, &stack_2C);
 
     if (getStickP() > 0.0f) {
-        changeAnimation("ハチ花移動", static_cast< const char* >(nullptr));
+        changeAnimation("ハチ花移動");
     } else {
         stopAnimation("ハチ花移動");
     }

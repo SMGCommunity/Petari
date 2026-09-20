@@ -1,6 +1,6 @@
 #include <cstdio>
-#include <revolution/fs.h>
-#include <revolution/nand.h>
+#include "revolution/fs.h"
+#include "revolution/nand.h"
 
 
 static BOOL nandInspectPermission(u8);

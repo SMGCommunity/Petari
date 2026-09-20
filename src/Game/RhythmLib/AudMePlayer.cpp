@@ -6,7 +6,7 @@
 #include "Game/RhythmLib/AudMeHandles.hpp"
 #include "Game/RhythmLib/AudMePlayer.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/JAudio2/JASCriticalSection.hpp"
+#include <JSystem/JAudio2/JASCriticalSection.hpp>
 
 void AudMeHandle::releaseMe() {
     if (isMeAttached()) {

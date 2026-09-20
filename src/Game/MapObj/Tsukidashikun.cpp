@@ -78,7 +78,7 @@ void Tsukidashikun::exeWait() {
 
 void Tsukidashikun::exeSign() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Sign", nullptr);
+        MR::startBck(this, "Sign");
 
         if (isNerve(GET_NERVE(Tsukidashikun, TsukidashikunNrvSignForward))) {
             MR::startBva(this, "FSign");
@@ -132,7 +132,7 @@ void Tsukidashikun::connectToScene(const MapObjActorInitInfo& rInfo) {
 }
 
 void Tsukidashikun::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
-    MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &Tsukidashikun::startMove));
+    MR::listenStageSwitchOnB(this, MR::Functor(this, &Tsukidashikun::startMove));
 }
 
 void Tsukidashikun::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {

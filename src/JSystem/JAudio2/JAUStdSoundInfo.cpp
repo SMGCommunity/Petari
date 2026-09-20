@@ -5,7 +5,7 @@
 #include "JSystem/JAudio2/JAIStream.hpp"
 #include "JSystem/JAudio2/JASGlobal.hpp"
 #include "JSystem/JAudio2/JAUSoundTable.hpp"
-#include "revolution/dvd.h"
+#include <revolution/dvd.h>
 
 u16 JAUStdSoundInfo::getBgmSeqResourceID(JAISoundID soundID) const {
     void* data = JASGlobalInstance< JAUSoundTable >::getInstance()->getData(soundID);

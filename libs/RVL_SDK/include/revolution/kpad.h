@@ -1,9 +1,9 @@
 #ifndef KPAD_H
 #define KPAD_H
 
-#include <revolution/mtx.h>
-#include <revolution/types.h>
-#include <revolution/wpad.h>
+#include "revolution/mtx.h"
+#include "revolution/types.h"
+#include "revolution/wpad.h"
 
 #ifdef __cplusplus
 extern "C" {

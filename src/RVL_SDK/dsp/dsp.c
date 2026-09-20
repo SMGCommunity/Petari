@@ -1,7 +1,7 @@
-#include <revolution/dsp.h>
-#include <revolution/dsp/dsp_debug.h>
-#include <revolution/dsp/dsp_task.h>
-#include <private/flipper.h>
+#include "revolution/dsp.h"
+#include "revolution/dsp/dsp_debug.h"
+#include "revolution/dsp/dsp_task.h"
+#include "private/flipper.h"
 
 static BOOL __DSP_init_flag = 0;
 extern DSPTaskInfo *__DSP_curr_task;

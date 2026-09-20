@@ -69,7 +69,7 @@ void KillerGunnerSingle::exeCharge() {
     MR::startLevelSound(this, "SE_OJ_LV_K_GUNNER_CHARGE");
 
     if (MR::isBtkStopped(this)) {
-        MR::startBck(this, "KillerGunnerSingleShoot", nullptr);
+        MR::startBck(this, "KillerGunnerSingleShoot");
         MR::emitEffect(this, "KillerGunnerSingleSmoke");
         MR::startSound(this, "SE_OJ_K_GUNNER_FIRE");
         setNerve(GET_NERVE(KillerGunnerSingle, HostTypeShoot));

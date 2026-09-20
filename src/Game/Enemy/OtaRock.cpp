@@ -253,7 +253,7 @@ bool OtaRock::tryToHide() {
 
 void OtaRock::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         if (mNoThrowCocoNut) {
             mWaitFrame = MR::getRandom(::cWaitFrameMinNoThrowCocoNut, ::cWaitFrameMaxNoThrowCocoNut);
         } else {
@@ -277,7 +277,7 @@ void OtaRock::exeWait() {
 
 void OtaRock::exeThrowCocoNut() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Attack", nullptr);
+        MR::startBck(this, "Attack");
         MR::startSound(this, "SE_EV_OTAROCK_PRE_RALLYBALL");
     }
     OtaRock::updateBaseMtx();
@@ -291,7 +291,7 @@ void OtaRock::exeThrowCocoNut() {
 
 void OtaRock::exeThrowFireBall() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Attack", nullptr);
+        MR::startBck(this, "Attack");
         MR::startSound(this, "SE_EV_OTAROCK_PRE_HOTBALL");
     }
     OtaRock::updateBaseMtx();
@@ -341,7 +341,7 @@ void OtaRock::exeDown() {
 
 void OtaRock::exeHide() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Hide", nullptr);
+        MR::startBck(this, "Hide");
         MR::startSound(this, "SE_EM_OTAROCK_HIDE");
     }
     updateBaseMtx();

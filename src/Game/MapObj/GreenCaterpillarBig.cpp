@@ -25,7 +25,7 @@ void GreenCaterpillarBigBody::init(const JMapInfoIter& rIter) {
     mPlanetLOD = MR::createLodCtrlPlanet(this, rIter, -1.0f, -1);
     mPlanetLOD->validate();
     MR::calcFrontVec(&mFrontVec, mCaterpillar);
-    MR::startBck(this, "Wait", nullptr);
+    MR::startBck(this, "Wait");
     makeActorDead();
 }
 
@@ -57,23 +57,19 @@ void GreenCaterpillarBigBody::calcAndSetBaseMtx() {
     }
 }
 
-/*
-void GreenCaterpillarBigBody::calcBodyDir(LiveActor *pActor, TVec3f *pOutDir) {
+void GreenCaterpillarBigBody::calcBodyDir(LiveActor* pActor, TVec3f* pOutDir) {
     f32 nearRailCoord = MR::calcNearestRailCoord(pActor, mPosition);
     f32 coord = nearRailCoord - 300.0f;
     if (coord <= 0.0f) {
         MR::calcRailDirectionAtCoord(pOutDir, pActor, nearRailCoord);
-    }
-    else {
-        TVec3f railPos;
+    } else {
+        TVec3f railPos, endVec;
         MR::calcRailPosAtCoord(&railPos, pActor, coord);
-        TVec3f stack_8;
-        stack_8.subInline3(mPosition, railPos);
-        MR::normalize(&stack_8);
-        MR::blendVec(pOutDir, *pOutDir, stack_8, 0.1f);
+        endVec.sub(mPosition, railPos);
+        MR::normalize(&endVec);
+        MR::blendVec(pOutDir, *pOutDir, endVec, 0.1f);
     }
 }
-*/
 
 GreenCaterpillarBig::GreenCaterpillarBig(const char* pName) : LiveActor(pName) {
     mBodyArray = nullptr;
@@ -117,7 +113,7 @@ void GreenCaterpillarBig::exeWriggle() {
             MR::showModel(this);
         }
 
-        MR::startBck(this, "Eat", nullptr);
+        MR::startBck(this, "Eat");
     }
 
     MR::moveCoordAndFollowTrans(this, 50.0f);
@@ -162,7 +158,7 @@ void GreenCaterpillarBig::exeEndAdjust() {
 
 void GreenCaterpillarBig::exeEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 }
 

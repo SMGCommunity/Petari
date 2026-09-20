@@ -4,7 +4,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
-#include "JSystem/J3DGraphAnimator/J3DAnimation.hpp"
+#include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 
 static u8 sBlinkStates[] = {0, 1, 2, 2, 2, 2, 1, 1, 0, 0};
 

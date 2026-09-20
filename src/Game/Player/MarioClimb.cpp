@@ -32,7 +32,7 @@ bool MarioClimb::start() {
     changeAnimation("匍匐前進", "匍匐前進");
 
     if (mActor->_468 != 0) {
-        changeAnimationUpper("ひろいウエイト", nullptr);
+        changeAnimationUpper("ひろいウエイト");
     }
 
     mTimer = 15;

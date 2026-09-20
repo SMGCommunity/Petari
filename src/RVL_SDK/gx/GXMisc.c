@@ -1,12 +1,12 @@
 #include "revolution/gx/GXEnum.h"
 #include "revolution/os/OSInterrupt.h"
 #include "revolution/os/OSThread.h"
-#include <revolution/gx.h>
-#include <revolution/gx/GXTypes.h>
-#include <revolution/gx/GXRegs.h>
-#include <revolution/gx/shortcut_pe_misc.h>
-#include <private/flipper.h>
-#include <revolution/os.h>
+#include "revolution/gx.h"
+#include "revolution/gx/GXTypes.h"
+#include "revolution/gx/GXRegs.h"
+#include "revolution/gx/shortcut_pe_misc.h"
+#include "private/flipper.h"
+#include "revolution/os.h"
 
 static GXDrawSyncCallback TokenCB;
 static GXDrawDoneCallback DrawDoneCB;

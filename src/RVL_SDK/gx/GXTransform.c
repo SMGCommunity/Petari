@@ -1,8 +1,8 @@
 #include "revolution/gx/GXEnum.h"
-#include <revolution/gx.h>
-#include <revolution/gx/GXRegs.h>
-#include <revolution/gx/GXTypes.h>
-#include <revolution/mtx.h>
+#include "revolution/gx.h"
+#include "revolution/gx/GXRegs.h"
+#include "revolution/gx/GXTypes.h"
+#include "revolution/mtx.h"
 
 #pragma optimizewithasm off
 

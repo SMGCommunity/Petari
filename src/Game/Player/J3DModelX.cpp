@@ -6,12 +6,12 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/SchedulerUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
-#include "JSystem/J3DGraphAnimator/J3DMtxBuffer.hpp"
-#include "JSystem/J3DGraphBase/J3DMaterial.hpp"
-#include "JSystem/J3DGraphBase/J3DShapeDraw.hpp"
-#include "JSystem/J3DGraphBase/J3DShapeMtx.hpp"
-#include "JSystem/JKernel/JKRHeap.hpp"
-#include "JSystem/JUtility/JUTVideo.hpp"
+#include <JSystem/J3DGraphAnimator/J3DMtxBuffer.hpp>
+#include <JSystem/J3DGraphBase/J3DMaterial.hpp>
+#include <JSystem/J3DGraphBase/J3DShapeDraw.hpp>
+#include <JSystem/J3DGraphBase/J3DShapeMtx.hpp>
+#include <JSystem/JKernel/JKRHeap.hpp>
+#include <JSystem/JUtility/JUTVideo.hpp>
 #include <revolution/gd.h>
 
 class J3DMtxBuffer2 : public J3DMtxBuffer {

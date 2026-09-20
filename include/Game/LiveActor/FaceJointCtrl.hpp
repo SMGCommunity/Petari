@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JSystem/JGeometry.hpp"
+#include <JSystem/JGeometry.hpp>
 #include <revolution/types.h>
 
 class JointController;

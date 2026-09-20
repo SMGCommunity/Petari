@@ -1,4 +1,4 @@
-#include <RVLFaceLibInternal.h>
+#include "RVLFaceLibInternal.h"
 #include <cstdio>
 
 void RFLi_MakeRandomFace(RFLiCharInfo* info, RFLSex sex, RFLAge age,

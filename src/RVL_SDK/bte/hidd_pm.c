@@ -1,4 +1,4 @@
-#include "hidd_int.h"
+#include <hidd_int.h>
 
 /*******************************************************************************
  * headers
@@ -7,14 +7,14 @@
 #include "revolution/types.h"
 #include <cstring>
 
-#include <macros.h>
+#include "macros.h"
 
-#include "data_types.h"
+#include <data_types.h>
 
-#include "btm_api.h"
-#include "btu.h"
-#include "gki.h"
-#include "hidd_api.h"
+#include <btm_api.h>
+#include <btu.h>
+#include <gki.h>
+#include <hidd_api.h>
 
 /*******************************************************************************
  * macros

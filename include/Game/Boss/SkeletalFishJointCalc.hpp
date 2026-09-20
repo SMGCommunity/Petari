@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class SkeletalFishRailControl;
 class JointControllerInfo;

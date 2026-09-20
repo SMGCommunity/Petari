@@ -2,7 +2,7 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioParalyze.hpp"
 #include "Game/Player/MarioState.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 bool Mario::doParalyze() {
     if (mMovementStates._1F) {
@@ -88,7 +88,7 @@ bool MarioParalyze::update() {
         }
 
         if (getPlayer()->getMovementStates()._1) {
-            changeAnimation("電気ダメージ終了", static_cast< const char* >(nullptr));
+            changeAnimation("電気ダメージ終了");
             playSound("声電気ダメージ終了");
         }
 

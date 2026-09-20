@@ -3,7 +3,7 @@
 #include "Game/Util/MathUtil.hpp"
 
 namespace {
-    static f32 sThreshold = JGeometry::TUtil< f32 >::PI() / 180.0f;  // FIXME
+    static const f32 sThreshold = JGeometry::TUtil< f32 >::PI() / 180.0f;
 };  // namespace
 
 CameraRotChecker::CameraRotChecker() {

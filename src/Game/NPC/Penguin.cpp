@@ -260,7 +260,7 @@ void Penguin::exeWait() {
 
 void Penguin::exeDive() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "SwimDive", static_cast< const char* >(nullptr));
+        MR::startBck(this, "SwimDive");
         MR::startSound(this, "SE_SV_PENGUIN_S_DIVE");
     }
 

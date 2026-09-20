@@ -1,5 +1,5 @@
-#include <cerrno>
-#include <cmath>
+#include "cerrno"
+#include "cmath"
 
 static const double two54 = 1.80143985094819840000e+16, /* 0x43500000, 0x00000000 */
     ivln10 = 4.34294481903251816668e-01,                /* 0x3FDBCB7B, 0x1526E50E */

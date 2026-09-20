@@ -230,7 +230,7 @@ void BenefitItemObj::init(const JMapInfoIter& rIter) {
         MR::useStageSwitchWriteDead(this, rIter);
 
         if (MR::useStageSwitchReadAppear(this, rIter)) {
-            MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &BenefitItemObj::appear));
+            MR::listenStageSwitchOnAppear(this, MR::Functor(this, &BenefitItemObj::appear));
             _E1 = 1;
         }
     }
@@ -842,7 +842,7 @@ void BenefitItemObj::setFollowMtx(MtxPtr pMtx) {
 }
 
 void BenefitItemObj::runBck(const char* pBckName) {
-    MR::startBck(this, pBckName, nullptr);
+    MR::startBck(this, pBckName);
 }
 
 void BenefitItemObj::runEfx(const char* pEfxName) {

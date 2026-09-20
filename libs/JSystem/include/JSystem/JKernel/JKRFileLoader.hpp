@@ -1,7 +1,7 @@
 #pragma once
 
 #include "JSystem/JKernel/JKRDisposer.hpp"
-#include "revolution/os/OSMutex.h"
+#include <revolution/os/OSMutex.h>
 
 class JKRArcFinder;
 

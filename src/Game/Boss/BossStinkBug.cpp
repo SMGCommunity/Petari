@@ -24,10 +24,10 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JMath/JMath.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JMath/JMath.hpp>
+#include <revolution/mtx.h>
+#include <revolution/types.h>
 
 void BossStinkBug_FORCE_MATCH_SDATA2() {
     (void)1.0f;
@@ -113,7 +113,7 @@ void BossStinkBug::init(const JMapInfoIter& rIter) {
     MR::startBrk(this, "Normal");
 
     if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &BossStinkBug::start));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &BossStinkBug::start));
         makeActorDead();
     } else {
         makeActorAppeared();
@@ -413,6 +413,6 @@ bool BossStinkBug::throwBomb(f32 f1, f32 f2) {
     throwBomb->start(trans, yDir);
 
     MR::startSound(this, "SE_BM_BOSS_BUG_BOMB_EMIT");
-    MR::startBck(mBombLauncher, "Discharge", nullptr);
+    MR::startBck(mBombLauncher, "Discharge");
     return true;
 }

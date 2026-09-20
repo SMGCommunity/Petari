@@ -26,9 +26,10 @@ void ParticleEmitterHolder::update(bool param1) {
         if (shouldDelete) {
             mEffectSystem->forceDeleteEmitter(pEmitter);
         } else if (!pEmitter->mStopped) {
-            if (MR::Effect::getLinkSingleEmitter(pBaseEmitter)) {
+            if (MR::Effect::getLinkSingleEmitter(pBaseEmitter) != nullptr) {
                 pBaseEmitter->getEmitterCallBackPtr()->init(pBaseEmitter);
             }
+
             pEmitter->mStopped = true;
         }
     }
@@ -74,6 +75,7 @@ ParticleEmitter* ParticleEmitterHolder::findAvailableParticleEmitter() {
     if (res == mEmitters.end()) {
         return nullptr;
     }
+
     return res;
 }
 
@@ -89,4 +91,12 @@ void ParticleEmitterHolder::requestMovementOffAllLoopEmitters() {
 
         pEmitter->pauseOn();
     }
+}
+
+inline bool ParticleEmitter::isValid() const {
+    return mEmitter != nullptr;
+}
+
+inline bool ParticleEmitter::isContinuousParticle() const NO_INLINE {
+    return mEmitter != nullptr && mEmitter->mMaxFrame == 0;
 }

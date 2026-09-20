@@ -26,7 +26,7 @@ void DodoryuStateWait::init(const JMapInfoIter& rIter) {
 void DodoryuStateWait::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::invalidateShadowAll(mHost);
-        MR::startBck(mHost, "UnderGroundWalk", nullptr);
+        MR::startBck(mHost, "UnderGroundWalk");
         MR::startBtp(mHost, "Normal");
         mHost->setHillAppearNumHalf();
         mHost->startHill();

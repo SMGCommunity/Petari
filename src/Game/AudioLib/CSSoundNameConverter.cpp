@@ -1,7 +1,7 @@
 #include "Game/AudioLib/CSSoundNameConverter.hpp"
 #include "Game/Speaker/SpkSystem.hpp"
 #include "Game/Speaker/SpkTable.hpp"
-#include "JSystem/JAudio2/JASGlobal.hpp"
+#include <JSystem/JAudio2/JASGlobal.hpp>
 #include <JSystem/JGadget/hashcode.hpp>
 #include <cstring>
 

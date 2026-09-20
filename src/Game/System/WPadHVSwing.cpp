@@ -1,4 +1,4 @@
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 #include "Game/System/WPadHVSwing.hpp"
 #include "Game/System/WPad.hpp"

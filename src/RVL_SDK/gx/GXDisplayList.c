@@ -1,7 +1,7 @@
-#include <revolution/gx.h>
-#include <revolution/gx/GXFifo.h>
-#include <revolution/gx/GXRegs.h>
-#include <revolution/os.h>
+#include "revolution/gx.h"
+#include "revolution/gx/GXFifo.h"
+#include "revolution/gx/GXRegs.h"
+#include "revolution/os.h"
 #include <cstdio>
 #include <mem.h>
 

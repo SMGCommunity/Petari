@@ -3,7 +3,7 @@
  * Description:
  */
 
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 asm void TRK_flush_cache(u32, int) {
     // clang-format off

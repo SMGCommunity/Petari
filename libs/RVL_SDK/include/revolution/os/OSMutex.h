@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include <revolution/os/OSThread.h>
+#include "revolution/os/OSThread.h"
 
 struct OSMutex {
     OSThreadQueue queue;

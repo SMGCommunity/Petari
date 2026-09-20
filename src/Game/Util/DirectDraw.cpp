@@ -7,10 +7,10 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
+#include <JSystem/JUtility/JUTTexture.hpp>
 #include "math_types.hpp"
-#include "revolution/gx/GXEnum.h"
-#include "revolution/gx/GXVert.h"
+#include <revolution/gx/GXEnum.h>
+#include <revolution/gx/GXVert.h>
 #include <revolution/gx/GXGeometry.h>
 
 namespace {

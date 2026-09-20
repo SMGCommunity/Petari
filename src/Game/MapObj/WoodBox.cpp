@@ -279,7 +279,7 @@ void WoodBox::doHit(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     mBreakModel->appear();
-    MR::startBck(mBreakModel, "Break", nullptr);
+    MR::startBck(mBreakModel, "Break");
 
     if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
         MR::emitEffect(mBreakModel, "BreakWater");

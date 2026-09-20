@@ -564,7 +564,7 @@ bool Mario::isEnableHang() {
 
 bool MarioHang::start() {
     getPlayer()->cancelSquatMode();
-    stopAnimationUpper(nullptr, nullptr);
+    stopAnimationUpper(nullptr);
     changeAnimation("崖つかまり開始", "崖つかまり中");
     mActor->setBlendMtxTimer(mActor->getConst().getTable()->mHangBlendTime);
     _12 = 0;

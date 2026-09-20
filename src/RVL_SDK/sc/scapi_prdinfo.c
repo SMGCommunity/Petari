@@ -1,5 +1,5 @@
-#include <revolution/sc.h>
-#include <revolution/os.h>
+#include "revolution/sc.h"
+#include "revolution/os.h"
 #include <cstring>
 
 typedef struct {

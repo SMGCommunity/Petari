@@ -53,9 +53,9 @@ void MechaKoopaPartsArm::exeMoveStart() {
         MapObjActorUtil::pauseRotator(this);
 
         if (isNerve(GET_NERVE(MechaKoopaPartsArm, MechaKoopaPartsArmNrvMoveStartFront))) {
-            MR::startBck(this, "Front", nullptr);
+            MR::startBck(this, "Front");
         } else {
-            MR::startBck(this, "Rear", nullptr);
+            MR::startBck(this, "Rear");
         }
 
         MR::startSound(this, "SE_OJ_M_KOOPA_ARM_START");
@@ -97,7 +97,7 @@ void MechaKoopaPartsArm::exeMove() {
 
 void MechaKoopaPartsArm::exeBreakStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "BreakStart", nullptr);
+        MR::startBck(this, "BreakStart");
         MR::startSound(this, "SE_OJ_M_KOOPA_ARM_FALL_ST");
         MapObjActorUtil::pauseRotator(this);
     }
@@ -124,7 +124,7 @@ void MechaKoopaPartsArm::exeBreak() {
 
 void MechaKoopaPartsArm::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
     if (mIsRightArm) {
-        MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &MechaKoopaPartsArm::startBreak));
+        MR::listenStageSwitchOnB(this, MR::Functor(this, &MechaKoopaPartsArm::startBreak));
     }
 }
 

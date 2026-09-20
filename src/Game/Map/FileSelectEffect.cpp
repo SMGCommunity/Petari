@@ -18,13 +18,13 @@ void FileSelectEffect::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("MiniatureGalaxySelect", nullptr, false);
     MR::connectToSceneMapObj(this);
     MR::invalidateClipping(this);
-    initNerve(GET_NERVE_GLOBAL(FileSelectEffectNrvWait));
+    initNerve(GET_NERVE_ANON(FileSelectEffectNrvWait));
     makeActorDead();
 }
 
 void FileSelectEffect::appear() {
     LiveActor::appear();
-    setNerve(GET_NERVE_GLOBAL(FileSelectEffectNrvAppear));
+    setNerve(GET_NERVE_ANON(FileSelectEffectNrvAppear));
 }
 
 void FileSelectEffect::disappear() {
@@ -53,7 +53,7 @@ void FileSelectEffect::exeAppear() {
     }
 
     if (MR::isBrkOneTimeAndStopped(this)) {
-        setNerve(GET_NERVE_GLOBAL(FileSelectEffectNrvWait));
+        setNerve(GET_NERVE_ANON(FileSelectEffectNrvWait));
     }
 }
 

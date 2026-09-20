@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 
 void GXBeginDisplayList(void *, u32);
 u32 GXEndDisplayList(void);

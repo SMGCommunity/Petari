@@ -86,13 +86,13 @@ void ChooChooTrain::init(const JMapInfoIter& rIter) {
         MR::moveTransToOtherActorRailPos(mModelArray[i], this);
         MR::onCalcGravity(mModelArray[i]);
         mModelArray[i]->makeActorAppeared();
-        MR::startBck(mModelArray[i], "Run", 0);
+        MR::startBck(mModelArray[i], "Run");
     }
 
     MR::reverseRailDirection(this);
     MR::setRailCoord(this, railCoord);
     MR::initAndSetRailClipping(&_98, this, 100.0f, 500.0f);
-    MR::startBck(this, "Run", 0);
+    MR::startBck(this, "Run");
 }
 
 void ChooChooTrain::control() {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cstring>
-#include <__ppc_eabi_linker.h>
+#include "__ppc_eabi_linker.h"
 #include <size_t.h>
 
 typedef void* ctor_dtor_ptr;

@@ -3,8 +3,8 @@
 #include "JSystem/JAudio2/JASWaveArcLoader.hpp"
 #include "JSystem/JKernel/JKRExpHeap.hpp"
 #include "JSystem/JKernel/JKRSolidHeap.hpp"
-#include "revolution/aralt.h"
-#include "revolution/os/OSMutex.h"
+#include <revolution/aralt.h>
+#include <revolution/os/OSMutex.h>
 
 JASHeap::JASHeap(JASDisposer* pDisposer) : mTree(this), mDisposer(pDisposer), mBase(), mSize(), mHeap() {
     OSInitMutex(&mMutex);

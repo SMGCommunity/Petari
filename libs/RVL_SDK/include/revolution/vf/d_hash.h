@@ -1,7 +1,7 @@
 #ifndef D_HASH_H
 #define D_HASH_H
 
-#include <revolution.h>
+#include "revolution.h"
 
 int _MakeWStr(const char*);
 void dHash_InitHashTable();

@@ -1,4 +1,4 @@
-#include <revolution/os.h>
+#include "revolution/os.h"
 #include <cstring>
 
 static void __OSSystemCallVectorStart(void);

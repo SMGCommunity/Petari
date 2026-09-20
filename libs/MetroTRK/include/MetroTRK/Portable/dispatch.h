@@ -1,7 +1,7 @@
 #ifndef METROTRK_PORTABLE_DISPATCH_H
 #define METROTRK_PORTABLE_DISPATCH_H
 
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 #ifdef __cplusplus
 extern "C" {

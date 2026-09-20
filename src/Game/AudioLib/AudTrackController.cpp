@@ -1,9 +1,9 @@
 #include "Game/AudioLib/AudTrackController.hpp"
-#include "JSystem/JAudio2/JAISound.hpp"
-#include "JSystem/JAudio2/JAISoundChild.hpp"
-#include "JSystem/JAudio2/JAISoundParams.hpp"
-#include "JSystem/JAudio2/JASCriticalSection.hpp"
-#include "JSystem/JAudio2/JASTrack.hpp"
+#include <JSystem/JAudio2/JAISound.hpp>
+#include <JSystem/JAudio2/JAISoundChild.hpp>
+#include <JSystem/JAudio2/JAISoundParams.hpp>
+#include <JSystem/JAudio2/JASCriticalSection.hpp>
+#include <JSystem/JAudio2/JASTrack.hpp>
 
 AudTrackController::AudTrackController() : mTrackNo(-1), mHandle(nullptr), mAutoMute(false), mVolume(1.0f) {
 }

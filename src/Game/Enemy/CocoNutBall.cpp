@@ -373,7 +373,7 @@ void CocoNutBall::processApproachToPlayer() {
 
 void CocoNutBall::exeThrow() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "SpinX", nullptr);
+        MR::startBck(this, "SpinX");
         MR::emitEffect(this, "CocoNutLight");
     }
 

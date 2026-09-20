@@ -1,5 +1,5 @@
-#include <revolution/nand.h>
-#include <revolution/fs.h>
+#include "revolution/nand.h"
+#include "revolution/fs.h"
 
 static const char *USER_DIR_LIST[] =
 {

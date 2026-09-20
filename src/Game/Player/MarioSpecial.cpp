@@ -6,7 +6,7 @@
 #include "Game/Player/MarioState.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 void Mario::checkOnimasu(const HitSensor* pSensor) {
     if (strstr(pSensor->mHost->mName, "オニマス") == nullptr) {

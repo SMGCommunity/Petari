@@ -9,7 +9,7 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include <JSystem/JMath/JMath.hpp>
 
 namespace NrvCollectTico {
     NEW_NERVE(CollectTicoNrvWait, CollectTico, Wait);
@@ -38,7 +38,7 @@ void CollectTico::init(const JMapInfoIter& rIter) {
     initSound(2, false);
     initNerve(GET_NERVE(CollectTico, CollectTicoNrvWait));
     if (MR::tryRegisterDemoCast(this, rIter)) {
-        MR::registerDemoActionFunctor(this, MR::Functor_Inline(this, &CollectTico::startAppearPowerStar), "集めチコスター出現");
+        MR::registerDemoActionFunctor(this, MR::Functor(this, &CollectTico::startAppearPowerStar), "集めチコスター出現");
         _A0 = 1;
     }
 

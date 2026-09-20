@@ -30,9 +30,9 @@
  * headers
  */
 
-#include "data_types.h"
+#include <data_types.h>
 
-#include "gki.h"
+#include <gki.h>
 
 /*******************************************************************************
  * types

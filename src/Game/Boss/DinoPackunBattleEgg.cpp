@@ -5,7 +5,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 namespace {
     static TVec3f sEggOutPosition = TVec3f(0.0f, 60.0f, -320.0f);
@@ -105,7 +105,7 @@ bool DinoPackunBattleEgg::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor
 
 void DinoPackunBattleEgg::exeTurn() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "EggWalk", nullptr);
+        MR::startBck(getHost(), "EggWalk");
         MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_WALK");
         MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
     }
@@ -119,7 +119,7 @@ void DinoPackunBattleEgg::exeTurn() {
 
 void DinoPackunBattleEgg::exeWalk() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "EggWalk", nullptr);
+        MR::startBck(getHost(), "EggWalk");
     }
 
     getHost()->adjustTailRootPosition(::sEggOutPosition, 1.0f);

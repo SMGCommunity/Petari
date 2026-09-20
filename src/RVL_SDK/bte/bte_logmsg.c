@@ -1,4 +1,4 @@
-#include "bte.h"
+#include <bte.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -32,11 +32,11 @@
 #include <cstdio>
 // #include <stdarg.h>
 
-#include "bt_trace.h"
-#include "data_types.h"  // UINT32
+#include <bt_trace.h>
+#include <data_types.h>  // UINT32
 
 #define IS_BTE
-#include <context_rvl.h>
+#include "context_rvl.h"
 
 /*******************************************************************************
  * macros

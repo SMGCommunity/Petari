@@ -19,7 +19,7 @@ public:
             return mFlags & 0x7f;
         }
 
-        int free(JKRExpHeap* heap);
+        int free(JKRExpHeap* pHeap);
 
         void* getContent() const {
             return (void*)(this + 1);
@@ -29,12 +29,12 @@ public:
             mGroupId = groupId;
         }
 
-        u16 mMagic;        // 0x0
-        u8 mFlags;         // 0x2
-        u8 mGroupId;       // 0x3
-        u32 mSize;         // 0x4
-        CMemBlock* mPrev;  // 0x8
-        CMemBlock* mNext;  // 0xC
+        /* 0x00 */ u16 mMagic;
+        /* 0x02 */ u8 mFlags;
+        /* 0x03 */ u8 mGroupId;
+        /* 0x04 */ u32 mSize;
+        /* 0x08 */ CMemBlock* mPrev;
+        /* 0x0C */ CMemBlock* mNext;
     };
 
     JKRExpHeap(void*, u32, JKRHeap*, bool);
@@ -71,7 +71,7 @@ public:
     void removeUsedBlock(CMemBlock*);
     void recycleFreeBlock(CMemBlock*);
     void joinTwoBlocks(CMemBlock*);
-    void adjustSize();
+    s32 adjustSize();
 
     s32 getUsedSize(u8) const;
 
@@ -79,11 +79,11 @@ public:
     static JKRExpHeap* create(u32, JKRHeap*, bool);
     static JKRExpHeap* create(void*, u32, JKRHeap*, bool);
 
-    static s32 getUsedSize_(JKRExpHeap* heap) {
-        return heap->mSize - heap->getTotalFreeSize();
+    static s32 getUsedSize_(JKRExpHeap* pHeap) {
+        return pHeap->mSize - pHeap->getTotalFreeSize();
     }
-    static void* getState_(TState* state) {
-        return getState_buf_(state);
+    static void* getState_(TState* pState) {
+        return getState_buf_(pState);
     }
 
     u8 mAllocMode;
@@ -91,14 +91,14 @@ public:
     bool mIsExternal;
     void* _70;
     u32 _74;
-    CMemBlock* mHeadFreeList;  // 0x78
-    CMemBlock* mTailFreeList;  // 0x7C
-    CMemBlock* mHeadUsedList;  // 0x80
-    CMemBlock* mTailUsedList;  // 0x84
+    /* 0x78 */ CMemBlock* mHeadFreeList;
+    /* 0x7C */ CMemBlock* mTailFreeList;
+    /* 0x80 */ CMemBlock* mHeadUsedList;
+    /* 0x84 */ CMemBlock* mTailUsedList;
 };
 
-inline int JKRExpHeap::CMemBlock::free(JKRExpHeap* heap) {
-    heap->removeUsedBlock(this);
-    heap->recycleFreeBlock(this);
+inline int JKRExpHeap::CMemBlock::free(JKRExpHeap* pHeap) {
+    pHeap->removeUsedBlock(this);
+    pHeap->recycleFreeBlock(this);
     return 0;
 }

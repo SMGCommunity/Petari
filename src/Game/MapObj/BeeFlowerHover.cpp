@@ -81,13 +81,13 @@ void BeeFlowerHover::init(const JMapInfoIter& rIter) {
 
 void BeeFlowerHover::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", 0);
+        MR::startBck(this, "Wait");
     }
 }
 
 void BeeFlowerHover::exeSoftTouch() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "OnBee", 0);
+        MR::startBck(this, "OnBee");
         MR::startSound(this, "SE_OJ_BEE_FLOWER_BEE_ON");
     }
 
@@ -98,7 +98,7 @@ void BeeFlowerHover::exeSoftTouch() {
 
 void BeeFlowerHover::exeSoftTouchWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", 0);
+        MR::startBck(this, "Wait");
     }
 
     if (!MR::isPlayerElementModeBee()) {
@@ -110,7 +110,7 @@ void BeeFlowerHover::exeSoftTouchWait() {
 
 void BeeFlowerHover::exeHardTouch() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "ThroughMario", 0);
+        MR::startBck(this, "ThroughMario");
         MR::startSound(this, "SE_OJ_BEE_FLOWER_DISAPPEAR");
         MR::invalidateCollisionParts(this);
         MR::invalidateShadow(this, 0);
@@ -130,7 +130,7 @@ void BeeFlowerHover::exeRecover() {
         MR::validateShadow(this, 0);
         MR::onCalcShadowOneTime(this, 0);
         MR::showModel(this);
-        MR::startBck(this, "Appear", 0);
+        MR::startBck(this, "Appear");
         MR::startSound(this, "SE_OJ_BEE_FLOWER_RECOVER");
     }
 

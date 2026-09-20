@@ -3,9 +3,9 @@
 #include "Game/System/ArchiveHolder.hpp"
 #include "Game/System/FileHolder.hpp"
 #include "Game/System/FileLoaderThread.hpp"
-#include "JSystem/JKernel/JKRDvdRipper.hpp"
-#include "JSystem/JKernel/JKRHeap.hpp"
-#include "revolution.h"
+#include <JSystem/JKernel/JKRDvdRipper.hpp>
+#include <JSystem/JKernel/JKRHeap.hpp>
+#include <revolution.h>
 #include <cstdio>
 
 class JKRArchive;

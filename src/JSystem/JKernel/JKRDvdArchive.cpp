@@ -7,7 +7,7 @@
 #include "JSystem/JKernel/JKRDvdRipper.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include "JSystem/JUtility/JUTException.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 #include <cstdlib>
 #include <cstring>
 #include <mem.h>

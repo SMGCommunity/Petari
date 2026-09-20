@@ -3,8 +3,9 @@
 #include "Game/Util.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "revolution/types.h"
 #include <cstddef>
+#include <revolution/types.h>
+
 
 namespace {
     static char* const sPlaySoundNames[] = {nullptr, "SE_SY_GET_PRIZE_RING_5", "SE_SY_GET_PRIZE_RING_4", "SE_SY_GET_PRIZE_RING_3",
@@ -83,7 +84,7 @@ bool PrizeRing::isReadyToKill() const {
 void PrizeRing::exeStart() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_PRIZE_RING_APPEAR");
-        MR::startBck(this, "Start", nullptr);
+        MR::startBck(this, "Start");
         MR::startBrk(this, "Loop");
         MR::setBrkFrameAndStop(this, 0.0f);
     }
@@ -95,7 +96,7 @@ void PrizeRing::exeStart() {
 
 void PrizeRing::exeLoop() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Loop", nullptr);
+        MR::startBck(this, "Loop");
         MR::startBrk(this, "Loop");
     }
 
@@ -124,7 +125,7 @@ void PrizeRing::exeReadyToPass() {
 
 void PrizeRing::exePass() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "End", nullptr);
+        MR::startBck(this, "End");
         MR::startBrk(this, "End");
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         playSound();

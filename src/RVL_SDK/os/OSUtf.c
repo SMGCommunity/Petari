@@ -1,4 +1,4 @@
-#include <revolution/os.h>
+#include "revolution/os.h"
 
 static u16 UcsAnsiTable[] = {
     0x20AC,

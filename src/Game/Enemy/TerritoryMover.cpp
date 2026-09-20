@@ -1,7 +1,7 @@
 #include "Game/Enemy/TerritoryMover.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include <JSystem/JMath/JMath.hpp>
 
 TerritoryMover::TerritoryMover(f32 radius) {
     mRadius = radius;

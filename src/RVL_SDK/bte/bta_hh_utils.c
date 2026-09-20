@@ -1,4 +1,4 @@
-#include "bta_hh_int.h"
+#include <bta_hh_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -32,15 +32,15 @@
 #include "revolution/types.h"
 #include <cstring>
 
-#include "bt_trace.h"
-#include "bt_types.h"  // BD_ADDR
-#include "data_types.h"
+#include <bt_trace.h>
+#include <bt_types.h>  // BD_ADDR
+#include <data_types.h>
 
-#include "bd.h"
-#include "bta_hh_api.h"
-#include "gki.h"      // GKI_getbuf
-#include "hiddefs.h"  // tHID_DEV_DSCP_INFO
-#include "utl.h"      // utl_freebuf
+#include <bd.h>
+#include <bta_hh_api.h>
+#include <gki.h>      // GKI_getbuf
+#include <hiddefs.h>  // tHID_DEV_DSCP_INFO
+#include <utl.h>      // utl_freebuf
 
 /*******************************************************************************
  * macros

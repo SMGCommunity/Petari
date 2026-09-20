@@ -30,10 +30,10 @@
  * headers
  */
 
-#include "data_types.h"
-#include "gki_target.h"
+#include <data_types.h>
+#include <gki_target.h>
 
-#include "gki.h"
+#include <gki.h>
 
 /*******************************************************************************
  * macros

@@ -21,7 +21,7 @@ namespace {
 };  // namespace
 
 CameraManEvent::CameraManEvent(CameraHolder* pHolder, CameraParamChunkHolder* pChunkHolder, const char* pName)
-    : CameraMan(pName), mHolder(pHolder), mChunkHolder(pChunkHolder), mCamera(nullptr), mChunk(), _B8(), mRequestReset() {
+    : CameraMan(pName), mHolder(pHolder), mChunkHolder(pChunkHolder), mCamera(), mChunk(), _B8(), mRequestReset() {
     for (u32 i = 0; i < NR_FIFO_ITEMS; i++) {
         mItems[i].mFirst.mChunk = nullptr;
         mItems[i].mSecond.mChunk = nullptr;
@@ -173,29 +173,9 @@ void CameraManEvent::pauseOffAnimCamera(s32 zoneID, const char* pName) {
 }
 
 void CameraManEvent::updateChunkFIFO() {
-    // FIXME: LWZ wrong instruction order, register mismatch
-    // https://decomp.me/scratch/qHkVX
-
     for (u32 i = 0; i < NR_FIFO_ITEMS; i++) {
-        CameraParamChunkEvent* chunk = mItems[i].mSecond.mChunk;
-
-        if (chunk != nullptr) {
-            mItems[i].mFirst.mChunk = chunk;
-
-            CameraTargetMtx* mtx = mItems[i].mSecond.mTargetArg.mTargetMtx;
-            CameraTargetObj* obj = mItems[i].mSecond.mTargetArg.mTargetObj;
-
-            mItems[i].mFirst.mTargetArg.mTargetObj = obj;
-            mItems[i].mFirst.mTargetArg.mTargetMtx = mtx;
-
-            const LiveActor* liveActor = mItems[i].mSecond.mTargetArg.mLiveActor;
-            MarioActor* marioActor = mItems[i].mSecond.mTargetArg.mMarioActor;
-
-            mItems[i].mFirst.mTargetArg.mLiveActor = liveActor;
-            mItems[i].mFirst.mTargetArg.mMarioActor = marioActor;
-
-            mItems[i].mFirst.mFrame = mItems[i].mSecond.mFrame;
-
+        if (mItems[i].mSecond.mChunk != nullptr) {
+            mItems[i].mFirst = mItems[i].mSecond;
             mItems[i].mSecond.mChunk = nullptr;
         }
     }
@@ -325,6 +305,7 @@ void CameraManEvent::setSafePose() {
             rot.setRotate(watchDir, camWatchDir);
             rot.transform(CameraLocalUtil::getUpVec(this), up);
         }
+
         CameraLocalUtil::recalcUpVec(&up, camWatchDir);
     }
 

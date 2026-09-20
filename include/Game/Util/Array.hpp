@@ -166,9 +166,10 @@ namespace MR {
             return &mArr[N];
         }
 
-        void callAllFunc(void (Base::*func)()) {
+        template < class U >
+        void callAllFunc(void (U::*pFunction)()) {
             for (T* it = begin(); it != end(); it++) {
-                ((*it)->*func)();
+                ((*it)->*pFunction)();
             }
         }
 

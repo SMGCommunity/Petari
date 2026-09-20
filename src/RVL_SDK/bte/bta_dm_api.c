@@ -1,4 +1,4 @@
-#include "bta_api.h"
+#include <bta_api.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -32,15 +32,15 @@
 #include "revolution/types.h"
 #include <cstring>
 
-#include "bt_target.h"  // BTA_DM_REMOTE_DEVICE_NAME_LENGTH
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>  // BTA_DM_REMOTE_DEVICE_NAME_LENGTH
+#include <bt_types.h>
+#include <data_types.h>
 
-#include "bd.h"  // bdcpy
-#include "bta_dm_int.h"
-#include "bta_sys.h"
-#include "btm_api.h"
-#include "gki.h"
+#include <bd.h>  // bdcpy
+#include <bta_dm_int.h>
+#include <bta_sys.h>
+#include <btm_api.h>
+#include <gki.h>
 
 /*******************************************************************************
  * variables

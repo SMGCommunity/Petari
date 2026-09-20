@@ -26,7 +26,7 @@ void CollisionBlocker::init(const JMapInfoIter& rIter) {
         }
 
         if (MR::useStageSwitchReadB(this, rIter)) {
-            MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &CollisionBlocker::forceBreak));
+            MR::listenStageSwitchOnB(this, MR::Functor(this, &CollisionBlocker::forceBreak));
         }
     }
 }

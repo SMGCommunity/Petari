@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-#include <revolution/gx/GXEnum.h>
-#include <revolution/gx/GXStruct.h>
+#include "revolution/gx/GXEnum.h"
+#include "revolution/gx/GXStruct.h"
 
 typedef GXTexRegion*  (*GXTexRegionCallback) (const GXTexObj*, GXTexMapID);
 typedef GXTlutRegion* (*GXTlutRegionCallback)(u32);

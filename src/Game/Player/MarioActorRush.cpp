@@ -71,7 +71,7 @@ void MarioActor::resetCondition() {
         inWater = true;
     }
 
-    mMario->stopAnimationUpper(nullptr, nullptr);
+    mMario->stopAnimationUpper(nullptr);
 
     if (mMario->mMovementStates._A) {
         mMario->cancelSquatMode();
@@ -381,7 +381,7 @@ void MarioActor::endRush(const RushEndInfo* pInfo) {
                 mMario->mMovementStates.jumping = true;
                 mMario->mMovementStates._1 = false;
             } else {
-                changeAnimation("基本", nullptr);
+                changeAnimation("基本");
             }
 
             updateGravityVec(true, true);
@@ -430,7 +430,7 @@ bool MarioActor::takeSensor(HitSensor* pSensor) {
         return false;
     }
 
-    changeAnimation("カブ抜き", nullptr);
+    changeAnimation("カブ抜き");
     changeNullAnimation("PullOut", -1);
     _424 = pSensor;
     memorizeSensorThrow(pSensor);

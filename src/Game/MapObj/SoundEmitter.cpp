@@ -10,7 +10,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JAudio2/JAISound.hpp"
+#include <JSystem/JAudio2/JAISound.hpp>
 
 namespace {
     const JAISoundID sSeTable[33] = {JAISoundID(0x1)};

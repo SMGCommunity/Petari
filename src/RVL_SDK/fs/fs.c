@@ -1,7 +1,7 @@
-#include <revolution/fs.h>
-#include <revolution/ipc.h>
-#include <private/iosresclt.h>
-#include <private/iosrestypes.h>
+#include "revolution/fs.h"
+#include "revolution/ipc.h"
+#include "private/iosresclt.h"
+#include "private/iosrestypes.h"
 #include <cstring>
 
 static IOSFd __fsFd = -1;

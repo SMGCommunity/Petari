@@ -585,7 +585,7 @@ void Dodoryu::startLeadHillBck(const char* pBckName) {
         mLeadHill->appear();
     }
 
-    MR::startBck(mLeadHill, pBckName, nullptr);
+    MR::startBck(mLeadHill, pBckName);
 }
 
 void Dodoryu::killLeadHill() {
@@ -681,7 +681,7 @@ void Dodoryu::initHitSensor() {
 
 void Dodoryu::initSwitch(const JMapInfoIter& rIter) {
     if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &Dodoryu::notifyOnSwitchA));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &Dodoryu::notifyOnSwitchA));
     }
 
     MR::useStageSwitchWriteB(this, rIter);
@@ -707,7 +707,7 @@ void Dodoryu::turnUpVecTo(const TVec3f& rVec) {
     TPos3f mtx;
     mtx.setQuat(q);
     mBaseMtx.concat(mtx, mBaseMtx);
-    
+
     // FIXME: probably an inline
     TVec3f xDir, yDir, zDir;
     mBaseMtx.getXYZDir(xDir, yDir, zDir);
@@ -846,7 +846,7 @@ void DodoryuRabbit::control() {
 
 void DodoryuRabbit::exeEscapeWaiting() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Run", nullptr);
+        MR::startBck(this, "Run");
         MR::startBtp(this, "Blink");
     }
 
@@ -855,7 +855,7 @@ void DodoryuRabbit::exeEscapeWaiting() {
 
 void DodoryuRabbit::exeEscape() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Run", nullptr);
+        MR::startBck(this, "Run");
         MR::startBtp(this, "Blink");
     }
 
@@ -873,7 +873,7 @@ void DodoryuRabbit::exeEscape() {
 
 void DodoryuRabbit::exeEscapeSlow() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Walk", nullptr);
+        MR::startBck(this, "Walk");
         MR::startBtp(this, "blink");
     }
 
@@ -895,7 +895,7 @@ void DodoryuRabbit::exeEscapeSlow() {
 
 void DodoryuRabbit::exeRest() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Tired", nullptr);
+        MR::startBck(this, "Tired");
         MR::startBtp(this, "Tired");
     }
 
@@ -908,7 +908,7 @@ void DodoryuRabbit::exeRest() {
 
 void DodoryuRabbit::exeJump() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Jump", nullptr);
+        MR::startBck(this, "Jump");
         MR::startBtp(this, "Blink");
         _94.setInline(mHost->_148->mMatrix);
     }
@@ -918,14 +918,14 @@ void DodoryuRabbit::exeJump() {
 
 void DodoryuRabbit::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::startBtp(this, "Blink");
     }
 }
 
 void DodoryuRabbit::exeReturn() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "StarJump", nullptr);
+        MR::startBck(this, "StarJump");
         MR::startBtp(this, "blink");
     }
 
@@ -934,7 +934,7 @@ void DodoryuRabbit::exeReturn() {
 
 void DodoryuRabbit::exePleasure() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "StarWait", nullptr);
+        MR::startBck(this, "StarWait");
         MR::startBtp(this, "blink");
         MR::resetAndForwardNode(mTalkCtrl, 2);
         MR::setDistanceToTalk(mTalkCtrl, 350.0f);

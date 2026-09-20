@@ -1,7 +1,7 @@
 #include "Game/Effect/ParticleEmitter.hpp"
 #include <JSystem/JParticle/JPAEmitter.hpp>
 
-ParticleEmitter::ParticleEmitter() : mEmitter(nullptr), mPaused(false), mStopped(false) {
+ParticleEmitter::ParticleEmitter() : mEmitter(), mPaused(), mStopped() {
 }
 
 void ParticleEmitter::invalidate() {
@@ -15,7 +15,7 @@ void ParticleEmitter::init(u16 unused) {
 }
 
 void ParticleEmitter::pauseOn() {
-    bool paused = mEmitter && mEmitter->mStatus & JPAEmtrStts_StopCalc;
+    bool paused = mEmitter != nullptr && mEmitter->mStatus & JPAEmtrStts_StopCalc;
 
     if (paused) {
         return;

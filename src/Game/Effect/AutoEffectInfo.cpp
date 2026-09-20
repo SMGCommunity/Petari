@@ -9,31 +9,6 @@ void AutoEffectInfo_FORCE_MATCH_SDATA2() {
 extern "C" u32 strtoul(const char*, char**, int);
 
 namespace {
-    struct DrawOrderData {
-        /* 0x00 */ s32 _0;
-        /* 0x04 */ const char* _4;
-    };
-
-    static const DrawOrderData sDrawOrderDataTable[] = {
-        {0, "3D"}, {1, "PAUSE_IGNORE"},    {2, "INDIRECT"},     {3, "AFTER_INDIRECT"}, {4, "BLOOM_EFFECT"}, {5, "AFTER_IMAGE_EFFECT"},
-        {6, "2D"}, {7, "2D_PAUSE_IGNORE"}, {8, "FOR_2D_MODEL"},
-    };
-
-    s32 getDrawOrderData(const JMapInfoIter& rIter) {
-        const char* drawOrder = "";
-        rIter.getValue("DrawOrder", &drawOrder);
-
-        for (u32 i = 0; i < ARRAY_SIZE(sDrawOrderDataTable); i++) {
-            if (MR::isEqualString(drawOrder, sDrawOrderDataTable[i]._4)) {
-                return sDrawOrderDataTable[i]._0;
-            }
-        }
-
-        return 0;
-    }
-};  // namespace
-
-namespace {
     u32 str2Color(const char* pStr) NO_INLINE {
         return strtoul(pStr + 1, nullptr, 16) * 256;
     }
@@ -52,12 +27,7 @@ namespace {
         return strchr(value, 'S') != nullptr;
     }
 
-    bool isValueOnT(const JMapInfoIter& rIter, const char* pName) NO_INLINE {
-        const char* value = "";
-        rIter.getValue(pName, &value);
-
-        return strchr(value, 'T') != nullptr;
-    }
+    bool isValueOnT(const JMapInfoIter& rIter, const char* pName) NO_INLINE;
 
     const char* getStringValue(const JMapInfoIter& rIter, const char* pName) NO_INLINE {
         const char* value = "";
@@ -71,10 +41,45 @@ namespace {
     }
 };  // namespace
 
+namespace {
+    struct DrawOrderData {
+        /* 0x00 */ s32 _0;
+        /* 0x04 */ const char* _4;
+    };
+
+    static const DrawOrderData sDrawOrderDataTable[] = {
+        {0, "3D"}, {1, "PAUSE_IGNORE"},    {2, "INDIRECT"},     {3, "AFTER_INDIRECT"}, {4, "BLOOM_EFFECT"}, {5, "AFTER_IMAGE_EFFECT"},
+        {6, "2D"}, {7, "2D_PAUSE_IGNORE"}, {8, "FOR_2D_MODEL"},
+    };
+
+    s32 getDrawOrderData(const char* pDrawOrder) {
+        for (u32 i = 0; i < ARRAY_SIZE(sDrawOrderDataTable); i++) {
+            if (MR::isEqualString(pDrawOrder, sDrawOrderDataTable[i]._4)) {
+                return sDrawOrderDataTable[i]._0;
+            }
+        }
+
+        return 0;
+    }
+
+};  // namespace
+
+namespace {
+    bool isValueOn(const JMapInfoIter& rIter, const char* pName) {
+        const char* pValue = "";
+        rIter.getValue(pName, &pValue);
+        return MR::isEqualString(pValue, "on");
+    }
+
+}  // namespace
+
 AutoEffectInfo::AutoEffectInfo()
-    : mGroupName(), mAnimName(), mUniqueName(), mEffectName(), mParentName(), mJointName(), mFlag(), mPrmColor(-1), mIsValidPrmColor(), mEnvColor(),
-      mIsValidEnvColor(), mOffset(0.0f, 0.0f, 0.0f), mStartFrame(), mEndFrame(-1), mScaleValue(1.0f), mRateValue(1.0f), mLightAffectValue(),
-      mDrawOrder() {
+    : mGroupName(), mAnimName(), mUniqueName(), mEffectName(), mParentName(), mJointName(), mFlag(), mOffset(), mStartFrame(), mEndFrame(-1),
+      mScaleValue(1.0f), mRateValue(1.0f), mLightAffectValue(), mDrawOrder() {
+    mPrmColor.mColor = 0;
+    mIsValidPrmColor = false;
+    mEnvColor.mColor = 0;
+    mIsValidEnvColor = false;
 }
 
 void AutoEffectInfo::init(const JMapInfoIter& rIter) {
@@ -82,10 +87,7 @@ void AutoEffectInfo::init(const JMapInfoIter& rIter) {
     mUniqueName = ::getStringValue(rIter, "UniqueName");
     mAnimName = ::getStringValue(rIter, "AnimName");
 
-    const char* continueAnimEnd = "";
-    rIter.getValue("ContinueAnimEnd", &continueAnimEnd);
-
-    if (MR::isEqualString(continueAnimEnd, "on")) {
+    if (::isValueOn(rIter, "ContinueAnimEnd")) {
         mFlag |= FLAG_CONTINUE_ANIM_END;
     } else {
         mFlag &= ~FLAG_CONTINUE_ANIM_END;
@@ -144,9 +146,7 @@ void AutoEffectInfo::init(const JMapInfoIter& rIter) {
     mIsValidPrmColor = !MR::isEqualString(prmColor, "");
 
     if (mIsValidPrmColor) {
-        u32 color = ::str2Color(prmColor);
-
-        mPrmColor.set((GXColor){color >> 24, color >> 16, color >> 8, color >> 0});
+        mPrmColor.set(Color8(::str2Color(prmColor)));
     }
 
     const char* envColor = "";
@@ -154,13 +154,13 @@ void AutoEffectInfo::init(const JMapInfoIter& rIter) {
     mIsValidEnvColor = !MR::isEqualString(envColor, "");
 
     if (mIsValidEnvColor) {
-        u32 color = ::str2Color(envColor);
-
-        mEnvColor.set((GXColor){color >> 24, color >> 16, color >> 8, color >> 0});
+        mEnvColor.set(Color8(::str2Color(envColor)));
     }
 
     rIter.getValue("LightAffectValue", &mLightAffectValue);
-    mDrawOrder = ::getDrawOrderData(rIter);
+    const char* pDrawOrder = "";
+    rIter.getValue("DrawOrder", &pDrawOrder);
+    mDrawOrder = ::getDrawOrderData(pDrawOrder);
 }
 
 const char* AutoEffectInfo::getName() const {
@@ -170,3 +170,13 @@ const char* AutoEffectInfo::getName() const {
 
     return mEffectName;
 }
+
+namespace {
+    bool isValueOnT(const JMapInfoIter& rIter, const char* pName) NO_INLINE {
+        const char* value = "";
+        rIter.getValue(pName, &value);
+
+        return strchr(value, 'T') != nullptr;
+    }
+
+}  // namespace

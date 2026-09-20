@@ -48,8 +48,8 @@ void BossStinkBugFlyDemo::exeDemo() {
         MR::startBckPlayer("BattleWait", "BattleWaitNoInter");
         mDemoPositionController->startDemo("FlyDemo");
         getHost()->reuestMovementOnParts();
-        MR::startBck(getHost(), "FlyDemo", nullptr);
-        MR::startBck(getHost()->getBombLauncher(), "FlyDemo", nullptr);
+        MR::startBck(getHost(), "FlyDemo");
+        MR::startBck(getHost()->getBombLauncher(), "FlyDemo");
         MR::tryStartAllAnim(getHost()->getWingModel(), "FlyDemo");
     }
 

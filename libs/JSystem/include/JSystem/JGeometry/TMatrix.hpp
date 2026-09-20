@@ -3,10 +3,10 @@
 #include "JSystem/JGeometry/TQuat.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
+#include "JSystem/JMath/JMATrigonometric.hpp"
 #include "JSystem/JMath/JMath.hpp"
-#include "revolution/mtx.h"
-#include <JSystem/JMath/JMATrigonometric.hpp>
 #include <cmath>
+#include <revolution/mtx.h>
 
 namespace JGeometry {
     template < typename T >
@@ -612,11 +612,11 @@ namespace JGeometry {
             this->mMtx[2][2] = c + negc * zz;
         }
 
-        void setRotate(const TVec3f& v1, const TVec3f& v2) {
+        void setRotate(const TVec3f& rFrom, const TVec3f& rTo) {
             TQuat4f q;
-            q.setRotate(v1, v2);
+            q.setRotate(rFrom, rTo);
             setQuat(q);
-        }
+        };
 
         void setRotateDegree(const TVec3f& rRot) {
             setRotate(rRot * (PI / 180.0f));
@@ -1169,7 +1169,6 @@ namespace JGeometry {
             this->mMtx[3][3] = 1.0f;
         }
     };
-
 };  // namespace JGeometry
 
 typedef JGeometry::SMatrix34C< f32 > TSMtxf;

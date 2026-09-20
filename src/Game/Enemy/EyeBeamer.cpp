@@ -22,9 +22,9 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TQuat.hpp"
-#include "revolution/mtx.h"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TQuat.hpp>
+#include <revolution/mtx.h>
 
 namespace NrvEyeBeamer {
     NEW_NERVE(EyeBeamerNrvDemoStartWait, EyeBeamer, DemoStartWait);
@@ -69,7 +69,7 @@ void EyeBeamer::init(const JMapInfoIter& rIter) {
     initStartNerve(rIter);
 
     if (MR::useStageSwitchReadA(this, rIter))
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &EyeBeamer::requestStartPatrol));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &EyeBeamer::requestStartPatrol));
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
         MR::registerDemoActionNerve(this, GET_NERVE(EyeBeamer, EyeBeamerNrvDemoTurn), "アイビーマー回転");
@@ -77,7 +77,7 @@ void EyeBeamer::init(const JMapInfoIter& rIter) {
         setNerve(GET_NERVE(EyeBeamer, EyeBeamerNrvDemoStartWait));
     }
     MR::setGroupClipping(this, rIter, 0x20);
-    MR::startBck(this, "EyeBeamer", 0);
+    MR::startBck(this, "EyeBeamer");
     makeActorAppeared();
 }
 

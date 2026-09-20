@@ -47,11 +47,11 @@ void FireBall::init(const JMapInfoIter& rIter) {
     initBinder(::cBinderRadius, 0.0f, 0);
 
     initEffectKeeper(4, "FireBall", false);
-    
+
     MR::initStarPointerTarget(this, ::cStarWandRadius3d, TVec3f(0.0f, 0.0f, 0.0f));
-    
+
     initSound(6, false);
-    
+
     MR::initShadowVolumeCylinder(this, ::cBinderRadius);
 
     MR::invalidateClipping(this);
@@ -206,7 +206,7 @@ void FireBall::calcReflectVelocity() {
 
 void FireBall::exeThrow() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Spin", nullptr);
+        MR::startBck(this, "Spin");
     }
 
     if (MR::changeShowModelFlagSyncNearClipping(this, 200.0f)) {

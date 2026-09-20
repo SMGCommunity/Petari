@@ -5,9 +5,9 @@
 extern "C" {
 #endif
 
-#include <revolution/gx/GXEnum.h>
-#include <revolution/gx/GXStruct.h>
-#include <revolution/types.h>
+#include "revolution/gx/GXEnum.h"
+#include "revolution/gx/GXStruct.h"
+#include "revolution/types.h"
 
 void GXInitLightAttn(GXLightObj*, f32, f32, f32, f32, f32, f32);
 void GXInitLightPos(GXLightObj*, f32, f32, f32);

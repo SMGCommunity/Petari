@@ -1,6 +1,6 @@
-#include <revolution/os.h>
-#include <revolution/os/OSReset.h>
-#include <private/flipper.h>
+#include "revolution/os.h"
+#include "revolution/os/OSReset.h"
+#include "private/flipper.h"
 
 extern OSErrorHandler __OSErrorTable[];
 static BOOL OnShutdown( BOOL final, u32 event );

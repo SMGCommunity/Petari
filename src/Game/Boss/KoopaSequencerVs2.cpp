@@ -35,7 +35,7 @@ KoopaSequencerVs2::KoopaSequencerVs2() : KoopaSequencer("クッパ戦（Ｖｓ�
 void KoopaSequencerVs2::init(Koopa* pKoopa, const JMapInfoIter& rIter) {
     KoopaSequencer::init(pKoopa, rIter);
     KoopaFunction::setKoopaPos(mKoopa, "デモ中心");
-    MR::startBck(mKoopa, "DemoKoopaVs2Start", nullptr);
+    MR::startBck(mKoopa, "DemoKoopaVs2Start");
 
     initNerve(GET_NERVE(KoopaSequencerVs2, KoopaSequencerVs2NrvWaitDemoBattleStart));
     KoopaFunction::initKoopaPartsVs2(mKoopa);

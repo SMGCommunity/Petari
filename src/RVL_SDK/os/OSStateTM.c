@@ -1,9 +1,9 @@
-#include <private/flipper.h>
-#include <private/iosresclt.h>
-#include <revolution/ipc/ipcclt.h>
-#include <revolution/os.h>
-#include <revolution/os/OSResetSW.h>
-#include <revolution/vi.h>
+#include "private/flipper.h"
+#include "private/iosresclt.h"
+#include "revolution/ipc/ipcclt.h"
+#include "revolution/os.h"
+#include "revolution/os/OSResetSW.h"
+#include "revolution/vi.h"
 
 static u32 StmImInBuf[8] __attribute__((align(32)));
 static u32 StmImOutBuf[8] __attribute__((align(32)));

@@ -130,7 +130,7 @@ bool MarioSideStep::update() {
         return false;
     }
     if (getStickP() < 0.1f) {
-        changeAnimation("壁ウエイト", static_cast< const char* >(nullptr));
+        changeAnimation("壁ウエイト");
     } else {
         TVec3f direction(getWorldPadDir());
         MR::vecKillElement(direction, getPlayer()->getAirGravityVec(), &direction);
@@ -152,10 +152,10 @@ bool MarioSideStep::update() {
             side *= (1.0f + 0.25f * forward) * getStickP();
             if (side.dot(getPlayer()->mSideVec) < 0.0f) {
                 if (!isAnimationRun("壁右歩き")) {
-                    changeAnimation("壁右歩き", static_cast< const char* >(nullptr));
+                    changeAnimation("壁右歩き");
                 }
             } else if (!isAnimationRun("壁左歩き")) {
-                changeAnimation("壁左歩き", static_cast< const char* >(nullptr));
+                changeAnimation("壁左歩き");
             }
             addVelocity(side * 6.0f - getPlayer()->getWallNorm() * 6.0f);
         }

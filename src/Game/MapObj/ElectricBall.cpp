@@ -80,7 +80,7 @@ void ElectricBall::init(const JMapInfoIter& rIter) {
     initNerve(GET_NERVE(ElectricBall, HostTypeWait));
 
     if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &ElectricBall::startMove));
+        MR::listenStageSwitchOnA(this, MR::Functor(this, &ElectricBall::startMove));
     } else {
         startMove();
     }

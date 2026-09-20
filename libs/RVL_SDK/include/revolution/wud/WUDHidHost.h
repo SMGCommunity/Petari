@@ -1,7 +1,7 @@
 #ifndef RVL_SDK_WUD_HID_HOST_H
 #define RVL_SDK_WUD_HID_HOST_H
-#include <revolution/bte.h>
-#include <revolution/types.h>
+#include "revolution/bte.h"
+#include "revolution/types.h"
 
 
 #ifdef __cplusplus

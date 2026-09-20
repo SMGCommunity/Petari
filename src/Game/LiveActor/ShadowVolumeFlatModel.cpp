@@ -3,8 +3,8 @@
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include "JSystem/J3DGraphAnimator/J3DJoint.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
+#include <JSystem/J3DGraphAnimator/J3DJoint.hpp>
+#include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
 
 ShadowVolumeFlatModel::ShadowVolumeFlatModel(const char* pModelName)
     : ShadowVolumeModel("板状シャドウボリューム描画"), mBaseMtx(), mRootDrawMtxIndex(-1), mDropDrawMtxIndex(-1) {

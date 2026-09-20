@@ -1,4 +1,4 @@
-#include "bta_hh_int.h"
+#include <bta_hh_int.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -32,21 +32,21 @@
 #include "revolution/types.h"
 #include <cstring>
 
-#include "bt_trace.h"
-#include "bt_types.h"  // BT_HDR
-#include "data_types.h"
+#include <bt_trace.h>
+#include <bt_types.h>  // BT_HDR
+#include <data_types.h>
 
-#include "bd.h"  // bdcpy
-#include "bta_hh_api.h"
-#include "bta_hh_co.h"
-#include "bta_sys.h"
-#include "gki.h"  // GKI_getbuf
-#include "hiddefs.h"
-#include "hidh_api.h"
-#include "hidh_int.h"  // hh_cb
-#include "l2c_int.h"
-#include "sdp_api.h"  // SDP_SUCCESS
-#include "utl.h"      // utl_freebuf
+#include <bd.h>  // bdcpy
+#include <bta_hh_api.h>
+#include <bta_hh_co.h>
+#include <bta_sys.h>
+#include <gki.h>  // GKI_getbuf
+#include <hiddefs.h>
+#include <hidh_api.h>
+#include <hidh_int.h>  // hh_cb
+#include <l2c_int.h>
+#include <sdp_api.h>  // SDP_SUCCESS
+#include <utl.h>      // utl_freebuf
 
 /*******************************************************************************
  * local function declarations

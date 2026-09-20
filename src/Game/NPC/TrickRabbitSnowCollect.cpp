@@ -169,7 +169,7 @@ void TrickRabbitSnowCollect::exeStartWipeOut() {
 void TrickRabbitSnowCollect::exeStartWipeIn() {
     if (MR::isFirstStep(this)) {
         MR::tryPlayerKillTakingActor();
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         MR::startMultiActorCameraTargetPlayer(this, mCameraInfo, "ウサギと会話", 0);
         setStartPosition();
         MR::openWipeFade();
@@ -269,7 +269,7 @@ void TrickRabbitSnowCollect::exeFailedWipeOut() {
 void TrickRabbitSnowCollect::exeFailedWipeIn() {
     if (MR::isFirstStep(this)) {
         setFinishPosition();
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         MR::startMultiActorCameraTargetPlayer(this, mCameraInfo, "ウサギと会話", 0);
         MR::startLastStageBGM();
         MR::openWipeFade();
@@ -312,7 +312,7 @@ void TrickRabbitSnowCollect::exeSuccessWipeOut() {
 void TrickRabbitSnowCollect::exeSuccessWipeIn() {
     if (MR::isFirstStep(this)) {
         mTimerLayout->kill();
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         MR::startMultiActorCameraTargetPlayer(this, mCameraInfo, "ウサギと会話", -1);
         MR::startLastStageBGM();
         MR::openWipeFade();

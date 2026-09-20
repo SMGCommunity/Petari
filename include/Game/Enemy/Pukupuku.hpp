@@ -14,7 +14,7 @@ class AnimScaleController;
 
 class PukupukuStateLanding : public ActorStateBase< Pukupuku > {
 public:
-    PukupukuStateLanding(Pukupuku*);
+    PukupukuStateLanding(Pukupuku* pParent);
 
     virtual ~PukupukuStateLanding();
 
@@ -28,28 +28,29 @@ public:
     void emitWaterColumIfNeed(bool, bool);
     void emitGroundHitEffect();
 
-    ParabolicPath* mPath;      // 0x10
-    ValueControl* mValueCtrl;  // 0x14
-    u8 _18;
+    /* 0x10 */ ParabolicPath* mPath;
+    /* 0x14 */ ValueControl* mValueCtrl;
+    /* 0x18 */ u8 _18;
 };
 
 class Pukupuku : public LiveActor {
 public:
-    Pukupuku(const char*);
+    Pukupuku(const char* pName);
 
     virtual ~Pukupuku();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void kill();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void updatePoseByRailIgnoreUpScale();
     void rotatePoseByLocalZ();
-    void calcGroundHitMtx(TPos3f*) const;
+    void calcGroundHitMtx(TPos3f* pMtx) const;
     bool isReadyToJumpFromLand() const NO_INLINE;
+    bool isDamaged() const;
     void exeWait();
     void exeMoveWater();
     void exeMoveWaterAfterJump();
@@ -80,18 +81,18 @@ public:
         updateMoveWaterAfterJump();
     }
 
-    PukupukuStateLanding* mStateLanding;  // 0x8C
-    TVec3f _90;
-    TVec3f _9C;
-    TQuat4f _A8;
-    AnimScaleController* mScaleCtrl;           // 0xB8
-    WalkerStateBindStarPointer* mStarPointer;  // 0xBC
-    const char* _C0;
-    Nerve* _C4;
-    f32 _C8;
-    f32 _CC;
-    u8 _D0;
-    u8 _D1;
-    u8 _D2;
-    u8 _D3;
+    /* 0x8C */ PukupukuStateLanding* mStateLanding;
+    /* 0x90 */ TVec3f _90;
+    /* 0x9C */ TVec3f _9C;
+    /* 0xA8 */ TQuat4f _A8;
+    /* 0xB8 */ AnimScaleController* mScaleCtrl;
+    /* 0xBC */ WalkerStateBindStarPointer* mStarPointer;
+    /* 0xC0 */ const char* _C0;
+    /* 0xC4 */ Nerve* _C4;
+    /* 0xC8 */ f32 _C8;
+    /* 0xCC */ f32 _CC;
+    /* 0xD0 */ u8 _D0;
+    /* 0xD1 */ u8 _D1;
+    /* 0xD2 */ u8 _D2;
+    /* 0xD3 */ u8 _D3;
 };

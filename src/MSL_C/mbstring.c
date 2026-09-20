@@ -1,6 +1,6 @@
 #include "mbstring.h"
 #include "locale.h"
-#include <cstring>
+#include "cstring"
 #pragma exceptions on
 
 int mbtowc(wchar_t *pDest, const char *s, size_t num) {

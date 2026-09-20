@@ -148,7 +148,7 @@ void ChipGroup::init(const JMapInfoIter& rIter) {
     mSwitchCtrl = MR::createStageSwitchCtrl(this, rIter);
 
     if (mSwitchCtrl->isValidSwitchAppear()) {
-        MR::listenNameObjStageSwitchOnAppear(this, mSwitchCtrl, MR::Functor_Inline(this, &ChipGroup::receiveAppearRequest));
+        MR::listenNameObjStageSwitchOnAppear(this, mSwitchCtrl, MR::Functor(this, &ChipGroup::receiveAppearRequest));
         mIsListeningAppear = true;
     } else {
         mIsListeningAppear = false;

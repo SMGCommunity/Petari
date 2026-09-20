@@ -94,7 +94,7 @@ void PoltaDemo::exeOpeningDemo() {
         MR::stopStageBGM(60);
         MR::startAnimCameraTargetSelf(getHost(), getHost()->mCameraInfo, "OpeningDemo", 0, 1.0f);
         MR::startAction(getHost(), "OpeningDemo");
-        MR::startBckPlayer("BattleWait", (const char*)nullptr);
+        MR::startBckPlayer("BattleWait");
         PoltaFunction::onMovement(getHost());
         MR::setPlayerPos("ポルタ開始デモプレイヤー位置");
         getHost()->mFormationModel->appear();
@@ -130,7 +130,7 @@ void PoltaDemo::exePowerUpDemo() {
         MR::startAction(getHost(), "PowerUpDemo");
         MR::startAction(PoltaFunction::getLeftArmActor(getHost()), "PowerUpDemo");
         MR::startAction(PoltaFunction::getRightArmActor(getHost()), "PowerUpDemo");
-        MR::startBckPlayer("BattleWait", (const char*)nullptr);
+        MR::startBckPlayer("BattleWait");
         MR::setPlayerPos("ポルタデモプレイヤー位置");
         getHost()->mFormationModel->appear();
         getHost()->mLeftArm->mFormationModel->appear();
@@ -163,7 +163,7 @@ void PoltaDemo::exeDownDemo() {
         MR::stopStageBGM(30);
         MR::startAnimCameraTargetSelf(getHost(), getHost()->mCameraInfo, "DownDemo", 0, 1.0f);
         MR::startAction(getHost(), "DownDemo");
-        MR::startBckPlayer("BattleWait", (const char*)nullptr);
+        MR::startBckPlayer("BattleWait");
         PoltaFunction::onMovement(getHost());
         MR::setPlayerPos("ポルタデモプレイヤー位置");
     }

@@ -45,7 +45,7 @@ void AirBubble::init(const JMapInfoIter& rIter) {
     mIsFollowRail = false;
     makeActorAppeared();
     MR::setClippingFar100m(this);
-    MR::startBck(this, "Move", nullptr);
+    MR::startBck(this, "Move");
     _C9 = false;
 }
 

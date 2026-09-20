@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include <revolution/types.h>
+#include "revolution/types.h"
 
 typedef enum {
     WENC_FLAG_USER_INFO = (1 << 0),

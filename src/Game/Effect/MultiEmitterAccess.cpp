@@ -58,7 +58,7 @@ void MultiEmitter::setGlobalScale(const TVec3f& rScale, s32 idx) {
     }
 }
 
-void MultiEmitter::setGlobalSRTMatrix(const MtxPtr pMtx, s32 idx) {
+void MultiEmitter::setGlobalSRTMatrix(const Mtx pMtx, s32 idx) {
     if (idx == -1) {
         for (s32 i = 0; i < mEmitters.size(); i++) {
             SingleEmitter* pEmitter = getValidEmitter(i, false);
@@ -77,7 +77,7 @@ void MultiEmitter::setGlobalSRTMatrix(const MtxPtr pMtx, s32 idx) {
 }
 
 void MultiEmitter::setGlobalPrmColor(u8 r, u8 g, u8 b, s32 idx) {
-    bool b1 = MR::isNearZero(_2C);
+    bool b1 = !MR::isNearZero(_2C);
 
     if (idx == -1) {
         mCallBack->mPrmColor.set(r, g, b, -1);
@@ -101,7 +101,7 @@ void MultiEmitter::setGlobalPrmColor(u8 r, u8 g, u8 b, s32 idx) {
 }
 
 void MultiEmitter::setGlobalEnvColor(u8 r, u8 g, u8 b, s32 idx) {
-    bool b1 = MR::isNearZero(_2C);
+    bool b1 = !MR::isNearZero(_2C);
 
     if (idx == -1) {
         mCallBack->mEnvColor.set(r, g, b, -1);
@@ -294,7 +294,7 @@ void ParticleEmitter::setGlobalScale(const TVec3f& rScale) {
     mEmitter->setGlobalScale(rScale);
 }
 
-void ParticleEmitter::setGlobalSRTMatrix(const MtxPtr pMtx) {
+void ParticleEmitter::setGlobalSRTMatrix(const Mtx pMtx) {
     mEmitter->setGlobalSRTMatrix(pMtx);
 }
 

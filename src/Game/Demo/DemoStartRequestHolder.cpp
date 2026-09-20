@@ -2,7 +2,7 @@
 #include "Game/Demo/DemoStartRequestUtil.hpp"
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 DemoStartInfo::DemoStartInfo() {
     _0 = nullptr;
@@ -44,6 +44,7 @@ void DemoStartRequestHolder::pushRequest(LiveActor* pActor, const char* pName) {
     if (pInfo == nullptr) {
         pInfo = findEmpty();
     }
+
     mRequestBuffer.push_back(pInfo);
 }
 
@@ -52,6 +53,7 @@ void DemoStartRequestHolder::pushRequest(LayoutActor* pActor, const char* pName)
     if (pInfo == nullptr) {
         pInfo = findEmpty();
     }
+
     mRequestBuffer.push_back(pInfo);
 }
 
@@ -60,6 +62,7 @@ void DemoStartRequestHolder::pushRequest(NerveExecutor* pExecutor, const char* p
     if (pInfo == nullptr) {
         pInfo = findEmpty();
     }
+
     mRequestBuffer.push_back(pInfo);
 }
 
@@ -68,6 +71,7 @@ void DemoStartRequestHolder::pushRequest(NameObj* pObj, const char* pName) {
     if (pInfo == nullptr) {
         pInfo = findEmpty();
     }
+
     mRequestBuffer.push_back(pInfo);
 }
 
@@ -120,6 +124,7 @@ DemoStartInfo* DemoStartRequestHolder::find(const LiveActor* pActor, const char*
             return *pIter;
         }
     }
+
     return nullptr;
 }
 
@@ -129,6 +134,7 @@ DemoStartInfo* DemoStartRequestHolder::find(const LayoutActor* pActor, const cha
             return *pIter;
         }
     }
+
     return nullptr;
 }
 
@@ -138,6 +144,7 @@ DemoStartInfo* DemoStartRequestHolder::find(const NerveExecutor* pExecutor, cons
             return *pIter;
         }
     }
+
     return nullptr;
 }
 
@@ -147,22 +154,25 @@ DemoStartInfo* DemoStartRequestHolder::find(const NameObj* pObj, const char* pNa
             return *pIter;
         }
     }
+
     return nullptr;
 }
 
 DemoStartInfo* DemoStartRequestHolder::findEmpty() const {
+    DemoStartInfo* pFound;
     for (DemoStartInfo* const* pIter = mStartInfos; pIter != &mStartInfos[mNumInfos]; pIter++) {
         if (DemoStartRequestUtil::isEmpty(*pIter)) {
-            DemoStartInfo* pFound = *pIter;
+            pFound = *pIter;
             DemoStartInfo emptyInfo;
             *pFound = emptyInfo;
             return *pIter;
         }
     }
+
     return nullptr;
 }
 
-DemoStartRequestHolder::DemoStartRequestHolder() : mNumInfos(0), mRequestBuffer(mRequestBuffer.mBuffer, mRequestBuffer.mBuffer) {
+DemoStartRequestHolder::DemoStartRequestHolder() : mNumInfos(), mRequestBuffer(mRequestBuffer.mBuffer, mRequestBuffer.mBuffer) {
     mProxyObj = new NameObj("代理人");
     for (u32 i = 0; i < ARRAY_SIZE(mStartInfos); i++) {
         DemoStartInfo* pInfo = new DemoStartInfo();
@@ -173,19 +183,19 @@ DemoStartRequestHolder::DemoStartRequestHolder() : mNumInfos(0), mRequestBuffer(
 }
 
 template <>
-MR::FixedRingBuffer< const DemoStartInfo*, 16 >::iterator::iterator(const DemoStartInfo** head, const DemoStartInfo** tail) {
-    mHead = head;
-    mTail = tail;
-    mEnd = tail + 16;
+MR::FixedRingBuffer< const DemoStartInfo*, 16 >::iterator::iterator(const DemoStartInfo** pHead, const DemoStartInfo** pTail) {
+    mHead = pHead;
+    mTail = pTail;
+    mEnd = pTail + 16;
 }
 
 template <>
-void MR::FixedRingBuffer< const DemoStartInfo*, 16 >::push_back(const DemoStartInfo* const& val) {
+void MR::FixedRingBuffer< const DemoStartInfo*, 16 >::push_back(const DemoStartInfo* const& rValue) {
     if ((u32)mCount >= 16) {
         return;
     }
 
-    *mEnd.mHead = val;
+    *mEnd.mHead = rValue;
     ++mEnd;
     mCount++;
 }

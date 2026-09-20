@@ -6,7 +6,7 @@
 #include "Game/Util/ObjUtil.hpp"
 
 ShadowSurfaceDrawInit::ShadowSurfaceDrawInit(const char* pName) : NameObj(pName) {
-    MR::registerPreDrawFunction(MR::Functor_Inline(&ShadowSurfaceDrawInit::initDraw), MR::DrawType_ShadowSurface);
+    MR::registerPreDrawFunction(MR::Functor(&ShadowSurfaceDrawInit::initDraw), MR::DrawType_ShadowSurface);
 }
 
 void ShadowSurfaceDrawInit::initDraw() {

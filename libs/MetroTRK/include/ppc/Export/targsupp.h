@@ -1,7 +1,7 @@
 #ifndef PPC_EXPORT_TARGSUPP_H
 #define PPC_EXPORT_TARGSUPP_H
 
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 #ifdef __cplusplus
 extern "C" {

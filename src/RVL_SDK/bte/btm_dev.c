@@ -1,4 +1,4 @@
-#include "btm_api.h"
+#include <btm_api.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -29,14 +29,14 @@
  * headers
  */
 
-#include "bt_target.h"
-#include "bt_types.h"
-#include "data_types.h"
+#include <bt_target.h>
+#include <bt_types.h>
+#include <data_types.h>
 #include "revolution/types.h"
 #include <cstring>
 
-#include "btm_int.h"
-#include "hcidefs.h"  // tHCI_HANDLE
+#include <btm_int.h>
+#include <hcidefs.h>  // tHCI_HANDLE
 
 /*******************************************************************************
  * local function declarations

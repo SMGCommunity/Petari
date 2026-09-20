@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Game/NPC/NPCActor.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 
 class LodCtrl;
 class TalkMessageCtrl;

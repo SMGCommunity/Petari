@@ -5,7 +5,7 @@
 #include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/NPCUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 class Butler : public NPCActor {
 public:

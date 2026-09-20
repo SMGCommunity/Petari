@@ -16,6 +16,8 @@ public:
 
     virtual void init(const JMapInfoIter&) {};
 
+    virtual void movement() = 0;
+
     virtual const TVec3f& getPosition() const = 0;
     virtual const TVec3f& getUpVec() const = 0;
     virtual const TVec3f& getFrontVec() const = 0;
@@ -27,63 +29,82 @@ public:
     virtual f32 getRadius() const {
         return 150.0f;
     }
+
     virtual bool isTurning() const {
         return false;
     }
+
     virtual bool isJumping() const {
         return false;
     }
+
     virtual bool isLongDrop() const {
         return false;
     }
+
     virtual bool isFastDrop() const {
         return false;
     }
+
     virtual bool isFastRise() const {
         return false;
     }
+
     virtual bool isWaterMode() const {
         return false;
     }
+
     virtual bool isOnWaterSurface() const {
         return false;
     }
+
     virtual bool isBeeMode() const {
         return false;
     }
+
     virtual bool isFooFighterMode() const {
         return false;
     }
+
     virtual u32 getSpecialMode() const {
         return 0;
     }
+
     virtual bool isCameraStateOn(u32) const {
         return false;
     };
     virtual CubeCameraArea* getCubeCameraArea() const {
         return nullptr;
     }
+
     virtual Triangle* getGroundTriangle() const {
         return nullptr;
     }
+
     virtual GravityInfo* getGravityInfo() const {
         return nullptr;
     }
+
     virtual void enableCameraWall() {
         mCameraWall = true;
     }
+
     virtual void disableCameraWall() {
         mCameraWall = false;
     }
+
     virtual void setCameraWall(bool enable) {
         mCameraWall = enable;
     }
+
     virtual bool isDebugMode() const {
         return false;
     }
+
     virtual TPos3f* getMapBaseMtx() const {
         return nullptr;
     }
+
     virtual void resetStatus() {
     }
 
@@ -107,6 +128,7 @@ public:
     virtual f32 getRadius() const {
         return 150.0f;
     }
+
     virtual CubeCameraArea* getCubeCameraArea() const;
     virtual Triangle* getGroundTriangle() const;
 

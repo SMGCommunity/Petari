@@ -1,7 +1,7 @@
 #ifndef UTILS_GC_MWCRITICALSECTION_GC_H
 #define UTILS_GC_MWCRITICALSECTION_GC_H
 
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 #ifdef __cplusplus
 extern "C" {

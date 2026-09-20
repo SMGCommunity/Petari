@@ -5,7 +5,7 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 namespace NrvCoinSpot {
     NEW_NERVE(CoinSpotNrvWait, CoinSpot, Wait);

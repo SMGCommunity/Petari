@@ -1,4 +1,3 @@
-#include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioTeresa.hpp"
 #include "Game/Animation/XanimePlayer.hpp"
 #include "Game/Animation/XanimeResource.hpp"
@@ -6,6 +5,7 @@
 #include "Game/Map/HitInfo.hpp"
 #include "Game/MapObj/BigFanHolder.hpp"
 #include "Game/Player/Mario.hpp"
+#include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioAnimator.hpp"
 #include "Game/Player/MarioConst.hpp"
 #include "Game/Player/MarioParts.hpp"
@@ -16,6 +16,7 @@
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
+
 
 void MarioTeresa_FORCE_MATCH_SDATA2() {
     (void)1.0f;
@@ -579,7 +580,7 @@ void MarioActor::changeTeresaAnimation(const char* pAnimation, s32 interpolation
     }
 
     if (interpolation == -1) {
-        MR::startBck(_9A4, pAnimation, nullptr);
+        MR::startBck(_9A4, pAnimation);
     } else {
         MR::startBckWithInterpole(_9A4, pAnimation, interpolation);
     }

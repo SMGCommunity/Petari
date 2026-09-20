@@ -127,7 +127,7 @@ void BossKameckBattleDemo::startDemoDownVs2() {
 
 void BossKameckBattleDemo::exeWaitAppearVs1() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         MR::stopStageBGM(90);
         mHost->startDemo();
     }
@@ -145,7 +145,7 @@ void BossKameckBattleDemo::exeAppearVs1() {
         const char* demoName = "DemoBossKameckStart";
         pos->makeActorAppeared();
         MR::startAnimCameraTargetSelf(pos, pos->mCameraInfo, demoName, 0, 1.0f);
-        MR::startBck(pos, "DemoBossKameckStart", nullptr);
+        MR::startBck(pos, "DemoBossKameckStart");
         MR::startAction(mHost, "DemoBossKameckStart");
         MR::startStageBGM("MBGM_BOSS_04", false);
     }
@@ -174,7 +174,7 @@ void BossKameckBattleDemo::exeAppearVs1() {
 
 void BossKameckBattleDemo::exeWaitAppearVs2() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         MR::stopStageBGM(90);
         mHost->startDemo();
     }
@@ -192,7 +192,7 @@ void BossKameckBattleDemo::exeAppearVs2() {
         const char* demoName = "DemoBossKameckStart2";
         pos->makeActorAppeared();
         MR::startAnimCameraTargetSelf(pos, pos->mCameraInfo, demoName, 0, 1.0f);
-        MR::startBck(pos, "DemoBossKameckStart2", nullptr);
+        MR::startBck(pos, "DemoBossKameckStart2");
         MR::startAction(mHost, "DemoBossKameckStart2");
         MR::startStageBGM("MBGM_BOSS_04", false);
     }
@@ -228,9 +228,9 @@ void BossKameckBattleDemo::exePowerUpVs1() {
         const char* powerUpName = "DemoBossKameckPowerUp";
         pos->makeActorAppeared();
         MR::startAnimCameraTargetSelf(pos, pos->mCameraInfo, powerUpName, 0, 1.0f);
-        MR::startBck(pos, powerUpName, nullptr);
+        MR::startBck(pos, powerUpName);
         MR::startAction(mHost, powerUpName);
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         mHost->startDemo();
     }
 
@@ -258,9 +258,9 @@ void BossKameckBattleDemo::exePowerUpVs2() {
         const char* powerUpName = "DemoBossKameckPowerUp2";
         pos->makeActorAppeared();
         MR::startAnimCameraTargetSelf(pos, pos->mCameraInfo, powerUpName, 0, 1.0f);
-        MR::startBck(pos, powerUpName, nullptr);
+        MR::startBck(pos, powerUpName);
         MR::startAction(mHost, powerUpName);
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         mHost->startDemo();
     }
 
@@ -290,11 +290,11 @@ void BossKameckBattleDemo::exeDownVs1() {
         const char* powerUpName = "DemoBossKameckDown";
         pos->makeActorAppeared();
         MR::startAnimCameraTargetSelf(pos, pos->mCameraInfo, powerUpName, 0, 1.0f);
-        MR::startBck(pos, powerUpName, nullptr);
+        MR::startBck(pos, powerUpName);
         MR::startAction(mHost, powerUpName);
         mHost->deadKameck();
         mHost->startDemo();
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         MR::stopStageBGM(30);
     }
 
@@ -336,11 +336,11 @@ void BossKameckBattleDemo::exeDownVs2() {
         const char* powerUpName = "DemoBossKameckDown2";
         pos->makeActorAppeared();
         MR::startAnimCameraTargetSelf(pos, pos->mCameraInfo, powerUpName, 0, 1.0f);
-        MR::startBck(pos, powerUpName, nullptr);
+        MR::startBck(pos, powerUpName);
         MR::startAction(mHost, powerUpName);
         mHost->deadKameck();
         mHost->startDemo();
-        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("BattleWait");
         MR::stopStageBGM(30);
     }
 

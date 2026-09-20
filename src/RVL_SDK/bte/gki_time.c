@@ -1,4 +1,4 @@
-#include "gki.h"
+#include <gki.h>
 
 /* Original source:
  * bluedroid <android.googlesource.com/platform/external/bluetooth/bluedroid>
@@ -31,11 +31,11 @@
 
 #include <stddef.h>
 
-#include "data_types.h"
-#include "gki_target.h"
+#include <data_types.h>
+#include <gki_target.h>
 
-#include "gki_common.h"
-#include "gki_int.h"
+#include <gki_common.h>
+#include <gki_int.h>
 
 /*******************************************************************************
  * macros
