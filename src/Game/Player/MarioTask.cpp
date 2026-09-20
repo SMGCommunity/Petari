@@ -338,7 +338,7 @@ void Mario::startHipDropSlide(const HitSensor* pSensor) {
     _A64 = pSensor->mRadius;
     _70C = getAirGravityVec();
 
-    changeAnimation("ヒップドロップ滑り", static_cast< const char* >(nullptr));
+    changeAnimation("ヒップドロップ滑り");
 }
 
 void Mario::startJumpDropSlide(const HitSensor* pSensor) {
@@ -381,9 +381,9 @@ void Mario::startJumpDropSlide(const HitSensor* pSensor) {
         if (dot > sHopperJumpSlideDotMin) {
             f32 frontDot = mFrontVec.dot(slideDir);
             if (frontDot > sZero) {
-                changeAnimation("ジャンプ順滑り", static_cast< const char* >(nullptr));
+                changeAnimation("ジャンプ順滑り");
             } else {
-                changeAnimation("ジャンプ逆滑り", static_cast< const char* >(nullptr));
+                changeAnimation("ジャンプ逆滑り");
             }
         }
     }

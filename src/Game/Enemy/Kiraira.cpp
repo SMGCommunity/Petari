@@ -161,7 +161,7 @@ void Kiraira::exeDead() {
             MR::startBck(this, "Down");
         }
         MR::startBrk(this, "Down");
-        MR::setShadowVolumeSphereRadius(this, static_cast< const char* >(nullptr), 50.0f);
+        MR::setShadowVolumeSphereRadius(this, nullptr, 50.0f);
     }
     if (mSharedGroup != nullptr) {
         mSharedGroup->sendMsgToGroupMember(ACTMES_GROUP_ATTACK, getSensor("body"), "body");
@@ -203,7 +203,7 @@ void Kiraira::exeRecover() {
         if (MR::isNearPlayer(this, ::sEyeSensorOutRadius)) {
             openEyes();
         }
-        MR::setShadowVolumeSphereRadius(this, static_cast< const char* >(nullptr), 90.0f);
+        MR::setShadowVolumeSphereRadius(this, nullptr, 90.0f);
         mIsForceDetonated = false;
     }
     if (MR::isNearPlayer(this, ::sEyeSensorOutRadius)) {

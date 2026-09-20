@@ -27,7 +27,7 @@ void Mario::startMagic() {
                     } else {
                         clearSlope();
                         changeStatus(mMagic);
-                        stopAnimationUpper(static_cast< const char* >(nullptr), static_cast< const char* >(nullptr));
+                        stopAnimationUpper(nullptr);
                         _10._1 = 1;
                     }
                 }
@@ -51,7 +51,7 @@ bool MarioMagic::close() {
 }
 
 bool MarioMagic::start() {
-    changeAnimation("地上ひねり", static_cast< const char* >(nullptr));
+    changeAnimation("地上ひねり");
     stopEffect("パンチブラー左");
     stopEffect("パンチブラー右");
     playEffect("共通地上スピン");

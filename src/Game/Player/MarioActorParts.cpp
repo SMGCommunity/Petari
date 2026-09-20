@@ -143,7 +143,7 @@ void MarioActor::updateTakingPosition() {
                 if (mMario->isAnimationTerminate("カブ抜き")) {
                     stopAnimation(nullptr);
                     _480 = false;
-                    mMario->changeAnimationUpper("カブウエイト", nullptr);
+                    mMario->changeAnimationUpper("カブウエイト");
                 }
                 break;
             case ATYPE_JET_TURTLE:
@@ -309,7 +309,7 @@ void MarioActor::shootFireBall() {
         return;
     if (getMovementStates()._8) {
         sendMsgToSensor(mMario->getWallPolygon()->mSensor, ACTMES_FIREBALL_ATTACK);
-        changeAnimation("ファイアスピン", nullptr);
+        changeAnimation("ファイアスピン");
         return;
     }
     u32 index;
@@ -331,17 +331,17 @@ void MarioActor::shootFireBall() {
     playSound("声投げ", -1);
     if (!isJumping()) {
         mMario->_420 = 45;
-        changeAnimation("ファイアスピン", nullptr);
+        changeAnimation("ファイアスピン");
         return;
     }
     if (mMario->_42C >= 3) {
-        changeAnimation("ファイア投げ", nullptr);
+        changeAnimation("ファイア投げ");
         return;
     }
     if (mMario->_42C == 0)
-        changeAnimation("ファイアスピン空中", nullptr);
+        changeAnimation("ファイアスピン空中");
     else
-        changeAnimation("ファイア投げ", nullptr);
+        changeAnimation("ファイア投げ");
     jumpHop();
     mMario->_42C++;
     f32 gravitySpeed = mMario->cutGravityElementFromJumpVec(true);

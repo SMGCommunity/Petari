@@ -298,7 +298,7 @@ void MarioAnimator::update() {
                 }
 
                 if (isAnimationStop()) {
-                    changeAnimation("崖ふんばり", static_cast< const char* >(nullptr));
+                    changeAnimation("崖ふんばり");
                 }
             }
         }
@@ -313,7 +313,7 @@ void MarioAnimator::update() {
             player = getPlayer();
             player->_414 = 15;
         } else {
-            stopAnimation("崖ふんばり", static_cast< const char* >(nullptr));
+            stopAnimation("崖ふんばり");
         }
     }
 
@@ -1174,7 +1174,7 @@ void MarioAnimator::changePickupAnimation(const HitSensor* pSensor) {
     switch (type) {
     case ACTMES_STAR_PIECE_GIFT_MAX:
         mActor->_494 = mActor->_49C;
-        changeAnimation("カブ抜き", static_cast< const char* >(nullptr));
+        changeAnimation("カブ抜き");
         mActor->changeNullAnimation("PullOut", -2);
         getPlayer()->stopWalk();
         break;
@@ -1183,16 +1183,16 @@ void MarioAnimator::changePickupAnimation(const HitSensor* pSensor) {
         mActor->_494 = mActor->_498;
         if (!getPlayer()->isSwimming()) {
             if (mActor->_424 == pSensor) {
-                changeAnimationUpper("ひろいクイック", nullptr);
+                changeAnimationUpper("ひろいクイック");
                 playEffect("ひろいクイック");
                 mActor->clearNullAnimation(-3);
                 startPadVib(2);
             } else if (getPlayer()->mMovementStates.jumping && !getPlayer()->mMovementStates._B) {
-                changeAnimation("ひろい空中", static_cast< const char* >(nullptr));
+                changeAnimation("ひろい空中");
                 mActor->clearNullAnimation(-3);
                 getPlayer()->stopWalk();
             } else {
-                changeAnimation("ひろい", static_cast< const char* >(nullptr));
+                changeAnimation("ひろい");
                 mActor->changeNullAnimation("CarryStart", -2);
                 getPlayer()->stopWalk();
             }
@@ -1223,7 +1223,7 @@ void MarioAnimator::updateTakingAnimation(const HitSensor* pSensor) {
     switch (type) {
     case ACTMES_STAR_PIECE_GIFT_MAX:
         stopAnimation(nullptr);
-        changeAnimationUpper("カブウエイト", nullptr);
+        changeAnimationUpper("カブウエイト");
         mActor->clearNullAnimation(0);
         mActor->offTakingFlag();
         break;
@@ -1237,7 +1237,7 @@ void MarioAnimator::updateTakingAnimation(const HitSensor* pSensor) {
 
             if (shouldChange) {
                 if (!isAnimationRun("ひろい空中") && mActor->isStopNullAnimation()) {
-                    changeAnimationUpper("ひろいウエイト", nullptr);
+                    changeAnimationUpper("ひろいウエイト");
                     startPadVib(2);
                     mActor->clearNullAnimation(0);
                     mActor->offTakingFlag();
@@ -1255,17 +1255,17 @@ void MarioAnimator::changeThrowAnimation(const HitSensor* pSensor) {
     u32 type = pSensor->mType;
     switch (type) {
     case ACTMES_STAR_PIECE_GIFT_MAX:
-        stopAnimationUpper(nullptr, nullptr);
-        changeAnimation("両手投げ", static_cast< const char* >(nullptr));
+        stopAnimationUpper(nullptr);
+        changeAnimation("両手投げ");
         startPadVib("マリオ[亀投げ]");
         break;
     case ACTMES_STAR_PIECE_GIFT:
     case ACTMES_STAR_PIECE_GIFT_1:
-        stopAnimationUpper(nullptr, nullptr);
+        stopAnimationUpper(nullptr);
         if (getPlayer()->isSwimming()) {
             changeAnimation("水泳亀投げ", "水泳基本");
         } else {
-            changeAnimation("投げ", static_cast< const char* >(nullptr));
+            changeAnimation("投げ");
         }
 
         startPadVib("マリオ[亀投げ]");
@@ -1289,12 +1289,12 @@ void MarioAnimator::waterToGround() {
     switch (state) {
     case ACTMES_STAR_PIECE_GIFT:
     case ACTMES_STAR_PIECE_GIFT_1:
-        changeAnimationUpper("ひろいウエイト", nullptr);
+        changeAnimationUpper("ひろいウエイト");
         mActor->clearNullAnimation(0);
         MR::deleteEffect(swimSensor->mHost, "SwimBubble");
         break;
     case ACTMES_STAR_PIECE_GIFT_MAX:
-        changeAnimationUpper("カブウエイト", nullptr);
+        changeAnimationUpper("カブウエイト");
         mActor->clearNullAnimation(0);
         break;
     }

@@ -185,7 +185,7 @@ void MarioActor::updateGravityVec(bool reset, bool usePosition) {
                 if (mMario->_430 == 11) {
                     mMario->_430 = 0;
                 }
-                changeAnimation("ショートジャンプ", nullptr);
+                changeAnimation("ショートジャンプ");
                 resetGround = true;
             }
             if (_F74) {

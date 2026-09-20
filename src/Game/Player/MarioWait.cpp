@@ -198,10 +198,10 @@ bool MarioWait::checkStart() {
 bool MarioWait::start() {
     switch (_12) {
     case 0:
-        changeAnimation("特殊ウエイト1A", static_cast< const char* >(nullptr));
+        changeAnimation("特殊ウエイト1A");
         break;
     case 1:
-        changeAnimation("戦闘ウエイト", static_cast< const char* >(nullptr));
+        changeAnimation("戦闘ウエイト");
         break;
     }
 
@@ -212,7 +212,7 @@ bool MarioWait::start() {
 
 bool MarioWait::update() {
     if (getStickP() != 0.0f || checkLvlA() || checkLvlZ() || mActor->isRequestJump2P()) {
-        stopAnimation(nullptr, static_cast< const char* >(nullptr));
+        stopAnimation(nullptr);
         getPlayer()->mainMove();
         return false;
     }
@@ -239,7 +239,7 @@ bool MarioWait::update() {
     }
 
     if (cancel) {
-        stopAnimation(nullptr, static_cast< const char* >(nullptr));
+        stopAnimation(nullptr);
         return false;
     }
 
@@ -257,7 +257,7 @@ bool MarioWait::update() {
                 if (_16 == duration) {
                     _16 = 0;
                     _14++;
-                    changeAnimation("特殊ウエイト1B", static_cast< const char* >(nullptr));
+                    changeAnimation("特殊ウエイト1B");
                 }
             }
 

@@ -47,9 +47,9 @@ public:
     bool isAnimationTerminateUpper(const char*) const;
     const char* getAnimationStringPointer(const char*) const;
     const char* getCurrentBckName() const;
-    void changeAnimationUpper(const char*, const char*);
-    void changeAnimationUpperWeak(const char*, const char*);
-    void stopAnimationUpper(const char*, const char*);
+    void changeAnimationUpper(const char*, const char* = nullptr);
+    void changeAnimationUpperWeak(const char*, const char* = nullptr);
+    void stopAnimationUpper(const char*, const char* = nullptr);
     void stopAnimationUpperForce();
     f32 getAnimationFrame() const;
     void changeAnimation(const char*, u32);

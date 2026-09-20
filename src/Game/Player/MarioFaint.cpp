@@ -112,14 +112,14 @@ bool MarioFaint::start() {
 
     if (_18.dot(getPlayer()->mFrontVec) > 0.0f) {
         getPlayer()->setFrontVecKeepUp(_18);
-        changeAnimation("後方小ダメージ", static_cast< const char* >(nullptr));
+        changeAnimation("後方小ダメージ");
     } else {
         getPlayer()->setFrontVecKeepUp(-_18);
-        changeAnimation("前方小ダメージ", static_cast< const char* >(nullptr));
+        changeAnimation("前方小ダメージ");
     }
 
     if (mNoDamage) {
-        changeAnimation("ノーダメージ", static_cast< const char* >(nullptr));
+        changeAnimation("ノーダメージ");
     }
 
     playSound("声小ダメージ");

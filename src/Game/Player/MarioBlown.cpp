@@ -73,7 +73,7 @@ bool MarioBlown::update() {
         addVelocity(_18);
         _18 += mActor->_240 * mActor->getConst().getTable()->mGravityBlown;
         if (mTimer > 120) {
-            changeAnimation("中ダメージ空中", static_cast< const char* >(nullptr));
+            changeAnimation("中ダメージ空中");
         }
 
         if (mTimer > 60) {
@@ -95,7 +95,7 @@ bool MarioBlown::update() {
 
             if (_14 != 2 || mTimer >= 3) {
                 playSound("吹っ飛び倒れ");
-                changeAnimation("壁ヒット着地", static_cast< const char* >(nullptr));
+                changeAnimation("壁ヒット着地");
                 playEffect("共通壁ヒット着地");
                 MR::vecKillElement(_18, mActor->_240, &_18);
             }

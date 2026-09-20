@@ -21,7 +21,7 @@ MarioBury::MarioBury(MarioActor* pActor) : MarioSukekiyo(pActor) {
 bool MarioSukekiyo::close() {
     getPlayer()->stopWalk();
     mActor->_F44 = 1;
-    stopAnimation(static_cast< const char* >(nullptr), "基本");
+    stopAnimation(nullptr, "基本");
     return true;
 }
 
@@ -50,10 +50,10 @@ bool MarioSukekiyo::start() {
     getPlayer()->stopWalk();
 
     if (mStatusId == MarioStatus_Sukekiyo) {
-        changeAnimation("スケキヨ", static_cast< const char* >(nullptr));
+        changeAnimation("スケキヨ");
     } else {
         playSound("声足埋まり開始");
-        changeAnimation("埋まり", static_cast< const char* >(nullptr));
+        changeAnimation("埋まり");
     }
     return true;
 }

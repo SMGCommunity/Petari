@@ -17,8 +17,9 @@
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include <revolution/mtx.h>
 #include <cstring>
+#include <revolution/mtx.h>
+
 
 bool Mario::isIgnoreTriangle(const Triangle* triangle) {
     return MR::isNearZero(triangle->getNormal(0)->dot(*getGravityVec()));
@@ -1072,7 +1073,7 @@ void Mario::checkHeadPoint() {
         } else if (_1FC.dot(reaction) < 0.0f) {
             mMovementStates._1 = true;
             mJumpVec.zero();
-            changeAnimation("空中一回転", static_cast< const char* >(nullptr));
+            changeAnimation("空中一回転");
         }
     }
     bool swimSpin = false;

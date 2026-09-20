@@ -132,9 +132,9 @@ void MarioActor::setPlayerMode(u16 playerMode, bool myBool) {
         MR::startBtp(this, "TornadoElement");
 
         if (isJumping()) {
-            changeAnimation("エレメントゲット", nullptr);
+            changeAnimation("エレメントゲット");
         } else {
-            changeAnimation("エレメントゲット接地中", nullptr);
+            changeAnimation("エレメントゲット接地中");
         }
         break;
 

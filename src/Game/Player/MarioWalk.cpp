@@ -69,9 +69,9 @@ void Mario::cancelSquatMode() {
 
         if (!isAnimationRun("サマーソルト") && _10._F) {
             if (mWalkSpeed > 0.1f) {
-                changeAnimationUpperWeak("しゃがみ終了", nullptr);
+                changeAnimationUpperWeak("しゃがみ終了");
             } else {
-                changeAnimation("しゃがみ終了", (const char*)nullptr);
+                changeAnimation("しゃがみ終了");
             }
         }
     }
@@ -112,7 +112,7 @@ void Mario::decideSquatWalkAnimation() {
     if (!mMovementStates._A) {
         if (mWalkSpeed > 0.1f) {
             stopAnimation("しゃがみ", "基本");
-            changeAnimationUpperWeak("しゃがみ終了", nullptr);
+            changeAnimationUpperWeak("しゃがみ終了");
         } else {
             changeAnimation("しゃがみ終了", "基本");
         }
@@ -356,7 +356,7 @@ void Mario::decideWalkAnimation() {
 
         if (_8F0 > 5.0f && animationSpeed > 4.0f) {
             animationSpeed *= mActor->getConst().getTable()->mSlopeSpinAnimeRatio;
-            changeAnimation("がんばり走り", (const char*)nullptr);
+            changeAnimation("がんばり走り");
             startBas("RunSlope", false, 0.0f, 0.0f);
         }
     } else if (_3FE != 0) {
@@ -441,12 +441,12 @@ void Mario::decideWalkAnimation() {
 
         s32 clingNum = MR::getKarikariClingNum();
         if (clingNum >= 1) {
-            changeAnimationUpper("カリカリ限界", nullptr);
+            changeAnimationUpper("カリカリ限界");
             stopAnimation("歩行制動ブレーキ", 1);
         }
 
         if (clingNum < 1 && isAnimationRun("カリカリ限界")) {
-            stopAnimationUpper("カリカリ限界", nullptr);
+            stopAnimationUpper("カリカリ限界");
         }
     }
 }

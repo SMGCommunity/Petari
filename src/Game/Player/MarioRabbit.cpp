@@ -47,7 +47,7 @@ bool MarioRabbit::start() {
         return true;
     }
 
-    stopAnimationUpper(nullptr, nullptr);
+    stopAnimationUpper(nullptr);
     _14 = -mActor->getConst().getTable()->mRabbitFirstJump;
     _26 = 0;
     _2A = 0;
@@ -159,10 +159,10 @@ bool MarioRabbit::update() {
             stopAnimation(nullptr);
             switch (_68) {
             case 0:
-                changeAnimation("ホッパージャンプA", static_cast< const char* >(nullptr));
+                changeAnimation("ホッパージャンプA");
                 break;
             case 1:
-                changeAnimation("ホッパージャンプB", static_cast< const char* >(nullptr));
+                changeAnimation("ホッパージャンプB");
                 break;
             }
 

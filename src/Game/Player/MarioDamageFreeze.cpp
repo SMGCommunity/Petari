@@ -26,7 +26,7 @@ bool Mario::doFreeze() {
     mActor->damageDropThrowMemoSensor();
     cancelSquatMode();
 
-    stopAnimationUpper(nullptr, nullptr);
+    stopAnimationUpper(nullptr);
     changeStatus(mFreeze);
     return true;
 }
@@ -80,7 +80,7 @@ bool MarioFreeze::update() {
             }
         } else if (mFreezeTimer < 120 && mActor->mHealth != 0 && mActor->isRequestSpin()) {
             addVelocity(getFrontVec(), -10.0f);
-            changeAnimation("地上ひねり", static_cast< const char* >(nullptr));
+            changeAnimation("地上ひねり");
 
             playSound("声スピン");
             playSound("スピンジャンプ");
@@ -113,7 +113,7 @@ bool MarioFreeze::update() {
                     mActor->forceGameOver();
                 }
             } else if (getPlayer()->getMovementStates()._1) {
-                changeAnimation("氷結解除", static_cast< const char* >(nullptr));
+                changeAnimation("氷結解除");
                 playSound("氷ダメージ終了");
                 mActor->hideFreezeModel();
                 mIsFrozen = false;

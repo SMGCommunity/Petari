@@ -1,18 +1,18 @@
-#include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioDamage.hpp"
-#include "Game/Player/MarioFireDamage.hpp"
-#include "Game/Player/MarioAbyssDamage.hpp"
-#include "Game/Player/MarioDarkDamage.hpp"
-#include "Game/Player/MarioFireRun.hpp"
-#include "Game/Player/MarioFireDance.hpp"
 #include "Game/Enemy/KarikariDirector.hpp"
 #include "Game/Map/CollisionCode.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Player/Mario.hpp"
+#include "Game/Player/MarioAbyssDamage.hpp"
 #include "Game/Player/MarioAccess.hpp"
+#include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioBlown.hpp"
 #include "Game/Player/MarioConst.hpp"
+#include "Game/Player/MarioDarkDamage.hpp"
 #include "Game/Player/MarioFaint.hpp"
+#include "Game/Player/MarioFireDamage.hpp"
+#include "Game/Player/MarioFireDance.hpp"
+#include "Game/Player/MarioFireRun.hpp"
 #include "Game/Player/MarioFreeze.hpp"
 #include "Game/Player/MarioMapCode.hpp"
 #include "Game/Player/MarioParalyze.hpp"
@@ -546,7 +546,7 @@ bool MarioDamage::update() {
         _1C += mActor->_240 * mActor->getConst().getTable()->mGravityDamage;
         if (_14 > 20) {
             if (_28) {
-                changeAnimation(_28, static_cast< const char* >(nullptr));
+                changeAnimation(_28);
             }
 
             if (getPlayer()->_1C._0) {
@@ -568,7 +568,7 @@ bool MarioDamage::update() {
             } else {
                 getPlayer()->mMovementStates.jumping = false;
                 playSound("吹っ飛び倒れ");
-                changeAnimation(_2C, static_cast< const char* >(nullptr));
+                changeAnimation(_2C);
                 playEffect("共通ダメージ着地");
                 MR::vecKillElement(_1C, mActor->_240, &_1C);
                 _14 = 0;
@@ -744,8 +744,8 @@ MarioFireRun::MarioFireRun(MarioActor* pActor) : MarioState(pActor, MarioStatus_
 bool MarioFireRun::start() {
     _12 = mActor->getConst().getTable()->mFireRunTimer1;
     _14 = 0;
-    stopAnimationUpper(nullptr, nullptr);
-    changeAnimation("ファイアラン前兆", static_cast< const char* >(nullptr));
+    stopAnimationUpper(nullptr);
+    changeAnimation("ファイアラン前兆");
     if (!getPlayer()->mMovementStates._1) {
         _18 = -mActor->getConst().getTable()->mFireRunFirstJump;
     } else {
@@ -797,7 +797,7 @@ bool MarioFireRun::update() {
             }
 
             _18 = 0.0f;
-            changeAnimation("炎のランナー", static_cast< const char* >(nullptr));
+            changeAnimation("炎のランナー");
         }
 
         break;
@@ -1051,7 +1051,7 @@ MarioFireDance::MarioFireDance(MarioActor* pActor) : MarioState(pActor, MarioSta
 }
 
 bool MarioFireDance::start() {
-    stopAnimationUpper(nullptr, nullptr);
+    stopAnimationUpper(nullptr);
     _20 = -mActor->getConst().getTable()->mFireDanceFirstJump;
     Mario* player = getPlayer();
     MR::vecKillElement(player->mJumpVec, getAirGravityVec(), &_14);
@@ -1074,7 +1074,7 @@ bool MarioFireDance::start() {
 }
 
 void MarioFireDance::impact() {
-    changeAnimation("ファイアダンス", static_cast< const char* >(nullptr));
+    changeAnimation("ファイアダンス");
     if (!getPlayer()->mDrawStates._10) {
         if (_14.length() > 2.0f * mActor->getConst().getTable()->mFireDanceMoveSpeed) {
             _14.setLength(2.0f * mActor->getConst().getTable()->mFireDanceMoveSpeed);
@@ -1132,7 +1132,7 @@ bool MarioFireDance::update() {
                 playSound("声炎ダメージ中");
             }
 
-            changeAnimation("ファイアダンス", static_cast< const char* >(nullptr));
+            changeAnimation("ファイアダンス");
         } else {
             if (!_29) {
                 mActor->decLifeLarge();
