@@ -6298,13 +6298,13 @@ Game/MapObj/MapPartsFunction.cpp:
 Game/MapObj/MapPartsRailGuideDrawer.cpp:
 	.text       start:0x8025BEEC end:0x8025C4D0
 	.ctors      start:0x8052EF5C end:0x8052EF60
-	.data       start:0x805A70B8 end:0x805A7178
+	.data       start:0x805A70B8 end:0x805A7158
 	.sbss       start:0x806B5B48 end:0x806B5B58
 	.sdata2     start:0x806BE8F0 end:0x806BE900
 
 Game/MapObj/MapPartsRailGuideHolder.cpp:
 	.text       start:0x8025C4D0 end:0x8025C69C
-	.data       start:0x805A7178 end:0x805A71A0
+	.data       start:0x805A7158 end:0x805A71A0
 
 Game/MapObj/MapPartsRailGuidePoint.cpp:
 	.text       start:0x8025C69C end:0x8025C8A0

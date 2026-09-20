@@ -13,6 +13,15 @@ public:
     virtual void executeOnEnd(Spine* pSpine) const;
 };
 
+#define NEW_NERVE_NULL(name)                                                                                                                         \
+    class name : public Nerve {                                                                                                                      \
+    public:                                                                                                                                          \
+        virtual void execute(Spine* pSpine) const {                                                                                                  \
+        }                                                                                                                                            \
+        static name sInstance;                                                                                                                       \
+    };                                                                                                                                               \
+    name name::sInstance ATTRIBUTE_WEAK;
+
 #define NEW_NERVE(name, parent_class, executor_name)                                                                                                 \
     class name : public Nerve {                                                                                                                      \
     public:                                                                                                                                          \
