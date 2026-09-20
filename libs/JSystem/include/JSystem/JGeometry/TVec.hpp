@@ -878,7 +878,7 @@ namespace JGeometry {
 
         /* General operations */
         template < typename A >
-        void set(const JGeometry::TVec4< A >& rVec) NO_INLINE {
+        void set(const JGeometry::TVec4< A >& rVec) {
             this->x = rVec.x;
             this->y = rVec.y;
             this->z = rVec.z;
