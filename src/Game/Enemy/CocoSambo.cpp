@@ -12,7 +12,7 @@ void CocoSambo_FORCE_MATCH_SDATA2() {
 }
 
 namespace NrvCocoSamboHead {
-    NEW_NERVE_NULL(CocoSamboHeadNrvHeadConnectedBody);
+    NEW_NERVE(CocoSamboHeadNrvHeadConnectedBody, CocoSamboHead, ConnectedBody);
     NEW_NERVE(CocoSamboHeadNrvHeadFall, CocoSamboHead, Fall);
     NEW_NERVE(CocoSamboHeadNrvHeadFallLand, CocoSamboHead, FallLand);
     NEW_NERVE(CocoSamboHeadNrvHeadSwoon, CocoSamboHead, Swoon);

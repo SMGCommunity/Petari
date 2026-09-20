@@ -19,6 +19,9 @@ public:
     bool isBodySensor(const HitSensor*) const;
     bool isNerveSwoon() const;
     void updateFrontVecToPlayer(const TVec3f&);
+    void exeConnectedBody() {
+    }
+
     void exeFall();
     void exeFallLand();
     void exeSwoon();

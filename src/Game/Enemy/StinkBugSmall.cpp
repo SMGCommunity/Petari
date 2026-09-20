@@ -221,6 +221,7 @@ void StinkBugSmall::exeAttack() {
 void StinkBugSmall::exeSpinReaction() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "SpinAction");
+        MR::startSound(this, "SE_EM_GUARD_S");
     }
 
     mVelocity.zero();
@@ -231,7 +232,7 @@ void StinkBugSmall::exeSpinReaction() {
 
 void StinkBugSmall::exeShakeStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "repel");
+        MR::startBck(this, "Repel");
     }
 
     if (MR::isStep(this, 40)) {
