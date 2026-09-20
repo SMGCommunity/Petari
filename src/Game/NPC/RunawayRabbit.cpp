@@ -159,7 +159,7 @@ void RunawayRabbit::init(const JMapInfoIter& rIter) {
     initNerve(GET_NERVE(RunawayRabbit, RunawayRabbitNrvNoActive));
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &RunawayRabbit::startRunnaway));
+        MR::listenStageSwitchOnAppear(this, MR::Functor(this, &RunawayRabbit::startRunnaway));
     }
 
     makeActorAppeared();
