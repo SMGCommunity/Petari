@@ -423,7 +423,7 @@ void RunawayRabbit::exeTryCaughtDemo() {
 void RunawayRabbit::exeCaught() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "TossStart");
-        MR::startBckPlayer("TossStart", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("TossStart");
         MR::startSound(this, "SE_SM_RABBIT_CAUGHT");
         MR::startSoundPlayer("SE_PV_CATCH", -1);
         mSpotMarkLight->kill();
@@ -451,7 +451,7 @@ void RunawayRabbit::exeCaught() {
 void RunawayRabbit::exeCaughtTalk() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "TossWait");
-        MR::startBckPlayer("TossWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("TossWait");
     }
     mPlayerBindPos.set(mPosition);
     MR::startLevelSound(this, "SE_SM_LV_RABBIT_STRUGGLE");
@@ -467,7 +467,7 @@ void RunawayRabbit::exeCaughtEnd() {
     if (MR::isFirstStep(this)) {
         MR::zeroVelocity(this);
         MR::startAction(this, "Toss");
-        MR::startBckPlayer("Toss", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("Toss");
     }
     if (MR::isStep(this, ::sTossStep)) {
         MR::startSoundPlayer("SE_PV_THROW", -1);
