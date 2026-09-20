@@ -843,7 +843,7 @@ config.libs = [
             Object(NonMatching, "Game/Boss/DinoPackunTailPart.cpp"),
             Object(Matching, "Game/Boss/DinoPackunTailRoot.cpp"),
             Object(NonMatching, "Game/Boss/DinoPackunTrackFire.cpp"),
-            Object(NonMatching, "Game/Boss/DinoPackunVs1.cpp"),
+            Object(Matching, "Game/Boss/DinoPackunVs1.cpp"),
             Object(NonMatching, "Game/Boss/DinoPackunVs2.cpp"),
             Object(NonMatching, "Game/Boss/Dodoryu.cpp"),
             Object(NonMatching, "Game/Boss/DodoryuDemo.cpp"),

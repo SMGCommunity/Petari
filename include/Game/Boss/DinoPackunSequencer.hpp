@@ -10,7 +10,7 @@ class DinoPackunSequencer : public NerveExecutor {
 public:
     DinoPackunSequencer(const char*, DinoPackun*);
 
-    virtual ~DinoPackunSequencer();
+    virtual ~DinoPackunSequencer() {}
 
     virtual void start() {
         return;
