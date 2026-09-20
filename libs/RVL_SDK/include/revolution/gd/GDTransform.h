@@ -3,6 +3,10 @@
 
 #include "revolution/types.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define CP_MATINDEX_A 0x30
 #define CP_MATINDEX_B 0x40
 
@@ -27,5 +31,9 @@
      (((unsigned long)(tex6Idx)) << MATIDX_REG_B_TEX6IDX_SHIFT) | (((unsigned long)(tex7Idx)) << MATIDX_REG_B_TEX7IDX_SHIFT))
 
 void GDSetCurrentMtx(u32 pn, u32 t0, u32 t1, u32 t2, u32 t3, u32 t4, u32 t5, u32 t6, u32 t7);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // GDTRANSFORM_H
