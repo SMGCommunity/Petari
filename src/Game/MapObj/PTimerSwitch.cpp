@@ -39,7 +39,7 @@ void PTimerSwitch::init(const JMapInfoIter& rIter) {
     MR::needStageSwitchWriteA(this, rIter);
     initNerve(GET_NERVE(PTimerSwitch, PTimerSwitchNrvOff));
     initEffectKeeper(0, nullptr, false);
-    MR::startBck(this, "Move", 0);
+    MR::startBck(this, "Wait", 0);
     mConnector = new MapObjConnector(this);
     appear();
 }
