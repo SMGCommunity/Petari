@@ -2141,7 +2141,7 @@ config.libs = [
             Object(Matching, "Game/Ride/JumpBranch.cpp"),
             Object(NonMatching, "Game/Ride/Plant.cpp"),
             Object(Matching, "Game/Ride/PlantLeaf.cpp", extra_cflags=["-sym off"]),
-            Object(NonMatching, "Game/Ride/PlantStalk.cpp"),
+            Object(Matching, "Game/Ride/PlantStalk.cpp"),
             Object(Matching, "Game/Ride/Pole.cpp"),
             Object(Matching, "Game/Ride/SledRopePoint.cpp"),
             Object(Matching, "Game/Ride/SlingShooter.cpp"),

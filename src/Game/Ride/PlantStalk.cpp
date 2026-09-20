@@ -19,6 +19,10 @@
 #include <revolution/gx/GXTransform.h>
 #include <revolution/gx/GXVert.h>
 
+void PlantStalk_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 namespace {
     static const f32 sGrowSpeedMin = 15.0f;
     static const f32 sGrowSpeedMax = 100.0f;
