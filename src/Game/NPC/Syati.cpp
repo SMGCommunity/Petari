@@ -137,7 +137,7 @@ void Syati::exeWait() {
         } else
             pStr = "WaitDeepSea";
 
-        MR::startBck(this, pStr, NULL);
+        MR::startBck(this, pStr);
         MR::startBtk(this, pStr);
         MR::startBva(this, "Open");
     }
@@ -167,7 +167,7 @@ void Syati::exeWaitBlank() {
         mPlayerPoseSetterInWater->update();
 
         MR::tryPlayerKillTakingActor();
-        MR::startBckPlayer("SwimWait", (const char*)nullptr);
+        MR::startBckPlayer("SwimWait");
         MR::makeQuatFromRotate(&_8C, this);
     }
 
@@ -220,7 +220,7 @@ void Syati::exeFadeinBeforeTalk() {
     if (MR::isFirstStep(this)) {
         MR::openWipeFade(-1);
         MR::startMultiActorCameraTargetSelf(this, mActorCameraInfo, "会話", -1);
-        MR::startBck(this, "Talk", nullptr);
+        MR::startBck(this, "Talk");
         MR::startBtk(this, "Talk");
 
         if (isNerve(GET_NERVE(Syati, SyatiFadeinRetryEvent)) && MR::isEqualStageName("OceanPhantomCaveGalaxy") &&
@@ -257,11 +257,11 @@ void Syati::exeReadyToStart() {
         resetScore();
         MR::requestMovementOn(mRaceManagerLayout);
         MR::startMultiActorCameraTargetSelf(this, mActorCameraInfo, "開始デモ", -1);
-        MR::startBck(this, "TurnReverse", nullptr);
+        MR::startBck(this, "TurnReverse");
         MR::startBtk(this, "Normal");
         MR::startBva(this, "Open");
         MR::startSound(this, "SE_SM_SYATI_TURN", -1, -1);
-        MR::startBckPlayer("SwimWait", (const char*)nullptr);
+        MR::startBckPlayer("SwimWait");
         MR::onCalcShadow(this, nullptr);
     }
 
@@ -273,7 +273,7 @@ void Syati::exeReadyToStart() {
 
 void Syati::exeCountDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Swim", nullptr);
+        MR::startBck(this, "Swim");
         mRaceManagerLayout->appear();
         mRaceManagerLayout->playCountAndGo();
         mRaceManagerLayout->hideRecordPane();
@@ -298,7 +298,7 @@ void Syati::exeCountDown() {
 
 void Syati::exeSwim() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Swim", nullptr);
+        MR::startBck(this, "Swim");
     }
 
     MR::setBckRate(this, 0.5);
@@ -315,7 +315,7 @@ void Syati::exeSwim() {
 
 void Syati::exeEmitRing() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Screw", nullptr);
+        MR::startBck(this, "Screw");
         MR::startSound(this, "SE_SM_SYATI_ROLL", -1, -1);
         emitRing();
     }
@@ -349,7 +349,7 @@ void Syati::exeWaitStarAppeared() {
 
 void Syati::exeReachToEnd() {
     if (MR::isFirstStep(this))
-        MR::startBck(this, "Turn", nullptr);
+        MR::startBck(this, "Turn");
 
     if (MR::isBckStopped(this))
         setNerve(GET_NERVE(Syati, SyatiWaitAllRingDisappear));
@@ -359,7 +359,7 @@ void Syati::exeWaitAllRingDisappear() {
     if (MR::isFirstStep(this)) {
         const char* pStr = mSwimMode == 0 ? "WaitReverse" : "WaitDeepSea";
 
-        MR::startBck(this, pStr, nullptr);
+        MR::startBck(this, pStr);
         MR::startBtk(this, pStr);
         MR::resetNode(mTalkMessageCtrl);
         MR::forwardNode(mTalkMessageCtrl);
@@ -372,7 +372,7 @@ void Syati::exeWaitAllRingDisappear() {
 void Syati::exeTalkRetryMission() {
     if (MR::isFirstStep(this)) {
         setupBalloonFollowMtx(TVec3f(mSwimMode == 0 ? ::sTalkOffsetDeepSea : ::sTalkOffset));
-        MR::startBck(this, "Failure", nullptr);
+        MR::startBck(this, "Failure");
         MR::startBtk(this, "Failure");
 
         if (MR::isEqualStageName("OceanPhantomCaveGalaxy") && !MR::isPlayingStageBgmName("STM_GALAXY_05"))
@@ -422,7 +422,7 @@ void Syati::exeWaitOnShore() {
         MR::validateHitSensors(this);
         const char* pStr = mSwimMode == 0 ? "Delight" : "DelightDeepSea";
 
-        MR::startBck(this, pStr, nullptr);
+        MR::startBck(this, pStr);
         MR::startBtk(this, pStr);
         MR::startBva(this, "Open");
         MR::onCalcShadowOneTime(this, nullptr);

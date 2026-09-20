@@ -15,7 +15,7 @@ GalaxyMapTitle::GalaxyMapTitle() : LayoutActor("MapTitle", true), mMessageID(nul
 
 void GalaxyMapTitle::init(const JMapInfoIter& rIter) {
     initLayoutManager("MapTitle", 1);
-    initNerve(GET_NERVE_GLOBAL(GalaxyMapTitleHide));
+    initNerve(GET_NERVE_ANON(GalaxyMapTitleHide));
     kill();
 }
 
@@ -38,7 +38,7 @@ void GalaxyMapTitle::startAstroMap() {
 
     mMessageID = "GalaxyMap_AstroMap";
 
-    setNerve(GET_NERVE_GLOBAL(GalaxyMapTitleAppearToAnother));
+    setNerve(GET_NERVE_ANON(GalaxyMapTitleAppearToAnother));
 }
 
 void GalaxyMapTitle::startGalaxyMap() {
@@ -46,19 +46,19 @@ void GalaxyMapTitle::startGalaxyMap() {
 
     mMessageID = "GalaxyMap_GrandGalaxyMap";
 
-    setNerve(GET_NERVE_GLOBAL(GalaxyMapTitleAppearToAnother));
+    setNerve(GET_NERVE_ANON(GalaxyMapTitleAppearToAnother));
 }
 
 void GalaxyMapTitle::changeToAstroMap() {
     mMessageID = "GalaxyMap_AstroMap";
 
-    setNerve(GET_NERVE_GLOBAL(GalaxyMapTitleDisappearToAnother));
+    setNerve(GET_NERVE_ANON(GalaxyMapTitleDisappearToAnother));
 }
 
 void GalaxyMapTitle::changeToGalaxyMap() {
     mMessageID = "GalaxyMap_GrandGalaxyMap";
 
-    setNerve(GET_NERVE_GLOBAL(GalaxyMapTitleDisappearToAnother));
+    setNerve(GET_NERVE_ANON(GalaxyMapTitleDisappearToAnother));
 }
 
 void GalaxyMapTitle::exeHide() {
@@ -81,12 +81,12 @@ void GalaxyMapTitle::exeAppearToAnother() {
         MR::setTextBoxGameMessageRecursive(this, "TextTitle", mMessageID);
     }
 
-    MR::setNerveAtAnimStopped(this, GET_NERVE_GLOBAL(GalaxyMapTitleDisplay), 0);
+    MR::setNerveAtAnimStopped(this, GET_NERVE_ANON(GalaxyMapTitleDisplay), 0);
 }
 
 void GalaxyMapTitle::exeDisappearToAnother() {
     if (tryDisappear()) {
-        setNerve(GET_NERVE_GLOBAL(GalaxyMapTitleAppearToAnother));
+        setNerve(GET_NERVE_ANON(GalaxyMapTitleAppearToAnother));
     }
 }
 

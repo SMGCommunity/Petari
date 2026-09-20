@@ -33,7 +33,7 @@ void SpaceShipStep::init(const JMapInfoIter& rIter) {
 
 void SpaceShipStep::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
         MR::validateClipping(this);
     }
 
@@ -44,7 +44,7 @@ void SpaceShipStep::exeWait() {
 
 void SpaceShipStep::exeMoveSign() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "OnMario", nullptr);
+        MR::startBck(this, "OnMario");
         MR::startSound(this, "SE_OJ_SPACE_SHIP_STEP_ST");
         MR::invalidateClipping(this);
     }
@@ -56,7 +56,7 @@ void SpaceShipStep::exeMoveSign() {
 
 void SpaceShipStep::exeMove() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
         MapObjActorUtil::startAllMapPartsFunctions(this);
     }
 
@@ -65,7 +65,7 @@ void SpaceShipStep::exeMove() {
 
 void SpaceShipStep::exeBreak() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Break", nullptr);
+        MR::startBck(this, "Break");
         MR::startSound(this, "SE_OJ_SPACE_SHIP_STEP_BREAK");
         MR::startSound(this, "SE_OJ_SPACE_SHIP_STEP_ED");
     }

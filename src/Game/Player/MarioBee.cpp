@@ -27,7 +27,7 @@ void MarioActor::entryWallWalkMode(const TVec3f& position, const TVec3f& normal)
         mPosition = position;
         mMario->setTrans(position, nullptr);
         mMario->stopJump();
-        mMario->stopAnimation(nullptr, static_cast< const char* >(nullptr));
+        mMario->stopAnimation(nullptr);
         mMario->stopWalk();
         TVec3f front(mMario->mHeadVec);
         mMario->setGravityVec(gravity);
@@ -123,7 +123,7 @@ bool Mario::beeMarioOnAir() {
                     }
 
                     mMovementStates._11 = false;
-                    stopAnimation("ハチ飛行中", static_cast< const char* >(nullptr));
+                    stopAnimation("ハチ飛行中");
                 } else {
                     if (!mMovementStates._F) {
                         if (!isAnimationRun("ハチ壁ジャンプ") && !isAnimationRun("ハチスピン空中")) {
@@ -198,9 +198,9 @@ bool Mario::beeMarioOnAir() {
                 }
             } else {
                 if (!isAnimationRun("ハチジャンプ") && !isAnimationRun("ハチ壁ジャンプ")) {
-                    stopAnimation("ハチ飛行中", static_cast< const char* >(nullptr));
+                    stopAnimation("ハチ飛行中");
                     if (!isAnimationRun(nullptr) || isAnimationTerminate(nullptr)) {
-                        changeAnimation("ハチ飛行中無入力", static_cast< const char* >(nullptr));
+                        changeAnimation("ハチ飛行中無入力");
                     }
                 }
 

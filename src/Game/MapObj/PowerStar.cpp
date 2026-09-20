@@ -692,7 +692,7 @@ void PowerStar::exeAppearDemoKoopa() {
 
         MR::requestMovementOn(mPowerStarModelObj);
 
-        MR::startBck(mPowerStarModelObj, MR::isStageKoopaVs3() ? "DemoKoopaGrandStarVs3" : "DemoKoopaGrandStar", nullptr);
+        MR::startBck(mPowerStarModelObj, MR::isStageKoopaVs3() ? "DemoKoopaGrandStarVs3" : "DemoKoopaGrandStar");
 
         _134.set(MR::getPlayerBaseMtx());
 
@@ -700,7 +700,7 @@ void PowerStar::exeAppearDemoKoopa() {
     }
 
     if (MR::isStep(this, 1)) {
-        MR::startBckPlayer(MR::isStageKoopaVs3() ? "DemoKoopaGrandStarVs3" : "DemoKoopaGrandStar", 0l);
+        MR::startBckPlayer(MR::isStageKoopaVs3() ? "DemoKoopaGrandStarVs3" : "DemoKoopaGrandStar", 0L);
     }
 
     if (MR::isStageKoopaVs3()) {
@@ -811,18 +811,18 @@ void PowerStar::exeStageClearDemo() {
 
         MR::hideModelIfShown(this);
 
-        MR::startBckPlayer(mIsGrandStar ? "GrandStarGet" : "PowerStarGet", 0l);
+        MR::startBckPlayer(mIsGrandStar ? "GrandStarGet" : "PowerStarGet", 0L);
 
         mBaseMtx.setTrans(mPosition);
 
         mPowerStarModelObj->makeActorAppeared();
 
-        MR::startBck(mPowerStarModelObj, mIsGrandStar ? "GrandStarGet" : "PowerStarGet", nullptr);
+        MR::startBck(mPowerStarModelObj, mIsGrandStar ? "GrandStarGet" : "PowerStarGet");
 
         if (MR::isPowerStarGetDemoWithLuigiCurrentGalaxyAndScenario(mPowerStarId)) {
             mLuigiNPC->makeActorAppeared();
 
-            MR::startBck(mLuigiNPC, "PowerStarGet", nullptr);
+            MR::startBck(mLuigiNPC, "PowerStarGet");
             MR::startBva(mLuigiNPC, "PowerStarGet");
         }
 
@@ -831,8 +831,8 @@ void PowerStar::exeStageClearDemo() {
     }
 
     if (mIsGrandStar && MR::isStageKoopaVs3() && MR::isStep(this, 600)) {
-        MR::startBckPlayer(::cStageClearAnimNameKoopaVs3, static_cast< const char* >(nullptr));
-        MR::startBck(mPowerStarModelObj, ::cStageClearAnimNameKoopaVs3, nullptr);
+        MR::startBckPlayer(::cStageClearAnimNameKoopaVs3);
+        MR::startBck(mPowerStarModelObj, ::cStageClearAnimNameKoopaVs3);
         MR::startAnimCameraTargetSelf(mPowerStarModelObj, mCameraInfo, ::cStageClearAnimNameKoopaVs3, 1, 1.0f);
     }
 }

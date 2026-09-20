@@ -144,7 +144,7 @@ void SandCapsulePressGround::exeDisappearDemo() {
         v8.y /= 2.0f;
         v8.z /= 2.0f;
         MR::resetPosition(this, v8);
-        MR::startBck(this, "MoveAway", nullptr);
+        MR::startBck(this, "MoveAway");
         MR::stopShakingCamera(this);
         MR::shakeCameraNormal();
         MR::startSound(this, "SE_OJ_DESERT_LAND_MOVE_ST");

@@ -103,7 +103,7 @@ void SkeletalFishGuard::exeAppear() {
     TVec3f v32;
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
-        MR::startBck(this, "Swim", nullptr);
+        MR::startBck(this, "Swim");
         MR::startBrk(this, "Base");
         MR::startSound(this, "SE_BM_SKL_GUARD_APPEAR");
         MR::validateHitSensors(this);
@@ -171,7 +171,7 @@ void SkeletalFishGuard::exeApart() {
         TVec3f v15 = _A4.killElement(mGravity);
         _B0 = mGravity.dot(_A4 - v15);
         _A4.set(v15);
-        MR::startBck(this, "Turn", nullptr);
+        MR::startBck(this, "Turn");
         MR::startBrk(this, "Attack");
         mAttackDelay = 0;
     }
@@ -209,7 +209,7 @@ void SkeletalFishGuard::exeApart() {
 void SkeletalFishGuard::exeFollow() {
     if (MR::isFirstStep(this)) {
         _C4 = 0.0f;
-        MR::startBck(this, "Attack", nullptr);
+        MR::startBck(this, "Attack");
         MR::startBrk(this, "Attack");
         MR::startSound(this, "SE_BM_SKL_GUARD_ATTACK_START");
     }
@@ -271,7 +271,7 @@ void SkeletalFishGuard::exeKill() {
     if (MR::isFirstStep(this)) {
         MR::invalidateHitSensors(this);
         MR::invalidateShadow(this, nullptr);
-        MR::startBck(this, "Break", nullptr);
+        MR::startBck(this, "Break");
         MR::startSound(this, "SE_BM_SKL_GUARD_EXPLODE");
     }
 

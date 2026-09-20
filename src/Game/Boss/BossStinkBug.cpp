@@ -413,6 +413,6 @@ bool BossStinkBug::throwBomb(f32 f1, f32 f2) {
     throwBomb->start(trans, yDir);
 
     MR::startSound(this, "SE_BM_BOSS_BUG_BOMB_EMIT");
-    MR::startBck(mBombLauncher, "Discharge", nullptr);
+    MR::startBck(mBombLauncher, "Discharge");
     return true;
 }

@@ -27,7 +27,7 @@ void ReverseGravityRoomPlanet::init(const JMapInfoIter& rIter) {
 
 void ReverseGravityRoomPlanet::exeDownStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "ChangeRed", 0);
+        MR::startBck(this, "ChangeRed");
     }
 
     if (MR::isBckStopped(this)) {
@@ -40,7 +40,7 @@ void ReverseGravityRoomPlanet::exeDownWait() {
 
 void ReverseGravityRoomPlanet::exeUpStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "ChangeBlue", 0);
+        MR::startBck(this, "ChangeBlue");
     }
 
     if (MR::isBckStopped(this)) {

@@ -18,7 +18,6 @@
 #include "Game/Util/FileUtil.hpp"
 #include "Game/Util/FixedPosition.hpp"
 #include "Game/Util/FootPrint.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
@@ -37,12 +36,8 @@
 #include <cstring>
 #include <revolution/gd/GDBase.h>
 
-
 namespace MR {
     void showMaterial(J3DModel*, const char*);
-    template <>
-    FunctorV0M< const MarioActor*, void (MarioActor::*)() const > Functor< MarioActor >(const MarioActor* pActor,
-                                                                                        void (MarioActor::*pFunc)() const) NO_INLINE;
 };  // namespace MR
 
 extern "C" {

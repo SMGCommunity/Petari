@@ -62,21 +62,21 @@ void BegomanSpringHead::tryHopJump() {
 }
 
 void BegomanSpringHead::forceWaitImmediately() {
-    MR::startBck(this, "Wait", nullptr);
+    MR::startBck(this, "Wait");
     MR::startBrk(this, "Green");
     setNerve(GET_NERVE(BegomanSpringHead, HostTypeNrvWait));
 }
 
 void BegomanSpringHead::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::startBrk(this, "Green");
     }
 }
 
 void BegomanSpringHead::exeHopStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "HopStart", nullptr);
+        MR::startBck(this, "HopStart");
         MR::startBrk(this, "OnAndOff");
     }
 
@@ -85,7 +85,7 @@ void BegomanSpringHead::exeHopStart() {
 
 void BegomanSpringHead::exeHopWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "HopWait", nullptr);
+        MR::startBck(this, "HopWait");
         MR::startBrk(this, "OnAndOff");
     }
 }
@@ -101,7 +101,7 @@ void BegomanSpringHead::exeHopEnd() {
 
 void BegomanSpringHead::exeHopJump() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "HopJump", nullptr);
+        MR::startBck(this, "HopJump");
         MR::startBrk(this, "OnAndOff");
     }
 

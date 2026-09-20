@@ -254,7 +254,7 @@ void Snakehead::exeMoveBack() {
 
 void Snakehead::exeTurtleDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Damage", nullptr);
+        MR::startBck(this, "Damage");
         MR::setRailDirectionToStart(this);
         MR::startSound(this, "SE_EV_SNAKEHEAD_DAMAGE");
     }
@@ -287,7 +287,7 @@ void Snakehead::choiceAndStartBck(const char* pBck) {
 
     if (v1 != nullptr) {
         if (!MR::isEqualString(pBck, "Waylay")) {
-            MR::startBck(this, v1, nullptr);
+            MR::startBck(this, v1);
 
         } else {
             MR::startBckNoInterpole(this, v1);

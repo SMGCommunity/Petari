@@ -78,7 +78,7 @@ void TicoRail::init(const JMapInfoIter& rIter) {
 
 void TicoRail::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Turn", nullptr);
+        MR::startBck(this, "Turn");
     }
 
     if (isGreaterEqualStepAndRandom(::sStepForWait)) {
@@ -88,7 +88,7 @@ void TicoRail::exeWait() {
 
 void TicoRail::exeLookAround() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Turn", nullptr);
+        MR::tryStartBck(this, "Turn");
     }
 
     TVec3f up;
@@ -117,7 +117,7 @@ void TicoRail::exeLookAround() {
 
 void TicoRail::exeMoveSign() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Spin", nullptr);
+        MR::startBck(this, "Spin");
 
         if (isNerve(GET_NERVE(TicoRail, TicoRailNrvMoveSignAndTurn))) {
             MR::reverseRailDirection(this);
@@ -134,7 +134,7 @@ void TicoRail::exeMoveSign() {
 
 void TicoRail::exeMove() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
     }
 
     MR::moveCoordAndFollowTrans(this, MR::calcNerveValue(this, 0, 200.0f, 15.0f));
@@ -147,7 +147,7 @@ void TicoRail::exeMove() {
 
 void TicoRail::exeStop() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Spin", nullptr);
+        MR::startBck(this, "Spin");
     }
 
     MR::moveCoordAndFollowTrans(this, MR::calcNerveValue(this, MR::getBckFrameMax(this), 15.0f, 0.0f));
@@ -163,7 +163,7 @@ void TicoRail::exeTalkStart() {
     MR::normalize(&diff);
 
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Spin", nullptr);
+        MR::startBck(this, "Spin");
         TVec3f v14 = MR::getRailDirection(this);
 
         if (diff.dot(v14) > 0.0f) {
@@ -181,7 +181,7 @@ void TicoRail::exeTalkStart() {
 
 void TicoRail::exeTalk() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Talk", nullptr);
+        MR::startBck(this, "Talk");
     }
 
     if (!MR::isBckPlaying(this, "Reaction") && MR::getRandom(0l, 60l) == 0) {
@@ -189,7 +189,7 @@ void TicoRail::exeTalk() {
     }
 
     if (MR::isBckOneTimeAndStopped(this)) {
-        MR::startBck(this, "Talk", nullptr);
+        MR::startBck(this, "Talk");
     }
 
     if (MR::isStep(this, ::sStepForTalk)) {
@@ -199,7 +199,7 @@ void TicoRail::exeTalk() {
 
 void TicoRail::exeTalkCancel() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Spin", nullptr);
+        MR::tryStartBck(this, "Spin");
     }
 
     MR::moveCoordAndFollowTrans(this, 15.0f);
@@ -212,7 +212,7 @@ void TicoRail::exeTalkCancel() {
 
 void TicoRail::exeGoodBye() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "CallBack", nullptr);
+        MR::startBck(this, "CallBack");
 
         TVec3f v3(MR::getRailDirection(this));
 

@@ -61,7 +61,7 @@ void AirBubbleGenerator::exeGenerate() {
 
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_AIR_BUBBLE_APPEAR");
-        MR::startBck(this, "Generate", nullptr);
+        MR::startBck(this, "Generate");
     }
 
     if (MR::isGreaterStep(this, ::sGenerateTime)) {

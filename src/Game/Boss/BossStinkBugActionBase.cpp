@@ -24,7 +24,7 @@ BossStinkBugActionBase::BossStinkBugActionBase(const char* pName, BossStinkBug* 
 
 bool BossStinkBugActionBase::updateGroundWalk(f32 f1) {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(getHost(), "GroundWalk", nullptr);
+        MR::tryStartBck(getHost(), "GroundWalk");
     }
 
     BossStinkBugFunction::moveRail(getHost(), f1, 0.0f, 0.0f);
@@ -36,7 +36,7 @@ bool BossStinkBugActionBase::updateGroundWalk(f32 f1) {
 
 bool BossStinkBugActionBase::updateFlyRoll() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "FlyRollRight", nullptr);
+        MR::startBck(getHost(), "FlyRollRight");
     }
     startSoundFly(0);
     _48 = _38;
@@ -52,7 +52,7 @@ bool BossStinkBugActionBase::updateFlyRoll() {
 
 bool BossStinkBugActionBase::updateFlyRollWait(s32 waitSteps) {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "FlyRollRight", nullptr);
+        MR::startBck(getHost(), "FlyRollRight");
     }
     startSoundFly(0);
     _48 = _38;
@@ -68,7 +68,7 @@ bool BossStinkBugActionBase::updateFlyRollWait(s32 waitSteps) {
 
 bool BossStinkBugActionBase::updateFlyRollEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "FlyRollRight", nullptr);
+        MR::startBck(getHost(), "FlyRollRight");
     }
 
     startSoundFly(0);
@@ -85,7 +85,7 @@ bool BossStinkBugActionBase::updateFlyRollEnd() {
 
 bool BossStinkBugActionBase::updateFlyDash(f32 f1) {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(getHost(), "FlyWait", nullptr);
+        MR::tryStartBck(getHost(), "FlyWait");
         BossStinkBugFunction::calcDiffCurrentRailPosition(&_14, getHost(), _3C, _44);
     }
 
@@ -227,7 +227,7 @@ BossStinkBugActionBase::~BossStinkBugActionBase() {
 
 bool BossStinkBugActionBase::updateGroundRegainRail(f32 f1) {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(getHost(), "GroundWalk", nullptr);
+        MR::tryStartBck(getHost(), "GroundWalk");
         BossStinkBugFunction::calcDiffCurrentRailPosition(&_14, getHost(), _3C, _44);
     }
 
@@ -245,7 +245,7 @@ bool BossStinkBugActionBase::updateGroundRegainRail(f32 f1) {
 bool BossStinkBugActionBase::updateGroundFind() {
     if (MR::isFirstStep(this)) {
         MR::startSound(getHost(), "SE_BV_BOSS_BUG_ATTACK_G");
-        MR::startBck(getHost(), "Find", nullptr);
+        MR::startBck(getHost(), "Find");
         _48 = 0.0f;
     }
 
@@ -258,7 +258,7 @@ bool BossStinkBugActionBase::updateGroundFind() {
 
 bool BossStinkBugActionBase::updateGroundShakeOff() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "GroundRide", nullptr);
+        MR::startBck(getHost(), "GroundRide");
     }
 
     _48 *= 0.95f;
@@ -273,7 +273,7 @@ bool BossStinkBugActionBase::updateGroundShakeOff() {
 
 bool BossStinkBugActionBase::updateGroundRun(f32 f1) {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "GroundRun", nullptr);
+        MR::startBck(getHost(), "GroundRun");
         BossStinkBugFunction::validateAttack(getHost());
     }
 
@@ -293,7 +293,7 @@ bool BossStinkBugActionBase::updateGroundRun(f32 f1) {
 
 bool BossStinkBugActionBase::updateGroundAttackSuccess() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "AttackSuccess", nullptr);
+        MR::startBck(getHost(), "AttackSuccess");
     }
 
     if (MR::isStep(this, 12)) {
@@ -312,7 +312,7 @@ bool BossStinkBugActionBase::updateGroundAttackSuccess() {
 
 bool BossStinkBugActionBase::updateGroundCoolDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "CoolDown", nullptr);
+        MR::startBck(getHost(), "CoolDown");
     }
 
     MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_BRAKE");
@@ -338,9 +338,9 @@ bool BossStinkBugActionBase::updateGroundTurn() {
         _50 = MR::isRailGoingToEnd(getHost());
 
         if (_50) {
-            MR::startBck(getHost(), "GroundTurnLeft", nullptr);
+            MR::startBck(getHost(), "GroundTurnLeft");
         } else {
-            MR::startBck(getHost(), "GroundTurnRight", nullptr);
+            MR::startBck(getHost(), "GroundTurnRight");
         }
 
         _48 = 0.0f;
@@ -358,7 +358,7 @@ bool BossStinkBugActionBase::updateGroundDamage() {
     if (MR::isFirstStep(this)) {
         MR::zeroVelocity(getHost());
         MR::startSound(getHost(), "SE_BM_BOSS_BUG_PRESSED");
-        MR::startBck(getHost(), "GroundDamage", nullptr);
+        MR::startBck(getHost(), "GroundDamage");
 
         MR::tryRumblePadStrong(getHost(), WPAD_CHAN0);
         MR::shakeCameraStrong();
@@ -385,7 +385,7 @@ bool BossStinkBugActionBase::updateGroundDamage() {
 
 bool BossStinkBugActionBase::updateFly() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "FlyWait", nullptr);
+        MR::startBck(getHost(), "FlyWait");
     }
 
     startSoundFly(0);
@@ -397,7 +397,7 @@ bool BossStinkBugActionBase::updateFly() {
 
 bool BossStinkBugActionBase::updateFlyShakeOffSign(s32 numSteps) {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "FlyRide", nullptr);
+        MR::startBck(getHost(), "FlyRide");
         mSpringValue->mSpringValue = _3C;
         mSpringValue->mRestValue = _3C;
         mSpringValue->mVelocity = -15.0f;
@@ -418,7 +418,7 @@ bool BossStinkBugActionBase::updateFlyShakeOffSign(s32 numSteps) {
 
 bool BossStinkBugActionBase::updateFlyShakeOff() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "FlyRollRight", nullptr);
+        MR::startBck(getHost(), "FlyRollRight");
     }
 
     startSoundFly(3);
@@ -436,7 +436,7 @@ bool BossStinkBugActionBase::updateFlyShakeOff() {
 
 bool BossStinkBugActionBase::updateFlyShakeOffWait(s32 numSteps) {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "FlyRollWaitRight", nullptr);
+        MR::startBck(getHost(), "FlyRollWaitRight");
     }
 
     startSoundFly(0);
@@ -453,7 +453,7 @@ bool BossStinkBugActionBase::updateFlyShakeOffWait(s32 numSteps) {
 
 bool BossStinkBugActionBase::updateFlyShakeOffEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "FlyRollRight", nullptr);
+        MR::startBck(getHost(), "FlyRollRight");
     }
 
     startSoundFly(0);
@@ -470,7 +470,7 @@ bool BossStinkBugActionBase::updateFlyShakeOffEnd() {
 
 bool BossStinkBugActionBase::updateFlyRollSign(s32 numSteps) {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "FlyRollSignRight", nullptr);
+        MR::startBck(getHost(), "FlyRollSignRight");
     }
 
     if (MR::isStep(this, 10)) {
@@ -492,7 +492,7 @@ bool BossStinkBugActionBase::updateFlyRollSign(s32 numSteps) {
 bool BossStinkBugActionBase::updateFlyTurnSign() {
     if (MR::isFirstStep(this)) {
         MR::startSound(getHost(), "SE_BV_BOSS_BUG_TURN");
-        MR::startBck(getHost(), "FlyTurnSign", nullptr);
+        MR::startBck(getHost(), "FlyTurnSign");
     }
 
     startSoundFly(0);
@@ -509,7 +509,7 @@ bool BossStinkBugActionBase::updateFlyTurnSign() {
 
 bool BossStinkBugActionBase::updateFlyTurn() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "FlyTurn", nullptr);
+        MR::startBck(getHost(), "FlyTurn");
         _20 = getHost()->_EC;
         _50 = MR::isRailGoingToEnd(getHost());
     }
@@ -529,7 +529,7 @@ bool BossStinkBugActionBase::updateFlyTurn() {
 bool BossStinkBugActionBase::updateFall() {
     if (MR::isFirstStep(this)) {
         getHost()->startEventCamera("Fall");
-        MR::startBck(getHost(), "Fall", nullptr);
+        MR::startBck(getHost(), "Fall");
         MR::onBind(getHost());
 
         _14 = getHost()->mPosition;
@@ -553,7 +553,7 @@ bool BossStinkBugActionBase::updateFall() {
 bool BossStinkBugActionBase::updateFallDamage() {
     if (MR::isFirstStep(this)) {
         MR::startSound(getHost(), "SE_BM_BOSS_BUG_PRESSED");
-        MR::startBck(getHost(), "FallDamage", nullptr);
+        MR::startBck(getHost(), "FallDamage");
         MR::startAction(getHost()->getWingModel(), "FallDamage");
         MR::tryRumblePadStrong(getHost(), WPAD_CHAN0);
         MR::shakeCameraStrong();
@@ -581,7 +581,7 @@ bool BossStinkBugActionBase::updateToGround() {
     if (MR::isFirstStep(this)) {
         MR::startSound(getHost(), "SE_BV_BOSS_BUG_ANGRY_LAND");
         MR::startAction(getHost()->getWingModel(), "Ground");
-        MR::tryStartBck(getHost(), "TurnDown", nullptr);
+        MR::tryStartBck(getHost(), "TurnDown");
         getHost()->validateCollisionGround();
         getHost()->onBindLeg();
         getHost()->_10C = 0.0f;
@@ -622,7 +622,7 @@ bool BossStinkBugActionBase::updateToGround() {
 
 bool BossStinkBugActionBase::updateLand() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(getHost(), "Land", nullptr);
+        MR::tryStartBck(getHost(), "Land");
         getHost()->_10C = 1.0f;
     }
 
@@ -640,7 +640,7 @@ bool BossStinkBugActionBase::updateToFly() {
     if (MR::isFirstStep(this)) {
         MR::startSound(getHost(), "SE_BV_BOSS_BUG_ANGRY_TAKEOFF");
         MR::startAction(getHost()->getWingModel(), "Fly");
-        MR::tryStartBck(getHost(), "TakeOff", nullptr);
+        MR::tryStartBck(getHost(), "TakeOff");
         _30 = _48;
         getHost()->validateCollisionHitOnly();
         getHost()->offBindLeg();

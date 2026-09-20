@@ -138,7 +138,7 @@ void BombHeiLauncher::exeLauncherWait() {
             return;
         }
 
-        MR::startBck(this, "Open", nullptr);
+        MR::startBck(this, "Open");
         MR::startSound(this, "SE_EM_BOMBLAUN_LAUNCH");
 
         mBomb->appear();

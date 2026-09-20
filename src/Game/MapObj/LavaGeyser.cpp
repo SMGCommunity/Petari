@@ -134,7 +134,7 @@ void LavaGeyser::exeShootUp() {
         MR::showModel(this);
         MR::validateHitSensors(this);
         MR::startSound(this, "SE_OJ_LAVA_GEYSER_SHOOT");
-        MR::startBck(this, "LavaGeyserAppear", nullptr);
+        MR::startBck(this, "LavaGeyserAppear");
     }
     MR::copyJointPos(this, "Top", &_94);
     MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN");
@@ -146,7 +146,7 @@ void LavaGeyser::exeShootUp() {
 
 void LavaGeyser::exeShootKeep() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "LavaGeyserWait", nullptr);
+        MR::startBck(this, "LavaGeyserWait");
     }
     MR::copyJointPos(this, "Top", &_94);
     MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN");
@@ -158,7 +158,7 @@ void LavaGeyser::exeShootKeep() {
 
 void LavaGeyser::exeShootDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "LavaGeyserDisappear", nullptr);
+        MR::startBck(this, "LavaGeyserDisappear");
     }
     MR::copyJointPos(this, "Top", &_94);
     MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_KEEP");

@@ -43,7 +43,7 @@ void SeaGull::init(const JMapInfoIter& rIter) {
     MR::calcActorAxis(&_C4, &_B8, &_AC, this);
     MR::calcActorAxisY(&_A0, this);
     initModelManagerWithAnm("SeaGull", 0, false);
-    MR::startBck(this, "Fly", 0);
+    MR::startBck(this, "Fly");
     MR::setBckFrameAtRandom(this);
     MR::connectToSceneEnvironment(this);
     f32 railLength = MR::getRailTotalLength(mSeaGullGroup);

@@ -47,9 +47,9 @@ void HatchWaterPlanet::exeWait() {
 
 void HatchWaterPlanet::exeOpen() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "HatchWaterPlanet", nullptr);
+        MR::startBck(this, "HatchWaterPlanet");
         MR::startBtk(this, "HatchWaterPlanet");
-        MR::startBck(mPlanetLODCtrl->_14, "HatchWaterPlanetLow", nullptr);
+        MR::startBck(mPlanetLODCtrl->_14, "HatchWaterPlanetLow");
         MR::setBckFrameAndStop(mPlanetLODCtrl->_14, 1.0f);
         MR::startSound(this, "SE_OJ_HATCH_WATER_PNT_ST");
     }

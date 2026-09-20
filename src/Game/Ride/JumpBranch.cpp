@@ -202,7 +202,7 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
         mSwingPoint->mFront.set(swingFront);
         mSwingPoint->setInfo(diff, swingVelocity, mPosition, ::sPointInterval);
 
-        MR::startBckPlayer("JumpBranchWait", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("JumpBranchWait");
         MR::startSound(mRider, "SE_PM_GRAB_OBJ");
         MR::startSound(mRider, "SE_PM_SPIN");
         setNerve(GET_NERVE(JumpBranch, JumpBranchNrvBind));
@@ -259,13 +259,13 @@ bool JumpBranch::updateBind() {
             MR::startSound(mRider, "SE_PV_JUMP_S");
 
             if (front.dot(jumpDir) >= 0.0f) {
-                MR::startBckPlayer("JumpBranchFrontSpin", static_cast< const char* >(nullptr));
+                MR::startBckPlayer("JumpBranchFrontSpin");
             } else {
-                MR::startBckPlayer("JumpBranchBackSpin", static_cast< const char* >(nullptr));
+                MR::startBckPlayer("JumpBranchBackSpin");
             }
 
         } else {
-            MR::startBckPlayer("Fall", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("Fall");
         }
 
         MR::stopSound(mRider, "SE_PM_SPIN");

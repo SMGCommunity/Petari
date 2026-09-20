@@ -77,7 +77,7 @@ void EyeBeamer::init(const JMapInfoIter& rIter) {
         setNerve(GET_NERVE(EyeBeamer, EyeBeamerNrvDemoStartWait));
     }
     MR::setGroupClipping(this, rIter, 0x20);
-    MR::startBck(this, "EyeBeamer", 0);
+    MR::startBck(this, "EyeBeamer");
     makeActorAppeared();
 }
 

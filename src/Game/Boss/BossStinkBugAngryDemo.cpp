@@ -40,7 +40,7 @@ void BossStinkBugAngryDemo::exeDemo() {
         MR::startBckPlayer("BattleWait", "BattleWaitNoInter");
         mDemoPositionController->startDemo("AngryDemo");
         getHost()->reuestMovementOnParts();
-        MR::startBck(getHost(), "AngryDemo", nullptr);
+        MR::startBck(getHost(), "AngryDemo");
         MR::startBrk(getHost(), "Angry");
         MR::tryStartAllAnim(getHost()->getWingModel(), "AngryDemo");
     }

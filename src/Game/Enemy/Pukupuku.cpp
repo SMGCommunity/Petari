@@ -457,7 +457,7 @@ void Pukupuku::exeBindStarPointer() {
 
         const char* pBtp = getBtpName(_C0);
 
-        MR::startBck(this, _C0, nullptr);
+        MR::startBck(this, _C0);
         MR::startBtp(this, pBtp);
         MR::setBckFrame(this, _C8);
         MR::setBtpFrame(this, _CC);

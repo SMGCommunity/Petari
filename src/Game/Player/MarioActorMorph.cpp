@@ -132,9 +132,9 @@ void MarioActor::setPlayerMode(u16 playerMode, bool myBool) {
         MR::startBtp(this, "TornadoElement");
 
         if (isJumping()) {
-            changeAnimation("エレメントゲット", nullptr);
+            changeAnimation("エレメントゲット");
         } else {
-            changeAnimation("エレメントゲット接地中", nullptr);
+            changeAnimation("エレメントゲット接地中");
         }
         break;
 
@@ -254,7 +254,7 @@ void MarioActor::setPlayerMode(u16 playerMode, bool myBool) {
         _9E8->appear();
         _9F0 = 0;
 
-        MR::startBck(_9E8, "Wait", nullptr);
+        MR::startBck(_9E8, "Wait");
         MR::startBva(_9E8, "Wait");
 
         MR::stopBtk(_9E8);

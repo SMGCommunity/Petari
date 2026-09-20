@@ -1918,7 +1918,7 @@ void Mario::actionMain() {
         }
 
         if (isStickOn() && isAnimationRun("水泳陸うちあげ")) {
-            stopAnimation(nullptr, (char*)nullptr);
+            stopAnimation(nullptr);
         }
 
         if (!mDrawStates._4) {
@@ -2289,7 +2289,7 @@ void Mario::touchWater() {
     }
 }
 
-XjointTransform* (XanimeCore::* Mario_FORCE_MATCH_JOINT_TRANSFORM())(u32) {
+XjointTransform* (XanimeCore::*Mario_FORCE_MATCH_JOINT_TRANSFORM())(u32) {
     return &XanimeCore::getJointTransform;
 }
 

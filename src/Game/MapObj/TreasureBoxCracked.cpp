@@ -110,7 +110,7 @@ void TreasureBoxCracked::exeOpen() {
     MR::calcUpVec(&up, this);
 
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Open", nullptr);
+        MR::startBck(this, "Open");
         MR::emitEffect(this, "Open");
 
         if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
@@ -204,7 +204,7 @@ void TreasureBoxCracked::exeOpenWait() {
 void TreasureBoxCracked::exeAlwaysOpen() {
     if (MR::isFirstStep(this)) {
         MR::invalidateHitSensors(this);
-        MR::startBck(this, "Open", nullptr);
+        MR::startBck(this, "Open");
         MR::setBckFrameAndStop(this, MR::getBckCtrl(this)->getEnd());
         TVec3f position;
         PSMTXMultVec(getBaseMtx(), &sTopOpenEndOffset, &position);
@@ -256,7 +256,7 @@ bool TreasureBoxCracked::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, Hit
 
     if (MR::isMsgJetTurtleAttack(msg)) {
         if (mOpenCondition == 1 && pSender->mType != ATYPE_SPECIAL_WEAPON) {
-            MR::startBck(this, "Shock", nullptr);
+            MR::startBck(this, "Shock");
             MR::startSound(this, "SE_OJ_TERAS_BOX_GOLD_REFUSE");
             MR::startSystemSE("SE_SY_FAILURE_1", -1, -1);
             return false;

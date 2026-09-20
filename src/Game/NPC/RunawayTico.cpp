@@ -262,7 +262,7 @@ void RunawayTico::exeWait() {
 
 void RunawayTico::exeAppear() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("WatchupMore", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("WatchupMore");
         MR::startAction(this, "Appear");
         MR::startSound(this, "SE_SM_RUNAWAY_RABBIT_APPEAR");
     }

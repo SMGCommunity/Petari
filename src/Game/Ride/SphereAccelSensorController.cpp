@@ -128,9 +128,3 @@ void SphereAccelSensorController::clacXY(f32* pX, f32* pY) {
     *pX = angleXY;
     *pY = angleYZ;
 }
-
-void SphereController::notifyDeactivate() {
-}
-
-void SphereController::notifyActivate() {
-}

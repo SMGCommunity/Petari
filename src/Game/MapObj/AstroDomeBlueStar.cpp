@@ -270,7 +270,7 @@ void AstroDomeBlueStar::calcZoomInPos(TVec3f* pZoomVec) const {
 
 void AstroDomeBlueStar::exeAppear() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Appear", nullptr);
+        MR::startBck(this, "Appear");
 
         MR::emitEffect(this, "TargetLight");
 
@@ -285,7 +285,7 @@ void AstroDomeBlueStar::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
 
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
         MR::setBckRate(this, 0.5f);
 
         MR::deleteEffect(this, "Target");
@@ -339,7 +339,7 @@ void AstroDomeBlueStar::exePointing() {
 
 void AstroDomeBlueStar::exeTryStartBind() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "React", nullptr);
+        MR::startBck(this, "React");
 
         MR::deleteEffect(this, "Target");
         MR::emitEffect(this, "Active");
@@ -379,7 +379,7 @@ void AstroDomeBlueStar::exeBindTraction() {
         MR::emitEffect(mCaptureActor, "LightGrow");
         MR::emitEffect(mCaptureActor, "LightSplash");
 
-        MR::startBckPlayer("SpaceStruggle", 20);
+        MR::startBckPlayer("SpaceStruggle", 20L);
 
         mBindStartMtx.set(mHostMtx);
 
@@ -420,7 +420,7 @@ void AstroDomeBlueStar::exeBindHold() {
 
         MR::deleteEffect(mCaptureActor, "LightSplash");
 
-        MR::startBckPlayer("SpaceWait", 20);
+        MR::startBckPlayer("SpaceWait", 20L);
 
         mCaptureActor->setPosAll(mPosition);
 

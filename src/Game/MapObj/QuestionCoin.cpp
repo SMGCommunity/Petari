@@ -232,7 +232,7 @@ void QuestionCoin::exeThrowActor() {
         MR::startSystemSE("SE_SY_QUESTION_COIN", -1, -1);
         MR::tryRumblePadMiddle(this, 0);
         MR::hideModel(this);
-        MR::startBck(mBoundActor, "QuestionCoinJumpStart", nullptr);
+        MR::startBck(mBoundActor, "QuestionCoinJumpStart");
         MR::startSound(mBoundActor, "SE_PV_JUMP_JOY");
 
         if (MR::isExistActorCamera(mCameraInfo)) {
@@ -247,7 +247,7 @@ void QuestionCoin::exeThrowActor() {
         rotation.getYDir(velocity);
         velocity.setLength(mLaunchSpeed);
         mBoundActor->mVelocity.set(velocity);
-        MR::startBck(mBoundActor, "QuestionCoinJump", nullptr);
+        MR::startBck(mBoundActor, "QuestionCoinJump");
 
         if (mIsWeakGravity) {
             MR::endBindAndPlayerForceWeakGravityJump(this, velocity);

@@ -4,7 +4,6 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/Color.hpp"
-#include "Game/Util/Functor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -19,6 +18,10 @@
 #include <revolution/gx/GXTev.h>
 #include <revolution/gx/GXTransform.h>
 #include <revolution/gx/GXVert.h>
+
+void PlantStalk_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
 
 namespace {
     static const f32 sGrowSpeedMin = 15.0f;
@@ -237,8 +240,7 @@ PlantStalkDrawInit::PlantStalkDrawInit(const char* pName) : NameObj(pName) {
     mTexture = nullptr;
     mTexture = new JUTTexture(MR::loadTexFromArc("Plant.arc", "PlantStalk.bti"), 0);
 
-    MR::FunctorV0M< const PlantStalkDrawInit*, void (PlantStalkDrawInit::*)() const > preDrawFunctor(this, &PlantStalkDrawInit::initDraw);
-    MR::registerPreDrawFunction(preDrawFunctor, MR::DrawType_PlantStalk);
+    MR::registerPreDrawFunction(MR::Functor(this, &PlantStalkDrawInit::initDraw), MR::DrawType_PlantStalk);
 }
 
 void PlantStalkDrawInit::initDraw() const {

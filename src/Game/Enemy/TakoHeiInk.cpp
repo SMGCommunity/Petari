@@ -64,7 +64,7 @@ void TakoHeiInk::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
 void TakoHeiInk::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
     }
 
     if (MR::isGreaterStep(this, ::sBindOnTime) && MR::isNoBind(this)) {

@@ -197,7 +197,7 @@ bool GravityLightRoad::tryStartBind(LiveActor* pActor) {
 
     mHost = pActor;
 
-    MR::startBckPlayer("Fall", static_cast< const char* >(nullptr));
+    MR::startBckPlayer("Fall");
 
     MR::invalidateClipping(this);
 

@@ -84,7 +84,7 @@ void RingBeamer::exeWait() {
 
 void RingBeamer::exeAttack() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Open", nullptr);
+        MR::startBck(this, "Open");
     }
 
     if (MR::isGreaterEqualStep(this, 240)) {

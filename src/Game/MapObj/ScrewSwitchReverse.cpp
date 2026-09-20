@@ -44,7 +44,8 @@ void ScrewSwitchReverse::init(const JMapInfoIter& rIter) {
     initHitSensor(2);
     MR::addBodyMessageSensorMapObj(this);
     TVec3f offset;
-    MR::addHitSensorAtJoint(this, "binder", "Screw", ATYPE_BINDER, 8, 120.0f, offset.scaleInline(-130.0f));
+    offset.scale(-130.0f, mGravity);
+    MR::addHitSensorAtJoint(this, "binder", "Screw", ATYPE_BINDER, 8, 120.0f, offset);
 
     MR::initCollisionParts(this, "ScrewReverseCol", getSensor("binder"), MR::getJointMtx(this, "Screw"));
     initEffectKeeper(0, nullptr, false);
@@ -82,8 +83,8 @@ void ScrewSwitchReverse::exeAdjust() {
 
 void ScrewSwitchReverse::exeScrew() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "ScrewSwitchReverseOn", nullptr);
-        MR::startBckPlayer("ScrewSwitchReverseOn", static_cast< const char* >(nullptr));
+        MR::startBck(this, "ScrewSwitchReverseOn");
+        MR::startBckPlayer("ScrewSwitchReverseOn");
     }
 
     if (MR::isLessStep(this, ::sStepToRumbleCamera)) {

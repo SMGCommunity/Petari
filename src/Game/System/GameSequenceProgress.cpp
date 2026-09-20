@@ -133,7 +133,7 @@ void GameSequenceProgress::endScene() {
         GameSystemFunction::setResetOperationApplicationReset();
 
         setNerve(GET_NERVE_ANON(GameSequenceProgressWaitGoToFirstScene));
-    } else if (!isNerve(GET_NERVE_GLOBAL(GameSequenceProgressWaitGoToFirstScene))) {
+    } else if (!isNerve(GET_NERVE_ANON(GameSequenceProgressWaitGoToFirstScene))) {
         MR::requestChangeSceneTitle();
     }
 }

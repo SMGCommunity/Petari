@@ -14,7 +14,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
-
 namespace NrvBegomanLauncher {
     NEW_NERVE(HostTypeNrvWaitAfterSwitchOn, BegomanLauncher, WaitAfterSwitchOn);
     NEW_NERVE(HostTypeNrvWait, BegomanLauncher, Wait);
@@ -173,7 +172,7 @@ void BegomanLauncher::exeAppear() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
         MR::emitEffect(this, "Launcher");
-        MR::startBck(this, "BegomanLauncher", nullptr);
+        MR::startBck(this, "BegomanLauncher");
     }
 
     MR::startLevelSound(this, "SE_EM_LV_BEGOMANLAUN_APPEAR");
@@ -186,7 +185,7 @@ void BegomanLauncher::exeAppear() {
 void BegomanLauncher::exeDisappear() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
-        MR::startBck(this, "BegomanLauncher", nullptr);
+        MR::startBck(this, "BegomanLauncher");
         MR::setBckFrame(this, 90.0f);
         MR::deleteEffect(this, "Launcher");
     }

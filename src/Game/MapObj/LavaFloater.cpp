@@ -79,22 +79,13 @@ void LavaFloater::initAfterPlacement() {
     }
 
     _A8 = mPosition.distance(_9C);
-    TVec3f v2 = (mPosition - _9C);
-    if (v2.dot(mGravity) < 0.0f) {
+    if ((mPosition - _9C).dot(mGravity) < 0.0f) {
         _A8 *= -1.0f;
     }
 
     if (mMtxSetter != nullptr) {
-        TVec3f unusedMtx, baseMtx;
-        f32 v1 = _A8;
-        baseMtx.y = v1;
-        baseMtx.x = 0.0f;
-        baseMtx.z = 0.0f;
-
-        unusedMtx.x = 0.0f;
-        unusedMtx.y = v1;
-        unusedMtx.z = 0.0f;
-        mMtxSetter->updateMtxUseBaseMtxWithLocalOffset(baseMtx);
+        TVec3f uselessVec(0.0f, _A8, 0.0f);
+        mMtxSetter->updateMtxUseBaseMtxWithLocalOffset(TVec3f (0.0f, _A8, 0.0f));
     }
 
     MR::offCalcGravity(this);
@@ -138,7 +129,7 @@ void LavaFloater::endClipped() {
 f32 LavaFloater::getCurrentSinkDepth() const {
     TPos3f depthMtx;
     TVec3f v1, v2;
-    depthMtx.setInline(getBaseMtx());
+    depthMtx.set(getBaseMtx());
     depthMtx.getZDir(v1);
     depthMtx.getYDir(v2);
     f32 sign = MR::sign(v2.dot(_9C - v1));

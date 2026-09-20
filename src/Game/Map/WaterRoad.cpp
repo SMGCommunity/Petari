@@ -646,7 +646,7 @@ void WaterRoad::exeWaitInvalid() {
 
 void WaterRoad::exeRideStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("WaterRoadIn", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("WaterRoadIn");
         MR::startSound(mRider, "SE_OJ_WATER_ROAD_BIND_IN");
     }
 
@@ -666,7 +666,7 @@ void WaterRoad::exeRideStart() {
 
 void WaterRoad::exeRideWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("SwimFlutter", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("SwimFlutter");
     }
 
     if (updateRide()) {
@@ -680,7 +680,7 @@ void WaterRoad::exeRideWait() {
 
 void WaterRoad::exeRideSpin() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("SwimSpin", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("SwimSpin");
         MR::startSound(mRider, "SE_PM_TORNADE_IN_WATER_ST");
         f32 speed = MR::getRailCoordSpeed(this);
         speed += ::sRiderSpinAccel;

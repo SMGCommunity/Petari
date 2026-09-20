@@ -887,7 +887,7 @@ void MarioActor::emitEffectWaterColumn(const TVec3f& rDir, const TVec3f& rTrans)
     }
 
     _BA8->appear();
-    MR::startBck(_BA8, "WaterColumn", nullptr);
+    MR::startBck(_BA8, "WaterColumn");
     MR::startBrk(_BA8, "WaterColumn");
 
     TVec3f rot;

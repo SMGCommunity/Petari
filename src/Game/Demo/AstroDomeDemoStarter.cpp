@@ -1,5 +1,3 @@
-#include "Game/Util/Functor.hpp"
-
 #include "Game/Demo/AstroDomeDemoStarter.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
@@ -141,8 +139,8 @@ void AstroDomeDemoStarter::exeSpinDriverAppear() {
         _94.concat(rotateMtx);
         MR::setBaseTRMtx(this, _94);
         MR::showModel(this);
-        MR::startBck(this, "Appear", nullptr);
-        MR::startBckPlayer("SpinDriverWait", 20);
+        MR::startBck(this, "Appear");
+        MR::startBckPlayer("SpinDriverWait", 20L);
         MR::startSound(this, "SE_OJ_S_SPIN_DRV_APPEAR");
     }
 
@@ -157,8 +155,8 @@ void AstroDomeDemoStarter::exeSpinDriverAppear() {
 
 void AstroDomeDemoStarter::exeSpinDriverStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Start", nullptr);
-        MR::startBckPlayer("SuperSpinDriverStart", static_cast< const char* >(nullptr));
+        MR::startBck(this, "Start");
+        MR::startBckPlayer("SuperSpinDriverStart");
         MR::setPlayerBaseMtx(_94);
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::startCSSound("CS_SPIN_DRIVE_LONG", "SE_SY_CS_S_SPIN_DRV_START", 0);
@@ -178,7 +176,7 @@ void AstroDomeDemoStarter::exeSpinDriverStart() {
 void AstroDomeDemoStarter::exeSpinDriverShoot() {
     if (MR::isFirstStep(this)) {
         MR::setBckRate(this, 1.0f);
-        MR::startBckPlayer("SpaceFlyStart", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("SpaceFlyStart");
         MR::emitEffect(MR::getPlayerDemoActor(), "SuperSpinDriverFlyGlow");
         MR::shakeCameraNormal();
         MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
@@ -205,7 +203,7 @@ void AstroDomeDemoStarter::exeJumpOut() {
     if (MR::isFirstStep(this)) {
         MR::hideModel(this);
         MR::resetPlayerEffect();
-        MR::startBckPlayer("SpaceFlyLoop", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("SpaceFlyLoop");
         MR::emitEffect(MR::getPlayerDemoActor(), "SuperSpinDriverFlyGlow");
         _90->appear();
     }

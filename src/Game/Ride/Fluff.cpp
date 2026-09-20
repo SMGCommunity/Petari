@@ -115,21 +115,21 @@ void Fluff::exeFreeBloom() {
         MR::calcGravity(this);
         MR::offCalcGravity(this);
         MR::offBind(this);
-        MR::startBck(mModel, "Bloom", nullptr);
+        MR::startBck(mModel, "Bloom");
         MR::setShadowVolumeSphereRadius(this, nullptr, 30.0f);
         MR::invalidateHitSensors(this);
         MR::validateHitSensor(this, "WindReceiver");
         MR::hideModel(this);
     }
     if (MR::isBckStopped(mModel)) {
-        MR::startBck(mModel, "Wait", nullptr);
+        MR::startBck(mModel, "Wait");
         setNerve(GET_NERVE(Fluff, FluffNrvFreeWaitOnGround));
     }
 }
 
 void Fluff::exeFreeWaitOnGround() {
     if (MR::isFirstStep(this)) {
-        if (MR::tryStartBck(mModel, "Wait", nullptr)) {
+        if (MR::tryStartBck(mModel, "Wait")) {
             MR::setBckFrameAtRandom(mModel);
         }
 
@@ -141,8 +141,8 @@ void Fluff::exeFreeWaitOnGround() {
 void Fluff::exeFreeWaitAir() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
-        MR::startBck(this, "WaitAir", nullptr);
-        MR::startBck(mModel, "Spin", 0);
+        MR::startBck(this, "WaitAir");
+        MR::startBck(mModel, "Spin");
         MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_BLOW");
         MR::onBind(this);
         MR::validateHitSensor(this, "bind");
@@ -183,8 +183,8 @@ void Fluff::exeFreeWaitInvalid() {
 
 void Fluff::exeRideStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Fly", nullptr);
-        MR::startBckPlayer("FluffStart", static_cast< const char* >(nullptr));
+        MR::startBck(this, "Fly");
+        MR::startBckPlayer("FluffStart");
         MR::offBind(this);
     }
 
@@ -205,11 +205,11 @@ void Fluff::exeRideStart() {
 
 void Fluff::exeRideFly() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Fly", nullptr);
+        MR::tryStartBck(this, "Fly");
         if (mSpinsRemaining > 0) {
-            MR::startBckPlayer("FluffFly", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("FluffFly");
         } else {
-            MR::startBckPlayer("FluffFlyLast", static_cast< const char* >(nullptr));
+            MR::startBckPlayer("FluffFlyLast");
         }
         MR::deleteEffect(this, "HardWind");
         MR::onBind(this);
@@ -224,8 +224,8 @@ void Fluff::exeRideFly() {
 
 void Fluff::exeRideFlyOnWind() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "FlyWind", static_cast< const char* >(nullptr));
-        MR::startBckPlayer("FluffFlyWind", static_cast< const char* >(nullptr));
+        MR::tryStartBck(this, "FlyWind");
+        MR::startBckPlayer("FluffFlyWind");
         MR::emitEffect(this, "HardWind");
     }
 
@@ -249,7 +249,7 @@ void Fluff::exeRideSpinUp() {
         }
 
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
-        MR::startBckPlayer("FluffSpin", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("FluffSpin");
         MR::tryPlayerCoinPull();
         if (mSpinsRemaining > 0) {
             mSpinsRemaining--;
@@ -257,15 +257,15 @@ void Fluff::exeRideSpinUp() {
             MR::startSpinHitSound(this);
             if (mSpinsRemaining == 2) {
                 MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_1");
-                MR::startBck(this, "Spin1st", nullptr);
+                MR::startBck(this, "Spin1st");
                 MR::startBrk(this, "Spin1st");
             } else if (mSpinsRemaining == 1) {
                 MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_2");
-                MR::startBck(this, "Spin2nd", nullptr);
+                MR::startBck(this, "Spin2nd");
                 MR::startBrk(this, "Spin2nd");
             } else {
                 MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_4");
-                MR::startBck(this, "Spin3rd", nullptr);
+                MR::startBck(this, "Spin3rd");
                 MR::startBrk(this, "Spin3rd");
             }
         }
@@ -346,7 +346,7 @@ bool Fluff::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
 
         mRider = MR::getSensorHost(pSender);
         MR::showModel(this);
-        MR::tryStartBck(mModel, "Spin", nullptr);
+        MR::tryStartBck(mModel, "Spin");
         MR::onCalcGravity(this);
         mVelocity.set(*MR::getPlayerVelocity());
         if (mVelocity.dot(mGravity) > 0.0f) {
@@ -416,7 +416,7 @@ void Fluff::endBind(f32 jumpY) {
         TVec3f jumpVec = mUp * jumpY;
         MR::vecKillElement(mVelocity, mGravity, &mVelocity);
         jumpVec.add(mVelocity);
-        MR::startBckPlayer("Fall", static_cast< const char* >(nullptr));
+        MR::startBckPlayer("Fall");
         MR::endBindAndPlayerJump(this, jumpVec, 0);
         MR::startSound(mRider, "SE_PV_JUMP_S");
         MR::startSound(mRider, "SE_PM_JUMP_M");

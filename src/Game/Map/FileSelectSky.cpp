@@ -47,7 +47,7 @@ bool FileSelectSky::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRec
 
 void FileSelectSky::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "CometNearOrbitSky", nullptr);
+        MR::startBck(this, "CometNearOrbitSky");
         MR::startBtk(this, "CometNearOrbitSky");
     }
 

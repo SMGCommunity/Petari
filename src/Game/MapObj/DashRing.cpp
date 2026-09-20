@@ -96,7 +96,7 @@ void DashRing::initCommon(const JMapInfoIter& rIter, const char* pName) {
 
     if (mDoLoop) {
         const char* animName = "Loop";
-        MR::startBck(this, animName, 0);
+        MR::startBck(this, animName);
         MR::startBrk(this, animName);
     }
 
@@ -134,7 +134,7 @@ void DashRing::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
         if (mDoLoop) {
             const char* pName = "Start";
-            MR::startBck(this, pName, nullptr);
+            MR::startBck(this, pName);
             MR::startBrk(this, pName);
         }
 
@@ -176,7 +176,7 @@ void DashRing::control() {
             MR::invalidateHitSensors(this);
 
             const char* pName = "End";
-            MR::startBck(this, pName, nullptr);
+            MR::startBck(this, pName);
             MR::startBrk(this, pName);
 
             return;
@@ -206,7 +206,7 @@ void DashRing::control() {
         mPosition = mInitialPosition;
 
         const char* pName = "Revival";
-        MR::startBck(this, pName, nullptr);
+        MR::startBck(this, pName);
         MR::startBrk(this, pName);
 
         MR::validateHitSensors(this);
@@ -216,7 +216,7 @@ void DashRing::control() {
 
     if (MR::isBckOneTimeAndStopped(this)) {
         const char* pName = "Loop";
-        MR::startBck(this, pName, nullptr);
+        MR::startBck(this, pName);
         MR::startBrk(this, pName);
 
         MR::validateClipping(this);

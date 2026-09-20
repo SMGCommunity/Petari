@@ -70,7 +70,3 @@ bool DinoPackunSequencer::receiveOtherMsgTail(u32 msg, HitSensor* pSender, HitSe
 
     return false;
 }
-
-DinoPackunSequencer::~DinoPackunSequencer() {
-    return;
-}

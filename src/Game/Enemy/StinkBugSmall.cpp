@@ -94,7 +94,7 @@ void StinkBugSmall::init(const JMapInfoIter& rIter) {
 
 void StinkBugSmall::exeWait() {
     if (MR::isFirstStep(this) && _B0 == 0.0f) {
-        MR::tryStartBck(this, "Search", nullptr);
+        MR::tryStartBck(this, "Search");
     }
 
     fixInitPos();
@@ -109,7 +109,7 @@ void StinkBugSmall::exeWait() {
 
 void StinkBugSmall::exeSearch() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Search", nullptr);
+        MR::tryStartBck(this, "Search");
     }
 
     fixInitPos();
@@ -122,7 +122,7 @@ void StinkBugSmall::exeSearch() {
 
 void StinkBugSmall::exeDashSign() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "RushStart", nullptr);
+        MR::startBck(this, "RushStart");
         MR::startSound(this, "SE_EV_STINKBUG_S_FIND");
     }
 
@@ -142,7 +142,7 @@ void StinkBugSmall::exeDashSignEnd() {
 
 void StinkBugSmall::exeDash() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Rush", nullptr);
+        MR::startBck(this, "Rush");
         MR::validateHitSensors(this);
     }
 
@@ -159,7 +159,7 @@ void StinkBugSmall::exeDash() {
 
 void StinkBugSmall::exeDashEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "RushStop", nullptr);
+        MR::startBck(this, "RushStop");
     }
 
     mVelocity.zero();
@@ -170,7 +170,7 @@ void StinkBugSmall::exeDashEnd() {
 
 void StinkBugSmall::exeBack() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Back", nullptr);
+        MR::startBck(this, "Back");
         MR::invalidateHitSensor(this, "head");
     }
 
@@ -189,7 +189,7 @@ void StinkBugSmall::exeBack() {
 
 void StinkBugSmall::exeHipDropDown() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Death", nullptr);
+        MR::startBck(this, "Death");
         MR::startBrk(this, "Death");
         if (!_C4) {
             MR::invalidateCollisionParts(this);
@@ -209,7 +209,7 @@ void StinkBugSmall::exeHipDropDown() {
 
 void StinkBugSmall::exeAttack() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Attack", nullptr);
+        MR::startBck(this, "Attack");
     }
 
     mVelocity.zero();
@@ -220,8 +220,7 @@ void StinkBugSmall::exeAttack() {
 
 void StinkBugSmall::exeSpinReaction() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "SpinAction", nullptr);
-        MR::startSound(this, "SE_EM_GUARD_S");
+        MR::startBck(this, "SpinAction");
     }
 
     mVelocity.zero();
@@ -232,7 +231,7 @@ void StinkBugSmall::exeSpinReaction() {
 
 void StinkBugSmall::exeShakeStart() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Repel", nullptr);
+        MR::startBck(this, "repel");
     }
 
     if (MR::isStep(this, 40)) {
@@ -248,7 +247,7 @@ void StinkBugSmall::exeShake() {
 
 void StinkBugSmall::exePanic() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Loss", nullptr);
+        MR::startBck(this, "Loss");
         MR::invalidateHitSensor(this, "head");
     }
 

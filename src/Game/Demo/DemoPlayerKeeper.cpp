@@ -44,6 +44,6 @@ void DemoPlayerKeeper::executePlayer(const DemoPlayerInfo* pPlayerInfo) const {
         MR::setPlayerPosOnGroundAndWait(pPlayerInfo->mPosName);
     }
     if (pPlayerInfo->mBckName != nullptr) {
-        MR::startBckPlayer(pPlayerInfo->mBckName, (const char*)nullptr);
+        MR::startBckPlayer(pPlayerInfo->mBckName);
     }
 }

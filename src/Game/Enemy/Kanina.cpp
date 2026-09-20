@@ -377,10 +377,10 @@ void Kanina::doDamageFireBall(HitSensor* pSender, HitSensor* pReceiver) {
 
 void Kanina::startRun() {
     if (mType == KaninaType_Red) {
-        MR::startBck(this, "ChaseRun", nullptr);
+        MR::startBck(this, "ChaseRun");
         MR::startBtp(this, "Angry");
     } else {
-        MR::startBck(this, "Run", nullptr);
+        MR::startBck(this, "Run");
     }
 
     MR::setBckRate(this, ::sAnimRateRunAway);
@@ -647,7 +647,7 @@ bool Kanina::tryPointing() {
 
 void Kanina::exeAppear() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Appear", nullptr);
+        MR::startBck(this, "Appear");
         MR::startBtp(this, "Normal");
         MR::validateHitSensors(this);
     }
@@ -662,7 +662,7 @@ void Kanina::exeAppear() {
 void Kanina::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::zeroVelocity(this);
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     if (!tryFindPlayer() && !tryPointing() && MR::isStep(this, ::sWaitTime)) {
@@ -683,7 +683,7 @@ void Kanina::exeWait() {
 void Kanina::exeWalk() {
     if (MR::isFirstStep(this)) {
         _DC++;
-        MR::startBck(this, "Walk", nullptr);
+        MR::startBck(this, "Walk");
         TVec3f temp;
         TVec3f up;
         TVec3f front;
@@ -737,7 +737,7 @@ void Kanina::exeRunAway() {
 
 void Kanina::exeRunAwayReboundDirection() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Run", nullptr);
+        MR::startBck(this, "Run");
         MR::setBckRate(this, ::sAnimRateRunAway);
         TVec3f up;
         MR::calcUpVec(&up, this);
@@ -765,7 +765,7 @@ void Kanina::exeRunAwayReboundDirection() {
 
 void Kanina::exeRunAwayBreak() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         _B8 = ::getRunAwayBreakTimeRandom();
     }
 
@@ -781,7 +781,7 @@ void Kanina::exeRunAwayBreak() {
 void Kanina::exeAttack() {
     if (MR::isFirstStep(this)) {
         MR::calcVecToPlayerH(&_D0, this, nullptr);
-        MR::startBck(this, "Attack", nullptr);
+        MR::startBck(this, "Attack");
         MR::startSound(this, "SE_EM_KANINA_ATTACK_FRONT");
     }
 
@@ -792,7 +792,7 @@ void Kanina::exeAttack() {
 
 void Kanina::exeVauntAttackSuccess() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Vaunt", nullptr);
+        MR::startBck(this, "Vaunt");
         MR::startBtp(this, "Angry");
     }
 
@@ -822,7 +822,7 @@ void Kanina::exeHitWall() {
 
 void Kanina::exeReboundEach() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         mJointRumbler->start();
     }
 
@@ -833,7 +833,7 @@ void Kanina::exeReboundEach() {
 
 void Kanina::exeGuard() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Guard", nullptr);
+        MR::startBck(this, "Guard");
         MR::startSound(this, "SE_EM_KANINA_GUARD");
         MR::tryRumbleDefaultHit(this, 0);
         MR::calcVecToPlayerH(&_D0, this, nullptr);
@@ -846,7 +846,7 @@ void Kanina::exeGuard() {
 
 void Kanina::exeGuardEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "GuardReturn", nullptr);
+        MR::startBck(this, "GuardReturn");
     }
     if (MR::isBckStopped(this)) {
         setNerve(GET_NERVE(Kanina, HostTypeRunAwayBreak));
@@ -856,7 +856,7 @@ void Kanina::exeGuardEnd() {
 void Kanina::exeDamageHipDrop() {
     if (MR::isFirstStep(this)) {
         if (isNerve(GET_NERVE(Kanina, HostTypeDamageHipDrop)) || isNerve(GET_NERVE(Kanina, HostTypeDamageTrampleInvincivle))) {
-            MR::startBck(this, "HipDropDown", nullptr);
+            MR::startBck(this, "HipDropDown");
         }
 
         MR::startBtp(this, "Swoon");
@@ -873,7 +873,7 @@ void Kanina::exeDamageHipDrop() {
 
 void Kanina::exeDamageFireBall() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "PunchDown", nullptr);
+        MR::startBck(this, "PunchDown");
         MR::startBtp(this, "Swoon");
         MR::startBlowHitSound(this);
         MR::invalidateClipping(this);
@@ -891,7 +891,7 @@ void Kanina::exeDamageFireBall() {
 void Kanina::exeDig() {
     if (MR::isFirstStep(this)) {
         _DC = 0;
-        MR::startBck(this, "Dig", nullptr);
+        MR::startBck(this, "Dig");
     }
 
     MR::startLevelSound(this, "SE_EM_LV_KANINA_DIG");
@@ -916,7 +916,7 @@ void Kanina::exeWaitUnderGround() {
 
 void Kanina::exeFindPlayer() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Search", nullptr);
+        MR::startBck(this, "Search");
         MR::startSound(this, "SE_EV_KANINA_FIND");
         MR::calcVecToPlayerH(&_D0, this, nullptr);
     }
@@ -928,7 +928,7 @@ void Kanina::exeFindPlayer() {
 
 void Kanina::exeTurn() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Turn", nullptr);
+        MR::startBck(this, "Turn");
     }
 
     if (MR::turnDirectionToTargetUseGroundNormalDegree(this, &_D0, *MR::getPlayerPos(), ::sTurnSpeed)) {
@@ -938,7 +938,7 @@ void Kanina::exeTurn() {
 
 void Kanina::exeTurnEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     if (MR::isStep(this, ::sTurnEndTime)) {
@@ -948,7 +948,7 @@ void Kanina::exeTurnEnd() {
 
 void Kanina::exePointing() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Guard", nullptr);
+        MR::startBck(this, "Guard");
         MR::startDPDHitSound();
     }
 

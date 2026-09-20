@@ -141,7 +141,7 @@ void Jellyfish::calcAndSetBaseMtx() {
 
 void Jellyfish::exeWait() {
     if (MR::isFirstStep(this) && !MR::isBckPlaying(this, "Wait")) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
         MR::startBrk(this, "Wait");
     }
 
@@ -151,7 +151,7 @@ void Jellyfish::exeWait() {
 
 void Jellyfish::exeFind() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "SearchOn", nullptr);
+        MR::startBck(this, "SearchOn");
         MR::startBrk(this, "SearchOn");
 
         MR::startSound(this, "SE_EM_JELLYFISH_FIND");
@@ -166,7 +166,7 @@ void Jellyfish::exeFind() {
 
 void Jellyfish::exeThreat() {
     if (MR::isBckOneTimeAndStopped(this)) {
-        MR::startBck(this, "SearchWait", nullptr);
+        MR::startBck(this, "SearchWait");
         MR::startBrk(this, "SearchWait");
     }
 
@@ -188,7 +188,7 @@ void Jellyfish::exeDeath() {
 
         MR::stopScene(5);
 
-        MR::startBck(this, "Death", nullptr);
+        MR::startBck(this, "Death");
         MR::startBrk(this, "Death");
 
         MR::startBlowHitSound(this);
@@ -204,7 +204,7 @@ void Jellyfish::exeDeath() {
 
 void Jellyfish::exeAttack() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Attack", nullptr);
+        MR::startBck(this, "Attack");
         MR::startBrk(this, "Attack");
 
         MR::startSound(this, "SE_EM_JELLYFISH_ATTACK");
@@ -298,7 +298,7 @@ bool Jellyfish::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pR
 
 void Jellyfish::threatTurn() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "SearchRotate", nullptr);
+        MR::startBck(this, "SearchRotate");
         MR::startBrk(this, "SearchRotate");
     }
 
@@ -437,9 +437,9 @@ bool Jellyfish::tryDPDSwoon() {
     }
 
     if (!mBindStarPtr->tryStartPointBind()) {
-    return false;
+        return false;
     }
 
-        setNerve(GET_NERVE(Jellyfish, JellyfishNrvDPDSwoon));
-        return true;
+    setNerve(GET_NERVE(Jellyfish, JellyfishNrvDPDSwoon));
+    return true;
 }

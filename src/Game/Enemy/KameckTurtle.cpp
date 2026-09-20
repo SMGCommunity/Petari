@@ -148,7 +148,7 @@ void KameckTurtle::appearDirection(const TVec3f& rDir) {
 
 void KameckTurtle::exeRun() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     _B0.orthogonalize(mGravity);

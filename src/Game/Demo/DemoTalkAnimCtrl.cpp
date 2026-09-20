@@ -218,7 +218,7 @@ void DemoTalkAnimCtrl::updateAnim(const BckCtrlData& rBck) {
     }
 
     if (_4A) {
-        MR::startBck(mActor, _18, nullptr);
+        MR::startBck(mActor, _18);
         MR::reflectBckCtrlData(mActor, rBck);
     }
 }

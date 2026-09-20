@@ -86,7 +86,7 @@ namespace MR {
         if (isPlayerInWaterMode()) {
             if (isNearPlayer(pActor, 10.0f)) {
                 if (!isBckPlaying(pPlayer, "SwimWait")) {
-                    startBckPlayer("SwimWait", static_cast< const char* >(nullptr));
+                    startBckPlayer("SwimWait");
                 }
 
                 return;
@@ -94,11 +94,11 @@ namespace MR {
 
             if (faceToPoint(playerMtx, pActor->mPosition, turnSpeed)) {
                 if (!isBckPlaying(pPlayer, "SwimWait")) {
-                    startBckPlayer("SwimWait", static_cast< const char* >(nullptr));
+                    startBckPlayer("SwimWait");
                 }
             } else {
                 if (!isBckPlaying(pPlayer, "WatchTurnSwim")) {
-                    startBckPlayer("WatchTurnSwim", static_cast< const char* >(nullptr));
+                    startBckPlayer("WatchTurnSwim");
                 }
 
                 setPlayerBaseMtx(playerMtx);
@@ -106,7 +106,7 @@ namespace MR {
         } else if (isOnGroundPlayer()) {
             if (isNearPlayer(pActor, 10.0f)) {
                 if (!isBckPlaying(pPlayer, "Watch")) {
-                    startBckPlayer("Watch", static_cast< const char* >(nullptr));
+                    startBckPlayer("Watch");
                 }
 
                 return;
@@ -114,11 +114,11 @@ namespace MR {
 
             if (faceToPoint(playerMtx, pActor->mPosition, turnSpeed)) {
                 if (!isBckPlaying(pPlayer, "Watch")) {
-                    startBckPlayer("Watch", static_cast< const char* >(nullptr));
+                    startBckPlayer("Watch");
                 }
             } else {
                 if (!isBckPlaying(pPlayer, "WatchTurn")) {
-                    startBckPlayer("WatchTurn", static_cast< const char* >(nullptr));
+                    startBckPlayer("WatchTurn");
                 }
 
                 setPlayerBaseMtx(playerMtx);
@@ -660,7 +660,7 @@ void TakeOutStar::exeAnim() {
         mStarModel->appear();
         MR::invalidateClipping(mStarModel);
         MR::requestMovementOn(mStarModel);
-        MR::startBck(mStarModel, mAnimName, nullptr);
+        MR::startBck(mStarModel, mAnimName);
         MR::startAction(mActor, mActionName);
     }
 

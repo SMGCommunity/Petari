@@ -70,7 +70,7 @@ void SkeletalFishBossBattleDirector::playGuardAnim(const char* pAnimName, s32 nu
         snprintf(animName, sizeof(animName), "%s%c", pAnimName, i + 'A');
         mGuardModels[i]->makeActorAppeared();
         MR::requestMovementOn(mGuardModels[i]);
-        MR::startBck(mGuardModels[i], animName, nullptr);
+        MR::startBck(mGuardModels[i], animName);
         MR::startSound(mGuardModels[i], "SE_BM_SKL_GUARD_APPEAR");
     }
 }

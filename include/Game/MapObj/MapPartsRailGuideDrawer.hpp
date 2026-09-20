@@ -18,6 +18,8 @@ public:
 
     void show();
     void hide();
+    void exeHideAll();
+    void exeDrawAll();
     void exeDrawForward();
 
     /* 0x018 */ MR::Vector< MR::FixedArray< MapPartsRailGuidePoint*, 256 > > mGuidePoints;

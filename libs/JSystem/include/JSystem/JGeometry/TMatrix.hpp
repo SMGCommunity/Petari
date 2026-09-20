@@ -612,7 +612,11 @@ namespace JGeometry {
             this->mMtx[2][2] = c + negc * zz;
         }
 
-        void setRotate(const TVec3f& rFrom, const TVec3f& rTo);
+        void setRotate(const TVec3f& rFrom, const TVec3f& rTo) {
+            TQuat4f q;
+            q.setRotate(rFrom, rTo);
+            setQuat(q);
+        };
 
         void setRotateDegree(const TVec3f& rRot) {
             setRotate(rRot * (PI / 180.0f));
@@ -674,7 +678,7 @@ namespace JGeometry {
     template < class T >
     struct TPosition3 : public TRotation3< T > {
     public:
-        TPosition3() {};
+        TPosition3(){};
 
         TPosition3(MtxPtr rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
@@ -1074,7 +1078,7 @@ namespace JGeometry {
     template < class T >
     struct TProjection3 : public T {
     public:
-        TProjection3() {};
+        TProjection3(){};
 
         TProjection3(const Mtx44Ptr rSrc) {
             JMath::gekko_ps_copy16(this, rSrc);
@@ -1165,14 +1169,6 @@ namespace JGeometry {
             this->mMtx[3][3] = 1.0f;
         }
     };
-
-    template < typename T >
-    void TRotation3< T >::setRotate(const TVec3f& rFrom, const TVec3f& rTo) {
-        TQuat4f q;
-        q.setRotate(rFrom, rTo);
-        setQuat(q);
-    }
-
 };  // namespace JGeometry
 
 typedef JGeometry::SMatrix34C< f32 > TSMtxf;

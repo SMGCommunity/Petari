@@ -127,7 +127,7 @@ MarioFpView::MarioFpView(MarioActor* pActor) : MarioState(pActor, MarioStatus_Fp
 
 bool MarioFpView::start() {
     MR::startSubjectiveCamera(-1);
-    changeAnimation("見る", reinterpret_cast< char* >(nullptr));
+    changeAnimation("見る");
 
     sIsDisabled = true;
 

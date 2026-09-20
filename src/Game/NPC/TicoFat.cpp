@@ -641,11 +641,11 @@ void TicoFat::updatePointing() {
 
 void TicoFat::updateGoods() {
     if (MR::isNearPlayer(this, 2000.0f)) {
-        MR::tryStartBck(_94, "TicoFatGoodsStarPiece", nullptr);
-        MR::tryStartBck(_98, "TicoFatGoodsStarPiece", nullptr);
+        MR::tryStartBck(_94, "TicoFatGoodsStarPiece");
+        MR::tryStartBck(_98, "TicoFatGoodsStarPiece");
     } else {
-        MR::tryStartBck(_94, "TicoFatGoodsStarPieceFar", nullptr);
-        MR::tryStartBck(_98, "TicoFatGoodsStarPieceFar", nullptr);
+        MR::tryStartBck(_94, "TicoFatGoodsStarPieceFar");
+        MR::tryStartBck(_98, "TicoFatGoodsStarPieceFar");
     }
 }
 
@@ -921,7 +921,7 @@ void TicoFat::exeWipeIn() {
                 MR::onSwitchA(this);
             }
 
-            MR::startBck(this, getActionName("Dummy"), nullptr);
+            MR::startBck(this, getActionName("Dummy"));
             MR::hideModelAndOnCalcAnim(this);
             MR::deleteEffect(this, "TicoFatLight");
             if (_94) {

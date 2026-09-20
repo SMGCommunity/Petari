@@ -50,7 +50,7 @@ void TicoDomeLecture::appear() {
 
 void TicoDomeLecture::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", nullptr);
+        MR::startBck(this, "Wait");
     }
 
     MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT");
@@ -59,7 +59,7 @@ void TicoDomeLecture::exeWait() {
 void TicoDomeLecture::exeMove() {
     const char* demoName = "チコ移動";
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Fly", nullptr);
+        MR::startBck(this, "Fly");
     }
 
     MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT");
@@ -76,7 +76,7 @@ void TicoDomeLecture::exeMove() {
 
 void TicoDomeLecture::exeMetamorphosis() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Metamorphosis", nullptr);
+        MR::startBck(this, "Metamorphosis");
         MR::startSound(this, "SE_SM_TICO_METAMORPHOSE");
     }
 

@@ -1,5 +1,3 @@
-#include "Game/Util/Functor.hpp"
-
 #include "Game/Effect/SimpleEffectObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"

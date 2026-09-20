@@ -155,7 +155,7 @@ void DinoPackunVs2::exeWaitStart() {
 }
 
 DinoPackunVs2::~DinoPackunVs2() {
-    return;
+    
 }
 
 s32 DinoPackunVs2::getVsCount() const {
