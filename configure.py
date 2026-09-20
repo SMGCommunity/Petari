@@ -1289,7 +1289,7 @@ config.libs = [
             Object(Matching, "Game/Enemy/SpinHitController.cpp"),
             Object(NonMatching, "Game/Enemy/StinkBugBase.cpp"),
             Object(NonMatching, "Game/Enemy/StinkBugParent.cpp"),
-            Object(NonMatching, "Game/Enemy/StinkBugSmall.cpp"),
+            Object(Matching, "Game/Enemy/StinkBugSmall.cpp"),
             Object(NonMatching, "Game/Enemy/StringSpider.cpp"),
             Object(NonMatching, "Game/Enemy/Takobo.cpp"),
             Object(Matching, "Game/Enemy/TakoHei.cpp"),
