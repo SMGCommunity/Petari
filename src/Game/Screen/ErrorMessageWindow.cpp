@@ -17,7 +17,7 @@ ErrorMessageWindow::ErrorMessageWindow() : LayoutActor("エラーメッセージ
 
 void ErrorMessageWindow::init(const JMapInfoIter& rIter) {
     initLayoutManagerNoConvertFilename("ErrorMessageWindow", 1);
-    initNerve(GET_NERVE_GLOBAL(ErrorMessageWindowHide));
+    initNerve(GET_NERVE_ANON(ErrorMessageWindowHide));
     kill();
 }
 
@@ -27,7 +27,7 @@ void ErrorMessageWindow::appear() {
 }
 
 bool ErrorMessageWindow::isAnimEnd() const {
-    return isNerve(GET_NERVE_GLOBAL(ErrorMessageWindowDisplay)) || isNerve(GET_NERVE_GLOBAL(ErrorMessageWindowHide));
+    return isNerve(GET_NERVE_ANON(ErrorMessageWindowDisplay)) || isNerve(GET_NERVE_ANON(ErrorMessageWindowHide));
 }
 
 void ErrorMessageWindow::appearWithMessage(const char* pMessageId, MessageType messageType, const nw4r::lyt::TexMap* pTexture) {
@@ -40,14 +40,14 @@ void ErrorMessageWindow::appearWithMessage(const char* pMessageId, MessageType m
 
     if (MR::isDead(this)) {
         appear();
-        setNerve(GET_NERVE_GLOBAL(ErrorMessageWindowAppear));
+        setNerve(GET_NERVE_ANON(ErrorMessageWindowAppear));
     } else {
-        setNerve(GET_NERVE_GLOBAL(ErrorMessageWindowDisappearBeforeAppear));
+        setNerve(GET_NERVE_ANON(ErrorMessageWindowDisappearBeforeAppear));
     }
 }
 
 void ErrorMessageWindow::disappear() {
-    setNerve(GET_NERVE_GLOBAL(ErrorMessageWindowDisappear));
+    setNerve(GET_NERVE_ANON(ErrorMessageWindowDisappear));
 }
 
 void ErrorMessageWindow::exeHide() {
@@ -86,7 +86,7 @@ void ErrorMessageWindow::exeAppear() {
         MR::startAnim(this, "Appear", 0);
     }
 
-    MR::setNerveAtAnimStopped(this, GET_NERVE_GLOBAL(ErrorMessageWindowDisplay), 0);
+    MR::setNerveAtAnimStopped(this, GET_NERVE_ANON(ErrorMessageWindowDisplay), 0);
 }
 
 void ErrorMessageWindow::exeDisplay() {
@@ -100,7 +100,7 @@ void ErrorMessageWindow::exeDisappear() {
         MR::startAnim(this, "End", 0);
     }
 
-    MR::setNerveAtAnimStopped(this, GET_NERVE_GLOBAL(ErrorMessageWindowHide), 0);
+    MR::setNerveAtAnimStopped(this, GET_NERVE_ANON(ErrorMessageWindowHide), 0);
 }
 
 void ErrorMessageWindow::exeDisappearBeforeAppear() {
@@ -108,5 +108,5 @@ void ErrorMessageWindow::exeDisappearBeforeAppear() {
         MR::startAnim(this, "End", 0);
     }
 
-    MR::setNerveAtAnimStopped(this, GET_NERVE_GLOBAL(ErrorMessageWindowAppear), 0);
+    MR::setNerveAtAnimStopped(this, GET_NERVE_ANON(ErrorMessageWindowAppear), 0);
 }

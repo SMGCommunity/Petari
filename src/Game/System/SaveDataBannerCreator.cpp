@@ -18,16 +18,16 @@ namespace {
 SaveDataBannerCreator::SaveDataBannerCreator() : NerveExecutor("BannerCreator"), mNANDRequestInfo(), mBanner() {
     mNANDRequestInfo = new NANDRequestInfo();
 
-    initNerve(GET_NERVE_GLOBAL(SaveDataBannerCreatorNoOperation));
+    initNerve(GET_NERVE_ANON(SaveDataBannerCreatorNoOperation));
     setupBannerInfo();
 }
 
 void SaveDataBannerCreator::execute() {
-    setNerve(GET_NERVE_GLOBAL(SaveDataBannerCreatorCreateOnTemporary));
+    setNerve(GET_NERVE_ANON(SaveDataBannerCreatorCreateOnTemporary));
 }
 
 bool SaveDataBannerCreator::isDone() const {
-    return isNerve(GET_NERVE_GLOBAL(SaveDataBannerCreatorNoOperation));
+    return isNerve(GET_NERVE_ANON(SaveDataBannerCreatorNoOperation));
 }
 
 NANDResultCode SaveDataBannerCreator::getResultCode() const {
@@ -51,9 +51,9 @@ void SaveDataBannerCreator::exeCreateOnTemporary() {
     NANDResultCode resultCode = mNANDRequestInfo->mResult;
 
     if (resultCode.isSuccess()) {
-        setNerve(GET_NERVE_GLOBAL(SaveDataBannerCreatorMoveToHomeDir));
+        setNerve(GET_NERVE_ANON(SaveDataBannerCreatorMoveToHomeDir));
     } else {
-        setNerve(GET_NERVE_GLOBAL(SaveDataBannerCreatorNoOperation));
+        setNerve(GET_NERVE_ANON(SaveDataBannerCreatorNoOperation));
     }
 }
 
@@ -70,9 +70,9 @@ void SaveDataBannerCreator::exeMoveToHomeDir() {
     NANDResultCode resultCode = mNANDRequestInfo->mResult;
 
     if (resultCode.isSuccess()) {
-        setNerve(GET_NERVE_GLOBAL(SaveDataBannerCreatorNoOperation));
+        setNerve(GET_NERVE_ANON(SaveDataBannerCreatorNoOperation));
     } else {
-        setNerve(GET_NERVE_GLOBAL(SaveDataBannerCreatorNoOperation));
+        setNerve(GET_NERVE_ANON(SaveDataBannerCreatorNoOperation));
         return;
     }
 }

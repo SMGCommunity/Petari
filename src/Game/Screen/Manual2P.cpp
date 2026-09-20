@@ -43,7 +43,7 @@ void Manual2P::init(const JMapInfoIter& rIter) {
     mBackButton = new BackButton("マニュアルの戻るボタン", true);
     mBackButton->initWithoutIter();
 
-    initNerve(GET_NERVE_GLOBAL(Manual2PNrvAppear));
+    initNerve(GET_NERVE_ANON(Manual2PNrvAppear));
     MR::connectToSceneLayout(this);
 
     i = 0;
@@ -58,7 +58,7 @@ void Manual2P::init(const JMapInfoIter& rIter) {
 
 void Manual2P::appear() {
     LayoutActor::appear();
-    setNerve(GET_NERVE_GLOBAL(Manual2PNrvAppear));
+    setNerve(GET_NERVE_ANON(Manual2PNrvAppear));
 
     mPageIndex = 0;
 
@@ -83,7 +83,7 @@ void Manual2P::exeAppear() {
     }
 
     if (MR::isAnimStopped(this, 0) && mLeftPaneCtrl->isWait() && mRightPaneCtrl->isWait()) {
-        setNerve(GET_NERVE_GLOBAL(Manual2PNrvWait));
+        setNerve(GET_NERVE_ANON(Manual2PNrvWait));
     }
 }
 
@@ -97,7 +97,7 @@ void Manual2P::exeWait() {
 
         if (mLeftPaneCtrl->mIsSelected) {
             MR::startSystemSE("SE_SY_FILE_SEL_TIPS_PAGE");
-            setNerve(GET_NERVE_GLOBAL(Manual2PNrvScrollLeft));
+            setNerve(GET_NERVE_ANON(Manual2PNrvScrollLeft));
             return;
         }
 
@@ -105,7 +105,7 @@ void Manual2P::exeWait() {
             mLeftPaneCtrl->_24 = false;
 
             MR::startSystemSE("SE_SY_FILE_SEL_TIPS_PAGE");
-            setNerve(GET_NERVE_GLOBAL(Manual2PNrvScrollLeft));
+            setNerve(GET_NERVE_ANON(Manual2PNrvScrollLeft));
             return;
         }
     }
@@ -115,7 +115,7 @@ void Manual2P::exeWait() {
 
         if (mRightPaneCtrl->mIsSelected) {
             MR::startSystemSE("SE_SY_FILE_SEL_TIPS_PAGE");
-            setNerve(GET_NERVE_GLOBAL(Manual2PNrvScrollRight));
+            setNerve(GET_NERVE_ANON(Manual2PNrvScrollRight));
             return;
         }
 
@@ -123,13 +123,13 @@ void Manual2P::exeWait() {
             mRightPaneCtrl->_24 = false;
 
             MR::startSystemSE("SE_SY_FILE_SEL_TIPS_PAGE");
-            setNerve(GET_NERVE_GLOBAL(Manual2PNrvScrollRight));
+            setNerve(GET_NERVE_ANON(Manual2PNrvScrollRight));
             return;
         }
     }
 
     if (checkSelectedBackButton()) {
-        setNerve(GET_NERVE_GLOBAL(Manual2PNrvDisappear));
+        setNerve(GET_NERVE_ANON(Manual2PNrvDisappear));
     }
 }
 
@@ -139,7 +139,7 @@ void Manual2P::exeScrollRight() {
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        setNerve(GET_NERVE_GLOBAL(Manual2PNrvScrollRightAfter));
+        setNerve(GET_NERVE_ANON(Manual2PNrvScrollRightAfter));
     }
 }
 
@@ -155,7 +155,7 @@ void Manual2P::exeScrollRightAfter() {
     if (MR::isAnimStopped(this, 0)) {
         mRightPaneCtrl->_24 = true;
         mRightPaneCtrl->forceToWait();
-        setNerve(GET_NERVE_GLOBAL(Manual2PNrvWait));
+        setNerve(GET_NERVE_ANON(Manual2PNrvWait));
     }
 }
 
@@ -167,7 +167,7 @@ void Manual2P::exeScrollLeft() {
     }
 
     if (MR::getAnimCtrl(this, 0)->getFrame() + MR::getAnimCtrl(this, 0)->getRate() <= 0.0f) {
-        setNerve(GET_NERVE_GLOBAL(Manual2PNrvScrollLeftAfter));
+        setNerve(GET_NERVE_ANON(Manual2PNrvScrollLeftAfter));
     }
 }
 
@@ -185,7 +185,7 @@ void Manual2P::exeScrollLeftAfter() {
     if (MR::getAnimCtrl(this, 0)->getFrame() - MR::getAnimCtrl(this, 0)->getRate() <= 0.0f) {
         mLeftPaneCtrl->_24 = true;
         mLeftPaneCtrl->forceToWait();
-        setNerve(GET_NERVE_GLOBAL(Manual2PNrvWait));
+        setNerve(GET_NERVE_ANON(Manual2PNrvWait));
     }
 }
 

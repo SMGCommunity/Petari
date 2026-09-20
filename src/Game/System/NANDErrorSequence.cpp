@@ -26,7 +26,7 @@ namespace {
 
 NANDErrorSequence::NANDErrorSequence(SaveDataHandleSequence* pHost, SysInfoWindow* pParam2, SysInfoWindow*)
     : ActorStateBase("NANDError", pHost), mSystemMessageId(nullptr), _14(false), _15(false), mResult(0), mSysInfoWindow(pParam2) {
-    initNerve(GET_NERVE_GLOBAL(NANDErrorSequenceIdle));
+    initNerve(GET_NERVE_ANON(NANDErrorSequenceIdle));
     kill();
     resetParam();
 }
@@ -37,7 +37,7 @@ void NANDErrorSequence::startErrorToWiiMenu(const char* pSystemMessageId) {
 
     mSystemMessageId = pSystemMessageId;
 
-    setNerve(GET_NERVE_GLOBAL(NANDErrorSequenceError));
+    setNerve(GET_NERVE_ANON(NANDErrorSequenceError));
 }
 
 void NANDErrorSequence::startErrorToFreeze(const char* pSystemMessageId) {
@@ -46,7 +46,7 @@ void NANDErrorSequence::startErrorToFreeze(const char* pSystemMessageId) {
 
     mSystemMessageId = pSystemMessageId;
 
-    setNerve(GET_NERVE_GLOBAL(NANDErrorSequenceErrorToFreeze));
+    setNerve(GET_NERVE_ANON(NANDErrorSequenceErrorToFreeze));
 }
 
 void NANDErrorSequence::startRemoveFile() {
@@ -55,13 +55,13 @@ void NANDErrorSequence::startRemoveFile() {
 
     _15 = false;
 
-    setNerve(GET_NERVE_GLOBAL(NANDErrorSequenceRemoveConfirm));
+    setNerve(GET_NERVE_ANON(NANDErrorSequenceRemoveConfirm));
 }
 
 void NANDErrorSequence::startCheckEnableToCreate() {
     appear();
     resetParam();
-    setNerve(GET_NERVE_GLOBAL(NANDErrorSequenceCheckEnableToCreateOnPreloading));
+    setNerve(GET_NERVE_ANON(NANDErrorSequenceCheckEnableToCreateOnPreloading));
 }
 
 bool NANDErrorSequence::tryLessBlockOrInode(u32 answer) {
@@ -83,7 +83,7 @@ bool NANDErrorSequence::tryLessBlockOrInode(u32 answer) {
 
         mSystemMessageId = pSystemMessageId;
 
-        setNerve(GET_NERVE_GLOBAL(NANDErrorSequenceLessBlockOrInodeConfirm));
+        setNerve(GET_NERVE_ANON(NANDErrorSequenceLessBlockOrInodeConfirm));
 
         return true;
     }
@@ -123,11 +123,11 @@ bool NANDErrorSequence::tryNoRecoverErroSequence(s32 code) {
 }
 
 bool NANDErrorSequence::isPermitToReset() const {
-    return !isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceErrorToFreeze));
+    return !isNerve(GET_NERVE_ANON(NANDErrorSequenceErrorToFreeze));
 }
 
 void NANDErrorSequence::prepareReset() {
-    if (isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceError)) || isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceErrorToFreeze))) {
+    if (isNerve(GET_NERVE_ANON(NANDErrorSequenceError)) || isNerve(GET_NERVE_ANON(NANDErrorSequenceErrorToFreeze))) {
         GameSystemFunction::setResetOperationReturnToMenu();
     }
 }
@@ -137,11 +137,11 @@ bool NANDErrorSequence::isPreparedReset() const {
         return true;
     }
 
-    if (isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceIdle)) || isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceError)) ||
-        isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceRemoveConfirm)) || isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceRemoveDoneKeyWait)) ||
-        isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceNoSaveConfirmBeforeRemove)) ||
-        isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceNoSaveConfirmLessBlockOrInode)) ||
-        isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceLessBlockOrInodeConfirm)) || isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceGoWiiMenu))) {
+    if (isNerve(GET_NERVE_ANON(NANDErrorSequenceIdle)) || isNerve(GET_NERVE_ANON(NANDErrorSequenceError)) ||
+        isNerve(GET_NERVE_ANON(NANDErrorSequenceRemoveConfirm)) || isNerve(GET_NERVE_ANON(NANDErrorSequenceRemoveDoneKeyWait)) ||
+        isNerve(GET_NERVE_ANON(NANDErrorSequenceNoSaveConfirmBeforeRemove)) ||
+        isNerve(GET_NERVE_ANON(NANDErrorSequenceNoSaveConfirmLessBlockOrInode)) ||
+        isNerve(GET_NERVE_ANON(NANDErrorSequenceLessBlockOrInodeConfirm)) || isNerve(GET_NERVE_ANON(NANDErrorSequenceGoWiiMenu))) {
         return true;
     }
 
@@ -151,7 +151,7 @@ bool NANDErrorSequence::isPreparedReset() const {
 void NANDErrorSequence::restoreFromReset() {
     mResult = 0;
 
-    setNerve(GET_NERVE_GLOBAL(NANDErrorSequenceIdle));
+    setNerve(GET_NERVE_ANON(NANDErrorSequenceIdle));
     kill();
 }
 
@@ -190,9 +190,9 @@ void NANDErrorSequence::exeRemoveConfirm() {
     }
 
     if (isSelectedYes) {
-        setNerve(GET_NERVE_GLOBAL(NANDErrorSequenceRemove));
+        setNerve(GET_NERVE_ANON(NANDErrorSequenceRemove));
     } else {
-        setNerve(GET_NERVE_GLOBAL(NANDErrorSequenceNoSaveConfirmBeforeRemove));
+        setNerve(GET_NERVE_ANON(NANDErrorSequenceNoSaveConfirmBeforeRemove));
     }
 }
 
@@ -208,7 +208,7 @@ void NANDErrorSequence::exeRemove() {
     NANDResultCode resultCode = mHost->mSaveDataHandler->getLastResultCode();
 
     if (resultCode.isSuccess() || resultCode.isNoExistFile()) {
-        setNerve(GET_NERVE_GLOBAL(NANDErrorSequenceRemoveDoneKeyWait));
+        setNerve(GET_NERVE_ANON(NANDErrorSequenceRemoveDoneKeyWait));
     } else if (tryNoRecoverErroSequence(resultCode.getCode())) {
         return;
     }
@@ -216,7 +216,7 @@ void NANDErrorSequence::exeRemove() {
 
 void NANDErrorSequence::exeRemoveDoneKeyWait() {
     if (tryProcessDoneKeyWait("System_Save05")) {
-        setNerve(GET_NERVE_GLOBAL(NANDErrorSequenceCheckEnableToCreateAfterRemove));
+        setNerve(GET_NERVE_ANON(NANDErrorSequenceCheckEnableToCreateAfterRemove));
     }
 }
 
@@ -232,7 +232,7 @@ void NANDErrorSequence::exeNoSaveConfirmBeforeRemove() {
 
         kill();
     } else {
-        setNerve(GET_NERVE_GLOBAL(NANDErrorSequenceRemoveConfirm));
+        setNerve(GET_NERVE_ANON(NANDErrorSequenceRemoveConfirm));
     }
 }
 
@@ -248,7 +248,7 @@ void NANDErrorSequence::exeNoSaveConfirmLessBlockOrInode() {
 
         kill();
     } else {
-        setNerve(GET_NERVE_GLOBAL(NANDErrorSequenceLessBlockOrInodeConfirm));
+        setNerve(GET_NERVE_ANON(NANDErrorSequenceLessBlockOrInodeConfirm));
     }
 }
 
@@ -260,9 +260,9 @@ void NANDErrorSequence::exeLessBlockOrInodeConfirm() {
     }
 
     if (isSelectedYes) {
-        setNerve(GET_NERVE_GLOBAL(NANDErrorSequenceGoWiiMenu));
+        setNerve(GET_NERVE_ANON(NANDErrorSequenceGoWiiMenu));
     } else {
-        setNerve(GET_NERVE_GLOBAL(NANDErrorSequenceNoSaveConfirmLessBlockOrInode));
+        setNerve(GET_NERVE_ANON(NANDErrorSequenceNoSaveConfirmLessBlockOrInode));
     }
 }
 
@@ -298,11 +298,11 @@ void NANDErrorSequence::exeCheckEnableToCreateAfterRemove() {
 }
 
 bool NANDErrorSequence::isEnablePointer() const {
-    if (isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceError)) || isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceErrorToFreeze)) ||
-        isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceRemoveConfirm)) || isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceRemoveDoneKeyWait)) ||
-        isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceNoSaveConfirmBeforeRemove)) ||
-        isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceNoSaveConfirmLessBlockOrInode)) ||
-        isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceLessBlockOrInodeConfirm)) || isNerve(GET_NERVE_GLOBAL(NANDErrorSequenceGoWiiMenu))) {
+    if (isNerve(GET_NERVE_ANON(NANDErrorSequenceError)) || isNerve(GET_NERVE_ANON(NANDErrorSequenceErrorToFreeze)) ||
+        isNerve(GET_NERVE_ANON(NANDErrorSequenceRemoveConfirm)) || isNerve(GET_NERVE_ANON(NANDErrorSequenceRemoveDoneKeyWait)) ||
+        isNerve(GET_NERVE_ANON(NANDErrorSequenceNoSaveConfirmBeforeRemove)) ||
+        isNerve(GET_NERVE_ANON(NANDErrorSequenceNoSaveConfirmLessBlockOrInode)) ||
+        isNerve(GET_NERVE_ANON(NANDErrorSequenceLessBlockOrInodeConfirm)) || isNerve(GET_NERVE_ANON(NANDErrorSequenceGoWiiMenu))) {
         return true;
     }
 
