@@ -36,7 +36,7 @@ public:
     bool isPlayerModeHopper() const;
     bool isPlayerModeInvincible() const;
     bool isPlayerModeFoo() const;
-    void changeAnimation(const char*, const char*);
+    void changeAnimation(const char*, const char* = nullptr);
     void changeAnimationNonStop(const char*);
     void changeAnimationWithAttr(const char*, u32);
     void stopAnimation(const char*, const char* = nullptr);

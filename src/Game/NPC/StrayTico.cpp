@@ -236,7 +236,7 @@ void StrayTico::exeChase() {
         MR::validateHitSensor(this, "Body");
         MR::invalidateHitSensor(this, "Bubble");
         MR::onBind(this);
-        MR::tryStartBck(this, "Chase", nullptr);
+        MR::tryStartBck(this, "Chase");
         _B0.set(*MR::getPlayerCenterPos());
     }
 
@@ -295,12 +295,12 @@ void StrayTico::updateChase() {
 
     if (isNotNearPlayer) {
         MR::addVelocityMoveToTarget(this, *MR::getPlayerPos(), 0.5f);
-        MR::tryStartBck(this, "Chase", nullptr);
+        MR::tryStartBck(this, "Chase");
     } else if (MR::isNearPlayerAnyTime(this, ::sAwayDistance)) {
         MR::addVelocityAwayFromTarget(this, *MR::getPlayerPos(), 0.5f);
-        MR::tryStartBck(this, "Chase", nullptr);
+        MR::tryStartBck(this, "Chase");
     } else {
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
     }
 
     TVec3f playerFrontVec;
@@ -317,7 +317,7 @@ void StrayTico::exeCompleteDemo() {
 
     if (MR::isFirstStep(this)) {
         MR::invalidateHitSensors(this);
-        MR::tryStartBck(this, "CompleteDemo", nullptr);
+        MR::tryStartBck(this, "CompleteDemo");
         MR::offBind(this);
         MR::zeroVelocity(this);
     }

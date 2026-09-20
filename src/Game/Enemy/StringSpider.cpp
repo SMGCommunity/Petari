@@ -483,7 +483,7 @@ void StringSpider::exeDown() {
     f32 v1;
     bool isOver = isOverStringLength(nullptr, &v1);
     if ((_B0 - 230.0f) < v1) {
-        MR::tryStartBck(this, "PreDownEnd", nullptr);
+        MR::tryStartBck(this, "PreDownEnd");
     }
 
     if (_B4 == _B0 && isOver) {

@@ -285,7 +285,7 @@ void AstroDomeBlueStar::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
 
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
         MR::setBckRate(this, 0.5f);
 
         MR::deleteEffect(this, "Target");

@@ -354,11 +354,11 @@ void BombHei::exePursue() {
     }
 
     if (isNerve(GET_NERVE(BombHei, HostTypeNrvPursueFast))) {
-        MR::tryStartBck(this, "CountDown", nullptr);
+        MR::tryStartBck(this, "CountDown");
         MR::moveAndTurnToPlayer(this, &mFront, ::hPursueFastFarParam.mSpeedH, ::hPursueFastFarParam.mGravAccel, ::hPursueFastFarParam.mFriction,
                                 ::hPursueFastFarParam.mTurnRate);
     } else {
-        MR::tryStartBck(this, "Run", nullptr);
+        MR::tryStartBck(this, "Run");
         MR::moveAndTurnToPlayer(this, &mFront, ::hPursueFarParam.mSpeedH, ::hPursueFarParam.mGravAccel, ::hPursueFarParam.mFriction,
                                 ::hPursueFarParam.mTurnRate);
     }

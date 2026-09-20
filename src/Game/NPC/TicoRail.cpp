@@ -88,7 +88,7 @@ void TicoRail::exeWait() {
 
 void TicoRail::exeLookAround() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Turn", nullptr);
+        MR::tryStartBck(this, "Turn");
     }
 
     TVec3f up;
@@ -134,7 +134,7 @@ void TicoRail::exeMoveSign() {
 
 void TicoRail::exeMove() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
     }
 
     MR::moveCoordAndFollowTrans(this, MR::calcNerveValue(this, 0, 200.0f, 15.0f));
@@ -199,7 +199,7 @@ void TicoRail::exeTalk() {
 
 void TicoRail::exeTalkCancel() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Spin", nullptr);
+        MR::tryStartBck(this, "Spin");
     }
 
     MR::moveCoordAndFollowTrans(this, 15.0f);

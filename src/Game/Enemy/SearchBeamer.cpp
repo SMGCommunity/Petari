@@ -100,7 +100,7 @@ void SearchBeamer::exeNonActive() {
 
 void SearchBeamer::exeCloseWaitFar() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
         MR::startBrk(this, "Wait");
     }
 
@@ -128,7 +128,7 @@ void SearchBeamer::exeCloseSearch() {
 
 void SearchBeamer::exeCloseWaitNear() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
         MR::startBrk(this, "Wait");
     }
 
@@ -254,7 +254,7 @@ void SearchBeamer::exeCloseMouth() {
 
 void SearchBeamer::exeStopStart() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Close", nullptr);
+        MR::tryStartBck(this, "Close");
         MR::deleteEffectAll(this);
         MR::invalidateHitSensor(this, "beam");
         MR::invalidateShadow(this, "beam");
@@ -271,7 +271,7 @@ void SearchBeamer::exeStopStart() {
 
 void SearchBeamer::exeStop() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Stop", nullptr);
+        MR::tryStartBck(this, "Stop");
         MR::startBrk(this, "Stop");
     }
 

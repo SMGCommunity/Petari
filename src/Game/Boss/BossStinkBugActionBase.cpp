@@ -24,7 +24,7 @@ BossStinkBugActionBase::BossStinkBugActionBase(const char* pName, BossStinkBug* 
 
 bool BossStinkBugActionBase::updateGroundWalk(f32 f1) {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(getHost(), "GroundWalk", nullptr);
+        MR::tryStartBck(getHost(), "GroundWalk");
     }
 
     BossStinkBugFunction::moveRail(getHost(), f1, 0.0f, 0.0f);
@@ -85,7 +85,7 @@ bool BossStinkBugActionBase::updateFlyRollEnd() {
 
 bool BossStinkBugActionBase::updateFlyDash(f32 f1) {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(getHost(), "FlyWait", nullptr);
+        MR::tryStartBck(getHost(), "FlyWait");
         BossStinkBugFunction::calcDiffCurrentRailPosition(&_14, getHost(), _3C, _44);
     }
 
@@ -227,7 +227,7 @@ BossStinkBugActionBase::~BossStinkBugActionBase() {
 
 bool BossStinkBugActionBase::updateGroundRegainRail(f32 f1) {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(getHost(), "GroundWalk", nullptr);
+        MR::tryStartBck(getHost(), "GroundWalk");
         BossStinkBugFunction::calcDiffCurrentRailPosition(&_14, getHost(), _3C, _44);
     }
 
@@ -581,7 +581,7 @@ bool BossStinkBugActionBase::updateToGround() {
     if (MR::isFirstStep(this)) {
         MR::startSound(getHost(), "SE_BV_BOSS_BUG_ANGRY_LAND");
         MR::startAction(getHost()->getWingModel(), "Ground");
-        MR::tryStartBck(getHost(), "TurnDown", nullptr);
+        MR::tryStartBck(getHost(), "TurnDown");
         getHost()->validateCollisionGround();
         getHost()->onBindLeg();
         getHost()->_10C = 0.0f;
@@ -622,7 +622,7 @@ bool BossStinkBugActionBase::updateToGround() {
 
 bool BossStinkBugActionBase::updateLand() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(getHost(), "Land", nullptr);
+        MR::tryStartBck(getHost(), "Land");
         getHost()->_10C = 1.0f;
     }
 
@@ -640,7 +640,7 @@ bool BossStinkBugActionBase::updateToFly() {
     if (MR::isFirstStep(this)) {
         MR::startSound(getHost(), "SE_BV_BOSS_BUG_ANGRY_TAKEOFF");
         MR::startAction(getHost()->getWingModel(), "Fly");
-        MR::tryStartBck(getHost(), "TakeOff", nullptr);
+        MR::tryStartBck(getHost(), "TakeOff");
         _30 = _48;
         getHost()->validateCollisionHitOnly();
         getHost()->offBindLeg();

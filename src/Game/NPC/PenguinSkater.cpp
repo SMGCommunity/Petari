@@ -355,7 +355,7 @@ void PenguinSkater::exeProvoke() {
     if (!MR::isNearZero(MR::getRailCoordSpeed(mRail))) {
         stopRail(1.0f);
     } else {
-        MR::tryStartBck(this, "Congratulate1", static_cast< const char* >(nullptr));
+        MR::tryStartBck(this, "Congratulate1");
         if (MR::isNearPlayer(mMsgCtrl, 10000.0f)) {
             MR::tryTalkForce(mMsgCtrl);
             turnToPlayer();

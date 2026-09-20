@@ -156,7 +156,7 @@ void RainCloud::exeAppear() {
 
 void RainCloud::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
     }
 
     if (!MR::isOnPlayer(this) && mIsOnPlayer) {

@@ -33,7 +33,7 @@ void SpaceShipStep::init(const JMapInfoIter& rIter) {
 
 void SpaceShipStep::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
         MR::validateClipping(this);
     }
 
@@ -56,7 +56,7 @@ void SpaceShipStep::exeMoveSign() {
 
 void SpaceShipStep::exeMove() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
         MapObjActorUtil::startAllMapPartsFunctions(this);
     }
 

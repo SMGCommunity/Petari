@@ -129,7 +129,7 @@ void Fluff::exeFreeBloom() {
 
 void Fluff::exeFreeWaitOnGround() {
     if (MR::isFirstStep(this)) {
-        if (MR::tryStartBck(mModel, "Wait", nullptr)) {
+        if (MR::tryStartBck(mModel, "Wait")) {
             MR::setBckFrameAtRandom(mModel);
         }
 
@@ -205,7 +205,7 @@ void Fluff::exeRideStart() {
 
 void Fluff::exeRideFly() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Fly", nullptr);
+        MR::tryStartBck(this, "Fly");
         if (mSpinsRemaining > 0) {
             MR::startBckPlayer("FluffFly");
         } else {
@@ -224,7 +224,7 @@ void Fluff::exeRideFly() {
 
 void Fluff::exeRideFlyOnWind() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "FlyWind", static_cast< const char* >(nullptr));
+        MR::tryStartBck(this, "FlyWind");
         MR::startBckPlayer("FluffFlyWind");
         MR::emitEffect(this, "HardWind");
     }
@@ -346,7 +346,7 @@ bool Fluff::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
 
         mRider = MR::getSensorHost(pSender);
         MR::showModel(this);
-        MR::tryStartBck(mModel, "Spin", nullptr);
+        MR::tryStartBck(mModel, "Spin");
         MR::onCalcGravity(this);
         mVelocity.set(*MR::getPlayerVelocity());
         if (mVelocity.dot(mGravity) > 0.0f) {

@@ -157,7 +157,7 @@ void BasaBasa::exeChaseStart() {
 
 void BasaBasa::exeChase() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Fly", nullptr);
+        MR::tryStartBck(this, "Fly");
         MR::onBind(this);
     }
 
@@ -354,7 +354,7 @@ void BasaBasa::exeHitBack() {
 
 void BasaBasa::exeHitBackEnd() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Fly", nullptr);
+        MR::tryStartBck(this, "Fly");
     }
 
     if (MR::isStep(this, 60)) {
@@ -366,7 +366,7 @@ void BasaBasa::exeHitBackEnd() {
 
 void BasaBasa::exeComeHome() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Fly", nullptr);
+        MR::tryStartBck(this, "Fly");
         _B4 = &_CC;
     }
 

@@ -87,7 +87,7 @@ void StinkBugSmall::init(const JMapInfoIter& rIter) {
 
 void StinkBugSmall::exeWait() {
     if (MR::isFirstStep(this) && _B0 == 0.0f) {
-        MR::tryStartBck(this, "Search", nullptr);
+        MR::tryStartBck(this, "Search");
     }
     fixInitPos();
     if (isPlayerInTerritory(400.0f, 600.0f, 200.0f, 200.0f)) {
@@ -101,7 +101,7 @@ void StinkBugSmall::exeWait() {
 
 void StinkBugSmall::exeSearch() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Search", nullptr);
+        MR::tryStartBck(this, "Search");
     }
     fixInitPos();
     if (tryTurnSearch(1.0f)) {

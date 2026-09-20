@@ -34,7 +34,6 @@
 #include <JSystem/JMath/JMath.hpp>
 #include <revolution/mtx.h>
 
-
 void WaterBazooka_FORCE_MATCH_SDATA2() {
     (void)0.0f;
     (void)2.0f;
@@ -260,7 +259,7 @@ bool WaterBazooka::isBazookaLifeOut() const {
 
 void WaterBazooka::exeWaitForBattle() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
     }
 
     mBaseMtx.setInline(MR::getJointMtx(this, "Cannon1"));
@@ -293,7 +292,7 @@ void WaterBazooka::exeWait() {
 
 void WaterBazooka::exeAim() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "ShotStart", nullptr);
+        MR::tryStartBck(this, "ShotStart");
     }
 
     MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_TURN");
@@ -563,7 +562,7 @@ void WaterBazooka::exeWaitForLaugh() {
 
 void WaterBazooka::exePanic() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartBck(this, "Wait", nullptr);
+        MR::tryStartBck(this, "Wait");
         mShotNum = 0;
     }
 

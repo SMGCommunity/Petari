@@ -573,10 +573,10 @@ void OtaKing::throwFireBall() {
 }
 
 void OtaKing::startBckWaitIfNotPlaying() {
-    MR::tryStartBck(this, "Wait", nullptr);
+    MR::tryStartBck(this, "Wait");
 
     for (int i = 0; i < ARRAY_SIZE(mFeet); i++) {
-        MR::tryStartBck(mFeet[i], i == 0 ? "WaitR" : "WaitL", nullptr);
+        MR::tryStartBck(mFeet[i], i == 0 ? "WaitR" : "WaitL");
     }
 }
 
