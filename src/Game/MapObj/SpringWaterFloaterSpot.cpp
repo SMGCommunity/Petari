@@ -108,7 +108,8 @@ void SpringWaterFloaterSpot::control() {
     MR::makeMtxUpNoSupportPos(&_CC, -mGravity, _AC);
 
     TVec3f vec20;
-    PSMTXMultVec(_CC, TVec3f(0.0f, -70.0f + _A4, 0.0f), vec20);
+    TVec3f vec14(0.0f, -70.0f + _A4, 0.0f);
+    PSMTXMultVec(_CC, vec14, vec20);
     _CC.setTrans(vec20);
 }
 
