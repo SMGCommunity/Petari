@@ -2257,7 +2257,7 @@ config.libs = [
             Object(Matching, "Game/Screen/ImageEffectSystemHolder.cpp"),
             Object(Matching, "Game/Screen/InformationMessage.cpp"),
             Object(Matching, "Game/Screen/InformationObserver.cpp"),
-            Object(NonMatching, "Game/Screen/IsbnManager.cpp"),
+            Object(Matching, "Game/Screen/IsbnManager.cpp"),
             Object(NonMatching, "Game/Screen/LayoutActor.cpp"),
             Object(Matching, "Game/Screen/LayoutActorFlag.cpp"),
             Object(NonMatching, "Game/Screen/LayoutCoreUtil.cpp"),

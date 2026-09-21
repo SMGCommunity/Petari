@@ -37,11 +37,12 @@ public:
     /// @brief Destroys the `IsbnManager`.
     virtual ~IsbnManager();
 
-    void setAdjustRate(f32, f32);
+    void setAdjustRate(f32 x, f32 y);
+    void setDrawTime(u16 minDraw, u16 maxDraw);
     void setNumber(const wchar_t* pIsbnNumber, const wchar_t* pRegistNumber, const wchar_t* pOtherNumber);
     void calculateView();
     static IsbnManager* create(void* pArchiveBuf, MEMAllocator* pAllocator);
-    bool calc(bool);
+    bool calc(bool allowSkip);
     void draw();
     void reset();
 };
