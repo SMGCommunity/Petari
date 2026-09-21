@@ -30,6 +30,8 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/CollisionPartsFilter.hpp"
+#include "Game/Util/FurMulti.hpp"
 #include <cstdio>
 
 namespace {
