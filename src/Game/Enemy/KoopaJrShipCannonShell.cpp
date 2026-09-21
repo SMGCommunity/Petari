@@ -12,6 +12,8 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
 namespace {
     static const f32 sBodySensorRadius = 75.0f;
@@ -49,8 +51,13 @@ KoopaJrShipCannonShell::KoopaJrShipCannonShell(const char* pName) : CannonShellB
     mPosition.z = gZeroVec.z;
 }
 
+inline void KoopaJrShipCannonShell::initStarPointer() {
+    TVec3f offset;
+    offset.set(0.0f);
+    MR::initStarPointerTarget(this, ::sStarWandRadius, offset);
+}
+
 void KoopaJrShipCannonShell::init(const JMapInfoIter& rIter) {
-    // FIXME: weird tvec load, default arg initStarPointerTarget?
     initModelManagerWithAnm("KoopaJrShipCannonShell", nullptr, false);
     MR::startBck(this, "KoopaJrShipCannonShell");
     initSound(4, false);
@@ -64,7 +71,7 @@ void KoopaJrShipCannonShell::init(const JMapInfoIter& rIter) {
 
     MR::connectToSceneEnemy(this);
     MR::invalidateClipping(this);
-    MR::initStarPointerTarget(this, ::sStarWandRadius, TVec3f(0.0f, 0.0f, 0.0f));
+    initStarPointer();
     MR::initShadowVolumeSphere(this, ::sShadowRadius * getBaseScale());
     MR::offCalcGravity(this);
     MR::declareCoin(this, 1);
@@ -266,7 +273,7 @@ void KoopaJrShipCannonShell::exeFreeze() {
     TVec3f vec14;
     vec14.set(MR::getCamXdir());
     vec14.scale(scale);
-    mPosition.add(_9C, vec14);
+    _9C.add(mPosition, vec14);
 
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
         setNerve(GET_NERVE(KoopaJrShipCannonShell, HostTypeFreeze));

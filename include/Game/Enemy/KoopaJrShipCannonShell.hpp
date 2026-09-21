@@ -16,6 +16,7 @@ public:
 
     virtual void launch(const TVec3f&, const TVec3f&);
 
+    void initStarPointer();
     bool tryFreeze();
     bool isStateEnableExplosion() const;
     void explosion();
