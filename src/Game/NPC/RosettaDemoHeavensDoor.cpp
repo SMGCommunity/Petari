@@ -3,8 +3,8 @@
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/NPC/Rosetta.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
-#include "Game/System/NerveExecutor.hpp"
 #include "Game/Util.hpp"
+
 namespace {
     static const s32 sRosettaSwingVoiceFrame = 70;
     static const s32 sRosettaSwingFrame = 80;
@@ -185,7 +185,4 @@ void RosettaDemoHeavensDoor2::exeWait() {
         MR::tryStartTimeKeepDemoMarioPuppetable(mHost, "赤いスター", "郷愁[開始]");
         MR::onGameEventFlagRosettaTalkAboutTicoInTower();
     }
-}
-
-void RosettaDemoHeavensDoor2::exeDemo() {
 }

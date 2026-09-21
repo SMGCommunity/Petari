@@ -5,42 +5,42 @@
 #include "Game/Util.hpp"
 
 namespace {
-    const f32 sGunPointOffset = 200.0f;
-}
+    static const f32 sGunPointOffset = 200.0f;
+};  // namespace
 
-WaterPressure::WaterPressure(const char* pName) : PressureBase(pName), mCamInfo(), mDisablePopping() {
+WaterPressure::WaterPressure(const char* pName) : PressureBase(pName), mCameraInfo(), mIsInvalidSpinKill() {
 }
 
 void WaterPressure::init(const JMapInfoIter& rIter) {
     PressureBase::init(rIter);
-    MR::initActorCamera(this, rIter, &mCamInfo);
-    MR::getJMapInfoArg7NoInit(rIter, &mDisablePopping);
+    MR::initActorCamera(this, rIter, &mCameraInfo);
+    MR::getJMapInfoArg7NoInit(rIter, &mIsInvalidSpinKill);
 }
 
 void WaterPressure::initBullet(const JMapInfoIter& rIter) {
     MR::createSceneObj(SceneObj_WaterPressureBulletHolder);
 }
 
-bool WaterPressure::shotBullet(f32 f) {
+bool WaterPressure::shotBullet(f32 speed) {
     WaterPressureBullet* pBullet = MR::getSceneObj< WaterPressureBulletHolder >(SceneObj_WaterPressureBulletHolder)->callEmptyBullet();
     if (pBullet == nullptr) {
         return false;
     }
     TPos3f point;
     calcGunPointFromCannon(&point);
-    pBullet->shotWaterBullet(this, point, f, !isShotTypeOnGravity(), false, mDisablePopping, &mCamInfo);
+    pBullet->shotWaterBullet(this, point, speed, !isShotTypeOnGravity(), false, mIsInvalidSpinKill, &mCameraInfo);
     return true;
 }
 
-void WaterPressure::calcGunPointFromCannon(TPos3f* pPos) {
+void WaterPressure::calcGunPointFromCannon(TPos3f* pMtx) {
     TPos3f jointMtx = MR::getJointMtx(this, "Cannon1");
-    TVec3f vec1, vec2;
-    jointMtx.getXDir(vec1);
-    jointMtx.getTrans(vec2);
-    vec2.scaleAdd(::sGunPointOffset, vec1, vec2);
-    pPos->set(jointMtx);
-    TVec3f vec3, vec4;
-    jointMtx.getYDir(vec3);
-    jointMtx.getZDir(vec4);
-    MR::makeMtxFrontUpPos(pPos, vec1, vec3, vec2);
+    TVec3f sideVec, pos;
+    jointMtx.getXDir(sideVec);
+    jointMtx.getTrans(pos);
+    pos.scaleAdd(::sGunPointOffset, sideVec, pos);
+    pMtx->set(jointMtx);
+    TVec3f upVec, frontVec;
+    jointMtx.getYDir(upVec);
+    jointMtx.getZDir(frontVec);
+    MR::makeMtxFrontUpPos(pMtx, sideVec, upVec, pos);
 }

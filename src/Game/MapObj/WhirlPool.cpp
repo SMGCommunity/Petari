@@ -2,7 +2,7 @@
 #include "Game/Map/WaterAreaHolder.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
+#include <JSystem/JUtility/JUTTexture.hpp>
 
 WhirlPool::WhirlPool(const char* pName) : LiveActor(pName), _8C(100.0f), _90(100.0f), _C4(), _C8(), _94(0.0f, 1.0f, 0.0f), _CC(0.0f, 0.0f, 0.0f) {
 }
