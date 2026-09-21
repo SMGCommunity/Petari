@@ -1522,7 +1522,7 @@ config.libs = [
             Object(Matching, "Game/Map/RailGraphNode.cpp"),
             Object(NonMatching, "Game/Map/RailPart.cpp"),
             Object(NonMatching, "Game/Map/ScenarioSelectStar.cpp"),
-            Object(NonMatching, "Game/Map/SeaGull.cpp"),
+            Object(Matching, "Game/Map/SeaGull.cpp"),
             Object(Matching, "Game/Map/Sky.cpp"),
             Object(Matching, "Game/Map/SleepController.cpp"),
             Object(NonMatching, "Game/Map/SleepControllerHolder.cpp"),
