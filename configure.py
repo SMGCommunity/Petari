@@ -1278,7 +1278,7 @@ config.libs = [
             Object(Matching, "Game/Enemy/OtaRock.cpp"),
             Object(NonMatching, "Game/Enemy/PackunPetit.cpp"),
             Object(NonMatching, "Game/Enemy/Petari.cpp"),
-            Object(NonMatching, "Game/Enemy/Poihana.cpp"),
+            Object(Matching, "Game/Enemy/Poihana.cpp"),
             Object(Matching, "Game/Enemy/Pukupuku.cpp"),
             Object(NonMatching, "Game/Enemy/RingBeam.cpp"),
             Object(NonMatching, "Game/Enemy/RingBeamer.cpp"),

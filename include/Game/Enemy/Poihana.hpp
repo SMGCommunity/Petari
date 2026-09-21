@@ -47,7 +47,7 @@ public:
     void endDPDSwoon() NO_INLINE;
 
     bool tryToStartBind(HitSensor* pSender);
-    void updateBindActorMtx();
+    void updateBindActorMtx() NO_INLINE;
     void endBind();
     void startBound();
     void calcBound();
@@ -64,22 +64,20 @@ public:
     bool isNeedForGetUp() const;
     bool isBackAttack(HitSensor* pMySensor) const NO_INLINE;
 
-    AnimScaleController* mAnimScaleCtrl;           // 0x8C
-    WalkerStateBindStarPointer* mBindStarPointer;  // 0x90
-    ActorCameraInfo* mCamInfo;                     // 0x94
-    LiveActor* mBindedActor;                       // 0x98
-    f32 mLaunchIntensity;                          // 0x9C
-    TVec3f mRespawnPos;                            // 0xA0
-    f32 _AC;                                       // 0xAC
-    f32 _B0;                                       // 0xB0
-    TVec3f mHomePos;                               // 0xB4
-    f32 _C0;                                       // 0xC0
-    s32 mBoundTimer;                               // 0xC4
-    s32 mRandDir;                                  // 0xC8
-    s32 mBehavior;                                 // 0xCC
-    bool mCanDrown;                                // 0xD0
-    ModelObj* mWaterColumn;                        // 0xD4
-    TVec3f mFrontVec;                              // 0xD8
-    bool mIsActive;                                // 0xE4
-    u8 _E5;                                        // 0xE5
+    /* 0x8C */ AnimScaleController* mAnimScaleCtrl;
+    /* 0x90 */ WalkerStateBindStarPointer* mBindStarPointer;
+    /* 0x94 */ ActorCameraInfo* mCamInfo;
+    /* 0x98 */ LiveActor* mBindedActor;
+    /* 0x9C */ f32 mLaunchIntensity;
+    /* 0xA0 */ TVec3f mRespawnPos;
+    /* 0xAC */ TVec3f mHomePos;
+    /* 0xB8 */ TVec3f mFrontVec;
+    /* 0xC4 */ s32 mBoundTimer;
+    /* 0xC8 */ s32 mRandDir;
+    /* 0xCC */ s32 mBehavior;
+    /* 0xD0 */ bool mCanDrown;
+    /* 0xD4 */ ModelObj* mWaterColumn;
+    /* 0xD8 */ TVec3f _D8;
+    /* 0xE4 */ bool mIsActive;
+    /* 0xE5 */ u8 _E5;
 };
