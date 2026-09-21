@@ -29,23 +29,7 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/AreaObjUtil.hpp"
-#include "Game/Util/CollisionPartsFilter.hpp"
-#include "Game/Util/DemoUtil.hpp"
-#include "Game/Util/FurMulti.hpp"
-#include "Game/Util/GravityUtil.hpp"
-#include "Game/Util/JMapUtil.hpp"
-#include "Game/Util/MapUtil.hpp"
-#include "Game/Util/MathUtil.hpp"
-#include "Game/Util/ModelUtil.hpp"
-#include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/ScreenUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
-#include "Game/Util/StringUtil.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
-#include <JSystem/J3DGraphBase/J3DTexture.hpp>
+#include "Game/Util.hpp"
 #include <cstdio>
 
 namespace {
@@ -517,7 +501,7 @@ namespace MR {
                 return true;
             }
         }
-        
+
         return false;
     }
 
