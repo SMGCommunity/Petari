@@ -33,7 +33,8 @@ namespace {
     // static const f32 sStepTurnMax;
     static const s32 sChirpStepMin = 60;
     static const s32 sChirpStepMax = 480;
-}  // namespace
+};  // namespace
+
 void FORCE_INLINE() {
     TVec3f vec;
     vec.sub(vec);
