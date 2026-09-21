@@ -6497,7 +6497,7 @@ Game/NPC/Kinopio.cpp:
 	.text       start:0x80273494 end:0x802751F4
 	.ctors      start:0x8052EFA0 end:0x8052EFA4
 	.rodata     start:0x80539748 end:0x80539750
-	.data       start:0x805AFE00 end:0x805B02E0
+	.data       start:0x805AFE00 end:0x805B0240
 	.bss        start:0x8060ADE8 end:0x8060AE20
 	.sdata      start:0x806B2108 end:0x806B2110
 	.sbss       start:0x806B5D28 end:0x806B5D68
@@ -6505,7 +6505,7 @@ Game/NPC/Kinopio.cpp:
 
 Game/NPC/KinopioAstro.cpp:
 	.text       start:0x802751F4 end:0x80275DC0
-	.data       start:0x805B02E0 end:0x805B0460
+	.data       start:0x805B0240 end:0x805B0460
 	.sdata      start:0x806B2110 end:0x806B2118
 	.sdata2     start:0x806BEB90 end:0x806BEBA8
 
