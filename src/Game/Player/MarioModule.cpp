@@ -9,6 +9,33 @@
 #include "Game/Player/MarioState.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "revolution/os.h"
+
+void MarioModule_FORCE_EMIT_STRING() {
+    OSReport("P_PlanetMap");
+}
+
+bool MarioModule::isInputDisable() const {
+    if (mActor->mMario->mMovementStates._22) {
+        return true;
+    }
+    if (mActor->mMario->isStatusActive(MarioStatus_FpView)) {
+        return true;
+    }
+    if (isAnimationRun("ハード着地")) {
+        return true;
+    }
+    if (isAnimationRun("中ダメージ着地")) {
+        return true;
+    }
+    if (isAnimationRun("中後ダメージ着地")) {
+        return true;
+    }
+    if (isAnimationRun("ステージインB")) {
+        return true;
+    }
+    return mActor->_3C0;
+}
 
 Mario* MarioModule::getPlayer() const {
     return mActor->mMario;
@@ -586,26 +613,4 @@ HitSensor* MarioModule::getSensor(const Triangle* pTri) const {
 
 f32 MarioModule::marioAcos(f32 a1) const {
     return MR::acosEx(a1);
-}
-
-bool MarioModule::isInputDisable() const {
-    if (mActor->mMario->mMovementStates._22) {
-        return true;
-    }
-    if (mActor->mMario->isStatusActive(MarioStatus_FpView)) {
-        return true;
-    }
-    if (isAnimationRun("ハード着地")) {
-        return true;
-    }
-    if (isAnimationRun("中ダメージ着地")) {
-        return true;
-    }
-    if (isAnimationRun("中後ダメージ着地")) {
-        return true;
-    }
-    if (isAnimationRun("ステージインB")) {
-        return true;
-    }
-    return mActor->_3C0;
 }
