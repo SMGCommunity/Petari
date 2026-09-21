@@ -19,25 +19,19 @@ namespace NrvHipDropMoveObj {
 HipDropDemoMoveObj::~HipDropDemoMoveObj() {
 }
 
-HipDropMoveObj::HipDropMoveObj(const char* pName) : LiveActor(pName) {
-    mObjectName = 0;
+HipDropMoveObj::HipDropMoveObj(const char* pName) : LiveActor(pName), mModelName() {
 }
 
 void HipDropMoveObj::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    MR::getObjectName(&mObjectName, rIter);
-    initModelManagerWithAnm(mObjectName, 0, false);
+    MR::getObjectName(&mModelName, rIter);
+    initModelManagerWithAnm(mModelName, nullptr, false);
     MR::connectToSceneMapObj(this);
-    initEffectKeeper(0, 0, false);
+    initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     initHitSensor(1);
-    TVec3f sensor;
-    sensor.x = 0.0f;
-    sensor.y = 0.0f;
-    sensor.z = 0.0f;
-    HitSensor* jointSensor = MR::addHitSensorAtJointMapObj(this, "body", ::cSwitchJointName, 0, 225.0f, sensor);
-    MtxPtr mtx = MR::getJointMtx(this, ::cMoveJointName);
-    MR::initCollisionParts(this, mObjectName, jointSensor, mtx);
+    HitSensor* pSensor = MR::addHitSensorAtJointMapObj(this, "body", ::cSwitchJointName, 0, 225.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::initCollisionParts(this, mModelName, pSensor, MR::getJointMtx(this, ::cMoveJointName));
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     MR::setGroupClipping(this, rIter, 8);
     MR::useStageSwitchWriteA(this, rIter);
@@ -50,16 +44,15 @@ bool HipDropMoveObj::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSens
     if (MR::isMsgPlayerHipDropFloor(msg)) {
         if (!isNerve(GET_NERVE(HipDropMoveObj, HostTypeWait))) {
             return false;
-        } else {
-            f32 radius = pReceiver->mRadius;
-            f32 dist = MR::calcDistanceToPlayer(pReceiver->mPosition);
-            if (radius < dist) {
-                return false;
-            }
-
-            setNerve(GET_NERVE(HipDropMoveObj, HostTypeMove));
-            return true;
         }
+
+        if (pReceiver->getRadius() < MR::calcDistanceToPlayer(pReceiver->mPosition)) {
+            return false;
+        }
+
+        setNerve(GET_NERVE(HipDropMoveObj, HostTypeMove));
+
+        return true;
     }
 
     return false;
@@ -75,24 +68,24 @@ void HipDropMoveObj::exeWait() {
 void HipDropMoveObj::exeMove() {
     if (MR::isFirstStep(this)) {
         MR::startAllAnim(this, ::cMoveAnimName);
-        const char* startSe = MR::StageEffect::getStartSe(mObjectName);
+        const char* startSe = MR::StageEffect::getStartSe(mModelName);
 
-        if (startSe) {
+        if (startSe != nullptr) {
             MR::startSound(this, startSe);
         }
 
-        MR::StageEffect::rumblePadStart(this, mObjectName);
-        MR::StageEffect::shakeCameraMoving(this, mObjectName);
-        MR::tryStartDemoRegistered(this, 0);
+        MR::StageEffect::rumblePadStart(this, mModelName);
+        MR::StageEffect::shakeCameraMoving(this, mModelName);
+        MR::tryStartDemoRegistered(this, nullptr);
         moveStart();
     }
 
-    s32 steps = MR::StageEffect::getStopSeSteps(mObjectName);
-    const char* movingSe = MR::StageEffect::getMovingSe(mObjectName);
+    s32 stopSeSteps = MR::StageEffect::getStopSeSteps(mModelName);
+    const char* movingSe = MR::StageEffect::getMovingSe(mModelName);
 
     if (movingSe) {
-        if (steps >= 0) {
-            if (MR::isLessStep(this, steps)) {
+        if (stopSeSteps >= 0) {
+            if (MR::isLessStep(this, stopSeSteps)) {
                 MR::startLevelSound(this, movingSe);
             }
         } else {
@@ -100,15 +93,15 @@ void HipDropMoveObj::exeMove() {
         }
     }
 
-    if (steps >= 0) {
-        if (MR::isStep(this, steps)) {
-            const char* stopSe = MR::StageEffect::getStopSe(mObjectName);
+    if (stopSeSteps >= 0) {
+        if (MR::isStep(this, stopSeSteps)) {
+            const char* stopSe = MR::StageEffect::getStopSe(mModelName);
 
-            if (stopSe) {
+            if (stopSe != nullptr) {
                 MR::startSound(this, stopSe);
             }
 
-            if (MR::StageEffect::isRiddleSeTypeStop(mObjectName)) {
+            if (MR::StageEffect::isRiddleSeTypeStop(mModelName)) {
                 MR::startSystemSE("SE_SY_READ_RIDDLE_S");
             }
         }
@@ -121,13 +114,13 @@ void HipDropMoveObj::exeMove() {
             MR::onSwitchA(this);
         }
 
-        MR::StageEffect::rumblePadStop(this, mObjectName);
-        MR::StageEffect::stopShakingCameraMoving(this, mObjectName);
+        MR::StageEffect::rumblePadStop(this, mModelName);
+        MR::StageEffect::stopShakingCameraMoving(this, mModelName);
 
-        if (steps < 0) {
-            const char* stopSe = MR::StageEffect::getStopSe(mObjectName);
+        if (stopSeSteps < 0) {
+            const char* stopSe = MR::StageEffect::getStopSe(mModelName);
 
-            if (stopSe) {
+            if (stopSe != nullptr) {
                 MR::startSound(this, stopSe);
             }
         }
@@ -149,37 +142,21 @@ HipDropMoveObj::~HipDropMoveObj() {
 
 void HipDropDemoMoveObj::moveStart() {
     MR::startBckPlayer("Wait");
-    MtxPtr mtx = MR::getPlayerDemoActor()->getBaseMtx();
-    TMtx34f stack_38;
-    stack_38.set(mtx);
-    MtxPtr jointMtx = MR::getJointMtx(this, ::cMoveJointName);
-    TMtx34f stack_8;
-    stack_8.set(jointMtx);
-    stack_8.invert(stack_8);
-    mMtx.concat(stack_8, stack_38);
+    TMtx34f playerBaseMtx;
+    playerBaseMtx.set(MR::getPlayerDemoActor()->getBaseMtx());
+
+    TMtx34f invJointMtx;
+    invJointMtx.set(MR::getJointMtx(this, ::cMoveJointName));
+    invJointMtx.invert(invJointMtx);
+    mMtx.concat(invJointMtx, playerBaseMtx);
 }
 
 void HipDropDemoMoveObj::moving() {
     if (MR::isDemoActive()) {
-        MtxPtr jointMtx = MR::getJointMtx(this, ::cMoveJointName);
-        TMtx34f stack_8;
-        stack_8.set(jointMtx);
+        TPos3f stack_8;
+        stack_8.set(MR::getJointMtx(this, ::cMoveJointName));
         stack_8.concat(stack_8, mMtx);
-        TVec3f vec;
-        LiveActor* demoActor = MR::getPlayerDemoActor();
-        f32 z = stack_8.mMtx[2][3];
-        f32 y = stack_8.mMtx[1][3];
-        f32 x = stack_8.mMtx[0][3];
-        demoActor->mPosition.set< f32 >(x, y, z);
+        stack_8.getTrans(MR::getPlayerDemoActor()->mPosition);
         MR::setPlayerBaseMtx((MtxPtr)&stack_8);
     }
-}
-
-void HipDropMoveObj::moveStart() {
-}
-
-void HipDropMoveObj::moving() {
-}
-
-void HipDropMoveObj::moveEnd() {
 }
