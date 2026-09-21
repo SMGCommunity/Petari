@@ -1,8 +1,10 @@
 #pragma once
 
-#include "Game/LiveActor/RailRider.hpp"
-#include "Game/Util/ParabolicPath.hpp"
-#include <revolution.h>
+#include <JSystem/JGeometry/TVec.hpp>
+
+class JMapInfoIter;
+class RailRider;
+class ParabolicPath;
 
 class SpinDriverShootPath {
 public:
@@ -17,8 +19,8 @@ public:
     f32 getTotalLength() const;
     void calcClippingInfo(TVec3f*, f32*, f32, f32);
 
-    RailRider* mRailRider;  // 0x0
-    ParabolicPath* mPath;   // 0x4
-    TVec3f mStartPosition;  // 0x8
-    bool mUsesParabolic;    // 0x14
+    /* 0x00 */ RailRider* mRailRider;
+    /* 0x00 */ ParabolicPath* mPath;
+    /* 0x00 */ TVec3f mStartPosition;
+    /* 0x00 */ bool mUsesParabolic;
 };

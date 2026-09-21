@@ -1,15 +1,9 @@
 #include "Game/MapObj/SpinDriverShootPath.hpp"
-#include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
-#include <JSystem/JMath/JMath.hpp>
+#include "Game/LiveActor/RailRider.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ParabolicPath.hpp"
 
-SpinDriverShootPath::SpinDriverShootPath() {
-    mRailRider = nullptr;
-    mPath = nullptr;
-    mStartPosition.x = 0.0f;
-    mStartPosition.y = 0.0f;
-    mStartPosition.z = 0.0f;
-    mUsesParabolic = false;
+SpinDriverShootPath::SpinDriverShootPath() : mRailRider(), mPath(), mStartPosition(0.0f, 0.0f, 0.0f), mUsesParabolic() {
 }
 
 void SpinDriverShootPath::init(const JMapInfoIter& rIter) {
@@ -30,9 +24,9 @@ void SpinDriverShootPath::initUsingParabolic(const JMapInfoIter& rIter, const TV
 
 void SpinDriverShootPath::setStartPosition(const TVec3f& rStartPos) {
     if (mUsesParabolic) {
-        TVec3f start(mRailRider->mStartPos);
-        TVec3f end(mRailRider->mEndPos);
-        mPath->initFromMaxHeight(rStartPos, end, start);
+        TVec3f startPos(mRailRider->mStartPos);
+        TVec3f endPos(mRailRider->mEndPos);
+        mPath->initFromMaxHeight(rStartPos, endPos, startPos);
     }
 
     TVec3f position;
@@ -43,17 +37,12 @@ void SpinDriverShootPath::setStartPosition(const TVec3f& rStartPos) {
 void SpinDriverShootPath::calcPosition(TVec3f* pOutPosition, f32 a2) const {
     if (mUsesParabolic) {
         mPath->calcPosition(pOutPosition, a2);
-    } else {
-        f32 length = mRailRider->getTotalLength();
-        mRailRider->calcPosAtCoord(pOutPosition, a2 * length);
-        f32 norm = MR::normalize(a2, 0.0f, 0.5f);
-        f32 easeOut = MR::getEaseOutValue(norm, 1.0f, 0.0f, 1.0f);
-        TVec3f pos(mStartPosition);
-        pos.x *= easeOut;
-        pos.y *= easeOut;
-        pos.z *= easeOut;
-        pOutPosition->add(pos);
+        return;
     }
+
+    mRailRider->calcPosAtCoord(pOutPosition, a2 * mRailRider->getTotalLength());
+
+    pOutPosition->add(mStartPosition * MR::getEaseOutValue(MR::normalize(a2, 0.0f, 0.5f), 1.0f, 0.0f, 1.0f));
 }
 
 void SpinDriverShootPath::calcDirection(TVec3f* pOutDirection, f32 a2, f32 a3) const {
@@ -81,16 +70,90 @@ void SpinDriverShootPath::calcDirection(TVec3f* pOutDirection, f32 a2, f32 a3) c
     calcPosition(&stack_14, v6);
     TVec3f stack_8 = stack_14;
     stack_8.sub(stack_8, stack_20);
-    pOutDirection->set< f32 >(stack_8);
+    pOutDirection->set(stack_8);
     MR::normalizeOrZero(pOutDirection);
 }
 
-// SpinDriverShootPath::calcInitPose
+void SpinDriverShootPath::calcInitPose(TVec3f* pPos1, TVec3f* pPos2, TVec3f* pPos3, f32 f1) const {
+    // FIXME
+    TVec3f pos0;
+    calcPosition(&pos0, 0.0f);
+
+    TVec3f pos1;
+    calcPosition(&pos1, 1.0f);
+
+    TVec3f pos00;
+    calcPosition(&pos00, 0.0f);
+
+    TVec3f pos001;
+    calcPosition(&pos001, 0.01f);
+
+    TVec3f vec90(pos001);
+    vec90 -= pos00;
+
+    TVec3f vec60(vec90);
+    MR::normalizeOrZero(&vec60);
+
+    TVec3f vec84(pos1);
+    vec84 -= pos0;
+
+    TVec3f vec6C;
+    vec6C.orthogonalize(vec60);
+    MR::normalizeOrZero(&vec6C);
+
+    if (MR::isNearZero(vec6C)) {
+        MR::makeAxisVerticalZX(&vec6C, vec60);
+    }
+
+    MR::rotateVecDegree(&vec6C, vec60, f1);
+
+    TVec3f vec78;
+    vec78.cross(vec6C, vec60);
+    MR::normalize(&vec78);
+
+    if (pPos1 != nullptr) {
+        pPos1->set(vec60);
+    }
+
+    if (pPos2 != nullptr) {
+        pPos2->set(vec6C);
+    }
+
+    if (pPos3 != nullptr) {
+        pPos3->set(vec78);
+    }
+}
 
 f32 SpinDriverShootPath::getTotalLength() const {
     if (mUsesParabolic) {
-        return mPath->getTotalLength(0x20);
+        return mPath->getTotalLength(32);
     }
 
     return mRailRider->getTotalLength();
+}
+
+void SpinDriverShootPath::calcClippingInfo(TVec3f* pVec, f32* f1, f32 f2, f32 f3) {
+    // FIXME: stack
+    s32 totalSteps = getTotalLength() / f2;
+
+    TVec3f pos0;
+    calcPosition(&pos0, 0.0f);
+
+    TBox3f box;
+    box.set(pos0, pos0);
+
+    for (s32 i = 1; i <= totalSteps; i++) {
+        TVec3f pos;
+        calcPosition(&pos, static_cast< f32 >(i) / totalSteps);
+
+        box.extend(pos);
+    }
+
+    box.pad(f3);
+    box.getCenter(pVec);
+
+    TVec3f sizeVec;
+    sizeVec.sub(box.f, box.i);
+
+    *f1 = 0.5f * sizeVec.length();
 }
