@@ -49,6 +49,9 @@ public:
     bool isChasing() const;
     bool isEnableBlow() const NO_INLINE;
     bool isValidFollow(s32 id) const;
+    s32 getGroupId() const {
+        return mGroupId;
+    }
 
     void exeNoActive();
     void exeHide();

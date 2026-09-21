@@ -4113,7 +4113,7 @@ Game/Map/SpaceInner.cpp:
 Game/Map/SphereSelector.cpp:
 	.text       start:0x8019C140 end:0x8019D404
 	.ctors      start:0x8052EBF4 end:0x8052EBF8
-	.data       start:0x8058C710 end:0x8058C978
+	.data       start:0x8058C710 end:0x8058C928
 	.sbss       start:0x806B4C78 end:0x806B4C98
 	.sdata2     start:0x806BC410 end:0x806BC420
 
@@ -4121,14 +4121,14 @@ Game/Map/SphereSelectorHandle.cpp:
 	.text       start:0x8019D404 end:0x8019E5E8
 	.ctors      start:0x8052EBF8 end:0x8052EBFC
 	.rodata     start:0x80532EE8 end:0x80532EF0
-	.data       start:0x8058C978 end:0x8058CAD0
+	.data       start:0x8058C928 end:0x8058CAA0
 	.sdata      start:0x806B1C90 end:0x806B1CC0
 	.sbss       start:0x806B4C98 end:0x806B4CC8
 	.sdata2     start:0x806BC420 end:0x806BC478
 
 Game/Map/StageSwitch.cpp:
 	.text       start:0x8019E5E8 end:0x8019ED8C
-	.data       start:0x8058CAD0 end:0x8058CAF8
+	.data       start:0x8058CAA0 end:0x8058CAF8
 
 Game/Map/SunshadeMapHolder.cpp:
 	.text       start:0x8019ED8C end:0x8019EF10
@@ -6681,7 +6681,7 @@ Game/NPC/RunawayRabbitCollect.cpp:
 	.text       start:0x80286634 end:0x80286FD8
 	.ctors      start:0x8052EFF0 end:0x8052EFF4
 	.data       start:0x805B3370 end:0x805B3498
-	.sdata      start:0x806B2160 end:0x806B2188
+	.sdata      start:0x806B2160 end:0x806B2170
 	.sbss       start:0x806B5F68 end:0x806B5F70
 
 Game/NPC/RunawayTico.cpp:
@@ -6711,6 +6711,7 @@ Game/NPC/Syati.cpp:
 	.ctors      start:0x8052F000 end:0x8052F004
 	.rodata     start:0x80539798 end:0x80539810
 	.data       start:0x805B3A10 end:0x805B3DF0
+	.sdata      start:0x806B2170 end:0x806B2178
 	.sbss       start:0x806B5FB0 end:0x806B6008
 	.sdata2     start:0x806BEF88 end:0x806BEFF8
 
@@ -6726,6 +6727,7 @@ Game/NPC/Tico.cpp:
 	.ctors      start:0x8052F008 end:0x8052F00C
 	.data       start:0x805B4050 end:0x805B43B0
 	.bss        start:0x8060AE78 end:0x8060AE90
+	.sdata      start:0x806B2178 end:0x806B2180
 	.sbss       start:0x806B6028 end:0x806B6070
 	.sdata2     start:0x806BF038 end:0x806BF078
 
@@ -6752,6 +6754,7 @@ Game/NPC/TicoDomeLecture.cpp:
 	.ctors      start:0x8052F014 end:0x8052F018
 	.rodata     start:0x80539810 end:0x80539828
 	.data       start:0x805B4940 end:0x805B4A60
+	.sdata      start:0x806B2180 end:0x806B2188
 	.sbss       start:0x806B6098 end:0x806B60A8
 	.sdata2     start:0x806BF0A8 end:0x806BF0B0
 
