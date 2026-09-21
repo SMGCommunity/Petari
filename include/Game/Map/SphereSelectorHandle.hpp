@@ -5,7 +5,7 @@
 
 class SphereSelectorHandle : public LiveActor {
 public:
-    SphereSelectorHandle(const char*);
+    SphereSelectorHandle(const char* pName);
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
@@ -26,7 +26,7 @@ public:
     void playRotateSE();
     void resetRotateParam();
     void clearPointerVelocity();
-    void setStateConfirmStartAtFirstStep();
+    void setStateConfirmStartAtFirstStep() NO_INLINE;
     bool tryRelease();
     void stackPointerVelocity();
     TVec2f* getPointerVelocity();
@@ -41,7 +41,7 @@ public:
     void exeGalaxyConfirmWait();
     void exeGalaxyConfirmCancel();
     void exeIdleForFileSelect();
-    void exeIdleEndForFileSelect();
+    void exeIdleEndForFileSelect() NO_INLINE;
 
     inline bool isWaitOrSpinOrDemoRotate();
 

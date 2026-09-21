@@ -5,33 +5,41 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 
+void SphereSelectorHandle_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)-1.0f;
+    (void)2.0f;
+}
+
 namespace {
     const s32 cHoldReduceOutScreenFrame = 5;
-    //  const s32 cRotateSpeedChangeMax
-    //  const f32 cHoldReduceRate
+    const f32 cRotateSpeedChangeMax = 0.2f;
+    const f32 cHoldReduceRate = 0.9f;
     const f32 cSpinReduceRate = 0.95f;
-    //  const s32 cRotateSpeedMaxY
-    //  const f32 cHoldRotateRateY
+    const f32 cRotateSpeedMaxY = 5.0f;
+    const f32 cHoldRotateRateY = 0.2f;
     const s32 cDemoRotateStartFrame = 60;
     const f32 cDemoRotateSpeedY = 0.03f;
-    //  const s32 cRotateSpeedMaxX
-    //  const f32 cHoldRotateRateX
+    const f32 cRotateSpeedMaxX = 2.0f;
+    const f32 cHoldRotateRateX = 0.075f;
     const f32 cRotateAppearX = 40.0f;
     const f32 cRotateMinX = -15.0f;
     const f32 cRotateMaxX = 80.0f;
-    const s32 cBgmAppearState = 2;
-    const s32 cBgmAppearFrames = 60;
-    const s32 cBgmDisappearState = 1;
-    const s32 cBgmDisappearFrames = 90;
-    const s32 cBgmRotateState = 4;
-    const s32 cBgmRotateFrames = 60;
-    const s32 cBgmNotRotateState = 3;
-    const s32 cBgmNotRotateFrames = 30;
-    const s32 cBgmConfirmState = 6;
-    const s32 cBgmConfirmFrames = 60;
-    const s32 cBgmNotConfirmState = 5;
-    const s32 cBgmNotConfirmFrames = 60;
-};  // namespace
+    s32 cBgmAppearState = 2;
+    s32 cBgmAppearFrames = 60;
+    s32 cBgmDisappearState = 1;
+    s32 cBgmDisappearFrames = 90;
+    s32 cBgmRotateState = 4;
+    s32 cBgmRotateFrames = 60;
+    s32 cBgmNotRotateState = 3;
+    s32 cBgmNotRotateFrames = 30;
+    s32 cBgmConfirmState = 6;
+    s32 cBgmConfirmFrames = 60;
+    s32 cBgmNotConfirmState = 5;
+    s32 cBgmNotConfirmFrames = 60;
+}  // namespace
 
 namespace NrvSphereSelectorHandle {
     NEW_NERVE(SphereSelectorHandleNrvWait, SphereSelectorHandle, Wait);
@@ -45,7 +53,7 @@ namespace NrvSphereSelectorHandle {
     NEW_NERVE(SphereSelectorHandleNrvGalaxyConfirmCancel, SphereSelectorHandle, GalaxyConfirmCancel);
     NEW_NERVE(SphereSelectorHandleNrvIdleForFileSelect, SphereSelectorHandle, IdleForFileSelect);
     NEW_NERVE(SphereSelectorHandleNrvIdleEndForFileSelect, SphereSelectorHandle, IdleEndForFileSelect);
-};  // namespace NrvSphereSelectorHandle
+}  // namespace NrvSphereSelectorHandle
 
 SphereSelectorHandle::SphereSelectorHandle(const char* pName)
     : LiveActor(pName), mIsFileSelectMode(), _C0(0.0f, 0.0f, -1.0f), mRotateSpeed(), mTargetRotateSpeed(), _D4(), _D8(), _DC(1.0f, 0.0f, 0.0f),
@@ -122,32 +130,39 @@ bool SphereSelectorHandle::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSenso
         appear();
         return true;
     }
+
     if (SphereSelectorFunction::isMsgSelectEnd(msg)) {
         setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvDisappear));
         return true;
     }
+
     if (SphereSelectorFunction::isMsgConfirmStart(msg)) {
         if (mIsFileSelectMode) {
             setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvIdleForFileSelect));
         } else {
             setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvGalaxyConfirmStart));
         }
+
         return true;
     }
+
     if (SphereSelectorFunction::isMsgConfirmCancel(msg)) {
         if (mIsFileSelectMode) {
             setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvIdleEndForFileSelect));
         } else {
             setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvGalaxyConfirmCancel));
         }
+
         return true;
     }
+
     if (SphereSelectorFunction::isMsgTargetSelected(msg)) {
         if (isWaitOrSpinOrDemoRotate()) {
             setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvHold));
             return true;
         }
     }
+
     return false;
 }
 
@@ -156,6 +171,7 @@ bool SphereSelectorHandle::tryRelease() {
         setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvSpin));
         return true;
     }
+
     return false;
 }
 
@@ -169,6 +185,7 @@ void SphereSelectorHandle::stackPointerVelocity() {
     for (u32 i = 1; i < ARRAY_SIZE(_F4); i++) {
         _F4[i].set(_F4[i - 1]);
     }
+
     _F4[0].set(*MR::getStarPointerScreenVelocity(WPAD_CHAN0));
 }
 
@@ -179,6 +196,7 @@ TVec2f* SphereSelectorHandle::getPointerVelocity() {
             max = i;
         }
     }
+
     return &_F4[max];
 }
 
@@ -190,22 +208,24 @@ void SphereSelectorHandle::resetRotateParam() {
 }
 
 void SphereSelectorHandle::rotateAxisY() {
-    MR::clampBoth(&mRotateSpeed, mTargetRotateSpeed - 0.2f, mTargetRotateSpeed + 0.2f);
-    MR::clampBoth(&mRotateSpeed, -5.0f, 5.0f);
+    MR::clampBoth(&mRotateSpeed, mTargetRotateSpeed - cRotateSpeedChangeMax, mTargetRotateSpeed + cRotateSpeedChangeMax);
+    MR::clampBoth(&mRotateSpeed, -cRotateSpeedMaxY, cRotateSpeedMaxY);
     mTargetRotateSpeed = mRotateSpeed;
     mRotation.y = MR::repeatDegree(mRotation.y + mRotateSpeed);
 }
 
 void SphereSelectorHandle::rotateAxisX() {
-    MR::clampBoth(&_D4, _D8 - 0.2f, _D8 + 0.2f);
-    MR::clampBoth(&_D4, -5.0f, -5.0f);
+    MR::clampBoth(&_D4, _D8 - cRotateSpeedChangeMax, _D8 + cRotateSpeedChangeMax);
+    MR::clampBoth(&_D4, -cRotateSpeedMaxX, cRotateSpeedMaxX);
     _D8 = _D4;
     MR::rotateVecDegree(&_E8, _DC, _D4);
     MR::normalize(&_E8);
+
     TVec3f rotateMinUp;
     MR::rotateVecDegree(&rotateMinUp, TVec3f(0.0f, 1.0f, 0.0f), _DC, ::cRotateMinX);
     TVec3f rotateMaxUp;
     MR::rotateVecDegree(&rotateMaxUp, TVec3f(0.0f, 1.0f, 0.0f), _DC, ::cRotateMaxX);
+
     if (_E8.dot(_C0) < rotateMinUp.dot(_C0)) {
         _E8.set(rotateMinUp);
     } else if (rotateMaxUp.dot(_C0) < _E8.dot(_C0)) {
@@ -228,12 +248,15 @@ void SphereSelectorHandle::changeBgmRotateState() {
         if (!_128) {
             MR::setStageBGMState(::cBgmRotateState, ::cBgmRotateFrames);
         }
+
         _128 = true;
         return;
     }
+
     if (_128) {
         MR::setStageBGMState(::cBgmNotRotateState, ::cBgmNotRotateFrames);
     }
+
     _128 = false;
 }
 
@@ -241,14 +264,24 @@ void SphereSelectorHandle::playRotateSE() {
     if (!(MR::abs(_D4) > ::cDemoRotateSpeedY) && !(MR::abs(mRotateSpeed) > ::cDemoRotateSpeedY)) {
         return;
     }
-    MR::startAtmosphereLevelSE("SE_AT_LV_ASTRO_DOME_WIND_1", static_cast< s32 >(100.0f * MR::clamp01(MR::abs(_D4) * (MR::abs(mRotateSpeed) / 5.0f))));
+
+    f32 verticalRate = MR::abs(_D4) / 2.0f;
+    f32 horizontalRate = MR::abs(mRotateSpeed) / 5.0f;
+    f32 rate = verticalRate > horizontalRate ? verticalRate : horizontalRate;
+
+    if (rate > 1.0f) {
+        rate = 1.0f;
+    }
+
+    MR::startAtmosphereLevelSE("SE_AT_LV_ASTRO_DOME_WIND_1", static_cast< s32 >(100.0f * rate));
     if (!(MR::abs(mRotateSpeed) >= 4.0f) && !(MR::abs(_D4) >= 1.6f)) {
         return;
     }
+
     MR::startAtmosphereLevelSE("SE_AT_LV_ASTRO_DOME_WIND_2");
 }
 
-void SphereSelectorHandle::setStateConfirmStartAtFirstStep() {
+void SphereSelectorHandle::setStateConfirmStartAtFirstStep() NO_INLINE {
     if (MR::isFirstStep(this)) {
         resetRotateParam();
         MR::setStageBGMState(cBgmConfirmState, cBgmConfirmFrames);
@@ -259,9 +292,11 @@ void SphereSelectorHandle::exeWait() {
     if (MR::isFirstStep(this)) {
         resetRotateParam();
     }
+
     if (isPointing()) {
         SphereSelectorFunction::registerPointingTarget(this, HandlePointingPriority(1));
     }
+
     if (_10C > ::cDemoRotateStartFrame) {
         setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvDemoRotate));
     }
@@ -273,20 +308,23 @@ void SphereSelectorHandle::exeHold() {
         clearPointerVelocity();
         MR::startSystemSE("SE_DM_ASTRO_HANDLE_GRAB");
     }
+
     if (isPointing()) {
         stackPointerVelocity();
-        mRotateSpeed = 0.2f * getPointerVelocity()->x;
-        if (mRotateSpeed * mTargetRotateSpeed < 0.0f || MR::abs(mTargetRotateSpeed) < MR::abs(mRotateSpeed)) {
-            mRotateSpeed = MR::getLinerValue(0.9f, mRotateSpeed, mTargetRotateSpeed, 0.0f);
+        mRotateSpeed = cHoldRotateRateY * getPointerVelocity()->x;
+        if (mRotateSpeed * mTargetRotateSpeed < 0.0f || MR::abs(mRotateSpeed) < MR::abs(mTargetRotateSpeed)) {
+            mRotateSpeed = MR::getLinerValue(cHoldReduceRate, mRotateSpeed, mTargetRotateSpeed, 1.0f);
         }
-        _D4 = 0.75f * getPointerVelocity()->y;
-        if (_D4 * _D8 < 0.0f || MR::abs(_D8) > MR::abs(_D4)) {
-            _D4 = MR::getLinerValue(0.9f, _D4, _D8, 1.0f);
+
+        _D4 = cHoldRotateRateX * getPointerVelocity()->y;
+        if (_D4 * _D8 < 0.0f || MR::abs(_D4) < MR::abs(_D8)) {
+            _D4 = MR::getLinerValue(cHoldReduceRate, _D4, _D8, 1.0f);
         }
     } else if (_10C > ::cHoldReduceOutScreenFrame) {
         mRotateSpeed *= ::cSpinReduceRate;
         _D4 *= ::cSpinReduceRate;
     }
+
     if (tryRelease()) {
         return;
     }
@@ -298,6 +336,7 @@ void SphereSelectorHandle::exeSpin() {
     if (MR::isStarPointerInScreen(WPAD_CHAN0)) {
         SphereSelectorFunction::registerPointingTarget(this, HandlePointingPriority(1));
     }
+
     if (MR::isNearZero(mRotateSpeed) && MR::isNearZero(_D4)) {
         setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvWait));
     }
@@ -308,6 +347,7 @@ void SphereSelectorHandle::exeDemoRotate() {
     if (isPointing()) {
         SphereSelectorFunction::registerPointingTarget(this, HandlePointingPriority(1));
     }
+
     if (_10C == 0) {
         setNerve(GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvWait));
     }
@@ -316,8 +356,9 @@ void SphereSelectorHandle::exeDemoRotate() {
 void SphereSelectorHandle::exeDisappear() {
     if (MR::isFirstStep(this)) {
         resetRotateParam();
-        MR::setStageBGMState(::cBgmAppearState, ::cBgmAppearFrames);
+        MR::setStageBGMState(::cBgmDisappearState, ::cBgmDisappearFrames);
     }
+
     if (MR::isStep(this, ::cBgmDisappearFrames)) {
         kill();
     }
@@ -329,6 +370,7 @@ void SphereSelectorHandle::exeGalaxyConfirmStart() {
         setStateConfirmStartAtFirstStep();
         _110.zero();
     }
+
     MR::setNerveAtStep(this, GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvGalaxyConfirmWait), confirmStartCancelFrame);
 }
 
@@ -337,14 +379,16 @@ void SphereSelectorHandle::exeGalaxyConfirmCancel() {
     if (MR::isFirstStep(this)) {
         MR::setStageBGMState(cBgmNotConfirmState, cBgmNotConfirmFrames);
     }
+
     mPosition.lerp(_110, TVec3f(0.0f, 0.0f, 0.0f), MR::calcNerveEaseInRate(this, confirmStartCancelFrame));
     MR::setNerveAtStep(this, GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvWait), confirmStartCancelFrame);
 }
 
-void SphereSelectorHandle::exeIdleEndForFileSelect() {
+void SphereSelectorHandle::exeIdleEndForFileSelect() NO_INLINE {
     if (MR::isFirstStep(this)) {
         MR::setStageBGMState(cBgmNotConfirmState, cBgmNotConfirmFrames);
     }
+
     MR::setNerveAtStep(this, GET_NERVE(SphereSelectorHandle, SphereSelectorHandleNrvWait), SphereSelectorFunction::getConfirmStartCancelFrame());
 }
 
