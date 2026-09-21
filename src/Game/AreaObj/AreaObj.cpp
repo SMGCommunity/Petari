@@ -111,7 +111,9 @@ void AreaObjMgr::entry(AreaObj* pAreaObj) {
 AreaObj* AreaObjMgr::find_in(const TVec3f& rVec) const {
     AreaObj* const* Begin = mArray.begin();
     AreaObj* const* End = mArray.end();
-    AreaObj* const* p = std::rfind_if(End - 1, Begin - 1, std::bind2nd(std::mem_func(&AreaObj::isInVolume), rVec));
+    AreaObj* const* p = std::rfind_if(
+        End - 1, Begin - 1,
+        std::binder2nd< std::const_mem_fun1_t< bool, AreaObj, const TVec3f& >, const TVec3f& >(std::mem_func(&AreaObj::isInVolume), rVec));
 
     p = (p == Begin - 1 ? End : p);
 

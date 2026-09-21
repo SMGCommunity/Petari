@@ -10,11 +10,15 @@
 #include "Game/Screen/GalaxyMapTitle.hpp"
 #include "Game/Screen/IconAButton.hpp"
 #include "Game/Screen/LayoutManager.hpp"
+#include "Game/System/GalaxyStatusAccessor.hpp"
+#include "Game/System/GameDataConst.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include <algorithm>
 #include <cstdio>
 
@@ -35,6 +39,22 @@ namespace {
 GalaxyMap::GalaxyMap()
     : LayoutActor("ギャラクシー・天文台マップ", true), mMarioIcon1(), mMarioIcon2(), mGalaxyPlain(), mGalaxyDetail(), mPointingIcon(), mGalaxyName(),
       mIconAButton(), _70(), _71(true) {
+}
+
+template <>
+inline MR::Vector< MR::AssignableArray< GalaxyMapIcon* > >::~Vector() {
+}
+
+template <>
+inline MR::Vector< MR::AssignableArray< GalaxyMapCometIcon* > >::~Vector() {
+}
+
+template <>
+inline MR::Vector< MR::AssignableArray< GalaxyMapDomeIcon* > >::~Vector() {
+}
+
+template <>
+inline MR::Vector< MR::AssignableArray< GalaxyMapTicoIcon* > >::~Vector() {
 }
 
 void GalaxyMap::init(const JMapInfoIter& rIter) {
@@ -177,13 +197,18 @@ void GalaxyMap::movementForCapture() {
 
 void GalaxyMap::calcAnimForCapture(const nw4r::lyt::DrawInfo& rDrawInfo) {
     MR::calcAnimLayoutWithDrawInfo(this, rDrawInfo);
-    std::for_each(mDomeIcon.begin(), mDomeIcon.end(), std::bind2nd(std::mem_func(&GalaxyMapDomeIcon::calcAnimForCapture), rDrawInfo));
-    std::for_each(mIcon.begin(), mIcon.end(), std::bind2nd(std::mem_func(&GalaxyMapIcon::calcAnimForCapture), rDrawInfo));
-    std::for_each(mCometIcon.begin(), mCometIcon.end(), std::bind2nd(std::mem_func(&GalaxyMapCometIcon::calcAnimForCapture), rDrawInfo));
+    std::for_each(mDomeIcon.begin(), mDomeIcon.end(),
+                  std::binder2nd< std::mem_fun1_t< void, GalaxyMapDomeIcon, const nw4r::lyt::DrawInfo& >, const nw4r::lyt::DrawInfo& >(
+                      std::mem_func(&GalaxyMapDomeIcon::calcAnimForCapture), rDrawInfo));
+    std::for_each(mIcon.begin(), mIcon.end(),
+                  std::binder2nd< std::mem_fun1_t< void, GalaxyMapIcon, const nw4r::lyt::DrawInfo& >, const nw4r::lyt::DrawInfo& >(
+                      std::mem_func(&GalaxyMapIcon::calcAnimForCapture), rDrawInfo));
+    std::for_each(mCometIcon.begin(), mCometIcon.end(),
+                  std::binder2nd< std::mem_fun1_t< void, GalaxyMapCometIcon, const nw4r::lyt::DrawInfo& >, const nw4r::lyt::DrawInfo& >(
+                      std::mem_func(&GalaxyMapCometIcon::calcAnimForCapture), rDrawInfo));
 }
 
 void GalaxyMap::drawForCapture(const nw4r::lyt::DrawInfo& rDrawInfo) {
-    // FIXME: bind2nd is inlining here very stubbornly.
     MR::drawLayoutWithDrawInfoWithoutProjectionSetup(this, rDrawInfo);
     std::for_each(mDomeIcon.begin(), mDomeIcon.end(), std::bind2nd(std::ptr_fun(MR::drawLayoutWithDrawInfoWithoutProjectionSetup), rDrawInfo));
     std::for_each(mIcon.begin(), mIcon.end(), std::bind2nd(std::ptr_fun(MR::drawLayoutWithDrawInfoWithoutProjectionSetup), rDrawInfo));
@@ -365,7 +390,49 @@ void GalaxyMap::exeShowDetail() {
     }
 }
 
-// GalaxyMap::initPaneCtrlPointing
+namespace {
+    template < class T >
+    void initIconArray(MR::Vector< MR::AssignableArray< T* > >& rIcons, T** pBuffer, s32 capacity) {
+        rIcons.mArray.mArr = pBuffer;
+        rIcons.mArray.mMaxSize = capacity;
+    }
+}  // namespace
+
+void GalaxyMap::initPaneCtrlPointing() {
+    JMapInfo galaxyInfo;
+    galaxyInfo.attach(&GalaxyIDBCSV);
+    initIconArray(mIcon, new GalaxyMapIcon*[galaxyInfo.getNumEntries()], galaxyInfo.getNumEntries());
+    initIconArray(mCometIcon, new GalaxyMapCometIcon*[galaxyInfo.getNumEntries()], galaxyInfo.getNumEntries());
+    initPointingTarget(galaxyInfo.getNumEntries());
+
+    for (s32 i = 0; i < galaxyInfo.getNumEntries(); i++) {
+        const char* pPaneName = nullptr;
+
+        if (!galaxyInfo.getValue(i, "MapPaneName", &pPaneName)) {
+            continue;
+        }
+
+        if (MR::isEqualString(pPaneName, "") || MR::isEqualString(pPaneName, "dummy")) {
+            continue;
+        }
+
+        const char* pGalaxyName = nullptr;
+        galaxyInfo.getValue(i, "name", &pGalaxyName);
+        GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
+        MR::createAndAddPaneCtrl(this, pPaneName, 1);
+        MR::addStarPointerTargetCircle(this, pPaneName, sPointingRange, TVec2f(0.0f, 0.0f), nullptr);
+
+        GalaxyMapIcon* pIcon = new GalaxyMapIcon(pGalaxyName, this, pPaneName);
+        pIcon->initWithoutIter();
+        mIcon.mArray[mIcon.mCount++] = pIcon;
+
+        if (accessor.isExistAnyComet()) {
+            GalaxyMapCometIcon* pCometIcon = new GalaxyMapCometIcon(pGalaxyName, this, pPaneName);
+            pCometIcon->initWithoutIter();
+            mCometIcon.mArray[mCometIcon.mCount++] = pCometIcon;
+        }
+    }
+}
 
 namespace {
     const char* const cDomes[] = {
@@ -395,25 +462,26 @@ void GalaxyMap::initDomeIcon() {
     }
 }
 
+namespace {
+    GalaxyMapMarioIcon* createMarioIcon(LayoutActor* pHost, const char* pPaneName) {
+        GalaxyMapMarioIcon* pIcon = new GalaxyMapMarioIcon(pHost, pPaneName);
+        pIcon->initWithoutIter();
+        return pIcon;
+    }
+}  // namespace
+
 void GalaxyMap::initMarioIcon() {
-    GalaxyMapMarioIcon* marioIcon1;
-    GalaxyMapMarioIcon* marioIcon2;
     s32 scenarioNo = 0;
 
     if (MR::isEqualStageName("AstroDome")) {
         scenarioNo = MR::getCurrentScenarioNo();
     }
 
-    marioIcon1 = new GalaxyMapMarioIcon(this, ::cMarioIconPositions[scenarioNo]);
-    marioIcon1->initWithoutIter();
+    mMarioIcon1 = createMarioIcon(this, cMarioIconPositions[scenarioNo]);
+    const char* pDomePosition = cMarioIconPositionsInDome[scenarioNo];
 
-    mMarioIcon1 = marioIcon1;
-
-    if (::cMarioIconPositionsInDome[scenarioNo] != nullptr) {
-        marioIcon2 = new GalaxyMapMarioIcon(this, ::cMarioIconPositionsInDome[scenarioNo]);
-        marioIcon2->initWithoutIter();
-
-        mMarioIcon2 = marioIcon2;
+    if (pDomePosition != nullptr) {
+        mMarioIcon2 = createMarioIcon(this, pDomePosition);
     }
 }
 

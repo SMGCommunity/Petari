@@ -49,7 +49,9 @@ void MultiSceneEffectKeeper::deleteAll() {
 }
 
 void MultiSceneEffectKeeper::forceDeleteAll(EffectSystem* pSystem) {
-    std::for_each(mEmitter.begin(), mEmitter.end(), std::bind2nd(std::mem_func(&MultiEmitter::forceDelete), pSystem));
+    std::for_each(
+        mEmitter.begin(), mEmitter.end(),
+        std::binder2nd< std::mem_fun1_t< void, MultiEmitter, EffectSystem* >, EffectSystem* >(std::mem_func(&MultiEmitter::forceDelete), pSystem));
 }
 
 void MultiSceneEffectKeeper::clear() {
@@ -66,7 +68,9 @@ MultiEmitter* MultiSceneEffectKeeper::find(const char* pName) const {
     }
 
     u16 hash = MR::getHashCode(pName);
-    MultiEmitter* const* pEmitter = std::find_if(mEmitter.begin(), mEmitter.end(), std::bind2nd(std::mem_func(&MultiEmitter::isEqualName), hash));
+    MultiEmitter* const* pEmitter =
+        std::find_if(mEmitter.begin(), mEmitter.end(),
+                     std::binder2nd< std::const_mem_fun1_t< bool, MultiEmitter, u16 >, u16 >(std::mem_func(&MultiEmitter::isEqualName), hash));
 
     if (pEmitter != mEmitter.end()) {
         return *pEmitter;
