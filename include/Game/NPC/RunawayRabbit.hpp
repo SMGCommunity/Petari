@@ -31,6 +31,7 @@ public:
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void initSensor();
+    void initShadow();
     void initFootPrint();
     void updatePose();
     void updateBindActorMatrix();

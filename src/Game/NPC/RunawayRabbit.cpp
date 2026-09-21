@@ -35,54 +35,54 @@ void RunawayRabbit_FORCE_MATCH_SDATA2() {
 }
 
 namespace {
-    const f32 sLightLength = 1500.0f;
-    const f32 sBodyRadius = 70.0f;
-    const f32 sCatchRadius = 30.0f;
-    const f32 sBindRadius = 60.0f;
-    const f32 sBindYOffset = 60.0f;
-    const f32 sShadowRadius = 45.0f;
-    const f32 sUpVecBlendRate = 0.1f;
-    const f32 sFrontVecBlendRate = 0.2f;
-    const f32 sAirFric = 0.99f;
-    const f32 sAirGravityAccel = 1.0f;
-    const f32 sPushAccel = 0.5f;
-    const f32 sWaitTurnLimit = 20.0f;
-    const f32 sHoleAppearPowerH = 19.0f;
-    const f32 sHoleAppearPowerV = 25.0f;
-    const f32 sGroundAppearPowerH = 16.0f;
-    const f32 sGroundAppearPowerV = 25.0f;
-    const f32 sRunawayAccelMax = 1.8f;
-    const f32 sRunawayAccelMin = 0.5f;
+    static const f32 sLightLength = 1500.0f;
+    static const f32 sBodyRadius = 70.0f;
+    static const f32 sCatchRadius = 30.0f;
+    static const f32 sBindRadius = 60.0f;
+    static const f32 sBindYOffset = 60.0f;
+    static const f32 sShadowRadius = 45.0f;
+    static const f32 sUpVecBlendRate = 0.1f;
+    static const f32 sFrontVecBlendRate = 0.2f;
+    static const f32 sAirFric = 0.99f;
+    static const f32 sAirGravityAccel = 1.0f;
+    static const f32 sPushAccel = 0.5f;
+    static const f32 sWaitTurnLimit = 20.0f;
+    static const f32 sHoleAppearPowerH = 19.0f;
+    static const f32 sHoleAppearPowerV = 25.0f;
+    static const f32 sGroundAppearPowerH = 16.0f;
+    static const f32 sGroundAppearPowerV = 25.0f;
+    static const f32 sRunawayAccelMax = 1.8f;
+    static const f32 sRunawayAccelMin = 0.5f;
     // bool sIsTireRunawayAccel;
-    const f32 sNoPressureAccel = 0.6f;
-    const f32 sPressureRange = 400.0f;
-    const s32 sPressureLimitTime = 2000;
-    const s32 sPressureDeccelStart = 200;
-    const s32 sPressureDeccelTimeLv1 = 240;
-    const s32 sPressureDeccelTimeLv2 = 500;
-    const s32 sPressureDeccelTimeLv3 = 800;
+    static const f32 sNoPressureAccel = 0.6f;
+    static const f32 sPressureRange = 400.0f;
+    static const s32 sPressureLimitTime = 2000;
+    static const s32 sPressureDeccelStart = 200;
+    static const s32 sPressureDeccelTimeLv1 = 240;
+    static const s32 sPressureDeccelTimeLv2 = 500;
+    static const s32 sPressureDeccelTimeLv3 = 800;
     // f32 sRunawayTurnStartLimit;
     // f32 sRunawayTurnLimit;
     // s32 sRunawayTurnDeccelTime;
-    const f32 sAwayTargetVelocityRate = 0.3f;
+    static const f32 sAwayTargetVelocityRate = 0.3f;
     // f32 sRunAccelbyBckRate;
-    const f32 sMinRunBckRate = 0.9f;
-    const f32 sMaxRunBckRate = 1.4f;
-    const s32 sMarioPoseBlendTime = 5;
+    static const f32 sMinRunBckRate = 0.9f;
+    static const f32 sMaxRunBckRate = 1.4f;
+    static const s32 sMarioPoseBlendTime = 5;
     // const f32 sCaughtJumpPower;
     // f32 sCaughtJumpFrontPower;
-    const f32 sDamageTurnLimit = 3.0f;
-    const f32 sBlowAccelH = 25.0f;
-    const f32 sBlowAccelV = 30.0f;
+    static const f32 sDamageTurnLimit = 3.0f;
+    static const f32 sBlowAccelH = 25.0f;
+    static const f32 sBlowAccelV = 30.0f;
     // s32 sDamageLandTime;
-    const f32 sStarPieceHitAccelH = 20.0f;
-    const f32 sStarPieceHitAccelV = 20.0f;
-    const f32 sNearSoundRadiusDefault = 600.0f;
-    const f32 sNearSoundRadiusEdge = 250.0f;
-    const s32 sNearSoundFxSend = 60;
-    const f32 sNearSoundMinVolume = 35.0f;
-    const f32 sNearSoundMaxVolume = 100.0f;
-    const s32 sTossStep = 10;
+    static const f32 sStarPieceHitAccelH = 20.0f;
+    static const f32 sStarPieceHitAccelV = 20.0f;
+    static const f32 sNearSoundRadiusDefault = 600.0f;
+    static const f32 sNearSoundRadiusEdge = 250.0f;
+    static const s32 sNearSoundFxSend = 60;
+    static const f32 sNearSoundMinVolume = 35.0f;
+    static const f32 sNearSoundMaxVolume = 100.0f;
+    static const s32 sTossStep = 10;
 
     class RunawayRabbitParam : public WalkerStateRunawayParam {
     public:
@@ -90,13 +90,7 @@ namespace {
         }
     };
     static RunawayRabbitParam sParam = RunawayRabbitParam();
-
-    void initShadow(LiveActor* pActor) {
-        MR::initShadowVolumeSphere(pActor, ::sShadowRadius);
-        TVec3f zeroVec(0.0f, 0.0f, 0.0f);
-        MR::setShadowDropPositionAtJoint(pActor, nullptr, "Spine", zeroVec);
-    }
-}  // namespace
+};  // namespace
 
 namespace NrvRunawayRabbit {
     NEW_NERVE(RunawayRabbitNrvNoActive, RunawayRabbit, NoActive);
@@ -150,7 +144,7 @@ void RunawayRabbit::init(const JMapInfoIter& rIter) {
     initSensor();
     initBinder(::sBindRadius, ::sBindYOffset, 0);
     MR::onCalcGravity(this);
-    ::initShadow(this);
+    initShadow();
     initFootPrint();
     initSound(6, false);
     initEffectKeeper(0, nullptr, false);
@@ -163,6 +157,12 @@ void RunawayRabbit::init(const JMapInfoIter& rIter) {
     }
 
     makeActorAppeared();
+}
+
+void RunawayRabbit::initShadow() {
+    MR::initShadowVolumeSphere(this, ::sShadowRadius);
+    TVec3f zeroVec(0.0f, 0.0f, 0.0f);
+    MR::setShadowDropPositionAtJoint(this, nullptr, "Spine", zeroVec);
 }
 
 void RunawayRabbit::initFootPrint() {
@@ -504,9 +504,9 @@ bool RunawayRabbit::isCaught() const {
 bool RunawayRabbit::isCaughtable() const {
     if (isRunnaway() && mNotCaughtableTimer == 0) {
         return true;
-    } else {
-        return false;
     }
+
+    return false;
 }
 
 bool RunawayRabbit::isRunnaway() const {
