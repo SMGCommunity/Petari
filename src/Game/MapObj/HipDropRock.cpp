@@ -11,9 +11,14 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void HipDropRock_FORCE_MATCHSDATA2() {
-    f32 v1 = 1.0f;
+void HipDropRock_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
 }
+
+namespace {
+    static const s32 sStepToSwitchOn = 30;
+    static const s32 sDefaultStarPeaceNum = 6;
+};  // namespace
 
 namespace NrvHipDropRock {
     NEW_NERVE(HipDropRockNrvWait, HipDropRock, Wait);
@@ -21,12 +26,8 @@ namespace NrvHipDropRock {
     NEW_NERVE(HipDropRockNrvWreck, HipDropRock, Wreck);
 };  // namespace NrvHipDropRock
 
-HipDropRock::HipDropRock(const char* pName) : LiveActor(pName) {
-    mModel = nullptr;
-    _C0 = -1;
-    _C4 = -1;
-    _C8 = false;
-    _90.identity();
+HipDropRock::HipDropRock(const char* pName) : LiveActor(pName), mBreakModel(), mItemType(-1), mStarPieceNum(-1), mObjArg7() {
+    mBreakModelMtx.identity();
 }
 
 void HipDropRock::init(const JMapInfoIter& rIter) {
@@ -42,10 +43,12 @@ void HipDropRock::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchWriteDead(this, rIter);
     MR::useStageSwitchWriteB(this, rIter);
     HipDropRock::initItem(rIter);
-    MR::getJMapInfoArg7NoInit(rIter, &_C8);
+    MR::getJMapInfoArg7NoInit(rIter, &mObjArg7);
+
     if (MR::tryRegisterDemoCast(this, rIter)) {
-        MR::tryRegisterDemoCast(mModel, rIter);
+        MR::tryRegisterDemoCast(mBreakModel, rIter);
     }
+
     initNerve(GET_NERVE(HipDropRock, HipDropRockNrvWait));
     makeActorAppeared();
 }
@@ -61,25 +64,32 @@ void HipDropRock::exeBreak() {
         MR::startSound(this, "SE_OJ_ROCK_BREAK");
         MR::invalidateCollisionParts(this);
         MR::invalidateClipping(this);
-        if (_C8) {
+
+        if (mObjArg7) {
             MR::hideModel(this);
         } else {
             MR::startBva(this, "BreakLevel");
         }
-        mModel->makeActorAppeared();
-        MR::invalidateClipping(mModel);
-        MR::startBck(mModel, "HipDropRockBreak");
+
+        mBreakModel->makeActorAppeared();
+        MR::invalidateClipping(mBreakModel);
+        MR::startBck(mBreakModel, "HipDropRockBreak");
+
         if (MR::isValidSwitchB(this)) {
             MR::onSwitchB(this);
         }
+
         HipDropRock::appearItem();
     }
-    if (MR::isStep(this, 30) && MR::isValidSwitchDead(this)) {
+
+    if (MR::isStep(this, ::sStepToSwitchOn) && MR::isValidSwitchDead(this)) {
         MR::onSwitchDead(this);
     }
-    if (MR::isBckStopped(mModel) && MR::isGreaterStep(this, 30)) {
-        mModel->kill();
-        if (_C8) {
+
+    if (MR::isBckStopped(mBreakModel) && MR::isGreaterStep(this, ::sStepToSwitchOn)) {
+        mBreakModel->kill();
+
+        if (mObjArg7) {
             kill();
         } else {
             setNerve(GET_NERVE(HipDropRock, HipDropRockNrvWreck));
@@ -97,51 +107,58 @@ bool HipDropRock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
     if (isNerve(GET_NERVE(HipDropRock, HipDropRockNrvBreak))) {
         return false;
     }
+
     if (MR::isMsgPlayerHipDropFloor(msg)) {
         setNerve(GET_NERVE(HipDropRock, HipDropRockNrvBreak));
+
         return true;
     }
+
     return false;
 }
 
 void HipDropRock::initBreakModel() {
-    MtxPtr baseMtx = getBaseMtx();
-    _90.setInline(baseMtx);
+    mBreakModelMtx.set(getBaseMtx());
     TVec3f v1;
     TVec3f v2;
     v1.x = 0.0f;
     v1.y = 1.0f;
     v1.z = 0.0f;
     v2.scale(MR::getRandom(0.0f, 180.0f), v1);
-    TPos3f v3;
-    MR::makeMtxMoment(&v3, v2);
-    _90.concat(v3);
-    mModel = MR::createModelObjMapObj("ヒビ石壊れモデル", "HipDropRockBreak", _90);
-    mModel->initWithoutIter();
-    MR::invalidateClipping(mModel);
-    mModel->makeActorDead();
+    TPos3f mtx;
+    MR::makeMtxMoment(&mtx, v2);
+    mBreakModelMtx.concat(mtx);
+
+    mBreakModel = MR::createModelObjMapObj("ヒビ石壊れモデル", "HipDropRockBreak", mBreakModelMtx);
+    mBreakModel->initWithoutIter();
+    MR::invalidateClipping(mBreakModel);
+    mBreakModel->makeActorDead();
 }
 
 void HipDropRock::initItem(const JMapInfoIter& rIter) {
-    MR::getJMapInfoArg0NoInit(rIter, &_C0);
-    MR::getJMapInfoArg1NoInit(rIter, &_C4);
-    if (_C0 == 1 && _C4 == -1) {
-        _C4 = 6;
+    MR::getJMapInfoArg0NoInit(rIter, &mItemType);
+    MR::getJMapInfoArg1NoInit(rIter, &mStarPieceNum);
+
+    if (mItemType == 1 && mStarPieceNum == -1) {
+        mStarPieceNum = ::sDefaultStarPeaceNum;
     }
-    if (!_C0) {
+
+    if (mItemType == 0) {
         MR::declareCoin(this, 1);
-    } else if (_C0 == 1) {
-        MR::declareStarPiece(this, _C4);
+    } else if (mItemType == 1) {
+        MR::declareStarPiece(this, mStarPieceNum);
     }
 }
 
 void HipDropRock::appearItem() {
-    if (_C0 != -1) {
-        if (!_C0) {
-            MR::appearCoinPop(this, mPosition, 1);
-        } else if (_C0 == 1) {
-            MR::appearStarPiece(this, mPosition, _C4, 10.0f, 40.0f, false);
-            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
-        }
+    if (mItemType == -1) {
+        return;
+    }
+
+    if (mItemType == 0) {
+        MR::appearCoinPop(this, mPosition, 1);
+    } else if (mItemType == 1) {
+        MR::appearStarPiece(this, mPosition, mStarPieceNum, 10.0f, 40.0f, false);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
 }

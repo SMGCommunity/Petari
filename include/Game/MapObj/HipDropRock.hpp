@@ -7,9 +7,11 @@ class ModelObj;
 
 class HipDropRock : public LiveActor {
 public:
-    HipDropRock(const char*);
+    /// @brief Creates a new `HipDropRock`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    HipDropRock(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeWait();
@@ -20,9 +22,9 @@ public:
     void initItem(const JMapInfoIter&);
     void appearItem();
 
-    ModelObj* mModel;  //_8C
-    TMtx34f _90;
-    s32 _C0;
-    s32 _C4;
-    bool _C8;
+    /* 0x8C */ ModelObj* mBreakModel;
+    /* 0x90 */ TMtx34f mBreakModelMtx;
+    /* 0xC0 */ s32 mItemType;
+    /* 0xC4 */ s32 mStarPieceNum;
+    /* 0xC8 */ bool mObjArg7;
 };
