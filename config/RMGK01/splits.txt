@@ -6711,6 +6711,7 @@ Game/NPC/Syati.cpp:
 	.ctors      start:0x8052F000 end:0x8052F004
 	.rodata     start:0x80539798 end:0x80539810
 	.data       start:0x805B3A10 end:0x805B3DF0
+	.sdata      start:0x806B2170 end:0x806B2178
 	.sbss       start:0x806B5FB0 end:0x806B6008
 	.sdata2     start:0x806BEF88 end:0x806BEFF8
 
@@ -6726,6 +6727,7 @@ Game/NPC/Tico.cpp:
 	.ctors      start:0x8052F008 end:0x8052F00C
 	.data       start:0x805B4050 end:0x805B43B0
 	.bss        start:0x8060AE78 end:0x8060AE90
+	.sdata      start:0x806B2178 end:0x806B2180
 	.sbss       start:0x806B6028 end:0x806B6070
 	.sdata2     start:0x806BF038 end:0x806BF078
 
@@ -6752,6 +6754,7 @@ Game/NPC/TicoDomeLecture.cpp:
 	.ctors      start:0x8052F014 end:0x8052F018
 	.rodata     start:0x80539810 end:0x80539828
 	.data       start:0x805B4940 end:0x805B4A60
+	.sdata      start:0x806B2180 end:0x806B2188
 	.sbss       start:0x806B6098 end:0x806B60A8
 	.sdata2     start:0x806BF0A8 end:0x806BF0B0
 
@@ -6761,7 +6764,7 @@ Game/NPC/TicoFat.cpp:
 	.rodata     start:0x80539828 end:0x80539830
 	.data       start:0x805B4A60 end:0x805B4FE0
 	.bss        start:0x8060AEC8 end:0x8060AF00
-	.sdata      start:0x806B2170 end:0x806B21A0
+	.sdata      start:0x806B2188 end:0x806B21A0
 	.sbss       start:0x806B60A8 end:0x806B60E8
 	.sdata2     start:0x806BF0B0 end:0x806BF120
 
