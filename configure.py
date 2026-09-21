@@ -1954,7 +1954,7 @@ config.libs = [
             Object(NonMatching, "Game/NPC/TalkMessageCtrl.cpp"),
             Object(Matching, "Game/NPC/TalkMessageInfo.cpp"),
             Object(Matching, "Game/NPC/TalkNodeCtrl.cpp"),
-            Object(NonMatching, "Game/NPC/TurnJointCtrl.cpp"),
+            Object(Matching, "Game/NPC/TurnJointCtrl.cpp"),
             Object(NonMatching, "Game/NPC/TalkState.cpp"),
             Object(NonMatching, "Game/NPC/TalkSupportPlayerWatcher.cpp"),
             Object(Matching, "Game/NPC/TalkTextFormer.cpp", extra_cflags=["-DNW4R_DEBUG"]),
