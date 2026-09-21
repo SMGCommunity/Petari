@@ -177,7 +177,9 @@ void ScenarioSelectStar::exePointing() {
         mScale.z = ::cPointingScale;
     }
 
-    tryEndPointing();
+    if (tryEndPointing()) {
+        return;
+    }
 }
 
 void ScenarioSelectStar::exeEndPointing() {
