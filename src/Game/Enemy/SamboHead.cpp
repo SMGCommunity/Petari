@@ -445,9 +445,54 @@ void SamboHead::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 }
 
-// SamboHead::receiveMsgPlayerAttack
-// SamboHead::receiveMsgPush
 // SamboHead::receiveOtherMsg
+
+bool SamboHead::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (isNerve(&NrvSamboHead::HostTypeNrvHitBlow::sInstance) || isNerve(&NrvSamboHead::HostTypeNrvStampDeath::sInstance) ||
+        isNerve(&NrvSamboHead::HostTypeNrvStampFall::sInstance) || isNerve(&NrvSamboHead::HostTypeNrvWaitUnderGround::sInstance) ||
+        isNerve(&NrvSamboHead::HostTypeNrvHide::sInstance)) {
+        return false;
+    }
+    if (MR::isMsgLockOnStarPieceShoot(msg))
+        return true;
+    if (MR::isMsgStarPieceAttack(msg)) {
+        if (isNerve(&NrvSamboHead::HostTypeNrvStarPieceHit::sInstance)) {
+            mScaleController->startHitReaction();
+        } else {
+            setNerve(&NrvSamboHead::HostTypeNrvStarPieceHit::sInstance);
+        }
+        return true;
+    }
+    if (MR::isMsgPlayerHipDrop(msg) || MR::isMsgPlayerTrample(msg)) {
+        MR::startSound(this, "SE_EM_STOMPED_S", -1, -1);
+        if (MR::isOnGround(this)) {
+            setNerve(&NrvSamboHead::HostTypeNrvStampDeath::sInstance);
+        } else {
+            setNerve(&NrvSamboHead::HostTypeNrvStampFall::sInstance);
+        }
+        return true;
+    }
+    if (MR::isMsgPlayerHitAll(msg)) {
+        mSpinCtrl->start(this, pSender->mPosition, pReceiver->mPosition);
+        setNerve(&NrvSamboHead::HostTypeNrvHitBlow::sInstance);
+        return true;
+    }
+    return false;
+}
+
+bool SamboHead::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
+    if (!MR::isSensorEnemy(pSender) && !MR::isSensorMapObj(pSender)) {
+        return false;
+    }
+    if (!isNerve(&NrvSamboHead::HostTypeNrvWaitUnderGround::sInstance) && !isNerve(&NrvSamboHead::HostTypeNrvHide::sInstance) &&
+        !isNerve(&NrvSamboHead::HostTypeNrvStampFall::sInstance) && !isNerve(&NrvSamboHead::HostTypeNrvStampDeath::sInstance)) {
+        if (isNerve(&NrvSamboHead::HostTypeNrvHitBlow::sInstance)) {
+            return false;
+        }
+        MR::addVelocityFromPush(this, 2.0f, pSender, pReceiver);
+    }
+    return true;
+}
 
 void SamboHead::calcAndSetBaseMtx() {
     TPos3f mtx;
