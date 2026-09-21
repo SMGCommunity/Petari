@@ -36,6 +36,7 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
+#include "revolution/os.h"
 #include <cstdio>
 
 namespace NrvTicoFat {
@@ -336,7 +337,7 @@ void TicoFat::control() {
         } else {
             if (_170) {
                 _170 = 0;
-                MR::endGlobalEventCamera("デブチコカメ", 120, true);
+                MR::endGlobalEventCamera("デブチコカメラ", 120, true);
             }
         }
 
@@ -567,6 +568,10 @@ bool TicoFat::tryMetamorphosis() {
 void TicoFat::emitScreenEffect() {
     MR::emitEffect(this, "TicoFatScreenEffect")->setHostMtx(_17C);
     MR::emitEffect(this, "TicoFatScreenEffectLight")->setHostMtx(_1AC);
+}
+
+void TicoFat_FORCE_EMIT_STRING() {
+    OSReport("TicoFatScreenEffectFog");
 }
 
 void TicoFat::updateScreenEffect() {
@@ -904,7 +909,7 @@ void TicoFat::exeWipeOut() {
     updateScreenEffect();
 
     if (!MR::isWipeActive()) {
-        MR::emitEffect(this, "TicoFatScreenEFfectFog")->setHostMtx(_17C);
+        MR::emitEffect(this, "TicoFatScreenEffectFog")->setHostMtx(_17C);
         MR::deleteEffect(this, "TicoFatScreenEffect");
         setNerve(GET_NERVE(TicoFat, TicoFatNrvWipeIn));
     }
