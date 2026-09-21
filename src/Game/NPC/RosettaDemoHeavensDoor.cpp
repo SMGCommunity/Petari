@@ -1,6 +1,5 @@
 #include "Game/NPC/RosettaDemoHeavensDoor.hpp"
 #include "Game/Demo/DemoFunction.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/NPC/Rosetta.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
@@ -42,6 +41,7 @@ RosettaDemoHeavensDoor1::RosettaDemoHeavensDoor1(Rosetta* pHost, const JMapInfoI
     if (MR::isDemoCast(mHost, nullptr)) {
         MR::tryRegisterDemoCast(mLightHaloModel, rIter);
     }
+
     mLightHaloModel->mIsCalcOwnMtx = false;
     mLightHaloModel->mPosition.set(15064.593f, -7917.67f, 7541.112f);
 
@@ -127,14 +127,18 @@ void RosettaDemoHeavensDoor1::exeDemo() {
 
     if (MR::isDemoPartActive("スピンゲット[会話1]") || MR::isDemoPartActive("スピンゲット[会話2]") || MR::isDemoPartActive("スピンゲット[会話3]") ||
         MR::isDemoPartActive("スピンゲット[会話4]") || MR::isDemoPartActive("スピンゲット[デモ2]") || MR::isDemoPartActive("スピンゲット[デモ3]") ||
-        MR::isDemoPartActive("スピンゲット[デモ4]") || MR::isDemoPartActive("スピンゲット[デモ5]") || MR::isDemoPartActive("スピンゲット[デモ3]")) {
+        MR::isDemoPartActive("スピンゲット[デモ4]") || MR::isDemoPartActive("スピンゲット[デモ5]")) {
         MR::startLevelSound(mHost, "SE_SM_LV_TICO_OP_WAIT");
     }
 
     if (MR::isDemoPartActive("スピンゲット[デモ6]")) {
-        if (MR::getDemoPartStep("スピンゲット[デモ6]") < ::sRosettaHideFrame) {
+        s32 step = MR::getDemoPartStep("スピンゲット[デモ6]");
+
+        if (step < ::sRosettaHideFrame) {
             MR::startLevelSound(mHost, "SE_SM_LV_TICO_OP_WAIT");
-        } else {
+        }
+
+        if (step >= ::sRosettaHideFrame) {
             MR::startLevelSound(mHost, "SE_SM_LV_ROSETTA_OP_HIDE");
         }
     }
@@ -154,7 +158,7 @@ RosettaDemoHeavensDoor2::RosettaDemoHeavensDoor2(Rosetta* pHost, const JMapInfoI
     MR::needStageSwitchWriteA(mHost, rIter);
 
     if (MR::isOnGameEventFlagRosettaTalkAboutTicoInTower()) {
-        mHost->kill();
+        mHost->makeActorDead();
     } else {
         MR::onSwitchA(mHost);
     }
@@ -184,14 +188,4 @@ void RosettaDemoHeavensDoor2::exeWait() {
 }
 
 void RosettaDemoHeavensDoor2::exeDemo() {
-}
-
-template < typename T >
-void RosettaDemoHeavensDoor1::changeNerve() {
-    NerveExecutor::setNerve(&NrvRosettaDemoHeavensDoor1::RosettaDemoHeavensDoor1NrvDemo::sInstance);
-}
-
-template < typename T >
-void RosettaDemoHeavensDoor2::changeNerve() {
-    NerveExecutor::setNerve(&NrvRosettaDemoHeavensDoor2::RosettaDemoHeavensDoor2NrvDemo::sInstance);
 }

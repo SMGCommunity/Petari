@@ -1,12 +1,14 @@
 #pragma once
 
-#include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/StinkBugBase.hpp"
-#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
+
+class AnimScaleController;
+class WalkerStateBindStarPointer;
 
 class StinkBugSmall : public StinkBugBase {
 public:
     StinkBugSmall(const char*);
+
     virtual ~StinkBugSmall();
     virtual void init(const JMapInfoIter& rIter);
     virtual void kill();

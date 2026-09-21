@@ -15,17 +15,22 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 
+void GravityLight_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)0.5f;
+}
+
 namespace {
     // const f32 sBaseInterpoleRate = 0.0f;
     // const f32 sAccel = 0.0f;
     // const f32 sSpeedMax = 0.0f;
 
     const GXColor color = {170, 170, 255, 140};
-};  // namespace
+}  // namespace
 
 namespace NrvGravityLight {
     NEW_NERVE(GravityLightNrvWait, GravityLight, Wait);
-};  // namespace NrvGravityLight
+}  // namespace NrvGravityLight
 
 GravityLight::GravityLight(const char* pName)
     : LiveActor(pName), mLightCylinder(), mMapPartsRailMover(), mMapPartsRotator(), mRadius(2500.0f), mCenter(0.0f, 0.0f, 0.0f), _D8() {
@@ -90,7 +95,9 @@ void GravityLight::init(const JMapInfoIter& rIter) {
 
     TVec3f upVec;
     MR::calcUpVec(&upVec, this);
-    mCenter.scaleAdd(0.5f * mRadius, -upVec, mPosition);
+    upVec.negate();
+
+    mCenter.scaleAdd(0.5f * mRadius, upVec, mPosition);
 
     MR::setClippingTypeSphere(this, boundingRadius, &mCenter);
     MR::setGroupClipping(this, rIter, 16);
@@ -104,18 +111,20 @@ void GravityLight::control() {
     if (mMapPartsRailMover != nullptr) {
         mMapPartsRailMover->movement();
 
-        mPosition.set(mMapPartsRailMover->_28);
+        TVec3f& rPosition = mPosition;
+        rPosition.set(mMapPartsRailMover->_28);
 
-        MR::makeMtxTR(mBaseMtx, mPosition, mRotation);
+        MR::makeMtxTR(mBaseMtx, rPosition, mRotation);
     }
 
-    if (mMapPartsRotator == nullptr) {
+    if (mMapPartsRotator != nullptr) {
         mMapPartsRotator->movement();
 
         TPos3f baseMtx;
         baseMtx.identity();
         baseMtx.concat(mMapPartsRotator->getRotateMtx());
 
+        baseMtx.setTrans(mPosition);
         mBaseMtx.set(baseMtx);
     }
 }

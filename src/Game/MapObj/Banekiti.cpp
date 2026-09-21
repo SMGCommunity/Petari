@@ -11,10 +11,13 @@ namespace NrvBanekiti {
     NEW_NERVE_ONEND(BanekitiNrvDPDSwoon, Banekiti, DPDSwoon, DPDSwoon);
 };  // namespace NrvBanekiti
 
-Banekiti::Banekiti(const char* pName) : LiveActor(pName) {
-    mAnimScaleCtrl = nullptr;
-    mBindStarPointer = nullptr;
-    mRailMover = nullptr;
+Banekiti::Banekiti(const char* pName) : LiveActor(pName), mAnimScaleCtrl(), mBindStarPointer(), mRailMover() {
+}
+
+inline void Banekiti::initStarPointer() {
+    TVec3f offset;
+    offset.set(0.0f);
+    MR::initStarPointerTarget(this, 120.0f, offset);
 }
 
 void Banekiti::init(const JMapInfoIter& rIter) {
@@ -32,9 +35,7 @@ void Banekiti::init(const JMapInfoIter& rIter) {
     mRailMover = new MapPartsRailMover(this);
     mRailMover->init(rIter);
     mRailMover->start();
-    TVec3f offset;
-    offset.y = offset.z = offset.x = 0.0f;
-    MR::initStarPointerTarget(this, 120.0f, offset);
+    initStarPointer();
     mAnimScaleCtrl = new AnimScaleController(nullptr);
     mBindStarPointer = new WalkerStateBindStarPointer(this, mAnimScaleCtrl);
     initNerve(GET_NERVE(Banekiti, BanekitiNrvWait));
@@ -45,6 +46,7 @@ void Banekiti::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Wait");
     }
+
     MR::startLevelSound(this, "SE_OJ_LV_BANEKITI_MOVE");
 }
 
@@ -55,6 +57,7 @@ void Banekiti::exeRepel() {
         MR::startBck(this, "Repel");
         MR::startSound(this, "SE_OJ_BANEKITI_REPEL");
     }
+
     if (MR::isBckStopped(this)) {
         setNerve(GET_NERVE(Banekiti, BanekitiNrvWait));
     }
@@ -64,6 +67,7 @@ void Banekiti::exeDPDSwoon() {
     if (MR::isFirstStep(this)) {
         mRailMover->mIsActive = false;
     }
+
     MR::updateActorStateAndNextNerve(this, mBindStarPointer, GET_NERVE(Banekiti, BanekitiNrvWait));
 }
 
@@ -74,29 +78,25 @@ void Banekiti::endDPDSwoon() {
 
 void Banekiti::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
-    TVec3f scale = mAnimScaleCtrl->_C * mScale;
-    MR::setBaseScale(this, scale);
+    MR::setBaseScale(this, mAnimScaleCtrl->_C * mScale);
 }
 
 void Banekiti::control() {
     mAnimScaleCtrl->updateNerve();
     mRailMover->movement();
+
     if (mRailMover->isWorking()) {
-        mPosition.x = mRailMover->_28.x;
-        mPosition.y = mRailMover->_28.y;
-        mPosition.z = mRailMover->_28.z;
+        mPosition.set(mRailMover->_28);
     }
-    if (!isNerve(GET_NERVE(Banekiti, BanekitiNrvDPDSwoon))) {
-        if (mBindStarPointer->tryStartPointBind()) {
-            setNerve(GET_NERVE(Banekiti, BanekitiNrvDPDSwoon));
-        }
+
+    if (!isNerve(GET_NERVE(Banekiti, BanekitiNrvDPDSwoon)) && mBindStarPointer->tryStartPointBind()) {
+        setNerve(GET_NERVE(Banekiti, BanekitiNrvDPDSwoon));
     }
 }
 
 bool Banekiti::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceAttack(msg)) {
         mAnimScaleCtrl->startHitReaction();
-
         return true;
     }
 

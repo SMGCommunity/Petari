@@ -49,16 +49,18 @@ Petari::Petari(const char* pName)
     mHeadMtx.identity();
 }
 
+inline void Petari::initHitSensors() {
+    initHitSensor(2);
+    MR::addHitSensorEnemy(this, ::sBodySensorName, 32, 60.0f, TVec3f(::sBodySensorOffset));
+    MR::addHitSensorEnemy(this, ::sSpinSensorName, 32, 100.0f, TVec3f(::sSpinSensorOffset));
+}
+
 void Petari::init(const JMapInfoIter& rIter) {
-    // FIXME: TVec stack order
-    // https://decomp.me/scratch/6Ytjh
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("Petari", nullptr, false);
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
-    initHitSensor(2);
-    MR::addHitSensorEnemy(this, ::sBodySensorName, 32, 60.0f, TVec3f(::sBodySensorOffset));
-    MR::addHitSensorEnemy(this, ::sSpinSensorName, 32, 100.0f, TVec3f(::sSpinSensorOffset));
+    initHitSensors();
     initBinder(60.0f, 60.0f, 0);
     initEffectKeeper(1, nullptr, false);
     MR::addEffect(this, "PointerTouchManual");

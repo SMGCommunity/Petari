@@ -12,6 +12,22 @@ public:
     virtual bool isValid(s32) const = 0;
 };
 
+template < typename T >
+class BaseMatrixFollowValidateDelegator : public BaseMatrixFollowValidater {
+public:
+    typedef bool (T::*Func)(s32) const;
+
+    BaseMatrixFollowValidateDelegator(T* pHost, Func func) : mHost(pHost), mFunc(func) {
+    }
+
+    virtual bool isValid(s32 id) const {
+        return (mHost->*mFunc)(id);
+    }
+
+    /* 0x4 */ T* mHost;
+    /* 0x8 */ Func mFunc;
+};
+
 class BaseMatrixFollowTarget {
 public:
     BaseMatrixFollowTarget(const JMapLinkInfo*);
@@ -68,6 +84,11 @@ public:
 };
 
 namespace MR {
+    template < typename T >
+    BaseMatrixFollowValidater* createBaseMatrixFollowValidateDelegator(T* pHost, bool (T::*func)(s32) const) {
+        return new BaseMatrixFollowValidateDelegator< T >(pHost, func);
+    }
+
     bool isValidFollowID(const JMapInfoIter&);
     void addBaseMatrixFollower(BaseMatrixFollower*);
     void addBaseMatrixFollowTarget(LiveActor*, const JMapInfoIter&, const TPos3f*, BaseMatrixFollowValidater*);

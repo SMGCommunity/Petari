@@ -40,16 +40,6 @@ MarioMagic::MarioMagic(MarioActor* pActor) : MarioState(pActor, MarioStatus_Magi
     _12 = 0;
 }
 
-bool MarioMagic::close() {
-    stopEffect("スピンライト");
-
-    if (_12 < 0x1A) {
-        playEffect("スピンライト消去");
-    }
-
-    return true;
-}
-
 bool MarioMagic::start() {
     changeAnimation("地上ひねり");
     stopEffect("パンチブラー左");
@@ -59,6 +49,16 @@ bool MarioMagic::start() {
     playSound("スピンジャンプ");
     startPadVib(2);
     _12 = 0;
+    return true;
+}
+
+bool MarioMagic::close() {
+    stopEffect("スピンライト");
+
+    if (_12 < 0x1A) {
+        playEffect("スピンライト消去");
+    }
+
     return true;
 }
 

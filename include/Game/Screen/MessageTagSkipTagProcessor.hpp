@@ -27,6 +27,10 @@ public:
         return mMessage[1];
     }
 
+    bool isGroupTagId(int group, int tag) const NO_INLINE {
+        return reinterpret_cast< const u8* >(mMessage)[1] == group && mMessage[1] == tag;
+    }
+
     u32 getTagLength() const;
     u32 getSkipLength() const;
     s32 getParamLength() const;

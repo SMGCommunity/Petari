@@ -1,7 +1,9 @@
 #include "Game/Util/MessageUtil.hpp"
 #include "Game/Map/RaceManager.hpp"
 #include "Game/NPC/TalkMessageInfo.hpp"
+#include "Game/Screen/MessageTagSkipTagProcessor.hpp"
 #include "Game/System/MessageHolder.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include <cstdio>
@@ -56,14 +58,153 @@ namespace MR {
         TalkMessageInfo messageInfo = TalkMessageInfo();
 
         return MessageSystem::getGameMessageDirect(&messageInfo, pMessageId) &&
-               getStringLengthWithMessageTag(reinterpret_cast< wchar_t* >(messageInfo._0)) != nullptr;
+               getStringLengthWithMessageTag(reinterpret_cast< wchar_t* >(messageInfo._0)) != 0;
     }
 
-    // getMessageLine
-    // countMessageLine
-    // countMessageChar
-    // countMessageFigure
-    // getNextMessagePage
+    const wchar_t* getMessageLine(wchar_t* pDst, u32 capacity, const wchar_t* pMessage, u32 line) {
+        u32 currentLine = 0;
+
+        while (*pMessage != 0) {
+            if (currentLine == line) {
+                break;
+            }
+
+            if (*pMessage == 0x1A) {
+                pMessage++;
+                MessageEditorMessageTag tag(pMessage);
+                pMessage += tag.getSkipLength();
+
+                if (tag.isGroupTagId(1, 1)) {
+                    break;
+                }
+            } else {
+                if (*pMessage == L'\n') {
+                    currentLine++;
+                }
+
+                pMessage++;
+            }
+        }
+
+        for (u32 count = 0; count < capacity; count++) {
+            if (*pMessage == 0x1A) {
+                *pDst++ = *pMessage++;
+                MessageEditorMessageTag tag(pMessage);
+
+                for (s32 i = 0; i < static_cast< s32 >(tag.getSkipLength()); i++) {
+                    *pDst = *pMessage;
+                    pMessage++;
+                    pDst++;
+                }
+            }
+
+            if (*pMessage == L'\n' || *pMessage == 0) {
+                break;
+            }
+
+            *pDst = *pMessage;
+
+            if (count < capacity - 1) {
+                pDst++;
+                pMessage++;
+            }
+        }
+
+        *pDst = 0;
+        return pDst;
+    }
+
+    s32 countMessageLine(const wchar_t* pMessage) {
+        s32 count = 1;
+
+        while (*pMessage != 0) {
+            if (*pMessage == 0x1A) {
+                pMessage++;
+                MessageEditorMessageTag tag(pMessage);
+                pMessage += tag.getSkipLength();
+
+                if (tag.isGroupTagId(1, 1)) {
+                    break;
+                }
+            } else {
+                if (*pMessage == L'\n') {
+                    count++;
+                }
+
+                pMessage++;
+            }
+        }
+
+        return count;
+    }
+
+    s32 countMessageChar(const wchar_t* pMessage) {
+        if (pMessage == nullptr) {
+            return 0;
+        }
+
+        s32 count = 0;
+
+        while (*pMessage != 0) {
+            if (*pMessage == 0x1A) {
+                pMessage++;
+                MessageEditorMessageTag tag(pMessage);
+                pMessage += tag.getSkipLength();
+
+                if (tag.getGroup() == 3) {
+                    count++;
+                } else if (tag.getGroup() == 6) {
+                    count += countMessageFigure(*reinterpret_cast< const s32* >(tag.getParamPtr(0)));
+                } else if (tag.getGroup() == 5) {
+                    count += 3;
+                } else if (tag.getGroup() == 11) {
+                    count += 2;
+                } else if (tag.getGroup() == 7) {
+                    count += countMessageChar(*reinterpret_cast< const wchar_t* const* >(tag.getParamPtr(0)));
+                } else if (tag.isGroupTagId(1, 1)) {
+                    break;
+                }
+            } else {
+                pMessage++;
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    s32 countMessageFigure(s32 value) {
+        u32 magnitude = MR::abs(value);
+        s32 count = 1;
+
+        while ((magnitude /= 10) != 0) {
+            count++;
+        }
+
+        return count;
+    }
+
+    const wchar_t* getNextMessagePage(const wchar_t* pMessage) {
+        while (*pMessage != 0) {
+            if (*pMessage == 0x1A) {
+                pMessage++;
+                MessageEditorMessageTag tag(pMessage);
+                pMessage += tag.getSkipLength();
+
+                if (tag.isGroupTagId(1, 1)) {
+                    if (*pMessage == L'\n') {
+                        pMessage++;
+                    }
+
+                    return pMessage;
+                }
+            } else {
+                pMessage++;
+            }
+        }
+
+        return nullptr;
+    }
 
     const wchar_t* getGalaxyNameOnCurrentLanguage(const char* pGalaxyName) {
         char messageId[MESSAGE_ID_BUFFER_SIZE];

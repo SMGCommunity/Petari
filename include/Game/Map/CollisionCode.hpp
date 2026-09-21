@@ -93,21 +93,21 @@ public:
     /// @brief Creates a new `CollisionCode`.
     CollisionCode();
 
-    const char* getFloorCodeString(const Triangle&);
-    const char* getWallCodeString(const Triangle&);
-    const char* getSoundCodeString(const Triangle&);
-    const char* getSoundCodeString(const JMapInfoIter&);
-    u32 getCameraID(const Triangle&);
-    u32 getCode(const JMapInfoIter&, CodeTable*, const char*);
+    const char* getFloorCodeString(const Triangle& rTriangle);
+    const char* getWallCodeString(const Triangle& rTriangle);
+    const char* getSoundCodeString(const Triangle& rTriangle);
+    const char* getSoundCodeString(const JMapInfoIter& rIter);
+    u32 getCameraID(const Triangle& rTriangle);
+    u32 getCode(const JMapInfoIter& rIter, CodeTable* pCodeTable, const char* pName);
     void createFloorTable();
     void createWallTable();
     void createSoundTable();
     void createCameraTable();
-    u32 getFloorCode(const JMapInfoIter&);
-    u32 getWallCode(const JMapInfoIter&);
-    u32 getSoundCode(const JMapInfoIter&);
-    u32 getCameraCode(const JMapInfoIter&);
-    u32 getCameraID(const JMapInfoIter&);
+    u32 getFloorCode(const JMapInfoIter& rIter);
+    u32 getWallCode(const JMapInfoIter& rIter);
+    u32 getSoundCode(const JMapInfoIter& rIter);
+    u32 getCameraCode(const JMapInfoIter& rIter);
+    u32 getCameraID(const JMapInfoIter& rIter);
 
     /* 0x00 */ CodeTable* mFloorTable;
     /* 0x04 */ CodeTable* mWallTable;
@@ -117,10 +117,10 @@ public:
 
 class CodeTable {
 public:
-    CodeTable(u32);
+    CodeTable(u32 numMax);
 
-    void add(const char*, u32);
-    const char* getString(u32);
+    void add(const char* pName, u32 code);
+    const char* getString(u32 code);
 
     /* 0x00 */ u32 mCodeNum;
     /* 0x04 */ u32 mCodeNumMax;

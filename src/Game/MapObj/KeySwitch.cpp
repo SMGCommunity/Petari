@@ -5,7 +5,7 @@
 #include <JSystem/JMath/JMath.hpp>
 
 namespace {
-    static const char* cDemoName = "カギ出現";
+    static const char* const cDemoName = "カギ出現";
 };  // namespace
 
 namespace NrvKeySwitch {
@@ -135,9 +135,7 @@ void KeySwitch::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::tryStartBck(this, "Rotation");
         MR::setBckRate(this, 1.0f);
-        mVelocity.x = 0.0f;
-        mVelocity.y = 0.0f;
-        mVelocity.z = 0.0f;
+        mVelocity.set2(0.0f);
         MR::offCalcGravity(this);
     }
 }

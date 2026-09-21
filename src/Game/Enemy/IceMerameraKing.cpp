@@ -24,6 +24,7 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 #include <JSystem/JGeometry/TUtil.hpp>
 
 // TODO: the symbol order for header funcs is out of order between JointControlDelegator funcs
@@ -274,14 +275,14 @@ void IceMerameraKing::exeThrow() {
     if (MR::isStep(this, 22)) {
         mThrowingIce = getDeadWeaponAndAppear();
         mFixedPos->mMtx.getTrans(mThrowingIce->mPosition);
-        ThrowingIce* ice = mThrowingIce;
-        if (!ice) {
+        if (!mThrowingIce) {
             setNerve(GET_NERVE(IceMerameraKing, HostTypeNrvSearch));
             return;
         }
 
         _E0 += 1;
-        mThrowingIce->emitIce(ice->mPosition, *MR::getPlayerCenterPos() + *MR::getPlayerVelocity() * 35.0f, -5.0f, mGravity);
+        TVec3f& icePos = mThrowingIce->mPosition;
+        mThrowingIce->emitIce(icePos, *MR::getPlayerCenterPos() + *MR::getPlayerVelocity() * 35.0f, -5.0f, mGravity);
         mThrowingIce = nullptr;
         MR::startSound(this, "SE_BM_ICEMERAKING_THROW");
     }

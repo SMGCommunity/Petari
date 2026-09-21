@@ -32,21 +32,21 @@ class DeriveActorGroup;
 
 class FileSelector : public LiveActor {
 public:
-    FileSelector(const char*);
+    FileSelector(const char* pName);
 
     virtual ~FileSelector();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void kill();
     virtual void control();
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void callbackStart();
     void callbackCopy();
     void callbackMii();
     void callbackDelete();
     void callbackManual();
-    void notifyItem(FileSelectItem*, s32);
+    void notifyItem(FileSelectItem* pItem, s32 msg);
     void initUserFileArray();
     void createCameraController();
     void createSky();
@@ -74,26 +74,26 @@ public:
     void initUserFile();
     void restoreUserFile();
     void checkAllComplete();
-    void onPoint(FileSelectItem*);
-    void onSelect(FileSelectItem*);
+    void onPoint(FileSelectItem* pItem);
+    void onSelect(FileSelectItem* pItem);
     void clearPointing();
-    void setFileInfo(s32);
+    void setFileInfo(s32 id);
     bool checkSelectedBackButton();
     void goToNearPoint();
-    void calcBasePos(f32);
+    void calcBasePos(f32 offset);
     void initAllItems();
     void validateRotateAllItems();
-    FileSelectIconID::EFellowID getUserFileFellowID(s32) const;
-    bool isUserFileMiiIdValid(s32) const;
-    u16 getUserFileMiiIndex(s32) const;
-    bool isUserFileCorrupted(s32) const;
-    bool isUserFileAppearLuigi(s32) const;
-    bool isUserFileLuigi(s32) const;
-    void setUserFileMario(s32, bool) NO_INLINE;
-    void storeSetMiiIdUserFile(s32, const FileSelectIconID&);
-    void getMiiId(RFLCreateID*, const FileSelectIconID&) const;
-    void getIconId(FileSelectIconID*, s32) const;
-    s32 getMissCount(s32) const;
+    FileSelectIconID::EFellowID getUserFileFellowID(s32 id) const;
+    bool isUserFileMiiIdValid(s32 id) const;
+    u16 getUserFileMiiIndex(s32 id) const;
+    bool isUserFileCorrupted(s32 id) const;
+    bool isUserFileAppearLuigi(s32 id) const;
+    bool isUserFileLuigi(s32 id) const;
+    void setUserFileMario(s32 id, bool isMario) NO_INLINE;
+    void storeSetMiiIdUserFile(s32 id, const FileSelectIconID& rIconId);
+    void getMiiId(RFLCreateID* pCreateId, const FileSelectIconID& rIconId) const;
+    void getIconId(FileSelectIconID* pIconId, s32 id) const;
+    s32 getMissCount(s32 id) const;
     void playSelectedME();
     void updateBgm();
     void exeWaitBind();

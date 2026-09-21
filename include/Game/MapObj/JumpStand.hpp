@@ -7,9 +7,8 @@ class JumpStand : public LiveActor {
 public:
     JumpStand(const char*);
 
-    enum JumpType { UNK_0 = 0, UNK_1 = 1, UNK_2 = 2 };
+    enum JumpType { Jump_Low = 0, Jump_Middle = 1, Jump_High = 2 };
 
-    virtual ~JumpStand();
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
@@ -23,7 +22,7 @@ public:
     void updateBindActorMtx();
     void endBindAndShootUp(f32, JumpType);
 
-    LiveActor* mBindedActor;  // 0x8C
-    TPos3f _90;
-    u8 _C0;
+    /* 0x8C */ LiveActor* mBindedActor;
+    /* 0x90 */ TPos3f _90;
+    /* 0xC0 */ bool mIsMarioJumpingHigh;
 };

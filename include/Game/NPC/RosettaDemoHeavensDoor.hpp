@@ -1,18 +1,22 @@
 #pragma once
 
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/NPCUtil.hpp"
 
 class NameObjArchiveListCollector;
+class PartsModel;
 class Rosetta;
 
 class RosettaDemoHeavensDoor1 : public NerveExecutor {
 public:
-    RosettaDemoHeavensDoor1(Rosetta*, const JMapInfoIter&);
+    RosettaDemoHeavensDoor1(Rosetta* pHost, const JMapInfoIter& rIter);
 
-    static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
+    static void makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter);
 
     template < typename T >
-    void changeNerve();
+    void changeNerve() {
+        setNerve(GET_NERVE_GLOBAL(T));
+    }
 
     void preDemo();
     void pstDemo();
@@ -30,15 +34,18 @@ public:
 
 class RosettaDemoHeavensDoor2 : public NerveExecutor {
 public:
-    RosettaDemoHeavensDoor2(Rosetta*, const JMapInfoIter&);
+    RosettaDemoHeavensDoor2(Rosetta* pHost, const JMapInfoIter& rIter);
 
-    static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
+    static void makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter);
 
     template < typename T >
-    void changeNerve();
+    void changeNerve() {
+        setNerve(GET_NERVE_GLOBAL(T));
+    }
 
     void exeWait();
-    void exeDemo();
+    void exeDemo() {
+    }
 
     /* 0x08 */ DemoStarter mDemoStarter;
     /* 0x14 */ Rosetta* mHost;

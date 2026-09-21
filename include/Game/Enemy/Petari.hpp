@@ -42,6 +42,7 @@ public:
     void endFreeze();
     void endEscape();
 
+    void initHitSensors();
     void initFootPrint(const JMapInfoIter& rIter);
     void updateFootPrint();
     void initFrontVec();

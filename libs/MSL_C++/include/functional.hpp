@@ -1,6 +1,8 @@
 #ifndef FUNCTIONAL_H
 #define FUNCTIONAL_H
 
+#include "Inline.hpp"
+
 namespace std {
     template < class Arg, class Result >
     struct unary_function {
@@ -67,7 +69,7 @@ namespace std {
     }
 
     template < class Func, class Type >
-    binder2nd< Func, typename Func::second_argument_type > bind2nd(const Func& rFunc, const Type& rArg) {
+    binder2nd< Func, typename Func::second_argument_type > bind2nd(const Func& rFunc, const Type& rArg) NO_INLINE {
         return binder2nd< Func, typename Func::second_argument_type >(rFunc, rArg);
     }
 
@@ -76,7 +78,7 @@ namespace std {
     template < class Return, class Type >
     class mem_fun_t : public unary_function< Type*, Return > {
     public:
-        explicit mem_fun_t(Return (Type::*mf)()) : mf_(mf) {};
+        explicit mem_fun_t(Return (Type::*pFunction)()) : mf_(pFunction) {};
 
         Return operator()(Type* pObject) const {
             return (pObject->*mf_)();
@@ -89,7 +91,7 @@ namespace std {
     template < class Return, class Type >
     class mem_fun_ref_t : public unary_function< Type, Return > {
     public:
-        explicit mem_fun_ref_t(Return (Type::*mf)()) : mf_(mf) {};
+        explicit mem_fun_ref_t(Return (Type::*pFunction)()) : mf_(pFunction) {};
 
         Return operator()(Type& rObject) const {
             return (rObject.*mf_)();
@@ -102,7 +104,7 @@ namespace std {
     template < class Return, class Type >
     class const_mem_fun_t : public unary_function< const Type*, Return > {
     public:
-        explicit const_mem_fun_t(Return (Type::*mf)() const) : mf_(mf) {};
+        explicit const_mem_fun_t(Return (Type::*pFunction)() const) : mf_(pFunction) {};
 
         Return operator()(const Type* pObject) const {
             return (pObject->*mf_)();
@@ -115,7 +117,7 @@ namespace std {
     template < class Result, class Type, class Arg >
     class mem_fun1_t : public binary_function< Type*, Arg, Result > {
     public:
-        explicit mem_fun1_t(Result (Type::*mf)(Arg)) : mf_(mf) {};
+        explicit mem_fun1_t(Result (Type::*pFunction)(Arg)) : mf_(pFunction) {};
 
         Result operator()(Type* pObject, Arg a) const {
             return (pObject->*mf_)(a);
@@ -128,7 +130,7 @@ namespace std {
     template < class Result, class Type, class Arg >
     class mem_fun1_ref_t : public binary_function< Type, Arg, Result > {
     public:
-        explicit mem_fun1_ref_t(Result (Type::*mf)(Arg)) : mf_(mf) {};
+        explicit mem_fun1_ref_t(Result (Type::*pFunction)(Arg)) : mf_(pFunction) {};
 
         Result operator()(Type& rObject, Arg a) const {
             return (rObject.*mf_)(a);
@@ -141,7 +143,7 @@ namespace std {
     template < class Result, class Type, class Arg >
     class const_mem_fun1_t : public binary_function< const Type*, Arg, Result > {
     public:
-        explicit const_mem_fun1_t(Result (Type::*mf)(Arg) const) : mf_(mf) {};
+        explicit const_mem_fun1_t(Result (Type::*pFunction)(Arg) const) : mf_(pFunction) {};
 
         Result operator()(const Type* pObject, Arg a) const {
             return (pObject->*mf_)(a);
@@ -152,28 +154,28 @@ namespace std {
     };
 
     template < class Result, class Type >
-    mem_fun_t< Result, Type > mem_fun(Result (Type::*func)()) {
-        return mem_fun_t< Result, Type >(func);
+    mem_fun_t< Result, Type > mem_fun(Result (Type::*pFunction)()) {
+        return mem_fun_t< Result, Type >(pFunction);
     }
 
     template < class Result, class Type >
-    inline mem_fun_t< Result, Type > mem_func(Result (Type::*f)()) {
-        return mem_fun_t< Result, Type >(f);
+    inline mem_fun_t< Result, Type > mem_func(Result (Type::*pFunction)()) {
+        return mem_fun_t< Result, Type >(pFunction);
     }
 
     template < class Result, class Type >
-    inline const_mem_fun_t< Result, Type > mem_func(Result (Type::*f)() const) {
-        return const_mem_fun_t< Result, Type >(f);
+    inline const_mem_fun_t< Result, Type > mem_func(Result (Type::*pFunction)() const) {
+        return const_mem_fun_t< Result, Type >(pFunction);
     }
 
     template < class Result, class Type, class Arg >
-    inline mem_fun1_t< Result, Type, Arg > mem_func(Result (Type::*f)(Arg)) {
-        return mem_fun1_t< Result, Type, Arg >(f);
+    inline mem_fun1_t< Result, Type, Arg > mem_func(Result (Type::*pFunction)(Arg)) {
+        return mem_fun1_t< Result, Type, Arg >(pFunction);
     }
 
     template < class Result, class Type, class Arg >
-    inline const_mem_fun1_t< Result, Type, Arg > mem_func(Result (Type::*f)(Arg) const) {
-        return const_mem_fun1_t< Result, Type, Arg >(f);
+    inline const_mem_fun1_t< Result, Type, Arg > mem_func(Result (Type::*pFunction)(Arg) const) {
+        return const_mem_fun1_t< Result, Type, Arg >(pFunction);
     }
 
     template < class Predicate >
@@ -196,7 +198,7 @@ namespace std {
     template < class Arg, class Result >
     class pointer_to_unary_function : public unary_function< Arg, Result > {
     public:
-        explicit pointer_to_unary_function(Result (*f)(Arg)) : mF(f) {
+        explicit pointer_to_unary_function(Result (*pFunction)(Arg)) : mF(pFunction) {
         }
 
         Result operator()(Arg x) const {
@@ -207,14 +209,14 @@ namespace std {
     };
 
     template < class Arg, class Result >
-    pointer_to_unary_function< Arg, Result > ptr_fun(Result (*f)(Arg)) {
-        return pointer_to_unary_function< Arg, Result >(f);
+    pointer_to_unary_function< Arg, Result > ptr_fun(Result (*pFunction)(Arg)) {
+        return pointer_to_unary_function< Arg, Result >(pFunction);
     }
 
     template < class Arg1, class Arg2, class Result >
     class pointer_to_binary_function : public binary_function< Arg1, Arg2, Result > {
     public:
-        explicit pointer_to_binary_function(Result (*f)(Arg1, Arg2)) : mF(f) {
+        explicit pointer_to_binary_function(Result (*pFunction)(Arg1, Arg2)) : mF(pFunction) {
         }
 
         Result operator()(Arg1 x, Arg2 y) const {
@@ -225,8 +227,8 @@ namespace std {
     };
 
     template < class Arg1, class Arg2, class Result >
-    pointer_to_binary_function< Arg1, Arg2, Result > ptr_fun(Result (*f)(Arg1, Arg2)) {
-        return pointer_to_binary_function< Arg1, Arg2, Result >(f);
+    pointer_to_binary_function< Arg1, Arg2, Result > ptr_fun(Result (*pFunction)(Arg1, Arg2)) {
+        return pointer_to_binary_function< Arg1, Arg2, Result >(pFunction);
     }
 
 }  // namespace std

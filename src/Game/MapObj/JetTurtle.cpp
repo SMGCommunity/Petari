@@ -4,19 +4,12 @@
 #include "Game/LiveActor/MessageSensorHolder.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/ActorShadowUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/PlayerUtil.hpp"
-#include <JSystem/JMath/JMATrigonometric.hpp>
-#include <revolution/mtx.h>
-
 
 namespace {
-    static const f32 sThrowSpdStraight[3] = {30.0f, 20.0f, 30.0f};
-    static const f32 sThrowSpdHoming[3] = {24.0f, 20.0f, 24.0f};
-    static const f32 sGravityLevel[3] = {0.017000001f, 0.0099999998f, 0.0055f};
-    static const u16 sResetStep[3] = {0x12C, 0x1E0, 0x12C};
+    static const f32 sThrowSpdStraight[] = {30.0f, 20.0f, 30.0f};
+    static const f32 sThrowSpdHoming[] = {24.0f, 20.0f, 24.0f};
+    static const f32 sGravityLevel[] = {0.017f, 0.01f, 0.0055f};
+    static const u16 sResetStep[] = {300, 480, 300};
 };  // namespace
 
 namespace NrvJetTurtle {
@@ -31,15 +24,121 @@ namespace NrvJetTurtle {
     NEW_NERVE(JetTurtleNrvDrop, JetTurtle, Drop);
 };  // namespace NrvJetTurtle
 
-JetTurtle::JetTurtle(const char* pName) : LiveActor(pName) {
-    _E3 = 0;
+JetTurtle::JetTurtle(const char* pName) : LiveActor(pName), _E3() {
 }
 
 void JetTurtle::init(const JMapInfoIter& rIter) {
     init2(rIter, 0);
 }
 
-// init2
+void JetTurtle::init2(const JMapInfoIter& rIter, s32 param2) {
+    _D8 = 0;
+
+    MR::initDefaultPos(this, rIter);
+
+    s32 arg0 = 0;
+    s32 arg1 = -1;
+
+    if (MR::isValidInfo(rIter)) {
+        MR::getJMapInfoArg0NoInit(rIter, &arg0);
+        MR::getJMapInfoArg1NoInit(rIter, &arg1);
+
+        arg1++;
+    } else {
+        arg1 = 0;
+    }
+
+    _92 = arg1;
+    _E2 = false;
+    _E0 = true;
+
+    f32 shadowDropLength = 1000.0f;
+
+    if (MR::isValidInfo(rIter)) {
+        s32 arg2 = -1;
+        MR::getJMapInfoArg2NoInit(rIter, &arg2);
+
+        if (arg2 == 1) {
+            _E0 = false;
+        }
+
+        s32 arg3 = -1;
+        MR::getJMapInfoArg3NoInit(rIter, &arg3);
+
+        if (arg3 == 1) {
+            _E2 = true;
+        }
+
+        s32 arg7 = -1;
+        MR::getJMapInfoArg7NoInit(rIter, &arg7);
+
+        if (arg7 != -1) {
+            shadowDropLength = arg7;
+        }
+    }
+
+    if (param2 != 0) {
+        arg0 = 2;
+    }
+
+    switch (arg0) {
+    case 0:
+    case 1:
+        initModelManagerWithAnm("Koura", nullptr, false);
+        break;
+    case 2:
+        initModelManagerWithAnm("KouraShine", nullptr, false);
+        break;
+    }
+
+    MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
+
+    initHitSensor(2);
+    MR::addHitSensor(this, "body", ATYPE_JET_TURTLE, 8, 50.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEye(this, "eye", 8, 1000.0f, TVec3f(0.0f, 0.0f, 0.0f));
+
+    if (arg0 < 2) {
+        MR::startBrk(this, "Koura");
+        MR::setBrkFrameAndStop(this, 1.0f);
+    }
+
+    if (arg0 != 1) {
+        if (arg0 == 0) {
+            becomeSlowType();
+        } else {
+            getSensor("body")->setType(ATYPE_JET_TURTLE_SLOW);
+        }
+    }
+
+    mShellType = arg0;
+    _8C = 0.0f;
+
+    initNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait));
+
+    MR::initShadowVolumeCylinder(this, 50.0f);
+    MR::setShadowDropLength(this, nullptr, shadowDropLength);
+    MR::setShadowVolumeEndDropOffset(this, nullptr, 50.0f);
+    MR::onShadowVolumeCutDropLength(this, nullptr);
+
+    initSound(6, false);
+    initBinder(35.0f, 20.0f, 8);
+    initEffectKeeper(8, "Koura", false);
+    MR::addEffectHitNormal(this, nullptr);
+    MR::validateShadow(this, nullptr);
+
+    if (MR::useStageSwitchReadAppear(this, rIter)) {
+        MR::syncStageSwitchAppear(this);
+        makeActorDead();
+
+        _E1 = false;
+    } else {
+        _E1 = true;
+
+        makeActorAppeared();
+    }
+
+    MR::offBind(this);
+}
 
 void JetTurtle::initAfterPlacement() {
     _A8 = mPosition;

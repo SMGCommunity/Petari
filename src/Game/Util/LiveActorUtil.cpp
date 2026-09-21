@@ -29,22 +29,9 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/CollisionPartsFilter.hpp"
-#include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/FurMulti.hpp"
-#include "Game/Util/GravityUtil.hpp"
-#include "Game/Util/JMapUtil.hpp"
-#include "Game/Util/MapUtil.hpp"
-#include "Game/Util/MathUtil.hpp"
-#include "Game/Util/ModelUtil.hpp"
-#include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/ScreenUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
-#include "Game/Util/StringUtil.hpp"
-#include <JSystem/J3DGraphBase/J3DTexture.hpp>
 #include <cstdio>
 
 namespace {
@@ -503,28 +490,20 @@ namespace MR {
             return false;
         }
 
-        if (!MR::isSensorPressObj(MR::getGroundSensor(pActor))) {
-            if (!MR::isSensorPressObj(MR::getRoofSensor(pActor))) {
-                goto LABEL_FALSE;
+        if (MR::isSensorPressObj(MR::getGroundSensor(pActor)) || MR::isSensorPressObj(MR::getRoofSensor(pActor))) {
+            const Binder* binder = pActor->mBinder;
+            const HitInfo* pRoofInfo = &binder->mRoofInfo;
+            const HitInfo* pGroundInfo = &binder->mGroundInfo;
+            TVec3f roofPower;
+            TVec3f groundPower;
+            pRoofInfo->mParentTriangle.calcForceMovePower(&roofPower, pRoofInfo->mHitPos);
+            pGroundInfo->mParentTriangle.calcForceMovePower(&groundPower, pGroundInfo->mHitPos);
+
+            if (0.0f < (roofPower - groundPower).dot(pActor->mGravity)) {
+                return true;
             }
         }
 
-        const Binder* binder = pActor->mBinder;
-        const HitInfo* pRoofInfo = &binder->mRoofInfo;
-        const HitInfo* pGroundInfo = &binder->mGroundInfo;
-        TVec3f roofPower;
-        TVec3f groundPower;
-        pRoofInfo->mParentTriangle.calcForceMovePower(&roofPower, pRoofInfo->mHitPos);
-        pGroundInfo->mParentTriangle.calcForceMovePower(&groundPower, pGroundInfo->mHitPos);
-
-        TVec3f diff(roofPower);
-        diff.sub(groundPower);
-
-        if (0.0f < diff.dot(pActor->mGravity)) {
-            return true;
-        }
-
-    LABEL_FALSE:
         return false;
     }
 
@@ -761,51 +740,7 @@ namespace MR {
 
     void setBaseTRMtx(LiveActor* pActor, const TQuat4f& rQuat) {
         TPos3f mtx;
-        f32 two = 2.0f;
-        f32 y = rQuat.y;
-        f32 x = rQuat.x;
-        f32 z = rQuat.z;
-        f32 w = rQuat.w;
-
-        f32 ty = two * y;
-        f32 tx = two * x;
-        f32 tz = two * z;
-        f32 tw = two * w;
-        f32 one = 1.0f;
-        f32 yy = ty * y;
-        f32 xx = tx * x;
-        f32 xy = tx * y;
-        f32 zz = tz * z;
-        f32 wz = tw * z;
-        f32 m00 = (one - yy) - zz;
-        f32 m11 = (one - xx) - zz;
-        f32 m01 = xy - wz;
-        f32 m10 = xy + wz;
-        f32 m22 = (one - xx) - yy;
-
-        f32 xz = tx * z;
-        f32 wy = tw * y;
-        f32 yz = ty * z;
-        f32 wx = tw * x;
-
-        f32 m02 = xz + wy;
-        f32 m20 = xz - wy;
-        f32 m12 = yz - wx;
-        f32 m21 = yz + wx;
-
-        mtx.mMtx[0][0] = m00;
-        mtx.mMtx[0][1] = m01;
-        mtx.mMtx[1][1] = m11;
-        mtx.mMtx[1][0] = m10;
-        mtx.mMtx[2][2] = m22;
-        mtx.mMtx[0][2] = m02;
-        mtx.mMtx[1][2] = m12;
-        mtx.mMtx[2][0] = m20;
-        mtx.mMtx[2][1] = m21;
-
-        mtx.mMtx[0][3] = pActor->mPosition.x;
-        mtx.mMtx[1][3] = pActor->mPosition.y;
-        mtx.mMtx[2][3] = pActor->mPosition.z;
+        mtx.setQT(rQuat, pActor->mPosition);
 
         PSMTXCopy((MtxPtr)mtx.mMtx, (MtxPtr)&getJ3DModel(pActor)->mBaseTransformMtx);
     }
@@ -1704,46 +1639,7 @@ namespace MR {
                 continue;
             }
 
-            J3DTexture* pTexture = pModelData->mMaterialTable.getTexture();
-            u32 texOffset = static_cast< u32 >(texIndex) << 5;
-            const u8* pSrc = reinterpret_cast< const u8* >(&rTimg);
-            u8* pBase = reinterpret_cast< u8* >(pTexture->getResTIMG(0));
-            pBase[texOffset] = pSrc[0];
-
-            u8* pDst = pBase + texOffset;
-            pDst[0x01] = pSrc[0x01];
-            *reinterpret_cast< u16* >(pDst + 0x02) = *reinterpret_cast< const u16* >(pSrc + 0x02);
-            *reinterpret_cast< u16* >(pDst + 0x04) = *reinterpret_cast< const u16* >(pSrc + 0x04);
-            pDst[0x06] = pSrc[0x06];
-            pDst[0x07] = pSrc[0x07];
-            pDst[0x08] = pSrc[0x08];
-            pDst[0x09] = pSrc[0x09];
-            *reinterpret_cast< u16* >(pDst + 0x0A) = *reinterpret_cast< const u16* >(pSrc + 0x0A);
-            *reinterpret_cast< u32* >(pDst + 0x0C) = *reinterpret_cast< const u32* >(pSrc + 0x0C);
-            pDst[0x10] = pSrc[0x10];
-            pDst[0x11] = pSrc[0x11];
-            pDst[0x12] = pSrc[0x12];
-            pDst[0x13] = pSrc[0x13];
-            pDst[0x14] = pSrc[0x14];
-            pDst[0x15] = pSrc[0x15];
-            pDst[0x16] = pSrc[0x16];
-            pDst[0x17] = pSrc[0x17];
-            pDst[0x18] = pSrc[0x18];
-            pDst[0x19] = pSrc[0x19];
-            *reinterpret_cast< s16* >(pDst + 0x1A) = *reinterpret_cast< const s16* >(pSrc + 0x1A);
-            *reinterpret_cast< u32* >(pDst + 0x1C) = *reinterpret_cast< const u32* >(pSrc + 0x1C);
-
-            pBase = reinterpret_cast< u8* >(pTexture->getResTIMG(0));
-            u8* pPal = pBase + texOffset;
-            u32 palOffset = *reinterpret_cast< u32* >(pPal + 0x1C);
-            palOffset = (palOffset + reinterpret_cast< u32 >(pSrc)) - reinterpret_cast< u32 >(pPal);
-            *reinterpret_cast< u32* >(pPal + 0x1C) = palOffset;
-
-            pBase = reinterpret_cast< u8* >(pTexture->getResTIMG(0));
-            u8* pImg = pBase + texOffset;
-            u32 imgOffset = *reinterpret_cast< u32* >(pImg + 0x0C);
-            imgOffset = (imgOffset + reinterpret_cast< u32 >(pSrc)) - reinterpret_cast< u32 >(pImg);
-            *reinterpret_cast< u32* >(pImg + 0x0C) = imgOffset;
+            pModelData->mMaterialTable.getTexture()->setResTIMG(texIndex, rTimg);
 
             for (u16 matIndex = 0; matIndex < pModelData->mMaterialTable.getMaterialNum(); matIndex++) {
                 J3DMaterial* material = pModelData->mMaterialTable.getMaterialNodePointer(matIndex);

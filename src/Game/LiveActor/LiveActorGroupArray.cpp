@@ -83,8 +83,14 @@ LiveActorGroup* LiveActorGroupArray::createGroup(const JMapInfoIter& rIter, cons
     return pGroup;
 }
 
+namespace {
+    std::binder2nd< HasGroupId, const JMapIdInfo& > makeGroupIdPredicate(const JMapIdInfo& rIdInfo) {
+        return std::binder2nd< HasGroupId, const JMapIdInfo& >(HasGroupId(), rIdInfo);
+    }
+}  // namespace
+
 LiveActorGroup* LiveActorGroupArray::findGroup(const JMapInfoIter& rIter) const {
-    MsgSharedGroup* const* it = std::find_if(mGroups.begin(), mGroups.end(), std::bind2nd(HasGroupId(), MR::createJMapIdInfoFromGroupId(rIter)));
+    MsgSharedGroup* const* it = std::find_if(mGroups.begin(), mGroups.end(), makeGroupIdPredicate(MR::createJMapIdInfoFromGroupId(rIter)));
 
     if (it != mGroups.end()) {
         return *it;

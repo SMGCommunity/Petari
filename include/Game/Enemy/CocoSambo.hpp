@@ -16,8 +16,12 @@ public:
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
 
+    bool isBodySensor(const HitSensor*) const;
+    bool isNerveSwoon() const;
     void updateFrontVecToPlayer(const TVec3f&);
-    void exeHeadConnectedBody();
+    void exeConnectedBody() {
+    }
+
     void exeFall();
     void exeFallLand();
     void exeSwoon();
