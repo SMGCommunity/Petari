@@ -19,8 +19,9 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include <JSystem/JMath/JMath.hpp>
 #include "math_types.hpp"
+#include <JSystem/JMath/JMath.hpp>
+
 
 namespace {
     const f32 hThrowableSightParam[] = {900.0f, 10.0f, 90.0f};
@@ -230,7 +231,6 @@ void Mogu::exeSearch() {
         }
     }
 
-    // "Strong"
     if (MR::isStarPointerPointing2POnTriggerButton(this, "強", true, false)) {
         MR::start2PAttackAssistSound();
         setNerve(GET_NERVE(Mogu, HostTypeNrvSwoonStart));
@@ -272,9 +272,7 @@ void Mogu::exeSearch() {
             setNerve(GET_NERVE(Mogu, HostTypeNrvTurn));
             return;
         }
-    }
-
-    if (isNerve(GET_NERVE(Mogu, HostTypeNrvTurn)) && distanceToPlayer < sightParam) {
+    } else if (isNerve(GET_NERVE(Mogu, HostTypeNrvTurn)) && sightParam < distanceToPlayer) {
         setNerve(GET_NERVE(Mogu, HostTypeNrvSearch));
         return;
     }
@@ -299,7 +297,6 @@ void Mogu::exeThrow() {
         MR::startSound(this, "SE_EM_MOGU_TAKE_ITEM");
     }
 
-    // "Strong"
     if (MR::isStarPointerPointing2POnTriggerButton(this, "強", true, false)) {
         MR::start2PAttackAssistSound();
         setNerve(GET_NERVE(Mogu, HostTypeNrvSwoonStart));
@@ -328,19 +325,7 @@ void Mogu::exeThrow() {
 
         TVec3f* stonePos = &mStone->mPosition;
 
-        f32 f1 = killElementOut.length();
-
-        // Stack swap between 0x20 and 0x8, which are v5 and v7 here. Possible inline?
-        TVec3f v5(mSight);
-        v5 *= f1;
-
-        TVec3f v6(mStone->mPosition);
-        v6 += v5;
-
-        TVec3f v7(v6);
-        v7 += v4;
-
-        mStone->emit(_B4, *stonePos, v7, 15.0f);
+        mStone->emit(_B4, *stonePos, mStone->mPosition + mSight * killElementOut.length() + v4, 15.0f);
         MR::startSound(this, "SE_EM_MOGU_THROW");
     }
 
@@ -549,10 +534,7 @@ bool Mogu::tryPunchHitted(HitSensor* pSender, HitSensor* pReceiver, bool arg3) {
         mVelocity = direction;
 
         if (MR::isOnGround(this)) {
-            // r3 r4 order swap
-            TVec3f v5(TVec3f(-mGravity));
-            v5 *= 5.0f;
-            mPosition += v5;
+            mPosition += -mGravity * 5.0f;
         }
 
         setNerve(GET_NERVE(Mogu, HostTypeNrvHitBlow));
