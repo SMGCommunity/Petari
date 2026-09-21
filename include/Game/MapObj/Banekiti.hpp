@@ -3,8 +3,8 @@
 #include "Game/LiveActor/LiveActor.hpp"
 
 class AnimScaleController;
-class MapPartsRailMover;
 class WalkerStateBindStarPointer;
+class MapPartsRailMover;
 
 class Banekiti : public LiveActor {
 public:
@@ -16,12 +16,13 @@ public:
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
+    void initStarPointer();
     void exeWait();
     void exeRepel();
     void exeDPDSwoon();
     void endDPDSwoon();
 
-    AnimScaleController* mAnimScaleCtrl;           //_8C
-    WalkerStateBindStarPointer* mBindStarPointer;  //_90
-    MapPartsRailMover* mRailMover;                 //_94
+    /* 0x8C */ AnimScaleController* mAnimScaleCtrl;
+    /* 0x90 */ WalkerStateBindStarPointer* mBindStarPointer;
+    /* 0x94 */ MapPartsRailMover* mRailMover;
 };

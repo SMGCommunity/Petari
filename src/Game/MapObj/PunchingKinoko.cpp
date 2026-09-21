@@ -1,7 +1,13 @@
 #include "Game/MapObj/PunchingKinoko.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 #include <revolution.h>
+
+void PunchingKinoko_FORCE_EMIT_SCALE() {
+    TVec3f vec;
+    vec.scale(0.0f);
+}
 
 namespace NrvPunchingKinoko {
     NEW_NERVE(PunchingKinokoNrvWait, PunchingKinoko, Wait);
@@ -120,7 +126,7 @@ void PunchingKinoko::control() {
     mScaleController->update();
     mGroundChecker->movement();
     MR::reboundVelocityFromCollision(mGroundChecker, 0.0f, 0.0f, 1.0f);
-    if (mInvincibleHitCoolDown > -1) {
+    if (mInvincibleHitCoolDown >= 0) {
         mInvincibleHitCoolDown -= 1;
     }
 }
@@ -151,7 +157,7 @@ void PunchingKinoko::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                 if (isEnableHitPlayer()) {
                     if (stack_8 >= 30.0f) {
                         if (stack_8 >= 45.0f) {
-                            hit = MR::sendMsgEnemyAttackFlipMaximumToDir(pReceiver, pSender, stack_3C * 70.0f);
+                            hit = MR::sendMsgEnemyAttackFlipMaximumToDir(pReceiver, pSender, stack_3C.multInLine(70.0f));
                         } else {
                             hit = MR::sendMsgEnemyAttackFlipToDir(pReceiver, pSender, stack_3C * 70.0f);
                         }
@@ -182,7 +188,7 @@ void PunchingKinoko::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                 MR::calcSensorDirectionNormalize(&stack_30, pReceiver, pSender);
                 f32 dot = mGroundChecker->mVelocity.dot(stack_30) * 1.6f;
                 mGroundChecker->mVelocity -= stack_30 * dot;
-                mGroundChecker->mVelocity *= 0.3f;
+                mGroundChecker->mVelocity.mult(0.3f);
                 setNerve(GET_NERVE(PunchingKinoko, PunchingKinokoNrvWait));
             }
         }

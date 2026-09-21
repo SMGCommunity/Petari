@@ -1,4 +1,7 @@
 #include "Game/MapObj/ExterminationChecker.hpp"
+#include "Game/Boss/SkeletalFishBaby.hpp"
+#include "Game/Enemy/Kuribo.hpp"
+#include "Game/Enemy/Meramera.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/KeySwitch.hpp"
@@ -18,7 +21,9 @@ namespace {
     }
 
     // we will define the creation funcs later
-    static const ExterminationEntry sCreateTable[] = {{"ChildKuribo", nullptr}, {"ChildSkeletalFishBaby", nullptr}, {"ChildMeramera", nullptr}};
+    static const ExterminationEntry sCreateTable[] = {{"ChildKuribo", MR::createNoItemKuriboActor},
+                                                      {"ChildSkeletalFishBaby", createLiveActor< SkeletalFishBaby >},
+                                                      {"ChildMeramera", createLiveActor< Meramera >}};
 
     CreationFunc findEntry(const char* pName) {
         for (s32 j = 0; j < ARRAY_SIZE(sCreateTable); j++) {
