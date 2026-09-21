@@ -2,16 +2,16 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/RunawayRabbit.hpp"
 #include "Game/NPC/RunawayTico.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "revolution/types.h"
 
 namespace {
     static s32 sStartRunAwayBgmState = 2;
@@ -30,7 +30,7 @@ namespace NrvRunawayRabbitCollect {
 };  // namespace NrvRunawayRabbitCollect
 
 RunawayRabbitCollect::RunawayRabbitCollect(const char* pName)
-    : LiveActor(pName), mRabbit(), mRabbitNum(), _A0(), _A4(), mCompleteRabbitCount(), mBgmState() {
+    : LiveActor(pName), mRabbit(), mRabbitNum(), mLinkedRabbitCount(), mCaughtRabbitCount(), mCompleteRabbitCount(), mBgmState() {
 }
 
 void RunawayRabbitCollect::init(const JMapInfoIter& rIter) {
@@ -38,6 +38,7 @@ void RunawayRabbitCollect::init(const JMapInfoIter& rIter) {
     mRabbitNum = 0;
     mTicoNum = 0;
     const char* childObjName;
+
     for (s32 i = 0; i < MR::getChildObjNum(rIter); i++) {
         MR::getChildObjName(&childObjName, rIter, i);
         if (MR::isEqualString(childObjName, "RunawayRabbit")) {
@@ -51,6 +52,7 @@ void RunawayRabbitCollect::init(const JMapInfoIter& rIter) {
 
     mRabbitNum = 0;
     mTicoNum = 0;
+
     for (s32 i = 0; i < MR::getChildObjNum(rIter); i++) {
         MR::getChildObjName(&childObjName, rIter, i);
         if (MR::isEqualString(childObjName, "RunawayRabbit")) {
@@ -75,8 +77,8 @@ void RunawayRabbitCollect::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     makeActorAppeared();
 
-    for (s32 i = 0; i < 3; i++) {
-        isAppearTico[i] = 0;
+    for (s32 i = 0; i < ARRAY_SIZE(mIsAppearTico); i++) {
+        mIsAppearTico[i] = false;
     }
 }
 
@@ -86,7 +88,6 @@ void RunawayRabbitCollect::initAfterPlacement() {
 
 s32 RunawayRabbitCollect::calcCompleteRabbitCount() const {
     s32 count = 0;
-
     for (s32 i = 0; i < mRabbitNum; i++) {
         s32 groupId = mRabbit[i]->getGroupId();
 
@@ -94,7 +95,6 @@ s32 RunawayRabbitCollect::calcCompleteRabbitCount() const {
             count++;
         } else {
             bool isDuplicate = false;
-
             for (s32 j = 0; j < i; j++) {
                 if (groupId == mRabbit[j]->getGroupId()) {
                     isDuplicate = true;
@@ -129,6 +129,7 @@ void RunawayRabbitCollect::linkMsgCtrl() {
 
 void RunawayRabbitCollect::noticeAppearRabbit(RunawayRabbit* pRabbit) {
     s32 groupId = pRabbit->getGroupId();
+
     if (groupId == -1) {
         return;
     }
@@ -141,7 +142,7 @@ void RunawayRabbitCollect::noticeAppearRabbit(RunawayRabbit* pRabbit) {
 }
 
 void RunawayRabbitCollect::noticeCaughtRabbit(RunawayRabbit* pRabbit) {
-    _A4++;
+    mCaughtRabbitCount++;
 
     for (s32 i = 0; i < mRabbitNum; i++) {
         if (mRabbit[i] != pRabbit) {
@@ -158,7 +159,7 @@ void RunawayRabbitCollect::noticeCaughtRabbit(RunawayRabbit* pRabbit) {
         }
     }
 
-    if (_A4 == mCompleteRabbitCount) {
+    if (mCaughtRabbitCount == mCompleteRabbitCount) {
         pRabbit->setLastMessage();
     } else {
         pRabbit->setMessage();
@@ -185,11 +186,12 @@ void RunawayRabbitCollect::exeWait() {
         }
     }
 }
-void RunawayRabbitCollect::appearTico(RunawayTico* pTico, const TVec3f& rPos) {
-    isAppearTico[pTico->mDemoCastID] = true;
 
-    for (s32 i = 0; i < ARRAY_SIZE(isAppearTico); i++) {
-        if (!isAppearTico[i]) {
+void RunawayRabbitCollect::appearTico(RunawayTico* pTico, const TVec3f& rPos) {
+    mIsAppearTico[pTico->mDemoCastID] = true;
+
+    for (s32 i = 0; i < ARRAY_SIZE(mIsAppearTico); i++) {
+        if (!mIsAppearTico[i]) {
             switch (i) {
             case 0:
                 pTico->appearHoleComment(rPos);
@@ -201,7 +203,6 @@ void RunawayRabbitCollect::appearTico(RunawayTico* pTico, const TVec3f& rPos) {
                 pTico->appearBushComment(rPos);
                 break;
             }
-
             return;
         }
     }
@@ -219,24 +220,29 @@ void RunawayRabbitCollect::exeActive() {
     bool isLinked = false;
     s32 caughtCount = 0;
     s32 chaseCount = 0;
+
     for (s32 i = 0; i < mRabbitNum; i++) {
         if (!mRabbit[i]->mIsActive) {
             continue;
         }
+
         if (mRabbit[i]->isChasing()) {
             chaseCount++;
         }
+
         if (mRabbit[i]->isCaught()) {
             caughtCount++;
             if (!mRabbit[i]->mIsLinked) {
-                _A0++;
+                mLinkedRabbitCount++;
+
                 for (s32 j = 0; j < mTicoNum; j++) {
-                    if (mTico[j]->mDemoCastID == mRabbit[i]->mGroupId) {
+                    if (mTico[j]->mDemoCastID == mRabbit[i]->getGroupId()) {
                         TVec3f jointPos;
                         MR::copyJointPos(mRabbit[i], "Spine", &jointPos);
                         appearTico(mTico[j], jointPos);
                     }
                 }
+
                 mRabbit[i]->mIsLinked = true;
                 isLinked = true;
             }
@@ -246,6 +252,7 @@ void RunawayRabbitCollect::exeActive() {
     if (caughtCount < mCompleteRabbitCount) {
         caughtAll = false;
     }
+
     if (isLinked) {
         if (caughtCount == mCompleteRabbitCount) {
             MR::startSystemSE("SE_SY_RUNAWAY_RABBIT_GET_3");
@@ -260,15 +267,14 @@ void RunawayRabbitCollect::exeActive() {
         if (mBgmState != ::sFoundRabbitBgmState) {
             MR::setStageBGMState(::sFoundRabbitBgmState, ::sFoundRabbitBgmChangeFrames);
         }
-
         mBgmState = ::sFoundRabbitBgmState;
     } else {
         if (mBgmState != ::sCaughtRabbitBgmState) {
             MR::setStageBGMState(::sCaughtRabbitBgmState, ::sCaughtRabbitBgmChangeFrames);
         }
-
         mBgmState = ::sCaughtRabbitBgmState;
     }
+
     if (caughtAll) {
         MR::isValidSwitchA(this);
         MR::setStageBGMState(::sEndRunAwayBgmState, ::sEndRunAwayBgmChangeFrames);
