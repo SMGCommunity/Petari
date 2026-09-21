@@ -6681,7 +6681,7 @@ Game/NPC/RunawayRabbitCollect.cpp:
 	.text       start:0x80286634 end:0x80286FD8
 	.ctors      start:0x8052EFF0 end:0x8052EFF4
 	.data       start:0x805B3370 end:0x805B3498
-	.sdata      start:0x806B2160 end:0x806B2188
+	.sdata      start:0x806B2160 end:0x806B2170
 	.sbss       start:0x806B5F68 end:0x806B5F70
 
 Game/NPC/RunawayTico.cpp:
@@ -6761,7 +6761,7 @@ Game/NPC/TicoFat.cpp:
 	.rodata     start:0x80539828 end:0x80539830
 	.data       start:0x805B4A60 end:0x805B4FE0
 	.bss        start:0x8060AEC8 end:0x8060AF00
-	.sdata      start:0x806B2188 end:0x806B21A0
+	.sdata      start:0x806B2170 end:0x806B21A0
 	.sbss       start:0x806B60A8 end:0x806B60E8
 	.sdata2     start:0x806BF0B0 end:0x806BF120
 
