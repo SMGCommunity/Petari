@@ -252,7 +252,7 @@ namespace MR {
         }
     }
 
-    inline void excludeCalcShadowToSensor(LiveActor* pActor, const char* pName, const HitSensor* pSensor) {
+    inline void excludeCalcShadowToCollision(LiveActor* pActor, const char* pName, const HitSensor* pSensor) {
         if (pName == nullptr) {
             excludeCalcShadowToSensorAll(pActor, pSensor);
         } else {
@@ -264,7 +264,7 @@ namespace MR {
     void excludeCalcShadowToCollision(LiveActor* pActor, const char* pName, CollisionParts* pCollision) {
         if (pName != nullptr) {
             const HitSensor* pSensor = pCollision->mHitSensor;
-            excludeCalcShadowToSensor(pActor, pName, pSensor);
+            excludeCalcShadowToCollision(pActor, pName, pSensor);
         } else {
             excludeCalcShadowToSensorAll(pActor, pCollision->mHitSensor);
         }

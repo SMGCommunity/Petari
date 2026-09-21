@@ -1,9 +1,14 @@
 #include "Game/MapObj/JetTurtle.hpp"
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/MessageSensorHolder.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/GravityUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "revolution/types.h"
 
 namespace {
     static const f32 sThrowSpdStraight[] = {30.0f, 20.0f, 30.0f};
@@ -208,6 +213,32 @@ void JetTurtle::resetPositionAndVanish() {
     if (!_E0) {
         kill();
     }
+}
+
+void JetTurtle::appear() {
+    LiveActor::appear();
+    _98 = nullptr;
+    _94 = nullptr;
+    MR::showModel(this);
+    if (_E1 != 0) {
+        if (_92 == 0) {
+            TVec3f gravityVec;
+            TVec3f gravityVec2;
+            TVec3f frontVec;
+            MR::calcGravityVectorOrZero(this, mPosition, &gravityVec, nullptr, 0);
+            MR::calcFrontVec(&frontVec, this);
+            MR::calcGravityVectorOrZero(this, mPosition + frontVec * 100.0f, &gravityVec2, nullptr, 0);
+            if (!MR::isNearZero(gravityVec - gravityVec2)) {
+                _92 = 1;
+            }
+        }
+        setNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait2));
+        HitSensor* pSensor = getSensor("body");
+        pSensor->mRadius = 100.0f;
+        initAfterPlacement();
+        return;
+    }
+    setNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait));
 }
 
 void JetTurtle::bound() {
