@@ -47,12 +47,10 @@ void RunawayTico::makeArchiveList(NameObjArchiveListCollector* pCollector, const
 void RunawayTico::init(const JMapInfoIter& rIter) {
     s32 arg0 = 0;
     MR::getJMapInfoArg0NoInit(rIter, &arg0);
-
     s32 arg1 = 0;
+    s32 colorID = arg0;
     MR::getJMapInfoArg1NoInit(rIter, &arg1);
     mObjArg1 = arg1;
-
-    s32 colorID;
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
         mDemoCastID = MR::getDemoCastID(rIter);
@@ -285,7 +283,7 @@ void RunawayTico::exeTalk() {
 
     if (MR::tryTalkForceWithoutDemoAtEnd(mMsgCtrl)) {
         if (mIsAllCaught) {
-            MR::startNPCTalkCamera(mMsgCtrl, getBaseMtx(), 1.0f, 0);
+            MR::startNPCTalkCamera(getMsgCtrl(), getBaseMtx(), 1.0f, 0);
             setNerve(GET_NERVE(RunawayTico, RunawayTicoNrvWhiteOut));
         } else {
             MR::endDemo(this, "ぼやき");
