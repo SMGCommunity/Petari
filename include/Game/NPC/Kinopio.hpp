@@ -11,7 +11,6 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     Kinopio(const char* pName);
 
-    virtual ~Kinopio();
     virtual void init(const JMapInfoIter& rIter);
     virtual void calcAndSetBaseMtx();
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
@@ -44,7 +43,7 @@ public:
     /* 0x15C */ s32 mObjArg0;
     /* 0x160 */ s32 mBehavior;
     /* 0x164 */ s32 mAppearBehavior;
-    /* 0x168 */ s32 mEquipment;
+    /* 0x168 */ s32 mGoodsIndex;
     /* 0x16C */ TQuat4f _16C;
     /* 0x17C */ MapObjConnector* _17C;
     /* 0x180 */ TakeOutStar* mTakeOutStar;
