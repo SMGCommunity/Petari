@@ -679,7 +679,7 @@ namespace JGeometry {
     template < class T >
     struct TPosition3 : public TRotation3< T > {
     public:
-        TPosition3() {};
+        TPosition3(){};
 
         TPosition3(MtxPtr rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
@@ -771,6 +771,18 @@ namespace JGeometry {
         void makeRotate(const TVec3f& rVec, f32 angle) {
             zeroTrans();
             TRotation3< T >::setRotate(rVec, angle);
+        }
+
+        void makeRotate(const TVec3f& rFrom, const TVec3f& rTo, f32 angle) {
+            TQuat4f q;
+            q.setRotate(rFrom, rTo, rFrom.turnRate(rTo, angle));
+            makeQuat(q);
+        }
+
+        void makeRotateRate(const TVec3f& rFrom, const TVec3f& rTo, f32 ratio) {
+            TQuat4f q;
+            q.setRotate(rFrom, rTo, ratio);
+            makeQuat(q);
         }
 
         void makeQuat(const TQuat4f& rSrcQuat) {
@@ -1079,7 +1091,7 @@ namespace JGeometry {
     template < class T >
     struct TProjection3 : public T {
     public:
-        TProjection3() {};
+        TProjection3(){};
 
         TProjection3(const Mtx44Ptr rSrc) {
             JMath::gekko_ps_copy16(this, rSrc);

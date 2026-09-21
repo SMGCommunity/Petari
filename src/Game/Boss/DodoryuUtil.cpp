@@ -36,18 +36,10 @@ namespace DodoryuUtil {
         pDodoryu->mBaseMtx.getZDir(front);
         pDodoryu->mBaseMtx.getTrans(position);
 
-        f32 maxRadian = maxAngle * PI / 180.0f;
-        f32 angle = front.angle(rDirection);
-        f32 ratio = 1.0f;
-        if (angle > maxRadian) {
-            ratio = maxRadian / angle;
-        }
+        f32 maxRadian = maxAngle * MR::pi() / 180.0f;
 
-        TQuat4f rotation;
-        rotation.setRotate(front, rDirection, ratio);
         TPos3f mtx;
-        mtx.zeroTrans();
-        mtx.setQuat(rotation);
+        mtx.makeRotate(front, rDirection, maxRadian);
         mtx.concat(pDodoryu->mBaseMtx);
         mtx.setTrans(position);
         pDodoryu->setMtx(mtx);

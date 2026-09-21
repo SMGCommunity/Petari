@@ -849,6 +849,15 @@ namespace JGeometry {
             return __fabsf(JMAATan2(crossPart, dotPart));
         }
 
+        f32 turnRate(const TVec3& rB, f32 maxAngle) const {
+            f32 a = angle(rB);
+            f32 rate = 1.0f;
+            if (a > maxAngle) {
+                rate = maxAngle / a;
+            }
+            return rate;
+        }
+
         inline TVec3 copy() const {
             TVec3 ret(*this);
             return ret;
