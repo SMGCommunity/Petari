@@ -11,7 +11,13 @@ class WalkerStateRunaway;
 
 class RunawayRabbit : public LiveActor {
 public:
-    RunawayRabbit(const char*, RunawayRabbitCollect*);
+    enum HideLocation {
+        /* -0x1 */ HideLocation_None = -1,
+        /* 0x0 */ HideLocation_Hole,
+        /* 0x1 */ HideLocation_Leaves
+    };
+
+    RunawayRabbit(const char* pName, RunawayRabbitCollect* pCollect);
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
@@ -25,6 +31,8 @@ public:
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void initSensor();
+    void initShadow();
+    void initFootPrint();
     void updatePose();
     void updateBindActorMatrix();
     void activate();
@@ -34,13 +42,13 @@ public:
     void setMessage();
     void setNotCaughtable();
     void startJumpSound();
-    void setMsgCtrl(TalkMessageCtrl*);
-    bool isCaught() const;
+    void setMsgCtrl(TalkMessageCtrl* pMsgCtrl);
+    bool isCaught() const NO_INLINE;
     bool isCaughtable() const;
     bool isRunnaway() const;
     bool isChasing() const;
-    bool isEnableBlow() const;
-    bool isValidFollow(s32) const;
+    bool isEnableBlow() const NO_INLINE;
+    bool isValidFollow(s32 id) const;
 
     void exeNoActive();
     void exeHide();
@@ -59,17 +67,17 @@ public:
     /* 0x98 */ FootPrint* mFootPrint;
     /* 0x9C */ SpotMarkLight* mSpotMarkLight;
     /* 0xA0 */ TalkMessageCtrl* mMsgCtrl;
-    /* 0xA4 */ TQuat4f _A4;
-    /* 0xB4 */ TVec3f _B4;
-    /* 0xC0 */ TQuat4f _C0;
-    /* 0xD0 */ TVec3f _D0;
+    /* 0xA4 */ TQuat4f mPoseQuat;
+    /* 0xB4 */ TVec3f mFrontVec;
+    /* 0xC0 */ TQuat4f mPlayerPoseQuat;
+    /* 0xD0 */ TVec3f mPlayerBindPos;
     /* 0xDC */ u8 _DC[4];
-    /* 0xE0 */ s32 mObjArg0;
+    /* 0xE0 */ s32 mGroupId;
     /* 0xE4 */ s32 mRunawayLevel;
-    /* 0xE8 */ s32 mObjArg1;
-    /* 0xEC */ s32 _EC;
+    /* 0xE8 */ s32 mHideLocation;
+    /* 0xEC */ s32 mPressureTimer;
     /* 0xF0 */ s32 mNotCaughtableTimer;
-    /* 0xF4 */ bool _F4;
-    /* 0xF5 */ bool _F5;
-    /* 0xF8 */ f32 mObjArg3;
+    /* 0xF4 */ bool mIsActive;
+    /* 0xF5 */ bool mIsLinked;
+    /* 0xF8 */ f32 mNearSoundRadius;
 };
