@@ -277,17 +277,16 @@ void TicoFat::kill() {
     NPCActor::kill();
 }
 
-// stack isn't quite there
 void TicoFat::setCameraParam() {
-    TVec3f trans, yDir, zDir, xDir, v18;
+    TVec3f yDir, zDir, xDir, trans;
     MR::extractMtxXYZDir(getBaseMtx(), &xDir, &yDir, &zDir);
     MR::extractMtxTrans(getBaseMtx(), &trans);
     _B0.getXDir(xDir);
     _B0.getYDir(yDir);
     _B0.getZDir(zDir);
 
-    v18 = _C0;
-    TVec3f* ptr = &v18;
+    trans = _C0;
+    TVec3f* ptr = &trans;
     MR::setProgrammableCameraParam(
         "デブチコカメラ", (*ptr + (xDir * 0.0f) + (yDir * 0.0f)) + (zDir * 0.0f),
         (*ptr + (xDir * 0.0f)) + ((yDir * 100.0f)) + (zDir * MR::getLinerValueFromMinMax(calcScale(), 1.0f, 1.9f, 1300.0f, 1680.0f)), yDir, false);
@@ -888,7 +887,7 @@ void TicoFat::exeFly() {
     mShootPath->calcDirection(&direction, easeIn, 0.01f);
     TVec3f up;
     MR::calcUpVec(&up, this);
-    MR::blendQuatFrontUp(&_A0, _A0, v8, up, 0.1f, 0.0f);
+    MR::blendQuatFrontUp(&_A0, _A0, direction, up, 0.1f, 0.0f);
     MR::setNPCActorPos(this, shootPos);
     _1F8 += _1FC;
     if (easeIn >= 1.0f) {
