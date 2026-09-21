@@ -3934,7 +3934,7 @@ Game/Map/LightDirector.cpp:
 
 Game/Map/LightFunction.cpp:
 	.text       start:0x80188398 end:0x80189120
-	.rodata     start:0x80532BE0 end:0x80532C80
+	.rodata     start:0x80532BE0 end:0x80532C70
 	.data       start:0x8058AB70 end:0x8058AC08
 	.sdata2     start:0x806BC100 end:0x806BC118
 
@@ -4004,8 +4004,10 @@ Game/Map/OceanRingPipeOutside.cpp:
 Game/Map/OceanSphere.cpp:
 	.text       start:0x80191530 end:0x801945EC
 	.ctors      start:0x8052EBD8 end:0x8052EBDC
+	.rodata     start:0x80532C70 end:0x80532C80
 	.data       start:0x8058B1A0 end:0x8058B2C0
 	.bss        start:0x8060AD78 end:0x8060ADA0
+	.sdata      start:0x806B1C28 end:0x806B1C58
 	.sbss       start:0x806B4BE0 end:0x806B4BE8
 	.sdata2     start:0x806BC2C0 end:0x806BC308
 
