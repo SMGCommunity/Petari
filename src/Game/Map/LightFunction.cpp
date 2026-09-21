@@ -1,14 +1,12 @@
 #include "Game/Map/LightFunction.hpp"
-#include "Game/AreaObj/LightArea.hpp"
 #include "Game/AreaObj/LightAreaHolder.hpp"
-#include "Game/Map/LightDataHolder.hpp"
 #include "Game/Map/LightDirector.hpp"
 #include "Game/Map/LightPointCtrl.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util.hpp"
-#include <revolution/gx/GXEnum.h>
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include <cstdio>
-#include <cstring>
 
 const GXLightID cLightDataIDs[8] = {GX_LIGHT0, GX_LIGHT1, GX_LIGHT2, GX_LIGHT3, GX_LIGHT4, GX_LIGHT5, GX_LIGHT6, GX_LIGHT7};
 
@@ -215,7 +213,18 @@ void LightFunction::loadPointLightInfo(const PointLightInfo* pInfo) {
     GXLoadLightObjImm(&obj, GX_LIGHT4);
 }
 
-// LightFunction::loadAllLightWhite
+void LightFunction::loadAllLightWhite() {
+    const GXLightID cLightDataIDs[8] = {GX_LIGHT0, GX_LIGHT1, GX_LIGHT2, GX_LIGHT3, GX_LIGHT4, GX_LIGHT5, GX_LIGHT6, GX_LIGHT7};
+
+    for (u32 i = 0; i < ARRAY_SIZE(cLightDataIDs); i++) {
+        GXLightObj lightObj;
+        GXInitLightPos(&lightObj, 0.0f, 0.0f, 0.0f);
+
+        GXColor color = {255, 255, 255, 255};
+        GXInitLightColor(&lightObj, color);
+        GXLoadLightObjImm(&lightObj, cLightDataIDs[i]);
+    }
+}
 
 void LightFunction::calcLightWorldPos(TVec3f* pPos, const LightInfo& rInfo) {
     pPos->x = rInfo.mPos.x;
