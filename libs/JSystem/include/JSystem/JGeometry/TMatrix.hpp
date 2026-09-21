@@ -386,13 +386,14 @@ namespace JGeometry {
         }
 
         void getEulerXYZ(TVec3f& rDest) const {
-            if (this->mMtx[2][0] - 1.0f >= -(f32)JGeometry::TUtil< f32 >::epsilon()) {
+            const f32 zx = this->mMtx[2][0];
+            if (zx - 1.0f >= -(f32)JGeometry::TUtil< f32 >::epsilon()) {
                 rDest.set(JMAATan2(-this->mMtx[0][1], this->mMtx[1][1]), -HALF_PI, 0.0f);
                 return;
             }
 
             f32 f1 = 1.0f;  // TODO: this is a hack to fix the float regswap
-            if (this->mMtx[2][0] + f1 <= (f32)JGeometry::TUtil< f32 >::epsilon()) {
+            if (zx + f1 <= (f32)JGeometry::TUtil< f32 >::epsilon()) {
                 rDest.set(JMAATan2(this->mMtx[0][1], this->mMtx[1][1]), HALF_PI, 0.0f);
                 return;
             }
@@ -678,7 +679,7 @@ namespace JGeometry {
     template < class T >
     struct TPosition3 : public TRotation3< T > {
     public:
-        TPosition3(){};
+        TPosition3() {};
 
         TPosition3(MtxPtr rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
@@ -1078,7 +1079,7 @@ namespace JGeometry {
     template < class T >
     struct TProjection3 : public T {
     public:
-        TProjection3(){};
+        TProjection3() {};
 
         TProjection3(const Mtx44Ptr rSrc) {
             JMath::gekko_ps_copy16(this, rSrc);
