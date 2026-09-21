@@ -68,8 +68,8 @@ void TicoShop::init(const JMapInfoIter& rIter) {
     initStarPiece(starPieceNeed);
     initMessage("Common_TicoShop000");
     MR::setMessageArg(mMsgCtrl, _194);
-    MR::registerBranchFunc(mMsgCtrl, TalkMessageFunc(this, &TicoShop::branchFunc));
-    MR::registerEventFunc(mMsgCtrl, TalkMessageFunc(this, &TicoShop::eventFunc));
+    MR::registerBranchFunc(getMsgCtrl(), TalkMessageFunc(this, &TicoShop::branchFunc));
+    MR::registerEventFunc(getMsgCtrl(), TalkMessageFunc(this, &TicoShop::eventFunc));
     MR::setDistanceToTalk(mMsgCtrl, 350.0f);
     _180 = GET_NERVE(TicoShop, TicoShopNrvDemo);
     mOneUp = MR::createKinokoOneUp();
