@@ -28,7 +28,7 @@ public:
 
 private:
     /* 0x20 */ s32 mPageIndex;
-    /* 0x24 */ s32 _24;
+    /* 0x24 */ s32 mPageNum;
     /* 0x28 */ ButtonPaneController* mLeftPaneCtrl;
     /* 0x2C */ ButtonPaneController* mRightPaneCtrl;
     /* 0x30 */ bool _30;
