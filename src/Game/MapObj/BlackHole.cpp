@@ -149,23 +149,15 @@ void BlackHole::initCubeBox() {
     _A8.setTrans(mPosition);
     
     _A4 = new TBox3f();
-    TVec3f stack_8(0.5f * (1000.0f * -mScale.x), 0.5f * (1000.0f * -mScale.y), 0.5f * (1000.0f * -mScale.z));
-    TVec3f stack_14(0.5f * (1000.0f * mScale.x), 0.5f * (1000.0f * mScale.y), 0.5f * (1000.0f * mScale.z));
-    _A4->i.set(stack_8);
-    mPosition.set(stack_14);
+    TVec3f vecStart(0.5f * (1000.0f * -mScale.x), 0.5f * (1000.0f * -mScale.y), 0.5f * (1000.0f * -mScale.z));
+    TVec3f vecEnd(0.5f * (1000.0f * mScale.x), 0.5f * (1000.0f * mScale.y), 0.5f * (1000.0f * mScale.z));
+    _A4->set(vecStart, vecEnd);
 }
 
 bool BlackHole::isInCubeBox(const TVec3f& rVec) const {
-    TVec3f stack_8;
-    _A8.multTranspose(rVec, stack_8);
-    bool ret = false;
-    TBox3f* box = _A4;
-    if (stack_8.x >= box->i.x && stack_8.y >= box->i.y && stack_8.z >= box->i.z && stack_8.x < box->f.x && stack_8.y < box->f.y &&
-        stack_8.z < box->f.z) {
-        ret = true;
-    }
-
-    return ret;
+    TVec3f pos;
+    _A8.multTranspose(rVec, pos);
+    return _A4->intersectsPoint(pos);
 }
 
 void BlackHole::updateModelScale(f32 a1, f32 a2) {
