@@ -1668,7 +1668,7 @@ config.libs = [
             Object(Matching, "Game/MapObj/ClipFieldSwitch.cpp"),
             Object(NonMatching, "Game/MapObj/CocoNut.cpp"),
             Object(Matching, "Game/MapObj/CoconutTree.cpp"),
-            Object(NonMatching, "Game/MapObj/CoconutTreeLeaf.cpp"),
+            Object(Matching, "Game/MapObj/CoconutTreeLeaf.cpp"),
             Object(Matching, "Game/MapObj/Coin.cpp"),
             Object(Matching, "Game/MapObj/CoinBox.cpp"),
             Object(Matching, "Game/MapObj/CoinGroup.cpp"),
