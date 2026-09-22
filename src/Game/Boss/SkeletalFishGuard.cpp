@@ -20,8 +20,6 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include <JSystem/JMath.hpp>
-#include <JSystem/JMath/JMATrigonometric.hpp>
 
 namespace {
     NEW_NERVE(SkeletalFishGuardNrvWait, SkeletalFishGuard, Wait);
@@ -34,6 +32,13 @@ namespace {
     NEW_NERVE(SkeletalFishGuardNrvKill, SkeletalFishGuard, Kill);
     NEW_NERVE_ONEND(SkeletalFishGuardNrvNumb, SkeletalFishGuard, Numb, Numb);
 };  // namespace
+
+SkeletalFishGuard::SkeletalFishGuard(SkeletalFishBoss* pFishBoss, const char* pName)
+    : LiveActor(pName), _8C(), mFishBoss(pFishBoss), _94(0.0f, 0.0f, 0.0f), _A0(), _A4(0.0f, 0.0f, 0.0f), _B0(), _B4(), _B8(), _BC(), mAttackDelay(),
+      _C4(), _C8(), _CC(), _D0(0.0f, 0.0f, 0.0f), _DC(0.0f, 0.0f, 0.0f), _E8(0.0f, 0.0f, 0.0f), _F4(0.0f, 0.0f, 0.0f), _100(0.0f, 0.0f, 1.0f),
+      _10C(0.0f, 0.0f, 0.0f) {
+    mScaleController = new AnimScaleController(nullptr);
+}
 
 void SkeletalFishGuard::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("SkeletalFishGuard", nullptr, false);
@@ -250,8 +255,8 @@ void SkeletalFishGuard::exeStraight() {
     }
 
     MR::calcGravity(this);
-    if (!tryShiftNumb(GET_NERVE_ANON(SkeletalFishGuardNrvStraight))) {
-        tryShiftKill();
+    if (!tryShiftNumb(GET_NERVE_ANON(SkeletalFishGuardNrvStraight)) && tryShiftKill()) {
+        return;
     }
 }
 
@@ -601,7 +606,4 @@ bool SkeletalFishGuard::tryShiftNumb(const Nerve* pNerve) {
     }
 
     return false;
-}
-
-SkeletalFishGuard::~SkeletalFishGuard() {
 }
