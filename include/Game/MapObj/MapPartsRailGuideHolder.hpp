@@ -10,11 +10,11 @@ public:
     MapPartsRailGuideHolder();
 
     virtual ~MapPartsRailGuideHolder();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
 
-    MapPartsRailGuideDrawer* createRailGuide(LiveActor*, const char*, const JMapInfoIter&);
-    MapPartsRailGuideDrawer* find(s32);
+    MapPartsRailGuideDrawer* createRailGuide(LiveActor* pHost, const char* pModelName, const JMapInfoIter& rIter);
+    MapPartsRailGuideDrawer* find(s32 railId);
 
-    MapPartsRailGuideDrawer* mDrawers[0x40];  // 0xC
-    s32 mNumRailGuides;                       // 0x10C
+    /* 0x00C */ MapPartsRailGuideDrawer* mDrawers[64];
+    /* 0x10C */ s32 mNumRailGuides;
 };

@@ -1915,7 +1915,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/MapPartsFloatingForce.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsFunction.cpp"),
             Object(Matching, "Game/MapObj/MapPartsRailGuideDrawer.cpp"),
-            Object(NonMatching, "Game/MapObj/MapPartsRailGuideHolder.cpp"),
+            Object(Matching, "Game/MapObj/MapPartsRailGuideHolder.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsRailGuidePoint.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsRailMover.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsRailPointPassChecker.cpp"),
