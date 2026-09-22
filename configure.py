@@ -2359,11 +2359,11 @@ config.libs = [
             Object(NonMatching, "Game/Screen/StarCounter.cpp"),
             Object(NonMatching, "Game/Screen/StarPieceCounter.cpp"),
             Object(NonMatching, "Game/Screen/StarPointerBlur.cpp"),
-            Object(NonMatching, "Game/Screen/StarPointerCommandStream.cpp"),
+            Object(Matching, "Game/Screen/StarPointerCommandStream.cpp"),
             Object(NonMatching, "Game/Screen/StarPointerController.cpp"),
             Object(NonMatching, "Game/Screen/StarPointerDirector.cpp"),
             Object(Matching, "Game/Screen/StarPointerGuidance.cpp"),
-            Object(NonMatching, "Game/Screen/StarPointerLayout.cpp"),
+            Object(Matching, "Game/Screen/StarPointerLayout.cpp"),
             Object(NonMatching, "Game/Screen/StarPointerTarget.cpp"),
             Object(NonMatching, "Game/Screen/SubMeterLayout.cpp"),
             Object(NonMatching, "Game/Screen/SuddenDeathMeter.cpp"),
@@ -2558,7 +2558,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/SequenceUtil.cpp"),
             Object(Matching, "Game/Util/ShareUtil.cpp"),
             Object(NonMatching, "Game/Util/SoundUtil.cpp"),
-            Object(NonMatching, "Game/Util/StarPointerUtil.cpp"),
+            Object(Matching, "Game/Util/StarPointerUtil.cpp"),
             Object(Matching, "Game/Util/StringUtil.cpp"),
             Object(Matching, "Game/Util/SwitchEventFunctorListener.cpp"),
             Object(NonMatching, "Game/Util/SystemUtil.cpp"),
@@ -3570,7 +3570,10 @@ config.libs = [
         [
             Object(Matching, "JSystem/JParticle/JPAResourceManager.cpp"),
             Object(Matching, "JSystem/JParticle/JPAResource.cpp"),
-            Object(NonMatching, "JSystem/JParticle/JPABaseShape.cpp"),
+            Object(NonMatching, 
+                "JSystem/JParticle/JPABaseShape.cpp",
+                extra_cflags=["-sym on"]
+            ),
             Object(
                 Matching,
                 "JSystem/JParticle/JPAExtraShape.cpp",
@@ -3581,7 +3584,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "JSystem/JParticle/JPADynamicsBlock.cpp",
-                extra_cflags=["-opt nolifetimes,nocse"],
+                extra_cflags=["-opt nolifetimes,nocse", "-sym on"],
             ),
             Object(NonMatching, "JSystem/JParticle/JPAFieldBlock.cpp"),
             Object(Matching, "JSystem/JParticle/JPAKeyBlock.cpp"),
