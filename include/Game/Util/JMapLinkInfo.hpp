@@ -19,7 +19,7 @@ public:
     void setLinkedInfo(const JMapInfoIter&);
     void setLinkInfo(const JMapInfoIter&);
 
-    s32 _0;
-    s32 _4;
-    s32 _8;
+    /* 0x00 */ s32 _0;
+    /* 0x04 */ s32 _4;
+    /* 0x08 */ s32 _8;
 };

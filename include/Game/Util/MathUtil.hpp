@@ -5,6 +5,7 @@
 #include <JSystem/JGeometry/TUtil.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
+#include <revolution/gx.h>
 #include <revolution/types.h>
 
 namespace MR {

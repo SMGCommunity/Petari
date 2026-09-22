@@ -9,6 +9,10 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
 
+void StarPointerCommandStream_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 namespace {
     // static const _32 hFlashShiftNum =
     // static const _32 hTexSpeed =
@@ -33,8 +37,7 @@ namespace {
 };  // namespace
 
 StarPointerCommandStream::StarPointerCommandStream(const TVec2f* pScreenPos)
-    : LayoutActor("スターポインタ指示線", true), _20(false), mOffScreenTime(0), _28(0.0f), mScreenPos(pScreenPos), mWorldPos(nullptr),
-      mPadChannel(-1), mColor(nullptr) {
+    : LayoutActor("スターポインタ指示線", true), _20(false), mOffScreenTime(), _28(), mScreenPos(pScreenPos), mWorldPos(), mPadChannel(-1), mColor() {
 }
 
 void StarPointerCommandStream::start(const TVec3f* pPos, bool b) {

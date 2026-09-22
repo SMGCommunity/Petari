@@ -1,7 +1,7 @@
 #pragma once
 
 #include <math_types.hpp>
-#include <revolution.h>
+#include <revolution/types.h>
 
 namespace std {
     template < typename A1, typename B1 >
@@ -52,75 +52,63 @@ namespace JMath {
         }
 
         T cosShort(s16 v) const {
-            const std::pair< T, T >& rValue = table[static_cast< u16 >(v) >> (16 - Bits)];
-            return rValue.b1;
+            return table[static_cast< u16 >(v) >> (16 - Bits)].b1;
         }
 
-        inline f32 sinRadian(f32 v) {
+        inline T sin_(u16 v) {
+            return table[v & LEN - 1].a1;
+        }
+
+        inline T cos_(u16 v) {
+            return table[v & LEN - 1].b1;
+        }
+
+        inline T sinRadian(f32 v) {
             if (v < 0.0f) {
-                f32 tmp = v;
-                tmp *= -(LEN / TWO_PI);
-                return -table[(u16)tmp & LEN - 1].a1;
+                return -sin_(v * -(LEN / TAngleConstant_< f32 >::RADIAN_DEG360()));
             } else {
-                f32 tmp = v;
-                tmp *= (LEN / TWO_PI);
-                return table[(u16)tmp & LEN - 1].a1;
+                return sin_(v * (LEN / TAngleConstant_< f32 >::RADIAN_DEG360()));
             }
         }
 
-        inline f32 sinDegree(f32 v) {
+        inline T sinDegree(f32 v) {
             if (v < 0.0f) {
-                f32 tmp = v * -45.511112f;
-                return -table[(u16)tmp & LEN - 1].a1;
+                return -sin_(v * -(LEN / 360.0f));
             } else {
-                f32 tmp = v * 45.511112f;
-                return table[(u16)tmp & LEN - 1].a1;
+                return sin_(v * (LEN / 360.0f));
             }
         }
 
-        inline f32 sinLap(f32 v) {
+        inline T sinLap(f32 v) {
             if (v < 0.0f) {
-                f32 tmp = v * -(f32)LEN;
-                return -table[(u16)tmp & LEN - 1].a1;
+                return -sin_(v * -(f32)LEN);
             } else {
-                f32 tmp = v * LEN;
-                return table[(u16)tmp & LEN - 1].a1;
+                return sin_(v * (f32)LEN);
             }
         }
 
-        inline f32 cosRadian(f32 v) {
+        inline T cosRadian(f32 v) {
             if (v < 0.0f) {
                 v = -v;
             }
 
-            f32 factor = LEN / TWO_PI;
-            f32 tmp = v * factor;
-            return table[(u16)tmp & LEN - 1].b1;
+            return cos_(v * (LEN / TAngleConstant_< f32 >::RADIAN_DEG360()));
         }
 
-        inline f32 cosDegree(f32 v) {
+        inline T cosDegree(f32 v) {
             if (v < 0.0f) {
                 v = -v;
             }
 
-            // 45.511112f == LEN / TWO_PI * PI / 180
-            v = 45.511112f * v;
-
-            return table[(u16)v & LEN - 1].b1;
+            return cos_(v * (LEN / 360.0f));
         }
 
-        inline f32 cosLap(f32 v) {
+        inline T cosLap(f32 v) {
             if (v < 0.0f) {
                 v = -v;
             }
 
-            f32 tmp = v;
-            tmp *= LEN;
-            return table[(u16)tmp & LEN - 1].b1;
-        }
-
-        inline f32 get(f32 v) {
-            return table[(u16)v & LEN - 1].b1;
+            return cos_(v * (f32)LEN);
         }
     };
 
@@ -183,10 +171,6 @@ namespace JMath {
         return sAsinAcosTable.acosDegree(x);
     }
 };  // namespace JMath
-
-// inline f32 JMASSin(u16 s) {
-//    return JMath::sSinCosTable.sinShort(s);
-//}
 
 inline f32 JMACosShort(s16 v) {
     return JMath::sSinCosTable.cosShort(v);

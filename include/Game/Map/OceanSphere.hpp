@@ -11,29 +11,29 @@ public:
     OceanSpherePlane(s32 pointCount, const TVec3f* pCenter, const TVec3f& rAxis1, const TVec3f& rAxis2, const TVec2f& rTex1, const TVec2f& rTex2,
                      const TVec2f& rTex3);
 
-    void update(f32, f32, f32);
+    void update(f32 radius, f32 wave1Time, f32 wave2Time);
     OceanSpherePoint* getPoint(int col, int row) const {
         return mPoints[(mAxisPointCount * row) + col];
     }
 
-    s32 mGridPointCount;
-    s32 mAxisPointCount;
-    OceanSpherePoint** mPoints;
+    /* 0x00 */ s32 mGridPointCount;
+    /* 0x04 */ s32 mAxisPointCount;
+    /* 0x08 */ OceanSpherePoint** mPoints;
 };
 
 class OceanSpherePlaneEdge {
 public:
     OceanSpherePlaneEdge(s32 pointCount, const TVec3f* pCenter, const TVec3f& rAxis1, const TVec3f& rAxis2, const TVec2f& rTex1, const TVec2f& rTex2);
 
-    void update(f32, f32, f32);
+    void update(f32 radius, f32 wave1Time, f32 wave2Time);
 
-    s32 mPointCount;
-    OceanSpherePoint** mPoints;
+    /* 0x00 */ s32 mPointCount;
+    /* 0x04 */ OceanSpherePoint** mPoints;
 };
 
 class OceanSphere : public LiveActor {
 public:
-    OceanSphere(const char*);
+    OceanSphere(const char* pName);
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
@@ -47,14 +47,14 @@ public:
     void initPoints();
     void initDisplayList();
     void updatePoints();
-    OceanSpherePoint* getPlanePointLeftUpper(int, int) const;
-    OceanSpherePoint* getPlanePointRightUpper(int, int) const;
-    OceanSpherePoint* getPlanePointLeftLower(int, int) const;
-    OceanSpherePoint* getPlanePointRightLower(int, int) const;
+    OceanSpherePoint* getPlanePointLeftUpper(int row, int col) const;
+    OceanSpherePoint* getPlanePointRightUpper(int row, int col) const;
+    OceanSpherePoint* getPlanePointLeftLower(int row, int col) const;
+    OceanSpherePoint* getPlanePointRightLower(int row, int col) const;
     void loadMaterialFace() const;
     void loadMaterialBack() const;
-    void drawSphere(bool, bool) const;
-    void sendVertex(const OceanSpherePoint*, bool, bool) const;
+    void drawSphere(bool useEnvMap, bool useGD) const;
+    void sendVertex(const OceanSpherePoint* pPoint, bool useEnvMap, bool useGD) const;
 
     /* 0x8C */ f32 mRadius;
     /* 0x90 */ f32 mRadiusTarget;
@@ -88,9 +88,9 @@ public:
     /* 0x100 */ GXColor mTevReg1Front;
     /* 0x104 */ GXColor mTevReg1Back;
     /* 0x108 */ bool mUseDisplayList;
-    u8 _109;
-    u8 _10A;
-    u8 _10B;
+    /* 0x109 */ u8 _109;
+    /* 0x10A */ u8 _10A;
+    /* 0x10B */ u8 _10B;
     /* 0x10C */ u32 mDispListFaceLen;
     /* 0x110 */ u8* mDispListFace;
     /* 0x114 */ u32 mDispListBackLen;

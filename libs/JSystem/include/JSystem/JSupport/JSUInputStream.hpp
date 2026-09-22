@@ -7,7 +7,7 @@ public:
     JSUInputStream() : JSUIosBase() {
     }
 
-    virtual ~JSUInputStream();
+    virtual ~JSUInputStream() ATTRIBUTE_WEAK;
     virtual s32 getAvailable() const = 0;
     virtual s32 skip(s32);
     virtual u32 readData(void*, s32) = 0;

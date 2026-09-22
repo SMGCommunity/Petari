@@ -121,7 +121,7 @@ void Tico::initBase(const JMapInfoIter& rIter, s32 color) {
 
 void Tico::initMessage(const JMapInfoIter& rIter, const char* pMessageId) {
     if (initTalkCtrl(rIter, pMessageId, TVec3f(0.0f, 120.0f, 0.0f), nullptr)) {
-        MR::registerKillFunc(mMsgCtrl, TalkMessageFunc< Tico >(this, &Tico::killFunc));
+        MR::registerKillFunc(getMsgCtrl(), TalkMessageFunc< Tico >(this, &Tico::killFunc));
         MR::setDistanceToTalk(mMsgCtrl, 350.0f);
     }
 
@@ -133,7 +133,7 @@ void Tico::initMessage(const char* pMessageId) {
     JMapInfoIter iter;
 
     if (initTalkCtrlDirect(iter, pMessageId, TVec3f(0.0f, 120.0f, 0.0f), nullptr)) {
-        MR::registerKillFunc(mMsgCtrl, TalkMessageFunc< Tico >(this, &Tico::killFunc));
+        MR::registerKillFunc(getMsgCtrl(), TalkMessageFunc< Tico >(this, &Tico::killFunc));
         MR::setDistanceToTalk(mMsgCtrl, 350.0f);
     }
 
@@ -236,10 +236,8 @@ void Tico::control() {
         if (!MR::isTimeKeepDemoActive()) {
             MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT");
         }
-
-        f32 v11 = (mPosition - _160).length();
-        f32 v16 = (100.0f * MR::getLinerValueFromMinMax(v11, 1.0f, 11.0f, 0.2f, 1.0f));
-        MR::startLevelSound(this, "SE_SM_LV_TICO_FLOAT", v16);
+        TVec3f len = mPosition - _160;
+        MR::startLevelSound(this, "SE_SM_LV_TICO_FLOAT", (100.0f * MR::getLinerValueFromMinMax(len.length(), 1.0f, 11.0f, 0.2f, 1.0f)));
         _160.set< f32 >(mPosition);
         _16C = MR::calcFloatOffset(this, _16C, 150.0f);
         NPCActor::control();

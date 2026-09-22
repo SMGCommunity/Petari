@@ -21,6 +21,12 @@
 #include <JSystem/JUtility/JUTTexture.hpp>
 #include <revolution/wpad.h>
 
+void StarPointerLayout_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)2.0f;
+}
+
 namespace {
     // TODO: names
     static GXColor sColorA[] = {
@@ -310,12 +316,12 @@ void StarPointerLayout::endHold() {
 void StarPointerLayout::tearDownHold() {
     if (mPointerKind == StarPointerKind_StarPointer && mPadChannel == WPAD_CHAN1) {
         if (isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHold)) || isNerve(GET_NERVE(StarPointerLayout, HostTypeNrvHoldTouch))) {
-            mRadius = ::sHandRadius;
+            mRadius = ::sHoldRadius;
         } else {
             mRadius = ::sNormalRadius;
         }
     } else if (mPointerKind == StarPointerKind_HandPointer || mPointerKind == StarPointerKind_2) {
-        mRadius = ::sHoldRadius;
+        mRadius = ::sHandRadius;
     }
 }
 

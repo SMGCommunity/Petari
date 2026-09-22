@@ -7,6 +7,7 @@
 #include "Game/System/GameDataConst.hpp"
 #include "Game/System/GameDataFunction.hpp"
 // #include "Game/System/GameDataGalaxyStorage.hpp"
+#include "Game/System/GameDataGalaxyStorage.hpp"
 #include "Game/System/GameEventFlag.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
@@ -593,15 +594,12 @@ namespace MR {
         return true;
     }
 
-    /*
-    // TODO: GameDataSomeScenarioAccessor has not yet been declared.
     s32 getCoinBestScore(const char* pGalaxyName, s32 scenarioNo) {
         GameDataSomeScenarioAccessor accessor = GameDataFunction::makeGalaxyScenarioAccessor(pGalaxyName, scenarioNo);
 
         return accessor.getMaxCoinNum();
     }
-    */
-
+   
     s32 getCoinBestScore(const char* pGalaxyName) {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
         s32 coinBestScore = 0;

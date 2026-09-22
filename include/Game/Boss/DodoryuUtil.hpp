@@ -5,10 +5,10 @@
 class Dodoryu;
 
 namespace DodoryuUtil {
-    bool calcVerticalizedDir(Dodoryu*, TVec3f*, const TVec3f&);
-    void turnToward(Dodoryu*, const TVec3f&, f32);
-    void accelerate(Dodoryu*, const TVec3f&, f32, f32, f32);
-    void addVelocity(Dodoryu*, bool);
-    void rotateVelocityByWall(Dodoryu*);
-    void calcEscapeDir(Dodoryu*, TVec3f*, f32);
-};  // namespace DodoryuUtil
+    bool calcVerticalizedDir(Dodoryu* pDodoryu, TVec3f* pVec, const TVec3f& rVec);
+    void turnToward(Dodoryu* pDodoryu, const TVec3f& rDirection, f32 maxAngle);
+    void accelerate(Dodoryu* pDodoryu, const TVec3f& rDirection, f32 acceleration, f32 lateralDamping, f32 maxSpeed);
+    void addVelocity(Dodoryu* pDodoryu, bool isSnap);
+    void rotateVelocityByWall(Dodoryu* pDodoryu);
+    void calcEscapeDir(Dodoryu* pDodoryu, TVec3f* pDirection, f32 maxAngle);
+}  // namespace DodoryuUtil

@@ -39,6 +39,7 @@ namespace ActorShadow {
     void setUpShadowControlCalcGravityFromCSV(ShadowController*, const JMapInfoIter&);
     void setUpShadowControlFromCSV(ShadowController*, LiveActor*, const JMapInfoIter&);
     ShadowController* createShadowControlFromCSV(LiveActor*, const JMapInfoIter&);
+    void setUpShadowVolumeFromCSV(ShadowVolumeDrawer*, const JMapInfoIter&);
     ShadowSurfaceCircle* createShadowSurfaceCircleFromCSV(LiveActor*, const JMapInfoIter&);
     ShadowSurfaceOval* createShadowSurfaceOvalFromCSV(LiveActor*, const JMapInfoIter&);
     ShadowSurfaceBox* createShadowSurfaceBoxFromCSV(LiveActor*, const JMapInfoIter&);

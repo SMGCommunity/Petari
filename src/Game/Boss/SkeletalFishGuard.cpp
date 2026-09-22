@@ -20,17 +20,6 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include <JSystem/JMath.hpp>
-#include <JSystem/JMath/JMATrigonometric.hpp>
-
-// JGeometry functions are painful to match, so this just gives the gist
-/*
-template <>
-void TVec3f::cubic(const TVec3f& rv1, const TVec3f& rv2, const TVec3f& rv3, const TVec3f& rv4, f32 a) {
-    set(rv3 * (a * a * a - a * a) + rv2 * (a + a * a * a - 2.0f * a * a) + rv1 * (1.0f + 2.0f * a * a * a - 3.0f * a * a) +
-        rv4 * (3.0f * a * a - 2.0f * a * a * a));
-}
-*/
 
 namespace {
     NEW_NERVE(SkeletalFishGuardNrvWait, SkeletalFishGuard, Wait);
@@ -43,6 +32,13 @@ namespace {
     NEW_NERVE(SkeletalFishGuardNrvKill, SkeletalFishGuard, Kill);
     NEW_NERVE_ONEND(SkeletalFishGuardNrvNumb, SkeletalFishGuard, Numb, Numb);
 };  // namespace
+
+SkeletalFishGuard::SkeletalFishGuard(SkeletalFishBoss* pFishBoss, const char* pName)
+    : LiveActor(pName), _8C(), mFishBoss(pFishBoss), _94(0.0f, 0.0f, 0.0f), _A0(), _A4(0.0f, 0.0f, 0.0f), _B0(), _B4(), _B8(), _BC(), mAttackDelay(),
+      _C4(), _C8(), _CC(), _D0(0.0f, 0.0f, 0.0f), _DC(0.0f, 0.0f, 0.0f), _E8(0.0f, 0.0f, 0.0f), _F4(0.0f, 0.0f, 0.0f), _100(0.0f, 0.0f, 1.0f),
+      _10C(0.0f, 0.0f, 0.0f) {
+    mScaleController = new AnimScaleController(nullptr);
+}
 
 void SkeletalFishGuard::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("SkeletalFishGuard", nullptr, false);
@@ -132,7 +128,7 @@ void SkeletalFishGuard::exeAppear() {
         f32 scaled = v7 / (f32)max;
         TVec3f temp_vec = TVec3f(0.0f, 1.0f, 0.0f) * 0.0f * (f32)max;
         TVec3f temp_vec2 = v30 * 10.0f * (f32)max;
-        mPosition.cubic< f32 >(_10C, temp_vec, temp_vec2, v31, scaled);
+        mPosition.cubic(_10C, temp_vec, temp_vec2, v31, scaled);
     } else {
         f32 v9 = (getNerveStep() - 0x63);
         s32 max = 0xC9;
@@ -140,7 +136,7 @@ void SkeletalFishGuard::exeAppear() {
         f32 v11 = MR::getRailCoordSpeed(mFishBoss->getCurrentRail());
         TVec3f temp_vec = v30 * 10.0f * (f32)max;
         TVec3f temp_vec2 = _100 * v11 * (f32)max;
-        mPosition.cubic< f32 >(v31, temp_vec, temp_vec2, _F4, scaled);
+        mPosition.cubic(v31, temp_vec, temp_vec2, _F4, scaled);
     }
 
     TVec3f v28 = mPosition - v29;
@@ -259,8 +255,8 @@ void SkeletalFishGuard::exeStraight() {
     }
 
     MR::calcGravity(this);
-    if (!tryShiftNumb(GET_NERVE_ANON(SkeletalFishGuardNrvStraight))) {
-        tryShiftKill();
+    if (!tryShiftNumb(GET_NERVE_ANON(SkeletalFishGuardNrvStraight)) && tryShiftKill()) {
+        return;
     }
 }
 
@@ -610,7 +606,4 @@ bool SkeletalFishGuard::tryShiftNumb(const Nerve* pNerve) {
     }
 
     return false;
-}
-
-SkeletalFishGuard::~SkeletalFishGuard() {
 }

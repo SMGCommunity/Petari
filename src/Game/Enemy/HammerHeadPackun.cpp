@@ -31,7 +31,7 @@ void HammerHeadPackun_FORCE_MATCH_SDATA2() {
     (void)3.1415927f;
 }
 
-void DUMMY() {
+void HammerHeadPackun_DUMMY() {
     // to emit operator-
     TVec3f a, b;
     TVec3f c = a - b;

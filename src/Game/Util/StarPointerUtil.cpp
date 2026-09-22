@@ -25,9 +25,17 @@
 #include <JSystem/JUtility/JUTVideo.hpp>
 #include <revolution/wpad.h>
 
+void StarPointerUtil_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)-1.0f;
+}
+
 namespace {
 
-    // static const f32 hPointColRayLength =
+    static const f32 hPointColRayLength = 99999.0f;
 
     class StarPointerTargetInfo {
     public:
@@ -79,7 +87,7 @@ namespace {
 
     bool checkPointingWithoutCheckZ(StarPointerTargetInfo* pTargetInfo, const TVec3f& rOffset, const TVec2f& rPointerPos, f32 zMargin,
                                     f32 radiusMargin) {
-        return checkPointingTarget(pTargetInfo, rOffset, rPointerPos, 99999.0f, radiusMargin);
+        return checkPointingTarget(pTargetInfo, rOffset, rPointerPos, ::hPointColRayLength, radiusMargin);
     }
 
     bool isStarPointerPointingCore(StarPointerTargetInfo* pTargetInfo, const LiveActor* pActor, s32 channel, StarPointerFunc1 targetPointCheckFunc,
@@ -363,6 +371,55 @@ namespace MR {
         return false;
     }
 
+    bool requestBlueStarGuidance() {
+        if (MR::isInAreaObj("BlueStarGuidanceCube", *MR::getPlayerPos()) && !MR::isSystemTalking()) {
+            return ::getStarPointerDirector()->mGuidance->request1PGuidance("PointerGuidance_BlueStar", true);
+        }
+
+        return false;
+    }
+
+    bool requestTicoSeedGuidance(s32 arg) {
+        if (MR::isDemoActive()) {
+            return false;
+        }
+
+        AreaObj* area = MR::getAreaObj("TicoSeedGuidanceCube", *MR::getPlayerPos());
+        if (area != nullptr && arg == MR::getAreaObjArg(area, 0)) {
+            return ::getStarPointerDirector()->mGuidance->request1PGuidance("PointerGuidance_TicoFat", true);
+        }
+
+        return false;
+    }
+
+    bool requestTicoSeedGuidanceForce() {
+        if (MR::isDemoActive()) {
+            return false;
+        }
+
+        return ::getStarPointerDirector()->mGuidance->request1PGuidance("PointerGuidance_TicoFat", true);
+    }
+
+    bool requestBigBubbleGuidance() {
+        return ::getStarPointerDirector()->mGuidance->request1PGuidance("PointerGuidance_BigBubble", true);
+    }
+
+    bool requestMarioLauncherGuidance() {
+        return ::getStarPointerDirector()->mGuidance->request1PGuidance("PointerGuidance_MarioLauncher", true);
+    }
+
+    bool requestFileSelectGuidance() {
+        return ::getStarPointerDirector()->mGuidance->request1PGuidance("System_FileSelect008", true);
+    }
+
+    bool requestFileSelectCopyGuidance() {
+        return ::getStarPointerDirector()->mGuidance->request1PGuidance("System_FileSelect002", false);
+    }
+
+    bool requestStarPieceLectureGuidance() {
+        return ::getStarPointerDirector()->mGuidance->request1PGuidance("PointerGuidance_StarPieceLecture", false);
+    }
+
     bool requestPointerGuidanceNoInformation() {
         return ::getStarPointerDirector()->mGuidance->request1PGuidance(nullptr, true);
     }
@@ -583,7 +640,7 @@ namespace MR {
     }
 
     f32 calcPointRadius2D(const TVec3f& rPosition, f32 radius) {
-        f32 fovyRad = MR::getFovy() * PI_180;
+        f32 fovyRad = MR::toRadian(MR::getFovy());
         f32 tan = MR::tan(fovyRad * 0.5f);
         f32 focalDist = (static_cast< s32 >(JUTVideo::getManager()->getEfbHeight()) * 0.5f) / tan;
 
@@ -593,7 +650,7 @@ namespace MR {
         return radius * focalDist / -viewPos.z;
     }
 
-    void DUMMY() {
+    void StarPointerUtil_DUMMY() {
         TVec2f a;
         TVec2f b;
         TVec3f scale;
@@ -871,52 +928,4 @@ namespace MR {
         }
     }
 
-    bool requestBlueStarGuidance() {
-        if (MR::isInAreaObj("BlueStarGuidanceCube", *MR::getPlayerPos()) && !MR::isSystemTalking()) {
-            return ::getStarPointerDirector()->mGuidance->request1PGuidance("PointerGuidance_BlueStar", true);
-        }
-
-        return false;
-    }
-
-    bool requestTicoSeedGuidance(s32 arg) {
-        if (MR::isDemoActive()) {
-            return false;
-        }
-
-        AreaObj* area = MR::getAreaObj("TicoSeedGuidanceCube", *MR::getPlayerPos());
-        if (area != nullptr && arg == MR::getAreaObjArg(area, 0)) {
-            return ::getStarPointerDirector()->mGuidance->request1PGuidance("PointerGuidance_TicoFat", true);
-        }
-
-        return false;
-    }
-
-    bool requestTicoSeedGuidanceForce() {
-        if (MR::isDemoActive()) {
-            return false;
-        }
-
-        return ::getStarPointerDirector()->mGuidance->request1PGuidance("PointerGuidance_TicoFat", true);
-    }
-
-    bool requestBigBubbleGuidance() {
-        return ::getStarPointerDirector()->mGuidance->request1PGuidance("PointerGuidance_BigBubble", true);
-    }
-
-    bool requestMarioLauncherGuidance() {
-        return ::getStarPointerDirector()->mGuidance->request1PGuidance("PointerGuidance_MarioLauncher", true);
-    }
-
-    bool requestFileSelectGuidance() {
-        return ::getStarPointerDirector()->mGuidance->request1PGuidance("System_FileSelect008", true);
-    }
-
-    bool requestFileSelectCopyGuidance() {
-        return ::getStarPointerDirector()->mGuidance->request1PGuidance("System_FileSelect002", false);
-    }
-
-    bool requestStarPieceLectureGuidance() {
-        return ::getStarPointerDirector()->mGuidance->request1PGuidance("PointerGuidance_StarPieceLecture", false);
-    }
 };  // namespace MR

@@ -7,10 +7,7 @@ OceanSpherePoint::OceanSpherePoint(const TVec3f* pCenter, const TVec3f& rNormal,
 }
 
 void OceanSpherePoint::updatePos(f32 radius, f32 wave1Time, f32 wave2Time) {
-    // FIXME: fix this on passthrough of .scale
-    // https://decomp.me/scratch/jIs22
-
-    f32 height = radius + calcHeight(wave1Time, wave2Time, mWave1Pos, mWave2Pos);
+    const f32 height = calcHeight(wave1Time, wave2Time, mWave1Pos, mWave2Pos) + radius;
     mPos.x = mNormal.x * height;
     mPos.y = mNormal.y * height;
     mPos.z = mNormal.z * height;

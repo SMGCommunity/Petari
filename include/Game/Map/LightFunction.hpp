@@ -2,8 +2,6 @@
 
 #include "Game/Map/LightDataHolder.hpp"
 #include "Game/Map/LightZoneDataHolder.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
-#include <revolution.h>
 
 class JMapInfo;
 class LightAreaHolder;

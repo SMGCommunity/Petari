@@ -1,9 +1,10 @@
-#include "Game/LiveActor/Nerve.hpp"
-// #include "Game/Screen/GalaxyMapController.hpp"
-#include "Game/Screen/IconAButton.hpp"
 #include "Game/Screen/StageResultInformer.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Screen/GalaxyMapController.hpp"
+#include "Game/Screen/IconAButton.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
 #include "Game/System/GameDataFunction.hpp"
+#include "Game/System/GameDataGalaxyStorage.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
 #include "Game/System/StageResultSequenceChecker.hpp"
 #include "Game/Util/EventUtil.hpp"
@@ -15,12 +16,6 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-
-// TODO: Remove when the `GalaxyMapController` unit is fully defined.
-namespace MR {
-    extern void startAstroMapLayoutForNewGalaxyDiscover();
-    extern void startAstroMapLayoutForNewTicoGalaxyDiscover();
-};  // namespace MR
 
 namespace {
     const char cMessageIdGetNormalStar[] = "System_Result000";
@@ -267,22 +262,25 @@ void StageResultInformer::exeDisplayGetStarPiece() {
         MR::emitEffect(this, "ResultPieceCounter");
     }
 
+    bool hasStarPiece = false;
+    
     if (mClearedStarPieceNum > 0) {
         mClearedStarPieceNum--;
 
         MR::addStockedStarPiece(1);
 
-        if (mClearedStarPieceNum == 0) {
-            MR::startSystemSE("SE_SY_STAR_PIECE_SUM_UP");
-        } else if (mClearedStarPieceNum == 0) {
+        if (mClearedStarPieceNum > 0) {
+            if (mClearedStarPieceNum % 2 == 0) {
+                MR::startSystemSE("SE_SY_STAR_PIECE_SUM_UP");
+            }
+        } else {
             MR::startSystemSE("SE_SY_STAR_PIECE_SUM_UP_END");
         }
     }
 
-    bool hasStarPiece = mClearedStarPieceNum != 0;
-
-    if (!hasStarPiece) {
-        MR::deleteEffect(this, "Flash");
+    if (mClearedStarPieceNum == 0) {
+        hasStarPiece = true;
+        MR::deleteEffect(this, "ResultPieceCounter");
     }
 
     MR::setTextBoxNumberRecursive(this, ::cNameGalaxyStarPieceNum, mClearedStarPieceNum);
@@ -379,20 +377,20 @@ void StageResultInformer::exeShowAstroMapForTico() {
 }
 
 void StageResultInformer::initBestScoreWindow() {
-    // GameDataSomeScenarioAccessor accessor = GameDataFunction::makeGalaxyScenarioAccessor(
-    //     GameSequenceFunction::getClearedStageName(),
-    //     GameSequenceFunction::getClearedPowerStarId());
+    GameDataSomeScenarioAccessor accessor =
+        GameDataFunction::makeGalaxyScenarioAccessor(GameSequenceFunction::getClearedStageName(), GameSequenceFunction::getClearedPowerStarId());
     s32 clearedCoinNum = GameSequenceFunction::getClearedCoinNum();
 
     MR::setTextBoxNumberRecursive(this, ::cNameBestCoinNum, clearedCoinNum);
 
-    // ...
-
-    if (clearedCoinNum < 0) {
+    bool newMax = accessor.getMaxCoinNum() < clearedCoinNum;
+    if (newMax) {
         MR::showPane(this, ::cNameBestCoinRoot);
     } else {
         MR::hidePane(this, ::cNameBestCoinRoot);
     }
+
+    _31 = newMax;
 }
 
 // StageResultInformer::decideNextNerve
@@ -426,8 +424,9 @@ bool StageResultInformer::tryWaitIntervalBeforeKeyWait(const Nerve* pNerve, int 
 
 bool StageResultInformer::tryShowAndKeyWaitInformationWindow(const char* pMessageId, const Nerve* pNerve) {
     if (MR::isFirstStep(this)) {
-        mInformationDisplayer->mMessageId = pMessageId;
-        mInformationDisplayer->setNerve(GET_NERVE_ANON(DisplayInformationForResultAppear));
+        DisplayInformationForResult* pInformationDisplayer = mInformationDisplayer;
+        pInformationDisplayer->mMessageId = pMessageId;
+        pInformationDisplayer->setNerve(GET_NERVE_ANON(DisplayInformationForResultAppear));
     }
 
     mInformationDisplayer->updateNerve();

@@ -114,12 +114,10 @@ bool StarPointerLayoutTarget::isPointing(const TVec2f& rPos) const {
 }
 
 bool StarPointerLayoutTarget::isPointingCircle(const TVec2f& rPos) const {
-    // FIXME: regalloc
-    // https://decomp.me/scratch/DbtaX
-
     TVec2f pos;
     calcBasePos(&pos);
-    f32 r = mRadius * mRadius;
+    f32 r = mRadius;
+    r *= r;
     f32 dist = pos.squared(rPos);
     return dist < r;
 }

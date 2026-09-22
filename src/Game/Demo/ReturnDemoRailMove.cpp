@@ -1,5 +1,6 @@
 #include "Game/Demo/ReturnDemoRailMove.hpp"
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
+#include "Game/MapObj/SpinDriverShootPath.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"

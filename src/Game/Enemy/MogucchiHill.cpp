@@ -9,6 +9,17 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void MogucchiHill_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)0.5f;
+    (void)120.0f;
+    (void)90000.0f;
+    (void)100.0f;
+    (void)150.0f;
+    (void)0.6f;
+    (void)(1.0f - 0.6f);
+}
+
 namespace {
     static const char* sPieceModelTable[] = {
         "MogucchiHillA",
@@ -151,7 +162,8 @@ void MogucchiHillPiece::destroy() {
 
 void MogucchiHillPiece::setSize(f32 size) {
     mScale.setAll< f32 >(size);
-    getSensor("body")->mRadius = size * ::sPieceSensorRadius;
+    HitSensor* pSensor = getSensor("body");
+    pSensor->mRadius = ::sPieceSensorRadius * size;
 }
 
 void MogucchiHillPiece::calcAndSetBaseMtx() {
@@ -225,7 +237,13 @@ bool MogucchiHillPiece::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitS
         return true;
     }
 
+    bool isHitAll = false;
+
     if (MR::isMsgPlayerHitAll(msg)) {
+        isHitAll = true;
+    }
+
+    if (isHitAll) {
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::startSound(this, "SE_EM_MOGHILL_BREAK");
         mHost->killPieces(this);
@@ -256,16 +274,16 @@ bool MogucchiHillPiece::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSe
     return true;
 }
 
-bool MogucchiHillPiece::isTargetGoingAway(HitSensor* pSender, HitSensor* pReceiver) const {
+bool MogucchiHillPiece::isTargetGoingAway(HitSensor* pSender, HitSensor* pReceiver) const NO_INLINE {
     TVec3f toReceiver = pReceiver->mPosition - pSender->mPosition;
 
     return toReceiver.dot(pReceiver->mHost->mVelocity) >= 0.0f;
 }
 
-MogucchiHill::MogucchiHill(LiveActor* pHost, s32 param2, const char* pName)
-    : LiveActor(pName), mHost(pHost), _90(), _94(param2), _98(), _CC(), _D0(100.0f), _D4(150.0f), _D8(3), mModelNameTable(::sPieceModelTable),
+MogucchiHill::MogucchiHill(LiveActor* pHost, s32 pieceCount, const char* pName)
+    : LiveActor(pName), mHost(pHost), _90(), _94(pieceCount), _98(), _CC(), _D0(100.0f), _D4(150.0f), _D8(3), mModelNameTable(::sPieceModelTable),
       mJointName("MogucchiHill"), mAutoEffectName("MogucchiHill"), mHasLightCtrl(), _EC(), _F0(), mAppearNum() {
-    if (param2 > 100) {
+    if (pieceCount > 100) {
         _94 = 100;
     }
 
@@ -310,7 +328,7 @@ void MogucchiHill::killPieces(MogucchiHillPiece* pIter) {
     s32 index = pIter - _90 - 2;
 
     for (s32 i = 0; i < 3; i++) {
-        index = (_94 + index + 1) % index;
+        index = (index + _94 + 1) % _94;
 
         if (MR::isDead(&_90[index])) {
             continue;
@@ -359,14 +377,31 @@ void MogucchiHill::exeWait() {
 void MogucchiHill::createPieces() {
     _90 = new MogucchiHillPiece[_94]();
 
-    s32 idk = MR::getRandom((s32)0, _D8);
+    s32 modelCount = _D8;
+    s32 previousModel = MR::getRandom(0, modelCount);
+    s32 secondPreviousModel = -2;
+    s32 model;
+    s32 thirdPreviousModel = -3;
 
     for (u32 i = 0; i < _94; i++) {
-        s32 idk2 = MR::getRandom((s32)0, _D8 - 1);
+        s32 offset = MR::getRandom(0, modelCount - 1);
+        model = previousModel + offset + 1;
+        model = (model + modelCount) % modelCount;
+
+        if (previousModel == thirdPreviousModel && secondPreviousModel == model) {
+            s32 alternativeCount = modelCount - 1;
+            offset = (offset + alternativeCount + 1) % alternativeCount;
+            model = previousModel + offset + 1;
+            model = (model + modelCount) % modelCount;
+        }
+
+        thirdPreviousModel = secondPreviousModel;
+        secondPreviousModel = previousModel;
+        previousModel = model;
 
         _90[i].mHost = this;
-        _90[i].mScale.setAll< f32 >(mPosition.x);
-        _90[i].initWithModelName(mModelNameTable[i], mJointName, mAutoEffectName, mHasLightCtrl);
+        _90[i].mScale.setAll< f32 >(mScale.x);
+        _90[i].initWithModelName(mModelNameTable[model], mJointName, mAutoEffectName, mHasLightCtrl);
     }
 }
 
@@ -384,6 +419,7 @@ void MogucchiHill::appearPiece() {
             _F0 = 3;
             _EC = 0;
         }
+
         break;
     case 2:
         _F0--;
@@ -394,16 +430,20 @@ void MogucchiHill::appearPiece() {
             _EC = 0;
             return;
         }
+
         break;
     }
 
     if (_F0 != 0) {
-        _90[_98].setSize(::sMinScale + 0.4f * (_F0 - 1) / 2.0f);
-        _90[_98]._9C.setInline(mReserveMtx);
-        _90[_98]._9C.getTrans(mPosition);
-        _90[_98].appear();
+        _90[_98].setSize(mScale.x * (::sMinScale + (1.0f - ::sMinScale) * (_F0 - 1) / 2.0f));
+        MogucchiHillPiece* pPiece = &_90[_98];
+        pPiece->_9C.setInline(mReserveMtx);
+        pPiece->_9C.getTrans(pPiece->mPosition);
+        pPiece->appear();
+        s32 count = _94;
+        s32 index = _98;
         _CC = false;
-        _98 = _94 + 1 % _94;
+        _98 = (index + count + 1) % count;
     }
 }
 
@@ -421,7 +461,7 @@ void MogucchiHill::killPieceIfAlive() {
     _90[_98].kill();
 }
 
-f32 MogucchiHill::getDistanceFromReserveMtx() const {
+f32 MogucchiHill::getDistanceFromReserveMtx() const NO_INLINE {
     TVec3f trans;
     mReserveMtx.getTrans(trans);
 

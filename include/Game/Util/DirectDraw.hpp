@@ -1,6 +1,7 @@
 #pragma once
 
 #include <JSystem/JGeometry/TMatrix.hpp>
+#include <revolution/gx.h>
 
 class JUTTexture;
 

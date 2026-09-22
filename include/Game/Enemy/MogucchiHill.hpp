@@ -16,15 +16,15 @@ public:
     virtual void appear();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
-    void initWithModelName(const char*, const char*, const char*, bool);
+    void initWithModelName(const char* pModelName, const char* pJointName, const char* pAutoEffectName, bool hasLightCtrl);
     void crumble();
     void destroy();
-    void setSize(f32);
-    bool isTargetGoingAway(HitSensor*, HitSensor*) const;
+    void setSize(f32 size);
+    bool isTargetGoingAway(HitSensor* pSender, HitSensor* pReceiver) const NO_INLINE;
 
     void exeAppear();
     void exeWait();
@@ -42,15 +42,15 @@ public:
 
 class MogucchiHill : public LiveActor {
 public:
-    MogucchiHill(LiveActor*, s32, const char*);
+    MogucchiHill(LiveActor* pHost, s32 pieceCount, const char* pName);
 
     virtual void init(const JMapInfoIter& rIter);
 
-    virtual bool notifyAppearAttackToPlayer(HitSensor*, HitSensor*) {
+    virtual bool notifyAppearAttackToPlayer(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    virtual bool notifyWaitAttackToPlayer(HitSensor*, HitSensor*) {
+    virtual bool notifyWaitAttackToPlayer(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
@@ -58,10 +58,10 @@ public:
     void end();
     void startNaturally();
     void endNaturally();
-    void killPieces(MogucchiHillPiece*);
+    void killPieces(MogucchiHillPiece* pIter);
     void pauseOff();
     void killAllPieces();
-    void setAppearNum(s32);
+    void setAppearNum(s32 appearNum);
     void createPieces();
     void appearPiece();
     void killPieceOverAppear();

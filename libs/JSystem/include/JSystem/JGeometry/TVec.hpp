@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Inline.hpp"
-#include <revolution.h>
-// #include "math_types.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 #include "JSystem/JMath/JMath.hpp"
@@ -841,12 +839,37 @@ namespace JGeometry {
         }
 
         template < typename T >
-        void cubic(const TVec3&, const TVec3&, const TVec3&, const TVec3&, f32);
+        void cubic(const TVec3& rP0, const TVec3& rV0, const TVec3& rV1, const TVec3& rP1, T t) {
+            // cubic hermite spline interpolation over a unit interval
+            // p(t) = h00(t) * p0 + h01(t) * p1 + h10(t) * v0 + h11(t) * v1
+
+            T h00, h01, h10, h11;
+
+            T t2 = t * t;
+            T t3 = t2 * t;
+            h00 = 2 * t3 - 3 * t2 + 1;
+            h01 = -2 * t3 + 3 * t2;
+            h10 = t3 - 2 * t2 + t;
+            h11 = t3 - t2;
+
+            x = h00 * rP0.x + h01 * rP1.x + h10 * rV0.x + h11 * rV1.x;
+            y = h00 * rP0.y + h01 * rP1.y + h10 * rV0.y + h11 * rV1.y;
+            z = h00 * rP0.z + h01 * rP1.z + h10 * rV0.z + h11 * rV1.z;
+        }
 
         f32 angle(const TVec3& rB) const {
             f32 crossPart = cross(rB).length();
             f32 dotPart = dot(rB);
             return __fabsf(JMAATan2(crossPart, dotPart));
+        }
+
+        f32 turnRate(const TVec3& rB, f32 maxAngle) const {
+            f32 a = angle(rB);
+            f32 rate = 1.0f;
+            if (a > maxAngle) {
+                rate = maxAngle / a;
+            }
+            return rate;
         }
 
         inline TVec3 copy() const {
