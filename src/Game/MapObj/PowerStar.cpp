@@ -560,7 +560,7 @@ void PowerStar::calcAppearDemoRiseTrans(TVec3f* pOutTrans, f32 a2) const {
 }
 
 void PowerStar::processWait(f32 val) {
-    mRotation.y = MR::repeatDegree(mRotation.y);
+    mRotation.y = MR::repeat(mRotation.y + val, 0.0f, 360.0f);
 
     if (mIsGrandStar) {
         if (MR::changeShowModelFlagSyncNearClipping(this, 250.0f)) {
@@ -611,7 +611,7 @@ void PowerStar::exeAppearDemoRise() {
 
     f32 easeOut = MR::calcNerveEaseOutValue(this, 60, 0.0f, 300.0f);
     calcAppearDemoRiseTrans(&mPosition, easeOut);
-    mRotation.y = MR::repeatDegree(mRotation.y + 10.0f);
+    mRotation.y = MR::repeat(mRotation.y + 10.0f, 0.0f, 360.0f);
 
     if (MR::isStep(this, 80)) {
         setNerve(GET_NERVE(PowerStar, PowerStarNrvAppearDemoMove));
@@ -627,7 +627,7 @@ void PowerStar::exeAppearDemoMove() {
         TVec3f vec;
         f32 step = getNerveStep() / 120.0f;
         calcAppearDemoRiseTrans(&vec, 300.0f);
-        vec.lerp(mAppearPosition, mPosition, step);
+        mPosition.lerp(vec, mAppearPosition, step);
 
         TVec3f vec2;
         MR::vecKillElement(vec, mGravity, &vec2);
@@ -660,8 +660,9 @@ void PowerStar::exeAppearDemoMove() {
         }
     }
 
-    mRotation.y = MR::repeatDegree(
-        mRotation.y + (MR::isLessStep(this, 120) ? 20.0f : MR::getEaseOutValue(getNerveStep() - 120, 20.0f, mIsGrandStar ? 2.0f : 3.0f, 90.0f)));
+    mRotation.y = MR::repeat(
+        mRotation.y + (MR::isLessStep(this, 120) ? 20.0f : MR::getEaseOutValue(getNerveStep() - 120, 20.0f, mIsGrandStar ? 2.0f : 3.0f, 90.0f)), 0.0f,
+        360.0f);
 
     if (MR::isStep(this, 210)) {
         MR::resetCameraLocalOffset();
@@ -677,8 +678,8 @@ void PowerStar::exeAppearDemoKoopa() {
         MR::moveVolumeStageBGM(0.0f, 5);
         MR::moveVolumeSubBGM(0.0f, 5);
 
-        MR::startAnimCameraTargetSelf(mPowerStarModelObj, mCameraInfo, MR::isStageKoopaVs3() ? "DemoKoopaGrandStarVs3" : "DemoKoopaGrandStar", 0,
-                                      1.0f);
+        bool isStageKoopaVs3 = MR::isStageKoopaVs3();
+        MR::startAnimCameraTargetSelf(mPowerStarModelObj, mCameraInfo, isStageKoopaVs3 ? "DemoKoopaGrandStarVs3" : "DemoKoopaGrandStar", 0, 1.0f);
 
         MR::hideModelAndOnCalcAnimIfShown(this);
 
@@ -688,11 +689,12 @@ void PowerStar::exeAppearDemoKoopa() {
 
         mBaseMtx.setTrans(mInitPosition);
 
-        mPowerStarModelObj->kill();
+        mPowerStarModelObj->appear();
 
         MR::requestMovementOn(mPowerStarModelObj);
 
-        MR::startBck(mPowerStarModelObj, MR::isStageKoopaVs3() ? "DemoKoopaGrandStarVs3" : "DemoKoopaGrandStar");
+        isStageKoopaVs3 = MR::isStageKoopaVs3();
+        MR::startBck(mPowerStarModelObj, isStageKoopaVs3 ? "DemoKoopaGrandStarVs3" : "DemoKoopaGrandStar");
 
         _134.set(MR::getPlayerBaseMtx());
 
@@ -724,9 +726,10 @@ void PowerStar::exeAppearDemoKoopa() {
         mPosition.set(mAppearPosition);
 
         MR::showModelIfHidden(this);
-        mPowerStarModelObj->appear();
+        mPowerStarModelObj->kill();
 
-        MR::endAnimCamera(mPowerStarModelObj, mCameraInfo, MR::isStageKoopaVs3() ? "DemoKoopaGrandStarVs3" : "DemoKoopaGrandStar", 0, true);
+        bool isStageKoopaVs3 = MR::isStageKoopaVs3();
+        MR::endAnimCamera(mPowerStarModelObj, mCameraInfo, isStageKoopaVs3 ? "DemoKoopaGrandStarVs3" : "DemoKoopaGrandStar", 0, true);
         endAppearDemo();
 
         if (MR::isStageKoopaVs3()) {
@@ -796,7 +799,9 @@ void PowerStar::exeStageClearDemo() {
 
         MR::invalidateClipping(this);
 
-        MR::startAnimCameraTargetSelf(mPowerStarModelObj, mCameraInfo, mIsGrandStar ? "GrandStarGet" : "PowerStarGet", 0, 1.0f);
+        ModelObj* power_star_mdl = mPowerStarModelObj;
+        ActorCameraInfo* cam_info = mCameraInfo;
+        MR::startAnimCameraTargetSelf(power_star_mdl, cam_info, mIsGrandStar ? "GrandStarGet" : "PowerStarGet", 0, 1.0f);
     }
 
     if (MR::isStep(this, 1)) {
@@ -817,7 +822,8 @@ void PowerStar::exeStageClearDemo() {
 
         mPowerStarModelObj->makeActorAppeared();
 
-        MR::startBck(mPowerStarModelObj, mIsGrandStar ? "GrandStarGet" : "PowerStarGet");
+        ModelObj* power_star_mdl = mPowerStarModelObj;
+        MR::startBck(power_star_mdl, mIsGrandStar ? "GrandStarGet" : "PowerStarGet");
 
         if (MR::isPowerStarGetDemoWithLuigiCurrentGalaxyAndScenario(mPowerStarId)) {
             mLuigiNPC->makeActorAppeared();
