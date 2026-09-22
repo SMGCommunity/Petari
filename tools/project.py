@@ -356,14 +356,14 @@ def make_flags_str(flags: Optional[List[str]]) -> str:
     return " ".join(flags)
 
 
-def get_pch_out_name(config: ProjectConfig, pch: PrecompiledHeader) -> str:
-    pch_rel_path = Path(pch["source"])
+def get_pch_out_path(config: ProjectConfig, pch: PrecompiledHeader) -> str:
+    pch_rel_path = Path(pch["output"])
     pch_out_name = pch_rel_path.with_suffix(".mch")
     # Use absolute path as a workaround to allow this target to be matched with absolute paths in depfiles.
     #
     # Without this any object which includes the PCH would depend on the .mch filesystem entry but not the
     # corresponding Ninja task, so the MCH would not be implicitly rebuilt when the PCH is modified.
-    return os.path.abspath(config.out_path() / "include" / pch_out_name)
+    return os.path.abspath(config.out_path() / "include" / pch_rel_path)
 
 
 # Unit configuration
@@ -863,7 +863,7 @@ def generate_build_ninja(
 
     # Add all build steps needed before we compile (e.g. processing assets)
     pch_out_names = [
-        get_pch_out_name(config, pch) for pch in config.precompiled_headers or []
+        get_pch_out_path(config, pch) for pch in config.precompiled_headers or []
     ]
     write_custom_step("pre-compile", extra_inputs=pch_out_names)
 
@@ -967,14 +967,12 @@ def generate_build_ninja(
 
         if config.precompiled_headers:
             for pch in config.precompiled_headers:
-                src_path_rel_str = Path(pch["source"])
-                src_path_rel = Path(src_path_rel_str)
-                pch_out_name = src_path_rel.with_suffix(".mch")
-                pch_out_abs_path = Path(get_pch_out_name(config, pch))
+                src_path = Path(pch["source"])
+                pch_out_abs_path = Path(get_pch_out_path(config, pch))
                 # Add appropriate language flag if it doesn't exist already
                 cflags = pch["cflags"]
                 if not any(flag.startswith("-lang") for flag in cflags):
-                    if file_is_cpp(src_path_rel):
+                    if file_is_cpp(src_path):
                         cflags.insert(0, "-lang=c++")
                     else:
                         cflags.insert(0, "-lang=c")
@@ -982,15 +980,15 @@ def generate_build_ninja(
                 cflags_str = make_flags_str(cflags)
                 shift_jis = pch.get("shift_jis", config.shift_jis)
 
-                n.comment(f"Precompiled header {pch_out_name}")
+                n.comment(f"Precompiled header {pch['output']}")
                 n.build(
                     outputs=pch_out_abs_path,
                     rule="mwcc_pch_sjis" if shift_jis else "mwcc_pch",
-                    inputs=f"include/{src_path_rel_str}",
+                    inputs=src_path,
                     variables={
                         "mw_version": Path(pch["mw_version"]),
                         "cflags": cflags_str,
-                        "basedir": os.path.dirname(pch_out_abs_path),
+                        "basedir": f'"{os.path.dirname(pch_out_abs_path)}"',
                         "basefile": pch_out_abs_path.with_suffix(""),
                         "basefilestem": pch_out_abs_path.stem,
                     },

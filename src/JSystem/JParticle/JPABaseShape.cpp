@@ -1,21 +1,10 @@
+#include "JSystem/JParticle/JPABaseShape.hpp"
 #include "Inline.hpp"
-#include <revolution/mtx.h>
-
-extern "C" {
-static void GXPosition3f32(f32, f32, f32) NO_INLINE;
-}
-
-namespace JMathInlineVEC {
-    void PSVECSubtract(const Vec*, const Vec*, Vec*) NO_INLINE;
-}
-
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
-#include "JSystem/JParticle/JPABaseShape.hpp"
 #include "JSystem/JParticle/JPAEmitter.hpp"
 #include "JSystem/JParticle/JPAParticle.hpp"
 #include "JSystem/JParticle/JPAResourceManager.hpp"
-#include <revolution/gx/GXVert.h>
 #include <revolution/mtx.h>
 
 void JPASetPointSize(JPAEmitterWorkData* work) {
@@ -665,6 +654,259 @@ void JPADrawPoint(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     GXBegin(GX_POINTS, GX_VTXFMT1, 1);
     GXPosition3f32(ptcl->mPosition.x, ptcl->mPosition.y, ptcl->mPosition.z);
     GXTexCoord2f32(0.0f, 0.0f);
+    GXEnd();
+    GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+    GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+}
+
+void JPADrawLine(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
+    if (param_1->checkStatus(JPAPtclStts_Invisible)) {
+        return;
+    }
+
+    JGeometry::TVec3< f32 > local_1c(param_1->mPosition);
+    JGeometry::TVec3< f32 > local_28;
+    param_1->getVelVec(local_28);
+
+    if (local_28.isZero()) {
+        return;
+    }
+
+    local_28.setLength(param_0->mGlobalPtclScl.y * (25.0f * param_1->mParticleScaleY));
+    local_28.sub(local_1c, local_28);
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+    GXBegin(GX_LINES, GX_VTXFMT1, 2);
+    GXPosition3f32(local_1c.x, local_1c.y, local_1c.z);
+    GXTexCoord2f32(0.0f, 0.0f);
+    GXPosition3f32(local_28.x, local_28.y, local_28.z);
+    GXTexCoord2f32(0.0f, 1.0f);
+    GXEnd();
+    GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+    GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+}
+
+JPANode< JPABaseParticle >* getNext(JPANode< JPABaseParticle >* param_0) {
+    return param_0->getNext();
+}
+
+JPANode< JPABaseParticle >* getPrev(JPANode< JPABaseParticle >* param_0) {
+    return param_0->getPrev();
+}
+
+typedef JPANode< JPABaseParticle >* (*getNodeFunc)(JPANode< JPABaseParticle >*);
+
+void JPADrawStripe(JPAEmitterWorkData* param_0) {
+    JPABaseShape* shape = param_0->mpRes->getBsp();
+    u32 ptcl_num = param_0->mpAlivePtcl->getNum();
+    if (ptcl_num < 2) {
+        return;
+    }
+
+    f32 coord = 0.0f;
+    f32 step = 1.0f / (ptcl_num - 1.0f);
+    f32 dVar14 = (1.0f + param_0->mPivot.x) * (25.0f * param_0->mGlobalPtclScl.x);
+    f32 dVar13 = (1.0f - param_0->mPivot.x) * (25.0f * param_0->mGlobalPtclScl.x);
+    Mtx local_c8;
+    f32 dVar11;
+    f32 dVar12;
+    JGeometry::TVec3< f32 > local_ec;
+    JGeometry::TVec3< f32 > local_e0[2];
+    JGeometry::TVec3< f32 > local_f8;
+    JGeometry::TVec3< f32 > local_104;
+    JPANode< JPABaseParticle >* startNode = NULL;
+    getNodeFunc node_func = NULL;
+    if (shape->isDrawFwdAhead()) {
+        startNode = param_0->mpAlivePtcl->getLast();
+        node_func = getPrev;
+        coord = 1.0f;
+        step = -step;
+    } else {
+        startNode = param_0->mpAlivePtcl->getFirst();
+        node_func = getNext;
+    }
+
+    GXLoadPosMtxImm(param_0->mPosCamMtx, 0);
+    p_prj[param_0->mPrjType](param_0, param_0->mPosCamMtx);
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT1, ptcl_num << 1);
+    for (JPANode< JPABaseParticle >* node = startNode; node != param_0->mpAlivePtcl->getEnd(); node = node_func(node), coord += step) {
+        param_0->mpCurNode = node;
+        JPABaseParticle* particle = node->getObject();
+        local_ec.set(particle->mPosition);
+        dVar11 = JMASSin(particle->mRotateAngle);
+        dVar12 = JMASCos(particle->mRotateAngle);
+        local_e0[0].set(-particle->mParticleScaleX * dVar14, 0.0f, 0.0f);
+        local_e0[0].set(local_e0[0].x * dVar12, 0.0f, local_e0[0].x * dVar11);
+        local_e0[1].set(particle->mParticleScaleX * dVar13, 0.0f, 0.0f);
+        local_e0[1].set(local_e0[1].x * dVar12, 0.0f, local_e0[1].x * dVar11);
+        p_direction[param_0->mDirType](param_0, particle, &local_f8);
+        if (local_f8.isZero()) {
+            local_f8.set(0.0f, 1.0f, 0.0f);
+        } else {
+            local_f8.normalize();
+        }
+        local_104.cross(particle->mBaseAxis, local_f8);
+        if (local_104.isZero()) {
+            local_104.set(1.0f, 0.0f, 0.0f);
+        } else {
+            local_104.normalize();
+        }
+        particle->mBaseAxis.cross(local_f8, local_104);
+        particle->mBaseAxis.normalize();
+
+        local_c8[0][0] = local_104.x;
+        local_c8[0][1] = local_f8.x;
+        local_c8[0][2] = particle->mBaseAxis.x;
+        local_c8[0][3] = 0.0f;
+        local_c8[1][0] = local_104.y;
+        local_c8[1][1] = local_f8.y;
+        local_c8[1][2] = particle->mBaseAxis.y;
+        local_c8[1][3] = 0.0f;
+        local_c8[2][0] = local_104.z;
+        local_c8[2][1] = local_f8.z;
+        local_c8[2][2] = particle->mBaseAxis.z;
+        local_c8[2][3] = 0.0f;
+        PSMTXMultVecArraySR(local_c8, local_e0, local_e0, 2);
+        GXPosition3f32(local_e0[0].x + local_ec.x, local_e0[0].y + local_ec.y, local_e0[0].z + local_ec.z);
+        GXTexCoord2f32(0.0f, coord);
+        GXPosition3f32(local_e0[1].x + local_ec.x, local_e0[1].y + local_ec.y, local_e0[1].z + local_ec.z);
+        GXTexCoord2f32(1.0f, coord);
+    }
+    GXEnd();
+    GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+    GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+}
+
+void JPADrawStripeX(JPAEmitterWorkData* param_0) {
+    JPABaseShape* shape = param_0->mpRes->getBsp();
+    u32 ptcl_num = param_0->mpAlivePtcl->getNum();
+    if (ptcl_num < 2) {
+        return;
+    }
+
+    f32 start_coord = 0.0f;
+    f32 coord = 0.0f;
+    f32 step = 1.0f / (ptcl_num - 1.0f);
+    f32 local_154 = (1.0f + param_0->mPivot.x) * (25.0f * param_0->mGlobalPtclScl.x);
+    f32 local_158 = (1.0f - param_0->mPivot.x) * (25.0f * param_0->mGlobalPtclScl.x);
+    f32 local_15c = (1.0f + param_0->mPivot.y) * (25.0f * param_0->mGlobalPtclScl.y);
+    f32 local_160 = (1.0f - param_0->mPivot.y) * (25.0f * param_0->mGlobalPtclScl.y);
+    Mtx local_90;
+    f32 dVar11;
+    f32 dVar12;
+    JGeometry::TVec3< f32 > local_b4;
+    JGeometry::TVec3< f32 > local_a8[2];
+    JGeometry::TVec3< f32 > local_c0;
+    JGeometry::TVec3< f32 > local_cc;
+    JPANode< JPABaseParticle >* startNode = nullptr;
+    getNodeFunc node_func = nullptr;
+    if (shape->isDrawFwdAhead()) {
+        startNode = param_0->mpAlivePtcl->getLast();
+        node_func = getPrev;
+        start_coord = coord = 1.0f;
+        step = -step;
+    } else {
+        startNode = param_0->mpAlivePtcl->getFirst();
+        node_func = getNext;
+    }
+
+    GXLoadPosMtxImm(param_0->mPosCamMtx, 0);
+    p_prj[param_0->mPrjType](param_0, param_0->mPosCamMtx);
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT1, ptcl_num << 1);
+    for (JPANode< JPABaseParticle >* node = startNode; node != param_0->mpAlivePtcl->getEnd(); node = node_func(node), coord += step) {
+        param_0->mpCurNode = node;
+        JPABaseParticle* particle = node->getObject();
+        local_b4.set(particle->mPosition);
+        dVar11 = JMASSin(particle->mRotateAngle);
+        dVar12 = JMASCos(particle->mRotateAngle);
+        local_a8[0].set(-particle->mParticleScaleX * local_154, 0.0f, 0.0f);
+        local_a8[0].set(local_a8[0].x * dVar12, 0.0f, local_a8[0].x * dVar11);
+        local_a8[1].set(particle->mParticleScaleX * local_158, 0.0f, 0.0f);
+        local_a8[1].set(local_a8[1].x * dVar12, 0.0f, local_a8[1].x * dVar11);
+        p_direction[param_0->mDirType](param_0, particle, &local_c0);
+        if (local_c0.isZero()) {
+            local_c0.set(0.0f, 1.0f, 0.0f);
+        } else {
+            local_c0.normalize();
+        }
+        local_cc.cross(particle->mBaseAxis, local_c0);
+        if (local_cc.isZero()) {
+            local_cc.set(1.0f, 0.0f, 0.0f);
+        } else {
+            local_cc.normalize();
+        }
+        particle->mBaseAxis.cross(local_c0, local_cc);
+        particle->mBaseAxis.normalize();
+
+        local_90[0][0] = local_cc.x;
+        local_90[0][1] = local_c0.x;
+        local_90[0][2] = particle->mBaseAxis.x;
+        local_90[0][3] = 0.0f;
+        local_90[1][0] = local_cc.y;
+        local_90[1][1] = local_c0.y;
+        local_90[1][2] = particle->mBaseAxis.y;
+        local_90[1][3] = 0.0f;
+        local_90[2][0] = local_cc.z;
+        local_90[2][1] = local_c0.z;
+        local_90[2][2] = particle->mBaseAxis.z;
+        local_90[2][3] = 0.0f;
+        PSMTXMultVecArraySR(local_90, local_a8, local_a8, 2);
+        GXPosition3f32(local_a8[0].x + local_b4.x, local_a8[0].y + local_b4.y, local_a8[0].z + local_b4.z);
+        GXTexCoord2f32(0.0f, coord);
+        GXPosition3f32(local_a8[1].x + local_b4.x, local_a8[1].y + local_b4.y, local_a8[1].z + local_b4.z);
+        GXTexCoord2f32(1.0f, coord);
+    }
+    GXEnd();
+
+    coord = start_coord;
+    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT1, ptcl_num << 1);
+    for (JPANode< JPABaseParticle >* node = startNode; node != param_0->mpAlivePtcl->getEnd(); node = node_func(node), coord += step) {
+        param_0->mpCurNode = node;
+        JPABaseParticle* particle = node->getObject();
+        local_b4.set(particle->mPosition);
+        dVar11 = JMASCos(particle->mRotateAngle);
+        dVar12 = -JMASSin(particle->mRotateAngle);
+        local_a8[0].set(-particle->mParticleScaleY * local_15c, 0.0f, 0.0f);
+        local_a8[0].set(local_a8[0].x * dVar12, 0.0f, local_a8[0].x * dVar11);
+        local_a8[1].set(particle->mParticleScaleY * local_160, 0.0f, 0.0f);
+        local_a8[1].set(local_a8[1].x * dVar12, 0.0f, local_a8[1].x * dVar11);
+        p_direction[param_0->mDirType](param_0, particle, &local_c0);
+        if (local_c0.isZero()) {
+            local_c0.set(0.0f, 1.0f, 0.0f);
+        } else {
+            local_c0.normalize();
+        }
+        local_cc.cross(particle->mBaseAxis, local_c0);
+        if (local_cc.isZero()) {
+            local_cc.set(1.0f, 0.0f, 0.0f);
+        } else {
+            local_cc.normalize();
+        }
+        particle->mBaseAxis.cross(local_c0, local_cc);
+        particle->mBaseAxis.normalize();
+
+        local_90[0][0] = local_cc.x;
+        local_90[0][1] = local_c0.x;
+        local_90[0][2] = particle->mBaseAxis.x;
+        local_90[0][3] = 0.0f;
+        local_90[1][0] = local_cc.y;
+        local_90[1][1] = local_c0.y;
+        local_90[1][2] = particle->mBaseAxis.y;
+        local_90[1][3] = 0.0f;
+        local_90[2][0] = local_cc.z;
+        local_90[2][1] = local_c0.z;
+        local_90[2][2] = particle->mBaseAxis.z;
+        local_90[2][3] = 0.0f;
+        PSMTXMultVecArraySR(local_90, local_a8, local_a8, 2);
+        GXPosition3f32(local_a8[0].x + local_b4.x, local_a8[0].y + local_b4.y, local_a8[0].z + local_b4.z);
+        GXTexCoord2f32(0.0f, coord);
+        GXPosition3f32(local_a8[1].x + local_b4.x, local_a8[1].y + local_b4.y, local_a8[1].z + local_b4.z);
+        GXTexCoord2f32(1.0f, coord);
+    }
     GXEnd();
     GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
     GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);

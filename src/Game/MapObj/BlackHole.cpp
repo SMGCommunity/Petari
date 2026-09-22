@@ -2,7 +2,16 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvBlackHole {
     NEW_NERVE(BlackHoleNrvWait, BlackHole, Wait);
@@ -10,7 +19,10 @@ namespace NrvBlackHole {
     NEW_NERVE(BlackHoleNrvDisappear, BlackHole, Disappear);
 };  // namespace NrvBlackHole
 
-// BlackHole::BlackHole
+BlackHole::BlackHole(const char* pName) : LiveActor(pName), mBlackHoleModel(), _90(gZeroVec), _9C(1.0f), _A0(500.0f), _A4(), mCameraInfo() {
+    _A8.identity();
+    _D8.identity();
+}
 
 void BlackHole::init(const JMapInfoIter& rIter) {
     initMapToolInfo(rIter);
@@ -28,7 +40,7 @@ void BlackHole::init(const JMapInfoIter& rIter) {
         radius = val;
     }
 
-    f32 clippingRadius = 500.0f * radius;
+    f32 clippingRadius = 500.0f + radius;
     MR::setClippingTypeSphere(this, clippingRadius);
     MR::setClippingTypeSphere(mBlackHoleModel, clippingRadius);
     MR::setClippingFarMax(this);
@@ -109,7 +121,7 @@ void BlackHole::initMapToolInfo(const JMapInfoIter& rIter) {
     }
 
     if (_A4 == nullptr) {
-        _A0 = 500.0f * mScale.z;
+        _A0 = 500.0f * mScale.x;
     } else {
         _A0 = (mScale * 500.0f).length();
     }
@@ -133,28 +145,19 @@ void BlackHole::initModel() {
 }
 
 void BlackHole::initCubeBox() {
-    MR::makeMtxRotate((MtxPtr)&_A8, mRotation.x, mRotation.y, mRotation.z);
-    _A8.mMtx[0][3] = mPosition.x;
-    _A8.mMtx[1][3] = mPosition.y;
-    _A8.mMtx[2][3] = mPosition.z;
+    MR::makeMtxRotate(_A8, mRotation.x, mRotation.y, mRotation.z);
+    _A8.setTrans(mPosition);
+    
     _A4 = new TBox3f();
-    TVec3f stack_8(0.5f * (1000.0f * -mScale.x), 0.5f * (1000.0f * -mScale.y), 0.5f * (1000.0f * -mScale.z));
-    TVec3f stack_14(0.5f * (1000.0f * mScale.x), 0.5f * (1000.0f * mScale.z), 0.5f * (1000.0f * mScale.y));
-    _A4->i.set(stack_8);
-    _A4->f.set(stack_14);
+    TVec3f vecStart(0.5f * (1000.0f * -mScale.x), 0.5f * (1000.0f * -mScale.y), 0.5f * (1000.0f * -mScale.z));
+    TVec3f vecEnd(0.5f * (1000.0f * mScale.x), 0.5f * (1000.0f * mScale.y), 0.5f * (1000.0f * mScale.z));
+    _A4->set(vecStart, vecEnd);
 }
 
 bool BlackHole::isInCubeBox(const TVec3f& rVec) const {
-    TVec3f stack_8;
-    _A8.multTranspose(rVec, stack_8);
-    bool ret = false;
-    TBox3f* box = _A4;
-    if (stack_8.x >= box->i.x && stack_8.y >= box->i.y && stack_8.z >= box->i.z && stack_8.x < box->f.x && stack_8.y < box->f.y &&
-        stack_8.z < box->f.z) {
-        ret = true;
-    }
-
-    return ret;
+    TVec3f pos;
+    _A8.multTranspose(rVec, pos);
+    return _A4->intersectsPoint(pos);
 }
 
 void BlackHole::updateModelScale(f32 a1, f32 a2) {

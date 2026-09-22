@@ -464,7 +464,7 @@ namespace CameraLocalUtil {
     }
 };  // namespace CameraLocalUtil
 
-void DUMMY() {
+void CameraLocalUtil_DUMMY() {
     TPos3f m;
     TVec3f a, b, c, d;
     m.setXDir(a);

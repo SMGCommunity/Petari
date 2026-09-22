@@ -7,7 +7,7 @@ public:
     JSUOutputStream() {
     }
 
-    virtual ~JSUOutputStream();
+    virtual ~JSUOutputStream() ATTRIBUTE_WEAK;
     virtual s32 skip(s32, s8);
     virtual s32 writeData(const void*, s32) = 0;
 

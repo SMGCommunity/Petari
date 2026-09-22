@@ -24,21 +24,6 @@ public:
     /* 0x04 */ JGeometry::TVec3< f32 > mAccel;
 };
 
-class JPAFieldVortex : public JPAFieldBase {
-public:
-    inline JPAFieldVortex() {
-    }
-
-    void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
-    void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldVortex() {
-    }
-
-    /* 0x10 */ JGeometry::TVec3< f32 > field_0x10;
-    /* 0x1C */ f32 field_0x1c;
-    /* 0x20 */ f32 field_0x20;
-};
-
 class JPAFieldSpin : public JPAFieldBase {
 public:
     inline JPAFieldSpin() {
@@ -46,8 +31,6 @@ public:
 
     void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldSpin() {
-    }
 
     /* 0x10 */ JGeometry::TVec3< f32 > field_0x10;
     /* 0x1C */ JGeometry::TVec3< f32 > field_0x1c;
@@ -60,8 +43,6 @@ public:
     }
 
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldRandom() {
-    }
 };
 
 class JPAFieldNewton : public JPAFieldBase {
@@ -71,8 +52,6 @@ public:
 
     void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldNewton() {
-    }
 
     /* 0x10 */ JGeometry::TVec3< f32 > mDir;
     /* 0x1C */ f32 mCutoff;
@@ -85,8 +64,6 @@ public:
 
     void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldMagnet() {
-    }
 
     /* 0x10 */ JGeometry::TVec3< f32 > mDir;
 };
@@ -98,8 +75,6 @@ public:
 
     void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldGravity() {
-    }
 };
 
 class JPAFieldDrag : public JPAFieldBase {
@@ -108,8 +83,6 @@ public:
     }
 
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldDrag() {
-    }
 };
 
 class JPAFieldConvection : public JPAFieldBase {
@@ -119,22 +92,31 @@ public:
 
     void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldConvection() {
-    }
 
     /* 0x10 */ JGeometry::TVec3< f32 > field_0x10;
     /* 0x1C */ JGeometry::TVec3< f32 > field_0x1c;
     /* 0x28 */ JGeometry::TVec3< f32 > field_0x28;
 };
 
-class JPAFieldAir : public JPAFieldBase {
+class JPAFieldVortex : public JPAFieldBase {
 public:
+    inline JPAFieldVortex() {
+    }
+
     void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldAir() {
-    }
+
+    /* 0x10 */ JGeometry::TVec3< f32 > field_0x10;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ f32 field_0x20;
+};
+
+class JPAFieldAir : public JPAFieldBase {
+public:
     inline JPAFieldAir() {
     }
+    void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
+    void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
 };
 
 // unknown name

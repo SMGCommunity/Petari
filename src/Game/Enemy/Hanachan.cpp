@@ -20,6 +20,16 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
+void Hanachan_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)-1.0f;
+    (void)MR::pi();
+    (void)2.0f;
+}
+
 namespace {
     const f32 hFarDistToPursuePlayer = 2000.0f;
     // hPursuePlayerTurnLimitRadian
@@ -170,16 +180,6 @@ void HanachanParts::init(const JMapInfoIter& rIter) {
     }
 }
 
-const TVec3f* HanachanParts::getCommonGravity() const {
-    if (mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanTrample)) || mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanBecomeAngry)) ||
-        mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturn)) || mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnBound)) ||
-        mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanRecover))) {
-        return &mHost->mBodyParts[2]->mGravity;
-    }
-
-    return &mGravity;
-}
-
 void HanachanParts::kill() {
     LiveActor::kill();
 
@@ -189,6 +189,16 @@ void HanachanParts::kill() {
         MR::appearStarPiece(mHost, mPosition, 2, 10.0f, 40.0f, false);
         MR::startSound(mHost, "SE_OJ_STAR_PIECE_BURST");
     }
+}
+
+const TVec3f* HanachanParts::getCommonGravity() const {
+    if (mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanTrample)) || mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanBecomeAngry)) ||
+        mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturn)) || mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanOverturnBound)) ||
+        mHost->isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanRecover))) {
+        return &mHost->mBodyParts[2]->mGravity;
+    }
+
+    return &mGravity;
 }
 
 void HanachanParts::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -361,7 +371,7 @@ bool HanachanParts::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     dir.setLength(::hPushRate * depth);
-    mPushVelocity += dir;
+    mPushVelocity.add(dir);
     return true;
 }
 
@@ -386,13 +396,13 @@ void HanachanParts::exeWalk() {
         MR::setBckRate(this, ::hWalkAnimRate);
     }
 
-    mVelocity = mFallVelocity;
-    mVelocity += mPushVelocity;
+    mVelocity.set(mFallVelocity);
+    mVelocity.add(mPushVelocity);
 
     if (MR::isOnGround(this)) {
         mFallVelocity.zero();
     } else {
-        mFallVelocity += *getCommonGravity() * ::hCommonGravity;
+        mFallVelocity.add(*getCommonGravity() * ::hCommonGravity);
         mFallVelocity.mult(0.98f);
     }
 }
@@ -407,11 +417,11 @@ void HanachanParts::exeTrample() {
     }
 
     if (MR::isStep(this, mActionStartStep)) {
-        mFallVelocity = *getCommonGravity() * -::hTrampleJumpVelV;
+        mFallVelocity.set(*getCommonGravity() * -::hTrampleJumpVelV);
     }
 
-    mVelocity = mFallVelocity;
-    mVelocity += mPushVelocity;
+    mVelocity.set(mFallVelocity);
+    mVelocity.add(mPushVelocity);
 
     if (MR::isOnGround(this)) {
         if (!mIsLanded && MR::isGreaterStep(this, mActionStartStep)) {
@@ -428,22 +438,22 @@ void HanachanParts::exeTrample() {
 
         mFallVelocity.zero();
     } else {
-        mFallVelocity += *getCommonGravity() * ::hCommonGravity;
+        mFallVelocity.add(*getCommonGravity() * ::hCommonGravity);
         mFallVelocity.mult(0.98f);
     }
 }
 
 void HanachanParts::exeBecomeAngry() {
     if (MR::isFirstStep(this)) {
-        mFallVelocity = *getCommonGravity() * -::hBecomeAngryJumpVelV;
+        mFallVelocity.set(*getCommonGravity() * -::hBecomeAngryJumpVelV);
         mActionStartStep = 0;
         mIsLanded = false;
         MR::startBrk(this, "Anger");
         MR::invalidateClipping(mHost);
     }
 
-    mVelocity = mFallVelocity;
-    mVelocity += mPushVelocity;
+    mVelocity.set(mFallVelocity);
+    mVelocity.add(mPushVelocity);
 
     if (MR::isOnGround(this)) {
         if (!mIsLanded && MR::isGreaterStep(this, mActionStartStep)) {
@@ -452,7 +462,7 @@ void HanachanParts::exeBecomeAngry() {
 
         mFallVelocity.zero();
     } else {
-        mFallVelocity += *getCommonGravity() * ::hCommonGravity;
+        mFallVelocity.add(*getCommonGravity() * ::hCommonGravity);
         mFallVelocity.mult(0.98f);
     }
 }
@@ -476,13 +486,13 @@ void HanachanParts::exeAngryPursue() {
         if (isMoveLimitHit) {
             mHost->setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanAngryEnd));
         } else {
-            mVelocity = mFallVelocity;
-            mVelocity += mPushVelocity;
+            mVelocity.set(mFallVelocity);
+            mVelocity.add(mPushVelocity);
 
             if (MR::isOnGround(this)) {
                 mFallVelocity.zero();
             } else {
-                mFallVelocity += mGravity * ::hCommonGravity;
+                mFallVelocity.add(mGravity * ::hCommonGravity);
                 mFallVelocity.mult(0.98f);
             }
         }
@@ -505,7 +515,7 @@ void HanachanParts::exeAngryEnd() {
     }
 
     if (MR::isStep(this, mActionStartStep)) {
-        mFallVelocity = *getCommonGravity() * -::hAngryEndJumpVelV;
+        mFallVelocity.set(*getCommonGravity() * -::hAngryEndJumpVelV);
     }
 
     bool isWallHit = isHeadHitWall() && MR::isBindedWallOfMap(this);
@@ -514,8 +524,8 @@ void HanachanParts::exeAngryEnd() {
         mHost->setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanWallHitEnd));
     }
 
-    mVelocity = mFallVelocity;
-    mVelocity += mPushVelocity;
+    mVelocity.set(mFallVelocity);
+    mVelocity.add(mPushVelocity);
 
     if (MR::isOnGround(this)) {
         if (!mIsLanded && MR::isGreaterStep(this, mActionStartStep)) {
@@ -524,7 +534,7 @@ void HanachanParts::exeAngryEnd() {
 
         mFallVelocity.zero();
     } else {
-        mFallVelocity += *getCommonGravity() * ::hCommonGravity;
+        mFallVelocity.add(*getCommonGravity() * ::hCommonGravity);
         mFallVelocity.mult(0.98f);
     }
 }
@@ -537,11 +547,11 @@ void HanachanParts::exeWallHitEnd() {
     if (MR::isStep(this, mActionStartStep)) {
         MR::startBrk(this, "Normal");
         MR::validateClipping(mHost);
-        mFallVelocity = *getCommonGravity() * -::hWallHitEndJumpVelV;
+        mFallVelocity.set(*getCommonGravity() * -::hWallHitEndJumpVelV);
     }
 
-    mVelocity = mFallVelocity;
-    mVelocity += mPushVelocity;
+    mVelocity.set(mFallVelocity);
+    mVelocity.add(mPushVelocity);
 
     if (MR::isOnGround(this)) {
         if (!mIsLanded && MR::isGreaterStep(this, mActionStartStep)) {
@@ -550,7 +560,7 @@ void HanachanParts::exeWallHitEnd() {
 
         mFallVelocity.zero();
     } else {
-        mFallVelocity += *getCommonGravity() * ::hWallHitEndGravity;
+        mFallVelocity.add(*getCommonGravity() * ::hWallHitEndGravity);
         mFallVelocity.mult(0.98f);
     }
 }
@@ -564,11 +574,11 @@ void HanachanParts::exeOverturn() {
     }
 
     if (MR::isStep(this, mActionStartStep)) {
-        mFallVelocity = *getCommonGravity() * -::hOverturnJumpVelV;
+        mFallVelocity.set(*getCommonGravity() * -::hOverturnJumpVelV);
     }
 
-    mVelocity = mFallVelocity;
-    mVelocity += mPushVelocity;
+    mVelocity.set(mFallVelocity);
+    mVelocity.add(mPushVelocity);
 
     if (MR::isOnGround(this)) {
         mFallVelocity.zero();
@@ -577,7 +587,7 @@ void HanachanParts::exeOverturn() {
             setNerve(GET_NERVE(Hanachan, HanachanPartsNrvOverturnWait));
         }
     } else {
-        mFallVelocity += *getCommonGravity() * ::hOverturnGravity;
+        mFallVelocity.add(*getCommonGravity() * ::hOverturnGravity);
         mFallVelocity.mult(0.98f);
     }
 }
@@ -588,11 +598,11 @@ void HanachanParts::exeOverturnBound() {
     }
 
     if (MR::isStep(this, mActionStartStep)) {
-        mFallVelocity = *getCommonGravity() * -::hOverturnBoundJumpVelV;
+        mFallVelocity.set(*getCommonGravity() * -::hOverturnBoundJumpVelV);
     }
 
-    mVelocity = mFallVelocity;
-    mVelocity += mPushVelocity;
+    mVelocity.set(mFallVelocity);
+    mVelocity.add(mPushVelocity);
 
     if (MR::isOnGround(this)) {
         mFallVelocity.zero();
@@ -601,7 +611,7 @@ void HanachanParts::exeOverturnBound() {
             setNerve(GET_NERVE(Hanachan, HanachanPartsNrvOverturnWait));
         }
     } else {
-        mFallVelocity += *getCommonGravity() * ::hOverturnBoundGravity;
+        mFallVelocity.add(*getCommonGravity() * ::hOverturnBoundGravity);
         mFallVelocity.mult(0.98f);
     }
 }
@@ -623,7 +633,7 @@ void HanachanParts::exeOverturnWait() {
     }
 
     mVelocity.zero();
-    mVelocity += mPushVelocity;
+    mVelocity.add(mPushVelocity);
 }
 
 void HanachanParts::exeRecover() {
@@ -638,15 +648,15 @@ void HanachanParts::exeRecover() {
     }
 
     if (MR::isStep(this, mActionStartStep)) {
-        mFallVelocity = *getCommonGravity() * -::hRecoverJumpVelV;
+        mFallVelocity.set(*getCommonGravity() * -::hRecoverJumpVelV);
     }
 
     if (MR::isGreaterStep(this, mActionStartStep - 50) && mPartsType == PartsType_Head) {
         MR::startBva(this, "Anger");
     }
 
-    mVelocity = mFallVelocity;
-    mVelocity += mPushVelocity;
+    mVelocity.set(mFallVelocity);
+    mVelocity.add(mPushVelocity);
 
     if (MR::isOnGround(this)) {
         if (mActionStartStep == 0) {
@@ -662,7 +672,7 @@ void HanachanParts::exeRecover() {
 
         mFallVelocity.zero();
     } else {
-        mFallVelocity += *getCommonGravity() * ::hRecoverGravity;
+        mFallVelocity.add(*getCommonGravity() * ::hRecoverGravity);
         mFallVelocity.mult(0.98f);
     }
 }
@@ -672,8 +682,8 @@ void HanachanParts::endRecover() {
 }
 
 void HanachanParts::exeHipDropped() {
-    mVelocity = mFallVelocity;
-    mVelocity += mPushVelocity;
+    mVelocity.set(mFallVelocity);
+    mVelocity.add(mPushVelocity);
 
     if (MR::isFirstStep(this)) {
         MR::forceBindOnGround(this, 0.0f, 1.0f);
@@ -705,7 +715,7 @@ void HanachanParts::exeHipDropped() {
 
         mFallVelocity.zero();
     } else {
-        mFallVelocity += *getCommonGravity() * 2.0f;
+        mFallVelocity.add(*getCommonGravity() * 2.0f);
         mFallVelocity.mult(0.98f);
     }
 }
@@ -713,14 +723,14 @@ void HanachanParts::exeHipDropped() {
 void HanachanParts::exeBlow() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Rotate");
-        mVelocity = mPushVelocity;
+        mVelocity.set(mPushVelocity);
 
         if (mPartsType == PartsType_Head) {
             MR::invalidateExCollisionParts(this);
         }
     }
 
-    mVelocity += mGravity * ::hBlowGravity;
+    mVelocity.add(mGravity * ::hBlowGravity);
 
     if ((MR::isGreaterStep(this, 15) && MR::isBinded(this)) || MR::isGreaterStep(this, ::hBlowTime)) {
         kill();
@@ -888,7 +898,7 @@ void Hanachan::control() {
         }
     }
 
-    mPosition = mBodyParts[2]->mPosition;
+    mPosition.set(mBodyParts[2]->mPosition);
 
     if (MR::isFirstStep(this)) {
         if (isNerve(GET_NERVE(Hanachan, HanachanNrvHanachanWalk))) {
@@ -974,7 +984,7 @@ void Hanachan::exeAngryEnd() {
     f32 speed = 1.0f - getNerveStep() / 60.0f;
     speed *= ::hAngrySpeed;
     mBodyParts[0]->mRotationQuat.getZDir(mFrontDir);
-    mBodyParts[0]->mPushVelocity += mFrontDir * speed;
+    mBodyParts[0]->mPushVelocity.add(mFrontDir * speed);
 
     HanachanParts* pHead = mBodyParts[0];
     MR::blendQuatUpFront(&pHead->mRotationQuat, -pHead->mGravity, mFrontDir, 0.5f, 0.5f);
@@ -1182,13 +1192,11 @@ bool Hanachan::isOwnSensor(HitSensor* pSensor) {
 // NON_MATCHING
 // decomp.me: https://decomp.me/scratch/a2vQa
 void Hanachan::setNerveBlow(const TVec3f& rPos) {
-    TVec3f dir = mPosition;
-    dir -= rPos;
+    TVec3f dir = mPosition - rPos;
     MR::vecKillElement(dir, mGravity, &dir);
     MR::normalizeOrZero(&dir);
 
-    TVec3f side;
-    side.cross(dir, mGravity);
+    TVec3f side = dir.cross(mGravity);
 
     f32 angle = ::hInitBlowRadian;
     f32 numSegments = mBodyParts.size() - 1;
@@ -1196,8 +1204,7 @@ void Hanachan::setNerveBlow(const TVec3f& rPos) {
     TVec3f blow;
     TVec3f up;
 
-    TVec3f headDir = mBodyParts[0]->mPosition;
-    headDir -= rPos;
+    TVec3f headDir = mBodyParts[0]->mPosition - rPos;
 
     if (headDir.dot(side) < 0.0f) {
         angleStep = -angleStep;
@@ -1206,12 +1213,12 @@ void Hanachan::setNerveBlow(const TVec3f& rPos) {
 
     for (HanachanParts** current = mBodyParts.begin(); current < mBodyParts.end(); current++) {
         blow = side * MR::cos(angle);
-        blow += dir * MR::sin(angle);
+        blow.add(dir * MR::sin(angle));
         blow.setLength(::hBlowVelH);
 
-        up = (*current)->mGravity * -1.0f;
-        up *= ::hBlowVelV;
-        (*current)->mPushVelocity = blow + up;
+        up.set((*current)->mGravity * -1.0f);
+        up.scale(::hBlowVelV);
+        (*current)->mPushVelocity.set(blow + up);
 
         angle += angleStep;
     }
@@ -1221,7 +1228,7 @@ void Hanachan::setNerveBlow(const TVec3f& rPos) {
 
 void Hanachan::applyPlayerHipDropReaction() {
     if (MR::isPlayerHipDropLand()) {
-        mAttackPos = *MR::getPlayerCenterPos();
+        mAttackPos.set(*MR::getPlayerCenterPos());
 
         f32 nearestDist = 999999.0f;
 
@@ -1283,8 +1290,8 @@ void Hanachan::moveHeadAlongRail(f32 speed) {
     mBodyParts[0]->mRotationQuat.getZDir(mFrontDir);
 
     TVec3f railDir;
-
-    if (::hFarDistToPursuePlayer < MR::calcMovingDirectionAlongRail(this, &railDir, mBodyParts[0]->mPosition, 800.0f, false, nullptr)) {
+    f32 dist = MR::calcMovingDirectionAlongRail(this, &railDir, mBodyParts[0]->mPosition, 800.0f, false, nullptr);
+    if (::hFarDistToPursuePlayer < dist) {
         moveHeadToPlayer(speed, 0.04f);
     } else {
         MR::vecKillElement(railDir, mBodyParts[0]->mGravity, &railDir);
@@ -1294,7 +1301,7 @@ void Hanachan::moveHeadAlongRail(f32 speed) {
             MR::turnVecToVecRadian(&mFrontDir, mFrontDir, railDir, 0.08f, mBodyParts[0]->mGravity);
         }
 
-        mBodyParts[0]->mPushVelocity += mFrontDir * speed;
+        mBodyParts[0]->mPushVelocity.add(mFrontDir * speed);
 
         HanachanParts* pHead = mBodyParts[0];
         MR::blendQuatUpFront(&pHead->mRotationQuat, -pHead->mGravity, mFrontDir, 0.5f, 0.5f);
@@ -1308,15 +1315,14 @@ void Hanachan::moveHeadToPlayer(f32 speed, f32 turnSpeed) {
     MR::calcVecToPlayerH(&playerDir, mBodyParts[0], nullptr);
     MR::turnVecToVecRadian(&mFrontDir, mFrontDir, playerDir, turnSpeed, mBodyParts[0]->mGravity);
 
-    mBodyParts[0]->mPushVelocity += mFrontDir * speed;
+    mBodyParts[0]->mPushVelocity.add(mFrontDir * speed);
 
     HanachanParts* pHead = mBodyParts[0];
     MR::blendQuatUpFront(&pHead->mRotationQuat, -pHead->mGravity, mFrontDir, 0.5f, 0.5f);
 }
 
 TVec3f Hanachan::calcSensorDirection(const HitSensor* pSensor, const HitSensor* pTarget) const {
-    TVec3f dir = pTarget->mPosition;
-    dir -= pSensor->mPosition;
+    TVec3f dir = pTarget->mPosition - pSensor->mPosition;
     MR::normalizeOrZero(&dir);
     return dir;
 }
@@ -1325,15 +1331,13 @@ void Hanachan::moveBodyAlongHead() {
     TVec3f* grav;
     for (s32 i = 1; i < mBodyParts.size(); i++) {
         TVec3f toPrev = mBodyParts[i - 1]->getSensor("body")->mPosition;
-        toPrev -= mBodyParts[i]->getSensor("body")->mPosition;
+        toPrev.sub(mBodyParts[i]->getSensor("body")->mPosition);
 
         TVec3f push = -toPrev;
         push.setLength(::hCollideRange + mBodyParts[i - 1]->getSensor("body")->getRadius() / 2.0f +
                        mBodyParts[i]->getSensor("body")->getRadius() / 2.0f);
 
-        TVec3f total = toPrev;
-        total += push;
-        mBodyParts[i]->mPushVelocity += total;
+        mBodyParts[i]->mPushVelocity.add(toPrev + push);
 
         grav = &mBodyParts[i]->mGravity;
         HitSensor* pTarget = mBodyParts[i - 1]->getSensor("body");

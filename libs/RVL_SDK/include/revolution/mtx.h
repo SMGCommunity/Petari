@@ -49,6 +49,7 @@ void PSMTXIdentity(Mtx);
 void PSMTXCopy(const Mtx, Mtx);
 void PSMTXConcat(const Mtx, const Mtx, Mtx);
 void PSMTXMultVecSR(const Mtx, const Vec*, Vec*);
+void PSMTXMultVecArraySR(const Mtx, const Vec*, Vec*, u32);
 
 u32 PSMTXInverse(const Mtx, Mtx);
 
@@ -57,8 +58,9 @@ void PSMTXMultVec(const Mtx, const Vec*, Vec*);
 void PSMTXTransApply(const Mtx src, Mtx dst, f32 xT, f32 yT, f32 zT);
 void PSMTXScaleApply(const Mtx, Mtx, f32, f32, f32);
 void PSMTXScale(Mtx, f32, f32, f32);
-void PSMTXRotRad(Mtx m, char axis, f32 rad);
+void PSMTXRotRad(Mtx m, char axis, f32 rad) ATTRIBUTE_WEAK;
 void PSMTXRotAxisRad(Mtx dst, const Vec*, f32);
+void PSMTXRotTrig(Mtx, char, f32, f32);
 
 void PSMTXTrans(Mtx m, f32 xT, f32 yT, f32 zT);
 void PSMTX44Identity(Mtx44 m);

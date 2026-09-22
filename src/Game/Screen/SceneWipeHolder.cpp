@@ -14,7 +14,7 @@ SceneWipeHolder::SceneWipeHolder() : WipeHolderBase(8, "シーンワイプ保持
     MR::connectToSceneWipeLayout(pWipeLayout);
     MR::joinToNameObjGroup(pWipeLayout, "IgnorePauseNameObj");
 
-    pWipeLayout = new WipeFade("白フェードワイプ", Color8(0, 0, 0, 255));
+    pWipeLayout = new WipeFade("フェードワイプ", Color8(0, 0, 0, 255));
     addWipeLayout(pWipeLayout);
     MR::connectToSceneWipeLayout(pWipeLayout);
     MR::joinToNameObjGroup(pWipeLayout, "IgnorePauseNameObj");

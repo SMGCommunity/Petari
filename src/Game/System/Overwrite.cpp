@@ -1,34 +1,41 @@
 #include "Game/System/ShapePacketUserData.hpp"
 #include "Game/System/WPad.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include <JSystem/J3DGraphBase/J3DFifo.hpp>
-#include <JSystem/J3DGraphBase/J3DPacket.hpp>
-#include <JSystem/J3DGraphBase/J3DShapeMtx.hpp>
-#include <JSystem/J3DGraphBase/J3DSys.hpp>
-#include <JSystem/JAudio2/JASAramStream.hpp>
-#include <JSystem/JAudio2/JASDriverIF.hpp>
-#include <JSystem/JAudio2/JASDvdThread.hpp>
-#include <JSystem/JAudio2/JASHeapCtrl.hpp>
-#include <JSystem/JAudio2/JASTrack.hpp>
-#include <JSystem/JAudio2/JASWaveArcLoader.hpp>
-#include <JSystem/JAudio2/JAUInitializer.hpp>
+
 #include <JSystem/JKernel/JKRAram.hpp>
 #include <JSystem/JKernel/JKRAramPiece.hpp>
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 #include <JSystem/JKernel/JKRThread.hpp>
 #include <JSystem/JKernel/JKRUnitHeap.hpp>
+
+#include <JSystem/JUtility/JUTConsole.hpp>
+#include <JSystem/JUtility/JUTException.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
+
+#include <JSystem/JSupport/JSUInputStream.hpp>
+#include <JSystem/JSupport/JSUOutputStream.hpp>
+
+#include <JSystem/J3DGraphBase/J3DFifo.hpp>
+#include <JSystem/J3DGraphBase/J3DPacket.hpp>
+#include <JSystem/J3DGraphBase/J3DShapeMtx.hpp>
+#include <JSystem/J3DGraphBase/J3DSys.hpp>
+
 #include <JSystem/JParticle/JPABaseShape.hpp>
 #include <JSystem/JParticle/JPAEmitter.hpp>
 #include <JSystem/JParticle/JPAEmitterManager.hpp>
 #include <JSystem/JParticle/JPAFieldBlock.hpp>
 #include <JSystem/JParticle/JPAParticle.hpp>
-#include <JSystem/JSupport/JSUInputStream.hpp>
-#include <JSystem/JSupport/JSUOutputStream.hpp>
-#include <JSystem/JUtility/JUTConsole.hpp>
-#include <JSystem/JUtility/JUTException.hpp>
-#include <JSystem/JUtility/JUTTexture.hpp>
+
+#include <JSystem/JAudio2/JASAramStream.hpp>
 #include <JSystem/JAudio2/JASAudioThread.hpp>
+#include <JSystem/JAudio2/JASDriverIF.hpp>
+#include <JSystem/JAudio2/JASDvdThread.hpp>
+#include <JSystem/JAudio2/JASHeapCtrl.hpp>
+#include <JSystem/JAudio2/JASTrack.hpp>
+#include <JSystem/JAudio2/JASWaveArcLoader.hpp>
+#include <JSystem/JAudio2/JAUInitializer.hpp>
+
 #include <cstdarg>
 #include <revolution/sc.h>
 
@@ -163,8 +170,6 @@ u32 JKRHeap::getMaxAllocatableSize(int alignment) {
     return ~(alignment - 1) & (getFreeSize() - ((alignment - 1) & (alignment - (address & 0xF))));
 }
 
-extern "C" void JUTWarningConsole_f_va(const char*, va_list);
-
 extern "C" void JUTWarningConsole_f(const char* pFormat, ...) {
     va_list args;
     va_start(args, pFormat);
@@ -193,10 +198,6 @@ JSUOutputStream::~JSUOutputStream() {
 
 JSUInputStream::~JSUInputStream() {
 }
-
-extern "C" void PSMTXMultVecArraySR(const Mtx, const Vec*, Vec*, u32);
-
-extern "C" void PSMTXRotTrig(Mtx, char, f32, f32);
 
 extern "C" void PSMTXRotRad(Mtx pMtx, char axis, f32 radians) {
     f32 sin = JMASinRadian(radians);
@@ -552,7 +553,7 @@ void JPADrawRotDirection(JPAEmitterWorkData* pWork, JPABaseParticle* pParticle) 
     }
 
     f32 sin = JMASSin(pParticle->mRotateAngle);
-    f32 cos = JMath::sSinCosTable.cosShort(pParticle->mRotateAngle);
+    f32 cos = JMASCos(pParticle->mRotateAngle);
     TVec3f direction;
     TVec3f side;
     p_direction[pWork->mDirType](pWork, pParticle, &direction);
@@ -692,7 +693,7 @@ void JPADrawStripe(JPAEmitterWorkData* pWork) {
         pWork->mpCurNode = pNode;
         position.set< f32 >(pParticle->mPosition);
         f32 sin = JMASSin(pParticle->mRotateAngle);
-        f32 cos = JMath::sSinCosTable.cosShort(pParticle->mRotateAngle);
+        f32 cos = JMASCos(pParticle->mRotateAngle);
         vertices[0].set(-pParticle->mParticleScaleX * leftWidth, 0.0f, 0.0f);
         vertices[0].set< f32 >(vertices[0].x * cos, 0.0f, vertices[0].x * sin);
         vertices[1].set< f32 >(pParticle->mParticleScaleX * rightWidth, 0.0f, 0.0f);
@@ -781,7 +782,7 @@ void JPADrawStripeX(JPAEmitterWorkData* pWork) {
         pWork->mpCurNode = pNode;
         position.set< f32 >(pParticle->mPosition);
         f32 sin = JMASSin(pParticle->mRotateAngle);
-        f32 cos = JMath::sSinCosTable.cosShort(pParticle->mRotateAngle);
+        f32 cos = JMASCos(pParticle->mRotateAngle);
         vertices[0].set(-pParticle->mParticleScaleX * leftWidth, 0.0f, 0.0f);
         vertices[0].set< f32 >(vertices[0].x * cos, 0.0f, vertices[0].x * sin);
         vertices[1].set< f32 >(pParticle->mParticleScaleX * rightWidth, 0.0f, 0.0f);
@@ -835,7 +836,7 @@ void JPADrawStripeX(JPAEmitterWorkData* pWork) {
         pWork->mpCurNode = pNode;
         position.set< f32 >(pParticle->mPosition);
         f32 sin = -JMASSin(pParticle->mRotateAngle);
-        f32 cos = JMath::sSinCosTable.cosShort(pParticle->mRotateAngle);
+        f32 cos = JMASCos(pParticle->mRotateAngle);
         vertices[0].set(-pParticle->mParticleScaleY * topWidth, 0.0f, 0.0f);
         vertices[0].set< f32 >(vertices[0].x * sin, 0.0f, vertices[0].x * cos);
         vertices[1].set< f32 >(pParticle->mParticleScaleY * bottomWidth, 0.0f, 0.0f);
@@ -1011,7 +1012,7 @@ void JPADrawRotYBillboard(JPAEmitterWorkData* pWork, JPABaseParticle* pParticle)
     f32 scaleY = pWork->mGlobalPtclScl.y * pParticle->mParticleScaleY;
     Mtx matrix;
     f32 sin = JMASSin(pParticle->mRotateAngle);
-    f32 cos = JMath::sSinCosTable.cosShort(pParticle->mRotateAngle);
+    f32 cos = JMASCos(pParticle->mRotateAngle);
     f32 sinX = sin * scaleX;
     f32 cosY = cos * scaleY;
     f32 y = pWork->mYBBCamMtx[1][1];

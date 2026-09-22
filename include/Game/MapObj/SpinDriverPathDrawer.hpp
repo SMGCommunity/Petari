@@ -1,29 +1,14 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/MapObj/SpinDriverShootPath.hpp"
-#include <JSystem/JUtility/JUTTexture.hpp>
 
-class SpinDriverPathDrawInit : public NameObj {
-public:
-    SpinDriverPathDrawInit();
-
-    virtual ~SpinDriverPathDrawInit();
-
-    void initDraw();
-
-    JUTTexture* mOrangeTexture;  // 0xC
-    JUTTexture* mGreenTexture;   // 0x10
-    JUTTexture* mPinkTexture;    // 0x14
-    JUTTexture* mMaskTexture;    // 0x18
-    bool mIsPathAtOpa;           // 0x1C
-};
+class JUTTexture;
+class SpinDriverShootPath;
 
 class SpinDriverPathDrawer : public LiveActor {
 public:
     SpinDriverPathDrawer(SpinDriverShootPath*);
 
-    virtual ~SpinDriverPathDrawer();
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
 
@@ -39,28 +24,41 @@ public:
     void setColorPink();
     void setMaskLength(f32);
     void setFadeScale(f32);
-    void sendPoint(const TVec3f&, f32, f32);
+    void sendPoint(const TVec3f&, f32, f32) const;
 
-    SpinDriverShootPath* mShootPath;  // 0x8C
-    TVec3f* _90;
-    TVec3f* _94;
-    TVec3f* _98;
-    void* _9C;
-    s32 mPositionCount;  // 0xA0
-    u32 _A4;
-    u32 _A8;
-    f32 _AC;
-    f32 _B0;
-    s32 mColor;  // 0xB4
-    f32 _B8;
-    f32 mFadeScale;   // 0xBC
-    f32 mMaskLength;  // 0xC0
+    /* 0x8C */ SpinDriverShootPath* mShootPath;
+    /* 0x90 */ TVec3f* _90;
+    /* 0x94 */ TVec3f* _94;
+    /* 0x98 */ TVec3f* _98;
+    /* 0x9C */ f32* _9C;
+    /* 0xA0 */ s32 mPositionCount;
+    /* 0xA4 */ u32 _A4;
+    /* 0xA8 */ u32 _A8;
+    /* 0xAC */ f32 _AC;
+    /* 0xB0 */ f32 _B0;
+    /* 0xB4 */ s32 mColor;
+    /* 0xB8 */ f32 _B8;
+    /* 0xBC */ f32 mFadeScale;
+    /* 0xC0 */ f32 mMaskLength;
+};
+
+class SpinDriverPathDrawInit : public NameObj {
+public:
+    SpinDriverPathDrawInit();
+
+    void initDraw();
+
+    /* 0x0C */ JUTTexture* mOrangeTexture;
+    /* 0x10 */ JUTTexture* mGreenTexture;
+    /* 0x14 */ JUTTexture* mPinkTexture;
+    /* 0x18 */ JUTTexture* mMaskTexture;
+    /* 0x1C */ bool mIsPathAtOpa;
 };
 
 namespace MR {
-    void setSpinDriverPathColorNormal();
-    void setSpinDriverPathColorGreen();
-    void setSpinDriverPathColorPink();
+    void setSpinDriverPathColorNormal() NO_INLINE;
+    void setSpinDriverPathColorGreen() NO_INLINE;
+    void setSpinDriverPathColorPink() NO_INLINE;
     bool isDrawSpinDriverPathAtOpa();
     void onDrawSpinDriverPathAtOpa();
     void offDrawSpinDriverPathAtOpa();

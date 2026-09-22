@@ -74,10 +74,6 @@ void WipeHolderBase::updateWipe(const char* pWipeName) {
     setCurrent(pWipeName);
 }
 
-WipeLayoutBase* WipeHolderBase::getCurrent() const {
-    return mCurrentWipeLayout;
-}
-
 WipeLayoutBase* WipeHolderBase::findWipe(const char* pWipeName) const {
     if (isCurrent(pWipeName)) {
         return mCurrentWipeLayout;

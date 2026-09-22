@@ -19,7 +19,9 @@ public:
     virtual bool isWipeOut() const;
     virtual bool isCurrent(const char*) const;
     virtual void addWipeLayout(WipeLayoutBase*);
-    virtual WipeLayoutBase* getCurrent() const;
+    virtual WipeLayoutBase* getCurrent() const {
+        return mCurrentWipeLayout;
+    };
     virtual void updateWipe(const char*);
 
     WipeLayoutBase* findWipe(const char*) const;

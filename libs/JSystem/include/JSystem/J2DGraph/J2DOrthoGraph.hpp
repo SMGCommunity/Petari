@@ -11,7 +11,9 @@ public:
     virtual ~J2DOrthoGraph() {
     }
     virtual void setPort();
-    virtual J2DGrafType getGrafType() const;
+    virtual J2DGrafType getGrafType() const {
+        return J2DGraf_Ortho;
+    };
     virtual void setLookat();
 
     void setOrtho(TBox2f const& bounds, f32 far, f32 near);
