@@ -1,26 +1,28 @@
 #pragma once
 
-#include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/LiveActorGroup.hpp"
-#include "Game/LiveActor/Nerve.hpp"
-#include "Game/Map/RaceManager.hpp"
-#include "Game/NPC/TalkMessageCtrl.hpp"
-#include "Game/Util/JointController.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
-#include <JSystem/JGeometry.hpp>
 
+class ActorCameraInfo;
+class LiveActorGroup;
 class PlayerPoseSetterInWater;
+class RaceManagerLayout;
+class TalkMessageCtrl;
+struct JointControllerInfo;
+
+template < class T >
+class JointControlDelegator;
 
 class Syati : public LiveActor {
 public:
-    Syati(const char*);
+    Syati(const char* pName);
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+
     void exeWait();
     void exeFadeoutBeforeTalk();
     void exeWaitBlank();
@@ -40,9 +42,9 @@ public:
     void exeWaitTalkNormal();
     void exeTalkNormal();
     void exeStart();
-    void initRings(JMapInfoIter const&);
+    void initRings(const JMapInfoIter& rIter);
     void initPose();
-    void initTalking(JMapInfoIter const&);
+    void initTalking(const JMapInfoIter& rIter);
     void updateSwimCommon();
     void updatePoseByRail();
     void updateNumRingPassed();
@@ -52,8 +54,8 @@ public:
     void resetScore();
     void killAllRings();
     void emitRing();
-    void setupBalloonFollowMtx(const TVec3f&);
-    bool calcHeadJoint(TPos3f*, const JointControllerInfo&);
+    void setupBalloonFollowMtx(const TVec3f& rVec);
+    bool calcHeadJoint(TPos3f* pPos, const JointControllerInfo& rInfo);
 
     /* 0x8C */ TQuat4f _8C;
     /* 0x9C */ TVec3f _9C;
@@ -70,10 +72,10 @@ public:
     /* 0x10C */ TMtx34f _10C;
     /* 0x13C */ RaceManagerLayout* mRaceManagerLayout;
     /* 0x140 */ LiveActorGroup* mPrizeRingGroup;
-    /* 0x144 */ s32 mNumRings;  // Obj_arg0
+    /* 0x144 */ s32 mNumRings;
     /* 0x148 */ s32 mStarSpawnType;
     /* 0x14C */ s32 mSwimMode;
-    /* 0x150 */ s32 mPrizeRingLife;  // Obj_arg3
+    /* 0x150 */ s32 mPrizeRingLife;
     /* 0x154 */ s32 mPrizeRingCount;
     /* 0x158 */ s32 mCurrentRailPointNo;
 };
@@ -83,8 +85,8 @@ public:
     inline PlayerPoseSetterInWater(const TVec3f& rVec, Syati* pSyati);
     void update();
 
-    TVec3f _0;
-    TQuat4f _C;
-    s32 _1C;
-    Vec* _20;
+    /* 0x00 */ TVec3f _0;
+    /* 0x0C */ TQuat4f _C;
+    /* 0x1C */ s32 _1C;
+    /* 0x20 */ Vec* _20;
 };
