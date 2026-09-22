@@ -1,4 +1,5 @@
 #include "JSystem/JAudio2/JAUStreamFileTable.hpp"
+#include <revolution/dvd.h>
 
 JAUStreamFileTable::JAUStreamFileTable() {
     mData = nullptr;
