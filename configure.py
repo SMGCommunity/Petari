@@ -1267,7 +1267,7 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/Metbo.cpp"),
             Object(NonMatching, "Game/Enemy/Mogu.cpp"),
             Object(NonMatching, "Game/Enemy/Mogucchi.cpp"),
-            Object(NonMatching, "Game/Enemy/MogucchiHill.cpp"),
+            Object(Matching, "Game/Enemy/MogucchiHill.cpp"),
             Object(NonMatching, "Game/Enemy/MogucchiRefuseTerritory.cpp"),
             Object(Matching, "Game/Enemy/MogucchiShooter.cpp"),
             Object(NonMatching, "Game/Enemy/MoguStone.cpp"),

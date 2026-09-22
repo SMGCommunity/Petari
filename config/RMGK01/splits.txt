@@ -3018,13 +3018,13 @@ Game/Enemy/MogucchiHill.cpp:
 	.text       start:0x80127C74 end:0x80128EE4
 	.ctors      start:0x8052EB0C end:0x8052EB10
 	.rodata     start:0x80532418 end:0x80532420
-	.data       start:0x80582130 end:0x80582338
+	.data       start:0x80582130 end:0x80582330
 	.sbss       start:0x806B4508 end:0x806B4520
 	.sdata2     start:0x806BB120 end:0x806BB140
 
 Game/Enemy/MogucchiRefuseTerritory.cpp:
 	.text       start:0x80128EE4 end:0x80129008
-	.data       start:0x80582338 end:0x805823B0
+	.data       start:0x80582330 end:0x805823B0
 	.sdata2     start:0x806BB140 end:0x806BB148
 
 Game/Enemy/MogucchiShooter.cpp:
