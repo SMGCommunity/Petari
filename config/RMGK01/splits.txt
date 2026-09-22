@@ -5079,7 +5079,7 @@ Game/MapObj/ItemBubble.cpp:
 Game/MapObj/JetTurtle.cpp:
 	.text       start:0x801EA864 end:0x801ECF98
 	.ctors      start:0x8052ED68 end:0x8052ED6C
-	.rodata     start:0x80533398 end:0x805333E8
+	.rodata     start:0x80533398 end:0x805333D8
 	.data       start:0x805967E8 end:0x80596BD8
 	.sdata      start:0x806B1E78 end:0x806B1E80
 	.sbss       start:0x806B52C0 end:0x806B52E8
@@ -5088,6 +5088,7 @@ Game/MapObj/JetTurtle.cpp:
 Game/MapObj/JumpHole.cpp:
 	.text       start:0x801ECF98 end:0x801EDC64
 	.ctors      start:0x8052ED6C end:0x8052ED70
+	.rodata     start:0x805333D8 end:0x805333E0
 	.data       start:0x80596BD8 end:0x80596CF0
 	.bss        start:0x8060ADD0 end:0x8060ADE8
 	.sbss       start:0x806B52E8 end:0x806B52F8
@@ -5096,6 +5097,7 @@ Game/MapObj/JumpHole.cpp:
 Game/MapObj/JumpStand.cpp:
 	.text       start:0x801EDC64 end:0x801EE87C
 	.ctors      start:0x8052ED70 end:0x8052ED74
+	.rodata     start:0x805333E0 end:0x805333E8
 	.data       start:0x80596CF0 end:0x80596EE8
 	.sbss       start:0x806B52F8 end:0x806B5308
 	.sdata2     start:0x806BD3B8 end:0x806BD3E8

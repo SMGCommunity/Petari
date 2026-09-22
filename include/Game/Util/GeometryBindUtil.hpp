@@ -43,6 +43,9 @@ public:
 
 class BindResult {
 public:
+    BindResult() : mPosition(0, 0, 0), mNormal(0, 0, 0), mContactPosition(0, 0, 0), mIsBound() {
+    }
+
     /* 0x0 */ TVec3f mPosition;
     /* 0xC */ TVec3f mNormal;
     /* 0x18 */ TVec3f mContactPosition;

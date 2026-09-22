@@ -1732,7 +1732,7 @@ config.libs = [
             Object(Matching, "Game/MapObj/ItemBlock.cpp"),
             Object(NonMatching, "Game/MapObj/ItemBubble.cpp"),
             Object(NonMatching, "Game/MapObj/JetTurtle.cpp"),
-            Object(NonMatching, "Game/MapObj/JumpHole.cpp"),
+            Object(Matching, "Game/MapObj/JumpHole.cpp"),
             Object(NonMatching, "Game/MapObj/JumpStand.cpp"),
             Object(NonMatching, "Game/MapObj/KeySwitch.cpp"),
             Object(Matching, "Game/MapObj/KillerGunnerSingle.cpp"),
