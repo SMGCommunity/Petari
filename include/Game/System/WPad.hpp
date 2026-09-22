@@ -1,7 +1,9 @@
 #pragma once
 
 #include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/kpad.h>
 #include <revolution/types.h>
+#include <revolution/wpad.h>
 
 class WPadAcceleration;
 class WPadButton;

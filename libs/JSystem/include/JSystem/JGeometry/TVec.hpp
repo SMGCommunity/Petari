@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Inline.hpp"
-#include <revolution.h>
-// #include "math_types.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 #include "JSystem/JMath/JMath.hpp"

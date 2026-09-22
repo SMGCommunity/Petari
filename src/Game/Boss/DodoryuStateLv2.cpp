@@ -1003,7 +1003,7 @@ void DodoryuStateLv2::startLeadHillBck(const DodoryuAnimSet& rAnim) {
     }
 }
 
-void DUMMY() {
+void DodoryuStateLv2_DUMMY() {
     // NOTE: to emit TPos3f::makeRotate, TVec3f::setLength, TRot3f::mult33
     TVec3f a;
     a.setLength(2.0f);

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/gx.h>
+#include <revolution/wpad.h>
 
 class BenefitItemLifeUp;
 class BenefitItemObj;

@@ -174,6 +174,13 @@ config.reconfig_deps = []
 # Can be overridden in libraries or objects
 config.scratch_preset_id = None
 
+# Globs to exclude from context files
+# *.mch excludes precompiled header output (which cannot be parsed)
+config.context_exclude_globs = ["*.mch"]
+
+# Macro definitions to inject into context files
+config.context_defines = ["DECOMPCTX"]
+
 # Base flags, common to most GC/Wii games.
 # Generally leave untouched, with overrides added below.
 cflags_base = [
@@ -256,6 +263,39 @@ cflags_jsys = [
     "-i libs/RVL_SDK/include",
     "-i libs/MSL_C/include",
     "-i libs/MSL_C++/include",
+    f"-i build/{config.version}/include",
+    f"-DVERSION={version_num}",
+]
+
+cflags_jsys_pch = [
+    "-nodefaults",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    #"-O4,s",
+    #"-inline auto",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-str reuse",
+    "-enc SJIS",
+    "-sdata 4",
+    "-sdata2 4",
+    #"-ipa file",
+    "-sym on",
+    "-i include",
+    "-i libs/JSystem/include",
+    "-i libs/MSL_C++/include",
+    "-i libs/MSL_C/include",
+    "-i libs/MetroTRK/include",
+    "-i libs/RVLFaceLib/include",
+    "-i libs/RVL_SDK/include",
+    "-i libs/Runtime/include",
+    "-i libs/nw4r/include",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
 ]
@@ -609,6 +649,14 @@ Equivalent = (
 
 config.warn_missing_config = True
 config.warn_missing_source = False
+config.precompiled_headers = [
+    {
+        "source": "libs/JSystem/include/JSystem/JSystem.pch++",
+        "output": "JSystem/JSystem.mch",
+        "mw_version": "GC/3.0a3",
+        "cflags": cflags_jsys_pch,
+    }
+]
 config.libs = [
     {
         "lib": "Runtime.PPCEABI.H",

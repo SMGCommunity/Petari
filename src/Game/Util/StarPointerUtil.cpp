@@ -593,7 +593,7 @@ namespace MR {
         return radius * focalDist / -viewPos.z;
     }
 
-    void DUMMY() {
+    void StarPointerUtil_DUMMY() {
         TVec2f a;
         TVec2f b;
         TVec3f scale;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <math_types.hpp>
-#include <revolution.h>
+#include <revolution/types.h>
 
 namespace std {
     template < typename A1, typename B1 >
