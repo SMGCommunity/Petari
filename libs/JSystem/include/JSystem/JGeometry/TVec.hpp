@@ -253,6 +253,10 @@ namespace JGeometry {
         T x, y;
     };
 
+    template <>
+    TVec2< f32 >::TVec2() {
+    }
+
     template < typename T >
     struct TVec3 {
         T x;
