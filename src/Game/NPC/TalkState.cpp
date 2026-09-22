@@ -219,31 +219,24 @@ bool TalkStateNormal::prep(const TalkMessageCtrl* pArg1) {
 }
 
 void TalkStateNormal::updateButton() {
-    TVec3f camZ(MR::getCamZdir());                   // 0x78
-    TVec3f camY(MR::getCamYdir());                   // 0x6c
-    TVec3f up;                                       // 0x60
-    TVec3f centerPlayer(*MR::getPlayerCenterPos());  // 0x54
+    TVec3f camZ(MR::getCamZdir());
+    TVec3f camY(MR::getCamYdir());
+    TVec3f up;
+    TVec3f centerPlayer(*MR::getPlayerCenterPos());
     MR::getPlayerUpVec(&up);
 
     f32 f1 = __fabs(camZ.dot(up));
     f32 f2 = camY.dot(up);
     f1 = f1 * f1;
 
-    MR::calcNormalizedScreenPosition(&up, up * 1000.0f + centerPlayer);  // Second arg is 0x3c, but should be 0x48
+    MR::calcNormalizedScreenPosition(&up, up * 1000.0f + centerPlayer);
     MR::calcNormalizedScreenPosition(&centerPlayer, centerPlayer);
-    MR::normalize(up - centerPlayer, &up);  // First arg is 0x30
-    TVec2f playerScreenPos;                 // 0x28
+    MR::normalize(up - centerPlayer, &up);
+    TVec2f playerScreenPos;
     MR::calcScreenPosition(&playerScreenPos, *MR::getPlayerCenterPos());
 
-    // JGeometry::TVec2<float>::TVec2(const JGeometry::TVec2<float>&) shouldn't be called
-    TVec2f v10(TVec2f(0.0f, -1.0f) * (40.0f * f1));
-    playerScreenPos.x += v10.x;
-    playerScreenPos.y += v10.y;
-
-    // JGeometry::TVec2<float>::TVec2(const JGeometry::TVec2<float>&) shouldn't be called
-    TVec2f v11(TVec2f(up.x, up.y) * (60.0f * f2));
-    playerScreenPos.x += v11.x;
-    playerScreenPos.y += v11.y;
+    playerScreenPos.add(TVec2f(0.0f, -1.0f) * (40.0f * f1));
+    playerScreenPos.add(TVec2f(up.x, up.y) * (60.0f * f2));
 
     mAButton->setTrans(playerScreenPos);
 }
