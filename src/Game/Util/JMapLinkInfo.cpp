@@ -5,14 +5,26 @@
 namespace {
     static const char* sFollowInfoTagName[3] = {"MapParts_ID", "Obj_ID", "ChildObjId"};
     static const char* sInfoNameTable[3] = {"mappartsinfo", "objinfo", "childobjinfo"};
+
+    s32 getInfoType(const JMapInfo* pInfo) {
+        const char* pName = pInfo->getName();
+
+        for (s32 i = 0; i < 3; i++) {
+            if (MR::isEqualString(pName, sInfoNameTable[i])) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
 };  // namespace
 
-JMapLinkInfo::JMapLinkInfo(const JMapInfoIter& rIter, bool a2) {
+JMapLinkInfo::JMapLinkInfo(const JMapInfoIter& rIter, bool linked) {
     _0 = -1;
     _4 = -1;
     _8 = -1;
 
-    if (a2) {
+    if (linked) {
         setLinkedInfo(rIter);
     } else {
         setLinkInfo(rIter);
@@ -36,7 +48,6 @@ void JMapLinkInfo::invalidate() {
     _8 = -1;
 }
 
-// https://decomp.me/scratch/ELpNv
 void JMapLinkInfo::setLinkedInfo(const JMapInfoIter& rIter) {
     invalidate();
 
@@ -46,16 +57,7 @@ void JMapLinkInfo::setLinkedInfo(const JMapInfoIter& rIter) {
             _0 = id;
             _4 = MR::getPlacedZoneId(rIter);
 
-            const char* name = rIter.mInfo->getName();
-
-            s32 idx;
-            for (idx = 0; idx < 3; idx++) {
-                if (MR::isEqualString(name, sInfoNameTable[idx])) {
-                    break;
-                }
-            }
-
-            _8 = (idx < 3) ? idx : -1;
+            _8 = getInfoType(rIter.mInfo);
         }
     }
 }
@@ -66,24 +68,24 @@ void JMapLinkInfo::setLinkInfo(const JMapInfoIter& rIter) {
     if (rIter.isValid()) {
         _4 = MR::getPlacedZoneId(rIter);
 
-        s32 v4 = -1;
-        s32 v5 = -1;
-        bool v6 = false;
+        s32 linkId = -1;
+        s32 infoType = -1;
+        bool found = false;
 
         for (s32 i = 0; i < 3; i++) {
-            s32 val = -1;
-            rIter.getValue< s32 >(::sFollowInfoTagName[i], &val);
+            s32 id = -1;
+            rIter.getValue< s32 >(::sFollowInfoTagName[i], &id);
 
-            if (val >= 0 && !v6) {
-                v4 = val;
-                v5 = i;
-                v6 = true;
+            if (id >= 0 && !found) {
+                linkId = id;
+                infoType = i;
+                found = true;
             }
         }
 
-        if (v6) {
-            _0 = v4;
-            _8 = v5;
+        if (found) {
+            _0 = linkId;
+            _8 = infoType;
             _4 = MR::getPlacedZoneId(rIter);
         }
     }

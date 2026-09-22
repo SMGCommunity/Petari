@@ -2527,7 +2527,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/IKJoint.cpp"),
             Object(NonMatching, "Game/Util/JMapIdInfo.cpp"),
             Object(Matching, "Game/Util/JMapInfo.cpp"),
-            Object(NonMatching, "Game/Util/JMapLinkInfo.cpp"),
+            Object(Matching, "Game/Util/JMapLinkInfo.cpp"),
             Object(Matching, "Game/Util/JointController.cpp"),
             Object(NonMatching, "Game/Util/JointRumbler.cpp"),
             Object(NonMatching, "Game/Util/OctahedronBezierSurface.cpp"),
