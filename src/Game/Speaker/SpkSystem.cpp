@@ -13,7 +13,7 @@ SpkSystem::SpkSystem(JKRHeap* pHeap) : JASGlobalInstance(true), mData(nullptr) {
     SpkSpeakerCtrl::setMixingBuffer(mMixBuffer);
 }
 
-void DUMMY() {
+void SpkSystem_DUMMY() {
     // NOTE: JSUList<SpkSound> dtor is being emitted here, as well as JASGlobalInstance<SpkSystem>. Unsure as to exactly why
     SpkSoundHolder dummy;
 }

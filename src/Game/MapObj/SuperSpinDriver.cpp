@@ -41,7 +41,7 @@ namespace NrvSuperSpinDriver {
 };  // namespace NrvSuperSpinDriver
 
 // Fix JGeometry inlining
-void DUMMY() {
+void SuperSpinDriver_DUMMY() {
     TQuat4f e;
     e = e;
 }

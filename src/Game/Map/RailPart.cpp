@@ -2,7 +2,7 @@
 #include "Game/Map/BezierRail.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
-void DUMMY() {
+void RailPart_DUMMY() {
     TVec3f a, b;
     a.set(b);
 }
