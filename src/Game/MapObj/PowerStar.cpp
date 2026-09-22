@@ -799,9 +799,9 @@ void PowerStar::exeStageClearDemo() {
 
         MR::invalidateClipping(this);
 
-        ModelObj* power_star_mdl = mPowerStarModelObj;
-        ActorCameraInfo* cam_info = mCameraInfo;
-        MR::startAnimCameraTargetSelf(power_star_mdl, cam_info, mIsGrandStar ? "GrandStarGet" : "PowerStarGet", 0, 1.0f);
+        ModelObj* powerStarMdl = mPowerStarModelObj;
+        ActorCameraInfo* camInfo = mCameraInfo;
+        MR::startAnimCameraTargetSelf(powerStarMdl, camInfo, mIsGrandStar ? "GrandStarGet" : "PowerStarGet", 0, 1.0f);
     }
 
     if (MR::isStep(this, 1)) {
@@ -822,8 +822,8 @@ void PowerStar::exeStageClearDemo() {
 
         mPowerStarModelObj->makeActorAppeared();
 
-        ModelObj* power_star_mdl = mPowerStarModelObj;
-        MR::startBck(power_star_mdl, mIsGrandStar ? "GrandStarGet" : "PowerStarGet");
+        ModelObj* powerStarMdl = mPowerStarModelObj;
+        MR::startBck(powerStarMdl, mIsGrandStar ? "GrandStarGet" : "PowerStarGet");
 
         if (MR::isPowerStarGetDemoWithLuigiCurrentGalaxyAndScenario(mPowerStarId)) {
             mLuigiNPC->makeActorAppeared();
