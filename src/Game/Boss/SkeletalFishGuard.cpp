@@ -23,15 +23,6 @@
 #include <JSystem/JMath.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
 
-// JGeometry functions are painful to match, so this just gives the gist
-/*
-template <>
-void TVec3f::cubic(const TVec3f& rv1, const TVec3f& rv2, const TVec3f& rv3, const TVec3f& rv4, f32 a) {
-    set(rv3 * (a * a * a - a * a) + rv2 * (a + a * a * a - 2.0f * a * a) + rv1 * (1.0f + 2.0f * a * a * a - 3.0f * a * a) +
-        rv4 * (3.0f * a * a - 2.0f * a * a * a));
-}
-*/
-
 namespace {
     NEW_NERVE(SkeletalFishGuardNrvWait, SkeletalFishGuard, Wait);
     NEW_NERVE(SkeletalFishGuardNrvAppear, SkeletalFishGuard, Appear);
@@ -132,7 +123,7 @@ void SkeletalFishGuard::exeAppear() {
         f32 scaled = v7 / (f32)max;
         TVec3f temp_vec = TVec3f(0.0f, 1.0f, 0.0f) * 0.0f * (f32)max;
         TVec3f temp_vec2 = v30 * 10.0f * (f32)max;
-        mPosition.cubic< f32 >(_10C, temp_vec, temp_vec2, v31, scaled);
+        mPosition.cubic(_10C, temp_vec, temp_vec2, v31, scaled);
     } else {
         f32 v9 = (getNerveStep() - 0x63);
         s32 max = 0xC9;
@@ -140,7 +131,7 @@ void SkeletalFishGuard::exeAppear() {
         f32 v11 = MR::getRailCoordSpeed(mFishBoss->getCurrentRail());
         TVec3f temp_vec = v30 * 10.0f * (f32)max;
         TVec3f temp_vec2 = _100 * v11 * (f32)max;
-        mPosition.cubic< f32 >(v31, temp_vec, temp_vec2, _F4, scaled);
+        mPosition.cubic(v31, temp_vec, temp_vec2, _F4, scaled);
     }
 
     TVec3f v28 = mPosition - v29;
