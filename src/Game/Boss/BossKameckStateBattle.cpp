@@ -15,6 +15,12 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void BossKameckStateBattle_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+}
+
 namespace {
     static const f32 sTurnPlayerDegree = 6.0f;
     static const s32 sWaitTime = 60;
@@ -221,7 +227,6 @@ void BossKameckStateBattle::exeWait() {
     }
 }
 
-/* epilogue is swapped but shrug */
 void BossKameckStateBattle::exeMove() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "Wait");
@@ -242,7 +247,7 @@ void BossKameckStateBattle::exeMove() {
     }
 
     MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, ::sTurnPlayerDegree);
-    MR::addVelocityMoveToTarget(mHost, _20, 0.09f, 0.9f, 0.0f, 400.0f);
+    MR::addVelocityMoveToTarget(mHost, _20, 0.1f * 0.9f, 0.9f, 0.0f, 400.0f);
     MR::addVelocityKeepHeight(mHost, _20, 0.0f, 0.5f, 50.0f);
     MR::attenuateVelocity(mHost, 0.96f);
 
@@ -290,15 +295,12 @@ void BossKameckStateBattle::exeHideMove() {
     MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, ::sTurnPlayerDegree);
 
     if (MR::isNear(mHost, _20, 100.0f)) {
-        s32 v3 = _30;
-        s32 v4 = _34;
-
-        if (v4 <= v3) {
+        if (_30 <= _34) {
             setNerve(GET_NERVE(BossKameckStateBattle, BossKameckStateBattleNrvHideMoveEnd));
         } else {
-            _34 = v3 + 1;
+            _34++;
 
-            if (v4 == v3 + 1) {
+            if (_30 == _34) {
                 selectStoppablePosition();
             } else {
                 selectPosition();
@@ -360,7 +362,7 @@ void BossKameckStateBattle::exeAttackWait() {
 
     MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_STAFF_TURN");
     MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, ::sTurnPlayerDegree);
-    MR::addVelocityMoveToTarget(mHost, _20, 0.09f, 0.9f, 0.0f, 400.0f);
+    MR::addVelocityMoveToTarget(mHost, _20, 0.1f * 0.9f, 0.9f, 0.0f, 400.0f);
     MR::addVelocityKeepHeight(mHost, _20, 0.0f, 0.2f, 50.0f);
     MR::attenuateVelocity(mHost, 0.9f);
 
@@ -422,7 +424,7 @@ void BossKameckStateBattle::exeRecover() {
 
     if (MR::isGreaterStep(this, ::sRecoverMoveStartTime)) {
         MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, ::sTurnPlayerDegree);
-        MR::addVelocityMoveToTarget(mHost, _20, 0.09f, 0.9f, 0.0f, 400.0f);
+        MR::addVelocityMoveToTarget(mHost, _20, 0.1f * 0.9f, 0.9f, 0.0f, 400.0f);
         MR::addVelocityKeepHeight(mHost, _20, 0.0f, 0.5f, 50.0f);
         MR::attenuateVelocity(mHost, 0.96f);
     }

@@ -46,14 +46,14 @@ bool DinoPackunAction::sendHitAttackMessage(HitSensor* pSender, HitSensor* pRece
     return false;
 }
 
-/*
-void DinoPackunAction::updateTurn(s32 a1, f32 a2) {
+bool DinoPackunAction::updateTurn(s32 turnTime, f32 turnSpeed) {
     TVec3f side;
-    MR::calcSideVec(&side, mActor);
-    TVec3f stack_8;
-    stack_8 = side;
+    MR::calcSideVec(&side, mHost);
+    TVec3f direction(side * _10);
+    MR::turnDirectionDegree(mHost, &mHost->_E8, direction, turnSpeed);
+    mHost->updateNormalVelocity();
+    return MR::isGreaterStep(this, turnTime);
 }
-*/
 
 bool DinoPackunAction::updateWalk(s32 a1, f32 a2, s32 a3) {
     MR::addVelocityMoveToDirection(mHost, mHost->_E8, a2);
@@ -118,7 +118,7 @@ bool DinoPackunAction::updateStart() {
 bool DinoPackunAction::updateFind(s32 a1, f32 a2) {
     if (MR::isFirstStep(this)) {
         MR::startBck(mHost, "Find");
-        MR::startSound(mHost, "SE_BV_PAKKUN_FIND");
+        MR::startSound(mHost, "SE_BV_D_PAKKUN_FIND");
         MR::startSound(mHost, "SE_BM_D_PAKKUN_SLAVER");
     }
 

@@ -8,6 +8,14 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 
+void WipeRing_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)PI;
+}
+
 namespace {
     static const s32 sAnimFrame = 60;
     static const char* sOutAnimName = "Out";
@@ -47,7 +55,8 @@ void WipeRing::exeWipeIn() {
         MR::getAnimCtrl(this, 0)->setRate(0.0f);
     }
 
-    f32 f = MR::sin(((1.0f + static_cast< f32 >(getNerveStep()) / mAnimFrame) / 2.0f) * PI);
+    const f32 angle = (1.0f + static_cast< f32 >(getNerveStep()) / mAnimFrame) * JGeometry::TUtil< f32 >::PI();
+    f32 f = MR::sin(0.5f * angle);
 
     MR::getAnimCtrl(this, 0)->setFrame(mWipeInFrame * (1.0f - f));
 
@@ -74,7 +83,8 @@ void WipeRing::exeWipeOut() {
         MR::getAnimCtrl(this, 0)->setRate(0.0f);
     }
 
-    f32 f = MR::sin(((static_cast< f32 >(getNerveStep()) / mAnimFrame) / 2.0f) * PI);
+    const f32 angle = (static_cast< f32 >(getNerveStep()) / mAnimFrame) * JGeometry::TUtil< f32 >::PI();
+    f32 f = MR::sin(0.5f * angle);
 
     MR::getAnimCtrl(this, 0)->setFrame(mWipeOutFrame * (1.0f - f) + f * MR::getAnimCtrl(this, 0)->getEnd());
 
@@ -153,24 +163,27 @@ void WipeRing::startAnim(const char* pAnimName) {
     MR::getAnimCtrl(this, 0)->setRate(static_cast< f32 >(MR::getAnimCtrl(this, 0)->getEnd()) / mAnimFrame);
 }
 
-bool WipeRing::getMarioCenterPos(TVec3f* pCenterPos) {
-    if (MR::isExistMario()) {
-        if (!MR::isEqualStageName("IceVolcanoGalaxy") || MR::getCurrentScenarioNo() != 1) {
-            TVec3f pos(15060.0f, -11800.0f, 1260.0f);
-
-            if (MR::getPlayerPos()->distance(pos) < 600.0f) {
+namespace {
+    bool canCenterOnMario() {
+        if (MR::isEqualStageName("IceVolcanoGalaxy") && MR::getCurrentScenarioNo() == 1) {
+            TVec3f position(15060.0f, -11800.0f, 1260.0f);
+            if (MR::getPlayerPos()->distance(position) < 600.0f) {
+                return false;
             }
         }
 
-        if (MR::isStageSuddenDeathDodoryu()) {
-            pCenterPos->set(*MR::getPlayerCenterPos());
+        return !MR::isStageSuddenDeathDodoryu();
+    }
+}  // namespace
 
-            return true;
-        }
+bool WipeRing::getMarioCenterPos(TVec3f* pCenterPos) {
+    if (MR::isExistMario() && canCenterOnMario()) {
+        pCenterPos->set(static_cast< const Vec& >(*MR::getPlayerCenterPos()));
+
+        return true;
     }
 
-    pCenterPos->set(0.0f);
-
+    pCenterPos->zero();
     return false;
 }
 
@@ -202,7 +215,7 @@ f32 WipeRing::calcRadius() const {
 }
 
 f32 WipeRing::calcMaxRadius() const {
-    return JGeometry::TUtil< f32 >::inv_sqrt(900160.0f);
+    return MR::fastSqrtf(900160.0f);
 }
 
 void WipeRing::updatePlayerPos() {

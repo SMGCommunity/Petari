@@ -115,6 +115,7 @@ void XanimePlayer::init() {
     for (int i = 0; i < ARRAY_SIZE(mWeights); i++) {
         mWeights[i] = 0.0f;
     }
+
     mSimpleGroup = nullptr;
     _84 = 0.0f;
 }
@@ -279,19 +280,18 @@ void XanimePlayer::runNextAnimation() {
         mWeights[j] = 0.0f;
     }
 
-    bool cond = _7C;
+    const bool cond = _7C;
 
     _54 = _55;
 
     _08 = 0.0f;
     _0C = 1.0f;
 
-    // regwap
     _78 = 0;
     _7C = true;
 
     if (!cond) {
-        _24[_55]._14 = 1;
+        _24[_55]._14 = 0;
         _08 = 1.0f;
         updateBeforeMovement();
         calcAnm(0);
@@ -368,7 +368,7 @@ void XanimePlayer::calcAnm(u16 arg) {
         f32 currentFrame;
         if (_20->checkState(1) != 0) {
             currentFrame = _20->getEnd();
-        } else if (!_88) {
+        } else if (_88) {
             currentFrame = _84;
         } else {
             currentFrame = _20->getFrame();
@@ -379,6 +379,7 @@ void XanimePlayer::calcAnm(u16 arg) {
             if (static_cast< J3DAnmTransform* >(mCurrentAnimation->_20[0])->getFrameMax() == 0) {
                 maxFrame = 1;
             }
+
             mCore->mFrameRatio = currentFrame / maxFrame;
         }
     }
@@ -409,7 +410,7 @@ void XanimePlayer::updateBeforeMovement() {
         return;
     }
 
-    if ((_20->getState() & 1) == 1 && !_7E && (_20->getAttribute() == 0 || _20->getAttribute() == 3)) {
+    if ((_20->getState() & 1) == 1 && _7E && (_20->getAttribute() == 0 || _20->getAttribute() == 3)) {
         runDefaultAnimation();
     }
 
@@ -459,6 +460,7 @@ void XanimePlayer::updateInterpoleRatio() {
         } else {
             _08 = 1.0f;
         }
+
         return;
     }
 
@@ -467,23 +469,25 @@ void XanimePlayer::updateInterpoleRatio() {
 }
 
 void XanimePlayer::getMainAnimationTrans(u32 arg1, TVec3f* pOut) const {
+    XanimeTrack* pTracks = mCore->mTrackList;
+    const u8 trackCount = mCore->mTrackCount;
     u8 index = 0;
-    f32 f2 = mCore->mTrackList[0].getWeight() + 0.01f;
-    for (u8 i = 1; i < mCore->mTrackCount; i++) {
-        // nonmatching, r6 alternates between mCore and mCore->mTrackList
-        if (mCore->mTrackList[i]._0 != nullptr && mCore->mTrackList[i].getWeight() > f2) {
-            f2 = mCore->mTrackList[i].getWeight() + 0.01f;
+    f32 f2 = pTracks[0].getWeight() + 0.01f;
+    for (u8 i = 1; i < trackCount; i++) {
+        const XanimeTrack& rTrack = mCore->mTrackList[i];
+        if (rTrack._0 != nullptr && rTrack.getWeight() > f2) {
+            f2 = rTrack.getWeight() + 0.01f;
             index = i;
         }
     }
 
-    if (mCore->mTrackList[index]._0 == nullptr) {
+    if (pTracks[index]._0 == nullptr) {
         pOut->zero();
         return;
     }
 
     J3DTransformInfo info;
-    mCore->mTrackList[index]._0->getTransform(arg1, &info);
+    pTracks[index]._0->getTransform(arg1, &info);
     pOut->set(info.mTranslate);
 }
 

@@ -21,8 +21,7 @@ namespace NrvYesNoController {
 };  // namespace NrvYesNoController
 
 YesNoController::YesNoController(LayoutActor* pHost)
-    : NerveExecutor("はい／いいえ選択制御"), mHost(pHost), _C(false), mButtonYesPaneCtrl(nullptr), mButtonNoPaneCtrl(nullptr), mCursorSE(nullptr),
-      mYesSE(nullptr), mNoSE(nullptr) {
+    : NerveExecutor("はい／いいえ選択制御"), mHost(pHost), _C(), mButtonYesPaneCtrl(), mButtonNoPaneCtrl(), mCursorSE(), mYesSE(), mNoSE() {
     mButtonYesPaneCtrl = new ButtonPaneController(mHost, "Right", "BoxRight", 0, true);
     mButtonYesPaneCtrl->_22 = false;
 
@@ -138,9 +137,8 @@ void YesNoController::exeSelecting() {
     }
 }
 
-// FIXME: GPR30 and GPR31 are swapped.
 void YesNoController::exeDecided() {
-    bool isSelectedYes = mButtonYesPaneCtrl->mIsSelected;
+    const bool isSelectedYes = mButtonYesPaneCtrl->mIsSelected;
 
     if (MR::isFirstStep(this)) {
         deleteEffectIfExist("LeftText");

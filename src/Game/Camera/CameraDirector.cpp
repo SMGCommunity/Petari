@@ -22,6 +22,7 @@
 #include "Game/Camera/GameCameraCreator.hpp"
 #include "Game/Camera/OnlyCamera.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
+#include "Game/Player/MarioActor.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
@@ -34,8 +35,6 @@
 #include "Game/Util/SequenceUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include <cstring>
-
-// FIXME: function order mismatch between debug and release, debug order would match .data order
 
 void CameraDirector_FORCE_MATCH_SDATA2() {
     (void)1.0f;
@@ -236,6 +235,7 @@ void CameraDirector::calcSubjective() {
                 if (mNearZ >= 0.0f) {
                     MR::setNearZ(mNearZ);
                 }
+
                 mNearZ = -100.0f;
                 MR::turnOnDOFInSubjective();
                 mIsStartSubjectiveCamera = false;
@@ -644,6 +644,16 @@ void CameraDirector::checkEndOfEventCamera() {
     }
 }
 
+void CameraDirector::createTalkCamera() {
+    declareEvent(0, ::sTalkCameraName);
+
+    CameraParamChunkEvent* chunk = getEventParameter(0, ::sTalkCameraName);
+    if (chunk != nullptr) {
+        chunk->setCameraType("CAM_TYPE_TALK", mHolder);
+        chunk->_64 = true;
+    }
+}
+
 void CameraDirector::controlCameraSE() {
     mIsCameraNG = false;
 
@@ -658,6 +668,7 @@ void CameraDirector::controlCameraSE() {
                 mIsCameraNG = true;
             }
         }
+
         return;
     }
 
@@ -829,16 +840,6 @@ void CameraDirector::createStartAnimCamera() {
         ActorCameraInfo info = ActorCameraInfo();
         MR::declareEventCameraAnim(&info, ::sStartAnimCameraName, data);
         mStartCameraCreated = true;
-    }
-}
-
-void CameraDirector::createTalkCamera() {
-    declareEvent(0, ::sTalkCameraName);
-
-    CameraParamChunkEvent* chunk = getEventParameter(0, ::sTalkCameraName);
-    if (chunk != nullptr) {
-        chunk->setCameraType("CAM_TYPE_TALK", mHolder);
-        chunk->_64 = true;
     }
 }
 

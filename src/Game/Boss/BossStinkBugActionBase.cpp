@@ -17,8 +17,8 @@
 #include <revolution/types.h>
 
 BossStinkBugActionBase::BossStinkBugActionBase(const char* pName, BossStinkBug* pStinkBug)
-    : ActorStateBase< BossStinkBug >(pName, pStinkBug), mSpringValue(nullptr), _14(0.0f, 0.0f, 0.0f), _20(0.0f, 0.0f, 1.0f), _38(15.0f), _3C(0.0f),
-      _40(0.0f), _44(0.0f), mThrowBombTimer(0), _50(true), _54(0.0f), _58(0.0f), _5C(0), _60(false), _61(false) {
+    : ActorStateBase< BossStinkBug >(pName, pStinkBug), mSpringValue(), _14(0.0f, 0.0f, 0.0f), _20(0.0f, 0.0f, 1.0f), _38(15.0f), _3C(), _40(), _44(),
+      mThrowBombTimer(), _50(true), _54(), _58(), _5C(), _60(), _61() {
     mSpringValue = new SpringValue(_3C, _3C, 0.02f, 0.95f, 0.0f);
 }
 
@@ -38,6 +38,7 @@ bool BossStinkBugActionBase::updateFlyRoll() {
     if (MR::isFirstStep(this)) {
         MR::startBck(getHost(), "FlyRollRight");
     }
+
     startSoundFly(0);
     _48 = _38;
 
@@ -52,8 +53,9 @@ bool BossStinkBugActionBase::updateFlyRoll() {
 
 bool BossStinkBugActionBase::updateFlyRollWait(s32 waitSteps) {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "FlyRollRight");
+        MR::startBck(getHost(), "FlyRollWaitRight");
     }
+
     startSoundFly(0);
     _48 = _38;
 
@@ -68,7 +70,7 @@ bool BossStinkBugActionBase::updateFlyRollWait(s32 waitSteps) {
 
 bool BossStinkBugActionBase::updateFlyRollEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "FlyRollRight");
+        MR::startBck(getHost(), "FlyRollEndRight");
     }
 
     startSoundFly(0);
@@ -132,7 +134,7 @@ f32 BossStinkBugActionBase::calcShakeOffSpeed() const {
 }
 
 f32 BossStinkBugActionBase::calcShakeOffEndSpeed() const {
-    return MR::calcNerveEaseInOutValue(this, MR::getBckFrameMax(getHost(), "FlyRollRight"), 35.0f, _38);
+    return MR::calcNerveEaseInOutValue(this, MR::getBckFrameMax(getHost(), "FlyRollEndRight"), 35.0f, _38);
 }
 
 s32 BossStinkBugActionBase::calcKeepRollTime(s32 a1) const {
@@ -146,10 +148,10 @@ s32 BossStinkBugActionBase::calcKeepRollTime(s32 a1) const {
     s32 keepRollTime = (flt1 - flt2) / 2;
 
     if (keepRollTime < 0) {
-        return 0;
-    } else {
-        return keepRollTime;
+        keepRollTime = 0;
     }
+
+    return keepRollTime;
 }
 
 s32 BossStinkBugActionBase::calcFlySoundVol() const {
@@ -215,7 +217,7 @@ void BossStinkBugActionBase::updateSoundFly() {
     }
 
     _58 = _54;
-    _54 = getHost()->mPosition.distance(MR::getCamPos());
+    _54 = MR::getCamPos().distance(getHost()->mPosition);
 
     if (_58 - _54 > 0.0f) {
         _5C = 12;
@@ -345,6 +347,7 @@ bool BossStinkBugActionBase::updateGroundTurn() {
 
         _48 = 0.0f;
     }
+
     BossStinkBugFunction::turnRailGround(getHost(), _20, MR::calcNerveRate(this, 120), _50);
 
     if (MR::isGreaterStep(this, 160)) {
@@ -453,7 +456,7 @@ bool BossStinkBugActionBase::updateFlyShakeOffWait(s32 numSteps) {
 
 bool BossStinkBugActionBase::updateFlyShakeOffEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "FlyRollRight");
+        MR::startBck(getHost(), "FlyRollEndRight");
     }
 
     startSoundFly(0);
@@ -680,6 +683,7 @@ void BossStinkBugActionBase::startSoundFly(s32 sound) {
         } else {
             MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_BASE", flySoundVol, iIRCCutoff);
         }
+
         MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", flySoundVol, iIRCCutoff);
         MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", flySoundVol, iIRCCutoff);
         break;
@@ -700,6 +704,7 @@ void BossStinkBugActionBase::startSoundFly(s32 sound) {
         } else {
             MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_SHAKE", flySoundVol, iIRCCutoff);
         }
+
         MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", flySoundVol, iIRCCutoff);
         MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", flySoundVol, iIRCCutoff);
     }

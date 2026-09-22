@@ -83,9 +83,7 @@ void PoltaArm::exeDamage() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Damage");
         MR::startBva(this, "BreakLevel");
-        f32 c8 = _C8;
-        f32 cc = _CC;
-        f32 ratio = c8 / cc;
+        f32 ratio = static_cast< f32 >(_C8) / static_cast< f32 >(_CC);
         f32 bvaFrame = (1.0f - ratio) * 2.0f;
         MR::setBvaFrameAndStop(this, bvaFrame);
         MR::startSound(this, "SE_BM_POLTA_ROCK_DAMAGE");
@@ -110,6 +108,7 @@ void PoltaArm::exeBreak() {
         MR::stopScene(5);
         appearBreakModel();
     }
+
     if (MR::isActionEnd(this)) {
         MR::hideModel(this);
         setNerve(GET_NERVE(PoltaArm, PoltaArmNrvBroken));
@@ -121,6 +120,7 @@ void PoltaArm::exeBreakBody() {
         MR::startAction(this, "BreakBody");
         appearBreakModel();
     }
+
     if (MR::isActionEnd(this)) {
         kill();
     }
@@ -153,6 +153,7 @@ void PoltaArm::exeBroken() {
     if (!_D4) {
         mBrokenCounter++;
     }
+
     if (mBrokenCounter > 1200) {
         setNerve(GET_NERVE(PoltaArm, PoltaArmNrvRepair));
     }
@@ -173,6 +174,7 @@ bool PoltaArm::isEnableHitSensor() const {
         isNerve(GET_NERVE(PoltaArm, PoltaArmNrvWaitRepairEnd))) {
         return true;
     }
+
     return false;
 }
 
@@ -193,6 +195,7 @@ bool PoltaArm::isBroken() const {
         isNerve(GET_NERVE(PoltaArm, PoltaArmNrvBroken))) {
         return true;
     }
+
     return false;
 }
 
@@ -206,7 +209,7 @@ void PoltaArm::start() {
     MR::startBva(this, "BreakLevel");
     MR::setBvaFrameAndStop(this, 0.0f);
 
-    s32 CC_temp = _CC;  // required for matching, maybe they were planning to do something?
+    s32 CC_temp = _CC;
     mBrokenCounter = 0;
     _C8 = CC_temp;
     setNerve(GET_NERVE(PoltaArm, PoltaArmNrvControlled));
@@ -230,6 +233,7 @@ bool PoltaArm::requestDamage() {
     if (MR::isDead(this)) {
         return false;
     }
+
     if (isNerve(GET_NERVE(PoltaArm, PoltaArmNrvControlled)) || isNerve(GET_NERVE(PoltaArm, PoltaArmNrvWaitDamageEnd)) ||
         isNerve(GET_NERVE(PoltaArm, PoltaArmNrvWaitRepairEnd))) {
         _C8--;
@@ -240,8 +244,10 @@ bool PoltaArm::requestDamage() {
         } else {
             setNerve(GET_NERVE(PoltaArm, PoltaArmNrvDamage));
         }
+
         return true;
     }
+
     return false;
 }
 
@@ -262,6 +268,7 @@ bool PoltaArm::requestControlled(const char* pActionName) {
     if (MR::isDead(this)) {
         return false;
     }
+
     if (!isNerve(GET_NERVE(PoltaArm, PoltaArmNrvControlled))) {
         return false;
     }

@@ -24,8 +24,8 @@ namespace NrvCounterLayoutController {
 };  // namespace NrvCounterLayoutController
 
 CounterLayoutController::CounterLayoutController()
-    : LayoutActor("カウンタ系レイアウト制御", true), mPlayerNotMovingFrame(0), _24(false), mCoinCounter(nullptr), mStarPieceCounter(nullptr),
-      mPlayerLeft(nullptr), mStarCounter(nullptr), mHPMeter(nullptr) {
+    : LayoutActor("カウンタ系レイアウト制御", true), mPlayerNotMovingFrame(), _24(), mCoinCounter(), mStarPieceCounter(), mPlayerLeft(),
+      mStarCounter(), mHPMeter() {
 }
 
 void CounterLayoutController::init(const JMapInfoIter& rIter) {
@@ -108,14 +108,16 @@ void CounterLayoutController::hideAllLayout() {
     }
 }
 
-/*
+namespace {
+    template < typename T >
+    bool isHiddenOrWait(const T* pLayout) {
+        return MR::isDead(pLayout) || MR::isHiddenLayout(pLayout) || pLayout->isWait();
+    }
+}  // namespace
+
 bool CounterLayoutController::isHiddenOrWaitAllLayout() const {
-    return mCoinCounter->isHiddenOrWait()
-        && mStarPieceCounter->isHiddenOrWait()
-        && mPlayerLeft->isHiddenOrWait()
-        && mStarCounter->isHiddenOrWait();
+    return isHiddenOrWait(mCoinCounter) && isHiddenOrWait(mStarPieceCounter) && isHiddenOrWait(mPlayerLeft) && isHiddenOrWait(mStarCounter);
 }
-*/
 
 bool CounterLayoutController::isPlayerMoving() const {
     if (!MR::isPlayerElementModeHopper() && !MR::isPlayerElementModeTeresa() && !MR::isPlayerSwimming() && !MR::isOnGroundPlayer()) {

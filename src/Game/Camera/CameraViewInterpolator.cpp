@@ -105,6 +105,7 @@ void CameraViewInterpolator::lookAtCenter() {
     if (MR::isNearZero(targetDir)) {
         return;
     }
+
     MR::normalize(&targetDir);
 
     TPos3f rot;
@@ -146,6 +147,7 @@ bool CameraViewInterpolator::calcCollision(const TPos3f& rMtx) {
     if (MR::isNearZero(front)) {
         return false;
     }
+
     MR::normalize(&front);
 
     TVec3f prevUp;
@@ -256,10 +258,12 @@ void CameraViewInterpolator::updateCalcState(const CameraTargetObj* pTargetObj) 
 
         break;
     }
+
     default: {
         if (pTargetObj != nullptr && (mInterpolateTime == 0 || mInterpolateTimer >= mInterpolateTime)) {
             mCalcState = CalcState_Ready;
         }
+
         break;
     }
     }
@@ -269,9 +273,6 @@ void CameraViewInterpolator::updateCalcState(const CameraTargetObj* pTargetObj) 
 }
 
 void CameraViewInterpolator::interpolateCameraSwitching(MtxPtr pMtx, const TVec3f& rPos, f32 fovy) {
-    // FIXME: float reg alloc
-    // https://decomp.me/scratch/fgonG
-
     if (mInterpolateTime == 0) {
         mTargetPosition.set(rPos);
         mTargetMtx.set(pMtx);
@@ -295,9 +296,8 @@ void CameraViewInterpolator::interpolateCameraSwitching(MtxPtr pMtx, const TVec3
     TVec3f newTargetPos;
     newMtx.getTrans(newTargetPos);
 
-    // FIXME: float reg
     f32 rate = static_cast< f32 >(mInterpolateTimer) / static_cast< f32 >(mInterpolateTime);
-    rate = rate * rate;
+    rate *= rate;
 
     CameraLocalUtil::slerpCamera(&rot, rot, newTargetRot, rate, false);
     rot.normalize();
@@ -360,12 +360,12 @@ bool CameraViewInterpolator::translateByRepulsion() {
     TVec3f pos;
     mTargetMtx.getTrans(pos);
 
-    CameraRepulsiveArea* area = reinterpret_cast< CameraRepulsiveArea* >(MR::getAreaObj("CameraRepulsiveArea", pos));
-    if (area == nullptr) {
+    CameraRepulsiveArea* pArea = reinterpret_cast< CameraRepulsiveArea* >(MR::getAreaObj("CameraRepulsiveArea", pos));
+    if (pArea == nullptr) {
         return false;
     }
 
-    TVec3f repulsion = area->getRepulsion(pos);
+    TVec3f repulsion = pArea->getRepulsion(pos);
     mTargetMtx.setTrans(pos + repulsion);
     return true;
 }

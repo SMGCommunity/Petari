@@ -32,8 +32,9 @@ namespace MR {
         JMapIdInfo info = *getPlayerRestartIdInfo();
 
         if (isGalaxyAnyCometAppearInCurrentStage()) {
-            // FIXME: `JMapIdInfo::operator=` is not getting inlined here.
-            info = getInitializeStartIdInfo();
+            const JMapIdInfo& rInitialInfo = getInitializeStartIdInfo();
+            info._0 = rInitialInfo._0;
+            info.mZoneID = rInitialInfo.mZoneID;
         }
 
         GameSystemSceneController* pSceneController = SingletonHolder< GameSystem >::get()->mSceneController;

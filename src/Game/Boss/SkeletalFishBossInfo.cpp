@@ -4,6 +4,10 @@
 #include "Game/Util/ObjUtil.hpp"
 #include <cstdio>
 
+void SkeletalFishBossInfo_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
+
 namespace {
     static const char* sParamFileName = "Param";
     static const char* sParamNameLevelNum = "LevelNum";
@@ -23,15 +27,15 @@ SkeletalFishBossInfo::SkeletalFishBossInfo(SkeletalFishBoss* pBoss, s32 levelNum
 }
 
 void SkeletalFishBossInfo::init(const JMapInfoIter& rIter) {
-    const JMapInfo* csvParser = MR::tryCreateCsvParser(mFishBoss, "%s.bcsv", ::sParamFileName);
+    const JMapInfo* pCsvParser = MR::tryCreateCsvParser(mFishBoss, "%s.bcsv", ::sParamFileName);
 
-    if (csvParser != nullptr) {
-        loadLevelStatus(JMapInfoIter());
+    if (pCsvParser != nullptr) {
+        loadLevelStatus(pCsvParser->begin());
     }
 }
 
 SkeletalFishBossInfo::LevelStatus* SkeletalFishBossInfo::getLevelStatus(s32 idx) const {
-    return &mLevelStatusArray[idx];
+    return mLevelStatusArray + idx;
 }
 
 void SkeletalFishBossInfo::createLevelStatus() {
@@ -46,8 +50,8 @@ void SkeletalFishBossInfo::createLevelStatus() {
         getLevelStatus(i)->mStatusArray = new GuardStatus[mGuardNum];
 
         for (s32 j = 0; j < mGuardNum; j++) {
-            getLevelStatus(i)->getGuardStatus(j)->mGuardPosLevel.set(0.0f);
-            getLevelStatus(i)->getGuardStatus(j)->mGuardWaitLevelID = 0;
+            mLevelStatusArray[i].getGuardStatus(j)->mGuardPosLevel.zero();
+            mLevelStatusArray[i].getGuardStatus(j)->mGuardWaitLevelID = 0;
         }
     }
 }
@@ -89,15 +93,15 @@ void SkeletalFishBossInfo::loadLevelStatus(const JMapInfoIter& rIter) {
 }
 
 void SkeletalFishBossInfo::loadGuardStatus(const JMapInfoIter& rIter, s32 levelIdx, s32 guardLevel) {
-    LevelStatus* status = getLevelStatus(levelIdx);
+    LevelStatus* pStatus = getLevelStatus(levelIdx);
 
     for (s32 i = 0; i < guardLevel; i++) {
         char paramName[128];
 
         snprintf(paramName, sizeof(paramName), "%s%d%s%d", ::sParamNameGuardPos, levelIdx, ::sParamNameGuard, i);
-        MR::getJMapInfoV3f(rIter, paramName, &status->getGuardStatus(i)->mGuardPosLevel);
+        MR::getJMapInfoV3f(rIter, paramName, &pStatus->getGuardStatus(i)->mGuardPosLevel);
 
         snprintf(paramName, sizeof(paramName), "%s%d%s%d", ::sParamNameGuardWait, levelIdx, ::sParamNameGuard, i);
-        rIter.getValue< s32 >(paramName, &status->getGuardStatus(i)->mGuardWaitLevelID);
+        rIter.getValue< s32 >(paramName, &pStatus->getGuardStatus(i)->mGuardWaitLevelID);
     }
 }
