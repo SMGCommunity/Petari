@@ -122,8 +122,7 @@ void WPadPointer::getPointingPos(TVec2f* pOut) const {
     if (mIsPointInScreen) {
         pOut->set(mPointingPosArray[mEnablePastCount - 1]);
     } else {
-        pOut->y = 0.0f;
-        pOut->x = 0.0f;
+        pOut->zero();
     }
 }
 
@@ -131,8 +130,7 @@ void WPadPointer::getHorizonVec(TVec2f* pOut) const {
     if (mIsPointInScreen) {
         pOut->set(mHorizonArray[mEnablePastCount - 1]);
     } else {
-        pOut->y = 0.0f;
-        pOut->x = 0.0f;
+        pOut->zero();
     }
 }
 
