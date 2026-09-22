@@ -43,6 +43,8 @@ public:
     bool isWait() const;
     bool isRestart() const;
 
+    inline bool isNerveWait();
+
     f32 _8C;
     u16 mShellType;  // 0x90 (0 = green, 1 = red, 2 = gold)
     u16 _92;
