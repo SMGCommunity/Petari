@@ -327,13 +327,32 @@ void PackunPetit::control() {
     tryDPDSwoon();
 }
 
-/*
 void PackunPetit::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
-        bool isTrampleOrPunch = isNerve(GET_NERVE(PackunPetit, PackunPetitNrvTrampleDown))
-            || isNerve(GET_NERVE(PackunPetit, PackunPetitNrvPunchDown));
+        bool isTrampleOrPunch =
+            isNerve(GET_NERVE(PackunPetit, PackunPetitNrvTrampleDown)) || isNerve(GET_NERVE(PackunPetit, PackunPetitNrvPunchDown));
+        if (!isTrampleOrPunch && !isNerve(GET_NERVE(PackunPetit, PackunPetitNrvDPDSwoon)) && MR::isSensorEnemyAttack(pSender)) {
+            if (MR::sendMsgEnemyAttackStrong(pReceiver, pSender) && !MR::isPlayerHipDropFalling()) {
+                MR::emitEffectHitBetweenSensors(this, pSender, pReceiver, 0.0f, nullptr);
+                setNerve(GET_NERVE(PackunPetit, PackunPetitNrvHitWaitForAttack));
+                return;
+            }
+            MR::sendMsgPush(pReceiver, pSender);
+            return;
+        }
     }
-}*/
+
+    if (isNerve(GET_NERVE(PackunPetit, PackunPetitNrvDPDSwoon)) && MR::isSensorPlayer(pReceiver)) {
+        MR::sendMsgPush(pReceiver, pSender);
+        return;
+    }
+
+    if (!MR::isSensorEnemy(pReceiver)) {
+        return;
+    }
+
+    MR::sendMsgPush(pReceiver, pSender);
+}
 
 bool PackunPetit::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     bool isTrampleOrPunch = isNerve(GET_NERVE(PackunPetit, PackunPetitNrvTrampleDown)) || isNerve(GET_NERVE(PackunPetit, PackunPetitNrvPunchDown));
