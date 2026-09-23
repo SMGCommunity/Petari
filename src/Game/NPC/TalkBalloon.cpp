@@ -137,7 +137,7 @@ void TalkBalloon::updateBalloon() {
         }
 
         if (!_29) {
-            if (static_cast< f32 >(__fabs(paneAnimFrame - paneAnimFrameMax)) < 10.0f) {
+            if (MR::fabs(paneAnimFrame - paneAnimFrameMax) < 10.0f) {
                 return;
             }
 

@@ -20,7 +20,7 @@ namespace NrvSpaceMine {
 };  // namespace NrvSpaceMine
 
 SpaceMine::SpaceMine(const char* pName)
-    : MapObjActor(pName), mRotateSpeed(sRotateSpeedNormal), mClippingRange(gZeroVec), mShadowType(-1), mIsPlayerNear() {
+    : MapObjActor(pName), mRotateSpeed(::sRotateSpeedNormal), mClippingRange(gZeroVec), mShadowType(-1), mIsPlayerNear() {
 }
 
 void SpaceMine::init(const JMapInfoIter& rIter) {
@@ -38,7 +38,7 @@ void SpaceMine::init(const JMapInfoIter& rIter) {
     sensorOffs.x = 0.0f;
     sensorOffs.y = 0.0f;
     sensorOffs.z = 0.0f;
-    info.setupHitSensorParam(8, sSensorRadius, sensorOffs);
+    info.setupHitSensorParam(8, ::sSensorRadius, sensorOffs);
     info.setupGroupClipping(0x10);
     MR::getJMapInfoArg0NoInit(rIter, &mShadowType);
 
@@ -52,7 +52,7 @@ void SpaceMine::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg1NoInit(rIter, &arg1);
 
     if (arg1 != -1) {
-        info.setupBinder(sSensorRadius, 0.0f);
+        info.setupBinder(::sSensorRadius, 0.0f);
     }
 
     initialize(rIter, info);
@@ -78,7 +78,7 @@ void SpaceMine::initAfterPlacement() {
     bool isShadow = isShadowValid(mShadowType);
 
     if (isShadow) {
-        MR::setClippingRangeIncludeShadow(this, &mClippingRange, sSensorRadius);
+        MR::setClippingRangeIncludeShadow(this, &mClippingRange, ::sSensorRadius);
     }
 }
 
@@ -106,18 +106,18 @@ bool SpaceMine::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
 
 void SpaceMine::exeWait() {
     if (isCalcShadowAlways()) {
-        MR::setClippingRangeIncludeShadow(this, &mClippingRange, sSensorRadius);
+        MR::setClippingRangeIncludeShadow(this, &mClippingRange, ::sSensorRadius);
     }
 
     f32 playerDist = MR::calcDistanceToPlayer(this);
     if (mIsPlayerNear) {
-        if (sDistanceFar < playerDist) {
+        if (::sDistanceFar < playerDist) {
             mIsPlayerNear = 0;
-            mRotateSpeed = sRotateSpeedNormal;
+            mRotateSpeed = ::sRotateSpeedNormal;
         }
-    } else if (playerDist < sDistanceNear) {
+    } else if (playerDist < ::sDistanceNear) {
         mIsPlayerNear = 1;
-        mRotateSpeed = sRotateSpeedFast;
+        mRotateSpeed = ::sRotateSpeedFast;
     }
 
     if (MR::isBinded(this)) {
@@ -144,18 +144,18 @@ void SpaceMine::exeWait() {
 void SpaceMine::exeAppear() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "Appear");
-        MR::setClippingRangeIncludeShadow(this, &mClippingRange, sSensorRadius);
+        MR::setClippingRangeIncludeShadow(this, &mClippingRange, ::sSensorRadius);
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_SPACEMINE_APPEAR");
 
-    if (MR::isStep(this, sAppearEffectTime)) {
+    if (MR::isStep(this, ::sAppearEffectTime)) {
         MR::startBck(this, "Appear");
         MR::showModel(this);
         MR::startSound(this, "SE_OJ_SPACEMINE_APPEAR");
     }
 
-    if (MR::isGreaterStep(this, sAppearEffectTime)) {
+    if (MR::isGreaterStep(this, ::sAppearEffectTime)) {
         if (MR::isBckStopped(this)) {
             setNerve(GET_NERVE(SpaceMine, HostTypeWait));
         }
