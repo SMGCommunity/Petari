@@ -84,7 +84,7 @@ void Caretaker::init(const JMapInfoIter& rIter) {
     MR::startBtk(this, "Dirt");
     MR::setBtkFrameAndStop(this, 0.0f);
 
-    setDefaults3("BTrampled", "BSpinHit", "BSpinHit", "BTalkHelp");
+    setDefaults3("BTalkHelp", "BSpinHit", "BSpinHit", "BTrampled");
 
     mParam.setMoveAction("BWaitStand", "BWaitStand");
     setTalkAction("BWaitRun", "BRunTalk");
