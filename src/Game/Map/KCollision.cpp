@@ -910,7 +910,7 @@ vertex4:
     *pFlag = 4;
     goto finish;
 
-region5: {
+region5 : {
     f32 t = (nn * distances[2] - distances[1]) / (nn * nn - 1.0f);
     f32 s = distances[2] - t * nn;
     dir.x = t * n0->x + s * n1->x;
@@ -920,7 +920,7 @@ region5: {
     goto edgeFinish;
 }
 
-region6: {
+region6 : {
     f32 t = (nn * distances[3] - distances[2]) / (nn * nn - 1.0f);
     f32 s = distances[3] - t * nn;
     dir.x = t * n1->x + s * n2->x;
@@ -930,7 +930,7 @@ region6: {
     goto edgeFinish;
 }
 
-region7: {
+region7 : {
     f32 t = (nn * distances[1] - distances[3]) / (nn * nn - 1.0f);
     f32 s = distances[1] - t * nn;
     dir.x = t * n2->x + s * n0->x;
@@ -939,7 +939,7 @@ region7: {
     *pFlag = 7;
 }
 
-edgeFinish: {
+edgeFinish : {
     f32 closestSq = dir.x * dir.x + dir.y * dir.y + dir.z * dir.z;
     f32 dist = MR::sqrt(closestSq);
 
@@ -1119,7 +1119,7 @@ vertex4:
     *pFlag = 4;
     goto finish;
 
-region5: {
+region5 : {
     f32 t = (nn * distances[2] - distances[1]) / (nn * nn - 1.0f);
     f32 s = distances[2] - t * nn;
     dir.x = t * n0->x + s * n1->x;
@@ -1129,7 +1129,7 @@ region5: {
     goto edgeFinish;
 }
 
-region6: {
+region6 : {
     f32 t = (nn * distances[3] - distances[2]) / (nn * nn - 1.0f);
     f32 s = distances[3] - t * nn;
     dir.x = t * n1->x + s * n2->x;
@@ -1139,7 +1139,7 @@ region6: {
     goto edgeFinish;
 }
 
-region7: {
+region7 : {
     f32 t = (nn * distances[1] - distances[3]) / (nn * nn - 1.0f);
     f32 s = distances[1] - t * nn;
     dir.x = t * n2->x + s * n0->x;
@@ -1148,7 +1148,7 @@ region7: {
     *pFlag = 7;
 }
 
-edgeFinish: {
+edgeFinish : {
     f32 closestSq = dir.x * dir.x + dir.y * dir.y + dir.z * dir.z;
     f32 dist = MR::sqrt(closestSq);
 
@@ -1198,16 +1198,16 @@ bool KCollisionServer::KCHitArrow(KC_PrismData* pPrism, const TVec3f& rOrigin, c
     TVec3f* faceNormal = &mFile->mNorms[pPrism->mNormalIndex];
 
     TVec3f rel;
-    PSVECSubtract((const Vec*)&rOrigin, (const Vec*)v0, (Vec*)&rel);
+    PSVECSubtract(rOrigin, v0, rel);
 
-    f32 t = PSVECDotProduct((const Vec*)&rel, (const Vec*)faceNormal);
+    f32 t = PSVECDotProduct(rel, faceNormal);
 
     if (t <= 0.0f) {
         *pFlag = 0;
         return false;
     }
 
-    f32 dirDotFace = PSVECDotProduct((const Vec*)faceNormal, (const Vec*)&rDir);
+    f32 dirDotFace = PSVECDotProduct(faceNormal, rDir);
 
     if (0.0f < t + dirDotFace) {
         *pFlag = 0;
@@ -1216,15 +1216,14 @@ bool KCollisionServer::KCHitArrow(KC_PrismData* pPrism, const TVec3f& rOrigin, c
 
     t = t / -dirDotFace;
 
-    TVec3f hit(rDir);
-    hit.scale(t);
+    TVec3f hit = rDir * t;
     hit += rel;
 
     bool onEdge0 = false;
     bool onEdge1 = false;
     bool onEdge2 = false;
 
-    f32 e0 = PSVECDotProduct((const Vec*)&hit, (const Vec*)&mFile->mNorms[pPrism->mEdgeIndices[0]]);
+    f32 e0 = PSVECDotProduct(hit, mFile->mNorms[pPrism->mEdgeIndices[0]]);
 
     if (0.01f < e0) {
         *pFlag = 0;
@@ -1235,7 +1234,7 @@ bool KCollisionServer::KCHitArrow(KC_PrismData* pPrism, const TVec3f& rOrigin, c
         onEdge0 = true;
     }
 
-    f32 e1 = PSVECDotProduct((const Vec*)&hit, (const Vec*)&mFile->mNorms[pPrism->mEdgeIndices[1]]);
+    f32 e1 = PSVECDotProduct(hit, mFile->mNorms[pPrism->mEdgeIndices[1]]);
 
     if (0.01f < e1) {
         *pFlag = 0;
@@ -1246,7 +1245,7 @@ bool KCollisionServer::KCHitArrow(KC_PrismData* pPrism, const TVec3f& rOrigin, c
         onEdge1 = true;
     }
 
-    f32 e2 = PSVECDotProduct((const Vec*)&hit, (const Vec*)&mFile->mNorms[pPrism->mEdgeIndices[2]]);
+    f32 e2 = PSVECDotProduct(hit, mFile->mNorms[pPrism->mEdgeIndices[2]]);
 
     if (0.01f + pPrism->mHeight < e2) {
         *pFlag = 0;

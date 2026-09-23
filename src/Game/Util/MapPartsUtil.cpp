@@ -1,9 +1,5 @@
 #include <revolution.h>
 
-namespace JMathInlineVEC {
-    void PSVECSubtract(const Vec* pA, const Vec* pB, Vec* pOut) NO_INLINE;
-}
-
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/MapObj/MapPartsRailGuideHolder.hpp"
@@ -22,11 +18,15 @@ namespace JMathInlineVEC {
 #include "Game/Util/RailUtil.hpp"
 #include <cstdio>
 
-template TVec3f::TVec3(f32, f32, f32);
-
 void MapPartsUtil_FORCE_MATCH_SDATA2() {
     0.0f;
     0.5f;
+}
+
+void MapPartsUtil_DUMMY() {
+    TVec3f a(0.0f, 0.0f, 0.0f);
+    TVec3f b;
+    a.sub(b);
 }
 
 namespace {

@@ -560,11 +560,9 @@ void Mario::checkAllWall(const TVec3f& rPosition, f32 radius) {
             direction -= hitPos;
             if (!MR::normalizeOrZero(&direction)) {
                 mDrawStates._17 = true;
-                TVec3f side;
-                side.cross(*Collision::getStrikeInfoMap(maxIndex)->mParentTriangle.getNormal(0), getAirGravityVec());
+                TVec3f side = Collision::getStrikeInfoMap(maxIndex)->mParentTriangle.getNormal(0)->cross(getAirGravityVec());
                 MR::normalize(&side);
-                TVec3f slope;
-                slope.cross(_368, side);
+                TVec3f slope = _368.cross(side);
                 MR::normalize(&slope);
                 _2C4 = slope;
             }

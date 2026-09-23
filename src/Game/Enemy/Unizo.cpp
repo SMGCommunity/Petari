@@ -246,19 +246,16 @@ void Unizo::calcAndSetBaseMtx() {
     TVec3f position(mPosition);
     TVec3f quatUp;
     mtx.getYDir(quatUp);
-    JMAVECScaleAdd(&quatUp, &position, &position, -(126.36f * mRadiusScale));
+    position.scaleAdd(-(126.36f * mRadiusScale), quatUp, position);
     TVec3f baseUp;
     mBaseMtx.getYDir(baseUp);
-    JMAVECScaleAdd(&baseUp, &position, &position, 126.36f * mRadiusScale * mAnimScaleController->_C.y);
+    position.scaleAdd(126.36f * mRadiusScale * mAnimScaleController->_C.y, baseUp, position);
 
     f32 rollHeight = mRadiusScale * (mRollHeight * MR::abs(MR::sin(mFrame / sRollCycle)));
-    TVec3f horizontalVelocity;
-    const TVec3f& velocity = mVelocity;
-    const TVec3f& gravity = mGravity;
-    JMAVECScaleAdd(&gravity, &velocity, &horizontalVelocity, -gravity.dot(velocity));
+    TVec3f horizontalVelocity = MR::getVelocityHorizon(this);
     f32 rate = horizontalVelocity.length() / sChaseSpeedMax;
     rollHeight *= rate >= 1.0f ? 1.0f : rate;
-    JMAVECScaleAdd(&mGravity, &position, &position, rollHeight);
+    position.scaleAdd(rollHeight, mGravity, position);
     MR::scaleMtxToLocalMtx(mtx, mBaseMtx, mAnimScaleController->_C);
     mtx.setTrans(position);
     MR::setBaseTRMtx(this, mtx);

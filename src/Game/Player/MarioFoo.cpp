@@ -315,8 +315,7 @@ bool MarioFoo::update() {
     MR::rotAxisVecRad(_30, -_3C, &_30, turnRatio * (_24 * mActor->mConst->getTable()->mSwimRotSpeedZ));
     MR::vecKillElement(_30, _3C, &_30);
     MR::normalize(&_30);
-    TVec3f side;
-    PSVECCrossProduct(&_3C, &_30, &side);
+    TVec3f side = _3C.cross(_30);
     MR::normalize(&side);
     getPlayer()->setSideVec(side);
     TVec3f front;

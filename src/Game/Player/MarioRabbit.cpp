@@ -276,8 +276,7 @@ bool MarioRabbit::update() {
 
     addVelocity(_18);
     f32 angle = MR::diffAngleAbsHorizontal(getFrontVec(), _5C, getAirGravityVec());
-    TVec3f cross;
-    PSVECCrossProduct(&getFrontVec(), &_5C, &cross);
+    TVec3f cross = getFrontVec().cross(_5C);
     if (cross.dot(getAirGravityVec()) < 0.0f) {
         angle = -angle;
     }

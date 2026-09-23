@@ -215,12 +215,12 @@ void QuestionCoin::updateActorMtx() {
 
     TQuat4f startQuat;
     mActorMtx.getQuat(startQuat);
-    TQuat4f quat(static_cast< const Quaternion& >(startQuat));
+    TQuat4f quat = static_cast< TVec4f >(startQuat);  // TODO: FAKEMATCH
     quat.slerp(mLaunchQuat, rate);
     TVec3f startPos;
     mActorMtx.getTrans(startPos);
     TVec3f position;
-    JMAVECLerp(&startPos, &getSensor("binder")->mPosition, &position, rate);
+    position.lerp(startPos, getSensor("binder")->getPosition(), rate);
     TPos3f mtx;
     mtx.setQT(quat, position);
     MR::setBaseTRMtx(mBoundActor, mtx);

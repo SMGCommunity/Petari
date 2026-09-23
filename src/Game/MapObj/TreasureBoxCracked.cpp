@@ -147,7 +147,7 @@ void TreasureBoxCracked::exeOpen() {
         mItemVelocity.scale(sFirstSpeed, up);
     }
 
-    JMAVECScaleAdd(&up, &mItemVelocity, &mItemVelocity, sAccelRate);
+    mItemVelocity.scaleAdd(sAccelRate, up, mItemVelocity);
     mItem->mPosition.add(mItemVelocity);
 
     if (checkItemPos()) {
@@ -168,7 +168,7 @@ void TreasureBoxCracked::exeItemBound() {
     f32 amplitude = sBoundSpeedMax - (sBoundSpeedMax / sBoundTime) * getNerveStep();
     f32 height = amplitude * MR::sinDegree((720.0f / sBoundTime) * getNerveStep());
     TVec3f position;
-    JMAVECScaleAdd(&up, &mItemTargetPos, &position, height);
+    position.scaleAdd(height, up, mItemTargetPos);
     mItem->mPosition.set(position);
 
     if (MR::isStep(this, sBoundTime)) {
