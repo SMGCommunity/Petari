@@ -101,7 +101,8 @@ void LargeChain::createChainParts() {
 
     for (u32 i = 0; i < mChainCount; i++) {
         TVec3f pos(mPosition);
-        pos.add(TVec3f(0.0f, i * ::sPartsLength, 0.0f));
+        TVec3f trans(0.0f, i * ::sPartsLength, 0.0f);
+        pos.add(trans);
 
         mChainArray[i].initChainParts(&pos, &mRotation, &mScale, false);
 
