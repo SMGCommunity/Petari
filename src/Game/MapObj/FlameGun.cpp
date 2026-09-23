@@ -173,7 +173,7 @@ void FlameGun::updateHitSensor(HitSensor* pSensor) {
     MR::normalizeOrZero(&direction);
 
     f32 distance = direction.dot(playerOffset);
-    pSensor->mPosition.set< f32 >(mPosition);
+    pSensor->mPosition.set(mPosition);
     distance = MR::clamp(distance, scale * (90.0f * scale), scale * (700.0f * scale));
     f32 rate = (distance - 90.0f * scale) / (610.0f * scale);
     f32 radius = (1.0f - rate) * (40.0f * scale) + rate * (100.0f * scale);
