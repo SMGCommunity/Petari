@@ -7,6 +7,11 @@
 #include <JSystem/JMath/JMath.hpp>
 #include <revolution/mtx.h>
 
+void RailUtil_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 namespace {
     const char* getRailPointArgName(s32 argNum);
 };  // namespace
@@ -46,7 +51,6 @@ namespace MR {
     void moveCoordToRailPoint(LiveActor* pActor, s32 index) {
         RailRider* railRider = pActor->mRailRider;
         railRider->setCoord(railRider->getPointCoord(index));
-        // setRailCoord(pActor, getRailPointCoord(pActor, index)); // doesnt match
     }
 
     void moveCoordToNearestPos(LiveActor* pActor, const TVec3f& rPos) {
@@ -70,7 +74,6 @@ namespace MR {
     void moveCoordToEndPos(LiveActor* pActor) {
         RailRider* railRider = pActor->mRailRider;
         railRider->setCoord(railRider->getTotalLength());
-        // setRailCoord(pActor, getRailTotalLength(pActor)); doesnt match??
     }
 
     void moveCoordAndTransToNearestRailPos(LiveActor* pActor) {
@@ -102,6 +105,7 @@ namespace MR {
         if (!pActor->mRailRider->mIsNotReverse) {
             return;
         }
+
         reverseRailDirection(pActor);
     }
 
@@ -109,6 +113,7 @@ namespace MR {
         if (pActor->mRailRider->mIsNotReverse) {
             return;
         }
+
         reverseRailDirection(pActor);
     }
 
@@ -187,20 +192,15 @@ namespace MR {
     }
 
     void calcRailClippingInfo(TVec3f* pCenter, f32* pRadius, const LiveActor* pActor, f32 delta, f32 padding) {
-        // FIXME : improper stack order
-        // https://decomp.me/scratch/2DXZy
-
         f32 totalLength = getRailTotalLength(pActor);
         s32 numPoints = totalLength / delta;
+        TBox3f clipBox;
         TBox3f box;
         pActor->mRailRider->calcPosAtCoord(&box.f, 0.0f);
         pActor->mRailRider->calcPosAtCoord(&box.i, totalLength);
 
-        TVec3f maxBound(MR::max(box.i.x, box.f.x), MR::max(box.i.y, box.f.y), MR::max(box.i.z, box.f.z));
-        TVec3f minBound(MR::min(box.i.x, box.f.x), MR::min(box.i.y, box.f.y), MR::min(box.i.z, box.f.z));
-
-        TBox3f clipBox;
-        clipBox.set(minBound, maxBound);
+        clipBox.set(TVec3f(MR::min(box.f.x, box.i.x), MR::min(box.f.y, box.i.y), MR::min(box.f.z, box.i.z)),
+                    TVec3f(MR::max(box.f.x, box.i.x), MR::max(box.f.y, box.i.y), MR::max(box.f.z, box.i.z)));
 
         TVec3f pos;
         for (s32 idx = 1; idx < numPoints; idx++) {
@@ -384,15 +384,12 @@ namespace MR {
     }
 
     void calcDistanceToNextRailPoint(const LiveActor* pActor, f32* pDist) {
-        // FIXME: improper stack size, acces, and load order of pActor->mRailRider in r3
-        // https://decomp.me/scratch/wgqFG
-
         RailRider* railRider = pActor->mRailRider;
         f32 nextPointCoord = railRider->getNextPointCoord();
         if (isNearZero(nextPointCoord)) {
-            if (isRailGoingToEnd(pActor)) {
+            if (railRider->mIsNotReverse) {
                 f32 coord = railRider->mCoord;
-                *pDist = getRailTotalLength(pActor) - coord;
+                *pDist = railRider->getTotalLength() - coord;
 
             } else {
                 f32 coord = railRider->mCoord;
@@ -400,42 +397,40 @@ namespace MR {
             }
         } else {
             f32 coord = railRider->mCoord;
-            *pDist = MR::abs(pActor->mRailRider->getNextPointCoord() - coord);
+            *pDist = MR::abs(railRider->getNextPointCoord() - coord);
         }
     }
 
     void calcDistanceToCurrentAndNextRailPoint(const LiveActor* pActor, f32* pCurrDist, f32* pNextDist) {
-        // FIXME : regswap and improper re-load of pActor->mRailRider
-        // https://decomp.me/scratch/Z1FEl
-
         RailRider* railRider = pActor->mRailRider;
         f32 currPointCoord = railRider->getCurrentPointCoord();
         f32 nextPointCoord = railRider->getNextPointCoord();
 
+        f32 coord;
         if (isNearZero(currPointCoord)) {
-            if (isRailGoingToEnd(pActor)) {
-                f32 coord = railRider->mCoord;
+            if (railRider->mIsNotReverse) {
+                coord = railRider->mCoord;
                 *pCurrDist = coord;
 
             } else {
-                f32 coord = railRider->mCoord;
+                coord = railRider->mCoord;
                 *pCurrDist = railRider->getTotalLength() - coord;
             }
         } else {
-            f32 coord = railRider->mCoord;
+            coord = railRider->mCoord;
             *pCurrDist = MR::abs(coord - currPointCoord);
         }
 
         if (isNearZero(nextPointCoord)) {
-            if (isRailGoingToEnd(pActor)) {
-                f32 coord = railRider->mCoord;
+            if (railRider->mIsNotReverse) {
+                coord = railRider->mCoord;
                 *pNextDist = railRider->getTotalLength() - coord;
             } else {
-                f32 coord = railRider->mCoord;
+                coord = railRider->mCoord;
                 *pNextDist = coord;
             }
         } else {
-            f32 coord = railRider->mCoord;
+            coord = railRider->mCoord;
             *pNextDist = MR::abs(railRider->getNextPointCoord() - coord);
         }
     }
@@ -519,6 +514,7 @@ namespace MR {
             speed = -speed;
             pActor->mRailRider->reverse();
         }
+
         pActor->mRailRider->setSpeed(speed);
     }
 
@@ -563,6 +559,7 @@ namespace MR {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -672,11 +669,13 @@ namespace {
         if (!b) {
             return false;
         }
+
         if (arg != -1) {
             *pArg = true;
         } else {
             *pArg = false;
         }
+
         return true;
     }
 };  // namespace
@@ -809,27 +808,39 @@ namespace {
         if (argNum == 0) {
             return "point_arg0";
         }
+
         if (argNum == 1) {
             return "point_arg1";
         }
+
         if (argNum == 2) {
             return "point_arg2";
         }
+
         if (argNum == 3) {
             return "point_arg3";
         }
+
         if (argNum == 4) {
             return "point_arg4";
         }
+
         if (argNum == 5) {
             return "point_arg5";
         }
+
         if (argNum == 6) {
             return "point_arg6";
         }
+
         if (argNum == 7) {
             return "point_arg7";
         }
+
         return nullptr;
     }
 };  // namespace
+
+void RailUtil_FORCE_MATCH(TVec3f* pDst, const TVec3f& rSrc) {
+    *pDst = rSrc;
+}

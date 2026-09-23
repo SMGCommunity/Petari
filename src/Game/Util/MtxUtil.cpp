@@ -316,13 +316,7 @@ namespace MR {
 
         transR = transA * (1.0f - blend) + transB * blend;
 
-        Quaternion quatR, quatB, quatA;
-        C_QUATMtx(&quatA, pMtxA);
-        C_QUATMtx(&quatB, pMtxB);
-
-        JMAQuatLerp(&quatA, &quatB, blend, &quatR);
-
-        PSMTXQuat(pDst, &quatR);
+        blendMtxRotate(pMtxA, pMtxB, blend, pDst);
         setMtxTrans(pDst, transR.x, transR.y, transR.z);
     }
 
@@ -343,12 +337,13 @@ namespace MR {
     }
 
     void makeRTFromMtxPtr(TVec3f* pOutTrans, TVec3f* pOutRot, MtxPtr pSrc, bool toDegree) {
+        TPos3f* pMtx = reinterpret_cast< TPos3f* >(pSrc);
         if (pOutTrans != nullptr) {
-            ((TPos3f*)pSrc)->getTrans(*pOutTrans);
+            pMtx->getTrans(*pOutTrans);
         }
 
         if (pOutRot != nullptr) {
-            ((TRot3f*)pSrc)->getEuler(*pOutRot);
+            pMtx->getEuler(*pOutRot);
 
             if (toDegree) {
                 pOutRot->set(*pOutRot * _180_PI);
@@ -452,9 +447,9 @@ namespace MR {
     void makeMtxUpNoSupport(TPos3f* pDst, const TVec3f& rUp) {
         TVec3f support;
         if (MR::getMaxAbsElementIndex(rUp) == 2) {
-            support.set(0.0f, 1.0f, 0.0f);
+            support.set< f32 >(0.0f, 1.0f, 0.0f);
         } else {
-            support.set(0.0f, 0.0f, 1.0f);
+            support.set< f32 >(0.0f, 0.0f, 1.0f);
         }
 
         TVec3f axisX, axisY, axisZ;
@@ -482,9 +477,9 @@ namespace MR {
     void makeMtxFrontNoSupport(TPos3f* pDst, const TVec3f& rFront) {
         TVec3f support;
         if (MR::getMaxAbsElementIndex(rFront) == 1) {
-            support.set(1.0f, 0.0f, 0.0f);
+            support.set< f32 >(1.0f, 0.0f, 0.0f);
         } else {
-            support.set(0.0f, 1.0f, 0.0f);
+            support.set< f32 >(0.0f, 1.0f, 0.0f);
         }
 
         TVec3f axisX, axisY, axisZ;
@@ -719,6 +714,7 @@ namespace MR {
                     return false;
                 }
             }
+
             pA++;
             pB++;
         }
@@ -732,8 +728,9 @@ namespace MR {
         ((TRot3f*)pMtxB)->getYDir(yDirB);
         bool result = false;
 
-        if (JGeometry::TUtil< f32 >::epsilonEquals(yDirA.x, yDirB.x, 0.001f) && JGeometry::TUtil< f32 >::epsilonEquals(yDirA.y, yDirB.y, 0.001f) &&
-            JGeometry::TUtil< f32 >::epsilonEquals(yDirA.z, yDirB.z, 0.001f)) {
+        if (JGeometry::TUtil< f32 >::epsilonEquals(yDirA.x, yDirB.x, JGeometry::TUtil< f32 >::epsilon()) &&
+            JGeometry::TUtil< f32 >::epsilonEquals(yDirA.y, yDirB.y, JGeometry::TUtil< f32 >::epsilon()) &&
+            JGeometry::TUtil< f32 >::epsilonEquals(yDirA.z, yDirB.z, JGeometry::TUtil< f32 >::epsilon())) {
             result = true;
         }
 
@@ -882,3 +879,8 @@ namespace MR {
         PSMTXMultVec(rot, &rAxis, pOut);
     }
 };  // namespace MR
+
+void MtxUtil_FORCE_MATCH(TVec3f* pA, TVec3f* pB, TRot3f* pMtx) {
+    *pA = *pA + *pB;
+    pMtx->getEuler(*pA);
+}

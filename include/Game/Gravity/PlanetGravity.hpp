@@ -31,19 +31,23 @@ public:
     bool isInRangeSquare(f32 radius) const;
     bool isInRangeDistance(f32 radius) const;
 
+    f32 getDistant() const {
+        return mDistant;
+    }
+
     void setPriority(s32 priority);
     void updateIdentityMtx();
 
-    f32 mRange;           // 0x4
-    f32 mDistant;         // 0x8
-    s32 mPriority;        // 0xC
-    s32 mGravityId;       // 0x10, read from the stage files but never used
-    const void* mHost;    // 0x14, host object pointer, can be any pointer
-    u32 mGravityType;     // 0x18, gravity type bits
-    s32 mGravityPower;    // 0x1C, gravity power type
-    bool mActivated;      // 0x20, corresponding GlobalGravityObj has switch activated?
-    bool mIsInverse;      // 0x21, invert gravity vector?
-    bool mValidFollower;  // 0x22
-    bool mIsRegistered;   // 0x23, is registered by PlanetGravityManager?
-    bool mAppeared;       // 0x24, corresponding GlobalGravityObj has appeared?
+    /* 0x4 */ f32 mRange;
+    /* 0x8 */ f32 mDistant;
+    /* 0xC */ s32 mPriority;
+    /* 0x10 */ s32 mGravityId;     // read from the stage files but never used
+    /* 0x14 */ const void* mHost;  // host object pointer, can be any pointer
+    /* 0x18 */ u32 mGravityType;   // gravity type bits
+    /* 0x1C */ s32 mGravityPower;  // gravity power type
+    /* 0x20 */ bool mActivated;    // corresponding GlobalGravityObj has switch activated?
+    /* 0x21 */ bool mIsInverse;    // invert gravity vector?
+    /* 0x22 */ bool mValidFollower;
+    /* 0x23 */ bool mIsRegistered;  // is registered by PlanetGravityManager?
+    /* 0x24 */ bool mAppeared;      // corresponding GlobalGravityObj has appeared?
 };

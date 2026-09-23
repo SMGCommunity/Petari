@@ -7,6 +7,19 @@
 #include <cstring>
 
 namespace {
+    char cRange[] = "Range";
+    char cDistant[] = "Distant";
+    char cPriority[] = "Priority";
+    char cGravityId[] = "Gravity_id";
+    char cGravityType[] = "Gravity_type";
+    char cNormal[] = "Normal";
+    char cShadow[] = "Shadow";
+    char cMagnet[] = "Magnet";
+    char cPower[] = "Power";
+    char cLight[] = "Light";
+    char cHeavy[] = "Heavy";
+    char cInverse[] = "Inverse";
+
     PlanetGravityManager* getGravityManager() {
         return MR::getSceneObj< PlanetGravityManager >(SceneObj_PlanetGravityManager);
     }
@@ -114,38 +127,38 @@ namespace MR {
 
     void settingGravityParamFromJMap(PlanetGravity* pGravity, const JMapInfoIter& rIter) {
         f32 range = pGravity->mRange;
-        ::getJMapInfoArgPlus(rIter, "Range", &range);
+        ::getJMapInfoArgPlus(rIter, cRange, &range);
         pGravity->mRange = range;
 
-        f32 distant = pGravity->mDistant;
-        ::getJMapInfoArgPlus(rIter, "Distant", &distant);
+        f32 distant = pGravity->getDistant();
+        ::getJMapInfoArgPlus(rIter, cDistant, &distant);
         pGravity->mDistant = distant;
 
         s32 priority = pGravity->mPriority;
-        ::getJMapInfoArgPlus(rIter, "Priority", &priority);
+        ::getJMapInfoArgPlus(rIter, cPriority, &priority);
         pGravity->setPriority(priority);
 
         s32 id = pGravity->mGravityId;
-        ::getJMapInfoArgPlus(rIter, "Gravity_id", &id);
+        ::getJMapInfoArgPlus(rIter, cGravityId, &id);
         pGravity->mGravityId = id;
 
         getJMapInfoGravityType(rIter, pGravity);
         getJMapInfoGravityPower(rIter, pGravity);
 
         s32 inverse = pGravity->mIsInverse != false;
-        ::getJMapInfoArgPlus(rIter, "Inverse", &inverse);
+        ::getJMapInfoArgPlus(rIter, cInverse, &inverse);
         pGravity->mIsInverse = inverse;
     }
 
     void getJMapInfoGravityType(const JMapInfoIter& rIter, PlanetGravity* pGravity) {
         const char* pType = nullptr;
 
-        if (rIter.getValue("Gravity_type", &pType)) {
-            if (strcmp(pType, "Normal") == 0) {
+        if (rIter.getValue(cGravityType, &pType)) {
+            if (strcmp(pType, cNormal) == 0) {
                 pGravity->mGravityType = GRAVITY_TYPE_NORMAL;
-            } else if (strcmp(pType, "Shadow") == 0) {
+            } else if (strcmp(pType, cShadow) == 0) {
                 pGravity->mGravityType = GRAVITY_TYPE_SHADOW;
-            } else if (strcmp(pType, "Magnet") == 0) {
+            } else if (strcmp(pType, cMagnet) == 0) {
                 pGravity->mGravityType = GRAVITY_TYPE_MAGNET;
             }
         }
@@ -154,12 +167,12 @@ namespace MR {
     void getJMapInfoGravityPower(const JMapInfoIter& rIter, PlanetGravity* pGravity) {
         const char* pPower = nullptr;
 
-        if (rIter.getValue("Power", &pPower)) {
-            if (strcmp(pPower, "Light") == 0) {
+        if (rIter.getValue(cPower, &pPower)) {
+            if (strcmp(pPower, cLight) == 0) {
                 pGravity->mGravityPower = GRAVITY_POWER_LIGHT;
-            } else if (strcmp(pPower, "Normal") == 0) {
+            } else if (strcmp(pPower, cNormal) == 0) {
                 pGravity->mGravityPower = GRAVITY_POWER_NORMAL;
-            } else if (strcmp(pPower, "Heavy") == 0) {
+            } else if (strcmp(pPower, cHeavy) == 0) {
                 pGravity->mGravityPower = GRAVITY_POWER_HEAVY;
             }
         }

@@ -6,7 +6,7 @@
 #include "Game/System/GalaxyStatusAccessor.hpp"
 #include "Game/System/GameDataConst.hpp"
 #include "Game/System/GameDataFunction.hpp"
-// #include "Game/System/GameDataGalaxyStorage.hpp"
+
 #include "Game/System/GameDataGalaxyStorage.hpp"
 #include "Game/System/GameEventFlag.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
@@ -16,6 +16,56 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include <cstdio>
+
+void EventUtil_FORCE_MATCH_STRINGS() {
+    MR::isEqualString("ハチマリオ初変身", "ハチマリオ初変身");
+    MR::isEqualString("テレサマリオ初変身", "テレサマリオ初変身");
+    MR::isEqualString("ホッパーマリオ初変身", "ホッパーマリオ初変身");
+    MR::isEqualString("ファイアマリオ初変身", "ファイアマリオ初変身");
+    MR::isEqualString("アイスマリオ初変身", "アイスマリオ初変身");
+    MR::isEqualString("フライングマリオ初変身", "フライングマリオ初変身");
+    MR::isEqualString("無敵マリオ初変身", "無敵マリオ初変身");
+    MR::isEqualString("ライフアップキノコ解説", "ライフアップキノコ解説");
+    MR::isEqualString("１ＵＰキノコ解説", "１ＵＰキノコ解説");
+    MR::isEqualString("クッパ襲来後", "クッパ襲来後");
+    MR::isEqualString("ピーチ城浮上後", "ピーチ城浮上後");
+    MR::isEqualString("チコガイドデモ終了", "チコガイドデモ終了");
+    MR::isEqualString("スピン権利", "スピン権利");
+    MR::isEqualString("天球儀レクチャー", "天球儀レクチャー");
+    MR::isEqualString("ギャラクシー移動レクチャー", "ギャラクシー移動レクチャー");
+    MR::isEqualString("スターピースレクチャー", "スターピースレクチャー");
+    MR::isEqualString("サーフィンチュートリアル", "サーフィンチュートリアル");
+    MR::isEqualString("タマコロチュートリアル", "タマコロチュートリアル");
+    MR::isEqualString("RosettaTalkAboutTico", "RosettaTalkAboutTico");
+    MR::isEqualString("SpecialStarGrand7", "SpecialStarGrand7");
+    MR::isEqualString("ViewCompleteEnding", "ViewCompleteEnding");
+    MR::isEqualString("バトラー情報Ａ", "バトラー情報Ａ");
+    MR::isEqualString("SpecialStarGreenAll", "SpecialStarGreenAll");
+    MR::isEqualString("SpecialStarRed1", "SpecialStarRed1");
+    MR::isEqualString("ViewNormalEnding", "ViewNormalEnding");
+    MR::isEqualString("KoopaBattleVs3Galaxy", "KoopaBattleVs3Galaxy");
+    MR::isEqualString("EventCometStarter", "EventCometStarter");
+    MR::isEqualString("SpecialStarFindingLuigi3", "SpecialStarFindingLuigi3");
+    MR::isEqualString("SpecialStarLuigiRescued", "SpecialStarLuigiRescued");
+    MR::isEqualString("EventKinopioExplorerOrganize", "EventKinopioExplorerOrganize");
+    MR::isEqualString("EventKinopioExplorerRescued", "EventKinopioExplorerRescued");
+    MR::isEqualString("SpecialStarGrand5", "SpecialStarGrand5");
+    MR::isEqualString("WarpPodSaveBits", "WarpPodSaveBits");
+    MR::isEqualString("TicoGalaxyAlreadyTalk", "TicoGalaxyAlreadyTalk");
+    MR::isEqualString("AstroDome", "AstroDome");
+    MR::isEqualString("SpecialStarGrand%1d", "SpecialStarGrand%1d");
+    MR::isEqualString("Dark", "Dark");
+    MR::isEqualString("Ghost", "Ghost");
+    MR::isEqualString("Quick", "Quick");
+    MR::isEqualString("Purple", "Purple");
+    MR::isEqualString("Black", "Black");
+    MR::isEqualString("PowerStarComplete", "PowerStarComplete");
+    MR::isEqualString("StarPieceCounterStop", "StarPieceCounterStop");
+    MR::isEqualString("LuigiTalkAfterRescued", "LuigiTalkAfterRescued");
+    MR::isEqualString("EggStarGalaxy", "EggStarGalaxy");
+    MR::isEqualString("MessageAlreadyRead", "MessageAlreadyRead");
+    MR::isEqualString("MsgLedPattern", "MsgLedPattern");
+}
 
 namespace {
     ScenePlayingResult* getScenePlayingResult() {
@@ -38,6 +88,10 @@ namespace MR {
         GameDataFunction::incPlayerMissNum();
     }
 
+    bool isPlayerLeftSupply() {
+        return GameDataFunction::isPlayerLeftSupply();
+    }
+
     bool isLuigiLeftSupply() {
         return GameDataFunction::isLuigiLeftSupply();
     }
@@ -47,7 +101,13 @@ namespace MR {
         GameDataFunction::incPlayerMissNum();
     }
 
-    // isAnyPlayerLeftSupply
+    bool isPlayerLeftSupplyByMissAndGameOver() {
+        return GameDataFunction::isPointCollectForLetter();
+    }
+
+    bool isAnyPlayerLeftSupply() {
+        return isPlayerLeftSupply() || isPlayerLeftSupplyByMissAndGameOver() || isLuigiLeftSupply();
+    }
 
     void offAllPlayerLeftSupply() {
         if (GameDataFunction::isPlayerLeftSupply()) {
@@ -478,7 +538,12 @@ namespace MR {
         GameDataFunction::setGameEventValueForBit("TicoGalaxyAlreadyTalk", bit, isTalk);
     }
 
-    // isGalaxyAnyCometAppearInCurrentStage
+    bool isGalaxyAnyCometAppearInCurrentStage() {
+        return ((((isGalaxyRedCometAppearInCurrentStage() || isGalaxyDarkCometAppearInCurrentStage()) || isGalaxyGhostCometAppearInCurrentStage()) ||
+                 isGalaxyQuickCometAppearInCurrentStage()) ||
+                EventFunction::isStartCometEvent("Purple")) ||
+               EventFunction::isStartCometEvent("Black");
+    }
 
     void startGalaxyCometEvent() {
         EventFunction::startCometEvent();
@@ -599,7 +664,7 @@ namespace MR {
 
         return accessor.getMaxCoinNum();
     }
-   
+
     s32 getCoinBestScore(const char* pGalaxyName) {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
         s32 coinBestScore = 0;
@@ -673,22 +738,22 @@ namespace MR {
             return true;
         }
 
-        s32 starId = 0;
+        s32 starId;
         const char* pHidingGalaxyName = nullptr;
 
         GameSequenceFunction::getLuigiHidingGalaxyNameAndStarId(&pHidingGalaxyName, &starId);
 
-        return MR::isEqualString(pHidingGalaxyName, MR::getCurrentStageName());
+        const char* pGalaxyName = pHidingGalaxyName;
+        return MR::isEqualString(pGalaxyName, MR::getCurrentStageName());
     }
 
     bool isLuigiDisappearFromAstroGalaxyOrHiding() {
-        bool isLuigiDisappearFromAstroGalaxy = GameSequenceFunction::isLuigiDisappearFromAstroGalaxy();
-
-        if (isLuigiDisappearFromAstroGalaxy) {
-            return MR::isOnLuigiHiding();
-        } else {
-            return isLuigiDisappearFromAstroGalaxy;
+        bool result = GameSequenceFunction::isLuigiDisappearFromAstroGalaxy();
+        if (!result) {
+            result = MR::isOnLuigiHiding();
         }
+
+        return result;
     }
 
     bool isLuigiLetterArrivalAtMessenger() {
@@ -701,7 +766,21 @@ namespace MR {
         }
     }
 
-    // isLuigiHidingGalaxyAndScenario
+    bool isLuigiHidingGalaxyAndScenario(const char* pGalaxyName, s32 scenarioNo) {
+        if (!GameDataFunction::isOnGameEventFlag("SpecialStarLuigiRescued")) {
+            return false;
+        }
+
+        const char* pHidingGalaxyName = nullptr;
+        s32 starId;
+        GameSequenceFunction::getLuigiHidingGalaxyNameAndStarId(&pHidingGalaxyName, &starId);
+        if (pHidingGalaxyName == nullptr) {
+            return false;
+        }
+
+        return (GameSequenceFunction::isLuigiHidingAnyGalaxy() && isEqualString(pHidingGalaxyName, pGalaxyName) && starId == scenarioNo) ? true :
+                                                                                                                                           false;
+    }
 
     bool isPowerStarGetDemoWithLuigiCurrentGalaxy() {
         if (MR::isOnLuigiHidingCurrentStage()) {
@@ -711,10 +790,46 @@ namespace MR {
         return GameDataConst::isGalaxyLuigiArrested(MR::getCurrentStageName(), -1);
     }
 
-    // isPowerStarGetDemoWithLuigiCurrentGalaxyAndScenario
-    // getLuigiLetterGalaxyName
+    bool isPowerStarGetDemoWithLuigiCurrentGalaxyAndScenario(s32 starId) {
+        if (GameSequenceFunction::isLuigiHidingAnyGalaxy()) {
+            const char* pGalaxyName = nullptr;
+            s32 hidingStarId = -1;
+            GameSequenceFunction::getLuigiHidingGalaxyNameAndStarId(&pGalaxyName, &hidingStarId);
+            if (isEqualString(getCurrentStageName(), pGalaxyName) && hidingStarId == starId) {
+                return true;
+            }
+        }
 
-    // FIXME: Improper stack accesses.
+        if (GameDataConst::isGalaxyLuigiArrested(getCurrentStageName(), starId)) {
+            return true;
+        }
+
+        s32 scenarioNo = getCurrentSelectedScenarioNo();
+        bool hasStar = scenarioNo != -1 && GameDataConst::isPowerStarLuigiHas(getCurrentStageName(), scenarioNo);
+        if (hasStar) {
+            return GameDataConst::isPowerStarLuigiHas(getCurrentStageName(), starId);
+        }
+
+        return false;
+    }
+
+    const char* getLuigiLetterGalaxyName() {
+        s32 scenarioNo = getCurrentSelectedScenarioNo();
+        bool hasStar = scenarioNo != -1 && GameDataConst::isPowerStarLuigiHas(getCurrentStageName(), scenarioNo);
+        if (hasStar) {
+            return getCurrentStageName();
+        }
+
+        if (GameSequenceFunction::isLuigiDisappearFromAstroGalaxy() || GameSequenceFunction::isLuigiHidingAnyGalaxy()) {
+            s32 starId;
+            const char* pGalaxyName = nullptr;
+            GameSequenceFunction::getLuigiHidingGalaxyNameAndStarId(&pGalaxyName, &starId);
+            return pGalaxyName;
+        }
+
+        return nullptr;
+    }
+
     const char* getLuigiLetterGalaxyNameForNPC() {
         s32 starId;
         const char* pGalaxyName;
@@ -973,4 +1088,4 @@ namespace MR {
     void onMsgLedPattern() {
         GameDataFunction::setGameEventValue("MsgLedPattern", 1);
     }
-};  // namespace MR
+}  // namespace MR

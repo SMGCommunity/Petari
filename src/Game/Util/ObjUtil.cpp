@@ -47,6 +47,19 @@
 #include <cstdio>
 #include <va_list.h>
 
+void ObjUtil_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)3.81469727e-06f;
+    (void)-3.81469727e-06f;
+    (void)1.57079637f;
+    (void)-1.57079637f;
+    (void)57.2957802f;
+    (void)15.0f;
+    (void)100.0f;
+    (void)1000.0f;
+}
+
 namespace {
     static const TVec3f sDefaultPlayerPos = TVec3f(0, 0, 0);
 };  // namespace
@@ -974,4 +987,8 @@ bool MR::tryFindLinkNamePos(const NameObj* pObj, const char* pName, MtxPtr pMtx)
 
 bool MR::tryFindLinkNamePos(const NameObj* pObj, const char* pName, TVec3f* pParam3, TVec3f* pParam4) {
     return getNamePosHolder()->find(pObj, pName, pParam3, pParam4);
+}
+
+void ObjUtil_FORCE_MATCH(TVec3f* pOut, const TVec3f& rVec) {
+    pOut->add(rVec);
 }

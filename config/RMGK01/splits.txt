@@ -9388,7 +9388,7 @@ Game/Util/DrawUtil.cpp:
 	.rodata     start:0x8053EB38 end:0x8053EB48
 	.data       start:0x805E0BE0 end:0x805E0C48
 	.bss        start:0x8060B3C0 end:0x8060B3F0
-	.sdata      start:0x806B2610 end:0x806B2620
+	.sdata      start:0x806B2610 end:0x806B2618
 	.sbss       start:0x806B7000 end:0x806B7008
 	.sdata2     start:0x806C15C8 end:0x806C15F8
 
@@ -9400,6 +9400,7 @@ Game/Util/EffectUtil.cpp:
 Game/Util/EventUtil.cpp:
 	.text       start:0x803CDA10 end:0x803CF2A0
 	.data       start:0x805E0C58 end:0x805E0FA8
+	.sdata      start:0x806B2618 end:0x806B2620
 
 Game/Util/FileUtil.cpp:
 	.text       start:0x803CF2A0 end:0x803CFE74
@@ -9472,6 +9473,7 @@ Game/Util/LiveActorUtil.cpp:
 	.text       start:0x803DA22C end:0x803E0ECC
 	.rodata     start:0x8053EBB8 end:0x8053EBC8
 	.data       start:0x805E16B0 end:0x805E1768
+	.sdata      start:0x806B2650 end:0x806B2658
 	.sdata2     start:0x806C1700 end:0x806C1720
 
 Game/Util/MapPartsUtil.cpp:

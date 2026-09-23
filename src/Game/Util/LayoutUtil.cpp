@@ -47,6 +47,16 @@ void LayoutUtil_FORCE_MATCH_SDATA2() {
 }
 
 namespace {
+    void setInfluencedAlphaToChild(nw4r::lyt::Pane* pPane) {
+        pPane->SetInfluencedAlpha(true);
+        nw4r::lyt::PaneList& rChildren = pPane->GetChildList();
+        nw4r::lyt::PaneList::Iterator it = rChildren.GetBeginIter();
+        while (it != rChildren.GetEndIter()) {
+            it->SetInfluencedAlpha(true);
+            it++;
+        }
+    }
+
     void showPaneRecursive(nw4r::lyt::Pane* pPane) {
         pPane->SetVisible(true);
         for (nw4r::lyt::PaneList::Iterator it = pPane->GetChildList().GetBeginIter(); it != pPane->GetChildList().GetEndIter(); ++it) {
@@ -74,7 +84,7 @@ namespace {
         }
 
         const nw4r::lyt::TextBox* pTextBox = nw4r::ut::DynamicCast< const nw4r::lyt::TextBox* >(pPane);
-        if (pTextBox) {
+        if (pTextBox != nullptr) {
             nw4r::ut::Rect rect = pTextBox->GetTextDrawRect(nw4r::lyt::DrawInfo());
             if (initialized) {
                 if (rect.left < pRect->left) {
@@ -112,7 +122,7 @@ namespace {
         }
 
         const nw4r::lyt::TextBox* pTextBox = nw4r::ut::DynamicCast< const nw4r::lyt::TextBox* >(pPane);
-        if (pTextBox) {
+        if (pTextBox != nullptr) {
             u32 count = MR::countMessageLine(pTextBox->mTextBuf);
             if (count > max) {
                 max = count;
@@ -150,14 +160,7 @@ namespace MR {
     }
 
     void setInfluencedAlphaToChild(const LayoutActor* pActor) {
-        nw4r::lyt::Pane* pPane = pActor->getLayoutManager()->getPane(nullptr);
-        pPane->SetInfluencedAlpha(true);
-        nw4r::lyt::PaneList& rChildren = pPane->GetChildList();
-        nw4r::lyt::PaneList::Iterator it = rChildren.GetBeginIter();
-        while (it != rChildren.GetEndIter()) {
-            it->SetInfluencedAlpha(true);
-            it++;
-        }
+        ::setInfluencedAlphaToChild(pActor->getLayoutManager()->getPane(nullptr));
     }
 
     void setLayoutAlpha(const LayoutActor* pActor, u8 alpha) {
@@ -182,7 +185,7 @@ namespace MR {
 
     void executeTextBoxRecursive(LayoutActor* pActor, const char* pPaneName, const TextBoxRecursiveOperation& rOperation) {
         nw4r::lyt::TextBox* pTextBox = nw4r::ut::DynamicCast< nw4r::lyt::TextBox* >(pActor->getLayoutManager()->getPane(pPaneName));
-        if (pTextBox) {
+        if (pTextBox != nullptr) {
             rOperation.execute(pTextBox);
         }
 
@@ -849,6 +852,7 @@ namespace {
         default:
             break;
         }
+
         return frame;
     }
 

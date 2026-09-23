@@ -19,27 +19,34 @@ namespace MR {
         if ((mode & 1) != 0) {
             GXSetVtxDesc(GX_VA_NRM, GX_DIRECT);
         }
+
         if ((mode & 2) != 0) {
             GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
         }
+
         if ((mode & 4) != 0) {
             GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
         }
+
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_RGBA6, 0);
         if ((mode & 1) != 0) {
             GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_POS_XY, GX_RGBA6, 0);
         }
+
         if ((mode & 2) != 0) {
             GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_RGBA6, 0);
         }
+
         if ((mode & 4) != 0) {
             GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_POS_XYZ, GX_RGBA8, 0);
         }
+
         if (mLightingFlag != 0) {
             ddLightingOn(mLightingMask);
         } else {
             ddLightingOff();
         }
+
         ddChangeTev();
     }
 
@@ -81,6 +88,7 @@ namespace MR {
         if ((mVtxMode & 1) != 0) {
             GXNormal3f32(rVec2.x, rVec2.y, rVec2.z);
         }
+
         if ((mVtxMode & 2) != 0) {
             GXTexCoord2f32(rVec3.x, rVec3.y);
         }
@@ -112,3 +120,7 @@ namespace MR {
         }
     }
 };  // namespace MR
+
+void DirectDrawUtil_FORCE_MATCH(const TVec3f& rNormal) {
+    GXNormal3f32(rNormal.x, rNormal.y, rNormal.z);
+}

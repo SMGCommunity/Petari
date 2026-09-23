@@ -1,7 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry/TBox.hpp"
 #include "JSystem/J2DGraph/J2DGrafContext.hpp"
+#include "JSystem/JGeometry/TBox.hpp"
 
 class J2DOrthoGraph : public J2DGrafContext {
 public:
@@ -13,15 +13,19 @@ public:
     virtual void setPort();
     virtual J2DGrafType getGrafType() const {
         return J2DGraf_Ortho;
-    };
+    }
     virtual void setLookat();
 
-    void setOrtho(TBox2f const& bounds, f32 far, f32 near);
+    void setOrtho(const TBox2f& rBounds, f32 far, f32 near);
 
-    TBox2f mOrtho;  // 0xBC
-    f32 mNear;      // 0xCC
-    f32 mFar;       // 0xD0
+    void setOrtho(f32 x, f32 y, f32 width, f32 height, f32 far, f32 near) {
+        setOrtho(TBox2f(x, y, x + width, y + height), far, near);
+    }
+
+    /* 0xBC */ TBox2f mOrtho;
+    /* 0xCC */ f32 mNear;
+    /* 0xD0 */ f32 mFar;
 };
 
 void J2DFillBox(f32 x, f32 y, f32 width, f32 height, JUtility::TColor color);
-void J2DFillBox(JGeometry::TBox2< f32 > const& box, JUtility::TColor color);
+void J2DFillBox(const JGeometry::TBox2< f32 >& rBox, JUtility::TColor color);

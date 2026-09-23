@@ -156,9 +156,7 @@ void IKJoint::calcToTargetMatrixByFirstPose(TPos3f* pMatrix, const TPos3f& rRoot
     TVec3f side;
     _0.getXDir(side);
     matrix.identity();
-    TQuat4f rotation;
-    rotation.setRotate(side, rDirection);
-    matrix.setQuat(rotation);
+    matrix.setRotate(side, rDirection);
     matrix.concat(matrix, _0);
     matrix.setTrans(rRootPosition);
     matrix.concat(rRootMatrix, matrix);

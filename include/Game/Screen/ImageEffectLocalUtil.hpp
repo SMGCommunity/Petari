@@ -14,15 +14,15 @@ namespace ImageEffectLocalUtil {
         TexDrawType_3,
     };
 
-    void capture(JUTTexture*, s32, s32, GXTexFmt, bool, u8);
+    void capture(JUTTexture* pTexture, s32 divisions, s32 tile, GXTexFmt format, bool clear, u8 filter);
     void setupDrawTexture();
-    void drawTexture(JUTTexture*, s32, s32, u8, ETexDrawType);
-    void sendTextureVertex(s32, s32);
-    void blurTexture(JUTTexture*, s32, s32, u32, f32, f32);
+    void drawTexture(JUTTexture* pTexture, s32 divisions, s32 tile, u8 intensity, ETexDrawType texDrawType);
+    void sendTextureVertex(s32 divisions, s32 tile);
+    void blurTexture(JUTTexture* pTexture, s32 divisions, s32 tile, u32 sampleCount, f32 radius, f32 intensity);
 };  // namespace ImageEffectLocalUtil
 
 namespace MR {
-    void connectToSceneImageEffect(NameObj*);
-    void connectToSceneImageEffectMovement(NameObj*);
-    void connectToSceneNormalBloom(BloomEffect*);
+    void connectToSceneImageEffect(NameObj* pObj);
+    void connectToSceneImageEffectMovement(NameObj* pObj);
+    void connectToSceneNormalBloom(BloomEffect* pBloomEffect);
 };  // namespace MR
