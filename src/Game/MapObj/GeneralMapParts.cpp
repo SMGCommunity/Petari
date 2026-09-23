@@ -1,4 +1,5 @@
 #include "Game/MapObj/GeneralMapParts.hpp"
+#include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapPartsAppearController.hpp"
 #include "Game/MapObj/MapPartsRailGuideDrawer.hpp"
@@ -7,6 +8,7 @@
 #include "Game/MapObj/MapPartsRailRotator.hpp"
 #include "Game/MapObj/MapPartsRotator.hpp"
 #include "Game/Util.hpp"
+#include <algorithm>
 
 namespace NrvGeneralMapParts {
     NEW_NERVE(HostTypeWait, GeneralMapParts, Wait);
@@ -15,20 +17,9 @@ namespace NrvGeneralMapParts {
     NEW_NERVE(HostTypeMove, GeneralMapParts, Wait);
 };  // namespace NrvGeneralMapParts
 
-GeneralMapParts::GeneralMapParts(const char* pName) : MapParts(pName) {
-    mCameraInfo = nullptr;
-    mMoveConditionType = 0;
-    mSignMotionType = 0;
-    mShadowType = 0;
-    mFunctionArray.mCount = 0;
-    mAppearController = nullptr;
-    mRailRotator = nullptr;
-    mRailMover = nullptr;
-    mRotator = nullptr;
-    mGuideDrawer = nullptr;
-    mRailPosture = nullptr;
-    _E4 = 0;
-    _E5 = 0;
+GeneralMapParts::GeneralMapParts(const char* pName)
+    : MapParts(pName), mCameraInfo(), mMoveConditionType(), mSignMotionType(), mShadowType(), mFunctionArray(), mAppearController(), mRailRotator(),
+      mRailMover(), mRotator(), mGuideDrawer(), mRailPosture(), mIsCameraEnded(), mIsPaused() {
 }
 
 void GeneralMapParts::init(const JMapInfoIter& rIter) {
@@ -74,7 +65,7 @@ void GeneralMapParts::initAfterPlacement() {
 void GeneralMapParts::appear() {
     MapParts::appear();
 
-    if (mGuideDrawer) {
+    if (mGuideDrawer != nullptr) {
         mGuideDrawer->start();
     }
 
@@ -87,7 +78,10 @@ void GeneralMapParts::appear() {
     }
 }
 
-// GeneralMapParts::kill
+void GeneralMapParts::kill() {
+    std::for_each(mFunctionArray.begin(), mFunctionArray.end(), std::mem_fun(&MapPartsFunction::end));
+    LiveActor::kill();
+}
 
 bool GeneralMapParts::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (mAppearController->receiveMsg(msg)) {
@@ -104,82 +98,81 @@ bool GeneralMapParts::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pR
 }
 
 void GeneralMapParts::control() {
-    if (!_E5) {
-        if (mAppearController) {
+    if (!mIsPaused) {
+        if (mAppearController != nullptr) {
             mAppearController->movement();
         }
 
-        if (mRailMover) {
+        if (mRailMover != nullptr) {
             mRailMover->movement();
+
             if (MR::isValidSwitchDead(this) && mRailMover->isReachedEnd()) {
                 MR::onSwitchDead(this);
             }
         }
 
-        if (mRailPosture) {
+        if (mRailPosture != nullptr) {
             mRailPosture->movement();
         }
 
-        if (mRotator) {
+        if (mRotator != nullptr) {
             mRotator->movement();
         }
 
-        if (mRailRotator) {
+        if (mRailRotator != nullptr) {
             mRailRotator->movement();
         }
 
-        if (mGuideDrawer) {
+        if (mGuideDrawer != nullptr) {
             mGuideDrawer->movement();
         }
 
-        bool v9 = false;
-        if (mRailMover && mRailMover->isWorking()) {
-            v9 = true;
+        bool isRailMoving = false;
+        if (mRailMover != nullptr && mRailMover->isWorking()) {
+            isRailMoving = true;
         }
 
-        if (v9) {
+        if (isRailMoving) {
             mPosition.set(mRailMover->_28);
         }
     }
 }
 
 void GeneralMapParts::calcAndSetBaseMtx() {
-    bool v3 = false;
-    if (mRotator && mRotator->isWorking()) {
-        v3 = true;
+    bool isRotating = false;
+    if (mRotator != nullptr && mRotator->isWorking()) {
+        isRotating = true;
     }
 
-    bool v5 = false;
-    if (mRailRotator && mRailRotator->isWorking()) {
-        v5 = true;
+    bool isRailRotating = false;
+    if (mRailRotator != nullptr && mRailRotator->isWorking()) {
+        isRailRotating = true;
     }
 
-    bool v7 = false;
-    if (mRailPosture && mRailPosture->isWorking()) {
-        v7 = true;
+    bool isRailPostureWorking = false;
+    if (mRailPosture != nullptr && mRailPosture->isWorking()) {
+        isRailPostureWorking = true;
     }
 
-    if (!(v5 || v3 || v7)) {
+    if (!(isRailRotating || isRotating || isRailPostureWorking)) {
         LiveActor::calcAndSetBaseMtx();
     } else {
         TPos3f mtx;
         mtx.identity();
 
-        if (v7) {
+        if (isRailPostureWorking) {
             mtx.concat(mRailPosture->_18);
         }
 
-        if (v5) {
+        if (isRailRotating) {
             mtx.concat(mRailRotator->_5C);
         }
 
-        if (v3) {
+        if (isRotating) {
             mtx.concat(mRotator->getRotateMtx());
         }
 
-        mtx.mMtx[0][3] = mPosition.x;
-        mtx.mMtx[1][3] = mPosition.y;
-        mtx.mMtx[2][3] = mPosition.z;
+        mtx.setTrans(mPosition);
         MR::setBaseTRMtx(this, mtx);
     }
 }
@@ -188,9 +181,10 @@ void GeneralMapParts::initMapPartsFunction(const JMapInfoIter& rIter) {
     mAppearController = new MapPartsAppearController(this);
     mAppearController->init(rIter);
     mFunctionArray.push_back(mAppearController);
-    f32 rotate_speed = 0.0f;
-    MR::getMapPartsArgRotateSpeed(&rotate_speed, rIter);
-    bool hasRotateSpeed = 0.0f != rotate_speed;
+
+    f32 rotateSpeed = 0.0f;
+    MR::getMapPartsArgRotateSpeed(&rotateSpeed, rIter);
+    bool hasRotateSpeed = 0.0f != rotateSpeed;
 
     if (hasRotateSpeed) {
         mRotator = new MapPartsRotator(this);
@@ -235,40 +229,99 @@ void GeneralMapParts::initGravity(const JMapInfoIter& rIter) {
     }
 }
 
-/*
+namespace {
+    inline bool isWaiting(const LiveActor* pActor) {
+        return pActor->isNerve(GET_NERVE(GeneralMapParts, HostTypeWait)) || pActor->isNerve(GET_NERVE(GeneralMapParts, HostTypeWaitForPlayerOn));
+    }
+
+    inline bool isOtherGroupMembersMoving(const GeneralMapParts* pActor) {
+        if (!::isWaiting(pActor)) {
+            return false;
+        }
+
+        LiveActor* pMember;
+        LiveActorGroup* pGroup = MR::getGroupFromArray(pActor);
+        if (pGroup == nullptr) {
+            return true;
+        }
+
+        for (s32 i = 0; i < pGroup->getObjNum(); i++) {
+            pMember = pGroup->getActor(i);
+            if (pMember == pActor) {
+                continue;
+            }
+
+            if (!MR::isBodySensorTypeMapObj(pMember)) {
+                return false;
+            }
+
+            if (!MR::isEqualString(MR::getModelResName(pActor), MR::getModelResName(pMember))) {
+                return false;
+            }
+
+            if (::isWaiting(pMember)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    inline void validateGroupClipping(const GeneralMapParts* pActor) {
+        s32 i;
+        LiveActor* pMember;
+        LiveActorGroup* pGroup = MR::getGroupFromArray(pActor);
+        if (pGroup == nullptr) {
+            return;
+        }
+
+        for (i = 0; i < pGroup->getObjNum(); i++) {
+            pMember = pGroup->getActor(i);
+            if (MR::isBodySensorTypeMapObj(pMember) && MR::isEqualString(MR::getModelResName(pActor), MR::getModelResName(pMember))) {
+                MR::validateClipping(pMember);
+            }
+        }
+    }
+}  // namespace
+
 void GeneralMapParts::receiveMsgSwitchBOn() {
     if (!MR::isValidSwitchB(this)) {
         return;
     }
 
     if (!isNerve(GET_NERVE(GeneralMapParts, HostTypeWait))) {
-        _E5 = 0;
+        mIsPaused = 0;
+        return;
     }
 
-    if (MR::isExistActorCamera(mCameraInfo) && !_E4) {
+    if (MR::isExistActorCamera(mCameraInfo) && !mIsCameraEnded) {
         MR::startActorCameraNoTarget(this, mCameraInfo, -1);
     }
 
-    if (MR::getGroupFromArray(this)) {
+    if (MR::getGroupFromArray(this) != nullptr) {
         MR::invalidateClipping(this);
-        bool flag = false;
-        if (isNerve(GET_NERVE(GeneralMapParts, HostTypeWait)) || isNerve(GET_NERVE(GeneralMapParts, HostTypeWaitForPlayerOn))) {
-            flag = true;
+
+        if (::isOtherGroupMembersMoving(this)) {
+            ::validateGroupClipping(this);
         }
     }
+
+    startMove();
 }
-*/
 
 void GeneralMapParts::receiveMsgSwitchBOff() {
     if (MR::isValidSwitchB(this)) {
-        _E5 = 1;
+        mIsPaused = 1;
     }
 }
 
-// GeneralMapParts::broadcastMsgToAllFunctions
+void GeneralMapParts::broadcastMsgToAllFunctions(u32 msg) {
+    std::for_each(mFunctionArray.begin(), mFunctionArray.end(),
+                  std::binder2nd< std::mem_fun1_t< bool, MapPartsFunction, u32 >, u32 >(std::mem_func(&MapPartsFunction::receiveMsg), msg));
+}
 
 bool GeneralMapParts::isFixed() const {
-    if (!mRailMover && !mRotator) {
+    if (mRailMover == nullptr && mRotator == nullptr) {
         return true;
     }
 
@@ -276,22 +329,22 @@ bool GeneralMapParts::isFixed() const {
 }
 
 void GeneralMapParts::startMove() {
-    if (!MR::hasMapPartsMoveStartSignMotion(mSignMotionType)) {
+    if (MR::hasMapPartsMoveStartSignMotion(mSignMotionType)) {
         setNerve(GET_NERVE(GeneralMapParts, HostTypeMoveStart));
     } else {
-        if (mRailPosture) {
+        if (mRailPosture != nullptr) {
             mRailPosture->start();
         }
 
-        if (mRotator) {
+        if (mRotator != nullptr) {
             mRotator->start();
         }
 
-        if (mRailMover) {
+        if (mRailMover != nullptr) {
             mRailMover->start();
         }
 
-        if (mRailRotator) {
+        if (mRailRotator != nullptr) {
             mRailRotator->start();
         }
 
@@ -300,53 +353,57 @@ void GeneralMapParts::startMove() {
 }
 
 void GeneralMapParts::exeWait() {
-    if (isNerve(GET_NERVE(GeneralMapParts, HostTypeMove)) && MR::isExistActorCamera(mCameraInfo) && !_E4) {
+    if (isNerve(GET_NERVE(GeneralMapParts, HostTypeMove)) && MR::isExistActorCamera(mCameraInfo) && !mIsCameraEnded) {
         if (MR::isStep(this, MR::getActorCameraFrames(this, mCameraInfo))) {
             MR::endActorCamera(this, mCameraInfo, false, -1);
-            _E4 = 1;
+            mIsCameraEnded = 1;
         }
     }
 }
 
 void GeneralMapParts::exeWaitForPlayerOn() {
     if (MR::isOnPlayer(MR::getBodySensor(this))) {
-        broadcastMsgToAllFunctions(0xCA);
+        broadcastMsgToAllFunctions(ACTMES_MAPPARTS_ON_PLAYER);
         startMove();
     }
 }
 
 void GeneralMapParts::exeMoveStart() {
     if (MR::isFirstStep(this)) {
-        if (mRotator) {
+        if (mRotator != nullptr) {
             mRotator->startWithSignalMotion();
         }
 
-        if (mRailMover) {
+        if (mRailMover != nullptr) {
             mRailMover->startWithSignalMotion();
         }
     }
 
-    if (MR::isMapPartsSignMotionTypeMoveWait(mSignMotionType) && MR::isOnPlayer(MR::getBodySensor(this))) {
-        if (mRotator) {
+    if (MR::isMapPartsSignMotionTypeMoveWait(mSignMotionType) && !MR::isOnPlayer(MR::getBodySensor(this))) {
+        if (mRotator != nullptr) {
             mRotator->cancelSignalMotion();
         }
 
-        if (mRailMover) {
+        if (mRailMover != nullptr) {
             mRailMover->cancelSignalMotion();
         }
 
         setNerve(GET_NERVE(GeneralMapParts, HostTypeWaitForPlayerOn));
     } else {
         if (MR::isStep(this, MapParts::getMoveStartSignalTime())) {
-            if (mRailMover) {
+            if (mRailMover != nullptr) {
                 mRailMover->start();
             }
 
-            if (mRailRotator) {
+            if (mRailRotator != nullptr) {
                 mRailRotator->start();
             }
 
             setNerve(GET_NERVE(GeneralMapParts, HostTypeMove));
         }
     }
+}
+
+bool GeneralMapParts_FORCE_MATCH(MapPartsFunction* pFunction, u32 msg) {
+    return pFunction->MapPartsFunction::receiveMsg(msg);
 }

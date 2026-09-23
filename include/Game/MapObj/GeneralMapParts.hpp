@@ -14,42 +14,42 @@ class MapPartsRotator;
 
 class GeneralMapParts : public MapParts {
 public:
-    GeneralMapParts(const char*);
+    GeneralMapParts(const char* pName);
 
     virtual ~GeneralMapParts() {
     }
 
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
     virtual void appear();
     virtual void kill();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
-    void initMapPartsFunction(const JMapInfoIter&);
-    void initSensorType(const JMapInfoIter&);
-    void initGravity(const JMapInfoIter&);
+    void initMapPartsFunction(const JMapInfoIter& rIter);
+    void initSensorType(const JMapInfoIter& rIter);
+    void initGravity(const JMapInfoIter& rIter);
     void receiveMsgSwitchBOn();
     void receiveMsgSwitchBOff();
-    void broadcastMsgToAllFunctions(u32);
+    void broadcastMsgToAllFunctions(u32 msg);
     bool isFixed() const;
     void startMove();
     void exeWait();
     void exeWaitForPlayerOn();
     void exeMoveStart();
 
-    ActorCameraInfo* mCameraInfo;                                         // 0x98
-    s32 mMoveConditionType;                                               // 0x9C
-    s32 mSignMotionType;                                                  // 0xA0
-    s32 mShadowType;                                                      // 0xA4
-    MR::Vector< MR::FixedArray< MapPartsFunction*, 8 > > mFunctionArray;  // 0xA8
-    MapPartsAppearController* mAppearController;                          // 0xCC
-    MapPartsRailRotator* mRailRotator;                                    // 0xD0
-    MapPartsRailMover* mRailMover;                                        // 0xD4
-    MapPartsRotator* mRotator;                                            // 0xD8
-    MapPartsRailGuideDrawer* mGuideDrawer;                                // 0xDC
-    MapPartsRailPosture* mRailPosture;                                    // 0xE0
-    u8 _E4;
-    u8 _E5;
+    /* 0x98 */ ActorCameraInfo* mCameraInfo;
+    /* 0x9C */ s32 mMoveConditionType;
+    /* 0xA0 */ s32 mSignMotionType;
+    /* 0xA4 */ s32 mShadowType;
+    /* 0xA8 */ MR::Vector< MR::FixedArray< MapPartsFunction*, 8 > > mFunctionArray;
+    /* 0xCC */ MapPartsAppearController* mAppearController;
+    /* 0xD0 */ MapPartsRailRotator* mRailRotator;
+    /* 0xD4 */ MapPartsRailMover* mRailMover;
+    /* 0xD8 */ MapPartsRotator* mRotator;
+    /* 0xDC */ MapPartsRailGuideDrawer* mGuideDrawer;
+    /* 0xE0 */ MapPartsRailPosture* mRailPosture;
+    /* 0xE4 */ u8 mIsCameraEnded;
+    /* 0xE5 */ u8 mIsPaused;
 };

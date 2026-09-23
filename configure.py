@@ -1896,7 +1896,7 @@ config.libs = [
             Object(Matching, "Game/MapObj/WormEatenPlanet.cpp"),
             Object(Matching, "Game/MapObj/YellowChip.cpp"),
             Object(NonMatching, "Game/MapObj/MapParts.cpp"),
-            Object(NonMatching, "Game/MapObj/GeneralMapParts.cpp"),
+            Object(Matching, "Game/MapObj/GeneralMapParts.cpp"),
             Object(NonMatching, "Game/MapObj/FloaterFloatingForce.cpp"),
             Object(NonMatching, "Game/MapObj/FloaterFloatingForceTypeNormal.cpp"),
             Object(NonMatching, "Game/MapObj/FloaterFloatingForceTypeSpring.cpp"),

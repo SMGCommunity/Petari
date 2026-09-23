@@ -6245,14 +6245,14 @@ Game/MapObj/MapParts.cpp:
 Game/MapObj/GeneralMapParts.cpp:
 	.text       start:0x8025726C end:0x8025834C
 	.ctors      start:0x8052EF40 end:0x8052EF44
-	.data       start:0x805A69A8 end:0x805A6AC0
+	.data       start:0x805A69A8 end:0x805A6AB8
 	.sbss       start:0x806B5AD8 end:0x806B5AE8
 	.sdata2     start:0x806BE808 end:0x806BE810
 
 Game/MapObj/FloaterFloatingForce.cpp:
 	.text       start:0x8025834C end:0x802585D0
 	.rodata     start:0x80534D28 end:0x80534D30
-	.data       start:0x805A6AC0 end:0x805A6B08
+	.data       start:0x805A6AB8 end:0x805A6B08
 	.sdata2     start:0x806BE810 end:0x806BE818
 
 Game/MapObj/FloaterFloatingForceTypeNormal.cpp:
