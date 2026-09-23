@@ -1938,7 +1938,7 @@ config.libs = [
             Object(NonMatching, "Game/NPC/KinopioAstro.cpp"),
             Object(Matching, "Game/NPC/KoopaJr.cpp"),
             Object(NonMatching, "Game/NPC/LuigiNPC.cpp"),
-            Object(NonMatching, "Game/NPC/MiiDatabase.cpp"),
+            Object(Matching, "Game/NPC/MiiDatabase.cpp"),
             Object(Matching, "Game/NPC/MiiFaceIcon.cpp"),
             Object(Matching, "Game/NPC/MiiFaceIconHolder.cpp"),
             Object(Matching, "Game/NPC/MiiFaceParts.cpp"),

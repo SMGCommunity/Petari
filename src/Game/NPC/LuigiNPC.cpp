@@ -122,8 +122,8 @@ void LuigiNPC::init(const JMapInfoIter& rIter) {
     }
 
     NPCActor::initialize(rIter, caps);
-    MR::registerBranchFunc(mMsgCtrl, TalkMessageFunc(this, &LuigiNPC::branchFunc));
-    MR::registerEventFunc(mMsgCtrl, TalkMessageFunc(this, &LuigiNPC::eventFunc));
+    MR::registerBranchFunc(getMsgCtrl(), TalkMessageFunc(this, &LuigiNPC::branchFunc));
+    MR::registerEventFunc(getMsgCtrl(), TalkMessageFunc(this, &LuigiNPC::eventFunc));
     setWaitAction();
     setNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvWait));
 
@@ -161,7 +161,7 @@ void LuigiNPC::init(const JMapInfoIter& rIter) {
         mTakeOutStar = new TakeOutStar(this, "TakeOutStar", "TakeOutStar", GET_NERVE(LuigiNPC, LuigiNPCNrvTakeOutStar));
     }
 
-    bool stat = mType > Type_Afraid && mType < Type_Count;
+    bool stat = mType > Type_Normal && mType < Type_Count;
 
     if (!stat) {
         return;
@@ -227,8 +227,9 @@ void LuigiNPC::setWaitAction() {
 
 void LuigiNPC::setAfraidAction() {
     _128 = false;
-    const char* afraidWait = "AfraidWait";
+    const char* afraidWait;
     const char* afraid = "Afraid";
+    afraidWait = "AfraidWait";
     const char* afraidTalk = "AfraidTalk";
     mParam._14 = afraidWait;
     mParam._18 = afraid;
