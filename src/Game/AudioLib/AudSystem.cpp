@@ -83,8 +83,8 @@ namespace {
         AudDopplerAudible< 4 >::newMemPool(initJAI.mMaxNumSe);
         AudSeStrategy::newMemPool(initJAI.mMaxNumSe);
         SpkSystem::newSoundMemPool(64);
-        AudMe::newMemPool(32);       // FIXME: size
-        AudMeTrack::newMemPool(96);  // FIXME: size
+        AudMe::newMemPool(32);
+        AudMeTrack::newMemPool(96);
 
         return initJAI.mMaxNumSeq;
     }
@@ -716,7 +716,6 @@ void AudSystem::initVolumeSetting() {
 }
 
 void AudSystem::initCategoryArrangement() {
-    // FIXME: struct shouldnt be cleared beforehand!
     JAISeCategoryArrangement arrangement = {
         AudParams::arrangeSE_SY, AudParams::arrangeSE_PV, AudParams::arrangeSE_PM, AudParams::arrangeSE_BV,  AudParams::arrangeSE_BM,
         AudParams::arrangeSE_OJ, AudParams::arrangeSE_AT, AudParams::arrangeSE_DM, AudParams::arrangeSE_EV,  AudParams::arrangeSE_EM,

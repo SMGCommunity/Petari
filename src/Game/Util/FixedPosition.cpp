@@ -18,9 +18,6 @@ FixedPosition::FixedPosition(MtxPtr pBaseMtx, const TVec3f& rLocalTrans, const T
 }
 
 void FixedPosition::calc() {
-    // FIXME: matrix creation inline problem
-    // https://decomp.me/scratch/Q7A0B
-
     mMtx.identity();
     mMtx.setRotate(mLocalRotate * PI_180);
     mMtx.setTrans(mLocalTrans);

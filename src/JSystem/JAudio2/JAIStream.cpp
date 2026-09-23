@@ -19,7 +19,6 @@ static void JAIStream_JASAramStreamCallback_(u32 type, JASAramStream* aramStream
 }
 
 JAIStream::JAIStream(JAIStreamMgr* streamMgr_, JAISoundStrategyMgr< JAIStream >* soundStrategyMgr_) : JSULink< JAIStream >(this) {
-    // FIXME: out-of-order reg load
     mIsStreamStopped = false;
     mPrepareState = 0;
     soundStrategyMgr = soundStrategyMgr_;

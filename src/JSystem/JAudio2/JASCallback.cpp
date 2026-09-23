@@ -16,7 +16,6 @@ bool JASCallbackMgr::regist(JASCallback* pCallback, void* pArgument) {
 }
 
 s32 JASCallbackMgr::reject(JASCallback* pCallback, void* pArgument) {
-    // FIXME: regswap
     s32 rejectNum = 0;
     JASCriticalSection criticalSection;
     for (s32 i = 0; i < JASCALLBACK_MAX_CALLBACKS; i++) {

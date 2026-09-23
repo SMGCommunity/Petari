@@ -769,9 +769,6 @@ void BezierSurface::drawTrianglePatchPosNorm() const {
 }
 
 void BezierSurface::drawTrianglePatchPosST() const {
-    // FIXME: TVec2 operation shenanigans
-    // https://decomp.me/scratch/yUck9
-
     TVec3f vertexBuffer[36];
 
     const u16* vertexOrder = ::sTrianglePatchTableGroup[mDivideLevel].mTriangleStripOrder;
@@ -800,9 +797,6 @@ void BezierSurface::drawTrianglePatchPosST() const {
 }
 
 void BezierSurface::drawTrianglePatchPosNormST() const {
-    // FIXME: TVec2 operation shenanigans
-    // https://decomp.me/scratch/l1R5l
-
     TVec3f vertexBuffer[36];
     TVec3f normalBuffer[36];
 
