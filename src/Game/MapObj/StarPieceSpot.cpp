@@ -23,7 +23,7 @@ void StarPieceSpot::emit() {
 void StarPieceSpot::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
 
-    s32 arg0 = -1;
+    s32 arg0 = 5;
     MR::getJMapInfoArg0NoInit(rIter, &arg0);
     MR::declareStarPiece(this, arg0);
 
