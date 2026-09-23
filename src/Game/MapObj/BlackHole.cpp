@@ -2,16 +2,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util/ActorCameraUtil.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/ActorSwitchUtil.hpp"
-#include "Game/Util/DemoUtil.hpp"
-#include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/JMapUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/MtxUtil.hpp"
-#include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvBlackHole {
     NEW_NERVE(BlackHoleNrvWait, BlackHole, Wait);
@@ -89,6 +80,26 @@ bool BlackHole::tryStartDemoCamera() {
     return false;
 }
 
+void BlackHole::calcAndSetBaseMtx() {
+    LiveActor::calcAndSetBaseMtx();
+    TVec3f dirToCam;
+    dirToCam.sub(MR::getCamPos(), mPosition);
+    TVec3f camYDir;
+    camYDir.set(MR::getCamYdir());
+
+    if (MR::normalizeOrZero(&dirToCam)) {
+        return;
+    }
+
+    if (MR::isSameDirection(dirToCam, camYDir)) {
+        return;
+    }
+
+    MR::makeMtxFrontUpPos(&_D8, dirToCam, camYDir, mPosition);
+
+    _D8.scaleXYZ(mScale.x);
+}
+
 void BlackHole::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (!isNerve(GET_NERVE(BlackHole, BlackHoleNrvWait))) {
         return;
@@ -147,7 +158,7 @@ void BlackHole::initModel() {
 void BlackHole::initCubeBox() {
     MR::makeMtxRotate(_A8, mRotation.x, mRotation.y, mRotation.z);
     _A8.setTrans(mPosition);
-    
+
     _A4 = new TBox3f();
     TVec3f vecStart(0.5f * (1000.0f * -mScale.x), 0.5f * (1000.0f * -mScale.y), 0.5f * (1000.0f * -mScale.z));
     TVec3f vecEnd(0.5f * (1000.0f * mScale.x), 0.5f * (1000.0f * mScale.y), 0.5f * (1000.0f * mScale.z));
