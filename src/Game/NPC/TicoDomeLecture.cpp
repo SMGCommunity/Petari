@@ -24,8 +24,8 @@ TicoDomeLecture::TicoDomeLecture(const char* pName) : LiveActor(pName), _8C(gZer
 
 void TicoDomeLecture::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    _8C.set< f32 >(mPosition);
-    _98.set< f32 >(mRotation);
+    _8C.set(mPosition);
+    _98.set(mRotation);
     initModelManagerWithAnm("Tico", nullptr, false);
     MR::connectToSceneNpc(this);
     MR::initLightCtrl(this);
@@ -41,8 +41,8 @@ void TicoDomeLecture::init(const JMapInfoIter& rIter) {
 }
 
 void TicoDomeLecture::appear() {
-    mPosition.set< f32 >(_8C);
-    mRotation.set< f32 >(_98);
+    mPosition.set(_8C);
+    mRotation.set(_98);
     MR::offSwitchDead(this);
     LiveActor::appear();
     setNerve(GET_NERVE(TicoDomeLecture, TicoDomeLectureNrvWait));

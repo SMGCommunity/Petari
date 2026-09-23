@@ -32,18 +32,18 @@ void SoundEmitterCube::movement() {
     switch (mObjArg0) {
     case 0:
     case 3:
-        _40.set< f32 >(MR::getCameraWatchPos());
+        _40.set(MR::getCameraWatchPos());
         break;
     default:
-        _40.set< f32 >(AudMicWrap::getMicPos());
+        _40.set(AudMicWrap::getMicPos());
         break;
     }
 
     TDirBox3f worldBox;
     MR::calcCubeWorldBox(&worldBox, this);
     TBox3f bounds;
-    bounds.i.set< f32 >(worldBox._24);
-    bounds.f.set< f32 >(worldBox._24);
+    bounds.i.set(worldBox._24);
+    bounds.f.set(worldBox._24);
     TVec3f cornerZ;
     TVec3f cornerY;
     TVec3f cornerX;

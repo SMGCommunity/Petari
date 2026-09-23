@@ -8,7 +8,6 @@
 #include <JSystem/JGeometry/TUtil.hpp>
 #include <JSystem/JMath.hpp>
 
-
 void CrystalCage_FORCE_MATCH_SDATA2() {
     (void)1.0f;
     (void)0.0f;
@@ -36,7 +35,7 @@ void CrystalCage::init(const JMapInfoIter& rIter) {
     MR::calcGravity(this);
     initModel(obj_name);
     MR::connectToSceneCrystal(this);
-    _E8.set< f32 >(mPosition);
+    _E8.set(mPosition);
     initHitSensor(1);
     MR::addHitSensorPosMapObj(this, "body", 8, (130.0f * mScale.x), &_E8, TVec3f(0.0f, 0.0f, 0.0f));
 
@@ -139,7 +138,7 @@ void CrystalCage::initAfterPlacement() {
         stack_2C.scale((-(2.0f * val) * mScale.x), up_vec);
 
         if (!MR::getFirstPolyOnLineToMapExceptActor(&_F8, 0, stack_20, stack_2C, this)) {
-            _F8.set< f32 >(mPosition);
+            _F8.set(mPosition);
         }
 
         if (mHasBinding) {
@@ -234,7 +233,7 @@ bool CrystalCage::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
 
 void CrystalCage::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    _DC.set< f32 >(mPosition);
+    _DC.set(mPosition);
 
     if (MR::isEqualObjectName(rIter, "CrystalCageS")) {
         mCrystalCageType = 0;
@@ -304,7 +303,7 @@ void CrystalCage::exeWait() {
             v9.scale(mRumbleCalc->_C.y, _D0);
             mPosition.add(_DC, v9);
         } else {
-            mPosition.set< f32 >(_DC);
+            mPosition.set(_DC);
         }
     }
 
@@ -327,7 +326,7 @@ void CrystalCage::exeBreak() {
             MR::hideModel(this);
         } else {
             MR::setBvaFrameAndStop(this, mCrystalCageType == 2 ? 2.0f : 1.0f);
-            mPosition.set< f32 >(_F8);
+            mPosition.set(_F8);
         }
 
         if (mHasBinding) {

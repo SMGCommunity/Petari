@@ -94,7 +94,7 @@ void DynamicJointCtrlNode::update(LiveActor* pActor, const DynamicJointCtrlNode*
     TVec3f direction(offset);
 
     if (MR::isNearZero(direction)) {
-        direction.set< f32 >(pParent->_1C);
+        direction.set(pParent->_1C);
     } else {
         MR::normalize(&direction);
     }
@@ -123,7 +123,7 @@ bool DynamicJointCtrlNode::updateJointMtxCallBack(TPos3f* pMtx, const JointContr
         return false;
     }
 
-    _1C.set< f32 >(axis);
+    _1C.set(axis);
     MR::normalize(&_1C);
 
     f32 rate = mParentControl->mControlRate->_0;
@@ -174,7 +174,7 @@ void DynamicJointCtrl::init() {
                 length = pos.distance(previousPos);
             }
 
-            previousPos.set< f32 >(pos);
+            previousPos.set(pos);
         }
 
         mCtrlNodes[i] = new DynamicJointCtrlNode(this, mtx, length);

@@ -96,7 +96,7 @@ void NoteFairy::init(const JMapInfoIter& rIter) {
         }
     }
 
-    _8C.set< f32 >(mPosition);
+    _8C.set(mPosition);
     mTimeLimit *= 60;
     mHasDemo = MR::tryRegisterDemoCast(this, rIter);
     initRailRider(rIter);
@@ -151,12 +151,12 @@ void NoteFairy::init(const JMapInfoIter& rIter) {
         if (_D1) {
             MR::calcRailPointPos(&stack_24, this, i);
         } else {
-            stack_24.set< f32 >(MR::getRailPos(this));
+            stack_24.set(MR::getRailPos(this));
             MR::moveCoord(this, mNoteCoord);
         }
 
         mNoteArray[i] = new Note("音符", MR::getRailDirection(this), this);
-        mNoteArray[i]->mPosition.set< f32 >(stack_24);
+        mNoteArray[i]->mPosition.set(stack_24);
         mNoteArray[i]->initWithoutIter();
         mNoteArray[i]->mCounter = mTimeLimit;
     }

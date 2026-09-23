@@ -219,7 +219,7 @@ void BombBird::exeFlyOnRailSearch() {
             if (mHeldBomb) {
                 TVec3f scale;
                 MR::copyJointScale(this, "BombPos", &scale);
-                mHeldBomb->mScale.set< f32 >(scale);
+                mHeldBomb->mScale.set(scale);
             }
         }
 
@@ -328,7 +328,7 @@ void BombBird::exeEscape() {
         MR::moveAndTurnToDirection(this, &mFront, escapeDirection, ::hFlyVel, ::hGravity, ::hDamp, ::hTurnLimitRadian);
     }
 
-    mVelocity.set< f32 >(mFront * ::hEscapeVel - mGravity * ::hEscapeUpVel);
+    mVelocity.set(mFront * ::hEscapeVel - mGravity * ::hEscapeUpVel);
 
     if (MR::isActionEnd(this)) {
         setNerve(GET_NERVE(BombBird, HostTypeNrvEscape));
@@ -380,7 +380,7 @@ void BombBird::exeSwoonStart() {
     MR::moveAndTurnToPlayer(this, &mFront, param->_0, param->_4, param->_8, param->_C);
     TVec3f area(0, 0, 0);
     if (MR::calcVelocityAreaOrRailMoveOnGround(&area, this)) {
-        mVelocity.set< f32 >(area * ::hShiftingSandVel);
+        mVelocity.set(area * ::hShiftingSandVel);
     }
 
     if (MR::isActionEnd(this)) {
@@ -403,7 +403,7 @@ void BombBird::exeSwoon() {
     MR::moveAndTurnToPlayer(this, &mFront, ::hOnGroundParam._0, ::hOnGroundParam._4, ::hOnGroundParam._8, ::hOnGroundParam._C);
     TVec3f area(0, 0, 0);
     if (MR::calcVelocityAreaOrRailMoveOnGround(&area, this)) {
-        mVelocity.set< f32 >(area * ::hShiftingSandVel);
+        mVelocity.set(area * ::hShiftingSandVel);
     }
 
     if (MR::isGreaterStep(this, ::hSwoonTime)) {
@@ -427,7 +427,7 @@ void BombBird::exeSwoonEnd() {
 
     TVec3f area(0, 0, 0);
     if (MR::calcVelocityAreaOrRailMoveOnGround(&area, this)) {
-        mVelocity.set< f32 >(area * ::hShiftingSandVel);
+        mVelocity.set(area * ::hShiftingSandVel);
     }
 
     if (MR::isGreaterEqualStep(this, ::hSwoonEndFlyStartTime)) {

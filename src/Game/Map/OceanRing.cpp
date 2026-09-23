@@ -143,7 +143,7 @@ bool OceanRing::calcWaterInfo(const TVec3f& a1, const TVec3f& a2, WaterInfo* pIn
     f32 v9 = (mWidthMax * calcCurrentWidthRate(nearestPos));
     TVec3f streamVec;
     calcStreamVec(a1, nearestPos, &streamVec);
-    pInfo->mStreamVec.set< f32 >(streamVec);
+    pInfo->mStreamVec.set(streamVec);
     pInfo->mWaveHeight = calcWaveHeight(a1, nearestPos, &pInfo->mSurfaceNormal);
 
     TVec3f v21(a1);
@@ -173,13 +173,13 @@ bool OceanRing::calcWaterInfo(const TVec3f& a1, const TVec3f& a2, WaterInfo* pIn
         TVec3f v18(a2);
         v18.scale(v9);
         v18.add(v24);
-        pInfo->mEdgePos.set< f32 >(v18);
+        pInfo->mEdgePos.set(v18);
     } else {
         MR::normalize(&v19);
         v19.scale(v9);
         v19.add(v24);
         pInfo->mEdgeDistance = v19.distance(a1);
-        pInfo->mEdgePos.set< f32 >(v19);
+        pInfo->mEdgePos.set(v19);
     }
 
     return true;

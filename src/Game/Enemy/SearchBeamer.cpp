@@ -375,7 +375,7 @@ bool SearchBeamer::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
 
 void SearchBeamer::updateHitSensor(HitSensor* pSensor) {
     if (!pSensor->mValidByHost) {
-        pSensor->mPosition.set< f32 >(mBeamStart);
+        pSensor->mPosition.set(mBeamStart);
         return;
     }
 
@@ -466,7 +466,7 @@ void SearchBeamer::updateBeamShadow() {
 
 void SearchBeamer::initBeamPos() {
     MR::copyJointPos(this, "Core", &mBeamStart);
-    mBeamEnd.set< f32 >(mBeamStart);
+    mBeamEnd.set(mBeamStart);
     MR::hideMaterial(this, "lambert5_v");
 }
 

@@ -285,7 +285,7 @@ bool BombTeresa::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* p
         MR::calcSensorDirectionNormalize(&uVar1, pSender, pReceiver);
         TVec3f v16(uVar1);
         v16 *= 20.0f;
-        mVelocity.set< f32 >(v16);
+        mVelocity.set(v16);
         setNerve(GET_NERVE(BombTeresa, BombTeresaNrvShock));
         return false;
     }

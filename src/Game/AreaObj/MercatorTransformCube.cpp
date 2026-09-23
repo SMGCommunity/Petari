@@ -91,7 +91,7 @@ void MercatorTransformCube::convertTransAndRotate(TVec3f* pPos, TPos3f* pRotatio
     }
 
     pRotation->concat(rotation, *pRotation);
-    pPos->set< f32 >(point);
+    pPos->set(point);
 }
 
 f32 MercatorTransformCube::getSphereRadius() const {
@@ -120,8 +120,8 @@ void MercatorTransformCube::calcLocalBoxSize(TVec3f* pPos) const {
     TVec3f max;
     TVec3f min;
 
-    min.set< f32 >(box->i);
-    max.set< f32 >(box->f);
+    min.set(box->i);
+    max.set(box->f);
 
     pPos->sub(max, min);
 }
@@ -151,8 +151,8 @@ namespace MR {
         rotation.concat(sphereRotation, rotation);
         rotation.getEulerXYZ(angles);
         angles.set< f32 >(57.29577951308232f * angles.x, 57.29577951308232f * angles.y, 57.29577951308232f * angles.z);
-        pActor->mPosition.set< f32 >(pos);
-        pActor->mRotation.set< f32 >(angles);
+        pActor->mPosition.set(pos);
+        pActor->mRotation.set(angles);
         getJMapInfoScale(rIter, &pActor->mScale);
     }
 
@@ -299,13 +299,13 @@ namespace MR {
         TVec3f savedPos(pActor->mPosition);
         TVec3f placementPos;
         getJMapInfoTrans(rIter, &placementPos);
-        pActor->mPosition.set< f32 >(placementPos);
+        pActor->mPosition.set(placementPos);
         MapPartsRailMover* pMover = new MapPartsRailMover(pActor);
         pMover->init(rIter);
         if (setRailPos) {
             ::calcRailPosForMercator(&pActor->mPosition, pActor, getRailCoord(pActor));
         } else {
-            pActor->mPosition.set< f32 >(savedPos);
+            pActor->mPosition.set(savedPos);
         }
 
         return pMover;

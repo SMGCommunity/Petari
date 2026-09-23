@@ -458,7 +458,7 @@ void Kanina::calcAndSetBaseMtx() {
     baseMtx.getQuat(quat);
 
     if (isNerve(GET_NERVE(Kanina, HostTypeDamageFireBall))) {
-        quat.set< f32 >(_A4);
+        quat.set(_A4);
     } else {
         quat.slerp(_A4, ::sPoseLerpRate);
     }

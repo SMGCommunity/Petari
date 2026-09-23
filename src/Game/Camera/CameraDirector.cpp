@@ -541,8 +541,8 @@ void CameraDirector::startTalkCamera(const TVec3f& rPosition, const TVec3f& rUp,
     CameraParamChunkEvent* chunk = getEventParameter(0, ::sTalkCameraName);
 
     if (chunk != nullptr) {
-        chunk->mGeneralParam->mWPoint.set< f32 >(rPosition);
-        chunk->mGeneralParam->mUp.set< f32 >(rUp);
+        chunk->mGeneralParam->mWPoint.set(rPosition);
+        chunk->mGeneralParam->mUp.set(rUp);
 
         CameraGeneralParam* generalParam = chunk->mGeneralParam;
         generalParam->mAxis.x = axisX;

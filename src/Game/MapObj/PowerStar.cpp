@@ -157,7 +157,7 @@ void PowerStar::appear() {
 }
 
 void PowerStar::makeActorAppeared() {
-    mInitPosition.set< f32 >(mPosition);
+    mInitPosition.set(mPosition);
     initPosture();
     LiveActor::makeActorAppeared();
 }
@@ -181,10 +181,10 @@ void PowerStar::setDemoAppearPos(const TVec3f& rVec) {
 
     if (isGroupExist) {
         mCameraActor = getNearestAppearPoint(rVec);
-        mAppearPosition.set< f32 >(mCameraActor->mPosition);
+        mAppearPosition.set(mCameraActor->mPosition);
     }
 
-    mPosition.set< f32 >(rVec);
+    mPosition.set(rVec);
 }
 
 bool PowerStar::isEndAppearDemo() const {
@@ -355,8 +355,8 @@ void PowerStar::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg1NoInit(rIter, &_125);
     MR::getJMapInfoArg2NoInit(rIter, &_126);
     MR::getJMapInfoArg4NoInit(rIter, &_127);
-    mAppearPosition.set< f32 >(mPosition);
-    mInitRotation.set< f32 >(mRotation);
+    mAppearPosition.set(mPosition);
+    mInitRotation.set(mRotation);
     MR::registerPowerStar(this, mPowerStarId);
     MR::joinToGroupArray(this, rIter, "パワースター出現ポイントグループ", 0x10);
 

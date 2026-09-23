@@ -636,7 +636,7 @@ void JPADrawLine(JPAEmitterWorkData* pWork, JPABaseParticle* pParticle) {
 
     TVec3f position(pParticle->mPosition);
     TVec3f end;
-    end.set< f32 >(pParticle->mVelocity);
+    end.set(pParticle->mVelocity);
     if (MR::isNearZero(end)) {
         return;
     }
@@ -691,7 +691,7 @@ void JPADrawStripe(JPAEmitterWorkData* pWork) {
     for (JPANode< JPABaseParticle >*pNode = pFirst, *pEnd = pWork->mpAlivePtcl->getEnd(); pNode != pEnd;) {
         JPABaseParticle* pParticle = pNode->getObject();
         pWork->mpCurNode = pNode;
-        position.set< f32 >(pParticle->mPosition);
+        position.set(pParticle->mPosition);
         f32 sin = JMASSin(pParticle->mRotateAngle);
         f32 cos = JMASCos(pParticle->mRotateAngle);
         vertices[0].set(-pParticle->mParticleScaleX * leftWidth, 0.0f, 0.0f);
@@ -780,7 +780,7 @@ void JPADrawStripeX(JPAEmitterWorkData* pWork) {
     for (JPANode< JPABaseParticle >*pNode = pFirst, *pEnd = pWork->mpAlivePtcl->getEnd(); pNode != pEnd;) {
         JPABaseParticle* pParticle = pNode->getObject();
         pWork->mpCurNode = pNode;
-        position.set< f32 >(pParticle->mPosition);
+        position.set(pParticle->mPosition);
         f32 sin = JMASSin(pParticle->mRotateAngle);
         f32 cos = JMASCos(pParticle->mRotateAngle);
         vertices[0].set(-pParticle->mParticleScaleX * leftWidth, 0.0f, 0.0f);
@@ -834,7 +834,7 @@ void JPADrawStripeX(JPAEmitterWorkData* pWork) {
     for (JPANode< JPABaseParticle >*pNode = pFirst, *pEnd = pWork->mpAlivePtcl->getEnd(); pNode != pEnd;) {
         JPABaseParticle* pParticle = pNode->getObject();
         pWork->mpCurNode = pNode;
-        position.set< f32 >(pParticle->mPosition);
+        position.set(pParticle->mPosition);
         f32 sin = -JMASSin(pParticle->mRotateAngle);
         f32 cos = JMASCos(pParticle->mRotateAngle);
         vertices[0].set(-pParticle->mParticleScaleY * topWidth, 0.0f, 0.0f);

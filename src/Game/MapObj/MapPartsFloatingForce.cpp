@@ -213,7 +213,7 @@ void MapPartsFloatingForce::exeMoveSpring() {
     }
 
     updateVelocitySpring();
-    mHost->mVelocity.set< f32 >(_50);
+    mHost->mVelocity.set(_50);
     tryReturn();
 }
 

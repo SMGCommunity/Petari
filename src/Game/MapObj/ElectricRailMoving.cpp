@@ -147,9 +147,9 @@ void ElectricRailMoving::initPoints() {
         MR::calcRailStartPointPos(&startPos, this);
         MR::calcRailEndPointPos(&endPos, this);
 
-        mMovingPoints[v4++].mPosition.set< f32 >(startPos);
+        mMovingPoints[v4++].mPosition.set(startPos);
         u32 v6 = v4 + 1;
-        mMovingPoints[v4].mPosition.set< f32 >(endPos);
+        mMovingPoints[v4].mPosition.set(endPos);
 
         if (mStackHeight > 1) {
             TVec3f g;
@@ -157,20 +157,20 @@ void ElectricRailMoving::initPoints() {
             g.scale(-100.0f);
 
             TVec3f v16;
-            v16.set< f32 >(startPos);
+            v16.set(startPos);
             u32 v8 = v6;
 
             for (s32 i = 1; i < mStackHeight; i++) {
                 v16.add(g);
-                mMovingPoints[v6++].mPosition.set< f32 >(v16);
+                mMovingPoints[v6++].mPosition.set(v16);
             }
 
             TVec3f v18;
             MR::calcGravityVector(this, v18, &g, nullptr, 0);
-            v16.set< f32 >(g * -100.0f);
+            v16.set(g * -100.0f);
 
             for (s32 i = 1; i < mStackHeight; i++) {
-                mMovingPoints[v6++].mPosition.set< f32 >(g + v16);
+                mMovingPoints[v6++].mPosition.set(g + v16);
             }
         }
     }

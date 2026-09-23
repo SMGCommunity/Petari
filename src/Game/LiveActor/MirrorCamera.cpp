@@ -36,8 +36,8 @@ namespace {
 }  // namespace
 
 void MirrorCamera::setMirrorMapInfo(const TVec3f& rNormal, const TVec3f& rPosition) {
-    _18.set< f32 >(rNormal);
-    _C.set< f32 >(rPosition);
+    _18.set(rNormal);
+    _C.set(rPosition);
     _24 = -PSVECDotProduct(_18, _C);
 }
 
@@ -99,7 +99,7 @@ void MirrorCamera::updateModelTexMtx() {
 
 f32 MirrorCamera::getDistance(const TVec3f& rPosition) const {
     JGeometry::TPartition3< f32 > plane;
-    plane.mNormal.set< f32 >(_18);
+    plane.mNormal.set(_18);
     plane.mDot = plane.mNormal.dot(_C);
     return plane.mNormal.dot(rPosition) - plane.mDot;
 }

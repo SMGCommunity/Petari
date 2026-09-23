@@ -32,7 +32,7 @@ void PunchingKinoko::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("PunchingKinoko", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObj(this);
     MR::calcGravity(this);
-    _9C.set< f32 >(mPosition);
+    _9C.set(mPosition);
 
     mGroundChecker = new GroundChecker("頭コリジョン", 70.0f, 0.0f);
     MR::calcPositionUpOffset(&mGroundChecker->mPosition, this, 130.0f);
@@ -424,7 +424,7 @@ void PunchingKinoko::exePunched() {
     MR::attenuateVelocity(mGroundChecker, 0.99f);
     HitSensor* sensor = getSensor("Head");
     MR::sendMsgEnemyAttackToBindedSensor(mGroundChecker, sensor);
-    _9C.set< f32 >(mGroundChecker->mPosition);
+    _9C.set(mGroundChecker->mPosition);
 
     if (MR::isGreaterStep(this, 5)) {
         setNerve(GET_NERVE(PunchingKinoko, PunchingKinokoNrvPunchedBrake));
@@ -435,7 +435,7 @@ void PunchingKinoko::exePunchedBrake() {
     addVelocityKeepHeight();
     MR::attenuateVelocity(mGroundChecker, 0.9f);
     MR::startLevelSound(this, "SE_OJ_LV_PNC_KINOKO_PUNCHED");
-    _9C.set< f32 >(mGroundChecker->mPosition);
+    _9C.set(mGroundChecker->mPosition);
     if (!MR::isGreaterStep(this, 40)) {
         HitSensor* sensor = getSensor("Head");
         if (!MR::sendMsgEnemyAttackToBindedSensor(mGroundChecker, sensor)) {
@@ -466,7 +466,7 @@ void PunchingKinoko::exeCrushed() {
             MR::getShadowProjectionPos(this, "頭", &mGroundChecker->mPosition);
             mGroundChecker->mPosition.add(_A8 * 20.0f);
         } else {
-            _A8.set< f32 >(mGravity);
+            _A8.set(mGravity);
         }
 
         MR::offBind(mGroundChecker);

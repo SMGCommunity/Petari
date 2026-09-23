@@ -94,8 +94,8 @@ void DinoPackun::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
     MR::makeQuatAndFrontFromRotate(&_BC, &_E8, this);
-    _CC.set< f32 >(_BC);
-    _DC.set< f32 >(mPosition);
+    _CC.set(_BC);
+    _DC.set(mPosition);
     initSound(8, false);
     MR::onCalcGravity(this);
     initHitSensor(3);
@@ -446,7 +446,7 @@ void DinoPackun::updateCameraInfo() {
             MR::vecBlend(v6, v4, &v6, (0.60f * _108));
         }
 
-        mCameraVec.set< f32 >(v6);
+        mCameraVec.set(v6);
         mCamTargetMtx->mMatrix.setTrans(v6);
     }
 }
@@ -479,7 +479,7 @@ bool DinoPackun::isSensorEgg(const HitSensor* pSensor) const {
 }
 
 void DinoPackun::resetPosition() {
-    _BC.set< f32 >(_CC);
+    _BC.set(_CC);
     _BC.getZDir(_E8);
     MR::resetPosition(this, _DC);
     MR::zeroVelocity(this);

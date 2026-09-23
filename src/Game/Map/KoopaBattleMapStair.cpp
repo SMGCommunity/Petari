@@ -137,7 +137,7 @@ f32 KoopaBattleMapStair::calcAndSetTargetPos(TVec3f* pPos, const TVec3f& a2) {
     MR::calcActorAxis(&axisX, &axisY, &axisZ, this);
     TVec3f v38 = (axisY * ::sHalfHeight) + mPosition;
     f32 v20 = v38.distance(a2);
-    pPos->set< f32 >(v38);
+    pPos->set(v38);
     s32 val;
 
     if (mIsBig) {
@@ -165,7 +165,7 @@ f32 KoopaBattleMapStair::calcAndSetTargetPos(TVec3f* pPos, const TVec3f& a2) {
         }
     }
 
-    _AC.set< f32 >(*pPos);
+    _AC.set(*pPos);
 
     return v20;
 }

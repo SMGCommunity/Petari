@@ -113,7 +113,7 @@ void DinoPackunBall::requestLockPosition() {
 }
 
 void DinoPackunBall::requestUnLockPosition() {
-    mVelocity.set< f32 >(_118);
+    mVelocity.set(_118);
     setNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvRebound));
 }
 
@@ -163,7 +163,7 @@ void DinoPackunBall::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         MR::calcSensorDirection(&v12, pReceiver, pSender);
         MR::normalizeOrZero(&v12);
         f32 v7 = mVelocity.length();
-        mVelocity.set< f32 >((v12 * v7) * 0.3f);
+        mVelocity.set((v12 * v7) * 0.3f);
         setNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvRebound));
     }
 }
@@ -220,7 +220,7 @@ bool DinoPackunBall::tryRebound() {
     if (MR::sendMsgToBindedSensor(ACTMES_DINO_PACKUN_BALL_ATTACK, getSensor(nullptr))) {
         TVec3f v6(*MR::getBindedFixReactionVector(this));
         MR::normalizeOrZero(&v6);
-        _118.set< f32 >(v6 * 40.0f);
+        _118.set(v6 * 40.0f);
         MR::zeroVelocity(this);
         setNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvRebound));
         return true;
@@ -287,7 +287,7 @@ void DinoPackunBall::exeReverse() {
     TVec3f v5(MR::getSensorPos(mWeakSensor));
     v5.sub(mPosition);
     TVec3f v6;
-    v6.set< f32 >(v5);
+    v6.set(v5);
     MR::normalizeOrZero(&v6);
     mVelocity.add(v6 * 8.0f);
     MR::attenuateVelocity(this, 0.98f);

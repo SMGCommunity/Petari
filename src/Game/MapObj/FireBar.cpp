@@ -271,6 +271,6 @@ void FireBar::fixFireBarBall() {
             final_pos.add(scaled);
         }
 
-        mFireBalls[i]->mPosition.set< f32 >(final_pos);
+        mFireBalls[i]->mPosition.set(final_pos);
     }
 }

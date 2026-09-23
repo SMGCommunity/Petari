@@ -422,9 +422,9 @@ void SkeletalFishGuard::initSensor() {
 
 void SkeletalFishGuard::calcTransAndFront() {
     calcTarget(&_E8, &_F4, &_100, 0);
-    _D0.set< f32 >(_100);
+    _D0.set(_100);
     _A4.sub(_F4, mPosition);
-    mPosition.set< f32 >(_F4);
+    mPosition.set(_F4);
 }
 
 void SkeletalFishGuard::rotateHorizontal(const TVec3f& a2, f32 scalar) {

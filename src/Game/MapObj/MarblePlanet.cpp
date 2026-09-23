@@ -190,8 +190,8 @@ MarblePlanetElectron::MarblePlanetElectron(LiveActor* pPlanet, const TVec3f& rPo
     _94.x = 0.0f;
     _94.y = 0.0f;
     _94.z = 1.0f;
-    mPosition.set< f32 >(rPosition);
-    mRotation.set< f32 >(rRotation);
+    mPosition.set(rPosition);
+    mRotation.set(rRotation);
 }
 
 void MarblePlanetElectron::init(const JMapInfoIter& rIter) {
@@ -318,7 +318,7 @@ void MarblePlanetElectronShadow::init(const JMapInfoIter& rIter) {
 }
 
 void MarblePlanetElectronShadow::calcAndSetBaseMtx() {
-    mPosition.set< f32 >(*_90);
+    mPosition.set(*_90);
     TVec3f stack_8;
     stack_8.sub(mParentElectron->mPosition, *_90);
     MR::normalize(&stack_8);

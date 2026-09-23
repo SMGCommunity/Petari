@@ -64,7 +64,7 @@ void Coin::init(const JMapInfoIter& rIter) {
     if (_BA) {
         TVec3f axis;
         MR::calcActorAxisY(&axis, this);
-        mGravity.set< f32 >(-axis);
+        mGravity.set(-axis);
     }
 
     initShadow(rIter);
@@ -181,7 +181,7 @@ void Coin::makeActorDead() {
 
 void Coin::calcAndSetBaseMtx() {
     TVec3f another_vec;
-    another_vec.set< f32 >(MR::isNearZero(mGravity) ? TVec3f(0.0f, 1.0f, 0.0f) : -mGravity);
+    another_vec.set(MR::isNearZero(mGravity) ? TVec3f(0.0f, 1.0f, 0.0f) : -mGravity);
     mDropPosition.scaleAdd(70.0f, another_vec, mPosition);
 
     TPos3f pos;
@@ -388,13 +388,13 @@ void Coin::appearFixTimer(s32 a1, s32 a2) {
 }
 
 void Coin::appearMove(const TVec3f& a1, const TVec3f& a2, s32 a3, s32 a4) {
-    mPosition.set< f32 >(a1);
+    mPosition.set(a1);
     makeActorAppeared();
     MR::invalidateClipping(this);
     MR::invalidateHitSensors(this);
     MR::onBind(this);
     MR::onCalcShadow(this, nullptr);
-    mVelocity.set< f32 >(a2);
+    mVelocity.set(a2);
 
     TVec3f stack_14;
     if (MR::normalizeOrZero(a2, &stack_14)) {
@@ -402,7 +402,7 @@ void Coin::appearMove(const TVec3f& a1, const TVec3f& a2, s32 a3, s32 a4) {
         mGravity.y = -1.0f;
         mGravity.z = 0.0f;
     } else {
-        mGravity.set< f32 >(-stack_14);
+        mGravity.set(-stack_14);
     }
 
     MR::calcGravityOrZero(this);
@@ -420,13 +420,13 @@ void Coin::appearHop(const TVec3f& a1, const TVec3f& a2) {
         MR::normalize(-a2, &mGravity);
     }
 
-    mPosition.set< f32 >(a1);
+    mPosition.set(a1);
     makeActorAppeared();
     MR::invalidateClipping(this);
     MR::invalidateHitSensors(this);
     MR::offBind(this);
     MR::invalidateShadow(this, nullptr);
-    mVelocity.set< f32 >(a2 * 30.0f);
+    mVelocity.set(a2 * 30.0f);
     mCannotTime = 0;
     setNerve(GET_NERVE(Coin, CoinNrvHop));
 }
@@ -447,7 +447,7 @@ bool Coin::requestActiveWithGravity() {
         MR::validateHitSensors(this);
         MR::onBind(this);
         MR::calcGravityOrZero(this);
-        mVelocity.set< f32 >(-mGravity * 30.0f);
+        mVelocity.set(-mGravity * 30.0f);
         setNerve(GET_NERVE(Coin, CoinNrvMove));
         return true;
     }

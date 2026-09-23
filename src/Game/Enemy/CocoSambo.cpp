@@ -236,7 +236,7 @@ void CocoSamboHead::exeFall() {
     }
 
     if (MR::isStep(this, ::cFallFrame)) {
-        mPosition.set< f32 >(mHost->mPosition);
+        mPosition.set(mHost->mPosition);
         mVelocity.zero();
         setNerve(GET_NERVE(CocoSamboHead, CocoSamboHeadNrvHeadFallLand));
     } else {
