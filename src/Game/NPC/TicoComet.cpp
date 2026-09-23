@@ -58,10 +58,8 @@ void TicoEat::init(const JMapInfoIter& rIter) {
     mScaleController = new AnimScaleController(&::sParam);
     mReactionNerve = GET_NERVE(TicoEat, TicoEatNrvReaction);
     _178 = MR::getJointMtx(this, "Center");
-    mParam._14 = "Wait";
-    mParam._18 = "Wait";
-    mParam._1C = "Talk";
-    mParam._20 = "Talk";
+    mParam.setMoveAction("Wait", "Wait");
+    mParam.setTalkAction("Talk", "Talk");
     mParam._4 = 3000.0f;
     setDefaults();
     _12C = 1000.0f;
@@ -69,7 +67,7 @@ void TicoEat::init(const JMapInfoIter& rIter) {
 
 void TicoEat::control() {
     if (MR::isBckPlaying(this, "Joy2")) {
-        MR::startLevelSound(this, "SE_SM_LV_TICOFAT_GLAD");
+        MR::startLevelSound(this, "SE_SM_LV_TICOFAT_GLAD", 0);
     }
 
     Tico::control();
@@ -202,12 +200,7 @@ TicoComet::TicoComet(const char* pName) : TicoEat(pName) {
 
 void TicoComet::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("TicoComet");
-    NPCActorItem item;
-    item.mActor = "TicoComet";
-    item.mGoods0 = "";
-    item.mGoodsJoint0 = "";
-    item.mGoods1 = "";
-    item.mGoodsJoint1 = "";
+    NPCActorItem item("TicoComet");
     caps.setDefault();
     caps.mSensorSize = 100.0f;
     caps.mSensorOffset.y = 100.0f;
@@ -228,8 +221,8 @@ void TicoComet::init(const JMapInfoIter& rIter) {
     _198 = 20;
     MR::declareStarPieceReceiver(this, 20);
     MR::setMessageArg(mMsgCtrl, _194);
-    MR::registerBranchFunc(mMsgCtrl, TalkMessageFunc(this, &TicoComet::branchFunc));
-    MR::registerEventFunc(mMsgCtrl, TalkMessageFunc(this, &TicoComet::eventFunc));
+    MR::registerBranchFunc(getMsgCtrl(), TalkMessageFunc(this, &TicoComet::branchFunc));
+    MR::registerEventFunc(getMsgCtrl(), TalkMessageFunc(this, &TicoComet::eventFunc));
     MR::setDistanceToTalk(mMsgCtrl, 350.0f);
     if (!MR::isRosettaTalkTrickComet()) {
         makeActorDead();
