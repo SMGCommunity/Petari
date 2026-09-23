@@ -1,6 +1,4 @@
 #include "Game/MapObj/LargeChainParts.hpp"
-#include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -15,9 +13,9 @@ void LargeChainParts::breakChainParts() {
 }
 
 void LargeChainParts::initChainParts(TVec3f* pPos, TVec3f* pRot, TVec3f* pScale, bool isFixedPoint) {
-    mPosition.set< f32 >(*pPos);
-    mRotation.set< f32 >(*pRot);
-    mScale.set< f32 >(*pScale);
+    mPosition.set(*pPos);
+    mRotation.set(*pRot);
+    mScale.set(*pScale);
 
     if (isFixedPoint) {
         initModelManagerWithAnm("LargeChainFixPoint", nullptr, false);
@@ -26,8 +24,10 @@ void LargeChainParts::initChainParts(TVec3f* pPos, TVec3f* pRot, TVec3f* pScale,
     }
 
     MR::connectToSceneMapObj(this);
+    
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
+
     if (isFixedPoint) {
         MR::initCollisionParts(this, "LargeChainFixPoint", getSensor("body"), nullptr);
     } else {
@@ -36,11 +36,14 @@ void LargeChainParts::initChainParts(TVec3f* pPos, TVec3f* pRot, TVec3f* pScale,
 
     initEffectKeeper(0, "LargeChain", false);
     initSound(2, false);
+
     makeActorAppeared();
 }
 
 void LargeChainParts::kill() {
     MR::emitEffect(this, "Break");
+    
     MR::startSound(this, "SE_OJ_LARGE_CHAIN_BREAK");
+
     LiveActor::kill();
 }
