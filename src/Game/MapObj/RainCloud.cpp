@@ -94,7 +94,7 @@ void RainCloud::init(const JMapInfoIter& rIter) {
         MR::onShadowVolumeCutDropLength(this, nullptr);
         MR::onCalcShadow(this, nullptr);
     } else {
-        mShadowDropLength = sNoShadowDropLengthMax;
+        mShadowDropLength = ::sNoShadowDropLengthMax;
         MR::invalidateShadow(this, nullptr);
     }
 
@@ -150,7 +150,7 @@ void RainCloud::exeAppear() {
         MR::startSound(this, "SE_OJ_RAIN_CLOUD_APPEAR");
     }
 
-    if (MR::isStep(this, sThunderStep)) {
+    if (MR::isStep(this, ::sThunderStep)) {
         MR::startSound(this, "SE_OJ_RAIN_CLOUD_THUNDER");
     }
 
@@ -341,7 +341,7 @@ void RainCloud::switchEffect() {
     } else {
         bool isLongRain;
         if (MR::isShadowProjected(this, nullptr)) {
-            isLongRain = mRainLength > sSwitchEffectBorder;
+            isLongRain = mRainLength > ::sSwitchEffectBorder;
             TVec3f projectionPos;
             MR::getShadowProjectionPos(this, nullptr, &projectionPos);
             TVec3f projectionNormal;
@@ -372,7 +372,7 @@ void RainCloud::updateRainCylinder() {
     }
 
     mRainCylinderMtx.set(MR::getJointMtx(this, "Shadow"));
-    f32 lengthScale = mRainLength / sRainCylinderBaseLength;
+    f32 lengthScale = mRainLength / ::sRainCylinderBaseLength;
     f32 widthScale = 1.0f;
     if (isNerve(GET_NERVE(RainCloud, RainCloudNrvAppear)) || isNerve(GET_NERVE(RainCloud, RainCloudNrvDisappear))) {
         if (MR::isBckPlaying(this, "Appear")) {
