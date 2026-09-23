@@ -23,11 +23,11 @@ public:
 
     /* 0x8C */ JMapIdInfo* mIdInfo;
     /* 0x90 */ ArrowSwitchTarget* mTargetArray[4];
-    /* 0xA0 */ f32 _A0;
-    /* 0xA4 */ f32 _A4;
-    /* 0xA8 */ u32 _A8;
-    /* 0xAC */ s32 _AC;
-    /* 0xB0 */ bool _B0;
+    /* 0xA0 */ f32 mRotAngle;
+    /* 0xA4 */ f32 mRotSpeed;
+    /* 0xA8 */ u32 mActiveTargetIndex;
+    /* 0xAC */ s32 mRotYTargetIndex;
+    /* 0xB0 */ bool mIsRotPlus;
 };
 
 class ArrowSwitchTarget : public NameObj {
