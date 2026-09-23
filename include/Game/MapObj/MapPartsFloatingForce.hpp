@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapPartsFunction.hpp"
-#include "Game/Util/SpringValue.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
+
+class SpringValue;
 
 class SpringStep {
 public:
@@ -12,23 +12,23 @@ public:
     void addSpringVelocity(f32);
     void setSpringBaseValue(f32);
 
-    f32 mCondition;             // 0x0
-    f32 mSpeed;                 // 0x4
-    f32 mAngle;                 // 0x8
-    SpringValue* mSpringValue;  // 0xC
+    /* 0x00 */ f32 mCondition;
+    /* 0x04 */ f32 mSpeed;
+    /* 0x08 */ f32 mAngle;
+    /* 0x0C */ SpringValue* mSpringValue;
 };
 
 class MapPartsFloatingForce : public MapPartsFunction {
 public:
-    MapPartsFloatingForce(LiveActor*);
+    MapPartsFloatingForce(LiveActor* pActor);
 
     virtual ~MapPartsFloatingForce();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void start();
 
-    void setObjectName(const char*);
-    void initForNormalMotion(const JMapInfoIter&);
-    void initForSpringMotion(const JMapInfoIter&);
+    void setObjectName(const char* pName);
+    void initForNormalMotion(const JMapInfoIter& rIter);
+    void initForSpringMotion(const JMapInfoIter& rIter);
     void updateVelocity();
     void updateVelocitySpring();
     bool tryOn();
@@ -38,18 +38,16 @@ public:
     void exeMoveSpring();
     void exeMoveReturn();
 
-    SpringStep* mSpringStep;  // 0x18
-    const char* mObjectName;  // 0x1C
-    f32 _20;
-    f32 mRotateAngle;      // 0x24
-    f32 mRotateSpeed;      // 0x28
-    s32 mRotateAccelType;  // 0x2C
-    TVec3f _30;
-    f32 _3C;
-    f32 _40;
-    f32 _44;
-    f32 _48;
-    f32 _4C;
-    TVec3f _50;
-    f32 _5C;
+    /* 0x18 */ SpringStep* mSpringStep;
+    /* 0x1C */ const char* mObjectName;
+    /* 0x20 */ f32 _20;
+    /* 0x24 */ f32 mRotateAngle;
+    /* 0x28 */ f32 mRotateSpeed;
+    /* 0x2C */ s32 mRotateAccelType;
+    /* 0x30 */ TVec3f _30;
+    /* 0x3C */ TVec3f mUpDirection;
+    /* 0x48 */ f32 _48;
+    /* 0x4C */ f32 _4C;
+    /* 0x50 */ TVec3f _50;
+    /* 0x5C */ f32 _5C;
 };

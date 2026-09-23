@@ -1908,7 +1908,7 @@ config.libs = [
                 cflags=[*cflags_game, "-sym on"],
             ),
             Object(NonMatching, "Game/MapObj/MapPartsBreaker.cpp"),
-            Object(NonMatching, "Game/MapObj/MapPartsFloatingForce.cpp"),
+            Object(Matching, "Game/MapObj/MapPartsFloatingForce.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsFunction.cpp"),
             Object(Matching, "Game/MapObj/MapPartsRailGuideDrawer.cpp"),
             Object(Matching, "Game/MapObj/MapPartsRailGuideHolder.cpp"),
