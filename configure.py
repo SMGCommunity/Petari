@@ -2373,7 +2373,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/WipeFade.cpp"),
             Object(NonMatching, "Game/Screen/WipeGameOver.cpp"),
             Object(NonMatching, "Game/Screen/WipeHolderBase.cpp"),
-            Object(NonMatching, "Game/Screen/WipeKoopa.cpp"),
+            Object(Matching, "Game/Screen/WipeKoopa.cpp"),
             Object(Matching, "Game/Screen/WipeRing.cpp"),
             Object(Matching, "Game/Screen/YesNoController.cpp"),
             Object(Matching, "Game/Screen/YesNoLayout.cpp"),
