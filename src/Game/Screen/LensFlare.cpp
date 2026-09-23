@@ -11,7 +11,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/TriggerChecker.hpp"
-#include "JSystem/JUtility/JUTVideo.hpp"
 
 namespace {
     NEW_NERVE(LensFlareModelNrvKill, LensFlareModel, Kill);
