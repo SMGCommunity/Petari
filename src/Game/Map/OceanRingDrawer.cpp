@@ -497,8 +497,8 @@ void OceanRingDrawer::loadMaterial() const {
     mtx.mMtx[0][2] = _14;
     mtx.mMtx[1][2] = _18;
     GXLoadTexMtxImm(mtx.toMtxPtr(), 0x21, GX_MTX2x4);
-    mtx.mMtx[0][2] = _C;
-    mtx.mMtx[1][2] = _10;
+    mtx.mMtx[0][2] = _1C;
+    mtx.mMtx[1][2] = _20;
     GXLoadTexMtxImm(mtx.toMtxPtr(), 0x24, GX_MTX2x4);
     MR::loadTexProjectionMtx(39);
 
