@@ -5,7 +5,7 @@
 class LodCtrl;
 class MapObjActorInitInfo;
 class MapPartsRailMover;
-class MapPartsRotator;
+class MapPartsRotatorBase;
 class MapPartsRailRotator;
 class MapPartsRailGuideDrawer;
 class MapPartsRailPosture;
@@ -15,10 +15,10 @@ class ProjmapEffectMtxSetter;
 
 class MapObjActor : public LiveActor {
 public:
-    MapObjActor(const char*);
-    MapObjActor(const char*, const char*);
+    MapObjActor(const char* pName);
+    MapObjActor(const char* pName, const char* pObjName);
 
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
     virtual void appear();
     virtual void kill();
@@ -26,16 +26,17 @@ public:
     virtual void endClipped();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual void connectToScene(const MapObjActorInitInfo&);
-    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
-    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&);
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
-    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
-    virtual void makeSubModels(const JMapInfoIter&, const MapObjActorInitInfo&);
+    virtual void connectToScene(const MapObjActorInitInfo& rInfo);
+    virtual void initCaseUseSwitchA(const MapObjActorInitInfo& rInfo);
+    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo& rInfo);
+    virtual void initCaseUseSwitchB(const MapObjActorInitInfo& rInfo);
+    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo);
+    virtual void makeSubModels(const JMapInfoIter& rIter, const MapObjActorInitInfo& rInfo) {
+    }
 
-    void initialize(const JMapInfoIter&, const MapObjActorInitInfo&);
-    bool isObjectName(const char*) const;
-    bool tryCreateBreakModel(const MapObjActorInitInfo&);
+    void initialize(const JMapInfoIter& rIter, const MapObjActorInitInfo& rInfo);
+    bool isObjectName(const char* pName) const;
+    bool tryCreateBreakModel(const MapObjActorInitInfo& rInfo);
     bool tryEmitWaitEffect();
     bool tryDeleteWaitEffect();
     void startMapPartsFunctions();
@@ -47,53 +48,52 @@ public:
     void exeMove();
     void exeDone();
 
-    const char* mObjectName;                    // 0x8C
-    LodCtrl* mPlanetLodCtrl;                    // 0x90
-    ModelObj* mBloomModel;                      // 0x94
-    ModelObj* mModelObj;                        // 0x98
-    ProjmapEffectMtxSetter* mMatrixSetter;      // 0x9C
-    MapPartsRailMover* mRailMover;              // 0xA0
-    MapPartsRotator* mRotator;                  // 0xA4
-    MapPartsRailRotator* mRailRotator;          // 0xA8
-    MapPartsRailPosture* mRailPosture;          // 0xAC
-    MapPartsRailGuideDrawer* mRailGuideDrawer;  // 0xB0
-    u8 _B4;
-    u8 _B5;
-    u8 _B6;
-    Nerve* mWaitNrv;  // 0xB8
-    Nerve* mMoveNrv;  // 0xBC
-    Nerve* mDoneNrv;  // 0xC0
+    /* 0x8C */ const char* mObjectName;
+    /* 0x90 */ LodCtrl* mPlanetLodCtrl;
+    /* 0x94 */ ModelObj* mBloomModel;
+    /* 0x98 */ ModelObj* mModelObj;
+    /* 0x9C */ ProjmapEffectMtxSetter* mMatrixSetter;
+    /* 0xA0 */ MapPartsRailMover* mRailMover;
+    /* 0xA4 */ MapPartsRotatorBase* mRotator;
+    /* 0xA8 */ MapPartsRailRotator* mRailRotator;
+    /* 0xAC */ MapPartsRailPosture* mRailPosture;
+    /* 0xB0 */ MapPartsRailGuideDrawer* mRailGuideDrawer;
+    /* 0xB4 */ u8 _B4;
+    /* 0xB5 */ u8 _B5;
+    /* 0xB6 */ u8 _B6;
+    /* 0xB8 */ Nerve* mWaitNrv;
+    /* 0xBC */ Nerve* mMoveNrv;
+    /* 0xC0 */ Nerve* mDoneNrv;
 };
 
 class MapObjActorUtil {
 public:
-    static void startAllMapPartsFunctions(const MapObjActor*);
-    static void endAllMapPartsFunctions(const MapObjActor*);
-    static void pauseAllMapPartsFunctions(const MapObjActor*);
-    static void resumeAllMapPartsFunctions(const MapObjActor*);
-    static bool isRotatorMoving(const MapObjActor*);
-    static bool isRailMoverWorking(const MapObjActor*);
-    static bool isRailMoverReachedEnd(const MapObjActor*);
-    static f32 getSeesaw1AxisAngularSpeed(const MapObjActor*);
-    static void forceRotateSeesaw1Axis(const MapObjActor*, f32);
+    static void startAllMapPartsFunctions(const MapObjActor* pActor);
+    static void endAllMapPartsFunctions(const MapObjActor* pActor);
+    static void pauseAllMapPartsFunctions(const MapObjActor* pActor);
+    static void resumeAllMapPartsFunctions(const MapObjActor* pActor);
+    static bool isRotatorMoving(const MapObjActor* pActor);
+    static bool isRailMoverWorking(const MapObjActor* pActor);
+    static bool isRailMoverReachedEnd(const MapObjActor* pActor);
+    static f32 getSeesaw1AxisAngularSpeed(const MapObjActor* pActor);
+    static void forceRotateSeesaw1Axis(const MapObjActor* pActor, f32);
 
-    static void startRotator(const MapObjActor*);
-    static void startRailMover(const MapObjActor*);
-    static void endRotator(const MapObjActor*);
-    static void pauseRotator(const MapObjActor*);
-    static void resetRailMoverToInitPos(const MapObjActor*);
-    static void startBreak(MapObjActor*);
-    static bool tryStartBreak(MapObjActor*);
-    static bool isBreakStopped(const MapObjActor*);
-    static void killBloomModel(MapObjActor*);
-    static void appearBloomModel(MapObjActor*);
+    static void startRotator(const MapObjActor* pActor);
+    static void startRailMover(const MapObjActor* pActor);
+    static void endRotator(const MapObjActor* pActor);
+    static void pauseRotator(const MapObjActor* pActor);
+    static void resetRailMoverToInitPos(const MapObjActor* pActor);
+    static void startBreak(MapObjActor* pActor);
+    static bool tryStartBreak(MapObjActor* pActor);
+    static bool isBreakStopped(const MapObjActor* pActor);
+    static void killBloomModel(MapObjActor* pActor);
+    static void appearBloomModel(MapObjActor* pActor);
 
-    // Defined in MapObjActorInitInfo
-    static void setupInitInfoTypical(MapObjActorInitInfo*, const char*);
-    static void setupInitInfoColorChangeArg0(MapObjActorInitInfo*, const JMapInfoIter&);
-    static void setupInitInfoTextureChangeArg1(MapObjActorInitInfo*, const JMapInfoIter&);
-    static void setupInitInfoShadowLengthArg2(MapObjActorInitInfo*, const JMapInfoIter&);
-    static void setupInitInfoSeesaw(MapObjActorInitInfo*, const JMapInfoIter&, const char*, f32);
-    static void setupInitInfoSimpleMapObj(MapObjActorInitInfo*);
-    static void setupInitInfoPlanet(MapObjActorInitInfo*);
+    static void setupInitInfoTypical(MapObjActorInitInfo* pInfo, const char* pName);
+    static void setupInitInfoColorChangeArg0(MapObjActorInitInfo* pInfo, const JMapInfoIter& rIter);
+    static void setupInitInfoTextureChangeArg1(MapObjActorInitInfo* pInfo, const JMapInfoIter& rIter);
+    static void setupInitInfoShadowLengthArg2(MapObjActorInitInfo* pInfo, const JMapInfoIter& rIter);
+    static void setupInitInfoSeesaw(MapObjActorInitInfo* pInfo, const JMapInfoIter& rIter, const char* pName, f32);
+    static void setupInitInfoSimpleMapObj(MapObjActorInitInfo* pInfo);
+    static void setupInitInfoPlanet(MapObjActorInitInfo* pInfo);
 };

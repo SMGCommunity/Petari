@@ -1753,7 +1753,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/LotusLeaf.cpp"),
             Object(NonMatching, "Game/MapObj/MagicBell.cpp"),
             Object(NonMatching, "Game/MapObj/ManholeCover.cpp"),
-            Object(NonMatching, "Game/MapObj/MapObjActor.cpp"),
+            Object(Matching, "Game/MapObj/MapObjActor.cpp"),
             Object(NonMatching, "Game/MapObj/MapObjActorInitInfo.cpp"),
             Object(Matching, "Game/MapObj/MapObjConnector.cpp"),
             Object(NonMatching, "Game/MapObj/MarblePlanet.cpp"),
