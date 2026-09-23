@@ -12,9 +12,10 @@ public:
         DrawType_2 = 2,
     };
 
-    /// @brief Creates a new `BloomEffect`.
-    /// @param pName The pointer to the null-terminated name of the object.
     BloomEffect(const char* pName);
+
+    virtual ~BloomEffect() {
+    }
 
     void preDraw() const;
     void postDraw() const;

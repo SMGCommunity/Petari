@@ -2,7 +2,12 @@
 #include "Game/Screen/LayoutManager.hpp"
 #include <nw4r/lyt/animation.h>
 
-LayoutAnmPlayer::LayoutAnmPlayer(const LayoutManager* pManager) : mManager(pManager), mAnimName(nullptr), mAnimTransform(nullptr), mFrameCtrl(0) {
+void LayoutAnmPlayer_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
+LayoutAnmPlayer::LayoutAnmPlayer(const LayoutManager* pManager) : mManager(pManager), mAnimName(), mAnimTransform(), mFrameCtrl(0) {
 }
 
 void LayoutAnmPlayer::movement() {
@@ -13,7 +18,6 @@ void LayoutAnmPlayer::movement() {
 
 void LayoutAnmPlayer::reflectFrame() {
     if (mAnimTransform != nullptr) {
-        // TODO: Should be AnimTransform::SetFrame
         mAnimTransform->mFrame = mFrameCtrl.getFrame();
     }
 }
@@ -43,5 +47,3 @@ void LayoutAnmPlayer::start(const char* pAnimName) {
 void LayoutAnmPlayer::stop() {
     mFrameCtrl.setRate(0.0f);
 }
-
-// LayoutAnmPlayer::isStop

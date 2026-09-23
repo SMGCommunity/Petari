@@ -988,7 +988,7 @@ def generate_build_ninja(
                     variables={
                         "mw_version": Path(pch["mw_version"]),
                         "cflags": cflags_str,
-                        "basedir": os.path.dirname(pch_out_abs_path),
+                        "basedir": f'"{os.path.dirname(pch_out_abs_path)}"',
                         "basefile": pch_out_abs_path.with_suffix(""),
                         "basefilestem": pch_out_abs_path.stem,
                     },

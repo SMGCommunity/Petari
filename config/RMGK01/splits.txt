@@ -2701,7 +2701,7 @@ Game/Enemy/FireBall.cpp:
 Game/Enemy/FireBubble.cpp:
 	.text       start:0x800ECC34 end:0x800EDDCC
 	.ctors      start:0x8052EA84 end:0x8052EA88
-	.rodata     start:0x80531F48 end:0x80531F78
+	.rodata     start:0x80531F48 end:0x80531F60
 	.data       start:0x8057C2D0 end:0x8057C478
 	.sdata      start:0x806B1928 end:0x806B1930
 	.sbss       start:0x806B3EA0 end:0x806B3EC0
@@ -2710,6 +2710,7 @@ Game/Enemy/FireBubble.cpp:
 Game/Enemy/Gesso.cpp:
 	.text       start:0x800EDDCC end:0x800EF9F4
 	.ctors      start:0x8052EA88 end:0x8052EA8C
+	.rodata     start:0x80531F60 end:0x80531F68
 	.data       start:0x8057C478 end:0x8057C690
 	.sbss       start:0x806B3EC0 end:0x806B3EF0
 	.sdata2     start:0x806BA4C0 end:0x806BA548
@@ -2717,6 +2718,7 @@ Game/Enemy/Gesso.cpp:
 Game/Enemy/HammerHeadPackun.cpp:
 	.text       start:0x800EF9F4 end:0x800F17B4
 	.ctors      start:0x8052EA8C end:0x8052EA90
+	.rodata     start:0x80531F68 end:0x80531F70
 	.data       start:0x8057C690 end:0x8057C978
 	.sdata      start:0x806B1930 end:0x806B1938
 	.sbss       start:0x806B3EF0 end:0x806B3F20
@@ -2725,6 +2727,7 @@ Game/Enemy/HammerHeadPackun.cpp:
 Game/Enemy/Hanachan.cpp:
 	.text       start:0x800F17B4 end:0x800F58F4
 	.ctors      start:0x8052EA90 end:0x8052EA94
+	.rodata     start:0x80531F70 end:0x80531F78
 	.data       start:0x8057C978 end:0x8057CEE0
 	.sdata      start:0x806B1938 end:0x806B1940
 	.sbss       start:0x806B3F20 end:0x806B3FA0
@@ -4364,14 +4367,14 @@ Game/MapObj/AstroOverlookObj.cpp:
 Game/MapObj/BallOpener.cpp:
 	.text       start:0x801B0B3C end:0x801B1444
 	.ctors      start:0x8052EC4C end:0x8052EC50
-	.data       start:0x8058F4F8 end:0x8058F600
+	.data       start:0x8058F4F8 end:0x8058F5F8
 	.sbss       start:0x806B4E38 end:0x806B4E48
 	.sdata2     start:0x806BC798 end:0x806BC7C8
 
 Game/MapObj/BallRail.cpp:
 	.text       start:0x801B1444 end:0x801B1DA4
 	.ctors      start:0x8052EC50 end:0x8052EC54
-	.data       start:0x8058F600 end:0x8058F6B8
+	.data       start:0x8058F5F8 end:0x8058F6B8
 	.sbss       start:0x806B4E48 end:0x806B4E58
 	.sdata2     start:0x806BC7C8 end:0x806BC7E8
 
@@ -5076,7 +5079,7 @@ Game/MapObj/ItemBubble.cpp:
 Game/MapObj/JetTurtle.cpp:
 	.text       start:0x801EA864 end:0x801ECF98
 	.ctors      start:0x8052ED68 end:0x8052ED6C
-	.rodata     start:0x80533398 end:0x805333E8
+	.rodata     start:0x80533398 end:0x805333D8
 	.data       start:0x805967E8 end:0x80596BD8
 	.sdata      start:0x806B1E78 end:0x806B1E80
 	.sbss       start:0x806B52C0 end:0x806B52E8
@@ -5085,6 +5088,7 @@ Game/MapObj/JetTurtle.cpp:
 Game/MapObj/JumpHole.cpp:
 	.text       start:0x801ECF98 end:0x801EDC64
 	.ctors      start:0x8052ED6C end:0x8052ED70
+	.rodata     start:0x805333D8 end:0x805333E0
 	.data       start:0x80596BD8 end:0x80596CF0
 	.bss        start:0x8060ADD0 end:0x8060ADE8
 	.sbss       start:0x806B52E8 end:0x806B52F8
@@ -5093,6 +5097,7 @@ Game/MapObj/JumpHole.cpp:
 Game/MapObj/JumpStand.cpp:
 	.text       start:0x801EDC64 end:0x801EE87C
 	.ctors      start:0x8052ED70 end:0x8052ED74
+	.rodata     start:0x805333E0 end:0x805333E8
 	.data       start:0x80596CF0 end:0x80596EE8
 	.sbss       start:0x806B52F8 end:0x806B5308
 	.sdata2     start:0x806BD3B8 end:0x806BD3E8
@@ -6711,7 +6716,7 @@ Game/NPC/StrayTico.cpp:
 Game/NPC/Syati.cpp:
 	.text       start:0x802892D0 end:0x8028B7A0
 	.ctors      start:0x8052F000 end:0x8052F004
-	.rodata     start:0x80539798 end:0x80539810
+	.rodata     start:0x80539798 end:0x80539800
 	.data       start:0x805B3A10 end:0x805B3DF0
 	.sdata      start:0x806B2170 end:0x806B2178
 	.sbss       start:0x806B5FB0 end:0x806B6008
@@ -6727,6 +6732,7 @@ Game/NPC/TeresaRacer.cpp:
 Game/NPC/Tico.cpp:
 	.text       start:0x8028C618 end:0x8028DB80
 	.ctors      start:0x8052F008 end:0x8052F00C
+	.rodata     start:0x80539800 end:0x80539808
 	.data       start:0x805B4050 end:0x805B43B0
 	.bss        start:0x8060AE78 end:0x8060AE90
 	.sdata      start:0x806B2178 end:0x806B2180
@@ -6740,6 +6746,7 @@ Game/NPC/TicoAstro.cpp:
 Game/NPC/TicoComet.cpp:
 	.text       start:0x8028DCF0 end:0x8028EC24
 	.ctors      start:0x8052F00C end:0x8052F010
+	.rodata     start:0x80539808 end:0x80539810
 	.data       start:0x805B4428 end:0x805B47B0
 	.bss        start:0x8060AE90 end:0x8060AEC8
 	.sbss       start:0x806B6070 end:0x806B6090

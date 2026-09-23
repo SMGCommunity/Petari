@@ -1,6 +1,7 @@
 #include "Game/Screen/HeatHazeEffect.hpp"
 #include "Game/AreaObj/HazeCube.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
@@ -13,7 +14,18 @@ void HeatHazeEffect::appear() {
     MR::startBtk(this, "ShimmerBoard");
 }
 
-// HeatHazeEffect::control
+void HeatHazeEffect::control() {
+    const TPos3f& rCameraMtx = MR::getCameraInvViewMtx();
+    TVec3f direction;
+    rCameraMtx.getZDir(direction);
+    direction.negate();
+    direction.mult(_8C);
+    rCameraMtx.getTrans(mPosition);
+    mPosition.add(direction);
+    rCameraMtx.getEuler(mRotation);
+    mRotation.mult(180.0f / PI);
+    mScale.setAll< f32 >(_8C / 1000.0f);
+}
 
 HeatHazeDirector::HeatHazeDirector(const char* pName) : NameObj(pName) {
 }

@@ -19,10 +19,10 @@ namespace {
 };  // namespace
 
 ImageEffectDirector::ImageEffectDirector(const char* pName)
-    : NameObj(pName), mIsAuto(true), mIsPlayerSync(false), _E(false), _F(false), mPlayerSyncIntensity(0), mDepthOfFieldIntensity(::sDOFIntensity),
+    : NameObj(pName), mIsAuto(true), mIsPlayerSync(), _E(), _F(), mPlayerSyncIntensity(), mDepthOfFieldIntensity(::sDOFIntensity),
       mStateNull(new ImageEffectStateImpl::StateNull(this)), mStateBloomNormal(new ImageEffectStateImpl::StateBloomNormal(this)),
       mStateBloomSimple(new ImageEffectStateImpl::StateBloomSimple(this)), mStateScreenBlur(new ImageEffectStateImpl::StateScreenBlur(this)),
-      mStateDepthOfField(new ImageEffectStateImpl::StateDepthOfField(this)), mState(mStateNull), mCurrentEffect(nullptr) {
+      mStateDepthOfField(new ImageEffectStateImpl::StateDepthOfField(this)), mState(mStateNull), mCurrentEffect() {
     MR::connectToSceneImageEffectMovement(this);
 }
 
@@ -149,6 +149,7 @@ void ImageEffectDirector::setBloomNormalParams(ImageEffectArea* pArea) {
     } else {
         mStateBloomNormal->setIntensity1Default();
     }
+
     if (pBloomArea->mIntensity2 >= 0) {
         mStateBloomNormal->setIntensity2(pBloomArea->mIntensity2);
     } else {
@@ -249,13 +250,14 @@ void ImageEffectDirector::setPlayerSync(bool isPlayerSync) {
 }
 
 void ImageEffectDirector::updateAuto() {
-    ImageEffectArea* pEffectArea = static_cast< ImageEffectArea* >(MR::getAreaObj("ImageEffectArea", *MR::getPlayerPos()));
+    AreaObj* pArea = MR::getAreaObj("ImageEffectArea", *MR::getPlayerPos());
 
-    if (pEffectArea == nullptr) {
+    if (pArea == nullptr) {
         setState(mStateNull);
         return;
     }
 
+    ImageEffectArea* pEffectArea = static_cast< ImageEffectArea* >(pArea);
     switch (pEffectArea->mEffectType) {
     case ImageEffectArea::IMAGE_EFFECT_TYPE_BLOOM:
         setBloomNormalParams(pEffectArea);

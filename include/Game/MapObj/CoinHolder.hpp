@@ -1,40 +1,40 @@
 #pragma once
 
+#include "Game/LiveActor/LiveActorGroup.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
+
 class NameObj;
 class Coin;
 class CoinHostInfo;
 
-#include "Game/LiveActor/LiveActorGroup.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
-
 class CoinHolder : public DeriveActorGroup< Coin > {
 public:
-    CoinHolder(const char*);
+    CoinHolder(const char* pName);
 
     virtual ~CoinHolder() {
     }
 
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
 
-    bool hopCoin(const NameObj*, const TVec3f&, const TVec3f&);
-    bool appearCoinFix(const NameObj*, const TVec3f&, s32);
-    bool appearCoinPop(const NameObj*, const TVec3f&, s32);
-    bool appearCoinPopToDirection(const NameObj*, const TVec3f&, const TVec3f&, s32);
-    bool appearCoinToVelocity(const NameObj*, const TVec3f&, const TVec3f&, s32);
-    bool appearCoinCircle(const NameObj*, const TVec3f&, s32);
-    CoinHostInfo* declare(const NameObj*, s32);
-    s32 getDeclareRemnantCoinCount(const NameObj*) const;
-    CoinHostInfo* findHostInfo(const NameObj*) const;
-    bool appearCoin(const NameObj*, const TVec3f&, const TVec3f&, s32, s32, s32, f32);
+    bool hopCoin(const NameObj* pObj, const TVec3f& rPosition, const TVec3f& rVelocity);
+    bool appearCoinFix(const NameObj* pObj, const TVec3f& rPosition, s32 count);
+    bool appearCoinPop(const NameObj* pObj, const TVec3f& rPosition, s32 count);
+    bool appearCoinPopToDirection(const NameObj* pObj, const TVec3f& rPosition, const TVec3f& rVelocity, s32 count);
+    bool appearCoinToVelocity(const NameObj* pObj, const TVec3f& rPosition, const TVec3f& rVelocity, s32 count);
+    bool appearCoinCircle(const NameObj* pObj, const TVec3f& rPosition, s32 count);
+    CoinHostInfo* declare(const NameObj* pObj, s32 count);
+    s32 getDeclareRemnantCoinCount(const NameObj* pObj) const;
+    CoinHostInfo* findHostInfo(const NameObj* pObj) const;
+    bool appearCoin(const NameObj* pObj, const TVec3f& rPosition, const TVec3f& rVelocity, s32 count, s32 life, s32 cannotTime, f32 randomize);
 
-    CoinHostInfo* mHostInfoArr;  // 0x18
-    s32 mHostInfoCount;          // 0x1C
+    /* 0x18 */ CoinHostInfo* mHostInfoArr;
+    /* 0x1C */ s32 mHostInfoCount;
 };
 
 namespace MR {
     void createCoinHolder();
     void createCoinRotater();
 
-    void addToCoinHolder(const NameObj*, Coin*);
+    void addToCoinHolder(const NameObj* pObj, Coin* pCoin);
     CoinHolder* getCoinHolder();
 };  // namespace MR

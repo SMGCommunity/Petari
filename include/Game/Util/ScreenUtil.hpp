@@ -1,6 +1,7 @@
 #pragma once
 
 #include <JSystem/JGeometry/TVec.hpp>
+#include <JSystem/JUtility/JUTVideo.hpp>
 #include <revolution/types.h>
 
 struct ResTIMG;
@@ -9,12 +10,16 @@ namespace MR {
     u32 getViWidth();
     f32 getSafetyVIScreenWidthRatio();
     s32 getScreenWidth();
-    s32 getScreenHeight();
+    inline s32 getScreenHeight() NO_INLINE {
+        return JUTVideo::getManager()->getEfbHeight();
+    }
     s32 getSafetyFrameWidth();
     s32 getSafetyFrameLeft();
     s32 getSafetyFrameRight();
     s32 getFrameBufferWidth() NO_INLINE;
-    s32 getFrameBufferHeight();
+    inline s32 getFrameBufferHeight() NO_INLINE {
+        return JUTVideo::getManager()->getEfbHeight();
+    }
     void convertFrameBufferPosToScreenPos(TVec2f*, const TVec2f&);
     void convertScreenPosToFrameBufferPos(TVec2f*, const TVec2f&);
     void startToCaptureScreen(const char*);

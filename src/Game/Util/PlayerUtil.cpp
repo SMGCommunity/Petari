@@ -484,7 +484,8 @@ namespace MR {
     }
 
     void endBindAndPlayerWait(LiveActor* pActor) {
-        RushEndInfo info = RushEndInfo(pActor, 0, TVec3f(0.0f, 0.0f, 0.0f), false, 0);
+        TVec3f velocity(0.0f, 0.0f, 0.0f);
+        RushEndInfo info(pActor, 0, velocity, false, 0);
 
         MarioAccess::endRush(&info);
     }
@@ -538,16 +539,16 @@ namespace MR {
 
     void endBindAndPlayerDamage(LiveActor* pActor, const TVec3f& rParam2) {
         RushEndInfo info = RushEndInfo(pActor, 3, rParam2, true, 0);
-        info._20 &= ~0xF000000;
         info._20 |= 0xC0000000;
+        info.mFlags.mDamageType = 1;
 
         MarioAccess::endRush(&info);
     }
 
     void endBindAndPlayerFlip(LiveActor* pActor, const TVec3f& rParam2) {
         RushEndInfo info = RushEndInfo(pActor, 3, rParam2, true, 0);
-        info._20 &= ~0xF000000;
         info._20 |= 0xC0000000;
+        info.mFlags.mDamageType = 6;
 
         MarioAccess::endRush(&info);
     }
@@ -601,32 +602,32 @@ namespace MR {
 
     void endBindAndPlayerAcidDamage(LiveActor* pActor) {
         RushEndInfo info = RushEndInfo(pActor, 3, TVec3f(0.0f, 0.0f, 0.0f), true, 0);
-        info._20 &= ~0xF000000;
         info._20 |= 0xC0000000;
+        info.mFlags.mDamageType = 4;
 
         MarioAccess::endRush(&info);
     }
 
     void endBindAndPlayerFreezeDamage(LiveActor* pActor) {
         RushEndInfo info = RushEndInfo(pActor, 3, TVec3f(0.0f, 0.0f, 0.0f), true, 0);
-        info._20 &= ~0xF000000;
         info._20 |= 0xC0000000;
+        info.mFlags.mDamageType = 3;
 
         MarioAccess::endRush(&info);
     }
 
     void endBindAndPlayerFireDamage(LiveActor* pActor) {
         RushEndInfo info = RushEndInfo(pActor, 3, TVec3f(0.0f, 0.0f, 0.0f), true, 0);
-        info._20 &= ~0xF000000;
         info._20 |= 0xC0000000;
+        info.mFlags.mDamageType = 2;
 
         MarioAccess::endRush(&info);
     }
 
     void endBindAndPlayerElectricDamage(LiveActor* pActor) {
         RushEndInfo info = RushEndInfo(pActor, 3, TVec3f(0.0f, 0.0f, 0.0f), true, 0);
-        info._20 &= ~0xF000000;
         info._20 |= 0xC0000000;
+        info.mFlags.mDamageType = 5;
 
         MarioAccess::endRush(&info);
     }

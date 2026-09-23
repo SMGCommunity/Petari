@@ -20,14 +20,25 @@ namespace {
     NEW_NERVE(Manual2PNrvDisappear, Manual2P, Disappear);
 };  // namespace
 
+namespace {
+    s32 countMessage(const char* pName) {
+        s32 count = 0;
+        char messageID[0x80];
+
+        do {
+            snprintf(messageID, sizeof(messageID), "%s%03d", pName, count + 1);
+            count++;
+        } while (MR::isExistGameMessage(messageID));
+
+        return count;
+    }
+}  // namespace
+
 Manual2P::Manual2P(const char* pName)
-    : LayoutActor(pName, true), mPageIndex(), _24(), mLeftPaneCtrl(), mRightPaneCtrl(), _30(), _31(), mBackButton() {
+    : LayoutActor(pName, true), mPageIndex(), mPageNum(), mLeftPaneCtrl(), mRightPaneCtrl(), _30(true), _31(true), mBackButton() {
 }
 
 void Manual2P::init(const JMapInfoIter& rIter) {
-    s32 i;
-    char messageId[128];
-
     initLayoutManager("P2Manual", 2);
     MR::invalidateParentAnim(this);
     MR::createAndAddPaneCtrl(this, "LeftButton", 2);
@@ -46,14 +57,7 @@ void Manual2P::init(const JMapInfoIter& rIter) {
     initNerve(GET_NERVE_ANON(Manual2PNrvAppear));
     MR::connectToSceneLayout(this);
 
-    i = 0;
-
-    do {
-        snprintf(messageId, sizeof(messageId), "%s%03d", "2PGuidance", i + 1);
-        i++;
-    } while (MR::isExistGameMessage(messageId));
-
-    _24 = i;
+    mPageNum = countMessage("2PGuidance");
 }
 
 void Manual2P::appear() {
@@ -64,8 +68,8 @@ void Manual2P::appear() {
 
     MR::startAnim(this, "Picture", 1);
 
-    if (_24 > MR::getAnimCtrl(this, 1)->getEnd()) {
-        _24 = MR::getAnimCtrl(this, 1)->getEnd();
+    if (mPageNum > MR::getAnimCtrl(this, 1)->getEnd()) {
+        mPageNum = MR::getAnimCtrl(this, 1)->getEnd();
     }
 }
 
@@ -213,7 +217,58 @@ void Manual2P::control() {
     }
 }
 
-// Manual2P::reflectPageIndex
+void Manual2P::reflectPageIndex() {
+    MR::startAnim(this, "P2Manual", 1);
+
+    if (mPageIndex < 0) {
+        mPageIndex = 0;
+    }
+
+    if (mPageIndex >= mPageNum) {
+        mPageIndex = mPageNum - 1;
+    }
+
+    MR::setAnimFrame(this, mPageIndex, 1);
+
+    char messageID[0x80];
+    snprintf(messageID, sizeof(messageID), "2PGuidance%03d", mPageIndex + 1);
+
+    if (MR::isExistGameMessage(messageID)) {
+        MR::setTextBoxGameMessageRecursive(this, "Text", messageID);
+    }
+
+    snprintf(messageID, sizeof(messageID), "2PGuidanceTitle%03d", mPageIndex + 1);
+
+    if (MR::isExistGameMessage(messageID)) {
+        MR::setTextBoxGameMessageRecursive(this, "Title", messageID);
+    }
+
+    MR::setTextBoxFormatRecursive(this, "PageNumber", L"%d/%d", mPageIndex + 1, mPageNum);
+
+    if (mPageIndex == 0) {
+        ButtonPaneController* pPaneCtrl = mLeftPaneCtrl;
+        MR::startPaneAnim(this, pPaneCtrl->mPaneName, "ButtonOff", 1);
+        MR::setPaneAnimFrameAndStop(this, pPaneCtrl->mPaneName, 1.0f, 1);
+        _30 = false;
+    } else {
+        ButtonPaneController* pPaneCtrl = mLeftPaneCtrl;
+        MR::startPaneAnim(this, pPaneCtrl->mPaneName, "ButtonOff", 1);
+        MR::setPaneAnimFrameAndStop(this, pPaneCtrl->mPaneName, 0.0f, 1);
+        _30 = true;
+    }
+
+    if (mPageIndex == (mPageNum - 1)) {
+        ButtonPaneController* pPaneCtrl = mRightPaneCtrl;
+        MR::startPaneAnim(this, pPaneCtrl->mPaneName, "ButtonOff", 1);
+        MR::setPaneAnimFrameAndStop(this, pPaneCtrl->mPaneName, 1.0f, 1);
+        _31 = false;
+    } else {
+        ButtonPaneController* pPaneCtrl = mRightPaneCtrl;
+        MR::startPaneAnim(this, pPaneCtrl->mPaneName, "ButtonOff", 1);
+        MR::setPaneAnimFrameAndStop(this, pPaneCtrl->mPaneName, 0.0f, 1);
+        _31 = true;
+    }
+}
 
 bool Manual2P::checkSelectedBackButton() {
     if (mBackButton->_24) {

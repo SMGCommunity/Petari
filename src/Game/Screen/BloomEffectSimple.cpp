@@ -91,7 +91,8 @@ void BloomEffectSimple::draw() const {
     ImageEffectLocalUtil::blurTexture(texSpec._0, texSpec._4, texSpec._8, 8, 0.009f, 1.0f);
     ImageEffectLocalUtil::capture(_28, texSpec._4, texSpec._8, texSpec._C, false, 0);
     ImageEffectLocalUtil::drawTexture(_20, 4, 0, 255, ImageEffectLocalUtil::TexDrawType_0);
-    ImageEffectLocalUtil::drawTexture(_28, 1, 0, 255.0f * mIntensity * get_10(), ImageEffectLocalUtil::TexDrawType_1);
+    const u8 alpha = 255.0f * mIntensity * get_10();
+    ImageEffectLocalUtil::drawTexture(_28, 1, 0, alpha, ImageEffectLocalUtil::TexDrawType_1);
 }
 
 void TexSpec::set(JUTTexture* pParam1, s32 param2, s32 param3, GXTexFmt param4) {

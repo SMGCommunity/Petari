@@ -5,6 +5,14 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+
+void NoteCounter_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)10.0f;
+    (void)-100.0f;
+}
 
 namespace {
     static const s32 sStepShowWait = 180;
@@ -22,7 +30,7 @@ namespace NrvNoteCounter {
 };  // namespace NrvNoteCounter
 
 NoteCounter::NoteCounter(const char* pName)
-    : LayoutActor(pName, true), mNoteNum(0), mNoteAddNum(0), mNoteMissNum(0), mMelodyNo(-1), mRailLength(0.0f), mHost(nullptr) {
+    : LayoutActor(pName, true), mNoteNum(), mNoteAddNum(), mNoteMissNum(), mMelodyNo(-1), mRailLength(), mHost() {
 }
 
 void NoteCounter::init(const JMapInfoIter& rIter) {
@@ -43,6 +51,34 @@ void NoteCounter::declareNoteNumMaxAndMelody(LiveActor* pHost, s32 noteNum, s32 
     } else if (isNerve(GET_NERVE(NoteCounter, NoteCounterNrvShowWait))) {
         setNerve(GET_NERVE(NoteCounter, NoteCounterNrvShow));
     }
+}
+
+void NoteCounter::add() {
+    if (mMelodyNo == -2) {
+        s32 note = mNoteAddNum;
+        while (note >= 96) {
+            note -= 4;
+        }
+
+        s32 pitchGroup = note / 4;
+        MR::startSystemSE("SE_SY_FLOWER_GET_COMBO", pitchGroup + (note - pitchGroup * 4));
+    } else if (mMelodyNo == -1) {
+        s32 note = mNoteAddNum + 5;
+        while (note > 36) {
+            note -= 12;
+        }
+
+        MR::startSystemSE("SE_SY_FLOWER_GET_COMBO", note);
+    } else if (mMelodyNo >= 0) {
+        MR::startRemixSound(mMelodyNo, mNoteAddNum, mRailLength);
+    }
+
+    mNoteAddNum++;
+    if (mNoteAddNum >= mNoteNum) {
+        mHost->receiveMessage(0x66, MR::getMessageSensor(), MR::getMessageSensor());
+    }
+
+    tryEndDisp();
 }
 
 void NoteCounter::exeShow() {
@@ -68,7 +104,7 @@ void NoteCounter::exeHideToShow() {
         MR::showLayout(this);
     }
 
-    f32 y = MR::getEaseOutValue(getNerveStep() / 10.0f, ::sTransMaxY, ::sTransMinY, 1.0f);
+    f32 y = MR::getEaseOutValue(getNerveStep() / 10.0f, ::sTransMinY, ::sTransMaxY, 1.0f);
     setTrans(TVec2f(getTrans().x, y));
 
     if (MR::isStep(this, ::sStepMove)) {

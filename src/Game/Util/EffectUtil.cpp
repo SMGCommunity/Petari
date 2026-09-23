@@ -87,7 +87,6 @@ namespace MR {
         }
 
         return emitEffect(pActor, pEffectName);
-        ;
     }
 
     bool tryDeleteEffect(LiveActor* pActor, const char* pEffectName) {
@@ -158,12 +157,12 @@ namespace MR {
         ::getEffectKeeper(pActor)->changeEffectName(pOldName, pNewName);
     }
 
-    void setEffectHostSRT(LiveActor* pActor, const char* pEffectName, const TVec3f* a3, const TVec3f* a4, const TVec3f* a5) {
-        getEffect(pActor, pEffectName)->setHostSRT(a3, a4, a5);
+    void setEffectHostSRT(LiveActor* pActor, const char* pEffectName, const TVec3f* pScale, const TVec3f* pRotate, const TVec3f* pTranslate) {
+        getEffect(pActor, pEffectName)->setHostSRT(pScale, pRotate, pTranslate);
     }
 
-    void setEffectHostMtx(LiveActor* pActor, const char* pEffectName, MtxPtr mtx) {
-        getEffect(pActor, pEffectName)->setHostMtx(mtx);
+    void setEffectHostMtx(LiveActor* pActor, const char* pEffectName, MtxPtr pMtx) {
+        getEffect(pActor, pEffectName)->setHostMtx(pMtx);
     }
 
     void setEffectBaseScale(LiveActor* pActor, const char* pEffectName, f32 scale) {
@@ -188,30 +187,30 @@ namespace MR {
         getEffect(pActor, pEffectName)->setGlobalEnvColor(color1, color2, color3, -1);
     }
 
-    void emitEffectHit(LiveActor* pActor, const TVec3f& a2, const char* pEffectName) {
+    void emitEffectHit(LiveActor* pActor, const TVec3f& rPosition, const char* pEffectName) {
         if (pEffectName == nullptr) {
             pEffectName = "HitMarkNormal";
         }
 
-        emitEffect(pActor, pEffectName)->setGlobalTranslation(a2, -1);
+        emitEffect(pActor, pEffectName)->setGlobalTranslation(rPosition, -1);
     }
 
-    void emitEffectHit(LiveActor* pActor, const TVec3f& a2, const TVec3f& a3, const char* pEffectName) {
+    void emitEffectHit(LiveActor* pActor, const TVec3f& rPosition, const TVec3f& rDirection, const char* pEffectName) {
         if (pEffectName == nullptr) {
             pEffectName = "HitMarkNormal";
         }
 
         TPos3f mtx;
-        makeMtxUpNoSupportPos(&mtx, a3, a2);
+        makeMtxUpNoSupportPos(&mtx, rDirection, rPosition);
         emitEffect(pActor, pEffectName)->setGlobalSRTMatrix(mtx, -1);
     }
 
-    void emitEffectHit(LiveActor* pActor, MtxPtr mtx, const char* pEffectName) {
+    void emitEffectHit(LiveActor* pActor, MtxPtr pMtx, const char* pEffectName) {
         if (pEffectName == nullptr) {
             pEffectName = "HitMarkNormal";
         }
 
-        emitEffect(pActor, pEffectName)->setGlobalSRTMatrix(mtx, -1);
+        emitEffect(pActor, pEffectName)->setGlobalSRTMatrix(pMtx, -1);
     }
 
     void emitEffectHitBetweenSensors(LiveActor* pActor, const HitSensor* pSensor1, const HitSensor* pSensor2, f32 flt, const char* pEffectName) {
@@ -228,10 +227,10 @@ namespace MR {
         ::getEffectKeeper(pActor)->updateFloorCode(pTriangle);
     }
 
-    void updateEffectFloorCodeLineToMap(LiveActor* pActor, const TVec3f& a2, const TVec3f& a3) {
+    void updateEffectFloorCodeLineToMap(LiveActor* pActor, const TVec3f& rPosition, const TVec3f& rDirection) {
         Triangle triangle = Triangle();
 
-        if (getFirstPolyOnLineToMap(nullptr, &triangle, a2, a3)) {
+        if (getFirstPolyOnLineToMap(nullptr, &triangle, rPosition, rDirection)) {
             ::getEffectKeeper(pActor)->updateFloorCode(&triangle);
         } else {
             ::getEffectKeeper(pActor)->updateFloorCode(nullptr);
@@ -245,30 +244,31 @@ namespace MR {
         updateEffectFloorCodeLineToMap(pActor, sumPosScaledGrav, gravity * (a2 - a3));
     }
 
-    // Not byte-matching but does the same thing
     void initEffectSyncBck(LiveActor* pActor, const char* pEffectName, const char* const* pStrList) {
-        int i = 0;
-        const char* const* tempStrList = pStrList;
-        const char* str;
-        while (str = tempStrList[0], tempStrList = &tempStrList[1], str) {
-            i++;
+        int count = 0;
+        const char* const* pCurrent = pStrList;
+        const char* pName;
+        while ((pName = *pCurrent++) != nullptr) {
+            count++;
         }
-        Effect::initEffectSyncBck(::getEffectKeeper(pActor), pActor->mModelManager, pEffectName, pStrList[0], i, 0.0f, -1.0f, false);
+
+        Effect::initEffectSyncBck(::getEffectKeeper(pActor), pActor->mModelManager, pEffectName, pStrList[0], count, 0.0f, -1.0f, false);
         pStrList = &pStrList[1];
-        ModelManager* pModelManager;
-        while (pStrList[0]) {
-            pModelManager = pActor->mModelManager;
-            Effect::addEffectSyncBck(::getEffectKeeper(pActor)->getEmitter(pEffectName), pModelManager, pStrList[0]);
+
+        while (pStrList[0] != nullptr) {
+            ModelManager* pModelManager = pActor->mModelManager;
+            MultiEmitter* pEmitter = ::getEffectKeeper(pActor)->getEmitter(pEffectName);
+            Effect::addEffectSyncBck(pEmitter, pModelManager, pStrList[0]);
             pStrList = &pStrList[1];
         }
     }
 
-    // Instructionswap for some reason
     void addEffectHitNormal(LiveActor* pActor, const char* pEffectName) {
-        addEffect(pActor, "HitMarkNormal");
+        const char* const pHitEffectName = "HitMarkNormal";
+        addEffect(pActor, pHitEffectName);
 
         if (pEffectName != nullptr) {
-            setEffectName(pActor, "HitMarkNormal", pEffectName);
+            setEffectName(pActor, pHitEffectName, pEffectName);
         }
     }
 };  // namespace MR

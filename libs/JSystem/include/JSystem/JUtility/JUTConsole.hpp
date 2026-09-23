@@ -16,6 +16,7 @@ extern "C" void JUTSetReportConsole(JUTConsole*);
 extern "C" JUTConsole* JUTGetReportConsole();
 extern "C" void JUTWarningConsole(const char* message);
 extern "C" void JUTReportConsole(const char* message);
+extern "C" void JUTWarningConsole_f_va(const char* fmt, va_list args);
 
 class JUTFont;
 

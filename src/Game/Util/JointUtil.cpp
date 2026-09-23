@@ -1,10 +1,10 @@
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
-#include <JSystem/J3DGraphBase/J3DMaterial.hpp>
 #include <JSystem/J3DGraphAnimator/J3DJoint.hpp>
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
 #include <JSystem/J3DGraphAnimator/J3DMtxBuffer.hpp>
+#include <JSystem/J3DGraphBase/J3DMaterial.hpp>
 #include <JSystem/J3DGraphBase/J3DShape.hpp>
 #include <JSystem/JGeometry.hpp>
 #include <JSystem/JUtility/JUTNameTab.hpp>
@@ -93,9 +93,10 @@ namespace MR {
 
     void hideJointAndChildren(J3DJoint* pJoint) {
         MR::hideJoint(pJoint);
+
         J3DJoint *j, *i;
-        for (i = pJoint->mChild; i; i = i->mChild) {
-            for (j = i; j; j = j->mYounger) {
+        for (i = pJoint->mChild; i != nullptr; i = i->mChild) {
+            for (j = i; j != nullptr; j = j->mYounger) {
                 MR::hideJointAndChildren(j);
             }
         }
@@ -125,9 +126,10 @@ namespace MR {
 
     void showJointAndChildren(J3DJoint* pJoint) {
         MR::showJoint(pJoint);
+
         J3DJoint *j, *i;
-        for (i = pJoint->mChild; i; i = i->mChild) {
-            for (j = i; j; j = j->mYounger) {
+        for (i = pJoint->mChild; i != nullptr; i = i->mChild) {
+            for (j = i; j != nullptr; j = j->mYounger) {
                 MR::showJointAndChildren(j);
             }
         }
@@ -153,41 +155,43 @@ namespace MR {
         return pJoint->mTransformInfo.mTranslate.z;
     }
 
-    /*
-    J3DJoint* searchChildJoint(J3DJoint *a1, J3DJoint *a2) {
-        J3DJoint* v3 = a1;
-        if (a1 == nullptr) {
+    J3DJoint* searchChildJoint(J3DJoint* pRoot, J3DJoint* pJoint) {
+        if (pRoot == nullptr) {
             return nullptr;
         }
 
-        if (a1 == a2) {
-            return (J3DJoint*)-1;
+        if (pRoot == pJoint) {
+            return reinterpret_cast< J3DJoint* >(-1);
         }
 
-        J3DJoint* child = a1->mChild;
-        if (child != a2) {
-            while (child != nullptr) {
-                child = child->mYoung;
+        J3DJoint* pChild = pRoot->mChild;
+        if (pChild == pJoint) {
+            return pRoot;
+        }
 
-                if (child == a2) {
-                    return a1;
-                }
-            }
-
-            a1 = searchChildJoint(a1->mYoung, a2);
-
-            if (a1 != nullptr) {
-                return searchChildJoint(v3->mYoung, a2);
+        while (pChild != nullptr) {
+            pChild = pChild->mYounger;
+            if (pChild == pJoint) {
+                return pRoot;
             }
         }
 
-        return a1;
+        J3DJoint* pParent = searchChildJoint(pRoot->mYounger, pJoint);
+        if (pParent != nullptr) {
+            return pParent;
+        }
+
+        return searchChildJoint(pRoot->mChild, pJoint);
     }
 
-    J3DJoint* getParentJoint(J3DModelData *pModelData, J3DJoint *pJoint) {
+    J3DJoint* getParentJoint(J3DModelData* pModelData, J3DJoint* pJoint) {
+        J3DJoint* pParent = searchChildJoint(pModelData->mJointTree.mJointNodePointer[0], pJoint);
+        if (pParent == reinterpret_cast< J3DJoint* >(-1)) {
+            return nullptr;
+        }
 
+        return pParent;
     }
-    */
 
     J3DJoint* getParentJoint(const LiveActor* pActor, J3DJoint* pJoint) {
         return getParentJoint(getJ3DModelData(pActor), pJoint);

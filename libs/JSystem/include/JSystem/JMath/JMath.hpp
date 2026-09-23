@@ -150,6 +150,21 @@ namespace JMath {
 namespace JMathInlineVEC {
 #ifdef __MWERKS__
 
+    inline f32 PSVECDotProduct(const register Vec* pA, const register Vec* pB) {
+        register f32 aXY, bXY, bYZ, aYZ, product;
+        asm {
+            psq_l aYZ, 4(pA), 0, 0
+            psq_l bYZ, 4(pB), 0, 0
+            ps_mul aYZ, aYZ, bYZ
+            psq_l aXY, 0(pA), 0, 0
+            psq_l bXY, 0(pB), 0, 0
+            ps_madd bYZ, aXY, bXY, aYZ
+            ps_sum0 product, bYZ, aYZ, aYZ
+        }
+
+        return product;
+    }
+
     ALWAYS_INLINE inline void PSVECCopy(register const Vec* src, register Vec* dest) {
         register f32 xy, z;
         __asm {

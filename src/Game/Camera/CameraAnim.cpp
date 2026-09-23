@@ -40,9 +40,6 @@ f32 CamAnmDataAccessor::getFovy(f32 key) const {
 }
 
 f32 CamAnmDataAccessor::get(f32 key, u32 offset, u32 count) const {
-    // FIXME: regswap
-    // https://decomp.me/scratch/7ESHr
-
     u32 keyFloor = key;
 
     f32 rate = MR::clamp(key - keyFloor, 0.0f, 1.0f);
@@ -50,7 +47,8 @@ f32 CamAnmDataAccessor::get(f32 key, u32 offset, u32 count) const {
     if (keyFloor < count - 1) {
         return (1.0f - rate) * mValues[offset + keyFloor] + rate * mValues[offset + keyFloor + 1];
     } else {
-        s32 idx = offset + count;
+        s32 idx = offset;
+        idx += count;
         return getValue(idx - 1);
     }
 }
@@ -146,9 +144,6 @@ void CameraAnim::reset() {
 }
 
 CameraTargetObj* CameraAnim::calc() {
-    // FIXME: out of order load
-    // https://decomp.me/scratch/1E1xy
-
     TPos3f mtx;
     mtx.identity();
     mtx.setXDir(CameraLocalUtil::getTarget(this)->getSideVec());
@@ -179,8 +174,8 @@ CameraTargetObj* CameraAnim::calc() {
             mCurrentFrame += mSpeed;
         }
     } else {
-        // FIXME: out of order
-        CameraLocalUtil::setRoll(this, mFileDataAccessor->getTwist(mNrFrames - 1) * MR::pi() / 180.0f);
+        const f32 frame = mNrFrames - 1;
+        CameraLocalUtil::setRoll(this, mFileDataAccessor->getTwist(frame) * MR::pi() / 180.0f);
         CameraLocalUtil::setFovy(this, mFileDataAccessor->getFovy(mNrFrames - 1));
     }
 

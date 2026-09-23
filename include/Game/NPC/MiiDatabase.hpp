@@ -1,15 +1,14 @@
 #pragma once
 
-#include "Game/Util/Array.hpp"
+#include <revolution/types.h>
 
-struct RFLStoreData;
+struct MiiDatabaseStoreData;
 
 class MiiDatabase {
 public:
-    /// @brief Destroys the `MiiDatabase`.
     ~MiiDatabase();
 
 private:
-    /* 0x0 */ u8* _0;
-    /* 0x4 */ MR::AssignableArray< RFLStoreData* >* mStoreDataArray;
+    /* 0x00 */ u8* _0;
+    /* 0x04 */ MiiDatabaseStoreData* mStoreData;
 };

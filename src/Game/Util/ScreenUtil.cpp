@@ -98,13 +98,12 @@ namespace MR {
         return isScreen16Per9() ? 832 : 608;
     }
 
-    // FIXME: Source register swap in division instruction.
     s32 getSafetyFrameWidth() {
         s32 viWidthMax = static_cast< u16 >(RenderModeObj::getViWidthMax());
         f32 safetyFrameWidthRatio = viWidthMax * getSafetyVIScreenWidthRatio();
         s32 screenWidth = getScreenWidth();
-        s32 viWidth = getViWidth();
-        f32 viWidthRatio = static_cast< f32 >(viWidth) / screenWidth;
+        f32 viWidth = static_cast< s32 >(getViWidth());
+        f32 viWidthRatio = screenWidth / viWidth;
 
         return safetyFrameWidthRatio * viWidthRatio + 0.5f;
     }

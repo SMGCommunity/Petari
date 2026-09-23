@@ -1,9 +1,10 @@
 #include "Game/MapObj/JetTurtle.hpp"
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/MessageSensorHolder.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "revolution/types.h"
 
 namespace {
     static const f32 sThrowSpdStraight[] = {30.0f, 20.0f, 30.0f};
@@ -208,6 +209,101 @@ void JetTurtle::resetPositionAndVanish() {
     if (!_E0) {
         kill();
     }
+}
+
+/* void JetTurtle::exeWait() {
+    if (MR::isFirstStep(this)) {
+        if (isNerve(GET_NERVE(JetTurtle, JetTurtleNrvTakenReserve))) {
+            switch (mShellType) {
+            default:
+                MR::emitEffect(this, "SpinBlur");
+                break;
+            case 1:
+                MR::emitEffect(this, "SpinBlurRed");
+                break;
+            case 2:
+                MR::emitEffect(this, "SpinBlurGold");
+                break;
+            }
+            MR::invalidateClipping(this);
+        }
+        switch (mShellType) {
+        default:
+            MR::emitEffect(this, "Glow");
+            break;
+        case 1:
+            MR::calcGravity(this);
+            MR::onCalcShadowOneTime(this, nullptr);
+            MR::validateShadow(this, nullptr);
+            getSensor("eye")->invalidate();
+            MR::startBck(this, "Wait");
+            break;
+        case 2:
+            if (_D8 != nullptr) {
+                _D8 *= 24.0f;
+            }
+            break;
+        }
+    }
+    if (getNerveStep() >= 120) {
+        mPosition - *MR::getPlayerCenterPos();
+        120.0f * getNerveStep();
+    }
+} */
+
+void JetTurtle::exeThrowWait() {
+    if (MR::isFirstStep(this)) {
+        MR::onCalcGravity(this);
+    }
+    MR::invalidateHitSensors(this);
+    if (mShellType == 2) {
+        if (MR::isHiddenModel(this)) {
+            MR::deleteEffect(this, "HandyBlow");
+        } else {
+            MR::emitEffect(this, "HandyBlow");
+        }
+    }
+    if (MR::isPlayerInWaterMode()) {
+        MR::tryStartBck(this, "SwimFlutterboard");
+        if (mShellType != (s16)1) {
+            MR::emitEffect(this, "SwimBubble");
+        } else {
+            MR::emitEffect(this, "SwimBubbleRed");
+        }
+        if (mShellType == 2) {
+            MR::startLevelSound(this, "SE_OJ_LV_JET_TURTLE_G_LIGHT");
+        }
+    } else {
+        MR::tryStartBck(this, "CarryWait");
+        MR::deleteEffect(this, "SwimBubble");
+        MR::deleteEffect(this, "SwimBubbleRed");
+    }
+}
+
+void JetTurtle::appear() {
+    LiveActor::appear();
+    _98 = nullptr;
+    _94 = nullptr;
+    MR::showModel(this);
+    if (_E1 != 0) {
+        if (_92 == 0) {
+            TVec3f gravityVec;
+            TVec3f gravityVec2;
+            TVec3f frontVec;
+            MR::calcGravityVectorOrZero(this, mPosition, &gravityVec, nullptr, 0);
+            MR::calcFrontVec(&frontVec, this);
+            MR::calcGravityVectorOrZero(this, mPosition + frontVec * 100.0f, &gravityVec2, nullptr, 0);
+            if (!MR::isNearZero(gravityVec - gravityVec2)) {
+                _92 = 1;
+            }
+        }
+        setNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait2));
+        HitSensor* pSensor = getSensor("body");
+        pSensor->mRadius = 100.0f;
+        initAfterPlacement();
+        return;
+    }
+    setNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait));
 }
 
 void JetTurtle::bound() {
@@ -511,8 +607,39 @@ void JetTurtle::exeDrop() {
         reset(0);
     }
 }
+inline bool JetTurtle::isNerveWait() {
+    return isNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait)) || isNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait2));
+}
 
-// JetTurtle::attackSensor
+void JetTurtle::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
+        if (isNerveWait()) {
+            if (getNerveStep() >= 2 && !MR::isSensorEye(pSender)) {
+                MR::sendMsgPush(pReceiver, pSender);
+            }
+        }
+        return;
+    }
+    if (isNerveWait()) {
+        MR::sendMsgPush(pReceiver, pSender);
+    }
+    if (isNerve(GET_NERVE(JetTurtle, JetTurtleNrvThrowing)) && MR::isSensorItem(pSender) && MR::isSensorEye(pSender) && _98 != nullptr &&
+        mShellType != 0 && MR::isExistInAttributeGroupSearchTurtle(pSender->mHost)) {
+        TVec3f difference = pReceiver->mPosition - pSender->mPosition;
+        if (MR::diffAngleAbs(mVelocity, difference) < 0.5235988f) {
+            MR::normalizeOrZero(&difference);
+            MR::vecBlendSphere(_9C, difference, &_9C, 0.2f);
+            _98 = pReceiver;
+            MR::startBck(this, "BulletSearch");
+            if (MR::sendArbitraryMsg(ACTMES_JET_TURTLE_ATTACK, pReceiver, pSender)) {
+                MR::shakeCameraWeak();
+                _E3 = 1;
+                reset(0);
+            }
+            return;
+        }
+    }
+}
 
 bool JetTurtle::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgItemGet(msg)) {

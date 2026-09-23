@@ -68,7 +68,7 @@ CameraTargetObj* CameraMedianTower::calc() {
     limitAngularVelocity(&newPos, &up, pos, watchPos, axis);
     calcDistance(&newPos, pos);
 
-    CameraLocalUtil::setWatchPos(this, watchPos);
+    CameraLocalUtil::setWatchPos(this, pos);
     CameraLocalUtil::setPos(this, newPos);
     CameraLocalUtil::setUpVecAndWatchUpVec(this, up);
     updateReset(newPos, watchPos, axis);
