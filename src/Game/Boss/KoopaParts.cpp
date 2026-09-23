@@ -56,12 +56,13 @@ namespace {
 };  // namespace
 
 KoopaFireStairs* KoopaParts::emitFireStairsToPos(const KoopaBattleMapStair* pBattleMapStair, const TVec3f& rPosition, bool useFront) {
-    KoopaFireStairs* pFireStairs = static_cast< KoopaFireStairs* >(mFireStairs->getDeadActor());
+    LiveActor* actor = mFireStairs->getDeadActor();
 
-    if (pFireStairs == nullptr) {
+    if (actor == nullptr) {
         return nullptr;
     }
 
+    KoopaFireStairs* pFireStairs = static_cast< KoopaFireStairs* >(actor);
     pFireStairs->mPosition.set(rPosition);
 
     if (useFront) {
