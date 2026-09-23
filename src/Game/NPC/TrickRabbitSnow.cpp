@@ -233,7 +233,7 @@ bool TrickRabbitSnow::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pR
 
 bool TrickRabbitSnow::receiveMsgBlowDamage(HitSensor* pSender, HitSensor* pReceiver) {
     if (isEnableBlowDamage()) {
-        MR::setVelocitySeparateHV(this, pSender, pReceiver, ::sAppearSnowJumpH, sAppearSnowJumpV);
+        MR::setVelocitySeparateHV(this, pSender, pReceiver, ::sAppearSnowJumpH, ::sAppearSnowJumpV);
         setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvBlowDamage));
 
         return true;

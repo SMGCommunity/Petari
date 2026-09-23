@@ -37,7 +37,7 @@ namespace NrvPlantMember {
 
 PlantGroup::PlantGroup(const char* pName)
     : LiveActor(pName), mMembers(), mMemberCount(7), mPlantType(), mIsStarPiece(), mHintPosition(0.0f), mHintRotation(0.0f),
-      mHintTimer(sHintEffectEmitInterval), mHintIndex() {
+      mHintTimer(::sHintEffectEmitInterval), mHintIndex() {
 }
 
 void PlantGroup::init(const JMapInfoIter& rIter) {
@@ -154,7 +154,7 @@ s32 PlantGroup::placeOnCollisionFormCircle(TVec3f* pCenter, const TVec3f& rGravi
     s32 ring = 0;
     f32 angle = 0.0f;
     f32 angleStep = 2.0f * PI;
-    f32 radius = sSize * ring;
+    f32 radius = ::sSize * ring;
     s32 placedCount = 0;
 
     for (s32 i = 0; i < mMemberCount; i++) {
@@ -166,7 +166,7 @@ s32 PlantGroup::placeOnCollisionFormCircle(TVec3f* pCenter, const TVec3f& rGravi
         start += offset;
         start -= rGravity * 100.0f;
 
-        if (MR::getFirstPolyOnLineToMap(&mMembers[i]->mPosition, nullptr, start, rGravity * sCheckLineLength)) {
+        if (MR::getFirstPolyOnLineToMap(&mMembers[i]->mPosition, nullptr, start, rGravity * ::sCheckLineLength)) {
             *pCenter += mMembers[i]->mPosition;
             placedCount++;
         } else {
@@ -180,7 +180,7 @@ s32 PlantGroup::placeOnCollisionFormCircle(TVec3f* pCenter, const TVec3f& rGravi
             ring++;
             angle = 0.0f;
             angleStep = 2.0f * PI / (ring * 6);
-            radius = sSize * ring;
+            radius = ::sSize * ring;
         }
     }
 
@@ -250,9 +250,9 @@ void PlantGroup::initAfterPlacement() {
     f32 radius = calcBoundingSphereRadius(center);
     f32 scale = mScale.y;
     HitSensor* sensor = getSensor("境界球");
-    sensor->mRadius = sSize + radius * scale;
-    MR::setStarPointerTargetRadius3d(this, sSize + radius * scale);
-    MR::setClippingTypeSphere(this, sSize + radius * scale);
+    sensor->mRadius = ::sSize + radius * scale;
+    MR::setStarPointerTargetRadius3d(this, ::sSize + radius * scale);
+    MR::setClippingTypeSphere(this, ::sSize + radius * scale);
 }
 
 void PlantGroup::control() {
@@ -265,10 +265,10 @@ void PlantGroup::control() {
         if (pointing) {
             TVec2f velocity(*MR::getStarPointerScreenVelocity(1));
 
-            if (sScratchVel * sScratchVel < velocity.squared()) {
+            if (::sScratchVel * ::sScratchVel < velocity.squared()) {
                 TVec3f pos(*MR::getStarPointerWorldPosUsingDepth(1));
 
-                if (mMembers[i]->tryPush(pos, sDPDTouchRadius, 2) == true) {
+                if (mMembers[i]->tryPush(pos, ::sDPDTouchRadius, 2) == true) {
                     MR::tryRumblePadVeryWeak(this, 1);
                     break;
                 }
@@ -283,7 +283,7 @@ void PlantGroup::emitHintEffect() {
     mHintTimer--;
 
     if (mHintTimer <= 0) {
-        mHintTimer = sHintEffectEmitInterval;
+        mHintTimer = ::sHintEffectEmitInterval;
         s32 index = (mMemberCount + mHintIndex) % mMemberCount;
         do {
             if (mMembers[index]->mHasItem && mMembers[index]->tryEmitHint()) {
@@ -386,9 +386,9 @@ void PlantMember::exeHint() {
 void PlantMember::exeShakeWeak() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Shake");
-        MR::setBckFrame(this, hShakeStartFrame);
+        MR::setBckFrame(this, ::hShakeStartFrame);
         MR::startSound(this, "SE_OJ_LEAVES_SWING");
-        MR::setBckRate(this, hWeakRate);
+        MR::setBckRate(this, ::hWeakRate);
     }
 
     if (MR::isBckStopped(this)) {
@@ -399,9 +399,9 @@ void PlantMember::exeShakeWeak() {
 void PlantMember::exeShakeMiddle() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Shake");
-        MR::setBckFrame(this, hShakeStartFrame);
+        MR::setBckFrame(this, ::hShakeStartFrame);
         MR::startSound(this, "SE_OJ_LEAVES_SWING");
-        MR::setBckRate(this, hMiddleRate);
+        MR::setBckRate(this, ::hMiddleRate);
     }
 
     if (MR::isBckStopped(this)) {
@@ -412,9 +412,9 @@ void PlantMember::exeShakeMiddle() {
 void PlantMember::exeShakeStrong() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Shake");
-        MR::setBckFrame(this, hShakeStartFrame);
+        MR::setBckFrame(this, ::hShakeStartFrame);
         MR::startSound(this, "SE_OJ_LEAVES_SWING");
-        MR::setBckRate(this, hStrongRate);
+        MR::setBckRate(this, ::hStrongRate);
     }
 
     if (MR::isBckStopped(this)) {
@@ -425,7 +425,7 @@ void PlantMember::exeShakeStrong() {
 bool PlantMember::generateItem(PlantGroup* pGroup) {
     if (mHasItem == true) {
         TVec3f velocity(-mGravity);
-        velocity.scale(sCoinVel);
+        velocity.scale(::sCoinVel);
 
         if (pGroup->mIsStarPiece) {
             MR::startSound(pGroup, "SE_OJ_STAR_PIECE_BURST");
@@ -471,7 +471,7 @@ bool PlantMember::tryShake(HitSensor* pSensor) {
 
     if ((isNerve(GET_NERVE(PlantMember, HostTypeNrvShakeWeak)) || isNerve(GET_NERVE(PlantMember, HostTypeNrvShakeMiddle)) ||
          isNerve(GET_NERVE(PlantMember, HostTypeNrvShakeStrong))) &&
-        MR::isLessStep(this, hIsShakableStep)) {
+        MR::isLessStep(this, ::hIsShakableStep)) {
         return false;
     }
 
@@ -479,11 +479,11 @@ bool PlantMember::tryShake(HitSensor* pSensor) {
     MR::vecKillElement(diff, mGravity, &diff);
     f32 distance = diff.length();
 
-    if (distance < hStrongDist) {
+    if (distance < ::hStrongDist) {
         setNerve(GET_NERVE(PlantMember, HostTypeNrvShakeStrong));
-    } else if (distance < hMiddleDist) {
+    } else if (distance < ::hMiddleDist) {
         setNerve(GET_NERVE(PlantMember, HostTypeNrvShakeMiddle));
-    } else if (distance < hWeakDist) {
+    } else if (distance < ::hWeakDist) {
         setNerve(GET_NERVE(PlantMember, HostTypeNrvShakeWeak));
     }
 
@@ -497,12 +497,12 @@ bool PlantMember::tryPush(const TVec3f& rPosition, f32 radius, s32 touchType) {
 
     if ((isNerve(GET_NERVE(PlantMember, HostTypeNrvShakeWeak)) || isNerve(GET_NERVE(PlantMember, HostTypeNrvShakeMiddle)) ||
          isNerve(GET_NERVE(PlantMember, HostTypeNrvShakeStrong))) &&
-        MR::isLessStep(this, hIsShakableStep)) {
+        MR::isLessStep(this, ::hIsShakableStep)) {
         return false;
     }
 
     TVec3f diff(rPosition - mPosition);
-    radius += sCollisionRadius * mScale.y;
+    radius += ::sCollisionRadius * mScale.y;
     radius *= radius;
 
     if (diff.squared() < radius) {
@@ -526,7 +526,7 @@ bool PlantMember::tryPush(const TVec3f& rPosition, f32 radius, s32 touchType) {
 
 void PlantMember::animControl(PlantGroup* pGroup) {
     if (isNerve(GET_NERVE(PlantMember, HostTypeNrvShakeWeak))) {
-        if (mTouchType == hGenerateItemTouch) {
+        if (mTouchType == ::hGenerateItemTouch) {
             generateItem(pGroup);
         }
     } else if (isNerve(GET_NERVE(PlantMember, HostTypeNrvShakeMiddle)) || isNerve(GET_NERVE(PlantMember, HostTypeNrvShakeStrong))) {

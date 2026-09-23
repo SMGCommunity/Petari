@@ -30,7 +30,7 @@ bool ShadowVolumeSphere::isDraw() const {
 
 void ShadowVolumeSphere::loadModelDrawMtx() const {
     ShadowController* controller = getController();
-    f32 radius = mRadius / sModelScale;
+    f32 radius = mRadius / ::sModelScale;
     if (controller->isFollowHostScale()) {
         radius *= controller->getHost()->mScale.x;
     }

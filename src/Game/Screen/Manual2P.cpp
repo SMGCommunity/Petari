@@ -57,7 +57,7 @@ void Manual2P::init(const JMapInfoIter& rIter) {
     initNerve(GET_NERVE_ANON(Manual2PNrvAppear));
     MR::connectToSceneLayout(this);
 
-    mPageNum = countMessage("2PGuidance");
+    mPageNum = ::countMessage("2PGuidance");
 }
 
 void Manual2P::appear() {

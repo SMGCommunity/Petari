@@ -22,7 +22,7 @@ void LightDataHolder::initLightData() {
         LightFunction::getAreaLightLightData(data, i, &mLights[i]);
     }
 
-    _8 = sDefaultLightSetCoin;
+    _8 = ::sDefaultLightSetCoin;
 }
 
 AreaLightInfo* LightDataHolder::findAreaLight(const char* pName) const {

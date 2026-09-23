@@ -176,7 +176,7 @@ void WPadAcceleration::updateRotate() {
         }
     }
 
-    if (sSelectDominantRotation) {
+    if (::sSelectDominantRotation) {
         if (zMagnitude < xMagnitude) {
             _648 = 0;
         }

@@ -418,7 +418,7 @@ bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
         playerPos.sub(sensorPos);
         TVec3f delta(playerPos);
         MR::vecKillElement(delta, mGravity, &delta);
-        if (MR::isPlayerSwimming() && PSVECMag(playerPos) > 50.0f && playerPos.dot(_98) < -5.0f) {
+        if (MR::isPlayerSwimming() && playerPos.length() > 50.0f && playerPos.dot(_98) < -5.0f) {
             return false;
         }
         mHostActor = MR::getSensorHost(pSender);

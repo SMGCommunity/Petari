@@ -24,7 +24,7 @@ JAISoundID AudSoundNameConverter::getSoundID(const char* pName) const {
 
 inline s32 AudSoundNameConverter::getSeSoundCategory(const char* pName) const {
     for (s32 i = 0; i < 13; i++) {
-        if (pName[3] == sCategoryNamePrefix[i][0] && pName[4] == sCategoryNamePrefix[i][1]) {
+        if (pName[3] == ::sCategoryNamePrefix[i][0] && pName[4] == ::sCategoryNamePrefix[i][1]) {
             return i;
         }
     }
@@ -33,7 +33,7 @@ inline s32 AudSoundNameConverter::getSeSoundCategory(const char* pName) const {
 
 inline s32 AudSoundNameConverter::getOtherSoundCategory(const char* pName) const {
     for (s32 i = 13; i < 17; i++) {
-        if (pName[0] == sCategoryNamePrefix[i][0] && pName[1] == sCategoryNamePrefix[i][1]) {
+        if (pName[0] == ::sCategoryNamePrefix[i][0] && pName[1] == ::sCategoryNamePrefix[i][1]) {
             return i;
         }
     }

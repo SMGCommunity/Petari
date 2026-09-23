@@ -363,11 +363,11 @@ namespace {
 };  // namespace
 
 bool KoopaFunction::tryStartKoopaAndMarioCameraDemo(Koopa* pKoopa, const char* pSmth, const char* pName, const char* pDemoName) {
-    return tryStartCameraDemo(pKoopa, pSmth, pName, pDemoName, true);
+    return ::tryStartCameraDemo(pKoopa, pSmth, pName, pDemoName, true);
 }
 
 bool KoopaFunction::tryStartKoopaCameraDemo(Koopa* pKoopa, const char* pSmth, const char* pName, const char* pDemoName) {
-    return tryStartCameraDemo(pKoopa, pSmth, pName, pDemoName, false);
+    return ::tryStartCameraDemo(pKoopa, pSmth, pName, pDemoName, false);
 }
 
 bool KoopaFunction::tryEndKoopaCameraDemo(Koopa* pKoopa, const char* pName, const char* pSmth) {

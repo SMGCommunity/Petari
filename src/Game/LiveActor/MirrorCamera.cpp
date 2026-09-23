@@ -44,7 +44,7 @@ void MirrorCamera::setMirrorMapInfo(const TVec3f& rNormal, const TVec3f& rPositi
 void MirrorCamera::setMirrorMapInfo(J3DModelData* pModelData) {
     TVec3f position;
     TVec3f normal;
-    const GXVtxAttrFmtList* format = getVertexFormat(pModelData, GX_VA_POS);
+    const GXVtxAttrFmtList* format = ::getVertexFormat(pModelData, GX_VA_POS);
     if (format->type == GX_S16) {
         const s16* data = static_cast< const s16* >(pModelData->getVtxPosArray());
         TVec3s fixed(data[0], data[1], data[2]);
@@ -54,7 +54,7 @@ void MirrorCamera::setMirrorMapInfo(J3DModelData* pModelData) {
         position.set< f32 >(data[0], data[1], data[2]);
     }
 
-    format = getVertexFormat(pModelData, GX_VA_NRM);
+    format = ::getVertexFormat(pModelData, GX_VA_NRM);
     if (format->type == GX_S16) {
         const s16* data = static_cast< const s16* >(pModelData->getVtxNrmArray());
         TVec3s fixed(data[0], data[1], data[2]);

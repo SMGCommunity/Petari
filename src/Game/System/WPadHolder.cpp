@@ -164,7 +164,7 @@ namespace MR {
     void getHBMKPadData(HBMKPadData* pPadData, s32 chan) {
         u32 type;
         s32 err = WPADProbe(chan, &type);
-        KPADStatus* pStatus = getWPadHolder()->mReadDataInfoArray[chan].mStatusArray;
+        KPADStatus* pStatus = ::getWPadHolder()->mReadDataInfoArray[chan].mStatusArray;
 
         switch (err) {
         case WPAD_ERR_NONE:

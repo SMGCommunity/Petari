@@ -1,9 +1,5 @@
 #include <revolution.h>
 
-namespace JMathInlineVEC {
-    void PSVECSubtract(const Vec* pA, const Vec* pB, Vec* pOut) NO_INLINE;
-}
-
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/MapObj/MapPartsRailGuideHolder.hpp"
@@ -22,11 +18,15 @@ namespace JMathInlineVEC {
 #include "Game/Util/RailUtil.hpp"
 #include <cstdio>
 
-template TVec3f::TVec3(f32, f32, f32);
-
 void MapPartsUtil_FORCE_MATCH_SDATA2() {
     0.0f;
     0.5f;
+}
+
+void MapPartsUtil_DUMMY() {
+    TVec3f a(0.0f, 0.0f, 0.0f);
+    TVec3f b;
+    a.sub(b);
 }
 
 namespace {
@@ -224,9 +224,9 @@ namespace MR {
             initShadowVolumeSphere(pActor, 0.70710677f * pActor->getSensor("body")->mRadius);
         }
 
-        if (isExistJoint(pActor, cFollowJointName)) {
+        if (isExistJoint(pActor, ::cFollowJointName)) {
             TVec3f offset(0.0f, 0.0f, 0.0f);
-            setShadowDropPositionAtJoint(pActor, nullptr, cFollowJointName, offset);
+            setShadowDropPositionAtJoint(pActor, nullptr, ::cFollowJointName, offset);
         }
     }
 }  // namespace MR

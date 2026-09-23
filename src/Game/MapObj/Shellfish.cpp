@@ -46,8 +46,8 @@ void Shellfish::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("Shellfish", nullptr, false);
     MR::connectToSceneMapObjStrongLight(this);
     initHitSensor(2);
-    MR::addHitSensorEnemy(this, "body", 8, 400.0f, TVec3f(sBodyHitOffset));
-    MR::addHitSensorAtJointEnemyAttack(this, "core", "Lid", 8, 120.0f, TVec3f(sSandHitOffset));
+    MR::addHitSensorEnemy(this, "body", 8, 400.0f, TVec3f(::sBodyHitOffset));
+    MR::addHitSensorAtJointEnemyAttack(this, "core", "Lid", 8, 120.0f, TVec3f(::sSandHitOffset));
     MR::invalidateHitSensor(this, "core");
     MR::initCollisionPartsAutoEqualScaleOne(this, "Hi", getSensor("body"), MR::getJointMtx(this, "Lid"));
     mLowCollision = MR::createCollisionPartsFromLiveActor(this, "Low", getSensor("body"), MR::CollisionScaleType_NotUsingScale);
@@ -59,8 +59,8 @@ void Shellfish::init(const JMapInfoIter& rIter) {
     TVec3f up;
     MR::calcUpVec(&up, this);
     TVec3f shadowPosition;
-    JMAVECScaleAdd(&front, &mPosition, &shadowPosition, 30.0f);
-    JMAVECScaleAdd(&up, &shadowPosition, &shadowPosition, 5.0f);
+    shadowPosition.scaleAdd(30.0f, front, mPosition);
+    shadowPosition.scaleAdd(5.0f, up, shadowPosition);
     MR::setShadowDropPosition(this, nullptr, shadowPosition);
     MR::offCalcShadow(this, nullptr);
     initEffectKeeper(2, nullptr, false);
@@ -101,7 +101,7 @@ void Shellfish::exeWait() {
         MR::startBck(this, "Wait");
     }
 
-    if (MR::isStep(this, sStepToOpen)) {
+    if (MR::isStep(this, ::sStepToOpen)) {
         setNerve(GET_NERVE(Shellfish, ShellfishNrvOpen));
     }
 }
@@ -113,26 +113,26 @@ void Shellfish::exeOpen() {
         putItem();
     }
 
-    if (MR::isStep(this, sStepToApperItem)) {
+    if (MR::isStep(this, ::sStepToApperItem)) {
         MR::sendArbitraryMsg(ACTMES_ITEM_SHOW, mItem->getSensor(nullptr), getSensor("body"));
         startBindItem();
     }
 
-    if (mIsItemBound && MR::isLessStep(this, sStepToSetPosItem) && MR::isGreaterStep(this, sStepToApperItem)) {
+    if (mIsItemBound && MR::isLessStep(this, ::sStepToSetPosItem) && MR::isGreaterStep(this, ::sStepToApperItem)) {
         f32 speed = 0.5f;
         TVec3f up;
         MR::calcUpVec(&up, this);
-        JMAVECScaleAdd(&up, &mItem->mPosition, &mItem->mPosition, speed);
+        mItem->mPosition.scaleAdd(speed, up, mItem->mPosition);
     }
 
-    if (mIsItemBound && MR::isStep(this, sStepToSetPosItem)) {
+    if (mIsItemBound && MR::isStep(this, ::sStepToSetPosItem)) {
         endBindItem();
         setNerve(GET_NERVE(Shellfish, ShellfishNrvOpenWait));
     }
 }
 
 void Shellfish::exeOpenWait() {
-    if (MR::isStep(this, sStepToCloseSignal)) {
+    if (MR::isStep(this, ::sStepToCloseSignal)) {
         setNerve(GET_NERVE(Shellfish, ShellfishNrvCloseSignal));
     }
 }
@@ -144,7 +144,7 @@ void Shellfish::exeCloseSignal() {
 
     MR::startLevelSound(this, "SE_OJ_LV_SHELLFISH_SIGNAL");
 
-    if (MR::isStep(this, sStepToClose)) {
+    if (MR::isStep(this, ::sStepToClose)) {
         setNerve(GET_NERVE(Shellfish, ShellfishNrvClose));
     }
 }
@@ -155,15 +155,15 @@ void Shellfish::exeClose() {
         MR::startSound(this, "SE_OJ_SHELLFISH_CLOSE");
     }
 
-    if (MR::isStep(this, sStepToHitSensorOn)) {
+    if (MR::isStep(this, ::sStepToHitSensorOn)) {
         MR::validateHitSensor(this, "core");
     }
 
-    if (MR::isStep(this, sStepToHitSensorOff)) {
+    if (MR::isStep(this, ::sStepToHitSensorOff)) {
         MR::invalidateHitSensor(this, "core");
     }
 
-    if (MR::isStep(this, sStepToDeadItem)) {
+    if (MR::isStep(this, ::sStepToDeadItem)) {
         MR::sendArbitraryMsg(ACTMES_ITEM_HIDE, mItem->getSensor(nullptr), getSensor("body"));
     }
 
@@ -179,7 +179,7 @@ void Shellfish::exeShock() {
         MR::sendArbitraryMsg(ACTMES_ITEM_SHOW, mItem->getSensor(nullptr), getSensor("body"));
     }
 
-    if (MR::isStep(this, sStepToRecover)) {
+    if (MR::isStep(this, ::sStepToRecover)) {
         setNerve(GET_NERVE(Shellfish, ShellfishNrvCloseSignal));
     }
 }
@@ -203,7 +203,7 @@ void Shellfish::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         }
 
         TVec3f push;
-        push.scale(sHitPushPower, direction);
+        push.scale(::sHitPushPower, direction);
         MR::pushPlayer(push);
     }
 }
@@ -217,9 +217,9 @@ bool Shellfish::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
         MR::emitEffectHitBetweenSensors(this, pSender, pReceiver, 0.0f, nullptr);
 
         if (isNerve(GET_NERVE(Shellfish, ShellfishNrvWait))) {
-            MR::startBckWithInterpole(this, "CloseDamage", sShockToInterpole);
+            MR::startBckWithInterpole(this, "CloseDamage", ::sShockToInterpole);
         } else {
-            MR::startBckWithInterpole(this, "OpenDamage", sShockToInterpole);
+            MR::startBckWithInterpole(this, "OpenDamage", ::sShockToInterpole);
         }
 
         if (mIsItemBound) {
@@ -300,7 +300,7 @@ void Shellfish::endBindItem() {
     putItem();
     TVec3f up;
     MR::calcUpVec(&up, this);
-    JMAVECScaleAdd(&up, &mItem->mPosition, &mItem->mPosition, 30.0f);
+    mItem->mPosition.scaleAdd(30.0f, up, mItem->mPosition);
     MR::sendArbitraryMsg(ACTMES_ITEM_END_MOVE, mItem->getSensor(nullptr), getSensor("body"));
     mIsItemBound = false;
 }
@@ -309,13 +309,13 @@ void Shellfish::putItem() {
     const Vec* pOffset;
 
     if (mItemType == 0) {
-        pOffset = &sCoinOffset;
+        pOffset = &::sCoinOffset;
     } else if (mItemType == 1) {
-        pOffset = &sChipOffset;
+        pOffset = &::sChipOffset;
     } else if (mItemType == 2) {
-        pOffset = &sChipOffset;
+        pOffset = &::sChipOffset;
     } else if (mItemType == 3) {
-        pOffset = &sKinokoOneUpOffset;
+        pOffset = &::sKinokoOneUpOffset;
     }
 
     PSMTXMultVec(getBaseMtx(), pOffset, &mItem->mPosition);

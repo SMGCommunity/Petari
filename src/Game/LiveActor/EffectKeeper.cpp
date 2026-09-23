@@ -84,7 +84,7 @@ void EffectKeeper::initAfterPlacementForAttributeEffect(MtxPtr pMtx) {
 
     checkExistenceAttributeEffect();
     if (_30 && pMtx != nullptr) {
-        s32 code = getFloorCodeBelow(pMtx, 100.0f);
+        s32 code = ::getFloorCodeBelow(pMtx, 100.0f);
         if (code >= 0) {
             _28 = code;
             _2C = code;
@@ -373,7 +373,7 @@ void EffectKeeper::updateFloorCode() {
     }
 
     _2C = _28;
-    if (isBinded(mBinder)) {
+    if (::isBinded(mBinder)) {
         updateFloorCode(&mBinder->mGroundInfo.mParentTriangle);
     }
 }

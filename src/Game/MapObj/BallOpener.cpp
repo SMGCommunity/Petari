@@ -38,7 +38,7 @@ BallOpener::~BallOpener() {
 
 BallOpener::BallOpener(const char* pName)
     : LiveActor(pName), mBoundSensor(), _A0(0, 0, 0), mInitialVelocity(0, 0, 0), mBindVelocity(0, 0, 0), mSettledFrames() {
-    mCone = new BindCone(mPosition, TVec3f(0.0f, 1.0f, 0.0f), sHoleDepth, sHoleRadius);
+    mCone = new BindCone(mPosition, TVec3f(0.0f, 1.0f, 0.0f), ::sHoleDepth, ::sHoleRadius);
 }
 
 void BallOpener::init(const JMapInfoIter& rIter) {
@@ -46,7 +46,7 @@ void BallOpener::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("BallOpener", nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
-    MR::addHitSensor(this, "body", ATYPE_JUMP_HOLE, 8, sHoleRadius, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensor(this, "body", ATYPE_JUMP_HOLE, 8, ::sHoleRadius, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(1, nullptr, false);
     initSound(4, false);
     MR::initCollisionParts(this, "BallOpener", getSensor(nullptr), nullptr);
@@ -72,7 +72,7 @@ bool BallOpener::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
         TVec3f lateral;
         lateral.killElement2(offset, mHoleGravity);
 
-        if (lateral.squared() <= radiusSquared && offset.squared(lateral) <= sLaunchValidHeight * sLaunchValidHeight) {
+        if (lateral.squared() <= radiusSquared && offset.squared(lateral) <= ::sLaunchValidHeight * ::sLaunchValidHeight) {
             mBoundSensor = pSender;
             mInitialVelocity = pSender->mHost->mVelocity;
             mBindVelocity = mInitialVelocity;
@@ -115,7 +115,7 @@ void BallOpener::exeSetCenter() {
 
     MR::startLevelSound(this, "SE_OJ_LV_BALL_OPN_SETTING");
 
-    if (mSettledFrames > sLaunchFixTime || MR::isGreaterStep(this, sForceSetCenterTime)) {
+    if (mSettledFrames > ::sLaunchFixTime || MR::isGreaterStep(this, ::sForceSetCenterTime)) {
         setNerve(GET_NERVE(BallOpener, BallOpenerNrvOpen));
     }
 }
@@ -125,7 +125,7 @@ void BallOpener::exeOpen() {
         mBoundSensor->receiveMessage(ACTMES_SET_UP_JUMP_HOLE, getSensor("body"));
     }
 
-    if (MR::isStep(this, sSetUpTime)) {
+    if (MR::isStep(this, ::sSetUpTime)) {
         MR::zeroVelocity(mBoundSensor->mHost);
         mBoundSensor->receiveMessage(ACTMES_END_BALL_BIND, getSensor("body"));
         mBoundSensor = nullptr;
@@ -145,19 +145,19 @@ void BallOpener::bindHole() {
 
     TVec3f previous(mBoundSensor->mPosition);
     TVec3f position(previous);
-    mBindVelocity += mHoleGravity * sGravityAcc;
+    mBindVelocity += mHoleGravity * ::sGravityAcc;
 
     BindResult result;
     BindSphere sphere(previous, radius);
     MR::bindSpereToCone(&result, mBindVelocity, sphere, *mCone);
-    MR::updateBindPositionAndVelocity(&position, &mBindVelocity, result, sHoleRefrecRate);
+    MR::updateBindPositionAndVelocity(&position, &mBindVelocity, result, ::sHoleRefrecRate);
 
     TVec3f lateralVelocity;
     lateralVelocity.killElement2(mBindVelocity, mHoleGravity);
     TVec3f lateralOffset;
     lateralOffset.killElement2(position - mPosition, mHoleGravity);
 
-    f32 limit = sHoleRadius - radius;
+    f32 limit = ::sHoleRadius - radius;
     if (lateralVelocity.dot(lateralOffset) > 0.0f && lateralOffset.squared() > limit * limit) {
         f32 distance;
         MR::separateScalarAndDirection(&distance, &lateralOffset, lateralOffset);
@@ -174,7 +174,7 @@ void BallOpener::bindHole() {
         mBindVelocity += tangent * lateralVelocity.length();
     }
 
-    mBindVelocity *= MR::calcNerveValue(this, sForceSetStartTime, sForceSetEndTime, sBallToCenterFreq, sBallToCenterEndFreq);
+    mBindVelocity *= MR::calcNerveValue(this, ::sForceSetStartTime, ::sForceSetEndTime, ::sBallToCenterFreq, ::sBallToCenterEndFreq);
     mBoundSensor->mHost->mVelocity.set(position - previous);
 
     if (position.squared(previous) < 0.1f * 0.1f) {

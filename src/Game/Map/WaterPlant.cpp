@@ -153,7 +153,7 @@ void WaterPlant::draw() const {
         return;
     }
 
-    getWaterPlantDrawInit()->loadTex(mType);
+    ::getWaterPlantDrawInit()->loadTex(mType);
     drawDirect();
 }
 
@@ -201,9 +201,9 @@ void WaterPlant::initPlantAfterPlacement() {
             mPlantDataArray[i].mHeight2 = random * ::sHeightRate1;
             mPlantDataArray[i].mHeight3 = random;
 
-            mPlantDataArray[i].mSwingStrength1 = &getWaterPlantDrawInit()->mSwingPosTable[index + 6];
-            mPlantDataArray[i].mSwingStrength2 = &getWaterPlantDrawInit()->mSwingPosTable[index + 3];
-            mPlantDataArray[i].mSwingStrength3 = &getWaterPlantDrawInit()->mSwingPosTable[index];
+            mPlantDataArray[i].mSwingStrength1 = &::getWaterPlantDrawInit()->mSwingPosTable[index + 6];
+            mPlantDataArray[i].mSwingStrength2 = &::getWaterPlantDrawInit()->mSwingPosTable[index + 3];
+            mPlantDataArray[i].mSwingStrength3 = &::getWaterPlantDrawInit()->mSwingPosTable[index];
 
             index = (index + ::sSwingPosTableSize - 4) % (::sSwingPosTableSize - 6 - 1);
 

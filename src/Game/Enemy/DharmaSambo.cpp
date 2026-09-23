@@ -105,7 +105,7 @@ namespace NrvDharmaSamboParts {
 }  // namespace NrvDharmaSamboParts
 
 DharmaSambo::DharmaSambo(const char* pName)
-    : LiveActor(pName), mStarPointerBindEndNerve(), mInitialPos(0, 0, 0), mHideTimer(hAppearTime), mPartsCount(hBodyPartsNum), mHitSensor(),
+    : LiveActor(pName), mStarPointerBindEndNerve(), mInitialPos(0, 0, 0), mHideTimer(::hAppearTime), mPartsCount(::hBodyPartsNum), mHitSensor(),
       mAnimScaleController() {
 }
 
@@ -137,15 +137,15 @@ void DharmaSambo::init(const JMapInfoIter& rIter) {
 
     mAnimScaleParam = new AnimScaleParam;
     mAnimScaleController = SamboFunction::createAnimScaleController(mAnimScaleParam);
-    mParts.init(hBodyPartsNum);
-    mFixedPositions.init(hBodyPartsNum);
+    mParts.init(::hBodyPartsNum);
+    mFixedPositions.init(::hBodyPartsNum);
 
-    for (s32 i = 0; i < hBodyPartsNum; i++) {
+    for (s32 i = 0; i < ::hBodyPartsNum; i++) {
         MR::hideJoint(this, joint_name[i]);
         DharmaSamboParts* part = new DharmaSamboParts(this, "だるまサンボパーツ", "DharmaSamboParts", nullptr, 18, 43, -2);
         part->initWithoutIter();
         part->mOriginalIndex = i;
-        part->setHead(i == hBodyPartsNum - 1);
+        part->setHead(i == ::hBodyPartsNum - 1);
 
         if (dead) {
             part->makeActorDead();
@@ -200,7 +200,7 @@ void DharmaSambo::control() {
     if (isNerve(GET_NERVE(DharmaSambo, HostTypeNrvPursue)) || isNerve(GET_NERVE(DharmaSambo, HostTypeNrvAttack)) ||
         isNerve(GET_NERVE(DharmaSambo, HostTypeNrvEscapeRun)) || isNerve(GET_NERVE(DharmaSambo, HostTypeNrvEscapeLand)) ||
         isNerve(GET_NERVE(DharmaSambo, HostTypeNrvStarPointerBind)) ||
-        (isNerve(GET_NERVE(DharmaSambo, HostTypeNrvSpinHitted)) && MR::isGreaterStep(this, hSpinHittedBlowableTime))) {
+        (isNerve(GET_NERVE(DharmaSambo, HostTypeNrvSpinHitted)) && MR::isGreaterStep(this, ::hSpinHittedBlowableTime))) {
         f32 closest = 99999.0f;
         DharmaSamboParts* hit = nullptr;
 
@@ -217,7 +217,7 @@ void DharmaSambo::control() {
         if (hit != nullptr) {
             MR::emitEffectHitBetweenSensors(this, hit->getSensor("body"), mHitSensor, 0.0f, nullptr);
             mPartsCount--;
-            MR::stopSceneForDefaultHit(hHitStopTime);
+            MR::stopSceneForDefaultHit(::hHitStopTime);
 
             if (hit->mIsHead) {
                 hit->mIndex = -1;
@@ -227,7 +227,7 @@ void DharmaSambo::control() {
                 hit->mIndex = -1;
                 hit->setNerve(GET_NERVE(DharmaSamboParts, HostTypeNrvBlow));
                 TVec3f direction(mPosition - *MR::getPlayerCenterPos());
-                MR::addVelocitySeparateHV(this, direction, hSpinHitVelH, hSpinHitVelV);
+                MR::addVelocitySeparateHV(this, direction, ::hSpinHitVelH, ::hSpinHitVelV);
                 MR::stopBck(this);
                 setNerve(GET_NERVE(DharmaSambo, HostTypeNrvSpinHitted));
                 s32 index = 0;
@@ -258,7 +258,7 @@ void DharmaSambo::control() {
                 TVec3f direction;
                 mFixedPositions[index]->copyTrans(&direction);
                 direction -= mParts[i]->mPosition;
-                mParts[i]->mPosition.add(direction * hSpinHittedMoveBodyRate);
+                mParts[i]->mPosition.add(direction * ::hSpinHittedMoveBodyRate);
                 mFixedPositions[index]->copyRotate(&mParts[i]->mRotation);
             }
         }
@@ -275,7 +275,7 @@ void DharmaSambo::control() {
     }
 
     if (isNerve(GET_NERVE(DharmaSambo, HostTypeNrvPursue)) || isNerve(GET_NERVE(DharmaSambo, HostTypeNrvAttack)) ||
-        (isNerve(GET_NERVE(DharmaSambo, HostTypeNrvSpinHitted)) && MR::isGreaterStep(this, hSpinHittedStarPointerBindableTime)) ||
+        (isNerve(GET_NERVE(DharmaSambo, HostTypeNrvSpinHitted)) && MR::isGreaterStep(this, ::hSpinHittedStarPointerBindableTime)) ||
         isNerve(GET_NERVE(DharmaSambo, HostTypeNrvEscapeRun)) || isNerve(GET_NERVE(DharmaSambo, HostTypeNrvEscapeLand)) ||
         isNerve(GET_NERVE(DharmaSambo, HostTypeNrvEscapeWaitRun)) || isNerve(GET_NERVE(DharmaSambo, HostTypeNrvEscapeWaitLand))) {
         mStarPointerBindEndNerve = mSpine->getCurrentNerve();
@@ -295,20 +295,20 @@ void DharmaSambo::exeWaitUnderGround() {
     }
 
     MR::startLevelSound(this, "SE_EM_LV_DHARMASAMBO_MOVE_UNDER");
-    MR::moveAndTurnToPlayer(this, hOnlyTurnParam[0], hOnlyTurnParam[1], hOnlyTurnParam[2], hOnlyTurnParam[3]);
+    MR::moveAndTurnToPlayer(this, ::hOnlyTurnParam[0], ::hOnlyTurnParam[1], ::hOnlyTurnParam[2], ::hOnlyTurnParam[3]);
     f32 distance = MR::calcDistanceToPlayer(this);
 
-    if (MR::isGreaterStep(this, hWaitUnderGroundTime) && distance < hWaitUnderGroundDistance) {
+    if (MR::isGreaterStep(this, ::hWaitUnderGroundTime) && distance < ::hWaitUnderGroundDistance) {
         setNerve(GET_NERVE(DharmaSambo, HostTypeNrvAppear));
     }
 }
 
 void DharmaSambo::exeAppear() {
     if (MR::isFirstStep(this)) {
-        mPartsCount = hBodyPartsNum;
+        mPartsCount = ::hBodyPartsNum;
         MR::startAction(this, "Appear");
         mVelocity.zero();
-        mHideTimer = hAppearTime;
+        mHideTimer = ::hAppearTime;
         startActionAllParts("Appear");
 
         if (isNerve(GET_NERVE(DharmaSambo, HostTypeNrvAppearImmediately))) {
@@ -317,11 +317,11 @@ void DharmaSambo::exeAppear() {
         }
     }
 
-    if (MR::isStep(this, hAppearSeTiming)) {
+    if (MR::isStep(this, ::hAppearSeTiming)) {
         MR::startSound(this, "SE_EM_SFSAMBO_APPEAR");
     }
 
-    MR::moveAndTurnToPlayer(this, hOnlyTurnParam[0], hOnlyTurnParam[1], hOnlyTurnParam[2], hOnlyTurnParam[3]);
+    MR::moveAndTurnToPlayer(this, ::hOnlyTurnParam[0], ::hOnlyTurnParam[1], ::hOnlyTurnParam[2], ::hOnlyTurnParam[3]);
 
     if (MR::isActionEnd(this)) {
         setNerve(GET_NERVE(DharmaSambo, HostTypeNrvPursue));
@@ -338,23 +338,23 @@ void DharmaSambo::exePursue() {
     bool inRange = false;
     f32 distance = MR::calcDistanceToPlayer(this);
 
-    if (2000.0f < distance || hInitPosRange * hInitPosRange < mPosition.squared(mInitialPos)) {
+    if (2000.0f < distance || ::hInitPosRange * ::hInitPosRange < mPosition.squared(mInitialPos)) {
         setNerve(GET_NERVE(DharmaSambo, HostTypeNrvHide));
         return;
     }
 
-    f32 stopDistance = hPursueEscapeDist[mPartsCount - 1];
+    f32 stopDistance = ::hPursueEscapeDist[mPartsCount - 1];
 
-    if (hPursueGoAddDist + stopDistance < distance) {
-        MR::moveAndTurnToPlayer(this, hPursueGoParam[0], hPursueGoParam[1], hPursueGoParam[2], hPursueGoParam[3]);
+    if (::hPursueGoAddDist + stopDistance < distance) {
+        MR::moveAndTurnToPlayer(this, ::hPursueGoParam[0], ::hPursueGoParam[1], ::hPursueGoParam[2], ::hPursueGoParam[3]);
     } else if (distance < stopDistance) {
-        MR::moveAndTurnToPlayer(this, hPursueEscapeParam[0], hPursueEscapeParam[1], hPursueEscapeParam[2], hPursueEscapeParam[3]);
+        MR::moveAndTurnToPlayer(this, ::hPursueEscapeParam[0], ::hPursueEscapeParam[1], ::hPursueEscapeParam[2], ::hPursueEscapeParam[3]);
     } else {
-        MR::moveAndTurnToPlayer(this, hOnlyTurnParam[0], hOnlyTurnParam[1], hOnlyTurnParam[2], hOnlyTurnParam[3]);
+        MR::moveAndTurnToPlayer(this, ::hOnlyTurnParam[0], ::hOnlyTurnParam[1], ::hOnlyTurnParam[2], ::hOnlyTurnParam[3]);
         inRange = true;
     }
 
-    if (inRange && MR::checkPassBckFrame(this, hToAttackTime)) {
+    if (inRange && MR::checkPassBckFrame(this, ::hToAttackTime)) {
         setNerve(GET_NERVE(DharmaSambo, HostTypeNrvAttack));
         return;
     }
@@ -379,16 +379,16 @@ void DharmaSambo::exeAttack() {
         }
     }
 
-    s32 turnTime = hAttackTurnTime;
+    s32 turnTime = ::hAttackTurnTime;
 
     if (mPartsCount == 2) {
         turnTime = 75;
     }
 
     if (turnTime < MR::getBckFrame(this)) {
-        MR::moveAndTurnToPlayer(this, hNoMoveNoTurnParam[0], hNoMoveNoTurnParam[1], hNoMoveNoTurnParam[2], hNoMoveNoTurnParam[3]);
+        MR::moveAndTurnToPlayer(this, ::hNoMoveNoTurnParam[0], ::hNoMoveNoTurnParam[1], ::hNoMoveNoTurnParam[2], ::hNoMoveNoTurnParam[3]);
     } else {
-        MR::moveAndTurnToPlayer(this, hOnlyTurnParam[0], hOnlyTurnParam[1], hOnlyTurnParam[2], hOnlyTurnParam[3]);
+        MR::moveAndTurnToPlayer(this, ::hOnlyTurnParam[0], ::hOnlyTurnParam[1], ::hOnlyTurnParam[2], ::hOnlyTurnParam[3]);
     }
 
     bool end = MR::isActionEnd(this);
@@ -416,19 +416,19 @@ void DharmaSambo::exeSpinHitted() {
     }
 
     if (MR::isOnGround(this)) {
-        MR::moveAndTurnToPlayer(this, hSpinHittedOnGroundParam[0], hSpinHittedOnGroundParam[1], hSpinHittedOnGroundParam[2],
-                                hSpinHittedOnGroundParam[3]);
+        MR::moveAndTurnToPlayer(this, ::hSpinHittedOnGroundParam[0], ::hSpinHittedOnGroundParam[1], ::hSpinHittedOnGroundParam[2],
+                                ::hSpinHittedOnGroundParam[3]);
     } else {
-        MR::moveAndTurnToPlayer(this, hSpinHittedAirParam[0], hSpinHittedAirParam[1], hSpinHittedAirParam[2], hSpinHittedAirParam[3]);
+        MR::moveAndTurnToPlayer(this, ::hSpinHittedAirParam[0], ::hSpinHittedAirParam[1], ::hSpinHittedAirParam[2], ::hSpinHittedAirParam[3]);
     }
 
     if (mPartsCount == 1) {
         if (MR::isOnGround(this)) {
-            mHideTimer = hEscapeTime;
+            mHideTimer = ::hEscapeTime;
             setNerve(GET_NERVE(DharmaSambo, HostTypeNrvEscapeLand));
         }
     } else {
-        s32 landTime = isNerve(GET_NERVE(DharmaSambo, HostTypeNrvSpinHitted)) ? hSpinHittedLandTime : hStarPointerBindEndLandTime;
+        s32 landTime = isNerve(GET_NERVE(DharmaSambo, HostTypeNrvSpinHitted)) ? ::hSpinHittedLandTime : ::hStarPointerBindEndLandTime;
 
         if (MR::checkPassBckFrame(this, landTime) && !MR::checkPassBckFrame(this, landTime + 1)) {
             startActionAllParts("Land");
@@ -459,7 +459,7 @@ void DharmaSambo::exeStarPointerBind() {
 
     mVelocity.zero();
 
-    if (MR::isGreaterStep(this, hBindMinStep) && !isStarPointerPointingParts()) {
+    if (MR::isGreaterStep(this, ::hBindMinStep) && !isStarPointerPointingParts()) {
         setNerve(mStarPointerBindEndNerve);
     }
 }
@@ -492,10 +492,10 @@ void DharmaSambo::exeEscapeRun() {
 
     if (isNerve(GET_NERVE(DharmaSambo, HostTypeNrvEscapeWaitRun))) {
         if (MR::isOnGround(this)) {
-            MR::moveAndTurnToPlayer(this, hEscapeWaitOnGroundParam[0], hEscapeWaitOnGroundParam[1], hEscapeWaitOnGroundParam[2],
-                                    hEscapeWaitOnGroundParam[3]);
+            MR::moveAndTurnToPlayer(this, ::hEscapeWaitOnGroundParam[0], ::hEscapeWaitOnGroundParam[1], ::hEscapeWaitOnGroundParam[2],
+                                    ::hEscapeWaitOnGroundParam[3]);
         } else {
-            MR::moveAndTurnToPlayer(this, hEscapeWaitAirParam[0], hEscapeWaitAirParam[1], hEscapeWaitAirParam[2], hEscapeWaitAirParam[3]);
+            MR::moveAndTurnToPlayer(this, ::hEscapeWaitAirParam[0], ::hEscapeWaitAirParam[1], ::hEscapeWaitAirParam[2], ::hEscapeWaitAirParam[3]);
         }
 
         decCountAndTryToHide(false);
@@ -510,10 +510,10 @@ void DharmaSambo::exeEscapeRun() {
         MR::normalizeOrZero(&direction);
 
         if (MR::isOnGround(this)) {
-            MR::moveAndTurnToDirection(this, direction, hEscapeOnGroundParam[0], hEscapeOnGroundParam[1], hEscapeOnGroundParam[2],
-                                       hEscapeOnGroundParam[3]);
+            MR::moveAndTurnToDirection(this, direction, ::hEscapeOnGroundParam[0], ::hEscapeOnGroundParam[1], ::hEscapeOnGroundParam[2],
+                                       ::hEscapeOnGroundParam[3]);
         } else {
-            MR::moveAndTurnToDirection(this, direction, hEscapeAirParam[0], hEscapeAirParam[1], hEscapeAirParam[2], hEscapeAirParam[3]);
+            MR::moveAndTurnToDirection(this, direction, ::hEscapeAirParam[0], ::hEscapeAirParam[1], ::hEscapeAirParam[2], ::hEscapeAirParam[3]);
         }
 
         decCountAndTryToHide(false);
@@ -535,25 +535,25 @@ void DharmaSambo::exeEscapeLand() {
 
     if (isNerve(GET_NERVE(DharmaSambo, HostTypeNrvEscapeWaitLand))) {
         if (MR::isOnGround(this)) {
-            MR::moveAndTurnToPlayer(this, hEscapeWaitOnGroundParam[0], hEscapeWaitOnGroundParam[1], hEscapeWaitOnGroundParam[2],
-                                    hEscapeWaitOnGroundParam[3]);
+            MR::moveAndTurnToPlayer(this, ::hEscapeWaitOnGroundParam[0], ::hEscapeWaitOnGroundParam[1], ::hEscapeWaitOnGroundParam[2],
+                                    ::hEscapeWaitOnGroundParam[3]);
         } else {
-            MR::moveAndTurnToPlayer(this, hEscapeWaitAirParam[0], hEscapeWaitAirParam[1], hEscapeWaitAirParam[2], hEscapeWaitAirParam[3]);
+            MR::moveAndTurnToPlayer(this, ::hEscapeWaitAirParam[0], ::hEscapeWaitAirParam[1], ::hEscapeWaitAirParam[2], ::hEscapeWaitAirParam[3]);
         }
     } else {
         TVec3f direction(mPosition);
         direction -= *MR::getPlayerPos();
         MR::vecKillElement(direction, mGravity, &direction);
         MR::normalizeOrZero(&direction);
-        MR::moveAndTurnToDirection(this, direction, hEscapeOnGroundParam[0], hEscapeOnGroundParam[1], hEscapeOnGroundParam[2],
-                                   hEscapeOnGroundParam[3]);
+        MR::moveAndTurnToDirection(this, direction, ::hEscapeOnGroundParam[0], ::hEscapeOnGroundParam[1], ::hEscapeOnGroundParam[2],
+                                   ::hEscapeOnGroundParam[3]);
     }
 
     decCountAndTryToHide(true);
 
     if (isActionEndHead()) {
-        if (hEscapeWaitDist < MR::calcDistanceToPlayer(this)) {
-            MR::addVelocityJump(this, hEscapeWaitJumpVel);
+        if (::hEscapeWaitDist < MR::calcDistanceToPlayer(this)) {
+            MR::addVelocityJump(this, ::hEscapeWaitJumpVel);
             setNerve(GET_NERVE(DharmaSambo, HostTypeNrvEscapeWaitRun));
             return;
         }
@@ -561,7 +561,7 @@ void DharmaSambo::exeEscapeLand() {
         const TVec3f* playerPos = MR::getPlayerCenterPos();
         TVec3f direction(mPosition);
         direction -= *playerPos;
-        MR::addVelocitySeparateHV(this, direction, hEscapeRunVelH, hEscapeRunVelV);
+        MR::addVelocitySeparateHV(this, direction, ::hEscapeRunVelH, ::hEscapeRunVelV);
         setNerve(GET_NERVE(DharmaSambo, HostTypeNrvEscapeRun));
     }
 }
@@ -574,9 +574,9 @@ void DharmaSambo::exeTrampleDeath() {
     }
 
     if (MR::isOnGround(this)) {
-        MR::moveAndTurnToPlayer(this, hNoMoveNoTurnParam[0], hNoMoveNoTurnParam[1], hNoMoveNoTurnParam[2], hNoMoveNoTurnParam[3]);
+        MR::moveAndTurnToPlayer(this, ::hNoMoveNoTurnParam[0], ::hNoMoveNoTurnParam[1], ::hNoMoveNoTurnParam[2], ::hNoMoveNoTurnParam[3]);
     } else {
-        MR::moveAndTurnToPlayer(this, hSpinHittedAirParam[0], hSpinHittedAirParam[1], hSpinHittedAirParam[2], hSpinHittedAirParam[3]);
+        MR::moveAndTurnToPlayer(this, ::hSpinHittedAirParam[0], ::hSpinHittedAirParam[1], ::hSpinHittedAirParam[2], ::hSpinHittedAirParam[3]);
     }
 
     if (isActionEndHead()) {
@@ -595,17 +595,17 @@ void DharmaSambo::exeHide() {
         }
     }
 
-    if (MR::isStep(this, hPreHideSeTiming)) {
+    if (MR::isStep(this, ::hPreHideSeTiming)) {
         MR::startSound(this, "SE_EM_DHARMASAMBO_PRE_HIDE");
     }
 
-    if (MR::isStep(this, hHideSeTiming)) {
+    if (MR::isStep(this, ::hHideSeTiming)) {
         MR::startSound(this, "SE_EM_SFSAMBO_HIDE");
     }
 
-    MR::moveAndTurnToPlayer(this, hOnlyTurnParam[0], hOnlyTurnParam[1], hOnlyTurnParam[2], hOnlyTurnParam[3]);
+    MR::moveAndTurnToPlayer(this, ::hOnlyTurnParam[0], ::hOnlyTurnParam[1], ::hOnlyTurnParam[2], ::hOnlyTurnParam[3]);
 
-    if (MR::isGreaterStep(this, mPartsCount == 1 ? 360 : hHideTime)) {
+    if (MR::isGreaterStep(this, mPartsCount == 1 ? 360 : ::hHideTime)) {
         MR::resetPosition(this, mInitialPos);
         setNerve(GET_NERVE(DharmaSambo, HostTypeNrvHideAppear));
     }
@@ -636,7 +636,7 @@ void DharmaSambo::exeHideAppear() {
         startActionAllParts("HideAppear");
     }
 
-    MR::moveAndTurnToPlayer(this, hOnlyTurnParam[0], hOnlyTurnParam[1], hOnlyTurnParam[2], hOnlyTurnParam[3]);
+    MR::moveAndTurnToPlayer(this, ::hOnlyTurnParam[0], ::hOnlyTurnParam[1], ::hOnlyTurnParam[2], ::hOnlyTurnParam[3]);
 
     if (MR::isActionEnd(this)) {
         setNerve(GET_NERVE(DharmaSambo, HostTypeNrvWaitUnderGround));
@@ -661,7 +661,7 @@ void DharmaSambo::exeKilled() {
         mVelocity.zero();
     }
 
-    MR::moveAndTurnToPlayer(this, hNoMoveNoTurnParam[0], hNoMoveNoTurnParam[1], hNoMoveNoTurnParam[2], hNoMoveNoTurnParam[3]);
+    MR::moveAndTurnToPlayer(this, ::hNoMoveNoTurnParam[0], ::hNoMoveNoTurnParam[1], ::hNoMoveNoTurnParam[2], ::hNoMoveNoTurnParam[3]);
 
     if (MR::isActionEnd(this)) {
         kill();
@@ -871,7 +871,7 @@ void DharmaSamboParts::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             }
         }
     } else {
-        if ((mHost->isNerve(GET_NERVE(DharmaSambo, HostTypeNrvSpinHitted)) && MR::isLessStep(this, hSpinHittedNoAttackTime)) ||
+        if ((mHost->isNerve(GET_NERVE(DharmaSambo, HostTypeNrvSpinHitted)) && MR::isLessStep(this, ::hSpinHittedNoAttackTime)) ||
             mHost->isNerve(GET_NERVE(DharmaSambo, HostTypeNrvWaitUnderGround)) ||
             mHost->isNerve(GET_NERVE(DharmaSambo, HostTypeNrvStarPointerBind)) ||
             mHost->isNerve(GET_NERVE(DharmaSambo, HostTypeNrvAppearImmediately)) || mHost->isNerve(GET_NERVE(DharmaSambo, HostTypeNrvHide)) ||

@@ -124,7 +124,7 @@ void Kinopio::init(const JMapInfoIter& rIter) {
     NPCActorItem item("Kinopio");
     MR::getNPCItemData(&item, mGoodsIndex);
     equipment(item, false);
-    mScaleController = new AnimScaleController(&sParam);
+    mScaleController = new AnimScaleController(&::sParam);
     mDelegator = MR::createJointDelegatorWithNullChildFunc< Kinopio >(this, &Kinopio::calcJointScale, "body");
 
     MR::useStageSwitchReadA(this, rIter);

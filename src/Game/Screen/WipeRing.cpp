@@ -177,7 +177,7 @@ namespace {
 }  // namespace
 
 bool WipeRing::getMarioCenterPos(TVec3f* pCenterPos) {
-    if (MR::isExistMario() && canCenterOnMario()) {
+    if (MR::isExistMario() && ::canCenterOnMario()) {
         pCenterPos->set(static_cast< const Vec& >(*MR::getPlayerCenterPos()));
 
         return true;

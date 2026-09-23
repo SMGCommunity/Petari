@@ -98,12 +98,12 @@ void WhirlPoolAccelerator::initPoints() {
         f32 rate = MR::getEaseInValue(static_cast< f32 >(mPointCount - i) / mPointCount, 0.0f, 1.0f, 1.0f);
         f32 radius = mRadius * (rate + 0.6f * (1.0f - rate));
         u8 alpha = 0xFF;
-        if (i < sAlphaPointNum) {
-            alpha = 50.0f + 205.0f * (i / sAlphaPointNum);
+        if (i < ::sAlphaPointNum) {
+            alpha = 50.0f + 205.0f * (i / ::sAlphaPointNum);
         }
 
-        if (i >= mPointCount - sAlphaPointNum) {
-            alpha = 50.0f + 205.0f * ((mPointCount - 1 - i) / sAlphaPointNum);
+        if (i >= mPointCount - ::sAlphaPointNum) {
+            alpha = 50.0f + 205.0f * ((mPointCount - 1 - i) / ::sAlphaPointNum);
         }
 
         mPoints[i] = new WhirlPoolPoint(position, mAxis, normal, radius, angle / 360.0f, alpha);

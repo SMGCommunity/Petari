@@ -35,7 +35,7 @@ void ShadowVolumeOvalPole::loadModelDrawMtx() const {
     TVec3f direction;
     controller->getDropDir(&direction);
     direction.negate();
-    f32 modelScale = sModelScale;
+    f32 modelScale = ::sModelScale;
     TVec3f size(mSize / modelScale);
     if (size.x <= 0.01f) {
         size.x = 0.01f;
@@ -75,7 +75,7 @@ void ShadowVolumeOvalPole::loadModelDrawMtx() const {
         front.orthogonalize(up);
     }
 
-    up.scale(calcBaseDropLength() / sModelScale);
+    up.scale(calcBaseDropLength() / ::sModelScale);
     mtx.setXDir(side);
     mtx.setYDir(up);
     mtx.setZDir(front);

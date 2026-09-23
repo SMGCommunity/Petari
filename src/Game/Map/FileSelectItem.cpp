@@ -392,7 +392,7 @@ void FileSelectItem::control() {
 
     TVec3f screenPos;
     TVec3f newPos;
-    newPos.add(mPosition, sDataInfoOffset);
+    newPos.add(mPosition, ::sDataInfoOffset);
     MR::calcScreenPosition(&screenPos, newPos);
     _A0->setTrans(screenPos);
 }
@@ -559,12 +559,12 @@ void FileSelectItem::updateRotate() {
                     v13 = 1;
                 } else if (v46.distance(v43) <= 900.0f) {
                     v13 = 1;
-                } else if (checkCollisionOfPointAndCylinder(v43, v44, v47, 900.0f)) {
+                } else if (::checkCollisionOfPointAndCylinder(v43, v44, v47, 900.0f)) {
                     v13 = 1;
-                } else if (checkCollisionOfPointAndCylinder(v43, v45, v48, 900.0f)) {
+                } else if (::checkCollisionOfPointAndCylinder(v43, v45, v48, 900.0f)) {
                     v13 = 1;
                 } else {
-                    v13 = checkCollisionOfPointAndCylinder(v43, v46, v49, 900.0f);
+                    v13 = ::checkCollisionOfPointAndCylinder(v43, v46, v49, 900.0f);
                 }
             }
 

@@ -1,3 +1,4 @@
+#include "Game/Util/ScreenUtil.hpp"
 #include "Game/Scene/GameSceneFunction.hpp"
 #include "Game/Scene/PlayTimerScene.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
@@ -28,10 +29,10 @@
 #include "Game/System/RenderMode.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
+
 
 namespace {
     char sWipeCircle[] = "円ワイプ";
@@ -161,39 +162,39 @@ namespace MR {
     }
 
     void closeWipeCircle(s32 frame) {
-        SceneWipeHolderFunction::closeWipe(sWipeCircle, frame);
+        SceneWipeHolderFunction::closeWipe(::sWipeCircle, frame);
     }
 
     void forceOpenWipeCircle() {
-        SceneWipeHolderFunction::forceOpenWipe(sWipeCircle);
+        SceneWipeHolderFunction::forceOpenWipe(::sWipeCircle);
     }
 
     void forceCloseWipeCircle() {
-        SceneWipeHolderFunction::forceCloseWipe(sWipeCircle);
+        SceneWipeHolderFunction::forceCloseWipe(::sWipeCircle);
     }
 
     void closeWipeFade(s32 frame) {
-        SceneWipeHolderFunction::closeWipe(sWipeFade, frame);
+        SceneWipeHolderFunction::closeWipe(::sWipeFade, frame);
     }
 
     void forceOpenWipeFade() {
-        SceneWipeHolderFunction::forceOpenWipe(sWipeFade);
+        SceneWipeHolderFunction::forceOpenWipe(::sWipeFade);
     }
 
     void forceCloseWipeFade() {
-        SceneWipeHolderFunction::forceCloseWipe(sWipeFade);
+        SceneWipeHolderFunction::forceCloseWipe(::sWipeFade);
     }
 
     void closeWipeWhiteFade(s32 frame) {
-        SceneWipeHolderFunction::closeWipe(sWipeWhiteFade, frame);
+        SceneWipeHolderFunction::closeWipe(::sWipeWhiteFade, frame);
     }
 
     void forceOpenWipeWhiteFade() {
-        SceneWipeHolderFunction::forceOpenWipe(sWipeWhiteFade);
+        SceneWipeHolderFunction::forceOpenWipe(::sWipeWhiteFade);
     }
 
     void forceCloseWipeWhiteFade() {
-        SceneWipeHolderFunction::forceCloseWipe(sWipeWhiteFade);
+        SceneWipeHolderFunction::forceCloseWipe(::sWipeWhiteFade);
     }
 
     bool isWipeActive() {
@@ -209,36 +210,36 @@ namespace MR {
     }
 
     void closeSystemWipeCircle(s32 frame) {
-        ::getSystemWipeHolder()->forceOpen(sWipeCircle);
+        ::getSystemWipeHolder()->forceOpen(::sWipeCircle);
         ::getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void openSystemWipeFade(s32 frame) {
-        ::getSystemWipeHolder()->forceClose(sWipeFade);
+        ::getSystemWipeHolder()->forceClose(::sWipeFade);
         ::getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void closeSystemWipeFade(s32 frame) {
-        ::getSystemWipeHolder()->forceOpen(sWipeFade);
+        ::getSystemWipeHolder()->forceOpen(::sWipeFade);
         ::getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void forceOpenSystemWipeFade() {
-        ::getSystemWipeHolder()->forceOpen(sWipeFade);
+        ::getSystemWipeHolder()->forceOpen(::sWipeFade);
     }
 
     void openSystemWipeWhiteFade(s32 frame) {
-        ::getSystemWipeHolder()->forceClose(sWipeWhiteFade);
+        ::getSystemWipeHolder()->forceClose(::sWipeWhiteFade);
         ::getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void closeSystemWipeWhiteFade(s32 frame) {
-        ::getSystemWipeHolder()->forceOpen(sWipeWhiteFade);
+        ::getSystemWipeHolder()->forceOpen(::sWipeWhiteFade);
         ::getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void forceCloseSystemWipeWhiteFade() {
-        ::getSystemWipeHolder()->forceClose(sWipeWhiteFade);
+        ::getSystemWipeHolder()->forceClose(::sWipeWhiteFade);
     }
 
     bool isSystemWipeActive() {
@@ -581,27 +582,27 @@ namespace MR {
     }
 
     void openWipeCircle(s32 frame) {
-        SceneWipeHolderFunction::openWipe(sWipeCircle, frame);
+        SceneWipeHolderFunction::openWipe(::sWipeCircle, frame);
     }
 
     void openWipeFade(s32 frame) {
-        SceneWipeHolderFunction::openWipe(sWipeFade, frame);
+        SceneWipeHolderFunction::openWipe(::sWipeFade, frame);
     }
 
     void openWipeWhiteFade(s32 frame) {
-        SceneWipeHolderFunction::openWipe(sWipeWhiteFade, frame);
+        SceneWipeHolderFunction::openWipe(::sWipeWhiteFade, frame);
     }
 
     void startGameOverWipe() {
-        SceneWipeHolderFunction::getSceneWipeHolder()->wipe(sWipeGameOver, -1);
+        SceneWipeHolderFunction::getSceneWipeHolder()->wipe(::sWipeGameOver, -1);
     }
 
     void startDownWipe() {
-        SceneWipeHolderFunction::getSceneWipeHolder()->wipe(sWipeKoopa, -1);
+        SceneWipeHolderFunction::getSceneWipeHolder()->wipe(::sWipeKoopa, -1);
     }
 
     void requestOneUp() {
-        startSystemSE(sSoundOneUp);
+        startSystemSE(::sSoundOneUp);
         getGameSceneLayoutHolder()->requestOneUp(1);
     }
 };  // namespace MR

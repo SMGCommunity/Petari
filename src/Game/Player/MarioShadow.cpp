@@ -32,8 +32,8 @@ void CollisionShadow::setMode(u32 mode) {
 
     switch (mode) {
     case 0:
-        _30C = cCheckOffset0;
-        _310 = cDrawOffset0;
+        _30C = ::cCheckOffset0;
+        _310 = ::cDrawOffset0;
         break;
     case 1:
         _30C = 50.0f;
@@ -346,9 +346,11 @@ void CollisionShadow::initCaptureTex() {
 }
 
 void CollisionShadow::setViewMtx(const TVec3f& rDirection) {
-    TVec3f normal(rDirection);
+    TVec3f normal = rDirection;
     MR::normalize(&normal);
-    TVec3f eye(_2F0 - normal * 10000.0f);
+    TVec3f offset = normal * 10000.0f;
+    TVec3f eye = _2F0 - offset;
+
     TPos3f matrix;
     matrix.identity();
     TVec3f side;
@@ -356,16 +358,13 @@ void CollisionShadow::setViewMtx(const TVec3f& rDirection) {
     TVec3f forward;
     TVec3f delta;
     delta.sub(_2F0, eye);
-    forward.set(delta.x, delta.y, delta.z);
-    forward.length();
-    PSVECNormalize(&forward, &forward);
+    forward.set(delta);
+    forward.normalize();
     forward.negate();
     side.cross(_30, forward);
     up.cross(forward, side);
-    side.length();
-    PSVECNormalize(&side, &side);
-    up.length();
-    PSVECNormalize(&up, &up);
+    side.normalize();
+    up.normalize();
     matrix.mMtx[0][0] = side.x;
     matrix.mMtx[0][1] = side.y;
     matrix.mMtx[0][2] = side.z;
@@ -381,8 +380,8 @@ void CollisionShadow::setViewMtx(const TVec3f& rDirection) {
     matrix.mMtx[0][3] = eye.x * -side.x - eye.y * side.y - eye.z * side.z;
     matrix.mMtx[1][3] = eye.x * -up.x - eye.y * up.y - eye.z * up.z;
     matrix.mMtx[2][3] = eye.x * -forward.x - eye.y * forward.y - eye.z * forward.z;
-    PSMTXCopy(matrix.toMtxPtr(), j3dSys.mViewMtx);
-    TDDraw::setViewMtx(matrix.toMtxPtr());
+    PSMTXCopy(matrix, j3dSys.mViewMtx);
+    TDDraw::setViewMtx(matrix);
     MR::setMarioShadowVec(rDirection);
 }
 

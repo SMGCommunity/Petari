@@ -51,7 +51,7 @@ void BloomEffectSimple::draw() const {
 
     CopyFilterNegater copyFilterNegator;
 
-    TexSpec texSpec;
+    ::TexSpec texSpec;
     texSpec.set(_20, 4, 0, GX_TF_RGB565);
 
     ImageEffectLocalUtil::capture(texSpec._0, texSpec._4, texSpec._8, texSpec._C, false, 0);
@@ -95,7 +95,7 @@ void BloomEffectSimple::draw() const {
     ImageEffectLocalUtil::drawTexture(_28, 1, 0, alpha, ImageEffectLocalUtil::TexDrawType_1);
 }
 
-void TexSpec::set(JUTTexture* pParam1, s32 param2, s32 param3, GXTexFmt param4) {
+void ::TexSpec::set(JUTTexture* pParam1, s32 param2, s32 param3, GXTexFmt param4) {
     _0 = pParam1;
     _4 = param2;
     _8 = param3;

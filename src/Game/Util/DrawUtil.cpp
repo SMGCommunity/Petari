@@ -104,7 +104,7 @@ namespace MR {
 
     void setDefaultViewportAndScissor() {
         s32 width = MR::getFrameBufferWidth();
-        s32 height = getScreenHeightInline();
+        s32 height = ::getScreenHeightInline();
         GXSetViewport(0.0f, 0.0f, width, height, 0.0f, 1.0f);
         GXSetScissor(0, 0, width, height);
     }
@@ -206,7 +206,7 @@ namespace MR {
         u16 width = rSize.x;
         u16 height = rSize.y;
         Mtx44 projection;
-        C_MTXOrtho(projection, 0.0f, getScreenHeightInline(), 0.0f, getFrameBufferWidth(), -1.0f, 1.0f);
+        C_MTXOrtho(projection, 0.0f, ::getScreenHeightInline(), 0.0f, getFrameBufferWidth(), -1.0f, 1.0f);
         GXSetProjection(projection, GX_ORTHOGRAPHIC);
         GXSetCurrentMtx(GX_PNMTX0);
         Mtx matrix;
@@ -254,7 +254,7 @@ namespace MR {
         GXLoadPosMtxImm(mtxImm, GX_PNMTX0);
         GXSetCurrentMtx(GX_PNMTX0);
         Mtx44 projMtx;
-        C_MTXOrtho(projMtx, 0.0f, getScreenHeightInline(), 0.0f, MR::getFrameBufferWidth(), -1.0f, 1.0f);
+        C_MTXOrtho(projMtx, 0.0f, ::getScreenHeightInline(), 0.0f, MR::getFrameBufferWidth(), -1.0f, 1.0f);
         GXSetProjection(projMtx, GX_ORTHOGRAPHIC);
         GXSetNumChans(1);
         GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
@@ -468,7 +468,7 @@ namespace MR {
     }
 };  // namespace MR
 
-J2DOrthoGraphSimple::J2DOrthoGraphSimple() : J2DOrthoGraph(0.0f, 0.0f, MR::getFrameBufferWidth(), getScreenHeightInline(), -30000.0f, 30000.0f) {
+J2DOrthoGraphSimple::J2DOrthoGraphSimple() : J2DOrthoGraph(0.0f, 0.0f, MR::getFrameBufferWidth(), ::getScreenHeightInline(), -30000.0f, 30000.0f) {
     TBox2f bounds(0.0f, 0.0f, MR::getScreenWidth(), MR::getScreenHeight());
     setOrtho(0.0f, 0.0f, bounds.getWidth(), bounds.getHeight(), -30000.0f, 30000.0f);
 }

@@ -47,26 +47,26 @@ bool CoinHolder::hopCoin(const NameObj* pObj, const TVec3f& rPosition, const TVe
 bool CoinHolder::appearCoinFix(const NameObj* pObj, const TVec3f& rPosition, s32 count) {
     TVec3f velocity(0.0f, 0.0f, 0.0f);
 
-    return appearCoin(pObj, rPosition, velocity, count, -1, -1, count == 1 ? 0.0f : sRandomizeVel);
+    return appearCoin(pObj, rPosition, velocity, count, -1, -1, count == 1 ? 0.0f : ::sRandomizeVel);
 }
 
 bool CoinHolder::appearCoinPop(const NameObj* pObj, const TVec3f& rPosition, s32 count) {
     TVec3f gravity;
     MR::calcGravityVector(this, rPosition, &gravity, nullptr, 0);
-    TVec3f velocity = -gravity * sCoinVelVertical;
+    TVec3f velocity = -gravity * ::sCoinVelVertical;
 
-    return appearCoin(pObj, rPosition, velocity, count, -1, -1, count == 1 ? 0.0f : sRandomizeVel);
+    return appearCoin(pObj, rPosition, velocity, count, -1, -1, count == 1 ? 0.0f : ::sRandomizeVel);
 }
 
 bool CoinHolder::appearCoinPopToDirection(const NameObj* pObj, const TVec3f& rPosition, const TVec3f& rDirection, s32 count) {
     TVec3f direction;
     MR::normalize(rDirection, &direction);
 
-    return appearCoin(pObj, rPosition, direction * sCoinVelVertical, count, -1, -1, count == 1 ? 0.0f : sRandomizeVel);
+    return appearCoin(pObj, rPosition, direction * ::sCoinVelVertical, count, -1, -1, count == 1 ? 0.0f : ::sRandomizeVel);
 }
 
 bool CoinHolder::appearCoinToVelocity(const NameObj* pObj, const TVec3f& rPosition, const TVec3f& rVelocity, s32 count) {
-    return appearCoin(pObj, rPosition, rVelocity, count, -1, -1, count == 1 ? 0.0f : sRandomizeVel);
+    return appearCoin(pObj, rPosition, rVelocity, count, -1, -1, count == 1 ? 0.0f : ::sRandomizeVel);
 }
 
 bool CoinHolder::appearCoinCircle(const NameObj* pObj, const TVec3f& rPosition, s32 count) {
@@ -85,9 +85,9 @@ bool CoinHolder::appearCoinCircle(const NameObj* pObj, const TVec3f& rPosition, 
 
         TVec3f horizontal;
         MR::rotateVecDegree(&horizontal, axis, gravity, i * angle);
-        horizontal.setLength(sCircleVelHRatio);
+        horizontal.setLength(::sCircleVelHRatio);
         TVec3f velocity(horizontal - gravity);
-        velocity.setLength(sCircleVelLength);
+        velocity.setLength(::sCircleVelLength);
 
         appeared |= appearCoin(pObj, rPosition, velocity, 1, -1, -1, 0.0f);
     }

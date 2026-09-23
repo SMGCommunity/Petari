@@ -60,11 +60,11 @@ void AstroMapObj::init(const JMapInfoIter& rIter) {  // Pain
     mapObjInitInfo.setupSound(4);
     mapObjInitInfo.setupNerve(GET_NERVE(AstroMapObj, AstroMapObjNrvDead));
 
-    if (checkOtherStrings(_CC)) {
+    if (::checkOtherStrings(_CC)) {
         mapObjInitInfo.setupRotator();
     }
 
-    if (checkStrings(_CC)) {
+    if (::checkStrings(_CC)) {
         mapObjInitInfo.setupHitSensor();
     }
 
@@ -78,13 +78,13 @@ void AstroMapObj::init(const JMapInfoIter& rIter) {  // Pain
     AstroMapObjFunction::tryRegisterMultiDemoAndFunction(_CC, this, rIter, MR::Functor(this, &AstroMapObj::startDemo));
     MR::registerDemoSimpleCastAll(this);
 
-    if (moreInlines(_CC)) {
+    if (::moreInlines(_CC)) {
         _C4 = AstroMapObjFunction::createAstroNamePlateParser();
         _C8 = new GalaxyNamePlate(nullptr, true);
         _C8->initWithoutIter();
     }
 
-    if (checkStrings(_CC)) {
+    if (::checkStrings(_CC)) {
         _D0 = MR::createCollisionPartsFromLiveActor(this, "Close", getSensor("body"), MR::CollisionScaleType_Unk2);
         _D4 = MR::createCollisionPartsFromLiveActor(this, "Open", getSensor("body"), MR::CollisionScaleType_Unk2);
     }
@@ -150,7 +150,7 @@ void AstroMapObj::exeOpen() {
 void AstroMapObj::control() {
     MapObjActor::control();
     if (_C8) {
-        AstroMapObjFunction::trySetAndShowNamePlate(_C8, _C4, mPosition, _CC, _D8, checkStrings(_CC));
+        AstroMapObjFunction::trySetAndShowNamePlate(_C8, _C4, mPosition, _CC, _D8, ::checkStrings(_CC));
     }
 }
 
@@ -180,7 +180,7 @@ void AstroMapObj::setStateAlive() {
 
 void AstroMapObj::setStateDoorOpenOrClose() {
     if (!isNerve(GET_NERVE(AstroMapObj, AstroMapObjNrvAliveAfterDemo))) {
-        if (checkStrings(_CC)) {
+        if (::checkStrings(_CC)) {
             if (AstroMapObjFunction::isAlreadyOpen(_CC, _D8)) {
                 MR::tryStartAllAnim(this, "Open");
                 MR::setAllAnimFrameAtEnd(this, "Open");

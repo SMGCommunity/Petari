@@ -43,7 +43,7 @@ namespace NrvJumpHole {
 
 JumpHole::JumpHole(const char* pName)
     : LiveActor(pName), mBoundSensor(), mLaunchStart(0, 0, 0), mBindVelocity(0, 0, 0), mHoleGravity(0, 0, 0), mSettledFrames() {
-    mCone = new BindCone(mPosition, TVec3f(0.0f, 1.0f, 0.0f), sHoleDepth, sHoleRadius);
+    mCone = new BindCone(mPosition, TVec3f(0.0f, 1.0f, 0.0f), ::sHoleDepth, ::sHoleRadius);
 }
 
 void JumpHole::init(const JMapInfoIter& rIter) {
@@ -52,7 +52,7 @@ void JumpHole::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObj(this);
     initRailRider(rIter);
     initHitSensor(1);
-    MR::addHitSensor(this, "body", ATYPE_JUMP_HOLE, 8, sHoleRadius, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensor(this, "body", ATYPE_JUMP_HOLE, 8, ::sHoleRadius, TVec3f(0.0f, 0.0f, 0.0f));
     initSound(4, false);
     MR::initCollisionParts(this, "JumpHole", getSensor(nullptr), nullptr);
     mCone->setPosition(mPosition);
@@ -82,7 +82,7 @@ bool JumpHole::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver
         TVec3f lateral;
         lateral.killElement2(offset, mHoleGravity);
 
-        if (lateral.squared() <= radiusSquared && offset.squared(lateral) <= sLaunchValidHeight * sLaunchValidHeight) {
+        if (lateral.squared() <= radiusSquared && offset.squared(lateral) <= ::sLaunchValidHeight * ::sLaunchValidHeight) {
             mBoundSensor = pSender;
             mBindVelocity = pSender->mHost->mVelocity;
             MR::zeroVelocity(mBoundSensor->mHost);
@@ -116,7 +116,7 @@ void JumpHole::exeSetCenter() {
 
     MR::startLevelSound(this, "SE_OJ_LV_JUMP_HOLE_SETTING");
 
-    if (mSettledFrames > sLaunchFixTime || MR::isGreaterStep(this, sForceSetCenterTime)) {
+    if (mSettledFrames > ::sLaunchFixTime || MR::isGreaterStep(this, ::sForceSetCenterTime)) {
         setNerve(GET_NERVE(JumpHole, JumpHoleNrvSetUp));
         mBindVelocity.zero();
     }
@@ -127,7 +127,7 @@ void JumpHole::exeSetUp() {
         mBoundSensor->receiveMessage(ACTMES_SET_UP_JUMP_HOLE, getSensor("body"));
     }
 
-    if (MR::isGreaterStep(this, sSetUpTime)) {
+    if (MR::isGreaterStep(this, ::sSetUpTime)) {
         setNerve(GET_NERVE(JumpHole, JumpHoleNrvRailMove));
     }
 }
@@ -163,18 +163,18 @@ void JumpHole::bindHole() {
     f32 radius = mBoundSensor->mRadius;
     TVec3f previous(mBoundSensor->mPosition);
     TVec3f position(previous);
-    mBindVelocity += mHoleGravity * sGravityAcc;
+    mBindVelocity += mHoleGravity * ::sGravityAcc;
 
     BindResult result;
     BindSphere sphere(previous, radius);
     MR::bindSpereToCone(&result, mBindVelocity, sphere, *mCone);
-    MR::updateBindPositionAndVelocity(&position, &mBindVelocity, result, sHoleRefrecRate);
+    MR::updateBindPositionAndVelocity(&position, &mBindVelocity, result, ::sHoleRefrecRate);
 
     TVec3f lateralVelocity;
     lateralVelocity.killElement2(mBindVelocity, mHoleGravity);
     TVec3f lateralOffset;
     lateralOffset.killElement2(position - mPosition, mHoleGravity);
-    f32 limit = sHoleRadius - radius;
+    f32 limit = ::sHoleRadius - radius;
     if (lateralVelocity.dot(lateralOffset) > 0.0f && lateralOffset.squared() > limit * limit) {
         f32 distance;
         MR::separateScalarAndDirection(&distance, &lateralOffset, lateralOffset);
@@ -191,7 +191,7 @@ void JumpHole::bindHole() {
         mBindVelocity += tangent * lateralVelocity.length();
     }
 
-    mBindVelocity *= MR::calcNerveValue(this, sForceSetStartTime, sForceSetEndTime, sBallToCenterFreq, sBallToCenterEndFreq);
+    mBindVelocity *= MR::calcNerveValue(this, ::sForceSetStartTime, ::sForceSetEndTime, ::sBallToCenterFreq, ::sBallToCenterEndFreq);
     mBoundSensor->mHost->mVelocity.set(position - previous);
 
     if (position.squared(previous) < 0.1f * 0.1f) {
@@ -216,5 +216,5 @@ void JumpHole::initParabola(const TVec3f& rPosition) {
     MR::separateScalarAndDirection(&mLaunchDistance, &mLaunchDirection, mLaunchDirection);
     MR::calcParabolicFunctionParam(&mLaunchQuadratic, &mLaunchLinear, startHeight, endHeight);
     mLaunchStart = rPosition;
-    mLaunchDuration = MR::fastSqrtf(MR::abs(2.0f * mLaunchQuadratic / sGravityAcc));
+    mLaunchDuration = MR::fastSqrtf(MR::abs(2.0f * mLaunchQuadratic / ::sGravityAcc));
 }

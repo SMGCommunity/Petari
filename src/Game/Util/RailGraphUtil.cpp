@@ -54,7 +54,7 @@ namespace MR {
         getRailInfo(&railIter, &pRailPoints, rIter);
 
         while (hasRail) {
-            addRailToGraph(pGraph, railIter, pRailPoints);
+            ::addRailToGraph(pGraph, railIter, pRailPoints);
 
             hasRail = getNextLinkRailInfo(&railIter, &pRailPoints, railIter);
         }

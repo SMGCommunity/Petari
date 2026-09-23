@@ -850,9 +850,8 @@ void Mario::calcShadowDir(const TVec3f& input, TVec3f* shadowDir) {
     if (MR::abs(dot) > MR::abs(direction.dot(_368))) {
         normal = _368;
     }
-    TVec3f side;
-    PSVECCrossProduct(&normal, &direction, &side);
-    PSVECCrossProduct(&side, &normal, shadowDir);
+    TVec3f side = normal.cross(direction);
+    shadowDir->cross(side, normal);
     MR::normalizeOrZero(shadowDir);
 }
 
@@ -965,18 +964,18 @@ void Mario::calcMoveDir(float stickX, float stickY, TVec3f* moveDir, bool isDisa
             if (movementDirScreenZ < 0.0f) {
                 groundYDirOrtho = -groundYDirOrtho;
             }
-            PSVECCrossProduct(&groundYDirOrtho, &_398, &groundXDir);
+            groundXDir.cross(groundYDirOrtho, _398);
         } else {
             groundYDirOrtho = -screenZDir;
             if (movementDirScreenY < 0.0f) {
                 groundYDirOrtho = -groundYDirOrtho;
-                PSVECCrossProduct(&screenZDir, &_398, &groundXDir);
+                groundXDir.cross(screenZDir, _398);
             } else {
-                PSVECCrossProduct((-screenZDir), &_398, &groundXDir);
+                groundXDir.cross(-screenZDir, _398);
             }
         }
 
-        PSVECCrossProduct(&screenXDir, &_398, &groundYDir);
+        groundYDir.cross(screenXDir, _398);
 
         MR::normalizeOrZero(&groundXDir);
         if (MR::isNearZero(groundXDir)) {

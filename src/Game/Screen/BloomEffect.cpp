@@ -304,7 +304,7 @@ void BloomEffect::drawBlur(s32 divisions, s32 tile, Mtx* pMtx, u32 stageCount, u
         }
 
         for (u32 j = 0; j < stageCount; j++) {
-            GXLoadTexMtxIndx(i + j, sTexMtxID[j], GX_MTX3x4);
+            GXLoadTexMtxIndx(i + j, ::sTexMtxID[j], GX_MTX3x4);
         }
 
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);

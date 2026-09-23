@@ -22,7 +22,7 @@ namespace NrvSimpleBreakableObj {
 }  // namespace NrvSimpleBreakableObj
 
 SimpleBreakableObj::SimpleBreakableObj(const char* pName)
-    : MapObjActor(pName), mCameraInfo(), mBreakOffsetFrame(sDefaultBreakOffsetFrame), _CC(-1), mSwitchDeadDelay(-1), mBreakFlags(1), mItemType(-1),
+    : MapObjActor(pName), mCameraInfo(), mBreakOffsetFrame(::sDefaultBreakOffsetFrame), _CC(-1), mSwitchDeadDelay(-1), mBreakFlags(1), mItemType(-1),
       mItemNum(-1), mKinokoOneUp(), mPlayRiddleSound(), mBreakEnded(), _E6() {
 }
 
@@ -61,7 +61,7 @@ void SimpleBreakableObj::init(const JMapInfoIter& rIter) {
 
     switch (mItemType) {
     case -1:
-        mItemNum = itemNum > 0 ? itemNum : sDefaultItemNumCoin;
+        mItemNum = itemNum > 0 ? itemNum : ::sDefaultItemNumCoin;
         MR::declareCoin(this, mItemNum);
         break;
     case 1:
@@ -73,7 +73,7 @@ void SimpleBreakableObj::init(const JMapInfoIter& rIter) {
         MR::declarePowerStar(this);
         break;
     case 3:
-        mItemNum = itemNum > 0 ? itemNum : sDefaultItemNumStarPiece;
+        mItemNum = itemNum > 0 ? itemNum : ::sDefaultItemNumStarPiece;
         MR::declareStarPiece(this, mItemNum);
         break;
     }
@@ -93,7 +93,7 @@ void SimpleBreakableObj::init(const JMapInfoIter& rIter) {
         MR::tryRegisterDemoActionFunctor(this, MR::Functor(this, &SimpleBreakableObj::setStateBreak), nullptr);
     }
 
-    const char* pBckName = cBckNameBreak;
+    const char* pBckName = ::cBckNameBreak;
 
     if (MR::isExistBva(this, pBckName)) {
         MR::startBva(this, pBckName);
@@ -158,7 +158,7 @@ void SimpleBreakableObj::control() {
     if (MapObjActorUtil::isBreakStopped(this) || (MR::isHiddenModel(this) && !isStateBreaking())) {
         endBreak();
 
-        if (!MR::isExistBva(this, cBckNameBreak)) {
+        if (!MR::isExistBva(this, ::cBckNameBreak)) {
             kill();
         }
     }
@@ -215,7 +215,7 @@ void SimpleBreakableObj::startBreak() {
 void SimpleBreakableObj::endBreak() {
     if (mCameraInfo != nullptr) {
         MR::endActorCamera(this, mCameraInfo, false, -1);
-        MR::endDemo(this, cDemoName);
+        MR::endDemo(this, ::cDemoName);
     }
 
     if (mModelObj != nullptr) {
@@ -235,7 +235,7 @@ bool SimpleBreakableObj::isStateBreaking() const {
         return false;
     }
 
-    return MR::isBckPlaying(mModelObj, cBckNameBreak);
+    return MR::isBckPlaying(mModelObj, ::cBckNameBreak);
 }
 
 void SimpleBreakableObj::appearItem() {
@@ -257,7 +257,7 @@ void SimpleBreakableObj::appearItem() {
 }
 
 void SimpleBreakableObj::exeTryStartDemo() {
-    if (MR::tryStartDemoWithoutCinemaFrame(this, cDemoName)) {
+    if (MR::tryStartDemoWithoutCinemaFrame(this, ::cDemoName)) {
         MR::startActorCameraTargetSelf(this, mCameraInfo, -1);
         MR::startRumbleWithShakeCameraWeak(this, "中", "中", 1000.0f, FLOAT_MAX);
         MR::invalidateCollisionParts(this);
@@ -268,7 +268,7 @@ void SimpleBreakableObj::exeTryStartDemo() {
 void SimpleBreakableObj::exeDemo() {
     if (MR::isStep(this, MR::getActorCameraFrames(this, mCameraInfo))) {
         MR::endActorCamera(this, mCameraInfo, false, -1);
-        MR::endDemo(this, cDemoName);
+        MR::endDemo(this, ::cDemoName);
         mCameraInfo = nullptr;
         return;
     }

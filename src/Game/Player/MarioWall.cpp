@@ -139,14 +139,12 @@ void Mario::fixWallingDir(bool immediate) {
 }
 
 bool Mario::fixWallingTop() {
-    TVec3f side;
-    PSVECCrossProduct(&getWallNorm(), &getAirGravityVec(), &side);
+    TVec3f side = getWallNorm().cross(getAirGravityVec());
     MR::normalizeOrZero(&side);
     if (MR::isNearZero(side)) {
         return false;
     }
-
-    PSVECCrossProduct(&getWallNorm(), &side, &_75C);
+    _75C.cross(getWallNorm(), side);
     MR::normalizeOrZero(&_75C);
     if (MR::isNearZero(_75C)) {
         return false;
@@ -336,8 +334,7 @@ bool Mario::isEnableStickWall() {
         return false;
     }
 
-    TVec3f side;
-    PSVECCrossProduct(&getWallNorm(), &getAirGravityVec(), &side);
+    TVec3f side = getWallNorm().cross(getAirGravityVec());
     if (MR::normalizeOrZero(&side)) {
         return false;
     }

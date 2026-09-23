@@ -324,7 +324,7 @@ bool KameckBeam::tryChangeFire() {
             mKameckFireBalls[i]->setEventListener(mEventListener);
             mKameckFireBalls[i]->mPosition.set(mPosition);
             TVec3f result2;
-            MR::rotateVecDegree(&result2, result, mGravity, sFireAngleList[fireAngleListIndex][i]);
+            MR::rotateVecDegree(&result2, result, mGravity, ::sFireAngleList[fireAngleListIndex][i]);
             mKameckFireBalls[i]->appearDirection(result2);
             b1 = true;
         }

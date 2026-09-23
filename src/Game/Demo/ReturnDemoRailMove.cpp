@@ -106,8 +106,8 @@ void ReturnDemoRailMove::update(s32 currentStep, s32 maxSteps) {
             MR::setBckFrame(MR::getPlayerDemoActor(), startStepFirstDemo);
             MR::setBckFrame(mPowerStar, startStepFirstDemo);
         } else {
-            setResultFlyStartFrame(MR::getPlayerDemoActor(), startStepFirstDemo);
-            setResultFlyStartFrame(mPowerStar, startStepFirstDemo);
+            ::setResultFlyStartFrame(MR::getPlayerDemoActor(), startStepFirstDemo);
+            ::setResultFlyStartFrame(mPowerStar, startStepFirstDemo);
         }
     }
 
