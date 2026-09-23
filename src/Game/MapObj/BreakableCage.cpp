@@ -226,13 +226,11 @@ void BreakableCage::initModel(const char* pName, const JMapInfoIter& rIter) {
 void BreakableCage::initBaseMtxForCage() {
     MR::calcGravity(this);
 
-    TMtx34f baseMtx;
-    MR::makeMtxRotate(baseMtx.toMtxPtr(), mRotation);
+    TPos3f baseMtx;
+    MR::makeMtxRotate(baseMtx, mRotation);
     TVec3f front;
-    f32 z = baseMtx.mMtx[2][2];
-    f32 y = baseMtx.mMtx[1][2];
-    f32 x = baseMtx.mMtx[0][2];
-    front.set< f32 >(x, y, z);
+    baseMtx.getZDir(front);
+
     MR::makeMtxUpFrontPos(&mMtx, -mGravity, front, mPosition);
 }
 

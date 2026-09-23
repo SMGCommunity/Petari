@@ -112,14 +112,14 @@ void DinoPackunTail::addAccelKeepBend() {
     TVec3f v20;
     v20.set(mNodes[0]->mPosition);
     TVec3f v19;
-    v19.set< f32 >(*mNodes[0]->getNodeDirection());
+    v19.set(*mNodes[0]->getNodeDirection());
     MR::normalize(&v19);
 
     for (u32 i = 1; i < mNumNodes; i++) {
         TVec3f v18;
         v18.set(mNodes[i]->mPosition);
         TVec3f v17;
-        v17.set< f32 >(*mNodes[i]->getNodeDirection());
+        v17.set(*mNodes[i]->getNodeDirection());
 
         if (!MR::isNearZero(v17)) {
             MR::normalize(&v17);

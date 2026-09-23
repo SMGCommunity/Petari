@@ -387,19 +387,14 @@ bool DinoPackunBattleVs2Lv1::emitFireMouth() {
         return false;
     }
 
-    MtxPtr mouthMtx = MR::getJointMtx(getHost(), "DownMouth1");
     TPos3f v17;
-    v17.setInline(mouthMtx);
+    v17.set(MR::getJointMtx(getHost(), "DownMouth1"));
     TVec3f v16;
     v17.mult(::sShotMouthFireOffset, v16);
     TVec3f v15;
-    v15.set< f32 >(v17(0, 0), v17(1, 0), v17(2, 0));
+    v17.getXDir(v15);
     MR::normalizeOrZero(&v15);
-    TVec3f v12(v15);
-    v12.x *= 50.0f;
-    v12.y *= 50.0f;
-    v12.z *= 50.0f;
-    fire->appearShot(v16, v12);
+    fire->appearShot(v16, v15 * 50.0f);
     MR::addVelocityJump(fire, 30.0f);
     MR::addVelocity(fire, getHost()->mVelocity);
     return true;

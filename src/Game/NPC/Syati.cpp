@@ -670,9 +670,7 @@ void Syati::emitRing() {
     TPos3f mtx;
     MR::calcMtxFromGravityAndZAxis(&mtx, this, mGravity, direction);
 
-    TVec3f rotation;
-    mtx.getEuler(rotation);
-    pPrizeRing->mRotation.set< f32 >(rotation.x * 57.29578f, rotation.y * 57.29578f, rotation.z * 57.29578f);
+    mtx.getEulerDegree(pPrizeRing->mRotation);
     pPrizeRing->appear();
     pPrizeRing->setNumber(mNumRings - mPrizeRingCount);
 
@@ -687,7 +685,7 @@ void Syati::setupBalloonFollowMtx(const TVec3f& rVec) {
     mBalloonFollowMtx.setQuat(_8C);
     mBalloonFollowMtx.setTrans(mPosition);
 
-    TVec3f position(rVec);
+    TVec3f position = rVec;
     mBalloonFollowMtx.mult(position, position);
     mBalloonFollowMtx.setTrans(position);
 }

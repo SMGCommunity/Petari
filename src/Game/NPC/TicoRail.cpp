@@ -56,7 +56,7 @@ void TicoRail::init(const JMapInfoIter& rIter) {
     MR::initShadowFromCSV(this, "Shadow");
     initRailRider(rIter);
     MR::moveCoordAndTransToNearestRailPos(this);
-    _8C.set< f32 >(MR::getRailDirection(this));
+    _8C.set(MR::getRailDirection(this));
     mLodCtrl = MR::createLodCtrlNPC(this, rIter);
     s32 arg0 = 0;
     MR::getJMapInfoArg0NoInit(rIter, &arg0);
@@ -203,7 +203,7 @@ void TicoRail::exeTalkCancel() {
     }
 
     MR::moveCoordAndFollowTrans(this, 15.0f);
-    _8C.set< f32 >(MR::getRailDirection(this));
+    _8C.set(MR::getRailDirection(this));
 
     if (MR::isBckStopped(this)) {
         setNerve(GET_NERVE(TicoRail, TicoRailNrvMove));

@@ -44,7 +44,7 @@ public:
     ModelObj* mBeamBloom;                  // 0x90
     ModelObj* mBeamMdl;                    // 0x94
     VolumeModelDrawer* mBeamVolumeDrawer;  // 0x98
-    TMtx34f _9C;
+    TPos3f _9C;
     TQuat4f _CC;
     TQuat4f _DC;
     TVec3f _EC;

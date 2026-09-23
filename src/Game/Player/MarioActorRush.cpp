@@ -305,17 +305,17 @@ void MarioActor::endRush(const RushEndInfo* pInfo) {
 
         mMario->_10._8 = pInfo->_20 >> 22;
         if (!_3D0) {
-            Mtx base;
+            TPos3f base;
             TVec3f front;
-            PSMTXConcat(getBaseMtx(), _E3C.toMtxPtr(), base);
+            PSMTXConcat(getBaseMtx(), _E3C, base);
             front.set< f32 >(base[0][2], base[1][2], base[2][2]);
             mMario->setFrontVecKeepUp(front);
         } else {
-            Mtx base;
+            TPos3f base;
             TVec3f front;
             TVec3f side;
             TVec3f up;
-            PSMTXConcat(getBaseMtx(), _E3C.toMtxPtr(), base);
+            PSMTXConcat(getBaseMtx(), _E3C, base);
             front.set< f32 >(base[0][2], base[1][2], base[2][2]);
             up.set< f32 >(base[0][1], base[1][1], base[2][1]);
             side.set< f32 >(base[0][0], base[1][0], base[2][0]);

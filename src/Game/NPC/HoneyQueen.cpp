@@ -211,8 +211,7 @@ void HoneyQueen::exeItch() {
     }
 
     TVec3f vec;
-    vec.set< f32 >(((2.0f * (_B0.x * _B0.z)) + (2.0f * (_B0.w * _B0.y))), (2.0f * (_B0.y * _B0.z)) - (2.0f * (_B0.w * _B0.x)),
-                   (1.0f - (2.0f * (_B0.x * _B0.x))) - (2.0f * (_B0.y * _B0.y)));
+    _B0.getZDir(vec);
     MR::faceToVector(&_A0, vec, 0.2f);
     MR::tryTalkNearPlayer(mMsgCtrl);
 }

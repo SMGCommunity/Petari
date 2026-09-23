@@ -404,8 +404,7 @@ void StringSpider::calcPosture(f32 a1, bool a2) {
     TVec3f v1;
     TVec3f rootVec = calcToRootVector();
     TVec3f v3, v9;
-    v1.set< f32 >((2.0f * (_A0.x * _A0.y)) - (2.0f * (_A0.w * _A0.z)), (1.0f - (2.0f * (_A0.x * _A0.x))) - (2.0f * (_A0.z * _A0.z)),
-                  (2.0f * (_A0.y * _A0.z)) + (2.0f * (_A0.w * _A0.x)));
+    _A0.getYDir(v1);
     MR::normalizeOrZero(&rootVec);
     if (!MR::isNearZero(rootVec, 0.001f)) {
         _A0.getZDir(v3);

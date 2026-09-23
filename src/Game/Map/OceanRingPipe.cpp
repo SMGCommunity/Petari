@@ -136,11 +136,7 @@ void OceanRingPipe::initPoints() {
             v4.add(MR::getRailPos(this));
 
             _A0[idx].set< f32 >(v4.x, v4.y, v4.z);
-            // w h a t
-            // (TODO: look into how its actually supposed to convert these values into
-            // their s16 components instead of writing the multiply directly)
-            // JGeometry::TVec3< s64 >(v1.x * 32768.0f, v1.y * 32768.0f, v1.z * 32768.0f);
-            _A4[idx].set(v1.x * 32768.0f, v1.y * 32768.0f, v1.z * 32768.0f);
+            _A4[idx].set(v1.x * 32768.0f, v1.y * 32768.0f, v1.z * 32768.0f);  // TODO: sFloatToShortShift
             idx++;
 
             mtx.mult(side, side);

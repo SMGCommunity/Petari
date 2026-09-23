@@ -200,17 +200,14 @@ void CrystalCageMoving::updateHitSensor(HitSensor* pSensor) {
         pSensor->mPosition.set(mPosition);
     } else {
         f32 radius = pSensor->mRadius;
-        TMtx34f joint_mtx;
+        TPos3f joint_mtx;
         joint_mtx.set(MR::getJointMtx(this, nullptr));
-        TVec3f joint_pos;
-        f32 z = joint_mtx.mMtx[2][1];
-        f32 y = joint_mtx.mMtx[1][1];
-        f32 x = joint_mtx.mMtx[0][1];
-        joint_pos.set< f32 >(x, y, z);
+        TVec3f up;
+        joint_mtx.getYDir(up);
         TVec3f stack_14;
-        stack_14.scaleAdd(-450.0f + radius, joint_pos, mPosition);
+        stack_14.scaleAdd(-450.0f + radius, up, mPosition);
         TVec3f stack_8;
-        stack_8.scaleAdd(450.0f - radius, joint_pos, mPosition);
+        stack_8.scaleAdd(450.0f - radius, up, mPosition);
         MR::calcPerpendicFootToLineInside(&pSensor->mPosition, *MR::getPlayerPos(), stack_14, stack_8);
     }
 }

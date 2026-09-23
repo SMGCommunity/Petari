@@ -507,20 +507,14 @@ bool TalkMessageCtrl::isNearPlayer(f32 distance) const {
         TalkMessageInfo* info = &mNodeCtrl->mMessageInfo;
         bool cond = info->mTalkType;
         if (mIsStartOnlyFront || info->isBalloonSign()) {
-            TMtx34f pos;
+            TPos3f pos;
             pos.set(mHostActor->getBaseMtx());
 
-            TVec3f v3;
-            f32 setZ = pos[2][2];
-            f32 setY = pos[1][2];
-            f32 setX = pos[0][2];
-            v3.set< f32 >(setX, setY, setZ);
+            TVec3f v3;  // 0x2C
+            pos.getZDir(v3);
 
-            TVec3f v4;
-            setZ = pos[2][3];
-            setY = pos[1][3];
-            setX = pos[0][3];
-            v4.set< f32 >(setX, setY, setZ);
+            TVec3f v4;  // 0x20
+            pos.getTrans(v4);
             v4 = *MR::getPlayerPos() - v4;
 
             f32 f3 = MR::vecKillElement(v4, v3, &v4);

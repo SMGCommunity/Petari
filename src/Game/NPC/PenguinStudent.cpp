@@ -48,7 +48,7 @@ void PenguinStudent::init(const JMapInfoIter& rIter) {
     if (MR::isConnectedWithRail(rIter)) {
         initRailRider(rIter);
         MR::moveCoordToNearestPos(this, mPosition);
-        mPosition.set< f32 >(MR::getRailPos(this));
+        mPosition.set(MR::getRailPos(this));
     }
 
     MR::joinToGroupArray(this, rIter, nullptr, 32);

@@ -291,7 +291,9 @@ void MarioLauncherShell::calcBaseMtx() {
 
     TVec3f vel = mVelocity;
     TVec3f grav = mGravity;
-    mReboundDir.set< f32 >(mPosition.x - mBaseMtx[0][3], mPosition.y - mBaseMtx[1][3], mPosition.z - mBaseMtx[2][3]);
+    mReboundDir.set< f32 >(mPosition.x - mBaseMtx[0][3],   //
+                           mPosition.y - mBaseMtx[1][3],   //
+                           mPosition.z - mBaseMtx[2][3]);  //
 
     if (!MR::isNearZero(vel)) {
         MR::normalize(&vel);

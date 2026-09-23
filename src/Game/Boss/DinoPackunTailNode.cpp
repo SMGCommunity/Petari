@@ -50,7 +50,7 @@ bool DinoPackunTailNode::turnJointLocalXDir(TPos3f* pMtx, const JointControllerI
     TPos3f v25(pMtx);
     MR::orthogonalize(&v25);
     v25.getXDir(mNodeDirection);
-    _A8.set< f32 >(v25(0, 2), v25(1, 2), v25(2, 2));
+    v25.getZDir(_A8);
     MR::normalize(&mNodeDirection);
     TQuat4f v24;
     v25.getQuat(v24);

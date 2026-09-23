@@ -437,16 +437,8 @@ bool HammerHeadPackun::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSen
 void HammerHeadPackun::initPosture() {
     TPos3f mtx;
     MR::makeMtxTR(mtx, this);
-
-    f32 z1 = mtx[2][1];
-    f32 y1 = mtx[1][1];
-    f32 x1 = mtx[0][1];
-    _94.set< f32 >(x1, y1, z1);
-
-    f32 z2 = mtx[2][2];
-    f32 y2 = mtx[1][2];
-    f32 x2 = mtx[0][2];
-    _A0.set< f32 >(x2, y2, z2);
+    mtx.getYDir(_94);
+    mtx.getZDir(_A0);
 }
 
 void HammerHeadPackun::initSensor() {
