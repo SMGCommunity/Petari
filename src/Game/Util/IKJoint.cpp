@@ -38,7 +38,7 @@ s32 IKJoint::checkReachIKTarget(f32 distance, f32 rootLength, f32 middleLength) 
     if (distance > (rootLength + middleLength)) {
         result = 2;
     } else {
-        if (distance < __fabs(rootLength - middleLength)) {
+        if (distance < MR::abs(rootLength - middleLength)) {
             result = 1;
         } else {
             return result;

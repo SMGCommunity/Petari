@@ -282,9 +282,9 @@ bool TalkMessageCtrl::startTalkForcePuppetable() {
     return TalkFunction::startTalkSystem(this, true, true, false);
 }
 
-  bool TalkMessageCtrl::startTalkForceWithoutDemo() {
-      return TalkFunction::startTalkSystem(this, true, false, true);
-  }
+bool TalkMessageCtrl::startTalkForceWithoutDemo() {
+    return TalkFunction::startTalkSystem(this, true, false, true);
+}
 
 bool TalkMessageCtrl::startTalkForceWithoutDemoPuppetable() {
     return TalkFunction::startTalkSystem(this, true, false, false);
@@ -486,7 +486,7 @@ bool TalkMessageCtrl::isNearPlayer(f32 distance) const {
     TVec3f v3;  // 0x38
     f32 f2 = MR::vecKillElement(v2 - *MR::getPlayerCenterPos(), mHostActor->mGravity, &v3);
 
-    if (!(__fabs(f2) > distance) && v3.squared() < distance * distance) {
+    if (!(MR::abs(f2) > distance) && v3.squared() < distance * distance) {
         TalkMessageInfo* info = &mNodeCtrl->mMessageInfo;
         bool cond = info->mTalkType;
         if (mIsStartOnlyFront || info->isBalloonSign()) {

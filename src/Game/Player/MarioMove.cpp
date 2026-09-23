@@ -957,8 +957,8 @@ void Mario::calcMoveDir(float stickX, float stickY, TVec3f* moveDir, bool isDisa
 
         f32 movementDirScreenY = screenYDir.dot(_398);
         f32 movementDirScreenZ = screenZDir.dot(_398);
-        f32 absMovementDirScreenY = __fabsf(movementDirScreenY);
-        f32 absMovementDirScreenZ = __fabsf(movementDirScreenZ);
+        f32 absMovementDirScreenY = MR::abs(movementDirScreenY);
+        f32 absMovementDirScreenZ = MR::abs(movementDirScreenZ);
 
         if (absMovementDirScreenZ > absMovementDirScreenY) {
             groundYDirOrtho = screenYDir;

@@ -187,7 +187,7 @@ f32 BezierRailPart::getParam(f32 t) const {
         length = getLength(0.0f, param, 10);
 
         f32 limit = 0.01f;
-        if (__fabs(t - length) <= limit) {
+        if (MR::abs(t - length) <= limit) {
             return param;
         }
     }

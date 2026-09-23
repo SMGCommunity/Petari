@@ -4,6 +4,7 @@
 #include "Game/Util/GravityUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/NPCUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -61,7 +62,7 @@ bool PlayerRacer::updateRacer(const RaceManager* pRaceManager) {
     if ((railPos - *MR::getPlayerCenterPos()).length() > ::sRaceJudgeLength) {
         return false;
     }
-    if ((f32)__fabs(mRailCoord - railCoord) < ::sRaceJudgeLength) {
+    if (MR::fabs(mRailCoord - railCoord) < ::sRaceJudgeLength) {
         mRailCoord = railCoord;
     }
 
@@ -74,7 +75,7 @@ bool PlayerRacer::updateRacer(const RaceManager* pRaceManager) {
         mRailCoord = railCoord;
     }
 
-    if ((f32)__fabs(mRailCoord - railLength) < 100.0f) {
+    if (MR::fabs(mRailCoord - railLength) < 100.0f) {
         if (pRaceManager->isGoal(this)) {
             MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
             return true;

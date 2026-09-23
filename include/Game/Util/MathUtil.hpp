@@ -443,6 +443,10 @@ namespace MR {
         return JGeometry::TUtil< f32 >::epsilon();
     }
 
+    inline f32 fabs(f64 x) {
+        return __fabs(x);
+    }
+
     inline f32 abs(f32 x) {
         return __fabsf(x);
     }

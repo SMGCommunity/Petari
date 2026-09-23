@@ -49,7 +49,7 @@ void Mario::calcTornadoTilt() {
         MR::normalize(&tilt);
         bool blended = MR::vecBlendSphere(_54C, tilt, &_54C, mActor->getConst().getTable()->mTornadoTiltSpeed);
         MR::normalize(&_54C);
-        f32 alignment = __fabsf(getWorldPadDir().dot(mFrontVec));
+        f32 alignment = MR::abs(getWorldPadDir().dot(mFrontVec));
         _548 = _548 * mActor->getConst().getTable()->mTornadoTiltNear + alignment * (1.0f - mActor->getConst().getTable()->mTornadoTiltNear);
         if (!blended) {
             _54C = tilt;

@@ -13,16 +13,13 @@ void TurnJointCtrl_FORCE_MATCH_SDATA2() {
 
 namespace {
     void makeMtxRotVecDegree(MtxPtr pMtx, const TVec3f& rFrom, const TVec3f& rTo, f32 degree) {
-        TVec3f axis;
-        axis.cross(rFrom, rTo);
+        TVec3f axis = rFrom.cross(rTo);
         f32 dot = rFrom.dot(rTo);
 
         if (MR::normalizeOrZero(&axis)) {
             PSMTXIdentity(pMtx);
         } else {
-            f32 maxAngle = __fabsf(0.017453292f * degree);
-            f32 angle = acos(dot);
-            PSMTXRotAxisRad(pMtx, &axis, -MR::min(angle, maxAngle));
+            PSMTXRotAxisRad(pMtx, &axis, -MR::min(acos(dot), MR::abs(MR::toRadian(degree))));
         }
     }
 }  // namespace

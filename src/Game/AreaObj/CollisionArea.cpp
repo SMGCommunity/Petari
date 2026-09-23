@@ -164,9 +164,9 @@ bool CollisionArea::hitCheck(const TVec3f& rPos, f32 radius, TVec3f* pPoint, TVe
     f32 y = relative.dot(axisY);
     f32 z = relative.dot(axisZ);
     TVec3f absolute;
-    f32 absX = __fabsf(x);
-    f32 absY = __fabsf(y);
-    f32 absZ = __fabsf(z);
+    f32 absX = MR::abs(x);
+    f32 absY = MR::abs(y);
+    f32 absZ = MR::abs(z);
     absolute.set(absX, absY, absZ);
     if (absolute.x >= expanded.x || absolute.y >= expanded.y || absolute.z >= expanded.z) {
         return false;

@@ -106,7 +106,7 @@ bool SnowFloorTile::calcLocalPoint(const TVec3f& rPosition, TVec3f* pPoint, f32 
     x = 1.0f - x;
     pPoint->set(x, y, up);
 
-    height = __fabsf(up);
+    height = MR::abs(up);
 
     if (height >= heightLimit) {
         return false;

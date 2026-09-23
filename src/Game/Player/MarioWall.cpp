@@ -690,15 +690,15 @@ bool Mario::fixWallingDist() {
             MR::vecKillElement(position - mPosition, *getGravityVec(), &correction);
             if (!MR::isNearZero(correction)) {
                 TVec3f relative(correction + mActor->_288);
-                if (__fabsf(relative.x) < __fabsf(correction.x)) {
+                if (MR::abs(relative.x) < MR::abs(correction.x)) {
                     correction.x = relative.x;
                 }
 
-                if (__fabsf(relative.y) < __fabsf(correction.y)) {
+                if (MR::abs(relative.y) < MR::abs(correction.y)) {
                     correction.y = relative.y;
                 }
 
-                if (__fabsf(relative.z) < __fabsf(correction.z)) {
+                if (MR::abs(relative.z) < MR::abs(correction.z)) {
                     correction.z = relative.z;
                 }
 
