@@ -1543,7 +1543,7 @@ config.libs = [
             Object(NonMatching, "Game/Map/LightFunction.cpp"),
             Object(NonMatching, "Game/Map/LightPointCtrl.cpp"),
             Object(Matching, "Game/Map/LightZoneDataHolder.cpp"),
-            Object(NonMatching, "Game/Map/NamePosHolder.cpp"),
+            Object(Matching, "Game/Map/NamePosHolder.cpp"),
             Object(NonMatching, "Game/Map/OceanBowl.cpp"),
             Object(Matching, "Game/Map/OceanBowlBloomDrawer.cpp"),
             Object(Matching, "Game/Map/OceanBowlPoint.cpp"),
