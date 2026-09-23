@@ -1742,7 +1742,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/LavaBreakColumn.cpp"),
             Object(NonMatching, "Game/MapObj/LavaFloater.cpp"),
             Object(NonMatching, "Game/MapObj/LavaGalaxyParts.cpp"),
-            Object(NonMatching, "Game/MapObj/LavaGeyser.cpp"),
+            Object(Matching, "Game/MapObj/LavaGeyser.cpp"),
             Object(NonMatching, "Game/MapObj/LavaHomeSeesaw.cpp"),
             Object(NonMatching, "Game/MapObj/LavaHomeVolcanoFlow.cpp"),
             Object(NonMatching, "Game/MapObj/LavaJamboSunPlanet.cpp"),
