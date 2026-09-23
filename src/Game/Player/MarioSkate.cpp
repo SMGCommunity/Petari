@@ -111,6 +111,7 @@ bool MarioSkate::start() {
 }
 
 bool MarioSkate::update() {
+    f32 speed;
     if (!getPlayer()->mMovementStates._1 || getPlayer()->mMovementStates.jumping) {
         return false;
     }
@@ -174,7 +175,7 @@ bool MarioSkate::update() {
         }
     }
 
-    f32 speed = getPlayer()->mWalkSpeed;
+    speed = getPlayer()->mWalkSpeed;
     if (speed < 1.2f * getStickP()) {
         getPlayer()->mWalkSpeed = 1.2f * getStickP();
     }

@@ -77,10 +77,6 @@ void Mario::forceStopTornado() {
     mDrawStates._8 = true;
 }
 
-void Mario::startRotationTask(u32 flags) {
-    pushTask(&Mario::taskOnRotation, flags);
-}
-
 void Mario::doSpinWallEffect() {
     if ((!mMovementStates._8 || !mFrontWallTriangle->mSensor->isType(0x55)) && (!mMovementStates._19 || !mBackWallTriangle->mSensor->isType(0x55)) &&
         (!mMovementStates._1A || !mSideWallTriangle->mSensor->isType(0x55))) {
@@ -88,6 +84,10 @@ void Mario::doSpinWallEffect() {
         playSound("声スピンキャンセル");
         playEffect("壁スパーク");
     }
+}
+
+void Mario::startRotationTask(u32 flags) {
+    pushTask(&Mario::taskOnRotation, flags);
 }
 
 bool Mario::taskOnRotation(u32 flags) {
