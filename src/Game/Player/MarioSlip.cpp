@@ -41,56 +41,6 @@ bool Mario::isEnableSlopeMove() const {
     }
 }
 
-void Mario::moveSlopeSlide() {
-    if (calcAngleD(_368) < 5.8f) {
-        if (mDrawStates._C) {
-            const TVec3f* pWorldPadDir = &getWorldPadDir();
-            f32 speed = _16C.length();
-            if (_910.length() < speed) {
-                _910 = _16C;
-            }
-
-            _910 += *pWorldPadDir * 0.5f;
-
-            if (_910.length() > 15.0f) {
-                _910.setLength(15.0f);
-            }
-
-            addVelocity(_910);
-        }
-    } else if (isAnimationRun("スケーティング") || isAnimationRun("坂すべり上向きうつぶせ", 2) || isAnimationRun("坂すべり下向きあおむけ", 3)) {
-        TVec3f stack_20;
-        stack_20.cross(getAirGravityVec(), _368);
-        MR::normalizeOrZero(&stack_20);
-
-        const TVec3f* pWorldPadDir = &getWorldPadDir();
-        if (MR::isNearZero(_280)) {
-            _284 = stack_20;
-        }
-
-        if (isStickOn() && _3C4 == 0) {
-            f32 dot = _284.dot(*pWorldPadDir);
-            if (MR::abs(dot) > 0.2f) {
-                _280 = (_280 * mActor->getConst().getTable()->mSlopeSideMoveInertia) +
-                       (dot * (1.0f - mActor->getConst().getTable()->mSlopeSideMoveInertia));
-            } else {
-                MarioConstTable* pConstTable = mActor->getConst().getTable();
-                _280 = _280 * pConstTable->mSlopeSideStopInertia;
-            }
-        } else {
-            MarioConstTable* pConstTable = mActor->getConst().getTable();
-            _280 = _280 * pConstTable->mSlopeSideStopInertia;
-        }
-
-        TVec3f stack_14;
-        stack_14.cross(_284, _368);
-        _284.cross(_368, stack_14);
-
-        MarioConstTable* pConstTable = mActor->getConst().getTable();
-        addVelocity(_284, _280 * pConstTable->mSlopeSideMoveSpeed);
-    }
-}
-
 void Mario::slopeMove() {
     if (mActor->mHealth == 0) {
         return;
@@ -180,7 +130,7 @@ void Mario::slopeMove() {
                 _8F0 = 10.0f;
             }
 
-            if (mTargetWalkSpeedIndex == 0 && !isAnimationRun("すべり着地")) {
+            if (mTargetWalkSpeedIndex == 0 != nullptr && !isAnimationRun("すべり着地")) {
                 _8F0 = 10.0f;
             }
 
@@ -448,6 +398,56 @@ void Mario::slopeMove() {
     }
 
     moveSlopeSlide();
+}
+
+void Mario::moveSlopeSlide() {
+    if (calcAngleD(_368) < 5.8f) {
+        if (mDrawStates._C) {
+            const TVec3f* pWorldPadDir = &getWorldPadDir();
+            f32 speed = _16C.length();
+            if (_910.length() < speed) {
+                _910 = _16C;
+            }
+
+            _910 += *pWorldPadDir * 0.5f;
+
+            if (_910.length() > 15.0f) {
+                _910.setLength(15.0f);
+            }
+
+            addVelocity(_910);
+        }
+    } else if (isAnimationRun("スケーティング") || isAnimationRun("坂すべり上向きうつぶせ", 2) || isAnimationRun("坂すべり下向きあおむけ", 3)) {
+        TVec3f stack_20;
+        stack_20.cross(getAirGravityVec(), _368);
+        MR::normalizeOrZero(&stack_20);
+
+        const TVec3f* pWorldPadDir = &getWorldPadDir();
+        if (MR::isNearZero(_280)) {
+            _284 = stack_20;
+        }
+
+        if (isStickOn() && _3C4 == 0) {
+            f32 dot = _284.dot(*pWorldPadDir);
+            if (MR::abs(dot) > 0.2f) {
+                _280 = (_280 * mActor->getConst().getTable()->mSlopeSideMoveInertia) +
+                       (dot * (1.0f - mActor->getConst().getTable()->mSlopeSideMoveInertia));
+            } else {
+                MarioConstTable* pConstTable = mActor->getConst().getTable();
+                _280 = _280 * pConstTable->mSlopeSideStopInertia;
+            }
+        } else {
+            MarioConstTable* pConstTable = mActor->getConst().getTable();
+            _280 = _280 * pConstTable->mSlopeSideStopInertia;
+        }
+
+        TVec3f stack_14;
+        stack_14.cross(_284, _368);
+        _284.cross(_368, stack_14);
+
+        MarioConstTable* pConstTable = mActor->getConst().getTable();
+        addVelocity(_284, _280 * pConstTable->mSlopeSideMoveSpeed);
+    }
 }
 
 bool Mario::taskOnSlipTurn(u32) {

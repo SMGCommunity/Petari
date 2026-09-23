@@ -6,8 +6,6 @@
 #include <revolution/mtx.h>
 #include <revolution/types.h>
 
-extern "C" {}
-
 static const f32 sOne = 1.0f;
 static const f32 sZero = 0.0f;
 static const f32 sSameDirEpsilon = 0.01f;
@@ -17,16 +15,6 @@ static const f32 sHipDropSlideRot = 0.10471976f;
 static const f32 sHipDropSlideLen = 10.0f;
 static const f32 sJumpDropSlideDotMin = 0.1f;
 static const f32 sHopperJumpSlideDotMin = 0.707f;
-
-static Mario::Task sTaskHandy = &Mario::taskOnHandy;
-static Mario::Task sTaskHipDropBlurHopper = &Mario::taskOnHipDropBlurHopper;
-static Mario::Task sTaskHipDropBlur = &Mario::taskOnHipDropBlur;
-static Mario::Task sTaskHipDropSlide = &Mario::taskOnHipDropSlide;
-static Mario::Task sTaskJumpDropSlide = &Mario::taskOnHipDropSlide;
-static struct {
-    Mario::Task task;
-    u8 gap_07_805CCD70_data[0xA0];
-} sTaskFreezeEnd = {&Mario::taskOnFreezeEnd};
 
 void Mario::delTask(MarioModuleTask* pTask) {
     MarioModuleTask* next = pTask->mNext;
@@ -186,7 +174,43 @@ void Mario::callExtraTasks(u32 flags) {
 }
 
 void Mario::startHandy() {
-    pushTask(sTaskHandy, 0x40);
+    pushTask(&Mario::taskOnHandy, 0x40);
+}
+
+bool Mario::taskOnHandy(u32) {
+    if (!mActor->_468) {
+        stopEffect("いい汗");
+        return false;
+    }
+
+    if (mTargetWalkSpeedIndex > 2) {
+        playEffect("いい汗");
+    } else {
+        stopEffect("いい汗");
+    }
+
+    return true;
+}
+
+void Mario::startHipDropBlur() {
+    if (isPlayerModeHopper()) {
+        if (gIsLuigi) {
+            playEffect("ホッパー尻落ルイージ");
+        } else {
+            playEffect("ホッパー尻落");
+        }
+
+        pushTask(&Mario::taskOnHipDropBlurHopper, 0x80);
+        return;
+    }
+
+    if (gIsLuigi) {
+        playEffect("尻落ルイージ");
+    } else {
+        playEffect("尻落");
+    }
+
+    pushTask(&Mario::taskOnHipDropBlur, 0x80);
 }
 
 bool Mario::taskOnHipDropBlurHopper(u32) {
@@ -271,46 +295,6 @@ bool Mario::taskOnFreezeEnd(u32) {
     return mActor->finalizeFreezeModel();
 }
 
-void Mario::startFreezeEnd() {
-    pushTask(sTaskFreezeEnd.task, 0x800);
-}
-
-bool Mario::taskOnHandy(u32) {
-    if (!mActor->_468) {
-        stopEffect("いい汗");
-        return false;
-    }
-
-    if (mTargetWalkSpeedIndex > 2) {
-        playEffect("いい汗");
-    } else {
-        stopEffect("いい汗");
-    }
-
-    return true;
-}
-
-void Mario::startHipDropBlur() {
-    if (isPlayerModeHopper()) {
-        if (gIsLuigi) {
-            playEffect("ホッパー尻落ルイージ");
-        } else {
-            playEffect("ホッパー尻落");
-        }
-
-        pushTask(sTaskHipDropBlurHopper, 0x80);
-        return;
-    }
-
-    if (gIsLuigi) {
-        playEffect("尻落ルイージ");
-    } else {
-        playEffect("尻落");
-    }
-
-    pushTask(sTaskHipDropBlur, 0x80);
-}
-
 void Mario::startHipDropSlide(const HitSensor* pSensor) {
     if (isActiveTaskID(0x100)) {
         return;
@@ -320,7 +304,7 @@ void Mario::startHipDropSlide(const HitSensor* pSensor) {
         return;
     }
 
-    pushTask(sTaskHipDropSlide, 0x100);
+    pushTask(&Mario::taskOnHipDropSlide, 0x100);
 
     TVec3f dir(mPosition - pSensor->mPosition);
 
@@ -358,7 +342,7 @@ void Mario::startJumpDropSlide(const HitSensor* pSensor) {
         return;
     }
 
-    pushTask(sTaskJumpDropSlide, 0x200);
+    pushTask(&Mario::taskOnHipDropSlide, 0x200);
 
     TVec3f slideDir(mPosition - pSensor->mPosition);
 
@@ -389,4 +373,8 @@ void Mario::startJumpDropSlide(const HitSensor* pSensor) {
     }
 
     mJumpVec.zero();
+}
+
+void Mario::startFreezeEnd() {
+    pushTask(&Mario::taskOnFreezeEnd, 0x800);
 }
