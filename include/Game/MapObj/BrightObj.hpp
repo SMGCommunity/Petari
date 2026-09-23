@@ -59,7 +59,7 @@ public:
     BrightObjBase();
 
     virtual ~BrightObjBase();
-    virtual void calcBrightInfo(u16, const BrightCamInfo&) = nullptr;
+    virtual void calcBrightInfo(u16, const BrightCamInfo&) = 0;
     virtual f32 getBright() const;
     virtual const TVec2f* getBrightCenter() const;
     virtual const TVec2f* getCenter() const;
