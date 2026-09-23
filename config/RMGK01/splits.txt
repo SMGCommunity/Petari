@@ -4367,14 +4367,14 @@ Game/MapObj/AstroOverlookObj.cpp:
 Game/MapObj/BallOpener.cpp:
 	.text       start:0x801B0B3C end:0x801B1444
 	.ctors      start:0x8052EC4C end:0x8052EC50
-	.data       start:0x8058F4F8 end:0x8058F600
+	.data       start:0x8058F4F8 end:0x8058F5F8
 	.sbss       start:0x806B4E38 end:0x806B4E48
 	.sdata2     start:0x806BC798 end:0x806BC7C8
 
 Game/MapObj/BallRail.cpp:
 	.text       start:0x801B1444 end:0x801B1DA4
 	.ctors      start:0x8052EC50 end:0x8052EC54
-	.data       start:0x8058F600 end:0x8058F6B8
+	.data       start:0x8058F5F8 end:0x8058F6B8
 	.sbss       start:0x806B4E48 end:0x806B4E58
 	.sdata2     start:0x806BC7C8 end:0x806BC7E8
 

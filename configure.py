@@ -1626,7 +1626,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/AstroMapObj.cpp"),
             Object(NonMatching, "Game/MapObj/AstroMapObjFunction.cpp"),
             Object(Matching, "Game/MapObj/AstroOverlookObj.cpp"),
-            Object(NonMatching, "Game/MapObj/BallOpener.cpp"),
+            Object(Matching, "Game/MapObj/BallOpener.cpp"),
             Object(NonMatching, "Game/MapObj/BallRail.cpp"),
             Object(NonMatching, "Game/MapObj/Banekiti.cpp"),
             Object(NonMatching, "Game/MapObj/BattleShipElevator.cpp"),
