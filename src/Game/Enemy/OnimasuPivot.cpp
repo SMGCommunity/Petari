@@ -69,7 +69,7 @@ void OnimasuPivot::updatePoseInner() {
 
     quat.getZDir(fromPivotPoint);
 
-    // This constant is400.0f * sqrt(2.0f), which is hardcoded
+    // This constant is 400.0f * sqrt(2.0f), which is hardcoded
     // for the distance between points in toy time galaxy.
     fromPivotPoint.setLength(565.6854f);
 
