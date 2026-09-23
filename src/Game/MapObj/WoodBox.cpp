@@ -15,8 +15,8 @@
 
 namespace NrvWoodBox {
     NEW_NERVE(WoodBoxNrvWait, WoodBox, Wait);
-    NEW_NERVE(WoodBoxNrvKilled, WoodBox, Killed);
     NEW_NERVE(WoodBoxNrvHit, WoodBox, Hit);
+    NEW_NERVE(WoodBoxNrvKilled, WoodBox, Killed);    
 };  // namespace NrvWoodBox
 
 WoodBox::WoodBox(const char* pName) : LiveActor(pName) {
@@ -206,7 +206,7 @@ void WoodBox::kill() {
     if (!mIsNoRespawn) {
         LiveActor::kill();
     } else {
-        LiveActor::setNerve(GET_NERVE(WoodBox, WoodBoxNrvWait));
+        LiveActor::setNerve(GET_NERVE(WoodBox, WoodBoxNrvKilled));
         MR::invalidateHitSensors(this);
         MR::invalidateCollisionParts(this);
     }
