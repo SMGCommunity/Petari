@@ -460,7 +460,7 @@ void BasaBasa::initAfterPlacement() {
         initNerve(GET_NERVE(BasaBasa, BasaBasaNrvAirWait));
     }
 
-    _CC.set< f32 >(mPosition);
+    _CC.set(mPosition);
     MR::calcFrontVec(&_D8, this);
 }
 
@@ -675,7 +675,7 @@ bool BasaBasa::tryClippingAndResetPos() {
             return false;
         } else {
             MR::resetPosition(this, _CC);
-            _9C.set< f32 >(_D8);
+            _9C.set(_D8);
             mVelocity.zero();
             _E8 = 0;
             if (_EC != 0) {
@@ -776,7 +776,7 @@ void BasaBasa::tuneHeight() {
             return;
         } else {
             TVec3f v4;
-            v4.set< f32 >(v5);
+            v4.set(v5);
             MR::normalize(&v4);
             mVelocity.scaleAdd(2.0f, v4, mVelocity);
         }

@@ -55,7 +55,7 @@ void MapPartsRailMover::init(const JMapInfoIter& rIter) {
         MR::moveCoordAndTransToRailStartPoint(mHost);
     }
 
-    _28.set< f32 >(mHost->mPosition);
+    _28.set(mHost->mPosition);
     _34 = MR::getRailCoord(mHost);
     mRailPointPassChecker = new MapPartsRailPointPassChecker(mHost);
     mRailPointPassChecker->init(rIter);
@@ -117,7 +117,7 @@ bool MapPartsRailMover::receiveMsg(u32 msg) {
 void MapPartsRailMover::moveToInitPos() {
     if (!MR::isNearZero(_34 - MR::getRailCoord(mHost))) {
         MR::setRailCoord(mHost, _34);
-        _28.set< f32 >(MR::getRailPos(mHost));
+        _28.set(MR::getRailPos(mHost));
         if (!MR::isRailGoingToEnd(mHost)) {
             MR::reverseRailDirection(mHost);
         }
@@ -130,7 +130,7 @@ void MapPartsRailMover::startWithSignalMotion() {
 
 void MapPartsRailMover::cancelSignalMotion() {
     MR::setRailCoord(mHost, _48);
-    _28.set< f32 >(MR::getRailPos(mHost));
+    _28.set(MR::getRailPos(mHost));
     setNerve(GET_NERVE(MapPartsRailMover, HostTypeWait));
 }
 
@@ -381,7 +381,7 @@ void MapPartsRailMover::restartAtEnd() {
         }
     } else if (mMoveStopType == 2) {
         MR::moveCoordToStartPos(mHost);
-        _28.set< f32 >(MR::getRailPos(mHost));
+        _28.set(MR::getRailPos(mHost));
         setNerve(GET_NERVE(MapPartsRailMover, HostTypeMove));
     } else if (mMoveStopType == 3) {
         setNerve(GET_NERVE(MapPartsRailMover, HostTypeVanish));
@@ -402,7 +402,7 @@ void MapPartsRailMover::exeMove() {
     }
 
     MR::moveCoord(mHost, mSpeed);
-    _28.set< f32 >(MR::getRailPos(mHost));
+    _28.set(MR::getRailPos(mHost));
 }
 
 void MapPartsRailMover::exeMoveStart() {
@@ -427,7 +427,7 @@ void MapPartsRailMover::exeMoveStart() {
     }
 
     MR::setRailCoord(mHost, _48 + (7.0f * (v3 * ((getStep() % 3)))));
-    _28.set< f32 >(MR::getRailPos(mHost));
+    _28.set(MR::getRailPos(mHost));
     if (isStep(MapParts::getMoveStartSignalTime())) {
         MR::setRailCoord(mHost, _48);
 
@@ -435,7 +435,7 @@ void MapPartsRailMover::exeMoveStart() {
             MR::onUpdateCollisionParts(mHost);
         }
 
-        _28.set< f32 >(MR::getRailPos(mHost));
+        _28.set(MR::getRailPos(mHost));
         setNerve(GET_NERVE(MapPartsRailMover, HostTypeMove));
     }
 }

@@ -481,14 +481,14 @@ namespace MR {
     void setAnimFrameAndStopAdjustTextWidth(LayoutActor* pActor, const char* pPaneName, u32 animLayer) {
         nw4r::lyt::Pane* pPane = pActor->getLayoutManager()->getPane(pPaneName);
         nw4r::ut::Rect rect;
-        getTextDrawRectRecursive(&rect, pPane, false);
+        ::getTextDrawRectRecursive(&rect, pPane, false);
         setAnimFrameAndStop(pActor, rect.GetWidth(), animLayer);
     }
 
     void setAnimFrameAndStopAdjustTextHeight(LayoutActor* pActor, const char* pPaneName, u32 animLayer) {
         nw4r::lyt::Pane* pPane = pActor->getLayoutManager()->getPane(pPaneName);
         nw4r::ut::Rect rect;
-        getTextDrawRectRecursive(&rect, pPane, false);
+        ::getTextDrawRectRecursive(&rect, pPane, false);
         setAnimFrameAndStop(pActor, rect.GetHeight(), animLayer);
     }
 
@@ -801,7 +801,7 @@ namespace MR {
     void calcTextBoxRectRecursive(TBox2f* pBox, const LayoutActor* pActor, const char* pPaneName) {
         nw4r::lyt::Pane* pPane = pActor->getLayoutManager()->getPane(pPaneName);
         nw4r::ut::Rect rect;
-        if (getTextDrawRectRecursive(&rect, pPane, false)) {
+        if (::getTextDrawRectRecursive(&rect, pPane, false)) {
             TVec2f min;
             TVec2f max;
             convertPaneLocalPosToScreenPos(&min, pPane, TVec2f(rect.left, rect.top));

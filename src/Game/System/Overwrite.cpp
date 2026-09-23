@@ -82,7 +82,7 @@ void* JKRUnitHeap::do_alloc(u32 size, int alignment) {
                     pBat = mBat + i / 8;
                 }
 
-                *pBat |= sUnitMask[bit];
+                *pBat |= ::sUnitMask[bit];
             }
 
             mTotalFreeSize -= mUnitSize * count;
@@ -99,7 +99,7 @@ void JKRUnitHeap::do_free(void* pMemory) {
     s32 index = addressToIndex(pMemory);
     if (index >= 0) {
         u32 value = mBat[index / 8];
-        u32 cleared = value & (sUnitMask[index & 7] ^ 0xFF);
+        u32 cleared = value & (::sUnitMask[index & 7] ^ 0xFF);
         mBat[index / 8] = cleared;
         if (value != cleared) {
             mTotalFreeSize += mUnitSize;
@@ -636,7 +636,7 @@ void JPADrawLine(JPAEmitterWorkData* pWork, JPABaseParticle* pParticle) {
 
     TVec3f position(pParticle->mPosition);
     TVec3f end;
-    end.set< f32 >(pParticle->mVelocity);
+    end.set(pParticle->mVelocity);
     if (MR::isNearZero(end)) {
         return;
     }
@@ -672,10 +672,10 @@ void JPADrawStripe(JPAEmitterWorkData* pWork) {
         texCoord = 1.0f;
         texStep = -texStep;
         pFirst = pWork->mpAlivePtcl->getLast();
-        pNext = getPrev;
+        pNext = ::getPrev;
     } else {
         pFirst = pWork->mpAlivePtcl->getFirst();
-        pNext = getNext;
+        pNext = ::getNext;
     }
 
     GXLoadPosMtxImm(pWork->mPosCamMtx, GX_PNMTX0);
@@ -691,7 +691,7 @@ void JPADrawStripe(JPAEmitterWorkData* pWork) {
     for (JPANode< JPABaseParticle >*pNode = pFirst, *pEnd = pWork->mpAlivePtcl->getEnd(); pNode != pEnd;) {
         JPABaseParticle* pParticle = pNode->getObject();
         pWork->mpCurNode = pNode;
-        position.set< f32 >(pParticle->mPosition);
+        position.set(pParticle->mPosition);
         f32 sin = JMASSin(pParticle->mRotateAngle);
         f32 cos = JMASCos(pParticle->mRotateAngle);
         vertices[0].set(-pParticle->mParticleScaleX * leftWidth, 0.0f, 0.0f);
@@ -761,10 +761,10 @@ void JPADrawStripeX(JPAEmitterWorkData* pWork) {
         startTexCoord = 1.0f;
         texStep = -texStep;
         pFirst = pWork->mpAlivePtcl->getLast();
-        pNext = getPrev;
+        pNext = ::getPrev;
     } else {
         pFirst = pWork->mpAlivePtcl->getFirst();
-        pNext = getNext;
+        pNext = ::getNext;
     }
 
     GXLoadPosMtxImm(pWork->mPosCamMtx, GX_PNMTX0);
@@ -780,7 +780,7 @@ void JPADrawStripeX(JPAEmitterWorkData* pWork) {
     for (JPANode< JPABaseParticle >*pNode = pFirst, *pEnd = pWork->mpAlivePtcl->getEnd(); pNode != pEnd;) {
         JPABaseParticle* pParticle = pNode->getObject();
         pWork->mpCurNode = pNode;
-        position.set< f32 >(pParticle->mPosition);
+        position.set(pParticle->mPosition);
         f32 sin = JMASSin(pParticle->mRotateAngle);
         f32 cos = JMASCos(pParticle->mRotateAngle);
         vertices[0].set(-pParticle->mParticleScaleX * leftWidth, 0.0f, 0.0f);
@@ -834,7 +834,7 @@ void JPADrawStripeX(JPAEmitterWorkData* pWork) {
     for (JPANode< JPABaseParticle >*pNode = pFirst, *pEnd = pWork->mpAlivePtcl->getEnd(); pNode != pEnd;) {
         JPABaseParticle* pParticle = pNode->getObject();
         pWork->mpCurNode = pNode;
-        position.set< f32 >(pParticle->mPosition);
+        position.set(pParticle->mPosition);
         f32 sin = -JMASSin(pParticle->mRotateAngle);
         f32 cos = JMASCos(pParticle->mRotateAngle);
         vertices[0].set(-pParticle->mParticleScaleY * topWidth, 0.0f, 0.0f);
@@ -1113,11 +1113,11 @@ namespace {
 }  // namespace
 
 JASAudioThread::JASAudioThread(int priority, int, u32)
-    : JKRThread(JASDram, sAudioThreadStackSize, sAudioThreadMsgSize, priority), JASGlobalInstance< JASAudioThread >(true), sbPauseFlag() {
+    : JKRThread(JASDram, ::sAudioThreadStackSize, ::sAudioThreadMsgSize, priority), JASGlobalInstance< JASAudioThread >(true), sbPauseFlag() {
     OSInitThreadQueue(&sThreadQueue);
 }
 
-JKRAram::JKRAram(u32 audioSize, u32 graphSize, s32 priority) : JKRThread(sAramThreadStackSize, sAramThreadMsgSize, priority) {
+JKRAram::JKRAram(u32 audioSize, u32 graphSize, s32 priority) : JKRThread(::sAramThreadStackSize, ::sAramThreadMsgSize, priority) {
     u32 reserved = ARInit(mStackArray, 3);
     ARQInit();
     u32 total = ARGetSize();

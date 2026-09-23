@@ -119,7 +119,7 @@ void PenguinStudent::exeSwim() {
     MR::calcUpVec(&v20, this);
     MR::calcFrontVec(&v19, this);
     MR::rotAxisVecRad(v20, v19, &v21, 0.017453292f * (getNerveStep() % 360));
-    mPosition.set< f32 >(mPosition + v21 * speed);
+    mPosition.set(mPosition + v21 * speed);
     if (mMsgCtrl) {
         MR::tryTalkNearPlayer(mMsgCtrl);
     }

@@ -214,11 +214,11 @@ void KoopaBattleStairsVs1::exeJumpToNextPosLoop() {
         TVec3f namePos = TVec3f(0.0f, 0.0f, 0.0f);
 
         if (mJumpIdx == 1) {
-            MR::findNamePos(sKoopaPosName1, &mNewPosition, &namePos);
+            MR::findNamePos(::sKoopaPosName1, &mNewPosition, &namePos);
         } else if (mJumpIdx == 2) {
-            MR::findNamePos(sKoopaPosName2, &mNewPosition, &namePos);
+            MR::findNamePos(::sKoopaPosName2, &mNewPosition, &namePos);
         } else {
-            MR::findNamePos(sKoopaPosNameEnd, &mNewPosition, &namePos);
+            MR::findNamePos(::sKoopaPosNameEnd, &mNewPosition, &namePos);
         }
 
         MR::getRotatedAxisZ(&mNewDirection, namePos);
@@ -246,9 +246,9 @@ void KoopaBattleStairsVs1::exeJumpToNextPosEnd() {
 
     if (tryAttackRequest()) {
         if (mJumpIdx == 1) {
-            KoopaFunction::setKoopaPos(mKoopa, sKoopaPosName1);
+            KoopaFunction::setKoopaPos(mKoopa, ::sKoopaPosName1);
         } else {
-            KoopaFunction::setKoopaPos(mKoopa, sKoopaPosName2);
+            KoopaFunction::setKoopaPos(mKoopa, ::sKoopaPosName2);
         }
 
         setNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvAttackFire));
@@ -257,11 +257,11 @@ void KoopaBattleStairsVs1::exeJumpToNextPosEnd() {
 
     if (MR::isBckStopped(mKoopa)) {
         if (mJumpIdx == 1) {
-            KoopaFunction::setKoopaPos(mKoopa, sKoopaPosName1);
+            KoopaFunction::setKoopaPos(mKoopa, ::sKoopaPosName1);
         } else if (mJumpIdx == 2) {
-            KoopaFunction::setKoopaPos(mKoopa, sKoopaPosName2);
+            KoopaFunction::setKoopaPos(mKoopa, ::sKoopaPosName2);
         } else {
-            KoopaFunction::setKoopaPos(mKoopa, sKoopaPosNameEnd);
+            KoopaFunction::setKoopaPos(mKoopa, ::sKoopaPosNameEnd);
         }
 
         setNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvWait));

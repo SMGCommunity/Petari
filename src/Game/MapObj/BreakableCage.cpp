@@ -203,7 +203,7 @@ void BreakableCage::initModel(const char* pName, const JMapInfoIter& rIter) {
         ModelObj* pBreakModel = MR::createModelObjMapObjStrongLight("壊れる籠壊れモデル", "BreakableCageBreak", mMtx.toMtxPtr());
         mBreakModel = pBreakModel;
         pBreakModel->initWithoutIter();
-        mBreakModel->mScale.set< f32 >(mScale);
+        mBreakModel->mScale.set(mScale);
         MR::invalidateClipping(mBreakModel);
         MR::registerDemoSimpleCastAll(mBreakModel);
         mBreakModel->makeActorDead();

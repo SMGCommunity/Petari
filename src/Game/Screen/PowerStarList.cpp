@@ -241,7 +241,7 @@ void PowerStarList::init(const JMapInfoIter& rIter) {
     MR::setTextBoxGameMessageRecursive(this, "Title", "AllStarList_Title");
 
     ListItem pItems[MAX_ITEMS];
-    mPageNum = (getSortedList(pItems) - 1) / ITEMS_PER_PAGE + 1;
+    mPageNum = (::getSortedList(pItems) - 1) / ITEMS_PER_PAGE + 1;
 
     MR::setTextBoxGameMessageRecursive(this, "PageNumber", "AllStarList_Page");
     MR::setTextBoxGameMessageRecursive(this, "Photo", "AllStarList_Page");
@@ -413,23 +413,23 @@ void PowerStarList::updateList(s32 pageNumber, bool myBool) {
     }
 
     for (u32 idx = 0; idx < ARRAY_SIZE(::cGalaxyNamePaneTable); idx++) {
-        MR::setTextBoxMessageRecursive(this, ::cGalaxyNamePaneTable[idx], &cTemp);
+        MR::setTextBoxMessageRecursive(this, ::cGalaxyNamePaneTable[idx], &::cTemp);
     }
 
     for (u32 idx = 0; idx < ARRAY_SIZE(::cStarNumPaneTable); idx++) {
-        MR::setTextBoxMessageRecursive(this, ::cStarNumPaneTable[idx], &cTemp);
+        MR::setTextBoxMessageRecursive(this, ::cStarNumPaneTable[idx], &::cTemp);
     }
 
     for (u32 idx = 0; idx < ARRAY_SIZE(::cCoinPaneTable); idx++) {
-        MR::setTextBoxMessageRecursive(this, ::cCoinPaneTable[idx], &cTemp);
+        MR::setTextBoxMessageRecursive(this, ::cCoinPaneTable[idx], &::cTemp);
     }
 
     for (u32 idx = 0; idx < ARRAY_SIZE(::cCrownPaneTable); idx++) {
-        MR::setTextBoxMessageRecursive(this, ::cCrownPaneTable[idx], &cTemp);
+        MR::setTextBoxMessageRecursive(this, ::cCrownPaneTable[idx], &::cTemp);
     }
 
     for (u32 idx = 0; idx < ARRAY_SIZE(::cSeparatorPaneTable); idx++) {
-        MR::setTextBoxMessageRecursive(this, ::cSeparatorPaneTable[idx], &cTemp);
+        MR::setTextBoxMessageRecursive(this, ::cSeparatorPaneTable[idx], &::cTemp);
     }
 
     for (u32 idx = 0; idx < ARRAY_SIZE(::cSeparatorPaneTable); idx++) {
@@ -438,7 +438,7 @@ void PowerStarList::updateList(s32 pageNumber, bool myBool) {
 
     ListItem listItems[MAX_ITEMS];
 
-    s32 pages = (getSortedList(listItems) - 1) / ITEMS_PER_PAGE;
+    s32 pages = (::getSortedList(listItems) - 1) / ITEMS_PER_PAGE;
     mPageNum = pages + 1;
 
     TextBuffer galaxyBuffer(this, ::cGalaxyNamePaneTable, 4);
@@ -448,7 +448,7 @@ void PowerStarList::updateList(s32 pageNumber, bool myBool) {
     TextBuffer timeBuffer(this, ::cTimePaneTable, 8);
 
     bool isEven = mPageNo % 2;
-    s32 bestTimeNum = getDisplayRaceBestTimeNum();
+    s32 bestTimeNum = ::getDisplayRaceBestTimeNum();
 
     s32 prevValue = -1;
     s32 sortPriority;
@@ -464,7 +464,7 @@ void PowerStarList::updateList(s32 pageNumber, bool myBool) {
 
             timeBuffer.addNewLine(isEven);
 
-            sortPriority = getSortPriority(listItems[idx]._4Accessor);
+            sortPriority = ::getSortPriority(listItems[idx]._4Accessor);
             s32 value;
             if (sortPriority < 2) {
                 value = 0;

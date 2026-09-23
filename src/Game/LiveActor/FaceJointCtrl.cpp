@@ -15,13 +15,13 @@ void FaceJointCtrl_FORCE_MATCH_SDATA2() {
 }
 
 FaceJointCtrl::FaceJointCtrl(LiveActor* pActor)
-    : mHostActor(pActor), mDegreeMax(sDefaultDegreeMax), _8(0.0f, 0.0f, 1.0f), _14(0.0f, 0.0f, 1.0f), mJointController() {
+    : mHostActor(pActor), mDegreeMax(::sDefaultDegreeMax), _8(0.0f, 0.0f, 1.0f), _14(0.0f, 0.0f, 1.0f), mJointController() {
     mJointCtrlRate = new JointCtrlRate();
 }
 
 void FaceJointCtrl::init() {
     const ResourceHolder* resourceHolder = MR::getResourceHolder(mHostActor);
-    JMapInfo* csv = MR::tryCreateCsvParser(resourceHolder, "%s.bcsv", sTextOutFileName);
+    JMapInfo* csv = MR::tryCreateCsvParser(resourceHolder, "%s.bcsv", ::sTextOutFileName);
     if (csv) {
         const char* jointName = nullptr;
         csv->getValue(0, "JointName", &jointName);

@@ -36,15 +36,15 @@ namespace {
 }  // namespace
 
 void MirrorCamera::setMirrorMapInfo(const TVec3f& rNormal, const TVec3f& rPosition) {
-    _18.set< f32 >(rNormal);
-    _C.set< f32 >(rPosition);
+    _18.set(rNormal);
+    _C.set(rPosition);
     _24 = -PSVECDotProduct(_18, _C);
 }
 
 void MirrorCamera::setMirrorMapInfo(J3DModelData* pModelData) {
     TVec3f position;
     TVec3f normal;
-    const GXVtxAttrFmtList* format = getVertexFormat(pModelData, GX_VA_POS);
+    const GXVtxAttrFmtList* format = ::getVertexFormat(pModelData, GX_VA_POS);
     if (format->type == GX_S16) {
         const s16* data = static_cast< const s16* >(pModelData->getVtxPosArray());
         TVec3s fixed(data[0], data[1], data[2]);
@@ -54,7 +54,7 @@ void MirrorCamera::setMirrorMapInfo(J3DModelData* pModelData) {
         position.set< f32 >(data[0], data[1], data[2]);
     }
 
-    format = getVertexFormat(pModelData, GX_VA_NRM);
+    format = ::getVertexFormat(pModelData, GX_VA_NRM);
     if (format->type == GX_S16) {
         const s16* data = static_cast< const s16* >(pModelData->getVtxNrmArray());
         TVec3s fixed(data[0], data[1], data[2]);
@@ -99,7 +99,7 @@ void MirrorCamera::updateModelTexMtx() {
 
 f32 MirrorCamera::getDistance(const TVec3f& rPosition) const {
     JGeometry::TPartition3< f32 > plane;
-    plane.mNormal.set< f32 >(_18);
+    plane.mNormal.set(_18);
     plane.mDot = plane.mNormal.dot(_C);
     return plane.mNormal.dot(rPosition) - plane.mDot;
 }

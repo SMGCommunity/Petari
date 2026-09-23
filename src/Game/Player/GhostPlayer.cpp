@@ -691,7 +691,7 @@ u32 GhostPlayer::receiveGhostPacket(GhostPacket* pPacket) {
         char* animName;
         pPacket->read(&animName);
         setAnimation(animName);
-        playSound(this, animName);
+        ::playSound(this, animName);
 
         bool isSpecialAnim = false;
         if (strcmp(animName, "基本") == 0) {
@@ -717,7 +717,7 @@ u32 GhostPlayer::receiveGhostPacket(GhostPacket* pPacket) {
 
         bool isSpecialAnim = false;
         const char* currentAnimName = mXanimePlayer->getCurrentAnimationName();
-        playSound(this, currentAnimName);
+        ::playSound(this, currentAnimName);
 
         if (strcmp(currentAnimName, "基本") == 0) {
             isSpecialAnim = true;

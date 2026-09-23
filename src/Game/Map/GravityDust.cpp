@@ -39,8 +39,8 @@ void GravityDustParticleCallBack::execute(JPABaseEmitter* pEmitter, JPABaseParti
         return;
     }
 
-    gravityVector.scale(sGravity);
-    baseAxis.scale(sFrictionRate);
+    gravityVector.scale(::sGravity);
+    baseAxis.scale(::sFrictionRate);
     baseAxis.add(gravityVector);
     offsetPosition.add(baseAxis);
     pParticle->mOffsetPosition.set(offsetPosition);

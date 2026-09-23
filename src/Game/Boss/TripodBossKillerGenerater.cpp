@@ -304,8 +304,8 @@ void TripodBossKillerGenerater::exeShootSetting() {
     _8C.getTrans(trans);
 
     HomingKiller* killer = mKiller;
-    killer->mBasePos.set< f32 >(trans);
-    killer->mBaseFront.set< f32 >(front);
+    killer->mBasePos.set(trans);
+    killer->mBaseFront.set(front);
 
     if (!tryBreak() && !tryAbort() && !tryShoot()) {
         return;

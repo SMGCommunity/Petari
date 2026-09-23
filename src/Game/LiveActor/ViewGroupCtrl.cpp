@@ -13,9 +13,9 @@ namespace {
 }  // namespace
 
 ViewGroupCtrl::ViewGroupCtrl() : mViewCubeMgr(), mMaxViewGroupId(), mViewGroupData(), mViewCtrlCount(), mLodCtrls() {
-    mLodCtrls = new LodCtrl*[sAllLodCtrlNumMax];
+    mLodCtrls = new LodCtrl*[::sAllLodCtrlNumMax];
 
-    for (u32 i = 0; i < sAllLodCtrlNumMax; i++) {
+    for (u32 i = 0; i < ::sAllLodCtrlNumMax; i++) {
         mLodCtrls[i] = nullptr;
     }
 }

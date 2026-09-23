@@ -154,7 +154,7 @@ IKJointCtrl* IKJointCtrlHolder::findIKJointCtrl(const char* pName) {
 
 IKJointCtrlHolder* ActorJoint::createIKJointCtrlHolder(LiveActor* pActor) {
     const ResourceHolder* resourceHolder = MR::getResourceHolder(pActor);
-    JMapInfo* csv = MR::tryCreateCsvParser(resourceHolder, "%s.bcsv", sTextOutFileName);
+    JMapInfo* csv = MR::tryCreateCsvParser(resourceHolder, "%s.bcsv", ::sTextOutFileName);
     if (!csv) {
         return nullptr;
     }

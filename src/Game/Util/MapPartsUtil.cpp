@@ -224,9 +224,9 @@ namespace MR {
             initShadowVolumeSphere(pActor, 0.70710677f * pActor->getSensor("body")->mRadius);
         }
 
-        if (isExistJoint(pActor, cFollowJointName)) {
+        if (isExistJoint(pActor, ::cFollowJointName)) {
             TVec3f offset(0.0f, 0.0f, 0.0f);
-            setShadowDropPositionAtJoint(pActor, nullptr, cFollowJointName, offset);
+            setShadowDropPositionAtJoint(pActor, nullptr, ::cFollowJointName, offset);
         }
     }
 }  // namespace MR

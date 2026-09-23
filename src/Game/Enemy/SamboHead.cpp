@@ -49,7 +49,7 @@ void SamboHead::init(const JMapInfoIter& rIter) {
         }
     }
 
-    _A4.set< f32 >(mPosition);
+    _A4.set(mPosition);
     initModelManagerWithAnm("SamboHead", nullptr, false);
     TMtx34f mtx;
     mtx.setInline(getBaseMtx());
@@ -127,7 +127,7 @@ void SamboHead::control() {
 void SamboHead::exeWaitUnderGround() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "AppearMini");
-        mPosition.set< f32 >(_A4);
+        mPosition.set(_A4);
         MR::invalidateShadow(this, nullptr);
         getSensor("body")->invalidate();
     }
@@ -241,7 +241,7 @@ void SamboHead::exePursue() {
 
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Run");
-        mVelocity.set< f32 >(_98 * 7.0f);
+        mVelocity.set(_98 * 7.0f);
         MR::addVelocityJump(this, 25.0f);
     }
 
@@ -309,7 +309,7 @@ void SamboHead::exeStarPieceHit() {
 
 void SamboHead::exeStampFall() {
     if (MR::isFirstStep(this)) {
-        mVelocity.set< f32 >(mGravity * 30.0f);
+        mVelocity.set(mGravity * 30.0f);
         MR::invalidateClipping(this);
     }
 

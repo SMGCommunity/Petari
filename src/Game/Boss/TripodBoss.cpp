@@ -949,10 +949,10 @@ void TripodBoss::addAccelToWeightPosition() {
     TVec3f v20;
     TVec3f v19;
 
-    v22.i.set< f32 >(_5C8);
-    v22.f.set< f32 >(_5C8);
-    v21.i.set< f32 >(_5C8);
-    v21.f.set< f32 >(_5C8);
+    v22.i.set(_5C8);
+    v22.f.set(_5C8);
+    v21.i.set(_5C8);
+    v21.f.set(_5C8);
 
     for (u32 i = 0; i < ARRAY_SIZE(mLegs); i++) {
         if (getLeg(i)->canWeighting()) {
@@ -987,8 +987,8 @@ void TripodBoss::addAccelToWeightPosition() {
 
 void TripodBoss::calcClippingSphere() {
     TBox3f v4;
-    v4.i.set< f32 >(_5D4);
-    v4.f.set< f32 >(_5D4);
+    v4.i.set(_5D4);
+    v4.f.set(_5D4);
 
     for (u32 i = 0; i < ARRAY_SIZE(mLegs); i++) {
         v4.extend(mLegs[i]->mForceEndPoint);

@@ -279,10 +279,10 @@ void NPCActor::setBaseMtx(const TPos3f& rPos) {
     MR::makeQuatRotateRadian(&_A0, eulerXYZ);
     _A0.normalize();
 
-    mPosition.set< f32 >(trans);
+    mPosition.set(trans);
     eulerXYZ = eulerXYZ * 57.29578f;
-    mRotation.set< f32 >(eulerXYZ);
-    _CC.set< f32 >(eulerXYZ);
+    mRotation.set(eulerXYZ);
+    _CC.set(eulerXYZ);
 
     MR::setBaseTRMtx(this, _A0);
     MR::resetPosition(this);
@@ -300,7 +300,7 @@ void NPCActor::setInitPose() {
     _B0.z = _A0.z;
     _B0.w = _A0.w;
 
-    _C0.set< f32 >(mPosition);
+    _C0.set(mPosition);
 }
 
 void NPCActor::init(const JMapInfoIter& rIter) {

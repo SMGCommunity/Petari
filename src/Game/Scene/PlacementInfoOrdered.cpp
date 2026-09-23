@@ -66,7 +66,7 @@ void PlacementInfoOrdered::requestFileLoad() {
     s32 count = getUsedArrayNum();
     for (s32 i = 0; i < count; i++) {
         SameIdSet* pSet = getSameIdSet(i);
-        if (getCreator(*pSet) != nullptr) {
+        if (::getCreator(*pSet) != nullptr) {
             if (pSet->mShapeId != -1) {
                 MR::requestMountModelChangableObjArchives(pSet->mName, pSet->mShapeId);
             } else {
@@ -86,7 +86,7 @@ void PlacementInfoOrdered::initPlacement() {
     s32 count = getUsedArrayNum();
     for (s32 i = 0; i < count; i++) {
         pSet = mOrderedSetArray[i];
-        CreationFuncPtr creator = getCreator(*pSet);
+        CreationFuncPtr creator = ::getCreator(*pSet);
         if (creator != nullptr) {
             const char* pName = MR::getJapaneseObjectName(pSet->mName);
             for (MR::BothDirList< Index >::iterator iter = pSet->mList.begin(); !iter.isEnd(); iter++) {

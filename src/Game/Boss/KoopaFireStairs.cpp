@@ -142,7 +142,7 @@ void KoopaFireStairs::exeFly() {
 
             if (!MR::isNearZero(v13)) {
                 MR::normalize(&v13);
-                _94.set< f32 >(v13);
+                _94.set(v13);
             }
 
             MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_METEOR");

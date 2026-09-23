@@ -85,8 +85,8 @@ bool LayoutHolder::isAnimationHashEqual(u32 hash, u32 fileID) const {
 
 void LayoutHolder::initializeArc() {
     u32 resCount = mArchive->countResource();
-    resCount -= initEachResTable(&mLayoutRes, sLayoutExt);
-    resCount -= initEachResTable(&mAnimRes, sAnimationExt);
+    resCount -= initEachResTable(&mLayoutRes, ::sLayoutExt);
+    resCount -= initEachResTable(&mAnimRes, ::sAnimationExt);
 
     if (resCount > 0) {
         mResOther.newFileInfoTable(resCount);

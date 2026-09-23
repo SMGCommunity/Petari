@@ -40,7 +40,7 @@ void SkeletalFishGuardHolder::forceAppearAll() {
             guardWaitLvlId = mFishBoss->getLevelStatus()->mStatusArray[i].mGuardWaitLevelID;
             lvl = mFishBoss->getLevelStatus();
             guard = mGuards[i];
-            guard->_94.set< f32 >(lvl->mStatusArray[i].mGuardPosLevel);
+            guard->_94.set(lvl->mStatusArray[i].mGuardPosLevel);
             guard->_A0 = guardWaitLvlId;
             mGuards[i]->appearForce();
 
@@ -153,11 +153,11 @@ void SkeletalFishGuardHolder::appearGuard(s32 numGuards, s32 startGuard) {
     if (pos >= 0 && SkeletalFishBossFunc::copyGuardPos(&guardPos, pos)) {
         for (s32 i = 0; i < mNumGuards; i++) {
             if (MR::isDead(mGuards[i])) {
-                mGuards[i]->mPosition.set< f32 >(guardPos);
+                mGuards[i]->mPosition.set(guardPos);
                 waitID = mFishBoss->getLevelStatus()->mStatusArray[i].mGuardWaitLevelID;
                 level = mFishBoss->getLevelStatus();
                 guard = mGuards[i];
-                guard->_94.set< f32 >(level->mStatusArray[i].mGuardPosLevel);
+                guard->_94.set(level->mStatusArray[i].mGuardPosLevel);
                 guard->_A0 = waitID;
                 mGuards[i]->appearNaturally();
 

@@ -57,7 +57,7 @@ void JMapLinkInfo::setLinkedInfo(const JMapInfoIter& rIter) {
             _0 = id;
             _4 = MR::getPlacedZoneId(rIter);
 
-            _8 = getInfoType(rIter.mInfo);
+            _8 = ::getInfoType(rIter.mInfo);
         }
     }
 }

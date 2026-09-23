@@ -19,7 +19,7 @@ namespace BossAccess {
 
     Koopa* getBossAccessorKoopa() {
         if (MR::isExistSceneObj(SceneObj_BossAccessor)) {
-            return static_cast< Koopa* >(getBossAccessor()->getBoss());
+            return static_cast< Koopa* >(::getBossAccessor()->getBoss());
         }
 
         return nullptr;

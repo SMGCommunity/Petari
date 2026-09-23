@@ -228,7 +228,7 @@ void Takobo::exeMove() {
     }
 
     f32 ease = MR::getEaseInOutValue(rate, _C8, _CC, 1.0f);
-    mVelocity.set< f32 >(_A4 + _B0 * ease - mPosition);
+    mVelocity.set(_A4 + _B0 * ease - mPosition);
 
     if (MR::isGreaterStep(this, _D0)) {
         _BC = _BC == false;
@@ -368,7 +368,7 @@ void Takobo::exeIce() {
     }
 
     if (MR::isDead(mBox)) {
-        mPosition.set< f32 >(mBox->mPosition);
+        mPosition.set(mBox->mPosition);
         generateCoin();
         kill();
     }

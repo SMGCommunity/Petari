@@ -816,7 +816,7 @@ void SpaceCocoon::draw() const {
     drawPlane(::sDrawScaleX, -::sDrawScaleZ0, 0.0f, -::sDrawScaleZ1, ::sColor, ::sColor, texU1, texU2);
     texU2 = texU1;
     texU1 += ::sTexDiffU;
-    drawPlane(::sDrawScaleX, ::sDrawScaleZ0, ::sDrawScaleX, -sDrawScaleZ0, ::sColor, ::sColor, texU1, texU2);
+    drawPlane(::sDrawScaleX, ::sDrawScaleZ0, ::sDrawScaleX, -::sDrawScaleZ0, ::sColor, ::sColor, texU1, texU2);
     texU2 = texU1;
     texU1 += ::sTexDiffU;
     drawPlane(0.0f, ::sDrawScaleZ1, ::sDrawScaleX, ::sDrawScaleZ0, ::sColor, ::sColor, texU1, texU2);
@@ -825,10 +825,10 @@ void SpaceCocoon::draw() const {
     drawPlane(-::sDrawScaleX, ::sDrawScaleZ0, 0.0f, ::sDrawScaleZ1, ::sColor, ::sColor, texU1, texU2);
     texU2 = texU1;
     texU1 += ::sTexDiffU;
-    drawPlane(-::sDrawScaleX, -::sDrawScaleZ0, -::sDrawScaleX, sDrawScaleZ0, ::sColor, ::sColor, texU1, texU2);
+    drawPlane(-::sDrawScaleX, -::sDrawScaleZ0, -::sDrawScaleX, ::sDrawScaleZ0, ::sColor, ::sColor, texU1, texU2);
     texU2 = texU1;
     texU1 += ::sTexDiffU;
-    drawPlane(0.0f, -::sDrawScaleZ1, -::sDrawScaleX, -sDrawScaleZ0, ::sColor, ::sColor, texU1, texU2);
+    drawPlane(0.0f, -::sDrawScaleZ1, -::sDrawScaleX, -::sDrawScaleZ0, ::sColor, ::sColor, texU1, texU2);
 }
 
 namespace {

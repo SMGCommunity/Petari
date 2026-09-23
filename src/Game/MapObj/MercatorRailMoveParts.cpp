@@ -21,7 +21,7 @@ void MercatorRailMoveParts::initAfterPlacement() {
     TVec3f trans;
     TPos3f rotate;
     MR::convertMercatorPlaneToSphereTransAndRotate(&trans, &rotate, mLocalTrans, false);
-    mPosition.set< f32 >(trans);
+    mPosition.set(trans);
 
     if (MR::isValidSwitchB(this)) {
         mIsNotMoving = true;
@@ -54,7 +54,7 @@ void MercatorRailMoveParts::control() {
     TVec3f trans;
     TPos3f rotate;
     MR::convertMercatorPlaneToSphereTransAndRotate(&trans, &rotate, mRailMover->_28, false);
-    mPosition.set< f32 >(trans);
+    mPosition.set(trans);
 }
 
 void MercatorRailMoveParts::calcAndSetBaseMtx() {

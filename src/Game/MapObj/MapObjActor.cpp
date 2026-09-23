@@ -224,7 +224,7 @@ void MapObjActor::initialize(const JMapInfoIter& rIter, const MapObjActorInitInf
             MR::addBodyMessageSensorMapObj(this);
         }
 
-        const char* pJointName = cFollowJointName;
+        const char* pJointName = ::cFollowJointName;
         if (MR::isExistJoint(this, pJointName)) {
             pJointMtx = MR::getJointMtx(this, pJointName);
             MR::initCollisionParts(this, mObjectName, getSensor("body"), pJointMtx);
@@ -286,19 +286,19 @@ void MapObjActor::initialize(const JMapInfoIter& rIter, const MapObjActorInitInf
     MR::tryStartAllAnim(this, mObjectName);
 
     if (rInfo.mColorChangeArg > -1) {
-        MR::startBrk(this, cBrkNameColorChange);
+        MR::startBrk(this, ::cBrkNameColorChange);
         MR::setBrkFrameAndStop(this, rInfo.mColorChangeArg);
     }
 
     if (rInfo.mTextureChangeArg > -1) {
-        const char* pTextureName = cBtpNameTexChange;
+        const char* pTextureName = ::cBtpNameTexChange;
         if (MR::isExistBtp(this, pTextureName)) {
             MR::startBtp(this, pTextureName);
             MR::setBtpFrameAndStop(this, rInfo.mTextureChangeArg);
         }
 
         if (MR::isExistBtk(this, pTextureName)) {
-            MR::startBtk(this, cBtkNameTexChange);
+            MR::startBtk(this, ::cBtkNameTexChange);
             MR::setBtkFrameAndStop(this, rInfo.mTextureChangeArg);
         }
     }
@@ -328,7 +328,7 @@ void MapObjActor::initialize(const JMapInfoIter& rIter, const MapObjActorInitInf
         mPlanetLodCtrl = MR::createLodCtrlPlanet(this, rIter, -1.0f, rInfo._88);
 
         if (rInfo.mColorChangeArg > -1) {
-            const char* pColorName = cBrkNameColorChange;
+            const char* pColorName = ::cBrkNameColorChange;
             if (MR::isExistBrk(this, pColorName)) {
                 MR::startBrk(mPlanetLodCtrl->_14, pColorName);
                 MR::setBrkFrameAndStop(mPlanetLodCtrl->_14, rInfo.mColorChangeArg);
@@ -336,14 +336,14 @@ void MapObjActor::initialize(const JMapInfoIter& rIter, const MapObjActorInitInf
         }
 
         if (rInfo.mTextureChangeArg > -1) {
-            const char* pTextureName = cBtpNameTexChange;
+            const char* pTextureName = ::cBtpNameTexChange;
             if (MR::isExistBtp(this, pTextureName)) {
                 MR::startBtp(mPlanetLodCtrl->_14, pTextureName);
                 MR::setBtpFrameAndStop(mPlanetLodCtrl->_14, rInfo.mTextureChangeArg);
             }
 
             if (MR::isExistBtk(this, pTextureName)) {
-                MR::startBtk(mPlanetLodCtrl->_14, cBtkNameTexChange);
+                MR::startBtk(mPlanetLodCtrl->_14, ::cBtkNameTexChange);
                 MR::setBtkFrameAndStop(mPlanetLodCtrl->_14, rInfo.mTextureChangeArg);
             }
         }
@@ -466,7 +466,7 @@ void MapObjActor::control() {
         mRailMover->movement();
 
         if (mRailMover->isWorking()) {
-            mPosition.set< f32 >(mRailMover->_28);
+            mPosition.set(mRailMover->_28);
             mRailMover->tryResetPositionRepeat();
         }
     }

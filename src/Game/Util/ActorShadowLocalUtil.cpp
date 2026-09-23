@@ -140,7 +140,7 @@ namespace ActorShadow {
     }
 
     ShadowSurfaceCircle* createShadowSurfaceCircleFromCSV(LiveActor* pActor, const JMapInfoIter& rIter) {
-        ShadowSurfaceCircle* pShadow = createShadowDrawer< ShadowSurfaceCircle >(pActor, rIter, true);
+        ShadowSurfaceCircle* pShadow = ::createShadowDrawer< ShadowSurfaceCircle >(pActor, rIter, true);
 
         f32 radius = 100.0f;
         rIter.getValue< f32 >("Radius", &radius);
@@ -150,7 +150,7 @@ namespace ActorShadow {
     }
 
     ShadowSurfaceOval* createShadowSurfaceOvalFromCSV(LiveActor* pActor, const JMapInfoIter& rIter) {
-        ShadowSurfaceOval* pShadow = createShadowDrawer< ShadowSurfaceOval >(pActor, rIter, true);
+        ShadowSurfaceOval* pShadow = ::createShadowDrawer< ShadowSurfaceOval >(pActor, rIter, true);
 
         TVec3f size;
         size.set< f32 >(100.0f, 100.0f, 100.0f);
@@ -161,7 +161,7 @@ namespace ActorShadow {
     }
 
     ShadowSurfaceBox* createShadowSurfaceBoxFromCSV(LiveActor* pActor, const JMapInfoIter& rIter) {
-        ShadowSurfaceBox* pShadow = createShadowDrawer< ShadowSurfaceBox >(pActor, rIter, true);
+        ShadowSurfaceBox* pShadow = ::createShadowDrawer< ShadowSurfaceBox >(pActor, rIter, true);
 
         TVec3f size;
         size.set< f32 >(100.0f, 100.0f, 100.0f);
@@ -172,7 +172,7 @@ namespace ActorShadow {
     }
 
     ShadowVolumeSphere* createShadowVolumeSphereFromCSV(LiveActor* pActor, const JMapInfoIter& rIter) {
-        ShadowVolumeSphere* pShadow = createShadowDrawer< ShadowVolumeSphere >(pActor, rIter, false);
+        ShadowVolumeSphere* pShadow = ::createShadowDrawer< ShadowVolumeSphere >(pActor, rIter, false);
         setUpShadowVolumeFromCSV(pShadow, rIter);
 
         f32 radius = 100.0f;
@@ -183,7 +183,7 @@ namespace ActorShadow {
     }
 
     ShadowVolumeOval* createShadowVolumeOvalFromCSV(LiveActor* pActor, const JMapInfoIter& rIter) {
-        ShadowVolumeOval* pShadow = createShadowDrawer< ShadowVolumeOval >(pActor, rIter, false);
+        ShadowVolumeOval* pShadow = ::createShadowDrawer< ShadowVolumeOval >(pActor, rIter, false);
         setUpShadowVolumeFromCSV(pShadow, rIter);
 
         TVec3f size;
@@ -195,7 +195,7 @@ namespace ActorShadow {
     }
 
     ShadowVolumeOvalPole* createShadowVolumeOvalPoleFromCSV(LiveActor* pActor, const JMapInfoIter& rIter) {
-        ShadowVolumeOvalPole* pShadow = createShadowDrawer< ShadowVolumeOvalPole >(pActor, rIter, false);
+        ShadowVolumeOvalPole* pShadow = ::createShadowDrawer< ShadowVolumeOvalPole >(pActor, rIter, false);
         setUpShadowVolumeFromCSV(pShadow, rIter);
 
         TVec3f size;
@@ -207,7 +207,7 @@ namespace ActorShadow {
     }
 
     ShadowVolumeCylinder* createShadowVolumeCylinderFromCSV(LiveActor* pActor, const JMapInfoIter& rIter) {
-        ShadowVolumeCylinder* pShadow = createShadowDrawer< ShadowVolumeCylinder >(pActor, rIter, false);
+        ShadowVolumeCylinder* pShadow = ::createShadowDrawer< ShadowVolumeCylinder >(pActor, rIter, false);
         setUpShadowVolumeFromCSV(pShadow, rIter);
 
         f32 radius = 100.0f;
@@ -218,7 +218,7 @@ namespace ActorShadow {
     }
 
     ShadowVolumeBox* createShadowVolumeBoxFromCSV(LiveActor* pActor, const JMapInfoIter& rIter) {
-        ShadowVolumeBox* pShadow = createShadowDrawer< ShadowVolumeBox >(pActor, rIter, false);
+        ShadowVolumeBox* pShadow = ::createShadowDrawer< ShadowVolumeBox >(pActor, rIter, false);
         setUpShadowVolumeFromCSV(pShadow, rIter);
 
         TVec3f size;
@@ -230,7 +230,7 @@ namespace ActorShadow {
     }
 
     ShadowVolumeFlatModel* createShadowVolumeFlatModelFromCSV(LiveActor* pActor, const JMapInfoIter& rIter) {
-        ShadowVolumeFlatModel* pShadow = createShadowDrawer< ShadowVolumeFlatModel >(pActor, rIter, false);
+        ShadowVolumeFlatModel* pShadow = ::createShadowDrawer< ShadowVolumeFlatModel >(pActor, rIter, false);
         setUpShadowVolumeFromCSV(pShadow, rIter);
 
         const char* pModel = nullptr;
@@ -241,7 +241,7 @@ namespace ActorShadow {
     }
 
     ShadowVolumeLine* createShadowVolumeLineFromCSV(LiveActor* pActor, const JMapInfoIter& rIter) {
-        ShadowVolumeLine* pShadow = createShadowDrawer< ShadowVolumeLine >(pActor, rIter, false);
+        ShadowVolumeLine* pShadow = ::createShadowDrawer< ShadowVolumeLine >(pActor, rIter, false);
         setUpShadowVolumeFromCSV(pShadow, rIter);
 
         const char* pLineStart = nullptr;

@@ -224,7 +224,7 @@ namespace MR {
     }
 
     void calcVecToTargetPosH(TVec3f* pToTargetHVec, const LiveActor* pActor, const TVec3f& rA3, const TVec3f* pA4) {
-        pToTargetHVec->set< f32 >(rA3);
+        pToTargetHVec->set(rA3);
         pToTargetHVec->sub(pActor->mPosition);
 
         if (pA4 == nullptr) {
@@ -574,7 +574,7 @@ namespace MR {
     }
 
     void resetPosition(LiveActor* pActor, const TVec3f& rPosition) {
-        pActor->mPosition.set< f32 >(rPosition);
+        pActor->mPosition.set(rPosition);
 
         MR::resetPosition(pActor);
     }
@@ -584,8 +584,8 @@ namespace MR {
         TVec3f rot(0.0f, 0.0f, 0.0f);
         MR::findNamePos(pA2, &pos, &rot);
 
-        pActor->mPosition.set< f32 >(pos);
-        pActor->mRotation.set< f32 >(rot);
+        pActor->mPosition.set(pos);
+        pActor->mRotation.set(rot);
 
         MR::resetPosition(pActor);
     }
@@ -1247,7 +1247,7 @@ namespace MR {
         TVec3f stack_8;
         calcFrontVec(&stack_8, pActor);
         moveAndTurnToDirection(pActor, &stack_8, rA2, a3, a4, a5, a6);
-        calcRotate(pActor, stack_8, a6);
+        ::calcRotate(pActor, stack_8, a6);
     }
 
     void moveAndTurnToTarget(LiveActor* pActor, const TVec3f& rA2, f32 a3, f32 a4, f32 a5, f32 a6) {
@@ -1256,7 +1256,7 @@ namespace MR {
         normalizeOrZero(&stack_14);
         TVec3f stack_8 = rA2 - pActor->mPosition;
         moveAndTurnToDirection(pActor, &stack_14, stack_8, a3, a4, a5, a6);
-        calcRotate(pActor, stack_14, a6);
+        ::calcRotate(pActor, stack_14, a6);
     }
 
     void moveAndTurnToPlayer(LiveActor* pActor, f32 a2, f32 a3, f32 a4, f32 a5) {

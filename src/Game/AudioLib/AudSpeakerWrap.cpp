@@ -26,10 +26,10 @@ void AudSpeakerWrap::start(s32 waveID, s32 padChannel) {
 
     if (padChannel < WPAD_CHAN0) {
         for (s32 idx = 0; idx < WPAD_MAX_CONTROLLERS; idx++) {
-            system->startSound(idx, waveID, &sSoundHandle[idx]);
+            system->startSound(idx, waveID, &::sSoundHandle[idx]);
         }
     } else {
-        system->startSound(padChannel, waveID, &sSoundHandle[padChannel]);
+        system->startSound(padChannel, waveID, &::sSoundHandle[padChannel]);
     }
 }
 

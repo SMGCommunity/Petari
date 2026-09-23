@@ -38,7 +38,7 @@ namespace {
 }  // namespace
 
 BckCtrl::BckCtrl(ResourceHolder* pResHolder, const char* pResName) : mControlData() {
-    mDefaultCtrlData.mName = sDefaultPlayDataName;
+    mDefaultCtrlData.mName = ::sDefaultPlayDataName;
     s32 numCtrl = 0;
     JMapInfo info;
     if (pResHolder->mBanmtResTable->isExistRes(pResName)) {
@@ -88,7 +88,7 @@ void BckCtrl::add(const BckCtrlData& rNew) {
         s32 insertIndex = 0;
 
         for (s32 i = mControlData.size() - 1; i > 0; i--) {
-            if (compareBckName(mControlData[i - 1], rNew) < 0) {
+            if (::compareBckName(mControlData[i - 1], rNew) < 0) {
                 insertIndex = i;
                 break;
             }
@@ -142,7 +142,7 @@ BckCtrlData* BckCtrl::find(const char* pName) const {
         half = count / 2;
         pMiddle = pFirst + half;
 
-        if (isLessBckName(*pMiddle, pName)) {
+        if (::isLessBckName(*pMiddle, pName)) {
             pFirst = pMiddle + 1;
             count -= half + 1;
         } else {

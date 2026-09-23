@@ -193,7 +193,7 @@ namespace MR {
                 }
 
                 FurParam* pParam = new FurParam;
-                *pParam = sFurParam;
+                *pParam = ::sFurParam;
                 strcpy(name, pModelData->getMaterialName()->getName(i));
                 strcat(name, ".fur.txt");
 

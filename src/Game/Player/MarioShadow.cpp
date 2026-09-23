@@ -32,8 +32,8 @@ void CollisionShadow::setMode(u32 mode) {
 
     switch (mode) {
     case 0:
-        _30C = cCheckOffset0;
-        _310 = cDrawOffset0;
+        _30C = ::cCheckOffset0;
+        _310 = ::cDrawOffset0;
         break;
     case 1:
         _30C = 50.0f;

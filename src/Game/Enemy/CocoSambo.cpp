@@ -222,7 +222,7 @@ void CocoSamboHead::exeFall() {
         updateFrontVecToPlayer(gravity);
 
         TVec3f offset;
-        f32 fallFrame = cFallFrame;
+        f32 fallFrame = ::cFallFrame;
         offset.sub(mHost->mPosition, mPosition);
         TVec3f verticalOffset;
         TVec3f horizontalVelocity;
@@ -235,8 +235,8 @@ void CocoSamboHead::exeFall() {
         mVelocity.add(horizontalVelocity, verticalVelocity);
     }
 
-    if (MR::isStep(this, cFallFrame)) {
-        mPosition.set< f32 >(mHost->mPosition);
+    if (MR::isStep(this, ::cFallFrame)) {
+        mPosition.set(mHost->mPosition);
         mVelocity.zero();
         setNerve(GET_NERVE(CocoSamboHead, CocoSamboHeadNrvHeadFallLand));
     } else {
@@ -325,7 +325,7 @@ void CocoSambo::init(const JMapInfoIter& rIter) {
         mPointingActorArray[i] = new LiveActor("ポインティング用アクター");
         mPointingActorArray[i]->initWithoutIter();
         MR::invalidateClipping(mPointingActorArray[i]);
-        MR::initStarPointerTargetAtMtx(mPointingActorArray[i], 80.0f * mScale.x, MR::getJointMtx(this, cPointingJointName[i]),
+        MR::initStarPointerTargetAtMtx(mPointingActorArray[i], 80.0f * mScale.x, MR::getJointMtx(this, ::cPointingJointName[i]),
                                        TVec3f(mScale.x * 100.0f, 0.0f, 0.0f));
         mPointingActorArray[i]->makeActorAppeared();
     }

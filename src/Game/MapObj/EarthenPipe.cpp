@@ -69,7 +69,7 @@ void EarthenPipe::init(const JMapInfoIter& rIter) {
         isWaterPipe = true;
     }
 
-    _8C.set< f32 >(mPosition);
+    _8C.set(mPosition);
     MR::calcGravity(this);
     initModelManagerWithAnm("EarthenPipe", nullptr, false);
     mTopJointMtx = MR::getJointMtx(this, "Top");
@@ -88,7 +88,7 @@ void EarthenPipe::init(const JMapInfoIter& rIter) {
         f32 x = v25.mMtx[0][1];
         _98.set< f32 >(x, y, z);
     } else {
-        _98.set< f32 >(mGravity);
+        _98.set(mGravity);
         f32 _x = _98.x;
         f32 mult = -1.0f;
         f32 x = _x * mult;
@@ -454,7 +454,7 @@ bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
 }
 
 void EarthenPipe::calcTrans(f32 a1) {
-    mPosition.set< f32 >(_98);
+    mPosition.set(_98);
     mPosition.scale(a1 * _A4);
     mPosition.add(_8C);
 

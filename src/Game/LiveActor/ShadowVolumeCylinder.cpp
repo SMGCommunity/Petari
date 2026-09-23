@@ -30,12 +30,12 @@ void ShadowVolumeCylinder::loadModelDrawMtx() const {
     TPos3f mtx;
     MR::makeMtxUpNoSupportPos(&mtx, up, position);
 
-    f32 radius = mRadius / sModelScale;
+    f32 radius = mRadius / ::sModelScale;
     if (controller->isFollowHostScale()) {
         radius *= controller->getHost()->mScale.x;
     }
 
-    TVec3f scale(radius, calcBaseDropLength() / sModelScale, radius);
+    TVec3f scale(radius, calcBaseDropLength() / ::sModelScale, radius);
     MR::preScaleMtx(mtx, scale);
     PSMTXConcat(MR::getCameraViewMtx(), mtx, mtx);
     GXLoadPosMtxImm(mtx, 0);

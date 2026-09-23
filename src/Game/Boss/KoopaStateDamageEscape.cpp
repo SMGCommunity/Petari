@@ -114,7 +114,7 @@ void KoopaStateDamageEscape::appear() {
         mJumpAwayVelocity = ::sDownFlyUpSpeed;
     } else if (KoopaFunction::isKoopaLv2(mHost)) {
         mMaxEscapeTime = ::sEscapeStep;
-        mEscapeRunParam = &sEscapeRunParamLv2;
+        mEscapeRunParam = &::sEscapeRunParamLv2;
         mRotateVelocity = ::sDamageTailRunStartSpeed;
         mDamageTailRunParam = &::sDamageTailRunParam;
         mJumpAwayVelocity = ::sDownFlyUpSpeed;

@@ -24,7 +24,7 @@ bool WPadAcceleration::getAcceleration(TVec3f* pOut) const {
         return false;
     }
 
-    pOut->set< f32 >(mHistory[_624]);
+    pOut->set(mHistory[_624]);
     return true;
 }
 
@@ -40,7 +40,7 @@ bool WPadAcceleration::getPastAcceleration(TVec3f* pOut, s32 index) const {
         slot += 128;
     }
 
-    pOut->set< f32 >(mHistory[slot]);
+    pOut->set(mHistory[slot]);
     return true;
 }
 
@@ -176,7 +176,7 @@ void WPadAcceleration::updateRotate() {
         }
     }
 
-    if (sSelectDominantRotation) {
+    if (::sSelectDominantRotation) {
         if (zMagnitude < xMagnitude) {
             _648 = 0;
         }

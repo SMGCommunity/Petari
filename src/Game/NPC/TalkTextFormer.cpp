@@ -28,7 +28,7 @@ namespace {
 
 namespace MR {
     void initTagProcessorRecursive(LayoutActor* pActor, const char* pPaneName, s32 mode) {
-        nw4r::lyt::TextBox* pTextBox = getTextBoxPane(pActor, pPaneName);
+        nw4r::lyt::TextBox* pTextBox = ::getTextBoxPane(pActor, pPaneName);
         if (pTextBox != nullptr) {
             CustomTagProcessor* pProcessor = static_cast< CustomTagProcessor* >(pTextBox->mpTagProcessor);
             f32 rate = 1.25f;
@@ -58,7 +58,7 @@ namespace MR {
     }
 
     void nextStepTagProcessorRecursive(LayoutActor* pActor, const char* pPaneName) {
-        nw4r::lyt::TextBox* pTextBox = getTextBoxPane(pActor, pPaneName);
+        nw4r::lyt::TextBox* pTextBox = ::getTextBoxPane(pActor, pPaneName);
         if (pTextBox != nullptr) {
             CustomTagProcessor* pProcessor = static_cast< CustomTagProcessor* >(pTextBox->mpTagProcessor);
             pProcessor->mColorIndex = 0;

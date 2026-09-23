@@ -30,7 +30,7 @@ namespace NrvMapPartsSeesaw1AxisRotator {
 }  // namespace NrvMapPartsSeesaw1AxisRotator
 
 MapPartsSeesaw1AxisRotator::MapPartsSeesaw1AxisRotator(LiveActor* pHost, const char* pMoveSound, f32 moveSoundSpeed)
-    : MapPartsRotatorBase(pHost, "シーソー(1軸)"), mAngularSpeedMax(), mInertiaConst(sInertiaConstDefault), mRotateAngle(), mRestoreForce(),
+    : MapPartsRotatorBase(pHost, "シーソー(1軸)"), mAngularSpeedMax(), mInertiaConst(::sInertiaConstDefault), mRotateAngle(), mRestoreForce(),
       mHipDrop(), mRotateAxis(0.0f, 0.0f, 1.0f), mAngularVelocity(), mAngularAccel(), mInitialUp(0.0f, 1.0f, 0.0f), mMoveSound(pMoveSound),
       mMoveSoundSpeed(moveSoundSpeed) {
     mRotateMtx.identity();
@@ -109,7 +109,7 @@ bool MapPartsSeesaw1AxisRotator::receiveMsg(u32 msg) {
 }
 
 void MapPartsSeesaw1AxisRotator::exeMove() {
-    if (isNerve(GET_NERVE(MapPartsSeesaw1AxisRotator, HostTypeMoveStart)) && sAngularSpeedMin < MR::abs(mAngularVelocity)) {
+    if (isNerve(GET_NERVE(MapPartsSeesaw1AxisRotator, HostTypeMoveStart)) && ::sAngularSpeedMin < MR::abs(mAngularVelocity)) {
         setNerve(GET_NERVE(MapPartsSeesaw1AxisRotator, HostTypeMove));
         return;
     }
@@ -163,7 +163,7 @@ void MapPartsSeesaw1AxisRotator::rotate() {
     mAngularAccel = 0.0f;
 
     if (isGoingToReachTargetAngle()) {
-        mAngularVelocity *= sCollisionEfficiency;
+        mAngularVelocity *= ::sCollisionEfficiency;
         return;
     }
 
@@ -189,9 +189,9 @@ void MapPartsSeesaw1AxisRotator::updateVelocity() {
         mAngularVelocity += direction * (getDistanceFromRotAxis() / (0.1f * mInertiaConst));
     }
 
-    if (!isNerve(GET_NERVE(MapPartsSeesaw1AxisRotator, HostTypeMoveStart)) && getStep() > sMoveStartFrame) {
+    if (!isNerve(GET_NERVE(MapPartsSeesaw1AxisRotator, HostTypeMoveStart)) && getStep() > ::sMoveStartFrame) {
         updateRestoreForce();
-        mAngularVelocity *= sAngularVelocityFric;
+        mAngularVelocity *= ::sAngularVelocityFric;
     }
 
     clampAngularSpeed();
@@ -208,7 +208,7 @@ void MapPartsSeesaw1AxisRotator::updateRestoreForce() {
     torque.cross(up, mInitialUp);
     f32 force = torque.dot(mRotateAxis);
 
-    if (MR::isNearZero(force) && MR::abs(mAngularVelocity) <= sAngularSpeedMin) {
+    if (MR::isNearZero(force) && MR::abs(mAngularVelocity) <= ::sAngularSpeedMin) {
         mAngularVelocity = 0.0f;
         return;
     }
@@ -243,7 +243,7 @@ void MapPartsSeesaw1AxisRotator::addForceHipDrop() {
     torque.cross(offset, gravity);
     f32 direction = MR::sign(torque.dot(mRotateAxis));
     f32 inertia = 0.1f * mInertiaConst;
-    mAngularVelocity += direction * ((sAngularAccelHipDrop * getDistanceFromRotAxis()) / inertia);
+    mAngularVelocity += direction * ((::sAngularAccelHipDrop * getDistanceFromRotAxis()) / inertia);
 }
 
 bool MapPartsSeesaw1AxisRotator::isGoingToReachTargetAngle() const {

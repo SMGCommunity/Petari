@@ -180,8 +180,8 @@ namespace MR {
     }
 
     bool isInitializeStatePlacementSomething() {
-        return (isInitializeState(SceneInitializeState_PlacementPlayer) || isInitializeState(SceneInitializeState_PlacementHighPriority)) ||
-               isInitializeState(SceneInitializeState_Placement);
+        return (::isInitializeState(SceneInitializeState_PlacementPlayer) || ::isInitializeState(SceneInitializeState_PlacementHighPriority)) ||
+               ::isInitializeState(SceneInitializeState_Placement);
     }
 
     void stopSceneForScenarioOpeningCamera() {
@@ -205,7 +205,7 @@ namespace MR {
     }
 
     const JMapIdInfo& getInitializeStartIdInfo() {
-        return cInitializeStartIdInfo;
+        return ::cInitializeStartIdInfo;
     }
 
     JKRMemArchive* getStageArchive(const char* pStageName) {
@@ -287,7 +287,7 @@ namespace MR {
     void getRailInfo(JMapInfoIter* pRailIter, const JMapInfo** ppPointInfo, const JMapInfoIter& rIter) {
         s32 railId = -1;
         getRailId(rIter, &railId);
-        getRailInfoFromRailId(pRailIter, ppPointInfo, getStageDataHolder()->findPlacedStageDataHolder(rIter), railId);
+        ::getRailInfoFromRailId(pRailIter, ppPointInfo, getStageDataHolder()->findPlacedStageDataHolder(rIter), railId);
     }
 
     bool getNextLinkRailInfo(JMapInfoIter* pRailIter, const JMapInfo** ppPointInfo, const JMapInfoIter& rIter) {
@@ -298,7 +298,7 @@ namespace MR {
         }
 
         const StageDataHolder* pHolder = getStageDataHolder()->findPlacedStageDataHolder(rIter);
-        getRailInfoFromRailId(pRailIter, ppPointInfo, pHolder, railId);
+        ::getRailInfoFromRailId(pRailIter, ppPointInfo, pHolder, railId);
         return true;
     }
 
@@ -319,7 +319,7 @@ namespace MR {
     }
 
     void getCameraRailInfo(JMapInfoIter* pRailIter, const JMapInfo** ppPointInfo, s32 railId, s32 zoneId) {
-        getRailInfoFromRailId(pRailIter, ppPointInfo, getStageDataHolder()->getStageDataHolderFromZoneId(zoneId), railId);
+        ::getRailInfoFromRailId(pRailIter, ppPointInfo, getStageDataHolder()->getStageDataHolderFromZoneId(zoneId), railId);
     }
 
     bool getCameraRailInfoFromRailDataIndex(JMapInfoIter* pRailIter, const JMapInfo** ppPointInfo, int index, s32 zoneId) {

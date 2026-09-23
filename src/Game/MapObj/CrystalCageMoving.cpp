@@ -50,7 +50,7 @@ void CrystalCageMoving::init(const JMapInfoIter& rIter) {
     vec.z = 0.0f;
     info.setupHitSensorParam(4, 350.0f, vec);
     initialize(rIter, info);
-    _FC.set< f32 >(mPosition);
+    _FC.set(mPosition);
     initDummyModel(rIter);
     MR::initActorCamera(this, rIter, &mCameraInfo);
     MR::startBck(this, "Wait");
@@ -197,7 +197,7 @@ void CrystalCageMoving::crashMario(HitSensor* pSender, HitSensor* pReceiver) {
 
 void CrystalCageMoving::updateHitSensor(HitSensor* pSensor) {
     if (!_108) {
-        pSensor->mPosition.set< f32 >(mPosition);
+        pSensor->mPosition.set(mPosition);
     } else {
         f32 radius = pSensor->mRadius;
         TMtx34f joint_mtx;

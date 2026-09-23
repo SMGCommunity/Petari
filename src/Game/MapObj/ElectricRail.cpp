@@ -381,7 +381,7 @@ void ElectricRail::initPoints() {
             ElectricRailPoint* point = &mPoints[curPointIdx];
             TVec3f pos;
             MR::calcRailPointPos(&pos, this, curRailPoint);
-            point->mPosition.set< f32 >(pos);
+            point->mPosition.set(pos);
             curPointIdx++;
 
             if (mRailHeight > 1) {
@@ -394,7 +394,7 @@ void ElectricRail::initPoints() {
                 while (curHeight < mRailHeight) {
                     ElectricRailPoint* curPointInRail = &mPoints[curPointIdx];
                     pos.add(outGrav);
-                    curPointInRail->mPosition.set< f32 >(pos);
+                    curPointInRail->mPosition.set(pos);
                     curPointInRail->mHasShadow = flag;
                     curPointIdx++;
                     curHeight++;
@@ -595,7 +595,7 @@ void ElectricRail::updateHitSensorPos() {
 
 void ElectricRail::calcGravity(TVec3f* pOut, const TVec3f& a2) const {
     if (mIsCalcGravity) {
-        pOut->set< f32 >(mGravity);
+        pOut->set(mGravity);
     } else if (!MR::calcGravityVectorOrZero(this, a2, pOut, nullptr, 0)) {
         MR::calcDropShadowVector(this, a2, pOut, nullptr, 0);
     }

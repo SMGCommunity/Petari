@@ -37,12 +37,12 @@ void SoundEmitterSphere::movement() {
     case 2:
     case 4:
     case 5:
-        _40.set< f32 >(MR::getCameraWatchPos());
+        _40.set(MR::getCameraWatchPos());
         break;
     case 0:
     case 3:
     default:
-        _40.set< f32 >(AudMicWrap::getMicPos());
+        _40.set(AudMicWrap::getMicPos());
         break;
     }
 

@@ -171,7 +171,7 @@ bool KoopaJrShipCannonShell::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSen
 void KoopaJrShipCannonShell::launch(const TVec3f& rStartPos, const TVec3f& rVelocity) {
     appear();
 
-    mPosition.set< f32 >(rStartPos);
+    mPosition.set(rStartPos);
 
     TVec3f vec(rVelocity);
     MR::normalize(&vec);
@@ -179,7 +179,7 @@ void KoopaJrShipCannonShell::launch(const TVec3f& rStartPos, const TVec3f& rVelo
     TPos3f mtx;
     MR::calcMtxFromGravityAndZAxis(&mtx, this, mGravity, vec);
     mtx.getQuat(_8C);
-    mVelocity.set< f32 >(rVelocity);
+    mVelocity.set(rVelocity);
     MR::startSound(this, "SE_BM_KOOPAJR_SHIP_SHOOT_NORMAL");
     setNerve(GET_NERVE(KoopaJrShipCannonShell, HostTypeFly));
 }
@@ -281,8 +281,8 @@ void KoopaJrShipCannonShell::exeFreeze() {
     }
 
     if (MR::isStep(this, ::sFreezeFrame)) {
-        mPosition.set< f32 >(_9C);
-        mVelocity.set< f32 >(_A8);
+        mPosition.set(_9C);
+        mVelocity.set(_A8);
         setNerve(GET_NERVE(KoopaJrShipCannonShell, HostTypeFly));
     }
 }

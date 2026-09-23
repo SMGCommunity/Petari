@@ -62,8 +62,8 @@ void FireMarioBall::kill() {
 }
 
 void FireMarioBall::appearAndThrow(const TVec3f& v1, const TVec3f& v2) {
-    mPosition.set< f32 >(v1);
-    mVelocity.set< f32 >(v2 * ::cThrowSpeed);
+    mPosition.set(v1);
+    mVelocity.set(v2 * ::cThrowSpeed);
     mRotation.set< f32 >(0.0f, MR::toDegree(MR::atan2(mVelocity.x, mVelocity.z)), 0.0f);
     MR::tryRumblePadWeak(this, WPAD_CHAN0);
     appear();

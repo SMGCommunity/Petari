@@ -220,7 +220,7 @@ void Syati::exeFadeinBeforeTalk() {
 
 void Syati::exeTalkStartMission() {
     if (MR::isFirstStep(this)) {
-        setupBalloonFollowMtx(TVec3f(mSwimMode == 0 ? sTalkOffsetDeepSea : sTalkOffset));
+        setupBalloonFollowMtx(TVec3f(mSwimMode == 0 ? ::sTalkOffsetDeepSea : ::sTalkOffset));
     }
 
     updateBlink();

@@ -184,7 +184,7 @@ void BombBird::exeFlyOnRail() {
     doFly();
     if (MR::isValidSwitchB(this) && MR::isOnSwitchB(this)) {
         setNerve(GET_NERVE(BombBird, HostTypeNrvEscape));
-    } else if (MR::calcDistanceToPlayerH(this) < hSearchDist && !MR::isDemoActive() && MR::isActionEnd(this)) {
+    } else if (MR::calcDistanceToPlayerH(this) < ::hSearchDist && !MR::isDemoActive() && MR::isActionEnd(this)) {
         setNerve(GET_NERVE(BombBird, HostTypeNrvFlyOnRailSearch));
     } else if (MR::isActionEnd(this)) {
         setNerve(GET_NERVE(BombBird, HostTypeNrvFlyOnRail));
@@ -219,7 +219,7 @@ void BombBird::exeFlyOnRailSearch() {
             if (mHeldBomb) {
                 TVec3f scale;
                 MR::copyJointScale(this, "BombPos", &scale);
-                mHeldBomb->mScale.set< f32 >(scale);
+                mHeldBomb->mScale.set(scale);
             }
         }
 
@@ -236,17 +236,17 @@ void BombBird::exeFlyOnRailSearch() {
 
 void BombBird::doFly() {
     if (mSearchPlayer) {
-        MR::flyAndTurnAlongRailSearchingPlayer(this, &mFront, hToRailDiv, hFlyVel, hGravity, hDamp, hTurnLimitRadian, true);
-        addVelocityToUpFromGround(hSearchKeepHeightAccUp);
+        MR::flyAndTurnAlongRailSearchingPlayer(this, &mFront, ::hToRailDiv, ::hFlyVel, ::hGravity, ::hDamp, ::hTurnLimitRadian, true);
+        addVelocityToUpFromGround(::hSearchKeepHeightAccUp);
     } else {
-        MR::flyAndTurnAlongRailSearchingPlayer(this, &mFront, hToRailDiv, hFlyVel, 0.0f, hDamp, hTurnLimitRadian, false);
+        MR::flyAndTurnAlongRailSearchingPlayer(this, &mFront, ::hToRailDiv, ::hFlyVel, 0.0f, ::hDamp, ::hTurnLimitRadian, false);
     }
 }
 
 void BombBird::addVelocityToUpFromGround(f32 vel) {
     f32 proj = MR::getShadowNearProjectionLength(this);
-    if (3.4028235e38f != proj && proj < hSearchKeepHeight) {
-        vel = (hSearchKeepHeight - proj) >= vel ? vel : (hSearchKeepHeight - proj);
+    if (3.4028235e38f != proj && proj < ::hSearchKeepHeight) {
+        vel = (::hSearchKeepHeight - proj) >= vel ? vel : (::hSearchKeepHeight - proj);
 
         MR::addVelocityLimit(this, mGravity * -vel);
     }
@@ -283,13 +283,13 @@ void BombBird::exeFlyWithAttack() {
 
         if (MR::isStep(this, 130)) {
             MR::startSound(mHeldBomb, "SE_EM_BOMBBIRD_DROP_BOMB");
-            mHeldBomb->start(mPosition, mFront * hBombFallFrontVel - mGravity * hBombFallUpVel);
+            mHeldBomb->start(mPosition, mFront * ::hBombFallFrontVel - mGravity * ::hBombFallUpVel);
             mHeldBomb = nullptr;
             mHoldBomb = false;
         }
 
         if (MR::isActionEnd(this)) {
-            if (MR::calcDistanceToPlayerH(this) < hSearchDist) {
+            if (MR::calcDistanceToPlayerH(this) < ::hSearchDist) {
                 setNerve(GET_NERVE(BombBird, HostTypeNrvFlyOnRailSearch));
             } else {
                 setNerve(GET_NERVE(BombBird, HostTypeNrvFlyOnRail));
@@ -324,11 +324,11 @@ void BombBird::exeEscape() {
     MR::vecKillElement(escapeDirection, mGravity, &escapeDirection);
     MR::normalizeOrZero(&escapeDirection);
 
-    if (!MR::isNearZero(escapeDirection, hDotEpsilon)) {
-        MR::moveAndTurnToDirection(this, &mFront, escapeDirection, hFlyVel, hGravity, hDamp, hTurnLimitRadian);
+    if (!MR::isNearZero(escapeDirection, ::hDotEpsilon)) {
+        MR::moveAndTurnToDirection(this, &mFront, escapeDirection, ::hFlyVel, ::hGravity, ::hDamp, ::hTurnLimitRadian);
     }
 
-    mVelocity.set< f32 >(mFront * hEscapeVel - mGravity * hEscapeUpVel);
+    mVelocity.set(mFront * ::hEscapeVel - mGravity * ::hEscapeUpVel);
 
     if (MR::isActionEnd(this)) {
         setNerve(GET_NERVE(BombBird, HostTypeNrvEscape));
@@ -380,7 +380,7 @@ void BombBird::exeSwoonStart() {
     MR::moveAndTurnToPlayer(this, &mFront, param->_0, param->_4, param->_8, param->_C);
     TVec3f area(0, 0, 0);
     if (MR::calcVelocityAreaOrRailMoveOnGround(&area, this)) {
-        mVelocity.set< f32 >(area * hShiftingSandVel);
+        mVelocity.set(area * ::hShiftingSandVel);
     }
 
     if (MR::isActionEnd(this)) {
@@ -403,10 +403,10 @@ void BombBird::exeSwoon() {
     MR::moveAndTurnToPlayer(this, &mFront, ::hOnGroundParam._0, ::hOnGroundParam._4, ::hOnGroundParam._8, ::hOnGroundParam._C);
     TVec3f area(0, 0, 0);
     if (MR::calcVelocityAreaOrRailMoveOnGround(&area, this)) {
-        mVelocity.set< f32 >(area * hShiftingSandVel);
+        mVelocity.set(area * ::hShiftingSandVel);
     }
 
-    if (MR::isGreaterStep(this, hSwoonTime)) {
+    if (MR::isGreaterStep(this, ::hSwoonTime)) {
         setNerve(GET_NERVE(BombBird, HostTypeNrvSwoonEnd));
     }
 }
@@ -427,16 +427,16 @@ void BombBird::exeSwoonEnd() {
 
     TVec3f area(0, 0, 0);
     if (MR::calcVelocityAreaOrRailMoveOnGround(&area, this)) {
-        mVelocity.set< f32 >(area * hShiftingSandVel);
+        mVelocity.set(area * ::hShiftingSandVel);
     }
 
-    if (MR::isGreaterEqualStep(this, hSwoonEndFlyStartTime)) {
-        if (MR::isStep(this, hSwoonEndFlyStartTime)) {
-            MR::addVelocityJump(this, hSwoonEndJump);
+    if (MR::isGreaterEqualStep(this, ::hSwoonEndFlyStartTime)) {
+        if (MR::isStep(this, ::hSwoonEndFlyStartTime)) {
+            MR::addVelocityJump(this, ::hSwoonEndJump);
         }
 
         doFly();
-        addVelocityToUpFromGround(hSwoonEndUpVel);
+        addVelocityToUpFromGround(::hSwoonEndUpVel);
     }
 
     if (MR::isActionEnd(this)) {
@@ -506,7 +506,7 @@ bool BombBird::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pR
     }
 
     if (isNerve(GET_NERVE(BombBird, HostTypeNrvSwoonStart)) || isNerve(GET_NERVE(BombBird, HostTypeNrvSwoon)) ||
-        (isNerve(GET_NERVE(BombBird, HostTypeNrvSwoonEnd)) && MR::isLessStep(this, hSwoonEndFlyStartTime))) {
+        (isNerve(GET_NERVE(BombBird, HostTypeNrvSwoonEnd)) && MR::isLessStep(this, ::hSwoonEndFlyStartTime))) {
         if (MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg)) {
             setNerve(GET_NERVE(BombBird, HostTypeNrvTrample));
             return true;
@@ -535,7 +535,7 @@ bool BombBird::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pR
                 mHeldBomb = nullptr;
             }
 
-            MR::setVelocitySeparateHV(this, pSender, pReceiver, hSpinAttackedVelH, hSpinAttackedVelV);
+            MR::setVelocitySeparateHV(this, pSender, pReceiver, ::hSpinAttackedVelH, ::hSpinAttackedVelV);
             setNerve(GET_NERVE(BombBird, HostTypeNrvDamage));
             if (MR::isMsgPlayerHipDrop(msg)) {
                 MR::sendMsgAwayJump(pSender, pReceiver);

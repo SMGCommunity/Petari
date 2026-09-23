@@ -75,7 +75,7 @@ void PrologueDirector::init(const JMapInfoIter& rIter) {
     makeActorDead();
 
     MR::createSceneObj(SceneObj_PrologueHolder);
-    getPrologueHolder()->registerPrologueObj(this);
+    ::getPrologueHolder()->registerPrologueObj(this);
 }
 
 void PrologueDirector::initAfterPlacement() {
@@ -315,6 +315,6 @@ void PrologueHolder::start() {
 
 namespace MR {
     void startPrologue() {
-        getPrologueHolder()->start();
+        ::getPrologueHolder()->start();
     }
 };  // namespace MR

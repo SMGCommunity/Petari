@@ -19,8 +19,8 @@ namespace {
 extern const bool def;
 
 LodCtrl::LodCtrl(LiveActor* pActor, const JMapInfoIter& rIter) {
-    _0 = sDefaultDistanceToMiddle;
-    _4 = sDefaultDistanceToLow;
+    _0 = ::sDefaultDistanceToMiddle;
+    _4 = ::sDefaultDistanceToLow;
     _8 = pActor;
     mActor = pActor;
     _10 = nullptr;
@@ -192,15 +192,15 @@ namespace {
 }  // namespace
 
 void LodCtrl::setClippingTypeSphereContainsModelBoundingBox(f32 bounds) {
-    LodFuntionCall< f32 >(this, MR::setClippingTypeSphereContainsModelBoundingBox, bounds);
+    ::LodFuntionCall< f32 >(this, MR::setClippingTypeSphereContainsModelBoundingBox, bounds);
 }
 
 void LodCtrl::setFarClipping(f32 clip) {
-    LodFuntionCall< f32 >(this, MR::setClippingFar, clip);
+    ::LodFuntionCall< f32 >(this, MR::setClippingFar, clip);
 }
 
 void LodCtrl::invalidateClipping() {
-    LodFuntionCall(this, MR::invalidateClipping);
+    ::LodFuntionCall(this, MR::invalidateClipping);
 }
 
 void LodCtrl::showHighModel() {

@@ -258,7 +258,7 @@ u32 Binder::storeCurrentHitInfo(HitInfo* pPlanes, u32 capacity, bool stopAtFirst
 
         pPlanes[count + mPlaneNum] = *Collision::getStrikeInfoMap(i);
         if (!stopAtFirstHit) {
-            pPlanes[i + mPlaneNum]._60 += hOverlapAddValue;
+            pPlanes[i + mPlaneNum]._60 += ::hOverlapAddValue;
         }
 
         count++;

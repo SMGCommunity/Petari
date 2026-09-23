@@ -164,7 +164,7 @@ namespace MR {
                         const char* pAnimName = nullptr;
                         findBckNameStringInResource(&pAnimName, pModelManager->getResourceHolder(), name);
                         if (pEmitter->_24 == nullptr) {
-                            initEffectSyncBck(pKeeper, pModelManager, pInfo->getName(), pAnimName, countAnimNames(pAnimNames), 0.0f, -1.0f, false);
+                            initEffectSyncBck(pKeeper, pModelManager, pInfo->getName(), pAnimName, ::countAnimNames(pAnimNames), 0.0f, -1.0f, false);
                         } else {
                             addEffectSyncBck(pEmitter, pModelManager, pAnimName);
                         }
