@@ -716,6 +716,7 @@ void AudSystem::initVolumeSetting() {
 }
 
 void AudSystem::initCategoryArrangement() {
+    // FIXME: struct shouldnt be cleared beforehand!
     JAISeCategoryArrangement arrangement = {
         AudParams::arrangeSE_SY, AudParams::arrangeSE_PV, AudParams::arrangeSE_PM, AudParams::arrangeSE_BV,  AudParams::arrangeSE_BM,
         AudParams::arrangeSE_OJ, AudParams::arrangeSE_AT, AudParams::arrangeSE_DM, AudParams::arrangeSE_EV,  AudParams::arrangeSE_EM,
