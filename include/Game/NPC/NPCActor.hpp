@@ -155,6 +155,27 @@ public:
         _13C = pReaction;
     }
 
+    inline void setDefaults2(const char* pReaction, const char* pPointing, const char* pSpin, const char* pTrampled) {
+        _134 = pTrampled;
+        _130 = pSpin;
+        _138 = pPointing;
+        _13C = pReaction;
+    }
+
+    inline void setDefaults3(const char* pReaction, const char* pPointing, const char* pSpin, const char* pTrampled) {
+        _134 = pTrampled;
+        _130 = pSpin;
+        _13C = pPointing;
+        _138 = pReaction;
+    }
+
+    inline void setDefaults4(const char* a1, const char* a2, const char* a3, const char* a4) {
+        _130 = a4;
+        _13C = a2;
+        _134 = a3;
+        _138 = a1;
+    }
+
     inline void setDefaultsParam() {
         mParam._14 = "Wait";
         mParam._18 = "Turn";
@@ -175,6 +196,11 @@ public:
     inline void setTalkAction(const char* pActionName) {
         _11C = pActionName;
         _120 = pActionName;
+    }
+
+    inline void setTalkAction(const char* pActionName, const char* pActionName2) {
+        _11C = pActionName;
+        _120 = pActionName2;
     }
 
     TalkMessageCtrl* getMsgCtrl() const {
