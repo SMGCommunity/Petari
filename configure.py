@@ -922,7 +922,7 @@ config.libs = [
             Object(Matching, "Game/Boss/KoopaFireShort.cpp"),
             Object(NonMatching, "Game/Boss/KoopaFireStairs.cpp"),
             Object(NonMatching, "Game/Boss/KoopaFunction.cpp"),
-            Object(NonMatching, "Game/Boss/KoopaParts.cpp"),
+            Object(Matching, "Game/Boss/KoopaParts.cpp"),
             Object(Matching, "Game/Boss/KoopaPowerUpSwitch.cpp"),
             Object(
                 Matching,
