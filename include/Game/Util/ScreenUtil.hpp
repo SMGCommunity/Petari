@@ -17,7 +17,9 @@ namespace MR {
     s32 getSafetyFrameLeft();
     s32 getSafetyFrameRight();
     s32 getFrameBufferWidth() NO_INLINE;
-    s32 getFrameBufferHeight();
+    inline s32 getFrameBufferHeight() NO_INLINE {
+        return JUTVideo::getManager()->getEfbHeight();
+    }
     void convertFrameBufferPosToScreenPos(TVec2f*, const TVec2f&);
     void convertScreenPosToFrameBufferPos(TVec2f*, const TVec2f&);
     void startToCaptureScreen(const char*);
