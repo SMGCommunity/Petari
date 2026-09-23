@@ -27,3 +27,23 @@ void LayoutGroupCtrl::calcAnim() {
 u32 LayoutGroupCtrl::getPaneNum() const {
     return mGroup->mPaneLinkList.GetSize();
 }
+
+nw4r::lyt::Pane* LayoutGroupCtrl::getPane(u32 idx) const {
+    for (nw4r::lyt::PaneLinkList::Iterator iter = mGroup->GetPaneList().GetBeginIter(); iter != mGroup->GetPaneList().GetEndIter(); iter++) {
+        if (idx == 0) {
+            return iter->mTarget;
+        }
+
+        idx--;
+    }
+
+    return nullptr;
+}
+
+void LayoutGroupCtrl_FORCE_MATCH(nw4r::lyt::Group* pGroup, LayoutAnmPlayer* pAnmPlayer) {
+    for (nw4r::lyt::PaneLinkList::Iterator iter = pGroup->GetPaneList().GetBeginIter(); iter != pGroup->GetPaneList().GetEndIter(); iter++) {
+        (void)iter->mTarget;
+    }
+
+    pAnmPlayer->isStop();
+}

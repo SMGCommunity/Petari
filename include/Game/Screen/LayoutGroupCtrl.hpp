@@ -15,7 +15,7 @@ class LayoutManager;
 
 class LayoutGroupCtrl {
 public:
-    LayoutGroupCtrl(LayoutManager*, const char*, u32);
+    LayoutGroupCtrl(LayoutManager* pManager, const char* pName, u32 animLayerCount);
 
     void movement();
     void calcAnim();
