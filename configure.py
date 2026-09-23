@@ -2050,7 +2050,7 @@ config.libs = [
             Object(Matching, "Game/Player/GroupChecker.cpp"),
             Object(NonMatching, "Game/Player/J3DModelX.cpp"),
             Object(Matching, "Game/Player/JetTurtleShadow.cpp"),
-            Object(NonMatching, "Game/Player/MarineSnow.cpp"),
+            Object(Matching, "Game/Player/MarineSnow.cpp"),
             Object(NonMatching, "Game/Player/Mario.cpp"),
             Object(NonMatching, "Game/Player/MarioActor.cpp", extra_cflags=["-opt nolifetimes"]),
             Object(NonMatching, "Game/Player/MarioActorDraw.cpp"),

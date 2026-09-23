@@ -10,11 +10,11 @@ public:
 
     void view();
     void clear();
-    void draw(const TVec3f&, const TVec3f&, f32) const;
+    void draw(const TVec3f& rPosition, const TVec3f& rUp, f32 surfaceDistance) const;
 
-    /* 0x00 */ u32 _0;
-    /* 0x04 */ TVec3f* _4;
-    /* 0x08 */ f32 _8;
-    /* 0x0C */ u16 _C;
+    /* 0x00 */ u32 mParticleCount;
+    /* 0x04 */ TVec3f* mParticlePositions;
+    /* 0x08 */ f32 mCellSize;
+    /* 0x0C */ u16 mFadeStep;
     /* 0x10 */ JUTTexture* mTexture;
 };

@@ -7,60 +7,75 @@
 #include <JSystem/JKernel/JKRHeap.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
 
-MarineSnow::MarineSnow() {
-    _0 = 16;
-    _4 = new (32) TVec3f[_0];
+void MarineSnow_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+}
 
-    _8 = 1000.0f;
-    for (s32 idx = 0; idx < _0; idx++) {
+MarineSnow::MarineSnow() : mParticleCount(16), mParticlePositions(new (32) TVec3f[mParticleCount]), mCellSize(1000.0f) {
+    for (s32 idx = 0; idx < mParticleCount; idx++) {
         TVec3f randVec;
-        randVec.set(MR::getRandom() * _8, MR::getRandom() * _8, MR::getRandom() * _8);
-        _4[idx] = randVec;
+        randVec.set(MR::getRandom() * mCellSize, MR::getRandom() * mCellSize, MR::getRandom() * mCellSize);
+        mParticlePositions[idx] = randVec;
     }
 
-    _C = 0;
+    mFadeStep = 0;
 
     mTexture = new JUTTexture(MR::loadTexFromArc("MarineSnow"), 0);
 }
 
 void MarineSnow::view() {
-    if (_C < 60) {
-        _C++;
+    if (mFadeStep < 60) {
+        mFadeStep++;
     }
 }
 
 void MarineSnow::clear() {
-    if (_C != 0) {
-        _C--;
+    if (mFadeStep != 0) {
+        mFadeStep--;
     }
 }
 
-void MarineSnow::draw(const TVec3f& rVec1, const TVec3f& rVec2, f32 myFloat) const {
-    // FIXME: biiiig mess, but general structure should be correct
-    // https://decomp.me/scratch/QeXwZ
-    if (_C == 0) {
+void MarineSnow::draw(const TVec3f& rPosition, const TVec3f& rUp, f32 surfaceDistance) const {
+    if (mFadeStep == 0) {
         return;
     }
+
+    f32 fadeRate = static_cast< f32 >(mFadeStep) / 60.0f;
+
+    s32 cellX = static_cast< s32 >((rPosition.x + mCellSize / 2.0f) / mCellSize);
+    s32 originX = cellX * mCellSize;
+    s32 cellY = static_cast< s32 >((rPosition.y + mCellSize / 2.0f) / mCellSize);
+    s32 originY = cellY * mCellSize;
+    s32 cellZ = static_cast< s32 >((rPosition.z + mCellSize / 2.0f) / mCellSize);
+    s32 originZ = cellZ * mCellSize;
 
     TDDraw::setup(0, 1, 0);
     GXSetZMode(GX_TRUE, GX_LEQUAL, GX_FALSE);
     GXSetPointSize(27, GX_TO_ZERO);
 
-    f32 C_60 = static_cast< f32 >(_C) / 60.0f;
+    static u8 phase = 0;
+    phase = (phase + 1) & 3;
+    u32 pointCount;
+    u32 start = (mParticleCount / 2) * phase;
+    u32 end = start + mParticleCount / 2;
+    pointCount = mParticleCount;
 
-    TVec3f camZDir = MR::getCamZdir();
-    TVec3f camYDir = MR::getCamYdir();
+    TVec3f cameraForward = -MR::getCamZdir();
+    TVec3f cameraUp = MR::getCamYdir();
 
-    TVec3f crossnegZY;
-    crossnegZY.cross(-camZDir, camYDir);
-    MR::normalizeOrZero(&crossnegZY);
+    TVec3f billboardRight;
+    billboardRight.cross(cameraForward, cameraUp);
+    MR::normalizeOrZero(&billboardRight);
 
-    TVec3f crossneg_negZY_negZ;
-    crossneg_negZY_negZ.cross(-crossnegZY, -camZDir);
-    MR::normalizeOrZero(&crossneg_negZY_negZ);
+    TVec3f billboardUp;
+    billboardUp.cross(billboardRight, cameraForward);
+    MR::normalizeOrZero(&billboardUp);
 
-    TVec3f vec1C0 = (crossnegZY + crossneg_negZY_negZ) * 10.0f;
-    TVec3f vec1CC = (crossnegZY - crossneg_negZY_negZ) * 10.0f;
+    TVec3f diagonalUp = (billboardRight + billboardUp) * 10.0f;
+    TVec3f diagonalDown = (billboardRight - billboardUp) * 10.0f;
 
     TDDraw::setup(1, 1, 0);
     GXSetZMode(GX_TRUE, GX_LEQUAL, GX_FALSE);
@@ -76,89 +91,85 @@ void MarineSnow::draw(const TVec3f& rVec1, const TVec3f& rVec2, f32 myFloat) con
     for (s32 i = -4; i < 4; i++) {
         for (s32 j = -4; j < 4; j++) {
             for (s32 k = -4; k < 4; k++) {
-                TVec3f vec1D8(i * _8, j * _8, k * _8);
-                TVec3f vec1E4 = vec1D8 + rVec2 * _8 - rVec1;
+                TVec3f cellOrigin;
+                cellOrigin.x = originX + i * mCellSize;
+                cellOrigin.y = originY + j * mCellSize;
+                cellOrigin.z = originZ + k * mCellSize;
+                TVec3f surfaceOffset = cellOrigin + rUp * mCellSize - rPosition;
 
-                if (vec1E4.dot(rVec2) > _0) {
+                if (surfaceOffset.dot(rUp) > surfaceDistance) {
                     continue;
                 }
 
-                s32 totalX = -i;
-                if (i >= 0) {
-                    totalX = i;
+                f32 cellDistance = (i >= 0 ? i : -i) + (j >= 0 ? j : -j) + (k >= 0 ? k : -k);
+
+                s32 particleStride = 1;
+                if (cellDistance > 3.0f) {
+                    particleStride = 2;
                 }
 
-                s32 totalY = -j;
-                if (j >= 0) {
-                    totalX = j;
+                if (cellDistance > 5.0f) {
+                    particleStride = 4;
                 }
 
-                f32 total = totalX + totalY + (((k >> 31) ^ k) - (k >> 31));  // this is basically abs(i) + abs(j) + abs(k)
-
-                s32 unk1 = 1;
-                if (total > 3.0f) {
-                    unk1 = 2;
+                if (cellDistance > 8.0f) {
+                    particleStride = 8;
                 }
 
-                if (total > 5.0f) {
-                    unk1 = 4;
+                f32 opacity = 1.0f - cellDistance / 12.0f;
+                if (opacity < 0.0f) {
+                    opacity = 0.0f;
                 }
 
-                if (total > 8.0f) {
-                    unk1 = 8;
-                }
+                opacity *= opacity * opacity;
+                u32 alpha = 242.0f * opacity * fadeRate;
 
-                f32 val = 1.0f - total / 12.0f;
-                if (val < 0.0f) {
-                    val = 0.0f;
-                }
-
-                u32 u_val = val * val * val * 242.0f * C_60;
-
-                if (u_val == 0) {
+                if (alpha == 0) {
                     continue;
                 }
 
-                GXColor color = {0, 0, 0, u_val};
+                GXColor color = {0, 0, 0, alpha};
                 GXSetTevColor(GX_TEVREG0, color);
 
                 TMtx34f mtx;
-                MtxPtr transMtx = MR::tmpMtxTrans(vec1D8);
-                MR::multMtx(mtx, transMtx, MR::getCameraViewMtx());
+                MtxPtr pTranslationMtx = MR::tmpMtxTrans(cellOrigin);
+                MR::multMtx(mtx, pTranslationMtx, MR::getCameraViewMtx());
                 GXLoadPosMtxImm(mtx, 0);
 
-                u16 a;
-                u16 b;
+                u16 lastParticle;
+                u16 firstParticle;
 
-                if (val > 3.0f) {
-                    a = 0;
-                    b = _0;
+                if (opacity > 3.0f) {
+                    firstParticle = start;
+                    lastParticle = end;
                 } else {
-                    a = 1;
-                    b = 2;
+                    firstParticle = 0;
+                    lastParticle = pointCount;
                 }
 
-                while (a < b) {
+                for (u16 point = firstParticle; point < lastParticle; point += particleStride) {
                     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
                     {
-                        TVec3f vec;
-                        TDDraw::sendPoint(_4[a] - vec1CC);
-                        GXPosition2f32(0.0f, 0.0f);
+                        TDDraw::sendPoint(mParticlePositions[point] - diagonalDown);
+                        GXTexCoord2f32(0.0f, 0.0f);
 
-                        TDDraw::sendPoint(_4[a] + vec1C0);
-                        GXPosition2f32(1.0f, 0.0f);
+                        TDDraw::sendPoint(mParticlePositions[point] + diagonalUp);
+                        GXTexCoord2f32(1.0f, 0.0f);
 
-                        TDDraw::sendPoint(_4[a] + vec1CC);
-                        GXPosition2f32(0.0f, 1.0f);
+                        TDDraw::sendPoint(mParticlePositions[point] + diagonalDown);
+                        GXTexCoord2f32(1.0f, 1.0f);
 
-                        TDDraw::sendPoint(_4[a] - vec1C0);
-                        GXPosition2f32(1.0f, 1.0f);
+                        TDDraw::sendPoint(mParticlePositions[point] - diagonalUp);
+                        GXTexCoord2f32(0.0f, 1.0f);
                     }
-                    GXEnd();
 
-                    a += unk1;
+                    GXEnd();
                 }
             }
         }
     }
+}
+
+MarineSnow* MarineSnow_FORCE_MATCH() {
+    return new MarineSnow();
 }
