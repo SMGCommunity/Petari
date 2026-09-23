@@ -1,7 +1,7 @@
 #pragma once
 
-#include <revolution.h>
 #include <cstring>
+#include <revolution.h>
 
 namespace nw4r {
     namespace math {
@@ -38,9 +38,9 @@ namespace nw4r {
             VEC2() {
             }
 
-            VEC2(const _VEC2& v) {
-                x = v.x;
-                y = v.y;
+            VEC2(const _VEC2& rVec) {
+                x = rVec.x;
+                y = rVec.y;
             }
 
             VEC2(f32 fx, f32 fy) {
@@ -56,7 +56,16 @@ namespace nw4r {
             }
         };
 
-        struct VEC3 : public _VEC3 {};
+        struct VEC3 : public _VEC3 {
+            VEC3() {
+            }
+
+            VEC3(f32 fx, f32 fy, f32 fz) {
+                x = fx;
+                y = fy;
+                z = fz;
+            }
+        };
 
         struct MTX34 : public _MTX34 {
         public:
@@ -89,6 +98,8 @@ namespace nw4r {
         }
 
         MTX34* MTX34Mult(MTX34* pOut, const MTX34* p, f32 f);
+
+        VEC3* VEC3TransformNormal(VEC3* pOut, const MTX34* pM, const VEC3* pV);
 
     };  // namespace math
 };  // namespace nw4r
