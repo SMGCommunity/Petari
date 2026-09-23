@@ -23,7 +23,7 @@ void ButlerMap_FORCE_MATCH_SDATA2() {
 }
 
 namespace {
-    const char* const cDemoNameMapLecture = "バトラーマップレクチャー";
+    const char* cDemoNameMapLecture = "バトラーマップレクチャー";
 };  // namespace
 
 namespace NrvButlerMap {
@@ -66,10 +66,9 @@ void ButlerMap::init(const JMapInfoIter& rIter) {
     TVec3f vec;
     const char* demoNameMapLecture = ::cDemoNameMapLecture;
     vec.setPSZeroVec();
-    TalkMessageCtrl* talkMessage =
-        MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, "AstroGalaxy_ButlerMap001", vec, MR::getJointMtx(this, "Body"));
-
-    if (MR::tryInitDemoSheetTalkAnim(this, rIter, demoNameMapLecture, "DemoButlerMapLecture", talkMessage)) {
+    if (MR::tryInitDemoSheetTalkAnim(
+            this, rIter, demoNameMapLecture, "DemoButlerMapLecture",
+            MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, "AstroGalaxy_ButlerMap001", vec, MR::getJointMtx(this, "Body")))) {
         const char* demoNameMapLecture = ::cDemoNameMapLecture;
         const MR::FunctorBase& func = MR::Functor(this, &ButlerMap::startLectureDemo);
         MR::registerDemoActionFunctorDirect(this, func, demoNameMapLecture, "開始");

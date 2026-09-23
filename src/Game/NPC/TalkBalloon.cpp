@@ -34,7 +34,7 @@ namespace NrvTalkBalloonEvent {
     NEW_NERVE(TalkBalloonEventNrvClose, TalkBalloonEvent, Close);
 };  // namespace NrvTalkBalloonEvent
 
-TalkBalloon::TalkBalloon(const char* pName) : LayoutActor(pName, true), mMessageCtrl(nullptr), mTextFormer(nullptr), _28(false), _29(false) {
+TalkBalloon::TalkBalloon(const char* pName) : LayoutActor(pName, true), mMessageCtrl(), mTextFormer(), _28(), _29() {
 }
 
 void TalkBalloon::create(const char* pLayoutName, bool arg2, bool isTalkLayout) {
@@ -118,7 +118,7 @@ void TalkBalloon::updateBalloon() {
         MR::copyPaneTrans(&paneTrans, this, "PicBeak");
 
         TVec2f v2(mMessageCtrl->_1C.x - paneTrans.x, mMessageCtrl->_1C.y - paneTrans.y);
-        TVec2f v3(1.0f, 0.0f);
+        TVec2f v3(0.0f, 1.0f);
 
         MR::normalizeOrZero(&v2);
 
@@ -137,9 +137,10 @@ void TalkBalloon::updateBalloon() {
         }
 
         if (!_29) {
-            if (MR::fabs(paneAnimFrame - paneAnimFrameMax) < 10.0f) {
+            if (static_cast< f32 >(__fabs(paneAnimFrame - paneAnimFrameMax)) < 10.0f) {
                 return;
             }
+
             _29 = true;
         }
 
@@ -157,7 +158,7 @@ void TalkBalloon::updateBalloon() {
     }
 }
 
-TalkBalloonShort::TalkBalloonShort(const char* pName) : TalkBalloon(pName), _2C(0) {
+TalkBalloonShort::TalkBalloonShort(const char* pName) : TalkBalloon(pName), _2C() {
     initNerve(GET_NERVE(TalkBalloonShort, TalkBalloonShortNrvOpen));
 }
 
@@ -177,6 +178,7 @@ void TalkBalloonShort::updateBalloon() {
     } else {
         MR::showScreen(this);
     }
+
     setTrans(TVec2f(mMessageCtrl->_1C.x, mMessageCtrl->_1C.y));
 }
 
@@ -245,7 +247,7 @@ void TalkBalloonShort::open(TalkMessageCtrl* pCtrl) {
     LayoutActor::setNerve(GET_NERVE(TalkBalloonShort, TalkBalloonShortNrvOpen));
 }
 
-TalkBalloonEvent::TalkBalloonEvent(const char* pName) : TalkBalloon(pName), _2C(1), mAButton(nullptr) {
+TalkBalloonEvent::TalkBalloonEvent(const char* pName) : TalkBalloon(pName), _2C(1), mAButton() {
     initNerve(GET_NERVE(TalkBalloonEvent, TalkBalloonEventNrvWait));
 }
 
@@ -281,6 +283,25 @@ void TalkBalloonEvent::close() {
     MR::moveVolumeStageBGM(1.0f, 60);
     MR::moveVolumeSubBGM(1.0f, 60);
     LayoutActor::setNerve(GET_NERVE(TalkBalloonEvent, TalkBalloonEventNrvClose));
+}
+
+void TalkBalloonEvent::updateBeak() {
+    if (!_28) {
+        return;
+    }
+
+    mMessageCtrl->updateBalloonPos();
+    TalkMessageCtrl* messageCtrl = mMessageCtrl;
+    TVec2f v1(messageCtrl->_1C.x, messageCtrl->_1C.y);
+
+    if (0.0f <= v1.x && v1.x < MR::getScreenWidth() && 120.0f <= v1.y &&
+        v1.y < static_cast< s32 >(JUTVideo::getManager()->getRenderMode()->efbHeight)) {
+        MR::showPane(this, "ShaBeak");
+        MR::showPane(this, "PicBeak");
+    } else {
+        MR::hidePane(this, "ShaBeak");
+        MR::hidePane(this, "PicBeak");
+    }
 }
 
 bool TalkBalloonEvent::turnPage() {
@@ -350,25 +371,6 @@ void TalkBalloonEvent::exeClose() {
     }
 }
 
-void TalkBalloonEvent::updateBeak() {
-    if (!_28) {
-        return;
-    }
-
-    mMessageCtrl->updateBalloonPos();
-    TalkMessageCtrl* messageCtrl = mMessageCtrl;
-    TVec2f v1(messageCtrl->_1C.x, messageCtrl->_1C.y);
-
-    if (0.0f <= v1.x && v1.x < MR::getScreenWidth() && 120.0f <= v1.y &&
-        v1.y < static_cast< s32 >(JUTVideo::getManager()->getRenderMode()->efbHeight)) {
-        MR::showPane(this, "ShaBeak");
-        MR::showPane(this, "PicBeak");
-    } else {
-        MR::hidePane(this, "ShaBeak");
-        MR::hidePane(this, "PicBeak");
-    }
-}
-
 TalkBalloonSign::TalkBalloonSign(const char* pName) : TalkBalloonEvent(pName) {
     _2C = 2;
 }
@@ -421,33 +423,25 @@ void TalkBalloonIcon::open(TalkMessageCtrl* pCtrl) {
     LayoutActor::setNerve(GET_NERVE(TalkBalloonShort, TalkBalloonShortNrvOpen));
 }
 
-TalkBalloonHolder::TalkBalloonHolder() : _14(0) {
+TalkBalloonHolder::TalkBalloonHolder() : _14() {
     mBalloonShortArray = new TalkBalloonShort*[4];
 
     for (u32 i = 0; i < 4; i++) {
-        // "Speech bubble [plain discussion]"
         TalkBalloonShort* temp = new TalkBalloonShort("会話吹き出し[簡易会話]");
         mBalloonShortArray[i] = temp;
         mBalloonShortArray[i]->initWithoutIter();
         mBalloonShortArray[i]->kill();
     }
 
-    // "Speech bubble [event]"
     mBalloonEvent = new TalkBalloonEvent("会話吹き出し[イベント]");
     mBalloonEvent->initWithoutIter();
     mBalloonEvent->kill();
-
-    // "Speech bubble [information]"
     mBalloonInfo = new TalkBalloonInfo("会話吹き出し[インフォメーション]");
     mBalloonInfo->initWithoutIter();
     mBalloonInfo->kill();
-
-    // "Speech bubble [signboard]"
     mBalloonSign = new TalkBalloonSign("会話吹き出し[看板]");
     mBalloonSign->initWithoutIter();
     mBalloonSign->kill();
-
-    // "Speech bubble [icon]"
     mBalloonIcon = new TalkBalloonIcon("会話吹き出し[アイコン]");
     mBalloonIcon->initWithoutIter();
     mBalloonIcon->kill();

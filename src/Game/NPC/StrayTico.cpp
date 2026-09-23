@@ -8,8 +8,6 @@ namespace {
     static const f32 sPushAccel = 0.3f;
     static const f32 sWaitTurnDegree = 2.0f;
     static const f32 sChaseTurnDegree = 4.0f;
-    // static const f32 sChaseAccel = _;
-    // static const f32 sChaseHeightAccel = _;
     static const f32 sChaseFric = 0.97f;
     static const f32 sChaseDistance = 400.0f;
     static const f32 sWarpTryDistance = 2000.0f;
@@ -17,9 +15,6 @@ namespace {
     static const f32 sAwayDistance = 300.0f;
     static const f32 sUpVecBlendRate = 0.2f;
     static const f32 sFrontVecBlendRate = 0.2f;
-    // static const f32 sSpinSideAccel = _;
-    // static const f32 sSpinPullAccel = _;
-    // static const f32 sSterPieceAccel = _;
     static const s32 sCompletePlacementTime = 40;
     static const s32 sCompleteRotateStartTime = 60;
     static const s32 sCompleteDemoTime = 200;
@@ -83,7 +78,8 @@ void StrayTico::initSensor() {
 
 void StrayTico::initShadow() {
     MR::initShadowVolumeOval(this, TVec3f(40.0f, 40.0f, 20.0f));
-    MR::setShadowDropPositionAtJoint(this, nullptr, "PowerStarC", TVec3f(0.0f, 0.0f, 0.0f));
+    const TVec3f offset(0.0f, 0.0f, 0.0f);
+    MR::setShadowDropPositionAtJoint(this, nullptr, "PowerStarC", offset);
     MR::onCalcShadow(this, nullptr);
 }
 
@@ -184,14 +180,14 @@ bool StrayTico::requestCompleteDemo(const TVec3f& rParam1, const TVec3f& rParam2
     MR::normalize(&_C8);
     MR::makeAxisVerticalZX(&_D4, _C8);
 
-    TVec3f vec(rParam1 - mPosition);
-    vec.killElement(_C8);
+    TVec3f vec;
+    vec.killElement2(rParam1 - mPosition, _C8);
 
     if (MR::normalizeOrZero(&vec)) {
         vec = _D4;
     }
 
-    _F0 = MR::toRadian(MR::diffAngleSigned(vec, _D4, _C8));
+    _F0 = _180_PI * MR::diffAngleSigned(vec, _D4, _C8);
 
     setNerve(GET_NERVE(StrayTico, StrayTicoNrvCompleteDemo));
 
@@ -212,8 +208,9 @@ void StrayTico::exeGlad() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Glad");
         s32 noRescuedCount = mHost->calcNoRescuedCount();
+        const s32 rescuedCount = mHost->mTicoNum - noRescuedCount;
         MR::startSound(this, "SE_SM_STRAYTICO_SPIN");
-        MR::startSound(this, "SE_SM_STRAYTICO_GET", mHost->mTicoNum - noRescuedCount);
+        MR::startSound(this, "SE_SM_STRAYTICO_GET", rescuedCount);
 
         if (noRescuedCount == 1) {
             setNerve(GET_NERVE(StrayTico, StrayTicoNrvChase));
@@ -313,8 +310,6 @@ void StrayTico::updateChase() {
 }
 
 void StrayTico::exeCompleteDemo() {
-    TVec3f vec;
-
     if (MR::isFirstStep(this)) {
         MR::invalidateHitSensors(this);
         MR::tryStartBck(this, "CompleteDemo");
@@ -323,15 +318,18 @@ void StrayTico::exeCompleteDemo() {
     }
 
     if (MR::isLessStep(this, ::sCompletePlacementTime)) {
+        TVec3f vec;
         MR::rotateVecDegree(&vec, _D4 * ::sCompleteStartRadius, _C8, _EC);
         vec.add(_BC);
         MR::vecBlend(_E0, vec, &mPosition, MR::calcNerveEaseInOutRate(this, ::sCompletePlacementTime));
     } else if (MR::isGreaterStep(this, ::sCompleteRotateStartTime)) {
-        MR::rotateVecDegree(&mPosition, _D4 * MR::calcNerveValue(this, ::sCompleteRotateStartTime, ::sCompleteDemoTime, 0.0f, 900.0f), _C8,
+        MR::rotateVecDegree(&mPosition, _D4 * MR::calcNerveValue(this, ::sCompleteRotateStartTime, ::sCompleteDemoTime, ::sCompleteStartRadius, 0.0f),
+                            _C8,
                             MR::repeatDegree(_EC + MR::calcNerveEaseInValue(this, ::sCompleteRotateStartTime, ::sCompleteDemoTime, 0.0f, 900.0f)));
         mPosition.add(_BC);
     }
 
+    TVec3f vec;
     MR::getPlayerFrontVec(&vec);
     MR::turnDirectionDegree(this, &mFrontVec, vec, ::sCompleteDemoRotate);
 }

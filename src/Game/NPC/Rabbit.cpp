@@ -84,7 +84,8 @@ void Rabbit::init(const JMapInfoIter& rIter) {
     MR::startBtk(this, "MoonRabbit");
     MR::setBtkFrameAndStop(this, colorFrameArg);
 
-    if (MR::getJMapInfoMessageID(rIter, &colorFrameArg)) {
+    s32 messageId;
+    if (MR::getJMapInfoMessageID(rIter, &messageId)) {
         mMsgCtrl = MR::createTalkCtrl(this, rIter, name, TVec3f(0.0f, 160.0f, 0.0f), nullptr);
         MR::onRootNodeAutomatic(mMsgCtrl);
         MR::useStageSwitchReadA(this, rIter);
@@ -106,6 +107,7 @@ void Rabbit::init(const JMapInfoIter& rIter) {
                 initRailRider(rIter);
                 MR::moveCoordAndTransToNearestRailPos(this);
             }
+
             mBehavior = Behavior_Wait;
             initNerve(GET_NERVE(Rabbit, RabbitNrvWait));
             break;
@@ -152,13 +154,23 @@ void Rabbit::init(const JMapInfoIter& rIter) {
             MR::startBck(this, "Wait2");
             MR::emitEffect(this, "Light");
         }
+
         break;
     }
 
     MR::setClippingFar100m(this);
-    mParam.setMoveAction("Wait", "TurnSmall");
-    mParam.setTalkAction("Talk", "TurnSmall");
-    setDefaults("Reaction", "Pointing", "Press", "Spin");
+    const char* const turn = "TurnSmall";
+    const char* const wait = "Wait";
+    const char* const reaction = "Reaction";
+    const char* const pointing = "Pointing";
+    const char* const press = "Press";
+    const char* const spin = "Spin";
+    mParam._14 = wait;
+    mParam._18 = turn;
+    const char* talk = "Talk";
+    mParam._1C = talk;
+    mParam._20 = turn;
+    setDefaults(reaction, pointing, press, spin);
     _12C = 450.0f;
 
     if (mBehavior == Behavior_LongJump) {
@@ -219,10 +231,11 @@ void Rabbit::exeWait() {
     if (getNerveStep() > 30) {
         TVec3f playerPos = *MR::getPlayerPos() - mPosition;
         MR::normalizeOrZero(&playerPos);
-        if (!MR::isNearZero(playerPos, 0.001f)) {
+        if (!MR::isNearZero(playerPos)) {
             if (isNeedTurn(playerPos) && MR::isBckOneTimeAndStopped(this)) {
                 MR::startBck(this, "Turn");
             }
+
             MR::blendQuatUpFront(&_A0, -mGravity, playerPos, 0.5f, 0.5f);
         }
 
@@ -234,10 +247,12 @@ void Rabbit::exeWait() {
     if (MR::isNearPlayer(this, ::cDistEscape)) {
         setNerve(GET_NERVE(Rabbit, RabbitNrvPreJump));
     } else if (_164) {
-        --_164;
-    } else if (!MR::isNearPlayer(this, ::cDistNear) &&
-               (MR::getRailCoord(this) < MR::calcNearestRailCoord(this, *MR::getPlayerPos()) && MR::getRailCoord(this) > (3.0f * ::cProgressSpeed))) {
-        setNerve(GET_NERVE(Rabbit, RabbitNrvNear));
+        _164--;
+    } else if (!MR::isNearPlayer(this, ::cDistNear)) {
+        const f32 nearestCoord = MR::calcNearestRailCoord(this, *MR::getPlayerPos());
+        if (nearestCoord < MR::getRailCoord(this) && MR::getRailCoord(this) > 3.0f * ::cProgressSpeed) {
+            setNerve(GET_NERVE(Rabbit, RabbitNrvNear));
+        }
     }
 }
 
@@ -249,7 +264,7 @@ void Rabbit::exeGoal() {
     if (getNerveStep() > 30) {
         TVec3f playerPos = *MR::getPlayerPos() - mPosition;
         MR::normalizeOrZero(&playerPos);
-        if (!MR::isNearZero(playerPos, 0.001f)) {
+        if (!MR::isNearZero(playerPos)) {
             MR::blendQuatUpFront(&_A0, -mGravity, playerPos, 0.5f, 0.5f);
         }
     }
@@ -270,6 +285,7 @@ void Rabbit::exeFinish() {
         if (MR::isValidSwitchDead(this)) {
             MR::onSwitchDead(this);
         }
+
         kill();
     }
 }
@@ -291,10 +307,10 @@ void Rabbit::calcRailPos(TVec3f* pPos) {
     _180 = MR::sqrt(MR::max(1.0f, MR::abs((*pPos - mPosition).y / 80.0f)));
 }
 
-bool Rabbit::isNeedTurn(const TVec3f& a1) {
+bool Rabbit::isNeedTurn(const TVec3f& rA1) {
     TVec3f v2;
     _A0.getZDir(v2);
-    return MR::diffAngleAbs(a1, v2) > 0.78539819f;
+    return MR::diffAngleAbs(rA1, v2) > 0.78539819f;
 }
 
 void Rabbit::updateJump() {

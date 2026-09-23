@@ -6,7 +6,7 @@
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution/types.h>
 
-NPCParameterEdit::NPCParameterEdit(const char* pName, const char** ppChar, bool a3) : NPCParameterBase(pName), _8(ppChar), _C(a3) {
+NPCParameterEdit::NPCParameterEdit(const char* pName, const char** pPpChar, bool a3) : NPCParameterBase(pName), _8(pPpChar), _C(a3) {
 }
 
 void NPCParameterEdit::read(JMapInfo* pInfo, s32 a2) {
@@ -47,7 +47,7 @@ void NPCParameterReader::read(JMapInfo* pInfo, s32 a2) {
         return;
     }
 
-    for (NPCParameterBase** it = mVector.begin(); it != mVector.end(); ++it) {
+    for (NPCParameterBase** it = mVector.begin(); it != mVector.end(); it++) {
         (*it)->read(pInfo, a2);
     }
 }
@@ -89,7 +89,7 @@ void NPCParameterJoint::read(JMapInfo* pInfo, s32 a2) {
     pInfo->getValue(a2, mName, _8);
 
     if (strcmp(*_8, "") == 0) {
-        mName = "";
+        *_8 = "";
     }
 }
 
