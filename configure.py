@@ -1835,7 +1835,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/SnowMan.cpp"),
             Object(Matching, "Game/MapObj/SnowplowSwitch.cpp"),
             Object(NonMatching, "Game/MapObj/SoundEmitter.cpp"),
-            Object(NonMatching, "Game/MapObj/SpaceMine.cpp"),
+            Object(Matching, "Game/MapObj/SpaceMine.cpp"),
             Object(NonMatching, "Game/MapObj/SpaceShipStep.cpp"),
             Object(NonMatching, "Game/MapObj/SphereRailDash.cpp"),
             Object(NonMatching, "Game/MapObj/SpiderCoin.cpp"),
