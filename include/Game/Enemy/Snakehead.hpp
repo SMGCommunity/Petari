@@ -4,14 +4,20 @@
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 class AnimScaleController;
-class BenefitItemObj;
+class BenefitItemOneUp;
 class WalkerStateBindStarPointer;
+
+enum SnakeheadType {
+    SnakeheadType_BigWait,
+    SnakeheadType_SmallWait,
+    SnakeheadType_BigMove,
+    SnakeheadType_SmallMove
+};
 
 class Snakehead : public LiveActor {
 public:
     Snakehead(const char*);
 
-    virtual ~Snakehead();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void kill();
@@ -32,14 +38,22 @@ public:
     bool tryDPDSwoon();
     bool isNearPlayerFromRail() const;
 
-    AnimScaleController* mController;          // 0x8C
-    WalkerStateBindStarPointer* mStarPointer;  // 0x90
-    TPos3f _94;
-    TVec3f _C4;
-    f32 _D0;
-    f32 _D4;
-    f32 _D8;
-    TVec3f _DC;
-    s32 _E8;
-    BenefitItemObj* mItem;  // 0xEC
+    bool isSmall() {
+        return _E8 == SnakeheadType_SmallWait || _E8 == SnakeheadType_SmallMove;
+    }
+
+    bool isMove() {
+        return _E8 == SnakeheadType_SmallMove || _E8 == SnakeheadType_BigMove;
+    }
+
+    /* 0x8C */ AnimScaleController* mController;
+    /* 0x90 */ WalkerStateBindStarPointer* mStarPointer;
+    /* 0x94 */ TPos3f mBodyMtx;
+    /* 0xC4 */ TVec3f _C4;
+    /* 0xD0 */ f32 mForwardSpeed;
+    /* 0xD4 */ f32 mBackwardSpeed;
+    /* 0xD8 */ f32 mActivationRadius;
+    /* 0xDC */ TVec3f mRailCenter;
+    /* 0xE8 */ SnakeheadType _E8;
+    /* 0xEC */ BenefitItemOneUp* mItem;
 };
