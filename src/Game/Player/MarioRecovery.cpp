@@ -266,7 +266,7 @@ bool MarioRecovery::update() {
         } else {
             TVec3f horizontal;
             f32 distance = MR::vecKillElement(_34 - getTrans(), _58, &horizontal);
-            if (__fabsf(distance) < 10.0f) {
+            if (MR::abs(distance) < 10.0f) {
                 addTrans(_58 * distance, "Module");
                 _1A = 0;
                 calcFirstVector();

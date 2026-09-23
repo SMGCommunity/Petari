@@ -283,7 +283,7 @@ bool MarioRabbit::update() {
     }
 
     PSMTXCopy(MR::tmpMtxRotXRad(angle), _2C);
-    if (__fabsf(angle) >= 1.0471976f) {
+    if (MR::abs(angle) >= 1.0471976f) {
         MR::vecBlendSphere(_5C, getFrontVec(), &_5C, 0.2f);
     } else {
         MR::vecBlendSphere(_5C, getFrontVec(), &_5C, 0.05f);

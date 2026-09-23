@@ -255,7 +255,7 @@ namespace MR {
                 calcRailPosForMercator(&pos, pActor, coord);
                 f32 segment = previous.distance(pos);
                 f32 remaining = targetDistance - (distance + segment);
-                if (__fabs(remaining) < tolerance || iteration == maxIterations) {
+                if (MR::abs(remaining) < tolerance || iteration == maxIterations) {
                     pInfo->setPosition(i, pos);
                     previous = pos;
                     lower = coord;

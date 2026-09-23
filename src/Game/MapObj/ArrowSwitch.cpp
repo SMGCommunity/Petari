@@ -154,22 +154,22 @@ void ArrowSwitch::listenOnSwitch() {
 
     switch (mSwitchType) {
     case -1:
+    case SwitchType_HalfPlus:
+        mIsRotPlus = true;
+        mRotSpeed = ::sPunchVelocit;
+        mRotYTargetIndex = Direction_Down;
+        break;
+    case SwitchType_HalfMinus:
+        mIsRotPlus = false;
+        mRotSpeed = -::sPunchVelocit;
+        mRotYTargetIndex = Direction_Down;
+        break;
     case SwitchType_QuarterPlus:
         mIsRotPlus = true;
         mRotSpeed = ::sPunchVelocit;
-        mRotYTargetIndex = Direction_Down;
-        break;
-    case SwitchType_QuarterMinus:
-        mIsRotPlus = false;
-        mRotSpeed = ::sPunchVelocit;
-        mRotYTargetIndex = Direction_Down;
-        break;
-    case SwitchType_HalfPlus:
-        mIsRotPlus = true;
-        mRotSpeed = -::sPunchVelocit;
         mRotYTargetIndex = Direction_Right;
         break;
-    case SwitchType_HalfMinus:
+    case SwitchType_QuarterMinus:
         mIsRotPlus = false;
         mRotSpeed = -::sPunchVelocit;
         mRotYTargetIndex = Direction_Left;
@@ -191,13 +191,13 @@ void ArrowSwitch::listenOffSwitch() {
 
     switch (mSwitchType) {
     case -1:
-    case SwitchType_HalfPlus:
     case SwitchType_QuarterPlus:
+    case SwitchType_HalfPlus:
         mIsRotPlus = false;
         mRotSpeed = -::sPunchVelocit;
         break;
-    case SwitchType_HalfMinus:
     case SwitchType_QuarterMinus:
+    case SwitchType_HalfMinus:
         mIsRotPlus = true;
         mRotSpeed = ::sPunchVelocit;
         break;
@@ -287,13 +287,13 @@ void ArrowSwitch::exeLock() {
 
 bool ArrowSwitch::isPlusLimit() const {
     switch (mSwitchType) {
-    case SwitchType_QuarterPlus:
-        return mRotYTargetIndex == Direction_Down;
     case SwitchType_HalfPlus:
+        return mRotYTargetIndex == Direction_Down;
+    case SwitchType_QuarterPlus:
         return mRotYTargetIndex == Direction_Right;
-    case SwitchType_HalfMinus:
-        return mRotYTargetIndex == Direction_Up;
     case SwitchType_QuarterMinus:
+        return mRotYTargetIndex == Direction_Up;
+    case SwitchType_HalfMinus:
         return mRotYTargetIndex == Direction_Up;
     default:
         return false;
@@ -302,13 +302,13 @@ bool ArrowSwitch::isPlusLimit() const {
 
 bool ArrowSwitch::isMinusLimit() const {
     switch (mSwitchType) {
-    case SwitchType_QuarterPlus:
-        return mRotYTargetIndex == Direction_Up;
     case SwitchType_HalfPlus:
         return mRotYTargetIndex == Direction_Up;
-    case SwitchType_HalfMinus:
-        return mRotYTargetIndex == Direction_Left;
+    case SwitchType_QuarterPlus:
+        return mRotYTargetIndex == Direction_Up;
     case SwitchType_QuarterMinus:
+        return mRotYTargetIndex == Direction_Left;
+    case SwitchType_HalfMinus:
         return mRotYTargetIndex == Direction_Down;
     default:
         return false;
@@ -318,11 +318,11 @@ bool ArrowSwitch::isMinusLimit() const {
 s32 ArrowSwitch::getOneStep() const {
     switch (mSwitchType) {
     case -1:
-    case SwitchType_QuarterPlus:
-    case SwitchType_QuarterMinus:
-        return 2;
     case SwitchType_HalfPlus:
     case SwitchType_HalfMinus:
+        return 2;
+    case SwitchType_QuarterPlus:
+    case SwitchType_QuarterMinus:
         return 1;
     default:
         return 0;

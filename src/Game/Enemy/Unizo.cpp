@@ -251,7 +251,7 @@ void Unizo::calcAndSetBaseMtx() {
     mBaseMtx.getYDir(baseUp);
     JMAVECScaleAdd(&baseUp, &position, &position, 126.36f * mRadiusScale * mAnimScaleController->_C.y);
 
-    f32 rollHeight = mRadiusScale * (mRollHeight * __fabsf(MR::sin(mFrame / sRollCycle)));
+    f32 rollHeight = mRadiusScale * (mRollHeight * MR::abs(MR::sin(mFrame / sRollCycle)));
     TVec3f horizontalVelocity;
     const TVec3f& velocity = mVelocity;
     const TVec3f& gravity = mGravity;

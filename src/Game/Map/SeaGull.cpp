@@ -157,7 +157,7 @@ void SeaGull::control() {
 }
 
 void SeaGull::updateHover() {
-    if (__fabsf(mBankAngle) > 0.01f) {
+    if (MR::abs(mBankAngle) > 0.01f) {
         mUp.set(mGravity);
         mUp.mult(-1.0f);
         mBankAngle = MR::clamp(mBankAngle, -30.0f, 30.0f);

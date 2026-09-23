@@ -31,20 +31,26 @@ public:
     MapPartsRotator(LiveActor*);
 
     enum AxisType {
-
+        AxisType_XAxis,
+        AxisType_YAxis,
+        AxisType_ZAxis
     };
 
-    virtual ~MapPartsRotator();
     virtual void init(const JMapInfoIter&);
     virtual bool isWorking() const;
     virtual void start();
     virtual void end();
     virtual const TMtx34f& getRotateMtx() const {
-        return _70;
+        return mRotateMtx;
     }
     virtual bool isMoving() const;
-    virtual bool isOnReverse() const;
-    virtual f32 getRotateSpeed() const;
+    virtual f32 getRotateSpeed() const {
+        return mRotateSpeed;
+    };
+    virtual bool isOnReverse() const {
+        return mIsOnReverse;
+    };
+
 
     void startWithSignalMotion();
     void cancelSignalMotion();
@@ -64,18 +70,26 @@ public:
     void exeRotate();
     void exeStopAtEnd();
 
-    f32 _18;
-    f32 mRotateAngle;      // 0x1C
-    s32 mRotateStopTime;   // 0x20
-    f32 mTargetAngle;      // 0x24
-    f32 mRotateSpeed;      // 0x28
-    f32 mAngle;            // 0x2C
-    s32 mRotateAxis;       // 0x30
-    s32 mRotateAccelType;  // 0x34
-    s32 mRotateType;       // 0x38
-    s32 mSignMotionType;   // 0x3C
-    TMtx34f _40;
-    TMtx34f _70;
-    f32 _A0;
-    bool mIsOnReverse;  // 0xA4
+    bool isAccelTypeConstantSpeed() {
+        return mRotateAccelType == 0 || mRotateAccelType == 2;
+    }
+
+    bool isRotateClockwise() const {
+        return 0.0f < _18;
+    }
+
+    /* 0x18 */ f32 _18;
+    /* 0x1C */ f32 mRotateAngle;
+    /* 0x20 */ s32 mRotateStopTime;
+    /* 0x24 */ f32 mTargetAngle;
+    /* 0x28 */ f32 mRotateSpeed;
+    /* 0x2C */ f32 mAngle;
+    /* 0x30 */ s32 mRotateAxis;
+    /* 0x34 */ s32 mRotateAccelType;
+    /* 0x38 */ s32 mRotateType;
+    /* 0x3C */ s32 mSignMotionType;
+    /* 0x40 */ TPos3f mBaseHostMtx;
+    /* 0x70 */ TPos3f mRotateMtx;
+    /* 0xA0 */ f32 _A0;
+    /* 0xA4 */ bool mIsOnReverse;
 };

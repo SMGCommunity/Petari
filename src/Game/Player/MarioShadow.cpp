@@ -226,7 +226,7 @@ void CollisionShadow::create(const TVec3f& rPosition, const TVec3f& rDirection, 
             const TVec3f& point = *_32C[_5C[i]].getPos(j);
             u32 k;
             for (k = 0; k < _6C; k++) {
-                if (__fabsf(_60[k].x - point.x) < tolerance && __fabsf(_60[k].y - point.y) < tolerance && __fabsf(_60[k].z - point.z) < tolerance) {
+                if (MR::abs(_60[k].x - point.x) < tolerance && MR::abs(_60[k].y - point.y) < tolerance && MR::abs(_60[k].z - point.z) < tolerance) {
                     break;
                 }
             }

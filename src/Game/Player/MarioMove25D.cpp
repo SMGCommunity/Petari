@@ -37,9 +37,9 @@ void Mario::update25Dmode() {
     f32 sideDot = up.dot(_6E8);
     f32 upDot = up.dot(_6DC);
     f32 normalDot = up.dot(_6D0);
-    f32 sideAbs = __fabsf(sideDot);
-    f32 upAbs = __fabsf(upDot);
-    f32 normalAbs = __fabsf(normalDot);
+    f32 sideAbs = MR::abs(sideDot);
+    f32 upAbs = MR::abs(upDot);
+    f32 normalAbs = MR::abs(normalDot);
     u8 mode;
     if (sideAbs > upAbs && sideAbs > normalAbs) {
         mode = sideDot > 0.0f ? 2 : 3;
@@ -106,7 +106,7 @@ void Mario::updateAxisFromMode(u8 mode) {
         MR::normalizeOrZero(&up);
         MR::normalizeOrZero(&planeUp);
         f32 dot = up.dot(planeUp);
-        if (__fabsf(dot) > 0.99f) {
+        if (MR::abs(dot) > 0.99f) {
             switch (mode) {
             case 0:
                 side = _6E8;

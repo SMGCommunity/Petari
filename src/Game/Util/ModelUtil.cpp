@@ -565,7 +565,7 @@ namespace MR {
         TVec3f f = boundingBox.f;
 
         TVec3f max;
-        max.set(MR::max(__fabsf(i.x), __fabsf(f.x)), MR::max(__fabsf(i.y), __fabsf(f.y)), MR::max(__fabsf(f.z), __fabsf(i.z)));
+        max.set(MR::max(MR::abs(i.x), MR::abs(f.x)), MR::max(MR::abs(i.y), MR::abs(f.y)), MR::max(MR::abs(i.z), MR::abs(f.z)));
 
         *pOut = max.length();
     }

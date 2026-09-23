@@ -208,7 +208,7 @@ void MapPartsSeesaw1AxisRotator::updateRestoreForce() {
     torque.cross(up, mInitialUp);
     f32 force = torque.dot(mRotateAxis);
 
-    if (MR::isNearZero(force) && __fabsf(mAngularVelocity) <= sAngularSpeedMin) {
+    if (MR::isNearZero(force) && MR::abs(mAngularVelocity) <= sAngularSpeedMin) {
         mAngularVelocity = 0.0f;
         return;
     }

@@ -4,8 +4,14 @@
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/MultiEventCamera.hpp"
+
+void SpinDriverCamera_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)2.0f;
+}
 
 SpinDriverCamera::SpinDriverCamera() : mCamera(), mTargetMtx(), mCameraInfo(), mAppearCameraFrame() {
 }
@@ -15,13 +21,13 @@ void SpinDriverCamera::startAppearCamera(LiveActor* pActor, const TVec3f& a2, co
         return;
     }
 
-    mAppearCameraFrame = MR::getMultiActorCameraFrames(pActor, mCameraInfo, "出現イベント用");
+    mAppearCameraFrame = MR::getMultiActorCameraFrames(pActor, mCameraInfo, "カメラターゲットダミー");
 
     if (mAppearCameraFrame <= 0) {
         return;
     }
 
-    MR::startMultiActorCameraTargetOther(pActor, mCameraInfo, "出現イベント用", CameraTargetArg(mTargetMtx), -1);
+    MR::startMultiActorCameraTargetOther(pActor, mCameraInfo, "カメラターゲットダミー", CameraTargetArg(mTargetMtx), -1);
 
     TPos3f upPos;
     MR::makeMtxUpFrontPos(&upPos, a2, a3, a4);
@@ -82,7 +88,28 @@ void SpinDriverCamera::end() {
     mCamera->changeTargetPlayer();
 }
 
-// SpinDriverCamera::updateTargetMatrix
+void SpinDriverCamera::updateTargetMatrix(const TVec3f& rRot, const TVec3f& rTrans) {
+    if (MR::isNearZero(rRot)) {
+        return;
+    }
+
+    TPos3f targetMtx = mTargetMtx->mMatrix;
+
+    TVec3f yDir;
+    targetMtx.getYDir(yDir);
+
+    TVec3f rotVec;
+    MR::normalize(rRot, &rotVec);
+
+    TPos3f rotMtx;
+    rotMtx.identity();
+    rotMtx.setRotate(yDir, rotVec);
+
+    targetMtx.concat(rotMtx, targetMtx);
+    targetMtx.setTrans(rTrans);
+
+    mTargetMtx->setMtx(targetMtx);
+}
 
 bool SpinDriverCamera::isUseAppearCamera(LiveActor* pActor) const {
     if (mCameraInfo == nullptr) {
@@ -106,7 +133,7 @@ void SpinDriverCamera::init(const JMapInfoIter& rIter, LiveActor* pActor) {
     mCamera->setUp(pActor->mName, new ActorCameraInfo(rIter), arg3);
     mCamera->setEndCameraTypeAtLanding();
 
-    mTargetMtx = new CameraTargetMtx("カメラターゲットダミー");
+    mTargetMtx = new CameraTargetMtx("出現イベント用");
 }
 
 void SpinDriverCamera::initAppearCamera(const JMapInfoIter& rIter, LiveActor* pActor) {

@@ -225,7 +225,7 @@ void TalkStateNormal::updateButton() {
     TVec3f centerPlayer(*MR::getPlayerCenterPos());
     MR::getPlayerUpVec(&up);
 
-    f32 f1 = __fabs(camZ.dot(up));
+    f32 f1 = MR::fabs(camZ.dot(up));
     f32 f2 = camY.dot(up);
     f1 = f1 * f1;
 

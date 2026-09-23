@@ -232,7 +232,7 @@ bool Mario::checkSidePress() {
                         mMovementStates._1 = false;
                         closeStatus(mHang);
                     }
-                    if (!mMovementStates._1 && __fabsf(firstNormal.dot(*getGravityVec())) < 0.707f) {
+                    if (!mMovementStates._1 && MR::abs(firstNormal.dot(*getGravityVec())) < 0.707f) {
                         if (!first->isCollisionAtFace()) {
                             TVec3f horizontal;
                             f32 vertical = MR::vecKillElement(first->mHitPos - center, *getGravityVec(), &horizontal);
@@ -294,7 +294,7 @@ bool Mario::checkSidePress() {
                         addVelocity(horizontal);
                         return false;
                     }
-                    if (__fabsf(firstNormal.dot(mHeadVec)) > 0.707f) {
+                    if (MR::abs(firstNormal.dot(mHeadVec)) > 0.707f) {
                         mActor->setPress(0, 0);
                     } else {
                         mActor->setPress(1, 0);

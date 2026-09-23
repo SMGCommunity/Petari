@@ -34,6 +34,6 @@ public:
     f32 _A0;
     TBox3f* _A4;
     TPos3f _A8;
-    TMtx34f _D8;
+    TPos3f _D8;
     ActorCameraInfo* mCameraInfo;  // 0x108
 };
