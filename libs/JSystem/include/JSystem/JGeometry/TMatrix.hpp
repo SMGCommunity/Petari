@@ -613,6 +613,44 @@ namespace JGeometry {
             this->mMtx[2][2] = c + negc * zz;
         }
 
+        void setRotateDegree(const TVec3f& rAxis, f32 angle) {
+            TVec3f vec;
+            vec.normalize(rAxis);
+
+            //
+            // DOES NOT MATCH {
+            // all of these have the exact same regswap pattern
+            //    MapPartsRotator::UpdateRotateMtx
+            // }
+            
+
+            f32 s = sin(angle * (PI / 180.0f));
+            f32 c = cos(angle * (PI / 180.0f));
+
+            f32 negc = 1.0f - c;
+
+            f32 x, y, z;
+
+            x = vec.x;
+            y = vec.y;
+            z = vec.z;
+
+            f32 xx, yy, zz;
+            xx = x * x;
+            yy = y * y;
+            zz = z * z;
+
+            this->mMtx[0][0] = c + negc * xx;
+            this->mMtx[0][1] = negc * x * y - s * z;
+            this->mMtx[0][2] = negc * x * z + s * y;
+            this->mMtx[1][0] = negc * x * y + s * z;
+            this->mMtx[1][1] = c + negc * yy;
+            this->mMtx[1][2] = negc * y * z - s * x;
+            this->mMtx[2][0] = negc * x * z - s * y;
+            this->mMtx[2][1] = negc * y * z + s * x;
+            this->mMtx[2][2] = c + negc * zz;
+        }
+
         void setRotate(const TVec3f& rFrom, const TVec3f& rTo) {
             TQuat4f q;
             q.setRotate(rFrom, rTo);
@@ -771,6 +809,11 @@ namespace JGeometry {
         void makeRotate(const TVec3f& rVec, f32 angle) {
             zeroTrans();
             TRotation3< T >::setRotate(rVec, angle);
+        }
+
+        void makeRotateDegree(const TVec3f& rVec, f32 angle) {
+            zeroTrans();
+            TRotation3< T >::setRotateDegree(rVec, angle);
         }
 
         void makeRotate(const TVec3f& rFrom, const TVec3f& rTo, f32 angle) {

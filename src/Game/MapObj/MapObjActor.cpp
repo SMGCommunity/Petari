@@ -498,11 +498,11 @@ bool MapObjActorUtil::isRailMoverReachedEnd(const MapObjActor* pActor) {
 }
 
 f32 MapObjActorUtil::getSeesaw1AxisAngularSpeed(const MapObjActor* pActor) {
-    return pActor->mRotator->_40.mMtx[2][2];
+    return pActor->mRotator->mBaseHostMtx.mMtx[2][2];
 }
 
 void MapObjActorUtil::forceRotateSeesaw1Axis(const MapObjActor* pActor, f32 a2) {
-    pActor->mRotator->_40.mMtx[2][3] = a2;
+    pActor->mRotator->mBaseHostMtx.mMtx[2][3] = a2;
 }
 
 void MapObjActorUtil::startRotator(const MapObjActor* pActor) {
