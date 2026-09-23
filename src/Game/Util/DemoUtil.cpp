@@ -586,7 +586,7 @@ namespace MR {
             return false;
         }
 
-        return getTalkDirector()->isSystemTalking();
+        return ::getTalkDirector()->isSystemTalking();
     }
 
     bool isNormalTalking() {
@@ -594,7 +594,7 @@ namespace MR {
             return false;
         }
 
-        return getTalkDirector()->isNormalTalking();
+        return ::getTalkDirector()->isNormalTalking();
     }
 
     LiveActor* getTalkingActor() {
@@ -602,7 +602,7 @@ namespace MR {
             return false;
         }
 
-        return getTalkDirector()->getTalkingActor();
+        return ::getTalkDirector()->getTalkingActor();
     }
 
     bool isDemoPartTalk(const char* pName) {

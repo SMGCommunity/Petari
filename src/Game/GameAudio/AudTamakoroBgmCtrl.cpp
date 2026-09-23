@@ -62,7 +62,7 @@ void AudTamakoroBgmCtrl::control(f32 speed, bool disabled, s32 frames) {
                         }
 
                         t0 = speed - ::sSpeedMin;
-                        t1 = sSpeedMax - ::sSpeedMin;
+                        t1 = ::sSpeedMax - ::sSpeedMin;
                         tempoRate = ::sTempoRateMin + (t0 / t1) * (::sTempoRateMax - ::sTempoRateMin);
                         pitchRate = ::sPitchRateNormal;
                     }

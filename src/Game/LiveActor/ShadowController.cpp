@@ -289,7 +289,7 @@ bool ShadowController::isCalcCollision() const {
     }
 
     if (_60 == 2) {
-        return _65 < sCollisionCountLimit;
+        return _65 < ::sCollisionCountLimit;
     }
 
     return true;
@@ -301,7 +301,7 @@ bool ShadowController::isCalcGravity() const {
     }
 
     if (_61 == 0 || _61 == 3) {
-        return _66 < sGravityCountLimit;
+        return _66 < ::sGravityCountLimit;
     }
 
     return true;

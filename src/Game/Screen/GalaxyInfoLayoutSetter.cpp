@@ -160,7 +160,7 @@ void GalaxyInfoLayoutSetter::setTextBoxStarNum(const char* pGalaxyName) {
 
     for (s32 i = 1; i <= accessor.getNormalScenarioNum(); i++) {
         if (MR::isOnGameEventFlagPowerStarSuccess(pGalaxyName, i)) {
-            addPictureFontStar(&pStarBase, &pStarIcon, pGalaxyName, i);
+            ::addPictureFontStar(&pStarBase, &pStarIcon, pGalaxyName, i);
         } else {
             pStarBase = MR::addPictureFontCode(pStarBase, 'R');
             pStarIcon = MR::addPictureFontCode(pStarIcon, '7');
@@ -171,7 +171,7 @@ void GalaxyInfoLayoutSetter::setTextBoxStarNum(const char* pGalaxyName) {
         MR::showPaneRecursive(mHost, "Complete");
 
         for (s32 i = accessor.getNormalScenarioNum() + 1; i <= accessor.getPowerStarNum(); i++) {
-            addPictureFontStar(&pStarBase, &pStarIcon, pGalaxyName, i);
+            ::addPictureFontStar(&pStarBase, &pStarIcon, pGalaxyName, i);
         }
     } else {
         MR::hidePaneRecursive(mHost, "Complete");
@@ -179,7 +179,7 @@ void GalaxyInfoLayoutSetter::setTextBoxStarNum(const char* pGalaxyName) {
         if (MR::isStarCompleteNormalScenario(pGalaxyName)) {
             for (s32 i = accessor.getNormalScenarioNum() + 1; i <= accessor.getPowerStarNum(); i++) {
                 if (MR::isOnGameEventFlagPowerStarSuccess(pGalaxyName, i)) {
-                    addPictureFontStar(&pStarBase, &pStarIcon, pGalaxyName, i);
+                    ::addPictureFontStar(&pStarBase, &pStarIcon, pGalaxyName, i);
                     continue;
                 }
 
@@ -206,7 +206,7 @@ void GalaxyInfoLayoutSetter::setTextBoxStarNum(const char* pGalaxyName) {
         } else {
             for (s32 i = accessor.getNormalScenarioNum() + 1; i <= accessor.getPowerStarNum(); i++) {
                 if (MR::isOnGameEventFlagPowerStarSuccess(pGalaxyName, i)) {
-                    addPictureFontStar(&pStarBase, &pStarIcon, pGalaxyName, i);
+                    ::addPictureFontStar(&pStarBase, &pStarIcon, pGalaxyName, i);
                 }
             }
         }

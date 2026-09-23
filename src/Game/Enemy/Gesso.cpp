@@ -208,7 +208,7 @@ void Gesso::exeWalkCharge() {
         }
     }
     mVelocity.mult(0.995f);
-    if (MR::isStep(this, sStepForWalk)) {
+    if (MR::isStep(this, ::sStepForWalk)) {
         mIsMarioLeft = isMarioLeft();
         setNerve(GET_NERVE(Gesso, GessoNrvWalk));
     }

@@ -1247,7 +1247,7 @@ namespace MR {
         TVec3f stack_8;
         calcFrontVec(&stack_8, pActor);
         moveAndTurnToDirection(pActor, &stack_8, rA2, a3, a4, a5, a6);
-        calcRotate(pActor, stack_8, a6);
+        ::calcRotate(pActor, stack_8, a6);
     }
 
     void moveAndTurnToTarget(LiveActor* pActor, const TVec3f& rA2, f32 a3, f32 a4, f32 a5, f32 a6) {
@@ -1256,7 +1256,7 @@ namespace MR {
         normalizeOrZero(&stack_14);
         TVec3f stack_8 = rA2 - pActor->mPosition;
         moveAndTurnToDirection(pActor, &stack_14, stack_8, a3, a4, a5, a6);
-        calcRotate(pActor, stack_14, a6);
+        ::calcRotate(pActor, stack_14, a6);
     }
 
     void moveAndTurnToPlayer(LiveActor* pActor, f32 a2, f32 a3, f32 a4, f32 a5) {

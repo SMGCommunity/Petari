@@ -245,7 +245,7 @@ namespace MR {
         s32 id = MR::getDummyDisplayModelId(rIter, -1);
 
         if (id >= 0) {
-            pCollector->addArchive(cDummyDisplayModelInfoTable[id].mName);
+            pCollector->addArchive(::cDummyDisplayModelInfoTable[id].mName);
         }
     }
 };  // namespace MR

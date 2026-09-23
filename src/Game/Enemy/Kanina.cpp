@@ -338,7 +338,7 @@ bool Kanina::receivePunch(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (isPlayerBackward(::sBackwardAngle)) {
-        MR::stopScene(sStopSceneTimePunchBackword);
+        MR::stopScene(::sStopSceneTimePunchBackword);
         doDamageFireBall(pSender, pReceiver);
         return true;
     }

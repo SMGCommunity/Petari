@@ -40,7 +40,7 @@ CoconutTreeLeaf::CoconutTreeLeaf(const CoconutTreeLeafGroup* pGroup, MtxPtr pJoi
       mWindStep(), mWindStartStep(), mWindAccel(0.0f), mWindDirection(pWindDirection) {
     mPosition.set< f32 >(pJointMtx[0][3], pJointMtx[1][3], pJointMtx[2][3]);
     mRestTipPosition.set(mAxisZ);
-    mRestTipPosition.mult(sPointInterval);
+    mRestTipPosition.mult(::sPointInterval);
     mRestTipPosition.add(mPosition);
     mTipPosition.set(mRestTipPosition);
 }
@@ -54,22 +54,22 @@ void CoconutTreeLeaf::init(const JMapInfoIter& rIter) {
 }
 
 void CoconutTreeLeaf::update(f32 windAccel, f32 windRandomAccel) {
-    f32 springAccelRate = sSpringAccelRateFree;
-    f32 friction = sFrictionFree;
-    f32 gravity = sGravityFree;
+    f32 springAccelRate = ::sSpringAccelRateFree;
+    f32 friction = ::sFrictionFree;
+    f32 gravity = ::sGravityFree;
 
     if (MR::isOnPlayer(this)) {
         mWindStep = 0;
-        mWindStartStep = sSteptoWindStartAfterLand;
-        springAccelRate = sSpringAccelRateLand;
-        friction = sFrictionLand;
-        gravity = sGravityLand;
+        mWindStartStep = ::sSteptoWindStartAfterLand;
+        springAccelRate = ::sSpringAccelRateLand;
+        friction = ::sFrictionLand;
+        gravity = ::sGravityLand;
     } else if (mWindStep > 0) {
         mVelocity.add(mWindAccel);
         mWindStep--;
 
         if (mWindStep <= 0) {
-            mWindStartStep = MR::getRandom(sStepToWindStartMin, sStepToWindStartMax);
+            mWindStartStep = MR::getRandom(::sStepToWindStartMin, ::sStepToWindStartMax);
         }
     } else {
         mWindStartStep--;
@@ -82,7 +82,7 @@ void CoconutTreeLeaf::update(f32 windAccel, f32 windRandomAccel) {
             randomAccel.scale(windRandomAccel * MR::getRandom(-1.0f, 1.0f));
             mWindAccel.add(randomAccel);
 
-            mWindStep = MR::getRandom(sStepWindMin, sStepWindMax);
+            mWindStep = MR::getRandom(::sStepWindMin, ::sStepWindMax);
         }
     }
 
@@ -114,7 +114,7 @@ void CoconutTreeLeaf::update(f32 windAccel, f32 windRandomAccel) {
     }
 
     TVec3f up(*mWindDirection);
-    up.scale(sAxisLeanRateY * lean);
+    up.scale(::sAxisLeanRateY * lean);
     up.add(mRestUp);
 
     TVec3f axisX(mAxisX);
@@ -131,7 +131,7 @@ void CoconutTreeLeaf::update(f32 windAccel, f32 windRandomAccel) {
     MR::normalize(&mAxisY);
     MR::setMtxAxisXYZ(mJointMtx, mAxisX, mAxisY, mAxisZ);
 
-    if (mGroup->mDistanceToPlayer < sDistanceNear && (MR::isOnGroundPlayer() || MR::getPlayerVelocity()->dot(mAxisY) <= 0.0f)) {
+    if (mGroup->mDistanceToPlayer < ::sDistanceNear && (MR::isOnGroundPlayer() || MR::getPlayerVelocity()->dot(mAxisY) <= 0.0f)) {
         if (!MR::isValidCollisionParts(this)) {
             MR::validateCollisionParts(this);
         } else {
@@ -145,7 +145,7 @@ void CoconutTreeLeaf::update(f32 windAccel, f32 windRandomAccel) {
 bool CoconutTreeLeaf::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerHipDropFloor(msg)) {
         TVec3f accel(mRestUp);
-        accel.scale(-sHipDropAccel);
+        accel.scale(-::sHipDropAccel);
         mVelocity.add(accel);
         return true;
     }
@@ -193,15 +193,15 @@ void CoconutTreeLeafGroup::endClipped() {
 
 void CoconutTreeLeafGroup::control() {
     mDistanceToPlayer = MR::calcDistanceToPlayer(this);
-    f32 windAccel = sWindAccelMiddle;
-    f32 windRandomAccel = sWindRandomAccelMiddle;
+    f32 windAccel = ::sWindAccelMiddle;
+    f32 windRandomAccel = ::sWindRandomAccelMiddle;
 
-    if (mDistanceToPlayer < sDistanceNear) {
-        windAccel = sWindAccelNear;
-        windRandomAccel = sWindRandomAccelNear;
-    } else if (mDistanceToPlayer > sDistanceFar) {
-        windAccel = sWindAccelFar;
-        windRandomAccel = sWindRandomAccelFar;
+    if (mDistanceToPlayer < ::sDistanceNear) {
+        windAccel = ::sWindAccelNear;
+        windRandomAccel = ::sWindRandomAccelNear;
+    } else if (mDistanceToPlayer > ::sDistanceFar) {
+        windAccel = ::sWindAccelFar;
+        windRandomAccel = ::sWindRandomAccelFar;
     }
 
     for (s32 i = 0; i < mNumLeaves; i++) {

@@ -401,8 +401,8 @@ namespace {
 void GalaxyMap::initPaneCtrlPointing() {
     JMapInfo galaxyInfo;
     galaxyInfo.attach(&GalaxyIDBCSV);
-    initIconArray(mIcon, new GalaxyMapIcon*[galaxyInfo.getNumEntries()], galaxyInfo.getNumEntries());
-    initIconArray(mCometIcon, new GalaxyMapCometIcon*[galaxyInfo.getNumEntries()], galaxyInfo.getNumEntries());
+    ::initIconArray(mIcon, new GalaxyMapIcon*[galaxyInfo.getNumEntries()], galaxyInfo.getNumEntries());
+    ::initIconArray(mCometIcon, new GalaxyMapCometIcon*[galaxyInfo.getNumEntries()], galaxyInfo.getNumEntries());
     initPointingTarget(galaxyInfo.getNumEntries());
 
     for (s32 i = 0; i < galaxyInfo.getNumEntries(); i++) {
@@ -420,7 +420,7 @@ void GalaxyMap::initPaneCtrlPointing() {
         galaxyInfo.getValue(i, "name", &pGalaxyName);
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
         MR::createAndAddPaneCtrl(this, pPaneName, 1);
-        MR::addStarPointerTargetCircle(this, pPaneName, sPointingRange, TVec2f(0.0f, 0.0f), nullptr);
+        MR::addStarPointerTargetCircle(this, pPaneName, ::sPointingRange, TVec2f(0.0f, 0.0f), nullptr);
 
         GalaxyMapIcon* pIcon = new GalaxyMapIcon(pGalaxyName, this, pPaneName);
         pIcon->initWithoutIter();
@@ -477,11 +477,11 @@ void GalaxyMap::initMarioIcon() {
         scenarioNo = MR::getCurrentScenarioNo();
     }
 
-    mMarioIcon1 = createMarioIcon(this, cMarioIconPositions[scenarioNo]);
-    const char* pDomePosition = cMarioIconPositionsInDome[scenarioNo];
+    mMarioIcon1 = ::createMarioIcon(this, ::cMarioIconPositions[scenarioNo]);
+    const char* pDomePosition = ::cMarioIconPositionsInDome[scenarioNo];
 
     if (pDomePosition != nullptr) {
-        mMarioIcon2 = createMarioIcon(this, pDomePosition);
+        mMarioIcon2 = ::createMarioIcon(this, pDomePosition);
     }
 }
 

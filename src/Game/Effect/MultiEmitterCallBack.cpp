@@ -197,9 +197,9 @@ void MultiEmitterCallBack::setColor(JPABaseEmitter* pEmitter) {
     GXColor envColor;
     prmColor = pEmitter->mGlobalPrmClr;
     envColor = pEmitter->mGlobalEnvClr;
-    Color8 syntheticPrm = getSyntheticColor(prmColor, mPrmColor);
+    Color8 syntheticPrm = ::getSyntheticColor(prmColor, mPrmColor);
     pEmitter->setGlobalPrmColor(syntheticPrm.r, syntheticPrm.g, syntheticPrm.b);
-    Color8 syntheticEnv = getSyntheticColor(prmColor, mEnvColor);
+    Color8 syntheticEnv = ::getSyntheticColor(prmColor, mEnvColor);
     pEmitter->setGlobalEnvColor(syntheticEnv.r, syntheticEnv.g, syntheticEnv.b);
 }
 

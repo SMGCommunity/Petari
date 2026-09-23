@@ -145,8 +145,8 @@ LayoutManager::LayoutManager(const char* pLayoutName, bool useArchiveNamePrefix,
     char fileName[0x40];
     MR::copyString(fileName, pLayoutName, sizeof(fileName));
 
-    for (u32 i = 0; i < ARRAY_SIZE(cRemoveString); i++) {
-        char* pos = strstr(fileName, cRemoveString[i]);
+    for (u32 i = 0; i < ARRAY_SIZE(::cRemoveString); i++) {
+        char* pos = strstr(fileName, ::cRemoveString[i]);
 
         if (pos != nullptr) {
             pos[0] = '\0';

@@ -222,7 +222,7 @@ void FileSelector::control() {
     for (int i = 0; i < mItems->getObjNum(); i++) {
         LiveActor* pActor = mItems->getActor(i);
         TVec3f& rEffectPosition = mSelectEffect[i].mPosition;
-        rEffectPosition.set(pActor->mPosition + TVec3f(0.0f, sSelectEffectOffset, 0.0f));
+        rEffectPosition.set(pActor->mPosition + TVec3f(0.0f, ::sSelectEffectOffset, 0.0f));
     }
 
     updateBgm();
@@ -591,7 +591,7 @@ void FileSelector::calcBasePos(f32 offset) {
     translation.makeTrans(0.0f, offset, 0.0f);
 
     TPos3f rotation;
-    rotation.makeRotate(TVec3f(1.0f, 0.0f, 0.0f), sSlopeDegree * PI / 180.0f);
+    rotation.makeRotate(TVec3f(1.0f, 0.0f, 0.0f), ::sSlopeDegree * PI / 180.0f);
 
     TPos3f transform;
     transform.concat(translation, rotation);
@@ -601,10 +601,10 @@ void FileSelector::calcBasePos(f32 offset) {
             continue;
         }
 
-        f32 theta = static_cast< f32 >(-(i + 4)) * thetaStep - sItemThetaOffset[i] * PI / 180.0f;
+        f32 theta = static_cast< f32 >(-(i + 4)) * thetaStep - ::sItemThetaOffset[i] * PI / 180.0f;
         f32 cosTheta = MR::cos(theta);
         f32 sinTheta = MR::sin(theta);
-        _98[i].set(sItemPosRadius * cosTheta, 0.0f, sItemPosRadius * sinTheta);
+        _98[i].set(::sItemPosRadius * cosTheta, 0.0f, ::sItemPosRadius * sinTheta);
         transform.mult(_98[i], _98[i]);
     }
 }

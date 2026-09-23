@@ -178,10 +178,10 @@ bool TurnJointCtrl::updateJointMtxCallBack(TPos3f* pMtx, const Ctrl& rCtrl) {
 
         if (verticalAxis.dot(cross) > 0.0f) {
             const f32 rate = mCtrlRate->_0;
-            makeMtxRotVecDegree(rotation, projected, front, mPositiveDegreeMax * rate);
+            ::makeMtxRotVecDegree(rotation, projected, front, mPositiveDegreeMax * rate);
         } else {
             const f32 rate = mCtrlRate->_0;
-            makeMtxRotVecDegree(rotation, projected, front, mNegativeDegreeMax * rate);
+            ::makeMtxRotVecDegree(rotation, projected, front, mNegativeDegreeMax * rate);
         }
 
         PSMTXConcat(rotation, result, result);
@@ -195,7 +195,7 @@ bool TurnJointCtrl::updateJointMtxCallBack(TPos3f* pMtx, const Ctrl& rCtrl) {
         MR::vecBlendSphere(front, projected, &projected, rCtrl.mBlendRate);
 
         const f32 rate = mCtrlRate->_0;
-        makeMtxRotVecDegree(rotation, projected, front, mHorizontalDegreeMax * rate);
+        ::makeMtxRotVecDegree(rotation, projected, front, mHorizontalDegreeMax * rate);
         PSMTXConcat(rotation, result, result);
     }
 

@@ -49,7 +49,7 @@ OceanWaveFloater::OceanWaveFloater(const char* pName) : MapObjActor(pName), mSpr
 void OceanWaveFloater::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
 
-    mForce = new WaveFloatingForce(this, getParam(mObjectName)->mStepCount, getParam(mObjectName)->mAmplitude, true);
+    mForce = new WaveFloatingForce(this, ::getParam(mObjectName)->mStepCount, ::getParam(mObjectName)->mAmplitude, true);
 
     MapObjActorInitInfo info = MapObjActorInitInfo();
     info.setupHioNode("地形オブジェ");
@@ -59,7 +59,7 @@ void OceanWaveFloater::init(const JMapInfoIter& rIter) {
     info.setupSound(4);
     info.setupNoAppearRiddleSE();
 
-    if (getParam(mObjectName)->mIsUseProjmap) {
+    if (::getParam(mObjectName)->mIsUseProjmap) {
         info.setupProjmapMtx(false);
     }
 
@@ -151,11 +151,11 @@ f32 OceanWaveFloater::getCurrentSinkDepth() const {
 }
 
 void OceanWaveFloater::controlEffect() {
-    f32 paramVal = getParam(mObjectName)->mSinkDepth;
+    f32 paramVal = ::getParam(mObjectName)->mSinkDepth;
     if (paramVal < getCurrentSinkDepth() && !mCanRipple) {
         MR::deleteEffect(this, "Ripple");
         mCanRipple = true;
-    } else if (getCurrentSinkDepth() < getParam(mObjectName)->mRippleHeight && mCanRipple) {
+    } else if (getCurrentSinkDepth() < ::getParam(mObjectName)->mRippleHeight && mCanRipple) {
         MR::emitEffect(this, "Ripple");
         mCanRipple = false;
     }

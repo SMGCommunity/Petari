@@ -72,7 +72,7 @@ void TeresaWater::exeMove() {
         MR::startBck(this, "Wait");
     }
 
-    MR::moveAndTurnToTarget(this, &_94, *_B8, sMoveParam._0, sMoveParam._4, sMoveParam._8, sMoveParam._C);
+    MR::moveAndTurnToTarget(this, &_94, *_B8, ::sMoveParam._0, ::sMoveParam._4, ::sMoveParam._8, ::sMoveParam._C);
     MR::attenuateVelocityExceptDirection(this, _94, ::sSideFriction);
 
     if (MR::isNear(this, *_B8, ::sTargetRadius)) {

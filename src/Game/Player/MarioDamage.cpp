@@ -464,13 +464,13 @@ bool MarioDamage::start() {
     _18 = 0;
     if (_1C.dot(getPlayer()->mFrontVec) > 0.0f) {
         changeAnimationNonStop("中後ダメージ");
-        _28 = sBackDamageAirAnimation;
-        _2C = sBackDamageLandAnimation;
+        _28 = ::sBackDamageAirAnimation;
+        _2C = ::sBackDamageLandAnimation;
         getPlayer()->setFrontVecKeepUp(_1C);
     } else {
         changeAnimationNonStop("中ダメージ");
-        _28 = sDamageAirAnimation;
-        _2C = sDamageLandAnimation;
+        _28 = ::sDamageAirAnimation;
+        _2C = ::sDamageLandAnimation;
         getPlayer()->setFrontVecKeepUp(-_1C);
     }
 

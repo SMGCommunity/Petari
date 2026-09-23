@@ -36,7 +36,7 @@ SnowFloorTile::SnowFloorTile(const char* pName) : LiveActor(pName), _F8(), _FC()
 
 void SnowFloorTile::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    mTextureSize = sTextureSize * mScale.x;
+    mTextureSize = ::sTextureSize * mScale.x;
     mTextureShift = 0;
     u32 size = mTextureSize;
 
@@ -48,7 +48,7 @@ void SnowFloorTile::init(const JMapInfoIter& rIter) {
         mTextureShift++;
     }
 
-    mCellSize = 128.0f * mScale.x / sTextureSize;
+    mCellSize = 128.0f * mScale.x / ::sTextureSize;
     initHitSensor(1);
     MR::addHitSensorEye(this, "eye", 16, 1.4142f * (mTextureSize * mCellSize), TVec3f(0.0f, 0.0f, 0.0f));
     mSnowDepth = new f32[mTextureSize * mTextureSize];
@@ -166,13 +166,13 @@ void SnowFloorTile::createReduceMap(u16 size) {
 void SnowFloorTile::digPlayerWalk(const TVec3f& rPoint) {
     TVec2f point(rPoint.x, rPoint.y);
     MR::setPlayerWalkingResist(0.1f);
-    doMove(mLastPlayerPoint, point, 20.0f / mCellSize, cPlayerDigAmount);
+    doMove(mLastPlayerPoint, point, 20.0f / mCellSize, ::cPlayerDigAmount);
     mLastPlayerPoint = point;
 }
 
 void SnowFloorTile::digDpd(const TVec3f& rPoint) {
     TVec2f point(rPoint.x, rPoint.y);
-    s32 volume = doMove(mLastDpdPoint, point, 50.0f / mCellSize, cDpdDigAmount) / 200.0f;
+    s32 volume = doMove(mLastDpdPoint, point, 50.0f / mCellSize, ::cDpdDigAmount) / 200.0f;
 
     if (volume > 100) {
         volume = 100;
@@ -193,13 +193,13 @@ void SnowFloorTile::control() {
     }
 
     if (MR::isPlayerSwingAction()) {
-        if (doErase(*MR::getPlayerPos(), cSwingDigRadius, cSwingDigAmount)) {
+        if (doErase(*MR::getPlayerPos(), ::cSwingDigRadius, ::cSwingDigAmount)) {
             MR::startLevelSound(this, "SE_OJ_LV_SNOW_ERASE");
         }
 
         changed = true;
     } else if (MR::isPlayerHipDropLand()) {
-        if (doErase(*MR::getPlayerPos(), cHipdropDigRadius, cHipdropDigAmount)) {
+        if (doErase(*MR::getPlayerPos(), ::cHipdropDigRadius, ::cHipdropDigAmount)) {
             MR::startLevelSound(this, "SE_OJ_LV_SNOW_ERASE");
         }
 
@@ -390,12 +390,12 @@ void SnowFloorTile::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         if (MR::isEqualString(pReceiver->mHost->mName, "マリオ炎球")) {
             TVec3f localPoint;
             calcLocalPoint(pReceiver->mPosition, &localPoint, 200.0f);
-            doErase(TVec2f(localPoint.x, localPoint.y), 30.0f / mCellSize, cHipdropDigAmount);
+            doErase(TVec2f(localPoint.x, localPoint.y), 30.0f / mCellSize, ::cHipdropDigAmount);
         } else if (pReceiver->mHost->getBaseMtx()) {
             TVec3f up;
             MR::calcUpVec(&up, pReceiver->mHost);
             TVec3f position(pReceiver->mPosition - up * (pReceiver->mRadius - 20.0f));
-            doErase(position, 20.0f, cFireballDigAmount);
+            doErase(position, 20.0f, ::cFireballDigAmount);
         }
 
         mDirtyFrames = 2;
@@ -411,15 +411,15 @@ void SnowFloorTile::draw() const {
     GXSetAlphaCompare(GX_GREATER, 1, GX_AOP_AND, GX_ALWAYS, 0);
     GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_C1, GX_CC_ONE, GX_CC_ZERO);
 
-    for (u32 i = 0; i < static_cast< u32 >(sLayerCount); i++) {
-        u8 threshold = i * (240 / sLayerCount) + 1;
+    for (u32 i = 0; i < static_cast< u32 >(::sLayerCount); i++) {
+        u8 threshold = i * (240 / ::sLayerCount) + 1;
         Color8 alpha(threshold, threshold, threshold, threshold);
         GXSetTevColor(GX_TEVREG0, alpha);
         GXSetAlphaCompare(GX_GREATER, threshold, GX_AOP_AND, GX_ALWAYS, 0);
-        s32 r = sColorR + i * sColorStepR;
-        s32 g = sColorG + i * sColorStepG;
-        s32 b = sColorB + i * sColorStepB;
-        s32 a = sColorA + i * sColorStepA;
+        s32 r = ::sColorR + i * ::sColorStepR;
+        s32 g = ::sColorG + i * ::sColorStepG;
+        s32 b = ::sColorB + i * ::sColorStepB;
+        s32 a = ::sColorA + i * ::sColorStepA;
         MR::clamp(static_cast< s32 >(r), 0L, 255L);
         MR::clamp(static_cast< s32 >(g), 0L, 255L);
         MR::clamp(static_cast< s32 >(b), 0L, 255L);
@@ -438,8 +438,8 @@ void SnowFloorTile::drawLayer(s32 layer) const {
     p2 = mRight * mTextureSize * mCellSize + mForward * mTextureSize * mCellSize;
     p3 = -mRight * mTextureSize * mCellSize + mForward * mTextureSize * mCellSize;
 
-    for (u32 i = 0; i < sStripCount; i++) {
-        TVec3f center(mPosition + mUp * (5.0f + sLayerHeight * layer));
+    for (u32 i = 0; i < ::sStripCount; i++) {
+        TVec3f center(mPosition + mUp * (5.0f + ::sLayerHeight * layer));
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
         TDDraw::sendPoint(center + p0);
         GXTexCoord2f32(0.0f, 0.0f);

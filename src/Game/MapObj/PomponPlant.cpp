@@ -26,8 +26,8 @@ void PomponPlant::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm(modelName, nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
-    MR::addHitSensorMapObj(this, "body", 8, sSensorRadius, TVec3f(sSensorOffset));
-    MR::initStarPointerTarget(this, sSensorRadius, TVec3f(sSensorOffset));
+    MR::addHitSensorMapObj(this, "body", 8, ::sSensorRadius, TVec3f(::sSensorOffset));
+    MR::initStarPointerTarget(this, ::sSensorRadius, TVec3f(::sSensorOffset));
     initEffectKeeper(0, nullptr, false);
     initSound(2, false);
     MR::getJMapInfoArg0NoInit(rIter, &mItemType);
@@ -69,7 +69,7 @@ bool PomponPlant::tryGenItem() {
     MR::calcGravityVector(this, &gravity, nullptr, 0);
     TVec3f playerMove(*MR::getPlayerLastMove());
     MR::vecKillElement(playerMove, -gravity, &playerMove);
-    TVec3f velocity(-gravity * sItemSpeed + playerMove * sPlayerVelFactor);
+    TVec3f velocity(-gravity * ::sItemSpeed + playerMove * ::sPlayerVelFactor);
 
     if (mItemType == 0) {
         MR::appearStarPiece(this, getSensor("body")->mPosition, mItemCount, 10.0f, 40.0f, false);

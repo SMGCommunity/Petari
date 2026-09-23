@@ -148,7 +148,7 @@ void BegomanLauncher::exeLaunch() {
         MR::startSound(this, "SE_EM_BEGOMANLAUN_LAUNCH");
     }
 
-    if (MR::isGreaterStep(this, sLaunchTime)) {
+    if (MR::isGreaterStep(this, ::sLaunchTime)) {
         if (mLaunchType == 2) {
             BegomanBase::launchBegomanBabyLauncher(this, reinterpret_cast< BegomanBaby** >(mBegomanArray), mBegomanCount, 100.0f, 10.0f, 30.0f,
                                                    nullptr);

@@ -116,7 +116,7 @@ namespace {
 }  // namespace
 
 bool CounterLayoutController::isHiddenOrWaitAllLayout() const {
-    return isHiddenOrWait(mCoinCounter) && isHiddenOrWait(mStarPieceCounter) && isHiddenOrWait(mPlayerLeft) && isHiddenOrWait(mStarCounter);
+    return ::isHiddenOrWait(mCoinCounter) && ::isHiddenOrWait(mStarPieceCounter) && ::isHiddenOrWait(mPlayerLeft) && ::isHiddenOrWait(mStarCounter);
 }
 
 bool CounterLayoutController::isPlayerMoving() const {

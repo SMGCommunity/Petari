@@ -148,10 +148,10 @@ void DinoPackun::initTail() {
 
     for (u32 i = 0; i < 7; i++) {
         DinoPackunTailPart* p = new DinoPackunTailPart("尻尾ジョイント", this);
-        MR::copyJointPos(this, sJointName[i], &p->mPosition);
-        p->createJointController(this, sJointName[i]);
-        f32 r = sJointRadius[i];
-        p->mKeepBendPower = sKeepBendPower[i];
+        MR::copyJointPos(this, ::sJointName[i], &p->mPosition);
+        p->createJointController(this, ::sJointName[i]);
+        f32 r = ::sJointRadius[i];
+        p->mKeepBendPower = ::sKeepBendPower[i];
         p->_D4 = r;
 
         if (i >= 3) {
@@ -237,7 +237,7 @@ void DinoPackun::initCamera(const JMapInfoIter& rIter) {
 }
 
 void DinoPackun::initScaleJointController() {
-    _B8 = new AnimScaleController(&sParam);
+    _B8 = new AnimScaleController(&::sParam);
     _B4 = MR::createJointDelegatorWithNullChildFunc(this, &DinoPackun::hitScaleJoint, "Spine1");
 }
 

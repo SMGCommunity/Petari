@@ -122,8 +122,8 @@ void KoopaShockWave::exeWaveAttack() {
     mAngle = MR::calcNerveValue(this, 360, 0.0f, 180.0f);
 
     f32 scale = MR::cosDegree(mAngle);
-    makeShockWaveMtx(&mBaseMtx, mUp, mFront, KoopaFunction::getPlanetCenterPos(mKoopa), scale, 1300.0f);
-    makeShockWaveMtx(&mMtx, mUp, mFront, KoopaFunction::getPlanetCenterPos(mKoopa), scale, 1260.0f);
+    ::makeShockWaveMtx(&mBaseMtx, mUp, mFront, KoopaFunction::getPlanetCenterPos(mKoopa), scale, 1300.0f);
+    ::makeShockWaveMtx(&mMtx, mUp, mFront, KoopaFunction::getPlanetCenterPos(mKoopa), scale, 1260.0f);
 
     f32 frame = MR::sinDegree(mAngle) * 10.0f;
     MR::setBckFrameAndStop(this, frame);

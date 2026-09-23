@@ -162,12 +162,12 @@ namespace MR {
 
     void addBaseMatrixFollower(BaseMatrixFollower* pFollower) {
         createSceneObj(SceneObj_BaseMatrixFollowTargetHolder);
-        getBaseMatrixFollowTargetHolder()->addFollower(pFollower);
+        ::getBaseMatrixFollowTargetHolder()->addFollower(pFollower);
     }
 
     void addBaseMatrixFollowTarget(LiveActor* pActor, const JMapInfoIter& rIter, const TPos3f* pBaseMtx, BaseMatrixFollowValidater* pValidater) {
         if (isValidInfo(rIter) && isExistSceneObj(SceneObj_BaseMatrixFollowTargetHolder)) {
-            getBaseMatrixFollowTargetHolder()->setFollowTargetInfo(pActor, rIter, pBaseMtx, pValidater);
+            ::getBaseMatrixFollowTargetHolder()->setFollowTargetInfo(pActor, rIter, pBaseMtx, pValidater);
         }
     }
 }  // namespace MR
