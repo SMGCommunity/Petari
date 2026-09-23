@@ -1077,8 +1077,8 @@ namespace JGeometry {
         void setEulerY(T _y) {
             f32 s = sin(_y * 0.5f);
             f32 c = cos(_y * 0.5f);
-            this->y = s;
             this->x = 0.0f;
+            this->y = s;
             this->z = 0.0f;
             this->w = c;
         }

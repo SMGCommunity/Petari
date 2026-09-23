@@ -63,7 +63,6 @@ void TripodBossGuardWallPart::control() {
 }
 
 void TripodBossGuardWallPart::calcAndSetBaseMtx() {
-    // FIXME: float swap in setEulerY
     TPos3f mtx;
     mtx.identity();
     mtx.setEulerY(MR::toRadian(mPlacementAngle));

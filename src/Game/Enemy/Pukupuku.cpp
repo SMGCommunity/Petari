@@ -325,14 +325,9 @@ void Pukupuku::updatePoseByRailIgnoreUpScale() {
 }
 
 void Pukupuku::rotatePoseByLocalZ() {
-    Quaternion quat;
-    f32 _s = sin(1.5707963705062866);
-    f32 _c = cos(1.5707963705062866);
-    quat.x = 0.0f;
-    quat.y = 0.0f;
-    quat.z = _s;
-    quat.w = _c;
-    PSQUATMultiply(&_A8, &quat, &_A8);
+    TQuat4f rotZ;
+    rotZ.setEulerZ(MR::pi());
+    _A8.mult(_A8, rotZ);
 }
 
 void Pukupuku::calcGroundHitMtx(TPos3f* pMtx) const {

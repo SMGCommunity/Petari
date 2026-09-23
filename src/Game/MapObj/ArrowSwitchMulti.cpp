@@ -7,7 +7,14 @@
 #include "Game/Util/JMapIdInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+
+namespace {
+
+    static const f32 sPunchVelocit = 6.0f;
+    static const s32 sFreqRotY = 4;
+};  // namespace
 
 namespace NrvArrowSwitchMulti {
     NEW_NERVE(ArrowSwitchMultiNrvWait, ArrowSwitchMulti, Wait);
@@ -95,25 +102,12 @@ void ArrowSwitchMulti::control() {
 
 void ArrowSwitchMulti::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
-    MtxPtr baseMtx = getBaseMtx();
     TPos3f pos;
-    pos.setInline(baseMtx);
-    TMtx34f tr_mtx;
-    tr_mtx.identity();
-    f32 v11 = _A0;
-    v11 = v11 * PI_180;
-    f32 v12 = sin(v11);
-    f32 v13 = cos(v11);
-    tr_mtx.mMtx[0][2] = v12;
-    tr_mtx.mMtx[1][1] = 1.0f;
-    tr_mtx.mMtx[0][0] = v13;
-    tr_mtx.mMtx[2][0] = -v12;
-    tr_mtx.mMtx[2][2] = v13;
-    tr_mtx.mMtx[2][1] = 0.0f;
-    tr_mtx.mMtx[1][2] = 0.0f;
-    tr_mtx.mMtx[1][0] = 0.0f;
-    tr_mtx.mMtx[0][1] = 0.0f;
-    pos.concat(pos, tr_mtx);
+    pos.set(getBaseMtx());
+    TPos3f rot;
+    rot.identity();
+    rot.setEulerY(MR::toRadian(_A0));
+    pos.concat(pos, rot);
     MR::setBaseTRMtx(this, pos);
 }
 

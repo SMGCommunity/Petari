@@ -161,12 +161,12 @@ void ArrowSwitch::listenOnSwitch() {
         break;
     case SwitchType_QuarterMinus:
         mIsRotPlus = false;
-        mRotSpeed = ::sPunchVelocit;
+        mRotSpeed = -::sPunchVelocit;
         mRotYTargetIndex = Direction_Down;
         break;
     case SwitchType_HalfPlus:
         mIsRotPlus = true;
-        mRotSpeed = -::sPunchVelocit;
+        mRotSpeed = ::sPunchVelocit;
         mRotYTargetIndex = Direction_Right;
         break;
     case SwitchType_HalfMinus:

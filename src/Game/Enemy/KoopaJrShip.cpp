@@ -128,7 +128,7 @@ void KoopaJrShip::kill() {
 }
 
 void KoopaJrShip::control() {
-    _EC = MR::repeat(_EC + mPropRotateSpeed, 0.0f, 360.0f);
+    _EC = MR::repeatDegree(_EC + mPropRotateSpeed);
 
     mPropellerMtx.setEulerY(MR::toRadian(_EC));
     mScrew00Mtx.setEulerZ(MR::toRadian(_EC));

@@ -100,7 +100,7 @@ void OceanWaveFloater::initAfterPlacement() {
 
     if (mMatrixSetter != nullptr) {
         TVec3f offset(0.0f, mOffset, 0.0f);
-        mMatrixSetter->updateMtxUseBaseMtxWithLocalOffset(offset);
+        mMatrixSetter->updateMtxUseBaseMtxWithLocalOffset(TVec3f(0.0f, mOffset, 0.0f));
     }
 }
 
@@ -121,8 +121,8 @@ void OceanWaveFloater::control() {
     mForce->update();
 
     controlEffect();
-
-    if (--mSoundDelay <= 1) {
+    mSoundDelay--;
+    if (mSoundDelay <= 0) {
         MR::startSound(this, "SE_OJ_PIER_FLOATER_WAVE");
         mSoundDelay = MR::getRandom(::sWaveSeStepsMin, ::sWaveSeStepsMax);
     }
@@ -131,8 +131,9 @@ void OceanWaveFloater::control() {
 void OceanWaveFloater::calcAndSetBaseMtx() {
     TPos3f baseMtx;
     baseMtx.identity();
-    baseMtx.setRotate(mRotation * (MR::pi()/180.0f));
-    baseMtx.setTrans(mPosition - mGravity * mForce->getCurrentValue());
+    baseMtx.setRotateDegree(mRotation);
+    TVec3f offs = mGravity * mForce->getCurrentValue();
+    baseMtx.setTrans(mPosition - offs);
     MR::setBaseTRMtx(this, baseMtx);
 }
 
