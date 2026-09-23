@@ -229,7 +229,7 @@ void Petari::exeSwoonStart() {
     if (!MR::isBindedGround(this)) {
         v3 = 0.0f;
     }
-    MR::moveAndTurnToDirection(this, &mFront, mTargetDir, v3, 1.3, 0.92f, 3.0f);
+    MR::moveAndTurnToDirection(this, &mFront, mTargetDir, v3, 1.3, 0.985f, 3.0f);
 
     MR::setNerveAtBckStopped(this, GET_NERVE_ANON(PetariNrvSwoon));
 }

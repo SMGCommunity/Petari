@@ -31,7 +31,7 @@ namespace {
 
 namespace NrvKameck {
     NEW_NERVE(KameckNrvOpeningDemo, Kameck, OpeningDemo);
-    NEW_NERVE_ONEND(KameckNrvDemoAppear, Kameck, DemoAppear, DemoAppear);
+    NEW_NERVE(KameckNrvDemoAppear, Kameck, DemoAppear);
     NEW_NERVE(KameckNrvNonActive, Kameck, NonActive);
     NEW_NERVE(KameckNrvAppear, Kameck, Appear);
     NEW_NERVE(KameckNrvWait, Kameck, Wait);
@@ -139,7 +139,7 @@ void Kameck::initDemo(const JMapInfoIter& rIter) {
     }
 
     MR::registerDemoActionFunctor(this, MR::Functor(this, &Kameck::startDemoAppear), "ザコカメック登場");
-    MR::registerDemoActionFunctor(this, MR::Functor(this, &Kameck::killForce), "ザコカメ");
+    MR::registerDemoActionFunctor(this, MR::Functor(this, &Kameck::killForce), "ザコカメック強制死亡");
     makeActorDead();
 }
 
@@ -482,12 +482,11 @@ void Kameck::exeOpeningDemo() {
 void Kameck::exeDemoAppear() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Appear");
+        MR::startSound(this, "SE_EM_KAMECK_SMOKE");
+        MR::startSound(this, "SE_EM_KAMECK_APPEAR");
     }
 
-    MR::startSound(this, "SE_EM_KAMECK_SMOKE");
-    MR::startSound(this, "SE_EM_KAMECK_APPEAR");
     MR::turnDirectionToTarget(this, &mFrontVec, *MR::getPlayerPos(), ::sTurnPlayerLimit);
-
     if (MR::isBckOneTimeAndStopped(this)) {
         MR::startBck(this, "Wait");
     }
@@ -600,7 +599,7 @@ void Kameck::exeMoveHide() {
 
     MR::turnDirectionToTarget(this, &mFrontVec, *MR::getPlayerPos(), ::sTurnPlayerLimit);
 
-    if (!tryPointBind() && !tryMove()) {
+    if (!tryPointBind() && tryMove()) {
         MR::startSound(this, "SE_EM_KAMECK_SMOKE");
     }
 }

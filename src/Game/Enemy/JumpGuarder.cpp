@@ -20,7 +20,7 @@
 
 namespace {
     static const f32 sRotateDegree = 3.0f;
-    static const s32 sHopStep = 286;
+    static const s32 sHopStep = 300;
     static const s32 sOpenInt = 74;
     static const s32 sAttack = 360;
     // static const ??? sSensorRes = ???;

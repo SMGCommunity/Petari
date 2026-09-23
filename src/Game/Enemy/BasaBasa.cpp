@@ -138,7 +138,7 @@ void BasaBasa::exeChaseStart() {
         MR::startSound(this, "SE_EV_BASABASA_FIND");
     }
 
-    if (MR::isLessStep(this, 15)) {
+    if (MR::isLessStep(this, 50)) {
         mVelocity.scaleAdd(15.0f, mGravity, mVelocity);
     }
 
@@ -484,7 +484,7 @@ void BasaBasa::calcAndSetBaseMtx() {
     TPos3f v11;
     MR::calcMtxFromGravityAndZAxis(&v11, this, mGravity, _9C);
     TPos3f v10;
-    v11 = mStampController->_14;
+    v10 = mStampController->_14;
     v11.concat(v10, v11);
     v11.mMtx[0][3] = mPosition.x;
     v11.mMtx[1][3] = mPosition.y;
@@ -650,7 +650,7 @@ bool BasaBasa::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver
 }
 
 void BasaBasa::initHangModel() {
-    const char* modelName = mIsIceModel ? "BasaBasaIce" : "BasaBasaHang";
+    const char* modelName = mIsIceModel ? "BasaBasaIceHang" : "BasaBasaHang";
     mHangModel = MR::createModelObjEnemy("ぶら下がりモデル", modelName, MR::getJointMtx(this, "JointRoot"));
     mHangModel->initWithoutIter();
     mHangModel->kill();

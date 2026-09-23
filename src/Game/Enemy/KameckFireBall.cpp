@@ -16,7 +16,7 @@
 
 namespace {
     static const f32 sFireRadius = 58.0f;
-    static const f32 sLife = 180;
+    static const s32 sLife = 180;
     static const f32 sInitVerticalSpeed = 15.0f;
     static const f32 sInitHorizonSpeed = 15.0f;
     static const f32 sGravityAccel = 0.5f;
