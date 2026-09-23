@@ -6,6 +6,12 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 
+void KoopaFigureBall_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)MR::pi();
+}
+
 namespace {
     static const f32 sWallJumpSpeed = 15.0f;
 };  // namespace
@@ -46,11 +52,9 @@ void KoopaFigureBall::makeActorAppeared() {
 
 void KoopaFigureBall::makeActorDead() {
     KoopaFunction::getKoopaFrontPtr(mKoopa)->set(mFront);
-
     LiveActor::makeActorDead();
 }
 
-// 89% and a big mess
 void KoopaFigureBall::control() {
     MR::moveAndTurnToPlayer(this, &mFront, mMoveParam->_0, mMoveParam->_4, mMoveParam->_8, mMoveParam->_C);
 
@@ -58,23 +62,19 @@ void KoopaFigureBall::control() {
         MR::addVelocityJump(this, ::sWallJumpSpeed);
     }
 
-    f32 angle = MR::toDegree(mVelocity.dot(mFront) / mRadius);
-    mAngle += angle;
-    TVec3f direction = mGravity * angle;
-    TVec3f vec = mPosition;
-    vec += direction;
-    MR::makeMtxUpFrontPos(&mBaseMtx, -mGravity, mFront, vec);
+    mAngle += (mVelocity.dot(mFront) * 180.0f) / (mRadius * MR::pi());
+    MR::makeMtxUpFrontPos(&mBaseMtx, -mGravity, mFront, mPosition + mGravity * mRadius);
 
-    TVec3f vec1;
-    TVec3f vec2;
-    mBaseMtx.getYDir(vec1);
-    mBaseMtx.getTrans(vec2);
-    vec2 += vec1 * mRadius;
-    mBaseMtx.setTrans(vec2);
+    TVec3f yDir;
+    TVec3f newTrans;
+    mBaseMtx.getYDir(yDir);
+    mBaseMtx.getTrans(newTrans);
+    newTrans += yDir * mRadius;
+    mBaseMtx.setTrans(newTrans);
 
-    TPos3f mtx;
-    mtx.makeRotate(TVec3f(1.0f, 0.0f, 0.0f), MR::toRadian(mAngle));
-    mBaseMtx.concat(mBaseMtx, mtx);
+    TPos3f rotMtx;
+    rotMtx.makeRotate(TVec3f(1.0f, 0.0f, 0.0f), MR::toRadian(mAngle));
+    mBaseMtx.concat(mBaseMtx, rotMtx);
 }
 
 MtxPtr KoopaFigureBall::getBaseMtx() const {
