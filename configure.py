@@ -1852,7 +1852,7 @@ config.libs = [
             Object(Matching, "Game/MapObj/SpinDriverOperateRing.cpp"),
             Object(NonMatching, "Game/MapObj/SpinDriverPathDrawer.cpp"),
             Object(NonMatching, "Game/MapObj/SpinDriverShootPath.cpp"),
-            Object(NonMatching, "Game/MapObj/SpinDriverUtil.cpp"),
+            Object(Matching, "Game/MapObj/SpinDriverUtil.cpp"),
             Object(NonMatching, "Game/MapObj/SpinLeverSwitch.cpp"),
             Object(NonMatching, "Game/MapObj/SpinningBox.cpp"),
             Object(NonMatching, "Game/MapObj/SpringJetWater.cpp"),

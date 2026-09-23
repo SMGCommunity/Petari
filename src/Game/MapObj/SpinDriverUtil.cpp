@@ -3,6 +3,11 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 
+void SpinDriverUtil_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)0.5f;
+}
+
 void SpinDriverUtil::setShadowAndClipping(LiveActor* pActor, TVec3f* pClippingCenter, f32 dropLength, f32 heightMargin, f32* pClippingRadius) {
     TVec3f dropPosition;
     TVec3f position(pActor->mPosition);
