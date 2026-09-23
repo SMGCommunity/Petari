@@ -10,8 +10,10 @@ namespace MR {
     s32 getPlayerLeft();
     void incPlayerLeft();
     void decPlayerLeft();
+    bool isPlayerLeftSupply();
     bool isLuigiLeftSupply();
     void incPlayerGameOverNum();
+    bool isPlayerLeftSupplyByMissAndGameOver();
     bool isAnyPlayerLeftSupply();
     void offAllPlayerLeftSupply();
     s32 getStarPieceNum();

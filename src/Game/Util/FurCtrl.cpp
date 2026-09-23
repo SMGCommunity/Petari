@@ -19,37 +19,6 @@
 #include <cstdio>
 #include <cstring>
 
-class J3DModel2 : public J3DModel {
-public:
-    J3DModel2(J3DModel* pModel);
-
-    virtual ~J3DModel2() {
-    }
-
-    void setVtxShader(J3DVtxShader* pShader, s32 componentSize) {
-        mUnkCalc1 = pShader;
-
-        if (pShader) {
-            mUnkCalc1->setup(getModelData());
-
-            if (!mVertexBuffer.mTransformedVtxPosArray[0] || !mVertexBuffer.mTransformedVtxPosArray[1]) {
-                u32 size = (componentSize * 3 * getVertexBuffer()->getVertexData()->getVtxNum() + 31) & ~31;
-                mVertexBuffer.mTransformedVtxPosArray[0] = new (32) u8[size];
-
-                if (mVertexBuffer.mTransformedVtxPosArray[0]) {
-                    mVertexBuffer.mTransformedVtxPosArray[1] = mVertexBuffer.mTransformedVtxPosArray[0];
-                }
-            }
-
-            for (s32 j = 0; j < 2; j++) {
-                memcpy(mVertexBuffer.mTransformedVtxPosArray[j], getVertexBuffer()->getVertexData()->getVtxPosArray(),
-                       componentSize * getVertexBuffer()->getVertexData()->getVtxNum() * 3);
-                DCStoreRange(mVertexBuffer.mTransformedVtxPosArray[j], componentSize * 3 * getVertexBuffer()->getVertexData()->getVtxNum());
-            }
-        }
-    }
-};
-
 FurMulti* FurBank::check(J3DModelData* pModelData, u32 layer) {
     for (u32 i = 0; i < mCount; i++) {
         if (mEntries[i]->mModel->getModelData() == pModelData && ((1 << layer) & mLayerMasks[i])) {
@@ -100,6 +69,8 @@ FurCtrl::FurCtrl(LiveActor* pActor, FurParam* pParam, bool addToManager, u8 draw
 }
 
 void FurCtrl::calcLayerForm() {
+    f32 rate = 1.0f;
+
     mDrawer->mFurUVScale = mParam->mFurUVScale;
     mDrawer->mBodyUVScale = mParam->mBodyUVScale;
     mDrawer->mLength.mTip = mParam->mLength;
@@ -112,8 +83,9 @@ void FurCtrl::calcLayerForm() {
     }
 
     for (s32 i = 0; i < mDrawer->mNumLayers; i++) {
-        f32 length = mDrawer->mLength.calcValue(i, mDrawer->mNumLayers);
-        mShader->_8 = pow(1.0f * i / mDrawer->mNumLayers, 4.0);
+        const FurDrawer* pDrawer = mDrawer;
+        f32 length = pDrawer->mLength.calcValue(i, pDrawer->mNumLayers);
+        mShader->_8 = pow(rate * i / mDrawer->mNumLayers, 4.0);
         mLayerModels[i]->mVertexBuffer.frameInit();
         mShader->_1C = length;
         mShader->calc(mLayerModels[i]);
@@ -132,7 +104,7 @@ void FurCtrl::drawFur() {
     }
 
     if (mDynamicParam.mLightParam->mLightType == -1) {
-        if (MR::getLightCtrl(mActor)) {
+        if (MR::getLightCtrl(mActor) != nullptr) {
             MR::loadActorLight(mActor);
         }
     } else {
@@ -367,6 +339,9 @@ J3DModel2::J3DModel2(J3DModel* pModel) {
     mMatPacket = pModel->mMatPacket;
     mVertexBuffer.setVertexData(&mModelData->mVertexData);
     mFlags |= J3DMdlFlag_UseDefaultJ3D;
+}
+
+J3DModel2::~J3DModel2() {
 }
 
 FurDrawManager::~FurDrawManager() {

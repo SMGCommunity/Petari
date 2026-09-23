@@ -8,7 +8,8 @@ namespace JGeometry {
     struct TBox {
         TBox() : i(), f() {
         }
-        TBox(const TBox& other) : i(other.i), f(other.f) {
+
+        TBox(const TBox& rOther) : i(rOther.i), f(rOther.f) {
         }
 
         T i, f;
@@ -19,6 +20,7 @@ namespace JGeometry {
         f32 getWidth() const {
             return f.x - i.x;
         }
+
         f32 getHeight() const {
             return f.y - i.y;
         }
@@ -38,9 +40,9 @@ namespace JGeometry {
             f.y += pos.y;
         }
 
-        bool intersect(const TBox< TVec2< f32 > >& other) {
-            i.setMax(other.i);
-            f.setMin(other.f);
+        bool intersect(const TBox< TVec2< f32 > >& rOther) {
+            i.setMax(rOther.i);
+            f.setMin(rOther.f);
             return isValid();
         }
 
@@ -51,22 +53,32 @@ namespace JGeometry {
     struct TBox< TVec3< f32 > > {
         TVec3< f32 > i, f;
 
+        void add(const TVec3f& rOffset) {
+            i.add(rOffset);
+            f.add(rOffset);
+        }
+
         void extend(const TVec3f& rPos) {
             if (i.x >= rPos.x) {
                 i.x = rPos.x;
             }
+
             if (i.y >= rPos.y) {
                 i.y = rPos.y;
             }
+
             if (i.z >= rPos.z) {
                 i.z = rPos.z;
             }
+
             if (f.x <= rPos.x) {
                 f.x = rPos.x;
             }
+
             if (f.y <= rPos.y) {
                 f.y = rPos.y;
             }
+
             if (f.z <= rPos.z) {
                 f.z = rPos.z;
             }
@@ -76,18 +88,23 @@ namespace JGeometry {
             if (i.x >= rPos1.x) {
                 i.x = rPos1.x;
             }
+
             if (i.y >= rPos1.y) {
                 i.y = rPos1.y;
             }
+
             if (i.z >= rPos1.z) {
                 i.z = rPos1.z;
             }
+
             if (f.x <= rPos2.x) {
                 f.x = rPos2.x;
             }
+
             if (f.y <= rPos2.y) {
                 f.y = rPos2.y;
             }
+
             if (f.z <= rPos2.z) {
                 f.z = rPos2.z;
             }
@@ -98,9 +115,9 @@ namespace JGeometry {
                     rPos.z < this->f.z);
         }
 
-        void set(const TVec3f& a, const TVec3f& b) {
-            i.set(a);
-            f.set(b);
+        void set(const TVec3f& rMin, const TVec3f& rMax) {
+            i.set(rMin);
+            f.set(rMax);
         }
 
         void zero() {
@@ -125,11 +142,11 @@ namespace JGeometry {
         TBox2() {
         }
 
-        TBox2(const TBox2< T >& other);
+        TBox2(const TBox2< T >& rOther);
 
-        TBox2(const TVec2< T >& _i, const TVec2< T >& _f) {
-            TBox< TVec2< T > >::i.set(_i);
-            TBox< TVec2< T > >::f.set(_f);
+        TBox2(const TVec2< T >& rMin, const TVec2< T >& rMax) {
+            TBox< TVec2< T > >::i.set(rMin);
+            TBox< TVec2< T > >::f.set(rMax);
         }
 
         TBox2(T x0, T y0, T x1, T y1) {
@@ -138,20 +155,22 @@ namespace JGeometry {
 
         // void set<T>(const TBox2<T> &a1, const TBox2<T> &a2);
 
-        void operator=(const JGeometry::TBox2< T >& other);
+        void operator=(const JGeometry::TBox2< T >& rOther);
 
         void absolute();
 
-        void set(const TBox< TVec2< T > >& other) {
-            this->i.x = other.i.x;
-            this->i.y = other.i.y;
-            this->f.x = other.f.x;
-            this->f.y = other.f.y;
+        void set(const TBox< TVec2< T > >& rOther) {
+            this->i.x = rOther.i.x;
+            this->i.y = rOther.i.y;
+            this->f.x = rOther.f.x;
+            this->f.y = rOther.f.y;
         }
-        void set(const TVec2< T >& i, const TVec2< T >& f) {
-            this->i = i;
-            this->f = f;
+
+        void set(const TVec2< T >& rMin, const TVec2< T >& rMax) {
+            this->i = rMin;
+            this->f = rMax;
         }
+
         void set(T x0, T y0, T x1, T y1);
 
         void setInline(T x0, T y0, T x1, T y1) {
@@ -182,16 +201,16 @@ namespace JGeometry {
     };
 
     template < typename T >
-    void TBox2< T >::operator=(const TBox2< T >& other) {
-        *static_cast< TBox< TVec2< T > >* >(this) = other;
+    void TBox2< T >::operator=(const TBox2< T >& rOther) {
+        *static_cast< TBox< TVec2< T > >* >(this) = rOther;
     }
 
     template < typename T >
-    TBox2< T >::TBox2(const TBox2< T >& other) {
-        this->i.x = other.i.x;
-        this->i.y = other.i.y;
-        this->f.x = other.f.x;
-        this->f.y = other.f.y;
+    TBox2< T >::TBox2(const TBox2< T >& rOther) {
+        this->i.x = rOther.i.x;
+        this->i.y = rOther.i.y;
+        this->f.x = rOther.f.x;
+        this->f.y = rOther.f.y;
     }
 
     template < typename T >

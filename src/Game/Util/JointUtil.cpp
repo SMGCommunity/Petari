@@ -35,7 +35,7 @@ namespace MR {
         return MR::getJ3DModel(pActor)->mMtxBuffer->mpAnmMtx[idx];
     }
 
-    u16 getJointIndex(const LiveActor* pActor, const char* pName) {
+    u16 getJointIndex(const LiveActor* pActor, const char* pName) NO_INLINE {
         return MR::getJ3DModelData(pActor)->mJointTree.mJointName->getIndex(pName);
     }
 
@@ -197,3 +197,7 @@ namespace MR {
         return getParentJoint(getJ3DModelData(pActor), pJoint);
     }
 };  // namespace MR
+
+void JointUtil_FORCE_MATCH(TMtx34f* pMtx, const Mtx pSrc) {
+    pMtx->set(pSrc);
+}

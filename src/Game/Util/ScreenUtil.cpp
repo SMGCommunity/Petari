@@ -1,4 +1,3 @@
-#include "Game/Util/ScreenUtil.hpp"
 #include "Game/Scene/GameSceneFunction.hpp"
 #include "Game/Scene/PlayTimerScene.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
@@ -29,11 +28,19 @@
 #include "Game/System/RenderMode.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
 
 namespace {
+    char sWipeCircle[] = "円ワイプ";
+    char sWipeFade[] = "フェードワイプ";
+    char sWipeWhiteFade[] = "白フェードワイプ";
+    char sWipeGameOver[] = "ゲームオーバー";
+    char sWipeKoopa[] = "クッパ";
+    char sSoundOneUp[] = "SE_SY_1UP";
+
     CaptureScreenDirector* getCaptureScreenDirector() NO_INLINE {
         return SingletonHolder< GameSystem >::get()->mObjHolder->mCaptureScreenDirector;
     }
@@ -81,6 +88,12 @@ namespace {
     }
 };  // namespace
 
+void ScreenUtil_FORCE_MATCH_SDATA2() {
+    (void)0.5f;
+    (void)0.87f;
+    (void)0.844f;
+    (void)0.0f;
+}
 namespace MR {
     u32 getViWidth() {
         return SingletonHolder< GameSystem >::get()->mObjHolder->getRenderModeObj()->viWidth;
@@ -102,8 +115,7 @@ namespace MR {
         s32 viWidthMax = static_cast< u16 >(RenderModeObj::getViWidthMax());
         f32 safetyFrameWidthRatio = viWidthMax * getSafetyVIScreenWidthRatio();
         s32 screenWidth = getScreenWidth();
-        f32 viWidth = static_cast< s32 >(getViWidth());
-        f32 viWidthRatio = screenWidth / viWidth;
+        f32 viWidthRatio = static_cast< f32 >(screenWidth) / static_cast< s32 >(getViWidth());
 
         return safetyFrameWidthRatio * viWidthRatio + 0.5f;
     }
@@ -149,39 +161,39 @@ namespace MR {
     }
 
     void closeWipeCircle(s32 frame) {
-        SceneWipeHolderFunction::closeWipe("円ワイプ", frame);
+        SceneWipeHolderFunction::closeWipe(sWipeCircle, frame);
     }
 
     void forceOpenWipeCircle() {
-        SceneWipeHolderFunction::forceOpenWipe("円ワイプ");
+        SceneWipeHolderFunction::forceOpenWipe(sWipeCircle);
     }
 
     void forceCloseWipeCircle() {
-        SceneWipeHolderFunction::forceCloseWipe("円ワイプ");
+        SceneWipeHolderFunction::forceCloseWipe(sWipeCircle);
     }
 
     void closeWipeFade(s32 frame) {
-        SceneWipeHolderFunction::closeWipe("フェードワイプ", frame);
+        SceneWipeHolderFunction::closeWipe(sWipeFade, frame);
     }
 
     void forceOpenWipeFade() {
-        SceneWipeHolderFunction::forceOpenWipe("フェードワイプ");
+        SceneWipeHolderFunction::forceOpenWipe(sWipeFade);
     }
 
     void forceCloseWipeFade() {
-        SceneWipeHolderFunction::forceCloseWipe("フェードワイプ");
+        SceneWipeHolderFunction::forceCloseWipe(sWipeFade);
     }
 
     void closeWipeWhiteFade(s32 frame) {
-        SceneWipeHolderFunction::closeWipe("白フェードワイプ", frame);
+        SceneWipeHolderFunction::closeWipe(sWipeWhiteFade, frame);
     }
 
     void forceOpenWipeWhiteFade() {
-        SceneWipeHolderFunction::forceOpenWipe("白フェードワイプ");
+        SceneWipeHolderFunction::forceOpenWipe(sWipeWhiteFade);
     }
 
     void forceCloseWipeWhiteFade() {
-        SceneWipeHolderFunction::forceCloseWipe("白フェードワイプ");
+        SceneWipeHolderFunction::forceCloseWipe(sWipeWhiteFade);
     }
 
     bool isWipeActive() {
@@ -197,36 +209,36 @@ namespace MR {
     }
 
     void closeSystemWipeCircle(s32 frame) {
-        ::getSystemWipeHolder()->forceOpen("円ワイプ");
+        ::getSystemWipeHolder()->forceOpen(sWipeCircle);
         ::getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void openSystemWipeFade(s32 frame) {
-        ::getSystemWipeHolder()->forceClose("フェードワイプ");
+        ::getSystemWipeHolder()->forceClose(sWipeFade);
         ::getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void closeSystemWipeFade(s32 frame) {
-        ::getSystemWipeHolder()->forceOpen("フェードワイプ");
+        ::getSystemWipeHolder()->forceOpen(sWipeFade);
         ::getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void forceOpenSystemWipeFade() {
-        ::getSystemWipeHolder()->forceOpen("フェードワイプ");
+        ::getSystemWipeHolder()->forceOpen(sWipeFade);
     }
 
     void openSystemWipeWhiteFade(s32 frame) {
-        ::getSystemWipeHolder()->forceClose("白フェードワイプ");
+        ::getSystemWipeHolder()->forceClose(sWipeWhiteFade);
         ::getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void closeSystemWipeWhiteFade(s32 frame) {
-        ::getSystemWipeHolder()->forceOpen("白フェードワイプ");
+        ::getSystemWipeHolder()->forceOpen(sWipeWhiteFade);
         ::getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void forceCloseSystemWipeWhiteFade() {
-        ::getSystemWipeHolder()->forceClose("白フェードワイプ");
+        ::getSystemWipeHolder()->forceClose(sWipeWhiteFade);
     }
 
     bool isSystemWipeActive() {
@@ -569,27 +581,27 @@ namespace MR {
     }
 
     void openWipeCircle(s32 frame) {
-        SceneWipeHolderFunction::openWipe("円ワイプ", frame);
+        SceneWipeHolderFunction::openWipe(sWipeCircle, frame);
     }
 
     void openWipeFade(s32 frame) {
-        SceneWipeHolderFunction::openWipe("フェードワイプ", frame);
+        SceneWipeHolderFunction::openWipe(sWipeFade, frame);
     }
 
     void openWipeWhiteFade(s32 frame) {
-        SceneWipeHolderFunction::openWipe("白フェードワイプ", frame);
+        SceneWipeHolderFunction::openWipe(sWipeWhiteFade, frame);
     }
 
     void startGameOverWipe() {
-        SceneWipeHolderFunction::getSceneWipeHolder()->wipe("ゲームオーバー", -1);
+        SceneWipeHolderFunction::getSceneWipeHolder()->wipe(sWipeGameOver, -1);
     }
 
     void startDownWipe() {
-        SceneWipeHolderFunction::getSceneWipeHolder()->wipe("クッパ", -1);
+        SceneWipeHolderFunction::getSceneWipeHolder()->wipe(sWipeKoopa, -1);
     }
 
     void requestOneUp() {
-        startSystemSE("SE_SY_1UP");
+        startSystemSE(sSoundOneUp);
         getGameSceneLayoutHolder()->requestOneUp(1);
     }
 };  // namespace MR

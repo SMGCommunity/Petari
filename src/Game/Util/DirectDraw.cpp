@@ -7,11 +7,11 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
-#include <JSystem/JUtility/JUTTexture.hpp>
 #include "math_types.hpp"
+#include <JSystem/JUtility/JUTTexture.hpp>
 #include <revolution/gx/GXEnum.h>
-#include <revolution/gx/GXVert.h>
 #include <revolution/gx/GXGeometry.h>
+#include <revolution/gx/GXVert.h>
 
 namespace {
     static Mtx mViewMtx;
@@ -206,8 +206,8 @@ namespace TDDraw {
         GXColor1u32(centerColor);
 
         for (u32 i = 0; i <= segments; i++) {
-            point.x = rCenter.x - radius * MR::cos(2.0f * ((static_cast< f32 >(i) / segments) * PI));
-            point.y = rCenter.y + radius * MR::sin(2.0f * ((static_cast< f32 >(i) / segments) * PI));
+            point.x = rCenter.x - radius * MR::cos(2.0f * ((static_cast< f32 >(i) / segments) * JGeometry::TUtil< f32 >::PI()));
+            point.y = rCenter.y + radius * MR::sin(2.0f * ((static_cast< f32 >(i) / segments) * JGeometry::TUtil< f32 >::PI()));
             GXPosition3f32(point.x, point.y, point.z);
             GXColor1u32(edgeColor);
         }
@@ -513,10 +513,11 @@ namespace TDDraw {
         static TVec3f objPt(MR::getScreenWidth() / 2.0f, MR::getScreenHeight() / 2.0f, 0.0f);
         static TVec3f up(0, -10, 0);
 
-        f32 nearZ = 0.0f;
-        f32 farZ = 1.0f;
-        f32 width = MR::getScreenWidth() / 2;
-        f32 height = MR::getScreenHeight() / 2;
+        f32 width, nearZ, farZ, height;
+        nearZ = 0.0f;
+        farZ = 1.0f;
+        width = MR::getScreenWidth() / 2;
+        height = MR::getScreenHeight() / 2;
         Mtx44 projection;
         C_MTXOrtho(projection, height, -height, -width, width, nearZ, -farZ);
         GXSetProjection(projection, GX_ORTHOGRAPHIC);
@@ -670,3 +671,12 @@ namespace TDDraw {
     }
 
 }  // namespace TDDraw
+
+void DirectDraw_FORCE_MATCH(TPos3f* pMtx, TVec3f* pVec) {
+    pMtx->getTrans(*pVec);
+    pMtx->setTrans(*pVec);
+}
+
+void DirectDraw_FORCE_MATCH_CTOR(int x, int y, int z) {
+    TVec3f v(x, y, z);
+}

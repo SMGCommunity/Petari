@@ -1,4 +1,3 @@
-#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Animation/BckCtrl.hpp"
 #include "Game/Animation/XanimeCore.hpp"
 #include "Game/AudioLib/AudAnmSoundObject.hpp"
@@ -32,11 +31,20 @@
 #include "Game/Util.hpp"
 #include "Game/Util/CollisionPartsFilter.hpp"
 #include "Game/Util/FurMulti.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 #include <cstdio>
 
-namespace {
-    f32 sAnimRateScale = 1.0f;
+void LiveActorUtil_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)2.0f;
+    (void)360.0f;
+    (void)0.001f;
+    (void)5000.0f;
+    (void)10000.0f;
+}
 
+namespace {
     CollisionParts* createCollisionParts(ResourceHolder* pResHolder, const char* pName, HitSensor* pSensor, const TPos3f& rMtx,
                                          MR::CollisionScaleType scaleType, s32 unk) {
         CollisionParts* parts = new CollisionParts();
@@ -68,15 +76,12 @@ namespace {
     }
 
     const char* createSubModelObjName(const LiveActor* pActor, const char* pSubName) {
-        u32 len_sub = strlen(pSubName);
-        u32 len_actor = strlen(pActor->mName);
-        u32 len_bracket = strlen("（）");
-        u32 len_name = len_sub;
-        len_name = len_actor + len_name;
-        u32 len = len_bracket + len_name + 1;
-        char* buf = new char[len];
-        snprintf(buf, len, "%s（%s）", pActor->mName, pSubName);
-        return buf;
+        u32 subLength = strlen(pSubName);
+        u32 actorLength = strlen(pActor->mName);
+        u32 length = actorLength + subLength + strlen("（）") + 1;
+        char* pBuffer = new char[length];
+        snprintf(pBuffer, length, "%s（%s）", pActor->mName, pSubName);
+        return pBuffer;
     }
 
     PartsModel* createSubModel(LiveActor* pActor, const char* pSubModelName, MtxPtr pMtx, int drawBufferType) NO_INLINE {
@@ -513,9 +518,8 @@ namespace MR {
         }
 
         s32 planeNum = pActor->mBinder->mPlaneNum;
-        s32 last = planeNum - 1;
 
-        for (s32 i = 0; i < last; ++i) {
+        for (s32 i = 0; i < planeNum - 1; i++) {
             const HitInfo* plane1 = pActor->mBinder->getPlane(i);
 
             if (!MR::isWallPolygon(*plane1->mParentTriangle.getFaceNormal(), pActor->mGravity)) {
@@ -525,17 +529,14 @@ namespace MR {
             TVec3f power1;
             plane1->mParentTriangle.calcForceMovePower(&power1, plane1->mHitPos);
 
-            for (s32 j = i + 1; j < planeNum; ++j) {
+            for (s32 j = i + 1; j < planeNum; j++) {
                 const HitInfo* plane2 = pActor->mBinder->getPlane(j);
 
                 if (!MR::isWallPolygon(*plane2->mParentTriangle.getFaceNormal(), pActor->mGravity)) {
                     continue;
                 }
 
-                const TVec3f* normal2 = plane2->mParentTriangle.getFaceNormal();
-                const TVec3f* normal1 = plane1->mParentTriangle.getFaceNormal();
-
-                if (0.0f <= normal1->dot(*normal2)) {
+                if (0.0f <= plane1->mParentTriangle.getFaceNormal()->dot(*plane2->mParentTriangle.getFaceNormal())) {
                     continue;
                 }
 
@@ -873,12 +874,12 @@ namespace MR {
         J3DModelData* pModelData = getJ3DModelData(pActor);
         DisplayListMaker* pDLMaker = pActor->mModelManager->mDisplayListMaker;
 
-        for (u16 texIndex = 0; texIndex < pModelData->mMaterialTable.getTexture()->getNum(); ++texIndex) {
+        for (u16 texIndex = 0; texIndex < pModelData->mMaterialTable.getTexture()->getNum(); texIndex++) {
             if (!MR::isEqualString(pModelData->mMaterialTable.getTextureName()->getName(texIndex), pTexName)) {
                 continue;
             }
 
-            for (u16 matIndex = 0; matIndex < pModelData->mMaterialTable.getMaterialNum(); ++matIndex) {
+            for (u16 matIndex = 0; matIndex < pModelData->mMaterialTable.getMaterialNum(); matIndex++) {
                 if (isUseTex(pModelData->mMaterialTable.getMaterialNodePointer(matIndex), texIndex)) {
                     pDLMaker->onPrgFlag(matIndex, 0x4020000);
                 }
@@ -1538,19 +1539,27 @@ namespace MR {
     }
 
     void setBckRate(const LiveActor* pActor, f32 rate) {
-        getBckCtrl(pActor)->mRate = rate * ::sAnimRateScale;
+        J3DFrameCtrl* pCtrl = getBckCtrl(pActor);
+        f32 scale = 1.0f;
+        pCtrl->setRate(rate * scale);
     }
 
     void setBtkRate(const LiveActor* pActor, f32 rate) {
-        getBtkCtrl(pActor)->mRate = rate * ::sAnimRateScale;
+        J3DFrameCtrl* pCtrl = getBtkCtrl(pActor);
+        f32 scale = 1.0f;
+        pCtrl->setRate(rate * scale);
     }
 
     void setBrkRate(const LiveActor* pActor, f32 rate) {
-        getBrkCtrl(pActor)->mRate = rate * ::sAnimRateScale;
+        J3DFrameCtrl* pCtrl = getBrkCtrl(pActor);
+        f32 scale = 1.0f;
+        pCtrl->setRate(rate * scale);
     }
 
     void setBvaRate(const LiveActor* pActor, f32 rate) {
-        getBvaCtrl(pActor)->mRate = rate * ::sAnimRateScale;
+        J3DFrameCtrl* pCtrl = getBvaCtrl(pActor);
+        f32 scale = 1.0f;
+        pCtrl->setRate(rate * scale);
     }
 
     void setBckFrame(const LiveActor* pActor, f32 frame) {
@@ -1612,14 +1621,8 @@ namespace MR {
     void setMirrorReflectionInfoFromMtxYUp(const TPos3f& rMtx) {
         TVec3f up;
         TVec3f pos;
-        f32 upZ = rMtx.mMtx[2][1];
-        f32 upY = rMtx.mMtx[1][1];
-        up.set< f32 >(rMtx.mMtx[0][1], upY, upZ);
-
-        f32 posZ = rMtx.mMtx[2][3];
-        f32 posY = rMtx.mMtx[1][3];
-        pos.set< f32 >(rMtx.mMtx[0][3], posY, posZ);
-
+        rMtx.getYDir(up);
+        rMtx.getTrans(pos);
         MR::getMirrorCamera()->setMirrorMapInfo(up, pos);
     }
 

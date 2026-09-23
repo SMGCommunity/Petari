@@ -114,17 +114,16 @@ namespace MR {
     }
 
     static bool isStageKoopaVs1Or2() {
-        bool isFirstOrSecond = false;
-        if (isStageKoopaVs1() || isStageKoopaVs2()) {
-            isFirstOrSecond = true;
+        bool result = true;
+        if (!isEqualStageName("KoopaBattleVs1Galaxy") && !isEqualStageName("KoopaBattleVs2Galaxy")) {
+            result = false;
         }
-
-        return isFirstOrSecond;
+        return result;
     }
 
     bool isStageKoopaVs() {
         bool isKoopaVs = true;
-        const bool isFirstOrSecond = isStageKoopaVs1Or2();
+        bool isFirstOrSecond = isStageKoopaVs1Or2();
         if (!isFirstOrSecond && !isStageKoopaVs3()) {
             isKoopaVs = false;
         }
@@ -391,7 +390,7 @@ namespace MR {
 
     const char* getJapaneseObjectName(const char* pName) {
         const char* pJapaneseName = getStageDataHolder()->getJapaneseObjectName(pName);
-        if (pJapaneseName) {
+        if (pJapaneseName != nullptr) {
             return pJapaneseName;
         }
 

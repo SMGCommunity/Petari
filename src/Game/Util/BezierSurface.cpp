@@ -595,10 +595,12 @@ namespace {
 };  // namespace
 
 BezierSurface::BezierSurface(s32 divideLevel, u32 a1)
-    : mTrianglePatchVertices(nullptr), mTrianglePatchNormals(nullptr), mDivideLevel(divideLevel), _C0(divideLevel), _C4(a1) {
+    : mTrianglePatchVertices(), mTrianglePatchNormals(), mDivideLevel(divideLevel), _C0(divideLevel), _C4(a1) {
     s32 numPoints = ::sTrianglePatchTableGroup[mDivideLevel].mNumPoints;
+
     if ((a1 & 4) != 0) {
         mTrianglePatchVertices = new TVec3f[numPoints];
+
         if ((a1 & 1) != 0) {
             mTrianglePatchNormals = new TVec3f[numPoints];
         }
@@ -648,6 +650,7 @@ void BezierSurface::calcBuffer() {
 
 void BezierSurface::draw() const {
     // what?
+
     if (_C4 != 0) {
         if (_C4 != 0) {
             drawTrianglePatchPosNormST();
@@ -664,48 +667,49 @@ void BezierSurface::draw() const {
 }
 
 void BezierSurface::calcTrianglePatchVertix(TVec3f* pVertexPatch) const {
-    // FIXME: regswap
-    // https://decomp.me/scratch/6TPIf
-
-    s32 i;
-    s32 idx;
+    JGeometry::TVec2< s32 > index(0, 0);
     s32 numPoints = ::sTrianglePatchTableGroup[mDivideLevel].mNumPoints;
     TrianglePatchCoefs* coefTable = ::sTrianglePatchTableGroup[mDivideLevel].mCoefTable;
-    for (idx = 0; idx < numPoints; idx++) {
-        pVertexPatch[idx].zero();
-        for (i = 0; i < 13; i++) {
-            f32 scale = coefTable[idx][i];
+
+    for (index.y = 0; index.y < numPoints; index.y++) {
+        pVertexPatch[index.y].zero();
+
+        for (index.x = 0; index.x < 13; index.x++) {
+            f32 scale = coefTable[index.y][index.x];
+
             if (scale > MR::abs(0.000001f)) {
-                MR::vecScaleAdd(&pVertexPatch[idx], &mCtrlPts[i], scale);
+                MR::vecScaleAdd(&pVertexPatch[index.y], &mCtrlPts[index.x], scale);
             }
         }
     }
 }
 
 void BezierSurface::calcTrianglePatchNormal(TVec3f* pNormalPatch) const {
-    // FIXME: regswap
-    // https://decomp.me/scratch/eGk8K
-
-    s32 i;
-    s32 idx;
+    JGeometry::TVec2< s32 > index;
     s32 numPoints = ::sTrianglePatchTableGroup[mDivideLevel].mNumPoints;
     TrianglePatchCoefs* tangentSTable = ::sTrianglePatchTableGroup[mDivideLevel].mCoefTangentSTable;
     TrianglePatchCoefs* tangentTTable = ::sTrianglePatchTableGroup[mDivideLevel].mCoefTangentTTable;
-    for (idx = 0; idx < numPoints; idx++) {
+
+    for (index.y = 0; index.y < numPoints; index.y++) {
         TVec3f tangentT(0.0f, 0.0f, 0.0f);
         TVec3f tangentS(0.0f, 0.0f, 0.0f);
-        for (i = 0; i < 13; i++) {
-            f32 scaleS = tangentSTable[idx][i];
+
+        for (index.x = 0; index.x < 13; index.x++) {
+            f32 scaleS = tangentSTable[index.y][index.x];
+
             if (MR::abs(scaleS) > 0.000001f) {
-                MR::vecScaleAdd(&tangentS, &mCtrlPts[i], scaleS);
+                MR::vecScaleAdd(&tangentS, &mCtrlPts[index.x], scaleS);
             }
-            f32 scaleT = tangentTTable[idx][i];
+
+            f32 scaleT = tangentTTable[index.y][index.x];
+
             if (MR::abs(scaleT) > 0.000001f) {
-                MR::vecScaleAdd(&tangentT, &mCtrlPts[i], scaleT);
+                MR::vecScaleAdd(&tangentT, &mCtrlPts[index.x], scaleT);
             }
         }
-        pNormalPatch[idx].cross(tangentS, tangentT);
-        MR::normalizeOrZero(&pNormalPatch[idx]);
+
+        pNormalPatch[index.y].cross(tangentS, tangentT);
+        MR::normalizeOrZero(&pNormalPatch[index.y]);
     }
 }
 
@@ -716,16 +720,19 @@ void BezierSurface::drawTrianglePatchPos() const {
     s32 numPoints = ::sTrianglePatchTableGroup[mDivideLevel].mNumTriangleStripPoints;
 
     TVec3f* vertices = mTrianglePatchVertices;
+
     if (vertices == nullptr) {
         calcTrianglePatchVertix(vertexBuffer);
         vertices = vertexBuffer;
     }
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, numPoints);
+
     for (s32 idx = 0; idx < numPoints; idx++) {
         u16 vertexIndex = vertexOrder[idx];
         GXPosition3f32(vertices[vertexIndex].x, vertices[vertexIndex].y, vertices[vertexIndex].z);
     }
+
     GXEnd();
 }
 
@@ -737,23 +744,27 @@ void BezierSurface::drawTrianglePatchPosNorm() const {
     s32 numPoints = ::sTrianglePatchTableGroup[mDivideLevel].mNumTriangleStripPoints;
 
     TVec3f* vertices = mTrianglePatchVertices;
+
     if (vertices == nullptr) {
         calcTrianglePatchVertix(vertexBuffer);
         vertices = vertexBuffer;
     }
 
     TVec3f* normal = mTrianglePatchNormals;
+
     if (normal == nullptr) {
         calcTrianglePatchNormal(normalBuffer);
         normal = normalBuffer;
     }
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, numPoints);
+
     for (s32 idx = 0; idx < numPoints; idx++) {
         u16 vertexIndex = vertexOrder[idx];
         GXPosition3f32(vertices[vertexIndex].x, vertices[vertexIndex].y, vertices[vertexIndex].z);
         GXNormal3f32(normal[vertexIndex].x, normal[vertexIndex].y, normal[vertexIndex].z);
     }
+
     GXEnd();
 }
 
@@ -768,6 +779,7 @@ void BezierSurface::drawTrianglePatchPosST() const {
     const Vec* triangleST = ::sTrianglePatchTableGroup[mDivideLevel].mTriangleST;
 
     TVec3f* vertices = mTrianglePatchVertices;
+
     if (vertices == nullptr) {
         calcTrianglePatchVertix(vertexBuffer);
         vertices = vertexBuffer;
@@ -775,6 +787,7 @@ void BezierSurface::drawTrianglePatchPosST() const {
 
     const Vec* vec;
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, numPoints);
+
     for (s32 idx = 0; idx < numPoints; idx++) {
         u16 vertexIndex = vertexOrder[idx];
         GXPosition3f32(vertices[vertexIndex].x, vertices[vertexIndex].y, vertices[vertexIndex].z);
@@ -782,6 +795,7 @@ void BezierSurface::drawTrianglePatchPosST() const {
         TVec2f texCoord(mSTPoints[0] * vec->x + mSTPoints[1] * vec->y + mSTPoints[2] * vec->z);
         GXTexCoord2f32(texCoord.x, texCoord.y);
     }
+
     GXEnd();
 }
 
@@ -797,18 +811,21 @@ void BezierSurface::drawTrianglePatchPosNormST() const {
     const Vec* triangleST = ::sTrianglePatchTableGroup[mDivideLevel].mTriangleST;
 
     TVec3f* vertices = mTrianglePatchVertices;
+
     if (vertices == nullptr) {
         calcTrianglePatchVertix(vertexBuffer);
         vertices = vertexBuffer;
     }
 
     TVec3f* normal = mTrianglePatchNormals;
+
     if (normal == nullptr) {
         calcTrianglePatchNormal(normalBuffer);
         normal = normalBuffer;
     }
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, numPoints);
+
     for (s32 idx = 0; idx < numPoints; idx++) {
         u16 vertexIndex = vertexOrder[idx];
         GXPosition3f32(vertices[vertexIndex].x, vertices[vertexIndex].y, vertices[vertexIndex].z);
@@ -817,5 +834,6 @@ void BezierSurface::drawTrianglePatchPosNormST() const {
             (mSTPoints[0] * triangleST[vertexIndex].x + mSTPoints[1] * triangleST[vertexIndex].y + mSTPoints[2] * triangleST[vertexIndex].z);
         GXTexCoord2f32(texCoord.x, texCoord.y);
     }
+
     GXEnd();
 }

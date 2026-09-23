@@ -73,9 +73,10 @@ public:
         if (pName == nullptr) {
             return mLayout->mpRootPane;
         } else {
-            return findPaneByName(pName);
+            return mLayout->mpRootPane->FindPaneByName(pName, true);
         }
     }
+
     nw4r::lyt::Pane* findPaneByName(const char*) const;
     void replaceIndDummyTexture();
     void removeUnnecessaryPanes(nw4r::lyt::Pane*);
