@@ -4,18 +4,18 @@
 
 bool BitFlag128::get(int idx) const {
     u32 flags = mFlags[idx / 32];
-    u32 mask = (1 << (idx % 32));
-    return mask == (flags & (u32)mask);
+    u32 mask = (1U << (idx % 32));
+    return mask == (flags & static_cast<u32>(mask));
 }
 
-void BitFlag128::set(int bit_index, bool setTrue) {
-    u32 valIdx = bit_index / 32;
+void BitFlag128::set(int bitIndex, bool setTrue) {
+    u32 valIdx = bitIndex / 32;
     u32& flag = mFlags[valIdx];
 
     if (setTrue) {
-        flag |= (1 << (bit_index % 32));
+        flag |= (1U << (bitIndex % 32));
     } else {
-        flag &= ~(1 << (bit_index % 32));
+        flag &= ~(1U << (bitIndex % 32));
     }
 }
 
@@ -24,12 +24,11 @@ ZoneSwitch::ZoneSwitch() : BitFlag128() {
 
     while (idx < 0x80) {
         set(idx, false);
+        idx++;
     }
 }
 
-SwitchIdInfo::SwitchIdInfo(s32 switchID, const JMapInfoIter& rIter) {
-    mIDInfo = nullptr;
-    mIsGlobal = switchID >= 1000;
+SwitchIdInfo::SwitchIdInfo(s32 switchID, const JMapInfoIter& rIter) : mIDInfo(), mIsGlobal(switchID >= 1000) {
     mIDInfo = new JMapIdInfo(switchID, rIter);
 }
 
@@ -42,14 +41,14 @@ s32 SwitchIdInfo::getSwitchNo() const {
 }
 
 void StageSwitchContainer::createAndAddZone(const SwitchIdInfo& rInfo) {
-    if (findZoneSwitchFromTable(rInfo)) {
+    if (findZoneSwitchFromTable(rInfo) != nullptr) {
         return;
     }
 
-    ZoneSwitch* s = new ZoneSwitch();
+    ZoneSwitch* pZoneSwitch = new ZoneSwitch();
     ContainerSwitch sw;
-    sw.mData = rInfo.mIDInfo->mZoneID;
-    sw.mSwitch = s;
+    sw.mZoneId = rInfo.mIDInfo->mZoneID;
+    sw.mSwitch = pZoneSwitch;
     mSwitches.push_back(sw);
 }
 
@@ -65,7 +64,7 @@ ZoneSwitch* StageSwitchContainer::findZoneSwitchFromTable(const SwitchIdInfo& rI
     for (int i = 0; i < mSwitches.size(); i++) {
         ContainerSwitch* pContainer = &mSwitches[i];
 
-        if (pContainer->mData == rInfo.mIDInfo->mZoneID) {
+        if (pContainer->mZoneId == rInfo.mIDInfo->mZoneID) {
             return pContainer->mSwitch;
         }
     }
@@ -86,7 +85,7 @@ bool StageSwitchCtrl::isOnSwitchA() const {
 }
 
 bool StageSwitchCtrl::isValidSwitchA() const {
-    return mSW_A != 0;
+    return mSW_A != nullptr;
 }
 
 void StageSwitchCtrl::onSwitchB() {
@@ -102,7 +101,7 @@ bool StageSwitchCtrl::isOnSwitchB() const {
 }
 
 bool StageSwitchCtrl::isValidSwitchB() const {
-    return mSW_B != 0;
+    return mSW_B != nullptr;
 }
 
 bool StageSwitchCtrl::isOnSwitchAppear() const {
@@ -110,7 +109,7 @@ bool StageSwitchCtrl::isOnSwitchAppear() const {
 }
 
 bool StageSwitchCtrl::isValidSwitchAppear() const {
-    return mSW_Appear != 0;
+    return mSW_Appear != nullptr;
 }
 
 void StageSwitchCtrl::onSwitchDead() {
@@ -122,16 +121,19 @@ void StageSwitchCtrl::offSwitchDead() {
 }
 
 bool StageSwitchCtrl::isValidSwitchDead() const {
-    return mSW_Dead != 0;
+    return mSW_Dead != nullptr;
 }
 
-// reg use
 bool StageSwitchCtrl::isOnAllSwitchAfterB(int idx) const {
+    SwitchIdInfo* pSwitch;
+    s32 switchNo;
+
     for (s32 i = 0; i < idx; i++) {
-        s32 switchNo = i + mSW_B->getSwitchNo();
+        switchNo = i + mSW_B->getSwitchNo();
+        pSwitch = mSW_B;
         StageSwitchContainer* pContainer = MR::getSceneObj< StageSwitchContainer >(SceneObj_StageSwitchContainer);
 
-        if (!pContainer->getZoneSwitch(*mSW_B)->get(switchNo)) {
+        if (!pContainer->getZoneSwitch(*pSwitch)->get(switchNo)) {
             return false;
         }
     }
@@ -139,13 +141,28 @@ bool StageSwitchCtrl::isOnAllSwitchAfterB(int idx) const {
     return true;
 }
 
-// isOnAnyOneSwitchAfterB
+bool StageSwitchCtrl::isOnAnyOneSwitchAfterB(int idx) const {
+    SwitchIdInfo* pSwitch;
+    s32 switchNo;
+
+    for (s32 i = 0; i < idx; i++) {
+        switchNo = i + mSW_B->getSwitchNo();
+        pSwitch = mSW_B;
+        StageSwitchContainer* pContainer = MR::getSceneObj< StageSwitchContainer >(SceneObj_StageSwitchContainer);
+
+        if (pContainer->getZoneSwitch(*pSwitch)->get(switchNo)) {
+            return true;
+        }
+    }
+
+    return false;
+}
 
 SwitchIdInfo* StageSwitchFunction::createSwitchIdInfo(const char* pSwitchName, const JMapInfoIter& rIter, bool unused) {
     s32 switchNo;
-    bool res = rIter.getValue< s32 >(pSwitchName, &switchNo);
+    bool hasSwitch = rIter.getValue< s32 >(pSwitchName, &switchNo);
 
-    if (!res) {
+    if (!hasSwitch) {
         return nullptr;
     }
 
@@ -153,15 +170,15 @@ SwitchIdInfo* StageSwitchFunction::createSwitchIdInfo(const char* pSwitchName, c
         return nullptr;
     }
 
-    SwitchIdInfo* inf = new SwitchIdInfo(switchNo, rIter);
+    SwitchIdInfo* pInfo = new SwitchIdInfo(switchNo, rIter);
 
     if (switchNo < 0x3E8) {
         StageSwitchContainer* pContainer = MR::getSceneObj< StageSwitchContainer >(SceneObj_StageSwitchContainer);
 
-        pContainer->createAndAddZone(*inf);
+        pContainer->createAndAddZone(*pInfo);
     }
 
-    return inf;
+    return pInfo;
 }
 
 void StageSwitchFunction::onSwitchBySwitchIdInfo(const SwitchIdInfo& rSwitchId) {
@@ -199,7 +216,7 @@ namespace MR {
     StageSwitchCtrl* createStageSwitchCtrl(NameObj* pObj, const JMapInfoIter& rIter) {
         return new StageSwitchCtrl(rIter);
     }
-};  // namespace MR
+}  // namespace MR
 
 StageSwitchContainer::~StageSwitchContainer() {
 }
@@ -208,9 +225,13 @@ StageSwitchContainer::StageSwitchContainer() : NameObj("ステージスイッチ
     mGlobalSwitches = new ZoneSwitch();
 }
 
-StageSwitchCtrl::StageSwitchCtrl(const JMapInfoIter& rIter) : mSW_A(nullptr), mSW_B(nullptr), mSW_Appear(nullptr), mSW_Dead(nullptr) {
+StageSwitchCtrl::StageSwitchCtrl(const JMapInfoIter& rIter) : mSW_A(), mSW_B(), mSW_Appear(), mSW_Dead() {
     mSW_A = StageSwitchFunction::createSwitchIdInfo("SW_A", rIter, true);
     mSW_B = StageSwitchFunction::createSwitchIdInfo("SW_B", rIter, true);
     mSW_Appear = StageSwitchFunction::createSwitchIdInfo("SW_APPEAR", rIter, false);
     mSW_Dead = StageSwitchFunction::createSwitchIdInfo("SW_DEAD", rIter, false);
+}
+
+bool StageSwitch_FORCE_MATCH(const JMapInfoIter& rIter, const char* pKey, s32* pValue) {
+    return rIter.getValue(pKey, pValue);
 }

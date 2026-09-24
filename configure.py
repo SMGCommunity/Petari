@@ -1577,7 +1577,7 @@ config.libs = [
             Object(Matching, "Game/Map/SpaceInner.cpp"),
             Object(NonMatching, "Game/Map/SphereSelector.cpp"),
             Object(NonMatching, "Game/Map/SphereSelectorHandle.cpp"),
-            Object(NonMatching, "Game/Map/StageSwitch.cpp"),
+            Object(Matching, "Game/Map/StageSwitch.cpp"),
             Object(Matching, "Game/Map/SunshadeMapHolder.cpp"),
             Object(
                 NonMatching,
