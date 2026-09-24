@@ -652,7 +652,8 @@ void OtaKing::initLongFoot(const JMapInfoIter& rIter) {
             mLongFeet[i]->mScale.set(::cLongFootScale);
         }
 
-        mLongFootMtx.makeTrans(mPosition.x, mPosition.y, mPosition.z);
+        mLongFootMtx.identity33();
+        mLongFootMtx.setTrans(mPosition.x, mPosition.y, mPosition.z);
         mLongFeet[0]->initFixedPosition(mLongFootMtx, TVec3f(735.0f, 80.0f, -55.0f), TVec3f(-9.0f, 266.0f, 0.0f));
         mLongFeet[1]->initFixedPosition(mLongFootMtx, TVec3f(-959.0f, 130.0f, 0.0f), TVec3f(0.0f, 107.0f, 14.0f));
         mLongFeet[2]->initFixedPosition(mLongFootMtx, TVec3f(0.0f, 43.0f, 884.0f), TVec3f(-8.0f, 159.0f, 0.0f));
