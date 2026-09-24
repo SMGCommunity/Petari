@@ -30,6 +30,10 @@
 #include "Game/Util/StringUtil.hpp"
 #include <JSystem/JAudio2/JAISound.hpp>
 
+bool SoundUtil_FORCE_MATCH_DATA(const char* pName) {
+    return MR::isEqualString(pName, "SE_SY_READ_RIDDLE_S");
+}
+
 namespace {
     AudBgmConductor* getAudBgmConductor() {
         return MR::getSceneObj< AudBgmConductor >(SceneObj_AudBgmConductor);

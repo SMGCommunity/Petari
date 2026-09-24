@@ -7,9 +7,10 @@
 #include "Game/Util.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
-namespace {
-    static u32 sBloomSyncStep;
-};  // namespace
+void FlipPanel_FORCE_MATCH_SDATA2() {
+    (void)MR::epsilon();
+    (void)-25.0f;
+}
 
 namespace NrvFlipPanel {
     NEW_NERVE(FlipPanelNrvFrontLand, FlipPanel, FrontLand);
@@ -19,6 +20,10 @@ namespace NrvFlipPanel {
     NEW_NERVE(FlipPanelNrvEndPrepare, FlipPanel, EndPrepare);
     NEW_NERVE(FlipPanelNrvEnd, FlipPanel, End);
 };  // namespace NrvFlipPanel
+
+namespace {
+    static u32 sBloomSyncStep;
+};  // namespace
 
 namespace NrvFlipPanelObserver {
     NEW_NERVE(FlipPanelObserverNrvWait, FlipPanelObserver, Wait);
@@ -386,10 +391,4 @@ bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
     }
 
     return false;
-}
-
-FlipPanel::~FlipPanel() {
-}
-
-FlipPanelObserver::~FlipPanelObserver() {
 }

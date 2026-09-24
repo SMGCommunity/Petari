@@ -84,9 +84,13 @@ public:
 
     virtual void open(TalkMessageCtrl*);
     virtual void close();
-    virtual void updateBalloon();
-    virtual void updateTalking();
-    virtual bool isTextAppearedAll();
+    virtual bool isTextAppearedAll() {
+        return true;
+    }
+    virtual void updateBalloon() {
+    }
+    virtual void updateTalking() {
+    }
 };
 
 class TalkBalloonIcon : public TalkBalloonShort {

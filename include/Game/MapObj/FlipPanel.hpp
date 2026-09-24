@@ -12,7 +12,6 @@ class FlipPanel : public MapObjActor {
 public:
     FlipPanel(const char*);
 
-    virtual ~FlipPanel();
     virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void endClipped();
@@ -39,7 +38,6 @@ class FlipPanelObserver : public LiveActor {
 public:
     FlipPanelObserver(const char*);
 
-    virtual ~FlipPanelObserver();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
