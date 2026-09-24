@@ -15,6 +15,12 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
+void PoltaFunction_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)3.0f;
+}
+
 namespace PoltaFunction {
     void onMovement(Polta* pPolta) {
         MR::forceDeleteEffectAll(pPolta);
@@ -73,8 +79,10 @@ namespace PoltaFunction {
             if (!MR::isSensorPlayer(pReceiver)) {
                 MR::sendMsgToEnemyAttackShockWave(pReceiver, pSender);
             }
+
             return true;
         }
+
         return false;
     }
 
@@ -82,6 +90,7 @@ namespace PoltaFunction {
         if (isAffectBody) {
             MR::startAction(pPolta, pActionName);
         }
+
         pPolta->mLeftArm->requestControlled(pActionName);
         pPolta->mRightArm->requestControlled(pActionName);
     }
@@ -132,12 +141,12 @@ namespace PoltaFunction {
         return pPolta->mRightArm->isBroken();
     }
 
-    bool isEnableAttackLeftArm(Polta* pPolta) {
-        return pPolta->mLeftArm->isEnableAttack();
-    }
-
     bool isEnableAttackRightArm(Polta* pPolta) {
         return pPolta->mRightArm->isEnableAttack();
+    }
+
+    bool isEnableAttackLeftArm(Polta* pPolta) {
+        return pPolta->mLeftArm->isEnableAttack();
     }
 
     bool isMaxGenerateBombTeresa(Polta* pPolta) {
@@ -148,57 +157,95 @@ namespace PoltaFunction {
         return pPolta->mGroundRockHolder->getObjNum() - pPolta->mGroundRockHolder->getLivingActorNum();
     }
 
-    bool appearGroundRock(Polta* pPolta, f32 param2, f32 param3) {
-        PoltaGroundRockHolder* groundRockHolder = pPolta->mGroundRockHolder;
-        PoltaGroundRock* deadMember = groundRockHolder->getDeadActor() ? (PoltaGroundRock*)groundRockHolder->getDeadActor() : nullptr;
-
-        if (deadMember == nullptr) {
+    bool appearGroundRock(Polta* pPolta, f32 distance, f32 angle) {
+        PoltaGroundRock* pRock = pPolta->mGroundRockHolder->getDeadMember();
+        if (pRock == nullptr) {
             return false;
         }
 
-        TVec3f v28 = *MR::getPlayerPos() - pPolta->mPosition;
-        v28.orthogonalize(pPolta->mGravity);
-        if (MR::normalizeOrZero(&v28)) {
-            v28 = pPolta->_C4;
+        TVec3f direction(*MR::getPlayerPos());
+        direction.sub(pPolta->mPosition);
+        direction.orthogonalize(pPolta->mGravity);
+
+        if (MR::normalizeOrZero(&direction)) {
+            direction = pPolta->_C4;
         }
-        MR::rotateVecDegree(&v28, pPolta->mGravity, param2);
-        v28.scaleAdd(param3, v28, pPolta->mPosition);
-        deadMember->start(pPolta, v28);
+
+        MR::rotateVecDegree(&direction, pPolta->mGravity, angle);
+        TVec3f position;
+        position.scaleAdd(distance, direction, pPolta->mPosition);
+
+        pRock->start(pPolta, position);
         return true;
     }
 
-    // bool appearRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5, s32 rockType)
-
-    bool appearWhiteRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5) {
-        return appearRockCircle(pPolta, rVec, param3, param4, param5, 0);
-    }
-
-    bool appearBlackRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5) {
-        return appearRockCircle(pPolta, rVec, param3, param4, param5, 1);
-    }
-
-    bool appearYellowRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5) {
-        return appearRockCircle(pPolta, rVec, param3, param4, param5, 2);
-    }
-
-    // All the params besides pPolta go unused.
-    bool appearBombTeresaFromRoot(Polta* pPolta, f32 param2, f32 param3, s32 param4) {
-        TVec3f v8;
-        v8.scaleAdd(-120.0f, pPolta->mGravity, pPolta->mPosition);
-        BombTeresa* deadMember = pPolta->mBombTeresaHolder->getDeadMember();
-        if (!deadMember) {
+    bool appearRockCircle(Polta* pPolta, const TVec3f& rCenter, f32 radius, s32 index, s32 count, s32 rockType) {
+        PoltaRock* const pRock = pPolta->mRockHolder->getDeadMember();
+        if (pRock == nullptr) {
             return false;
         }
-        deadMember->appearShadow(v8, TVec3f(0.0f, 0.0f, 0.0f));
+
+        switch (rockType) {
+        case 0:
+            pRock->setColorWhite();
+            break;
+        case 1:
+            pRock->setColorBlack();
+            break;
+        case 2:
+            pRock->setColorYellow();
+            break;
+        default:
+            pRock->setColorWhite();
+            break;
+        }
+
+        TVec3f direction(pPolta->_C4);
+        f32 sign = index % 2 ? 1.0f : -1.0f;
+        f32 angle = sign * (15.0f + 7.0f * (index + 1));
+        MR::rotateVecDegree(&direction, pPolta->mGravity, angle);
+        direction.orthogonalize(pPolta->mGravity);
+        MR::normalizeOrZero(&direction);
+
+        TVec3f position;
+        position.scaleAdd(radius, direction, rCenter);
+        TVec3f offset(radius * -MR::sinDegree(angle), 0.0f, radius * MR::cosDegree(angle));
+
+        pRock->start(pPolta, position, offset);
+        return true;
+    }
+
+    bool appearWhiteRockCircle(Polta* pPolta, const TVec3f& rCenter, f32 radius, s32 index, s32 count) {
+        return appearRockCircle(pPolta, rCenter, radius, index, count, 0);
+    }
+
+    bool appearBlackRockCircle(Polta* pPolta, const TVec3f& rCenter, f32 radius, s32 index, s32 count) {
+        return appearRockCircle(pPolta, rCenter, radius, index, count, 1);
+    }
+
+    bool appearYellowRockCircle(Polta* pPolta, const TVec3f& rCenter, f32 radius, s32 index, s32 count) {
+        return appearRockCircle(pPolta, rCenter, radius, index, count, 2);
+    }
+
+    bool appearBombTeresaFromRoot(Polta* pPolta, f32 param2, f32 param3, s32 param4) {
+        TVec3f position;
+        position.scaleAdd(-120.0f, pPolta->mGravity, pPolta->mPosition);
+        BombTeresa* pBombTeresa = pPolta->mBombTeresaHolder->getDeadMember();
+        if (pBombTeresa == nullptr) {
+            return false;
+        }
+
+        pBombTeresa->appearShadow(position, TVec3f(0.0f, 0.0f, 0.0f));
         return true;
     }
 
     bool appearBombTeresaNormal(Polta* pPolta, const TVec3f& rPosition, const TVec3f& rVelocity) {
-        BombTeresa* deadMember = pPolta->mBombTeresaHolder->getDeadMember();
-        if (!deadMember) {
+        BombTeresa* pBombTeresa = pPolta->mBombTeresaHolder->getDeadMember();
+        if (pBombTeresa == nullptr) {
             return false;
         }
-        deadMember->appearNormal(rPosition, rVelocity);
+
+        pBombTeresa->appearNormal(rPosition, rVelocity);
         return true;
     }
 
@@ -222,11 +269,11 @@ namespace PoltaFunction {
         pPolta->mGroundRockHolder->killAll();
     }
 
-    void setBodyHP(Polta* pPolta, s32 param2) {
+    void setBodyHP(Polta* pPolta, s32 hp) {
         MR::startBva(pPolta, "BreakLevel");
-        MR::setBvaFrameAndStop(pPolta, (3.0f - param2));
+        MR::setBvaFrameAndStop(pPolta, 3.0f - hp);
 
-        switch (param2) {
+        switch (hp) {
         case 3:
             MR::deleteEffect(pPolta, "DamageSmoke1");
             MR::deleteEffect(pPolta, "DamageSmoke2");
@@ -246,4 +293,4 @@ namespace PoltaFunction {
             break;
         }
     }
-};  // namespace PoltaFunction
+}  // namespace PoltaFunction

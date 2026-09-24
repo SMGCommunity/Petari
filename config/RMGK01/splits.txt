@@ -1184,7 +1184,7 @@ Game/Boss/OtaKingLongFoot.cpp:
 Game/Boss/OtaKingMagma.cpp:
 	.text       start:0x8006DD98 end:0x8006E654
 	.ctors      start:0x8052E954 end:0x8052E958
-	.rodata     start:0x80531078 end:0x805310A0
+	.rodata     start:0x80531078 end:0x80531098
 	.data       start:0x8056F4C8 end:0x8056F6B8
 	.sbss       start:0x806B3650 end:0x806B3670
 
@@ -1234,6 +1234,7 @@ Game/Boss/PoltaDemo.cpp:
 
 Game/Boss/PoltaFunction.cpp:
 	.text       start:0x80072A08 end:0x80073324
+	.rodata     start:0x80531098 end:0x805310A0
 	.data       start:0x80570088 end:0x805700B0
 	.sdata2     start:0x806B8BB0 end:0x806B8BD8
 
