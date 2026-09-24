@@ -1,5 +1,6 @@
 #include "Game/Screen/MiiSelect.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Map/FileSelectFunc.hpp"
 #include "Game/Map/FileSelectIconID.hpp"
 #include "Game/Screen/ButtonPaneController.hpp"
 #include "Game/Screen/MiiSelectIcon.hpp"
@@ -8,6 +9,7 @@
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "revolution/types.h"
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 #include <RVLFaceLib.h>
 
@@ -19,21 +21,15 @@ namespace {
     NEW_NERVE(MiiSelectNrvSelected, MiiSelect, Selected);
     NEW_NERVE(MiiSelectNrvDisappear, MiiSelect, Disappear);
     NEW_NERVE(MiiSelectNrvDummySelected, MiiSelect, DummySelected);
+
+    typedef void (MiiSelect::*CallbackFuncPtr)();
+
+    static const CallbackFuncPtr func[2] = {&MiiSelect::callbackLeft, &MiiSelect::callbackRight};
 };  // namespace
 
-MiiSelect::MiiSelect(const char* pName) : LayoutActor(pName, true) {
-    _28 = new MR::BitArray(5);
-    _2C = 0;
-    _2E = 0;
-    _58 = 0;
-    _1EC = 0;
-    _1F0 = 0;
-    _1F4 = nullptr;
-    _1F8 = nullptr;
-    _1FC = nullptr;
-    _200 = 0;
-    _204 = new FileSelectIconID();
-
+MiiSelect::MiiSelect(const char* pName)
+    : LayoutActor(pName, true), _28(new MR::BitArray(5)), mFellowIconNum(), mFavoriteMiiNum(), mMiiNum(), _1EC(), _1F0(), _1F4(), _1F8(), _1FC(),
+      _200(), _204(new FileSelectIconID()) {
     for (int i = 0; i < ARRAY_SIZE(_20); i++) {
         _20[i] = nullptr;
     }
@@ -111,7 +107,7 @@ void MiiSelect::invalidateSpecialMii(FileSelectIconID::EFellowID fellowID) {
     if (_28->isOn(fellowID)) {
         _28->set(fellowID, false);
 
-        _2C--;
+        mFellowIconNum--;
     }
 }
 
@@ -120,7 +116,7 @@ void MiiSelect::validateAllSpecialMii() {
         _28->set(i, true);
     }
 
-    _2C = _28->size();
+    mFellowIconNum = _28->size();
 }
 
 void MiiSelect::exeAppear() {
@@ -155,7 +151,8 @@ void MiiSelect::exeWait() {
 
     for (int i = 0; i < ARRAY_SIZE(_20); i++) {
         if (_20[i]->trySelect()) {
-            // ...
+            (this->*func[i])();
+            return;
         }
     }
 
@@ -335,11 +332,11 @@ void MiiSelect::collectValidMiiIndex() {
         }
 
         if (additionalInfo.favorite == 1) {
-            _30[_2E] = static_cast< u16 >(i);
-            _2E++;
+            mFavoriteMiiIndices[mFavoriteMiiNum] = static_cast< u16 >(i);
+            mFavoriteMiiNum++;
         } else {
-            _5C[_58] = static_cast< u16 >(i);
-            _58++;
+            mMiiIndices[mMiiNum] = static_cast< u16 >(i);
+            mMiiNum++;
         }
     }
 }
@@ -393,7 +390,7 @@ void MiiSelect::refresh() {
 }
 
 void MiiSelect::getIconID(FileSelectIconID* pIconID, s32 param2) const {
-    if (param2 < _2C) {
+    if (param2 < mFellowIconNum) {
         s32 v = 0;
 
         for (int i = 0; i < _28->size(); i++) {
@@ -408,10 +405,10 @@ void MiiSelect::getIconID(FileSelectIconID* pIconID, s32 param2) const {
 
             v++;
         }
-    } else if (param2 < _2E + _2C) {
-        pIconID->setMiiIndex(_30[param2 - _2C]);
+    } else if (param2 < mFavoriteMiiNum + mFellowIconNum) {
+        pIconID->setMiiIndex(mFavoriteMiiIndices[param2 - mFellowIconNum]);
     } else {
-        pIconID->setMiiIndex(_5C[param2 - _2E - _2C]);
+        pIconID->setMiiIndex(mMiiIndices[param2 - mFavoriteMiiNum - mFellowIconNum]);
     }
 }
 
@@ -439,8 +436,60 @@ namespace MiiSelectSub {
         }
     }
 
-    // Page::refresh
-    // Page::movement
+    void Page::refresh(s32 baseIndex) {
+        mBaseIndex = baseIndex;
+
+        s32 iconNum = mHost->getIconNum();
+
+        for (s32 i = 0; i < ARRAY_SIZE(mIconArray); i++) {
+            if (mHost->isExistMiiIcon()) {
+                if (baseIndex + i >= iconNum) {
+                    mIconArray[i]->kill();
+                    continue;
+                }
+            } else if (baseIndex + i == iconNum) {
+                mIconArray[i]->appearMiiDummy();
+                continue;
+            } else if (baseIndex + i > iconNum) {
+                mIconArray[i]->kill();
+                continue;
+            }
+
+            FileSelectIconID iconID;
+            mHost->getIconID(&iconID, baseIndex + i);
+            mIconArray[i]->appear(iconID);
+        }
+    }
+
+    void Page::movement() {
+        bool isPointingAny = false;
+
+        for (s32 i = 0; i < ARRAY_SIZE(mIconArray); i++) {
+            if (!MR::isDead(mIconArray[i])) {
+                mIconArray[i]->movement();
+
+                if (mIconArray[i]->isMiiDummy()) {
+                    if (mIconArray[i]->isSelected()) {
+                        mHost->onSelectDummy();
+                        mIconArray[i]->invalidate();
+                    }
+                } else if (mIconArray[i]->isSelected()) {
+                    mHost->onSelect(mBaseIndex + i, mIconArray[i]->getTexMap());
+                    mIconArray[i]->invalidate();
+                } else if (mIconArray[i]->isPointing()) {
+                    wchar_t name[RFL_NAME_LEN + 1];
+                    FileSelectFunc::copyMiiName(reinterpret_cast< u16* >(name), mHost->makeIconID(mBaseIndex + i));
+                    MR::setTextBoxMessageRecursive(mHost, "TxtName", name);  // TODO: Generate an mr instruction for the mHost load
+
+                    isPointingAny = true;
+                }
+            }
+        }
+
+        if (!isPointingAny) {
+            MR::setTextBoxMessageRecursive(mHost, "TxtName", L"");
+        }
+    }
 
     void Page::calcAnim() {
         s32 v = 9;
@@ -494,5 +543,5 @@ namespace MiiSelectSub {
 };  // namespace MiiSelectSub
 
 s32 MiiSelect::getIconNum() {
-    return _58 + _2E + _2C;
+    return mMiiNum + mFavoriteMiiNum + mFellowIconNum;
 }
