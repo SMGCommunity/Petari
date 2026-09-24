@@ -3,10 +3,6 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
-
-#include "Game/Util/StringUtil.hpp"
 
 void JetTurtle_FORCE_MATCH_STRINGS() {
     MR::isEqualString("Koura", "Koura");
@@ -61,6 +57,9 @@ namespace {
     static const f32 sThrowSpdHoming[] = {24.0f, 20.0f, 24.0f};
     static const f32 sGravityLevel[] = {0.017f, 0.01f, 0.0055f};
     static const u16 sResetStep[] = {300, 480, 300};
+
+    static const f32 sBoundReductionXZ = 0.8f;
+    static const f32 sBoundReductionY = 0.9f;
 };  // namespace
 
 namespace NrvJetTurtle {
@@ -87,11 +86,11 @@ void JetTurtle::init2(const JMapInfoIter& rIter, s32 param2) {
 
     MR::initDefaultPos(this, rIter);
 
-    s32 arg0 = 0;
+    s32 shellType = 0;
     s32 arg1 = -1;
 
     if (MR::isValidInfo(rIter)) {
-        MR::getJMapInfoArg0NoInit(rIter, &arg0);
+        MR::getJMapInfoArg0NoInit(rIter, &shellType);
         MR::getJMapInfoArg1NoInit(rIter, &arg1);
 
         arg1++;
@@ -129,15 +128,15 @@ void JetTurtle::init2(const JMapInfoIter& rIter, s32 param2) {
     }
 
     if (param2 != 0) {
-        arg0 = 2;
+        shellType = JETTURTLETYPE_GOLD;
     }
 
-    switch (arg0) {
+    switch (shellType) {
     case 0:
-    case 1:
+    case JETTURTLETYPE_RED:
         initModelManagerWithAnm("Koura", nullptr, false);
         break;
-    case 2:
+    case JETTURTLETYPE_GOLD:
         initModelManagerWithAnm("KouraShine", nullptr, false);
         break;
     }
@@ -148,20 +147,20 @@ void JetTurtle::init2(const JMapInfoIter& rIter, s32 param2) {
     MR::addHitSensor(this, "body", ATYPE_JET_TURTLE, 8, 50.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::addHitSensorEye(this, "eye", 8, 1000.0f, TVec3f(0.0f, 0.0f, 0.0f));
 
-    if (arg0 < 2) {
+    if (shellType < JETTURTLETYPE_GOLD) {
         MR::startBrk(this, "Koura");
         MR::setBrkFrameAndStop(this, 1.0f);
     }
 
-    if (arg0 != 1) {
-        if (arg0 == 0) {
+    if (shellType != JETTURTLETYPE_RED) {
+        if (shellType == 0) {
             becomeSlowType();
         } else {
             getSensor("body")->setType(ATYPE_JET_TURTLE_SLOW);
         }
     }
 
-    mShellType = arg0;
+    mShellType = shellType;
     _8C = 0.0f;
 
     initNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait));
@@ -248,10 +247,10 @@ void JetTurtle::resetPositionAndVanish() {
         // why?
         MR::emitEffect(this, "Vanish");
         break;
-    case 1:
+    case JETTURTLETYPE_RED:
         MR::emitEffect(this, "VanishRed");
         break;
-    case 2:
+    case JETTURTLETYPE_GOLD:
         MR::emitEffect(this, "VanishGold");
         break;
     }
@@ -268,10 +267,10 @@ void JetTurtle::exeWait() {
             default:
                 MR::emitEffect(this, "SpinBlur");
                 break;
-            case 1:
+            case JETTURTLETYPE_RED:
                 MR::emitEffect(this, "SpinBlurRed");
                 break;
-            case 2:
+            case JETTURTLETYPE_GOLD:
                 MR::emitEffect(this, "SpinBlurGold");
                 break;
             }
@@ -281,7 +280,7 @@ void JetTurtle::exeWait() {
         }
 
         switch (mShellType) {
-        case 2:
+        case JETTURTLETYPE_GOLD:
             MR::emitEffect(this, "Glow");
             break;
         }
@@ -388,7 +387,7 @@ void JetTurtle::bound() {
         f32 v3 = MR::vecKillElement(_9C, *MR::getGroundNormal(this), &v22);
 
         if (v3 < 0.0f) {
-            _9C = v22 - *MR::getGroundNormal(this) * v3 * 0.80f;
+            _9C = v22 - *MR::getGroundNormal(this) * v3 * ::sBoundReductionXZ;
         }
     }
 
@@ -397,7 +396,7 @@ void JetTurtle::bound() {
         f32 v6 = MR::vecKillElement(_9C, *MR::getWallNormal(this), &v21);
 
         if (v6 < 0.0f) {
-            _9C = v21 - *MR::getWallNormal(this) * v6 * 0.9f;
+            _9C = v21 - *MR::getWallNormal(this) * v6 * ::sBoundReductionY;
         }
     }
 
@@ -406,7 +405,7 @@ void JetTurtle::bound() {
         f32 v6 = MR::vecKillElement(_9C, *MR::getRoofNormal(this), &v21);
 
         if (v6 < 0.0f) {
-            _9C = v21 - *MR::getRoofNormal(this) * v6 * 0.8f;
+            _9C = v21 - *MR::getRoofNormal(this) * v6 * ::sBoundReductionXZ;
         }
     }
 }
@@ -511,10 +510,10 @@ void JetTurtle::exeThrowing() {
                 default:
                     MR::emitEffect(this, "Blur");
                     break;
-                case 1:
+                case JETTURTLETYPE_RED:
                     MR::emitEffect(this, "BlurRed");
                     break;
-                case 2:
+                case JETTURTLETYPE_GOLD:
                     MR::emitEffect(this, "BlurGold");
                     break;
                 }
@@ -680,7 +679,7 @@ void JetTurtle::exeTakenStart() {
         MR::deleteEffect(this, "SpinBlurRed");
         MR::deleteEffect(this, "SpinBlurGold");
 
-        if (mShellType == 2) {
+        if (mShellType == JETTURTLETYPE_GOLD) {
             MR::deleteEffect(this, "Glow");
             MR::emitEffect(this, "HandyGlow");
         }
@@ -972,7 +971,7 @@ void GoldenTurtle::exeThrowing() {
     if (MR::isFirstStep(this)) {
         getSensor("body")->setType(ATYPE_SPECIAL_WEAPON);
 
-        if (mShellType == 2) {
+        if (mShellType == JETTURTLETYPE_GOLD) {
             MR::deleteEffect(this, "HandyGlow");
         }
     }
