@@ -307,7 +307,7 @@ bool MarioSkate::close() {
             f32 vertical = MR::vecKillElement(pPlayer->mJumpVec, getGravityVec(), &velocity);
             velocity *= 1.5f;
             velocity += getGravityVec() * vertical;
-            getPlayer()->mJumpVec = velocity;
+            getPlayer()->setJumpVec(velocity);
         }
     } else if (getPlayer()->mMovementStates._1) {
         stopAnimation(nullptr, "基本");

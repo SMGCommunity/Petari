@@ -2069,7 +2069,7 @@ config.libs = [
             Object(NonMatching, "Game/Player/MarioActorSpecialDraw.cpp", extra_cflags=["-opt nocse"]),
             Object(Matching, "Game/Player/MarioActorMatrix.cpp"),
             Object(NonMatching, "Game/Player/MarioActorMorph.cpp"),
-            Object(NonMatching, "Game/Player/MarioActorEye.cpp"),
+            Object(Matching, "Game/Player/MarioActorEye.cpp"),
             Object(NonMatching, "Game/Player/MarioActorOffensiveMsg.cpp"),
             Object(NonMatching, "Game/Player/MarioActorDefensiveMsg.cpp"),
             Object(Matching, "Game/Player/MarioActorRushMsg.cpp", extra_cflags=["-sym off"]),

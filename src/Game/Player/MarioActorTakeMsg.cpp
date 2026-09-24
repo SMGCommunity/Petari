@@ -11,6 +11,26 @@
 #include "Game/Util/MathUtil.hpp"
 #include <cstring>
 
+void MarioActorTakeMsg_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)3.14159274f;
+    (void)2.0f;
+    (void)1.04719758f;
+    (void)500.0f;
+    (void)57.2957802f;
+    (void)600.0f;
+    (void)200.0f;
+    (void)-0.100000001f;
+    (void)120.0f;
+    (void)400000.0f;
+    (void)10000.0f;
+    (void)0.400000006f;
+    (void)0.00999999978f;
+    (void)0.0399999991f;
+    (void)25.0f;
+    (void)50.0f;
+}
+
 void MarioActor::memorizeSensorThrow(HitSensor* pSensor) {
     _428[_468] = pSensor;
     _438[_468] = pSensor->mHost->mRotation - mRotation;
@@ -221,7 +241,7 @@ bool MarioActor::tryCoinPullOne(HitSensor* pSensor) NO_INLINE {
     return pSensor->receiveMessage(ACTMES_ITEM_PULL, getSensor("body"));
 }
 
-void MarioActor::tryPullTrans(TVec3f* velocity, const TVec3f& position) {
+void MarioActor::tryPullTrans(TVec3f* pVelocity, const TVec3f& rPosition) {
     TVec3f center(_2A0);
     TVec3f ground;
     getGroundPos(&ground);
@@ -232,32 +252,37 @@ void MarioActor::tryPullTrans(TVec3f* velocity, const TVec3f& position) {
         f32 height = MR::vecKillElement(offset, mMario->_368, &offset);
         ground = center + mMario->_368 * height;
     }
+
     TVec3f foot;
-    f32 projection = MR::getFootPoint(center, ground, position, &foot);
-    TVec3f inward = foot - position;
+    f32 projection = MR::getFootPoint(center, ground, rPosition, &foot);
+    TVec3f inward = foot - rPosition;
     f32 radius = inward.length();
     if (radius > 600.0f) {
         radius = 600.0f;
     }
+
     TVec3f speed;
     speed.y = 400000.0f / (10000.0f + radius * radius);
     f32 height = MR::abs(projection * (ground - center).length());
     if (height < speed.y) {
         speed.y = height;
     }
+
     if (projection < 0.0f) {
         speed.y = -speed.y;
     }
+
     if (!IsMarioSwimming()) {
         speed.y = 0.4f * speed.y;
     }
+
     TVec3f axis = ground - center;
     MR::normalizeOrZero(&axis);
     MR::normalizeOrZero(&inward);
     TVec3f tangent;
     tangent.cross(axis, inward);
-    speed.z = (0.01f + 0.04f * (600.0f - radius) / 600.0f) * (2.0f * (PI * radius)) * getConst().getTable()->mCoinPullAngleSpeedRatio;
-    TVec3f nextPosition = position + tangent * speed.z;
+    speed.z = (0.01f + 0.04f * (600.0f - radius) / 600.0f) * (2.0f * (MR::pi() * radius)) * getConst().getTable()->mCoinPullAngleSpeedRatio;
+    TVec3f nextPosition = rPosition + tangent * speed.z;
     TVec3f pull = foot - nextPosition;
     f32 nextRadius = pull.length();
     MR::normalizeOrZero(&pull);
@@ -265,12 +290,14 @@ void MarioActor::tryPullTrans(TVec3f* velocity, const TVec3f& position) {
     if (_934) {
         pullSpeed += 50.0f;
     }
+
     pullSpeed *= getConst().getTable()->mCoinPullDistSpeedRatio;
     if (radius < pullSpeed) {
         pullSpeed = radius;
     }
+
     speed.x = pullSpeed + (nextRadius - radius);
-    *velocity = pull * speed.x - axis * speed.y + tangent * speed.z;
+    *pVelocity = pull * speed.x - axis * speed.y + tangent * speed.z;
 }
 
 bool MarioActor::releaseThrowMemoSensor() {
@@ -382,14 +409,16 @@ void MarioActor::tryReleaseWithMsg(u32 msg) {
     clearNullAnimation(0);
 }
 
-void MarioActor::tryTornadoPull(HitSensor* sensor) {
+void MarioActor::tryTornadoPull(HitSensor* pSensor) {
     if (!isActionOk("コイン引っ張り")) {
         return;
     }
-    s32 type = sensor->mType;
-    if (strcmp(sensor->mHost->mName, "カメックビーム用カメ") == 0) {
+
+    s32 type = pSensor->mType;
+    if (strcmp(pSensor->mHost->mName, "カメックビーム用カメ") == 0) {
         type = 5555;
     }
+
     switch (type) {
     case ATYPE_COIN_RED:
         break;
@@ -402,54 +431,65 @@ void MarioActor::tryTornadoPull(HitSensor* sensor) {
             if (IsMarioSwimming()) {
                 ground = center - _4B8 * 600.0f;
             }
+
             center += mMario->mHeadVec * 200.0f;
-            TVec3f position(sensor->mPosition);
+            TVec3f position(pSensor->mPosition);
             TVec3f foot;
             f32 projection = MR::getFootPoint(center, ground, position, &foot);
             if (projection < -0.1f) {
                 return;
             }
+
             if (projection > 2.0f) {
                 return;
             }
+
             TVec3f offset = foot - position;
             if (offset.length() > 600.0f) {
                 return;
             }
-            if (MR::isExistMapCollision(_2A0, sensor->mPosition - _2A0)) {
+
+            if (MR::isExistMapCollision(_2A0, pSensor->mPosition - _2A0)) {
                 return;
             }
+
             for (s32 i = 0; i < 128; i++) {
-                if (_4D0[i] == sensor) {
+                if (_4D0[i] == pSensor) {
                     return;
                 }
             }
-            if (sensor->receiveMessage(ACTMES_ITEM_PULL, getSensor("body"))) {
+
+            if (pSensor->receiveMessage(ACTMES_ITEM_PULL, getSensor("body"))) {
                 for (s32 i = 0; i < 128; i++) {
                     if (_4D0[i] == nullptr) {
-                        _4D0[i] = sensor;
+                        _4D0[i] = pSensor;
                         return;
                     }
                 }
             }
         }
+
         break;
     }
+
     case ATYPE_JET_TURTLE:
     case ATYPE_JET_TURTLE_SLOW:
-        if (isActionOk("カメ持ち") && sensor->receiveMessage(ACTMES_IS_PULL_ENABLE, getSensor("body"))) {
-            if ((sensor->mPosition - mPosition).length() < 120.0f) {
-                tryGetItem(sensor);
+        if (isActionOk("カメ持ち") && pSensor->receiveMessage(ACTMES_IS_PULL_ENABLE, getSensor("body"))) {
+            if ((pSensor->mPosition - mPosition).length() < 120.0f) {
+                tryGetItem(pSensor);
                 return;
             }
-            tryCoinPullOne(sensor);
-            _424 = sensor;
+
+            tryCoinPullOne(pSensor);
+            _424 = pSensor;
         }
+
         break;
     case 5555:
-        if (isActionOk("カメ持ち") && sensor->receiveMessage(ACTMES_IS_PULL_ENABLE, getSensor("body"))) {
-            tryCoinPullOne(sensor);
+        if (isActionOk("カメ持ち") && pSensor->receiveMessage(ACTMES_IS_PULL_ENABLE, getSensor("body"))) {
+            tryCoinPullOne(pSensor);
         }
+
         break;
     }
 }
