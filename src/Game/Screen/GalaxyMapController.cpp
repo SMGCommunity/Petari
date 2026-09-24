@@ -288,6 +288,7 @@ void GalaxyMapController::exeFadeinModeMap() {
         case Mode_GalaxyMap:
             mBackButton->appear();
             mMapSelectButton->startAstroMap();
+            break;
         case Mode_NewDomeDiscover:
             mMap->forceToGalaxyMap();
             break;
@@ -619,7 +620,8 @@ void GalaxyMapController::setFaderParam(GXColor color, int frame) {
 void GalaxyMapController::capture() {
     Mtx44 projectionMtx;
     f32 halfHeight = MR::getScreenHeight() * 0.5f;
-    C_MTXOrtho(projectionMtx, halfHeight, -halfHeight, -304.0f, 304.0f, -1000.0f, 1000.0f);
+    f32 halfWidth = 304.0f;
+    C_MTXOrtho(projectionMtx, halfHeight, -halfHeight, -halfWidth, halfWidth, -1000.0f, 1000.0f);
     GXSetProjection(projectionMtx, GX_ORTHOGRAPHIC);
     drawForCapture();
     _38->capture(0, 0, GX_TF_RGB565, true, 0);

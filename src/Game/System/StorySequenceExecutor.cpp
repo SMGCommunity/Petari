@@ -1193,7 +1193,6 @@ bool StorySequenceExecutor::tryNextDemoInfo() {
         return false;
     }
 
-    // FIXME: Supposed inline of MR::Vector::erase.
     _48.erase(_48.begin());
 
     return true;

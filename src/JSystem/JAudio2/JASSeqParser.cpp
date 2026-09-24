@@ -883,16 +883,7 @@ s32 JASSeqParser::parseCommand(JASTrack* track, u8 cmdCode, u16 c) {
             arg = track->getSeqCtrl()->read16();
             break;
         case 2:
-            // FIXME: this should REALLY be
-            // `arg = track->getSeqCtrl()->read24();`
-            // but the compiler refuses to inline it
-            track->getSeqCtrl()->mReader.mSeqCursor--;
-#ifdef __MWERKS__
-            arg = *((u32*)(track->getSeqCtrl()->mReader.mSeqCursor))++ & 0xffffff;
-#else
-            arg = *(u32*)track->getSeqCtrl()->mReader.mSeqCursor;
-            track->getSeqCtrl()->mReader.mSeqCursor += 4;
-#endif
+            arg = track->getSeqCtrl()->read24();
             break;
         case 3:
             arg = readReg(track, track->getSeqCtrl()->readByte());

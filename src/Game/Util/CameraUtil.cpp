@@ -103,15 +103,13 @@ namespace MR {
     }
 
     bool calcWorldPositionFromScreen(TVec3f* pPos, const TVec2f& rScreenPos, f32 distZ) {
-        // FIXME: TVec2f ctor should uninline
-
         f32 width = MR::getScreenWidth();
         f32 height = MR::getScreenHeight();
 
-        f32 w = rScreenPos.x - width * 0.5f;
-        f32 h = rScreenPos.y - height * 0.5f;
+        f32 centerX = rScreenPos.x - width * 0.5f;
+        f32 centerY = rScreenPos.y - height * 0.5f;
 
-        return calcWorldPositionFromCenterScreen(pPos, TVec2f(w, h), distZ);
+        return calcWorldPositionFromCenterScreen(pPos, TVec2f(centerX, centerY), distZ);
     }
 
     bool calcWorldPositionFromCenterScreen(TVec3f* pPos, const TVec2f& rScreenPos, f32 distZ) {
