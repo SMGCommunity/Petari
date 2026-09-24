@@ -3,8 +3,8 @@
 #include "Game/Screen/ButtonPaneController.hpp"
 #include "Game/Screen/LuigiLetter.hpp"
 #include "Game/Screen/SysInfoWindow.hpp"
-#include "Game/System/GameSequenceFunction.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
+#include "Game/System/GameSequenceFunction.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -25,7 +25,7 @@ namespace {
     bool isStageHideScenarioTitle() {
         return MR::isStageBeginPrologueEvent() || MR::isStageAstroLocation();
     }
-};  // namespace
+}  // namespace
 
 namespace NrvPauseMenu {
     NEW_NERVE(PauseMenuNrvSelecting, PauseMenu, Selecting);
@@ -34,11 +34,11 @@ namespace NrvPauseMenu {
     NEW_NERVE(PauseMenuNrvConfirm, PauseMenu, Confirm);
     NEW_NERVE(PauseMenuNrvGameDataSave, PauseMenu, GameDataSave);
     NEW_NERVE(PauseMenuNrvLuigiLetter, PauseMenu, LuigiLetter);
-};  // namespace NrvPauseMenu
+}  // namespace NrvPauseMenu
 
 PauseMenu::PauseMenu()
-    : LayoutActor("ポーズメニュー", true), _20(nullptr), _24(nullptr), _28(0.0f, 50.0f), _30(nullptr), mLuigiLetter(nullptr), _38(nullptr),
-      mStageTitleOffset(0.0f, 39.0f), mCoinNumPos(0.0f, 0.0f), mStarPieceNumPos(0.0f, 0.0f), _54(true) {
+    : LayoutActor("ポーズメニュー", true), _20(), _24(), _28(0.0f, 50.0f), _30(), mLuigiLetter(), _38(), mStageTitleOffset(0.0f, 39.0f),
+      mCoinNumPos(0.0f, 0.0f), mStarPieceNumPos(0.0f, 0.0f), _54(true) {
 }
 
 void PauseMenu::init(const JMapInfoIter& rIter) {
@@ -197,14 +197,10 @@ void PauseMenu::control() {
 
 void PauseMenu::updateStarPane() {
     GalaxyStatusAccessor accessor = MR::makeCurrentGalaxyStatusAccessor();
-    const char* starPaneNames[7] = {
-        "ShaStarA", "ShaStarB", "ShaStarC", "ShaStarD", "ShaStarE", "ShaStarF", "ShaStarG"
-    };
-    const char* starPicPaneNames[7] = {
-        "PicStarA", "PicStarB", "PicStarC", "PicStarD", "PicStarE", "PicStarF", "PicStarG"
-    };
+    const char* starPaneNames[7] = {"ShaStarA", "ShaStarB", "ShaStarC", "ShaStarD", "ShaStarE", "ShaStarF", "ShaStarG"};
+    const char* starPicPaneNames[7] = {"PicStarA", "PicStarB", "PicStarC", "PicStarD", "PicStarE", "PicStarF", "PicStarG"};
 
-    for (s32 i = 0; i < 7; i++) {
+    for (s32 i = 0; i < ARRAY_SIZEU(starPaneNames); i++) {
         MR::hidePaneRecursive(this, starPaneNames[i]);
     }
 
@@ -215,7 +211,7 @@ void PauseMenu::updateStarPane() {
     s32 extraStarCount = 0;
     bool isInvalidAstroDome = !MR::isOnGameEventFlagUseAstroDome();
 
-    for (s32 i = 0; i < 7; i++) {
+    for (s32 i = 0; i < ARRAY_SIZEU(starPaneNames); i++) {
         if (i < accessor.getPowerStarNum()) {
             if (MR::hasPowerStarInCurrentStage(i + 1)) {
                 if (i < accessor.getNormalScenarioNum()) {
@@ -278,8 +274,7 @@ void PauseMenu::exeSelecting() {
 
     bool isLetterHidden;
 
-    if (_20->trySelect() || (_24 != nullptr && _24->trySelect()) ||
-        (!(isLetterHidden = (_38 == nullptr || _38->isHidden())) && _38->trySelect())) {
+    if (_20->trySelect() || (_24 != nullptr && _24->trySelect()) || (!(isLetterHidden = (_38 == nullptr || _38->isHidden())) && _38->trySelect())) {
         setNerve(GET_NERVE(PauseMenu, PauseMenuNrvDecided));
         return;
     }

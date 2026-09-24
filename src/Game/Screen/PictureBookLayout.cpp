@@ -16,6 +16,11 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include <cstdio>
 
+void PictureBookLayout_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 namespace {
     inline void advanceBookIndex(s32& rIndex, const s32& rDirection) {
         rIndex += rDirection;
@@ -369,81 +374,13 @@ void PictureBookLayout::updateTexMapChapterBase() {
     }
 }
 
-/* inline bool PictureBookLayout::isAlreadyReadPage() const {
-    bool result = true;
-
-    if (mChapterNo >= mNotReadedChapterNo) {
-        result = false;
-
-        if (mChapterNo == mNotReadedChapterNo) {
-            if (mPageNo < mNotReadedPageNo) {
-                return true;
-            }
-        }
-    }
-
-    return result;
-}
-
-inline bool PictureBookLayout::isNotReadPage() const {
-    bool result = true;
-
-    if (mChapterNo == mNotReadedChapterNo) {
-        if (mPageNo == mNotReadedPageNo) {
-            if (mTextIndex <= mNotReadedTextIndex) {
-                return true;
-            }
-        }
-    }
-
-    return result;
-} */
-
 bool PictureBookLayout::isReadedCurrentText() const {
-    bool isEarlierPage;
-    bool isEarlierPosition;
-    bool result;
-
     if (mContentsButtonPaneController != nullptr) {
         return true;
     }
 
-    s32 unreadChapterNo = mNotReadedChapterNo;
-    s32 chapterNo = mChapterNo;
-    isEarlierPage = true;
-    result = true;
-
-    if (chapterNo >= unreadChapterNo) {
-        isEarlierPosition = false;
-
-        if (chapterNo == unreadChapterNo) {
-            if (mPageNo < mNotReadedPageNo) {
-                isEarlierPosition = true;
-            }
-        }
-
-        if (!isEarlierPosition) {
-            isEarlierPage = false;
-        }
-    }
-
-    if (!isEarlierPage) {
-        isEarlierPosition = false;
-
-        if (chapterNo == unreadChapterNo) {
-            if (mPageNo == mNotReadedPageNo) {
-                if (mTextIndex <= mNotReadedTextIndex) {
-                    isEarlierPosition = true;
-                }
-            }
-        }
-
-        if (!isEarlierPosition) {
-            result = false;
-        }
-    }
-
-    return result;
+    return mChapterNo < mNotReadedChapterNo || (mChapterNo == mNotReadedChapterNo && mPageNo < mNotReadedPageNo) ||
+           (mChapterNo == mNotReadedChapterNo && mPageNo == mNotReadedPageNo && mTextIndex <= mNotReadedTextIndex);
 }
 
 s32 PictureBookLayout::getReadSpeed() const {

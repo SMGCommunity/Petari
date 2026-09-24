@@ -3,6 +3,11 @@
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 
+void CounterLayoutAppearer_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 namespace NrvCounterLayoutAppearer {
     NEW_NERVE(CounterLayoutAppearerNrvHide, CounterLayoutAppearer, Hide);
     NEW_NERVE(CounterLayoutAppearerNrvAppear, CounterLayoutAppearer, Appear);
@@ -51,10 +56,9 @@ void CounterLayoutAppearer::reset() {
 
 void CounterLayoutAppearer::updateLayoutOffset(f32 offset) {
     TVec2f zero(0.0f, 0.0f);
-    f32 x = mAppearOffset.x + offset * (zero.x - mAppearOffset.x);
-    f32 y = mAppearOffset.y + offset * (zero.y - mAppearOffset.y);
-    mFollowPos.x = x + _1C.x;
-    mFollowPos.y = y + _1C.y;
+    mFollowPos.x = mAppearOffset.x + offset * (zero.x - mAppearOffset.x);
+    mFollowPos.y = mAppearOffset.y + offset * (zero.y - mAppearOffset.y);
+    mFollowPos.add(_1C);
 }
 
 void CounterLayoutAppearer::exeHide() {

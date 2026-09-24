@@ -1,31 +1,37 @@
 #include "Game/Screen/GalaxyMapDomeIcon.hpp"
 #include "Game/Screen/GalaxyNamePlate.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
+#include "Game/System/GameDataConst.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
 #include <cstdio>
 
+void GalaxyMapDomeIcon_FORCE_MATCH(LayoutActor* pLayout) {
+    MR::startAnim(pLayout, "MapDomeIcon", 0);
+    MR::startAnim(pLayout, "DomeColor", 0);
+    MR::startAnim(pLayout, "AstroDome", 0);
+    MR::startAnim(pLayout, "Status", 0);
+    MR::startAnim(pLayout, "SelectIn", 0);
+    MR::startAnim(pLayout, "Blink", 0);
+    MR::startAnim(pLayout, "Wait", 0);
+}
+
 namespace {
+    template < typename T >
+    inline void checkGalaxy(JMapInfoIter iter, const JMapInfo& rInfo, T& rChecker) {
+        for (JMapInfoIter current = iter; current != rInfo.end(); current.mIndex++) {
+            rChecker(current);
+        }
+    }
+
     class AstroDomeCheckerBase {
     public:
-        AstroDomeCheckerBase(int param1) {
-            snprintf(_4, sizeof(_4), "Galaxy%1d", param1);
-        }
+        AstroDomeCheckerBase(int param1);
 
-        void operator()(const JMapInfoIter& rIter) {
-            const char* pMapPaneName = nullptr;
-            const char* pName = nullptr;
+        void operator()(const JMapInfoIter& rIter);
 
-            rIter.getValue("MapPaneName", &pMapPaneName);
-            rIter.getValue("name", &pName);
-
-            if (pMapPaneName != nullptr && pName != nullptr && strstr(pMapPaneName, _4) != nullptr) {
-                execute(pName);
-            }
-        }
-
-        virtual void execute(const char* pParam1) {
+        virtual void execute(const char* pGalaxyName) {
         }
 
         /* 0x04 */ char _4[11];
@@ -35,10 +41,11 @@ namespace {
     class CheckerIsExistNewGalaxy : public AstroDomeCheckerBase {
     public:
         CheckerIsExistNewGalaxy(int param1) : AstroDomeCheckerBase(param1) {
+            mIsPass = false;
         }
 
-        virtual void execute(const char* pParam1) {
-            if (MR::canOpenGalaxy(pParam1) && !MR::isOnGameEventFlagGalaxyOpen(pParam1)) {
+        virtual void execute(const char* pGalaxyName) {
+            if (MR::canOpenGalaxy(pGalaxyName) && !MR::isOnGameEventFlagGalaxyOpen(pGalaxyName)) {
                 mIsPass = true;
             }
         }
@@ -47,10 +54,11 @@ namespace {
     class CheckerIsComplete : public AstroDomeCheckerBase {
     public:
         CheckerIsComplete(int param1) : AstroDomeCheckerBase(param1) {
+            mIsPass = true;
         }
 
-        virtual void execute(const char* pParam1) {
-            GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pParam1);
+        virtual void execute(const char* pGalaxyName) {
+            GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pGalaxyName);
 
             if (accessor.getPowerStarNum()) {
                 if (accessor.getPowerStarNumOwned() != accessor.getPowerStarNum()) {
@@ -59,10 +67,10 @@ namespace {
             }
         }
     };
-};  // namespace
+}  // namespace
 
 GalaxyMapDomeIcon::GalaxyMapDomeIcon(int param1, LayoutActor* pHost, const char* pPaneName, const char* pParam4)
-    : LayoutActor(pPaneName, true), _20(param1), mHost(pHost), mPaneName(pPaneName), _2C(pParam4), mNamePlate(nullptr), mMode(0) {
+    : LayoutActor(pPaneName, true), _20(param1), mHost(pHost), mPaneName(pPaneName), _2C(pParam4), mNamePlate(), mMode() {
 }
 
 void GalaxyMapDomeIcon::appear() {
@@ -126,13 +134,11 @@ bool GalaxyMapDomeIcon::isComplete() const {
     JMapInfo mapInfo = JMapInfo();
 
     // TODO: Replace with embedded BCSV file.
-    mapInfo.attach((const void*)0x8053DE00);
+    mapInfo.attach(&GalaxyIDBCSV);
 
     CheckerIsComplete checker = CheckerIsComplete(_20);
 
-    for (JMapInfoIter rIter = JMapInfoIter(&mapInfo, 0); rIter != mapInfo.end(); rIter.mIndex++) {
-        checker(rIter);
-    }
+    checkGalaxy(mapInfo.begin(), mapInfo, checker);
 
     return checker.mIsPass;
 }
@@ -186,13 +192,31 @@ bool GalaxyMapDomeIcon::hasNewGalaxy() const {
     JMapInfo mapInfo = JMapInfo();
 
     // TODO: Replace with embedded BCSV file.
-    mapInfo.attach((const void*)0x8053DE00);
+    mapInfo.attach(&GalaxyIDBCSV);
 
     CheckerIsExistNewGalaxy checker = CheckerIsExistNewGalaxy(_20);
 
-    for (JMapInfoIter rIter = JMapInfoIter(&mapInfo, 0); rIter != mapInfo.end(); rIter.mIndex++) {
-        checker(rIter);
-    }
+    checkGalaxy(mapInfo.begin(), mapInfo, checker);
 
     return checker.mIsPass;
 }
+
+namespace {
+    AstroDomeCheckerBase::AstroDomeCheckerBase(int param1) {
+        snprintf(_4, sizeof(_4), "Galaxy%1d", param1);
+    }
+}  // namespace
+
+namespace {
+    void AstroDomeCheckerBase::operator()(const JMapInfoIter& rIter) {
+        const char* pMapPaneName = nullptr;
+        const char* pName = nullptr;
+
+        rIter.getValue("MapPaneName", &pMapPaneName);
+        rIter.getValue("name", &pName);
+
+        if (pMapPaneName != nullptr && pName != nullptr && strstr(pMapPaneName, _4) != nullptr) {
+            execute(pName);
+        }
+    }
+}  // namespace

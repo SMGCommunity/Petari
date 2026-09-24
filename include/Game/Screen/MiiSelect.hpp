@@ -6,16 +6,16 @@
 namespace nw4r {
     namespace lyt {
         class TexMap;
-    };  // namespace lyt
-};  // namespace nw4r
+    }  // namespace lyt
+}  // namespace nw4r
 
 namespace MR {
     class BitArray;
-};  // namespace MR
+}  // namespace MR
 
 namespace MiiSelectSub {
     class Page;
-};  // namespace MiiSelectSub
+}  // namespace MiiSelectSub
 
 class ButtonPaneController;
 class MiiSelectIcon;
@@ -119,4 +119,4 @@ namespace MiiSelectSub {
         /* 0x24 */ MiiSelect* mHost;
         /* 0x28 */ s32 mBaseIndex;
     };
-};  // namespace MiiSelectSub
+}  // namespace MiiSelectSub
