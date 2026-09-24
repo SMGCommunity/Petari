@@ -8,6 +8,14 @@
 #include <cmath>
 #include <revolution/mtx.h>
 
+inline f32 SIN(f32 angle) {
+    return sin(angle);
+}
+
+inline f32 COS(f32 angle) {
+    return cos(angle);
+}
+
 namespace JGeometry {
     template < typename T >
     struct SMatrix33R {
@@ -428,8 +436,8 @@ namespace JGeometry {
         }
 
         void setEulerX(f32 angle) {
-            f32 s = sin(angle);
-            f32 c = cos(angle);
+            f32 s = SIN(angle);
+            f32 c = COS(angle);
 
             this->mMtx[0][0] = 1.0f;
             this->mMtx[2][1] = s;
@@ -441,9 +449,10 @@ namespace JGeometry {
             this->mMtx[1][0] = 0.0f;
             this->mMtx[0][1] = 0.0f;
         }
+
         void setEulerY(f32 angle) {
-            f32 s = sin(angle);
-            f32 c = cos(angle);
+            f32 s = SIN(angle);
+            f32 c = COS(angle);
 
             this->mMtx[0][2] = s;
             this->mMtx[1][1] = 1.0f;
@@ -456,8 +465,8 @@ namespace JGeometry {
             this->mMtx[0][1] = 0.0f;
         }
         void setEulerZ(f32 angle) {
-            f32 s = sin(angle);
-            f32 c = cos(angle);
+            f32 s = SIN(angle);
+            f32 c = COS(angle);
 
             this->mMtx[1][0] = s;
             this->mMtx[0][0] = c;
@@ -576,11 +585,10 @@ namespace JGeometry {
             TVec3f vec;
             vec.normalize(rAxis);
 
-            f32 cosAngle = angle;
-            f32 sinAngle = sin(cosAngle);
-            cosAngle = cos(cosAngle);
+            f32 s = SIN(angle);
+            f32 c = COS(angle);
 
-            f32 negc = 1.0f - cosAngle;
+            f32 negc = 1.0f - c;
 
             f32 x, y, z;
 
@@ -593,15 +601,46 @@ namespace JGeometry {
             yy = y * y;
             zz = z * z;
 
-            this->mMtx[0][0] = cosAngle + negc * xx;
-            this->mMtx[0][1] = negc * x * y - sinAngle * z;
-            this->mMtx[0][2] = negc * x * z + sinAngle * y;
-            this->mMtx[1][0] = negc * x * y + sinAngle * z;
-            this->mMtx[1][1] = cosAngle + negc * yy;
-            this->mMtx[1][2] = negc * y * z - sinAngle * x;
-            this->mMtx[2][0] = negc * x * z - sinAngle * y;
-            this->mMtx[2][1] = negc * y * z + sinAngle * x;
-            this->mMtx[2][2] = cosAngle + negc * zz;
+            this->mMtx[0][0] = c + negc * xx;
+            this->mMtx[0][1] = negc * x * y - s * z;
+            this->mMtx[0][2] = negc * x * z + s * y;
+            this->mMtx[1][0] = negc * x * y + s * z;
+            this->mMtx[1][1] = c + negc * yy;
+            this->mMtx[1][2] = negc * y * z - s * x;
+            this->mMtx[2][0] = negc * x * z - s * y;
+            this->mMtx[2][1] = negc * y * z + s * x;
+            this->mMtx[2][2] = c + negc * zz;
+        }
+
+        void setRotateDegree(const TVec3f& rAxis, f32 angle) {
+            TVec3f vec;
+            vec.normalize(rAxis);
+
+            f32 s = SIN(angle * (PI / 180.0f));
+            f32 c = COS(angle * (PI / 180.0f));
+
+            f32 negc = 1.0f - c;
+
+            f32 x, y, z;
+
+            x = vec.x;
+            y = vec.y;
+            z = vec.z;
+
+            f32 xx, yy, zz;
+            xx = x * x;
+            yy = y * y;
+            zz = z * z;
+
+            this->mMtx[0][0] = c + negc * xx;
+            this->mMtx[0][1] = negc * x * y - s * z;
+            this->mMtx[0][2] = negc * x * z + s * y;
+            this->mMtx[1][0] = negc * x * y + s * z;
+            this->mMtx[1][1] = c + negc * yy;
+            this->mMtx[1][2] = negc * y * z - s * x;
+            this->mMtx[2][0] = negc * x * z - s * y;
+            this->mMtx[2][1] = negc * y * z + s * x;
+            this->mMtx[2][2] = c + negc * zz;
         }
 
         void setRotate(const TVec3f& rFrom, const TVec3f& rTo) {
@@ -630,12 +669,12 @@ namespace JGeometry {
             f32 sinX, sinY, sinZ;
             f32 cosX, cosY, cosZ;
 
-            cosZ = cos(rz);
-            cosY = cos(ry);
-            cosX = cos(rx);
-            sinZ = sin(rz);
-            sinY = sin(ry);
-            sinX = sin(rx);
+            cosZ = COS(rz);
+            cosY = COS(ry);
+            cosX = COS(rx);
+            sinZ = SIN(rz);
+            sinY = SIN(ry);
+            sinX = SIN(rx);
 
             f32 sXsY = sinX * sinY;
             f32 cXcZ = cosX * cosZ;
@@ -670,7 +709,7 @@ namespace JGeometry {
     template < class T >
     struct TPosition3 : public TRotation3< T > {
     public:
-        TPosition3() {};
+        TPosition3(){};
 
         TPosition3(MtxPtr rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
@@ -764,6 +803,11 @@ namespace JGeometry {
             TRotation3< T >::setRotate(rVec, angle);
         }
 
+        void makeRotateDegree(const TVec3f& rVec, f32 angle) {
+            zeroTrans();
+            TRotation3< T >::setRotateDegree(rVec, angle);
+        }
+
         void makeRotate(const TVec3f& rFrom, const TVec3f& rTo, f32 angle) {
             TQuat4f q;
             q.setRotate(rFrom, rTo, rFrom.turnRate(rTo, angle));
@@ -840,6 +884,11 @@ namespace JGeometry {
             setTrans(rSrcTrans);
         }
 
+        void setRTDegree(const TVec3f& rRot, const TVec3f& rSrcTrans) {
+            TRotation3< T >::setRotate(rRot);
+            setTrans(rSrcTrans);
+        }
+
         void setRT(f32 rx, f32 ry, f32 rz, const TVec3f& rSrcTrans) {
             // nonmatching, see
             // see Mogucchi::updateReferenceMtx
@@ -847,12 +896,12 @@ namespace JGeometry {
             f32 sinX, sinY, sinZ;
             f32 cosX, cosY, cosZ;
 
-            cosZ = cos(rz);
-            cosY = cos(ry);
-            cosX = cos(rx);
-            sinZ = sin(rz);
-            sinY = sin(ry);
-            sinX = sin(rx);
+            cosZ = COS(rz);
+            cosY = COS(ry);
+            cosX = COS(rx);
+            sinZ = SIN(rz);
+            sinY = SIN(ry);
+            sinX = SIN(rx);
 
             this->mMtx[0][3] = rSrcTrans.x;
             this->mMtx[1][3] = rSrcTrans.y;
@@ -1054,7 +1103,7 @@ namespace JGeometry {
     template < class T >
     struct TProjection3 : public T {
     public:
-        TProjection3() {};
+        TProjection3(){};
 
         TProjection3(const Mtx44Ptr rSrc) {
             JMath::gekko_ps_copy16(this, rSrc);

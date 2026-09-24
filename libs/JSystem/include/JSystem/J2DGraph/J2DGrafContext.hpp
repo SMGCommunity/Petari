@@ -12,9 +12,9 @@ enum J2DGrafType {
 };
 
 struct J2DGrafBlend {
-    u8 mType;        // 0x00
-    u8 mSrcFactor;   // 0x01
-    u8 mDestFactor;  // 0x02
+    /* 0x00 */ u8 mType;
+    /* 0x01 */ u8 mSrcFactor;
+    /* 0x02 */ u8 mDestFactor;
 };
 
 class J2DGrafContext {
@@ -25,7 +25,9 @@ public:
     }
 
     virtual void place(const TBox2f&);
-    virtual void place(f32, f32, f32, f32);
+    virtual void place(f32 x, f32 y, f32 width, f32 height) {
+        place(TBox2f(x, y, x + width, y + height));
+    }
     virtual void setPort();
     virtual void setup2D();
     virtual void setScissor();
@@ -36,16 +38,16 @@ public:
     void setColor(JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor);
     void fillBox(const TBox2f&);
 
-    TBox2f mBounds;             // 0x04
-    TBox2f mScissorBounds;      // 0x14
-    JUtility::TColor mColorTL;  // 0x24
-    JUtility::TColor mColorTR;  // 0x28
-    JUtility::TColor mColorBR;  // 0x2C
-    JUtility::TColor mColorBL;  // 0x30
-    u8 mLineWidth;              // 0x34
-    TVec2f mPrevPos;            // 0x38
-    Mtx44 mMtx44;               // 0x40
-    Mtx mPosMtx;                // 0x80
+    /* 0x04 */ TBox2f mBounds;
+    /* 0x14 */ TBox2f mScissorBounds;
+    /* 0x24 */ JUtility::TColor mColorTL;
+    /* 0x28 */ JUtility::TColor mColorTR;
+    /* 0x2C */ JUtility::TColor mColorBR;
+    /* 0x30 */ JUtility::TColor mColorBL;
+    /* 0x34 */ u8 mLineWidth;
+    /* 0x38 */ TVec2f mPrevPos;
+    /* 0x40 */ Mtx44 mMtx44;
+    /* 0x80 */ Mtx mPosMtx;
     J2DGrafBlend _B0;
     J2DGrafBlend mLinePart;
     J2DGrafBlend mBoxPart;

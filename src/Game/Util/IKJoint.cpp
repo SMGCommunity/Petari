@@ -38,7 +38,7 @@ s32 IKJoint::checkReachIKTarget(f32 distance, f32 rootLength, f32 middleLength) 
     if (distance > (rootLength + middleLength)) {
         result = 2;
     } else {
-        if (distance < __fabs(rootLength - middleLength)) {
+        if (distance < MR::abs(rootLength - middleLength)) {
             result = 1;
         } else {
             return result;
@@ -156,9 +156,7 @@ void IKJoint::calcToTargetMatrixByFirstPose(TPos3f* pMatrix, const TPos3f& rRoot
     TVec3f side;
     _0.getXDir(side);
     matrix.identity();
-    TQuat4f rotation;
-    rotation.setRotate(side, rDirection);
-    matrix.setQuat(rotation);
+    matrix.setRotate(side, rDirection);
     matrix.concat(matrix, _0);
     matrix.setTrans(rRootPosition);
     matrix.concat(rRootMatrix, matrix);

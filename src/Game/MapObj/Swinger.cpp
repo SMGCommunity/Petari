@@ -40,7 +40,7 @@ void Swinger::update() {
     } else {
         MR::normalize(&_20);
     }
-    _8.set< f32 >(_20);
+    _8.set(_20);
     _8.scale(_2C);
     _8.add(v20);
 
@@ -55,14 +55,14 @@ void Swinger::update() {
 }
 
 void Swinger::updateSwingMtx(const TVec3f& a1) {
-    _48.set< f32 >(_20);
+    _48.set(_20);
     _48.x *= -1.0f;
     _48.y *= -1.0f;
     _48.z *= -1.0f;
     TVec3f v14(_3C);
     _3C.cross(_48, _54);
     if (MR::isNearZero(_3C)) {
-        _3C.set< f32 >(v14);
+        _3C.set(v14);
     }
     MR::normalize(&_3C);
     _54.cross(_3C, _48);

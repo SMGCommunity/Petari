@@ -21,6 +21,8 @@ class ButtonPaneController;
 class MiiSelectIcon;
 
 class MiiSelect : public LayoutActor {
+    friend class MiiSelectSub::Page;
+
 public:
     /// @brief Creates a new `MiiSelect`.
     /// @param pName A pointer to the null-terminated name of the object.
@@ -70,14 +72,24 @@ public:
     void onSelectDummy();
     s32 getIconNum();
 
+    bool isExistMiiIcon() const {
+        return mMiiNum != 0 || mFavoriteMiiNum != 0;
+    }
+
+    FileSelectIconID makeIconID(u32 id) const {
+        FileSelectIconID iconID;
+        getIconID(&iconID, id);
+        return iconID;
+    }
+
 private:
     /* 0x020 */ ButtonPaneController* _20[2];
     /* 0x028 */ MR::BitArray* _28;
-    /* 0x02C */ u16 _2C;
-    /* 0x02E */ u16 _2E;
-    /* 0x030 */ u32 _30[10];
-    /* 0x058 */ u16 _58;
-    /* 0x05C */ u32 _5C[10];
+    /* 0x02C */ u16 mFellowIconNum;
+    /* 0x02E */ u16 mFavoriteMiiNum;
+    /* 0x030 */ u32 mFavoriteMiiIndices[10];
+    /* 0x058 */ u16 mMiiNum;
+    /* 0x05C */ u32 mMiiIndices[10];
     /* 0x084 */ u8 _84[360];
     /* 0x1EC */ s32 _1EC;
     /* 0x1F0 */ s32 _1F0;
@@ -105,6 +117,6 @@ namespace MiiSelectSub {
         /* 0x00 */ MiiSelectIcon* mIconArray[8];
         /* 0x20 */ bool _20;
         /* 0x24 */ MiiSelect* mHost;
-        /* 0x28 */ s32 _28;
+        /* 0x28 */ s32 mBaseIndex;
     };
 };  // namespace MiiSelectSub

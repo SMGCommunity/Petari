@@ -94,8 +94,8 @@ namespace NrvUnizo {
 }  // namespace NrvUnizo
 
 Unizo::Unizo(const char* pName)
-    : LiveActor(pName), mFrame(0), mBlinkCount(0), mBlinkFrame(0), mSpinAnimTimer(0), mRadiusScale(sRadiusScale), mBreakModel(nullptr),
-      mAnimScaleController(nullptr), mBindStarPointerState(nullptr), mJumpCount(0), mGravityRate(sGravityRateSea), mRollHeight(sRollHeightSea),
+    : LiveActor(pName), mFrame(0), mBlinkCount(0), mBlinkFrame(0), mSpinAnimTimer(0), mRadiusScale(::sRadiusScale), mBreakModel(nullptr),
+      mAnimScaleController(nullptr), mBindStarPointerState(nullptr), mJumpCount(0), mGravityRate(::sGravityRateSea), mRollHeight(::sRollHeightSea),
       mRollSoundTimer(0) {
     mType = TypeSea;
     mBaseMtx.identity();
@@ -126,8 +126,8 @@ void Unizo::init(const JMapInfoIter& rIter) {
         mBreakModel->initWithoutIter();
         mBreakModel->makeActorDead();
     } else if (mType == TypeLand) {
-        mRollHeight = sRollHeightLand;
-        mGravityRate = sGravityRateLand;
+        mRollHeight = ::sRollHeightLand;
+        mGravityRate = ::sGravityRateLand;
         initModelManagerWithAnm("UnizoLand", nullptr, false);
         mBreakModel = new ModelObj("陸ウニゾー壊れモデル", "UnizoLandBreak", nullptr, MR::DrawBufferType_Enemy, -2, -2, false);
         mBreakModel->initWithoutIter();
@@ -142,8 +142,8 @@ void Unizo::init(const JMapInfoIter& rIter) {
 
     MR::initDefaultPos(this, rIter);
     MR::makeMtxTR(mBaseMtx, this);
-    mRadiusScale = sRadiusScale;
-    mScale.set< f32 >(sRadiusScale, sRadiusScale, sRadiusScale);
+    mRadiusScale = ::sRadiusScale;
+    mScale.set< f32 >(::sRadiusScale, ::sRadiusScale, ::sRadiusScale);
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
     initHitSensor(1);
@@ -163,7 +163,7 @@ void Unizo::init(const JMapInfoIter& rIter) {
     MR::startBtp(this, "Blink");
     mBlinkFrame = MR::getRandom(100L, 200L);
     MR::addToAttributeGroupSearchTurtle(this);
-    MR::declareStarPiece(this, sStarPieceNum);
+    MR::declareStarPiece(this, ::sStarPieceNum);
     mAnimScaleController = new AnimScaleController(nullptr);
     mAnimScaleController->setParamTight();
     mBindStarPointerState = new WalkerStateBindStarPointer(this, mAnimScaleController);
@@ -196,7 +196,7 @@ void Unizo::control() {
 void Unizo::appear() {
     setNerve(GET_NERVE(Unizo, UnizoNrvWait));
     LiveActor::appear();
-    mJumpCount = sJumpNow;
+    mJumpCount = ::sJumpNow;
     MR::validateShadowAll(this);
     MR::validateShadowAll(mBreakModel);
 }
@@ -246,19 +246,16 @@ void Unizo::calcAndSetBaseMtx() {
     TVec3f position(mPosition);
     TVec3f quatUp;
     mtx.getYDir(quatUp);
-    JMAVECScaleAdd(&quatUp, &position, &position, -(126.36f * mRadiusScale));
+    position.scaleAdd(-(126.36f * mRadiusScale), quatUp, position);
     TVec3f baseUp;
     mBaseMtx.getYDir(baseUp);
-    JMAVECScaleAdd(&baseUp, &position, &position, 126.36f * mRadiusScale * mAnimScaleController->_C.y);
+    position.scaleAdd(126.36f * mRadiusScale * mAnimScaleController->_C.y, baseUp, position);
 
-    f32 rollHeight = mRadiusScale * (mRollHeight * __fabsf(MR::sin(mFrame / sRollCycle)));
-    TVec3f horizontalVelocity;
-    const TVec3f& velocity = mVelocity;
-    const TVec3f& gravity = mGravity;
-    JMAVECScaleAdd(&gravity, &velocity, &horizontalVelocity, -gravity.dot(velocity));
-    f32 rate = horizontalVelocity.length() / sChaseSpeedMax;
+    f32 rollHeight = mRadiusScale * (mRollHeight * MR::abs(MR::sin(mFrame / ::sRollCycle)));
+    TVec3f horizontalVelocity = MR::getVelocityHorizon(this);
+    f32 rate = horizontalVelocity.length() / ::sChaseSpeedMax;
     rollHeight *= rate >= 1.0f ? 1.0f : rate;
-    JMAVECScaleAdd(&mGravity, &position, &position, rollHeight);
+    position.scaleAdd(rollHeight, mGravity, position);
     MR::scaleMtxToLocalMtx(mtx, mBaseMtx, mAnimScaleController->_C);
     mtx.setTrans(position);
     MR::setBaseTRMtx(this, mtx);
@@ -271,7 +268,7 @@ void Unizo::exeWait() {
 
     udpateBlink();
     udpateInfluence();
-    if (mJumpCount == 0 && MR::isNearPlayer(this, sChaseRadius) && !MR::isPlayerDamaging() && MR::isBindedGround(this)) {
+    if (mJumpCount == 0 && MR::isNearPlayer(this, ::sChaseRadius) && !MR::isPlayerDamaging() && MR::isBindedGround(this)) {
         doJump();
         setNerve(GET_NERVE(Unizo, UnizoNrvJump));
     }
@@ -281,13 +278,13 @@ void Unizo::exeJump() {
     if (MR::isFirstStep(this)) {
     }
 
-    if (MR::isStep(this, sStartSearch)) {
+    if (MR::isStep(this, ::sStartSearch)) {
         MR::startBck(this, "Search");
         MR::startBtp(this, "Angry");
         MR::startSound(this, "SE_EM_UNIZO_NEEDLE");
     }
 
-    if (MR::isGreaterEqualStep(this, sChaseCycle)) {
+    if (MR::isGreaterEqualStep(this, ::sChaseCycle)) {
         updateVelocity();
     }
     udpateInfluence();
@@ -303,7 +300,7 @@ void Unizo::exeChase() {
         MR::emitEffect(this, "SearchSmoke");
     }
 
-    if (!MR::isNearPlayer(this, sChaseRadius)) {
+    if (!MR::isNearPlayer(this, ::sChaseRadius)) {
         deleteEffect();
         setNerve(GET_NERVE(Unizo, UnizoNrvWait));
     }
@@ -324,7 +321,7 @@ void Unizo::exeAttack() {
 
 void Unizo::exeCollidePlayer() {
     udpateInfluence();
-    if (MR::isGreaterStep(this, sCollidePlayerCount)) {
+    if (MR::isGreaterStep(this, ::sCollidePlayerCount)) {
         setNerve(GET_NERVE(Unizo, UnizoNrvChase));
     }
 }
@@ -340,7 +337,7 @@ void Unizo::exeCollideEnemy() {
         MR::startBtp(this, "Blink");
     }
 
-    if (MR::isGreaterStep(this, sCollideEnemyCount)) {
+    if (MR::isGreaterStep(this, ::sCollideEnemyCount)) {
         MR::startBtp(this, "Angry");
         setNerve(GET_NERVE(Unizo, UnizoNrvChase));
     }
@@ -353,16 +350,16 @@ void Unizo::exeBreak() {
 }
 
 void Unizo::exeFireDown() {
-    MR::addVelocityToGravity(this, sFireDownGravity);
+    MR::addVelocityToGravity(this, ::sFireDownGravity);
     if (MR::isBindedGround(this)) {
-        MR::attenuateVelocity(this, sFireDownAttenuate);
+        MR::attenuateVelocity(this, ::sFireDownAttenuate);
     }
     updateRotate();
     calcAndSetBaseMtx();
     mBreakModel->mPosition.set(mPosition);
 
-    if (MR::isStep(this, sFireDownStarPiece)) {
-        if (MR::appearStarPiece(this, mBreakModel->mPosition, sStarPieceNum, 10.0f, 40.0f, true)) {
+    if (MR::isStep(this, ::sFireDownStarPiece)) {
+        if (MR::appearStarPiece(this, mBreakModel->mPosition, ::sStarPieceNum, 10.0f, 40.0f, true)) {
             MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         }
     }
@@ -370,7 +367,7 @@ void Unizo::exeFireDown() {
     if (MR::isDead(mBreakModel) || (MR::isBckStopped(mBreakModel) && MR::isBrkStopped(mBreakModel))) {
         kill();
     }
-    if (MR::isGreaterEqualStep(this, sDamageFloorFrame)) {
+    if (MR::isGreaterEqualStep(this, ::sDamageFloorFrame)) {
         kill();
     }
 }
@@ -380,9 +377,9 @@ void Unizo::exeJumpDown() {
         MR::startSound(this, "SE_EM_UNIZO_BREAK");
     }
 
-    MR::addVelocityToGravity(this, sFireDownGravity);
+    MR::addVelocityToGravity(this, ::sFireDownGravity);
     if (MR::isBindedGround(this)) {
-        MR::attenuateVelocity(this, sFireDownAttenuate);
+        MR::attenuateVelocity(this, ::sFireDownAttenuate);
     }
     updateRotate();
     calcAndSetBaseMtx();
@@ -391,7 +388,7 @@ void Unizo::exeJumpDown() {
     if (MR::isDead(mBreakModel) || (MR::isBckStopped(mBreakModel) && MR::isBrkStopped(mBreakModel))) {
         kill();
     }
-    if (MR::isGreaterEqualStep(this, sDamageFloorFrame)) {
+    if (MR::isGreaterEqualStep(this, ::sDamageFloorFrame)) {
         kill();
     }
 }
@@ -455,7 +452,7 @@ bool Unizo::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRecei
         TVec3f direction = pReceiver->mPosition - pSender->mPosition;
         f32 distance = direction.length();
         MR::normalizeOrZero(&direction);
-        MR::addVelocityMoveToDirection(this, direction, sReboundEnemy * distance);
+        MR::addVelocityMoveToDirection(this, direction, ::sReboundEnemy * distance);
         startWallHitSound();
         if (!MR::isBckPlaying(this, "Shock")) {
             MR::startBck(this, "Shock");
@@ -480,22 +477,22 @@ void Unizo::updateRotate() {
 
 void Unizo::updateVelocity() {
     TVec3f direction = *MR::getPlayerPos() - mPosition;
-    f32 chaseRate = MR::sin(mFrame / sChaseCycle);
+    f32 chaseRate = MR::sin(mFrame / ::sChaseCycle);
     MR::vecKillElement(direction, mGravity, &direction);
     MR::normalizeOrZero(&direction);
-    f32 speedRate = mVelocity.length() / sChaseSpeedMax;
+    f32 speedRate = mVelocity.length() / ::sChaseSpeedMax;
     chaseRate *= speedRate >= 1.0f ? 1.0f : speedRate;
     TPos3f rotateMtx;
-    f32 angle = (PI / 180.0f) * (sChaseDegree * chaseRate / 2.0f);
+    f32 angle = (PI / 180.0f) * (::sChaseDegree * chaseRate / 2.0f);
     rotateMtx.makeRotate(mGravity, angle);
     rotateMtx.mult(direction, direction);
 
     if (direction.dot(mVelocity) > 0.0f) {
-        if (mVelocity.length() < sChaseSpeedMax) {
-            MR::addVelocityMoveToDirection(this, direction, sAccelerate);
+        if (mVelocity.length() < ::sChaseSpeedMax) {
+            MR::addVelocityMoveToDirection(this, direction, ::sAccelerate);
         }
     } else {
-        MR::addVelocityMoveToDirection(this, direction, sAccelerate);
+        MR::addVelocityMoveToDirection(this, direction, ::sAccelerate);
     }
 }
 
@@ -503,17 +500,17 @@ void Unizo::udpateInfluence() {
     bool rebound;
     if (mJumpCount != 0) {
         MR::addVelocityToGravity(this, mGravityRate);
-        rebound = MR::reboundVelocityFromCollision(this, sReboundFloor, 0.0f, 1.0f);
+        rebound = MR::reboundVelocityFromCollision(this, ::sReboundFloor, 0.0f, 1.0f);
     } else {
         rebound = MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
         if (MR::isBindedGround(this)) {
-            MR::addVelocityToGravity(this, sGravityRateGround0);
+            MR::addVelocityToGravity(this, ::sGravityRateGround0);
         } else {
-            MR::addVelocityToGravity(this, sGravityRateGround1);
+            MR::addVelocityToGravity(this, ::sGravityRateGround1);
         }
     }
 
-    MR::restrictVelocity(this, sTotalSpeedMax);
+    MR::restrictVelocity(this, ::sTotalSpeedMax);
     if (isBreakGround()) {
         doJumpDown();
         return;
@@ -521,7 +518,7 @@ void Unizo::udpateInfluence() {
 
     if (rebound) {
         f32 verticalSpeed = -mGravity.dot(mVelocity);
-        if (verticalSpeed >= sLandSoundLandSpeed) {
+        if (verticalSpeed >= ::sLandSoundLandSpeed) {
             if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
                 MR::startLevelSound(this, "SE_EM_LV_UNIZO_LAND_WATER", 100.0f * verticalSpeed, 30);
             } else {
@@ -536,12 +533,12 @@ void Unizo::udpateInfluence() {
     if (MR::isBindedGround(this)) {
         if (isNerve(GET_NERVE(Unizo, UnizoNrvCollidePlayer)) || isNerve(GET_NERVE(Unizo, UnizoNrvCollideEnemy)) ||
             isNerve(GET_NERVE(Unizo, UnizoNrvWait))) {
-            MR::attenuateVelocity(this, sBrakeRate);
-            if (mVelocity.length() < sStopSpeed) {
+            MR::attenuateVelocity(this, ::sBrakeRate);
+            if (mVelocity.length() < ::sStopSpeed) {
                 mVelocity.set(TVec3f(0.0f, 0.0f, 0.0f));
             }
         } else {
-            MR::attenuateVelocity(this, sBrakeRateChase);
+            MR::attenuateVelocity(this, ::sBrakeRateChase);
         }
         if (mJumpCount != 0) {
             mJumpCount--;
@@ -549,11 +546,11 @@ void Unizo::udpateInfluence() {
     }
 
     if (MR::isBindedGround(this)) {
-        mRollSoundTimer = sRollSoundTime;
+        mRollSoundTimer = ::sRollSoundTime;
     }
     if (mRollSoundTimer > 0) {
         f32 speed = mVelocity.length();
-        if (speed >= sRollSoundSpeed) {
+        if (speed >= ::sRollSoundSpeed) {
             if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
                 MR::startLevelSound(this, "SE_EM_LV_UNIZO_ROLL_WATER", 100.0f * speed);
             } else {
@@ -587,15 +584,15 @@ void Unizo::updateSurfaceEffect() {
         f32 depth = waterInfo.mCamWaterDepth;
         f32 minDepth;
         if (speed > 5.0f) {
-            minDepth = sSurfaceEffectMinRunLimit;
+            minDepth = ::sSurfaceEffectMinRunLimit;
         } else {
-            minDepth = sSurfaceEffectMinLimit;
+            minDepth = ::sSurfaceEffectMinLimit;
         }
         f32 maxDepth;
         if (speed > 5.0f) {
-            maxDepth = sSurfaceEffectMaxRunLimit;
+            maxDepth = ::sSurfaceEffectMaxRunLimit;
         } else {
-            maxDepth = sSurfaceEffectMaxLimit;
+            maxDepth = ::sSurfaceEffectMaxLimit;
         }
         if (depth < minDepth || depth > maxDepth) {
             MR::deleteEffect(this, "Ripple");
@@ -618,8 +615,8 @@ void Unizo::deleteEffect() {
 
 void Unizo::doJump() {
     f32 gravity = mGravityRate * mGravity.length();
-    mJumpCount = sJumpNow;
-    f32 speed = MR::sqrt(2.0f * (mRadiusScale * (sJumpHeight * gravity)));
+    mJumpCount = ::sJumpNow;
+    f32 speed = MR::sqrt(2.0f * (mRadiusScale * (::sJumpHeight * gravity)));
     mVelocity.add(mGravity * speed * -1.0f);
 }
 
@@ -628,8 +625,8 @@ void Unizo::doAttack(HitSensor* pSensor) {
     TVec3f up = -mGravity;
     MR::normalizeOrZero(&direction);
     MR::normalizeOrZero(&up);
-    mJumpCount = sJumpNow;
-    mVelocity.set(up * sReboundPlayerV + direction * sReboundPlayerH);
+    mJumpCount = ::sJumpNow;
+    mVelocity.set(up * ::sReboundPlayerV + direction * ::sReboundPlayerH);
     setNerve(GET_NERVE(Unizo, UnizoNrvAttack));
 }
 
@@ -642,14 +639,14 @@ void Unizo::doJumpDown() {
         MR::startBck(mBreakModel, "Firedown");
         MR::startBrk(mBreakModel, "FireDown");
     }
-    mVelocity.set(mGravity * -sDamageFloorVertical);
+    mVelocity.set(mGravity * -::sDamageFloorVertical);
     setNerve(GET_NERVE(Unizo, UnizoNrvJumpDown));
 }
 
 void Unizo::doFireDown(const TVec3f& rDirection) {
     appearBreakModel();
     if (mType == TypeShoal) {
-        if (MR::appearStarPiece(this, mPosition, sStarPieceNum, 10.0f, 40.0f, true)) {
+        if (MR::appearStarPiece(this, mPosition, ::sStarPieceNum, 10.0f, 40.0f, true)) {
             MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         }
         MR::startBck(mBreakModel, "Firedown");
@@ -664,7 +661,7 @@ void Unizo::doFireDown(const TVec3f& rDirection) {
             MR::startBrk(mBreakModel, "FireDown");
         }
         MR::zeroVelocity(this);
-        MR::setVelocitySeparateHV(this, rDirection, sFireDownHorizontal, sFireDownVertical);
+        MR::setVelocitySeparateHV(this, rDirection, ::sFireDownHorizontal, ::sFireDownVertical);
         setNerve(GET_NERVE(Unizo, UnizoNrvFireDown));
     }
 }
@@ -672,9 +669,9 @@ void Unizo::doFireDown(const TVec3f& rDirection) {
 void Unizo::doBreak() {
     bool appeared;
     if (mType == TypeSea) {
-        appeared = MR::appearStarPiece(this, mPosition, sStarPieceNum, 10.0f, 40.0f, false);
+        appeared = MR::appearStarPiece(this, mPosition, ::sStarPieceNum, 10.0f, 40.0f, false);
     } else {
-        appeared = MR::appearStarPiece(this, mPosition, sStarPieceNum, 10.0f, 40.0f, true);
+        appeared = MR::appearStarPiece(this, mPosition, ::sStarPieceNum, 10.0f, 40.0f, true);
     }
     if (appeared) {
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
@@ -703,12 +700,12 @@ void Unizo::doSpin() {
     TVec3f pullVelocity;
     MR::calcPlayerSpinPullVelocity(&pullVelocity, mPosition);
     MR::vecKillElement(pullVelocity, mGravity, &pullVelocity);
-    mVelocity.add(pullVelocity * sDriftSpeedRate);
-    if (speed > sSpinSpeedMax) {
+    mVelocity.add(pullVelocity * ::sDriftSpeedRate);
+    if (speed > ::sSpinSpeedMax) {
         mVelocity.setLength(speed);
     }
     if (mSpinAnimTimer == 0 && !MR::isBckPlaying(this, "Shock")) {
-        mSpinAnimTimer = sSpinAnimationCount;
+        mSpinAnimTimer = ::sSpinAnimationCount;
         MR::startBck(this, "Shock");
     }
 }
@@ -770,11 +767,11 @@ void Unizo::appearBreakModel() {
 
 void Unizo::startWallHitSound() {
     f32 speed = mVelocity.length();
-    if (speed >= sWallHitSoundSpeed) {
+    if (speed >= ::sWallHitSoundSpeed) {
         if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-            MR::startLevelSound(this, "SE_EM_LV_UNIZO_COLLISION_WATER", 100.0f * speed, sUnizoCollisionSePlayTime);
+            MR::startLevelSound(this, "SE_EM_LV_UNIZO_COLLISION_WATER", 100.0f * speed, ::sUnizoCollisionSePlayTime);
         } else {
-            MR::startLevelSound(this, "SE_EM_LV_UNIZO_COLLISION", 100.0f * speed, sUnizoCollisionSePlayTime);
+            MR::startLevelSound(this, "SE_EM_LV_UNIZO_COLLISION", 100.0f * speed, ::sUnizoCollisionSePlayTime);
         }
     }
 }

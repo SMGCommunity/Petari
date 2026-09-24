@@ -1,5 +1,6 @@
 #include "Game/Enemy/Onimasu.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Map/HitInfo.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
@@ -7,7 +8,9 @@
 #include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
+#include "Game/Util/GravityUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -15,9 +18,15 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void Onimasu_DUMMY() {
-    TVec3f a;
-    a.scale(1.0f);
+void Onimasu_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.000003814697265625f;
+    (void)0.0f;
+    (void)2.0f;
+    (void)1.5707963705062866f;
+    (void)-1.0f;
+    (void)0.5f;
+    (void)3.1415927410125732f;
 }
 
 namespace {
@@ -31,7 +40,7 @@ namespace {
     static const f32 sCamShakeDistanceStrong = 2000.0f;
     static const f32 sCamShakeDistanceWeak = 3500.0f;
     static const f32 sSensorRadius = 800.0f;
-};  // namespace
+}  // namespace
 
 namespace NrvOnimasu {
     NEW_NERVE(HostTypeWaitForSwitchOn, Onimasu, WaitForSwitchOn);
@@ -39,7 +48,7 @@ namespace NrvOnimasu {
     NEW_NERVE(HostTypeWaitForStamp, Onimasu, Wait);
     NEW_NERVE(HostTypeJump, Onimasu, Move);
     NEW_NERVE(HostTypeStamp, Onimasu, Stamp);
-};  // namespace NrvOnimasu
+}  // namespace NrvOnimasu
 
 Onimasu::~Onimasu() {
 }
@@ -109,23 +118,24 @@ void Onimasu::initAfterPlacement() {
     _E8.set(_D8);
 
     if (MR::isEqualStageName("FactoryGalaxy")) {
-        f32 turnDirection = -1.0f;
-        if (calcTurnDirection(&turnDirection) && turnDirection == 0.0f) {
+        f32 turnDirection = 0.0f;
+        if (calcTurnDirection(&turnDirection) && turnDirection == -1.0f) {
             setNerve(GET_NERVE(Onimasu, HostTypeWaitForStamp));
         }
     }
 }
 
 void Onimasu::calcTargetPose() {
-    TQuat4f quat74;
-    quat74.set(0.0f, 0.0f, 0.0f, 1.0f);
+    TQuat4f rotationChange;
+    rotationChange.set(0.0f, 0.0f, 0.0f, 1.0f);
 
     if (MR::isSameDirection(getLastPointNormal(), getNextPointNormal())) {
         f32 turnDirection = 0.0f;
         if (calcTurnDirection(&turnDirection)) {
             TPos3f mtx;
             mtx.identity();
-            mtx.makeRotate(getLastPointNormal(), turnDirection * MR::pi());
+            const f32 pi = MR::pi();
+            mtx.makeRotate(getLastPointNormal(), pi * turnDirection);
             mtx.mult(_BC, _BC);
 
             MR::normalize(&_BC);
@@ -139,40 +149,46 @@ void Onimasu::calcTargetPose() {
             TVec3f railDir(nextPointPos - lastPointPos);
             MR::normalize(&railDir);
 
-            _BC.cross(railDir, -getNextPointNormal());
+            TVec3f down;
+            calcGravityDir(&down);
+            _BC.cross(railDir, down);
             MR::normalize(&_BC);
         }
     } else {
-        TQuat4f quatB4;
-        quatB4.set(0.0f, 0.0f, 0.0f, 1.0f);
-        quatB4.setRotate(getLastPointNormal(), getNextPointNormal());
-        quatB4.getRotate(_BC);
+        TQuat4f normalRotation;
+        normalRotation.set(0.0f, 0.0f, 0.0f, 1.0f);
+        normalRotation.setRotate(getLastPointNormal(), getNextPointNormal());
+        rotationChange.set(normalRotation);
+        normalRotation.getRotate(_BC);
         MR::normalize(&_BC);
     }
 
     _C8.set(_D8);
 
-    TQuat4f quatC4;
-    quatC4.set(0.0f, 0.0f, 0.0f, 1.0f);
-    quatC4.setRotate(_BC, MR::pi() / 2.0f);
-    quat74.mult(quatC4);
-    _D8.mult(quatC4);
+    TQuat4f quarterTurn;
+    quarterTurn.set(0.0f, 0.0f, 0.0f, 1.0f);
+    quarterTurn.setRotate(_BC, MR::pi() / 2.0f);
+    rotationChange.mult(quarterTurn);
+    _D8.mult(rotationChange);
 
-    TVec3f zDir1;
-    _C8.getZDir(zDir1);
+    TVec3f startFront;
+    _C8.getZDir(startFront);
 
-    TVec3f zDir2;
-    _D8.getZDir(zDir2);
+    TVec3f targetFront;
+    _D8.getZDir(targetFront);
 
-    if (MR::isSameDirection(zDir1, zDir2)) {
-        TQuat4f quatEC;
-        quatEC.setRotate(_BC, MR::pi() / 1000.0f);
-        _C8.mult(quatEC);
+    if (MR::isSameDirection(startFront, targetFront)) {
+        TQuat4f adjustment;
+        adjustment.setRotate(_BC, MR::pi() * 0.001f);
+        _C8.mult(adjustment);
     }
 }
 
 void Onimasu::updatePose() {
-    f32 nerveRate = MR::max(static_cast< f32 >(getNerveStep()) / getTimeToNextPoint(), 1.0f);
+    f32 nerveRate = static_cast< f32 >(getNerveStep()) / getTimeToNextPoint();
+    if (1.0f < nerveRate) {
+        nerveRate = 1.0f;
+    }
 
     _E8.set(_C8);
     _E8.slerp(_D8, nerveRate);
@@ -182,8 +198,7 @@ void Onimasu::updatePose() {
 void Onimasu::calcAndSetBaseMtx() {
     TPos3f baseMtx;
     baseMtx.identity();
-    baseMtx.setQuat(_E8);
-    baseMtx.setTrans(mPosition);
+    baseMtx.setQT(_E8, mPosition);
 
     MR::setBaseTRMtx(this, baseMtx);
 }
@@ -244,14 +259,20 @@ f32 Onimasu::getGravityScalar() const {
 }
 
 s32 Onimasu::getTimeToNextPoint() const {
-    return MR::isGalaxyQuickCometAppearInCurrentStage() ? ::sTimeToNextPointQuick : ::sTimeToNextPoint;
+    bool quick = MR::isGalaxyQuickCometAppearInCurrentStage();
+    return quick ? ::sTimeToNextPointQuick : ::sTimeToNextPoint;
+}
+
+s32 Onimasu::getWaitTime() const {
+    bool quick = MR::isGalaxyQuickCometAppearInCurrentStage();
+    return quick ? ::sWaitTimeQuick : ::sWaitTime;
 }
 
 void Onimasu::emitEffectLand() {
     TVec3f railPointPos;
     MR::calcRailPointPos(&railPointPos, this, getNextPointNo());
 
-    railPointPos += (-getNextPointNormal() * ::sSensorRadius) * 0.5f;
+    railPointPos.add((-getNextPointNormal() * ::sSensorRadius) * 0.5f);
 
     if (MR::isSameDirection(_BC, getNextPointNormal())) {
         MR::makeMtxUpNoSupportPos(&_8C, getNextPointNormal(), railPointPos);
@@ -275,7 +296,7 @@ void Onimasu::exeWaitForSwitchOn() {
 }
 
 void Onimasu::exeWait() {
-    if (MR::isStep(this, getTimeToNextPoint())) {
+    if (MR::isStep(this, getWaitTime())) {
         if (isNerve(GET_NERVE(Onimasu, HostTypeWaitForStamp))) {
             setNerve(GET_NERVE(Onimasu, HostTypeStamp));
         } else {
@@ -321,10 +342,31 @@ void Onimasu::exeStamp() {
     TVec3f gravityDir;
     calcGravityDir(&gravityDir);
 
-    mVelocity += gravityDir * getGravityScalar();
+    TVec3f& rVelocity = mVelocity;
+    rVelocity.add(gravityDir * getGravityScalar());
 
     if (MR::isStep(this, getTimeToNextPoint())) {
         land();
         setNerve(GET_NERVE(Onimasu, HostTypeWait));
     }
 }
+
+namespace OnimasuFunction {
+    bool getPolygonOnRailPoint(TVec3f* pPosition, TVec3f* pNormal, const LiveActor* pActor, int pointNo) {
+        TVec3f railPosition;
+        MR::calcRailPointPos(&railPosition, pActor, pointNo);
+
+        TVec3f gravity(0.0f, 1.0f, 0.0f);
+        MR::calcGravityVector(pActor, railPosition, &gravity, nullptr, 0);
+        TVec3f direction(gravity);
+        gravity.setLength(2000.0f);
+
+        Triangle triangle;
+        if (!MR::getFirstPolyOnLineToMapExceptSensor(pPosition, &triangle, railPosition, gravity, pActor->getSensor("body"))) {
+            return false;
+        }
+
+        pNormal->set(*triangle.getFaceNormal());
+        return true;
+    }
+}  // namespace OnimasuFunction

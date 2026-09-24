@@ -17,7 +17,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
-
 void MarioTeresa_FORCE_MATCH_SDATA2() {
     (void)1.0f;
     (void)0.0f;
@@ -643,7 +642,7 @@ void MarioActor::updateTeresaAnimation() {
             if (getLastMove().dot(getGravityVec()) >= 1.0f) {
                 changeTeresaAnimation("fall", 16);
             } else if (!mMario->mDrawStates._1C) {
-                if (__fabsf(getLastMove().dot(getGravityVec())) < 1.0f) {
+                if (MR::abs(getLastMove().dot(getGravityVec())) < 1.0f) {
                     runTeresaBaseAnimation();
                 }
             }

@@ -217,7 +217,7 @@ void AreaFormCylinder::calcPos(TVec3f* pPos) const {
     if (_4 != nullptr) {
         _4->mult(mTranslation, *pPos);
     } else {
-        pPos->set< f32 >(mTranslation);
+        pPos->set(mTranslation);
     }
 }
 
@@ -234,7 +234,7 @@ void AreaFormCylinder::calcUpVec(TVec3f* pUpVec) const {
         _4->mult33(mRotation, *pUpVec);
         MR::normalize(pUpVec);
     } else {
-        pUpVec->set< f32 >(mRotation);
+        pUpVec->set(mRotation);
     }
 }
 

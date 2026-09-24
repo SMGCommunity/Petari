@@ -86,7 +86,7 @@ bool MarioRecovery::calcFirstVector() {
     if (MR::normalizeOrZero(&horizontal)) {
         return false;
     }
-    PSVECCrossProduct(&getGravityVec(), &horizontal, &_64);
+    _64.cross(getGravityVec(), horizontal);
     if (MR::normalizeOrZero(&_64)) {
         return false;
     }
@@ -170,12 +170,11 @@ bool MarioRecovery::start() {
             if (MR::normalizeOrZero(&direction)) {
                 direction.set< f32 >(1.0f, 0.0f, 0.0f);
             }
-            TVec3f cross;
-            PSVECCrossProduct(&_58, &direction, &cross);
+            TVec3f cross = _58.cross(direction);
             if (MR::normalizeOrZero(&cross)) {
                 cross.set< f32 >(0.0f, 0.0f, 1.0f);
             }
-            PSVECCrossProduct(&cross, &_58, &direction);
+            direction.cross(cross, _58);
             MR::normalizeOrZero(&direction);
             _34 = _4C + _58 * 600.0f + direction * 600.0f;
         }
@@ -266,7 +265,7 @@ bool MarioRecovery::update() {
         } else {
             TVec3f horizontal;
             f32 distance = MR::vecKillElement(_34 - getTrans(), _58, &horizontal);
-            if (__fabsf(distance) < 10.0f) {
+            if (MR::abs(distance) < 10.0f) {
                 addTrans(_58 * distance, "Module");
                 _1A = 0;
                 calcFirstVector();

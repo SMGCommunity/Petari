@@ -314,8 +314,8 @@ namespace nw4r {
 }  // namespace nw4r
 
 CustomTagProcessor::CustomTagProcessor(nw4r::lyt::TextBox* textBox)
-    : mAlphaCtrl(), mPlayedSounds(), mColorMappingMin(setGXColor(textBox->GetMaterial()->GetTevColor(0))),
-      mColorMappingMax(setGXColor(textBox->GetMaterial()->GetTevColor(1))) {
+    : mAlphaCtrl(), mPlayedSounds(), mColorMappingMin(::setGXColor(textBox->GetMaterial()->GetTevColor(0))),
+      mColorMappingMax(::setGXColor(textBox->GetMaterial()->GetTevColor(1))) {
     mRubyFontWidth = 0.5f * textBox->mFontSize.width;
     mRubyFontHeight = 0.5f * textBox->mFontSize.height;
     mFontWidth = textBox->mFontSize.width;
@@ -514,7 +514,7 @@ CustomTagProcessor::Operation CustomTagProcessor::exePictureGroup(nw4r::ut::Rect
             writer.ResetColorMapping();
             writer.SetupGX();
             if (mColorIndex) {
-                setTextColor(&writer, 0);
+                ::setTextColor(&writer, 0);
             }
         }
 
@@ -616,13 +616,13 @@ CustomTagProcessor::Operation CustomTagProcessor::exeSystemGroupColor(nw4r::ut::
         if (index == 0) {
             context->writer->SetColorMapping(mColorMappingMin, mColorMappingMax);
         } else {
-            GXColor color = getTextColor(index);
+            GXColor color = ::getTextColor(index);
             color.a = mColorMappingMin.a;
-            context->writer->SetColorMapping(color, getTextColor(index));
+            context->writer->SetColorMapping(color, ::getTextColor(index));
         }
 
         context->writer->SetupGX();
-        setTextColor(context->writer, index);
+        ::setTextColor(context->writer, index);
     }
 
     return OPERATION_NO_CHAR_SPACE;
@@ -724,7 +724,7 @@ CustomTagProcessor::Operation CustomTagProcessor::exeFontGroup(nw4r::ut::Rect* r
         if (!mIsShadow) {
             writer.ResetColorMapping();
             writer.SetupGX();
-            setTextColor(&writer, 0);
+            ::setTextColor(&writer, 0);
         }
 
         writer.MoveCursorY(offset);

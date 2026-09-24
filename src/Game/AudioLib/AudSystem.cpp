@@ -83,8 +83,8 @@ namespace {
         AudDopplerAudible< 4 >::newMemPool(initJAI.mMaxNumSe);
         AudSeStrategy::newMemPool(initJAI.mMaxNumSe);
         SpkSystem::newSoundMemPool(64);
-        AudMe::newMemPool(32);       // FIXME: size
-        AudMeTrack::newMemPool(96);  // FIXME: size
+        AudMe::newMemPool(32);
+        AudMeTrack::newMemPool(96);
 
         return initJAI.mMaxNumSeq;
     }

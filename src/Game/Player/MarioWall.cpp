@@ -139,14 +139,12 @@ void Mario::fixWallingDir(bool immediate) {
 }
 
 bool Mario::fixWallingTop() {
-    TVec3f side;
-    PSVECCrossProduct(&getWallNorm(), &getAirGravityVec(), &side);
+    TVec3f side = getWallNorm().cross(getAirGravityVec());
     MR::normalizeOrZero(&side);
     if (MR::isNearZero(side)) {
         return false;
     }
-
-    PSVECCrossProduct(&getWallNorm(), &side, &_75C);
+    _75C.cross(getWallNorm(), side);
     MR::normalizeOrZero(&_75C);
     if (MR::isNearZero(_75C)) {
         return false;
@@ -336,8 +334,7 @@ bool Mario::isEnableStickWall() {
         return false;
     }
 
-    TVec3f side;
-    PSVECCrossProduct(&getWallNorm(), &getAirGravityVec(), &side);
+    TVec3f side = getWallNorm().cross(getAirGravityVec());
     if (MR::normalizeOrZero(&side)) {
         return false;
     }
@@ -690,15 +687,15 @@ bool Mario::fixWallingDist() {
             MR::vecKillElement(position - mPosition, *getGravityVec(), &correction);
             if (!MR::isNearZero(correction)) {
                 TVec3f relative(correction + mActor->_288);
-                if (__fabsf(relative.x) < __fabsf(correction.x)) {
+                if (MR::abs(relative.x) < MR::abs(correction.x)) {
                     correction.x = relative.x;
                 }
 
-                if (__fabsf(relative.y) < __fabsf(correction.y)) {
+                if (MR::abs(relative.y) < MR::abs(correction.y)) {
                     correction.y = relative.y;
                 }
 
-                if (__fabsf(relative.z) < __fabsf(correction.z)) {
+                if (MR::abs(relative.z) < MR::abs(correction.z)) {
                     correction.z = relative.z;
                 }
 

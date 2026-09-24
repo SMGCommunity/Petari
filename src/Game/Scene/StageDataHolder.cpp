@@ -458,12 +458,12 @@ void StageDataHolder::initJmpInfo(MR::AssignableArray< JMapInfo >* pInfo, const 
 
 void StageDataHolder::initAllLayerJmpInfo(MR::AssignableArray< JMapInfo >* pInfo, const char* pName) {
     s32 count = 0;
-    u32 mask = getAllLayers(_A8, MR::getCurrentScenarioNo());
+    u32 mask = ::getAllLayers(_A8, MR::getCurrentScenarioNo());
     char buf[64];
 
     for (u32 i = 0; i < 0x11; i++) {
         if ((mask & (1 << i)) != 0) {
-            snprintf(buf, sizeof(buf), "%s/%s", pName, cLayerDirName[i]);
+            snprintf(buf, sizeof(buf), "%s/%s", pName, ::cLayerDirName[i]);
             s32 fileCount = mArchive->countFile(buf) - 2;
             count += fileCount > 0 ? fileCount : 0;
         }
@@ -476,7 +476,7 @@ void StageDataHolder::initAllLayerJmpInfo(MR::AssignableArray< JMapInfo >* pInfo
 
         for (u32 i = 0; i < 0x11; i++) {
             if ((mask & (1 << i)) != 0) {
-                snprintf(buf, sizeof(buf), "%s/%s", pName, cLayerDirName[i]);
+                snprintf(buf, sizeof(buf), "%s/%s", pName, ::cLayerDirName[i]);
                 pInfoArray = attachJmpInfoToArray(pInfoArray, buf);
             }
         }
@@ -484,7 +484,7 @@ void StageDataHolder::initAllLayerJmpInfo(MR::AssignableArray< JMapInfo >* pInfo
 }
 
 void StageDataHolder::initAllLayerJmpInfo(MR::AssignableArray< JMapInfo >* pInfo, const char* pPlacementDir, const char* pMapPartsDir) {
-    u32 mask = getAllLayers(_A8, MR::getCurrentScenarioNo());
+    u32 mask = ::getAllLayers(_A8, MR::getCurrentScenarioNo());
     initLayerJmpInfo(pInfo, pPlacementDir, pMapPartsDir, mask);
 }
 
@@ -494,10 +494,10 @@ void StageDataHolder::initLayerJmpInfo(MR::AssignableArray< JMapInfo >* pInfo, c
 
     for (u32 i = 0; i < 0x11; i++) {
         if (layerMask & (1 << i)) {
-            snprintf(path, sizeof(path), "%s/%s", pPlacementDir, cLayerDirName[i]);
+            snprintf(path, sizeof(path), "%s/%s", pPlacementDir, ::cLayerDirName[i]);
             s32 fileCount = mArchive->countFile(path) - 2;
             count += fileCount > 0 ? fileCount : 0;
-            snprintf(path, sizeof(path), "%s/%s", pMapPartsDir, cLayerDirName[i]);
+            snprintf(path, sizeof(path), "%s/%s", pMapPartsDir, ::cLayerDirName[i]);
             fileCount = mArchive->countFile(path) - 2;
             count += fileCount > 0 ? fileCount : 0;
         }
@@ -509,9 +509,9 @@ void StageDataHolder::initLayerJmpInfo(MR::AssignableArray< JMapInfo >* pInfo, c
         pInfo->mArr = pCurrent;
         for (u32 i = 0; i < 0x11; i++) {
             if (layerMask & (1 << i)) {
-                snprintf(path, sizeof(path), "%s/%s", pPlacementDir, cLayerDirName[i]);
+                snprintf(path, sizeof(path), "%s/%s", pPlacementDir, ::cLayerDirName[i]);
                 pCurrent = attachJmpInfoToArray(pCurrent, path);
-                snprintf(path, sizeof(path), "%s/%s", pMapPartsDir, cLayerDirName[i]);
+                snprintf(path, sizeof(path), "%s/%s", pMapPartsDir, ::cLayerDirName[i]);
                 pCurrent = attachJmpInfoToArray(pCurrent, path);
             }
         }

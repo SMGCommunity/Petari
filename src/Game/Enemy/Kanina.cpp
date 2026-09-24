@@ -338,7 +338,7 @@ bool Kanina::receivePunch(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (isPlayerBackward(::sBackwardAngle)) {
-        MR::stopScene(sStopSceneTimePunchBackword);
+        MR::stopScene(::sStopSceneTimePunchBackword);
         doDamageFireBall(pSender, pReceiver);
         return true;
     }
@@ -458,7 +458,7 @@ void Kanina::calcAndSetBaseMtx() {
     baseMtx.getQuat(quat);
 
     if (isNerve(GET_NERVE(Kanina, HostTypeDamageFireBall))) {
-        quat.set< f32 >(_A4);
+        quat.set(_A4);
     } else {
         quat.slerp(_A4, ::sPoseLerpRate);
     }

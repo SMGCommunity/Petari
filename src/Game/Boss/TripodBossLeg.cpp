@@ -166,7 +166,7 @@ void TripodBossLeg::setWait() {
 }
 
 void TripodBossLeg::setForceEndPoint(const TVec3f& rPoint) {
-    mForceEndPoint.set< f32 >(rPoint);
+    mForceEndPoint.set(rPoint);
 }
 
 void TripodBossLeg::setDemoEffectTiming(bool timg) {

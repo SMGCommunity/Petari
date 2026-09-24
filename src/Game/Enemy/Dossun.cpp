@@ -50,8 +50,8 @@ Dossun::Dossun(const char* pName) : LiveActor(pName) {
     _98.z = 0.0f;
     mFallingTime = 0;
     mHoldTime = 0;
-    mMovementDist = sUpperHeight;
-    mRisenWaitTime = sUpperFrame;
+    mMovementDist = ::sUpperHeight;
+    mRisenWaitTime = ::sUpperFrame;
     mShadowType = -1;
     mHasShadow = false;
 }
@@ -85,7 +85,7 @@ void Dossun::appear() {
     LiveActor::appear();
     getSensor("body")->invalidate();
     calcParameters();
-    mPosition.set< f32 >(_8C);
+    mPosition.set(_8C);
     if (MR::isValidSwitchA(this)) {
         setNerve(GET_NERVE(Dossun, DossunNrvReady));
     } else {
@@ -102,7 +102,7 @@ void Dossun::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg3NoInit(rIter, &shadowType);
     mHasShadow = shadowType != -1;
     MR::setGroupClipping(this, rIter, 16);
-    _98.set< f32 >(mPosition);
+    _98.set(mPosition);
 }
 
 void Dossun::initShadow() {
@@ -124,14 +124,15 @@ void Dossun::calcParameters() {
     mtx.mult33(offset);
     _8C.add(_98, offset);
 
-    mFallingTime = static_cast< s16 >(mMovementDist / (MR::isGalaxyQuickCometAppearInCurrentStage() ? sFallingSpeed * sQuickRatio : sFallingSpeed));
-    mHoldTime = static_cast< s16 >(mMovementDist / (MR::isGalaxyQuickCometAppearInCurrentStage() ? sRisingSpeed * sQuickRatio : sRisingSpeed));
+    mFallingTime =
+        static_cast< s16 >(mMovementDist / (MR::isGalaxyQuickCometAppearInCurrentStage() ? ::sFallingSpeed * ::sQuickRatio : ::sFallingSpeed));
+    mHoldTime = static_cast< s16 >(mMovementDist / (MR::isGalaxyQuickCometAppearInCurrentStage() ? ::sRisingSpeed * ::sQuickRatio : ::sRisingSpeed));
 }
 
 s32 Dossun::getUpperFrame() const {
     if (MR::isGalaxyQuickCometAppearInCurrentStage()) {
-        f32 frame = MR::getBckFrameMax(this, "FallStart") / sQuickRatio;
-        s32 waitFrames = mRisenWaitTime / sQuickRatio;
+        f32 frame = MR::getBckFrameMax(this, "FallStart") / ::sQuickRatio;
+        s32 waitFrames = mRisenWaitTime / ::sQuickRatio;
         if (waitFrames - static_cast< s32 >(frame) <= 0) {
             return 0;
         } else {
@@ -150,7 +151,7 @@ void Dossun::exeReady() {
 
 void Dossun::exeUpper() {
     if (MR::isFirstStep(this)) {
-        mPosition.set< f32 >(_8C);
+        mPosition.set(_8C);
     }
 
     if (MR::isStep(this, getUpperFrame())) {
@@ -164,8 +165,8 @@ void Dossun::exeFallSign() {
         MR::startBva(this, "Attack");
 
         if (MR::isGalaxyQuickCometAppearInCurrentStage()) {
-            MR::setBckRate(this, sQuickRatio);
-            MR::setBvaRate(this, sQuickRatio);
+            MR::setBckRate(this, ::sQuickRatio);
+            MR::setBvaRate(this, ::sQuickRatio);
         }
 
         MR::startSound(this, "SE_OJ_DOSSUN_FALL_SIGN");
@@ -187,14 +188,14 @@ void Dossun::exeFalling() {
 
 void Dossun::exeOnGround() {
     if (MR::isFirstStep(this)) {
-        mPosition.set< f32 >(_98);
-        MR::startRumbleWithShakeCameraNormalWeak(this, "中", "弱", sCamShakeDistanceStrong, sCamShakeDistanceWeak);
+        mPosition.set(_98);
+        MR::startRumbleWithShakeCameraNormalWeak(this, "中", "弱", ::sCamShakeDistanceStrong, ::sCamShakeDistanceWeak);
         MR::startSound(this, "SE_OJ_DOSSUN_LAND");
         MR::emitEffect(this, "Land");
     }
 
     bool b = MR::isGalaxyQuickCometAppearInCurrentStage();
-    if (MR::isStep(this, b ? static_cast< s32 >(sOnGroundFrame / sQuickRatio) : sOnGroundFrame)) {
+    if (MR::isStep(this, b ? static_cast< s32 >(::sOnGroundFrame / ::sQuickRatio) : ::sOnGroundFrame)) {
         setNerve(GET_NERVE(Dossun, DossunNrvRising));
     }
 }

@@ -96,7 +96,7 @@ void NoteFairy::init(const JMapInfoIter& rIter) {
         }
     }
 
-    _8C.set< f32 >(mPosition);
+    _8C.set(mPosition);
     mTimeLimit *= 60;
     mHasDemo = MR::tryRegisterDemoCast(this, rIter);
     initRailRider(rIter);
@@ -151,12 +151,12 @@ void NoteFairy::init(const JMapInfoIter& rIter) {
         if (_D1) {
             MR::calcRailPointPos(&stack_24, this, i);
         } else {
-            stack_24.set< f32 >(MR::getRailPos(this));
+            stack_24.set(MR::getRailPos(this));
             MR::moveCoord(this, mNoteCoord);
         }
 
         mNoteArray[i] = new Note("音符", MR::getRailDirection(this), this);
-        mNoteArray[i]->mPosition.set< f32 >(stack_24);
+        mNoteArray[i]->mPosition.set(stack_24);
         mNoteArray[i]->initWithoutIter();
         mNoteArray[i]->mCounter = mTimeLimit;
     }
@@ -237,7 +237,6 @@ void NoteFairy::exeHide() {
     }
 }
 
-/*
 void NoteFairy::exeStartAppearDemo() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
@@ -252,7 +251,6 @@ void NoteFairy::exeStartAppearDemo() {
         enterDemoAppear(GET_NERVE(NoteFairy, NoteFairyNrvDemoAppear), true);
     }
 }
-*/
 
 void NoteFairy::exeRailMoveStart() {
     if (MR::isFirstStep(this)) {
@@ -281,7 +279,7 @@ void NoteFairy::exeDemoAppear() {
     }
 
     if (MR::isGreaterStep(this, 70)) {
-        f32 ease = MR::getEaseInValue(getNerveStep() / 60.0f, 0.0f, 1.0f, 1.0f);
+        f32 ease = MR::getEaseInValue((getNerveStep() - 70) / 60.0f, 0.0f, 1.0f, 1.0f);
         mPosition.x = (_98.x * (1.0f - ease)) + (ease * MR::getRailPos(this).x);
         mPosition.y = _98.y - (MR::sinDegree(90.0f * ease) * (_98.y - MR::getRailPos(this).y));
         mPosition.z = (_98.z * (1.0f - ease)) + (ease * MR::getRailPos(this).z);
@@ -310,7 +308,7 @@ void NoteFairy::exeAppearNoteBloom() {
     MR::moveCoordAndFollowTrans(this, mAppearanceSpeed);
     mRotation.y = MR::getSceneObj< NoteGroup >(SceneObj_NoteGroup)->mRotation;
 
-    while (_B0 >= mMelodyNoteNum && MR::getRailCoord(this) >= getNoteCoord(_B0)) {
+    while (_B0 < mMelodyNoteNum && MR::getRailCoord(this) >= getNoteCoord(_B0)) {
         mNoteArray[_B0]->appear();
         mNoteArray[_B0]->_AC = 5.0f * _B0;
 

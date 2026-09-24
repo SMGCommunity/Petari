@@ -5,9 +5,9 @@
 extern "C" {
 #endif
 
-#include "revolution/types.h"
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXStruct.h"
+#include "revolution/types.h"
 
 typedef void (*GXBreakPtCallback)(void);
 
@@ -29,19 +29,20 @@ typedef struct __GXFifoObj {
     GXBool bind_gp;
 } __GXFifoObj;
 
-GXBool GXGetCPUFifo(GXFifoObj *);
-GXBool GXGetGPFifo(GXFifoObj *);
+GXBool GXGetCPUFifo(GXFifoObj*);
+GXBool GXGetGPFifo(GXFifoObj*);
 
-void GXGetFifoPtrs(const GXFifoObj *, void **, void **);
+void GXGetFifoPtrs(const GXFifoObj*, void**, void**);
 
+void GXEnableBreakPt(void* pBreakPoint);
 void GXDisableBreakPt(void);
 
 GXBool __GXIsGPFifoReady(void);
 
 void __GXFifoInit(void);
-void GXInitFifoBase(GXFifoObj *, void *, u32);
-void GXSetCPUFifo(const GXFifoObj *);
-void GXSetGPFifo(const GXFifoObj *);
+void GXInitFifoBase(GXFifoObj*, void*, u32);
+void GXSetCPUFifo(const GXFifoObj*);
+void GXSetGPFifo(const GXFifoObj*);
 
 GXBool GXGetFifoWrap(const GXFifoObj* fifo);
 
@@ -52,4 +53,4 @@ void GXGetGPStatus(GXBool*, GXBool*, GXBool*, GXBool*, GXBool*);
 }
 #endif
 
-#endif // GXFIFO_H
+#endif  // GXFIFO_H

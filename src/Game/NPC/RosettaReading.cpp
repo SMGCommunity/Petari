@@ -50,8 +50,7 @@ void RosettaReading::init(const JMapInfoIter& rIter) {
         this, MR::createTalkCtrlDirectOnRootNodeAutomatic(
                   this, rIter,
                   ::getChapterNumberMax() == PictureBookLayout::getChapterMax() ? "LibraryRoom_RosettaReading003" : "LibraryRoom_RosettaReading000",
-                  // FIXME: Vector is not initialized correctly.
-                  TVec3f(0.0f, 0.0f, 0.0f), MR::getJointMtx(this, "Chin")));
+                  gZeroVec, MR::getJointMtx(this, "Chin")));
 
     if (::getChapterNumberMin() <= ::getChapterNumberMax()) {
         mPictureBookLayout = new PictureBookLayout(::getChapterNumberMin(), ::getChapterNumberMax(), true);
@@ -59,7 +58,7 @@ void RosettaReading::init(const JMapInfoIter& rIter) {
     }
 
     initNerve(GET_NERVE(RosettaReading, RosettaReadingNrvPictureBookBefore));
-    appear();
+    makeActorDead();
 }
 
 void RosettaReading::appear() {

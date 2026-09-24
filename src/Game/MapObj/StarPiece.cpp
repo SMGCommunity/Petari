@@ -29,7 +29,6 @@
 #include <revolution/gx/GXStruct.h>
 #include <revolution/mtx.h>
 
-
 const GXColor effectColors[] = {{0x00, 0x55, 0xff, 0xFF}, {0xFF, 0xFF, 0x00, 0xFF}, {0x55, 0xFF, 0x00, 0xFF}, {0x7F, 0x7F, 0x00, 0xFF}};
 const GXColor initColors[] = {{0x80, 0x00, 0x99, 0xFF}, {0xE6, 0xA0, 0x00, 0xFF}, {0x46, 0xA1, 0x08, 0xFF},
                               {0x37, 0x5A, 0xA0, 0xFF}, {0xBE, 0x33, 0x0B, 0xFF}, {0x80, 0x80, 0x80, 0xFF}};
@@ -1244,8 +1243,8 @@ void StarPiece::calcAndSetBaseMtx() {
         MR::calcMtxFromGravityAndZAxis(&pos, this, mGravity, _8C);
     }
 
-    TRot3f rotate;
-    rotate.setRotate(TVec3f(0.0f, 1.0f, 0.0f), 0.17453294f * mRotation.y);
+    TPos3f rotate;
+    rotate.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), MR::toRadian(mRotation.y));
     pos.concat(pos, rotate);
     MR::setBaseTRMtx(this, pos);
 }

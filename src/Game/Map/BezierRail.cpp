@@ -119,7 +119,7 @@ void BezierRailPart::calcPos(TVec3f* pOut, f32 t) const {
     v15.scale(v10);
     v14.scale(v9);
 
-    pOut->set< f32 >(mStart);
+    pOut->set(mStart);
     pOut->add(v16);
     pOut->add(v15);
     pOut->add(v14);
@@ -134,7 +134,7 @@ void BezierRailPart::calcVelocity(TVec3f* pOut, f32 t) const {
     v12.scale(v5);
     v11.scale(v7);
 
-    pOut->set< f32 >(mCtrlDegree1);
+    pOut->set(mCtrlDegree1);
     pOut->add(v11);
     pOut->add(v12);
     pOut->scale(3.0f);
@@ -187,7 +187,7 @@ f32 BezierRailPart::getParam(f32 t) const {
         length = getLength(0.0f, param, 10);
 
         f32 limit = 0.01f;
-        if (__fabs(t - length) <= limit) {
+        if (MR::abs(t - length) <= limit) {
             return param;
         }
     }

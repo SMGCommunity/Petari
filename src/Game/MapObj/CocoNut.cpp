@@ -5,8 +5,8 @@
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include <JSystem/JMath.hpp>
 #include "math_types.hpp"
+#include <JSystem/JMath.hpp>
 
 namespace NrvCocoNut {
     NEW_NERVE(CocoNutNrvWait, CocoNut, Wait);
@@ -103,7 +103,7 @@ void CocoNut::startClipped() {
         }
     } else if (mRespawnWhenOutOfView) {
         statusToHide();
-        mPosition.set< f32 >(mSpawnPosition);
+        mPosition.set(mSpawnPosition);
         setNerve(GET_NERVE(CocoNut, CocoNutNrvReplaceReady));
     }
     LiveActor::startClipped();
@@ -149,7 +149,7 @@ bool CocoNut::isPossibleToHit(const TVec3f& a1, const TVec3f& a2, const TVec3f& 
             return false;
         }
     } else {
-        stack_20.set< f32 >(stack_14);
+        stack_20.set(stack_14);
     }
     return stack_2C.dot(stack_20) < 0.0f;
 }
@@ -199,7 +199,7 @@ void CocoNut::updateGravity() {
     TVec3f stack_8;
 
     f32 f31 = _13C ? 0.4f : 1.0f;
-    stack_8.set< f32 >(mGravity);
+    stack_8.set(mGravity);
     f32 f0 = _90 + f31;
 
     f32 f2 = f0 >= 25.0f ? 25.0f : f0;
@@ -302,7 +302,7 @@ void CocoNut::setFrontVec(const TVec3f& a1) {
     TVec3f stack_8(mGravity);
     if (!MR::normalizeOrZero(a1, &stack_14)) {
         if (MR::isSameDirection(a1, stack_8)) {
-            _94.set< f32 >(stack_14);
+            _94.set(stack_14);
         } else {
             MR::vecKillElement(stack_14, stack_8, &_94);
             MR::normalize(&_94);
@@ -531,12 +531,12 @@ bool CocoNut::isOnGround() const {
 
 bool CocoNut::getWallNormal(TVec3f* arg0) const {
     if (MR::isBindedWall(this)) {
-        arg0->set< f32 >(*MR::getWallNormal(this));
+        arg0->set(*MR::getWallNormal(this));
         return true;
     }
 
     if (0.0f < _90 && (MR::isOnGround(this)) && !isOnGround()) {
-        arg0->set< f32 >(*MR::getGroundNormal(this));
+        arg0->set(*MR::getGroundNormal(this));
         return true;
     }
 
@@ -750,7 +750,7 @@ void CocoNut::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg1NoInit(rIter, &mRespawnWhenOutOfView);
     MR::getJMapInfoArg2NoInit(rIter, &mContinueRolling);
     _D0 = 55.0f * mScale.x;
-    mSpawnPosition.set< f32 >(mPosition);
+    mSpawnPosition.set(mPosition);
 }
 
 void CocoNut::statusToHide() {

@@ -5,6 +5,7 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include <algorithm>
 
 SwitchWatcherHolder::SwitchWatcherHolder() : NameObj("SwitchWatcherHolder"), mSwitchWatcher() {
     MR::connectToScene(this, MR::MovementType_SwitchWatcherHolder, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_None);
@@ -13,7 +14,7 @@ SwitchWatcherHolder::SwitchWatcherHolder() : NameObj("SwitchWatcherHolder"), mSw
 void SwitchWatcherHolder::movement() {
     // not quite sure what is going on here
     // but it seems to just call movement on all watchers
-    mSwitchWatcher.mArray.callAllFunc(&SwitchWatcher::movement);
+    std::for_each(mSwitchWatcher.begin(), mSwitchWatcher.end(), std::mem_func(&SwitchWatcher::movement));
 }
 
 void SwitchWatcherHolder::joinSwitchEventListenerA(const StageSwitchCtrl* pCtrl, SwitchEventListener* pListener) {

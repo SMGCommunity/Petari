@@ -53,7 +53,7 @@ void SandCapsulePressGround::init(const JMapInfoIter& rIter) {
         MR::tryRegisterDemoActionNerve(this, GET_NERVE(SandCapsulePressGround, SandCapsulePressGroundNrvDisappearDemo), nullptr);
     }
 
-    _C4.set< f32 >(mPosition);
+    _C4.set(mPosition);
     TVec3f up;
     MR::calcUpVec(&up, this);
     _D0.scaleAdd(3600.0f, up, _C4);
@@ -111,10 +111,10 @@ void SandCapsulePressGround::exeMove() {
         MR::startSound(this, "SE_OJ_DESERT_LAND_MOVE_ED");
 
         if (isNerve(GET_NERVE(SandCapsulePressGround, SandCapsulePressGroundNrvMoveUp))) {
-            mPosition.set< f32 >(_D0);
+            mPosition.set(_D0);
             setNerve(GET_NERVE(SandCapsulePressGround, SandCapsulePressGroundNrvMoveUpEnd));
         } else {
-            mPosition.set< f32 >(_C4);
+            mPosition.set(_C4);
             setNerve(GET_NERVE(SandCapsulePressGround, SandCapsulePressGroundNrvMoveDownEnd));
         }
     }

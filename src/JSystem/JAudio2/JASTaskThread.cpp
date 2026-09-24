@@ -78,7 +78,6 @@ int JASTaskThread::sendCmdMsg(JASThreadCallback callback, void* msg) {
 }
 
 void* JASTaskThread::run() {
-    // FIXME: OSInitFastCast inline
     JASThreadCallStack* callstack;
     OSInitFastCast();
     do {

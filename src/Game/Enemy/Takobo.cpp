@@ -64,24 +64,24 @@ void Takobo::init(const JMapInfoIter& rIter) {
 
     TPos3f mtx;
     mtx.set(getBaseMtx());
-    TVec3f zDir;
-    mtx.getZDir(zDir);
+    
+    mtx.getZDir(_90);
 
     TVec3f stack_24;
     mtx.getYDir(stack_24);
 
     mGravity.set(-stack_24);
 
-    s32 dir = -1;
-    MR::getJMapInfoArg1NoInit(rIter, &dir);
+    arg = -1;
+    MR::getJMapInfoArg1NoInit(rIter, &arg);
 
-    if (dir == 0) {
+    if (arg == 0) {
         mtx.getXDir(_B0);
         _BC = 0;
-    } else if (dir == 1) {
+    } else if (arg == 1) {
         mtx.getXDir(_B0);
         _BC = 1;
-    } else if (dir == 3) {
+    } else if (arg == 3) {
         mtx.getZDir(_B0);
         _BC = 1;
     } else {
@@ -158,8 +158,11 @@ void Takobo::control() {
         isNerve(GET_NERVE(Takobo, HostTypeNrvHitReaction))) {
         if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
             setNerve(GET_NERVE(Takobo, HostTypeNrvDpdPointed));
+            return;
         }
-    } else if (_A1) {
+    }
+    
+    if (_A1) {
         HitInfo info;
         if (Collision::checkStrikePointToMap(mPosition, &info)) {
             if (MR::isGroundCodeDamageFire(&info.mParentTriangle)) {
@@ -201,34 +204,29 @@ void Takobo::exeMove() {
         TVec3f v21(mPosition);
         v21 -= _A4 - _B0 * _C4;
 
-        if (_BC) {
+        if (!_BC) {
+            f32 v3 = v21.dot(_B0);
+            _CC = _C4;
+            _C8 = -_C4 + v3;
+            _D0 = ((_C4 - (-_C4 + v3)) / _C0);
+        } else {
             _C8 = -_C4;
             f32 v6 = v21.dot(_B0);
-            f32 c0 = _C0;
-            f32 v8 = (-_C4 + v6);
-            f32 v9 = ((-_C4 + v6) - _C8);
-            _CC = v8;
-            _D0 = v9 / c0;
-        } else {
-            f32 v3 = v21.dot(_B0);
-            f32 v4 = _C4;
-            f32 v5 = _C0;
-            _CC = _C4;
-            _C8 = -v4 + v3;
-            _D0 = ((v4 - (-v4 + v3)) / v5);
+            _CC = -_C4 + v6;
+            _D0 = ((-_C4 + v6) - _C8) / _C0;           
         }
 
-        _D0 *= 1.3f;
+        _D0 *= 1.3;
     }
 
     f32 rate = MR::calcNerveRate(this, _D0);
 
     if (_BC) {
-        rate -= 1.0f;
+        rate = 1.0f - rate;
     }
 
     f32 ease = MR::getEaseInOutValue(rate, _C8, _CC, 1.0f);
-    mVelocity.set< f32 >(_A4 + _B0 * ease - mPosition);
+    mVelocity.set(_A4 + _B0 * ease - mPosition);
 
     if (MR::isGreaterStep(this, _D0)) {
         _BC = _BC == false;
@@ -368,7 +366,7 @@ void Takobo::exeIce() {
     }
 
     if (MR::isDead(mBox)) {
-        mPosition.set< f32 >(mBox->mPosition);
+        mPosition.set(mBox->mPosition);
         generateCoin();
         kill();
     }

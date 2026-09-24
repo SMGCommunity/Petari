@@ -65,7 +65,7 @@ void Birikyu::initAfterPlacement() {
     if (_A9) {
         MR::moveCoordAndTransToNearestRailPos(this);
     } else {
-        _9C.set< f32 >(mPosition);
+        _9C.set(mPosition);
         TPos3f matrix;
         matrix.identity();
         MR::makeMtxRotate(matrix.toMtxPtr(), mRotation);
@@ -79,7 +79,7 @@ void Birikyu::initAfterPlacement() {
         f32 x2 = matrix.mMtx[0][2];
         _B8.set(x2, y2, z2);
         MR::normalize(&_B8);
-        mPosition.set< f32 >(_9C + _9C * 400.0f);
+        mPosition.set(_9C + _9C * 400.0f);
     }
 }
 
@@ -226,7 +226,7 @@ void Birikyu::exeMoveCircle() {
         TVec3f temp = _B8 * 400.0f;
         matrix.mult(temp, temp);
         TVec3f matrix2 = (_9C + temp);
-        mPosition.set< f32 >(matrix2);
+        mPosition.set(matrix2);
     }
 }
 

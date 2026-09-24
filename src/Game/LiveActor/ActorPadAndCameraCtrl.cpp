@@ -20,7 +20,7 @@ namespace {
 
 ActorPadAndCameraCtrl::ActorPadAndCameraCtrl(const ModelManager* pModelManager, const TVec3f* pPosition)
     : _0(pModelManager), _4(pPosition), _8(pModelManager->getResourceHolder()), _C(), mInfoNum(), mInfo() {
-    JMapInfo* parser = MR::tryCreateCsvParser(_8, "%s.bcsv", sFileName);
+    JMapInfo* parser = MR::tryCreateCsvParser(_8, "%s.bcsv", ::sFileName);
     if (!parser) {
         return;
     }
@@ -42,7 +42,7 @@ ActorPadAndCameraCtrl::ActorPadAndCameraCtrl(const ModelManager* pModelManager, 
         MR::getCsvDataStrOrNULL(&info->mCameraShakeName, parser, "CameraShakeName", i);
         MR::getCsvDataF32(&info->mDistanceNear, parser, "DistanceNear", i);
         MR::getCsvDataF32(&info->mDistanceFar, parser, "DistanceFar", i);
-        info->mDistanceInvalid = sDefaultDistanceInvalid;
+        info->mDistanceInvalid = ::sDefaultDistanceInvalid;
         parser->getValue(i, "DistanceInvalid", &info->mDistanceInvalid);
         MR::getCsvDataStrOrNULL(&info->mPadRumbleNameMiddle, parser, "PadRumbleNameMiddle", i);
         MR::getCsvDataStrOrNULL(&info->mPadRumbleNameFar, parser, "PadRumbleNameFar", i);
@@ -55,7 +55,7 @@ ActorPadAndCameraCtrl::ActorPadAndCameraCtrl(const ModelManager* pModelManager, 
 
 ActorPadAndCameraCtrl* ActorPadAndCameraCtrl::tryCreate(const ModelManager* pModelManager, const TVec3f* pPosition) {
     const ResourceHolder* resourceHolder = pModelManager->getResourceHolder();
-    if (!MR::isExistFileInArc(resourceHolder, "%s.bcsv", sFileName)) {
+    if (!MR::isExistFileInArc(resourceHolder, "%s.bcsv", ::sFileName)) {
         return nullptr;
     }
 
@@ -143,24 +143,24 @@ namespace {
 
 void ActorPadAndCameraCtrl::updatePadAndCamera(const ActorPadAndCameraCtrlInfo* pInfo) {
     f32 distance = MR::getPlayerPos()->distance(*_4);
-    isDistanceExistAndFar(distance, pInfo->mDistanceInvalid);
-    if (isDistanceExistAndFar(distance, pInfo->mDistanceFar)) {
+    ::isDistanceExistAndFar(distance, pInfo->mDistanceInvalid);
+    if (::isDistanceExistAndFar(distance, pInfo->mDistanceFar)) {
         if (pInfo->mPadRumbleNameFar) {
             MR::tryRumblePad(this, pInfo->mPadRumbleNameFar, 0);
         }
 
-        tryUpdateCameraShake(pInfo->mCameraShakeNameFar);
-    } else if (isDistanceExistAndFar(distance, pInfo->mDistanceNear)) {
+        ::tryUpdateCameraShake(pInfo->mCameraShakeNameFar);
+    } else if (::isDistanceExistAndFar(distance, pInfo->mDistanceNear)) {
         if (pInfo->mPadRumbleNameMiddle) {
             MR::tryRumblePad(this, pInfo->mPadRumbleNameMiddle, 0);
         }
 
-        tryUpdateCameraShake(pInfo->mCameraShakeNameMiddle);
+        ::tryUpdateCameraShake(pInfo->mCameraShakeNameMiddle);
     } else {
         if (pInfo->mPadRumbleName) {
             MR::tryRumblePad(this, pInfo->mPadRumbleName, 0);
         }
 
-        tryUpdateCameraShake(pInfo->mCameraShakeName);
+        ::tryUpdateCameraShake(pInfo->mCameraShakeName);
     }
 }

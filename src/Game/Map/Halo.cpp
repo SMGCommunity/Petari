@@ -18,11 +18,11 @@ namespace NrvPowerStarHalo {
 };  // namespace NrvPowerStarHalo
 
 namespace {
-    HaloParam sParams[] = {{"ZoneHalo", 70.0f, 20.0f, 4.0f}, {"PowerStarHalo", 80.0f, 20.0f, 30.0f}};
+    static const HaloParam sParams[] = {{"ZoneHalo", 70.0f, 20.0f, 4.0f}, {"PowerStarHalo", 80.0f, 20.0f, 30.0f}};
 
-    const HaloParam* getParam(const char* pName) {
+    static const HaloParam* getParam(const char* pName) {
         for (u32 i = 0; i < ARRAY_SIZE(sParams); i++) {
-            if (MR::isEqualString(pName, sParams[i].haloName)) {
+            if (MR::isEqualString(pName, sParams[i].mName)) {
                 return &sParams[i];
             }
         }
@@ -31,8 +31,7 @@ namespace {
     }
 };  // namespace
 
-Halo::Halo(const char* pName) : MapObjActor(pName) {
-    mDistance = 70.0f;
+Halo::Halo(const char* pName) : MapObjActor(pName), mDistance(70.0f) {
 }
 
 void Halo::init(const JMapInfoIter& rIter) {
@@ -42,7 +41,7 @@ void Halo::init(const JMapInfoIter& rIter) {
     info.setupDefaultPos();
     info.setupConnectToScene();
     info.setupNerve(GET_NERVE(Halo, HostTypeAppear));
-    info.setupClippingRadius(::getParam(mObjectName)->clippingRadius * 100.0f);
+    info.setupClippingRadius(::getParam(mObjectName)->mClippingRadius * 100.0f);
     info.setupFarClipping(-1.0f);
     info.setupAffectedScale();
     initialize(rIter, info);
@@ -53,23 +52,23 @@ void Halo::appear() {
     MapObjActor::appear();
 
     if (isDistanceDisappear()) {
-        const char* anim = "Disappear";
+        const char* pAnimName = "Disappear";
 
-        MR::tryStartAllAnim(this, anim);
+        MR::tryStartAllAnim(this, pAnimName);
 
-        if (MR::isExistBtk(this, anim)) {
+        if (MR::isExistBtk(this, pAnimName)) {
             MR::setBtkFrame(this, MR::getBtkCtrl(this)->getEnd());
         }
 
-        if (MR::isExistBpk(this, anim)) {
+        if (MR::isExistBpk(this, pAnimName)) {
             MR::setBpkFrame(this, MR::getBpkCtrl(this)->getEnd());
         }
 
-        if (MR::isExistBtp(this, anim)) {
-            MR::setBpkFrame(this, MR::getBtpCtrl(this)->getEnd());
+        if (MR::isExistBtp(this, pAnimName)) {
+            MR::setBtpFrame(this, MR::getBtpCtrl(this)->getEnd());
         }
 
-        if (MR::isExistBrk(this, anim)) {
+        if (MR::isExistBrk(this, pAnimName)) {
             MR::setBrkFrame(this, MR::getBrkCtrl(this)->getEnd());
         }
 
@@ -90,29 +89,26 @@ void Halo::connectToScene(const MapObjActorInitInfo& rIter) {
 }
 
 bool Halo::isDistanceAppear() const {
-    f32 v1 = (mDistance + 20.0f) * 100.0f;
+    f32 offset = (mDistance + 20.0f) * 100.0f;
+    f32 distance = mDistance * 100.0f;
 
-    f32 d = mDistance * 100.0f;
-    if (d < v1) {
-        return v1 < getDistance();
-    } else {
-        return getDistance() < v1;
+    if (distance < offset) {
+        return offset < getDistance();
     }
+
+    return getDistance() < offset;
 }
 
-/*
 bool Halo::isDistanceDisappear() const {
-    f32 v1 = (mDistance + 20.0f) * 100.0f;
+    f32 offset = (mDistance + 20.0f) * 100.0f;
+    f32 distance = mDistance * 100.0f;
 
-    f32 d = mDistance * 100.0f;
-    if (v1 < d) {
-        return getDistance() < v1;
+    if (distance < offset) {
+        return getDistance() < distance;
     }
-    else {
-        return v1 < getDistance();
-    }
+
+    return distance < getDistance();
 }
-*/
 
 void Halo::exeAppear() {
     if (isDistanceDisappear()) {
@@ -123,22 +119,22 @@ void Halo::exeAppear() {
 
 void Halo::exeDisappear() {
     if (!MR::isHiddenModel(this)) {
-        bool flag;
-        const char* anim = "Disappear";
+        bool isHideModel;
+        const char* pAnimName = "Disappear";
 
-        if (MR::isExistBtk(this, anim) && MR::isBtkStopped(this)) {
-            flag = true;
-        } else if (MR::isExistBpk(this, anim) && MR::isBpkStopped(this)) {
-            flag = true;
-        } else if (MR::isExistBtp(this, anim) && MR::isBtpStopped(this)) {
-            flag = true;
-        } else if (MR::isExistBrk(this, anim) && MR::isBrkStopped(this)) {
-            flag = true;
+        if (MR::isExistBtk(this, pAnimName) && MR::isBtkStopped(this)) {
+            isHideModel = true;
+        } else if (MR::isExistBpk(this, pAnimName) && MR::isBpkStopped(this)) {
+            isHideModel = true;
+        } else if (MR::isExistBtp(this, pAnimName) && MR::isBtpStopped(this)) {
+            isHideModel = true;
+        } else if (MR::isExistBrk(this, pAnimName) && MR::isBrkStopped(this)) {
+            isHideModel = true;
         } else {
-            flag = false;
+            isHideModel = false;
         }
 
-        if (flag) {
+        if (isHideModel) {
             MR::hideModel(this);
         }
     }
@@ -150,8 +146,7 @@ void Halo::exeDisappear() {
     }
 }
 
-PowerStarHalo::PowerStarHalo(const char* pName) : Halo(pName) {
-    _C8 = -1;
+PowerStarHalo::PowerStarHalo(const char* pName) : Halo(pName), mAppearDuringOpeningCam(-1) {
 }
 
 Halo::~Halo() {
@@ -159,8 +154,9 @@ Halo::~Halo() {
 
 void PowerStarHalo::init(const JMapInfoIter& rIter) {
     Halo::init(rIter);
-    MR::getJMapInfoArg1NoInit(rIter, &_C8);
-    if (_C8 == -1) {
+    MR::getJMapInfoArg1NoInit(rIter, &mAppearDuringOpeningCam);
+
+    if (mAppearDuringOpeningCam == -1) {
         setNerve(GET_NERVE(PowerStarHalo, HostTypeWaitScenarioOpeningEnd));
     }
 }

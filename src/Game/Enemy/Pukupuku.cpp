@@ -212,7 +212,7 @@ void PukupukuStateLanding::updateJumping() {
     TVec3f pos;
     mPath->calcPosition(&pos, mValueCtrl->getValue());
     pos.sub(mHost->mPosition);
-    mHost->mVelocity.set< f32 >(pos);
+    mHost->mVelocity.set(pos);
 }
 
 void PukupukuStateLanding::emitWaterColumIfNeed(bool a1, bool a2) {
@@ -325,14 +325,9 @@ void Pukupuku::updatePoseByRailIgnoreUpScale() {
 }
 
 void Pukupuku::rotatePoseByLocalZ() {
-    Quaternion quat;
-    f32 _s = sin(1.5707963705062866);
-    f32 _c = cos(1.5707963705062866);
-    quat.x = 0.0f;
-    quat.y = 0.0f;
-    quat.z = _s;
-    quat.w = _c;
-    PSQUATMultiply(&_A8, &quat, &_A8);
+    TQuat4f rotZ;
+    rotZ.setEulerZ(MR::pi());
+    _A8.mult(_A8, rotZ);
 }
 
 void Pukupuku::calcGroundHitMtx(TPos3f* pMtx) const {
@@ -412,7 +407,7 @@ void Pukupuku::exeTrampled() {
         TPos3f hitMtx;
         calcGroundHitMtx(&hitMtx);
         hitMtx.getQuat(_A8);
-        mVelocity.set< f32 >(mGravity * 10.0f);
+        mVelocity.set(mGravity * 10.0f);
         startAnim("Flat", "CloseEye");
         MR::startSound(this, "SE_EM_STOMPED_S");
     } else if (!MR::isBinded(this)) {
@@ -455,7 +450,7 @@ void Pukupuku::exeBindStarPointer() {
             return;
         }
 
-        const char* pBtp = getBtpName(_C0);
+        const char* pBtp = ::getBtpName(_C0);
 
         MR::startBck(this, _C0);
         MR::startBtp(this, pBtp);
@@ -537,7 +532,7 @@ f32 Pukupuku::getBlownOffSpeedRate() const {
 }
 
 void Pukupuku::control() {
-    _9C.set< f32 >(-mGravity);
+    _9C.set(-mGravity);
     _9C.x *= 70.0f;
     _9C.y *= 70.0f;
     _9C.z *= 70.0f;

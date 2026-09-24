@@ -129,7 +129,7 @@ bool MarioFpView::start() {
     MR::startSubjectiveCamera(-1);
     changeAnimation("見る");
 
-    sIsDisabled = true;
+    ::sIsDisabled = true;
 
     mDelay = 0;
     mIsActive = true;
@@ -139,8 +139,8 @@ bool MarioFpView::start() {
 }
 
 bool MarioFpView::update() {
-    if (sIsDisabled) {
-        sIsDisabled = false;
+    if (::sIsDisabled) {
+        ::sIsDisabled = false;
         return true;
     }
 

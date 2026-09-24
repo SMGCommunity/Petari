@@ -54,7 +54,7 @@ void LightCylinder::initLightCylinderByOwner(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
     const char* objectName;
     MR::getObjectName(&objectName, rIter);
-    info.setupModelName(getGlaringLightModelName(objectName));
+    info.setupModelName(::getGlaringLightModelName(objectName));
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     info.setupNoAppearRiddleSE();
     initialize(rIter, info);
@@ -110,7 +110,7 @@ void SwingLight::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
 }
 
 void SwingLight::makeSubModels(const JMapInfoIter& rIter, const MapObjActorInitInfo&) {
-    const char* modelName = getGlaringLightModelName(mObjectName);
+    const char* modelName = ::getGlaringLightModelName(mObjectName);
     mLightCylinder = new LightCylinder(modelName, getBaseMtx(), Color8(0));
     mLightCylinder->initLightCylinderByOwner(rIter);
     mLightCylinder->makeActorDead();

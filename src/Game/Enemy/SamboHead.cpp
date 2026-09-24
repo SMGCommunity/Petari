@@ -49,26 +49,17 @@ void SamboHead::init(const JMapInfoIter& rIter) {
         }
     }
 
-    _A4.set< f32 >(mPosition);
+    _A4.set(mPosition);
     initModelManagerWithAnm("SamboHead", nullptr, false);
-    TMtx34f mtx;
-    mtx.setInline(getBaseMtx());
-    _98.set< f32 >(mtx(0, 1), mtx(0, 2), mtx(0, 3));
+    TPos3f mtx = getBaseMtx();
+    mtx.getZDir(_98);
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
     f32 scale_y = mScale.y;
     initBinder((100.0f * mScale.y), (100.0f * mScale.y), 0);
-    TVec3f v17;
-    v17.x = 0.0f;
-    v17.y = 50.0f;
-    v17.z = 0.0f;
-    MR::initStarPointerTarget(this, 100.0f, v17);
+    MR::initStarPointerTarget(this, 100.0f, TVec3f(0.0f, 50.0f, 0.0f));
     initHitSensor(1);
-    TVec3f v16;
-    v16.x = 0.0f;
-    v16.y = 100.0f * scale_y;
-    v16.z = 0.0f;
-    MR::addHitSensorEnemy(this, "body", 0x20, v16.y, v16);
+    MR::addHitSensorEnemy(this, "body", 0x20, 100.0f * scale_y, TVec3f(0.0f, 100.0f * scale_y, 0.0f));
     initEffectKeeper(1, nullptr, false);
     initSound(4, false);
     initNerve(GET_NERVE(SamboHead, HostTypeNrvWaitUnderGround));
@@ -127,7 +118,7 @@ void SamboHead::control() {
 void SamboHead::exeWaitUnderGround() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "AppearMini");
-        mPosition.set< f32 >(_A4);
+        mPosition.set(_A4);
         MR::invalidateShadow(this, nullptr);
         getSensor("body")->invalidate();
     }
@@ -241,7 +232,7 @@ void SamboHead::exePursue() {
 
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Run");
-        mVelocity.set< f32 >(_98 * 7.0f);
+        mVelocity.set(_98 * 7.0f);
         MR::addVelocityJump(this, 25.0f);
     }
 
@@ -309,7 +300,7 @@ void SamboHead::exeStarPieceHit() {
 
 void SamboHead::exeStampFall() {
     if (MR::isFirstStep(this)) {
-        mVelocity.set< f32 >(mGravity * 30.0f);
+        mVelocity.set(mGravity * 30.0f);
         MR::invalidateClipping(this);
     }
 

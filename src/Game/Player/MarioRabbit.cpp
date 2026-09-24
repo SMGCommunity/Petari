@@ -276,14 +276,13 @@ bool MarioRabbit::update() {
 
     addVelocity(_18);
     f32 angle = MR::diffAngleAbsHorizontal(getFrontVec(), _5C, getAirGravityVec());
-    TVec3f cross;
-    PSVECCrossProduct(&getFrontVec(), &_5C, &cross);
+    TVec3f cross = getFrontVec().cross(_5C);
     if (cross.dot(getAirGravityVec()) < 0.0f) {
         angle = -angle;
     }
 
     PSMTXCopy(MR::tmpMtxRotXRad(angle), _2C);
-    if (__fabsf(angle) >= 1.0471976f) {
+    if (MR::abs(angle) >= 1.0471976f) {
         MR::vecBlendSphere(_5C, getFrontVec(), &_5C, 0.2f);
     } else {
         MR::vecBlendSphere(_5C, getFrontVec(), &_5C, 0.05f);

@@ -102,9 +102,9 @@ bool FollowCollisionArea::hitCheck(const TVec3f& rPos, f32 radius, TVec3f* pPoin
     f32 y = relative.dot(axisY);
     f32 z = relative.dot(axisZ);
     TVec3f absolute;
-    f32 absX = __fabsf(x);
-    f32 absY = __fabsf(y);
-    f32 absZ = __fabsf(z);
+    f32 absX = MR::abs(x);
+    f32 absY = MR::abs(y);
+    f32 absZ = MR::abs(z);
     absolute.set(absX, absY, absZ);
     if (absolute.x >= expanded.x || absolute.y >= expanded.y || absolute.z >= expanded.z) {
         return false;
@@ -154,8 +154,8 @@ bool FollowCollisionArea::hitCheck(const TVec3f& rPos, f32 radius, TVec3f* pPoin
             return false;
         }
 
-        pPoint->set< f32 >(corner);
-        pNormal->set< f32 >(axisX + axisY + axisZ);
+        pPoint->set(corner);
+        pNormal->set(axisX + axisY + axisZ);
         MR::normalizeOrZero(pNormal);
         return true;
     }
@@ -215,11 +215,11 @@ bool FollowCollisionArea::hitCheck(const TVec3f& rPos, f32 radius, TVec3f* pPoin
     if (count == 1) {
         if (outside[0]) {
             if (x >= 0.0f) {
-                pNormal->set< f32 >(axisX);
+                pNormal->set(axisX);
                 localPoint.set(sizeX, y, z);
                 surface = 0;
             } else {
-                pNormal->set< f32 >(-axisX);
+                pNormal->set(-axisX);
                 localPoint.set(-sizeX, y, z);
                 surface = 1;
             }
@@ -227,18 +227,18 @@ bool FollowCollisionArea::hitCheck(const TVec3f& rPos, f32 radius, TVec3f* pPoin
 
         if (outside[2]) {
             if (z >= 0.0f) {
-                pNormal->set< f32 >(axisZ);
+                pNormal->set(axisZ);
                 localPoint.set(x, y, sizeZ);
                 surface = 4;
             } else {
-                pNormal->set< f32 >(-axisZ);
+                pNormal->set(-axisZ);
                 localPoint.set(x, y, -sizeZ);
                 surface = 5;
             }
         }
     }
 
-    pPoint->set< f32 >(axisX * localPoint.x + axisY * localPoint.y + axisZ * localPoint.z + _14);
+    pPoint->set(axisX * localPoint.x + axisY * localPoint.y + axisZ * localPoint.z + _14);
     MR::normalizeOrZero(pNormal);
     _30->setSurfaceAndSync(surface);
 

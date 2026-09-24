@@ -90,7 +90,7 @@ namespace {
 }  // namespace
 
 LiveActorGroup* LiveActorGroupArray::findGroup(const JMapInfoIter& rIter) const {
-    MsgSharedGroup* const* it = std::find_if(mGroups.begin(), mGroups.end(), makeGroupIdPredicate(MR::createJMapIdInfoFromGroupId(rIter)));
+    MsgSharedGroup* const* it = std::find_if(mGroups.begin(), mGroups.end(), ::makeGroupIdPredicate(MR::createJMapIdInfoFromGroupId(rIter)));
 
     if (it != mGroups.end()) {
         return *it;

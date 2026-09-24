@@ -56,12 +56,13 @@ namespace {
 };  // namespace
 
 KoopaFireStairs* KoopaParts::emitFireStairsToPos(const KoopaBattleMapStair* pBattleMapStair, const TVec3f& rPosition, bool useFront) {
-    KoopaFireStairs* pFireStairs = static_cast< KoopaFireStairs* >(mFireStairs->getDeadActor());
+    LiveActor* actor = mFireStairs->getDeadActor();
 
-    if (pFireStairs == nullptr) {
+    if (actor == nullptr) {
         return nullptr;
     }
 
+    KoopaFireStairs* pFireStairs = static_cast< KoopaFireStairs* >(actor);
     pFireStairs->mPosition.set(rPosition);
 
     if (useFront) {
@@ -162,14 +163,14 @@ void KoopaParts::createPlanetShadow() {
 void KoopaParts::initVs1() {
     createFireStairs(false);
 
-    mPlanetLv1 = createKoopaBattleMapPlanet("クッパ惑星", "KoopaBattleMapPlanet", "惑星中心", false, false, false);
+    mPlanetLv1 = ::createKoopaBattleMapPlanet("クッパ惑星", "KoopaBattleMapPlanet", "惑星中心", false, false, false);
 
     createPlanetShadow();
     createCommonParts();
 }
 
 void KoopaParts::initVs2() {
-    mPlanetLv1 = createKoopaBattleMapPlanet("クッパ惑星", "KoopaBattleMapPlanetVs2", "惑星中心", true, false, false);
+    mPlanetLv1 = ::createKoopaBattleMapPlanet("クッパ惑星", "KoopaBattleMapPlanetVs2", "惑星中心", true, false, false);
 
     createCommonParts();
 }
@@ -204,9 +205,9 @@ namespace {
 void KoopaParts::initVs3() {
     createFireStairs(true);
 
-    mPlanetLv1 = createKoopaBattleMapPlanet("クッパ惑星Ｌｖ１", "KoopaBattleMapPlanetVs3Lv1", "惑星中心", false, false, true);
-    mPlanetLv2 = createKoopaBattleMapPlanet("クッパ惑星Ｌｖ２", "KoopaBattleMapPlanetVs3Lv2", "惑星Ｌｖ２", false, false, true);
-    mPlanetLv3 = createKoopaBattleMapPlanet("クッパ惑星Ｌｖ３", "KoopaBattleMapPlanetVs3Lv3", "惑星Ｌｖ３", false, true, false);
+    mPlanetLv1 = ::createKoopaBattleMapPlanet("クッパ惑星Ｌｖ１", "KoopaBattleMapPlanetVs3Lv1", "惑星中心", false, false, true);
+    mPlanetLv2 = ::createKoopaBattleMapPlanet("クッパ惑星Ｌｖ２", "KoopaBattleMapPlanetVs3Lv2", "惑星Ｌｖ２", false, false, true);
+    mPlanetLv3 = ::createKoopaBattleMapPlanet("クッパ惑星Ｌｖ３", "KoopaBattleMapPlanetVs3Lv3", "惑星Ｌｖ３", false, true, false);
 
     MR::startBrk(mPlanetLv1, "Wait");
     MR::startBrk(mPlanetLv2, "Wait");
@@ -234,13 +235,13 @@ void KoopaParts::initVs3() {
     MR::registerDemoSimpleCastAll(mHoleSunPlanetInside);
     MR::registerDemoSimpleCastAll(mHoleSunPlanetInsideBloom);
 
-    mPeach = createDemoNpc("ピーチ", "Peach");
-    mKoopaJr = createDemoNpc("クッパＪｒ", "KoopaJr");
-    mKoopaJrShip = createDemoNpc("クッパＪｒ戦艦", "KoopaJrShip");
+    mPeach = ::createDemoNpc("ピーチ", "Peach");
+    mKoopaJr = ::createDemoNpc("クッパＪｒ", "KoopaJr");
+    mKoopaJrShip = ::createDemoNpc("クッパＪｒ戦艦", "KoopaJrShip");
 
-    mMeteor1 = createDemoEnemy("デモ砲弾１", "MeteorStrike");
-    mMeteor2 = createDemoEnemy("デモ砲弾２", "MeteorStrike");
-    mMeteor3 = createDemoEnemy("デモ砲弾３", "MeteorStrike");
+    mMeteor1 = ::createDemoEnemy("デモ砲弾１", "MeteorStrike");
+    mMeteor2 = ::createDemoEnemy("デモ砲弾２", "MeteorStrike");
+    mMeteor3 = ::createDemoEnemy("デモ砲弾３", "MeteorStrike");
 
     createCommonParts();
 }
@@ -250,7 +251,7 @@ void KoopaParts::createRock() {
         return;
     }
 
-    mRock = createKoopaBodyParts(mKoopa, "クッパ岩", "KoopaRock", "RockFixPos");
+    mRock = ::createKoopaBodyParts(mKoopa, "クッパ岩", "KoopaRock", "RockFixPos");
     mRock->kill();
 
     mRockBreak = new KoopaRockBreak(mKoopa);
@@ -262,17 +263,17 @@ void KoopaParts::createRollBall() {
         return;
     }
 
-    mRollBall = createKoopaBodyParts(mKoopa, "回転攻撃ボール", "KoopaRollBall", "RollBallFixPos");
+    mRollBall = ::createKoopaBodyParts(mKoopa, "回転攻撃ボール", "KoopaRollBall", "RollBallFixPos");
     mRollBall->kill();
 }
 
 void KoopaParts::createCommonParts() {
-    mThornBig = createKoopaBodyParts(mKoopa, "尻尾のトゲ（大）", "KoopaThorn", "TailThornBigFixPos");
-    mThornSmall = createKoopaBodyParts(mKoopa, "尻尾のトゲ（小）", "KoopaThorn", "TailThornSmallFixPos");
-    mArmorBreak = createKoopaBodyParts(mKoopa, "壊れ甲羅", "KoopaArmorBreak", "ArmorBreakFixPos");
+    mThornBig = ::createKoopaBodyParts(mKoopa, "尻尾のトゲ（大）", "KoopaThorn", "TailThornBigFixPos");
+    mThornSmall = ::createKoopaBodyParts(mKoopa, "尻尾のトゲ（小）", "KoopaThorn", "TailThornSmallFixPos");
+    mArmorBreak = ::createKoopaBodyParts(mKoopa, "壊れ甲羅", "KoopaArmorBreak", "ArmorBreakFixPos");
     mArmorBreak->kill();
 
-    mThornBreak = createKoopaBodyParts(mKoopa, "トゲ破片", "KoopaThornBreak", "ThornBreakFixPos");
+    mThornBreak = ::createKoopaBodyParts(mKoopa, "トゲ破片", "KoopaThornBreak", "ThornBreakFixPos");
     mThornBreak->kill();
 
     mFireShort = new LiveActorGroup("ショート炎", ::sFireShortNum);

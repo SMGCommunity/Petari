@@ -228,7 +228,7 @@ void BegomanSpike::control() {
     }
 
     if (isNerve(GET_NERVE(BegomanSpike, HostTypeNrvBlow))) {
-        preventSwingby(sPreventSwingbyDamp);
+        preventSwingby(::sPreventSwingbyDamp);
     }
 
     if ((!isNerve(GET_NERVE(BegomanSpike, HostTypeNrvNoCalcWait)) && !isNerve(GET_NERVE(BegomanSpike, HostTypeNrvWait)) &&
@@ -278,7 +278,7 @@ void BegomanSpike::setNerveLaunch() {
 }
 
 void BegomanSpike::exeNoCalcWait() {
-    exeNoCalcWaitCore(sNoCalcWaitRotate, GET_NERVE(BegomanSpike, HostTypeNrvWait));
+    exeNoCalcWaitCore(::sNoCalcWaitRotate, GET_NERVE(BegomanSpike, HostTypeNrvWait));
 }
 
 void BegomanSpike::endNoCalcWait() {
@@ -286,9 +286,9 @@ void BegomanSpike::endNoCalcWait() {
 }
 
 void BegomanSpike::exeWait() {
-    updateRotateY(sWaitRotate, sCommonAddRotate);
+    updateRotateY(::sWaitRotate, ::sCommonAddRotate);
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_ROT_SLOW");
-    exeWaitCore(hWaitParam, GET_NERVE(BegomanSpike, HostTypeNrvSignAttack), GET_NERVE(BegomanSpike, HostTypeNrvKeepDistance),
+    exeWaitCore(::hWaitParam, GET_NERVE(BegomanSpike, HostTypeNrvSignAttack), GET_NERVE(BegomanSpike, HostTypeNrvKeepDistance),
                 GET_NERVE(BegomanSpike, HostTypeNrvNoCalcWait));
 }
 
@@ -298,9 +298,9 @@ void BegomanSpike::exeSignAttack() {
         MR::startSound(this, "SE_EM_BEGOMAN_PRE_PURSUE");
     }
 
-    updateRotateY(sSignAttackRotate, sCommonAddRotate);
+    updateRotateY(::sSignAttackRotate, ::sCommonAddRotate);
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_ROT_MIDDLE");
-    exeSignAttackCore(hSignAttackParam, GET_NERVE(BegomanSpike, HostTypeNrvPursue));
+    exeSignAttackCore(::hSignAttackParam, GET_NERVE(BegomanSpike, HostTypeNrvPursue));
 }
 
 void BegomanSpike::exePursue() {
@@ -312,9 +312,9 @@ void BegomanSpike::exePursue() {
         MR::emitEffect(this, "HandBlur3");
     }
 
-    updateRotateY(sPursueRotate, sCommonAddRotate);
+    updateRotateY(::sPursueRotate, ::sCommonAddRotate);
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_PURSUE");
-    exePursueCore(hPursueParam, GET_NERVE(BegomanSpike, HostTypeNrvBrake), GET_NERVE(BegomanSpike, HostTypeNrvTurn), *getSoundNormal(), 1.0f);
+    exePursueCore(::hPursueParam, GET_NERVE(BegomanSpike, HostTypeNrvBrake), GET_NERVE(BegomanSpike, HostTypeNrvTurn), *getSoundNormal(), 1.0f);
 }
 
 void BegomanSpike::tearDownPursue() {
@@ -332,13 +332,13 @@ void BegomanSpike::exeTurn() {
     if (MR::isFirstStep(this)) {
     }
 
-    updateRotateY(sTurnRotate, sCommonAddRotate);
+    updateRotateY(::sTurnRotate, ::sCommonAddRotate);
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_ROT_MIDDLE");
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_TURN");
     if (mTurnAfterBlow) {
-        exeTurnCore(hTurnParam, GET_NERVE(BegomanSpike, HostTypeNrvBrake), GET_NERVE(BegomanSpike, HostTypeNrvTired), mTurnAfterBlow);
+        exeTurnCore(::hTurnParam, GET_NERVE(BegomanSpike, HostTypeNrvBrake), GET_NERVE(BegomanSpike, HostTypeNrvTired), mTurnAfterBlow);
     } else {
-        exeTurnCore(hTurnParam, GET_NERVE(BegomanSpike, HostTypeNrvBrake), GET_NERVE(BegomanSpike, HostTypeNrvPursue), mTurnAfterBlow);
+        exeTurnCore(::hTurnParam, GET_NERVE(BegomanSpike, HostTypeNrvBrake), GET_NERVE(BegomanSpike, HostTypeNrvPursue), mTurnAfterBlow);
     }
 }
 
@@ -347,7 +347,7 @@ void BegomanSpike::endTurn() {
 }
 
 void BegomanSpike::exeBrake() {
-    updateRotateY(sBrakeRotate, sCommonAddRotate);
+    updateRotateY(::sBrakeRotate, ::sCommonAddRotate);
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_SPARK");
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_ROT_MIDDLE");
     exeBrakeCore(GET_NERVE(BegomanSpike, HostTypeNrvTurn));
@@ -358,19 +358,19 @@ void BegomanSpike::exeStepBack() {
         MR::startBck(this, "electricshock");
     }
 
-    updateRotateY(0.2f, sCommonAddRotate);
-    exeStepBackCore(hWaitParam, GET_NERVE(BegomanSpike, HostTypeNrvWait));
+    updateRotateY(0.2f, ::sCommonAddRotate);
+    exeStepBackCore(::hWaitParam, GET_NERVE(BegomanSpike, HostTypeNrvWait));
 }
 
 void BegomanSpike::exeReturn() {
-    updateRotateY(0.2f, sCommonAddRotate);
+    updateRotateY(0.2f, ::sCommonAddRotate);
     exeReturnCore(GET_NERVE(BegomanSpike, HostTypeNrvWait));
 }
 
 void BegomanSpike::exeProvoke() {
-    updateRotateY(sProvokeRotate, sCommonAddRotate);
+    updateRotateY(::sProvokeRotate, ::sCommonAddRotate);
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_ROT_MIDDLE");
-    exeProvokeCore(hWaitParam, GET_NERVE(BegomanSpike, HostTypeNrvSignAttack));
+    exeProvokeCore(::hWaitParam, GET_NERVE(BegomanSpike, HostTypeNrvSignAttack));
 }
 
 void BegomanSpike::exeTrampleReaction() {
@@ -378,33 +378,33 @@ void BegomanSpike::exeTrampleReaction() {
         MR::startBck(this, "TrampleReaction");
     }
 
-    updateRotateY(sTrampleReactionRotate, sCommonAddRotate);
-    MR::moveAndTurnToDirection(this, &mFaceVec, mTargetVec, hStopParam._0, hStopParam._4, hStopParam._8, hStopParam._C);
+    updateRotateY(::sTrampleReactionRotate, ::sCommonAddRotate);
+    MR::moveAndTurnToDirection(this, &mFaceVec, mTargetVec, ::hStopParam._0, ::hStopParam._4, ::hStopParam._8, ::hStopParam._C);
     reboundWallAndGround(&mFaceVec, false);
-    if (MR::isGreaterStep(this, sTrampleReactionTime)) {
+    if (MR::isGreaterStep(this, ::sTrampleReactionTime)) {
         setNerve(GET_NERVE(BegomanSpike, HostTypeNrvProvoke));
     }
 }
 
 void BegomanSpike::exeHitReaction() {
-    updateRotateY(sHitReactionRotate, sCommonAddRotate);
-    exeHitReactionCore(hHitReactionParam, GET_NERVE(BegomanSpike, HostTypeNrvProvoke));
+    updateRotateY(::sHitReactionRotate, ::sCommonAddRotate);
+    exeHitReactionCore(::hHitReactionParam, GET_NERVE(BegomanSpike, HostTypeNrvProvoke));
 }
 
 void BegomanSpike::exeTired() {
     if (MR::isFirstStep(this)) {
     }
 
-    updateRotateY(0.2f, sCommonAddRotate);
+    updateRotateY(0.2f, ::sCommonAddRotate);
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_TURN");
-    exeTiredCore(hTiredParam, GET_NERVE(BegomanSpike, HostTypeNrvWait));
+    exeTiredCore(::hTiredParam, GET_NERVE(BegomanSpike, HostTypeNrvWait));
 }
 
 void BegomanSpike::exeBlow() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_EM_BEGOMAN_ROT_STOP");
         MR::startBck(this, "Damage");
-        MR::stopScene(sStopSceneTime);
+        MR::stopScene(::sStopSceneTime);
     }
 
     if (MR::isInWater(mPosition)) {
@@ -414,9 +414,9 @@ void BegomanSpike::exeBlow() {
 
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_SPARK");
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_ROT_MIDDLE");
-    MR::moveAndTurnToDirection(this, &mFaceVec, mTargetVec, hHitReactionParam._0, hHitReactionParam._4, hHitReactionParam._8, hHitReactionParam._C);
+    MR::moveAndTurnToDirection(this, &mFaceVec, mTargetVec, ::hHitReactionParam._0, ::hHitReactionParam._4, ::hHitReactionParam._8, ::hHitReactionParam._C);
     reboundWallAndGround(&mFaceVec, false);
-    if (MR::isGreaterStep(this, sBlowFrame) && MR::isOnGround(this)) {
+    if (MR::isGreaterStep(this, ::sBlowFrame) && MR::isOnGround(this)) {
         MR::startBck(this, "Turn");
         mTurnAfterBlow = true;
         setNerve(GET_NERVE(BegomanSpike, HostTypeNrvTurn));
@@ -432,8 +432,8 @@ void BegomanSpike::exeElectricDeath() {
         MR::invalidateClipping(this);
     }
 
-    if (MR::isGreaterStep(this, sElectricDeathTime)) {
-        MR::stopScene(sDeathStopSceneTime);
+    if (MR::isGreaterStep(this, ::sElectricDeathTime)) {
+        MR::stopScene(::sDeathStopSceneTime);
         MR::shakeCameraWeak();
         MR::startSound(this, "SE_EM_EXPLODE_S");
         setNerve(GET_NERVE(BegomanSpike, HostTypeNrvBrokenPiece));
@@ -459,11 +459,11 @@ void BegomanSpike::exeBrokenPiece() {
 void BegomanSpike::exeInWater() {
     if (MR::isFirstStep(this)) {
         mVelocity += mGravity;
-        mVelocity.setLength(sIsInWaterVel);
+        mVelocity.setLength(::sIsInWaterVel);
         MR::startSound(this, "SE_EM_FALL_INTO_WATER_S");
     }
 
-    if (MR::isGreaterStep(this, sIsInWaterTime)) {
+    if (MR::isGreaterStep(this, ::sIsInWaterTime)) {
         kill();
         MR::emitEffect(this, "DeathWater");
         MR::startSound(this, "SE_EM_BEGOMAN_DEAD_IN_WATER");
@@ -471,9 +471,9 @@ void BegomanSpike::exeInWater() {
 }
 
 void BegomanSpike::exeKeepDistance() {
-    updateRotateY(0.2f, sCommonAddRotate);
+    updateRotateY(0.2f, ::sCommonAddRotate);
     exeKeepDistanceCore(GET_NERVE(BegomanSpike, HostTypeNrvWait), GET_NERVE(BegomanSpike, HostTypeNrvSignAttack),
-                        GET_NERVE(BegomanSpike, HostTypeNrvBrake), hKeepDistFar, hKeepDistNear);
+                        GET_NERVE(BegomanSpike, HostTypeNrvBrake), ::hKeepDistFar, ::hKeepDistNear);
 }
 
 void BegomanSpike::exeBindStarPointer() {
@@ -485,7 +485,7 @@ void BegomanSpike::endBindStarPointer() {
 }
 
 void BegomanSpike::generateItem() NO_INLINE {
-    MR::appearCoinPop(this, mPosition - mGravity * sCoinTransY, sCoinGenerateNum);
+    MR::appearCoinPop(this, mPosition - mGravity * ::sCoinTransY, ::sCoinGenerateNum);
 }
 
 void BegomanSpike::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -516,7 +516,7 @@ void BegomanSpike::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
         if (!MR::isNearZero(dirFromSenderToReceiver)) {
             bool reflected = reboundPlaneWithEffect(dirFromSenderToReceiver, 0.0f, 0.0f, "Spark");
-            mVelocity += dirFromSenderToReceiver * sReboundPlayerAddVel;
+            mVelocity += dirFromSenderToReceiver * ::sReboundPlayerAddVel;
 
             if (reflected) {
                 MR::startSound(this, "SE_EM_BEGOMAN_COLLI");
@@ -560,7 +560,7 @@ bool BegomanSpike::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor*
         f32 receiverRadius = pReceiver->mRadius;
         f32 senderRadius = pSender->mRadius;
         f32 ratio = senderRadius / receiverRadius;
-        MR::addVelocityLimit(this, direction * sReboundEnemyAddVel * ratio);
+        MR::addVelocityLimit(this, direction * ::sReboundEnemyAddVel * ratio);
         if (reflected) {
             MR::startSound(this, "SE_EM_BEGOMAN_COLLI_BEGOMAN");
         }
@@ -623,8 +623,8 @@ bool BegomanSpike::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
         MR::vecKillElement(direction, mGravity, &direction);
         MR::normalize(&direction);
         mFaceVec.set(direction);
-        direction *= sBlowVel;
-        direction.sub(mGravity * sBlowVerticalVel);
+        direction *= ::sBlowVel;
+        direction.sub(mGravity * ::sBlowVerticalVel);
         mVelocity = direction;
         return true;
     }

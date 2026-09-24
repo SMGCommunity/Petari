@@ -167,10 +167,7 @@ void EyeBeamer::updateWaterSurfaceMtx() {
 
     mWaterSurfaceMtx.setQuat(_DC);
     TVec3f stack_38;
-    f32 f3 = mWaterSurfaceMtx[2][1];
-    f32 f2 = mWaterSurfaceMtx[1][1];
-    f32 f1 = mWaterSurfaceMtx[0][1];
-    stack_38.set< f32 >(f1, f2, f3);
+    mWaterSurfaceMtx.getYDir(stack_38);
     TVec3f stack_2C;
     TVec3f stack_20(_EC - (stack_38 * (_160 + (stack_38).dot(_EC - _104))));
     stack_2C.set(stack_20);
@@ -337,10 +334,7 @@ bool EyeBeamer::isInBeamRange(const TVec3f& rVec) const {
     MR::calcUpVec(&stack_44, this);
     stack_44.negate();
     TVec3f stack_38;
-    f32 f3 = _9C[2][3];
-    f32 f2 = _9C[1][3];
-    f32 f1 = _9C[0][3];
-    stack_38.set< f32 >(f1, f2, f3);
+    _9C.getTrans(stack_38);
     f32 dot = stack_44.dot(rVec - stack_38);
 
     if (dot < 0.0f || _15C < dot)

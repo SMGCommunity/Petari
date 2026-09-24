@@ -25,7 +25,6 @@ namespace {
 namespace MR {
 
     void FORCE_MATCH_FUNCTION_ORDER1() {
-        // needed to get function to show up in this file
         J3DTevBlock* block;
         block->getTevKColor(1);
     }
@@ -103,7 +102,8 @@ namespace MR {
     }
 
     bool isBckPlaying(XanimePlayer* pAnimePlayer, const char* pBckName) {
-        return !pAnimePlayer->isTerminate() && pAnimePlayer->isRun(pBckName) && pAnimePlayer->getRate() != 0.0f;
+        bool running = pAnimePlayer->_24[pAnimePlayer->_54].checkState(1) ? false : true;
+        return running && pAnimePlayer->isRun(pBckName) && pAnimePlayer->getRate() != 0.0f;
     }
 
     bool findBckNameStringInResource(const char** pOut, const ResourceHolder* pHolder, const char* pNameString) {
@@ -122,7 +122,6 @@ namespace MR {
     }
 
     u16 getMaterialNo(J3DModel* pModel, const char* pMaterialName) {
-        // needs to be two lines for correct inlining behaviour
         JUTNameTab* materialName = pModel->getModelData()->getMaterialName();
         return materialName->getIndex(pMaterialName);
     }
@@ -297,11 +296,11 @@ namespace MR {
         return false;
     }
 
-    inline void setShapeVcdVatCmdSelf(J3DShape* shape) {
-        void* vcdVatCmd = shape->getVcdVatCmd();
+    inline void setShapeVcdVatCmdSelf(J3DShape* pShape) {
+        void* vcdVatCmd = pShape->getVcdVatCmd();
         u8* arr = new (0x20) u8[J3DShape::kVcdVatDLSize];
         copyMemory(arr, vcdVatCmd, J3DShape::kVcdVatDLSize);
-        shape->setVcdVatCmd(arr);
+        pShape->setVcdVatCmd(arr);
     }
 
     void initEnvelopeAndEnvMapOrProjMapModelData(J3DModelData* pModelData) {
@@ -437,7 +436,6 @@ namespace MR {
     }
 
     void FORCE_FUNCTION_ORDER2() {
-        // needed to get ::isUseLight ChanNo to show up in the correct place in the function order
         J3DMaterial* mat;
         ::isUseLightChanNo(mat, 1, 1);
     }
@@ -521,40 +519,28 @@ namespace MR {
     void calcModelBoundingBox(TBox3f* pOut, const LiveActor* pActor) {
         s32 jointNum = getJointNum(pActor);
         for (u16 i = 0; i < jointNum; i++) {
-            J3DJoint* joint = getJoint(pActor, i);
-            TVec3f jointMin(*joint->getMin());
-            TVec3f jointMax(*joint->getMax());
-            TPos3f jointMtx(getJointMtx(pActor, i));
-            TVec3f yDir;
-            jointMtx.getYDir(yDir);
-
-            TVec3f sqrtVec;
-            sqrtVec.x = JGeometry::TUtil< f32 >::sqrt(jointMtx.dotX());
-            sqrtVec.y = JGeometry::TUtil< f32 >::sqrt(jointMtx.dotY());
-            sqrtVec.z = JGeometry::TUtil< f32 >::sqrt(jointMtx.dotZ());
-
-            jointMin.mul(sqrtVec);
-            jointMax.mul(sqrtVec);
-
-            TVec3f temp1(yDir);
-            yDir.add(jointMin);
-            TVec3f temp2(yDir);
-            yDir.add(jointMax);
-            TVec3f extend1;
-            TVec3f extend2;
-            extend1.set(temp1);
-            extend2.set(temp2);
+            TPos3f jointMtx;
+            TBox3f bounds;
+            J3DJoint* pJoint = getJoint(pActor, i);
+            TVec3f jointMin(*pJoint->getMin());
+            TVec3f jointMax(*pJoint->getMax());
+            jointMtx.setInline(getJointMtx(pActor, i));
+            TVec3f translation;
+            jointMtx.getTrans(translation);
+            TVec3f scale;
+            jointMtx.getScale(scale);
+            jointMin.mul(scale);
+            jointMax.mul(scale);
+            bounds.set(translation + jointMin, translation + jointMax);
             if (i == 0) {
-                pOut->set(extend1, extend2);
+                pOut->set(bounds.i, bounds.f);
                 continue;
             }
 
-            pOut->extend(jointMin, jointMax);
+            pOut->extend(bounds.i, bounds.f);
         }
 
-        TVec3f minusPos(-pActor->mPosition);
-        pOut->i.add(minusPos);
-        pOut->f.add(minusPos);
+        pOut->add(-pActor->mPosition);
     }
 
     void calcModelBoundingRadius(f32* pOut, const LiveActor* pActor) {
@@ -565,27 +551,9 @@ namespace MR {
         TVec3f f = boundingBox.f;
 
         TVec3f max;
-        max.set(MR::max(__fabsf(i.x), __fabsf(f.x)), MR::max(__fabsf(i.y), __fabsf(f.y)), MR::max(__fabsf(f.z), __fabsf(i.z)));
+        max.set(MR::max(MR::abs(i.x), MR::abs(f.x)), MR::max(MR::abs(i.y), MR::abs(f.y)), MR::max(MR::abs(i.z), MR::abs(f.z)));
 
         *pOut = max.length();
-    }
-
-    bool isExistCollisionResource(const LiveActor* pActor, const char* pName) {
-        char buff[0x80];
-        snprintf(buff, sizeof(buff), "%s.kcl", pName);
-        return getResourceHolder(pActor)->mFileInfoTable->findFileInfo(buff) != nullptr;
-    }
-
-    bool isExistModel(const char* pName) {
-        char buff[0x100];
-        snprintf(buff, sizeof(buff), "/ObjectData/%s.arc", pName);
-        return isFileExist(buff, false);
-    }
-
-    bool isExistSubModel(const char* pModelName, const char* pSubModelName) {
-        char buff[0x100];
-        snprintf(buff, sizeof(buff), "%s%s", pModelName, pSubModelName);
-        return isExistModel(buff);
     }
 
     J3DModel* newJ3DModel(const ResourceHolder* pResourceHolder, const char* pChar, J3DMdlFlag mdlFlag) {
@@ -637,6 +605,24 @@ namespace MR {
 
         newModel->lock();
         return newModel;
+    }
+
+    bool isExistCollisionResource(const LiveActor* pActor, const char* pName) {
+        char buff[0x80];
+        snprintf(buff, sizeof(buff), "%s.kcl", pName);
+        return getResourceHolder(pActor)->mFileInfoTable->findFileInfo(buff) != nullptr;
+    }
+
+    bool isExistModel(const char* pName) {
+        char buff[0x100];
+        snprintf(buff, sizeof(buff), "/ObjectData/%s.arc", pName);
+        return isFileExist(buff, false);
+    }
+
+    bool isExistSubModel(const char* pModelName, const char* pSubModelName) {
+        char buff[0x100];
+        snprintf(buff, sizeof(buff), "%s%s", pModelName, pSubModelName);
+        return isExistModel(buff);
     }
 
     J3DModelData* getJ3DModelData(const char* pName) {

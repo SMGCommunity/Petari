@@ -27,8 +27,8 @@ void UnizoLauncher::init(const JMapInfoIter& rIter) {
     initSound(8, false);
     initNerve(GET_NERVE(UnizoLauncher, UnizoLauncherNrvWait));
 
-    mUnizoNum = sUnizoNumber;
-    mUnizos = new Unizo*[sUnizoNumber];
+    mUnizoNum = ::sUnizoNumber;
+    mUnizos = new Unizo*[::sUnizoNumber];
     MR::setGroupClipping(this, rIter, 16);
 
     for (s32 i = 0; i < mUnizoNum; i++) {
@@ -61,7 +61,7 @@ void UnizoLauncher::exeWait() {
     if (MR::isFirstStep(this)) {
     }
 
-    if (MR::isGreaterStep(this, sUnizoInter)) {
+    if (MR::isGreaterStep(this, ::sUnizoInter)) {
         setNerve(GET_NERVE(UnizoLauncher, UnizoLauncherNrvLaunch));
     }
 }

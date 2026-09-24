@@ -241,7 +241,7 @@ void MarioActor::tryPullTrans(TVec3f* velocity, const TVec3f& position) {
     }
     TVec3f speed;
     speed.y = 400000.0f / (10000.0f + radius * radius);
-    f32 height = __fabsf(projection * (ground - center).length());
+    f32 height = MR::abs(projection * (ground - center).length());
     if (height < speed.y) {
         speed.y = height;
     }

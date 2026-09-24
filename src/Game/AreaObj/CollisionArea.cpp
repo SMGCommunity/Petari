@@ -164,9 +164,9 @@ bool CollisionArea::hitCheck(const TVec3f& rPos, f32 radius, TVec3f* pPoint, TVe
     f32 y = relative.dot(axisY);
     f32 z = relative.dot(axisZ);
     TVec3f absolute;
-    f32 absX = __fabsf(x);
-    f32 absY = __fabsf(y);
-    f32 absZ = __fabsf(z);
+    f32 absX = MR::abs(x);
+    f32 absY = MR::abs(y);
+    f32 absZ = MR::abs(z);
     absolute.set(absX, absY, absZ);
     if (absolute.x >= expanded.x || absolute.y >= expanded.y || absolute.z >= expanded.z) {
         return false;
@@ -216,8 +216,8 @@ bool CollisionArea::hitCheck(const TVec3f& rPos, f32 radius, TVec3f* pPoint, TVe
             return false;
         }
 
-        pPoint->set< f32 >(corner);
-        pNormal->set< f32 >(axisX + axisY + axisZ);
+        pPoint->set(corner);
+        pNormal->set(axisX + axisY + axisZ);
         MR::normalizeOrZero(pNormal);
         return true;
     }
@@ -277,11 +277,11 @@ bool CollisionArea::hitCheck(const TVec3f& rPos, f32 radius, TVec3f* pPoint, TVe
     if (count == 1) {
         if (outside[0]) {
             if (x >= 0.0f) {
-                pNormal->set< f32 >(axisX);
+                pNormal->set(axisX);
                 localPoint.set(sizeX, y, z);
                 surface = 0;
             } else {
-                pNormal->set< f32 >(-axisX);
+                pNormal->set(-axisX);
                 localPoint.set(-sizeX, y, z);
                 surface = 1;
             }
@@ -289,11 +289,11 @@ bool CollisionArea::hitCheck(const TVec3f& rPos, f32 radius, TVec3f* pPoint, TVe
 
         if (outside[1]) {
             if (y >= 0.0f) {
-                pNormal->set< f32 >(axisY);
+                pNormal->set(axisY);
                 localPoint.set(x, sizeY, z);
                 surface = 2;
             } else {
-                pNormal->set< f32 >(-axisY);
+                pNormal->set(-axisY);
                 localPoint.set(x, -sizeY, z);
                 surface = 3;
             }
@@ -301,18 +301,18 @@ bool CollisionArea::hitCheck(const TVec3f& rPos, f32 radius, TVec3f* pPoint, TVe
 
         if (outside[2]) {
             if (z >= 0.0f) {
-                pNormal->set< f32 >(axisZ);
+                pNormal->set(axisZ);
                 localPoint.set(x, y, sizeZ);
                 surface = 4;
             } else {
-                pNormal->set< f32 >(-axisZ);
+                pNormal->set(-axisZ);
                 localPoint.set(x, y, -sizeZ);
                 surface = 5;
             }
         }
     }
 
-    pPoint->set< f32 >(axisX * localPoint.x + axisY * localPoint.y + axisZ * localPoint.z + _44);
+    pPoint->set(axisX * localPoint.x + axisY * localPoint.y + axisZ * localPoint.z + _44);
     MR::normalizeOrZero(pNormal);
     if (mPolygon != nullptr && (_60 & (1 << surface))) {
         mPolygon->setSurfaceAndSync(surface);
@@ -431,7 +431,7 @@ void AreaPolygon::setSurface(s32 surface) {
     }
 
     for (u32 i = 0; i < 4; i++) {
-        mPositions[i].set< f32 >(axisX * mPositions[i].x + axisY * mPositions[i].y + axisZ * mPositions[i].z);
+        mPositions[i].set(axisX * mPositions[i].x + axisY * mPositions[i].y + axisZ * mPositions[i].z);
     }
 }
 

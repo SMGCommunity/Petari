@@ -49,7 +49,7 @@ OceanWaveFloater::OceanWaveFloater(const char* pName) : MapObjActor(pName), mSpr
 void OceanWaveFloater::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
 
-    mForce = new WaveFloatingForce(this, getParam(mObjectName)->mStepCount, getParam(mObjectName)->mAmplitude, true);
+    mForce = new WaveFloatingForce(this, ::getParam(mObjectName)->mStepCount, ::getParam(mObjectName)->mAmplitude, true);
 
     MapObjActorInitInfo info = MapObjActorInitInfo();
     info.setupHioNode("地形オブジェ");
@@ -59,7 +59,7 @@ void OceanWaveFloater::init(const JMapInfoIter& rIter) {
     info.setupSound(4);
     info.setupNoAppearRiddleSE();
 
-    if (getParam(mObjectName)->mIsUseProjmap) {
+    if (::getParam(mObjectName)->mIsUseProjmap) {
         info.setupProjmapMtx(false);
     }
 
@@ -100,7 +100,7 @@ void OceanWaveFloater::initAfterPlacement() {
 
     if (mMatrixSetter != nullptr) {
         TVec3f offset(0.0f, mOffset, 0.0f);
-        mMatrixSetter->updateMtxUseBaseMtxWithLocalOffset(offset);
+        mMatrixSetter->updateMtxUseBaseMtxWithLocalOffset(TVec3f(0.0f, mOffset, 0.0f));
     }
 }
 
@@ -121,8 +121,8 @@ void OceanWaveFloater::control() {
     mForce->update();
 
     controlEffect();
-
-    if (--mSoundDelay <= 1) {
+    mSoundDelay--;
+    if (mSoundDelay <= 0) {
         MR::startSound(this, "SE_OJ_PIER_FLOATER_WAVE");
         mSoundDelay = MR::getRandom(::sWaveSeStepsMin, ::sWaveSeStepsMax);
     }
@@ -131,8 +131,9 @@ void OceanWaveFloater::control() {
 void OceanWaveFloater::calcAndSetBaseMtx() {
     TPos3f baseMtx;
     baseMtx.identity();
-    baseMtx.setRotate(mRotation * (MR::pi()/180.0f));
-    baseMtx.setTrans(mPosition - mGravity * mForce->getCurrentValue());
+    baseMtx.setRotateDegree(mRotation);
+    TVec3f offs = mGravity * mForce->getCurrentValue();
+    baseMtx.setTrans(mPosition - offs);
     MR::setBaseTRMtx(this, baseMtx);
 }
 
@@ -150,11 +151,11 @@ f32 OceanWaveFloater::getCurrentSinkDepth() const {
 }
 
 void OceanWaveFloater::controlEffect() {
-    f32 paramVal = getParam(mObjectName)->mSinkDepth;
+    f32 paramVal = ::getParam(mObjectName)->mSinkDepth;
     if (paramVal < getCurrentSinkDepth() && !mCanRipple) {
         MR::deleteEffect(this, "Ripple");
         mCanRipple = true;
-    } else if (getCurrentSinkDepth() < getParam(mObjectName)->mRippleHeight && mCanRipple) {
+    } else if (getCurrentSinkDepth() < ::getParam(mObjectName)->mRippleHeight && mCanRipple) {
         MR::emitEffect(this, "Ripple");
         mCanRipple = false;
     }

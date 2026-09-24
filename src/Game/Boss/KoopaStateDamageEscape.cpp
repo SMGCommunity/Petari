@@ -11,6 +11,12 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void KoopaStateDamageEscape_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)-1.0f;
+    (void)2.0f;
+}
+
 namespace {
     static MR::ActorMoveParam sEscapeStartParam = {1.8f, 1.5f, 0.95f, 3.0f};
     static MR::ActorMoveParam sEscapeRunParamLv1 = {7.0f, 1.5f, 0.8f, 0.0f};
@@ -114,7 +120,7 @@ void KoopaStateDamageEscape::appear() {
         mJumpAwayVelocity = ::sDownFlyUpSpeed;
     } else if (KoopaFunction::isKoopaLv2(mHost)) {
         mMaxEscapeTime = ::sEscapeStep;
-        mEscapeRunParam = &sEscapeRunParamLv2;
+        mEscapeRunParam = &::sEscapeRunParamLv2;
         mRotateVelocity = ::sDamageTailRunStartSpeed;
         mDamageTailRunParam = &::sDamageTailRunParam;
         mJumpAwayVelocity = ::sDownFlyUpSpeed;
@@ -494,16 +500,15 @@ void KoopaStateDamageEscape::exeDown() {
 
     MR::addVelocityToGravity(mHost, ::sDownGravity);
 
-    Koopa* pKoopa = mHost;
-    TVec3f velocity = pKoopa->mVelocity;
-    MR::vecKillElement(velocity, pKoopa->mGravity, &velocity);
+    TVec3f velocity = mHost->mVelocity;
+    MR::vecKillElement(velocity, getHost()->mGravity, &velocity);
 
     if (!MR::isNearZero(velocity)) {
         MR::normalize(&velocity);
         KoopaFunction::getKoopaFrontPtr(mHost)->set(-velocity);
     }
 
-    pKoopa = mHost;
+    Koopa* pKoopa = mHost;
     if (!MR::sendMsgEnemyAttackToBindedSensor(pKoopa, pKoopa->getSensor("Body")) && !MR::isFirstStep(this) && MR::isBindedGround(mHost)) {
         MR::tryRumblePadAndCameraDistanceStrong(mHost, 1500.0f, 2000.0f, 2000.0f);
         MR::startSound(mHost, "SE_BM_KOOPA_LAND");
@@ -540,7 +545,4 @@ void KoopaStateDamageEscape::exeDownLand() {
 }
 
 void KoopaStateDamageEscape::exeDownEnd() {
-}
-
-KoopaStateDamageEscape::~KoopaStateDamageEscape() {
 }

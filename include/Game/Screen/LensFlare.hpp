@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/System/DrawSyncManager.hpp"
 #include "Game/Util/Array.hpp"
 
 class BrightCamInfo;
@@ -22,14 +23,15 @@ public:
     }
 
     void update(bool, bool);
+
     void exeKill();
     void exeHide();
     void exeShow();
     void exeFadeIn();
     void exeFadeOut();
+
     void notifyInArea();
 
-protected:
     /* 0x8C */ f32 _8C;
     /* 0x90 */ f32 _90;
     /* 0x94 */ f32 _94;
@@ -66,10 +68,12 @@ public:
     virtual void controlAnim();
 };
 
-class LensFlareDirector : public NameObj {
+class LensFlareDirector : public NameObj, public DrawSyncCallback {
 public:
     /// @brief Creates a new `LensFlareDirector`.
     LensFlareDirector();
+
+    virtual ~LensFlareDirector();
 
     /// @brief Intializes the `LensFlareDirector` while being placed into a scene.
     /// @param rIter The reference to an iterator over a `JMapInfo`.
@@ -84,16 +88,15 @@ public:
     bool checkBrightObj(bool);
     void controlFlare(s32, bool);
 
-    /* 0x0C */ void* _C;
     /* 0x10 */ LensFlareRing* mRing;
     /* 0x14 */ LensFlareGlow* mGlow;
     /* 0x18 */ LensFlareLine* mLine;
-    /* 0x1C */ MR::Vector< MR::FixedArray< BrightObjBase*, 16 > > mBrightObjArray;
+    /* 0x1C */ BrightObjBase* mBrightObjArray[16];
+    /* 0x5C */ u32 mBrightObjCount;
     /* 0x60 */ TVec2f _60;
     /* 0x68 */ f32 _68;
     /* 0x6C */ TVec2f _6C;
-    /* 0x74 */ f32 _74;
-    /* 0x78 */ f32 _78;
+    /* 0x74 */ TVec2f _74;
     /* 0x7C */ u16 _7C;
     /* 0x7E */ u16 mDrawSyncTokenIndex;
     /* 0x80 */ BrightCamInfo* mBrightCamInfo;

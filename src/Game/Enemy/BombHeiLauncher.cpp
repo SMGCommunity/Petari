@@ -125,8 +125,8 @@ void BombHeiLauncher::offSwitchA() {
 }
 
 void BombHeiLauncher::exeLauncherWait() {
-    // FIXME: what
     if (MR::isFirstStep(this)) {
+        // stripped debug code
     }
 
     if (!mIsActive) {

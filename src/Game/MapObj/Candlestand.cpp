@@ -1,8 +1,18 @@
 #include "Game/MapObj/Candlestand.hpp"
+#include "Game/Effect/SpinPullParticleCallBack.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Util.hpp"
+
+namespace {
+    extern char sBurnSound[];
+}
+
+void Candlestand_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
 
 namespace NrvCandlestand {
     NEW_NERVE(HostTypeWaitFire, Candlestand, WaitFire);
@@ -11,61 +21,37 @@ namespace NrvCandlestand {
     NEW_NERVE(HostTypeAttack, Candlestand, Attack);
     NEW_NERVE(HostTypeExtinguish, Candlestand, Extinguish);
     NEW_NERVE(HostTypeFlicker, Candlestand, Flicker);
-};  // namespace NrvCandlestand
-
-struct Param {
-    const char* mObjName;  // 0x0
-    f32 mClippingRadius;   // 0x4
-    f32 mSensorRange;      // 0x8
-    f32 _C;
-    f32 _10;
-    f32 _14;
-    bool mCanUseSwitch;  // 0x18
-};
+}  // namespace NrvCandlestand
 
 namespace {
-    static const Param sParams[] = {{
-                                        "PhantomCandlestand",
-                                        500.0f,  // mClippingRadius
-                                        50.0f,   // mSensorRange
-                                        220.0f,  // 0xC
-                                        0.0f,    // 0x14
-                                        false    // mCanUseSwitch
-                                    },
-                                    {
-                                        "TeresaMansionCandlestand",
-                                        800.0f,  // mClippingRadius
-                                        70.0f,   // mSensorRange
-                                        300.0f,  // 0xC
-                                        220.0f,  // 0x10
-                                        -5.0f,   // 0x14
-                                        false    // mCanUseSwitch
-                                    },
-                                    {
-                                        "CandlestandIceVolcano",
-                                        500.0f,  // mClippingRadius
-                                        150.0f,  // mSensorRange
-                                        220.0f,  // 0xC
-                                        0.0f,    // 0x10
-                                        0.0f,    // 0x14
-                                        true     // mCanUseSwitch
-                                    }};
+    struct Param {
+        /* 0x00 */ const char* mObjName;
+        /* 0x04 */ f32 mClippingRadius;
+        /* 0x08 */ f32 mSensorRange;
+        /* 0x0C */ f32 mSensorHeight;
+        /* 0x10 */ f32 mItemHeight;
+        /* 0x14 */ f32 mCoinAngle;
+        /* 0x18 */ bool mCanUseSwitch;
+    };
+
+    static const Param sParams[] = {
+        {"PhantomCandlestand", 500.0f, 50.0f, 220.0f, 0.0f, 0.0f, false},
+        {"TeresaMansionCandlestand", 800.0f, 70.0f, 300.0f, 220.0f, -5.0f, false},
+        {"CandlestandIceVolcano", 500.0f, 150.0f, 220.0f, 0.0f, 0.0f, true},
+    };
 
     const Param* getParam(const char* pObjName) NO_INLINE {
-        for (u32 i = 0; i < ARRAY_SIZE(sParams); i++) {
-            if (MR::isEqualString(pObjName, sParams[i].mObjName)) {
-                return &sParams[i];
+        for (u32 i = 0; i < ARRAY_SIZE(::sParams); i++) {
+            if (MR::isEqualString(pObjName, ::sParams[i].mObjName)) {
+                return &::sParams[i];
             }
         }
 
         return nullptr;
     }
-};  // namespace
+}  // namespace
 
-Candlestand::Candlestand(const char* pName) : MapObjActor(pName) {
-    mItem = -1;
-    mHasItemAppear = false;
-    mSpinPtclCb = nullptr;
+Candlestand::Candlestand(const char* pName) : MapObjActor(pName), mItem(-1), mHasItemAppear(), mSpinPtclCb() {
 }
 
 void Candlestand::init(const JMapInfoIter& rIter) {
@@ -73,21 +59,23 @@ void Candlestand::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     info.setupHitSensor();
-    TVec3f offs;
-    offs.y = ::getParam(mObjectName)->_C;
-    offs.x = 0.0f;
-    offs.z = 0.0f;
+
+    TVec3f sensorOffset;
+    sensorOffset.y = ::getParam(mObjectName)->mSensorHeight;
+    sensorOffset.x = 0.0f;
+    sensorOffset.z = 0.0f;
+
     f32 sensorRange = ::getParam(mObjectName)->mSensorRange;
-    info.setupHitSensorParam(8, sensorRange, offs);
+    info.setupHitSensorParam(8, sensorRange, sensorOffset);
     f32 clippingRadius = ::getParam(mObjectName)->mClippingRadius;
     info.setupClippingRadius(clippingRadius);
     info.setupNerve(GET_NERVE(Candlestand, HostTypeBurn));
     info.setupAffectedScale();
     initialize(rIter, info);
 
-    const char* objName = mObjectName;
-    ::getParam(objName);
-    ::getParam(objName);
+    const char* pObjName = mObjectName;
+    ::getParam(pObjName);
+    ::getParam(pObjName);
     MR::getJMapInfoArg0NoInit(rIter, &mItem);
     if (mItem == -1) {
         MR::declareCoin(this, 1);
@@ -232,7 +220,47 @@ void Candlestand::emitEffectExtinguishFire() {
     }
 }
 
-// appearItem
+void Candlestand::appearItem() {
+    if (mHasItemAppear) {
+        return;
+    }
+
+    f32 angle;
+    f32 radians;
+
+    TVec3f position(mPosition);
+    f32 height = ::getParam(mObjectName)->mItemHeight;
+    if (::getParam(mObjectName)->mCanUseSwitch) {
+        height *= mScale.y;
+    }
+
+    position.y += height;
+    if (mItem == -1) {
+        angle = ::getParam(mObjectName)->mCoinAngle;
+        if (MR::isNearZero(angle)) {
+            MR::appearCoinPop(this, position, 1);
+        } else {
+            TVec3f front;
+            MR::calcFrontVec(&front, this);
+
+            TVec3f up;
+            MR::calcUpVec(&up, this);
+
+            TPos3f rotation;
+            radians = MR::toRadian(angle);
+            rotation.makeRotate(front, radians);
+            rotation.mult(up, up);
+
+            MR::appearCoinPopToDirection(this, position, up, 1);
+        }
+    } else if (mItem == 0) {
+        if (MR::appearStarPiece(this, position, 1, 10.0f, 40.0f, false)) {
+            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
+        }
+    }
+
+    mHasItemAppear = true;
+}
 
 void Candlestand::exeWaitFire() {
 }
@@ -243,7 +271,7 @@ void Candlestand::exeFire() {
         MR::startSound(this, "SE_OJ_FIRE_STAND_IGNIT");
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN");
+    MR::startLevelSound(this, ::sBurnSound);
 
     if (MR::isStep(this, 60)) {
         if (MR::isValidSwitchA(this)) {
@@ -252,6 +280,10 @@ void Candlestand::exeFire() {
 
         setNerve(GET_NERVE(Candlestand, HostTypeBurn));
     }
+}
+
+namespace {
+    char sBurnSound[] = "SE_OJ_LV_PHANTOM_TOACH_BURN";
 }
 
 void Candlestand::exeExtinguish() {
@@ -298,12 +330,12 @@ void Candlestand::exeAttack() {
     if (MR::isStep(this, 30)) {
         setNerve(GET_NERVE(Candlestand, HostTypeBurn));
     } else {
-        MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN");
+        MR::startLevelSound(this, ::sBurnSound);
     }
 }
 
 void Candlestand::exeBurn() {
-    MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN");
+    MR::startLevelSound(this, ::sBurnSound);
 }
 
 Candlestand::~Candlestand() {

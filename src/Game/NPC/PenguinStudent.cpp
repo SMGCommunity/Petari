@@ -48,7 +48,7 @@ void PenguinStudent::init(const JMapInfoIter& rIter) {
     if (MR::isConnectedWithRail(rIter)) {
         initRailRider(rIter);
         MR::moveCoordToNearestPos(this, mPosition);
-        mPosition.set< f32 >(MR::getRailPos(this));
+        mPosition.set(MR::getRailPos(this));
     }
 
     MR::joinToGroupArray(this, rIter, nullptr, 32);
@@ -119,7 +119,7 @@ void PenguinStudent::exeSwim() {
     MR::calcUpVec(&v20, this);
     MR::calcFrontVec(&v19, this);
     MR::rotAxisVecRad(v20, v19, &v21, 0.017453292f * (getNerveStep() % 360));
-    mPosition.set< f32 >(mPosition + v21 * speed);
+    mPosition.set(mPosition + v21 * speed);
     if (mMsgCtrl) {
         MR::tryTalkNearPlayer(mMsgCtrl);
     }

@@ -93,7 +93,7 @@ void MagicBell::exeRing() {
             v17.scale(v4 - v7);
             v17.sub(mBellRodSwinger->mAcceleration);
             mBellRodSwinger->accel(v17);
-            mHitMarkPosition.set< f32 >(mBellRodSwinger->_8);
+            mHitMarkPosition.set(mBellRodSwinger->_8);
         }
     }
     PSMTXCopy(mBellSwinger->_60.toMtxPtr(), mSurface2Mtx);
@@ -175,7 +175,7 @@ void MagicBell::startRing(const TVec3f& a1, const TVec3f& a2) {
     f32 v10 = mBellSwinger->mAcceleration.length();
     mBellSwinger->accel(mBellSwinger->mAcceleration * -1.0f);
     mBellSwinger->accel(a1 * (5.0f + v10));
-    mHitMarkPosition.set< f32 >(a2);
+    mHitMarkPosition.set(a2);
     MR::emitEffect(this, "StarWandHitMark");
     MR::emitEffect(this, "Ring");
     setNerve(GET_NERVE(MagicBell, MagicBellNrvRing));

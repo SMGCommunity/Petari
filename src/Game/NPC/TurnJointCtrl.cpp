@@ -13,16 +13,13 @@ void TurnJointCtrl_FORCE_MATCH_SDATA2() {
 
 namespace {
     void makeMtxRotVecDegree(MtxPtr pMtx, const TVec3f& rFrom, const TVec3f& rTo, f32 degree) {
-        TVec3f axis;
-        axis.cross(rFrom, rTo);
+        TVec3f axis = rFrom.cross(rTo);
         f32 dot = rFrom.dot(rTo);
 
         if (MR::normalizeOrZero(&axis)) {
             PSMTXIdentity(pMtx);
         } else {
-            f32 maxAngle = __fabsf(0.017453292f * degree);
-            f32 angle = acos(dot);
-            PSMTXRotAxisRad(pMtx, &axis, -MR::min(angle, maxAngle));
+            PSMTXRotAxisRad(pMtx, &axis, -MR::min(acos(dot), MR::abs(MR::toRadian(degree))));
         }
     }
 }  // namespace
@@ -181,10 +178,10 @@ bool TurnJointCtrl::updateJointMtxCallBack(TPos3f* pMtx, const Ctrl& rCtrl) {
 
         if (verticalAxis.dot(cross) > 0.0f) {
             const f32 rate = mCtrlRate->_0;
-            makeMtxRotVecDegree(rotation, projected, front, mPositiveDegreeMax * rate);
+            ::makeMtxRotVecDegree(rotation, projected, front, mPositiveDegreeMax * rate);
         } else {
             const f32 rate = mCtrlRate->_0;
-            makeMtxRotVecDegree(rotation, projected, front, mNegativeDegreeMax * rate);
+            ::makeMtxRotVecDegree(rotation, projected, front, mNegativeDegreeMax * rate);
         }
 
         PSMTXConcat(rotation, result, result);
@@ -198,7 +195,7 @@ bool TurnJointCtrl::updateJointMtxCallBack(TPos3f* pMtx, const Ctrl& rCtrl) {
         MR::vecBlendSphere(front, projected, &projected, rCtrl.mBlendRate);
 
         const f32 rate = mCtrlRate->_0;
-        makeMtxRotVecDegree(rotation, projected, front, mHorizontalDegreeMax * rate);
+        ::makeMtxRotVecDegree(rotation, projected, front, mHorizontalDegreeMax * rate);
         PSMTXConcat(rotation, result, result);
     }
 

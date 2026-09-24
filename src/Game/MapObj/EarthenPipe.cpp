@@ -7,6 +7,12 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
 
+void EarthenPipe_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
+
 namespace NrvEarthenPipe {
     NEW_NERVE(EarthenPipeNrvWait, EarthenPipe, Wait);
     NEW_NERVE(EarthenPipeNrvReady, EarthenPipe, Ready);
@@ -69,7 +75,7 @@ void EarthenPipe::init(const JMapInfoIter& rIter) {
         isWaterPipe = true;
     }
 
-    _8C.set< f32 >(mPosition);
+    _8C.set(mPosition);
     MR::calcGravity(this);
     initModelManagerWithAnm("EarthenPipe", nullptr, false);
     mTopJointMtx = MR::getJointMtx(this, "Top");
@@ -78,17 +84,14 @@ void EarthenPipe::init(const JMapInfoIter& rIter) {
     MR::setBrkFrameAndStop(this, arg7);
     TPos3f v25;
     v25.identity();
-    MR::makeMtxTR(v25.toMtxPtr(), this);
+    MR::makeMtxTR(v25, this);
     TVec3f v23;
-    v23.set(v25.mMtx[0][2], v25.mMtx[1][2], v25.mMtx[2][2]);
+    v25.getZDir(v23);
 
     if (mIsIgnoreGravity) {
-        f32 z = v25.mMtx[2][1];
-        f32 y = v25.mMtx[1][1];
-        f32 x = v25.mMtx[0][1];
-        _98.set< f32 >(x, y, z);
+        v25.getYDir(_98);
     } else {
-        _98.set< f32 >(mGravity);
+        _98.set(mGravity);
         f32 _x = _98.x;
         f32 mult = -1.0f;
         f32 x = _x * mult;
@@ -103,16 +106,14 @@ void EarthenPipe::init(const JMapInfoIter& rIter) {
     TPos3f v24;
     v24.identity();
     MR::makeMtxUpFrontPos(&v24, _98, v23, _8C);
-    PSMTXCopy(v24.toMtxPtr(), mTopJointMtx);
+    PSMTXCopy(v24, mTopJointMtx);
     _BC.setInline(v24);
     TVec3f v22(_8C);
     TVec3f v21(_98);
     v21.scale(50.0f);
     v22.sub(v21);
-    v24.mMtx[0][3] = v22.x;
-    v24.mMtx[1][3] = v22.y;
-    v24.mMtx[2][3] = v22.z;
-    PSMTXCopy(v24.toMtxPtr(), mBottomJointMtx);
+    v24.setTrans(v22);
+    PSMTXCopy(v24, mBottomJointMtx);
     MR::setBaseTRMtx(this, mTopJointMtx);
     MR::connectToSceneMapObjNoCalcAnimStrongLight(this);
 
@@ -218,7 +219,7 @@ bool EarthenPipe::tryHideDown() {
 bool EarthenPipe::isNerveShowUp() const {
     bool ret;
 
-    if (isNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvShowUp)) || isNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvShowUp))) {
+    if (isNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvWaitToShowUp)) || isNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvShowUp))) {
         ret = true;
     } else {
         ret = false;
@@ -413,12 +414,11 @@ bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
               !MR::isPlayerDead())) {
             return false;
         }
-        TVec3f sensorPos(TVec3f(mTopJointMtx[0][3], mTopJointMtx[1][3], mTopJointMtx[2][3]));
-        TVec3f playerPos(*MR::getPlayerPos());
-        playerPos.sub(sensorPos);
-        TVec3f delta(playerPos);
+
+        TVec3f diff = *MR::getPlayerPos() - TVec3f(mTopJointMtx[0][3], mTopJointMtx[1][3], mTopJointMtx[2][3]);
+        TVec3f delta = diff;
         MR::vecKillElement(delta, mGravity, &delta);
-        if (MR::isPlayerSwimming() && PSVECMag(playerPos) > 50.0f && playerPos.dot(_98) < -5.0f) {
+        if (!MR::isPlayerSwimming() && delta.length() > 50.0f && diff.dot(_98) < -5.0f) {
             return false;
         }
         mHostActor = MR::getSensorHost(pSender);
@@ -454,7 +454,7 @@ bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
 }
 
 void EarthenPipe::calcTrans(f32 a1) {
-    mPosition.set< f32 >(_98);
+    mPosition.set(_98);
     mPosition.scale(a1 * _A4);
     mPosition.add(_8C);
 
@@ -548,17 +548,4 @@ void EarthenPipeMediator::entry(EarthenPipe* pPipe, const JMapInfoIter& rIter) {
     entry->_0 = pPipe;
     entry->mPipeID = pipeID;
     mNumEntries++;
-}
-
-EarthenPipe::~EarthenPipe() {
-}
-
-EarthenPipeMediator::~EarthenPipeMediator() {
-}
-
-MtxPtr EarthenPipe::getBaseMtx() const {
-    return mTopJointMtx;
-}
-
-void EarthenPipe::calcAnim() {
 }

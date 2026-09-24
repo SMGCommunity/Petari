@@ -56,9 +56,8 @@ void Balloonfish::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, "Balloonfish", false);
     initSound(2, false);
     initNerve(GET_NERVE(Balloonfish, HostTypeNrvWait));
-    // float regswap
-    f32 offset = 80.0f;
-    MR::initStarPointerTarget(this, 110.0f, TVec3f(0.0f, offset, 0.0f));
+    f32 zero = 0.0f;
+    MR::initStarPointerTarget(this, 110.0f, TVec3f(zero, 80.0f, zero));
     mAnimScaleController = new AnimScaleController(nullptr);
     MR::onCalcGravity(this);
     MR::initShadowVolumeSphere(this, 80.0f * mScale.y);

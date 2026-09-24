@@ -110,16 +110,16 @@ void DinoPackunTail::updateJoint() {
 }
 void DinoPackunTail::addAccelKeepBend() {
     TVec3f v20;
-    v20.set< f32 >(mNodes[0]->mPosition);
+    v20.set(mNodes[0]->mPosition);
     TVec3f v19;
-    v19.set< f32 >(*mNodes[0]->getNodeDirection());
+    v19.set(*mNodes[0]->getNodeDirection());
     MR::normalize(&v19);
 
     for (u32 i = 1; i < mNumNodes; i++) {
         TVec3f v18;
-        v18.set< f32 >(mNodes[i]->mPosition);
+        v18.set(mNodes[i]->mPosition);
         TVec3f v17;
-        v17.set< f32 >(*mNodes[i]->getNodeDirection());
+        v17.set(*mNodes[i]->getNodeDirection());
 
         if (!MR::isNearZero(v17)) {
             MR::normalize(&v17);
@@ -139,8 +139,8 @@ void DinoPackunTail::addAccelKeepBend() {
                 }
             }
 
-            v20.set< f32 >(v18);
-            v19.set< f32 >(v17);
+            v20.set(v18);
+            v19.set(v17);
         }
     }
 }
@@ -183,18 +183,18 @@ void DinoPackunTail::addAccelToBck() {
 
     for (u32 i = 1; i < mNumNodes; i++) {
         TVec3f v8;
-        v8.set< f32 >(mNodes[i]->_9C - mNodes[i]->mPosition);
+        v8.set(mNodes[i]->_9C - mNodes[i]->mPosition);
         mNodes[i]->addNodeVelocityHost(v8 * _18);
     }
 }
 
 void DinoPackunTail::getTailNodePosition(TVec3f* pPos, s32 index) const {
-    pPos->set< f32 >(mNodes[index]->mPosition);
+    pPos->set(mNodes[index]->mPosition);
 }
 
 void DinoPackunTail::getEndTailPosition(TVec3f* pPos) const {
     s32 last = mNumNodes - 1;
-    pPos->set< f32 >(mNodes[last]->mPosition);
+    pPos->set(mNodes[last]->mPosition);
 }
 
 DinoPackunTailNode* DinoPackunTail::getNode(u32 index) const {

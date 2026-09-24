@@ -1,21 +1,22 @@
 #pragma once
 
-#include "Game/Effect/SpinPullParticleCallBack.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
+
+class SpinPullParticleCallBack;
 
 class Candlestand : public MapObjActor {
 public:
-    Candlestand(const char*);
+    Candlestand(const char* pName);
 
     virtual ~Candlestand();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void makeActorAppeared();
     virtual void startClipped();
     virtual void endClipped();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void emitEffectFire();
     void deleteEffectFire();
@@ -28,7 +29,7 @@ public:
     inline void exeAttack();
     inline void exeBurn();
 
-    s32 mItem;                              // 0xC4
-    bool mHasItemAppear;                    // 0xC8
-    SpinPullParticleCallBack* mSpinPtclCb;  // 0xCC
+    /* 0xC4 */ s32 mItem;
+    /* 0xC8 */ bool mHasItemAppear;
+    /* 0xCC */ SpinPullParticleCallBack* mSpinPtclCb;
 };

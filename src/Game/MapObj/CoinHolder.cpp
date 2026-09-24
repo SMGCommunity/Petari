@@ -4,28 +4,29 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
 
-void FORCE_SCALE() {
-    TVec3f vec;
-    vec.scale(1.0f);
+void CoinHolder_FORCE_MATCH() {
+    TVec3f vector(0.0f, 0.0f, 0.0f);
+    (void)-vector;
+    (void)0.001f;
 }
 
 namespace {
     static const s32 sCoinNumMax = 512;
     static const s32 sCreateCoinNum = 32;
-    // static const f32 sRandomizeVel = _;
-    // static const f32 sRandomizeVelSplash = _;
-    // static const f32 sCoinVelHorizon = _;
-    // static const f32 sCoinVelVertical = _;
-    // static const f32 sCoinVelPlayer = _;
-    // static const f32 sCircleVelHRatio = _;
-    // static const f32 sCircleVelLength = _;
+    const f32 sRandomizeVel = 4.0f;
+    // sRandomizeVelSplash
+    // sCoinVelHorizon
+    const f32 sCoinVelVertical = 25.0f;
+    // sCoinVelPlayer
+    const f32 sCircleVelHRatio = 0.25f;
+    const f32 sCircleVelLength = 30.0f;
 };  // namespace
 
 CoinHolder::CoinHolder(const char* pName) : DeriveActorGroup< Coin >(pName, ::sCoinNumMax), mHostInfoArr(), mHostInfoCount() {
     mHostInfoArr = new CoinHostInfo[::sCoinNumMax];
 }
 
-bool CoinHolder::hopCoin(const NameObj* pObj, const TVec3f& a2, const TVec3f& a3) {
+bool CoinHolder::hopCoin(const NameObj* pObj, const TVec3f& rPosition, const TVec3f& rDirection) {
     CoinHostInfo* hostInfo = findHostInfo(pObj);
 
     if (hostInfo->_8 >= hostInfo->_4) {
@@ -34,46 +35,79 @@ bool CoinHolder::hopCoin(const NameObj* pObj, const TVec3f& a2, const TVec3f& a3
 
     Coin* coin = getDeadMember();
 
-    if (coin) {
+    if (coin != nullptr) {
         coin->setHostInfo(hostInfo);
-        coin->appearHop(a2, a3);
+        coin->appearHop(rPosition, rDirection);
         return true;
     }
 
     return false;
 }
 
-bool CoinHolder::appearCoinFix(const NameObj* pObj, const TVec3f& a2, s32 a3) {
-    TVec3f stack_8(0.0f, 0.0f, 0.0f);
-    return appearCoin(pObj, a2, stack_8, a3, -1, -1, a3 == 1 ? 0.0f : 4.0f);
+bool CoinHolder::appearCoinFix(const NameObj* pObj, const TVec3f& rPosition, s32 count) {
+    TVec3f velocity(0.0f, 0.0f, 0.0f);
+
+    return appearCoin(pObj, rPosition, velocity, count, -1, -1, count == 1 ? 0.0f : ::sRandomizeVel);
 }
 
-bool CoinHolder::appearCoinPop(const NameObj* pObj, const TVec3f& a2, s32 a3) {
-    TVec3f stack_20;
-    MR::calcGravityVector(this, a2, &stack_20, nullptr, nullptr);
-    TVec3f stack_14 = (-stack_20) * 25.0f;
-    return appearCoin(pObj, a2, stack_14, a3, -1, -1, a3 == 1 ? 0.0f : 4.0f);
+bool CoinHolder::appearCoinPop(const NameObj* pObj, const TVec3f& rPosition, s32 count) {
+    TVec3f gravity;
+    MR::calcGravityVector(this, rPosition, &gravity, nullptr, 0);
+    TVec3f velocity = -gravity * ::sCoinVelVertical;
+
+    return appearCoin(pObj, rPosition, velocity, count, -1, -1, count == 1 ? 0.0f : ::sRandomizeVel);
 }
 
-bool CoinHolder::appearCoinToVelocity(const NameObj* pObj, const TVec3f& a2, const TVec3f& a3, s32 a4) {
-    return appearCoin(pObj, a2, a3, a4, -1, -1, a4 == 1 ? 0.0f : 4.0f);
+bool CoinHolder::appearCoinPopToDirection(const NameObj* pObj, const TVec3f& rPosition, const TVec3f& rDirection, s32 count) {
+    TVec3f direction;
+    MR::normalize(rDirection, &direction);
+
+    return appearCoin(pObj, rPosition, direction * ::sCoinVelVertical, count, -1, -1, count == 1 ? 0.0f : ::sRandomizeVel);
 }
 
-// CoinHolder::appearCoinCircle
+bool CoinHolder::appearCoinToVelocity(const NameObj* pObj, const TVec3f& rPosition, const TVec3f& rVelocity, s32 count) {
+    return appearCoin(pObj, rPosition, rVelocity, count, -1, -1, count == 1 ? 0.0f : ::sRandomizeVel);
+}
 
-CoinHostInfo* CoinHolder::declare(const NameObj* pObj, s32 a2) {
-    if (a2 <= 0) {
+bool CoinHolder::appearCoinCircle(const NameObj* pObj, const TVec3f& rPosition, s32 count) {
+    if (count == 1) {
+        return appearCoinPop(pObj, rPosition, count);
+    }
+
+    bool appeared = false;
+    TVec3f gravity;
+    MR::calcGravityVector(this, rPosition, &gravity, nullptr, 0);
+    TVec3f axis;
+    MR::makeAxisVerticalZX(&axis, gravity);
+
+    for (s32 i = 0; i < count; i++) {
+        f32 angle = 360.0f / count;
+
+        TVec3f horizontal;
+        MR::rotateVecDegree(&horizontal, axis, gravity, i * angle);
+        horizontal.setLength(::sCircleVelHRatio);
+        TVec3f velocity(horizontal - gravity);
+        velocity.setLength(::sCircleVelLength);
+
+        appeared |= appearCoin(pObj, rPosition, velocity, 1, -1, -1, 0.0f);
+    }
+
+    return appeared;
+}
+
+CoinHostInfo* CoinHolder::declare(const NameObj* pObj, s32 count) {
+    if (count <= 0) {
         return nullptr;
     }
 
     CoinHostInfo* hostInfo = findHostInfo(pObj);
-    if (!hostInfo) {
+    if (hostInfo == nullptr) {
         hostInfo = &mHostInfoArr[mHostInfoCount];
         hostInfo->mHostActor = pObj;
         mHostInfoCount++;
     }
 
-    hostInfo->_4 += a2;
+    hostInfo->_4 += count;
     return hostInfo;
 }
 
@@ -122,3 +156,42 @@ namespace MR {
         pCoin->setHostInfo(getCoinHolder()->declare(pNameObj, 1));
     }
 };  // namespace MR
+
+bool CoinHolder::appearCoin(const NameObj* pObj, const TVec3f& rPosition, const TVec3f& rVelocity, s32 count, s32 life, s32 cannotTime,
+                            f32 randomize) {
+    CoinHostInfo* pHostInfo = findHostInfo(pObj);
+    if (pHostInfo == nullptr) {
+        return false;
+    }
+
+    bool appeared = false;
+    for (s32 i = 0; i < count; i++) {
+        if (pHostInfo->_8 >= pHostInfo->_4) {
+            break;
+        }
+
+        Coin* pCoin = getDeadMember();
+        if (pCoin == nullptr) {
+            break;
+        }
+
+        TVec3f velocity(rVelocity);
+        if (!MR::isNearZero(randomize)) {
+            MR::addRandomVector(&velocity, velocity, randomize);
+        }
+
+        pCoin->setHostInfo(pHostInfo);
+        pCoin->appearMove(rPosition, velocity, life, cannotTime);
+        appeared = true;
+    }
+
+    if (!MR::isGalaxyDarkCometAppearInCurrentStage() && appeared) {
+        if (MR::hasME()) {
+            MR::startSystemME("ME_COIN_APPEAR_S");
+        } else {
+            MR::startSystemSE("SE_SY_COIN_APPEAR_S");
+        }
+    }
+
+    return appeared;
+}

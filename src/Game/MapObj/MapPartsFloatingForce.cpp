@@ -7,16 +7,22 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/SpringValue.hpp"
 
 namespace NrvMapPartsFloatingForce {
     NEW_NERVE(HostTypeWait, MapPartsFloatingForce, Wait);
     NEW_NERVE(HostTypeMove, MapPartsFloatingForce, Move);
     NEW_NERVE(HostTypeMoveSpring, MapPartsFloatingForce, MoveSpring);
     NEW_NERVE(HostTypeMoveReturn, MapPartsFloatingForce, MoveReturn);
-};  // namespace NrvMapPartsFloatingForce
+}  // namespace NrvMapPartsFloatingForce
 
-SpringStep::SpringStep(f32 cond, f32 speed, f32 angle) {
-    mSpringValue = 0;
+void MapPartsFloatingForce_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)3.0f;
+}
+
+SpringStep::SpringStep(f32 cond, f32 speed, f32 angle) : mSpringValue() {
     mCondition = cond;
     mSpeed = speed;
     mAngle = angle;
@@ -29,32 +35,22 @@ void SpringStep::addSpringVelocity(f32 vel) {
 
 void SpringStep::setSpringBaseValue(f32 val) {
     mCondition = val;
-    mSpringValue->setParam((f64)val, 0.0f, mSpeed, mAngle, 0.0f);
+    mSpringValue->setParam(static_cast< f64 >(val), 0.0f, mSpeed, mAngle, 0.0f);
 }
 
-MapPartsFloatingForce::MapPartsFloatingForce(LiveActor* pActor) : MapPartsFunction(pActor, "浮力") {
-    mSpringStep = 0;
-    mObjectName = 0;
-    _20 = 0.0f;
-    mRotateAngle = 0.0f;
-    mRotateSpeed = 0.0f;
-    mRotateAccelType = 0;
-    _30.zero();
-    _3C = 0.0f;
-    _40 = 1.0f;
-    _44 = 0.0f;
-    _48 = 0.0f;
-    _5C = 0.0f;
+MapPartsFloatingForce::MapPartsFloatingForce(LiveActor* pActor)
+    : MapPartsFunction(pActor, "浮力"), mSpringStep(), mObjectName(), _20(), mRotateAngle(), mRotateSpeed(), mRotateAccelType(), _30(gZeroVec),
+      mUpDirection(0.0f, 1.0f, 0.0f), _48(), _4C() {
 }
 
 void MapPartsFloatingForce::init(const JMapInfoIter& rIter) {
     initNerve(GET_NERVE(MapPartsFloatingForce, HostTypeWait));
     MR::getMapPartsArgRotateAccelType(&mRotateAccelType, rIter);
 
-    if (mRotateAccelType != 1) {
-        initForNormalMotion(rIter);
-    } else {
+    if (mRotateAccelType == 1) {
         initForSpringMotion(rIter);
+    } else {
+        initForNormalMotion(rIter);
     }
 
     MR::useStageSwitchReadA(mHost, rIter);
@@ -65,27 +61,38 @@ void MapPartsFloatingForce::setObjectName(const char* pName) {
 }
 
 void MapPartsFloatingForce::initForNormalMotion(const JMapInfoIter& rIter) {
-    s32 condition_type = 0;
-    MR::getMapPartsArgMoveConditionType(&condition_type, rIter);
-    _20 = condition_type;
+    s32 conditionType = 0;
+    MR::getMapPartsArgMoveConditionType(&conditionType, rIter);
+    _20 = conditionType;
     MR::getMapPartsArgRotateSpeed(&mRotateSpeed, rIter);
     MR::getMapPartsArgRotateAngle(&mRotateAngle, rIter);
 }
 
 void MapPartsFloatingForce::initForSpringMotion(const JMapInfoIter& rIter) {
-    s32 condition_type = 0;
-    MR::getMapPartsArgMoveConditionType(&condition_type, rIter);
-    _20 = condition_type;
-    f32 rotate_speed = 0.0f;
-    MR::getMapPartsArgRotateSpeed(&rotate_speed, rIter);
-    rotate_speed *= 0.001f;
-    f32 rotate_angle = 0.0f;
-    MR::getMapPartsArgRotateAngle(&rotate_angle, rIter);
-    rotate_angle *= 0.001f;
-    s32 rotate_axis = 0;
-    MR::getMapPartsArgRotateAxis(&rotate_axis, rIter);
-    _5C = 0.1f * rotate_axis;
-    mSpringStep = new SpringStep(-condition_type, rotate_speed, rotate_angle);
+    s32 conditionType = 0;
+    MR::getMapPartsArgMoveConditionType(&conditionType, rIter);
+    _20 = conditionType;
+    f32 rotateSpeed = 0.0f;
+    MR::getMapPartsArgRotateSpeed(&rotateSpeed, rIter);
+    rotateSpeed *= 0.001f;
+    f32 rotateAngle = 0.0f;
+    MR::getMapPartsArgRotateAngle(&rotateAngle, rIter);
+    rotateAngle *= 0.001f;
+    s32 rotateAxis = 0;
+    MR::getMapPartsArgRotateAxis(&rotateAxis, rIter);
+    _5C = 0.1f * rotateAxis;
+    mSpringStep = new SpringStep(-conditionType, rotateSpeed, rotateAngle);
+}
+
+void MapPartsFloatingForce::start() {
+    _30.set(mHost->mPosition);
+    TPos3f baseMtx;
+    baseMtx.set(mHost->getBaseMtx());
+    baseMtx.getYDir(mUpDirection);
+    MR::normalize(&mUpDirection);
+    if (mRotateAccelType != 1) {
+        setNerve(GET_NERVE(MapPartsFloatingForce, HostTypeMove));
+    }
 }
 
 void MapPartsFloatingForce::updateVelocity() {
@@ -107,7 +114,24 @@ void MapPartsFloatingForce::updateVelocity() {
     _4C = MR::clamp(_4C, -50.0f, 50.0f);
 }
 
-// void MapPartsFloatingForce::updateVelocitySpring()
+void MapPartsFloatingForce::updateVelocitySpring() {
+    f32 velocity = mSpringStep->mSpringValue->mVelocity;
+    bool isSwitchOn = false;
+    if (MR::isValidSwitchA(mHost) && MR::isOnSwitchA(mHost)) {
+        isSwitchOn = true;
+    }
+
+    if (isSwitchOn) {
+        velocity *= 3.0f;
+    }
+
+    _50.set(mUpDirection * velocity);
+    if (MR::isNearZero(_50)) {
+        _50.zero();
+    }
+
+    mSpringStep->mSpringValue->update();
+}
 
 bool MapPartsFloatingForce::tryOn() {
     bool isSwitchOn = false;
@@ -121,9 +145,9 @@ bool MapPartsFloatingForce::tryOn() {
     }
 
     if (MR::isOnPlayer(MR::getBodySensor(mHost))) {
-        const char* ground_sound = FloaterFunction::getSeGroundOn(mObjectName);
-        if (ground_sound) {
-            MR::startSound(mHost, ground_sound);
+        const char* pGroundSound = FloaterFunction::getSeGroundOn(mObjectName);
+        if (pGroundSound != nullptr) {
+            MR::startSound(mHost, pGroundSound);
         }
 
         setNerve(GET_NERVE(MapPartsFloatingForce, HostTypeMoveSpring));
@@ -160,7 +184,27 @@ void MapPartsFloatingForce::exeWait() {
     }
 }
 
-// MapPartsFloatingForce::exeMove
+void MapPartsFloatingForce::exeMove() {
+    updateVelocity();
+    _50.set(-mUpDirection * _4C);
+    _48 += _4C;
+    _48 = MR::clamp(_48, 0.0f, _20);
+    TVec3f* const pPosition = &mHost->mPosition;
+    pPosition->set(_30 - mUpDirection * _48);
+    if (mObjectName != nullptr) {
+        if (_4C > 0.1f) {
+            const char* pSound = FloaterFunction::getSeMoveDown(mObjectName);
+            if (pSound != nullptr) {
+                MR::startLevelSound(mHost, pSound);
+            }
+        } else if (_4C < -0.1f) {
+            const char* pSound = FloaterFunction::getSeMoveUp(mObjectName);
+            if (pSound != nullptr) {
+                MR::startLevelSound(mHost, pSound);
+            }
+        }
+    }
+}
 
 void MapPartsFloatingForce::exeMoveSpring() {
     if (isFirstStep()) {
@@ -169,11 +213,31 @@ void MapPartsFloatingForce::exeMoveSpring() {
     }
 
     updateVelocitySpring();
-    mHost->mVelocity.set< f32 >(_50);
+    mHost->mVelocity.set(_50);
     tryReturn();
 }
 
-// MapPartsFloatingForce::exeMoveReturn
+void MapPartsFloatingForce::exeMoveReturn() {
+    if (isFirstStep()) {
+        mSpringStep->setSpringBaseValue((mHost->mPosition - _30).length());
+    }
+
+    updateVelocitySpring();
+    mHost->mVelocity.set(_50);
+    if (mObjectName != nullptr && 0.1f != _4C) {
+        const char* pSound = FloaterFunction::getSeMoveUp(mObjectName);
+        if (pSound != nullptr) {
+            MR::startLevelSound(mHost, pSound);
+        }
+    }
+
+    if (MR::isNearZero(_30 - mHost->mPosition) && MR::isNearZero(_50)) {
+        mHost->mPosition.set(_30);
+        setNerve(GET_NERVE(MapPartsFloatingForce, HostTypeWait));
+    } else {
+        tryOn();
+    }
+}
 
 MapPartsFloatingForce::~MapPartsFloatingForce() {
 }

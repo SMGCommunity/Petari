@@ -117,7 +117,7 @@ void TripodBossMovableArea::calcNearLandingPosition(TVec3f* pPos, const TVec3f& 
 
     x = mBaseAxis.dot(v16);
     if (MR::isInRange(x, _2C, _30)) {
-        pPos->set< f32 >(mCenter + (v16 * mRadius));
+        pPos->set(mCenter + (v16 * mRadius));
     } else {
         if (x < _2C) {
             x = _2C;
@@ -139,7 +139,7 @@ void TripodBossMovableArea::calcNearLandingPosition(TVec3f* pPos, const TVec3f& 
         MR::normalizeOrZero(&v15);
         v7 = MR::sqrt< f32 >((1.0f - (x * x)));
         TVec3f sp48((mBaseAxis * x) + (v15 * v7));
-        pPos->set< f32 >(sp48 * mRadius);
+        pPos->set(sp48 * mRadius);
     }
 }
 
@@ -166,5 +166,5 @@ void TripodBossMovableArea::calcLandingFront(TVec3f* pFront, const TVec3f& a2) c
         MR::normalizeOrZero(&v10);
     }
 
-    pFront->set< f32 >(v10);
+    pFront->set(v10);
 }

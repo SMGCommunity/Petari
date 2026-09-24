@@ -2,6 +2,11 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
+void FirePressureBullet_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)3.0f;
+}
+
 namespace NrvFirePressureBullet {
     NEW_NERVE(FirePressureBulletNrvFly, FirePressureBullet, Fly);
 };  // namespace NrvFirePressureBullet
@@ -42,22 +47,15 @@ void FirePressureBullet::calcAndSetBaseMtx() {
 }
 
 void FirePressureBullet::shotFireBullet(LiveActor* pActor, const TPos3f& rPos, const f32& a3, bool a4, bool a5) {
-    f32 v7 = rPos.mMtx[2][2];
-    f32 v9 = rPos.mMtx[1][2];
-    f32 v11 = rPos.mMtx[0][2];
     mFirePressure = pActor;
     _9C = a3;
     _A0 = a4;
     _A1 = a5;
-    _8C.set< f32 >(v11, v9, v7);
+
+    rPos.getZDir(_8C);
     mVelocity.scale(_9C, _8C);
-    f32 z = rPos.mMtx[2][3];
-    f32 y = rPos.mMtx[1][3];
-    f32 x = rPos.mMtx[0][3];
-    mPosition.set< f32 >(x, y, z);
-    mRotation.z = 0.0f;
-    mRotation.y = 0.0f;
-    mRotation.x = 0.0f;
+    rPos.getTrans(mPosition);
+    mRotation.zero();
     MR::validateHitSensors(this);
     MR::invalidateClipping(this);
     setNerve(GET_NERVE(FirePressureBullet, FirePressureBulletNrvFly));

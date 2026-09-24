@@ -1,6 +1,11 @@
 #include "Game/MapObj/FlameGun.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
+
+void FlameGun_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
 
 namespace NrvFlameGun {
     NEW_NERVE(HostTypeNrvSwitchWait, FlameGun, SwitchWait);
@@ -30,7 +35,7 @@ void FlameGun::init(const JMapInfoIter& rIter) {
     } else {
         switch (mState) {
         case 0:
-            initNerve(GET_NERVE(FlameGun, HostTypeNrvSwitchWait));
+            initNerve(GET_NERVE(FlameGun, HostTypeNrvWait));
             break;
         case 1:
             initNerve(GET_NERVE(FlameGun, HostTypeNrvRotate));
@@ -44,7 +49,7 @@ void FlameGun::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("FlameGun", nullptr, false);
     MR::connectToSceneEnemy(this);
     initSound(4, false);
-    initBinder((77.0f * mScale.y), (77.0f * mScale.y), 0);
+    initBinder(77.0f * mScale.y, 77.0f * mScale.y, 0);
     initEffectKeeper(3, nullptr, false);
     initSensor();
     MR::initShadowVolumeSphere(this, 77.0f);
@@ -60,7 +65,7 @@ void FlameGun::initSensor() {
     offs.y = 77.0f * scale;
     offs.z = 0.0f;
     MR::addHitSensorEnemy(this, "body", 32, offs.y, offs);
-    MR::addHitSensorCallbackEnemy(this, "attack", 16, (80.0f * scale));
+    MR::addHitSensorCallbackEnemy(this, "attack", 16, 80.0f * scale);
 }
 
 void FlameGun::initAfterPlacement() {
@@ -155,7 +160,31 @@ void FlameGun::exeRadiateOnly() {
     MR::startLevelSound(this, "SE_EM_LV_FLAMEGUN_FIRE");
 }
 
-// FlameGun::updateHitSensor
+void FlameGun::updateHitSensor(HitSensor* pSensor) {
+    f32 scale = mScale.y;
+    TVec3f playerOffset(*MR::getPlayerCenterPos());
+    playerOffset -= mPosition;
+    TPos3f baseMtx(getBaseMtx());
+    TVec3f side, up, front;
+    baseMtx.getXDir(side);
+    baseMtx.getYDir(up);
+    baseMtx.getZDir(front);
+    TVec3f direction(front);
+    MR::normalizeOrZero(&direction);
+
+    f32 distance = direction.dot(playerOffset);
+    pSensor->mPosition.set(mPosition);
+    distance = MR::clamp(distance, scale * (90.0f * scale), scale * (700.0f * scale));
+    f32 rate = (distance - 90.0f * scale) / (610.0f * scale);
+    f32 radius = (1.0f - rate) * (40.0f * scale) + rate * (100.0f * scale);
+
+    pSensor->mPosition.add(direction * distance);
+    pSensor->mPosition.add(side * 0.0f);
+    pSensor->mPosition.add(up * 55.0f);
+    pSensor->mPosition.add(front * 0.0f);
+
+    pSensor->mRadius = radius;
+}
 
 void FlameGun::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (!MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {

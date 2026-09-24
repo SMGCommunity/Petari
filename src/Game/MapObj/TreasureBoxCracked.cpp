@@ -37,7 +37,7 @@ namespace {
 
 TreasureBoxCracked::TreasureBoxCracked(const char* pName)
     : LiveActor(pName), mBoxCollider(), mBoxType(), mOpenCondition(), mItem(), mItemType(1), mItemVelocity(0.0f), mItemTargetPos(0.0f),
-      mIsItemMoving(), mWaitForSwitchOn(sDefaultWaitForSwitchOn), mPowerStarId(-1) {
+      mIsItemMoving(), mWaitForSwitchOn(::sDefaultWaitForSwitchOn), mPowerStarId(-1) {
     mTopMtx.identity();
 }
 
@@ -101,7 +101,7 @@ void TreasureBoxCracked::exeWait() {
     }
 
     if (mBoxType == 2) {
-        MR::requestPointLight(this, mPosition, sPointLightColor, sPointLightBrightness, -1);
+        MR::requestPointLight(this, mPosition, ::sPointLightColor, ::sPointLightBrightness, -1);
     }
 }
 
@@ -144,10 +144,10 @@ void TreasureBoxCracked::exeOpen() {
             return;
         }
 
-        mItemVelocity.scale(sFirstSpeed, up);
+        mItemVelocity.scale(::sFirstSpeed, up);
     }
 
-    JMAVECScaleAdd(&up, &mItemVelocity, &mItemVelocity, sAccelRate);
+    mItemVelocity.scaleAdd(::sAccelRate, up, mItemVelocity);
     mItem->mPosition.add(mItemVelocity);
 
     if (checkItemPos()) {
@@ -165,13 +165,13 @@ void TreasureBoxCracked::exeOpen() {
 void TreasureBoxCracked::exeItemBound() {
     TVec3f up;
     MR::calcUpVec(&up, this);
-    f32 amplitude = sBoundSpeedMax - (sBoundSpeedMax / sBoundTime) * getNerveStep();
-    f32 height = amplitude * MR::sinDegree((720.0f / sBoundTime) * getNerveStep());
+    f32 amplitude = ::sBoundSpeedMax - (::sBoundSpeedMax / ::sBoundTime) * getNerveStep();
+    f32 height = amplitude * MR::sinDegree((720.0f / ::sBoundTime) * getNerveStep());
     TVec3f position;
-    JMAVECScaleAdd(&up, &mItemTargetPos, &position, height);
+    position.scaleAdd(height, up, mItemTargetPos);
     mItem->mPosition.set(position);
 
-    if (MR::isStep(this, sBoundTime)) {
+    if (MR::isStep(this, ::sBoundTime)) {
         mItem->mPosition.set(mItemTargetPos);
         MR::sendArbitraryMsg(ACTMES_ITEM_END_MOVE, mItem->getSensor(nullptr), getSensor("body"));
         mIsItemMoving = false;
@@ -207,7 +207,7 @@ void TreasureBoxCracked::exeAlwaysOpen() {
         MR::startBck(this, "Open");
         MR::setBckFrameAndStop(this, MR::getBckCtrl(this)->getEnd());
         TVec3f position;
-        PSMTXMultVec(getBaseMtx(), &sTopOpenEndOffset, &position);
+        PSMTXMultVec(getBaseMtx(), &::sTopOpenEndOffset, &position);
         mTopMtx.setTrans(position);
     }
 }
@@ -216,10 +216,10 @@ void TreasureBoxCracked::control() {
     if (MR::isBckPlaying(this, "Open")) {
         f32 frame = MR::getBckFrame(this);
 
-        if (!(frame >= sStepForCollisionMove)) {
-            f32 rate = frame / sStepForCollisionMove;
+        if (!(frame >= ::sStepForCollisionMove)) {
+            f32 rate = frame / ::sStepForCollisionMove;
             TVec3f offset;
-            MR::vecBlend(TVec3f(sTopOpenStartOffset), TVec3f(sTopOpenEndOffset), &offset, rate);
+            MR::vecBlend(TVec3f(::sTopOpenStartOffset), TVec3f(::sTopOpenEndOffset), &offset, rate);
             TVec3f position;
             PSMTXMultVec(getBaseMtx(), &offset, &position);
             mTopMtx.setTrans(position);
@@ -346,17 +346,17 @@ void TreasureBoxCracked::initItemTrans() {
     const Vec* offset;
 
     if (mItemType == 1) {
-        offset = &sCoinOffset;
+        offset = &::sCoinOffset;
     } else if (mItemType == 2) {
-        offset = &sChipOffset;
+        offset = &::sChipOffset;
     } else if (mItemType == 3) {
-        offset = &sChipOffset;
+        offset = &::sChipOffset;
     } else if (mItemType == 4) {
-        offset = &sKinokoOneUpOffset;
+        offset = &::sKinokoOneUpOffset;
     } else if (mItemType == 5) {
-        offset = &sKinokoLifeUpOffset;
+        offset = &::sKinokoLifeUpOffset;
     } else if (mItemType == 6) {
-        offset = &sAirBubbleOffset;
+        offset = &::sAirBubbleOffset;
     }
 
     PSMTXMultVec(getBaseMtx(), offset, &mItemTargetPos);

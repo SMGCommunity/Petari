@@ -106,7 +106,7 @@ bool KoopaJrShipCannonMainShell::receiveMsgPlayerAttack(u32 msg, HitSensor* pSen
 void KoopaJrShipCannonMainShell::launch(const TVec3f& rStartPos, const TVec3f& rVelocity) {
     appear();
 
-    mPosition.set< f32 >(rStartPos);
+    mPosition.set(rStartPos);
     TVec3f dir;
     dir = rVelocity;
     MR::normalize(&dir);
@@ -114,7 +114,7 @@ void KoopaJrShipCannonMainShell::launch(const TVec3f& rStartPos, const TVec3f& r
     TPos3f mtx;
     MR::makeMtxFrontUp(&mtx, dir, -mGravity);
     mtx.getQuat(_8C);
-    mVelocity.set< f32 >(rVelocity);
+    mVelocity.set(rVelocity);
     setNerve(GET_NERVE(KoopaJrShipCannonMainShell, HostTypeFly));
 }
 

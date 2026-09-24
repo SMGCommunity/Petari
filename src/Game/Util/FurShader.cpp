@@ -1,13 +1,13 @@
 #include "Game/Util/FurShader.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
 #include <JSystem/J3DGraphBase/J3DMaterial.hpp>
 #include <JSystem/J3DGraphBase/J3DShape.hpp>
 #include <JSystem/J3DGraphBase/J3DShapeDraw.hpp>
 #include <JSystem/JUtility/JUTNameTab.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
-#include <revolution/gx/GXEnum.h>
-#include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
 #include <cstring>
+#include <revolution/gx/GXEnum.h>
 
 CShader::CShader(const J3DModelData* pModelData, const ResTIMG* pTimg) : mIndexArray(), mLengthMap(pTimg) {
     _1C = 0.0f;
@@ -280,7 +280,7 @@ void CShader::checkBorderVtx(J3DModelData* pData, u32 shapeIndex) {
 
         J3DShape* pShape = pData->getShapeNodePointer(shape);
 
-        if (strstr(pData->getMaterialName()->getName(pShape->mMaterial->mIndex), "Fur")) {
+        if (strstr(pData->getMaterialName()->getName(pShape->mMaterial->mIndex), "Fur") != nullptr) {
             continue;
         }
 
@@ -309,7 +309,7 @@ void CShader::checkBorderVtx(J3DModelData* pData, u32 shapeIndex) {
         }
 
         for (u16 group = 0; group < pShape->getMtxGroupNum(); group++) {
-            u8* pStart = pShape->getShapeDraw(group)->getDisplayList();
+            u8* const pStart = pShape->getShapeDraw(group)->getDisplayList();
             u8* pRead = pStart;
 
             while (u32(pRead - pStart) < pShape->getShapeDraw(group)->getDisplayListSize()) {
@@ -320,7 +320,7 @@ void CShader::checkBorderVtx(J3DModelData* pData, u32 shapeIndex) {
                 s32 count = *reinterpret_cast< u16* >(pRead + 1);
 
                 for (s32 i = 0; i < count; i++) {
-                    u16 pos = *reinterpret_cast< u16* >(pRead + stride * i + posOffset + 3);
+                    u16 pos = *reinterpret_cast< u16* >((pRead + stride * i) + (posOffset + 3));
                     mIndexArray[pos]._0 = 0xFFFF;
                     mIndexArray[pos]._2 = 0xFFFF;
                 }
@@ -338,7 +338,7 @@ CShader::CLengthMap::CLengthMap(const ResTIMG* pTimg) {
 }
 
 void CShader::CLengthMap::setLengthMap(const ResTIMG* pTimg) {
-    if (!pTimg) {
+    if (pTimg == nullptr) {
         _8 = 1;
         return;
     }
@@ -364,9 +364,7 @@ f32 CShader::CLengthMap::refer(f32 u, f32 v) const {
 
     u16 x = getTexelOrder(_0->mWidth, u, static_cast< GXTexWrapMode >(_0->mWrapS));
     u16 y = getTexelOrder(_0->mHeight, v, static_cast< GXTexWrapMode >(_0->mWrapT));
-    u32 tile = x / 8 + (_0->mWidth / 8) * (y / 4);
-    const u8* pTile = _4 + tile * 32;
-    return f32(pTile[(x % 8) + (y % 4) * 8]) / 255.0f;
+    return f32(_4[((x % 8) + (y % 4) * 8) + (x / 8 + (_0->mWidth / 8) * (y / 4)) * 32]) / 255.0f;
 }
 
 u16 CShader::CLengthMap::getTexelOrder(u16 a1, f32 a2, _GXTexWrapMode mode) const {

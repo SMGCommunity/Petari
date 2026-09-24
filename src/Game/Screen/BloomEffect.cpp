@@ -14,6 +14,12 @@
 #include "revolution/gx/GXTev.h"
 #include <JSystem/JUtility/JUTTexture.hpp>
 
+void BloomEffect_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
+
 namespace {
     struct RadAndOfs {
         /* 0x00 */ f32 _0;
@@ -119,9 +125,9 @@ void BloomEffect::postDraw() const {
     blurTexture(_34, _4C, 8, 20, 12, _1C, 3, &::sL2RadAndOfs[0]._0);
 
     ImageEffectLocalUtil::capture(_38, 8, 20, GX_TF_RGB565, false, 0);
-    // Not sure what's going on here
-    // drawTexture(_30, 4, 7, ?, DrawType_0);
-    // drawTexture(_38, 4, 7, ?, DrawType_1);
+    const u8 intensity = _14 * get_10();
+    drawTexture(_30, 4, 7, intensity, DrawType_0);
+    drawTexture(_38, 4, 7, intensity, DrawType_1);
 
     ImageEffectLocalUtil::capture(_3C, 4, 7, GX_TF_RGB565, false, 0);
     GXSetCopyFilter(GX_FALSE, pRenderObj->sample_pattern, GX_TRUE, pRenderObj->vfilter);
@@ -181,7 +187,7 @@ void BloomEffect::initDraw() const {
     GXSetZCompLoc(GX_TRUE);
     GXSetDither(GX_FALSE);
 }
-/*
+
 void BloomEffect::drawTexture(JUTTexture* pTexture, s32 param2, s32 param3, u8 intensity, BLOOM_TEX_DRAW_TYPE param5) const {
     pTexture->load(GX_TEXMAP0);
     GXSetChanMatColor(GX_COLOR0A0, Color8(intensity, intensity, intensity, 255));
@@ -198,25 +204,32 @@ void BloomEffect::drawTexture(JUTTexture* pTexture, s32 param2, s32 param3, u8 i
         break;
     }
 
-    // ...
+    s32 row = param3 / param2;
+    s32 column = param3 % param2;
+    f32 width = static_cast< f32 >(MR::getFrameBufferWidth()) / param2;
+    f32 height = static_cast< f32 >(MR::getFrameBufferHeight()) / param2;
+    f32 left = column * width;
+    f32 right = (column + 1) * width;
+    f32 bottom = (row + 1) * height;
+    f32 top = row * height;
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
     {
-        GXPosition3f32(dVar8, dVar7, -1.0f);
+        GXPosition3f32(left, bottom, -1.0f);
         GXTexCoord2f32(0.0f, 1.0f);
 
-        GXPosition3f32(dVar8, dVar9, -1.0f);
+        GXPosition3f32(left, top, -1.0f);
         GXTexCoord2f32(0.0f, 0.0f);
 
-        GXPosition3f32(dVar10, dVar7, -1.0f);
+        GXPosition3f32(right, bottom, -1.0f);
         GXTexCoord2f32(1.0f, 1.0f);
 
-        GXPosition3f32(dVar10, dVar9, -1.0f);
+        GXPosition3f32(right, top, -1.0f);
         GXTexCoord2f32(1.0f, 0.0f);
     }
     GXEnd();
 }
-*/
+
 void BloomEffect::blurTexture(JUTTexture* pTexture, Mtx* pMtx, s32 param3, s32 param4, u32 param5, f32 param6, u32 param7, const f32* pParam8) const {
     initBlur(pTexture, 8, param6);
 
@@ -231,7 +244,17 @@ void BloomEffect::blurTexture(JUTTexture* pTexture, Mtx* pMtx, s32 param3, s32 p
     GXSetTevOp(GX_TEVSTAGE0, GX_MODULATE);
 }
 
-// BloomEffect::initBlurMtx
+void BloomEffect::initBlurMtx(Mtx* pMtx, u32 count, f32 radius, f32 offset) const {
+    f32 invAspect = 1.0f / MR::getAspect();
+    radius = -radius;
+
+    for (u32 i = 0; i < count; i++) {
+        PSMTXTrans(pMtx[i], invAspect * (radius * JMACosRadian(offset + i * JMath::TAngleConstant_< f32 >::RADIAN_DEG360() / count)),
+                   radius * JMASinRadian(offset + i * JMath::TAngleConstant_< f32 >::RADIAN_DEG360() / count), 0.0f);
+    }
+
+    DCStoreRangeNoSync(pMtx, sizeof(Mtx) * count);
+}
 
 void BloomEffect::initBlur(JUTTexture* pTexture, u32 param2, f32 intensity) const {
     GXSetNumTexGens(param2);
@@ -255,4 +278,51 @@ void BloomEffect::initBlur(JUTTexture* pTexture, u32 param2, f32 intensity) cons
     GXSetChanMatColor(GX_COLOR0A0, Color8(intensity * 255.0f, intensity * 255.0f, intensity * 255.0f, 255));
     pTexture->load(GX_TEXMAP0);
     GXSetBlendMode(GX_BM_NONE, GX_BL_ZERO, GX_BL_ZERO, GX_LO_CLEAR);
+}
+
+void BloomEffect::drawBlur(s32 divisions, s32 tile, Mtx* pMtx, u32 stageCount, u32 matrixCount) const {
+    GXSetArray(GX_TEX_MTX_ARRAY, pMtx, sizeof(Mtx));
+
+    s32 row = tile / divisions;
+    s32 column = tile % divisions;
+    f32 width = static_cast< f32 >(MR::getFrameBufferWidth()) / divisions;
+    f32 height = static_cast< f32 >(MR::getFrameBufferHeight()) / divisions;
+    f32 left = column * width;
+    f32 right = (column + 1) * width;
+    f32 bottom = (row + 1) * height;
+    f32 top = row * height;
+
+    GXSetNumTexGens(stageCount);
+    GXSetNumTevStages(stageCount);
+
+    for (u32 i = 0; i < matrixCount; i += stageCount) {
+        u32 remaining = matrixCount - i;
+        if (remaining < stageCount) {
+            GXSetNumTexGens(remaining);
+            GXSetNumTevStages(remaining);
+            stageCount = remaining;
+        }
+
+        for (u32 j = 0; j < stageCount; j++) {
+            GXLoadTexMtxIndx(i + j, ::sTexMtxID[j], GX_MTX3x4);
+        }
+
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
+        GXPosition3f32(left, bottom, -1.0f);
+        GXTexCoord2f32(0.0f, 1.0f);
+
+        GXPosition3f32(left, top, -1.0f);
+        GXTexCoord2f32(0.0f, 0.0f);
+
+        GXPosition3f32(right, bottom, -1.0f);
+        GXTexCoord2f32(1.0f, 1.0f);
+
+        GXPosition3f32(right, top, -1.0f);
+        GXTexCoord2f32(1.0f, 0.0f);
+        GXEnd();
+
+        if (i == 0) {
+            GXSetBlendMode(GX_BM_BLEND, GX_BL_ONE, GX_BL_ONE, GX_LO_CLEAR);
+        }
+    }
 }

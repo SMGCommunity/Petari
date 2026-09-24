@@ -84,23 +84,23 @@ namespace MR {
     };
 
     template < class T >
-    static FunctorV0M< T*, void (T::*)() > Functor(T* a1, void (T::*a2)()) {
-        return FunctorV0M< T*, void (T::*)() >(a1, a2);
+    FunctorV0M< T*, void (T::*)() > Functor(T* pObject, void (T::*pFunction)()) {
+        return FunctorV0M< T*, void (T::*)() >(pObject, pFunction);
     }
 
     template < class T >
-    static FunctorV0M< const T*, void (T::*)() const > Functor(const T* a1, void (T::*a2)() const) {
-        return FunctorV0M< const T*, void (T::*)() const >(a1, a2);
+    static FunctorV0M< const T*, void (T::*)() const > Functor(const T* pObject, void (T::*pFunction)() const) {
+        return FunctorV0M< const T*, void (T::*)() const >(pObject, pFunction);
     }
 
     template < class T, typename U >
-    static FunctorV1M< T*, void (T::*)(U), U > Functor(T* a1, void (T::*a2)(U), U arg_0) {
-        return FunctorV1M< T*, void (T::*)(U), U >(a1, a2, arg_0);
+    static FunctorV1M< T*, void (T::*)(U), U > Functor(T* pObject, void (T::*pFunction)(U), U arg_0) {
+        return FunctorV1M< T*, void (T::*)(U), U >(pObject, pFunction, arg_0);
     }
 
     template < class T, typename U >
-    static FunctorV1M< const T*, void (T::*)(U), U > Functor(const T* a1, void (T::*a2)(U) const, U arg_0) {
-        return FunctorV1M< const T*, void (T::*)(U) const, U >(a1, a2, arg_0);
+    static FunctorV1M< const T*, void (T::*)(U), U > Functor(const T* pObject, void (T::*pFunction)(U) const, U arg_0) {
+        return FunctorV1M< const T*, void (T::*)(U) const, U >(pObject, pFunction, arg_0);
     }
 
     template < class T, typename U, typename V >
@@ -109,8 +109,8 @@ namespace MR {
     }
 
     template < class T, typename U, typename V >
-    static FunctorV2M< const T*, void (T::*)(U, V) const, U, V > Functor(const T* a1, void (T::*a2)(U, V) const, U arg_0, V arg_1) {
-        return FunctorV2M< const T*, void (T::*)(U, V) const, U, V >(a1, a2, arg_0, arg_1);
+    static FunctorV2M< const T*, void (T::*)(U, V) const, U, V > Functor(const T* pObject, void (T::*pFunction)(U, V) const, U arg_0, V arg_1) {
+        return FunctorV2M< const T*, void (T::*)(U, V) const, U, V >(pObject, pFunction, arg_0, arg_1);
     }
 
     class FunctorV0F : public FunctorBase {
@@ -132,7 +132,7 @@ namespace MR {
         /* 0x04 */ void (*mFunc)();
     };
 
-    static FunctorV0F Functor(void (*a1)()) {
-        return FunctorV0F(a1);
+    static FunctorV0F Functor(void (*pFunction)()) {
+        return FunctorV0F(pFunction);
     }
 };  // namespace MR

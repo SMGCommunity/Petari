@@ -117,7 +117,7 @@ void BossKameck::control() {
     }
 
     mActorList->removeDeadActor();
-    _C8.set< f32 >(mVelocity);
+    _C8.set(mVelocity);
     mJointCtrl->update();
 }
 

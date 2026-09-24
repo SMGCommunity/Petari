@@ -274,15 +274,14 @@ void NPCActor::setBaseMtx(const TPos3f& rPos) {
     rPos.getTrans(trans);
 
     TVec3f eulerXYZ;
-    // inlined in the assembly
     rPos.getEulerXYZ(eulerXYZ);
     MR::makeQuatRotateRadian(&_A0, eulerXYZ);
     _A0.normalize();
 
-    mPosition.set< f32 >(trans);
+    mPosition.set(trans);
     eulerXYZ = eulerXYZ * 57.29578f;
-    mRotation.set< f32 >(eulerXYZ);
-    _CC.set< f32 >(eulerXYZ);
+    mRotation.set(eulerXYZ);
+    _CC.set(eulerXYZ);
 
     MR::setBaseTRMtx(this, _A0);
     MR::resetPosition(this);
@@ -300,7 +299,7 @@ void NPCActor::setInitPose() {
     _B0.z = _A0.z;
     _B0.w = _A0.w;
 
-    _C0.set< f32 >(mPosition);
+    _C0.set(mPosition);
 }
 
 void NPCActor::init(const JMapInfoIter& rIter) {
@@ -364,12 +363,11 @@ void NPCActor::initialize(const JMapInfoIter& rIter, const NPCActorCaps& rCaps) 
 
     if (rCaps.mSensor) {
         initHitSensor(rCaps.mSensorMax);
-    }
-
-    if (rCaps.mSensorJoint != nullptr) {
-        MR::addHitSensorAtJointNpc(this, "Body", rCaps.mSensorJoint, 8, rCaps.mSensorSize, rCaps.mSensorOffset);
-    } else {
-        MR::addHitSensorNpc(this, "Body", 8, rCaps.mSensorSize, rCaps.mSensorOffset);
+        if (rCaps.mSensorJoint != nullptr) {
+            MR::addHitSensorAtJointNpc(this, "Body", rCaps.mSensorJoint, 8, rCaps.mSensorSize, rCaps.mSensorOffset);
+        } else {
+            MR::addHitSensorNpc(this, "Body", 8, rCaps.mSensorSize, rCaps.mSensorOffset);
+        }
     }
 
     if (rCaps.mBinder) {
@@ -411,6 +409,7 @@ void NPCActor::initialize(const JMapInfoIter& rIter, const NPCActorCaps& rCaps) 
         } else {
             talkMtx = rCaps.mTalkMtx;
         }
+
         if (rCaps._F) {
             mMsgCtrl = MR::createTalkCtrlDirect(this, rIter, rCaps._10, rCaps.mMessageOffset, talkMtx);
             MR::onRootNodeAutomatic(mMsgCtrl);
@@ -525,11 +524,8 @@ void NPCActor::control() {
         _158++;
     }
 
-    s32 min = 0x400;
-    if (_158 < 0x400) {
-        min = _158;
-    }
-    _158 = min;
+    const s32 count = _158;
+    _158 = count < 0x400 ? count : 0x400;
 
     updateReaction();
 
@@ -625,8 +621,7 @@ bool NPCActor::turnToPlayer(f32 f1, f32 f2, f32 f3) {
     TVec3f vec2;
     MR::makeAxisFrontUp(&vec1, &vec2, toPlayer, yDir);
     MR::clampVecAngleDeg(&vec2, yDir, f3);
-    // probably a typo
-    return MR::turnQuatYDirRad(&_A0, _A0, vec2, f2 * 0.17453294f) & turned;
+    return MR::turnQuatYDirRad(&_A0, _A0, vec2, f2 * 0.017453292f) & turned;
 }
 
 bool NPCActor::turnToDefault(f32 f1) {
@@ -644,7 +639,7 @@ bool NPCActor::turnToDefault(f32 f1) {
     f32 dot = zDir.dot(zDir2);
     dot = MR::clamp(dot, -1.0f, 1.0f);
 
-    f32 flt = MR::abs((f1 * 0.17453294f) / MR::acos(dot));
+    f32 flt = MR::abs((f1 * 0.017453292f) / MR::acos(dot));
     flt = MR::clamp(flt, 0.0f, 1.0f);
 
     MR::blendQuatUpFront(&_A0, yDir, zDir, flt, flt);
@@ -683,6 +678,7 @@ bool NPCActor::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pR
             _E2 = true;
             return true;
         }
+
         return false;
     }
 
@@ -702,7 +698,6 @@ bool NPCActor::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pR
         return true;
     }
 
-    // unused
     if (MR::isMsgStarPieceAttack(msg)) {
     }
 
@@ -711,6 +706,7 @@ bool NPCActor::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pR
         _E6 = true;
         return true;
     }
+
     return false;
 }
 
@@ -746,17 +742,13 @@ bool NPCActor::isEmptyNerve() const {
 }
 
 bool NPCActor::isScaleAnim() const {
-    // non-matching
     AnimScaleController* scaleController = mScaleController;
-    bool retval;
     if (mScaleController == nullptr) {
         return false;
-    } else {
-        retval = !MR::isNearZero(1.0f - scaleController->_C.x, 0.2f) || !MR::isNearZero(1.0f - scaleController->_C.y, 0.2f) ||
-                 !MR::isNearZero(1.0f - scaleController->_C.z, 0.2f);
     }
 
-    return retval;
+    return !(MR::isNearZero(1.0f - scaleController->_C.x, 0.2f) && MR::isNearZero(1.0f - scaleController->_C.y, 0.2f) &&
+             MR::isNearZero(1.0f - scaleController->_C.z, 0.2f));
 }
 
 bool NPCActor::isPointingSe() const {
@@ -854,4 +846,8 @@ void NPCActor::exeTalk() {
 }
 
 void NPCActor::exeNull() {
+}
+
+void NPCActor_FORCE_MATCH(TQuat4f* pDest, const TQuat4f& rSrc) {
+    *pDest = rSrc;
 }

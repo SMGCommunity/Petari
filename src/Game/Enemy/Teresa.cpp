@@ -64,8 +64,8 @@ Teresa::Teresa(const char* pName)
 
 void Teresa::init(const JMapInfoIter& rIter) {
     initFromJMapParam(rIter);
-    _C8.set< f32 >(mPosition);
-    mWallHitPos.set< f32 >(mPosition);
+    _C8.set(mPosition);
+    mWallHitPos.set(mPosition);
 
     if (MR::isConnectedWithRail(rIter)) {
         initRailRider(rIter);
@@ -166,13 +166,13 @@ void Teresa::appear() {
     case 0:
         MR::invalidateClipping(this);
         MR::onBind(this);
-        mWallHitPos.set< f32 >(mPosition);
+        mWallHitPos.set(mPosition);
         setNerve(GET_NERVE(Teresa, TeresaNrvAppearFromGround));
         break;
     case 1:
         MR::invalidateClipping(this);
         MR::onBind(this);
-        mWallHitPos.set< f32 >(mPosition);
+        mWallHitPos.set(mPosition);
         setNerve(GET_NERVE(Teresa, TeresaNrvAppearFromWall));
         break;
     default:
@@ -291,7 +291,7 @@ bool Teresa::filterBind(const Triangle* pTriangle) {
 
     if (MR::isWallCodeGhostThrough(pTriangle)) {
         _FE = 1;
-        _BC.set< f32 >(*pTriangle->getNormal(0));
+        _BC.set(*pTriangle->getNormal(0));
         return isNerve(GET_NERVE(Teresa, TeresaNrvDrift));
     }
 
@@ -568,8 +568,8 @@ bool Teresa::tryHideWater() {
 
 bool Teresa::tryHideWall() {
     if (MR::isBindedWall(this)) {
-        mWallNormal.set< f32 >(*MR::getWallNormal(this));
-        mWallHitPos.set< f32 >(*MR::getWallHitPos(this));
+        mWallNormal.set(*MR::getWallNormal(this));
+        mWallHitPos.set(*MR::getWallHitPos(this));
         TPos3f frontMtx;
         MR::makeMtxFrontNoSupportPos(&frontMtx, mWallNormal, mWallHitPos);
         MR::emitEffectHit(this, frontMtx, "HideWall");
@@ -929,7 +929,7 @@ void Teresa::exeHideWater() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Hide");
         MR::setShadowVolumeSphereRadius(this, nullptr, 0.0f);
-        mWallHitPos.set< f32 >(_C8);
+        mWallHitPos.set(_C8);
     }
 
     if (MR::isGreaterStep(this, 60)) {

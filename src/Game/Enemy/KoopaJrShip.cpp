@@ -128,7 +128,7 @@ void KoopaJrShip::kill() {
 }
 
 void KoopaJrShip::control() {
-    _EC = MR::repeat(_EC + mPropRotateSpeed, 0.0f, 360.0f);
+    _EC = MR::repeatDegree(_EC + mPropRotateSpeed);
 
     mPropellerMtx.setEulerY(MR::toRadian(_EC));
     mScrew00Mtx.setEulerZ(MR::toRadian(_EC));
@@ -210,8 +210,8 @@ bool KoopaJrShip::receiveMsgJetTurtleAttack(HitSensor* pSender, HitSensor* pRece
         return false;
     }
 
-    _D4.set< f32 >(pSender->mPosition);
-    _E0.set< f32 >(pSender->mHost->mVelocity);
+    _D4.set(pSender->mPosition);
+    _E0.set(pSender->mHost->mVelocity);
     MR::normalizeOrZero(&_E0);
 
     if (isNextStateDamage(_D0)) {
@@ -470,7 +470,7 @@ void KoopaJrShip::killAllSubModels() {
 }
 
 void KoopaJrShip::setStateTurnFront() {
-    mPosition.set< f32 >(_1F8);
+    mPosition.set(_1F8);
     MR::moveCoordAndTransToNearestRailPos(this);
     mJr->setStateShipBattlePowerUp();
     _1EC.x = ::sKoopaJrPosFront.x;

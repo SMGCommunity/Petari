@@ -22,10 +22,7 @@ class NamePosHolder : public NameObj {
 public:
     NamePosHolder();
 
-    virtual ~NamePosHolder();
-
     bool tryRegisterLinkObj(const NameObj*, const JMapInfoIter&);
-
     bool find(const NameObj*, const char*, TVec3f*, TVec3f*) const;
 
     /* 0xC */ s32 mPosNum;           ///< The number of NamePosInfo instances.

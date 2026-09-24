@@ -82,6 +82,7 @@ void Butler::init(const JMapInfoIter& rIter) {
     } else {
         dome = "AstroDome_Butler017";
     }
+
     mButlerState = new ButlerStateStarPieceReaction(this, rIter, dome);
     mButlerState->init();
     initTalkCtrlArray(rIter);
@@ -117,10 +118,9 @@ void Butler::killIfBatlerMapAppear() {
     }
 }
 
-void Butler::startDemoButlerReport(const char* event) {
+void Butler::startDemoButlerReport(const char* pEvent) {
     s32 eventNum = 2;
     s32 executingStorySequenceEventNum = GameSequenceFunction::getExecutingStorySequenceEventNum();
-    // executingStorySequenceEventNum is an enum not yet documented
     switch (executingStorySequenceEventNum) {
     case 4:
         eventNum = 2;
@@ -145,7 +145,8 @@ void Butler::startDemoButlerReport(const char* event) {
     default:
         break;
     }
-    DemoFunction::setDemoTalkMessageCtrlDirect(this, mTalkMessage[eventNum << 0], event);
+
+    DemoFunction::setDemoTalkMessageCtrlDirect(this, mTalkMessage[eventNum << 0], pEvent);
     MR::invalidateClipping(this);
     LiveActor::appear();
     setNerve(GET_NERVE(Butler, ButlerNrvDemo));
@@ -165,6 +166,7 @@ void Butler::startDemoDomeLecture2() {
     } else if (!MR::isOnGameEventFlagEndButlerGalaxyMoveLecture()) {
         i = 1;
     }
+
     DemoFunction::setDemoTalkMessageCtrlDirect(this, mTalkMessage[i], "ドームレクチャー２");
     MR::invalidateClipping(this);
     LiveActor::appear();
@@ -222,6 +224,7 @@ bool Butler::messageBranchFunc(u32 msg) {
         if (MR::isOnGameEventFlagGalaxyOpen(triLeg) || MR::canOpenGalaxy(triLeg)) {
             stupidBool = true;
         }
+
         return stupidBool;
     default:
         return false;
@@ -234,6 +237,7 @@ void Butler::control() {
             MR::requestStarPieceLectureGuidance();
             MR::requestCounterLayoutAppearanceForTicoEat(false);
         }
+
         tryReplaceStarPieceIfExecLecture();
     }
 
@@ -259,6 +263,7 @@ void Butler::control() {
             MR::startSystemSE("SE_SY_TICOFAT_POINT");
         }
     }
+
     NPCActor::control();
 }
 
@@ -281,9 +286,11 @@ bool Butler::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
                     setNerve(GET_NERVE(Butler, ButlerNrvStarPieceReaction));
                 }
             }
+
             return true;
         }
     }
+
     return NPCActor::receiveMsgPlayerAttack(msg, pSender, pReceiver);
 }
 
@@ -313,21 +320,20 @@ void Butler::initForAstroDome(const JMapInfoIter& rIter) {
     MR::registerDemoActionFunctorDirect(this, func1, demoNameButlerReport, "バトラーリセット");
     const char* demoNameDomeLecture1 = ::cDemoNameDomeLecture1;
     MR::registerDemoCast(this, demoNameDomeLecture1, rIter);
-    DemoFunction::tryCreateDemoTalkAnimCtrlForSceneDirect(this, demoNameDomeLecture1, rIter, "DemoButlerDomeLecture1", nullptr, 0, 0);
+    DemoFunction::tryCreateDemoTalkAnimCtrlForSceneDirect(this, demoNameDomeLecture1, rIter, "DemoButlerDomeLecture1", nullptr, 0, -1);
     DemoFunction::registerDemoTalkMessageCtrlDirect(this, createTalkCtrl(rIter, "AstroDome_Butler023"), demoNameDomeLecture1);
     MR::registerDemoActionFunctorDirect(this, MR::Functor(this, &Butler::startDemoDomeLecture1), demoNameDomeLecture1, nullptr);
-    const MR::FunctorBase& func3 = MR::Functor(this, &Butler::startDemoDomeLecture2);
-    TalkMessageCtrl* talkMsg1 = *mTalkMessage;
-    MR::initDemoSheetTalkAnimFunctor(this, rIter, ::cDemoNameDomeLecture2, "DemoButlerDomeLecture2", talkMsg1, func3);
-    const MR::FunctorBase& func4 = MR::Functor(this, &Butler::startDemoStarPiece1);
+    MR::initDemoSheetTalkAnimFunctor(this, rIter, ::cDemoNameDomeLecture2, "DemoButlerDomeLecture2", *mTalkMessage,
+                                     MR::Functor(this, &Butler::startDemoDomeLecture2));
     const MR::FunctorBase& func5 = MR::Functor(this, &Butler::resetStatus);
+    const MR::FunctorBase& func4 = MR::Functor(this, &Butler::startDemoStarPiece1);
     TalkMessageCtrl* talkMsg2 = createTalkCtrl(rIter, "AstroDome_Butler011");
     const char* demoNameStarPiece1 = ::cDemoNameStarPiece1;
     MR::initDemoSheetTalkAnim(this, rIter, demoNameStarPiece1, "DemoButlerStarPiece1", talkMsg2);
     MR::registerDemoActionFunctorDirect(this, func4, demoNameStarPiece1, "開始");
     MR::registerDemoActionFunctorDirect(this, func5, demoNameStarPiece1, "バトラーリセット");
-    const MR::FunctorBase& func6 = MR::Functor(this, &Butler::startDemoStarPiece2);
     const MR::FunctorBase& func7 = MR::Functor(this, &Butler::resetStatus);
+    const MR::FunctorBase& func6 = MR::Functor(this, &Butler::startDemoStarPiece2);
     TalkMessageCtrl* talkMsg3 = createTalkCtrl(rIter, "AstroDome_Butler014");
     const char* demoNameStarPiece2 = ::cDemoNameStarPiece2;
     MR::initDemoSheetTalkAnim(this, rIter, demoNameStarPiece2, "DemoButlerStarPiece2", talkMsg3);
@@ -362,16 +368,17 @@ void Butler::initForAstroGalaxy(const JMapInfoIter& rIter) {
     }
 }
 
-TalkMessageCtrl* Butler::createTalkCtrl(const JMapInfoIter& rIter, const char* talk) {
+TalkMessageCtrl* Butler::createTalkCtrl(const JMapInfoIter& rIter, const char* pTalk) {
     TVec3f vec;
     vec.setPSZeroVec();
-    return MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, talk, vec, MR::getJointMtx(this, "Body"));
+    return MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, pTalk, vec, MR::getJointMtx(this, "Body"));
 }
 
 void Butler::forceNerveToWait() {
     if (!NPCActor::isEmptyNerve()) {
         NPCActor::popNerve();
     }
+
     setNerve(mWaitNerve);
 }
 
@@ -422,6 +429,7 @@ bool Butler::tryStartStarPieceReaction() {
             return false;
         }
     }
+
     return false;
 }
 

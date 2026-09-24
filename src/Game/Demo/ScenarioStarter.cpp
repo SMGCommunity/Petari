@@ -226,12 +226,11 @@ void ScenarioStarter::updateBindActorMtx() {
         TPos3f rotateY;
         rotateY.identity();
         rotateY.setEulerY(_E4);
-        rotateY.setTrans(0.0f, 0.0f, 0.0f);
+        rotateY.zeroTrans();
 
         TPos3f rotateX;
         rotateX.identity();
-        const f32 angleX = _EC;
-        rotateX.setEulerX(angleX);
+        rotateX.setEulerX(_EC);
 
         TPos3f mtx;
         mtx.setQT(_A8, mPosition);
@@ -240,7 +239,7 @@ void ScenarioStarter::updateBindActorMtx() {
         MR::setBaseTRMtx(_8C, mtx);
     } else {
         TPos3f mtx;
-        MR::makeMtxTR(mtx.toMtxPtr(), _10C, _118);
+        MR::makeMtxTR(mtx, _10C, _118);
         MR::setBaseTRMtx(_8C, mtx);
     }
 }

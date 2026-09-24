@@ -134,6 +134,7 @@ f32 __frsqrte(f32);
 u32 __cntlzw(u32);
 s32 __abs(s32);
 f32 __fabsf(f32);
+f64 __fabs(f64);
 void* __memcpy(void*, const void*, int);
 #endif
 

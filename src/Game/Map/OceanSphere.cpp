@@ -275,53 +275,53 @@ void OceanSphere::initPoints() {
 
     OceanSpherePoint* pPoint;
 
-    pPoint = new OceanSpherePoint(&mPosition, sPosAxisX, 1.0f, 1.0f, TVec2f(0.0f, 1.0f));
+    pPoint = new OceanSpherePoint(&mPosition, ::sPosAxisX, 1.0f, 1.0f, TVec2f(0.0f, 1.0f));
     mAxisPointPX = pPoint;
 
-    pPoint = new OceanSpherePoint(&mPosition, -sPosAxisX, 1.0f, 1.0f, TVec2f(1.0f, 0.0f));
+    pPoint = new OceanSpherePoint(&mPosition, -::sPosAxisX, 1.0f, 1.0f, TVec2f(1.0f, 0.0f));
     mAxisPointNX = pPoint;
 
-    pPoint = new OceanSpherePoint(&mPosition, sPosAxisY, 1.0f, 1.0f, TVec2f(0.5f, 0.5f));
+    pPoint = new OceanSpherePoint(&mPosition, ::sPosAxisY, 1.0f, 1.0f, TVec2f(0.5f, 0.5f));
     mAxisPointPY = pPoint;
 
-    pPoint = new OceanSpherePoint(&mPosition, -sPosAxisY, 1.0f, 1.0f, TVec2f(0.5f, 0.5f));
+    pPoint = new OceanSpherePoint(&mPosition, -::sPosAxisY, 1.0f, 1.0f, TVec2f(0.5f, 0.5f));
     mAxisPointNY = pPoint;
 
-    pPoint = new OceanSpherePoint(&mPosition, sPosAxisZ, 1.0f, 1.0f, TVec2f(0.0f, 0.0f));
+    pPoint = new OceanSpherePoint(&mPosition, ::sPosAxisZ, 1.0f, 1.0f, TVec2f(0.0f, 0.0f));
     mAxisPointPZ = pPoint;
 
-    pPoint = new OceanSpherePoint(&mPosition, -sPosAxisZ, 1.0f, 1.0f, TVec2f(1.0f, 1.0f));
+    pPoint = new OceanSpherePoint(&mPosition, -::sPosAxisZ, 1.0f, 1.0f, TVec2f(1.0f, 1.0f));
     mAxisPointNZ = pPoint;
 
     OceanSpherePlane* pPlane;
 
-    pPlane = new OceanSpherePlane(mPointCount, &mPosition, sPosAxisY, -sPosAxisX, TVec2f(1.0f, 0.0f), TVec2f(1.0f, 1.0f), TVec2f(0.0f, 0.0f));
+    pPlane = new OceanSpherePlane(mPointCount, &mPosition, ::sPosAxisY, -::sPosAxisX, TVec2f(1.0f, 0.0f), TVec2f(1.0f, 1.0f), TVec2f(0.0f, 0.0f));
     mPlaneLeftUpper = pPlane;
 
-    pPlane = new OceanSpherePlane(mPointCount, &mPosition, sPosAxisY, sPosAxisX, TVec2f(0.0f, 1.0f), TVec2f(0.0f, 0.0f), TVec2f(1.0f, 1.0f));
+    pPlane = new OceanSpherePlane(mPointCount, &mPosition, ::sPosAxisY, ::sPosAxisX, TVec2f(0.0f, 1.0f), TVec2f(0.0f, 0.0f), TVec2f(1.0f, 1.0f));
     mPlaneRightUpper = pPlane;
 
-    pPlane = new OceanSpherePlane(mPointCount, &mPosition, -sPosAxisY, -sPosAxisX, TVec2f(1.0f, 0.0f), TVec2f(0.0f, 0.0f), TVec2f(1.0f, 1.0f));
+    pPlane = new OceanSpherePlane(mPointCount, &mPosition, -::sPosAxisY, -::sPosAxisX, TVec2f(1.0f, 0.0f), TVec2f(0.0f, 0.0f), TVec2f(1.0f, 1.0f));
     mPlaneLeftLower = pPlane;
 
-    pPlane = new OceanSpherePlane(mPointCount, &mPosition, -sPosAxisY, sPosAxisX, TVec2f(0.0f, 1.0f), TVec2f(1.0f, 1.0f), TVec2f(0.0f, 0.0f));
+    pPlane = new OceanSpherePlane(mPointCount, &mPosition, -::sPosAxisY, ::sPosAxisX, TVec2f(0.0f, 1.0f), TVec2f(1.0f, 1.0f), TVec2f(0.0f, 0.0f));
     mPlaneRightLower = pPlane;
 
-    mEdge0 = new OceanSpherePlaneEdge(mPointCount, &mPosition, sPosAxisY, sPosAxisZ, TVec2f(0.5f, 0.5f), TVec2f(0.0f, 0.0f));
+    mEdge0 = new OceanSpherePlaneEdge(mPointCount, &mPosition, ::sPosAxisY, ::sPosAxisZ, TVec2f(0.5f, 0.5f), TVec2f(0.0f, 0.0f));
 
-    mEdge1 = new OceanSpherePlaneEdge(mPointCount, &mPosition, sPosAxisY, -sPosAxisZ, TVec2f(0.5f, 0.5f), TVec2f(1.0f, 1.0f));
+    mEdge1 = new OceanSpherePlaneEdge(mPointCount, &mPosition, ::sPosAxisY, -::sPosAxisZ, TVec2f(0.5f, 0.5f), TVec2f(1.0f, 1.0f));
 
-    mEdge2 = new OceanSpherePlaneEdge(mPointCount, &mPosition, -sPosAxisY, sPosAxisZ, TVec2f(0.5f, 0.5f), TVec2f(0.0f, 0.0f));
+    mEdge2 = new OceanSpherePlaneEdge(mPointCount, &mPosition, -::sPosAxisY, ::sPosAxisZ, TVec2f(0.5f, 0.5f), TVec2f(0.0f, 0.0f));
 
-    mEdge3 = new OceanSpherePlaneEdge(mPointCount, &mPosition, -sPosAxisY, -sPosAxisZ, TVec2f(0.5f, 0.5f), TVec2f(1.0f, 1.0f));
+    mEdge3 = new OceanSpherePlaneEdge(mPointCount, &mPosition, -::sPosAxisY, -::sPosAxisZ, TVec2f(0.5f, 0.5f), TVec2f(1.0f, 1.0f));
 
-    mEdge4 = new OceanSpherePlaneEdge(mPointCount, &mPosition, sPosAxisZ, -sPosAxisX, TVec2f(0.0f, 0.0f), TVec2f(1.0f, 0.0f));
+    mEdge4 = new OceanSpherePlaneEdge(mPointCount, &mPosition, ::sPosAxisZ, -::sPosAxisX, TVec2f(0.0f, 0.0f), TVec2f(1.0f, 0.0f));
 
-    mEdge5 = new OceanSpherePlaneEdge(mPointCount, &mPosition, sPosAxisZ, sPosAxisX, TVec2f(0.0f, 0.0f), TVec2f(0.0f, 1.0f));
+    mEdge5 = new OceanSpherePlaneEdge(mPointCount, &mPosition, ::sPosAxisZ, ::sPosAxisX, TVec2f(0.0f, 0.0f), TVec2f(0.0f, 1.0f));
 
-    mEdge6 = new OceanSpherePlaneEdge(mPointCount, &mPosition, -sPosAxisZ, -sPosAxisX, TVec2f(1.0f, 1.0f), TVec2f(1.0f, 0.0f));
+    mEdge6 = new OceanSpherePlaneEdge(mPointCount, &mPosition, -::sPosAxisZ, -::sPosAxisX, TVec2f(1.0f, 1.0f), TVec2f(1.0f, 0.0f));
 
-    mEdge7 = new OceanSpherePlaneEdge(mPointCount, &mPosition, -sPosAxisZ, sPosAxisX, TVec2f(1.0f, 1.0f), TVec2f(0.0f, 1.0f));
+    mEdge7 = new OceanSpherePlaneEdge(mPointCount, &mPosition, -::sPosAxisZ, ::sPosAxisX, TVec2f(1.0f, 1.0f), TVec2f(0.0f, 1.0f));
 }
 
 void OceanSphere::initDisplayList() {

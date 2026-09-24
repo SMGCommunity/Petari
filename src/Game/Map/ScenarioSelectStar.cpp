@@ -195,7 +195,7 @@ void ScenarioSelectStar::exeSelected() {
     if (MultiScene::isFirstStep(this)) {
         MultiScene::emitEffect(this, "Select");
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
-        mTranslationOnSelect.set< f32 >(mTranslation);
+        mTranslationOnSelect.set(mTranslation);
         mRotateSpeed = ::cPointingRotateSpeedZ;
         mScaleOnSelect = mScale.x;
     }

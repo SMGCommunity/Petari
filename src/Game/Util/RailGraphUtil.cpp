@@ -54,7 +54,7 @@ namespace MR {
         getRailInfo(&railIter, &pRailPoints, rIter);
 
         while (hasRail) {
-            addRailToGraph(pGraph, railIter, pRailPoints);
+            ::addRailToGraph(pGraph, railIter, pRailPoints);
 
             hasRail = getNextLinkRailInfo(&railIter, &pRailPoints, railIter);
         }
@@ -85,7 +85,7 @@ namespace MR {
     }
 
     void calcNextEdgeVector(const RailGraphIter* pIter, TVec3f* pEdge) {
-        pEdge->set< f32 >(pIter->getNextNode()->_0 - pIter->getCurrentNode()->_0);
+        pEdge->set(pIter->getNextNode()->_0 - pIter->getCurrentNode()->_0);
     }
 
     bool isSelectedEdge(const RailGraphIter* pRailGraphIter) {
@@ -105,7 +105,7 @@ namespace MR {
     }
 
     void calcWatchEdgeVector(const RailGraphIter* pIter, TVec3f* pEdge) {
-        pEdge->set< f32 >(pIter->getWatchNode()->_0 - pIter->getCurrentNode()->_0);
+        pEdge->set(pIter->getWatchNode()->_0 - pIter->getCurrentNode()->_0);
     }
 
     void calcWatchEdgeDirection(const RailGraphIter* pRailGraphIter, TVec3f* pVec) {

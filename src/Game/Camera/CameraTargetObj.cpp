@@ -174,7 +174,7 @@ const TVec3f& CameraTargetPlayer::getGravityVector() const {
 
 const TVec3f& CameraTargetPlayer::getLastMove() const {
     if (MR::isDemoActive() && !mIsPlayerMoving) {
-        return sZeroVec;
+        return ::sZeroVec;
     } else {
         return *MR::getPlayerLastMove();
     }

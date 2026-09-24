@@ -6,7 +6,6 @@ class DinoPackunBall : public DinoPackunTailNode {
 public:
     DinoPackunBall(const char*, DinoPackun*);
 
-    virtual ~DinoPackunBall();
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void calcAndSetBaseMtx();
@@ -24,6 +23,7 @@ public:
     void setDamageFire();
     void setDamageNone();
     bool tryRebound();
+
     void exeWait();
     void exeShoot();
     void exeCharge();
@@ -31,12 +31,12 @@ public:
     void exeRebound();
     void exeLock();
 
-    TPos3f _D4;
-    TQuat4f _104;
-    HitSensor* mWeakSensor;  // 0x114
-    TVec3f _118;
-    u8 _124;
-    u8 _125;
-    u8 _126;
-    s32 _128;
+    /* 0x0D4 */ TPos3f _D4;
+    /* 0x104 */ TQuat4f _104;
+    /* 0x114 */ HitSensor* mWeakSensor;
+    /* 0x118 */ TVec3f _118;
+    /* 0x124 */ u8 _124;
+    /* 0x125 */ u8 _125;
+    /* 0x126 */ u8 _126;
+    /* 0x128 */ s32 _128;
 };

@@ -49,7 +49,7 @@ void Mario::calcTornadoTilt() {
         MR::normalize(&tilt);
         bool blended = MR::vecBlendSphere(_54C, tilt, &_54C, mActor->getConst().getTable()->mTornadoTiltSpeed);
         MR::normalize(&_54C);
-        f32 alignment = __fabsf(getWorldPadDir().dot(mFrontVec));
+        f32 alignment = MR::abs(getWorldPadDir().dot(mFrontVec));
         _548 = _548 * mActor->getConst().getTable()->mTornadoTiltNear + alignment * (1.0f - mActor->getConst().getTable()->mTornadoTiltNear);
         if (!blended) {
             _54C = tilt;
@@ -77,10 +77,6 @@ void Mario::forceStopTornado() {
     mDrawStates._8 = true;
 }
 
-void Mario::startRotationTask(u32 flags) {
-    pushTask(&Mario::taskOnRotation, flags);
-}
-
 void Mario::doSpinWallEffect() {
     if ((!mMovementStates._8 || !mFrontWallTriangle->mSensor->isType(0x55)) && (!mMovementStates._19 || !mBackWallTriangle->mSensor->isType(0x55)) &&
         (!mMovementStates._1A || !mSideWallTriangle->mSensor->isType(0x55))) {
@@ -88,6 +84,10 @@ void Mario::doSpinWallEffect() {
         playSound("声スピンキャンセル");
         playEffect("壁スパーク");
     }
+}
+
+void Mario::startRotationTask(u32 flags) {
+    pushTask(&Mario::taskOnRotation, flags);
 }
 
 bool Mario::taskOnRotation(u32 flags) {

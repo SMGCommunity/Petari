@@ -180,7 +180,7 @@ void ShadowController::updateProjection() {
 
         if (_63) {
             mProjectedSensor = triangle.getSensor();
-            _54.set< f32 >(*triangle.getNormal(0));
+            _54.set(*triangle.getNormal(0));
         } else {
             mProjectedSensor = nullptr;
         }
@@ -206,21 +206,21 @@ void ShadowController::setShadowDrawer(ShadowDrawer* pDrawer) {
 
 void ShadowController::getDropPos(TVec3f* pOut) const {
     if (mDropPos) {
-        pOut->set< f32 >(*mDropPos);
+        pOut->set(*mDropPos);
     } else {
         if (_1C) {
             PSMTXMultVec(_1C, (const Vec*)&_30, (Vec*)pOut);
         } else {
-            pOut->set< f32 >(_30);
+            pOut->set(_30);
         }
     }
 }
 
 void ShadowController::getDropDir(TVec3f* pOut) const {
     if (mDropDir) {
-        pOut->set< f32 >(*mDropDir);
+        pOut->set(*mDropDir);
     } else {
-        pOut->set< f32 >(_3C);
+        pOut->set(_3C);
     }
 }
 
@@ -230,17 +230,17 @@ f32 ShadowController::getDropLength() const {
 
 void ShadowController::getProjectionPos(TVec3f* pOut) const {
     if (mProjPos) {
-        pOut->set< f32 >(*mProjPos);
+        pOut->set(*mProjPos);
     } else {
-        pOut->set< f32 >(_48);
+        pOut->set(_48);
     }
 }
 
 void ShadowController::getProjectionNormal(TVec3f* pOut) const {
     if (mProjNorm) {
-        pOut->set< f32 >(*mProjNorm);
+        pOut->set(*mProjNorm);
     } else {
-        pOut->set< f32 >(_54);
+        pOut->set(_54);
     }
 }
 
@@ -289,7 +289,7 @@ bool ShadowController::isCalcCollision() const {
     }
 
     if (_60 == 2) {
-        return _65 < sCollisionCountLimit;
+        return _65 < ::sCollisionCountLimit;
     }
 
     return true;
@@ -301,7 +301,7 @@ bool ShadowController::isCalcGravity() const {
     }
 
     if (_61 == 0 || _61 == 3) {
-        return _66 < sGravityCountLimit;
+        return _66 < ::sGravityCountLimit;
     }
 
     return true;
@@ -325,11 +325,11 @@ void ShadowController::setDropPosMtxPtr(MtxPtr pMtx, const TVec3f& rOffset) {
     _18 = pMtx;
     mDropPos = nullptr;
     _1C = pMtx;
-    _30.set< f32 >(rOffset);
+    _30.set(rOffset);
 }
 
 void ShadowController::setDropPosFix(const TVec3f& rPos) {
-    _30.set< f32 >(rPos);
+    _30.set(rPos);
     mDropPos = 0;
     _1C = 0;
 }
@@ -348,7 +348,7 @@ void ShadowController::setProjectionPtr(const TVec3f* pPosition, const TVec3f* p
 }
 
 void ShadowController::setDropDirFix(const TVec3f& rDirection) {
-    _3C.set< f32 >(rDirection);
+    _3C.set(rDirection);
     mDropDir = 0;
     _61 = 0;
 }
@@ -370,8 +370,8 @@ void ShadowController::setDropTypeSurface() {
 }
 
 void ShadowController::setProjectionFix(const TVec3f& rPosition, const TVec3f& rNormal, bool projected) {
-    _48.set< f32 >(rPosition);
-    _54.set< f32 >(rNormal);
+    _48.set(rPosition);
+    _54.set(rNormal);
     _63 = projected;
     mProjectedSensor = 0;
 }
@@ -391,14 +391,14 @@ void ShadowController::onCalcCollisionOneTime() {
 
 void ShadowController::onCalcDropGravity() {
     TVec3f vec(0.0f, 1.0f, 0.0f);
-    _3C.set< f32 >(vec);
+    _3C.set(vec);
     mDropDir = 0;
     _61 = 1;
 }
 
 void ShadowController::onCalcDropGravityOneTime() {
     TVec3f vec(0.0f, 1.0f, 0.0f);
-    _3C.set< f32 >(vec);
+    _3C.set(vec);
     mDropDir = 0;
     _61 = 2;
     _66 = 0;
@@ -410,14 +410,14 @@ void ShadowController::offCalcDropGravity() {
 
 void ShadowController::onCalcDropPrivateGravity() {
     TVec3f vec(0.0f, 1.0f, 0.0f);
-    _3C.set< f32 >(vec);
+    _3C.set(vec);
     mDropDir = 0;
     _61 = 4;
 }
 
 void ShadowController::onCalcDropPrivateGravityOneTime() {
     TVec3f vec(0.0f, 1.0f, 0.0f);
-    _3C.set< f32 >(vec);
+    _3C.set(vec);
     mDropDir = 0;
     _61 = 5;
     _66 = 0;

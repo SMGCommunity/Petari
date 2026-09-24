@@ -23,9 +23,9 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/SpringValue.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
+#include "math_types.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
-#include "math_types.hpp"
 #include <revolution/types.h>
 #include <revolution/wpad.h>
 
@@ -408,7 +408,7 @@ void GCapture::exeWait() {
 void GCapture::exeCapture() {
     TVec3f pos;
     _110->getTargetPosition(&pos);
-    mPosition.set< f32 >(*MR::getPlayerCenterPos());
+    mPosition.set(*MR::getPlayerCenterPos());
 
     if (MR::isFirstStep(this)) {
         _128 = 0.1f;
@@ -677,12 +677,8 @@ void GCapture::updateRibbon(const TVec3f& rVec, s32 step) {
 
 void GCapture::updateRibbonPointEffectMatrix(const TVec3f& rVec) {
     TVec3f v5;
-    f32 z = _8C.mMtx[2][3];
-    f32 y = _8C.mMtx[1][3];
-    f32 x = _8C.mMtx[0][3];
-    v5.set< f32 >(x, y, z);
-    TVec3f v4(v5);
-    v4 -= rVec;
+    _8C.getTrans(v5);
+    TVec3f v4 = v5 - rVec;
 
     if (MR::isNearZero(v4)) {
         _8C.setTrans(rVec);

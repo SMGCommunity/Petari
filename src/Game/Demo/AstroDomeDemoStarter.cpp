@@ -133,7 +133,7 @@ void AstroDomeDemoStarter::exeSpinDriverAppear() {
         MtxPtr playerDemobaseMtx = MR::getPlayerDemoActor()->getBaseMtx();
         _C4.set(playerDemobaseMtx);
         TPos3f rotateMtx;
-        MR::makeMtxRotate(rotateMtx, TVec3f(cAppearRotate));
+        MR::makeMtxRotate(rotateMtx, TVec3f(::cAppearRotate));
         _C4.getTrans(mPosition);
         MR::makeMtxUpFrontPos(&_94, MR::getCamYdir(), MR::getCamZdir(), mPosition);
         _94.concat(rotateMtx);

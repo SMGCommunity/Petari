@@ -327,9 +327,6 @@ void CameraViewInterpolator::interpolateCameraSwitching(MtxPtr pMtx, const TVec3
 }
 
 void CameraViewInterpolator::checkNearlyEnd(MtxPtr pMtx) {
-    // FIXME: float reg alloc issue, causes stack size mismatch
-    // https://decomp.me/scratch/a41zl
-
     TPos3f newMtx = pMtx;
     TVec3f pos;
     mTargetMtx.getTrans(pos);

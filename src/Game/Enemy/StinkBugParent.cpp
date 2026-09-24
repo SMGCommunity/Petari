@@ -175,7 +175,7 @@ void StinkBugParent::exeDash() {
         setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvDashEnd));
         MR::startSound(this, "SE_EM_STINKBUG_L_DASH_END");
     } else {
-        setDashVelocity(getParam(mIsChildAlive)->mDashVelocity);
+        setDashVelocity(::getParam(mIsChildAlive)->mDashVelocity);
     }
 }
 
@@ -199,14 +199,14 @@ void StinkBugParent::exeBack() {
 
     MR::startLevelSound(this, "SE_EM_LV_STINKBUG_L_BACK");
 
-    if (MR::isNear(this, _98, (2.0f * getParam(mIsChildAlive)->mDashDistance))) {
+    if (MR::isNear(this, _98, (2.0f * ::getParam(mIsChildAlive)->mDashDistance))) {
         setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvWait));
     } else {
         TVec3f a1;
         a1.sub(_98, mPosition);
         MR::normalize(&a1);
         MR::turnVecToPlane(&a1, a1, mGravity);
-        mVelocity.scale(getParam(mIsChildAlive)->mDashDistance, a1);
+        mVelocity.scale(::getParam(mIsChildAlive)->mDashDistance, a1);
     }
 }
 
@@ -264,7 +264,7 @@ void StinkBugParent::exePanic() {
 
     if (!MR::isOnPlayer(getSensor("body"))) {
         setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvRecover));
-    } else if (MR::isStep(this, getParam(mIsChildAlive)->mPanicStep)) {
+    } else if (MR::isStep(this, ::getParam(mIsChildAlive)->mPanicStep)) {
         setNerve(GET_NERVE(StinkBugParent, StinkBugParentNrvShakeStart));
     }
 }

@@ -74,10 +74,10 @@ bool TombSpiderDemo::updateGateOpen() {
         mMtx[2][3] -= ::sGateOpenPlayerSpeed;
     } else {
         TVec3f startPos(mParent->mPosition.x, mParent->mPosition.y,
-                        mParent->mPosition.z + (::sPlanetRadius - ::sGateOpenPlayerSpeed * sStepGateBreak));
+                        mParent->mPosition.z + (::sPlanetRadius - ::sGateOpenPlayerSpeed * ::sStepGateBreak));
         TVec3f endPos(mParent->mPosition.x, mParent->mPosition.y - ::sPlanetInsideRadius, mParent->mPosition.z);
 
-        f32 t1 = (mParent->getNerveStep() - (::sStepGateBreak + 3)) / static_cast< f32 >(::sStepDemoGateOpen - (sStepGateBreak + 3));
+        f32 t1 = (mParent->getNerveStep() - (::sStepGateBreak + 3)) / static_cast< f32 >(::sStepDemoGateOpen - (::sStepGateBreak + 3));
         f32 t2 = MR::getEaseInValue(t1, 0.0f, 1.0f, 1.0f);
         TVec3f pos;
         pos.x = startPos.x * (1.0f - t1) + endPos.x * t1;

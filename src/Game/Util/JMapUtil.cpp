@@ -2,6 +2,129 @@
 #include "Game/Util.hpp"
 #include <cstdio>
 
+void JMapUtil_FORCE_MATCH_STRINGS() {
+    MR::isEqualString("type", "type");
+    MR::isEqualString("name", "name");
+    MR::isEqualString("Obj_arg0", "Obj_arg0");
+    MR::isEqualString("ShapeModelNo", "ShapeModelNo");
+    MR::isEqualString("pos_x", "pos_x");
+    MR::isEqualString("pos_y", "pos_y");
+    MR::isEqualString("pos_z", "pos_z");
+    MR::isEqualString("dir_x", "dir_x");
+    MR::isEqualString("dir_y", "dir_y");
+    MR::isEqualString("dir_z", "dir_z");
+    MR::isEqualString("scale_x", "scale_x");
+    MR::isEqualString("scale_y", "scale_y");
+    MR::isEqualString("scale_z", "scale_z");
+    MR::isEqualString("Obj_arg1", "Obj_arg1");
+    MR::isEqualString("Obj_arg2", "Obj_arg2");
+    MR::isEqualString("Obj_arg3", "Obj_arg3");
+    MR::isEqualString("Obj_arg4", "Obj_arg4");
+    MR::isEqualString("Obj_arg5", "Obj_arg5");
+    MR::isEqualString("Obj_arg6", "Obj_arg6");
+    MR::isEqualString("Obj_arg7", "Obj_arg7");
+    MR::isEqualString("FollowId", "FollowId");
+    MR::isEqualString("GroupId", "GroupId");
+    MR::isEqualString("ClippingGroupId", "ClippingGroupId");
+    MR::isEqualString("DemoGroupId", "DemoGroupId");
+    MR::isEqualString("l_id", "l_id");
+    MR::isEqualString("CommonPath_ID", "CommonPath_ID");
+    MR::isEqualString("SW_A", "SW_A");
+    MR::isEqualString("SW_B", "SW_B");
+    MR::isEqualString("SW_APPEAR", "SW_APPEAR");
+    MR::isEqualString("SW_DEAD", "SW_DEAD");
+    MR::isEqualString("SW_SLEEP", "SW_SLEEP");
+    MR::isEqualString("CameraSetId", "CameraSetId");
+    MR::isEqualString("ViewGroupId", "ViewGroupId");
+    MR::isEqualString("MessageId", "MessageId");
+    MR::isEqualString("CastId", "CastId");
+    MR::isEqualString("DemoName", "DemoName");
+    MR::isEqualString("TimeSheetName", "TimeSheetName");
+    MR::isEqualString("path_arg0", "path_arg0");
+    MR::isEqualString("path_arg1", "path_arg1");
+    MR::isEqualString("path_arg2", "path_arg2");
+    MR::isEqualString("path_arg3", "path_arg3");
+    MR::isEqualString("path_arg4", "path_arg4");
+    MR::isEqualString("path_arg5", "path_arg5");
+    MR::isEqualString("path_arg6", "path_arg6");
+    MR::isEqualString("path_arg7", "path_arg7");
+    MR::isEqualString("Path_ID", "Path_ID");
+    MR::isEqualString("usage", "usage");
+    MR::isEqualString("pnt0_x", "pnt0_x");
+    MR::isEqualString("pnt0_y", "pnt0_y");
+    MR::isEqualString("pnt0_z", "pnt0_z");
+    MR::isEqualString("pnt1_x", "pnt1_x");
+    MR::isEqualString("pnt1_y", "pnt1_y");
+    MR::isEqualString("pnt1_z", "pnt1_z");
+    MR::isEqualString("pnt2_x", "pnt2_x");
+    MR::isEqualString("pnt2_y", "pnt2_y");
+    MR::isEqualString("pnt2_z", "pnt2_z");
+    MR::isEqualString("closed", "closed");
+    MR::isEqualString("CLOSE", "CLOSE");
+}
+
+bool MR::getObjectName(const char** pName, const JMapInfoIter& rIter) {
+    if (!rIter.isValid()) {
+        return false;
+    }
+
+    if (rIter.getValue< const char* >("type", pName)) {
+        return true;
+    }
+
+    return rIter.getValue< const char* >("name", pName);
+}
+
+bool MR::isExistJMapArg(const JMapInfoIter& rIter) {
+    if (!rIter.isValid()) {
+        return false;
+    }
+
+    s32 arg;
+
+    return rIter.getValue< s32 >("Obj_arg0", &arg);
+}
+
+bool MR::getJMapInfoShapeIdWithInit(const JMapInfoIter& rIter, s32* pShapeID) {
+    return rIter.getValue< s32 >("ShapeModelNo", pShapeID);
+}
+
+bool MR::getJMapInfoTransLocal(const JMapInfoIter& rIter, TVec3f* pOut) {
+    if (!MR::getValue< f32 >(rIter, "pos_x", &pOut->x)) {
+        return false;
+    }
+
+    if (!MR::getValue< f32 >(rIter, "pos_y", &pOut->y)) {
+        return false;
+    }
+
+    return MR::getValue< f32 >(rIter, "pos_z", &pOut->z);
+}
+
+bool MR::getJMapInfoRotateLocal(const JMapInfoIter& rIter, TVec3f* pOut) {
+    if (!MR::getValue< f32 >(rIter, "dir_x", &pOut->x)) {
+        return false;
+    }
+
+    if (!MR::getValue< f32 >(rIter, "dir_y", &pOut->y)) {
+        return false;
+    }
+
+    return MR::getValue< f32 >(rIter, "dir_z", &pOut->z);
+}
+
+bool MR::getJMapInfoScale(const JMapInfoIter& rIter, TVec3f* pOut) {
+    if (!MR::getValue< f32 >(rIter, "scale_x", &pOut->x)) {
+        return false;
+    }
+
+    if (!MR::getValue< f32 >(rIter, "scale_y", &pOut->y)) {
+        return false;
+    }
+
+    return MR::getValue< f32 >(rIter, "scale_z", &pOut->z);
+}
+
 bool MR::isValidInfo(const JMapInfoIter& rIter) {
     return rIter.isValid();
 }
@@ -325,68 +448,6 @@ bool MR::getRailId(const JMapInfoIter& rIter, s32* pOut) {
     return ::getJMapInfoArgWithInit(rIter, "CommonPath_ID", pOut);
 }
 
-bool MR::getObjectName(const char** pName, const JMapInfoIter& rIter) {
-    if (!rIter.isValid()) {
-        return false;
-    }
-
-    if (rIter.getValue< const char* >("type", pName)) {
-        return true;
-    }
-
-    return rIter.getValue< const char* >("name", pName);
-}
-
-bool MR::isExistJMapArg(const JMapInfoIter& rIter) {
-    if (!rIter.isValid()) {
-        return false;
-    }
-
-    s32 arg;
-
-    return rIter.getValue< s32 >("Obj_arg0", &arg);
-}
-
-bool MR::getJMapInfoShapeIdWithInit(const JMapInfoIter& rIter, s32* pShapeID) {
-    return rIter.getValue< s32 >("ShapeModelNo", pShapeID);
-}
-
-bool MR::getJMapInfoTransLocal(const JMapInfoIter& rIter, TVec3f* pOut) {
-    if (!MR::getValue< f32 >(rIter, "pos_x", &pOut->x)) {
-        return false;
-    }
-
-    if (!MR::getValue< f32 >(rIter, "pos_y", &pOut->y)) {
-        return false;
-    }
-
-    return MR::getValue< f32 >(rIter, "pos_z", &pOut->z);
-}
-
-bool MR::getJMapInfoRotateLocal(const JMapInfoIter& rIter, TVec3f* pOut) {
-    if (!MR::getValue< f32 >(rIter, "dir_x", &pOut->x)) {
-        return false;
-    }
-
-    if (!MR::getValue< f32 >(rIter, "dir_y", &pOut->y)) {
-        return false;
-    }
-
-    return MR::getValue< f32 >(rIter, "dir_z", &pOut->z);
-}
-
-bool MR::getJMapInfoScale(const JMapInfoIter& rIter, TVec3f* pOut) {
-    if (!MR::getValue< f32 >(rIter, "scale_x", &pOut->x)) {
-        return false;
-    }
-
-    if (!MR::getValue< f32 >(rIter, "scale_y", &pOut->y)) {
-        return false;
-    }
-
-    return MR::getValue< f32 >(rIter, "scale_z", &pOut->z);
-}
-
 bool MR::getJMapInfoV3f(const JMapInfoIter& rIter, const char* pName, TVec3f* pOut) {
     char str[32];
     sprintf(str, "%sX", pName);
@@ -446,7 +507,7 @@ bool MR::getJMapInfoGroupID(const JMapInfoIter& rIter, s32* pOut) {
     return MR::getJMapInfoClippingGroupID(rIter, pOut);
 }
 
-bool MR::getJMapInfoClippingGroupID(const JMapInfoIter& rIter, s32* pOut) {
+bool MR::getJMapInfoClippingGroupID(const JMapInfoIter& rIter, s32* pOut) NO_INLINE {
     return ::getJMapInfoArgWithInit(rIter, "ClippingGroupId", pOut);
 }
 
@@ -477,8 +538,8 @@ bool MR::isExistStageSwitchA(const JMapInfoIter& rIter) {
         return false;
     }
 
-    s32 arg;
-    ::getJMapInfoArgWithInit(rIter, "SW_A", &arg);
+    s32 arg = -1;
+    rIter.getValue< s32 >("SW_A", &arg);
 
     return arg != -1;
 }
@@ -488,8 +549,8 @@ bool MR::isExistStageSwitchB(const JMapInfoIter& rIter) {
         return false;
     }
 
-    s32 arg;
-    ::getJMapInfoArgWithInit(rIter, "SW_B", &arg);
+    s32 arg = -1;
+    rIter.getValue< s32 >("SW_B", &arg);
 
     return arg != -1;
 }
@@ -499,8 +560,8 @@ bool MR::isExistStageSwitchAppear(const JMapInfoIter& rIter) {
         return false;
     }
 
-    s32 arg;
-    ::getJMapInfoArgWithInit(rIter, "SW_APPEAR", &arg);
+    s32 arg = -1;
+    rIter.getValue< s32 >("SW_APPEAR", &arg);
 
     return arg != -1;
 }
@@ -510,8 +571,8 @@ bool MR::isExistStageSwitchDead(const JMapInfoIter& rIter) {
         return false;
     }
 
-    s32 arg;
-    ::getJMapInfoArgWithInit(rIter, "SW_DEAD", &arg);
+    s32 arg = -1;
+    rIter.getValue< s32 >("SW_DEAD", &arg);
 
     return arg != -1;
 }
@@ -521,8 +582,8 @@ bool MR::isExistStageSwitchSleep(const JMapInfoIter& rIter) {
         return false;
     }
 
-    s32 arg;
-    ::getJMapInfoArgWithInit(rIter, "SW_SLEEP", &arg);
+    s32 arg = -1;
+    rIter.getValue< s32 >("SW_SLEEP", &arg);
 
     return arg != -1;
 }

@@ -16,7 +16,7 @@ void MapPartsBreaker::exeWait() {
 void MapPartsBreaker::exeReactToTornado() {
     if (isFirstStep()) {
         TVec3f* vel = &mHost->mVelocity;
-        vel->set< f32 >((_28 * 5.0f) * _34);
+        vel->set((_28 * 5.0f) * _34);
     }
 
     if (getStep() % 3 == 0) {
@@ -28,7 +28,7 @@ void MapPartsBreaker::exeReactToTornado() {
             setNerve(GET_NERVE(MapPartsBreaker, HostTypeBreak));
         } else {
             mHost->mVelocity.zero();
-            mHost->mPosition.set< f32 >(_1C);
+            mHost->mPosition.set(_1C);
             _28.x = 0.0f;
             _28.y = 1.0f;
             _28.z = 0.0f;

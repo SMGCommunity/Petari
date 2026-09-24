@@ -14,7 +14,7 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-TalkState::TalkState() : _04(nullptr), mBalloon(nullptr) {
+TalkState::TalkState() : _04(), mBalloon() {
 }
 
 void TalkState::init(TalkMessageCtrl* pArg1, TalkBalloon* pBalloon) {
@@ -188,7 +188,6 @@ bool TalkStateNormal::term(const TalkMessageCtrl* pArg1) {
     return TalkStateEvent::term(pArg1);
 }
 
-// Stuck at 99% because assembly string labels don't match, even though the code *should* be correct.
 bool TalkStateNormal::prep(const TalkMessageCtrl* pArg1) {
     if (TalkStateNormal::isLostMessage(pArg1)) {
         mAButton->term();
@@ -207,6 +206,7 @@ bool TalkStateNormal::prep(const TalkMessageCtrl* pArg1) {
             } else {
                 mAButton->openWithTalk();
             }
+
             MR::startSystemSE("SE_SM_TALK_BUTTON_APPEAR");
         }
     } else {
@@ -225,7 +225,8 @@ void TalkStateNormal::updateButton() {
     TVec3f centerPlayer(*MR::getPlayerCenterPos());
     MR::getPlayerUpVec(&up);
 
-    f32 f1 = __fabs(camZ.dot(up));
+    f64 absolute = __fabs(camZ.dot(up));  // TODO: look at fabs again
+    f32 f1 = absolute;
     f32 f2 = camY.dot(up);
     f1 = f1 * f1;
 

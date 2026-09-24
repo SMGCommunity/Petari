@@ -1,8 +1,8 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util.hpp"
 #include "Inline.hpp"
-#include <JSystem/JMath/JMATrigonometric.hpp>
 #include "math_types.hpp"
+#include <JSystem/JMath/JMATrigonometric.hpp>
 
 void DiskGravity_FORCE_MATCH_SDATA2() {
     (void)1.0f;
@@ -33,7 +33,7 @@ void DiskGravity::setLocalDirection(const TVec3f& rLocalDir) {
 }
 
 void DiskGravity::setSideDirection(const TVec3f& rSideDir) {
-    mSideDirection.set< f32 >(rSideDir);
+    mSideDirection.set(rSideDir);
     updateLocalParam();
 }
 
@@ -82,7 +82,7 @@ bool DiskGravity::calcOwnGravityVector(TVec3f* pDest, f32* pDistance, const TVec
         }
 
         TVec3f closestEdgePoint;
-        closestEdgePoint.set< f32 >(dirOnDiskPlane * mWorldRadius);
+        closestEdgePoint.set(dirOnDiskPlane * mWorldRadius);
         closestEdgePoint += mWorldPosition;
 
         gravity = closestEdgePoint - rPosition;

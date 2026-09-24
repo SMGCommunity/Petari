@@ -61,8 +61,8 @@ void QuestionCoin::init(const JMapInfoIter& rIter) {
     MR::connectToSceneItemStrongLight(this);
     initEffectKeeper(0, nullptr, false);
     initHitSensor(1);
-    f32 radius = sHitRadius * mScale.x;
-    HitSensor* sensor = MR::addHitSensor(this, "binder", ATYPE_QUESTION_COIN_BIND, 16, radius, TVec3f(0.0f, sOffsetY * mScale.y, 0.0f));
+    f32 radius = ::sHitRadius * mScale.x;
+    HitSensor* sensor = MR::addHitSensor(this, "binder", ATYPE_QUESTION_COIN_BIND, 16, radius, TVec3f(0.0f, ::sOffsetY * mScale.y, 0.0f));
     MR::setClippingTypeSphere(this, 2.0f * radius, &sensor->mPosition);
     initShadow();
     MR::initActorCamera(this, rIter, &mCameraInfo);
@@ -79,7 +79,7 @@ void QuestionCoin::init(const JMapInfoIter& rIter) {
 
 void QuestionCoin::initAfterPlacement() {
     if (MR::isInWater(mPosition)) {
-        getSensor("binder")->mRadius = sInWaterScale * getSensor("binder")->mRadius;
+        getSensor("binder")->mRadius = ::sInWaterScale * getSensor("binder")->mRadius;
     }
 
     TPos3f rotation;
@@ -109,7 +109,7 @@ void QuestionCoin::initAfterPlacement() {
     }
 
     mGravity.set(gravity);
-    SpinDriverUtil::setShadowAndClipping(this, &mShadowPos, dropLength, sShadowHeightMargin, &mShadowDropLength);
+    SpinDriverUtil::setShadowAndClipping(this, &mShadowPos, dropLength, ::sShadowHeightMargin, &mShadowDropLength);
     MR::setShadowDropPositionPtr(this, nullptr, &getSensor("binder")->mPosition);
 }
 
@@ -199,7 +199,7 @@ void QuestionCoin::initFromJMapInfoArg(const JMapInfoIter& rIter) {
 }
 
 void QuestionCoin::initShadow() {
-    MR::initShadowVolumeSphere(this, sShadowRadius * mScale.x);
+    MR::initShadowVolumeSphere(this, ::sShadowRadius * mScale.x);
 
     if (mCalcShadow) {
         MR::onCalcShadow(this, nullptr);
@@ -209,18 +209,18 @@ void QuestionCoin::initShadow() {
 void QuestionCoin::updateActorMtx() {
     f32 rate = 1.0f;
 
-    if (MR::isLessEqualStep(this, sBindStartBlendFrame) && sBindStartBlendFrame > 0) {
-        rate = MR::calcNerveRate(this, sBindStartBlendFrame);
+    if (MR::isLessEqualStep(this, ::sBindStartBlendFrame) && ::sBindStartBlendFrame > 0) {
+        rate = MR::calcNerveRate(this, ::sBindStartBlendFrame);
     }
 
     TQuat4f startQuat;
     mActorMtx.getQuat(startQuat);
-    TQuat4f quat(static_cast< const Quaternion& >(startQuat));
+    TQuat4f quat = static_cast< TVec4f >(startQuat);  // TODO: FAKEMATCH
     quat.slerp(mLaunchQuat, rate);
     TVec3f startPos;
     mActorMtx.getTrans(startPos);
     TVec3f position;
-    JMAVECLerp(&startPos, &getSensor("binder")->mPosition, &position, rate);
+    position.lerp(startPos, getSensor("binder")->getPosition(), rate);
     TPos3f mtx;
     mtx.setQT(quat, position);
     MR::setBaseTRMtx(mBoundActor, mtx);
@@ -240,7 +240,7 @@ void QuestionCoin::exeThrowActor() {
         }
     }
 
-    if (MR::isStep(this, sBindAnimFrame)) {
+    if (MR::isStep(this, ::sBindAnimFrame)) {
         TPos3f rotation;
         MR::makeMtxRotate(rotation.toMtxPtr(), mRotation);
         TVec3f velocity;

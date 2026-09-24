@@ -422,7 +422,7 @@ bool Creeper::tryJump() {
 
 bool Creeper::updateHangUp(f32 rotateSpeed) {
     if (MR::isPadSwing(WPAD_CHAN0)) {
-        mHangSpeed += sHangUpAccel;
+        mHangSpeed += ::sHangUpAccel;
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     }
 

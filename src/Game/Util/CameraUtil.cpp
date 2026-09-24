@@ -12,6 +12,7 @@
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/MirrorCamera.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
+#include "Game/Player/MarioActor.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/PlayerUtil.hpp"
@@ -87,11 +88,11 @@ namespace MR {
     }
 
     bool calcNormalizedScreenPositionFromView(TVec3f* pScreenPos, const TVec3f& rPos) {
-        // FIXME: float regswap in y parameter of TVec4 in mtx.mult
-
         TProj3f proj;
         proj.set(::getCameraContext()->mProjection);
-        proj.mult(rPos, *pScreenPos);
+        TVec4f pos(rPos.x * proj.toMtx44()[0][0] + rPos.z * proj.toMtx44()[0][2], rPos.y * proj.toMtx44()[1][1] + rPos.z * proj.toMtx44()[1][2],
+                   rPos.z * proj.toMtx44()[2][2] + proj.toMtx44()[2][3], -rPos.z);
+        pScreenPos->scale(1.0f / pos.w, *pos.toTVec3());
         pScreenPos->y = -pScreenPos->y;
 
         if (1.0f < MR::abs(pScreenPos->x) || 1.0f < MR::abs(pScreenPos->y)) {
@@ -102,15 +103,13 @@ namespace MR {
     }
 
     bool calcWorldPositionFromScreen(TVec3f* pPos, const TVec2f& rScreenPos, f32 distZ) {
-        // FIXME: TVec2f ctor should uninline
-
         f32 width = MR::getScreenWidth();
         f32 height = MR::getScreenHeight();
 
-        f32 w = rScreenPos.x - width * 0.5f;
-        f32 h = rScreenPos.y - height * 0.5f;
+        f32 centerX = rScreenPos.x - width * 0.5f;
+        f32 centerY = rScreenPos.y - height * 0.5f;
 
-        return calcWorldPositionFromCenterScreen(pPos, TVec2f(w, h), distZ);
+        return calcWorldPositionFromCenterScreen(pPos, TVec2f(centerX, centerY), distZ);
     }
 
     bool calcWorldPositionFromCenterScreen(TVec3f* pPos, const TVec2f& rScreenPos, f32 distZ) {
@@ -311,6 +310,7 @@ namespace MR {
             if (mDisableRoll) {
                 chunk->mGeneralParam->mNum1 = 1;
             }
+
             chunk->_64 = true;
         }
     }
@@ -581,6 +581,7 @@ namespace MR {
         if (isFirstPersonCameraOK() && !getCameraDirector()->mIsStartCameraActive) {
             ret = true;
         }
+
         return ret;
     }
 
@@ -597,6 +598,7 @@ namespace MR {
         if (getCameraDirector()->mIsCameraNG == false && isFpViewChangingFailure() == false) {
             ret = false;
         }
+
         return ret;
     }
 
@@ -688,9 +690,10 @@ namespace MR {
 
     void startEventCameraAnim(const ActorCameraInfo* pInfo, const char* pEventName, const CameraTargetArg& rCamTarget, s32 frame, f32 speed) {
         CameraParamChunkEvent* pChunk = getCameraDirector()->getEventParameter(pInfo->mZoneID, pEventName);
-        if (pChunk) {
+        if (pChunk != nullptr) {
             pChunk->mGeneralParam->mDist = speed;
         }
+
         startEventCamera(pInfo, pEventName, rCamTarget, frame);
     }
 

@@ -175,11 +175,10 @@ void FireBar::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 }
 
-void FireBar::updateHitSensor(HitSensor* sensor) {
+void FireBar::updateHitSensor(HitSensor* pSensor) {
     f32 minDistance = FLOAT_MAX;
 
-    TVec3f position;
-    position.z = mPosition.z;
+    TVec3f position = mPosition;
 
     s32 fireBallCount = mFireBallCount / mStickCount;
 
@@ -188,40 +187,38 @@ void FireBar::updateHitSensor(HitSensor* sensor) {
 
     TVec3f start;
     start.scale(mStickDistance, _94);
-    JMAVECScaleAdd(&up, &start, &start, 50.0f);
+    start.scaleAdd(50.0f, up, start);
 
     TVec3f end;
     end.scale(mStickDistance + 100.0f * (fireBallCount - 1), _94);
-    JMAVECScaleAdd(&up, &end, &end, 50.0f);
+    end.scaleAdd(50.0f, up, end);
 
-    for (s32 i = 0; i < mStickCount; ++i) {
+    for (s32 i = 0; i < mStickCount; i++) {
+        const TVec3f& pos = mPosition;
+
         TVec3f startWorld;
+        startWorld.add(start, pos);
         TVec3f endWorld;
+        endWorld.add(end, pos);
 
-        JMathInlineVEC::PSVECAdd(&start, &mPosition, &startWorld);
-        JMathInlineVEC::PSVECAdd(&end, &mPosition, &endWorld);
+        TVec3f footPos;
+        MR::calcPerpendicFootToLineInside(&footPos, *MR::getPlayerCenterPos(), startWorld, endWorld);
 
-        MR::calcPerpendicFootToLineInside(&position, *MR::getPlayerCenterPos(), startWorld, endWorld);
-
-        const Vec* playerCenter = MR::getPlayerCenterPos();
-        f32 distance = PSVECDistance(&position, playerCenter);
-
+        f32 distance = footPos.distance(*MR::getPlayerCenterPos());
         if (minDistance > distance) {
-            position.set(position);
+            position.set(footPos);
             minDistance = distance;
         }
 
         if (i + 1 != mStickCount) {
+            TVec3f up;
             MR::calcUpVec(&up, this);
-
-            f32 angle = 360.0f / mStickCount;
-
-            MR::rotateVecDegree(&start, up, angle);
-            MR::rotateVecDegree(&end, up, angle);
+            MR::rotateVecDegree(&start, up, 360.0f / mStickCount);
+            MR::rotateVecDegree(&end, up, 360.0f / mStickCount);
         }
     }
 
-    sensor->mPosition.set(position);
+    pSensor->mPosition.set(position);
 }
 
 // meh
@@ -274,6 +271,6 @@ void FireBar::fixFireBarBall() {
             final_pos.add(scaled);
         }
 
-        mFireBalls[i]->mPosition.set< f32 >(final_pos);
+        mFireBalls[i]->mPosition.set(final_pos);
     }
 }

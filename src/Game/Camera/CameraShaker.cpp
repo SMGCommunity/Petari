@@ -83,7 +83,7 @@ void CameraShaker::createSinglyHorizontalTask() {
 
 void CameraShaker::createInfinityTask() {
     for (u32 i = 0; i < NR_INFINITY_TASKS; i++) {
-        CameraShakePatternVerticalSin* sin = new CameraShakePatternVerticalSin(::sInfinityIntensity, sInfinitySpeed);
+        CameraShakePatternVerticalSin* sin = new CameraShakePatternVerticalSin(::sInfinityIntensity, ::sInfinitySpeed);
         CameraShakeTask* task = new CameraShakeTask(sin);
 
         mInfinityTasks[i] = task;

@@ -43,7 +43,7 @@ void JointCtrlRate::update() {
 
 void JointCtrlRate::startCtrl(s32 time) {
     if (time < 0) {
-        time = sDefaultCtrlTime;
+        time = ::sDefaultCtrlTime;
     }
 
     _8 = time;
@@ -54,7 +54,7 @@ void JointCtrlRate::startCtrl(s32 time) {
 
 void JointCtrlRate::endCtrl(s32 time) {
     if (time < 0) {
-        time = sDefaultCtrlTime;
+        time = ::sDefaultCtrlTime;
     }
 
     _C = time;
@@ -94,7 +94,7 @@ void DynamicJointCtrlNode::update(LiveActor* pActor, const DynamicJointCtrlNode*
     TVec3f direction(offset);
 
     if (MR::isNearZero(direction)) {
-        direction.set< f32 >(pParent->_1C);
+        direction.set(pParent->_1C);
     } else {
         MR::normalize(&direction);
     }
@@ -123,7 +123,7 @@ bool DynamicJointCtrlNode::updateJointMtxCallBack(TPos3f* pMtx, const JointContr
         return false;
     }
 
-    _1C.set< f32 >(axis);
+    _1C.set(axis);
     MR::normalize(&_1C);
 
     f32 rate = mParentControl->mControlRate->_0;
@@ -155,7 +155,7 @@ void DynamicJointCtrl::init() {
     if (mParams->mCtrlJointNumMax > 0) {
         _8 = mParams->mCtrlJointNumMax;
     } else {
-        _8 = calcJointChildNum(joint) + 2;
+        _8 = ::calcJointChildNum(joint) + 2;
     }
 
     mCtrlNodes = new DynamicJointCtrlNode*[_8];
@@ -174,7 +174,7 @@ void DynamicJointCtrl::init() {
                 length = pos.distance(previousPos);
             }
 
-            previousPos.set< f32 >(pos);
+            previousPos.set(pos);
         }
 
         mCtrlNodes[i] = new DynamicJointCtrlNode(this, mtx, length);
@@ -219,7 +219,7 @@ void DynamicJointCtrl::setCallBackFunction() {
 
 DynamicJointCtrlKeeper::DynamicJointCtrlKeeper(LiveActor* pActor) : mActor(pActor), _4(), mControls() {
     const ResourceHolder* resourceHolder = MR::getResourceHolder(pActor);
-    JMapInfo* csv = MR::tryCreateCsvParser(resourceHolder, "%s.bcsv", sTextOutFileName);
+    JMapInfo* csv = MR::tryCreateCsvParser(resourceHolder, "%s.bcsv", ::sTextOutFileName);
     if (!csv) {
         return;
     }
@@ -229,7 +229,7 @@ DynamicJointCtrlKeeper::DynamicJointCtrlKeeper(LiveActor* pActor) : mActor(pActo
 
     for (s32 i = 0; i < _4; i++) {
         DynamicJointCtrlParam* param = new DynamicJointCtrlParam;
-        *param = sDefaultParam;
+        *param = ::sDefaultParam;
         const char* name = nullptr;
         csv->getValue(i, "JointName", &name);
         csv->getValue(i, "Gravity", &param->mGravity);

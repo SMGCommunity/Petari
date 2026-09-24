@@ -16,25 +16,21 @@ class LayoutManager;
 
 class LayoutPaneCtrl {
 public:
-    /// @brief Creates a new `LayoutGroupCtrl`.
-    /// @param pHost A pointer to the owning `LayoutManager` instance.
-    /// @param pPaneName A pointer to the null-terminated name of the pane to associate with.
-    /// @param animLayerNum The maximum number of animations to support at once.
     LayoutPaneCtrl(LayoutManager* pHost, const char* pPaneName, u32 animLayerNum);
 
     void movement();
     void calcAnim();
-    void start(const char*, u32);
-    void stop(u32);
-    bool isAnimStopped(u32) const;
+    void start(const char* pAnimName, u32 layer);
+    void stop(u32 layer);
+    bool isAnimStopped(u32 layer) const;
     void reflectFollowPos();
-    J3DFrameCtrl* getFrameCtrl(u32) const;
-    void recalcChildGlobalMtx(nw4r::lyt::Pane*);
+    J3DFrameCtrl* getFrameCtrl(u32 layer) const;
+    void recalcChildGlobalMtx(nw4r::lyt::Pane* pPane);
 
     /* 0x00 */ LayoutManager* mHost;
     /* 0x04 */ nw4r::lyt::Pane* mPane;
     /* 0x08 */ s32 mPaneIndex;
     /* 0x0C */ MR::AssignableArray< LayoutAnmPlayer* > mAnmPlayerArray;
-    /* 0x14 */ u32 mFollowType;
+    /* 0x14 */ s32 mFollowType;
     /* 0x18 */ const TVec2f* mFollowPos;
 };

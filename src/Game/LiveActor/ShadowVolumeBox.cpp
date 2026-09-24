@@ -16,7 +16,7 @@ ShadowVolumeBox::ShadowVolumeBox() : ShadowVolumeDrawer("影描画[ボリュー�
 }
 
 void ShadowVolumeBox::setSize(const TVec3f& rSize) {
-    mSize.set< f32 >(rSize);
+    mSize.set(rSize);
 }
 
 void ShadowVolumeBox::loadModelDrawMtx() const {

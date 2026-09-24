@@ -1,8 +1,8 @@
-#include "Game/Util/DrawUtil.hpp"
 #include "Game/Scene/GameSceneFunction.hpp"
 #include "Game/Screen/ScreenAlphaCapture.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/Color.hpp"
+#include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include <JSystem/J3DGraphAnimator/J3DJoint.hpp>
@@ -28,11 +28,23 @@ static u8 sTexImgObj[] = {0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    
                           0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    0xFF,
                           0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
                           0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
-static bool sIsReinitTextureCache;
-static GXTexCacheSize sReinitTextureCacheSize;
+static bool sIsReinitTextureCache = true;
+static GXTexCacheSize sReinitTextureCacheSize = GX_TEXCACHE_128K;
 
-const JUTTexture* mShadowTex;
-TVec3f mShadowVec;
+void DrawUtil_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)-1.0f;
+    (void)-10000.0f;
+    (void)10000.0f;
+    (void)608.0f;
+    (void)-1000.0f;
+    (void)1000.0f;
+    (void)-0.5f;
+    (void)-30000.0f;
+    (void)30000.0f;
+}
 
 namespace {
     GXTexObj clear_z_tobj;
@@ -44,6 +56,9 @@ namespace {
         return MR::getScreenHeight();
     }
 };  // namespace
+
+const JUTTexture* mShadowTex;
+TVec3f mShadowVec;
 
 namespace MR {
     void drawInit() {
@@ -89,7 +104,7 @@ namespace MR {
 
     void setDefaultViewportAndScissor() {
         s32 width = MR::getFrameBufferWidth();
-        s32 height = getScreenHeightInline();
+        s32 height = ::getScreenHeightInline();
         GXSetViewport(0.0f, 0.0f, width, height, 0.0f, 1.0f);
         GXSetScissor(0, 0, width, height);
     }
@@ -99,13 +114,15 @@ namespace MR {
         orthoGraph.setPort();
     }
 
-    // ! unfinished - https://decomp.me/scratch/VkVF2
-    void setupDrawForNW4RLayout(f32 a1, bool) {
-        f32 v1 = MR::getScreenHeight() * 0.5f * a1;
-        f32 v2 = 608.0f * 0.5f * a1;
-
+    void setupDrawForNW4RLayout(f32 scale, bool) {
+        f32 height = MR::getScreenHeight();
+        f32 width = 608.0f;
+        f32 halfWidth = width / 2.0f;
+        height *= 0.5f;
+        halfWidth *= scale;
+        height *= scale;
         Mtx44 projMtx;
-        C_MTXOrtho(projMtx, v1, -v1, -v2, v2, ::cNearZ, ::cFarZ);
+        C_MTXOrtho(projMtx, height, -height, -halfWidth, halfWidth, -1000.0f, 1000.0f);
         GXSetProjection(projMtx, GX_ORTHOGRAPHIC);
         GXSetCullMode(GX_CULL_NONE);
         GXSetZMode(GX_FALSE, GX_NEVER, GX_FALSE);
@@ -178,6 +195,56 @@ namespace MR {
         GXSetColorUpdate(GX_TRUE);
     }
 
+    void clearAlphaBuffer(u8 alpha) {
+        JUTVideo* pVideo = JUTVideo::getManager();
+        f32 height = pVideo->getEfbHeight();
+        f32 width = pVideo->getFbWidth();
+        clearAlphaBuffer(alpha, TVec2f(0.0f, 0.0f), TVec2f(width, height));
+    }
+
+    void clearAlphaBuffer(u8 alpha, const TVec2f& rPosition, const TVec2f& rSize) {
+        u16 width = rSize.x;
+        u16 height = rSize.y;
+        Mtx44 projection;
+        C_MTXOrtho(projection, 0.0f, ::getScreenHeightInline(), 0.0f, getFrameBufferWidth(), -1.0f, 1.0f);
+        GXSetProjection(projection, GX_ORTHOGRAPHIC);
+        GXSetCurrentMtx(GX_PNMTX0);
+        Mtx matrix;
+        PSMTXIdentity(matrix);
+        GXLoadPosMtxImm(matrix, GX_PNMTX0);
+        GXClearVtxDesc();
+        GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+        GXSetNumTexGens(0);
+        GXSetNumTevStages(1);
+        GXSetTevDirect(GX_TEVSTAGE0);
+        GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+        GXSetNumChans(1);
+        GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+        GXSetCoPlanar(GX_FALSE);
+        GXSetClipMode(GX_CLIP_DISABLE);
+        GXSetCullMode(GX_CULL_NONE);
+        GXSetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
+        GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
+        GXSetBlendMode(GX_BM_NONE, GX_BL_ZERO, GX_BL_ZERO, GX_LO_COPY);
+        GXSetColorUpdate(GX_FALSE);
+        GXSetAlphaUpdate(GX_TRUE);
+        GXSetDstAlpha(GX_TRUE, alpha);
+
+        GXBegin(GX_TRIANGLES, GX_VTXFMT0, 6);
+        GXPosition3f32(rPosition.x, rPosition.y, 0.0f);
+        GXPosition3f32(width + rPosition.x, rPosition.y, 0.0f);
+        GXPosition3f32(width + rPosition.x, height + rPosition.y, 0.0f);
+        GXPosition3f32(rPosition.x, rPosition.y, 0.0f);
+        GXPosition3f32(width + rPosition.x, height + rPosition.y, 0.0f);
+        GXPosition3f32(rPosition.x, height + rPosition.y, 0.0f);
+        GXEnd();
+
+        GXSetDstAlpha(GX_FALSE, 0);
+        GXSetClipMode(GX_CLIP_ENABLE);
+    }
+
     void fillScreenSetup(const GXColor& rColor) {
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_U16, 0);
         GXClearVtxDesc();
@@ -187,7 +254,7 @@ namespace MR {
         GXLoadPosMtxImm(mtxImm, GX_PNMTX0);
         GXSetCurrentMtx(GX_PNMTX0);
         Mtx44 projMtx;
-        C_MTXOrtho(projMtx, 0.0f, getScreenHeightInline(), 0.0f, MR::getFrameBufferWidth(), -1.0f, 1.0f);
+        C_MTXOrtho(projMtx, 0.0f, ::getScreenHeightInline(), 0.0f, MR::getFrameBufferWidth(), -1.0f, 1.0f);
         GXSetProjection(projMtx, GX_ORTHOGRAPHIC);
         GXSetNumChans(1);
         GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
@@ -262,12 +329,11 @@ namespace MR {
         }
     }
 
-    // ! stack issue - https://decomp.me/scratch/5hwXh
     void fillSilhouetteColor() {
         MR::captureScreenAlpha(0);
         MR::loadScreenAlphaTexture(0, GX_TEXMAP0);
         Mtx44 projMtx;
-        C_MTXOrtho(projMtx, 0.0f, MR::getScreenHeight(), 0.0f, MR::getScreenWidth(), ::cNearZ, ::cFarZ);
+        C_MTXOrtho(projMtx, 0.0f, MR::getScreenHeight(), 0.0f, MR::getScreenWidth(), -1.0f, 1.0f);
         GXSetProjection(projMtx, GX_ORTHOGRAPHIC);
         GXSetTevDirect(GX_TEVSTAGE0);
         GXSetNumIndStages(0);
@@ -289,12 +355,7 @@ namespace MR {
         GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
         GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
         GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
-        GXColor kcolor0;
-        kcolor0.r = 0;
-        kcolor0.g = 0;
-        kcolor0.b = 0;
-        kcolor0.a = 1;
-        GXSetTevKColor(GX_KCOLOR0, kcolor0);
+        GXSetTevKColor(GX_KCOLOR0, Color8(0, 0, 0, 1));
         GXSetTevKAlphaSel(GX_TEVSTAGE0, GX_TEV_KASEL_K0_A);
         GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_TEXA, GX_CA_KONST, GX_CA_A0, GX_CA_ZERO);
         GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_COMP_RGB8_GT, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
@@ -406,6 +467,11 @@ namespace MR {
         GameSceneFunction::deactivateDraw3D();
     }
 };  // namespace MR
+
+J2DOrthoGraphSimple::J2DOrthoGraphSimple() : J2DOrthoGraph(0.0f, 0.0f, MR::getFrameBufferWidth(), ::getScreenHeightInline(), -30000.0f, 30000.0f) {
+    TBox2f bounds(0.0f, 0.0f, MR::getScreenWidth(), MR::getScreenHeight());
+    setOrtho(0.0f, 0.0f, bounds.getWidth(), bounds.getHeight(), -30000.0f, 30000.0f);
+}
 
 void J2DOrthoGraphSimple::setPort() {
     J2DOrthoGraph::setPort();

@@ -265,11 +265,11 @@ bool TeresaRacer::updateRacer(const RaceManager* pRaceManager) {
     f32 length = MR::getRailTotalLength(pRaceManager->mPlayerRacer);
     mPrevPosition.set(mCurrPosition);
     mCurrPosition.set(mPosition);
-    if ((f32)__fabs(mRailCoord - coord) < 2000.0f) {
+    if (MR::fabs(mRailCoord - coord) < 2000.0f) {
         mRailCoord = coord;
     }
 
-    if ((f32)__fabs(mRailCoord - length) < 100.0f) {
+    if (MR::fabs(mRailCoord - length) < 100.0f) {
         mIsGoal = pRaceManager->isGoal(this);
         return mIsGoal;
     }

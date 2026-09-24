@@ -41,12 +41,10 @@ void ElectricPressureBullet::kill() {
 void ElectricPressureBullet::shotElectricBullet(LiveActor* actor, const TPos3f& pos, const f32& value) {
     _98 = actor;
     _9C = value;
-    _8C.set< f32 >(pos.get(0, 2), pos.get(1, 2), pos.get(2, 2));
+    pos.getZDir(_8C);
     mVelocity.scale(_9C, _8C);
-    mPosition.set< f32 >(pos.get(0, 3), pos.get(1, 3), pos.get(2, 3));
-    mRotation.z = 0.0f;
-    mRotation.y = 0.0f;
-    mRotation.x = 0.0f;
+    pos.getTrans(mPosition);
+    mRotation.zero();
     makeActorAppeared();
     MR::validateHitSensors(this);
     MR::invalidateClipping(this);

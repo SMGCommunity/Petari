@@ -8,9 +8,9 @@ class Spine;
 
 class MapPartsFunction : public NameObj {
 public:
-    MapPartsFunction(LiveActor*, const char*);
+    MapPartsFunction(LiveActor* pHost, const char* pName);
 
-    virtual void init(const JMapInfoIter&) {
+    virtual void init(const JMapInfoIter& rIter) {
     }
 
     virtual void movement();
@@ -22,19 +22,19 @@ public:
     virtual void end() {
     }
 
-    virtual bool receiveMsg(u32) {
+    virtual bool receiveMsg(u32 msg) NO_INLINE {
         return false;
     }
 
     virtual void control() {
     }
 
-    bool sendMsgToHost(u32);
-    void initNerve(const Nerve*);
-    void setNerve(const Nerve*);
+    bool sendMsgToHost(u32 msg);
+    void initNerve(const Nerve* pNerve);
+    void setNerve(const Nerve* pNerve);
     s32 getStep() const;
-    bool isStep(s32) const;
-    bool isNerve(const Nerve*) const;
+    bool isStep(s32 step) const;
+    bool isNerve(const Nerve* pNerve) const;
     bool isFirstStep() const;
 
     /* 0x0C */ Spine* mSpine;

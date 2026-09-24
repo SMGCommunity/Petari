@@ -35,8 +35,8 @@ void MarioAnimator::controlWaitAnimation() {
         frontBias = 0.1f;
     }
 
-    f32 frontMagnitude = __fabsf(frontSlope);
-    f32 sideMagnitude = __fabsf(sideSlope);
+    f32 frontMagnitude = MR::abs(frontSlope);
+    f32 sideMagnitude = MR::abs(sideSlope);
     if (sideBias + sideMagnitude > frontBias + frontMagnitude) {
         f32 angle = 1.5707964f - marioAcos(sideMagnitude);
         if (angle >= 0.7853982f) {

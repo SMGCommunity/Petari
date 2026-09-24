@@ -5,10 +5,10 @@
 class ArrowSwitch : public LiveActor {
 public:
     enum SwitchType {
-        SwitchType_HalfPlus = 0,
-        SwitchType_HalfMinus = 1,
-        SwitchType_QuarterPlus = 2,
-        SwitchType_QuarterMinus = 3,
+        SwitchType_QuarterPlus = 0,
+        SwitchType_QuarterMinus = 1,
+        SwitchType_HalfPlus = 2,
+        SwitchType_HalfMinus = 3,
     };
 
     enum Direction {

@@ -40,6 +40,7 @@ public:
     void exeDPDSwoon();
     void endDPDSwoon();
 
+    void initStarPointer(const char*);
     void initBlowModel();
     void punchDown(HitSensor*, HitSensor*);
     void selectNrvWait();

@@ -1,6 +1,13 @@
 #include "Game/Enemy/OnimasuPivot.hpp"
 #include "Game/Util.hpp"
 
+void OnimasuPivot_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)MR::epsilon();
+    (void)2.0f;
+}
+
 OnimasuPivot::OnimasuPivot(const char* pName) : Onimasu(pName), mCurNormal(), mNormals() {
     _110.set(0.0f, 0.0f, 0.0f, 1.0f);
     _120.set(0.0f, 0.0f, 0.0f, 1.0f);
@@ -18,7 +25,7 @@ void OnimasuPivot::startMoveInner() {
     if (MR::isSameDirection(toLastPoint, toNextPoint)) {
         TPos3f mtx;
         mtx.identity();
-        mtx.setRotate(_BC, PI / 1000.0f);
+        mtx.setRotate(_BC, PI * 0.001f);
         mtx.mult(toLastPoint, toLastPoint);
     }
 
@@ -47,7 +54,29 @@ const TVec3f OnimasuPivot::getNextPointPos() const {
     return railPointPos;
 }
 
-// OnimasuPivot::updatePoseInner
+void OnimasuPivot::updatePoseInner() {
+    f32 slerpFactor = static_cast< f32 >(getNerveStep()) / static_cast< f32 >(getTimeToNextPoint());
+
+    if (1.0f < slerpFactor) {
+        slerpFactor = 1.0f;
+    }
+
+    TQuat4f quat;
+    quat.set(_110);
+    quat.slerp(_120, slerpFactor);
+
+    TVec3f fromPivotPoint(gZeroVec);
+
+    quat.getZDir(fromPivotPoint);
+
+    // This constant is 400.0f * sqrt(2.0f), which is hardcoded
+    // for the distance between points in toy time galaxy.
+    fromPivotPoint.setLength(565.6854f);
+
+    fromPivotPoint.add(getPivotPointPos());
+
+    mPosition.set(fromPivotPoint);
+}
 
 s32 OnimasuPivot::getNextPointNo() const {
     return mCurNormal * 2;

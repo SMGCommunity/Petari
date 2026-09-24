@@ -70,7 +70,7 @@ void Caretaker::init(const JMapInfoIter& rIter) {
     caps.mUseShadow = 1;
     caps.mWaitNerve = GET_NERVE(Caretaker, CaretakerNrvTalk);
     caps.mSensorSize = 100.0f;
-
+    initialize(rIter, caps);
     s32 arg3 = 0;
     MR::getJMapInfoArg3NoInit(rIter, &arg3);
     mBodyColorFrame = arg3;
@@ -84,16 +84,12 @@ void Caretaker::init(const JMapInfoIter& rIter) {
     MR::startBtk(this, "Dirt");
     MR::setBtkFrameAndStop(this, 0.0f);
 
-    _134 = "BTrampled";
-    _130 = "BSpinHit";
-    _13C = "BSpinHit";
-    _138 = "BTalkHelp";
-    mParam._14 = "BWaitStand";
-    mParam._18 = "BWaitStand";
-    _11C = "BWaitRun";
-    _120 = "BRunTalk";
+    setDefaults3("BTalkHelp", "BSpinHit", "BSpinHit", "BTrampled");
+
+    mParam.setMoveAction("BWaitStand", "BWaitStand");
+    setTalkAction("BWaitRun", "BRunTalk");
     mParam._0 = 0;
-    mParam._1 = 0;
+    mParam._1 = 1;
     mParam._8 = 3.0f;
     _10C = 2.0f;
     _110 = 0.1f;
@@ -110,65 +106,57 @@ void Caretaker::init(const JMapInfoIter& rIter) {
     MR::calcAnimDirect(this);
 
     if (mMsgCtrl != nullptr) {
-        MR::registerBranchFunc(mMsgCtrl, TalkMessageFunc(this, &Caretaker::branchFuncComet));
-        MR::registerEventFunc(mMsgCtrl, TalkMessageFunc(this, &Caretaker::eventFuncComet));
+        MR::registerBranchFunc(getMsgCtrl(), TalkMessageFunc(this, &Caretaker::branchFuncComet));
+        MR::registerEventFunc(getMsgCtrl(), TalkMessageFunc(this, &Caretaker::eventFuncComet));
     }
 
-    if (mObjArg0 == -1 || mObjArg0 == 1) {
-        return;
+    if (mObjArg0 != -1 && mObjArg0 != 1) {
+        setDefaults4("TalkAngry", "SpinHit", "Trampled", "SpinHit");
+        mParam.setMoveAction("Wait", "Wait");
+        mParam.setTalkAction("TalkNormal", "TalkNormal");
+        setTalkAction("WaitRun");
+
+        MR::getNPCItemData(&item, 0);
+        equipment(item, false);
+
+        mObjArg0 = 0;
+
+        if (MR::isExistRail(this)) {
+            MR::moveCoordAndFollowTrans(this);
+            _C0.set(mPosition);
+        }
+
+        setNerve(GET_NERVE(Caretaker, CaretakerNrvWait));
+        MR::needStageSwitchReadA(this, rIter);
+        MR::needStageSwitchWriteB(this, rIter);
+        MR::declarePowerStar(this);
+
+        mTakeOutStar = new TakeOutStar(this, "TakeOutStarCaretaker", "TakeOutStarCaretaker", GET_NERVE(Caretaker, CaretakerNrvTakeOutStar));
+
+        if (MR::isPlayerLuigi()) {
+            MR::getJMapInfoArg2NoInit(rIter, &mTidyTimeLimit);
+        } else {
+            MR::getJMapInfoArg1NoInit(rIter, &mTidyTimeLimit);
+        }
+
+        mBombTimerLayout = new BombTimerLayout(true);
+        mBombTimerLayout->initWithoutIter();
+        mBombTimerLayout->setTimeLimit(mTidyTimeLimit * 60);
+        mBombTimerLayout->kill();
+
+        _168 = MR::joinToGroupArray(this, rIter, "ゴミ管理", 32);
+
+        if (mMsgCtrl != nullptr) {
+            MR::registerBranchFunc(getMsgCtrl(), TalkMessageFunc(this, &Caretaker::branchFuncStar));
+            MR::registerAnimeFunc(getMsgCtrl(), TalkMessageFunc(this, &Caretaker::animeFunc));
+            MR::setMessageArg(mMsgCtrl, mTidyTimeLimit);
+            MR::setDistanceToTalk(mMsgCtrl, 350.0f);
+        }
+
+        mCameraInfo = MR::createActorCameraInfo(rIter);
+
+        MR::initActorCamera(this, rIter, &mCameraInfo);
     }
-
-    _130 = "SpinHit";
-    _13C = "SpinHit";
-    _134 = "Trampled";
-    _138 = "TalkAngry";
-    mParam._14 = "Wait";
-    mParam._18 = "Wait";
-    mParam._1C = "TalkNormal";
-    mParam._20 = "TalkNormal";
-    _11C = "WaitRun";
-    _120 = "WaitRun";
-
-    MR::getNPCItemData(&item, 0);
-    equipment(item, false);
-
-    mObjArg0 = 0;
-
-    if (MR::isExistRail(this)) {
-        MR::moveCoordAndFollowTrans(this);
-        _C0 = mPosition;
-    }
-
-    setNerve(GET_NERVE(Caretaker, CaretakerNrvWait));
-    MR::needStageSwitchReadA(this, rIter);
-    MR::needStageSwitchWriteB(this, rIter);
-    MR::declarePowerStar(this);
-
-    mTakeOutStar = new TakeOutStar(this, "TakeOutStarCaretaker", "TakeOutStarCaretaker", GET_NERVE(Caretaker, CaretakerNrvTakeOutStar));
-
-    if (MR::isPlayerLuigi()) {
-        MR::getJMapInfoArg2NoInit(rIter, &mTidyTimeLimit);
-    } else {
-        MR::getJMapInfoArg1NoInit(rIter, &mTidyTimeLimit);
-    }
-
-    mBombTimerLayout = new BombTimerLayout(true);
-    mBombTimerLayout->initWithoutIter();
-    mBombTimerLayout->setTimeLimit(mTidyTimeLimit * 60);
-    mBombTimerLayout->kill();
-
-    _168 = MR::joinToGroupArray(this, rIter, "ゴミ管理", 32);
-
-    if (mMsgCtrl != nullptr) {
-        MR::registerBranchFunc(mMsgCtrl, TalkMessageFunc(this, &Caretaker::branchFuncStar));
-        MR::registerAnimeFunc(mMsgCtrl, TalkMessageFunc(this, &Caretaker::animeFunc));
-        MR::setMessageArg(mMsgCtrl, mTidyTimeLimit);
-        MR::setDistanceToTalk(mMsgCtrl, 350.0f);
-    }
-
-    mCameraInfo = MR::createActorCameraInfo(rIter);
-
-    MR::initActorCamera(this, rIter, &mCameraInfo);
 }
 
 void Caretaker::initAfterPlacement() {
@@ -360,7 +348,7 @@ void Caretaker::exeTalk() {
 
 void Caretaker::exeWait() {
     if (MR::tryTalkNearPlayerAndStartMoveTalkAction(this)) {
-        MR::startNPCTalkCamera(mMsgCtrl, getBaseMtx(), 1.3f, -1);
+        MR::startNPCTalkCamera(getMsgCtrl(), getBaseMtx(), 1.3f, -1);
         MR::setRailCoordSpeed(this, 0.0f);
         setNerve(GET_NERVE(Caretaker, CaretakerNrvPreTalk));
     } else if (MR::tryStartReactionAndPushNerve(this, GET_NERVE(Caretaker, CaretakerNrvReaction))) {
@@ -462,7 +450,7 @@ void Caretaker::exeTidy() {
     } else {
         updateCounterSE();
 
-        if (MR::canStartDemo() && mBombTimerLayout->isReadyToTimeUp() || MR::isOnSwitchA(this)) {
+        if (MR::canStartDemo() && (mBombTimerLayout->isReadyToTimeUp() || MR::isOnSwitchA(this))) {
             MR::tryStartDemoMarioPuppetableWithoutCinemaFrame(this, "ゴミ掃除タイムアタック");
             setNerve(GET_NERVE(Caretaker, CaretakerNrvPstWipeOut));
         }
@@ -511,7 +499,7 @@ void Caretaker::exePstWipeOut() {
     MR::tryPlayerKillTakingActor();
     MR::setPlayerPosOnGroundAndWait("バトルシップ・タイムアタック後位置");
     MR::startBckPlayer("Watch");
-    MR::startNPCTalkCamera(mMsgCtrl, getBaseMtx(), 1.3f, 1);
+    MR::startNPCTalkCamera(getMsgCtrl(), getBaseMtx(), 1.3f, 1);
     setNerve(GET_NERVE(Caretaker, CaretakerNrvPstWipeIn));
 }
 

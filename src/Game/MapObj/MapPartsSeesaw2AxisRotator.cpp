@@ -21,7 +21,7 @@ namespace NrvMapPartsSeesaw2AxisRotator {
 }  // namespace NrvMapPartsSeesaw2AxisRotator
 
 MapPartsSeesaw2AxisRotator::MapPartsSeesaw2AxisRotator(LiveActor* pHost, const char* pMoveSound, f32 moveSoundSpeed)
-    : MapPartsRotatorBase(pHost, "シーソー(2軸)"), mRotateAngle(), mInertiaConst(sInertiaConstDefault), mRestoreForce(sRestoreForceDefault),
+    : MapPartsRotatorBase(pHost, "シーソー(2軸)"), mRotateAngle(), mInertiaConst(::sInertiaConstDefault), mRestoreForce(::sRestoreForceDefault),
       mUp(0.0f, 1.0f, 0.0f), mHipDrop(), mRotateSpeed(), mMoveSound(pMoveSound), mMoveSoundSpeed(moveSoundSpeed) {
     mRotateMtx.identity();
     mBaseMtx.identity();

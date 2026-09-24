@@ -441,7 +441,7 @@ void Butterfly::exeGotoSleepingMario() {
     jointMtx.mult(::sMarioCapPosOffset, posOffset);
 
     TVec3f vel = posOffset - mPosition;
-    // This can really only be sHiveAccel, but this nerve is only accessible by Wait
+    // This can really only be ::sHiveAccel, but this nerve is only accessible by Wait
     vel.setLength(0.05f);
     mVelocity += vel;
 

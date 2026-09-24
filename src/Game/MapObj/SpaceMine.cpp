@@ -3,12 +3,24 @@
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Util.hpp"
 
+namespace {
+    const f32 sRotateSpeedNormal = 1.0f;
+    const f32 sRotateSpeedFast = 1.0f;
+    // sDeadTime
+    // sAppearValidDistance
+    const f32 sSensorRadius = 100.0f;
+    const f32 sDistanceNear = 1500.0f;
+    const f32 sDistanceFar = 1450.0f;
+    const s32 sAppearEffectTime = 120;
+}  // namespace
+
 namespace NrvSpaceMine {
     NEW_NERVE(HostTypeWait, SpaceMine, Wait);
     NEW_NERVE(HostTypeAppear, SpaceMine, Appear);
 };  // namespace NrvSpaceMine
 
-SpaceMine::SpaceMine(const char* pName) : MapObjActor(pName), _C4(1.0f), mClippingRange(gZeroVec), _D4(-1), _D8(0) {
+SpaceMine::SpaceMine(const char* pName)
+    : MapObjActor(pName), mRotateSpeed(::sRotateSpeedNormal), mClippingRange(gZeroVec), mShadowType(-1), mIsPlayerNear() {
 }
 
 void SpaceMine::init(const JMapInfoIter& rIter) {
@@ -26,11 +38,11 @@ void SpaceMine::init(const JMapInfoIter& rIter) {
     sensorOffs.x = 0.0f;
     sensorOffs.y = 0.0f;
     sensorOffs.z = 0.0f;
-    info.setupHitSensorParam(8, 100.0f, sensorOffs);
+    info.setupHitSensorParam(8, ::sSensorRadius, sensorOffs);
     info.setupGroupClipping(0x10);
-    MR::getJMapInfoArg0NoInit(rIter, &_D4);
+    MR::getJMapInfoArg0NoInit(rIter, &mShadowType);
 
-    bool isValid = isShadowValid(_D4);
+    bool isValid = isShadowValid(mShadowType);
 
     if (isValid) {
         info.setupShadow(nullptr);
@@ -40,31 +52,20 @@ void SpaceMine::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg1NoInit(rIter, &arg1);
 
     if (arg1 != -1) {
-        info.setupBinder(100.0f, 0.0f);
+        info.setupBinder(::sSensorRadius, 0.0f);
     }
 
     initialize(rIter, info);
+
     if (isCalcShadowAlways()) {
         MR::onCalcShadow(this, nullptr);
         MR::onCalcShadowDropGravity(this, nullptr);
     }
 }
 
-/*
 bool SpaceMine::isCalcShadowAlways() const {
-
-    return isShadowValid()
-
-    s32 v1 = _D4;
-    bool v2 = true;
-
-    if (v1 != 1) {
-        v2 = isShadowValid(v1) && hasRail() == false ? false : true;
-    }
-
-    return v2;
+    return mShadowType == 1 || (isShadowValid(mShadowType) && MR::isExistRail(this));
 }
-*/
 
 void SpaceMine::kill() {
     MR::emitEffect(this, "Explosion");
@@ -74,10 +75,10 @@ void SpaceMine::kill() {
 }
 
 void SpaceMine::initAfterPlacement() {
-    bool isShadow = isShadowValid(_D4);
+    bool isShadow = isShadowValid(mShadowType);
 
     if (isShadow) {
-        MR::setClippingRangeIncludeShadow(this, &mClippingRange, 100.0f);
+        MR::setClippingRangeIncludeShadow(this, &mClippingRange, ::sSensorRadius);
     }
 }
 
@@ -103,22 +104,20 @@ bool SpaceMine::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
     return false;
 }
 
-/*
 void SpaceMine::exeWait() {
     if (isCalcShadowAlways()) {
-        MR::setClippingRangeIncludeShadow(this, &mClippingRange, 100.0f);
+        MR::setClippingRangeIncludeShadow(this, &mClippingRange, ::sSensorRadius);
     }
 
     f32 playerDist = MR::calcDistanceToPlayer(this);
-    if (_D8) {
-        if (1450.0f < playerDist) {
-            _D8 = 0;
-            _C4 = 1.0f;
+    if (mIsPlayerNear) {
+        if (::sDistanceFar < playerDist) {
+            mIsPlayerNear = 0;
+            mRotateSpeed = ::sRotateSpeedNormal;
         }
-    }
-    else if (playerDist < 1500.0f) {
-        _D8 = 1;
-        _C4 = 1.0f;
+    } else if (playerDist < ::sDistanceNear) {
+        mIsPlayerNear = 1;
+        mRotateSpeed = ::sRotateSpeedFast;
     }
 
     if (MR::isBinded(this)) {
@@ -131,35 +130,32 @@ void SpaceMine::exeWait() {
         }
 
         if (MR::isBindedRoof(this)) {
-            MR::sendMsgEnemyAttackExplosionToBindedSensor(this, MR::getWallSensor(this));
+            MR::sendMsgEnemyAttackExplosionToBindedSensor(this, MR::getRoofSensor(this));
         }
 
         MR::offBind(this);
         kill();
-    }
-    else {
-        f32 v6 = MR::subtractFromSum(_C4, mRotation.y, 0.0f);
-        mRotation.y += _C4;
-        mRotation.y = MR::modAndAdd(0.0f, v6);
+    } else {
+        mRotation.y += mRotateSpeed;
+        mRotation.y = MR::repeatDegree(mRotation.y);
     }
 }
-*/
 
 void SpaceMine::exeAppear() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "Appear");
-        MR::setClippingRangeIncludeShadow(this, &mClippingRange, 100.0f);
+        MR::setClippingRangeIncludeShadow(this, &mClippingRange, ::sSensorRadius);
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_SPACEMINE_APPEAR");
 
-    if (MR::isStep(this, 120)) {
+    if (MR::isStep(this, ::sAppearEffectTime)) {
         MR::startBck(this, "Appear");
         MR::showModel(this);
         MR::startSound(this, "SE_OJ_SPACEMINE_APPEAR");
     }
 
-    if (MR::isGreaterStep(this, 120)) {
+    if (MR::isGreaterStep(this, ::sAppearEffectTime)) {
         if (MR::isBckStopped(this)) {
             setNerve(GET_NERVE(SpaceMine, HostTypeWait));
         }

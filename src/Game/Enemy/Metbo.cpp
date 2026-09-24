@@ -204,7 +204,7 @@ void Metbo::exeWalkAround() {
     }
 
     TVec3f v;
-    JMathInlineVEC::PSVECAdd(_B0, mPosition, v);
+    v.add(_B0, mPosition);
     moveOrFall(::sWalkAroundParam, &v);
     if (!trySearch() && MR::isStep(this, ::sStepForWalkAround)) {
         if (MR::getRandom(0l, 2l)) {
@@ -566,7 +566,7 @@ void Metbo::startSwoon(bool isFromPlayer) {
     TVec3f v;
     v.sub(mPosition, *MR::getPlayerPos());
     v.setLength(0.4f);
-    JMathInlineVEC::PSVECAdd(v, -mGravity, v);
+    v.add(-mGravity);
     MR::normalize(&v);
     mVelocity.scale(45.0f, v);
 

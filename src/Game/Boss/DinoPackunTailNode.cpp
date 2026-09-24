@@ -50,7 +50,7 @@ bool DinoPackunTailNode::turnJointLocalXDir(TPos3f* pMtx, const JointControllerI
     TPos3f v25(pMtx);
     MR::orthogonalize(&v25);
     v25.getXDir(mNodeDirection);
-    _A8.set< f32 >(v25(0, 2), v25(1, 2), v25(2, 2));
+    v25.getZDir(_A8);
     MR::normalize(&mNodeDirection);
     TQuat4f v24;
     v25.getQuat(v24);
@@ -59,12 +59,12 @@ bool DinoPackunTailNode::turnJointLocalXDir(TPos3f* pMtx, const JointControllerI
 
     if (_B8) {
         TVec3f v22;
-        v22.set< f32 >(_B8->mPosition);
-        v23.set< f32 >(v22 - mPosition);
+        v22.set(_B8->mPosition);
+        v23.set(v22 - mPosition);
     } else {
         TVec3f v21;
-        v21.set< f32 >(_B4->mPosition);
-        v23.set< f32 >(mPosition - v21);
+        v21.set(_B4->mPosition);
+        v23.set(mPosition - v21);
     }
 
     if (MR::isNearZero(v23)) {
@@ -85,7 +85,7 @@ bool DinoPackunTailNode::calcJointScale(TPos3f* pMtx, const JointControllerInfo&
     }
 
     TVec3f v12;
-    v12.set< f32 >(_B8->mPosition);
+    v12.set(_B8->mPosition);
     f32 v6 = v12.distance(mPosition);
     f32 v7 = 0.2f;
     f32 v8 = (v6 / mLinkLength);

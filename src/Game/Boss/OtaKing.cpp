@@ -47,7 +47,7 @@ namespace {
     const f32 cThrowAngleMax = 5.0f;
     const s32 cThrowCocoNutWaitFrame = 45;
     const s32 cThrowFireBallStep = 94;
-    const f32 cFireBallThrowNum = 3.0f;
+    const f32 cFireBallThrowNum = 3;
     const f32 cFireBallThrowSpeed = 15.0f;
     const f32 cFireBallThrowAngle = 30.0f;
     const s32 cThrowFireBallWaitFrame = 60;
@@ -65,7 +65,7 @@ namespace {
     const f32 cBodySensorRadius = 400.0f;
     const f32 cEyeSensorRadius = 1500.0f;
     const f32 cTurnSpeedMax = 1.0f;
-    const f32 cTurnSpeedAccel = 0.03f;
+    const f32 cTurnSpeedAccel = 0.003f;
     const f32 cPowerStarAppearOffsetY = 100.0f;
     const f32 cStarPieceAppearOffsetY = 300.0f;
     const s32 cStarPieceAppearNum = 8;
@@ -73,7 +73,7 @@ namespace {
     const f32 cStarPieceAppearVelocity = 50.0f;
     const s32 cDamageCrownFallFrame = 73;
     // const s32 cDamageAngryRumbleFrame;
-    const f32 cDamageFrontFootClipingHeight = 600.0f;
+    const f32 cDamageFrontFootClipingHeight = -600.0f;
     const s32 cDownDemoFrame = 300;
     const f32 cDownDemoCocoNutScale = 1.5f;
     const s32 cDownDemoRumbleFrame1 = 105;
@@ -235,7 +235,7 @@ bool OtaKing::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
     s32 a1 = mHits;
 
     if (mIsLv2) {
-        a1 = MR::max(mHits, 1);
+        a1 = MR::max(a1, 1);
     }
     bool b1 = rallyBall->_9C <= a1;
 
@@ -300,10 +300,10 @@ void OtaKing::initMapToolInfo(const JMapInfoIter& rIter) {
 }
 
 void OtaKing::initModel(const JMapInfoIter& rIter) {
-    initModelManagerWithAnm(mIsLv2 ? "OtaKing" : "OtaKingLv2", nullptr, false);
+    initModelManagerWithAnm(mIsLv2 ? "OtaKingLv2" : "OtaKing", nullptr, false);
 
     for (int i = 0; i < ARRAY_SIZE(mFeet); i++) {
-        mFeet[i] = new PartsModel(this, "前足モデル", mIsLv2 ? "OtaKingFoot" : "OtaKingFootLv2", nullptr, 18, false);
+        mFeet[i] = new PartsModel(this, "前足モデル", mIsLv2 ? "OtaKingFootLv2" : "OtaKingFoot", nullptr, 18, false);
         mFeet[i]->mPosition.set(mPosition);
         mFeet[i]->initWithoutIter();
         MR::initLightCtrl(mFeet[i]);
@@ -322,14 +322,13 @@ void OtaKing::initModel(const JMapInfoIter& rIter) {
         mCocoNutBallArray[i]._D8 = true;
         mCocoNutBallArray[i]._D4 = 5000.0f;
 
-        float arg0;
-        if (MR::getJMapInfoArg0NoInit(rIter, &arg0)) {
-            mCocoNutBallArray[i]._C0 = arg0;
+        float arg;
+        if (MR::getJMapInfoArg0NoInit(rIter, &arg)) {
+            mCocoNutBallArray[i]._C0 = arg;
         }
 
-        float arg2;
-        if (MR::getJMapInfoArg2NoInit(rIter, &arg2)) {
-            mCocoNutBallArray[i]._C4 = arg2;
+        if (MR::getJMapInfoArg2NoInit(rIter, &arg)) {
+            mCocoNutBallArray[i]._C4 = arg;
         }
     }
 
@@ -377,9 +376,9 @@ void OtaKing::dirToPlayer() {
         mRotation.y += mTurnSpeed;
 
         if (0.0f < angleMinRotY) {
-            mTurnSpeed = MR::max(mTurnSpeed + ::cTurnSpeedAccel, ::cTurnSpeedMax);
+            mTurnSpeed = MR::min(mTurnSpeed + ::cTurnSpeedAccel, ::cTurnSpeedMax);
         } else {
-            mTurnSpeed = MR::min(mTurnSpeed - ::cTurnSpeedAccel, -::cTurnSpeedMax);
+            mTurnSpeed = MR::max(mTurnSpeed - ::cTurnSpeedAccel, -::cTurnSpeedMax);
         }
 
     } else {
@@ -654,6 +653,7 @@ void OtaKing::initLongFoot(const JMapInfoIter& rIter) {
         }
 
         mLongFootMtx.identity33();
+        //TODO: figure out how to get setTrans to inline
         mLongFootMtx.setTrans(mPosition);
         mLongFeet[0]->initFixedPosition(mLongFootMtx, TVec3f(735.0f, 80.0f, -55.0f), TVec3f(-9.0f, 266.0f, 0.0f));
         mLongFeet[1]->initFixedPosition(mLongFootMtx, TVec3f(-959.0f, 130.0f, 0.0f), TVec3f(0.0f, 107.0f, 14.0f));
