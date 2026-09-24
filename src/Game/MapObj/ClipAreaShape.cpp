@@ -39,6 +39,10 @@ void ClipAreaShape::drawVolumeShape(const TPos3f& rMtx, const TVec3f& rPos) cons
     MR::drawSimpleModel(mModelData);
 }
 
+ClipAreaShapeSphere::ClipAreaShapeSphere() : ClipAreaShape("ClipVolumeSphere") {
+    this->mRadius = 500.0f;
+}
+
 // clang-format off
 bool ClipAreaShapeSphere::isInArea(register const TVec3f &rVec) const {
   register const ClipAreaShapeSphere *sphere = this;
