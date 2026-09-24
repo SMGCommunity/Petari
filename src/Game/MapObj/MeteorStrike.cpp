@@ -16,7 +16,21 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void MeteorStrike_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.000003814697265625f;
+    (void)-0.000003814697265625f;
+    (void)-1.0f;
+    (void)1.5707963705062866f;
+    (void)-1.5707963705062866f;
+}
+
 namespace {
+    inline f32 toDegree(f32 angle) {
+        return _180_PI * angle;
+    }
+
     const f32 cSensorRadius = 90.0f;
     const f32 cBinderRadius = 80.0f;
     const f32 cShadowRadius = 120.0f;
@@ -34,6 +48,17 @@ namespace NrvMeteorStrike {
 MeteorStrike::MeteorStrike(const char* pName)
     : LiveActor(pName), mType(), mStepSize(10.0f), mRailDir(0.0f, -1.0f, 0.0f), mBrokenModel(), mStepsLeft(), mTotalSteps() {
     mLavaColumnPos.identity();
+}
+
+inline void MeteorStrike::initRailDirection() {
+    TVec3f pos0;
+    MR::calcRailPointPos(&pos0, this, 0);
+
+    TVec3f pos1;
+    MR::calcRailPointPos(&pos1, this, 1);
+
+    mRailDir.sub(pos1, pos0);
+    MR::normalize(&mRailDir);
 }
 
 void MeteorStrike::init(const JMapInfoIter& rIter) {
@@ -55,14 +80,7 @@ void MeteorStrike::init(const JMapInfoIter& rIter) {
 
     initRailRider(rIter);
 
-    TVec3f pos0;
-    MR::calcRailPointPos(&pos0, this, 0);
-
-    TVec3f pos1;
-    MR::calcRailPointPos(&pos1, this, 1);
-
-    mRailDir.sub(pos1, pos0);
-    MR::normalize(&mRailDir);
+    initRailDirection();
 
     MR::initShadowVolumeSphere(this, ::cShadowRadius);
     MR::setShadowDropLength(this, nullptr, 3000.0f);
@@ -97,6 +115,7 @@ void MeteorStrike::initAfterPlacement() {
 
     Triangle triangle = Triangle();
     TVec3f nextPos;
+
     if (!MR::getFirstPolyOnLineToMap(&nextPos, &triangle, pos0, toNextPos)) {
         nextPos.set(pos1);
 
@@ -169,6 +188,7 @@ void MeteorStrike::calcAndSetBaseMtx() {
     TPos3f mtx;
     TVec3f negGravity;
     negGravity.negate(mGravity);
+
     if (MR::isSameDirection(mRailDir, negGravity)) {
         MR::makeMtxFrontNoSupportPos(&mtx, mRailDir, mPosition);
     } else {
@@ -241,6 +261,7 @@ void MeteorStrike::initModel() {
 
 void MeteorStrike::calcBreakPosture(const TVec3f& rVec, TPos3f* pDst) {
     TPos3f mtx;
+
     if (pDst == nullptr) {
         pDst = &mtx;
     }
@@ -255,9 +276,11 @@ void MeteorStrike::calcBreakPosture(const TVec3f& rVec, TPos3f* pDst) {
 
     mBrokenModel->mPosition.set(mPosition);
 
-    // FIXME: not inlined set< f32 >
-    pDst->getEulerDegree(vec);
-    mBrokenModel->mRotation = vec;
+    TVec3f euler;
+    pDst->getEuler(euler);
+    mBrokenModel->mRotation.x = ::toDegree(euler.x);
+    mBrokenModel->mRotation.y = ::toDegree(euler.y);
+    mBrokenModel->mRotation.z = ::toDegree(euler.z);
     mBrokenModel->mScale.set(mScale);
 }
 
@@ -273,10 +296,8 @@ void MeteorStrike::startRumble() {
 }
 
 bool MeteorStrike::isInScreen() const {
-    TVec3f vec(mRailDir);
-    vec.scale(mStepSize);
-
     TVec3f vec2;
+    TVec3f vec(mRailDir * mStepSize);
     vec2.add(mPosition, vec);
 
     return MR::isJudgedToClipFrustum(vec2, 200.0f) == false;
@@ -309,6 +330,7 @@ void MeteorStrike::exeMove() {
 
     if (!MR::isNoBind(this)) {
         s32 frame;
+
         if (mStepsLeft > ::cShowShadowFrame) {
             frame = getNerveStep() + ::cShowShadowFrame - mStepsLeft;
         } else {

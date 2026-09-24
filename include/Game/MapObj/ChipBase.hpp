@@ -15,6 +15,7 @@ public:
 
     virtual ~ChipBase() {
     }
+
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void makeActorAppeared();
@@ -41,6 +42,9 @@ public:
     void exeControled();
     void exeFlashing();
     void exeHide();
+    bool hasAirBubble() const {
+        return mAirBubble != nullptr;
+    }
     void exeGot();
     bool isGettable() const;
     static bool isNeedBubble(const JMapInfoIter&);

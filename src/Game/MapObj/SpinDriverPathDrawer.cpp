@@ -19,6 +19,15 @@ void SpinDriverPathDrawer_FORCE_MATCH_SDATA2() {
 }
 
 namespace {
+    inline u32 packPathColor(const TVec3f& rColor, const f32& rAlpha) {
+        u32 result = 0;
+        reinterpret_cast< u8* >(&result)[0] = static_cast< s32 >(255.0f * MR::abs(rColor.x));
+        reinterpret_cast< u8* >(&result)[1] = static_cast< s32 >(255.0f * MR::abs(rColor.y));
+        reinterpret_cast< u8* >(&result)[2] = static_cast< s32 >(255.0f * MR::abs(rColor.z));
+        reinterpret_cast< u8* >(&result)[3] = static_cast< s32 >(255.0f * MR::abs(rAlpha));
+        return result;
+    }
+
     static const f32 sDrawMinInterval = 0.0f;
     static const f32 sDrawCurveLimit = 0.0f;
     static const f32 sLineWidth = 0.0f;
@@ -123,6 +132,7 @@ s32 SpinDriverPathDrawer::calcPositionCount(f32 f1, f32 f2) const {
     mShootPath->calcDirection(&dir0, 0.0f, 0.01f);
 
     s32 count = 2;
+
     for (s32 i = 1; i < totalSteps; i++) {
         f32 posStep = static_cast< f32 >(i) / totalSteps;
 
@@ -145,9 +155,9 @@ s32 SpinDriverPathDrawer::calcPositionCount(f32 f1, f32 f2) const {
 
 void SpinDriverPathDrawer::initPositionList(f32 f1, f32 f2) {
     mPositionCount = calcPositionCount(f1, f2);
-    _90 = new TVec3f[mPositionCount];
-    _94 = new TVec3f[mPositionCount];
-    _98 = new TVec3f[mPositionCount];
+    _90 = new (32) TVec3f[mPositionCount];
+    _94 = new (32) TVec3f[mPositionCount];
+    _98 = new (32) TVec3f[mPositionCount];
     _9C = new f32[mPositionCount];
 
     s32 totalSteps = mShootPath->getTotalLength() / f1;
@@ -167,6 +177,7 @@ void SpinDriverPathDrawer::initPositionList(f32 f1, f32 f2) {
     MR::normalize(&_94[0]);
 
     s32 count = 1;
+
     for (s32 i = 1; i < totalSteps; i++) {
         f32 posStep = static_cast< f32 >(i) / totalSteps;
 
@@ -181,14 +192,14 @@ void SpinDriverPathDrawer::initPositionList(f32 f1, f32 f2) {
 
             mShootPath->calcDirection(&dir0, posStep, 0.01f);
 
-            if (MR::abs(_94[i].dot(dir0)) > MR::abs(_98[i].dot(dir0))) {
-                MR::makeAxisFrontSide(&_98[i], &_94[i], dir0, _94[i - 1]);
+            if (MR::abs(dir0.dot(_94[count - 1])) > MR::abs(dir0.dot(_98[count - 1]))) {
+                MR::makeAxisFrontSide(&_98[count], &_94[count], dir0, _94[count - 1]);
             } else {
-                MR::makeAxisFrontUp(&_94[i], &_98[i], dir0, _98[i - 1]);
+                MR::makeAxisFrontUp(&_94[count], &_98[count], dir0, _98[count - 1]);
             }
 
-            _90[i] = posI;
-            _9C[i] = posStep;
+            _90[count] = posI;
+            _9C[count] = posStep;
 
             count++;
         }
@@ -281,19 +292,19 @@ void SpinDriverPathDrawer::setFadeScale(f32 fade) {
 
 void SpinDriverPathDrawer::draw() const {
     switch (mColor) {
-        case -1:
+    case -1:
         MR::setSpinDriverPathColorNormal();
 
         break;
-        case 0:
+    case 0:
         MR::setSpinDriverPathColorGreen();
 
         break;
-        case 1:
+    case 1:
         MR::setSpinDriverPathColorPink();
 
         break;
-        default:
+    default:
         MR::setSpinDriverPathColorNormal();
 
         break;
@@ -317,39 +328,45 @@ void SpinDriverPathDrawer::draw() const {
     GXLoadTexMtxImm(mtx, 30, GX_MTX2x4);
 
     for (u32 i = 1; i < mPositionCount; i++) {
-        TVec3f vec148(1.0f, 1.0f - _9C[i], 0.0f);
+        f32 alpha;
+        f32 green;
+        alpha = 2.0f * _9C[i] - 1.0f;
+        green = 1.0f - _9C[i];
+        const f32 square = alpha * alpha;
+        alpha = square * square;
+        u32 color = ::packPathColor(TVec3f(1.0f, green, 0.0f), 1.0f - alpha);
 
-        TVec3f prev90(_90[i-1]), curr90(_90[i]);
-        TVec3f prev94(_94[i-1] * 100.0f), curr94(_94[i] * 100.0f);
-        TVec3f prev98(_98[i-1] * 100.0f), curr98(_98[i] * 100.0f);
+        TVec3f prev90(_90[i - 1]), curr90(_90[i]);
+        TVec3f prev94(_94[i - 1] * 100.0f), curr94(_94[i] * 100.0f);
+        TVec3f prev98(_98[i - 1] * 100.0f), curr98(_98[i] * 100.0f);
 
-        f32 prevVal = _9C[i-1];
+        f32 prevVal = _9C[i - 1];
         f32 val = _9C[i];
 
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 6);
 
-        sendPoint(curr90 - curr98, 0.0f, prevVal);
-        sendPoint(prev90 - prev98, 0.0f, val);
-        sendPoint(curr90, 0.5f, prevVal);
-        sendPoint(prev90, 0.5f, val);
-        sendPoint(curr90 + curr98, 1.0f, prevVal);
-        sendPoint(prev90 + prev98, 1.0f, val);
+        sendPoint(prev90 - prev98, 0.0f, prevVal);
+        sendPoint(curr90 - curr98, 0.0f, val);
+        sendPoint(prev90, 0.5f, prevVal);
+        sendPoint(curr90, 0.5f, val);
+        sendPoint(prev90 + prev98, 1.0f, prevVal);
+        sendPoint(curr90 + curr98, 1.0f, val);
 
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 6);
 
-        sendPoint(curr90 - curr94, 0.0f, prevVal);
-        sendPoint(prev90 - prev94, 0.0f, val);
-        sendPoint(curr90, 0.5f, prevVal);
-        sendPoint(prev90, 0.5f, val);
-        sendPoint(curr90 + curr94, 1.0f, prevVal);
-        sendPoint(prev90 + prev94, 1.0f, val);
+        sendPoint(prev90 - prev94, 0.0f, prevVal);
+        sendPoint(curr90 - curr94, 0.0f, val);
+        sendPoint(prev90, 0.5f, prevVal);
+        sendPoint(curr90, 0.5f, val);
+        sendPoint(prev90 + prev94, 1.0f, prevVal);
+        sendPoint(curr90 + curr94, 1.0f, val);
     }
 }
 
-void SpinDriverPathDrawer::sendPoint(const TVec3f& a1, f32 a2, f32 a3) const {
-    GXWGFifo.f32 = a1.x;
-    GXWGFifo.f32 = a1.y;
-    GXWGFifo.f32 = a1.z;
+void SpinDriverPathDrawer::sendPoint(const TVec3f& rA1, f32 a2, f32 a3) const {
+    GXWGFifo.f32 = rA1.x;
+    GXWGFifo.f32 = rA1.y;
+    GXWGFifo.f32 = rA1.z;
     GXWGFifo.f32 = a2;
     GXWGFifo.f32 = a3;
 }

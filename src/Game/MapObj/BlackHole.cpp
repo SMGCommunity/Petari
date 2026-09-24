@@ -4,6 +4,15 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
+void BlackHole_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)500.0f;
+    (void)0.009999999776482582f;
+    (void)1000.0f;
+}
+
 namespace NrvBlackHole {
     NEW_NERVE(BlackHoleNrvWait, BlackHole, Wait);
     NEW_NERVE(BlackHoleNrvDemo, BlackHole, Demo);
@@ -21,10 +30,11 @@ void BlackHole::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
     MR::addHitSensorEye(this, "body", 16, _A0, TVec3f(0.0f, 0.0f, 0.0f));
-    initEffectKeeper(0, 0, false);
+    initEffectKeeper(0, nullptr, false);
     MR::setEffectHostMtx(this, "BlackHoleSuction", (MtxPtr)&_D8);
     f32 radius = _A0;
     f32 val = 500.0f * _9C;
+
     if (radius >= val) {
         radius = radius;
     } else {
@@ -43,12 +53,14 @@ void BlackHole::init(const JMapInfoIter& rIter) {
     }
 
     bool isCreated = MR::createActorCameraInfoIfExist(rIter, &mCameraInfo);
+
     if (isCreated) {
         MR::initActorCamera(this, rIter, &mCameraInfo);
     }
 
     initNerve(GET_NERVE(BlackHole, BlackHoleNrvWait));
     bool uses = MR::useStageSwitchReadAppear(this, rIter);
+
     if (uses) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
@@ -72,7 +84,7 @@ void BlackHole::kill() {
 }
 
 bool BlackHole::tryStartDemoCamera() {
-    if (mCameraInfo) {
+    if (mCameraInfo != nullptr) {
         MR::startActorCameraTargetSelf(this, mCameraInfo, -1);
         return true;
     }
@@ -105,7 +117,7 @@ void BlackHole::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    if (_A4 && !isInCubeBox(pReceiver->mPosition)) {
+    if (_A4 != nullptr && !isInCubeBox(pReceiver->mPosition)) {
         return;
     }
 
@@ -120,7 +132,6 @@ void BlackHole::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     setNerve(GET_NERVE(BlackHole, BlackHoleNrvDemo));
 }
 
-// shrug
 void BlackHole::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::useStageSwitchReadA(this, rIter);
@@ -134,7 +145,10 @@ void BlackHole::initMapToolInfo(const JMapInfoIter& rIter) {
     if (_A4 == nullptr) {
         _A0 = 500.0f * mScale.x;
     } else {
-        _A0 = (mScale * 500.0f).length();
+        TVec3f size(mScale);
+        size.scale(500.0f);
+
+        _A0 = size.length();
     }
 
     f32 arg0;
@@ -149,7 +163,7 @@ void BlackHole::initMapToolInfo(const JMapInfoIter& rIter) {
 }
 
 void BlackHole::initModel() {
-    initModelManagerWithAnm("BlackHoleRange", 0, false);
+    initModelManagerWithAnm("BlackHoleRange", nullptr, false);
     mBlackHoleModel = MR::createModelObjMapObj("コアモデル", "BlackHole", getBaseMtx());
     mBlackHoleModel->makeActorDead();
     updateModelScale(_9C, _9C);
@@ -185,6 +199,7 @@ void BlackHole::exeWait() {
 
     MR::startLevelSound(this, "SE_OJ_LV_BLACK_HOLE");
     bool isOnSwitch = false;
+
     if (MR::isValidSwitchA(this) && MR::isOnSwitchA(this)) {
         isOnSwitch = true;
     }

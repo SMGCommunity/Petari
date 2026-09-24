@@ -9,12 +9,15 @@ public:
 
     MapPartsRailRotator(LiveActor*);
 
-    virtual ~MapPartsRailRotator();
+    virtual ~MapPartsRailRotator() {
+    }
     virtual void init(const JMapInfoIter&) override;
     virtual bool isWorking() const override;
     virtual void start() override;
     virtual void end() override;
-    virtual f32 getJMapArgAngleFactor() const;
+    virtual f32 getJMapArgAngleFactor() const {
+        return 1.0f;
+    }
 
     bool hasRotation(s32) const;
     void rotateAtPoint(s32);
@@ -40,7 +43,7 @@ public:
     /* 0x20 */ f32 mRotateSpeed;
     /* 0x24 */ f32 mTargetAngle;
     /* 0x28 */ f32 mAngle;
-    TPos3f _2C;
-    TPos3f _5C;
+    /* 0x2C */ TPos3f _2C;
+    /* 0x5C */ TPos3f _5C;
     /* 0x8C */ MtxPtr mHostRotateMtx;
 };

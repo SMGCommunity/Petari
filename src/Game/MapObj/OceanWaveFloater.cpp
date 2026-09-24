@@ -14,6 +14,13 @@
 #include "math_types.hpp"
 #include <revolution/types.h>
 
+void OceanWaveFloater_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)-1.0f;
+    (void)0.01745329238474369f;
+    (void)0.0f;
+}
+
 namespace {
     struct Param {
         /* 0x00 */ const char* const mObjectName;
@@ -122,6 +129,7 @@ void OceanWaveFloater::control() {
 
     controlEffect();
     mSoundDelay--;
+
     if (mSoundDelay <= 0) {
         MR::startSound(this, "SE_OJ_PIER_FLOATER_WAVE");
         mSoundDelay = MR::getRandom(::sWaveSeStepsMin, ::sWaveSeStepsMax);
@@ -131,9 +139,8 @@ void OceanWaveFloater::control() {
 void OceanWaveFloater::calcAndSetBaseMtx() {
     TPos3f baseMtx;
     baseMtx.identity();
-    baseMtx.setRotateDegree(mRotation);
-    TVec3f offs = mGravity * mForce->getCurrentValue();
-    baseMtx.setTrans(mPosition - offs);
+    baseMtx.setEuler(mRotation * (PI / 180.0f));
+    baseMtx.setTrans(mPosition - mGravity * mForce->getCurrentValue());
     MR::setBaseTRMtx(this, baseMtx);
 }
 
@@ -152,6 +159,7 @@ f32 OceanWaveFloater::getCurrentSinkDepth() const {
 
 void OceanWaveFloater::controlEffect() {
     f32 paramVal = ::getParam(mObjectName)->mSinkDepth;
+
     if (paramVal < getCurrentSinkDepth() && !mCanRipple) {
         MR::deleteEffect(this, "Ripple");
         mCanRipple = true;

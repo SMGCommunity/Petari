@@ -25,8 +25,8 @@ namespace {
 
 namespace {
     const LineCheckParam* findLineCheckParamData(const char* pObjName) {
-        for (u32 i = 0; i < ARRAY_SIZE(sLineCheckParamTable); i++) {
-            const LineCheckParam* param = &sLineCheckParamTable[i];
+        for (u32 i = 0; i < ARRAY_SIZE(::sLineCheckParamTable); i++) {
+            const LineCheckParam* param = &::sLineCheckParamTable[i];
 
             if (MR::isEqualString(pObjName, param->mObjName)) {
                 return param;
@@ -66,7 +66,7 @@ void SandUpDownEffectObj::init(const JMapInfoIter& rIter) {
 
     TVec3f yDir;
     _A0.getYDir(yDir);
-    mGravity = -yDir;
+    mGravity.negate(yDir);
 
     MR::useStageSwitchReadA(this, rIter);
     MR::useStageSwitchReadB(this, rIter);

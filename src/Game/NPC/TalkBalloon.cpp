@@ -17,8 +17,11 @@
 #include <JSystem/JMath/JMath.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
 
-void TalkBalloon_DUMMY() {
-    (void)JGeometry::TUtil< f32 >::acos(1.0f);
+void TalkBalloon_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)2.0f;
 }
 
 namespace NrvTalkBalloonShort {
@@ -79,30 +82,6 @@ void TalkBalloon::close() {
     MR::startAnim(this, "End", 0);
 }
 
-void TalkBalloon::updateTalking() {
-    updateBalloon();
-    mTextFormer->updateTalking();
-}
-
-bool TalkBalloon::isTextAppearedAll() {
-    return mTextFormer->isTextAppearedAll();
-}
-
-bool TalkBalloon::turnPage() {
-    return false;
-}
-
-bool TalkBalloon::hasNextPage() {
-    return mTextFormer->hasNextPage();
-}
-
-void TalkBalloon::skipMessage() {
-}
-
-void TalkBalloon::pauseOff() {
-    MR::requestMovementOn(this);
-}
-
 inline f32 fmin(f32 a, f32 b) {
     return b >= a ? a : b;
 }
@@ -158,12 +137,72 @@ void TalkBalloon::updateBalloon() {
     }
 }
 
+void TalkBalloon::updateTalking() {
+    updateBalloon();
+    mTextFormer->updateTalking();
+}
+
+bool TalkBalloon::isTextAppearedAll() {
+    return mTextFormer->isTextAppearedAll();
+}
+
+bool TalkBalloon::turnPage() {
+    return false;
+}
+
+bool TalkBalloon::hasNextPage() {
+    return mTextFormer->hasNextPage();
+}
+
+void TalkBalloon::skipMessage() {
+}
+
+void TalkBalloon::pauseOff() {
+    MR::requestMovementOn(this);
+}
+
 TalkBalloonShort::TalkBalloonShort(const char* pName) : TalkBalloon(pName), _2C() {
     initNerve(GET_NERVE(TalkBalloonShort, TalkBalloonShortNrvOpen));
 }
 
 void TalkBalloonShort::init(const JMapInfoIter& rIter) {
     TalkBalloon::create("TalkBalloonStretch", true, false);
+}
+
+void TalkBalloonShort::open(TalkMessageCtrl* pCtrl) {
+    TalkBalloon::open(pCtrl);
+    MR::showScreen(this);
+    LayoutActor::appear();
+    TalkTextFormer* tempFormer = mTextFormer;
+
+    const wchar_t* message;
+    if (TalkFunction::isComposeTalk(pCtrl)) {
+        message = TalkFunction::getSubMessage(pCtrl);
+    } else {
+        message = TalkFunction::getMessage(pCtrl);
+    }
+
+    tempFormer->formMessage(message, 0);
+    tempFormer->setArg(pCtrl->mTagArg, 0);
+
+    s32 numLine = MR::countMessageLine(message);
+
+    switch (numLine) {
+    case 1:
+        MR::startAnim(this, "OneLine", 1);
+        break;
+
+    case 2:
+        MR::startAnim(this, "TwoLine", 1);
+        break;
+
+    default:
+        MR::startAnim(this, "TwoLine", 1);
+        break;
+    }
+
+    MR::setAnimFrameAndStopAdjustTextWidth(this, "TxtText", 1);
+    LayoutActor::setNerve(GET_NERVE(TalkBalloonShort, TalkBalloonShortNrvOpen));
 }
 
 void TalkBalloonShort::close() {
@@ -209,42 +248,6 @@ void TalkBalloonShort::exeOpen() {
     if (MR::isAnimStopped(this, 0)) {
         setNerve(GET_NERVE(TalkBalloonShort, TalkBalloonShortNrvTalk));
     }
-}
-
-void TalkBalloonShort::open(TalkMessageCtrl* pCtrl) {
-    TalkBalloon::open(pCtrl);
-    MR::showScreen(this);
-    LayoutActor::appear();
-    TalkTextFormer* tempFormer = mTextFormer;
-
-    const wchar_t* message;
-    if (TalkFunction::isComposeTalk(pCtrl)) {
-        message = TalkFunction::getSubMessage(pCtrl);
-    } else {
-        message = TalkFunction::getMessage(pCtrl);
-    }
-
-    tempFormer->formMessage(message, 0);
-    tempFormer->setArg(pCtrl->mTagArg, 0);
-
-    s32 numLine = MR::countMessageLine(message);
-
-    switch (numLine) {
-    case 1:
-        MR::startAnim(this, "OneLine", 1);
-        break;
-
-    case 2:
-        MR::startAnim(this, "TwoLine", 1);
-        break;
-
-    default:
-        MR::startAnim(this, "TwoLine", 1);
-        break;
-    }
-
-    MR::setAnimFrameAndStopAdjustTextWidth(this, "TxtText", 1);
-    LayoutActor::setNerve(GET_NERVE(TalkBalloonShort, TalkBalloonShortNrvOpen));
 }
 
 TalkBalloonEvent::TalkBalloonEvent(const char* pName) : TalkBalloon(pName), _2C(1), mAButton() {
@@ -393,16 +396,6 @@ void TalkBalloonInfo::close() {
     MR::disappearInformationMessage();
 }
 
-void TalkBalloonInfo::updateTalking() {
-}
-
-void TalkBalloonInfo::updateBalloon() {
-}
-
-bool TalkBalloonInfo::isTextAppearedAll() {
-    return true;
-}
-
 TalkBalloonIcon::TalkBalloonIcon(const char* pName) : TalkBalloonShort(pName) {
 }
 
@@ -453,36 +446,6 @@ TalkBalloonHolder::TalkBalloonHolder() : _14() {
     mBalloonSign->mAButton = mAButton;
 }
 
-void TalkBalloonHolder::balloonOff() {
-    mAButton->kill();
-}
-
-void TalkBalloonHolder::update() {
-}
-
-bool TalkBalloonHolder::isActiveBalloonShort() const {
-    for (int i = 0; i < 4; i++) {
-        if (!MR::isDead(mBalloonShortArray[i])) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-void TalkBalloonHolder::pauseOff() {
-    mBalloonEvent->pauseOff();
-    mBalloonInfo->pauseOff();
-    mBalloonSign->pauseOff();
-    mBalloonIcon->pauseOff();
-
-    for (int i = 0; i < 4; i++) {
-        mBalloonShortArray[i]->pauseOff();
-    }
-
-    MR::requestMovementOn(mAButton);
-}
-
 TalkBalloon* TalkBalloonHolder::getBalloon(const TalkMessageCtrl* pArg) {
     TalkBalloon* balloon;
     const TalkMessageInfo* info = TalkFunction::getMessageInfo(pArg);
@@ -519,4 +482,34 @@ TalkBalloon* TalkBalloonHolder::getBalloon(const TalkMessageCtrl* pArg) {
     }
 
     return balloon;
+}
+
+void TalkBalloonHolder::pauseOff() {
+    mBalloonEvent->pauseOff();
+    mBalloonInfo->pauseOff();
+    mBalloonSign->pauseOff();
+    mBalloonIcon->pauseOff();
+
+    for (int i = 0; i < 4; i++) {
+        mBalloonShortArray[i]->pauseOff();
+    }
+
+    MR::requestMovementOn(mAButton);
+}
+
+void TalkBalloonHolder::balloonOff() {
+    mAButton->kill();
+}
+
+void TalkBalloonHolder::update() {
+}
+
+bool TalkBalloonHolder::isActiveBalloonShort() const {
+    for (int i = 0; i < 4; i++) {
+        if (!MR::isDead(mBalloonShortArray[i])) {
+            return true;
+        }
+    }
+
+    return false;
 }

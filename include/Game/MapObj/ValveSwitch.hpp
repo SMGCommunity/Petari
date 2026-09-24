@@ -1,13 +1,16 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/MapObj/MapObjConnector.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class MapObjConnector;
 
 class ValveSwitch : public LiveActor {
 public:
     ValveSwitch(const char*);
 
-    virtual ~ValveSwitch();
+    virtual ~ValveSwitch() {
+    }
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void control();
@@ -20,8 +23,8 @@ public:
     void exeEnd();
     void updateBindActorMtx();
 
-    LiveActor* _8C;
-    TPos3f _90;
-    MapObjConnector* mObjConnector;  // 0xC0
-    bool _C4;
+    /* 0x8C */ LiveActor* _8C;
+    /* 0x90 */ TPos3f _90;
+    /* 0xC0 */ MapObjConnector* mObjConnector;
+    /* 0xC4 */ bool _C4;
 };

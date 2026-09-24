@@ -9,8 +9,12 @@ public:
 
     virtual ~IronCannonShell();
 
-    virtual f32 getBaseScale() const;
-    virtual s32 getLifeTime() const;
+    virtual f32 getBaseScale() const {
+        return 1.3f;
+    }
+    virtual s32 getLifeTime() const {
+        return 300;
+    }
 };
 
 class IronCannonLauncherPoint : public LiveActor {
@@ -28,9 +32,9 @@ public:
     void initBullet();
     bool tryShotBullet(f32);
 
-    CannonShellHolder* mShellHolder;  // 0x8C
-    s32 mShotInterval;                // 0x90 : Delay between cannon shots [ObjArg0]
-    f32 mBulletSpeed;                 // 0x94 : Speed of each bullet [ObjArg1]
+    /* 0x8C */ CannonShellHolder* mShellHolder;
+    /* 0x90 */ s32 mShotInterval;  // Delay between cannon shots [ObjArg0]
+    /* 0x94 */ f32 mBulletSpeed;   // Speed of each bullet [ObjArg1]
 };
 
 class IronCannonLauncher : public IronCannonLauncherPoint {
@@ -46,5 +50,5 @@ public:
     void exeWait();
     void exeShot();
 
-    TVec3f mEffectMtx;  // 0x98
+    /* 0x98 */ TVec3f mEffectMtx;
 };

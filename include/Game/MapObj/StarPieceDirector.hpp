@@ -32,6 +32,8 @@ class StarPieceDirector : public LiveActorGroup {
 public:
     StarPieceDirector(const char*);
 
+    virtual ~StarPieceDirector();
+
     virtual void movement();
 
     void declare(const NameObj*, s32);
@@ -77,6 +79,8 @@ public:
 class StarPieceShooter : public LiveActor {
 public:
     StarPieceShooter(s32, const char*);
+
+    virtual ~StarPieceShooter();
 
     virtual void init(const JMapInfoIter&);
     virtual void control();

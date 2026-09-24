@@ -11,9 +11,49 @@
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JMath/JMath.hpp>
 
-namespace {
-    const static DummyDisplayModelInfo cDummyDisplayModelInfoTable[14] = {
+#include "Game/Util/StringUtil.hpp"
 
+void DummyDisplayModel_FORCE_MATCH_STRINGS() {
+    MR::isEqualString("Coin", "Coin");
+    MR::isEqualString("Kinopio", "Kinopio");
+    MR::isEqualString("Freeze", "Freeze");
+    MR::isEqualString("SpinDriver", "SpinDriver");
+    MR::isEqualString("SuperSpinDriver", "SuperSpinDriver");
+    MR::isEqualString("StarPieceDummy", "StarPieceDummy");
+    MR::isEqualString("Tico", "Tico");
+    MR::isEqualString("KeySwitch", "KeySwitch");
+    MR::isEqualString("InRotation", "InRotation");
+    MR::isEqualString("PowerStar", "PowerStar");
+    MR::isEqualString("KinokoOneUp", "KinokoOneUp");
+    MR::isEqualString("Kuribo", "Kuribo");
+    MR::isEqualString("BlueChip", "BlueChip");
+    MR::isEqualString("YellowChip", "YellowChip");
+    MR::isEqualString("StrayTico", "StrayTico");
+    MR::isEqualString("GrandStar", "GrandStar");
+    MR::isEqualString("KinokoLifeUp", "KinokoLifeUp");
+    MR::isEqualString("ColorChange", "ColorChange");
+    MR::isEqualString("Shadow", "Shadow");
+    MR::isEqualString("Light", "Light");
+    MR::isEqualString("body", "body");
+}
+
+namespace {
+    const DummyDisplayModelInfo cDummyDisplayModelInfoTable[15] = {
+        {"Coin", {0.0f, 70.0f, 0.0f}, 15, nullptr, false},
+        {"Kinopio", {0.0f, 50.0f, 0.0f}, 16, "Freeze", true},
+        {"SpinDriver", {0.0f, 0.0f, 0.0f}, 11, nullptr, false},
+        {"SuperSpinDriver", {0.0f, 0.0f, 0.0f}, 11, "Freeze", false},
+        {"StarPieceDummy", {-30.0f, 100.0f, -30.0f}, 13, "Freeze", false},
+        {"Tico", {0.0f, 50.0f, 0.0f}, 16, nullptr, true},
+        {"KeySwitch", {0.0f, 0.0f, 0.0f}, 10, "InRotation", false},
+        {"PowerStar", {0.0f, 0.0f, 0.0f}, 13, nullptr, false},
+        {"KinokoOneUp", {0.0f, 40.0f, 0.0f}, 13, nullptr, false},
+        {"Kuribo", {0.0f, 80.0f, 0.0f}, 18, nullptr, false},
+        {"BlueChip", {0.0f, 0.0f, 0.0f}, 11, nullptr, false},
+        {"YellowChip", {0.0f, 0.0f, 0.0f}, 11, nullptr, false},
+        {"StrayTico", {0.0f, 50.0f, 0.0f}, 16, nullptr, false},
+        {"GrandStar", {0.0f, 0.0f, 0.0f}, 13, nullptr, false},
+        {"KinokoLifeUp", {0.0f, 40.0f, 0.0f}, 13, nullptr, false},
     };
 
     s32 getItemType(const JMapInfoIter& rIter) {
@@ -35,6 +75,7 @@ namespace {
     }
 
     DummyDisplayModel* tryCreateDummyModel(LiveActor* pHost, const JMapInfoIter& rIter, s32 a3, int itemIdx) NO_INLINE {
+        const DummyDisplayModelInfo* pInfo;
         s32 modelId = MR::getDummyDisplayModelId(rIter, a3);
 
         if (modelId == -1) {
@@ -45,7 +86,8 @@ namespace {
             return nullptr;
         }
 
-        DummyDisplayModel* mdl = new DummyDisplayModel(pHost, getInfo(itemIdx), itemIdx, modelId, getItemType(rIter));
+        pInfo = &::cDummyDisplayModelInfoTable[modelId];
+        DummyDisplayModel* mdl = new DummyDisplayModel(pHost, pInfo, itemIdx < 0 ? pInfo->_10 : itemIdx, modelId, getItemType(rIter));
         mdl->initWithoutIter();
         return mdl;
     }
@@ -92,13 +134,16 @@ void DummyDisplayModel::init(const JMapInfoIter& rIter) {
         if (!_AC) {
             MR::initShadowFromCSV(this, "Shadow");
         }
+
         break;
     }
+
     case ITEM_TYPE_POWER_STAR:
     case ITEM_TYPE_GRAND_STAR: {
         if (!_AC) {
             PowerStar::initShadowPowerStar(this, false);
         }
+
         PowerStar::setupColor(this, mHost, -1);
         MR::emitEffect(this, "Light");
         break;
@@ -149,12 +194,15 @@ void DummyDisplayModel::calcAndSetBaseMtx() {
     PartsModel::calcAndSetBaseMtx();
     TPos3f* m = (TPos3f*)getBaseMtx();
 
+    TVec3f offset;
     TVec3f v19 = mModelInfo->_4;
-    PSMTXMultVec((MtxPtr)m, -v19, &mPosition);
+    offset.negate(v19);
+    PSMTXMultVec((MtxPtr)m, offset, &mPosition);
     m->setTrans(mPosition);
 
     switch (mItemType) {
     case ITEM_TYPE_COIN:
+
         if (!_AC) {
             MR::multMtx(*m, MR::getCoinRotateYMatrix(), *m);
         }
@@ -162,6 +210,7 @@ void DummyDisplayModel::calcAndSetBaseMtx() {
         break;
     case ITEM_TYPE_POWER_STAR:
     case ITEM_TYPE_GRAND_STAR:
+
         if (!_AC) {
             TPos3f rot;
             rot.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), MR::toRadian(mRotation.y));

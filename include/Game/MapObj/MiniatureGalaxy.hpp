@@ -41,6 +41,7 @@ public:
     void setScale(f32);
     void tryZoomIn(bool);
     void tryZoomOut();
+    bool isZoomEnd() const;
     void updateZoomInOut();
     void updateNamePlate();
     void appearUnknownModel(const char*);

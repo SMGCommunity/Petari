@@ -66,13 +66,13 @@ void GlaringLight::connectToScene(const MapObjActorInitInfo& rInfo) {
     }
 }
 
-SimpleMirrorObj::SimpleMirrorObj(const char* pName, const char* a2, MtxPtr mtx) : MapObjActor(pName) {
+SimpleMirrorObj::SimpleMirrorObj(const char* pName, const char* pA2, MtxPtr mtx) : MapObjActor(pName, pA2) {
     mMtx = mtx;
     MR::createMirrorCamera();
 }
 
 void SimpleMirrorObj::calcAndSetBaseMtx() {
-    if (!mMtx) {
+    if (mMtx == nullptr) {
         MapObjActor::calcAndSetBaseMtx();
     } else {
         TPos3f reflectionPos;
@@ -81,7 +81,7 @@ void SimpleMirrorObj::calcAndSetBaseMtx() {
         f32 z = reflectionPos.mMtx[2][3];
         f32 y = reflectionPos.mMtx[1][3];
         f32 x = reflectionPos.mMtx[0][3];
-        mPosition.set(x, y, z);
+        mPosition.set< f32 >(x, y, z);
         MR::setBaseTRMtx(this, mMtx);
     }
 }
@@ -150,6 +150,7 @@ void UFOKinokoUnderConstruction::init(const JMapInfoIter& rIter) {
     }
 
     initialize(rIter, info);
+
     if (MR::isUFOKinokoBeforeConstruction()) {
         makeActorDead();
     }
@@ -159,7 +160,7 @@ namespace MR {
     void makeArchiveListUFOKinokoUnderConstruction(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
         const char* archive;
 
-        if (MR::isUFOKinokoBeforeConstruction()) {
+        if (MR::isUFOKinokoUnderConstruction()) {
             archive = "UFOKinokoUnderConstruction";
         } else {
             archive = "UFOKinokoLandingAstro";
@@ -187,7 +188,7 @@ void SimpleMirrorObj::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
     bool hasMtx = false;
 
-    if (!mMtx) {
+    if (mMtx == nullptr) {
         MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     } else {
         info.setupHioNode("地形オブジェ");
@@ -233,4 +234,8 @@ SimpleMapObjPush::~SimpleMapObjPush() {
 }
 
 UFOKinokoUnderConstruction::~UFOKinokoUnderConstruction() {
+}
+
+void SimpleMapObj_FORCE_MATCH(TMtx34f* pMtx, const Mtx pSrc) {
+    pMtx->set(pSrc);
 }

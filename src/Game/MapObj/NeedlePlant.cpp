@@ -11,6 +11,15 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+void NeedlePlant_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)150.0f;
+    (void)180.0f;
+    (void)10.0f;
+    (void)40.0f;
+    (void)70.0f;
+}
+
 namespace {
     // static const f32 sBreakSensorSize = _;
     static const f32 sAttackSensorSize = 70.0f;
@@ -81,8 +90,11 @@ void NeedlePlant::kill() {
 }
 
 void NeedlePlant::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    // TODO: Possible inline. https://decomp.me/scratch/zwlUm
-    if (MR::calcDistance(pSender, pReceiver, nullptr) > pReceiver->mRadius + mScale.x * ::sAttackSensorSize) {
+    f32 distance = MR::calcDistance(pSender, pReceiver, nullptr);
+    f32 size = mScale.x * ::sAttackSensorSize;
+    f32 radius = pReceiver->mRadius;
+
+    if (distance > size + radius) {
         return;
     }
 

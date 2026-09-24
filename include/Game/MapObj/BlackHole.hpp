@@ -28,12 +28,12 @@ public:
     void exeDemo();
     void exeDisappear();
 
-    ModelObj* mBlackHoleModel;  // 0x8C
-    TVec3f _90;
-    f32 _9C;
-    f32 _A0;
-    TBox3f* _A4;
-    TPos3f _A8;
-    TPos3f _D8;
-    ActorCameraInfo* mCameraInfo;  // 0x108
+    /* 0x8C */ ModelObj* mBlackHoleModel;
+    /* 0x90 */ TVec3f _90;
+    /* 0x9C */ f32 _9C;
+    /* 0xA0 */ f32 _A0;
+    /* 0xA4 */ TBox3f* _A4;
+    /* 0xA8 */ TPos3f _A8;
+    /* 0xD8 */ TPos3f _D8;
+    /* 0x108 */ ActorCameraInfo* mCameraInfo;
 };

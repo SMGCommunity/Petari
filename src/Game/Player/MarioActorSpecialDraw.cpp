@@ -223,7 +223,7 @@ void MarioActor::hideBeeFur() {
         _9EC->offDraw(-1);
     }
 
-    if (getCarrySensor()) {
+    if (getCarrySensor() != nullptr) {
         MR::hideModel(getCarrySensor()->mHost);
     }
 
@@ -409,7 +409,7 @@ void MarioActor::createRainbowDL() {
 }
 
 void MarioActor::drawScreenBlend() const {
-    if (mMario->_97C && mMario->_97C->getBlurOffset() != 0.0f) {
+    if (mMario->_97C != nullptr && mMario->_97C->getBlurOffset() != 0.0f) {
         MR::drawFullScreenBlur(mMario->_97C->getBlurOffset());
     }
 
@@ -489,8 +489,8 @@ void MarioActor::updateRandomTexture(f32 distance) {
                 alpha--;
             }
 
-            alpha = MR::clamp(alpha, 0, 15);
-            *pixel = (alpha * 16) & 0xF0;
+            s32 clamped = alpha < 0 ? 0 : alpha > 15 ? 15 : alpha;
+            *pixel = (clamped * 16) & 0xF0;
             pixel++;
         }
     }
@@ -888,7 +888,7 @@ void MarioActor::showBeeFur() {
         _9EC->onDraw(-1);
     }
 
-    if (getCarrySensor()) {
+    if (getCarrySensor() != nullptr) {
         MR::showModel(getCarrySensor()->mHost);
     }
 

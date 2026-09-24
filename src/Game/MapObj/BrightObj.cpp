@@ -14,18 +14,57 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include <JSystem/JUtility/JUTVideo.hpp>
 
+void BrightObj_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.000003814697265625f;
+    (void)-0.000003814697265625f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.1415927f;
+    (void)1.5707964f;
+    (void)2.0f;
+    (void)-1.5707964f;
+    (void)0.001f;
+    (void)0.25f;
+    (void)0.4f;
+    (void)0.7f;
+    (void)1.1f;
+    (void)100.0f;
+    (void)100000.0f;
+    (void)3000.0f;
+    (void)-0.999f;
+    (void)180.0f;
+    (void)57.295776f;
+}
+
 namespace {
+    inline const TPos3f& getBrightView(const BrightCamInfo& rInfo, u16 index) {
+        return rInfo.mViewMtx[index];
+    }
+
     const static f32 sSunRadius = 3000.0f;
     const static f32 sSunModelScale = 100.0f;
 
     bool calcScreenPosition(TVec2f* pDst, const TVec3f& rTrans, const TPos3f& rViewMtx, const TProj3f& rProjMtx) {
-        TVec3f vec;
-        rViewMtx.mult(rTrans, vec);
-
         TVec3f newPos;
-        rProjMtx.mult(vec, newPos);
+        TVec3f screenPos;
+        {
+            TVec4f clipPos;
+            TVec3f vec;
+            rViewMtx.mult(rTrans, vec);
+            f32 z = vec.z * rProjMtx[2][2] + rProjMtx[2][3];
+            f32 w = -vec.z;
+            f32 y = vec.y * rProjMtx[1][1] + vec.z * rProjMtx[1][2];
+            f32 x = vec.x * rProjMtx[0][0] + vec.z * rProjMtx[0][2];
+            clipPos.x = x;
+            clipPos.y = y;
+            clipPos.z = z;
+            clipPos.w = w;
+            newPos.scale(1.0f / clipPos.w, *clipPos.toTVec3());
+        }
 
         bool ret;
+
         if (1.0f < MR::abs(newPos.x) || 1.0f < MR::abs(newPos.y)) {
             ret = false;
         } else {
@@ -33,8 +72,8 @@ namespace {
         }
 
         f32 width = MR::getScreenWidth();
-        f32 height = JUTGetVideoManager()->getEfbHeight();
-        TVec3f screenPos(0.5f * width + 0.5f * newPos.x * width, 0.5f * height + 0.5f * -newPos.y * height, newPos.z);
+        f32 height = static_cast< s32 >(JUTGetVideoManager()->getEfbHeight());
+        screenPos.set< f32 >(0.5f * width + 0.5f * (newPos.x * width), 0.5f * height + 0.5f * (-newPos.y * height), newPos.z);
 
         pDst->x = screenPos.x;
         pDst->y = screenPos.y;
@@ -53,7 +92,10 @@ void BrightInfo::write(const TVec2f& rBrightnessCenter, const TVec2f& rRealCente
     mBright[mIndex] = brightness;
 
     u32 val = mIndex;
-    if (++val > 2) {
+
+    val++;
+
+    if (val > 2) {
         val = 0;
     }
 
@@ -158,28 +200,31 @@ void BrightObjBase::checkVisibilityOfSphere(u16 index, const BrightCamInfo& rCam
     TPos3f mtx;
     mtx.setTR(vec110, camDir, drawDir, drawPos);
 
+    const TPos3f& rView = ::getBrightView(rCamInfo, index);
     CheckArg args = CheckArg();
-    ::calcScreenPosition(&args.mCenter, drawPos, rCamInfo.mViewMtx[index], rCamInfo.mProjectionMtx[index]);
-    checkVisible(&args, drawPos, rCamInfo.mViewMtx[index], rCamInfo.mProjectionMtx[index]);
+    const TProj3f& rProj = rCamInfo.mProjectionMtx[index];
+
+    ::calcScreenPosition(&args.mCenter, drawPos, rView, rProj);
+    checkVisible(&args, drawPos, rView, rProj);
 
     for (u32 idx = 0; idx < 8; idx++) {
-        f32 angle = idx / 4.0f * MR::pi();
+        f32 angle = idx * MR::pi() / 4.0f;
         TVec3f vec11C(MR::cos(angle), MR::sin(angle), 0.0f);
         vec11C.scale(mDrawInfo.mRadius[index] * 0.4f);
 
         mtx.mult(vec11C, vec11C);
 
-        checkVisible(&args, vec11C, rCamInfo.mViewMtx[index], rCamInfo.mProjectionMtx[index]);
+        checkVisible(&args, vec11C, rView, rProj);
     }
 
     for (u32 idx = 0; idx < 8; idx++) {
-        f32 angle = (idx + 0.5f) / 4.0f * MR::pi();
+        f32 angle = (idx + 0.5f) * MR::pi() / 4.0f;
         TVec3f vec128(MR::cos(angle), MR::sin(angle), 0.0f);
         vec128.scale(mDrawInfo.mRadius[index] * 0.7f);
 
         mtx.mult(vec128, vec128);
 
-        checkVisible(&args, vec128, rCamInfo.mViewMtx[index], rCamInfo.mProjectionMtx[index]);
+        checkVisible(&args, vec128, rView, rProj);
     }
 
     setResult(args);
@@ -187,6 +232,7 @@ void BrightObjBase::checkVisibilityOfSphere(u16 index, const BrightCamInfo& rCam
 
 void BrightObjBase::checkVisible(BrightObjBase::CheckArg* pArg, const TVec3f& rTrans, const TPos3f& rViewMtx, const TProj3f& rProjMtx) {
     TVec2f screenPos;
+
     if (::calcScreenPosition(&screenPos, rTrans, rViewMtx, rProjMtx)) {
         TVec2f frameBufferPos;
         MR::convertScreenPosToFrameBufferPos(&frameBufferPos, screenPos);
@@ -335,11 +381,12 @@ void BrightSun::controlSunModel() {
     rotateMtx.setRotate(fwdVec, camDir);
 
     TVec3f rotation;
+
     if (fwdVec.dot(camDir) < -0.999f) {
         rotation.set< f32 >(0.0f, 180.0f, 0.0f);
     } else {
         rotateMtx.getEulerXYZ(rotation);
-        rotation.scale(_180_PI);
+        rotation.scale(57.295776f);
     }
 
     mSun->mRotation.set(rotation);

@@ -6,6 +6,12 @@
 #include "Game/Util.hpp"
 #include "Game/Util/MathUtil.hpp"
 
+void BeeFlowerHover_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)50.0f;
+}
+
 namespace {
     static const f32 sDefaultRotateSpeed = 50.0f;
     static const s32 sStepToRecoverStart = 60;
@@ -43,13 +49,13 @@ void BeeFlowerHover::init(const JMapInfoIter& rIter) {
         mRailPosture = new MapPartsRailPosture(this);
         mRailPosture->mMovePosture = 2;
         mRailPosture->initWithoutIter();
-        mRailMover->start();
+        mRailPosture->start();
     }
 
     MR::initShadowVolumeCylinder(this, 450.0f);
     MR::onShadowFollowHostScale(this, 0);
 
-    if (!mRailMover) {
+    if (mRailMover == nullptr) {
         MR::onCalcShadowOneTime(this, 0);
     }
 
@@ -59,13 +65,13 @@ void BeeFlowerHover::init(const JMapInfoIter& rIter) {
         MR::setShadowDropLength(this, 0, drop_length);
     }
 
-    if (mRailMover) {
+    if (mRailMover != nullptr) {
         MR::initAndSetRailClipping(&_CC, this, 100.0f, 500.0f);
     } else {
         MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     }
 
-    if (mRailMover) {
+    if (mRailMover != nullptr) {
         MR::onCalcGravity(this);
     } else {
         MR::calcGravity(this);
@@ -153,7 +159,7 @@ void BeeFlowerHover::control() {
     mtx.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), MR::toRadian(_BC));
     _8C.concat(mtx);
 
-    if (mRailMover) {
+    if (mRailMover != nullptr) {
         mRailMover->movement();
         mRailPosture->movement();
         mPosition.set(mRailMover->_28);

@@ -27,6 +27,9 @@ public:
     void initEffect();
     void updateRotate(f32);
     void updateGravity();
+    bool isInGroundGracePeriod() const {
+        return _138 < 10;
+    }
     void processMove();
     bool isOnGround() const;
     f32 calcMoveSpeed() const;
@@ -74,21 +77,21 @@ public:
     }
 
 private:
-    f32 _8C;
-    f32 _90;
-    TVec3f _94;
-    TPos3f _A0;
-    f32 _D0;
-    bool _D4;
-    TPos3f _D8;
-    TPos3f _108;
-    s32 _138;
-    bool _13C;
-    TVec3f mSpawnPosition;  // 0x140
-    bool _14C;
-    TVec3f _150;
-    bool mSphericalShadow;       // 0x15C, also affects some other properties besides shadow
-    bool mRespawnWhenOutOfView;  // 0x15D
-    bool _15E;                   // something about clipping
-    bool mContinueRolling;       // 0x15F
+    /* 0x8C */ f32 _8C;
+    /* 0x90 */ f32 _90;
+    /* 0x94 */ TVec3f _94;
+    /* 0xA0 */ TPos3f _A0;
+    /* 0xD0 */ f32 _D0;
+    /* 0xD4 */ bool _D4;
+    /* 0xD8 */ TPos3f _D8;
+    /* 0x108 */ TPos3f _108;
+    /* 0x138 */ s32 _138;
+    /* 0x13C */ bool _13C;
+    /* 0x140 */ TVec3f mSpawnPosition;
+    /* 0x14C */ bool _14C;
+    /* 0x150 */ TVec3f _150;
+    /* 0x15C */ bool mSphericalShadow;  // also affects some other properties besides shadow
+    /* 0x15D */ bool mRespawnWhenOutOfView;
+    /* 0x15E */ bool _15E;  // something about clipping
+    /* 0x15F */ bool mContinueRolling;
 };

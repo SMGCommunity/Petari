@@ -19,6 +19,9 @@ public:
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void shotWaterBullet(LiveActor*, const TPos3f&, f32, bool, bool, bool, ActorCameraInfo**);
+    bool isBound() const {
+        return mHostActor != nullptr;
+    }
     void exeFly();
     void exeSpinKill();
     bool startHostCamera() const;
@@ -26,14 +29,14 @@ public:
     bool inviteMario(HitSensor*);
     void updateSuffererMtx();
 
-    TVec3f _8C;
-    TVec3f _98;
-    LiveActor* _A4;
-    f32 _A8;
-    LiveActor* mHostActor;  // 0xAC
-    bool _B0;
-    bool _B1;
-    bool _B2;
-    u8 _B3;
-    ActorCameraInfo** mCameraInfo;  // 0xB4
+    /* 0x8C */ TVec3f _8C;
+    /* 0x98 */ TVec3f _98;
+    /* 0xA4 */ LiveActor* _A4;
+    /* 0xA8 */ f32 _A8;
+    /* 0xAC */ LiveActor* mHostActor;
+    /* 0xB0 */ bool _B0;
+    /* 0xB1 */ bool _B1;
+    /* 0xB2 */ bool _B2;
+    /* 0xB3 */ u8 _B3;
+    /* 0xB4 */ ActorCameraInfo** mCameraInfo;
 };

@@ -33,8 +33,6 @@ const GXColor effectColors[] = {{0x00, 0x55, 0xff, 0xFF}, {0xFF, 0xFF, 0x00, 0xF
 const GXColor initColors[] = {{0x80, 0x00, 0x99, 0xFF}, {0xE6, 0xA0, 0x00, 0xFF}, {0x46, 0xA1, 0x08, 0xFF},
                               {0x37, 0x5A, 0xA0, 0xFF}, {0xBE, 0x33, 0x0B, 0xFF}, {0x80, 0x80, 0x80, 0xFF}};
 
-J3DGXColor defaultCol((GXColor){255, 0, 0, 255});
-
 namespace NrvStarPiece {
     NEW_NERVE(HostTypeNrvFloating, StarPiece, Floating);
     NEW_NERVE(HostTypeNrvHop, StarPiece, Hop);
@@ -51,9 +49,9 @@ namespace NrvStarPiece {
 };  // namespace NrvStarPiece
 
 StarPiece::StarPiece(const char* pName)
-    : LiveActor(pName), _8C(0, 0, 1), _98(0.02f), _9C(0.0f), _A0(0.0f), _A4(0.0f), _A8(0, 0, 0), _B4(0, 0, 0), mDelegator(nullptr),
-      mTargetSensor(nullptr), _C8(-1), mGettableDelayCounter(-1), mFallKillTimer(0), mColor(defaultCol), mGroupType(groupType_noGroup),
-      mHostInfo(nullptr), mReceiverInfo(0), mNumGift(1) {
+    : LiveActor(pName), _8C(0, 0, 1), _98(0.02f), _9C(), _A0(), _A4(), _A8(0, 0, 0), _B4(0, 0, 0), mDelegator(nullptr), mTargetSensor(), _C8(-1),
+      mGettableDelayCounter(-1), mFallKillTimer(), mColor((GXColor){0, 0, 0, 255}), mGroupType(groupType_noGroup), mHostInfo(nullptr),
+      mReceiverInfo(0), mNumGift(1) {
     MR::incNumStarPieceNewed();
 
     mFlags.isGoToPlayer = false;
@@ -191,6 +189,7 @@ s32 StarPiece::getNumColor() {
 
 void StarPiece::appearFromGroup() {
     appear();
+
     switch (mGroupType) {
     case groupType_FloatingGroup:
         setNerve(GET_NERVE(StarPiece, HostTypeNrvFloating));
@@ -234,6 +233,7 @@ void StarPiece::makeActorDead() {
     _C8 = -1;
 
     mFlags._6 = false;
+
     if (mFlags.isLaunched == true) {
         MR::getStarPieceDirector()->mNumStarPiecesLaunched--;
         mFlags.isLaunched = false;
@@ -247,9 +247,11 @@ void StarPiece::makeActorDead() {
 
 void StarPiece::startClipped() {
     LiveActor::startClipped();
+
     if (!isNerve(GET_NERVE(StarPiece, HostTypeNrvFloating)) && !isNerve(GET_NERVE(StarPiece, HostTypeNrvRailMove))) {
         makeActorDead();
     }
+
     _C8 = -1;
 }
 
@@ -257,6 +259,7 @@ void StarPiece::changeScale(f32 scale) {
     mScale.set(scale);
     // probably some clamp inline function
     f32 clampedScale;
+
     if (scale < 0.1f) {
         clampedScale = 0.1f;
     } else if (scale > 2.0f) {
@@ -287,6 +290,7 @@ void StarPiece::control() {
             kill();
             return;
         }
+
         if (MR::isPressedRoofAndGround(this)) {
             kill();
             return;
@@ -318,7 +322,7 @@ void StarPiece::exeFloating() {
         }
     }
 
-    mRotation.y += 1.0f;
+    mRotation.y += 15.0f;
     MR::repeatDegree(&mRotation.y);
 
     tryGotJudge();
@@ -326,6 +330,7 @@ void StarPiece::exeFloating() {
     if (mFlags._2) {
         HitInfo info;
         MR::checkStrikePointToMap(mPosition, &info);
+
         if (MR::isCodeSand(&info.mParentTriangle)) {
             kill();
             MR::emitEffect(this, "SandColumnS");
@@ -360,6 +365,7 @@ void StarPiece::exeHop() {
         if (mHostInfo != nullptr) {
             mHostInfo->_C++;
         }
+
         kill();
     }
 }
@@ -379,6 +385,7 @@ void StarPiece::exeFall() {
         MR::onCalcShadowDropGravity(this, nullptr);
         mFallKillTimer = 0;
     }
+
     tryCalcGravity();
 
     if (mFlags.InWater) {
@@ -421,6 +428,7 @@ void StarPiece::exeFall() {
 
     if (!MR::isDemoActive()) {
         mFallKillTimer++;
+
         if (mFallKillTimer > 600) {
             kill();
             return;
@@ -441,6 +449,7 @@ void StarPiece::exeFall() {
 
 bool StarPiece::isTouchToTarget(TVec3f* pVec, f32 flt) {
     TVec3f* vec;
+
     if (mFlags.isGoToPlayer) {
         vec = MR::getPlayerCenterPos();
     } else {
@@ -456,16 +465,20 @@ bool StarPiece::isTouchToTarget(TVec3f* pVec, f32 flt) {
     }
 
     f32 distToTouch;
+
     if (mFlags.isGoToPlayer) {
         distToTouch = 160.0f;
     } else {
-        distToTouch = mTargetSensor->mRadius + getSensor("body")->mRadius;
+        const HitSensor* pBody = getSensor("body");
+        distToTouch = mTargetSensor->mRadius + pBody->mRadius;
     }
+
     return vec2.length() < distToTouch;
 }
 
 bool StarPiece::isEffectLight() {
     bool retval = true;
+
     if (!mFlags._6 && MR::getStarPieceDirector()->mNumStarPiecesLaunched <= 10) {
         retval = false;
     }
@@ -490,11 +503,13 @@ void StarPiece::exeToTarget() {
         _9C = 0.0f;
         MR::forceDeleteEffect(this, "StarPieceFlyingBlur");
         MR::emitEffect(this, "StarPieceGetBlur");
+
         if (mFlags.isGoToPlayer) {
             emitTouchEffect(*MR::getStarPointerLastPointedPort(this), 10.0f);
         } else {
             emitTouchEffect(0, 10.0f);
         }
+
         MR::invalidateShadow(this, nullptr);
     }
 
@@ -508,6 +523,7 @@ void StarPiece::exeToTarget() {
     }
 
     TVec3f touchTargetVec;
+
     if (isTouchToTarget(&touchTargetVec, 0.0f)) {
         if (mFlags.isGoToPlayer) {
             touchPlayer();
@@ -530,21 +546,26 @@ void StarPiece::exeToTarget() {
         kill();
         return;
     }
+
     // probably two inlined max functions
     f32 max;
-    if (_98 + 0.1f >= 1.0f) {
+
+    if (_98 + 0.01f >= 1.0f) {
         max = 1.0f;
     } else {
-        max = _98 + 0.1f;
+        max = _98 + 0.01f;
     }
+
     _98 = max;
 
     f32 max2;
+
     if (_9C + 0.03f >= 1.0f) {
         max2 = 1.0f;
     } else {
         max2 = _9C + 0.03f;
     }
+
     _9C = max2;
 
     MR::normalizeOrZero(&touchTargetVec);
@@ -559,6 +580,7 @@ void StarPiece::exeToTarget() {
     mVelocity.set(vec2);
 
     TVec3f* vel;
+
     if (mFlags.isGoToPlayer) {
         vel = MR::getPlayerVelocity();
     } else {
@@ -567,8 +589,10 @@ void StarPiece::exeToTarget() {
 
     TVec3f velNormalized(*vel);
     MR::normalizeOrZero(&velNormalized);
+
     if (!MR::isNearZero(velNormalized)) {
         f32 dot = _8C.dot(velNormalized);
+
         if (0.0f < dot) {
             if (mFlags.isGoToPlayer) {
                 mVelocity += *MR::getPlayerVelocity() * _9C * dot;
@@ -607,6 +631,7 @@ void StarPiece::exeToPlayerEnd() {
         mVelocity.zero();
 
         MR::deleteEffect(this, "StarPieceGetBlur");
+
         if (mHostInfo != nullptr) {
             mHostInfo->_C++;
             mHostInfo->_8--;
@@ -657,6 +682,7 @@ void StarPiece::exeThrow() {
 
     f32 flt2 = 0.0f;
     vec2 = _A8 + vec3 * flt + (-mGravity) * flt2;
+
     if (mTargetSensor != nullptr) {
         f32 flt3 = MR::calcNerveRate(this, 30);
         vec2 = mTargetSensor->mPosition * flt3 + vec2 * (1.0f - flt3);
@@ -688,6 +714,7 @@ void StarPiece::exeThrow() {
         if (MR::sendMsgToBindedSensor(ACTMES_STAR_PIECE_ATTACK, this, getSensor("attack"))) {
             MR::startSound(this, "SE_OJ_STAR_PIECE_HIT_ENEMY");
         }
+
         kill();
         return;
     }
@@ -728,6 +755,7 @@ void StarPiece::exeThrowFall() {
         if (MR::sendMsgToBindedSensor(ACTMES_STAR_PIECE_ATTACK, this, getSensor("attack"))) {
             MR::startSound(this, "SE_OJ_STAR_PIECE_HIT_ENEMY");
         }
+
         kill();
         return;
     }
@@ -828,8 +856,8 @@ bool StarPiece::throwToTargetCore(const TVec3f& rVec1, const TVec3f& rVec2, cons
     return true;
 }
 
-void StarPiece::giftToTarget(StarPieceReceiverInfo* receiverInfo, u32 numGift, HitSensor* pSensor, const TVec3f& rVec1) {
-    mReceiverInfo = receiverInfo;
+void StarPiece::giftToTarget(StarPieceReceiverInfo* pReceiverInfo, u32 numGift, HitSensor* pSensor, const TVec3f& rVec1) {
+    mReceiverInfo = pReceiverInfo;
     mNumGift = numGift;
     mFlags.isGoToPlayer = false;
     mTargetSensor = pSensor;
@@ -844,6 +872,7 @@ void StarPiece::giftToTarget(StarPieceReceiverInfo* receiverInfo, u32 numGift, H
     setNerve(GET_NERVE(StarPiece, HostTypeNrvToTarget));
 
     f32 scale = 1.0f;
+
     if (numGift != 1) {
         scale = 2.0f;
     }
@@ -868,6 +897,7 @@ void StarPiece::goToPlayer(TVec3f vec) {
         }
     } else if (isNerve(GET_NERVE(StarPiece, HostTypeNrvFollowPlayer))) {
         f32 dot = _8C.dot(mGravity);
+
         if (0.0f < dot) {
             _8C -= mGravity * dot * 2.0f;
         }
@@ -900,6 +930,7 @@ void StarPiece::launch(const TVec3f& rVec, f32 f1, f32 f2, bool notCheckInWater,
         mFlags.InWater = false;
     } else {
         mFlags.InWater = MR::isInWater(mPosition);
+
         if (mFlags.InWater) {
             mVelocity *= 0.5f;
         }
@@ -929,6 +960,7 @@ void StarPiece::launch(const TVec3f& rVec1, const TVec3f& rVec2, f32 f1, f32 f2,
         mFlags.InWater = false;
     } else {
         mFlags.InWater = MR::isInWater(mPosition);
+
         if (mFlags.InWater) {
             mVelocity *= 0.5f;
         }
@@ -955,6 +987,7 @@ void StarPiece::launch(const TVec3f& rVec1, const TVec3f& rVec2, bool notCheckIn
         mFlags.InWater = false;
     } else {
         mFlags.InWater = MR::isInWater(mPosition);
+
         if (mFlags.InWater) {
             mVelocity *= 0.5f;
         }
@@ -977,11 +1010,13 @@ f32 StarPiece::calcEffectScale(f32 f1, f32 f2, bool a1) {
     f32 pointRadius2D = MR::calcPointRadius2D(mPosition, 30.0f);
 
     // why not just do an or here??
+
     if (a1) {
         retval = f1 / pointRadius2D;
     } else if (pointRadius2D * f2 < f1) {
         retval = f1 / pointRadius2D;
     }
+
     return retval;
 }
 
@@ -991,6 +1026,7 @@ f32 StarPiece::calcNearCameraScale() {
     if (30.0f < pointRadius2D) {
         return 30.0f / pointRadius2D;
     }
+
     return 1.0f;
 }
 
@@ -1002,6 +1038,7 @@ f32 StarPiece::calcDistToCamera() {
 
 void StarPiece::emitTouchEffect(s32 colorIndex, f32 f1) {
     f32 effectScale = calcEffectScale(f1, 1.0f, false);
+
     if (200.0f < calcDistToCamera()) {
         MR::emitEffectWithScale(this, "StarPieceTouchLight", effectScale, -1);
         MR::setEffectPrmColor(this, "StarPieceTouchLight", effectColors[colorIndex].r, effectColors[colorIndex].g, effectColors[colorIndex].b);
@@ -1010,6 +1047,7 @@ void StarPiece::emitTouchEffect(s32 colorIndex, f32 f1) {
 
 void StarPiece::emitGettableEffect(f32 f1) {
     f32 effectScale = calcEffectScale(f1, 0.8f, true);
+
     if (200.0f < calcDistToCamera()) {
         MR::emitEffectWithScale(this, "GetAble", effectScale, -1);
     }
@@ -1039,6 +1077,7 @@ void StarPiece::tryGotJudge() {
     if (mGettableDelayCounter < 0) {
         bool isPointing = MR::isStarPointerPointing1Por2P(this, "弱", false, false);
         MR::getStarPointerLastPointedPort(this);
+
         if (isPointing == true) {
             goToPlayer(TVec3f(_8C));
         }
@@ -1119,6 +1158,7 @@ void StarPiece::setReflect(const TVec3f& rVec1, const TVec3f& rVec2) {
     }
 
     mVelocity.add(mGravity * -35.0f);
+
     if (200.0f < calcDistToCamera()) {
         MR::emitEffectHit(this, rVec2, "InvalidHitMark");
     }
@@ -1160,6 +1200,7 @@ bool StarPiece::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
                 touchPlayer();
                 MR::notifyDirectGetStarPiecePlayer();
             }
+
             return true;
         }
     }
@@ -1171,6 +1212,7 @@ bool StarPiece::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         }
 
         mTargetSensor = pSender;
+
         if (MR::isSensorPlayer(mTargetSensor)) {
             mFlags.isGoToPlayer = true;
         } else {
@@ -1207,8 +1249,10 @@ bool StarPiece::touchPlayer() {
                 MR::emitEffect(this, "StarPieceGet");
             }
         }
+
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     }
+
     MR::stopSound(this, "SE_OJ_STAR_PIECE_FLY_W");
     MR::stopSound(this, "SE_OJ_STAR_PIECE_FLY");
 

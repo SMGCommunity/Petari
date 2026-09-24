@@ -49,7 +49,7 @@ void SuperSpinDriver_DUMMY() {
 SuperSpinDriver::SuperSpinDriver(const char* pName, s32 color)
     : LiveActor(pName), mBindActor(), mShootPath(), mSpinDriverCamera(), mOperateRing(), mPathDrawer(), mEmptyModel(), _A4(0, 0, 0, 1),
       _B4(0, 0, 0, 1), _C4(0, 0, 0), _D0(0, 0, 0), mShootPathDirection(0, 1, 0), _E8(0, 0, 1), _F4(1, 0, 0), _100(0, 1, 0),
-      mShootPathPosition(0, 0, 0), _118(0, 0, 0), _124(0, 0, 0), _134(), _138(), _13C(), mFrontAngle(), _144(), _148(0), mShadowLength(-1.0f),
+      mShootPathPosition(0, 0, 0), _118(0, 0, 0), _124(0, 0, 0), _134(), _138(), _13C(), mFrontAngle(), _144(), _148(), mShadowLength(-1.0f),
       mFlightTime(300), _154(50), _158(230), _15C(280), mDrawPathRangeIdx(-1), mPlayerLandRotation(), _168(), mAlreadyDoneFlagIdx(-1), mColor(color),
       _174(true), _178(), _17C(), _17D(), mIsPullPlayer(true), mIsDisableJingle() {
 }
@@ -108,11 +108,13 @@ void SuperSpinDriver::initParamFromJMapInfo(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg1NoInit(rIter, &mShadowLength);
 
     s32 isPullPlayer = 0;
+
     if (MR::getJMapInfoArg2NoInit(rIter, &isPullPlayer)) {
         mIsPullPlayer = isPullPlayer != 0;
     }
 
     s32 isDisableJingle = 0;
+
     if (MR::getJMapInfoArg4NoInit(rIter, &isDisableJingle)) {
         mIsDisableJingle = isDisableJingle == 1;
     }
@@ -397,6 +399,7 @@ bool SuperSpinDriver::tryBind(HitSensor* pSender, HitSensor* pReceiver) {
     _D0 = *MR::getPlayerLastMove();
 
     f32 length = _D0.length();
+
     if (length > 40.0f) {
         _D0 *= 40.0f / length;
     }
@@ -680,6 +683,7 @@ void SuperSpinDriver::endShoot() {
 
 void SuperSpinDriver::exeCoolDown() {
     // BUG, is supposed to be a conditional to call tryEndCoolDown
+
     if (MR::isFirstStep(this)) {
     }
 
@@ -818,7 +822,10 @@ void SuperSpinDriver::updateBindActorMatrix() {
     TPos3f mtx;
     mtx.identity();
     mtx.setEulerY(_138);
-    mtx.setTrans(0.0f, mOperateRing->mRadiusRate * -75.0f, 0.0f);
+    f32 offset = -75.0f;
+    const f32 rate = mOperateRing->mRadiusRate;
+    offset *= rate;
+    mtx.setTrans(0.0f, offset, 0.0f);
 
     TPos3f mtx2;
     mtx2.identity();
@@ -970,6 +977,7 @@ void SuperSpinDriver::calcShootMotionTime() {
 void SuperSpinDriver::addSwingSignRotateY() {
     if (isSwingOr2PTrigger()) {
         _144 += 0.1f;
+
         if (_144 > 0.23f) {
             _144 = 0.23f;
         }

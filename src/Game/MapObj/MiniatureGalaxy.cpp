@@ -24,6 +24,10 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
+void MiniatureGalaxy_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
 namespace {
     const Vec cNamePlateOffset = {0.0f, 1500.0f, 0.0f};
     const f32 cPointingRadius = 2500.0f;
@@ -52,6 +56,10 @@ namespace {
 
     ModelObj* createGalaxyPart(const char* pName, const char* pModelName, MtxPtr pMtx, bool a1) {
         return new ModelObj(pName, pModelName, pMtx, MR::DrawBufferType_NoShadowedMapObj, -2, -2, a1);
+    }
+
+    inline void setInitialRotation(TVec3f& rRotation, const f32& rAngle) {
+        rRotation.set< f32 >(0.0f, rAngle, 0.0f);
     }
 
     void initGalaxyPart(ModelObj* pObj) {
@@ -131,7 +139,7 @@ void MiniatureGalaxy::initAfterPlacement() {
 
 void MiniatureGalaxy::appear() {
     const f32 rotations[] = {0.0f, 210.0f, 80.0f, 330.0f, 130.0f};
-    mRotation.set< f32 >(0.0f, rotations[MiniatureGalaxyFunction::calcMiniatureGalaxyIndex(this)], 0.0f);
+    ::setInitialRotation(mRotation, rotations[MiniatureGalaxyFunction::calcMiniatureGalaxyIndex(this)]);
 
     mCanZoomIn = 1;
     mZoomLevel = ::cZoomFrame;
@@ -229,7 +237,6 @@ void MiniatureGalaxy::makeArchiveList(NameObjArchiveListCollector* pCollector, c
         pCollector->addArchive(objectName);
         pCollector->addArchive("MiniHatenaGalaxy");
     } else if (type == MiniatureGalaxyType_Koopa) {
-        // TODO: Should be replaced with ::isUseKoopaFaceModel
         const char* pStageName;
         u32 miniLen = strlen("Mini");
         bool isUnknownKoopa = true;
@@ -261,10 +268,8 @@ void MiniatureGalaxy::control() {
 }
 
 void MiniatureGalaxy::calcAndSetBaseMtx() {
-    // FIXME: stack, lots of inlines
     TPos3f rotMtx;
-    TVec3f zero(0.0f);
-    SphereSelectorFunction::calcHandledRotateMtx(zero, &rotMtx);
+    SphereSelectorFunction::calcHandledRotateMtx(TVec3f(0.0f), &rotMtx);
 
     TPos3f baseMtx = rotMtx;
     baseMtx.set(rotMtx);
@@ -373,6 +378,7 @@ void MiniatureGalaxy::initPartsModel() {
     mStarPlateModel = ::createGalaxyPart("スター数モデル", "MiniatureGalaxyStarNumber", mPosMtx, true);
 
     s32 powerStarNum = MR::getPowerStarNumToOpenGalaxy(mGalaxyName);
+
     if (powerStarNum < 10) {
         MR::initDLMakerTexMtx(mStarPlateModel, "StarNumber1")->setTexMtx(0, &mOnesTexMtx);
 
@@ -431,12 +437,15 @@ void MiniatureGalaxy::tryZoomOut() {
     disappearSelectModel();
 }
 
+inline bool MiniatureGalaxy::isZoomEnd() const {
+    return mZoomLevel == ::cZoomFrame;
+}
+
 void MiniatureGalaxy::updateZoomInOut() {
-    if (mZoomLevel == ::cZoomFrame) {
+    if (isZoomEnd()) {
         return;
     }
 
-    // FIXME
     mZoomLevel++;
     f32 zoomRate = static_cast< f32 >(mZoomLevel) / ::cZoomFrame;
 
@@ -474,9 +483,9 @@ void MiniatureGalaxy::updateNamePlate() {
     mNamePlate->setPos3D(newPosition);
 }
 
-void MiniatureGalaxy::appearUnknownModel(const char* brkName) {
+void MiniatureGalaxy::appearUnknownModel(const char* pBrkName) {
     mUnknownModel->appear();
-    MR::startBrk(mUnknownModel, brkName);
+    MR::startBrk(mUnknownModel, pBrkName);
 
     if (mType == MiniatureGalaxyType_Normal) {
         MR::startBtk(mUnknownModel, "MiniatureGalaxyUnknown");
@@ -486,7 +495,7 @@ void MiniatureGalaxy::appearUnknownModel(const char* brkName) {
 
     if (mStarPlateModel != nullptr) {
         mStarPlateModel->appear();
-        MR::startBrk(mStarPlateModel, brkName);
+        MR::startBrk(mStarPlateModel, pBrkName);
         MR::startBck(mStarPlateModel, "MiniatureGalaxyStarNumber");
         MR::setBckFrameAndStop(mStarPlateModel, mType == MiniatureGalaxyType_Koopa ? 1.0f : 0.0f);
     }

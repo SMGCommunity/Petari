@@ -1,4 +1,4 @@
-#include "Game/Mapobj/RailCoin.hpp"
+#include "Game/MapObj/RailCoin.hpp"
 #include "Game/AreaObj/MercatorTransformCube.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
@@ -12,7 +12,7 @@ namespace {
 
         virtual void setPosition(s32, const TVec3f&);
 
-        CoinGroup* mGroup;  // 0x4
+        /* 0x04 */ CoinGroup* mGroup;
     };
 };  // namespace
 

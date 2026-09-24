@@ -12,6 +12,13 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 
+void ElectricRailHolder_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)30.0f;
+    (void)0.0f;
+}
+
 namespace {
     const f32 cHitSensorRadius = 30.0f;
 
@@ -23,7 +30,9 @@ namespace {
         TVec3f railPos;
         f32 coord = MR::calcNearestRailPos(&railPos, pActor, pSensor->mPosition);
 
-        f32 radius = 30.0f + pSensor->mRadius;
+        const f32 sensorRadius = pSensor->mRadius;
+        f32 radius = ::cHitSensorRadius + sensorRadius;
+
         if (railPos.squared(pSensor->mPosition) < radius * radius) {
             if (pRailPos != nullptr) {
                 pRailPos->set(railPos);
@@ -66,6 +75,7 @@ void ElectricRailHolder::draw() const {
 
     for (s32 i = 0; i < mRailItems.size(); i++) {
         RailItem* pItem = mRailItems[i];
+
         if (!MR::isValidDraw(pItem->mHost)) {
             continue;
         }
@@ -88,6 +98,7 @@ bool ElectricRailHolder::isTouchRail(const HitSensor* pSensor, TVec3f* pVec1, TV
 
     for (s32 i = 0; i < mRailItems.size(); i++) {
         RailItem* pItem = mRailItems[i];
+
         if (!MR::isValidDraw(pItem->mHost)) {
             continue;
         }
@@ -143,12 +154,12 @@ void ElectricRailFunction::registerRail(const LiveActor* pActor, ElectricRailTyp
     ::getHolder()->registerRail(pActor, railType);
 }
 
-bool ElectricRailFunction::isTouchRail(const HitSensor* pSensor, TVec3f* rVec1, TVec3f* rVec2) {
+bool ElectricRailFunction::isTouchRail(const HitSensor* pSensor, TVec3f* pVec1, TVec3f* pVec2) {
     if (!MR::isExistSceneObj(SceneObj_ElectricRailHolder)) {
         return false;
     }
 
-    return ::getHolder()->isTouchRail(pSensor, rVec1, rVec2);
+    return ::getHolder()->isTouchRail(pSensor, pVec1, pVec2);
 }
 
 f32 ElectricRailFunction::getHitSensorRadius() {
@@ -176,8 +187,8 @@ void ElectricRailHolder::registerRail(const LiveActor* pActor, ElectricRailType 
         mRailModels[railType] = createModel(railType);
     }
 
-    RailItem* RailItem = new ::RailItem();
-    (*mRailItems.end()) = RailItem;
+    RailItem* pItem = new RailItem();
+    (*mRailItems.end()) = pItem;
     (*mRailItems.end())->mRailType = railType;
     (*mRailItems.end())->mHost = static_cast< const ElectricRailMoving* >(pActor);
 
@@ -202,7 +213,7 @@ ModelObj* ElectricRailHolder::createModel(ElectricRailType railType) const {
 
         MR::startBtk(pModel, "ElectricRail");
         MR::startBrk(pModel, "ElectricRail");
-        MR::setBrkFrameAndStop(pModel, 1.0f);
+        MR::setBrkFrameAndStop(pModel, 0.0f);
 
         break;
     case ElectricRail_Yellow:
@@ -213,7 +224,7 @@ ModelObj* ElectricRailHolder::createModel(ElectricRailType railType) const {
 
         MR::startBtk(pModel, "ElectricRail");
         MR::startBrk(pModel, "ElectricRail");
-        MR::setBrkFrameAndStop(pModel, 0.0f);
+        MR::setBrkFrameAndStop(pModel, 1.0f);
 
         break;
     case ElectricRail_YellowMoving:

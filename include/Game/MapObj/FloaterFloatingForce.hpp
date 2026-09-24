@@ -11,7 +11,7 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void start();
 
-    virtual void updateHostTrans(TVec3f*) const {
+    virtual void updateHostTrans(TVec3f*) const NO_INLINE {
     }
 
     virtual void updateHostVelocity(TVec3f*) const {

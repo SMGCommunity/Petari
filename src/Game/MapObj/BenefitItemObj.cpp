@@ -22,6 +22,27 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void BenefitItemObj_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)50.0f;
+    (void)5.0f;
+    (void)10.0f;
+    (void)100.0f;
+    (void)2000.0f;
+    (void)0.0010000000474974513f;
+    (void)6.2831854820251465f;
+    (void)7.0f;
+    (void)0.019999999552965164f;
+    (void)1.100000023841858f;
+    (void)0.009999999776482582f;
+    (void)0.949999988079071f;
+    (void)20.0f;
+    (void)0.10000000149011612f;
+    (void)0.20000000298023224f;
+    (void)60.0f;
+}
+
 namespace {
     f32 cAppearThrowUpSpd = 10.0f;
     f32 cAppearThrowUpSpd2 = 15.0f;
@@ -31,8 +52,13 @@ namespace {
     static u16 sVal = 0x0258;
 };  // namespace
 
+const char* BenefitItemObj_FORCE_MATCH() {
+    return "影クリップ判定";
+}
+
 void ShadowClipActor::endClipped() {
     LiveActor::endClipped();
+
     if (MR::isClipped(_8C)) {
         _8C->endClipped();
     }
@@ -107,6 +133,7 @@ void BenefitItemObj::init(const JMapInfoIter& rIter) {
         _E8 = 5.0f;
 
         s32 railArg;
+
         if (_E3 && MR::getRailArg0NoInit(this, &railArg)) {
             _E8 = railArg / 10.0f;
         }
@@ -187,6 +214,7 @@ void BenefitItemObj::init(const JMapInfoIter& rIter) {
     }
 
     bool setClipType = false;
+
     if (arg3 == 1) {
         setClipType = true;
     }
@@ -222,6 +250,7 @@ void BenefitItemObj::init(const JMapInfoIter& rIter) {
 
     _DB = arg6;
     f32 shadowDist = 2000.0f;
+
     if (arg7 != -1) {
         shadowDist = arg7;
     }
@@ -316,6 +345,7 @@ void BenefitItemObj::appear() {
 
     switch (_D9) {
     case 0:
+
         if (_DA) {
             setNerve(GET_NERVE(BenefitItemObj, HostTypeNrvPreEscape));
         }
@@ -384,8 +414,8 @@ void BenefitItemObj::appearThrowUp() {
     MR::invalidateClipping(this);
 }
 
-void BenefitItemObj::shoot(const TVec3f& a2, const TVec3f&, bool) {
-    mPosition = a2;
+void BenefitItemObj::shoot(const TVec3f& rPosition, const TVec3f&, bool) {
+    mPosition = rPosition;
 
     if (!_DD) {
         _D9 = 2;
@@ -410,6 +440,7 @@ void BenefitItemObj::control() {
 
         MR::pauseOffCameraDirector();
         _12C = MR::getActorCameraFrames(this, mCameraInfo);
+
         if (_12C == 0) {
             _12C = 120;
         }
@@ -484,13 +515,12 @@ void BenefitItemObj::doRotateY() {
 }
 
 void BenefitItemObj::exeShoot() {
-    // FIXME
     if (MR::isFirstStep(this)) {
         MR::onBind(this);
     }
 
     TVec3f newVel(mVelocity);
-    f32 val = MR::vecKillElement(newVel, mGravity, &newVel);
+    f32 verticalSpeed = MR::vecKillElement(newVel, mGravity, &newVel);
 
     if (MR::isBindedGround(this)) {
         runBck("Land");
@@ -510,15 +540,15 @@ void BenefitItemObj::exeShoot() {
         return;
     }
 
-    // FIXME: regswap
-    val += ::cGravity;
+    f32 val = verticalSpeed + ::cGravity;
 
     if (getNerveStep() == 60) {
         MR::validateHitSensors(this);
     }
 
     if (MR::isBindedWall(this)) {
-        newVel -= *MR::getWallNormal(this) * ::cReflectWallX * MR::vecKillElement(newVel, *MR::getWallNormal(this), &newVel);
+        f32 speed = MR::vecKillElement(newVel, *MR::getWallNormal(this), &newVel);
+        newVel -= *MR::getWallNormal(this) * speed * ::cReflectWallX;
     }
 
     newVel += mGravity * val;
@@ -571,7 +601,7 @@ bool BenefitItemObj::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
     }
 
     if (msg == ACTMES_ITEM_GET) {
-        if (mHitSensorActor) {
+        if (mHitSensorActor != nullptr) {
             return false;
         }
 
@@ -644,6 +674,7 @@ void BenefitItemObj::doEscape() {
     MR::startLevelSound(this, "SE_OJ_LV_KINOKO_1UP_RUN");
 
     bool val = false;
+
     if (_DA == 2) {
         val = true;
     }
@@ -659,12 +690,12 @@ void BenefitItemObj::doEscape() {
             MR::normalizeOrZero(&vec38);
 
             if (_BC.dot(vec38) < 0.0f) {
-                _BC += vec38 * 0.01f;
+                _BC += vec38 * 0.02f;
                 _BC.x *= 1.1f;
                 _BC.y *= 1.1f;
                 _BC.z *= 1.1f;
             } else {
-                _BC += vec38 * 0.02f;
+                _BC += vec38 * 0.01f;
                 _BC.x *= 1.1f;
                 _BC.y *= 1.1f;
                 _BC.z *= 1.1f;
@@ -737,9 +768,13 @@ void BenefitItemObj::exeEscape() {
             MR::hideModel(this);
         }
 
-        if (_B6 != 0 && --_B6 == 0) {
-            _B6 = _B2;
-            _B8 = _B4;
+        if (_B6 != 0) {
+            _B6--;
+
+            if (_B6 == 0) {
+                _B6 = _B2;
+                _B8 = _B4;
+            }
         }
 
         if (_B0 == 0x3C) {
@@ -797,7 +832,7 @@ void BenefitItemObj::calcAndSetBaseMtxInMovement() {
 
         PSMTXCopy(getBaseMtx(), _F0);
 
-        if (mFollowMtx) {
+        if (mFollowMtx != nullptr) {
             PSMTXCopy(mFollowMtx, _F0);
             MR::extractMtxTrans(mFollowMtx, &mPosition);
         }
@@ -815,6 +850,7 @@ void BenefitItemObj::calcAndSetBaseMtxInMovement() {
 
     TVec3f stack_8(mVelocity);
     MR::normalizeOrZero(&stack_8);
+
     if (isNerve(GET_NERVE(BenefitItemObj, HostTypeNrvPreEscape))) {
         MR::vecBlendSphere(_98, stack_8, &stack_8, 0.1f);
         _98 = stack_8;

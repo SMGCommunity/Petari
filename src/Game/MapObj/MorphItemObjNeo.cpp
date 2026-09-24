@@ -162,6 +162,7 @@ void MorphItemObjNeo::init(const JMapInfoIter& rIter) {
     }
 
     mIsBind = arg1;
+
     if (mIsBind == 1) {
         MR::onBind(this);
     } else {
@@ -169,6 +170,7 @@ void MorphItemObjNeo::init(const JMapInfoIter& rIter) {
     }
 
     mIsFloating = true;
+
     if (arg2 == 1) {
         mIsFloating = false;
     }
@@ -180,6 +182,7 @@ void MorphItemObjNeo::init(const JMapInfoIter& rIter) {
     }
 
     mContainerType = 0;
+
     switch (arg3) {
     case 0:
         mContainerType = 1;
@@ -215,6 +218,7 @@ void MorphItemObjNeo::init(const JMapInfoIter& rIter) {
     }
 
     mShadowType = 0;
+
     switch (arg4) {
     case -1:
         mShadowType = 1;
@@ -267,6 +271,7 @@ void MorphItemObjNeo::init(const JMapInfoIter& rIter) {
     initSound(4, false);
 
     mCameraMode = 0;
+
     if (arg5 > 0) {
         if (arg5 == 1) {
             MR::initMultiActorCamera(this, rIter, &mActorCameraInfo, "出現1");
@@ -332,6 +337,7 @@ void MorphItemObjNeo::appear() {
     }
 
     bool b1 = false;
+
     if (mCameraMode != 0 || _95) {
         b1 = true;
 
@@ -407,7 +413,6 @@ void MorphItemObjNeo::control() {
         MR::pauseOffCameraDirector();
     }
 
-    // TODO
     if (!isNerve(GET_NERVE(MorphItemObjNeo, MorphItemObjNeoNrvAppear)) && !isNerve(GET_NERVE(MorphItemObjNeo, MorphItemObjNeoNrvSwitchAppear))) {
         if (isNerve(GET_NERVE(MorphItemObjNeo, MorphItemObjNeoNrvWait))) {
             if (mContainerType == 0 && !mIsUseSwitch) {
@@ -568,48 +573,53 @@ bool MorphItemObjNeo::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pR
             return false;
         }
 
-        // FIXME
-        bool isInvalid = false;
-        switch (mMorphType) {
-        case 0:
-            MR::startSystemSE("SE_SY_POWER_UP");
+        if (mMorphType > 0) {
+            bool isInvalid = false;
 
-            break;
-        case 1:
-            if (MR::isPlayerElementModeHopper()) {
-                isInvalid = true;
-            } else {
-                MR::startSystemSE("SE_SY_MORPH");
+            switch (mMorphType) {
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+                MR::startSystemSE("SE_SY_POWER_UP_2");
+
+                break;
+            case 1:
+
+                if (MR::isPlayerElementModeHopper()) {
+                    isInvalid = true;
+                } else {
+                    MR::startSystemSE("SE_SY_MORPH");
+                }
+
+                break;
+            case 2:
+
+                if (MR::isPlayerElementModeBee()) {
+                    isInvalid = true;
+                } else {
+                    MR::startSystemSE("SE_SY_MORPH");
+                }
+
+                break;
+            case 3:
+
+                if (MR::isPlayerElementModeTeresa()) {
+                    isInvalid = true;
+                } else {
+                    MR::startSystemSE("SE_SY_MORPH");
+                }
+
+                break;
+            default:
+                MR::startSystemSE("SE_SY_POWER_UP");
+
+                break;
             }
 
-            break;
-        case 2:
-            if (MR::isPlayerElementModeBee()) {
-                isInvalid = true;
-            } else {
-                MR::startSystemSE("SE_SY_MORPH");
+            if (isInvalid) {
+                MR::startSound(this, "SE_OJ_MORPH_ITEM_INVALID");
             }
-
-            break;
-        case 3:
-            if (MR::isPlayerElementModeTeresa()) {
-                isInvalid = true;
-            } else {
-                MR::startSystemSE("SE_SY_MORPH");
-            }
-
-            break;
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-            MR::startSystemSE("SE_SY_POWER_UP_2");
-
-            break;
-        }
-
-        if (isInvalid) {
-            MR::startSound(this, "SE_OJ_MORPH_ITEM_INVALID");
         }
 
         MR::changePlayerItemStatus(mMorphType);
@@ -638,7 +648,7 @@ void MorphItemObjNeo::kill() {
 
     _97 = 0;
 
-    mScale.set(0.0f);
+    mScale.set(1.0f);
 
     makeActorAppeared();
 
@@ -866,8 +876,7 @@ void MorphItemObjNeo::exeFly() {
         MR::invalidateClipping(this);
     }
 
-    // FIXME
-    mVelocity.set(mVelocity.x * 0.999f, mVelocity.y * 0.999f, mVelocity.z * 0.999f);
+    mVelocity.mult(0.999f);
 
     MR::calcGravity(this);
 
@@ -881,6 +890,7 @@ void MorphItemObjNeo::exeFly() {
 
 bool MorphItemObjNeo::isDemo() const {
     bool ret = false;
+
     if (mAppearMode != 0 || mAppearFrames != 0) {
         ret = true;
     }

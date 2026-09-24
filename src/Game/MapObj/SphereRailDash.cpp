@@ -53,7 +53,7 @@ bool SphereRailDash::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
 }
 
 void SphereRailDash::exeWait() {
-    if (_8C) {
+    if (_8C != nullptr) {
         MR::moveCoordToStartPos(this);
         const TVec3f& rPosition = _8C->mHost->mPosition;
         _90 = rPosition - MR::getRailPos(this);
@@ -100,23 +100,21 @@ void SphereRailDash::exeRailMove() {
     _90 += _A4;
     _A4.mult(0.85f);
     TVec3f previousPosition(_8C->mHost->mPosition);
-    TVec3f offset(_90);
-    offset.mult(1.0f - progress);
-    TVec3f position(MR::getRailPos(this));
-    position += offset;
+    TVec3f position = MR::getRailPos(this) + _90.multInLine2(1.0f - progress);
     TVec3f& rVelocity = _8C->mHost->mVelocity;
-    TVec3f displacement(position - previousPosition);
-    rVelocity.set(displacement);
+    rVelocity.set(position - previousPosition);
 
     if (MR::isRailReachedGoal(this)) {
         _8C->mHost->mPosition.set(position);
         LiveActor* pActor = _8C->mHost;
         f32 endSpeed = _A0;
-        TVec3f velocity = TVec3f(MR::getRailDirection(this));
-        velocity *= endSpeed;
-        pActor->mVelocity.set(velocity);
+        pActor->mVelocity.set(MR::getRailDirection(this) * endSpeed);
         _8C->receiveMessage(ACTMES_END_RAIL_DASH, getSensor("body"));
         _8C = nullptr;
         setNerve(GET_NERVE(SphereRailDash, SphereRailDashNrvWait));
     }
+}
+
+void SphereRailDash_FORCE_MATCH(TVec3f* pVector, f32 scale) {
+    *pVector *= scale;
 }

@@ -13,6 +13,21 @@
 #include <cstdio>
 
 namespace {
+    inline s32 findModelName(const JMapInfo* pInfo, const char* pModelName) {
+        s32 num = MR::getCsvDataElementNum(pInfo);
+
+        for (s32 i = 0; i < num; i++) {
+            const char* pCsvModelName;
+            MR::getCsvDataStr(&pCsvModelName, pInfo, "ModelName", i);
+
+            if (MR::isEqualString(pModelName, pCsvModelName)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     const char* const cAstroNamePlateArcName = "AstroNamePlateData";
     const char* const cAstroNamePlateFileName = "AstroNamePlateData.bcsv";
     const char* cAstroDomeNameTable[] = {"AstroDomeObservatory", "AstroDomeWell",    "AstroDomeKitchen",
@@ -238,23 +253,15 @@ bool AstroMapObjFunction::trySetAndShowNamePlate(GalaxyNamePlate* pNamePlate, co
     }
 
     char offsetYId[16];
-    snprintf(offsetYId, sizeof(offsetYId), "OffsetY%d", MR::getAreaObjArg(astroOverlookAreaObj, 0));
+    s32 areaArg = MR::getAreaObjArg(astroOverlookAreaObj, 0);
+    snprintf(offsetYId, sizeof(offsetYId), "OffsetY%d", areaArg);
 
     char upperFlagId[16];
-    snprintf(upperFlagId, sizeof(upperFlagId), "UpperFlag%d", MR::getAreaObjArg(astroOverlookAreaObj, 0));
+    areaArg = MR::getAreaObjArg(astroOverlookAreaObj, 0);
+    snprintf(upperFlagId, sizeof(upperFlagId), "UpperFlag%d", areaArg);
 
     const char* modelName = getModelName(pObjName, domeId);
-    s32 i;
-    s32 num = MR::getCsvDataElementNum(pInfo);
-
-    for (i = 0; i < num; i++) {
-        const char* csvModelName;
-        MR::getCsvDataStr(&csvModelName, pInfo, "ModelName", i);
-
-        if (MR::isEqualString(modelName, csvModelName)) {
-            break;
-        }
-    }
+    s32 i = ::findModelName(pInfo, modelName);
 
     f32 offsetY;
     MR::getCsvDataF32(&offsetY, pInfo, offsetYId, i);

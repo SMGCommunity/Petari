@@ -65,7 +65,8 @@ void WhirlPool::initPoints() {
 
     for (s32 i = 0; i < mPointCount; i++) {
         TVec3f position(mAxis);
-        position.scale(-50.0f * i);
+        f32 pointOffset = i;
+        position.scale(-50.0f * pointOffset);
         position.add(mPosition);
 
         f32 rate = MR::getEaseInValue(static_cast< f32 >(mPointCount - i) / mPointCount, 0.0f, 1.0f, 1.0f);

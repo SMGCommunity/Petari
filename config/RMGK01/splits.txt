@@ -5125,6 +5125,7 @@ Game/MapObj/KillerGunnerSingle.cpp:
 Game/MapObj/LargeChain.cpp:
 	.text       start:0x801EF648 end:0x801EFD10
 	.ctors      start:0x8052ED7C end:0x8052ED80
+	.rodata     start:0x805333F8 end:0x80533408
 	.data       start:0x80597160 end:0x80597220
 	.sbss       start:0x806B5328 end:0x806B5330
 	.sdata2     start:0x806BD430 end:0x806BD440

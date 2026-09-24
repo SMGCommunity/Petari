@@ -1,8 +1,11 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/LiveActorGroupArray.hpp"
-#include "Game/Util/JointController.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class JointController;
+class JointControllerInfo;
+class MsgSharedGroup;
 
 class FirePressureRadiate : public LiveActor {
 public:
@@ -28,14 +31,14 @@ public:
     void calcRadiateEffectMtx();
     bool calcJointCannon(TPos3f*, const JointControllerInfo&);
 
-    JointController* mJointController;  // 0x8C
-    TMtx34f mRadiateMtx;                // 0x90
-    f32 mCannonRotation;                // 0x94
-    s32 mWaitTime;                      // 0x98
-    s32 mShootTime;                     // 0x9C
-    s32 _CC;
-    f32 _D0;
-    f32 _D4;
-    MsgSharedGroup* mGroup;  // 0xD8
-    bool _DC;
+    /* 0x8C */ JointController* mJointController;
+    /* 0x90 */ TPos3f mRadiateMtx;
+    /* 0xC0 */ f32 mCannonRotation;
+    /* 0xC4 */ s32 mWaitTime;
+    /* 0xC8 */ s32 mShootTime;
+    /* 0xCC */ s32 _CC;
+    /* 0xD0 */ f32 _D0;
+    /* 0xD4 */ f32 _D4;
+    /* 0xD8 */ MsgSharedGroup* mGroup;
+    /* 0xDC */ bool _DC;
 };

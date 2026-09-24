@@ -5,14 +5,19 @@
 #include "Game/Util.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-PlantRailInfo::PlantRailInfo(const JMapInfoIter& rIter, f32 speed)
-    : mRailSpeed(speed), mNumPlantPoints(0), mPlantPoints(nullptr), mRailRider(nullptr) {
+void PlantRailInfo_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)10000000000.0f;
+}
+
+PlantRailInfo::PlantRailInfo(const JMapInfoIter& rIter, f32 speed) : mRailSpeed(speed), mNumPlantPoints(), mPlantPoints(), mRailRider() {
     mRailRider = new RailRider(rIter);
     mRailRider->setSpeed(mRailSpeed);
 
     mNumPlantPoints = static_cast< s32 >(mRailRider->getTotalLength() / mRailSpeed) + 2;
 
     mPlantPoints = new PlantPoint*[mNumPlantPoints];
+
     for (s32 idx = 0; idx < mNumPlantPoints - 1; idx++) {
         mPlantPoints[idx] = new PlantPoint(mRailRider->mCurPos, mRailRider->mCurDirection, 1.0f);
         mRailRider->move();
@@ -20,7 +25,6 @@ PlantRailInfo::PlantRailInfo(const JMapInfoIter& rIter, f32 speed)
 
     mRailRider->setCoord(mRailRider->getTotalLength());
 
-    // compiler will optimize these lines if it isnt written *just right*...
     PlantPoint* point = new PlantPoint(mRailRider->mCurPos, getPlantPoint(mNumPlantPoints - 2)->mUp, 1.0f);
     s32 index = mNumPlantPoints - 1;
     mPlantPoints[index] = point;
@@ -31,21 +35,21 @@ PlantRailInfo::PlantRailInfo(const JMapInfoIter& rIter, f32 speed)
 }
 
 void PlantRailInfo::calcPosAndAxisY(TVec3f* pPos, TVec3f* pAxisY, f32 coord) const {
-    // FIXME float register allocation mess
-    // https://decomp.me/scratch/25d5r
-
     f32 normalized = (coord / mRailRider->getTotalLength()) * mNumPlantPoints;
 
     s32 start = normalized;
     s32 end = start + 1;
+
     if (start >= mNumPlantPoints) {
         start = mNumPlantPoints - 1;
     }
+
     if (end >= mNumPlantPoints) {
         end = mNumPlantPoints - 1;
     }
 
-    f32 t = normalized - start;
+    normalized -= start;
+    f32 t = normalized;
     f32 negt = 1.0f - t;
 
     pPos->x = negt * mPlantPoints[start]->mPosition.x + t * mPlantPoints[end]->mPosition.x;
@@ -62,6 +66,7 @@ void PlantRailInfo::calcPosAndAxisY(TVec3f* pPos, TVec3f* pAxisY, f32 coord) con
 void PlantRailInfo::calcNearestPointPos(TVec3f* pPointPos, const TVec3f& rPos, s32 cutoff) const {
     s32 nearestIdx = 0;
     f32 closestMag = 10000000000.0f;
+
     for (s32 idx = cutoff; idx < mNumPlantPoints - cutoff; idx++) {
         f32 mag = mPlantPoints[idx]->mPosition.squared(rPos);
 
@@ -70,6 +75,7 @@ void PlantRailInfo::calcNearestPointPos(TVec3f* pPointPos, const TVec3f& rPos, s
             closestMag = mag;
         }
     }
+
     PlantPoint* nearestPoint = mPlantPoints[nearestIdx];
     pPointPos->x = nearestPoint->mPosition.x;
     pPointPos->y = nearestPoint->mPosition.y;

@@ -21,8 +21,11 @@
 #include "math_types.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
 
-
 namespace {
+    inline f32 toDegree(f32 angle) {
+        return _180_PI * angle;
+    }
+
     const Vec cWeakSensorOffset = {0.0f, 0.0f, -150.0f};
     static const f32 cBinderRadius = 225.0f;
     static const f32 cSensorRadius = 225.0f;
@@ -70,11 +73,10 @@ namespace NrvRock {
 };  // namespace NrvRock
 
 Rock::Rock(f32 moveSpeed, const char* pName)
-    : LiveActor(pName), mCreator(nullptr), mRockType(NormalRock), mBreakModel(nullptr), mMoveSpeed(moveSpeed), mBreakModelOnRailGoal(false),
-      mSlowDownOnAttack(false), mAppearPos(gZeroVec), mRadius(::cBinderRadius), mRotateSpeed(0.0f), mFallVelocity(gZeroVec), mCurrentRailPoint(-1),
-      mGravityRate(::cGravity), mPrevPos(gZeroVec), mFront(0.0f, 0.0f, 1.0f), mAirTime(0), mIsNormalGravity(false), mWanwanVoiceTimer(0),
-      mFreezeTime(0), mFreezePos(gZeroVec), mUnfreezeNerve(nullptr), mInvalidBindTime(0), mAppearTime(::cAppearMoveFrameRock), mAppearAngle(0.0f),
-      mRollSoundTimer(0), mSlowDownTimer(0) {
+    : LiveActor(pName), mCreator(), mRockType(NormalRock), mBreakModel(), mMoveSpeed(moveSpeed), mBreakModelOnRailGoal(), mSlowDownOnAttack(),
+      mAppearPos(gZeroVec), mRadius(::cBinderRadius), mRotateSpeed(), mFallVelocity(gZeroVec), mCurrentRailPoint(-1), mGravityRate(::cGravity),
+      mPrevPos(gZeroVec), mFront(0.0f, 0.0f, 1.0f), mAirTime(), mIsNormalGravity(), mWanwanVoiceTimer(), mFreezeTime(), mFreezePos(gZeroVec),
+      mUnfreezeNerve(), mInvalidBindTime(), mAppearTime(::cAppearMoveFrameRock), mAppearAngle(), mRollSoundTimer(), mSlowDownTimer() {
     mBaseMtx.identity();
 }
 
@@ -118,6 +120,7 @@ void Rock::init(const JMapInfoIter& rIter) {
     initSound(5, false);
 
     f32 shadowDrop;
+
     if (MR::getJMapInfoArg4NoInit(rIter, &shadowDrop)) {
         MR::initShadowVolumeCylinder(this, ::cBinderRadius * getRadius());
         MR::setShadowDropLength(this, nullptr, shadowDrop);
@@ -158,6 +161,7 @@ void Rock::appear() {
     }
 
     LiveActor::appear();
+
     if (!MR::isLoopRail(this)) {
         MR::offBind(this);
         setNerve(GET_NERVE(Rock, RockNrvAppear));
@@ -224,6 +228,7 @@ void Rock::control() {
     }
 
     updateFront = false;
+
     if (hasMoved && isMoveEnabled()) {
         updateFront = true;
     }
@@ -231,6 +236,7 @@ void Rock::control() {
     if (isInClippingRange()) {
         MR::hideModel(this);
         MR::deleteEffect(this, "Smoke");
+
         if (mRockType == WanwanRollingGold) {
             MR::deleteEffect(this, "Light");
         }
@@ -240,6 +246,7 @@ void Rock::control() {
         }
     } else {
         MR::showModel(this);
+
         if (updateFront) {
             TVec3f v2(mFront);
             MR::turnVecToVecCos(&mFront, v2, front, ::cRotateCosineMax, mGravity);
@@ -274,6 +281,7 @@ void Rock::calcAndSetBaseMtx() {
     if (isNerve(GET_NERVE(Rock, RockNrvAppearMoveInvalidBind)) || (isNerve(GET_NERVE(Rock, RockNrvMove)) && MR::isOnGround(this)) ||
         isNerve(GET_NERVE(Rock, RockNrvMoveInvalidBind))) {
         TVec3f up;
+
         if (isNerve(GET_NERVE(Rock, RockNrvMove))) {
             up.set(*MR::getGroundNormal(this));
         } else {
@@ -296,6 +304,7 @@ void Rock::calcAndSetBaseMtx() {
 void Rock::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     // smells like inline
     bool b = false;
+
     if (isBodySensor(pSender) && !isNerve(GET_NERVE(Rock, RockNrvBreak))) {
         b = true;
     }
@@ -310,6 +319,7 @@ void Rock::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                 if (mSlowDownOnAttack && isNerve(GET_NERVE(Rock, RockNrvMove))) {
                     mSlowDownTimer = ::cSlowMoveFrame;
                 }
+
                 rumblePadAndCamera();
                 return;
             }
@@ -326,6 +336,7 @@ void Rock::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         if (MR::sendMsgEnemyAttack(pReceiver, pSender) && mRockType != WanwanRollingGold) {
             setNerveBreak(true);
         }
+
         return;
     }
 
@@ -367,6 +378,7 @@ bool Rock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRecei
 bool Rock::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     // smells like inline
     bool b = false;
+
     if (isBodySensor(pReceiver) && !isNerve(GET_NERVE(Rock, RockNrvBreak))) {
         b = true;
     }
@@ -389,6 +401,7 @@ void Rock::initMapToolInfo(const JMapInfoIter& rIter) {
     mRotateSpeed = (mMoveSpeed * 180.0f * ::cRotateSpeedRate) / (MR::pi() * mRadius);  // regswap
 
     MR::getJMapInfoArg3NoInit(rIter, &mAppearTime);
+
     if (mRockType == NormalRock) {
         MR::getJMapInfoArg5NoInit(rIter, &mSlowDownOnAttack);
     }
@@ -437,10 +450,8 @@ void Rock::initModel() {
 }
 
 void Rock::initSensor() {
-    // FIXME: extra load of mRockType due to getRadius inline
-    // https://decomp.me/scratch/SPLdp
-
     s32 sensorType;
+
     if (mRockType == NormalRock) {
         initHitSensor(2);
         sensorType = ATYPE_ROCK;
@@ -449,10 +460,11 @@ void Rock::initSensor() {
         sensorType = ATYPE_WANWAN;
     }
 
-    MR::addHitSensor(this, "body", sensorType, 16, ::cSensorRadius * getRadius(), TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensor(this, "body", sensorType, 16, ::cSensorRadius * (mRockType == WanwanRollingMini ? 0.3f : mScale.x), TVec3f(0.0f, 0.0f, 0.0f));
 
     if (mRockType == NormalRock) {
-        MR::addHitSensor(this, "weak", sensorType, 16, ::cWeakSensorRadius * getRadius(), static_cast< TVec3f >(::cWeakSensorOffset) * getRadius());
+        MR::addHitSensor(this, "weak", sensorType, 16, ::cWeakSensorRadius * (mRockType == WanwanRollingMini ? 0.3f : mScale.x),
+                         static_cast< TVec3f >(::cWeakSensorOffset) * (mRockType == WanwanRollingMini ? 0.3f : mScale.x));
     }
 }
 
@@ -566,6 +578,7 @@ void Rock::startRollLevelSound(bool resetTimer) {
         if (MR::isBindedGroundBrake(this)) {
             MR::startLevelSound(this, "SE_OJ_LV_ROCK_MOVE_MUD");
         }
+
         mRollSoundTimer--;
     }
 
@@ -588,6 +601,7 @@ bool Rock::tryFreeze(const Nerve* pNerve) {
 
 void Rock::setBtkForEnvironmentMap(LiveActor* pActor, const char* pBtkName) {
     f32 frame;
+
     if (mRockType == NormalRock) {
         if (MR::isNearZero(mScale.x - 0.5f)) {
             frame = 0.0f;
@@ -613,6 +627,7 @@ void Rock::rumblePadAndCamera() {
     MR::startRumbleWithShakeCameraWeak(this, "強", "中", ::cRumbleDistance, ::cRumbleDistance * 2);
 
     f32 dist = MR::calcDistanceToPlayer(this);
+
     if (dist < ::cRumbleDistance) {
         MR::shakeCameraNormal();
     } else if (dist < ::cRumbleDistance * 2) {
@@ -635,6 +650,7 @@ void Rock::updateRotateX(f32 angle) {
 void Rock::appearStarPiece() {
     TVec3f pieceDir = mGravity;
     pieceDir.negate();
+
     if (MR::appearStarPieceToDirection(mCreator, mPosition, pieceDir, getAppearStarPieceNum(mRockType), 10.0f, 40.0f, false)) {
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
@@ -643,8 +659,10 @@ void Rock::appearStarPiece() {
 void Rock::moveOnRail(f32 speed, f32 rotateSpeed, bool isValidBind) {
     MR::moveCoordAndFollowTrans(this, speed);
     updateRotateX(mRotation.x + rotateSpeed);
+
     if (isValidBind) {
         TVec3f pos;
+
         if (MR::getFirstPolyOnLineToMap(&pos, nullptr, mPosition, mGravity * (mRadius * 2.0f))) {
             mPosition.add(pos, mGravity * (-mRadius));
         }
@@ -671,6 +689,7 @@ bool Rock::tryBreakReachedGoal() {
         } else {
             makeActorDead();
         }
+
         return true;
     }
 
@@ -685,7 +704,7 @@ void Rock::exeAppear() {
     // FIXME: float regswaps and swapped load order near beginning
     // https://decomp.me/scratch/gOOpa
 
-    f32 rotateSpeed = (::cAppearMoveSpeed * 180.0f * ::cRotateSpeedRate) / (PI * mRadius);
+    f32 rotateSpeed = (::cAppearMoveSpeed * 180.0f * ::cRotateSpeedRate) / (mRadius * MR::pi());
     s32 spawnDelay = mRockType == NormalRock ? ::cAppearStopFrameRock : ::cAppearStopFrame;
 
     if (MR::isFirstStep(this)) {
@@ -696,6 +715,7 @@ void Rock::exeAppear() {
 
     if (MR::isLessStep(this, mAppearTime)) {
         moveOnRail(::cAppearMoveSpeed, rotateSpeed, false);
+
         if (mRockType != NormalRock) {
             MR::startLevelSound(this, "SE_EM_LV_WANWANROLL_STANDBY");
         }
@@ -708,9 +728,11 @@ void Rock::exeAppear() {
     if (MR::isGreaterStep(this, mAppearTime) && MR::isLessStep(this, mAppearTime + ::cAppearRumbleFrame)) {
         s32 step = getNerveStep() - mAppearTime;
         f32 f1 = MR::sinDegree(MR::repeatDegree(step * ::cAppearRumbleSpeed));
-        f32 f2 = (::cAppearRumbleFrame - step) * (f1 * ::cAppearRumbleAngle) / ::cAppearRumbleFrame;
-        mRotation.x = f2;
-        updateRotateX(f2 + mAppearAngle);
+        f32 rotation = f1 * ::cAppearRumbleAngle;
+        rotation *= ::cAppearRumbleFrame - step;
+        rotation /= ::cAppearRumbleFrame;
+        mRotation.x = rotation;
+        updateRotateX(mAppearAngle + mRotation.x);
     }
 
     if (MR::isStep(this, spawnDelay + mAppearTime + ::cAppearRumbleFrame)) {
@@ -720,8 +742,10 @@ void Rock::exeAppear() {
 
 void Rock::exeAppearMoveInvalidBind() {
     bool isInvalid = isForceInvalidBindSection();
+
     if (!MR::isHiddenModel(this)) {
         MR::emitEffect(this, "Smoke");
+
         if (mRockType == WanwanRollingGold) {
             MR::emitEffect(this, "Light");
         }
@@ -744,9 +768,6 @@ void Rock::exeAppearMoveInvalidBind() {
 }
 
 void Rock::exeMove() {
-    // FIXME: float regswaps
-    // https://decomp.me/scratch/uZucx
-
     if (MR::isOnGround(this)) {
         if (mRockType == NormalRock && MR::isBindedGroundDamageFire(this)) {
             setNerve(GET_NERVE(Rock, RockNrvBreak));
@@ -755,6 +776,7 @@ void Rock::exeMove() {
 
         if (!MR::isHiddenModel(this)) {
             MR::emitEffect(this, "Smoke");
+
             if (mRockType == WanwanRollingGold) {
                 MR::emitEffect(this, "Light");
             }
@@ -772,6 +794,7 @@ void Rock::exeMove() {
                 MR::startSound(this, "SE_EM_WANWANROLL_BOUND");
             }
         }
+
         mAirTime = 0;
     } else {
         if (mAirTime < ::cNoBindJudgeFrame) {
@@ -800,6 +823,7 @@ void Rock::exeMove() {
         } else {
             makeActorDead();
         }
+
         return;
     }
 
@@ -808,6 +832,7 @@ void Rock::exeMove() {
     }
 
     f32 moveSpeed = mMoveSpeed;
+
     if (mSlowDownTimer > 0) {
         moveSpeed = MR::getEaseOutValue(mSlowDownTimer, moveSpeed, 0.0f, ::cSlowMoveFrame);
         mSlowDownTimer--;
@@ -816,11 +841,15 @@ void Rock::exeMove() {
     move(moveSpeed);
 
     f32 rotateSpeed = mRotateSpeed * moveSpeed / mMoveSpeed;
+
     if (mSlowDownTimer > ::cSlowMoveFrame - ::cSlowMoveRumbleFrame) {
         s32 step = ::cSlowMoveFrame - mSlowDownTimer;
         f32 f1 = MR::sinDegree(MR::repeatDegree(step * ::cAppearRumbleSpeed));
-        rotateSpeed += (::cSlowMoveRumbleFrame - step) * (f1 * ::cAppearRumbleAngle) / ::cSlowMoveRumbleFrame;
+        f1 = ::cAppearRumbleAngle * f1;
+        f32 remaining = ::cSlowMoveRumbleFrame - step;
+        rotateSpeed += remaining * f1 / ::cSlowMoveRumbleFrame;
     }
+
     updateRotateX(mRotation.x + rotateSpeed);
 
     if (tryFreeze(GET_NERVE(Rock, RockNrvMove))) {
@@ -845,17 +874,17 @@ void Rock::exeMoveInvalidBind() {
 }
 
 void Rock::exeBreak() {
-    // FIXME: operation order in the TODO section
-    // https://decomp.me/scratch/wW8CP
-
     if (MR::isFirstStep(this)) {
         bool clipped = isInClippingRange();
+
         if (clipped || mBreakModel == nullptr) {
             makeActorDead();
+
             if (!clipped && mRockType == WanwanRollingMini) {
                 MR::emitEffect(this, "MiniBreak");
                 MR::startSound(this, "SE_EM_WANWANROLLMINI_EXPLOSION");
             }
+
             return;
         }
 
@@ -877,9 +906,9 @@ void Rock::exeBreak() {
 
         TVec3f rot;
         mtx.getEulerXYZ(rot);
-        mBreakModel->mRotation.x = MR::toDegree(rot.x);
-        mBreakModel->mRotation.y = MR::toDegree(rot.y);
-        mBreakModel->mRotation.z = MR::toDegree(rot.z);
+        mBreakModel->mRotation.x = ::toDegree(rot.x);
+        mBreakModel->mRotation.y = ::toDegree(rot.y);
+        mBreakModel->mRotation.z = ::toDegree(rot.z);
 
         mBreakModel->appear();
 
@@ -890,6 +919,7 @@ void Rock::exeBreak() {
             MR::startSound(this, "SE_OJ_ROCK_BREAK");
         } else {
             MR::startSound(this, "SE_EM_WANWANROLL_EXPLOSION");
+
             if (mRockType == WanwanRolling) {
                 setBtkForEnvironmentMap(mBreakModel, "WanwanRollingBreak");
             }
@@ -900,6 +930,7 @@ void Rock::exeBreak() {
 
     if (mRockType == WanwanRollingGold) {
         MR::stopSceneAtStep(this, ::cBreakStopStep, ::cBreakStopFrame);
+
         if (MR::isStep(this, ::cAppearPowerStarStep)) {
             MR::requestAppearPowerStar(this, mBreakModel->mPosition);
         }
@@ -919,6 +950,7 @@ void Rock::exeFreeze() {
         mVelocity.zero();
         MR::emitEffect(this, getTouchEffect());
         MR::deleteEffect(this, "Smoke");
+
         if (mFreezeTime == 0) {
             MR::startDPDHitSound();
         }

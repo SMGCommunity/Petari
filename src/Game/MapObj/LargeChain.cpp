@@ -94,14 +94,21 @@ void LargeChain::exeBreak() {
     }
 }
 
+namespace {
+    inline LargeChainParts* createChainArray(u32 count) {
+        return new LargeChainParts[count];
+    }
+}  // namespace
+
 void LargeChain::createChainParts() {
     _8C = new LargeChainParts("固定鎖 下");
     _90 = new LargeChainParts("固定鎖 上");
-    mChainArray = new LargeChainParts[mChainCount];
+    mChainArray = ::createChainArray(mChainCount);
 
     for (u32 i = 0; i < mChainCount; i++) {
         TVec3f pos(mPosition);
-        TVec3f trans(0.0f, i * ::sPartsLength, 0.0f);
+        TVec3f trans(0.0f, static_cast< f32 >(i), 0.0f);
+        trans.y *= ::sPartsLength;
         pos.add(trans);
 
         mChainArray[i].initChainParts(&pos, &mRotation, &mScale, false);
