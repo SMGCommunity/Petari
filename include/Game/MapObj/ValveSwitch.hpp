@@ -12,7 +12,7 @@ public:
     virtual void initAfterPlacement();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeWait();
     void exeAdjust();

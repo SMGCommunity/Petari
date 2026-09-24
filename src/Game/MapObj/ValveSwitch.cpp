@@ -119,7 +119,27 @@ void ValveSwitch::exeEnd() {
     }
 }
 
-// ValveSwitch::receiveOtherMsg
+bool ValveSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isMsgRushBegin(msg)) {
+        if (MR::isSensorPlayer(pSender)) {
+            HitSensor* sensor = getSensor("binder");
+            if (MR::isOnPlayer(sensor)) {
+                _8C = pSender->mHost;
+                MR::startSound(_8C, "SE_PV_TWIST_START", -1, -1);
+                MR::startSound(pSender->mHost, "SE_PM_SPIN_ATTACK", -1, -1);
+                setNerve(GET_NERVE(ValveSwitch, ValveSwitchNrvAdjust));
+                return true;
+            }
+        }
+    } else {
+        if (msg == 161 && _8C && isNerve(GET_NERVE(ValveSwitch, ValveSwitchNrvValve))) {
+            updateBindActorMtx();
+            return true;
+        } else {
+            return msg == 147;
+        }
+    }
+}
 
 void ValveSwitch::updateBindActorMtx() {
     TPos3f posMtx;
