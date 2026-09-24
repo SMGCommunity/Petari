@@ -1586,7 +1586,7 @@ config.libs = [
             ),
             Object(Matching, "Game/Map/SwitchSynchronizer.cpp"),
             Object(Matching, "Game/Map/SwitchWatcher.cpp"),
-            Object(NonMatching, "Game/Map/SwitchWatcherHolder.cpp"),
+            Object(Matching, "Game/Map/SwitchWatcherHolder.cpp" , extra_cflags=["-sym off"]),
             Object(Matching, "Game/Map/TimerSwitch.cpp"),
             Object(Matching, "Game/Map/WaterAreaHolder.cpp"),
             Object(Matching, "Game/Map/WaterInfo.cpp"),
