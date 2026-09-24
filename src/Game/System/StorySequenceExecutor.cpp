@@ -489,8 +489,7 @@ namespace {
     NEW_NERVE(StorySequenceExecutorStaffRollSequence, StorySequenceExecutor, StaffRollSequence);
 };  // namespace
 
-StorySequenceExecutor::StorySequenceExecutor()
-    : NerveExecutor("StorySequenceExecutor"), mNextNerve(nullptr), mDemoObj(nullptr), mSaveObj(nullptr), _48(), _6C(), _B0(false) {
+StorySequenceExecutor::StorySequenceExecutor() : NerveExecutor("StorySequenceExecutor"), mNextNerve(), mDemoObj(), mSaveObj(), _48(), _6C(), _B0() {
     mDemoObj = new NameObj("StorySequenceExecutor");
     mSaveObj = new NameObj("Save");
     mStageName[0] = '\0';
@@ -503,16 +502,21 @@ void StorySequenceExecutor::update() {
     updateNerve();
 }
 
+namespace {
+    inline bool isDemoSequenceEnd(const StorySequenceExecutorType::DemoSequenceInfo* pInfo) {
+        return pInfo->_0 == 12 || pInfo->_0 == 13;
+    }
+}  // namespace
+
 bool StorySequenceExecutor::isNeedMoviePlayerExecutingEventEnum() const {
     for (s32 i = 0; i < _48.size(); i++) {
-        bool b = _48[i]->_0 == 12 || _48[i]->_0 == 13;
+        const StorySequenceExecutorType::DemoSequenceInfo* pInfo = _48[i];
+        while (!isDemoSequenceEnd(pInfo)) {
+            if (pInfo->_0 == 2) {
+                return true;
+            }
 
-        if (b) {
-            continue;
-        }
-
-        if (_48[i]->_0 == 2) {
-            return true;
+            pInfo++;
         }
     }
 
@@ -521,14 +525,17 @@ bool StorySequenceExecutor::isNeedMoviePlayerExecutingEventEnum() const {
 
 bool StorySequenceExecutor::hasNextDemo() const {
     for (s32 i = 0; i < _48.size(); i++) {
-        bool b = _48[i]->_0 == 12 || _48[i]->_0 == 13;
-
-        if (b) {
-            continue;
+        const StorySequenceExecutorType::DemoSequenceInfo* pInfo = _48[i];
+        if (i == 0) {
+            pInfo++;
         }
 
-        if (_48[i]->_0 == 0) {
-            return true;
+        while (!isDemoSequenceEnd(pInfo)) {
+            if (pInfo->_0 == 0) {
+                return true;
+            }
+
+            pInfo++;
         }
     }
 
@@ -571,6 +578,7 @@ void StorySequenceExecutor::moveGalaxy(GalaxyMoveArgument* pMoveArgument, bool p
         if (pMoveArgument->isEqualStageScenario("PeachCastleGardenGalaxy", 1)) {
             prepareDemoSequence(::cDemoPrologue);
         }
+
         break;
     case 3:
         decideNextStageForGalaxyOut(pMoveArgument);
@@ -634,6 +642,7 @@ void StorySequenceExecutor::exePlayDemoSequence() {
         if (tryStartDemo(pDemoInfo->_4)) {
             setNerve(GET_NERVE_ANON(StorySequenceExecutorWaitTimeKeepDemoEnd));
         }
+
         break;
     case 1:
         if (tryStartFadein()) {
@@ -641,6 +650,7 @@ void StorySequenceExecutor::exePlayDemoSequence() {
 
             setNerve(GET_NERVE_ANON(StorySequenceExecutorPlayDemoSequence));
         }
+
         break;
     case 2:
         if (tryStartMovieAndWaitEnd(pDemoInfo->_2)) {
@@ -648,6 +658,7 @@ void StorySequenceExecutor::exePlayDemoSequence() {
 
             setNerve(GET_NERVE_ANON(StorySequenceExecutorPlayDemoSequence));
         }
+
         break;
     case 3:
         MR::requestChangeScene(pDemoInfo->_4);
@@ -660,6 +671,7 @@ void StorySequenceExecutor::exePlayDemoSequence() {
         if (tryStartSave()) {
             setNerve(GET_NERVE_ANON(StorySequenceExecutorWaitSaveEnd));
         }
+
         break;
     case 6:
         GameDataFunction::onGameEventFlag(pDemoInfo->_4);
@@ -709,6 +721,7 @@ void StorySequenceExecutor::exePlayDemoSequence() {
 
             setNerve(GET_NERVE_ANON(StorySequenceExecutorIdle));
         }
+
         break;
     case 13:
         if (tryNextDemoInfo() != nullptr) {
@@ -724,6 +737,7 @@ void StorySequenceExecutor::exePlayDemoSequence() {
 
             setNerve(pNerve);
         }
+
         break;
     default:
         break;
@@ -955,13 +969,14 @@ void StorySequenceExecutor::decideNextEventForMoveGalaxy(GalaxyMoveArgument* pMo
         }
 
         for (u32 i = 0; i < ARRAY_SIZE(::cDemoFortressDiscoverCheckListTable); i++) {
-            s32 grandGalaxyId = GameDataConst::getIncludedGrandGalaxyId(::cDemoFortressDiscoverCheckListTable[i].mStageName);
+            const DemoFortressDiscoverCheckList& rCheckList = ::cDemoFortressDiscoverCheckListTable[i];
+            s32 grandGalaxyId = GameDataConst::getIncludedGrandGalaxyId(rCheckList.mStageName);
 
-            if (!GameDataFunction::canOnAndIsOffGameEventFlag(::cDemoFortressDiscoverCheckListTable[i].mStageName)) {
+            if (!GameDataFunction::canOnAndIsOffGameEventFlag(rCheckList.mStageName)) {
                 continue;
             }
 
-            if (GameDataFunction::isPassedStoryEvent(::cDemoFortressDiscoverCheckListTable[i].mStoryEventName)) {
+            if (GameDataFunction::isPassedStoryEvent(rCheckList.mStoryEventName)) {
                 continue;
             }
 
@@ -969,12 +984,13 @@ void StorySequenceExecutor::decideNextEventForMoveGalaxy(GalaxyMoveArgument* pMo
                 continue;
             }
 
-            prepareDemoSequenceButlerFortressDiscover(pMoveArgument, ::cDemoFortressDiscoverCheckListTable[i]);
+            prepareDemoSequenceButlerFortressDiscover(pMoveArgument, rCheckList);
         }
     }
 
     if (pMoveArgument->isEqualStage("LibraryRoom") && GameDataFunction::getPictureBookChapterCanRead() != 0) {
-        if (GameDataFunction::getPictureBookChapterCanRead() != GameDataFunction::getPictureBookChapterAlreadyRead()) {
+        if (static_cast< s32 >(GameDataFunction::getPictureBookChapterCanRead()) !=
+            static_cast< s32 >(GameDataFunction::getPictureBookChapterAlreadyRead())) {
             prepareDemoSequence(::cDemoRosettaPicureBookTalk);
         }
     }
@@ -1092,7 +1108,12 @@ void StorySequenceExecutor::prepareDemoSequence(
 
 void StorySequenceExecutor::prepareDemoSequenceButlerFortressDiscover(const GalaxyMoveArgument* pMoveArgument,
                                                                       const DemoFortressDiscoverCheckList& rCheckList) {
-    const StorySequenceExecutorType::DemoSequenceInfo* pDemoInfo = addDynamicDemoSequenceInfo(0, rCheckList._8 ? 6 : 5, "バトラー報告");
+    u16 event = 5;
+    if (rCheckList._8) {
+        event = 6;
+    }
+
+    const StorySequenceExecutorType::DemoSequenceInfo* pDemoInfo = addDynamicDemoSequenceInfo(0, event, "バトラー報告");
 
     addDynamicDemoSequenceInfo(7, 0, rCheckList.mStoryEventName);
 
@@ -1198,7 +1219,13 @@ bool StorySequenceExecutor::tryNextDemoInfo() {
     return true;
 }
 
-// StorySequenceExecutor::addDynamicDemoSequenceInfo
+const StorySequenceExecutorType::DemoSequenceInfo* StorySequenceExecutor::addDynamicDemoSequenceInfo(u16 type, u16 event, const char* pName) {
+    StorySequenceExecutorType::DemoSequenceInfo& rInfo = _6C[_6C.mCount++];
+    rInfo._0 = type;
+    rInfo._2 = event;
+    rInfo._4 = pName;
+    return &_6C[_6C.size() - 1];
+}
 
 void StorySequenceExecutor::setBeforeStageScenario(const GalaxyMoveArgument& rMoveArgument, bool param2) {
     const char* pStageName = nullptr;

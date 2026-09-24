@@ -2494,7 +2494,7 @@ config.libs = [
             Object(Matching, "Game/System/ScenarioProgressTestRun.cpp"),
             Object(NonMatching, "Game/System/SpinDriverPathStorage.cpp"),
             Object(Matching, "Game/System/StageResultSequenceChecker.cpp"),
-            Object(NonMatching, "Game/System/StarPieceAlmsStorage.cpp"),
+            Object(Matching, "Game/System/StarPieceAlmsStorage.cpp"),
             Object(NonMatching, "Game/System/StorySequenceExecutor.cpp"),
             Object(Matching, "Game/System/SysConfigFile.cpp"),
             Object(Matching, "Game/System/UserFile.cpp"),

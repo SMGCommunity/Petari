@@ -14,12 +14,11 @@ class StarPieceAlmsStorage : public Dummy2, public BinaryDataChunkBase {
 public:
     StarPieceAlmsStorage();
 
-    virtual ~StarPieceAlmsStorage();
     virtual u32 makeHeaderHashCode() const;
     virtual u32 getSignature() const;
     virtual s32 serialize(u8*, u32) const;
-    virtual void initializeData();
     virtual s32 deserialize(const u8*, u32);
+    virtual void initializeData();
 
     s32 getValue(int) const;
     s32 getMaxValue(int) const;

@@ -46,9 +46,9 @@ LayoutHolder* ResourceHolderManager::createAndAddLayoutHolderStationed(const cha
 }
 
 LayoutHolder* ResourceHolderManager::createAndAddLayoutHolderRawData(const char* pParam1) {
+    FuncPtrC create = &ResourceHolderManager::createLayoutHolder;
     CreateResourceHolderArgs args = CreateResourceHolderArgs();
-
-    // TODO: Pointer-to-member-function call. Might be an inlined functor?
+    (this->*create)(pParam1, &args);
 
     return add(pParam1, args)->mLayoutHolder;
 }
@@ -76,13 +76,12 @@ void ResourceHolderManager::removeIfIsEqualHeap(JKRHeap* pHeap) {
         pIter->mResourceHolder = nullptr;
     }
 
-    for (ResourceHolderManagerName2Resource* pIter = mResourceArray.begin(); pIter != mResourceArray.end(); pIter++) {
-        if (pIter->mHeap != nullptr) {
-            continue;
+    for (ResourceHolderManagerName2Resource* pIter = mResourceArray.begin(); pIter != mResourceArray.end();) {
+        if (pIter->mHeap == nullptr) {
+            mResourceArray.erase(pIter);
+        } else {
+            pIter++;
         }
-
-        // FIXME: Supposed inline of MR::Vector::erase.
-        mResourceArray.erase(pIter);
     }
 }
 
@@ -149,12 +148,12 @@ void ResourceHolderManager::createLayoutHolder(const char* pParam1, CreateResour
     pArgs->mLayoutHolder = new LayoutHolder(*pArchive);
 }
 
-ResourceHolderManagerName2Resource* ResourceHolderManager::add(const char* pParam1, const CreateResourceHolderArgs& pArgs) {
+ResourceHolderManagerName2Resource* ResourceHolderManager::add(const char* pParam1, const CreateResourceHolderArgs& rArgs) {
     ResourceHolderManagerName2Resource name2Resource = ResourceHolderManagerName2Resource();
     name2Resource.mHash = MR::getHashCodeLower(MR::getBasename(pParam1));
-    name2Resource.mResourceHolder = pArgs.mResourceHolder;
-    name2Resource.mLayoutHolder = pArgs.mLayoutHolder;
-    name2Resource.mHeap = pArgs.mHeap;
+    name2Resource.mResourceHolder = rArgs.mResourceHolder;
+    name2Resource.mLayoutHolder = rArgs.mLayoutHolder;
+    name2Resource.mHeap = rArgs.mHeap;
 
     mResourceArray.push_back(name2Resource);
 
@@ -178,17 +177,17 @@ ResourceHolderManagerName2Resource* ResourceHolderManager::find(const char* pPar
     return pIter;
 }
 
-ResourceHolderManagerName2Resource::ResourceHolderManagerName2Resource() : mResourceHolder(nullptr), mLayoutHolder(nullptr), mHeap(nullptr) {
+ResourceHolderManagerName2Resource::ResourceHolderManagerName2Resource() : mResourceHolder(), mLayoutHolder(), mHeap() {
 }
 
-ResourceHolderManagerName2Resource& ResourceHolderManagerName2Resource::operator=(const ResourceHolderManagerName2Resource& other) {
-    mResourceHolder = other.mResourceHolder;
-    mLayoutHolder = other.mLayoutHolder;
-    mHash = other.mHash;
-    mHeap = other.mHeap;
+ResourceHolderManagerName2Resource& ResourceHolderManagerName2Resource::operator=(const ResourceHolderManagerName2Resource& rOther) {
+    mResourceHolder = rOther.mResourceHolder;
+    mLayoutHolder = rOther.mLayoutHolder;
+    mHash = rOther.mHash;
+    mHeap = rOther.mHeap;
 
     return *this;
 }
 
-CreateResourceHolderArgs::CreateResourceHolderArgs() : mResourceHolder(nullptr), mLayoutHolder(nullptr), mHeap(nullptr) {
+CreateResourceHolderArgs::CreateResourceHolderArgs() : mResourceHolder(), mLayoutHolder(), mHeap() {
 }

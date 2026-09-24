@@ -576,7 +576,7 @@ namespace MR {
     /// @retval `min` if the integer is less than or equal to `min`.
     /// @retval `max` if the integer is greater than or equal to `max`.
     /// @retval `x` if the integer is greater than `min` and less than `max`.
-    inline s32 clamp(s32 x, s32 min, s32 max) NO_INLINE {
+    inline s32 clamp(s32 x, s32 min, s32 max) {
         s32 ret;
         if (x < min) {
             ret = min;
@@ -599,9 +599,11 @@ namespace MR {
         if (x < 0.0f) {
             x = 0.0f;
         }
+
         if (x > 1.0f) {
             x = 1.0f;
         }
+
         return x;
     }
 
@@ -616,6 +618,7 @@ namespace MR {
         } else {
             ret = *pValue;
         }
+
         *pValue = ret;
     }
 
@@ -647,6 +650,7 @@ namespace MR {
             frsqrte recip, x
 
         }
+
         return recip * x;
     }
 
@@ -664,6 +668,7 @@ namespace MR {
 
         return x;
     }
+
 #else
     f32 frsqrte(f32);
     f32 fastSqrtf(f32);
