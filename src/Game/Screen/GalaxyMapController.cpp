@@ -550,6 +550,7 @@ bool GalaxyMapController::tryChangeMode() {
         case Mode_GalaxyMap:
             MR::startSystemSE("SE_SY_GALAMAP_PAGE_CHANGE");
             MR::startSystemSE("SE_SY_GALAMAP_CH_PITCH_DOWN");
+            break;
         }
 
         switch (mMode) {
