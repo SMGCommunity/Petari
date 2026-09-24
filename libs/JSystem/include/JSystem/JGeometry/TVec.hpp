@@ -1018,17 +1018,21 @@ namespace JGeometry {
             f32 m20 = 2.0f * (this->x * this->z - this->w * this->y);
 
             if (m20 - 1.0f >= -TUtil< f32 >::epsilon()) {
-                rDest.x = JMAATan2(-(2.0f * (this->x * this->y - this->w * this->z)), 1.0f - 2.0f * (this->x * this->x + this->z * this->z));
+                f32 numerator = 2.0f * (this->x * this->y - this->w * this->z);
+                rDest.x = JMAATan2(-numerator, 1.0f - 2.0f * (this->x * this->x + this->z * this->z));
                 rDest.y = -JMath::TAngleConstant_< f32 >::RADIAN_DEG090();
                 rDest.z = 0.0f;
             } else if (1.0f + m20 <= TUtil< f32 >::epsilon()) {
-                rDest.x = JMAATan2(2.0f * (this->x * this->y - this->w * this->z), 1.0f - 2.0f * (this->x * this->x + this->z * this->z));
+                f32 numerator = 2.0f * (this->x * this->y - this->w * this->z);
+                rDest.x = JMAATan2(numerator, 1.0f - 2.0f * (this->x * this->x + this->z * this->z));
                 rDest.y = JMath::TAngleConstant_< f32 >::RADIAN_DEG090();
                 rDest.z = 0.0f;
             } else {
                 f32 m10 = 2.0f * (this->x * this->y + this->w * this->z);
+                f32 numerator = 2.0f * (this->y * this->z + this->w * this->x);
+                f32 denominator = 1.0f - 2.0f * (this->x * this->x + this->y * this->y);
                 f32 m00 = 1.0f - 2.0f * (this->y * this->y + this->z * this->z);
-                rDest.x = JMAATan2(2.0f * (this->y * this->z + this->w * this->x), 1.0f - 2.0f * (this->x * this->x + this->y * this->y));
+                rDest.x = JMAATan2(numerator, denominator);
                 rDest.y = JMath::sAsinAcosTable.asin_(-m20);
                 rDest.z = JMAATan2(m10, m00);
             }
@@ -1086,15 +1090,18 @@ namespace JGeometry {
 
         f32 getRotate(TVec3< T >& rAxis) {
             f32 length = toTvec()->squared();
+            f32 angle;
 
             if (length <= JGeometry::TUtil< f32 >::epsilon()) {
+                angle = 0.0f;
                 rAxis.zero();
-                return 0.0f;
+            } else {
+                f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(length);
+                rAxis.scale(lengthinv, *toTvec());
+                angle = JGeometry::TUtil< f32 >::acos(this->w) * 2.0f;
             }
 
-            f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(length);
-            rAxis.scale(lengthinv, *toTvec());
-            return JGeometry::TUtil< f32 >::acos(this->w) * 2.0f;
+            return angle;
         }
 
         void setRotate(const TVec3< f32 >& rA, const TVec3< f32 >& rB, f32 ratio) {
@@ -1118,9 +1125,12 @@ namespace JGeometry {
             if (crossPart <= TUtil< f32 >::epsilon()) {
                 this->template set< f32 >(0.0f, 0.0f, 0.0f, 1.0f);
             } else {
-                f32 dotPart = rA.dot(rB);
+                f32 dotPart = JMathInlineVEC::PSVECDotProduct(&rA, &rB);
                 f32 halfAngle = 0.5f * JMAATan2(crossPart, dotPart);
-                toTvec()->scale((f32)sin(halfAngle) / crossPart, dir);
+                f32 scale = static_cast< f32 >(sin(halfAngle)) / crossPart;
+                this->x = dir.x * scale;
+                this->y = dir.y * scale;
+                this->z = dir.z * scale;
                 this->w = cos(halfAngle);
             }
         }
@@ -1173,7 +1183,7 @@ namespace JGeometry {
             if (1.0f - product <= TUtil< f32 >::epsilon()) {
                 weight = 1.0f - ratio;
             } else {
-                f32 angle = JMAAcosRadian(product);
+                f32 angle = JMath::sAsinAcosTable.acos_(product);
                 f32 sinAngle = sin(angle);
                 weight = (f32)sin((1.0f - ratio) * angle) / sinAngle;
                 ratio = (f32)sin(ratio * angle) / sinAngle;

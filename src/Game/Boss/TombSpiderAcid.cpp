@@ -11,8 +11,7 @@ namespace {
     static const s32 sStepToEndAcidGround = 30;
 };  // namespace
 
-TombSpiderAcid::TombSpiderAcid(TombSpider* pParent)
-    : mParent(pParent), mIsGlandReady(false), mIsEmitOn(false), mIsActive(false), mStateChangeTimer(0) {
+TombSpiderAcid::TombSpiderAcid(TombSpider* pParent) : mParent(pParent), mIsGlandReady(), mIsEmitOn(), mIsActive(), mStateChangeTimer() {
     mMouthEffectMtx.identity();
     mGlandFrontLEffectMtx.identity();
     mGlandFrontREffectMtx.identity();
@@ -116,14 +115,12 @@ void TombSpiderAcid::updateDeleteAcid() {
 }
 
 void TombSpiderAcid::updateGroundMtx(TPos3f* pDstMtx, MtxPtr pSrcMtx) {
-    // FIXME: regswap, and probably some inlines
-    // https://decomp.me/scratch/s6x8u
-
     TVec3f up(-pSrcMtx[0][2], -pSrcMtx[1][2], -pSrcMtx[2][2]);
     TVec3f side(up.y, -up.x, 0.0f);
     TVec3f front(0.0f, 0.0f, 1.0f);
 
-    TVec3f checkLine(up * (-::sDistanceCheckMap));
+    TVec3f checkLine(up);
+    checkLine.scale(-::sDistanceCheckMap);
     TVec3f mtxPos(pSrcMtx[0][3], pSrcMtx[1][3], pSrcMtx[2][3]);
     TVec3f trans(0.0f, 0.0f, 0.0f);
     MR::getFirstPolyOnLineToMap(&trans, nullptr, mtxPos, checkLine);

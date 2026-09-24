@@ -10,7 +10,7 @@ void CameraSpiral_FORCE_MATCH_SDATA2() {
 }
 
 CameraSpiral::CameraSpiral(const char* pName)
-    : Camera(pName), mEndTime(60), mTimer(), mStartTime(), mDistStart(1000.0), mDistEnd(1000.0f), mAngleStart(), mAngleEnd() {
+    : Camera(pName), mEndTime(60), mTimer(), mStartTime(), mDistStart(1000.0f), mDistEnd(1000.0f), mAngleStart(), mAngleEnd() {
 }
 
 void CameraSpiral::reset() {
@@ -18,13 +18,11 @@ void CameraSpiral::reset() {
 }
 
 CameraTargetObj* CameraSpiral::calc() {
-    // FIXME: load order swaps and matrix register alloc instead of stack lookup
-    // https://decomp.me/scratch/lv4im
-
     TVec3f watchPoint;
     CameraLocalUtil::makeWatchPoint(&watchPoint, this, CameraLocalUtil::getTarget(this), 0.1f / 15.0f);
 
-    f32 easeTime = mTimer < mStartTime ? 0.0f : mTimer - mStartTime;
+    const s32 timer = mTimer;
+    f32 easeTime = timer < mStartTime ? 0.0f : timer - mStartTime;
 
     f32 rate;
     switch (mEaseType) {
@@ -33,6 +31,7 @@ CameraTargetObj* CameraSpiral::calc() {
         rate = t;
         break;
     }
+
     case EaseType_InOut: {
         f32 t = easeTime / getInterval();
         f32 t3 = t * t * t;
@@ -53,12 +52,14 @@ CameraTargetObj* CameraSpiral::calc() {
 
     TPos3f mtx;
     mtx.identity();
-    mtx.setXDir(CameraLocalUtil::getTarget(this)->getSideVec());
-    mtx.setYDir(CameraLocalUtil::getTarget(this)->getUpVec());
-    mtx.setZDir(CameraLocalUtil::getTarget(this)->getFrontVec());
+    const TVec3f& rSide = CameraLocalUtil::getTarget(this)->getSideVec();
+    TPos3f* const pMtx = &mtx;
+    pMtx->setXDir(rSide);
+    pMtx->setYDir(CameraLocalUtil::getTarget(this)->getUpVec());
+    pMtx->setZDir(CameraLocalUtil::getTarget(this)->getFrontVec());
 
-    mtx.mult33(offset);
-    mtx.mult33(spiralDir);
+    pMtx->mult33(offset);
+    pMtx->mult33(spiralDir);
 
     TVec3f pos;
     pos.add(watchPoint, offset);

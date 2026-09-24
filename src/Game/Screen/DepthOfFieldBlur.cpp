@@ -9,6 +9,12 @@
 #include <JSystem/JUtility/JUTTexture.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
 
+void DepthOfFieldBlur_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+}
+
 namespace {
     // static const s32 sFirstBlurCount = _;
     // static const f32 sFirstBlurRadius = _;
@@ -54,8 +60,8 @@ void DepthOfFieldBlur::draw() const {
 
 void DepthOfFieldBlur::drawZAlphaTex() const {
     Mtx44 projectionMtx;
-    C_MTXOrtho(projectionMtx, 0.0f, JUTVideo::getManager()->getEfbHeight(), 0.0f, JUTVideo::getManager()->getFbWidth(), -::sViewDistance,
-               ::sViewDistance);
+    C_MTXOrtho(projectionMtx, 0.0f, static_cast< s32 >(JUTVideo::getManager()->getEfbHeight()), 0.0f,
+               static_cast< s32 >(JUTVideo::getManager()->getFbWidth()), -::sViewDistance, ::sViewDistance);
     GXSetProjection(projectionMtx, GX_ORTHOGRAPHIC);
     MR::loadViewMtxFor2DModel();
     GXClearVtxDesc();
@@ -92,19 +98,20 @@ void DepthOfFieldBlur::drawZAlphaTex() const {
 
     GXBegin(GX_LINESTRIP, GX_VTXFMT1, 4);
     {
+        u8 blurMinDist;
         u8 blurMaxDist = 248;
 
         if (mBlurMaxDist >= 0) {
             blurMaxDist = mBlurMaxDist;
         }
 
-        u8 blurMinDist = 242;
+        blurMinDist = 242;
 
         if (mBlurMinDist >= 0) {
             blurMinDist = mBlurMinDist;
         }
 
-        if (blurMinDist >= blurMaxDist) {
+        if (blurMaxDist >= blurMinDist) {
             GXPosition3f32(0.0f, 1.0f, 0.0f);
             GXPosition3u8(0, 0, 0);
             GXPosition3f32(blurMinDist * 0.5f, 1.0f, 0.0f);
@@ -124,17 +131,17 @@ void DepthOfFieldBlur::drawZAlphaTex() const {
             GXPosition3u8(255, 255, 255);
         }
     }
+
     GXEnd();
 }
 
 void DepthOfFieldBlur::createBlurTexture() const {
     ImageEffectLocalUtil::drawTexture(_1C, 4, 0, 255, ImageEffectLocalUtil::TexDrawType_0);
     ImageEffectLocalUtil::capture(_24, 4, 0, GX_TF_RGB565, false, 0);
-    ImageEffectLocalUtil::blurTexture(_24, 4, 0, 4, _10 * mIntensity * 0.005f, 1.0f);
+    ImageEffectLocalUtil::blurTexture(_24, 4, 0, 4, mIntensity * get_10() * 0.005f, 1.0f);
     ImageEffectLocalUtil::capture(_24, 4, 0, GX_TF_RGB565, false, 0);
 }
 
-// https://decomp.me/scratch/NIh1o
 void DepthOfFieldBlur::drawFinal() const {
     ImageEffectLocalUtil::drawTexture(_18, 4, 0, 255, ImageEffectLocalUtil::TexDrawType_0);
     GXSetNumTexGens(3);
@@ -160,7 +167,7 @@ void DepthOfFieldBlur::drawFinal() const {
     GXSetIndTexCoordScale(GX_INDTEXSTAGE0, GX_ITS_1, GX_ITS_1);
     _28->load(GX_TEXMAP1);
     _20->load(GX_TEXMAP2);
-    ImageEffectLocalUtil::drawTexture(_24, 1, 0, _10 * mIntensity * 255.0f, ImageEffectLocalUtil::TexDrawType_2);
+    ImageEffectLocalUtil::drawTexture(_24, 1, 0, mIntensity * get_10() * 255.0f, ImageEffectLocalUtil::TexDrawType_2);
     GXSetNumTevStages(1);
     GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
     GXSetNumIndStages(0);

@@ -4,6 +4,17 @@
 #include "Game/Player/MarioActor.hpp"  // DO NOT REMOVE
 #include "Game/Util/MathUtil.hpp"
 
+void CamHeliEffector_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.0000038146973f;
+    (void)0.5f;
+    (void)0.98f;
+    (void)0.001f;
+    (void)60.0f;
+    (void)(MR::pi() / 6.0f);
+}
+
 CamHeliEffector::CamHeliEffector() : _0(), _4() {
 }
 
@@ -14,7 +25,8 @@ void CamHeliEffector::update(CameraMan* pCamera) {
             return;
         }
 
-        f32 val = _4 * 0.98f;
+        f32 val = _4;
+        val *= 0.98f;
         _4 = val;
         if (val < 0.001f) {
             _4 = 0.0f;
@@ -24,6 +36,7 @@ void CamHeliEffector::update(CameraMan* pCamera) {
         if (val > 1.0f) {
             val = 1.0f;
         }
+
         val *= val;
         val *= val;
         _4 += (1.0f - _4) * val;
@@ -44,8 +57,10 @@ void CamHeliEffector::update(CameraMan* pCamera) {
     if (angle < MR::pi() / 6.0f) {
         return;
     }
+
     TQuat4f quat;
-    quat.setRotate(direction, up, (angle - MR::pi() / 6.0f) / angle * _4);
+    const f32 rate = (angle - MR::pi() / 6.0f) / angle;
+    quat.setRotate(direction, up, rate * _4);
     quat.transform(diff);
 
     CameraLocalUtil::setPos(pCamera, diff + CameraLocalUtil::getWatchPos(pCamera));

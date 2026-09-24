@@ -10,6 +10,10 @@ namespace JGeometry {
     template < typename T >
     class TUtil {
     public:
+        static f32 invert(f32 value) {
+            return 1.0f / value;
+        }
+
         static int epsilonEquals(T a1, T a2, T a3) {
             int ret = 0;
 
@@ -57,7 +61,7 @@ namespace JGeometry {
         }
 
         static f32 acos(f32 val) NO_INLINE {
-            return JMAAcosRadian(val);
+            return JMath::sAsinAcosTable.acos_(val);
         }
 
         static f32 PI() {

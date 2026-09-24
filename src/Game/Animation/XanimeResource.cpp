@@ -3,8 +3,8 @@
 #include "Game/System/ResourceInfo.hpp"
 #include "Game/Util/HashUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include <revolution/types.h>
 #include <cstring>
+#include <revolution/types.h>
 
 static bool unknownByte;
 XanimeResourceTable::XanimeResourceTable(ResourceHolder* pArg) {
@@ -49,11 +49,13 @@ XanimeResourceTable::XanimeResourceTable(ResourceHolder* pResourceHolder, Xanime
         if (mBckTables[i].mParent.mAnimationName[0] == '\0') {
             break;
         }
+
         mBckTables[i].mAnimationHash = MR::getHashCode(mBckTables[i].mParent.mAnimationName);
         mBckTables[i].mFileHash = MR::getHashCode(mBckTables[i].mFileName);
 
         i++;
     }
+
     mAmountOfBckTables = i;
 
     _1C.init();
@@ -81,7 +83,6 @@ void XanimeResourceTable::init() {
     mSwapTable = nullptr;
 }
 
-// While pBckTable1 is an XanimeBckTable*, all seems to indicate it is actually an XanimeBckTable1*
 u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGroupInfo* pInfo, XanimeAuxInfo* pAuxInfo, XanimeOfsInfo* pOfsInfo,
                                        XanimeBckTable* pBckTable1, XanimeBckTable2* pBckTable2, XanimeBckTable3* pBckTable3,
                                        XanimeBckTable4* pBckTable4, XanimeSwapTable* pSwapTable) {
@@ -124,6 +125,7 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
             if (maxTableSize < 2) {
                 maxTableSize = 2;
             }
+
             entry->mBckTableVariant = 2;
 
             entry->_20[0] = findResMotion(reinterpret_cast< XanimeBckTable2* >(bckTables[2])->mEntries[0].mFileName);
@@ -137,6 +139,7 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
             if (maxTableSize < 3) {
                 maxTableSize = 3;
             }
+
             entry->mBckTableVariant = 3;
 
             entry->_20[0] = findResMotion(reinterpret_cast< XanimeBckTable3* >(bckTables[1])->mEntries[0].mFileName);
@@ -153,6 +156,7 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
             if (maxTableSize < 4) {
                 maxTableSize = 4;
             }
+
             entry->mBckTableVariant = 4;
 
             entry->_20[0] = findResMotion(reinterpret_cast< XanimeBckTable4* >(bckTables[0])->mEntries[0].mFileName);
@@ -169,6 +173,7 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
 
             firstFilename = reinterpret_cast< XanimeBckTable4* >(bckTables[0])->mEntries[0].mFileName;
         }
+
         entry->mBckName = firstFilename;
 
         XanimeBckTable* auxTables[1];
@@ -187,7 +192,6 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
             entry->mLoop = 0.0f;
             entry->mAttribute = 0;
         } else {
-            // Unsure of what is happening there.
             entry->mAttribute = static_cast< u8* >(entry->_20[0])[4];
             entry->mLoop = 0.0f;
             entry->mEnd = static_cast< f32 >(reinterpret_cast< const s16* >(entry->_20[0])[3]);
@@ -205,6 +209,7 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
 
         i++;
     }
+
     mMaxGroupInfoTableSize = maxTableSize;
 
     return i;
@@ -290,12 +295,14 @@ const XanimeGroupInfo* XanimeResourceTable::getGroupInfo(const char* pPath, Xani
                     return &entry->mSubInformations[j];
                 }
             }
+
             break;
         }
 
         if (result != nullptr) {
             return result;
         }
+
         i++;
     }
 
@@ -341,6 +348,7 @@ u32 XanimeResourceTable::getGroupIndex(const char* pTarget) const {
         if (mSortTable->search(hash, &position)) {
             return position;
         }
+
     case 2:
         break;
     }
@@ -361,6 +369,7 @@ u32 XanimeResourceTable::getSingleIndex(const char* pTarget) const {
     if (mBckTables == nullptr) {
         return -1;
     }
+
     u32 hash = MR::getHashCode(pTarget);
 
     for (int i = 0; i < mAmountOfBckTables; i++) {
@@ -389,15 +398,13 @@ void XanimeResourceTable::createSortTable() {
     for (int i = 0; i < mAmountOfGroupInfos; i++) {
         mSortTable->add(mGroupInfos[i].mHash, i);
     }
+
     mSortTable->sort();
 }
 
 void* XanimeResourceTable::findResMotion(const char* pTarget) const {
-    const char* newName = swapBckName(pTarget, mSwapTable);
-    if (!mResourceHolder->mMotionResTable->isExistRes(newName)) {
-        return nullptr;
-    }
-    return mResourceHolder->mMotionResTable->getRes(newName);
+    const char* pName = swapBckName(pTarget, mSwapTable);
+    return (!mResourceHolder->mMotionResTable->isExistRes(pName)) ? nullptr : mResourceHolder->mMotionResTable->getRes(pName);
 }
 
 const char* XanimeResourceTable::findStringMotion(const char* pArg) const {
@@ -419,6 +426,7 @@ const char* XanimeResourceTable::swapBckName(const char* pOriginal, XanimeSwapTa
         if (MR::strcasecmp(pTable[i].mOriginal, pOriginal) == 0) {
             return pTable[i].mSwapped;
         }
+
         i++;
     }
 }
@@ -442,8 +450,6 @@ bool XanimeResourceTable::search(XanimeBckTable** pArray, const char* pTarget, u
             return false;
         }
 
-        // Possibly fake pointer arithmetic. It appears this line pops the first element of the array pointed at by pArray, which has a variable size
-        // equal to sizeOfArrayElements (polymorphism)
         pArray[0] = reinterpret_cast< XanimeBckTable* >(reinterpret_cast< u8* >(pArray[0]) + sizeOfArrayElements);
     }
 }
@@ -462,6 +468,7 @@ void XanimeGroupInfo::init() {
         mWeights[i] = 0.0f;
         _20[i] = nullptr;
     }
+
     _40 = nullptr;
     mHash = 0;
 }

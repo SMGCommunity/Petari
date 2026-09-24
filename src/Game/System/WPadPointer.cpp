@@ -2,6 +2,13 @@
 #include "Game/Util.hpp"
 #include <JSystem/JUtility/JUTVideo.hpp>
 
+namespace {
+    static const f32 sMoveJudgeSpeed = 0.0001f;
+    static const s32 sIsValidInScreenTime = 5;
+    static const s32 sIsInValidOutScreenTime = 10;
+    static const s32 sLostSensorTime = 20;
+};  // namespace
+
 // arrays are generating a constructor for some reason
 WPadPointer::WPadPointer(const WPad* pPad) {
     mPad = pPad;
@@ -17,8 +24,8 @@ WPadPointer::WPadPointer(const WPad* pPad) {
     _38 = 0;
     _3C = 0;
     mEnablePastCount = 0;
-    mIsPointInScreen = 0;
-    _45 = 0;
+    mIsPointInScreen = false;
+    mIsPointerMoved = false;
     mPointingPosArray = new TVec2f[0x78];
     mHorizonArray = new TVec2f[0x78];
     _C = 120;
@@ -41,7 +48,7 @@ void WPadPointer::reset() {
     mEnablePastCount = 0;
     _2C = 0;
     mIsPointInScreen = false;
-    _45 = 0;
+    mIsPointerMoved = false;
     KPADSetPosParam(mPad->mChannel, mPosPlayRadius, mPosSensitivity);
     KPADSetHoriParam(mPad->mChannel, mHoriPlayRadius, mHoriSensitivity);
     KPADSetDistParam(mPad->mChannel, mDistPlayRadius, mDistSensitivity);
@@ -51,53 +58,79 @@ void WPadPointer::setSensorBarLevel(f32 lvl) {
     KPADSetSensorHeight(mPad->mChannel, lvl);
 }
 
-/*void WPadPointer::update() {
+void WPadPointer::update() {
     KPADStatus* status = mPad->getKPadStatus(0);
 
-    if (status != nullptr) {
-        _45 = 0;
-        _30 = status->dist;
-        _34 = status->dpd_valid_fg;
-        s32 validCount = mPad->getValidStatusCount();
-        mEnablePastCount = 0;
+    if (status == nullptr) {
+        reset();
+        return;
+    }
 
-        if (_C > validCount) {
-            validCount = _C;
+    mIsPointerMoved = false;
+    mDistDisplay = status->dist;
+    _34 = status->dpd_valid_fg;
+
+    s32 validCount = mPad->getValidStatusCount();
+    mEnablePastCount = 0;
+
+    if (validCount > _C) {
+        validCount = _C;
+    }
+
+    bool isAnyDPDValid = false;
+
+    for (s32 i = validCount - 1; i >= 0; i--) {
+        KPADStatus* curStatus = mPad->getKPadStatus(i);
+        s8 dpdValid = curStatus->dpd_valid_fg;
+
+        if (dpdValid > 0) {
+            isAnyDPDValid = true;
         }
 
-        bool isAnyDPDValid = false;
+        if (dpdValid < 2) {
+            _38 = 0;
+            _3C++;
+        } else {
+            if (!mIsPointInScreen && _38 >= ::sIsValidInScreenTime || mIsPointInScreen && _3C <= ::sIsInValidOutScreenTime) {
+                mPointingPosArray[mEnablePastCount].x = curStatus->pos.x;
+                mPointingPosArray[mEnablePastCount].y = curStatus->pos.y;
+                mHorizonArray[mEnablePastCount].x = curStatus->horizon.x;
+                mHorizonArray[mEnablePastCount].y = curStatus->horizon.y;
 
-        while (validCount - 1 >= 0) {
-            KPADStatus* curStatus = mPad->getKPadStatus(validCount);
-
-            if (curStatus->dpd_valid_fg) {
-                isAnyDPDValid = true;
-            }
-
-            if (curStatus->dpd_valid_fg >= 2) {
-                if (!_44 && _38 >= 5 || !_44 && _3C <= 10) {
-                    mPointingPosArray[mEnablePastCount] = (TVec2f)curStatus->pos;
+                if (curStatus->speed > ::sMoveJudgeSpeed) {
+                    mIsPointerMoved = true;
                 }
+
+                mEnablePastCount++;
             }
+
+            _3C = 0;
+            _38++;
         }
     }
-}*/
+
+    mIsPointInScreen = mEnablePastCount > 0;
+
+    if (isAnyDPDValid) {
+        _2C = 0;
+    } else if (_2C < ::sLostSensorTime) {
+        _2C++;
+    }
+}
 
 void WPadPointer::getPointingPos(TVec2f* pOut) const {
-    if (mIsPointInScreen != 0) {
+    if (mIsPointInScreen) {
         pOut->set(mPointingPosArray[mEnablePastCount - 1]);
     } else {
-        pOut->x = 0.0f;
-        pOut->y = 0.0f;
+        pOut->zero();
     }
 }
 
 void WPadPointer::getHorizonVec(TVec2f* pOut) const {
-    if (mIsPointInScreen != 0) {
+    if (mIsPointInScreen) {
         pOut->set(mHorizonArray[mEnablePastCount - 1]);
     } else {
-        pOut->x = 0.0f;
-        pOut->y = 0.0f;
+        pOut->zero();
     }
 }
 
@@ -110,6 +143,6 @@ u32 WPadPointer::getEnablePastCount() const {
 }
 
 void WPadPointer::getPointingPosBasedOnScreen(TVec2f* pOut) const {
-    pOut->x = (0.5f + (0.5f * mPointingPosArray->x)) * (int)MR::getScreenWidth();
-    pOut->y = (0.5f + (0.5f * mPointingPosArray->y)) * (int)(JUTVideo::getManager()->getRenderMode()->efbHeight);
+    pOut->x = (0.5f + (0.5f * mPointingPosArray->x)) * static_cast< s32 >(MR::getScreenWidth());
+    pOut->y = (0.5f + (0.5f * mPointingPosArray->y)) * static_cast< s32 >(JUTVideo::getManager()->getRenderMode()->efbHeight);
 }

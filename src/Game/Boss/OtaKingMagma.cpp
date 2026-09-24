@@ -21,7 +21,7 @@ namespace {
 }
 
 OtaKingMagma::OtaKingMagma(LiveActor* pHost, s32 drawBufferType)
-    : PartsModel(pHost, "オタキングマグマ", "OtaKingMagma", nullptr, drawBufferType, true), mBloomModel(nullptr), _A0(nullptr), _A4(nullptr) {
+    : PartsModel(pHost, "オタキングマグマ", "OtaKingMagma", nullptr, drawBufferType, true), mBloomModel(), _A0(), _A4() {
     _A0 = MR::initDLMakerProjmapEffectMtxSetter(this);
     MR::newDifferedDLBuffer(this);
 }
@@ -39,7 +39,8 @@ void OtaKingMagma::init(const JMapInfoIter& rIter) {
     _A4 = MR::initDLMakerProjmapEffectMtxSetter(mBloomModel);
     MR::newDifferedDLBuffer(mBloomModel);
     mBloomModel->mPosition.set(mPosition);
-    mBloomModel->mPosition.add(::cBloomModelOffset);
+    TVec3f& rBloomPosition = mBloomModel->mPosition;
+    rBloomPosition.add(::cBloomModelOffset);
     mBloomModel->mRotation.set(mRotation);
     mBloomModel->mScale.set(mScale);
     mBloomModel->initWithoutIter();
@@ -75,12 +76,13 @@ void OtaKingMagma::down() {
 
 void OtaKingMagma::control() {
     mBloomModel->mPosition.set(mPosition);
-    mBloomModel->mPosition.add(::cBloomModelOffset);
+    TVec3f& rBloomPosition = mBloomModel->mPosition;
+    rBloomPosition.add(::cBloomModelOffset);
 }
 
-void OtaKingMagma::startBckThisAndBloomModel(const char* BckName) {
-    MR::startBck(this, BckName);
-    MR::startBck(mBloomModel, BckName);
+void OtaKingMagma::startBckThisAndBloomModel(const char* pBckName) {
+    MR::startBck(this, pBckName);
+    MR::startBck(mBloomModel, pBckName);
 }
 
 void OtaKingMagma::exeWait() {
