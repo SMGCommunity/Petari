@@ -8,15 +8,15 @@
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 
 namespace {
-    static const s32 sBookPageInfo[] = {0, 350, 700, 1050, 1400, 1748, -1};
-};  // namespace
+    static s32 sBookPageInfo[] = {0, 350, 700, 1050, 1400, 1748, -1};
+}  // namespace
 
 namespace NrvProloguePictureBook {
     NEW_NERVE(ProloguePictureBookActive, ProloguePictureBook, Active);
     NEW_NERVE(ProloguePictureBookPlaying, ProloguePictureBook, Playing);
     NEW_NERVE(ProloguePictureBookKeyWait, ProloguePictureBook, KeyWait);
     NEW_NERVE(ProloguePictureBookEnd, ProloguePictureBook, End);
-};  // namespace NrvProloguePictureBook
+}  // namespace NrvProloguePictureBook
 
 ProloguePictureBook::ProloguePictureBook() : LayoutActor("プロローグの絵本", true), mIconAButton(), mPage() {
 }

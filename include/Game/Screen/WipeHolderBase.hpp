@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
-#include "Game/Util/Array.hpp"
 
 class WipeLayoutBase;
 
@@ -28,5 +27,7 @@ public:
 
 private:
     /* 0x0C */ WipeLayoutBase* mCurrentWipeLayout;
-    /* 0x10 */ MR::Vector< MR::AssignableArray< WipeLayoutBase* > > mWipeLayoutArray;
+    /* 0x10 */ WipeLayoutBase** mWipeLayoutArray;
+    /* 0x14 */ u32 mWipeLayoutCapacity;
+    /* 0x18 */ u32 mWipeLayoutCount;
 };

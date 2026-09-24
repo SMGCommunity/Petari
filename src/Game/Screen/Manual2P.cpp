@@ -10,6 +10,12 @@
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 #include <cstdio>
 
+void Manual2P_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
+
 namespace {
     NEW_NERVE(Manual2PNrvAppear, Manual2P, Appear);
     NEW_NERVE(Manual2PNrvWait, Manual2P, Wait);
@@ -18,7 +24,7 @@ namespace {
     NEW_NERVE(Manual2PNrvScrollLeft, Manual2P, ScrollLeft);
     NEW_NERVE(Manual2PNrvScrollLeftAfter, Manual2P, ScrollLeftAfter);
     NEW_NERVE(Manual2PNrvDisappear, Manual2P, Disappear);
-};  // namespace
+}  // namespace
 
 namespace {
     s32 countMessage(const char* pName) {
@@ -149,7 +155,7 @@ void Manual2P::exeScrollRight() {
 
 void Manual2P::exeScrollRightAfter() {
     if (MR::isFirstStep(this)) {
-        MR::startAnim(this, "PageOut", 0);
+        MR::startAnim(this, "PageIn", 0);
 
         mPageIndex++;
 
@@ -177,7 +183,7 @@ void Manual2P::exeScrollLeft() {
 
 void Manual2P::exeScrollLeftAfter() {
     if (MR::isFirstStep(this)) {
-        MR::startAnim(this, "PageIn", 0);
+        MR::startAnim(this, "PageOut", 0);
         MR::setAnimFrame(this, MR::getAnimCtrl(this, 0)->getEnd() - 1.0f, 0);
         MR::getAnimCtrl(this, 0)->setRate(-1.0f);
 
@@ -218,7 +224,7 @@ void Manual2P::control() {
 }
 
 void Manual2P::reflectPageIndex() {
-    MR::startAnim(this, "P2Manual", 1);
+    MR::startAnim(this, "Picture", 1);
 
     if (mPageIndex < 0) {
         mPageIndex = 0;
@@ -228,7 +234,7 @@ void Manual2P::reflectPageIndex() {
         mPageIndex = mPageNum - 1;
     }
 
-    MR::setAnimFrame(this, mPageIndex, 1);
+    MR::setAnimFrameAndStop(this, mPageIndex, 1);
 
     char messageID[0x80];
     snprintf(messageID, sizeof(messageID), "2PGuidance%03d", mPageIndex + 1);

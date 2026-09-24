@@ -10,7 +10,7 @@ namespace {
     ScreenAlphaCapture* getScreenAlphaCapture() {
         return MR::getSceneObj< ScreenAlphaCapture >(SceneObj_ScreenAlphaCapture);
     }
-};  // namespace
+}  // namespace
 
 ScreenAlphaCapture::ScreenAlphaCapture(const char* pName) : NameObj(pName) {
     for (s32 i = 0; i < ARRAY_SIZE(mTexture); i++) {
@@ -24,8 +24,8 @@ void ScreenAlphaCapture::init(const JMapInfoIter& rIter) {
 void ScreenAlphaCapture::createScreenAlpha(s32 textureIndex, f32 screenScale) {
     MR::CurrentHeapRestorer heapRestorer(MR::getSceneHeapGDDR3());
 
-    mTexture[textureIndex] =
-        new JUTTexture(JUTVideo::getManager()->getFbWidth() * screenScale, JUTVideo::getManager()->getEfbHeight() * screenScale, GX_TF_I8);
+    mTexture[textureIndex] = new JUTTexture(static_cast< s32 >(JUTVideo::getManager()->getFbWidth()) * screenScale,
+                                            static_cast< s32 >(JUTVideo::getManager()->getEfbHeight()) * screenScale, GX_TF_I8);
     mTexture[textureIndex]->mWrapS = GX_CLAMP;
     mTexture[textureIndex]->mWrapT = GX_CLAMP;
     mTexture[textureIndex]->mMinType = GX_LINEAR;
@@ -66,4 +66,4 @@ namespace MR {
     JUTTexture* getScreenAlphaTexture(s32 index) {
         return ::getScreenAlphaCapture()->getTexture(index);
     }
-};  // namespace MR
+}  // namespace MR

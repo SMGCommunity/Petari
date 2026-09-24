@@ -16,9 +16,9 @@ namespace {
     NEW_NERVE(SurfingGuidanceTurnRightHold, SurfingGuidance, TurnRightHold);
     NEW_NERVE(SurfingGuidanceTurnRightSuccess, SurfingGuidance, TurnRightSuccess);
     NEW_NERVE(SurfingGuidanceFadeOut, SurfingGuidance, FadeOut);
-};  // namespace
+}  // namespace
 
-SurfingGuidance::SurfingGuidance() : LayoutActor("サーフィンガイダンス", true), _20(0), _24(0.0f), _2C(0) {
+SurfingGuidance::SurfingGuidance() : LayoutActor("サーフィンガイダンス", true), _20(), _24(), _2C() {
 }
 
 void SurfingGuidance::init(const JMapInfoIter& rIter) {
@@ -29,6 +29,11 @@ void SurfingGuidance::init(const JMapInfoIter& rIter) {
     _20 = 0;
 
     kill();
+}
+
+void SurfingGuidance_FORCE_MATCH_STRINGS(LayoutActor* pActor) {
+    MR::startAnim(pActor, "OKAppear", 2);
+    MR::startAnim(pActor, "OKEnd", 2);
 }
 
 void SurfingGuidance::activate() {

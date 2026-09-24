@@ -10,6 +10,12 @@
 #include "Game/Util/SoundUtil.hpp"
 #include <nw4r/lyt/texMap.h>
 
+void MiiSelectIcon_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)5.0f;
+}
+
 namespace {
     static const f32 sCharacterTexFrame[] = {
         0.0f, 4.0f, 3.0f, 2.0f, 1.0f,
@@ -20,7 +26,7 @@ namespace {
     NEW_NERVE(MiiSelectIconNrvSelected, MiiSelectIcon, Selected);
     NEW_NERVE(MiiSelectIconNrvDisappear, MiiSelectIcon, Disappear);
     NEW_NERVE(MiiSelectIconNrvInvalid, MiiSelectIcon, Invalid);
-};  // namespace
+}  // namespace
 
 MiiSelectIcon::MiiSelectIcon(int movementType, int calcAnimType, int drawType, const char* pName)
     : LayoutActor(pName, true), _20(), _24(), _28(), mIcon(), mMiiTexMap(), mFellowTexMap(), mIconID(new FileSelectIconID()), mIsMiiDummy(),
@@ -242,8 +248,7 @@ void MiiSelectIcon::createFaceImageObj() {
     GXTexObj texObj;
     MR::getLytTexMap(this, "PicMario", 0)->Get(&texObj);
 
-    // TODO: Requires the corresponding header-defined TexMap constructor.
-    // mFellowTexMap = new nw4r::lyt::TexMap(texObj);
+    mFellowTexMap = new nw4r::lyt::TexMap(texObj);
     mMiiTexMap = MR::createLytTexMap(reinterpret_cast< ResTIMG* >(mIcon->mImageBuffer));
     pTexMap = mMiiTexMap;
 

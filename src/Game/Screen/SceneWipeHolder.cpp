@@ -57,4 +57,4 @@ namespace SceneWipeHolderFunction {
     void forceCloseWipe(const char* pWipeName) {
         getSceneWipeHolder()->forceClose(pWipeName);
     }
-};  // namespace SceneWipeHolderFunction
+}  // namespace SceneWipeHolderFunction
