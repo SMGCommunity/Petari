@@ -10,11 +10,10 @@
 
 namespace {
     static const f32 sIsOnValue = 0.2f;
-};  // namespace
+}  // namespace
 
 WPadStick::WPadStick(const WPad* pPad)
-    : mPad(pPad), mStick(0.0f, 0.0f), mSpeed(0.0f), mHold(STICK_FLAG_NONE), mTrigger(STICK_FLAG_NONE), mRelease(STICK_FLAG_NONE), mIsTriggerUp(false),
-      mIsTriggerDown(false), mIsHoldUp(false), mIsHoldDown(false) {
+    : mPad(pPad), mStick(0.0f, 0.0f), mSpeed(), mHold(), mTrigger(), mRelease(), mIsTriggerUp(), mIsTriggerDown(), mIsHoldUp(), mIsHoldDown() {
 }
 
 void WPadStick::update() {
@@ -24,11 +23,9 @@ void WPadStick::update() {
         return;
     }
 
-    TVec2f stickEx(pStatus->ex_status.fs.stick.x, pStatus->ex_status.fs.stick.y);
-    TVec2f stickPrev = mStick;
-    f32 deltaX = stickEx.x - stickPrev.x;
-    f32 deltaY = stickEx.y - stickPrev.y;
-    mSpeed = JGeometry::TUtil< f32 >::sqrt(deltaX * deltaX + deltaY * deltaY);
+    TVec2f stickPrev(mStick);
+    mStick.set(pStatus->ex_status.fs.stick.x, pStatus->ex_status.fs.stick.y);
+    mSpeed = mStick.distance(stickPrev);
     u32 flagPrev = STICK_FLAG_NONE;
 
     if (stickPrev.x > ::sIsOnValue) {

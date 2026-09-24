@@ -17,7 +17,7 @@ const static JMapInfo StoryEventBCSV;
 
 namespace {
     const char cPictureBookChapterSuffix[] = "ABCDEFGHI";
-};  // namespace
+}  // namespace
 
 GameDataHolder::GameDataHolder(const UserFile* pUserFile)
     : mUserFile(pUserFile), mEventFlagChecker(), mEventValueChecker(), mPlayerStatus(), mAllGalaxyStorage(), mSpinDriverPathStorage(),
@@ -93,14 +93,16 @@ bool GameDataHolder::isOnGameEventValueForBit(const char* pName, int bit) const 
 }
 
 void GameDataHolder::setGameEventValueForBit(const char* pName, int bit, bool reset) {
+    u32 mask;
     u16 value = mEventValueChecker->getValue(pName);
-    u16 set = 1 << bit;
-    value = set & ~value;
+    mask = 1 << bit;
+    u16 result = value & ~mask;
+
     if (reset) {
-        value = value | set;
+        result = value | mask;
     }
 
-    setGameEventValue(pName, value);
+    setGameEventValue(pName, result);
 }
 
 s32 GameDataHolder::getPictureBookChapterCanRead() const {

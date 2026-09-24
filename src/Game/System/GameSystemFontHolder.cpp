@@ -7,9 +7,7 @@
 #include <cstdio>
 #include <nw4r/ut/ResFont.h>
 
-GameSystemFontHolder::GameSystemFontHolder()
-    : _0(nullptr), _4(nullptr), mEmbeddedMessageFont(nullptr), mMessageFont(nullptr), mPictureFont(nullptr), mMenuFont(nullptr),
-      mNumberFont(nullptr) {
+GameSystemFontHolder::GameSystemFontHolder() : _0(), _4(), mEmbeddedMessageFont(), mMessageFont(), mPictureFont(), mMenuFont(), mNumberFont() {
 }
 
 nw4r::ut::Font* GameSystemFontHolder::getMessageFont() const {
@@ -36,29 +34,26 @@ void GameSystemFontHolder::createFontFromEmbeddedData() {
     mEmbeddedMessageFont->SetResource(_4->getResource("MessageFont26.brfnt"));
 }
 
+namespace {
+    inline nw4r::ut::ResFont* createFont(JKRArchive* pArchive, const char* pName) {
+        nw4r::ut::ResFont* pFont = new nw4r::ut::ResFont();
+        pFont->SetResource(pArchive->getResource(pName));
+        return pFont;
+    }
+}  // namespace
+
 void GameSystemFontHolder::createFontFromFile() {
-    nw4r::ut::ResFont* pFont;
     JKRMemArchive* pArchive = MR::receiveArchive("/LayoutData/Font.arc");
 
-    pFont = new nw4r::ut::ResFont();
-    pFont->SetResource(pArchive->getResource("/MessageFont26.brfnt"));
-    mMessageFont = pFont;
+    mMessageFont = createFont(pArchive, "/MessageFont26.brfnt");
 
-    pFont = new nw4r::ut::ResFont();
-    pFont->SetResource(pArchive->getResource("/PictureFont.brfnt"));
-    mPictureFont = pFont;
+    mPictureFont = createFont(pArchive, "/PictureFont.brfnt");
 
-    pFont = new nw4r::ut::ResFont();
-    pFont->SetResource(pArchive->getResource("/MenuFont64.brfnt"));
-    mMenuFont = pFont;
+    mMenuFont = createFont(pArchive, "/MenuFont64.brfnt");
 
-    pFont = new nw4r::ut::ResFont();
-    pFont->SetResource(pArchive->getResource("/NumberFont.brfnt"));
-    mNumberFont = pFont;
+    mNumberFont = createFont(pArchive, "/NumberFont.brfnt");
 
-    pFont = new nw4r::ut::ResFont();
-    pFont->SetResource(pArchive->getResource("/CinemaFont26.brfnt"));
-    mCinemaFont = pFont;
+    mCinemaFont = createFont(pArchive, "/CinemaFont26.brfnt");
 
     mMessageFont->SetAlternateChar('?');
     mPictureFont->SetAlternateChar('?');
