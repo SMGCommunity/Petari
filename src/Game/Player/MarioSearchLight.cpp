@@ -199,11 +199,7 @@ void MarioActor::drawSearchLight() const {
         return;
     }
 
-    if (!mMario->isStatusActive(MarioStatus_Swim)) {
-        return;
-    }
-
-    if (mMario->mSwim->mJetTimer == 0) {
+    if (!(mMario->isStatusActive(MarioStatus_Swim) && mMario->mSwim->mJetTimer != 0)) {
         return;
     }
 
@@ -224,25 +220,26 @@ void MarioActor::drawSearchLight() const {
     TVec2f screenPos2;
     TDDraw::project2D(&screenPos2, mPosition + throwVec * 10000.0f);
 
-    TBox2f drawRect;
+    TVec2f minimum;
+    TVec2f maximum;
     if (screenPos1.x >= screenPos2.x) {
-        drawRect.i.x = screenPos2.x;
-        drawRect.f.x = screenPos1.x;
+        minimum.x = screenPos2.x;
+        maximum.x = screenPos1.x;
     } else {
-        drawRect.i.x = screenPos1.x;
-        drawRect.f.x = screenPos2.x;
+        minimum.x = screenPos1.x;
+        maximum.x = screenPos2.x;
     }
 
     if (screenPos1.y >= screenPos2.y) {
-        drawRect.i.y = screenPos2.y;
-        drawRect.f.y = screenPos1.y;
+        minimum.y = screenPos2.y;
+        maximum.y = screenPos1.y;
     } else {
-        drawRect.i.y = screenPos1.y;
-        drawRect.f.y = screenPos2.y;
+        minimum.y = screenPos1.y;
+        maximum.y = screenPos2.y;
     }
 
-    drawRect.i = drawRect.i + TVec2f(-10.0f, -10.0f);
-    drawRect.f = drawRect.f + TVec2f(10.0f, 10.0f);
+    screenPos1 = minimum + TVec2f(-10.0f, -10.0f);
+    screenPos2 = maximum + TVec2f(10.0f, 10.0f);
 
     TDDraw::setup(0, 0, 2);
 
@@ -252,11 +249,11 @@ void MarioActor::drawSearchLight() const {
     GXSetBlendMode(GX_BM_BLEND, GX_BL_DSTALPHA, GX_BL_ONE, GX_LO_NOOP);
     GXSetDstAlpha(GX_TRUE, 0);
 
-    TDDraw::drawFillBox(drawRect.i, drawRect.f, 0);
+    TDDraw::drawFillBox(screenPos1, screenPos2, 0);
     TDDraw::setup(0, 1, 1);
 
     J3DModelX* model = static_cast< J3DModelX* >(MR::getJ3DModel(mSearchLight));
-    J3DMaterial* material = model->getModelData()->getMaterialNodePointer(0);
+    J3DMaterial* const material = model->getModelData()->getMaterialNodePointer(0);
     if (model->simpleDrawSetup(material)) {
         GXSetZMode(GX_TRUE, GX_LEQUAL, GX_FALSE);
         GXSetAlphaUpdate(GX_TRUE);
@@ -299,7 +296,7 @@ void MarioActor::drawSearchLight() const {
         GXSetDstAlpha(GX_TRUE, 0);
 
         u8* col = mConst->getTable()->mSearchLightColor;
-        TDDraw::drawFillBox(drawRect.i, drawRect.f, col[0] << 24 | col[1] << 16 | col[2] << 8);
+        TDDraw::drawFillBox(screenPos1, screenPos2, col[0] << 24 | col[1] << 16 | col[2] << 8);
 
         GXSetDstAlpha(GX_FALSE, 0);
         GXSetAlphaUpdate(GX_FALSE);
@@ -321,23 +318,26 @@ void MarioActor::drawSearchLight() const {
         if (res) {
             // Draw central light cone.
             model->simpleDrawShape(material);
-            GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A1, GX_CA_A0, GX_CA_RASA, GX_CA_ZERO);
-            GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_DIVIDE_2, GX_TRUE, GX_TEVPREV);
+        } else {
+            return;
+        }
 
-            // Draw soft falloff outside light cone.
-            for (u32 i = 0; i < ARRAY_SIZE(mConst->getTable()->mSearchLightBlurAlpha); i++) {
-                model->setDrawView(i + 1);
+        GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A1, GX_CA_A0, GX_CA_RASA, GX_CA_ZERO);
+        GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_DIVIDE_2, GX_TRUE, GX_TEVPREV);
 
-                // Cone falloff colour.
-                GXColorS10 color3 = {255, 255, 255, (u8)(lightBrightness * mConst->getTable()->mSearchLightBlurAlpha[i])};
-                GXSetTevColorS10(GX_TEVREG0, color3);
+        // Draw soft falloff outside light cone.
+        for (u32 i = 0; i < ARRAY_SIZE(mConst->getTable()->mSearchLightBlurAlpha); i++) {
+            model->setDrawView(i + 1);
 
-                // End cap falloff colour.
-                GXColorS10 endCapCol = {255, 255, 255, 4};
-                GXSetTevColorS10(GX_TEVREG1, endCapCol);
+            // Cone falloff colour.
+            GXColorS10 color3 = {255, 255, 255, (u8)(lightBrightness * mConst->getTable()->mSearchLightBlurAlpha[i])};
+            GXSetTevColorS10(GX_TEVREG0, color3);
 
-                model->simpleDrawShape(material);
-            }
+            // End cap falloff colour.
+            GXColorS10 endCapCol = {255, 255, 255, 4};
+            GXSetTevColorS10(GX_TEVREG1, endCapCol);
+
+            model->simpleDrawShape(material);
         }
     }
 }

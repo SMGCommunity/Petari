@@ -196,9 +196,15 @@ void Mario::decideSquatWalkAnimation() {
 }
 
 void Mario::decideWalkSpeed() {
-    bool canIndexDecrease = mTargetWalkSpeedIndex != 0 && mStickPos.z < ::sSpeedTableB[mTargetWalkSpeedIndex - 1];
-
     u32 i;
+    bool canIndexDecrease = false;
+    if (mTargetWalkSpeedIndex != 0) {
+        f32 threshold = ::sSpeedTableB[mTargetWalkSpeedIndex - 1];
+        if (mStickPos.z < threshold) {
+            canIndexDecrease = true;
+        }
+    }
+
     for (i = 0; i < ARRAY_SIZE(::sSpeedTableA); i++) {
         if (mStickPos.z < ::sSpeedTableA[i]) {
             break;
@@ -482,7 +488,7 @@ void Mario::checkWallPush() {
 
     f32 angle = MR::diffAngleAbsHorizontal(mFrontVec, -getWallNorm(), *getGravityVec());
     bool sideStep = false;
-    f32 wallPushAngleRange = mActor->getConst().getTable()->mWallPushAngleRange;
+    f32 wallPushAngleRange = getActor()->getConst().getTable()->mWallPushAngleRange;
 
     bool checkAngle = mTargetWalkSpeedIndex != 0 && mMovementStates._8;
 
@@ -498,7 +504,7 @@ void Mario::checkWallPush() {
         sideStep = false;
     }
 
-    if (calcAngleD(getWallNorm()) < mActor->getConst().getTable()->mForceWallAngle) {
+    if (calcAngleD(getWallNorm()) < getActor()->getConst().getTable()->mForceWallAngle) {
         sideStep = false;
         if (mMovementStates._8 && mTargetWalkSpeedIndex != 0) {
             mTargetWalkSpeedIndex = 1;
@@ -554,18 +560,18 @@ void Mario::updateWalkSpeed() {
     f32 f2 = 1.0f;
 
     if (targetWalkSpeed == 0.0f) {
-        _404 = mActor->getConst().getTable()->mSlowStartTime;
+        _404 = getActor()->getConst().getTable()->mSlowStartTime;
     }
 
     if (_404 != 0) {
-        f2 = mActor->getConst().getTable()->mSlowStartTime;
-        f2 /= (mActor->getConst().getTable()->mSlowStartTime - _404);
+        f2 = getActor()->getConst().getTable()->mSlowStartTime;
+        f2 /= (getActor()->getConst().getTable()->mSlowStartTime - _404);
         _404--;
     }
 
     targetWalkSpeed *= f2 * f2;
     if (mMovementStates._F || isStatusActive(17)) {
-        targetWalkSpeed *= mActor->getConst().getTable()->mTornadoMultiply;
+        targetWalkSpeed *= getActor()->getConst().getTable()->mTornadoMultiply;
     }
 
     bool press = mMovementStates._A;
@@ -588,8 +594,8 @@ void Mario::updateWalkSpeed() {
             }
         }
 
-        if (mMovementStates._1 &&
-            (strstr(getGroundPolygon()->mSensor->mHost->mName, "TriPod") || strstr(getGroundPolygon()->mSensor->mHost->mName, "Tripod"))) {
+        if (mMovementStates._1 && (strstr(getGroundPolygon()->mSensor->mHost->mName, "TriPod") != nullptr ||
+                                   strstr(getGroundPolygon()->mSensor->mHost->mName, "Tripod") != nullptr)) {
             press = false;
         }
 
@@ -638,7 +644,7 @@ void Mario::updateWalkSpeed() {
 
     if (!mMovementStates._A && getPlayerMode() == 1) {
         if (mWalkSpeed >= 0.9999f) {
-            targetWalkSpeed *= mActor->getConst().getTable()->mDashMultiply;
+            targetWalkSpeed *= getActor()->getConst().getTable()->mDashMultiply;
             if (targetWalkSpeed > mWalkSpeed) {
                 inertia = 0.99f;
             }
