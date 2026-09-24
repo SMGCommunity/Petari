@@ -20,6 +20,8 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "JSystem/JMath/JMath.hpp"
 
 namespace NrvPackunPetit {
     NEW_NERVE_ONEND(PackunPetitNrvNonActive, PackunPetit, NonActive, NonActive);
@@ -45,6 +47,12 @@ PackunPetit::PackunPetit(const char* pName)
     : LiveActor(pName), mScaleController(nullptr), mStarPointerState(nullptr), _94(0.0f, 0.0f, 1.0f), mBlownModel(nullptr), mDontTurn(false) {
 }
 
+inline void PackunPetit::initStarPointer(const char* hitSensor) {
+    TVec3f offs;
+    offs.set(0.0f);
+    MR::initStarPointerTargetAtJoint(this, hitSensor, 100.0f, offs);
+}
+
 void PackunPetit::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("PackunPetit", nullptr, false);
@@ -62,11 +70,7 @@ void PackunPetit::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchWriteDead(this, rIter);
     MR::declareCoin(this, 1);
     MR::declareStarPiece(this, 6);
-    TVec3f offs;
-    offs.x = 0.0f;
-    offs.y = 0.0f;
-    offs.z = 0.0f;
-    MR::initStarPointerTargetAtJoint(this, "Head", 100.0f, offs);
+    initStarPointer("Head");
     mScaleController = new AnimScaleController(nullptr);
     mStarPointerState = new WalkerStateBindStarPointer(this, mScaleController);
     MR::getJMapInfoArg0NoInit(rIter, &mDontTurn);
@@ -323,7 +327,7 @@ void PackunPetit::calcAndSetBaseMtx() {
 }
 
 void PackunPetit::control() {
-    mScaleController->update();
+    mScaleController->updateNerve();
     tryDPDSwoon();
 }
 
@@ -457,7 +461,8 @@ void PackunPetit::initBlowModel() {
 }
 
 void PackunPetit::punchDown(HitSensor* pSender, HitSensor* pReceiver) {
-    TVec3f v6 = pReceiver->mPosition - pSender->mPosition;
+    TVec3f v6;
+    v6.sub(pReceiver->mPosition, pSender->mPosition);
     v6.orthogonalize(mGravity);
     MR::normalize(&v6);
 
@@ -487,7 +492,6 @@ bool PackunPetit::tryNonActive() {
     return true;
 }
 
-/*
 bool PackunPetit::tryTurn() {
     if (mDontTurn) {
         return false;
@@ -496,23 +500,19 @@ bool PackunPetit::tryTurn() {
     if (MR::isFaceToPlayerHorizontalDegree(this, _94, 90.0f)) {
         return false;
     }
-
-    TVec3f* pos = MR::getPlayerPos();
     TVec3f playerDist;
-    playerDist.subtract(*pos, mPosition);
+    playerDist.sub(*MR::getPlayerPos(), mPosition);
     TVec3f sideVec;
     MR::calcSideVec(&sideVec, this);
 
     if (playerDist.dot(sideVec) > 0.0f) {
         setNerve(GET_NERVE(PackunPetit, PackunPetitNrvLeftTurn));
-    }
-    else {
+    } else {
         setNerve(GET_NERVE(PackunPetit, PackunPetitNrvRightTurn));
     }
 
     return true;
 }
-*/
 
 bool PackunPetit::tryDPDSwoon() {
     if (isNerve(GET_NERVE(PackunPetit, PackunPetitNrvDPDSwoon))) {
