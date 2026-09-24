@@ -3864,7 +3864,7 @@ Game/Map/GroupSwitchWatcher.cpp:
 Game/Map/Halo.cpp:
 	.text       start:0x80182094 end:0x80182920
 	.ctors      start:0x8052EBC4 end:0x8052EBC8
-	.rodata     start:0x80532AF0 end:0x80532B28
+	.rodata     start:0x80532AF0 end:0x80532B18
 	.data       start:0x8058A318 end:0x8058A4A0
 	.sbss       start:0x806B4B90 end:0x806B4BA0
 	.sdata2     start:0x806BC030 end:0x806BC040
@@ -3875,6 +3875,7 @@ Game/Map/HitInfo.cpp:
 
 Game/Map/KCollision.cpp:
 	.text       start:0x8018300C end:0x80185B7C
+	.rodata     start:0x80532B18 end:0x80532B28
 	.sdata2     start:0x806BC048 end:0x806BC060
 
 Game/Map/KCollisionPlus.cpp:

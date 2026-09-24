@@ -3,10 +3,10 @@
 #include "Game/MapObj/MapObjActor.hpp"
 
 struct HaloParam {
-    const char* haloName;  // 0x0
-    f32 _4;
-    f32 _8;
-    f32 clippingRadius;  // 0xC
+    /* 0x0 */ const char* mName;
+    /* 0x4 */ f32 _4;
+    /* 0x8 */ f32 _8;
+    /* 0xC */ f32 mClippingRadius;
 };
 
 class Halo : public MapObjActor {
@@ -24,7 +24,7 @@ public:
     void exeAppear();
     void exeDisappear();
 
-    f32 mDistance;  // 0xC4
+    /* 0xC4 */ f32 mDistance;
 };
 
 class PowerStarHalo : public Halo {
@@ -38,5 +38,5 @@ public:
 
     void exeWaitScenarioOpeningEnd();
 
-    s32 _C8;
+    /* 0xC8 */ s32 mAppearDuringOpeningCam;
 };
