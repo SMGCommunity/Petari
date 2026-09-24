@@ -192,8 +192,8 @@ void CollisionShadow::create(const TVec3f& rPosition, const TVec3f& rDirection, 
         return;
     }
 
-    _6E = 0;
     u32 polygonCount = 0;
+    _6E = 0;
     for (u32 i = 0; i < count; i++) {
         TVec3f normal(*_32C[i].getNormal(0));
         f32 facing = normal.dot(_24);
@@ -260,7 +260,7 @@ void CollisionShadow::create(const TVec3f& rPosition, const TVec3f& rDirection, 
         _10 += 1.0f;
     }
 
-    _10 = MR::clamp(_10, 1.0f, _14);
+    MR::clampBoth(&_10, 1.0f, _14);
 }
 
 void CollisionShadow::draw1() const {
@@ -348,38 +348,11 @@ void CollisionShadow::initCaptureTex() {
 void CollisionShadow::setViewMtx(const TVec3f& rDirection) {
     TVec3f normal = rDirection;
     MR::normalize(&normal);
-    TVec3f offset = normal * 10000.0f;
-    TVec3f eye = _2F0 - offset;
+    TVec3f eye = _2F0 - normal * 10000.0f;
 
     TPos3f matrix;
     matrix.identity();
-    TVec3f side;
-    TVec3f up;
-    TVec3f forward;
-    TVec3f delta;
-    delta.sub(_2F0, eye);
-    forward.set(delta);
-    forward.normalize();
-    forward.negate();
-    side.cross(_30, forward);
-    up.cross(forward, side);
-    side.normalize();
-    up.normalize();
-    matrix.mMtx[0][0] = side.x;
-    matrix.mMtx[0][1] = side.y;
-    matrix.mMtx[0][2] = side.z;
-
-    matrix.mMtx[1][0] = up.x;
-    matrix.mMtx[1][1] = up.y;
-    matrix.mMtx[1][2] = up.z;
-
-    matrix.mMtx[2][0] = forward.x;
-    matrix.mMtx[2][1] = forward.y;
-    matrix.mMtx[2][2] = forward.z;
-
-    matrix.mMtx[0][3] = eye.x * -side.x - eye.y * side.y - eye.z * side.z;
-    matrix.mMtx[1][3] = eye.x * -up.x - eye.y * up.y - eye.z * up.z;
-    matrix.mMtx[2][3] = eye.x * -forward.x - eye.y * forward.y - eye.z * forward.z;
+    matrix.setPositionFromLookAt(eye, _30, _2F0);
     PSMTXCopy(matrix, j3dSys.mViewMtx);
     TDDraw::setViewMtx(matrix);
     MR::setMarioShadowVec(rDirection);
@@ -437,7 +410,8 @@ void CollisionShadow::drawAndCaptureTex(J3DModelX* pModel, const TVec3f& rPositi
         GXSetProjection(projection, GX_ORTHOGRAPHIC);
         if (_307) {
             GXSetViewport(608 - (_2FC + 32), -32.0f, 64.0f + _2FC, 64.0f + _2FE, 0.0f, 1.0f);
-            GXSetScissor(608 - _2FC + 1, 1, _2FC - 2, _2FE - 2);
+            s32 left = 608 - _2FC;
+            GXSetScissor(left + 1, 1, _2FC - 2, _2FE - 2);
             pModel->setDrawView(2);
             pModel->mFlags.clear();
             pModel->mFlags._11 = true;
@@ -446,7 +420,8 @@ void CollisionShadow::drawAndCaptureTex(J3DModelX* pModel, const TVec3f& rPositi
         }
 
         GXSetViewport(608 - _2FC, 0.0f, _2FC, _2FE, 0.0f, 1.0f);
-        GXSetScissor(608 - _2FC + 1, 1, _2FC - 2, _2FE - 2);
+        s32 left = 608 - _2FC;
+        GXSetScissor(left + 1, 1, _2FC - 2, _2FE - 2);
         pModel->setDrawView(2);
         pModel->mFlags.clear();
         pModel->mFlags._1E = true;
@@ -460,7 +435,9 @@ void CollisionShadow::drawAndCaptureTex(J3DModelX* pModel, const TVec3f& rPositi
         GXSetAlphaUpdate(GX_TRUE);
         GXSetBlendMode(GX_BM_BLEND, GX_BL_DSTALPHA, GX_BL_ZERO, GX_LO_NOOP);
         GXSetDstAlpha(GX_FALSE, 0);
-        TVec3f center(608 - _2FC / 2, _2FE / 2, 0);
+        f32 y = _2FE / 2;
+        f32 x = 608 - _2FC / 2;
+        TVec3f center(x, y, 0.0f);
         TDDraw::fix2Dpos(&center);
         TDDraw::drawFillCircle(center, _2FC / 2, 0xFFFFFFC0, 0, 16);
         const ResTIMG* image = _300->getTexInfo();

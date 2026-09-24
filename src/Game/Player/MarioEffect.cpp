@@ -297,7 +297,7 @@ s32 MarioActor::getFloorMaterialIndex(u32 flags) const {
 
     if (!mMario->mMovementStates._1) {
         if (mMario->mSwim->_1B2 != 0) {
-            if (mMario->mSwim->_1B8 < 0.0f) {
+            if (mMario->mSwim->_1B8 < 400.0f) {
                 materialIndex = 1;
             }
         }
@@ -1166,9 +1166,9 @@ void MarioActor::updateEffect() {
     effectC = 0;
     if (getMovementStates().jumping) {
         if (mPlayerMode == 4 && mMario->checkLvlA() && mMario->_402 != 0 && ((_37C & 3) == 0)) {
-            if (mMario->mVerticalSpeed < 100.0f) {
+            if (mMario->mVerticalSpeed < 300.0f) {
                 effectC = 1;
-            } else if (mMario->mSwim->_1B2 != 0 && mMario->mSwim->_1B8 < 100.0f) {
+            } else if (mMario->mSwim->_1B2 != 0 && mMario->mSwim->_1B8 < 300.0f) {
                 effectC = 1;
             }
         }

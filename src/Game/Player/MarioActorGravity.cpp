@@ -9,6 +9,12 @@
 #include "Game/Util/MathUtil.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
 
+void MarioActorGravity_FORCE_MATCH(TVec3f& rVec, f32 a, f32 b, f32 c) {
+    rVec *= a;
+    rVec *= b;
+    rVec *= c;
+}
+
 void MarioActorGravity_FORCE_MATCH_SDATA2() {
     (void)1.0f;
     (void)0.0f;
@@ -112,9 +118,7 @@ void MarioActor::syncJumpBeeStickMode() {
         return;
     }
 
-    TVec3f frontOffset(mMario->mFrontVec);
-    frontOffset *= 2.0f;
-    _33C = mPosition - frontOffset;
+    _33C = mPosition - mMario->mFrontVec * 2.0f;
     _354 = mPosition - _33C;
     _360 = _2A0 - _33C;
     MR::normalize(&_360);

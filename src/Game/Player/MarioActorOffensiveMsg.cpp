@@ -61,7 +61,7 @@ void MarioActor::attackOrPushSensor(HitSensor* pSensor, f32 distance) {
         }
     }
 
-    if (pull && !_424) {
+    if (pull && _424 == nullptr) {
         tryTornadoPull(pSensor);
     }
 
@@ -468,7 +468,7 @@ bool MarioActor::tryGetItem(HitSensor* pSensor) {
             moving = false;
         }
 
-        if (!moving && !mMario->isSwimming() && !getMovementStates()._1 && !_424) {
+        if (!moving && !mMario->isSwimming() && !mMario->getMovementStates()._1 && _424 == nullptr) {
             if (getMovementStates()._B) {
                 return false;
             }
@@ -516,7 +516,7 @@ bool MarioActor::tryGetItem(HitSensor* pSensor) {
 
             mVelocity.zero();
             mMario->mWalkSpeed = 0.0f;
-            if (getMovementStates()._1) {
+            if (mMario->mMovementStates._1) {
                 mMario->stopJump();
                 mMario->mVerticalSpeed = 0.0f;
             }
@@ -559,7 +559,7 @@ bool MarioActor::cylinderPushCheck(const TVec3f& rOffset, f32 radius, f32 width,
         }
     }
 
-    if (getMovementStates()._A && getMovementStates()._1) {
+    if (mMario->getMovementStates()._A && getMovementStates()._1) {
         return false;
     }
 
