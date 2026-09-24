@@ -13,7 +13,6 @@ class DinoPackunTailNode : public LiveActor {
 public:
     DinoPackunTailNode(const char*, DinoPackun*);
 
-    virtual ~DinoPackunTailNode();
     virtual const TVec3f* getNodeDirection() const;
     virtual void requestLockPosition();
     virtual void requestUnLockPosition();
