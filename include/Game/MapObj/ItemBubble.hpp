@@ -13,30 +13,13 @@ public:
 
     virtual ~RotPartsModel() {
     }
+
     virtual void calcAndSetBaseMtx() {
         PartsModel::calcAndSetBaseMtx();
         TRot3f mtx;
         mtx.identity();
 
-        // makeMatrixFromRotAxesInline
-        TVec3f rot(mRotation);
-        rot *= PI_180;
-
-        f32 Z = rot.z;
-        f32 Y = rot.y;
-        f32 X = rot.x;
-
-        f32 cosZ = cos(Z);
-        f32 cosY = cos(Y);
-        f32 cosX = cos(X);
-        f32 sinZ = sin(Z);
-        f32 sinY = sin(Y);
-        f32 sinX = sin(X);
-
-        mtx.setXDir(cosY * cosZ, cosY * sinZ, -sinY);
-        f32 asds = sinX * cosY;
-        mtx.setYDir(sinX * sinY * cosZ - cosX * sinZ, sinX * sinY * sinZ + cosX * cosZ, asds);
-        mtx.setZDir(cosX * cosZ * sinY + sinX * sinZ, cosX * sinZ * sinY - sinX * cosZ, cosX * cosY);
+        mtx.setRotateDegree(mRotation);
 
         PSMTXConcat(getBaseMtx(), mtx, getBaseMtx());
     }
@@ -66,15 +49,15 @@ public:
         return _94[index];
     }
 
-    f32 _8C;              // 0x8C
-    RotPartsModel** _90;  // 0x90
-    StarPiece** _94;      // 0x94
-    u16 mItemCount;       // 0x98
-    u16 mItemType;        // 0x9A
-    TPos3f _9C;           // 0x9C
-    TPos3f _CC;           // 0xCC
-    TVec3f _FC;           // 0xFC
-    TVec3f _108;          // 0x108
-    f32 mRailSpeed;       // 0x114
-    bool mUseRail;        // 0x118
+    /* 0x8C */ f32 _8C;
+    /* 0x90 */ RotPartsModel** _90;
+    /* 0x94 */ StarPiece** _94;
+    /* 0x98 */ u16 mItemCount;
+    /* 0x9A */ u16 mItemType;
+    /* 0x9C */ TPos3f _9C;
+    /* 0xCC */ TPos3f _CC;
+    /* 0xFC */ TVec3f _FC;
+    /* 0x108 */ TVec3f _108;
+    /* 0x114 */ f32 mRailSpeed;
+    /* 0x118 */ bool mUseRail;
 };

@@ -8,10 +8,17 @@
 #include "Game/Util.hpp"
 #include <cstdio>
 
-BeamGoRoundBeam::BeamGoRoundBeam(MtxPtr mtx) : LiveActor("ビームゴーラウンドビーム") {
+void BeamGoRoundPlanet_FORCE_MATCH_SDATA2() {
+    (void)-1.0f;
+    (void)100.0f;
+    (void)2700.0f;
+    (void)0.0f;
+}
+
+BeamGoRoundBeam::BeamGoRoundBeam(MtxPtr pMtx) : LiveActor("ビームゴーラウンドビーム") {
     mModelDrawer = nullptr;
     mBloomModel = nullptr;
-    mBeamJointMtx = mtx;
+    mBeamJointMtx = pMtx;
 }
 
 void BeamGoRoundBeam::init(const JMapInfoIter& rIter) {
@@ -69,7 +76,7 @@ BeamGoRoundPlanet::BeamGoRoundPlanet(const char* pName) : MapObjActor(pName) {
 void BeamGoRoundPlanet::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
-    info.setupHioNode("");
+    info.setupHioNode("惑星");
     info.setupDefaultPos();
     info.setupConnectToScene();
     info.setupEffect(nullptr);
@@ -96,6 +103,7 @@ void BeamGoRoundPlanet::connectToScene(const MapObjActorInitInfo&) {
 
 void BeamGoRoundPlanet::initBeam() {
     mBeams = new BeamGoRoundBeam*[16];
+
     for (s32 i = 0; i < 16; i++) {
         char buf[256];
         snprintf(buf, sizeof(buf), "beam%d", i + 1);

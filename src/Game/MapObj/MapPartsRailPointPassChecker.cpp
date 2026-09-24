@@ -23,7 +23,7 @@ bool MapPartsRailPointPassChecker::isReachedEnd() const {
 }
 
 bool MapPartsRailPointPassChecker::isPassedStartPoint() const {
-    if (MR::getCurrentRailPointNo(mHost) <= 0) {
+    if (MR::getCurrentRailPointNo(mHost) > 0) {
         return false;
     }
 

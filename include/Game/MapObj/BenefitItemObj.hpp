@@ -7,6 +7,14 @@
 class ActorCameraInfo;
 class FlashingCtrl;
 
+class ShadowClipActor : public LiveActor {
+public:
+    virtual void endClipped();
+    virtual void control();
+
+    /* 0x8C */ LiveActor* _8C;
+};
+
 class BenefitItemObj : public LiveActor {
 public:
     /// @brief Creates a new `BenefitItemObj`.
@@ -85,14 +93,6 @@ public:
     /* 0x138 */ u8 _138;
     /* 0x139 */ u8 _139;
     /* 0x13A */ u16 _13A;
-};
-
-class ShadowClipActor : public LiveActor {
-public:
-    virtual void endClipped();
-    virtual void control();
-
-    /* 0x8C */ LiveActor* _8C;
 };
 
 namespace NrvBenefitItemObj {

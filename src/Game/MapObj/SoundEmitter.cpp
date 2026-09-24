@@ -13,7 +13,9 @@
 #include <JSystem/JAudio2/JAISound.hpp>
 
 namespace {
-    const JAISoundID sSeTable[33] = {JAISoundID(0x1)};
+    const u32 sSeTable[33] = {0x60000, 0x6000e, 0x6000f, 0x60010, 0x60011, 0x60014, 0x501a6, 0x501a7, 0x60015, 0x60016, 0x60017,
+                              0x60018, 0x60019, 0x5021b, 0x60020, 0x60021, 0x60022, 0x50272, 0x50273, 0x6002a, 0xa00a8, 0xa00a9,
+                              0x6002d, 0x6002e, 0x50318, 0x6002f, 0x6001c, 0x50332, 0x60030, 0x60004, 0x17,    0x60035, 0x50363};
 };  // namespace
 
 namespace NrvSoundEmitter {
@@ -24,26 +26,28 @@ namespace NrvSoundEmitter {
 SoundEmitter::SoundEmitter(const char* pName) : LiveActor(pName) {
     _8C = -1;
 }
-SoundEmitter::~SoundEmitter() {
-}
 
 void SoundEmitter::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::getJMapInfoArg0NoInit(rIter, &_8C);
     MR::connectToSceneMapObjMovement(this);
     MR::registerDemoSimpleCastAll(this);
+
     if (MR::isConnectedWithRail(rIter)) {
         initRailRider(rIter);
     }
+
     initSound(8, false);
     MR::setClippingTypeSphere(this, 20000.0f);
     MR::useStageSwitchReadAppear(this, rIter);
     MR::useStageSwitchReadA(this, rIter);
+
     if (MR::isValidSwitchAppear(this)) {
         initNerve(GET_NERVE(SoundEmitter, SoundEmitterNrvStandBy));
     } else {
         initNerve(GET_NERVE(SoundEmitter, SoundEmitterNrvPlaySound));
     }
+
     makeActorAppeared();
 }
 
@@ -58,7 +62,8 @@ void SoundEmitter::control() {
 void SoundEmitter::exePlaySound() {
     RailRider* rider = mRailRider;
     s32 v3 = -1;
-    if (rider) {
+
+    if (rider != nullptr) {
         switch (_8C) {
         case 0xd:
         case 0x11:
@@ -69,6 +74,7 @@ void SoundEmitter::exePlaySound() {
             rider->moveToNearestPos(MR::getCamPos());
         } break;
         }
+
         mPosition.x = mRailRider->mCurPos.x;
         mPosition.y = mRailRider->mCurPos.y;
         mPosition.z = mRailRider->mCurPos.z;
@@ -97,6 +103,7 @@ void SoundEmitter::exePlaySound() {
         return;
     } break;
     }
+
     if (_8C >= 0) {
         MR::startLevelSound(this, ::sSeTable[_8C], -1, -1, v3);
     }
@@ -108,4 +115,7 @@ inline void SoundEmitter::exeStandBy() {
             setNerve(GET_NERVE(SoundEmitter, SoundEmitterNrvPlaySound));
         }
     }
+}
+
+SoundEmitter::~SoundEmitter() {
 }

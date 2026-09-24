@@ -1,7 +1,8 @@
 #pragma once
 
-#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
-#include <JSystem/JGeometry.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class J3DModelData;
 
 class ClipAreaShape {
 public:
@@ -13,18 +14,7 @@ public:
     bool isInArea(const TVec3f&, f32, const TPos3f&, const TVec3f&) const;
     void drawVolumeShape(const TPos3f&, const TVec3f&) const;
 
-    J3DModelData* mModelData;  // 0x4
-};
-
-class ClipAreaShapeCone : public ClipAreaShape {
-public:
-    ClipAreaShapeCone(s32);
-
-    virtual bool isInArea(const TVec3f&) const;
-
-    f32 _8;
-    f32 _C;
-    s32 _10;
+    /* 0x04 */ J3DModelData* mModelData;
 };
 
 class ClipAreaShapeSphere : public ClipAreaShape {
@@ -34,7 +24,7 @@ public:
     virtual bool isInArea(const TVec3f&) const;
     virtual void calcVolumeMatrix(TPos3f*, const TPos3f&, const TVec3f&) const;
 
-    f32 mRadius;  // 0x8
+    /* 0x08 */ f32 mRadius;
 };
 
 class ClipAreaShapeBox : public ClipAreaShape {
@@ -44,6 +34,17 @@ public:
     virtual bool isInArea(const TVec3f&) const;
     virtual void calcVolumeMatrix(TPos3f*, const TPos3f&, const TVec3f&) const;
 
-    f32 mRadius;  // 0x8
-    s32 _C;
+    /* 0x08 */ f32 mRadius;
+    /* 0x0C */ s32 _C;
+};
+
+class ClipAreaShapeCone : public ClipAreaShape {
+public:
+    ClipAreaShapeCone(s32);
+
+    virtual bool isInArea(const TVec3f&) const;
+
+    /* 0x08 */ f32 _8;
+    /* 0x0C */ f32 _C;
+    /* 0x10 */ s32 _10;
 };

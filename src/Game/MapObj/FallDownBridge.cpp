@@ -10,6 +10,27 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void FallDownBridge_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)1250.0f;
+    (void)90.0f;
+    (void)2600.0f;
+    (void)9.090276718139648f;
+    (void)0.01745329238474369f;
+    (void)-2607.594482421875f;
+    (void)2607.594482421875f;
+    (void)0.05999999865889549f;
+    (void)-0.5f;
+    (void)0.10000000149011612f;
+    (void)0.9900000095367432f;
+    (void)0.44999998807907104f;
+    (void)0.30000001192092896f;
+    (void)400.0f;
+    (void)0.0f;
+}
+
 namespace {
     const TVec3f sBaseClipCentor = TVec3f(0.0f, 1250.0f, 0.0f);
     // const f32 sBlockDepth = 0.0f;
@@ -58,7 +79,7 @@ void FallDownBridge::init(const JMapInfoIter& rIter) {
 }
 
 void FallDownBridge::control() {
-    f32 val = MR::sin(MR::toRadian(MR::abs(_98) - 1.0f / 0.11f));
+    f32 val = MR::sin(MR::toRadian(MR::abs(_98) - 9.090277f));
 
     if (_98 < 0.0f) {
         val = -val;
@@ -72,6 +93,7 @@ void FallDownBridge::control() {
     }
 
     bool ret = false;
+
     if (_98 > _A4) {
         _98 = _A4;
         ret = true;
@@ -97,7 +119,7 @@ void FallDownBridge::control() {
         if (MR::abs(_9C) < 0.06f) {
             _9C = 0.0f;
 
-            if (MR::abs(_98) > 1.0f / 0.11f) {
+            if (MR::abs(_98) > 9.090277f) {
                 _A8 = true;
             }
         }
@@ -114,6 +136,7 @@ void FallDownBridge::control() {
 bool FallDownBridge::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (!_A8 && isNerve(GET_NERVE(FallDownBridge, FallDownBridgeNrvWait)) && (msg == ACTMES_BALL_DASH_WALL || msg == ACTMES_BALL_TOUCH_WALL)) {
         LiveActor* pHost = pSender->mHost;
+
         if (!MR::isBindedWall(pHost)) {
             return false;
         }
@@ -128,11 +151,13 @@ bool FallDownBridge::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
         mtx60.getXDir(vec78);
 
         f32 dot = vec78.dot(vec6C);
+
         if (MR::abs(dot) < 0.1f) {
             return false;
         }
 
         f32 val;
+
         if (msg == ACTMES_BALL_DASH_WALL) {
             val = 0.45f;
             MR::startSound(this, "SE_OJ_CHAL_FD_BRIDGE_HIT");
@@ -164,6 +189,7 @@ void FallDownBridge::calcAndSetBaseMtx() {
     mtx88.identity();
 
     TVec3f vecC4;
+
     if (_98 >= 0.0f) {
         vecC4.set< f32 >(0.0f, 0.0f, 0.0f);
     } else {
@@ -172,10 +198,9 @@ void FallDownBridge::calcAndSetBaseMtx() {
 
     mtx88.setTrans(-vecC4);
 
-    // FIXME: inline TVec3f ctor
     TPos3f baseMtx;
     baseMtx.identity();
-    baseMtx.makeRotate(TVec3f(0.0f, 0.0f, 1.0f), MR::toRadian(_98));
+    baseMtx.makeRotate(TVec3f(0, 0, 1), MR::toRadian(_98));
 
     baseMtx.concat(baseMtx, mtx88);
 

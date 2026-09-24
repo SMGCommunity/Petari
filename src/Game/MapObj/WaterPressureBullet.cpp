@@ -29,7 +29,6 @@ WaterPressureBullet::WaterPressureBullet(const char* pName) : LiveActor(pName) {
 }
 
 void WaterPressureBullet::init(const JMapInfoIter& rIter) {
-    // FIXME
     initModelManagerWithAnm("WaterBullet", nullptr, false);
     MR::connectToSceneMapObjStrongLight(this);
     initHitSensor(2);
@@ -38,11 +37,7 @@ void WaterPressureBullet::init(const JMapInfoIter& rIter) {
     initBinder(100.0f, 0.0f, 0);
     initEffectKeeper(0, nullptr, false);
     initSound(6, false);
-    TVec3f offs;
-    offs.x = 0.0f;
-    offs.y = 0.0f;
-    offs.z = 0.0f;
-    MR::initStarPointerTarget(this, 100.0f, offs);
+    MR::initStarPointerTarget(this, 100.0f, TVec3f(0, 0, 0));
     MR::initShadowVolumeSphere(this, 75.0f);
     MR::setShadowDropLength(this, nullptr, 1500.0f);
     MR::registerDemoSimpleCastAll(this);
@@ -51,7 +46,7 @@ void WaterPressureBullet::init(const JMapInfoIter& rIter) {
 }
 
 void WaterPressureBullet::kill() {
-    if (MR::isPlayerInRush() && mHostActor) {
+    if (MR::isPlayerInRush() && mHostActor != nullptr) {
         MR::startBckPlayer("GCaptureBreak", 0L);
         MR::endBindAndPlayerJumpWithRollLanding(this, mVelocity, 0);
         mHostActor = nullptr;
@@ -68,7 +63,7 @@ void WaterPressureBullet::control() {
     bool v1 = true;
     bool v2 = false;
 
-    if (_B2 && mHostActor == nullptr) {
+    if (_B2 && !isBound()) {
         v2 = true;
     }
 
@@ -80,6 +75,7 @@ void WaterPressureBullet::control() {
         kill();
     } else {
         TVec3f stack_8;
+
         if (MR::isNearZero(mVelocity)) {
             stack_8.set(mGravity);
         } else {
@@ -121,7 +117,6 @@ void WaterPressureBullet::shotWaterBullet(LiveActor* pActor, const TPos3f& rPos,
 }
 
 void WaterPressureBullet::exeFly() {
-    // FIXME
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Shot");
     }
@@ -130,11 +125,11 @@ void WaterPressureBullet::exeFly() {
         MR::startBck(this, "Move");
     }
 
-    if (mHostActor != nullptr && MR::isBckOneTimeAndStopped(mHostActor)) {
+    if (isBound() && MR::isBckOneTimeAndStopped(mHostActor)) {
         MR::startBckPlayer("WaterBulletWait");
     }
 
-    if (mHostActor != nullptr) {
+    if (isBound()) {
         MR::startLevelSound(this, "SE_OJ_LV_W_PRESS_BUBBLE_SUS");
     }
 
@@ -142,7 +137,7 @@ void WaterPressureBullet::exeFly() {
         mVelocity.scaleAdd(0.4f, mGravity, mVelocity);
     }
 
-    if (MR::isPadSwing(WPAD_CHAN0) && mHostActor != nullptr && !_B2) {
+    if (MR::isPadSwing(WPAD_CHAN0) && isBound() && !_B2) {
         MR::startSound(mHostActor, "SE_PV_TWIST_START");
         MR::startSound(mHostActor, "SE_PM_SPIN_ATTACK");
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
@@ -157,7 +152,7 @@ void WaterPressureBullet::exeFly() {
     }
 
     if (v2) {
-        if (_B1 && mHostActor != nullptr && MR::isBindedGroundSand(this)) {
+        if (_B1 && isBound() && MR::isBindedGroundSand(this)) {
             const TVec3f& vel = mVelocity;
             const TVec3f& grav = mGravity;
             mVelocity.scaleAdd(-grav.dot(vel), grav, vel);
@@ -179,7 +174,7 @@ void WaterPressureBullet::exeSpinKill() {
         MR::invalidateHitSensors(this);
 
         if (MR::isPlayerInRush()) {
-            if (mHostActor != nullptr) {
+            if (isBound()) {
                 MR::endBindAndPlayerJump(this, mVelocity, 0);
                 mHostActor = nullptr;
                 endHostCamera();
@@ -210,7 +205,7 @@ bool WaterPressureBullet::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor
         return false;
     }
 
-    if (MR::isMsgAutoRushBegin(msg) && MR::isSensorPlayer(pSender) && mHostActor == nullptr) {
+    if (MR::isMsgAutoRushBegin(msg) && MR::isSensorPlayer(pSender) && !isBound()) {
         if (MR::isDemoActive()) {
             kill();
 
@@ -231,7 +226,7 @@ bool WaterPressureBullet::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor
         kill();
 
         return true;
-    } else if (msg == ACTMES_UPDATE_BASEMTX && mHostActor != nullptr) {
+    } else if (msg == ACTMES_UPDATE_BASEMTX && isBound()) {
         updateSuffererMtx();
 
         return true;

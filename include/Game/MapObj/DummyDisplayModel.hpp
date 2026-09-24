@@ -12,11 +12,11 @@ class NameObjArchiveListCollector;
 #define ITEM_TYPE_GRAND_STAR 13
 
 struct DummyDisplayModelInfo {
-    const char* mName;  // 0x00
-    TVec3f _4;
-    u32 _10;
-    const char* mAnim;     // 0x14
-    bool mHasColorChange;  // 0x18
+    /* 0x00 */ const char* mName;
+    /* 0x4 */ Vec _4;
+    /* 0x10 */ u32 _10;
+    /* 0x14 */ const char* mAnim;
+    /* 0x18 */ bool mHasColorChange;
 };
 
 class DummyDisplayModel : public PartsModel {
@@ -29,11 +29,11 @@ public:
     virtual void control();
     virtual void calcAndSetBaseMtx();
 
-    const DummyDisplayModelInfo* mModelInfo;  // 0x9C
-    s32 mItemType;                            // 0xA0
-    s32 _A4;
-    LodCtrl* _A8;
-    bool _AC;
+    /* 0x9C */ const DummyDisplayModelInfo* mModelInfo;
+    /* 0xA0 */ s32 mItemType;
+    /* 0xA4 */ s32 _A4;
+    /* 0xA8 */ LodCtrl* _A8;
+    /* 0xAC */ bool _AC;
 };
 
 namespace MR {

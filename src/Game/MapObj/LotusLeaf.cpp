@@ -63,8 +63,9 @@ void LotusLeaf::exeWait() {
         MR::deleteEffect(this, "LotusLeafRipple");
     }
 
-    if (MR::isOnPlayer(this))
+    if (MR::isOnPlayer(this)) {
         setNerve(GET_NERVE(LotusLeaf, HostTypeShakeOnPlayer));
+    }
 }
 
 void LotusLeaf::exeWaitPlayerOn() {
@@ -92,15 +93,17 @@ void LotusLeaf::exeShake() {
     }
 
     f32 f1 = TWO_PI / mShakePeriod;
-    f32 vel = -mShakeSpeed * MR::cos(getNerveStep() * f1);
+    f32 angle = getNerveStep() * f1;
+    f32 vel = -mShakeSpeed * MR::cos(angle);
     mShakePeriod += ::sShakePeriodSlowPitch;
     mShakeSpeed *= ::sShakeSpeedAtten;
 
-    f32 accel = vel - mVelocity.y;
-    mVelocity.y = vel;
+    TVec3f& rVelocity = mVelocity;
+    f32 accel = vel - rVelocity.y;
+    rVelocity.y = vel;
 
     if (mPosition.y + mVelocity.y <= mInitPos.y - ::sSinkDepthMax) {
-        mVelocity.zero();
+        rVelocity.zero();
     }
 
     if (isNerve(GET_NERVE(LotusLeaf, HostTypeShake))) {

@@ -27,6 +27,7 @@ public:
     static f32 getSpeed(const JMapInfoIter&);
     void initMapToolInfo(const JMapInfoIter&);
     void initModel();
+    void initRailDirection();
     void calcBreakPosture(const TVec3f&, TPos3f*);
     void emitEffectColumn(const TPos3f&);
     void startRumble();

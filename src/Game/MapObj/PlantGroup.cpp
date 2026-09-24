@@ -458,9 +458,13 @@ void PlantMember::initPosture() {
     rotation.makeRotate(mGravity, angle);
     posture.concat(rotation, posture);
     posture.getEuler(euler);
-    mRotation.x = _180_PI * euler.x;
-    mRotation.y = _180_PI * euler.y;
-    mRotation.z = _180_PI * euler.z;
+    f32 x = euler.x;
+    f32 y = euler.y;
+    f32 z = euler.z;
+    x = _180_PI * x;
+    y = _180_PI * y;
+    z = _180_PI * z;
+    mRotation.set(x, y, z);
     calcAnim();
 }
 

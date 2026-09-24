@@ -13,7 +13,7 @@
 #include "Game/Util/SoundUtil.hpp"
 
 namespace {
-    static s32 sDefaultShadowLength = 1000;
+    const s32 sDefaultShadowLength = 1000;
     const s32 sStepForAdjust = 3;
     const s32 sStepToRumbleCamera = 25;
     const f32 sJumpPower = 28.0f;
@@ -25,11 +25,20 @@ namespace NrvScrewSwitchReverse {
     NEW_NERVE(ScrewSwitchReverseNrvScrew, ScrewSwitchReverse, Screw);
 };  // namespace NrvScrewSwitchReverse
 
+void ScrewSwitchReverse_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)3.0f;
+    (void)28.0f;
+    (void)-130.0f;
+    (void)120.0f;
+    (void)10.0f;
+    (void)100.0f;
+}
+
 ScrewSwitchReverse::ScrewSwitchReverse(const char* pName) : LiveActor(pName), mHost(), mIsForceJump() {
 }
 
 void ScrewSwitchReverse::init(const JMapInfoIter& rIter) {
-    // FIXME
     MR::initDefaultPos(this, rIter);
 
     MR::needStageSwitchWriteA(this, rIter);
@@ -51,11 +60,13 @@ void ScrewSwitchReverse::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
 
-    f32 arg7 = static_cast< f32 >(::sDefaultShadowLength);
+    s32 shadowLength = ::sDefaultShadowLength;
+    f32 arg7 = shadowLength;
     MR::getJMapInfoArg7NoInit(rIter, &arg7);
+
     if (arg7 > 0.0f) {
-        TVec3f pos;
-        pos.add(mPosition, TVec3f(0.0f, 10.0f, 0.0f));
+        TVec3f pos(mPosition);
+        pos.add(TVec3f(0.0f, 10.0f, 0.0f));
         MR::initShadowVolumeCylinder(this, 100.0f);
         MR::setShadowDropPosition(this, nullptr, pos);
         MR::setShadowDropLength(this, nullptr, arg7);

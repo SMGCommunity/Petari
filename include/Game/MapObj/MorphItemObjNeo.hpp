@@ -106,9 +106,11 @@ public:
     virtual f32 getClippingRadius() const {
         return 100.0f;
     }
+
     virtual f32 getFarClipDistance() const {
         return 50.0f;
     }
+
     virtual bool isSyncClipping() const {
         return true;
     }
@@ -122,6 +124,7 @@ public:
     virtual f32 getClippingRadius() const {
         return 500.0f;
     }
+
     virtual f32 getFarClipDistance() const {
         return 50.0f;
     }
@@ -135,6 +138,7 @@ public:
     virtual f32 getClippingRadius() const {
         return 1000.0f;
     }
+
     virtual f32 getFarClipDistance() const {
         return 50.0f;
     }
@@ -148,12 +152,15 @@ public:
     virtual f32 getClippingRadius() const {
         return 1000.0f;
     }
+
     virtual f32 getFarClipDistance() const {
         return 50.0f;
     }
+
     virtual TVec3f* getClippingCenterOffset() const {
         return &(TVec3f(0.0f, 200.0f, 0.0f));
     }
+
     virtual bool isSyncClipping() const {
         return true;
     }
@@ -186,12 +193,15 @@ public:
     virtual f32 getClippingRadius() const {
         return 1000.0f;
     }
+
     virtual f32 getFarClipDistance() const {
         return 50.0f;
     }
+
     virtual TVec3f* getClippingCenterOffset() const {
         return &TVec3f(0.0f, 580.0f, 0.0f);
     }
+
     virtual bool isSyncClipping() const {
         return true;
     }
@@ -201,7 +211,7 @@ namespace NrvMorphItemObjNeo {
     NEW_NERVE(MorphItemObjNeoNrvWait, MorphItemObjNeo, Wait);
     NEW_NERVE(MorphItemObjNeoNrvAppear, MorphItemObjNeo, Appear);
     NEW_NERVE(MorphItemObjNeoNrvSwitchAppear, MorphItemObjNeo, SwitchAppear);
-    NEW_NERVE(MorphItemObjNeoNrvWait2, MorphItemObjNeo, Wait2);
+    NEW_NERVE(MorphItemObjNeoNrvWait2, MorphItemObjNeo, Wait);
     NEW_NERVE(MorphItemObjNeoNrvFly, MorphItemObjNeo, Fly);
-    NEW_NERVE(MorphItemObjNeoNrvDemo, MorphItemObjNeo, Demo);
+    NEW_NERVE(MorphItemObjNeoNrvDemo, MorphItemObjNeo, Wait);
 };  // namespace NrvMorphItemObjNeo

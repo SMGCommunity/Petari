@@ -119,10 +119,11 @@ void SmallStone::init(const JMapInfoIter& rIter) {
 }
 
 void SmallStone::initMember(const char* pModelName, bool useGravity) {
+    s32 i;
     mMembers = new SmallStoneMember*[mMemberCount];
     MR::declareStarPiece(this, mMemberCount);
 
-    for (s32 i = 0; i < mMemberCount; i++) {
+    for (i = 0; i < mMemberCount; i++) {
         SmallStoneMember* pMember = new SmallStoneMember(pModelName);
         pMember->mAnimRate = 1.0f;
         pMember->mShakeRequested = 0;
@@ -172,7 +173,7 @@ void SmallStone::initMember(const char* pModelName, bool useGravity) {
     }
 
     if (mStoneType == 1 || mStoneType == 2) {
-        for (s32 i = 0; i < mMemberCount; i++) {
+        for (i = 0; i < mMemberCount; i++) {
             s32 index = MR::getRandom(0, i + 1);
             SmallStoneMember* pMember = mMembers[i];
             SmallStoneMember* pOther = mMembers[index];

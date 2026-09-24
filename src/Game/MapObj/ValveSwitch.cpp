@@ -1,7 +1,17 @@
 #include "Game/MapObj/ValveSwitch.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjConnector.hpp"
 #include "Game/Util.hpp"
+
+void ValveSwitch_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)3.0f;
+    (void)100.0f;
+    (void)-75.0f;
+    (void)150.0f;
+    (void)0.0f;
+}
 
 namespace NrvValveSwitch {
     NEW_NERVE(ValveSwitchNrvWait, ValveSwitch, Wait);
@@ -74,7 +84,7 @@ void ValveSwitch::exeAdjust() {
         MR::setBrkFrameAndStop(this, 0.0f);
     }
 
-    _8C->mPosition.lerp(_8C->mPosition, getSensor("body")->mPosition, getNerveStep() / 3.0f);
+    _8C->mPosition.lerp(_8C->mPosition, getSensor("binder")->mPosition, getNerveStep() / 3.0f);
 
     if (MR::isStep(this, 3)) {
         setNerve(GET_NERVE(ValveSwitch, ValveSwitchNrvValve));
@@ -90,7 +100,7 @@ void ValveSwitch::exeValve() {
         }
 
         MR::startBrk(this, "ValveSwitchOn");
-        MR::startBckPlayer("ScrewSwitchOn", 0L);
+        MR::startBckPlayer("ScrewSwitchOn", static_cast< const char* >(nullptr));
     }
 
     if (MR::isLessStep(this, 30)) {
@@ -112,6 +122,7 @@ void ValveSwitch::exeValve() {
 void ValveSwitch::exeEnd() {
     if (MR::isStep(this, 0)) {
         MR::invalidateHitSensors(this);
+
         if (MR::isPlayerInRush()) {
             MR::endBindAndPlayerWait(this);
             _8C = nullptr;
@@ -119,7 +130,22 @@ void ValveSwitch::exeEnd() {
     }
 }
 
-// ValveSwitch::receiveOtherMsg
+bool ValveSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isMsgRushBegin(msg) && MR::isSensorPlayer(pSender) && MR::isOnPlayer(getSensor("binder"))) {
+        _8C = pSender->mHost;
+        MR::startSound(_8C, "SE_PV_TWIST_START");
+        MR::startSound(_8C, "SE_PM_SPIN_ATTACK");
+        setNerve(GET_NERVE(ValveSwitch, ValveSwitchNrvAdjust));
+        return true;
+    }
+
+    if (msg == ACTMES_UPDATE_BASEMTX && _8C != nullptr && isNerve(GET_NERVE(ValveSwitch, ValveSwitchNrvValve))) {
+        updateBindActorMtx();
+        return true;
+    }
+
+    return msg == ACTMES_RUSH_CANCEL;
+}
 
 void ValveSwitch::updateBindActorMtx() {
     TPos3f posMtx;
@@ -129,7 +155,4 @@ void ValveSwitch::updateBindActorMtx() {
     posMtx.mMtx[1][3] = sensor->mPosition.y;
     posMtx.mMtx[2][3] = sensor->mPosition.z;
     MR::setBaseTRMtx(_8C, posMtx);
-}
-
-ValveSwitch::~ValveSwitch() {
 }

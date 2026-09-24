@@ -30,11 +30,7 @@ class MapPartsRotator : public MapPartsRotatorBase {
 public:
     MapPartsRotator(LiveActor*);
 
-    enum AxisType {
-        AxisType_XAxis,
-        AxisType_YAxis,
-        AxisType_ZAxis
-    };
+    enum AxisType { AxisType_XAxis, AxisType_YAxis, AxisType_ZAxis };
 
     virtual void init(const JMapInfoIter&);
     virtual bool isWorking() const;
@@ -46,11 +42,10 @@ public:
     virtual bool isMoving() const;
     virtual f32 getRotateSpeed() const {
         return mRotateSpeed;
-    };
+    }
     virtual bool isOnReverse() const {
         return mIsOnReverse;
-    };
-
+    }
 
     void startWithSignalMotion();
     void cancelSignalMotion();

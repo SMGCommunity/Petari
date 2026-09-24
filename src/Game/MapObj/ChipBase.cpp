@@ -52,7 +52,7 @@ void ChipBase::init(const JMapInfoIter& rIter) {
     initModel(rIter);
     initSensor();
     initShadow(rIter);
-    initEffectKeeper(0, 0, false);
+    initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     initNerve(GET_NERVE(ChipBase, ChipBaseNrvWait));
 
@@ -127,6 +127,7 @@ void ChipBase::initShadow(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         MR::getJMapInfoArg4NoInit(rIter, &dropLength);
     }
+
     MR::setShadowDropLength(this, 0, dropLength);
 
     if (mRailMover || mIsCalcShadow) {
@@ -339,8 +340,7 @@ void ChipBase::exeHide() {
 
 void ChipBase::exeGot() {
     if (MR::isFirstStep(this)) {
-        if (mAirBubble != nullptr) {
-            // FIXME
+        if (hasAirBubble()) {
             MR::emitEffect(mAirBubble, "RecoveryBubbleBreak");
 
             MR::incPlayerOxygen(8);

@@ -115,20 +115,20 @@ void AirBubble::exeMove() {
         MR::invalidateClipping(this);
         MR::onCalcGravity(this);
 
-        mVelocity = -mGravity * ::cMoveStartAccel;
+        mVelocity.set((-mGravity).multInLine2(::cMoveStartAccel));
     }
 
-    MR::rotateVecDegree(&_A4, mVelocity, ::cCorioriRotSpeed);
-    _A4.killElement(mVelocity);
+    MR::rotateVecDegree(&_A4, mGravity, ::cCorioriRotSpeed);
+    _A4.killElement(_A4, mGravity);
 
     if (MR::isNearZero(_A4)) {
         MR::getRandomVector(&_A4, 1.0f);
     }
 
     MR::normalizeOrZero(&_A4);
-    mGravity += _A4 * 0.1f;
+    mVelocity += _A4 * 0.1f;
     mVelocity -= mGravity * 0.3f;
-    mVelocity *= 0.85f;
+    mVelocity.mult(0.85f);
 
     if (MR::isGreaterStep(this, mLife)) {
         MR::hideModel(this);
@@ -210,4 +210,8 @@ bool AirBubble::canSpinGet() const {
     }
 
     return false;
+}
+
+void AirBubble_FORCE_MATCH(TVec3f* pVec, f32 scale) {
+    *pVec *= scale;
 }

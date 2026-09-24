@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/MapObj/SpinDriverCamera.hpp"
-#include "Game/MapObj/SpinDriverShootPath.hpp"
+class SpinDriverCamera;
+class SpinDriverShootPath;
 
 class SpinDriver : public LiveActor {
 public:
@@ -48,16 +48,16 @@ public:
     void calcShootMotionTime();
     void startCamera();
     void updateCamera();
-    void cancelCamera();
-    void endCamera() NO_INLINE ;
+    void cancelCamera() NO_INLINE;
+    void endCamera() NO_INLINE;
     bool canStartBind() const NO_INLINE;
     bool canBind(HitSensor*) const;
 
     /* 0x08C */ LiveActor* _8C;
-    /* 0x090 */ SpinDriverShootPath* mShootPath;      
-    /* 0x094 */ SpinDriverCamera* mSpinDriverCamera; 
+    /* 0x090 */ SpinDriverShootPath* mShootPath;
+    /* 0x094 */ SpinDriverCamera* mSpinDriverCamera;
     /* 0x098 */ TQuat4f _98;
-    /* 0x0A0 */ TQuat4f _A8;
+    /* 0x0A8 */ TQuat4f _A8;
     /* 0x0B8 */ TVec3f _B8;
     /* 0x0C4 */ TVec3f _C4;
     /* 0x0D0 */ TVec3f _D0;
@@ -74,7 +74,7 @@ public:
     /* 0x124 */ s32 _124;
     /* 0x128 */ s32 _128;
     /* 0x12C */ s32 _12C;
-    /* 0x130 */ u32 _130;
+    /* 0x130 */ s32 _130;
     /* 0x134 */ f32 _134;
     /* 0x138 */ bool _138;
     /* 0x13C */ s32 _13C;

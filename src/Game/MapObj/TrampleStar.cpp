@@ -7,6 +7,13 @@
 #include <JSystem/JKernel/JKRHeap.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
 
+void TrampleStar_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)3.814697265625e-06f;
+    (void)0.5f;
+}
+
 namespace {
     f32 debug1 = 0.003331f;
     f32 debug2 = -0.003331f;
@@ -42,16 +49,13 @@ TrampleStar::~TrampleStar() {
 }
 
 void TrampleStar::init(const JMapInfoIter& rIter) {
-    // FIXME: JUTTexture inline, TVec2 array allocation, incorrect clear mask
-    // https://decomp.me/scratch/4dRlF
-
     MR::initDefaultPos(this, rIter);
     MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, MR::DrawBufferType_None, MR::DrawType_FlexibleSphere);
 
-    // FIXME: inline
     mTexture = new JUTTexture(MR::loadTexFromArc("TrampleStar.arc", "TrampleStar.bti"), 0);
 
-    f32 scale = mScale.x * 500.0f;
+    f32 scale = 500.0f;
+    scale *= mScale.x;
     initHitSensor(1);
     MR::addHitSensorPriorBinder(this, "body", 4, scale, TVec3f(0.0f, 0.0f, 0.0f));
 
@@ -75,9 +79,9 @@ void TrampleStar::init(const JMapInfoIter& rIter) {
     if (!isShareStar) {
         mVtxs = new TVec3f[mNumVtxs * 256];
         mSurfaces = new Surface[mNumSurfaces * 256];
-        mLodSurfaces = new Surface[(u16)(mNumSurfaces * 64)];  // FIXME: incorrect masking in clrlslwi
+        mLodSurfaces = new Surface[static_cast< u32 >(mNumSurfaces * 256) / 4];
         mVtxOverlap = new s16[mNumVtxs * 256];
-        mTexST = new TVec2f[mNumVtxs * 256];  // FIXME: def ctor should not be called here
+        mTexST = new TVec2f[mNumVtxs * 256];
 
         mVtxs[0].set(-500.0f, -500.0f, -500.0f);
         mVtxs[1].set(-500.0f, -500.0f, 500.0f);
@@ -130,6 +134,7 @@ void TrampleStar::init(const JMapInfoIter& rIter) {
 
         for (u32 idx = 0; idx < 3; idx++) {
             divide();
+
             if (idx == 1) {
                 for (u32 surface = 0; surface < mNumSurfaces; surface++) {
                     mLodSurfaces[surface] = mSurfaces[surface];
@@ -151,6 +156,7 @@ void TrampleStar::init(const JMapInfoIter& rIter) {
                         mVtxOverlap[vtxA] = vtxB;
                         mVtxOverlap[vtxB] = vtxA;
                     }
+
                     break;
                 }
             }
@@ -170,7 +176,7 @@ void TrampleStar::init(const JMapInfoIter& rIter) {
     mNumDrawVtxs = 0;
     mDrawPos = new TVec3f[mNumSurfaces * 3];
     mDrawNorm = new TVec3f[mNumSurfaces * 3];
-    mDrawTex = new TVec2f[mNumSurfaces * 3];  // FIXME: def ctor should not be called here
+    mDrawTex = new TVec2f[mNumSurfaces * 3];
     mDrawDeformCoeffs = new f32[mNumSurfaces * 3];
 
     for (u32 vtx = 0; vtx < mNumVtxs; vtx++) {
@@ -197,6 +203,7 @@ void TrampleStar::toSphere(f32 radius) {
 void TrampleStar::initCheckFlag(u32 numFlags) {
     mCheckFlags = new (-0x4) u16[numFlags * numFlags];
     mNumFlags = numFlags;
+
     for (u32 idx = 0; idx < mNumFlags * mNumFlags; idx++) {
         mCheckFlags[idx] = 0;
     }
@@ -212,7 +219,6 @@ void TrampleStar::writeCheckFlag(u16 vtxA, u16 vtxB, u16 value) {
 }
 
 void TrampleStar::divide() {
-    // FIXME: TVec2f strikes again!
     // https://decomp.me/scratch/SCOGi
 
     initCheckFlag(mNumVtxs);
@@ -220,6 +226,7 @@ void TrampleStar::divide() {
     u16 numVtxs = mNumVtxs;
 
     u16 midpoints[3];
+
     for (u32 surface = 0; surface < mNumSurfaces; surface++) {
         for (u32 idx = 0; idx < 3; idx++) {
             u16 vtx1 = mSurfaces[surface].mVtxs[idx];
@@ -230,9 +237,7 @@ void TrampleStar::divide() {
             } else {
                 mVtxs[numVtxs] = (mVtxs[vtx1] + mVtxs[vtx2]) * 0.5f;
 
-                // FIXME: TVec2 shenanigans
-                TVec2f midpoint = mTexST[vtx1].addInline(mTexST[vtx2]).scaleInline(0.5f);
-                mTexST[numVtxs] = midpoint;
+                mTexST[numVtxs] = (mTexST[vtx1] + mTexST[vtx2]) * 0.5f;
 
                 writeCheckFlag(vtx1, vtx2, numVtxs);
                 midpoints[idx] = numVtxs;
@@ -259,6 +264,7 @@ void TrampleStar::moveVtx(f32 deformRate, u32 vtxIdx, u32 /* unused */, f32 /* u
 
     for (u32 vtx = 0; vtx < mNumVtxs; vtx++) {
         f32 dist = (mVtxs[vtx] - vtxPos).length();
+
         if (!(dist >= 400.0f)) {
             f32 t = (400.0f - dist) / 400.0f;
             mDeformCoeff[vtx] += deformRate * (t * t);
@@ -276,9 +282,11 @@ void TrampleStar::control() {
 
 void TrampleStar::calcAnim() {
     calcSurface(false);
+
     if (!isNerve(GET_NERVE_ANON(TrampleStarNrvWait))) {
         for (u32 idx = 0; idx < mNumVtxs; idx++) {
             s16 idx2 = mVtxOverlap[idx];
+
             if (idx2 != -1) {
                 f32 coeff = (mDeformCoeff[idx] + mDeformCoeff[idx2]) * 0.5f;
                 mDeformCoeff[idx] = coeff;
@@ -289,6 +297,7 @@ void TrampleStar::calcAnim() {
             }
         }
     }
+
     LiveActor::calcAnim();
 }
 
@@ -298,10 +307,12 @@ void TrampleStar::calcSurface(bool calcDrawBuffers) {
     }
 
     mNumDrawVtxs = 0;
+
     for (u32 surface = 0; surface < mNumSurfaces; surface++) {
         for (u32 idx = 0; idx < 3; idx++) {
             f32 currDeform = mDrawDeformCoeffs[mNumDrawVtxs];
             mDrawDeformCoeffs[mNumDrawVtxs] = mDeformCoeff[mSurfaces[surface].mVtxs[idx]];
+
             if (!calcDrawBuffers && currDeform == mDeformCoeff[mSurfaces[surface].mVtxs[idx]]) {
                 mNumDrawVtxs++;
             } else {
@@ -395,6 +406,7 @@ void TrampleStar::exeBindingShoot() {
 
         for (u32 vtx = 0; vtx < mNumVtxs; vtx++) {
             s16 vtx2 = mVtxOverlap[vtx];
+
             if (vtx2 != -1) {
                 f32 coeff = (mDeformCoeff[vtx] + mDeformCoeff[vtx2]) * 0.5f;
                 mDeformCoeff[vtx] = coeff;
@@ -474,6 +486,7 @@ u32 TrampleStar::calcNearestVtxIndex(const TVec3f& rPos) {
 
     for (u32 vtx = 0; vtx < mNumVtxs; vtx++) {
         f32 dist = (mVtxs[vtx] + mPosition - rPos).length();
+
         if (dist < nearestDistance) {
             nearestDistance = dist;
             nearestIndex = vtx;
@@ -500,23 +513,28 @@ bool TrampleStar::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
     if (msg == ACTMES_AUTORUSH_BEGIN) {
         mCaptureFrames = 10;
         mDeformRate = MR::getPlayerVelocity()->length();
+
         if (mDeformRate < 30.0f) {
             mDeformRate = 30.0f;
         }
+
         if (mDeformRate > 50.0f) {
             mDeformRate = 50.0f;
             mCaptureFrames = 15;
         }
 
         mJumpVel = mDeformRate;
+
         if (mDeformRate < 20.0f) {
             mJumpVel = 20.0f;
         }
 
         mCaptureVtx = calcNearestVtxIndex(pSender->mPosition);
+
         if (MR::getPlayerVelocity()->dot(mVtxs[mCaptureVtx]) > 0.0f) {
             return false;
         }
+
         setNerve(GET_NERVE_ANON(TrampleStarNrvBindingCapture));
         return true;
     }
@@ -547,6 +565,7 @@ void TrampleStar::drawSelf() const {
     if (mTexture == nullptr) {
         return;
     }
+
     if (mTexST == nullptr) {
         return;
     }
@@ -575,12 +594,15 @@ void TrampleStar::drawSelf() const {
 
     TVec3f front;
     MR::getPlayerFrontVec(&front);
+
     if (MR::isNearZero(front)) {
         return;
     }
+
     if (MR::isNearZero(MR::getMarioShadowVec())) {
         return;
     }
+
     if (MR::isSameDirection(MR::getMarioShadowVec(), front) || MR::isOppositeDirection(MR::getMarioShadowVec(), front)) {
         return;
     }
@@ -590,9 +612,11 @@ void TrampleStar::drawSelf() const {
 
     MR::multMtx(mtx3, mtx, mtx2);
     TPos3f mtx4;
+
     for (u32 idx = 0; idx < 12; idx++) {
         reinterpret_cast< f32* >(&mtx4)[idx] = 0;
     }
+
     mtx4[0][0] = debug1;
     mtx4[1][2] = debug2;
     mtx4[2][3] = debug3;
@@ -643,6 +667,7 @@ void TrampleStar::drawSelf() const {
         TVec3f* pos = mDrawPos;
         TVec3f* norm = mDrawNorm;
         TVec2f* tex = mDrawTex;
+
         for (u32 vtx = 0; vtx < mNumDrawVtxs; vtx++) {
             MR::ddSendVtxData(*pos, *norm, *tex);
             pos++;
@@ -650,5 +675,10 @@ void TrampleStar::drawSelf() const {
             tex++;
         }
     }
+
     GXEnd();
+}
+
+void TrampleStar_FORCE_MATCH_TEXTURE(const ResTIMG* pImage) {
+    new JUTTexture(pImage, 0);
 }

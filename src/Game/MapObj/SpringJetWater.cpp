@@ -33,7 +33,7 @@ void SpringJetWater::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     TPos3f mtx;
     mtx.identity();
-    mtx.setRotateDegree(mRotation);
+    mtx.setEuler(mRotation * (PI / 180.0f));
     mtx.getYDir(mUp);
     MR::normalize(&mUp);
     MR::getObjectName(&mObjName, rIter);

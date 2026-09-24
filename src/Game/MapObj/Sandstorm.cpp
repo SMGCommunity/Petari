@@ -55,8 +55,9 @@ void SunakazeKunTrap::exeTrap() {
     f32 value = MR::getEaseInValue(getNerveStep() % 100, 0.5f, 1.0f, 30.0f);
     f32 angle = MR::sinDegree(getNerveStep() * 5.0f);
 
-    mPosition.scaleAdd(value * angle * 40.0f, axis, mPosition);
-    mRotation += TVec3f(5.0f);
+    mPosition.scaleAdd(40.0f * value * angle, axis, mPosition);
+    TVec3f rotation(5.0f);
+    mRotation.add(rotation);
 }
 
 void SunakazeKunTrap::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -108,7 +109,7 @@ void Sandstorm::init(const JMapInfoIter& rIter) {
     initSandstormParam();
     initHitSensor(2);
     MR::addHitSensorCallbackPriorBinder(this, "binder", 4, 0.0f);
-    MR::addHitSensorMapObjSimple(this, "star_piece", 4, mSensorHeight * 0.5f + 200.0f, TVec3f(0.0f, mSensorHeight * 0.5f + 200.0f, 0.0f));
+    MR::addHitSensorMapObjSimple(this, "star_piece", 4, mSensorHeight / 2.0f + 200.0f, TVec3f(0.0f, mSensorHeight / 2.0f + 200.0f, 0.0f));
     initEffectKeeper(0, nullptr, false);
     initSound(6, false);
     MR::initShadowVolumeCylinder(this, 100.0f);
@@ -127,7 +128,7 @@ void Sandstorm::init(const JMapInfoIter& rIter) {
     initRailRider(rIter);
     MR::moveCoordAndTransToNearestRailPos(this);
 
-    _94 = MR::getRailDirection(this);
+    _94.set(MR::getRailDirection(this));
 
     f32 boundingRadius;
     MR::calcModelBoundingRadius(&boundingRadius, this);
@@ -227,6 +228,7 @@ void Sandstorm::exeStormEnd() {
         }
 
         // BUG: Invokes `__ptmf_test` instead of calling the function.
+
         if (isSunakazeKun) {
             MR::startSound(this, "SE_OJ_SANDSTORM_S_BIND_END");
         } else {
@@ -409,29 +411,40 @@ void Sandstorm::initTrapModel() {
 
 void Sandstorm::updateBindActorMtx() {
     f32 dVar9;
+    TVec3f& rPosition = mPosition;
+    TVec3f* pPosition;
 
     if (_C8 < 10) {
-        TVec3f toPlayerCenter = *MR::getPlayerCenterPos() - mPosition;
+        pPosition = &rPosition;
+        TVec3f toPlayerCenter;
+        toPlayerCenter.sub(*MR::getPlayerCenterPos(), *pPosition);
 
         TVec3f up;
         MR::calcUpVec(&up, this);
 
         TVec3f vec;
-        vec.killElement(up, toPlayerCenter);
+        vec.killElement(toPlayerCenter, up);
 
         dVar9 = MR::getLinerValue(_C8 / 10.0f, vec.length(), _BC, 1.0f);
     } else {
         dVar9 = _BC;
     }
 
-    TVec3f vec = TVec3f(MR::cos(_B8), _C4, MR::sin(_B8));
+    TVec3f vec;
+    vec.x = dVar9 * MR::cos(_B8);
+    vec.y = _C4;
+    vec.z = dVar9 * MR::sin(_B8);
 
-    if (isSunakazeKun() && isNerve(GET_NERVE(Sandstorm, SandstormNrvStormFix))) {
+    if (isSunakazeKun() == false && isNerve(GET_NERVE(Sandstorm, SandstormNrvStormFix))) {
         vec.y += MR::sinDegree(getNerveStep() * 3.0f) * 270.0f;
     }
 
-    PSMTXMultVec(getBaseMtx(), &vec, mBindActor->mPosition);
-    MR::setBaseTRMtx(this, *reinterpret_cast< TPos3f* >(mBindActor->getBaseMtx()));
+    pPosition = &mBindActor->mPosition;
+    PSMTXMultVec(getBaseMtx(), &vec, pPosition);
+    TPos3f mtx;
+    mtx.set(mBindActor->getBaseMtx());
+    mtx.setTrans(mBindActor->mPosition);
+    MR::setBaseTRMtx(mBindActor, mtx);
 }
 
 void Sandstorm::endBind() {
@@ -463,18 +476,18 @@ void Sandstorm::updateSpiral() {
     f32 value2 = MR::getLinerValue(x, 0.0f, mBindHeight, 1.0f);
     f32 dVar9 = MR::toRadian(-mSpiralRot * x);
 
-    if (mStepStorm <= _C8) {
+    if (_C8 <= mStepStorm) {
         f32 x = static_cast< f32 >(_C8) / mStepStorm;
 
         _BC = MR::getLinerValue(x, value1, mSpiralRadius, 1.0f);
         _C4 = MR::getLinerValue(x, value2, mBindHeight, 1.0f);
     } else {
-        _BC = MR::getLinerValue((_C8 - mStepStorm) / mStepAdjust, _C0, 0.0f, 1.0f);
+        _BC = MR::getLinerValue(static_cast< f32 >(_C8 - mStepStorm) / mStepAdjust, _C0, 0.0f, 1.0f);
         _C4 = mBindHeight;
     }
 
-    _C8++;
     _B8 = dVar9 + MR::toRadian(-mSpiralRot * _C8);
+    _C8++;
 }
 
 bool Sandstorm::tryStartBind(HitSensor* pSensor) {
@@ -505,7 +518,8 @@ bool Sandstorm::tryStartBind(HitSensor* pSensor) {
     _C4 = 0.0f;
     _C8 = 0;
 
-    TVec3f toBindActor = mBindActor->mPosition - mPosition;
+    TVec3f toBindActor;
+    toBindActor.sub(mBindActor->mPosition, mPosition);
     TVec3f up;
     MR::calcUpVec(&up, this);
 
@@ -537,4 +551,12 @@ bool Sandstorm::tryNonActive() {
 
 bool Sandstorm::isSunakazeKun() const {
     return mType == Type_SunakazeKun;
+}
+
+TVec3f Sandstorm_FORCE_MATCH(f32 v) {
+    return TVec3f(v);
+}
+
+void Sandstorm_FORCE_MATCH_SUB(TVec3f* pDest, const TVec3f& rA, const TVec3f& rB) {
+    pDest->sub(rA, rB);
 }

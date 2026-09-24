@@ -120,8 +120,9 @@ void SpringWaterFloaterSpot::calcAndSetBaseMtx() {
     MR::makeMtxTR(baseMtx, this);
 
     if (mNeedsBound) {
+        TVec3f up(-mGravity);
         TVec3f offset;
-        offset.scale(mBoundSize, -mGravity);
+        offset.scale(mBoundSize, up);
         baseMtx[0][3] += offset.x;
         baseMtx[1][3] += offset.y;
         baseMtx[2][3] += offset.z;
@@ -131,8 +132,9 @@ void SpringWaterFloaterSpot::calcAndSetBaseMtx() {
 }
 
 void SpringWaterFloaterSpot::exeWait() {
+    TVec3f up(-mGravity);
     TVec3f vec1C;
-    vec1C.scale(_A4, -mGravity);
+    vec1C.scale(_A4, up);
 
     if (MR::isInWater(this, vec1C)) {
         if (mHeight >= 90.0f) {

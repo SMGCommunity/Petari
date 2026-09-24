@@ -2,6 +2,15 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
+void IronCannonShell_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)30.0f;
+    (void)75.0f;
+    (void)100.0f;
+    (void)1.2999999523162842f;
+    (void)0.0f;
+}
+
 namespace {
     static const s32 sDefaultShotInterval = 300;
     static const f32 sDefaultBulletSpeed = 30.0f;
@@ -24,7 +33,7 @@ IronCannonShell::IronCannonShell(const char* pName) : KoopaJrShipCannonShell(pNa
 }
 
 IronCannonLauncherPoint::IronCannonLauncherPoint(const char* pName)
-    : LiveActor(pName), mShellHolder(nullptr), mShotInterval(::sDefaultShotInterval), mBulletSpeed(::sDefaultBulletSpeed) {
+    : LiveActor(pName), mShellHolder(), mShotInterval(::sDefaultShotInterval), mBulletSpeed(::sDefaultBulletSpeed) {
 }
 
 void IronCannonLauncherPoint::init(const JMapInfoIter& rIter) {
@@ -36,18 +45,21 @@ void IronCannonLauncherPoint::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, "IronCannonLauncherPoint", false);
 
     bool isAppear = false;
+
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         isAppear = true;
     }
+
     MR::useStageSwitchReadA(this, rIter);
     MR::setGroupClipping(this, rIter, 32);
     initNerve(GET_NERVE(IronCannonLauncherPoint, IronCannonLauncherPointNrvWait));
 
-    if (isAppear)
+    if (isAppear) {
         makeActorDead();
-    else
+    } else {
         makeActorAppeared();
+    }
 }
 
 void IronCannonLauncherPoint::exeWait() {
@@ -56,8 +68,9 @@ void IronCannonLauncherPoint::exeWait() {
         return;
     }
 
-    if (MR::isGreaterStep(this, mShotInterval))
+    if (MR::isGreaterStep(this, mShotInterval)) {
         setNerve(GET_NERVE(IronCannonLauncherPoint, IronCannonLauncherPointNrvShot));
+    }
 }
 
 void IronCannonLauncherPoint::exeShot() {
@@ -73,6 +86,7 @@ void IronCannonLauncherPoint::initModelAndConnectToScene() {
 
 void IronCannonLauncherPoint::initBullet() {
     mShellHolder = new CannonShellHolder(3);
+
     for (s32 i = 0; i < 3; i++) {
         IronCannonShell* pShell = new IronCannonShell("キャノン弾砲台の弾");
         pShell->initWithoutIter();
@@ -83,8 +97,10 @@ void IronCannonLauncherPoint::initBullet() {
 
 bool IronCannonLauncherPoint::tryShotBullet(f32 offset) {
     IronCannonShell* pShell = static_cast< IronCannonShell* >(mShellHolder->getValidShell());
-    if (pShell == nullptr)
+
+    if (pShell == nullptr) {
         return false;
+    }
 
     TPos3f mtx;
     MR::makeMtxTRS(mtx, mPosition, mRotation, mScale);
@@ -124,13 +140,15 @@ void IronCannonLauncher::init(const JMapInfoIter& rIter) {
 }
 
 void IronCannonLauncher::exeRelax() {
-    if (MR::isOnSwitchA(this))
+    if (MR::isOnSwitchA(this)) {
         setNerve(GET_NERVE(IronCannonLauncher, IronCannonLauncherNrvWait));
+    }
 }
 
 void IronCannonLauncher::exeWait() {
-    if (MR::isStep(this, mShotInterval))
+    if (MR::isStep(this, mShotInterval)) {
         setNerve(GET_NERVE(IronCannonLauncher, IronCannonLauncherNrvShot));
+    }
 }
 
 void IronCannonLauncher::exeShot() {
@@ -150,12 +168,4 @@ IronCannonShell::~IronCannonShell() {
 }
 
 IronCannonLauncher::~IronCannonLauncher() {
-}
-
-s32 IronCannonShell::getLifeTime() const {
-    return ::sDefaultShotInterval;
-}
-
-f32 IronCannonShell::getBaseScale() const {
-    return 1.3f;
 }

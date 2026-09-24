@@ -3,6 +3,10 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
+void BallRail_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)3.0f;
+}
 namespace NrvBallRail {
     NEW_NERVE(BallRailNrvWait, BallRail, Wait);
     NEW_NERVE(BallRailNrvSetUp, BallRail, SetUp);
@@ -10,13 +14,8 @@ namespace NrvBallRail {
     NEW_NERVE(BallRailNrvNoBind, BallRail, NoBind);
 };  // namespace NrvBallRail
 
-BallRail::BallRail(const char* pName) : LiveActor(pName) {
-    mRailPoints = nullptr;
-    _90 = nullptr;
-    mNumPoints = 0;
-    mAcceleration = 1.5f;
-    mDeceleration = 0.995f;
-    _AC = 100.0f;
+BallRail::BallRail(const char* pName)
+    : LiveActor(pName), mRailPoints(), _90(), mNumPoints(), mAcceleration(1.5f), mDeceleration(0.995f), _AC(100.0f) {
 }
 
 void BallRail::init(const JMapInfoIter& rIter) {
@@ -73,8 +72,13 @@ bool BallRail::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver
     return false;
 }
 
-// there is a minor regswap here but I'm marking it as done anyways
-// TODO -- fix regswap
+namespace {
+    inline void initPointSide(BallRailPoint* pPoint, const TVec3f& rUp) {
+        pPoint->_C.cross(pPoint->_24, rUp);
+        MR::normalizeOrZero(&pPoint->_C);
+    }
+}  // namespace
+
 void BallRail::initRailPoints() {
     u32 numPoints = (u32)(MR::getRailTotalLength(this) / 100.0f) + 2;
     mNumPoints = numPoints;
@@ -94,24 +98,24 @@ void BallRail::initRailPoints() {
     MR::moveCoordToStartPos(this);
     MR::setRailCoordSpeed(this, 0.0f);
 
-    TVec3f v17(0, 1, 0);
+    BallRailPoint* pLastPoint;
+    BallRailPoint* pPoint;
+    TVec3f up(0, 1, 0);
 
-    if (mNumPoints >= 2) {
-        BallRailPoint* pnt = mRailPoints;
-        pnt->_C.cross(pnt->_24, v17);
-        MR::normalizeOrZero(&pnt->_C);
+    if (mNumPoints >= 2U) {
+        ::initPointSide(mRailPoints, up);
     }
 
     for (u32 i = 0; i < mNumPoints; i++) {
-        BallRailPoint* pnt = &mRailPoints[i];
-        pnt->_C.cross(pnt->_24, v17);
-        MR::normalizeOrZero(&pnt->_C);
+        pPoint = &mRailPoints[i];
+        pPoint->_C.cross(pPoint->_24, up);
+        MR::normalizeOrZero(&pPoint->_C);
     }
 
-    if (mNumPoints >= 2) {
-        BallRailPoint* lastPnt = &mRailPoints[mNumPoints - 1];
-        lastPnt->_C.cross(lastPnt->_24, v17);
-        MR::normalizeOrZero(&lastPnt->_C);
+    if (mNumPoints >= 2U) {
+        pLastPoint = &mRailPoints[mNumPoints - 1];
+        pLastPoint->_C.cross(pLastPoint->_24, up);
+        MR::normalizeOrZero(&pLastPoint->_C);
     }
 }
 
@@ -149,7 +153,8 @@ void BallRail::exeSetUp() {
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
     }
 
-    _90->mHost->mVelocity.set(v7 - _90->mPosition);
+    TVec3f& rVelocity = _90->mHost->mVelocity;
+    rVelocity.set(v7 - _90->mPosition);
 
     if (MR::isGreaterStep(this, 45)) {
         setNerve(GET_NERVE(BallRail, BallRailNrvRun));
@@ -163,7 +168,9 @@ void BallRail::exeRun() {
 
     TVec3f v14 = MR::getRailDirection(this);
 
-    MR::accelerateRailCoordSpeed(this, (mGravity * mAcceleration).dot(v14));
+    TVec3f acceleration = mGravity * mAcceleration;
+    MR::accelerateRailCoordSpeed(this, acceleration.dot(v14));
+    TVec3f v12;
     MR::slowDownRailCoordSpeed(this, mDeceleration);
 
     if (!MR::isRailGoingToEnd(this) || MR::getRailCoordSpeed(this) < 6.0f) {
@@ -176,15 +183,14 @@ void BallRail::exeRun() {
 
     MR::moveRailRider(this);
     MR::moveTransToCurrentRailPos(this);
-    TVec3f v12;
     v12.scaleAdd(-_90->mRadius, mGravity, mPosition);
-    LiveActor* host = _90->mHost;
-    host->mVelocity.set(v12 - _90->mPosition);
+    TVec3f& rVelocity = _90->mHost->mVelocity;
+    rVelocity.set(v12 - _90->mPosition);
 
     if (MR::isRailReachedGoal(this)) {
-        LiveActor* host = _90->mHost;
-        host->mVelocity.set(MR::getRailDirection(this) * MR::getRailCoordSpeed(this));
-        getSensor("bind")->receiveMessage(ACTMES_END_BALL_RAIL, _90);
+        TVec3f& rVelocity = _90->mHost->mVelocity;
+        rVelocity.set(MR::getRailDirection(this) * MR::getRailCoordSpeed(this));
+        _90->receiveMessage(ACTMES_END_BALL_RAIL, getSensor("bind"));
         _90 = nullptr;
         setNerve(GET_NERVE(BallRail, BallRailNrvNoBind));
     }

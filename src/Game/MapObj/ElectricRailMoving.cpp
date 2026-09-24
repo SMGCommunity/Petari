@@ -5,10 +5,15 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/ElectricRailHolder.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/Color.hpp"
 #include "Game/Util/SchedulerUtil.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
 #include <revolution/gd/GDBase.h>
 #include <revolution/gx/GXEnum.h>
+
+namespace {
+    const char* cSensorNameTable[] = {"body0", "body1", "body2", "body3", "body4", "body5", "body6", "body7"};
+}
 
 namespace NrvElectricRailMoving {
     NEW_NERVE(ElectricRailMovingNrvWait, ElectricRailMoving, Wait);
@@ -43,7 +48,10 @@ void ElectricRailMovingPoint::attackSensor(HitSensor* pSender, HitSensor* pRecei
     }
 }
 
-ElectricRailMoving::ElectricRailMoving(const char* pName) : LiveActor(pName) {
+ElectricRailMoving::ElectricRailMoving(const char* pName)
+    : LiveActor(pName), mSegmentNum(10), mMovementSpeed(10.0f), mSegmentLength(500.0f), mStackHeight(1), _CC(0x80), mSensorOffsets(), _DC(), _E0(),
+      _E4(), _E8(), _EC(), _F0(30.0f) {
+    _9C.identity();
 }
 
 void ElectricRailMoving::init(const JMapInfoIter& rIter) {
@@ -66,10 +74,9 @@ void ElectricRailMoving::init(const JMapInfoIter& rIter) {
 
 void ElectricRailMoving::draw() const {
     if (MR::isValidDraw(this)) {
-        GXSetTexCoordGen2(GX_TEXCOORD1, GX_TG_MTX2x4, GX_TG_TEX0, 0x21u, 0, 0x7D);
+        GXSetTexCoordGen2(GX_TEXCOORD1, GX_TG_MTX2x4, GX_TG_TEX0, 0x21, 0, 0x7D);
         GXLoadTexMtxImm(_9C, 0x21, GX_MTX2x4);
-        GXColor c = {-1, -1, -1, _CC};
-        GXSetTevColor(GX_TEVREG1, c);
+        GXSetTevColor(GX_TEVREG1, Color8(0xFF, 0xFF, 0xFF, _CC));
 
         if (isNerve(GET_NERVE(ElectricRailMoving, ElectricRailMovingNrvWait))) {
             GXCallDisplayList(_DC, _E0);
@@ -83,7 +90,29 @@ void ElectricRailMoving::disappear() {
     setNerve(GET_NERVE(ElectricRailMoving, ElectricRailMovingNrvDisappear));
 }
 
-// isTouchRail
+bool ElectricRailMoving::isTouchRail(const HitSensor* pSensor, TVec3f* pPos, TVec3f* pDirection) const {
+    f32 radius;
+    f32 coord;
+
+    TVec3f nearest;
+    coord = MR::calcNearestRailPos(&nearest, this, pSensor->mPosition);
+    radius = pSensor->mRadius;
+    radius += ElectricRailFunction::getHitSensorRadius();
+
+    if (isValidCoord(coord) && nearest.squared(pSensor->mPosition) < radius * radius) {
+        if (pPos != nullptr) {
+            pPos->set(nearest);
+        }
+
+        if (pDirection != nullptr) {
+            MR::calcRailDirectionAtCoord(pDirection, this, coord);
+        }
+
+        return true;
+    }
+
+    return false;
+}
 
 void ElectricRailMoving::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
@@ -104,7 +133,17 @@ void ElectricRailMoving::initMapToolInfo(const JMapInfoIter& rIter) {
     }
 }
 
-//
+void ElectricRailMoving::initSensor() {
+    initHitSensor(mStackHeight);
+    mSensorOffsets = new TVec3f[mStackHeight];
+
+    for (s32 i = 0; i < mStackHeight; i++) {
+        MR::addHitSensorPosMapObj(this, ::cSensorNameTable[i], 8, ElectricRailFunction::getHitSensorRadius(), &mSensorOffsets[i],
+                                  TVec3f(0.0f, 0.0f, 0.0f));
+    }
+
+    updateHitSensorPos();
+}
 
 void ElectricRailMoving::initRail(const JMapInfoIter& rIter) {
     initRailRider(rIter);
@@ -113,19 +152,15 @@ void ElectricRailMoving::initRail(const JMapInfoIter& rIter) {
     MR::setClippingTypeSphere(this, v11, &mPosition);
 
     if (!MR::getJMapInfoArg2NoInit(rIter, &mSegmentLength)) {
-        mSegmentLength = MR::getRailTotalLength(this) / 2 * mSegmentNum;
+        mSegmentLength = MR::getRailTotalLength(this) / (2 * mSegmentNum);
     }
 
-    _E4 = (MR::getRailTotalLength(this) / 100.0f) + 2;
+    _E4 = static_cast< s32 >(MR::getRailTotalLength(this) / 100.0f) + 2;
     _E8 = new TVec3f[_E4];
 
     for (s32 i = 0; i < _E4; i++) {
-        f32 len = MR::getRailTotalLength(this);
-        if ((100.0f * (i)) >= len) {
-            len = len;
-        } else {
-            len = (100.0f * i);
-        }
+        f32 totalLength = MR::getRailTotalLength(this);
+        f32 len = 100.0f * i >= totalLength ? totalLength : 100.0f * i;
 
         MR::calcRailPosAtCoord(&_E8[i], this, len);
     }
@@ -148,8 +183,8 @@ void ElectricRailMoving::initPoints() {
         MR::calcRailEndPointPos(&endPos, this);
 
         mMovingPoints[v4++].mPosition.set(startPos);
-        u32 v6 = v4 + 1;
-        mMovingPoints[v4].mPosition.set(endPos);
+        mMovingPoints[v4++].mPosition.set(endPos);
+        u32 v6 = v4;
 
         if (mStackHeight > 1) {
             TVec3f g;
@@ -165,12 +200,13 @@ void ElectricRailMoving::initPoints() {
                 mMovingPoints[v6++].mPosition.set(v16);
             }
 
-            TVec3f v18;
-            MR::calcGravityVector(this, v18, &g, nullptr, 0);
-            v16.set(g * -100.0f);
+            MR::calcGravityVector(this, endPos, &g, nullptr, 0);
+            g.scale(-100.0f);
+            v16.set(endPos);
 
             for (s32 i = 1; i < mStackHeight; i++) {
-                mMovingPoints[v6++].mPosition.set(g + v16);
+                v16.add(g);
+                mMovingPoints[v6++].mPosition.set(v16);
             }
         }
     }
@@ -238,28 +274,29 @@ void ElectricRailMoving::drawPlaneGX(f32 a1, f32 a2, f32 a3, f32 a4) const {
     }
 }
 
-void ElectricRailMoving::setVertexAttribute(int a2, int a3, f32 a4, f32 a5, f32 a6, f32 a7, PosAttrFunc posAttr, TexAttrFunc texAttr) const {
+void ElectricRailMoving::setVertexAttribute(int a2, int a3, f32 a4, f32 a5, f32 a6, f32 a7, PosAttrFunc pPosAttr, TexAttrFunc pTexAttr) const {
     f32 railLength = MR::getRailTotalLength(this);
 
-    f32 coord = a2;
-    if (100.0 * coord >= railLength) {
-        coord = coord;
+    if (100.0f * a2 >= railLength) {
+        railLength = railLength;
     } else {
-        railLength = 100.0 * coord;
+        railLength = 100.0f * a2;
     }
 
-    TVec3f position = _E8[a2];
+    f32 texCoord = 0.25f * railLength / 100.0f;
+    TVec3f position;
+    position.set(_E8[a2]);
     TVec3f railDirection;
     TVec3f gravity;
 
     MR::calcRailDirectionAtCoord(&railDirection, this, railLength);
     MR::calcGravityVector(this, position, &gravity, 0, 0);
 
-    gravity = -gravity;
+    gravity.negate();
 
     if (a3 > 0) {
-        TVec3f offset = gravity * (100.0f * a3);
-        position += offset;
+        f32 height = 100.0f * a3;
+        position += gravity * height;
     }
 
     TVec3f axis1;
@@ -272,10 +309,10 @@ void ElectricRailMoving::setVertexAttribute(int a2, int a3, f32 a4, f32 a5, f32 
         MR::makeAxisFrontUp(&axis1, &axis2, negRailDirection, gravity);
     }
 
-    posAttr(position.x + axis1.x * a4 + axis2.x * a5, position.y + axis1.y * a4 + axis2.y * a5, position.z + axis1.z * a4 + axis2.z * a5);
-    texAttr(0.25f * railLength / 100.0f, 0.0f);
-    posAttr(position.x + axis1.x * a6 + axis2.x * a7, position.y + axis1.y * a6 + axis2.y * a7, position.z + axis1.z * a6 + axis2.z * a7);
-    texAttr(0.25f * railLength / 100.0f, 1.0f);
+    pPosAttr(position.x + axis1.x * a4 + axis2.x * a5, position.y + axis1.y * a4 + axis2.y * a5, position.z + axis1.z * a4 + axis2.z * a5);
+    pTexAttr(texCoord, 0.0f);
+    pPosAttr(position.x + axis1.x * a6 + axis2.x * a7, position.y + axis1.y * a6 + axis2.y * a7, position.z + axis1.z * a6 + axis2.z * a7);
+    pTexAttr(texCoord, 1.0f);
 }
 
 void ElectricRailMoving::updateHitSensorPos() {
@@ -289,7 +326,7 @@ void ElectricRailMoving::updateHitSensorPos() {
         s32 v5 = 1;
 
         for (s32 i = 1; i < mStackHeight; i++) {
-            mSensorOffsets[i - 1] += v9;
+            mSensorOffsets[i].add(mSensorOffsets[i - 1], v9);
         }
     }
 
@@ -304,56 +341,73 @@ void ElectricRailMoving::updateHitSensorPos() {
     }
 }
 
-bool ElectricRailMoving::updatePointPos() {
-    f32 railTotalLength = MR::getRailTotalLength(this);
-    s32 segmentNum = mSegmentNum;
+namespace {
+    inline bool updateMovingPoints(ElectricRailMoving* pActor) {
+        s32 i;
+        f32 railTotalLength = MR::getRailTotalLength(pActor);
+        s32 segmentNum = pActor->mSegmentNum;
 
-    f32 segmentLength = railTotalLength / segmentNum;
-    s32 ret = 0;
-    f32 ec = _EC;
+        f32 railCoord;
+        f32 segmentLength;
+        s32 pointIndex;
+        bool reachedEnd;
+        segmentLength = railTotalLength / segmentNum;
+        reachedEnd = false;
+        pointIndex = 0;
+        railCoord = pActor->_EC;
 
-    for (s32 i = 0; i < mSegmentNum; ++i) {
-        f32 coord = getRepeatedCoord(ec);
-        TVec3f position;
-        calcPointPos(&position, coord);
-        f32 previousCoord = getRepeatedCoord(ec - mSegmentLength);
+        TVec3f stackPosition;
+        TVec3f gravity;
         TVec3f previousPosition;
-        calcPointPos(&previousPosition, previousCoord);
+        TVec3f position;
 
-        mMovingPoints[ret++].mPosition.set(position);
-        mMovingPoints[ret++].mPosition.set(previousPosition);
+        for (i = 0; i < pActor->mSegmentNum; i++) {
+            f32 coord = pActor->getRepeatedCoord(railCoord);
 
-        if (mStackHeight > 1) {
-            TVec3f gravity;
+            pActor->calcPointPos(&position, coord);
+            f32 previousCoord = pActor->getRepeatedCoord(railCoord - pActor->mSegmentLength);
 
-            MR::calcGravityVector(this, position, &gravity, nullptr, 0);
-            gravity *= -100.0f;
-            TVec3f s = position;
+            pActor->calcPointPos(&previousPosition, previousCoord);
 
-            for (s32 j = 1; j < mStackHeight; j++) {
-                s += gravity;
-                mMovingPoints[ret++].mPosition.set(s);
+            pActor->mMovingPoints[pointIndex++].mPosition.set(position);
+            pActor->mMovingPoints[pointIndex++].mPosition.set(previousPosition);
+
+            if (pActor->mStackHeight > 1) {
+                MR::calcGravityVector(pActor, position, &gravity, nullptr, 0);
+                gravity *= -100.0f;
+
+                stackPosition.set(position);
+
+                for (s32 j = 1; j < pActor->mStackHeight; j++) {
+                    stackPosition += gravity;
+                    pActor->mMovingPoints[pointIndex++].mPosition.set(stackPosition);
+                }
+
+                MR::calcGravityVector(pActor, previousPosition, &gravity, nullptr, 0);
+                gravity *= -100.0f;
+
+                stackPosition.set(previousPosition);
+
+                for (s32 j = 1; j < pActor->mStackHeight; j++) {
+                    stackPosition += gravity;
+                    pActor->mMovingPoints[pointIndex++].mPosition.set(stackPosition);
+                }
             }
 
-            MR::calcGravityVector(this, previousPosition, &gravity, nullptr, 0);
-            gravity *= -100.0f;
-
-            s = previousPosition;
-
-            for (s32 j = 1; j < mStackHeight; j++) {
-                s += gravity;
-                mMovingPoints[ret++].mPosition.set(s);
+            if (!MR::isLoopRail(pActor) &&
+                (pActor->getRepeatedCoord(railCoord + pActor->mMovementSpeed) - (pActor->mSegmentLength + (3.0f * pActor->mMovementSpeed))) < 0.0f) {
+                reachedEnd = true;
             }
+
+            railCoord = pActor->getRepeatedCoord(railCoord + segmentLength);
         }
 
-        if (!MR::isLoopRail(this) && (getRepeatedCoord(ec + mMovementSpeed) - (mSegmentLength + (3.0f * mMovementSpeed))) < 0.0f) {
-            ret = 1;
-        }
-
-        ec = getRepeatedCoord(ec + segmentLength);
+        return reachedEnd;
     }
+}  // namespace
 
-    return ret;
+bool ElectricRailMoving::updatePointPos() {
+    return ::updateMovingPoints(this);
 }
 
 void ElectricRailMoving::updatePointPosAndModel() {
@@ -373,10 +427,10 @@ void ElectricRailMoving::updatePointPosAndModel() {
 }
 
 bool ElectricRailMoving::isValidCoord(f32 coord) const {
-    f32 rpt = getRepeatedCoord(coord - _EC);
-    f32 len = MR::getRailTotalLength(this);
-    f32 m = MR::mod(rpt, len / mSegmentNum);
-    return ((len / mSegmentNum) - mSegmentLength) < m;
+    f32 repeated = getRepeatedCoord(coord - _EC);
+    f32 interval = MR::getRailTotalLength(this) / mSegmentNum;
+    f32 offset = MR::mod(repeated, interval);
+    return interval - mSegmentLength < offset;
 }
 
 f32 ElectricRailMoving::getRepeatedCoord(f32 coord) const {
@@ -404,24 +458,21 @@ void ElectricRailMoving::move() {
     _9C.identity();
 
     _9C.mMtx[0][0] = scale;
-    _9C.mMtx[0][3] = -((0.25f * scale * _EC) / 100.0f);
+    _9C.mMtx[0][3] = -((0.25f * (scale * _EC)) / 100.0f);
     f32 railTotalLength2 = MR::getRailTotalLength(this);
     f32 segmentLength = railTotalLength2 / mSegmentNum;
     f32 angle = (-TWO_PI * mSegmentLength) / segmentLength;
     f32 sinValue;
     sinValue = JMASinRadian(angle);
     f32 value = (15.0f * sinValue) + ((255.0f * mSegmentLength) / segmentLength);
-    s32 color = value;
 
-    if (color < 0) {
-        color = 0;
+    if (static_cast< s32 >(value) < 0) {
+        _CC = 0;
+    } else if (static_cast< s32 >(value) > 255) {
+        _CC = 255;
     } else {
-        if (color > 255) {
-            color = 255;
-        }
+        _CC = static_cast< s32 >(value);
     }
-
-    _CC = color;
 
     updatePointPosAndModel();
 }
@@ -460,4 +511,8 @@ ElectricRailMoving::~ElectricRailMoving() {
 }
 
 ElectricRailMovingPoint::~ElectricRailMovingPoint() {
+}
+
+void ElectricRailMoving_FORCE_MATCH(TVec3f* pVec, f32 scale) {
+    *pVec *= scale;
 }

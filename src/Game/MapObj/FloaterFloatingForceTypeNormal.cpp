@@ -3,6 +3,21 @@
 #include "Game/MapObj/FloaterFunction.hpp"
 #include "Game/Util.hpp"
 
+void FloaterFloatingForceTypeNormal_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)-1.0f;
+    (void)0.05f;
+    (void)0.0001f;
+    (void)0.98f;
+    (void)-50.0f;
+    (void)50.0f;
+    (void)10.0f;
+    (void)0.8f;
+    (void)0.1f;
+    (void)-0.1f;
+    (void)0.001f;
+}
+
 namespace {
     // static const f32 sSinkSpeedFric = _;
     // static const f32 sBrakeForce = _;
@@ -48,20 +63,16 @@ void FloaterFloatingForceTypeNormal::updateHostTrans(TVec3f* pDst) const {
 void FloaterFloatingForceTypeNormal::updateVelocity(bool param1) {
     f32 f;
 
-    if (param1) {
-        bool isValidAndOnSwitchA = MR::isValidSwitchA(mHost) && MR::isOnSwitchA(mHost);
-
-        if (!isValidAndOnSwitchA) {
-            if (mMoveConditionType <= _40) {
-                _44 = MR::converge< f32 >(_44, 0.0f, 0.05f);
-            } else {
-                _44 += mRotateSpeed * 0.0001f;
-            }
-        } else if (_40 <= 0.0f) {
+    if (param1 && (MR::isValidSwitchA(mHost) && MR::isOnSwitchA(mHost)) == false) {
+        if (mMoveConditionType <= _40) {
             _44 = MR::converge< f32 >(_44, 0.0f, 0.05f);
         } else {
-            _44 -= mRotateAngle * 0.0001f;
+            _44 += mRotateSpeed * 0.0001f;
         }
+    } else if (_40 <= 0.0f) {
+        _44 = MR::converge< f32 >(_44, 0.0f, 0.05f);
+    } else {
+        _44 -= mRotateAngle * 0.0001f;
     }
 
     _44 *= 0.98f;
@@ -93,8 +104,9 @@ void FloaterFloatingForceTypeNormal::updateVelocity(bool param1) {
 
     mVelocity.set(-_28 * f);
 
+    f32 maxDepth = mMoveConditionType;
     _40 += f;
-    _40 = MR::clamp(_40, 0.0f, mMoveConditionType);
+    _40 = MR::clamp(_40, 0.0f, maxDepth);
 }
 
 void FloaterFloatingForceTypeNormal::soundMoveSE() {

@@ -99,6 +99,7 @@ void ClipFieldFillDraw::sendFillScreen(GXColor color) const {
         GXPosition2u16(screenWidth, screenHeight);
         GXTexCoord2f32(1.0f, 1.0f);
     }
+
     GXEnd();
 }
 
@@ -134,8 +135,8 @@ namespace MR {
         clipFieldFillDraw->_25 = false;
         clipFieldFillDraw->_24 = false;
         clipFieldFillDraw->setModeSubColor();
-        clipFieldFillDraw->_1C = Color8(70, 35, 11, 80);
-        clipFieldFillDraw->_20 = Color8(255, 255, 128, 80);
+        clipFieldFillDraw->_1C = static_cast< u32 >(Color8(70, 35, 11, 80));
+        clipFieldFillDraw->_20 = static_cast< u32 >(Color8(255, 255, 128, 80));
 
         return clipFieldFillDraw;
     }

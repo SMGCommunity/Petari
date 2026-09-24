@@ -5,6 +5,15 @@
 #include "Game/Util/MapPartsUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 
+void MapPartsRailRotator_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+    (void)0.01745329238474369f;
+    (void)0.009999999776482582f;
+    (void)0.0f;
+}
+
 namespace NrvMapPartsRailRotator {
     NEW_NERVE(HostTypeWait, MapPartsRailRotator, Wait);
     NEW_NERVE(HostTypeRotateAtPoint, MapPartsRailRotator, Rotate);
@@ -87,7 +96,7 @@ void MapPartsRailRotator::updateHostRotateMtx() {
         _2C.set(mHost->getBaseMtx());
         _2C.zeroTrans();
     } else {
-        _2C.setRotateDegree(mHost->mRotation);
+        _2C.setEuler(mHost->mRotation * (PI / 180.0f));
     }
 }
 
@@ -162,11 +171,4 @@ void MapPartsRailRotator::exeRotate() {
     } else {
         updateRotateMtx(static_cast< AxisType >(mRotateAxis), mAngle);
     }
-}
-
-f32 MapPartsRailRotator::getJMapArgAngleFactor() const {
-    return 1.0f;
-}
-
-MapPartsRailRotator::~MapPartsRailRotator() {
 }

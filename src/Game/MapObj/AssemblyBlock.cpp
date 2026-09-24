@@ -16,6 +16,13 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
+void AssemblyBlock_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)0.5f;
+    (void)-1.0f;
+    (void)2.0f;
+}
+
 namespace {
     static const s32 sDefaultTimer = 300;
     static const s32 sStepForAssemble = 10;
@@ -104,7 +111,7 @@ void AssemblyBlock::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg7NoInit(rIter, &mObjArg7);
 
     if (MR::getRandom(0l, 2l)) {
-        mFloatRotateSpeed = 0.0f;
+        mFloatRotateSpeed = ::sFloatRotSpeedNoSign;
     } else {
         mFloatRotateSpeed = -::sFloatRotSpeedNoSign;
     }
@@ -141,7 +148,7 @@ void AssemblyBlock::exeWait() {
     MR::rotateMtxLocalYDegree(_8C.toMtxPtr(), mFloatRotateSpeed);
     MR::rotateMtxLocalZDegree(_8C.toMtxPtr(), mFloatRotateSpeed);
 
-    f32 scalar = MR::sin(getNerveStep());
+    f32 scalar = MR::sinDegree(getNerveStep());
 
     TVec3f trans;
     _8C.getTrans(trans);
@@ -165,7 +172,7 @@ void AssemblyBlock::exeAssemble() {
         MR::invalidateHitSensors(this);
     }
 
-    MR::blendMtx(_BC.toMtxPtr(), _EC.toMtxPtr(), MR::calcNerveRate(this, ::sStepForAssemble), _8C.toMtxPtr());
+    MR::blendMtx(_EC.toMtxPtr(), _BC.toMtxPtr(), MR::calcNerveRate(this, ::sStepForAssemble), _8C.toMtxPtr());
 
     if (MR::isStep(this, ::sStepForAssemble)) {
         if (_13C) {
@@ -174,7 +181,7 @@ void AssemblyBlock::exeAssemble() {
             MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_END");
         }
 
-        setNerve(GET_NERVE(AssemblyBlock, AssemblyBlockNrvWait));
+        setNerve(GET_NERVE(AssemblyBlock, AssemblyBlockNrvAssembleWait));
     }
 }
 

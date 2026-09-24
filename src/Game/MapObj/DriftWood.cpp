@@ -65,7 +65,7 @@ void DriftWood::exeWait() {
 
     tryVibrate();
 
-    if (mWaveSoundTimer < 1) {
+    if (mWaveSoundTimer <= 0) {
         MR::startSound(this, "SE_OJ_DRIFT_WOOD_WAVE");
         mWaveSoundTimer = MR::getRandom(30l, 90l);
     } else {
@@ -130,6 +130,7 @@ void DriftWood::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         if (magnitude > threshold) {
         } else {
             LiveActor* mHost = pReceiver->mHost;
+
             if (!MR::isInWater(mHost, TVec3f(0.0f, 0.0f, 0.0f))) {
                 MR::sendMsgEnemyAttackFlip(pReceiver, pSender);
                 MR::startSound(this, "SE_OJ_DRIFT_WOOD_ATTACK");
@@ -152,5 +153,6 @@ bool DriftWood::tryVibrate() {
             return true;
         }
     }
+
     return false;
 }

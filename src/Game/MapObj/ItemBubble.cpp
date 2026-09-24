@@ -29,8 +29,10 @@ ItemBubble::ItemBubble(const char* pName) : LiveActor(pName), _90(nullptr), _94(
 void ItemBubble::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::useStageSwitchWriteDead(this, rIter);
-    if (MR::useStageSwitchReadAppear(this, rIter))
+
+    if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
+    }
     initModelManagerWithAnm("ItemBubble", nullptr, false);
     MR::connectToSceneMapObj(this);
     mScale.mult(1.2f);
@@ -46,18 +48,21 @@ void ItemBubble::init(const JMapInfoIter& rIter) {
 
     s32 itemType = 0;
     s32 itemCount = 1;
+
     if (MR::isValidInfo(rIter)) {
         MR::getJMapInfoArg0WithInit(rIter, &itemType);
         MR::getJMapInfoArg1WithInit(rIter, &itemCount);
     }
 
-    if (itemCount < 1)
+    if (itemCount < 1) {
         itemCount = 1;
+    }
 
     _90 = new RotPartsModel*[itemCount];
 
-    if (itemType == 1)
+    if (itemType == 1) {
         _94 = new StarPiece*[itemCount];
+    }
 
     for (u32 i = 0; i < itemCount; i++) {
         switch (itemType) {
@@ -70,6 +75,7 @@ void ItemBubble::init(const JMapInfoIter& rIter) {
                 _90[i]->initFixedPosition(_CC, TVec3f(0.0f, -67.379997f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
                 continue;
             case 2:
+
                 switch (i) {
                 case 0:
                     _90[i]->initFixedPosition(_CC, TVec3f(-55.66f, -92.290001f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
@@ -78,8 +84,10 @@ void ItemBubble::init(const JMapInfoIter& rIter) {
                     _90[i]->initFixedPosition(_CC, TVec3f(55.66f, -43.950001f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
                     continue;
                 }
+
                 continue;
             case 3:
+
                 switch (i) {
                 case 0:
                     _90[i]->initFixedPosition(_CC, TVec3f(0.0f, -19.040001f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
@@ -91,8 +99,10 @@ void ItemBubble::init(const JMapInfoIter& rIter) {
                     _90[i]->initFixedPosition(_CC, TVec3f(67.379997f, -130.37f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
                     continue;
                 }
+
                 continue;
             }
+
             break;
         case 1:
             _94[i] = new StarPiece("アイテムバブルピース");
@@ -107,6 +117,7 @@ void ItemBubble::init(const JMapInfoIter& rIter) {
                 _90[i]->initFixedPosition(_CC, TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
                 continue;
             }
+
             break;
         default:
             _90[i] = nullptr;
@@ -116,8 +127,9 @@ void ItemBubble::init(const JMapInfoIter& rIter) {
     mItemCount = itemCount;
     mItemType = itemType;
 
-    if (mItemType == 0)
+    if (mItemType == 0) {
         MR::declareCoin(this, mItemCount);
+    }
 
     if ((itemType == 0 && itemCount > 3) || (itemType == 1 && itemCount > 1)) {
         TVec3f vec3;
@@ -127,14 +139,17 @@ void ItemBubble::init(const JMapInfoIter& rIter) {
 
         TRot3f mtx;
         PSMTXRotRad(mtx, (char)90, TWO_PI / static_cast< f32 >(itemCount));
-        if (itemType == 0)
+
+        if (itemType == 0) {
             vec3.set< f32 >(0.0f, -60.0f, 0.0f);
-        else
+        } else {
             vec3.zero();
+        }
 
         for (u32 i = 0; i < itemCount; i++) {
-            if (_90[i] == nullptr)
+            if (_90[i] == nullptr) {
                 continue;
+            }
 
             _90[i]->initFixedPosition(_CC, vec + vec3, vec2);
             PSMTXMultVec(mtx, vec, vec);
@@ -142,8 +157,10 @@ void ItemBubble::init(const JMapInfoIter& rIter) {
     }
 
     mUseRail = false;
+
     if (MR::isValidInfo(rIter)) {
         mUseRail = MR::isConnectedWithRail(rIter);
+
         if (mUseRail) {
             initRailRider(rIter);
             MR::initAndSetRailClipping(&_FC, this, 100.0f, 500.0f);
@@ -163,8 +180,9 @@ void ItemBubble::initAfterPlacement() {
     TVec3f vec;
     mtx.getZDir(vec);
 
-    if (mUseRail)
+    if (mUseRail) {
         MR::moveCoordAndTransToNearestRailPos(this);
+    }
 }
 
 void ItemBubble::appear() {
@@ -173,15 +191,18 @@ void ItemBubble::appear() {
 }
 
 void ItemBubble::kill() {
-    if (MR::isValidSwitchDead(this))
+    if (MR::isValidSwitchDead(this)) {
         MR::onSwitchDead(this);
+    }
 
     if (mItemCount != 0) {
         TVec3f grav;
         MR::calcGravityVector(this, &grav, nullptr, 0);
+
         for (u32 i = 0; i < mItemCount; i++) {
-            if (_90[i] == nullptr)
+            if (_90[i] == nullptr) {
                 continue;
+            }
 
             switch (mItemType) {
             case 0:
@@ -203,8 +224,9 @@ void ItemBubble::calcAndSetBaseMtx() {
     TVec3f camPos = MR::getCamPos();
     camPos.sub(mPosition);
 
-    if (MR::isNearZero(camPos))
+    if (MR::isNearZero(camPos)) {
         return;
+    }
 
     MR::normalize(&camPos);
     TVec3f YDir(MR::getCamYdir());
@@ -224,15 +246,18 @@ void ItemBubble::exeWait() {
         // Useless...
     }
 
-    _8C = MR::sin(2.0f * ((static_cast< f32 >(getNerveStep()) / ::cSwingRange) * PI));
+    _8C = MR::sin(2.0f * ((static_cast< f32 >(getNerveStep()) / ::cSwingRange) * MR::pi()));
 
     if (mUseRail) {
-        if (MR::isRailReachedGoal(this))
+        if (MR::isRailReachedGoal(this)) {
             MR::reverseRailDirection(this);
+        }
 
         f32 speed;
-        if (MR::getCurrentRailPointArg0WithInit(this, &speed))
+
+        if (MR::getCurrentRailPointArg0WithInit(this, &speed)) {
             mRailSpeed = speed;
+        }
 
         MR::moveCoordAndFollowTrans(this, mRailSpeed);
     }
@@ -243,14 +268,17 @@ void ItemBubble::exeWait() {
     mPosition = _108 + TVec3f(0.0f, 1.0f, 0.0f).multInLine2(_8C).multInLine2(30.0f);
 
     MR::setMtxTrans(_9C, mPosition.x, mPosition.y, mPosition.z);
+
     if (mUseRail) {
         PSMTXCopy(_9C, _CC);
     } else {
         MR::blendMtx(_CC, _9C, 0.1f, _CC);
     }
+
     for (u32 i = 0; i < mItemCount; i++) {
-        if (_90[i] == nullptr)
+        if (_90[i] == nullptr) {
             continue;
+        }
 
         _90[i]->mRotation.x = 0.0f;
         _90[i]->mRotation.z = 0.0f;
@@ -271,6 +299,7 @@ bool ItemBubble::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
         setNerve(GET_NERVE(ItemBubble, ItemBubbleNrvBreak));
         return true;
     }
+
     return false;
 }
 
@@ -279,6 +308,7 @@ bool ItemBubble::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
         setNerve(GET_NERVE(ItemBubble, ItemBubbleNrvBreak));
         return true;
     }
+
     return false;
 }
 

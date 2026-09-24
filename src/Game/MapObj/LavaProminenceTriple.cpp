@@ -157,14 +157,17 @@ void LavaProminenceTriple::updateHitSensor(HitSensor* pSensor) {
     angle -= mRotation.y;
     MR::repeatDegree(&angle);
 
-    for (int i = 0; i < 3; i++) {
-        const f32* sensor0 = &::sNoSensorTable[0];
-        const f32* sensor1 = &::sNoSensorTable[1];
+    const f32* sensor0 = &::sNoSensorTable[0];
+    const f32* sensor1 = &::sNoSensorTable[1];
 
-        f32 half = (sensor0[i * 2 + 0] + sensor0[i * 2 + 1]) / 2.0f;
+    for (int i = 0; i < 3; i++) {
+        s32 index = i * 2;
+        s32 nextIndex = index + 1;
+        f32 half = (sensor0[index] + sensor0[nextIndex]) / 2.0f;
 
         if (angle < half) {
             int j;
+
             if (i == 0) {
                 angle += 360.0f;
                 j = 2;
@@ -177,7 +180,7 @@ void LavaProminenceTriple::updateHitSensor(HitSensor* pSensor) {
         }
 
         if (i == 2) {
-            angle = MR::clamp(angle, sensor1[i * 2 + 0], sensor1[i * 2 + 1]);
+            angle = MR::clamp(angle, sensor1[index], sensor1[nextIndex]);
             break;
         }
     }
@@ -204,6 +207,7 @@ void LavaProminenceTriple::updateEffectClipping() {
 void LavaProminenceTriple::updateEffectClippingIndividual(bool* pIsAppear, const char* pEffectName, const char* pJointName) {
     TVec3f jointPos;
     MR::copyJointPos(this, pJointName, &jointPos);
+
     if (*pIsAppear == true) {
         if (MR::isJudgedToClipFrustum(jointPos, 1.0f)) {
             MR::deleteEffect(this, pEffectName);

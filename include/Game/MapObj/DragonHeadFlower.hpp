@@ -6,6 +6,9 @@ class DragonHeadFlower : public LiveActor {
 public:
     DragonHeadFlower(const char*);
 
+    virtual ~DragonHeadFlower() {
+    }
+
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void attackSensor(HitSensor*, HitSensor*);

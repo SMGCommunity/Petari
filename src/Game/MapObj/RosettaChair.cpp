@@ -6,13 +6,6 @@ RosettaChair::RosettaChair(const char* pName) : LiveActor(pName), mDefaultPositi
     mScaleMtx.identity();
 }
 
-void RosettaChair::setDefaultPose() {
-    mPosition.set(mDefaultPosition);
-    mRotation.set(mDefaultRotation);
-    MR::startBck(this, "RosettaChair");
-    MR::validateCollisionParts(this);
-}
-
 void RosettaChair::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("RosettaChair", nullptr, false);
@@ -32,6 +25,13 @@ void RosettaChair::init(const JMapInfoIter& rIter) {
     mDefaultRotation.set(mRotation);
     MR::startBck(this, "RosettaChair");
     makeActorAppeared();
+}
+
+void RosettaChair::setDefaultPose() {
+    mPosition.set(mDefaultPosition);
+    mRotation.set(mDefaultRotation);
+    MR::startBck(this, "RosettaChair");
+    MR::validateCollisionParts(this);
 }
 
 void RosettaChair::startDemo() {
