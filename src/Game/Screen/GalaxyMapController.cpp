@@ -288,6 +288,7 @@ void GalaxyMapController::exeFadeinModeMap() {
         case Mode_GalaxyMap:
             mBackButton->appear();
             mMapSelectButton->startAstroMap();
+            break;
         case Mode_NewDomeDiscover:
             mMap->forceToGalaxyMap();
             break;
