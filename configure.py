@@ -1320,7 +1320,7 @@ config.libs = [
             Object(Matching, "Game/Enemy/MogucchiShooter.cpp"),
             Object(NonMatching, "Game/Enemy/MoguStone.cpp"),
             Object(Matching, "Game/Enemy/NokonokoLand.cpp"),
-            Object(NonMatching, "Game/Enemy/Onimasu.cpp"),
+            Object(Matching, "Game/Enemy/Onimasu.cpp"),
             Object(Matching, "Game/Enemy/OnimasuJump.cpp"),
             Object(Matching, "Game/Enemy/OnimasuPivot.cpp"),
             Object(Matching, "Game/Enemy/OtaRock.cpp"),

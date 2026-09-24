@@ -24,15 +24,17 @@ public:
     virtual s32 getLastPointNo() const = 0;
     virtual const TVec3f& getLastPointNormal() const = 0;
     virtual const TVec3f& getNextPointNormal() const = 0;
-    virtual void startMoveInner() {};
-    virtual void updatePoseInner() {};
+    virtual void startMoveInner() {
+    }
+    virtual void updatePoseInner() {
+    }
 
     void calcTargetPose();
     void updatePose();
     void land();
-    bool calcTurnDirection(f32*) const;
+    bool calcTurnDirection(f32* pTurnDir) const;
     void updateStompVelocity();
-    void calcGravityDir(TVec3f*) const;
+    void calcGravityDir(TVec3f* pDir) const;
     f32 getGravityScalar() const;
     s32 getTimeToNextPoint() const;
     s32 getWaitTime() const;
@@ -52,5 +54,5 @@ public:
 };
 
 namespace OnimasuFunction {
-    bool getPolygonOnRailPoint(TVec3f*, TVec3f*, const LiveActor*, int);
-};  // namespace OnimasuFunction
+    bool getPolygonOnRailPoint(TVec3f* pPosition, TVec3f* pNormal, const LiveActor* pActor, int pointNo);
+}  // namespace OnimasuFunction

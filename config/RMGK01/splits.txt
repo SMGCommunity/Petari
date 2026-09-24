@@ -3060,6 +3060,7 @@ Game/Enemy/Onimasu.cpp:
 	.ctors      start:0x8052EB1C end:0x8052EB20
 	.rodata     start:0x80532440 end:0x80532448
 	.data       start:0x80582B50 end:0x80582C88
+	.sdata      start:0x806B1A38 end:0x806B1A40
 	.sbss       start:0x806B45C0 end:0x806B45D8
 	.sdata2     start:0x806BB1E0 end:0x806BB228
 
