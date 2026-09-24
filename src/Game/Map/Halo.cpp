@@ -65,7 +65,7 @@ void Halo::appear() {
         }
 
         if (MR::isExistBtp(this, pAnimName)) {
-            MR::setBpkFrame(this, MR::getBtpCtrl(this)->getEnd());
+            MR::setBtpFrame(this, MR::getBtpCtrl(this)->getEnd());
         }
 
         if (MR::isExistBrk(this, pAnimName)) {
