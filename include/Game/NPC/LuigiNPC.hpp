@@ -29,6 +29,7 @@ public:
 
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 
+    void setShadowDrop(const char*);
     bool branchFunc(u32);
     bool eventFunc(u32);
     bool trySetNerveAfraid();
