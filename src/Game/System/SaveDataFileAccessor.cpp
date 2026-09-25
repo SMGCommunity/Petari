@@ -18,26 +18,28 @@ void SaveDataFileAccessor::makeUserFileInfo(SaveDataUserFileInfo* pUserFileInfo,
     pUserFileInfo->mDataSize = 0;
     pUserFileInfo->mKind = 1;
 
-    SaveDataFile* pFile = mFile;
-    for (s32 i = 0; i < pFile->mHeader.mUserFileInfoNum; i++) {
-        if (!MR::isEqualString(pFile->mInfo[i].mName, pName)) {
+    SaveDataFileHeader* pHeader = getHeader();
+    SaveDataFileInfo* pInfo = getFileInfo(0);
+
+    for (u32 i = 0; i < pHeader->mUserFileInfoNum; i++) {
+        if (!MR::isEqualString(pInfo[i].mName, pName)) {
             continue;
         }
 
-        if (i == pFile->mHeader.mUserFileInfoNum - 1) {
-            pUserFileInfo->mDataSize = pFile->mHeader.mFileSize - pFile->mInfo[i].mOffset;
+        if (i == pHeader->mUserFileInfoNum - 1) {
+            pUserFileInfo->mDataSize = pHeader->mFileSize - pInfo[i].mOffset;
         } else {
-            pUserFileInfo->mDataSize = pFile->mInfo[i + 1].mOffset - pFile->mInfo[i].mOffset;
+            pUserFileInfo->mDataSize = pInfo[i + 1].mOffset - pInfo[i].mOffset;
         }
 
-        SaveDataFileInfo* pFileInfo = &pFile->mInfo[i];
-        pUserFileInfo->mData = (u8*)(&mFile->mHeader) + pFileInfo->mOffset;
+        SaveDataFileInfo* pFileInfo = &pInfo[i];
+        pUserFileInfo->mData = reinterpret_cast< u8* >(getHeader()) + pFileInfo->mOffset;
 
-        if (strstr(pFile->mInfo[i].mName, "mario") != nullptr || strstr(pFile->mInfo[i].mName, "luigi") != nullptr) {
+        if (strstr(pFileInfo->mName, "mario") != nullptr || strstr(pFileInfo->mName, "luigi") != nullptr) {
             pUserFileInfo->mKind = 0;
         }
 
-        if (strstr(pFile->mInfo[i].mName, "sysconf")) {
+        if (strstr(pFileInfo->mName, "sysconf") != nullptr) {
             pUserFileInfo->mKind = 2;
         }
     }

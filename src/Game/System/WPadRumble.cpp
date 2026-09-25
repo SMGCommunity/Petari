@@ -2,6 +2,7 @@
 #include "Game/System/WPad.hpp"
 #include "Game/System/WPadRumbleData.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 WPadRumble** WPadRumble::sInstanceForCallback;
 
@@ -27,7 +28,7 @@ void RumbleChannel::update() {
             clear();
         }
     } else {
-        _E = _0->mPattern[0];
+        _E = _0->mPattern[_C];
         _C++;
     }
 }
@@ -40,7 +41,7 @@ void RumbleChannel::setPattern(const void* pParam1, const RumblePattern& rParam2
     _4 = param4;
 }
 
-WPadRumble::WPadRumble(WPad* pPad) : mPad(pPad), _8(false), _C(1), _B0(0), _B4(0), _B8(false), _BC(0) {
+WPadRumble::WPadRumble(WPad* pPad) : mPad(pPad), _8(), _C(1), _B0(), _B4(), _B8(), _BC() {
     if (sInstanceForCallback == nullptr) {
         sInstanceForCallback = new WPadRumble*[MR::getWPadMaxCount()];
 
@@ -141,17 +142,7 @@ void WPadRumble::updateRumble() {
         if (b) {
             _B0 = 5;
         } else {
-            s32 temp = _B0 - 1;
-
-            if (temp < -9) {
-                temp = -9;
-            } else {
-                if (temp <= 5) {
-                    temp = _B0;
-                }
-            }
-
-            _B0 = temp;
+            _B0 = MR::clamp(_B0 - 1, -9, 5);
 
             if (_B0 < 0) {
                 _B4 = 0;
@@ -188,20 +179,50 @@ bool WPadRumble::setRumblePatternIfNotExist(const void* pParam1, const RumblePat
     }
 
     if (v2 != -1) {
-        // FIXME: Missing clrlwi instruction.
-        _C++;
+        _C = (_C + 1) & 0x7FFFFFFF;
 
         mChannel[v2].setPattern(pParam1, rParam2, _C, param3);
 
         return true;
     }
 
-    // FIXME: Missing clrlwi instruction.
-    _C++;
+    _C = (_C + 1) & 0x7FFFFFFF;
 
     mChannel[v3].setPattern(pParam1, rParam2, _C, param3);
 
     return true;
 }
 
-// WPadRumble::findRubmlePattern
+bool WPadRumble::findRubmlePattern(const void* pOwner, s32* pExisting, s32* pEmpty, s32* pOldest, const RumblePattern& rPattern) {
+    u32 oldest = -1;
+    u8 oldestIndex = 0xFF;
+    u8 emptyIndex = 0xFF;
+
+    for (u8 i = 0; i < ARRAY_SIZE(mChannel); i++) {
+        const RumblePattern* pPattern = mChannel[i]._0;
+
+        if (pPattern == nullptr) {
+            if (emptyIndex == 0xFF) {
+                emptyIndex = i;
+            }
+        } else {
+            if (pPattern->mHash == rPattern.mHash) {
+                *pExisting = i;
+                return true;
+            }
+
+            if (oldest > mChannel[i]._8) {
+                oldest = mChannel[i]._8;
+                oldestIndex = i;
+            }
+        }
+    }
+
+    if (emptyIndex != 0xFF) {
+        *pEmpty = emptyIndex;
+        return false;
+    }
+
+    *pOldest = oldestIndex;
+    return false;
+}
