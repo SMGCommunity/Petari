@@ -896,7 +896,7 @@ config.libs = [
             Object(NonMatching, "Game/Boss/Dodoryu.cpp"),
             Object(NonMatching, "Game/Boss/DodoryuDemo.cpp"),
             Object(NonMatching, "Game/Boss/DodoryuHill.cpp"),
-            Object(NonMatching, "Game/Boss/DodoryuMove.cpp"),
+            Object(Matching, "Game/Boss/DodoryuMove.cpp"),
             Object(Matching, "Game/Boss/DodoryuStateBase.cpp"),
             Object(NonMatching, "Game/Boss/DodoryuStateLv1.cpp"),
             Object(NonMatching, "Game/Boss/DodoryuStateLv2.cpp"),
