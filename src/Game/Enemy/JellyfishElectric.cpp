@@ -19,6 +19,12 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+void JellyfishElectric_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
+
 namespace NrvJellyfishElectric {
     NEW_NERVE(JellyfishElectricNrvWait, JellyfishElectric, Wait);
     NEW_NERVE(JellyfishElectricNrvWaitWithRightTurn, JellyfishElectric, WaitWithRightTurn);
@@ -93,6 +99,8 @@ void JellyfishElectric::kill() {
     LiveActor::kill();
 }
 
+#pragma push
+#pragma opt_propagation off
 void JellyfishElectric::control() {
     MR::requestPointLight(this, TVec3f(mPosition), ::sPointLightColor, 0.9999f, -1);
     MR::changeShowModelFlagSyncNearClipping(this, 700.0f);
@@ -110,10 +118,12 @@ void JellyfishElectric::control() {
         }
 
         f32 wave = MR::sinDegree(_94 + 45);
-        mVelocity.scale(wave, mGravity);
+        const TVec3f& rGravity = mGravity;
+        mVelocity.scale(wave, rGravity);
         _94++;
     }
 }
+#pragma pop
 
 void JellyfishElectric::calcAndSetBaseMtx() {
     TPos3f pos;
@@ -218,19 +228,6 @@ void JellyfishElectric::endDPDSwoon() {
     mBindStarPtr->kill();
 }
 
-void JellyfishElectric::waitTurn() {
-    f32 turnDirection;
-    f32 turnDecay = (1.0f - (getNerveStep() / 280.0f));
-
-    if (isNerve(GET_NERVE(JellyfishElectric, JellyfishElectricNrvWaitWithLeftTurn))) {
-        turnDirection = 1.0f;
-    } else {
-        turnDirection = -1.0f;
-    }
-
-    MR::rotateVecDegree(&_98, -mGravity, (turnDirection * (0.2f * turnDecay)));
-}
-
 void JellyfishElectric::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorEnemy(pSender) && MR::isSensorPlayer(pReceiver)) {
         tryToAttackElectric(pReceiver, pSender);
@@ -272,6 +269,19 @@ bool JellyfishElectric::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSe
     }
 
     return false;
+}
+
+void JellyfishElectric::waitTurn() {
+    f32 turnDirection;
+    f32 turnDecay = (1.0f - (getNerveStep() / 280.0f));
+
+    if (isNerve(GET_NERVE(JellyfishElectric, JellyfishElectricNrvWaitWithLeftTurn))) {
+        turnDirection = 1.0f;
+    } else {
+        turnDirection = -1.0f;
+    }
+
+    MR::rotateVecDegree(&_98, -mGravity, (turnDirection * (0.2f * turnDecay)));
 }
 
 void JellyfishElectric::knockOut() {

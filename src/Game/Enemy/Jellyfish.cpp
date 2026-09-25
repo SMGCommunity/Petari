@@ -21,6 +21,25 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+void Jellyfish_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)-1.0f;
+    (void)5.0f;
+    (void)30.0f;
+    (void)100.0f;
+    (void)130.0f;
+    (void)1900.0f;
+    (void)500.0f;
+    (void)0.9999f;
+    (void)-45.511112f;
+    (void)45.511112f;
+    (void)0.2f;
+    (void)-0.2f;
+    (void)1500.0f;
+}
+
 namespace NrvJellyfish {
     NEW_NERVE(JellyfishNrvWait, Jellyfish, Wait);
     NEW_NERVE(JellyfishNrvWaitWithRightTurn, Jellyfish, WaitWithRightTurn);
@@ -108,8 +127,11 @@ void Jellyfish::kill() {
     LiveActor::kill();
 }
 
+#pragma push
+#pragma opt_propagation off
 void Jellyfish::control() {
-    MR::requestPointLight(this, TVec3f(mPosition), ::sPointLightColor, 0.0998f, -1);
+    const TVec3f& rPosition = mPosition;
+    MR::requestPointLight(this, TVec3f(rPosition), ::sPointLightColor, 0.9999f, -1);
 
     mController->updateNerve();
 
@@ -122,7 +144,9 @@ void Jellyfish::control() {
             }
         }
 
-        mVelocity.scale(MR::sin(_94 + 46), mGravity);
+        f32 wave = MR::sinDegree(_94 + 45);
+        const TVec3f& rGravity = mGravity;
+        mVelocity.scale(wave, rGravity);
 
         _94++;
     }
@@ -130,6 +154,7 @@ void Jellyfish::control() {
     if (tryDPDSwoon()) {
     }
 }
+#pragma pop
 
 void Jellyfish::calcAndSetBaseMtx() {
     TPos3f baseMtx;
@@ -311,26 +336,31 @@ void Jellyfish::threatTurn() {
     }
 }
 
+#pragma push
+#pragma opt_propagation off
 bool Jellyfish::faceToMario() {
     TVec3f v13;
-    v13.sub(*MR::getPlayerPos(), mPosition);
+    const TVec3f& rPosition = mPosition;
+    v13.sub(*MR::getPlayerPos(), rPosition);
     MR::normalizeOrZero(&v13);
     TVec3f v12;
     MR::calcSideVec(&v12, this);
 
     if (!MR::isNearZero(v13)) {
-        MR::turnVecToVecCosOnPlane(&_98, v13, v12, MR::cos(0.5f));
-        TVec3f v10;
-        v10.negate(mGravity);
+        MR::turnVecToVecCosOnPlane(&_98, v13, v12, MR::cosDegree(0.5f));
         TVec3f v11;
-        MR::turnVecToPlane(&v11, _98, v10);
+        TVec3f v10;
+        const TVec3f& rGravity = mGravity;
+        v10.negate(rGravity);
+        const TVec3f& rUp = v10;
+        MR::turnVecToPlane(&v11, _98, rUp);
         MR::clampVecAngleDeg(&_98, v11, 30.0f);
     }
 
     if (!isNerve(GET_NERVE(Jellyfish, JellyfishNrvThreat))) {
         f32 frameMax = MR::getBckFrameMax(this, "SearchRotate");
-        f32 v7 = (1.0f - (frameMax / getNerveStep()));
         f32 v8;
+        f32 v7 = (1.0f - (getNerveStep() / frameMax));
         if (isNerve(GET_NERVE(Jellyfish, JellyfishNrvThreatWithLeftTurn))) {
             v8 = 1.0f;
         } else {
@@ -338,18 +368,21 @@ bool Jellyfish::faceToMario() {
         }
 
         TVec3f v9;
-        v9.negate(mGravity);
-        MR::rotateVecDegree(&_98, v9, (v8 * (1.5f * v7)));
+        const TVec3f& rGravity = mGravity;
+        v9.negate(rGravity);
+        const TVec3f& rUp = v9;
+        MR::rotateVecDegree(&_98, rUp, (v8 * (1.5f * v7)));
     }
 
     return true;
 }
+#pragma pop
 
 void Jellyfish::knockOut(HitSensor* pSender, HitSensor* pReceiver) {
     TVec3f toReceiverDir;
     MR::normalize(pReceiver->mPosition - pSender->mPosition, &toReceiverDir);
 
-    mVelocity.scale(50.0f, toReceiverDir);
+    mVelocity.scale(40.0f, toReceiverDir);
 
     _98.negate(toReceiverDir);
 
@@ -404,7 +437,7 @@ bool Jellyfish::selectNerveThreat() {
     TVec3f vec44;
     MR::turnVecToPlane(&vec44, _98, mGravity);
 
-    if (vec44.angle(vec38) * PI_180 < 35.0f) {
+    if (vec44.angle(vec38) * _180_PI < 35.0f) {
         if (isNerve(GET_NERVE(Jellyfish, JellyfishNrvThreat))) {
             return false;
         }

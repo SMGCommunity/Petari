@@ -93,7 +93,7 @@ void FireBall::appearAndThrow(const TVec3f& rAppearPos, f32 speed, f32 angle) {
 }
 
 void FireBall::control() {
-    GXColor color = {255, 192, 0, 255};
+    static const GXColor color = {255, 192, 0, 255};
     MR::requestPointLight(this, mPosition, color, 1.0f, -1);
 }
 
