@@ -58,6 +58,8 @@ void WaterPressureBullet::kill() {
     LiveActor::kill();
 }
 
+#pragma push
+#pragma opt_propagation off
 void WaterPressureBullet::control() {
     // FIXME
     bool v1 = true;
@@ -77,14 +79,15 @@ void WaterPressureBullet::control() {
         TVec3f stack_8;
 
         if (MR::isNearZero(mVelocity)) {
-            stack_8.set(mGravity);
+            stack_8.set(*getGravity());
         } else {
-            stack_8.set(mVelocity);
+            stack_8.set(*getVelocity());
         }
 
         MR::turnVecToVecCosOnPlane(&_8C, stack_8, _98, MR::cosDegree(-2.5f));
     }
 }
+#pragma pop
 
 void WaterPressureBullet::calcAndSetBaseMtx() {
     TPos3f pos;
