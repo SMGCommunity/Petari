@@ -252,7 +252,8 @@ void TripodBoss::initMovableArea(const TPos3f& rPos) {
 }
 
 void TripodBoss::initBodyPosition() {
-    _5D4 = mMovableArea->mCenter + mMovableArea->mBaseAxis * (mMovableArea->mRadius + _604);
+    f32 radius = mMovableArea->mRadius;
+    _5D4 = mMovableArea->mCenter + mMovableArea->mBaseAxis * (_604 + radius);
     _5C8 = _5D4;
 
     MR::makeMtxTR(mBodyMtx, _5D4, mRotation);
@@ -616,9 +617,9 @@ void TripodBoss::exeDamage() {
         MR::normalizeOrZero(&vec);
 
         if (getNerveStep() % 6 < 3) {
-            _5E0 -= vec * 80.0f;
+            _5E0 -= vec * 79.5f;
         } else {
-            _5E0 += vec * 79.5f;
+            _5E0 += vec * 80.0f;
         }
     }
 
@@ -827,6 +828,7 @@ bool TripodBoss::isBroken() const {
     if (isEndBreakDownDemo() || isEndExplosionDemo() || MR::isDead(this)) {
         return true;
     }
+
     return false;
 }
 
@@ -899,8 +901,8 @@ TripodBossStepSequence* TripodBoss::getNextStepSequence() {
     return &mStepSequence[mNextStepSeq];
 }
 
-void TripodBoss::calcLegUpVector(TVec3f* pUp, const TVec3f& a2) {
-    TVec3f v8 = a2 - mMovableArea->mCenter;
+void TripodBoss::calcLegUpVector(TVec3f* pUp, const TVec3f& rA2) {
+    TVec3f v8 = rA2 - mMovableArea->mCenter;
     MR::normalizeOrZero(&v8);
     v8.orthogonalize(mMovableArea->mBaseAxis);
     MR::normalizeOrZero(&v8);
@@ -918,9 +920,7 @@ void TripodBoss::calcDemoMovement() {
         TVec3f v7;
         v8.getTrans(v7);
         TVec3f v6;
-        v6.x = JGeometry::TUtil< f32 >::sqrt(v8.dotX());
-        v6.y = JGeometry::TUtil< f32 >::sqrt(v8.dotY());
-        v6.z = JGeometry::TUtil< f32 >::sqrt(v8.dotZ());
+        v8.getScale(v6);
         mLegs[i]->setForceEndPoint(v7);
         mLegs[i]->setDemoEffectTiming(v6.x > 1.5f);
     }

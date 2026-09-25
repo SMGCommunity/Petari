@@ -5,6 +5,14 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/StringUtil.hpp"
+
+void DinoPackunStateDamage_FORCE_MATCH_STRINGS() {
+    MR::isEqualString("ディノパックンダメージ状態", "ディノパックンダメージ状態");
+    MR::isEqualString("SE_BV_D_PAKKUN_SPIN_HIT", "SE_BV_D_PAKKUN_SPIN_HIT");
+    MR::isEqualString("SE_BM_D_PAKKUN_SLAVER", "SE_BM_D_PAKKUN_SLAVER");
+    MR::isEqualString("ディノパックンダメージ", "ディノパックンダメージ");
+}
 
 namespace {
     static const TVec3f sOutPosition(0.0f, 100.0f, -300.0f);
@@ -20,7 +28,7 @@ namespace NrvDinoPackunStateDamage {
     NEW_NERVE(DinoPackunStateDamageNrvLastDamage, DinoPackunStateDamage, LastDamage);
 };  // namespace NrvDinoPackunStateDamage
 
-DinoPackunStateDamage::DinoPackunStateDamage(DinoPackun* pHost) : ActorStateBase< DinoPackun >("ディノパックンダメージ状態", pHost), _10(0), _14(1) {
+DinoPackunStateDamage::DinoPackunStateDamage(DinoPackun* pHost) : ActorStateBase< DinoPackun >("ディノパックンダメージ状態", pHost), _10(), _14(1) {
     initNerve(GET_NERVE(DinoPackunStateDamage, DinoPackunStateDamageNrvPunched));
 }
 
