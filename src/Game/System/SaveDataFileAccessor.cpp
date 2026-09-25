@@ -32,14 +32,13 @@ void SaveDataFileAccessor::makeUserFileInfo(SaveDataUserFileInfo* pUserFileInfo,
             pUserFileInfo->mDataSize = pInfo[i + 1].mOffset - pInfo[i].mOffset;
         }
 
-        SaveDataFileInfo* pFileInfo = &pInfo[i];
-        pUserFileInfo->mData = reinterpret_cast< u8* >(getHeader()) + pFileInfo->mOffset;
+        pUserFileInfo->mData = reinterpret_cast< u8* >(getHeader()) + pInfo[i].mOffset;
 
-        if (strstr(pFileInfo->mName, "mario") != nullptr || strstr(pFileInfo->mName, "luigi") != nullptr) {
+        if (strstr(pInfo[i].mName, "mario") != nullptr || strstr(pInfo[i].mName, "luigi") != nullptr) {
             pUserFileInfo->mKind = 0;
         }
 
-        if (strstr(pFileInfo->mName, "sysconf") != nullptr) {
+        if (strstr(pInfo[i].mName, "sysconf") != nullptr) {
             pUserFileInfo->mKind = 2;
         }
     }
