@@ -2,6 +2,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/InformationMessage.hpp"
+#include "Game/Screen/MessageTagSkipTagProcessor.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
 #include "Game/System/GameSystemFunction.hpp"
 #include "Game/System/Language.hpp"
@@ -75,8 +76,8 @@ namespace {
     // static const s32 sStepToEndLogoStop = _;
     static const s32 sStepToThankYouVoice = 190;
     // static const _ sTitleLogoHeight = _;
-    // static const _ sDoubleInterval = _;
-    // static const _ sTripleInterval = _;
+    static const f32 sDoubleInterval = 60.0f;
+    static const f32 sTripleInterval = 200.0f;
     static const f32 sEndLogoPosY = 220.0f;
 };  // namespace
 
@@ -85,23 +86,23 @@ namespace {
         const char* pRegionPrefix = MR::getCurrentRegionPrefix();
 
         if (MR::isEqualString(pRegionPrefix, "Jp")) {
-            return &sStaffRollParamTable[0];
+            return &::sStaffRollParamTable[0];
         }
 
         if (MR::isEqualString(pRegionPrefix, "Us")) {
-            return &sStaffRollParamTable[1];
+            return &::sStaffRollParamTable[1];
         }
 
         if (MR::isEqualString(pRegionPrefix, "Eu")) {
-            return &sStaffRollParamTable[2];
+            return &::sStaffRollParamTable[2];
         }
 
         if (MR::isEqualString(pRegionPrefix, "Cn")) {
-            return &sStaffRollParamTable[3];
+            return &::sStaffRollParamTable[3];
         }
 
         if (MR::isEqualString(pRegionPrefix, "Kr")) {
-            return &sStaffRollParamTable[4];
+            return &::sStaffRollParamTable[4];
         }
 
         return nullptr;
@@ -145,7 +146,7 @@ namespace NrvStaffRollPicture {
     NEW_NERVE(StaffRollPictureNrvWork, StaffRollPicture, Work);
 };  // namespace NrvStaffRollPicture
 
-StaffRollPicture::StaffRollPicture(const char* pName) : LayoutActor(pName, true), mReplaceTexture(nullptr) {
+StaffRollPicture::StaffRollPicture(const char* pName) : LayoutActor(pName, true), mReplaceTexture() {
 }
 
 void StaffRollPicture::init(const JMapInfoIter& rIter) {
@@ -191,7 +192,7 @@ void StaffRollPicture::initReplaceTexture() {
 
 void StaffRollPicture::startPictureAction(s32 replaceTextureId, const char* pPaneName, const char* pAnimName) {
     if (replaceTextureId >= 0) {
-        const char* pChildPaneName = nullptr;
+        const char* pChildPaneName;
 
         if (MR::isEqualString(pPaneName, "PictureLU")) {
             pChildPaneName = "PicLU";
@@ -243,8 +244,8 @@ namespace NrvStaffRoll {
 };  // namespace NrvStaffRoll
 
 StaffRoll::StaffRoll(const char* pName)
-    : LayoutActor(pName, true), mInfo(nullptr), mLine(nullptr), mPicture(nullptr), mMsg(nullptr), mMsgLineNum(0), mMsgLine(0),
-      mTitleLogoPos(0.0f, 0.0f), mEndLogoPos(0.0f, 0.0f), _48(-1), _4C(0) {
+    : LayoutActor(pName, true), mInfo(), mLine(), mPicture(), mMsg(), mMsgLineNum(), mMsgLine(), mTitleLogoPos(0.0f, 0.0f), mEndLogoPos(0.0f, 0.0f),
+      _48(-1), _4C() {
 }
 
 void StaffRoll::init(const JMapInfoIter& rIter) {
@@ -369,18 +370,15 @@ void StaffRoll::exeTitleLogoScroll() {
     }
 }
 
-/*
 void StaffRoll::exeLineScroll() {
-    f32 v1 = MR::mod(MR::getScreenHeight() - 220.0f, ::getStaffRollParam()->mScrollSpeed);
-    f32 v2 = 14211 - (v1 == 0.0f) + (MR::getScreenHeight() - 220.0f) / ::getStaffRollParam()->mScrollSpeed;
-
-    if (v2 > _4C) {
-        return;
+    const StaffRollParam* pParam = ::getStaffRollParam();
+    s32 screenHeight = MR::getScreenHeight();
+    s32 hasRemainder = MR::mod(screenHeight - ::sEndLogoPosY, pParam->mScrollSpeed) != 0.0f;
+    s32 scrollSteps = (MR::getScreenHeight() - ::sEndLogoPosY) / ::getStaffRollParam()->mScrollSpeed;
+    if (_4C >= 14211 - (hasRemainder + scrollSteps)) {
+        setNerve(GET_NERVE(StaffRoll, StaffRollNrvEndLogoScroll));
     }
-
-    setNerve(GET_NERVE(StaffRoll, StaffRollNrvEndLogoScroll));
 }
-*/
 
 void StaffRoll::exeEndLogoScroll() {
     if (MR::isFirstStep(this)) {
@@ -623,7 +621,66 @@ bool StaffRoll::tryGenerateLine() {
     return _48 - 1 == 0;
 }
 
-// StaffRoll::makeLine
+void StaffRoll::makeLine() {
+    StaffRollLine* pLine;
+    wchar_t message[256];
+    MR::getMessageLine(message, ARRAY_SIZE(message), mMsg, mMsgLine);
+    wchar_t buffer[256] = {};
+    const wchar_t* pMessage = message;
+    s32 columnCount = 0;
+    wchar_t columns[3][256] = {};
+    wchar_t* pColumn = columns[0];
+
+    while (true) {
+        if (*pMessage == 0x1A) {
+            *pColumn++ = *pMessage++;
+            MessageEditorMessageTag tag(pMessage);
+            for (s32 i = 0; i < static_cast< s32 >(tag.getSkipLength()); i++) {
+                *pColumn = *pMessage;
+                pMessage++;
+                pColumn++;
+            }
+
+            continue;
+        }
+
+        if (*pMessage != L'|' && *pMessage != L'\0') {
+            *pColumn++ = *pMessage;
+        } else {
+            *pColumn = L'\0';
+            columnCount++;
+            if (*pMessage == L'\0') {
+                break;
+            }
+
+            pColumn = columns[columnCount];
+        }
+
+        pMessage++;
+    }
+
+    for (s32 i = 0; i < columnCount; i++) {
+        s32 positionX = MR::getScreenWidth() / 2;
+        if (columnCount == 2) {
+            if (i == 0) {
+                positionX -= ::sDoubleInterval;
+            } else if (i == 1) {
+                positionX += ::sDoubleInterval;
+            }
+        } else if (columnCount == 3) {
+            if (i == 1) {
+                positionX -= ::sTripleInterval;
+            } else if (i == 2) {
+                positionX += ::sTripleInterval;
+            }
+        }
+
+        pLine = getDeadLineLayout();
+        pLine->setPositionX(positionX);
+        MR::setTextBoxMessageRecursive(pLine, ::cPaneNameText, columns[i]);
+        pLine->appear();
+    }
+}
 
 StaffRollLine* StaffRoll::getDeadLineLayout() const {
     for (s32 i = 0; i < LINE_NUM; i++) {
@@ -640,3 +697,9 @@ namespace MR {
         return MR::getSceneObj< StaffRoll >(SceneObj_StaffRoll);
     }
 };  // namespace MR
+
+void StaffRoll_FORCE_MATCH(StaffRollLine* pLine, StaffRollPicture* pPicture, StaffRoll* pRoll) {
+    pLine->StaffRollLine::~StaffRollLine();
+    pPicture->StaffRollPicture::~StaffRollPicture();
+    pRoll->StaffRoll::~StaffRoll();
+}
