@@ -3,6 +3,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
+#include "revolution/types.h"
 
 void JetTurtle_FORCE_MATCH_STRINGS() {
     MR::isEqualString("Koura", "Koura");
@@ -330,7 +331,7 @@ void JetTurtle::exeThrowWait() {
     if (MR::isPlayerInWaterMode()) {
         MR::tryStartBck(this, "SwimFlutterboard");
 
-        if (mShellType != (s16)1) {
+        if (mShellType != static_cast< s16 >(JETTURTLETYPE_RED)) {
             MR::emitEffect(this, "SwimBubble");
         } else {
             MR::emitEffect(this, "SwimBubbleRed");
@@ -411,7 +412,7 @@ void JetTurtle::bound() {
 }
 
 inline void JetTurtle::endWait() {
-    if (mShellType == (s16)JETTURTLETYPE_GOLD) {
+    if (mShellType == static_cast< s16 >(JETTURTLETYPE_GOLD)) {
         MR::deleteEffect(this, "Glow");
     }
 }
