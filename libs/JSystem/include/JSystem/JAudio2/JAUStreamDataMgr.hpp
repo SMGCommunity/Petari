@@ -36,6 +36,10 @@ public:
         }
     }
 
+    void alloc(u32 numBlocks, JASHeap* pHeap) {
+        alloc(pHeap, JASAramStream::getBlockSize() * numBlocks);
+    }
+
     /* 0x04 */ std::bitset< N > mBits;
     /* 0x08 */ JASHeap mHeaps[N];
     /* 0x90 */ u32 mSize;
