@@ -20,6 +20,28 @@
 #include <cmath>
 #include <revolution/mtx.h>
 
+void ActorMovementUtil_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)MR::epsilon();
+    (void)-MR::epsilon();
+    (void)0.5f;
+    (void)3.0f;
+    (void)-1.0f;
+    (void)HALF_PI;
+    (void)2.0f;
+    (void)-HALF_PI;
+    (void)FLOAT_MAX;
+    (void)0.001f;
+    (void)0.95f;
+    (void)PI_180;
+    (void)2607.5945f;
+    (void)_180_PI;
+    (void)-0.999f;
+    (void)1000.0f;
+    (void)0.1f;
+}
+
 namespace {
 
     inline void DO_ROTATE(const TPos3f& rMtx, TVec3f* pVec, f32 f1) {
@@ -31,33 +53,6 @@ namespace {
             pVec->z = std::atan2(rMtx[1][0], rMtx[0][0]);
             pVec->y = asin(-rMtx[2][0]);
         }
-    }
-
-    void calcRotate(LiveActor* pActor, const TVec3f& rA2, f32 a3) {
-        TPos3f stack_44;
-        TVec3f stack_38;
-        TVec3f stack_2c;
-        TVec3f stack_20;
-        TVec3f stack_14;
-        if (MR::isBindedGround(pActor)) {
-            stack_38.set(*MR::getGroundNormal(pActor));
-        } else {
-            TVec3f stack_8 = -pActor->mGravity;
-            stack_38.set(stack_8);
-        }
-
-        MR::calcUpVec(&stack_2c, pActor);
-        MR::vecBlend(stack_2c, stack_38, &stack_20, 0.1f);
-        MR::normalizeOrZero(&stack_20);
-        if (MR::isNearZero(stack_20)) {
-            stack_20.set(stack_2c);
-        }
-
-        MR::makeMtxUpFront(&stack_44, stack_20, rA2);
-
-        DO_ROTATE(stack_44, &stack_14, a3);
-
-        pActor->mRotation.set< f32 >(stack_14.x * _180_PI, stack_14.y * _180_PI, stack_14.z * _180_PI);
     }
 
 };  // namespace
@@ -537,22 +532,6 @@ namespace MR {
                              frontVecBlendRate);
     }
 
-    bool makeMtxOnMapCollision(TPos3f* pMtx, LiveActor* pActor, f32 length) {
-        calcGravity(pActor);
-        TVec3f direction(pActor->mGravity);
-        direction.scale(length);
-        TVec3f normal = -pActor->mGravity;
-        TVec3f position(pActor->mPosition);
-        if (!getFirstPolyNormalOnLineToMap(&normal, pActor->mPosition, direction, &position, nullptr)) {
-            return false;
-        }
-
-        MtxPtr pBaseMtx = pActor->getBaseMtx();
-        TVec3f front(pBaseMtx[0][2], pBaseMtx[1][2], pBaseMtx[2][2]);
-        makeMtxUpFrontPos(pMtx, normal, front, position);
-        return true;
-    }
-
     void resetPosition(LiveActor* pActor) {
         MR::clearHitSensors(pActor);
 
@@ -588,6 +567,22 @@ namespace MR {
         pActor->mRotation.set(rot);
 
         MR::resetPosition(pActor);
+    }
+
+    bool makeMtxOnMapCollision(TPos3f* pMtx, LiveActor* pActor, f32 length) {
+        calcGravity(pActor);
+        TVec3f direction(pActor->mGravity);
+        direction.scale(length);
+        TVec3f normal = -pActor->mGravity;
+        TVec3f position(pActor->mPosition);
+        if (!getFirstPolyNormalOnLineToMap(&normal, pActor->mPosition, direction, &position, nullptr)) {
+            return false;
+        }
+
+        MtxPtr pBaseMtx = pActor->getBaseMtx();
+        TVec3f front(pBaseMtx[0][2], pBaseMtx[1][2], pBaseMtx[2][2]);
+        makeMtxUpFrontPos(pMtx, normal, front, position);
+        return true;
     }
 
     void calcVelocityMoveToDirectionHorizon(TVec3f* pA1, const LiveActor* pActor, const TVec3f& rA3, f32 a4) {
@@ -826,13 +821,12 @@ namespace MR {
     }
 
     void attenuateVelocityExceptDirection(LiveActor* pActor, const TVec3f& rA2, f32 a3) {
-        TVec3f* pVelocity = &pActor->mVelocity;
         TVec3f stack_8;
-        stack_8.killElement(pActor->mVelocity, rA2);
+        stack_8.killElement(*pActor->getVelocity(), rA2);
         stack_8.scale(a3);
-        f32 along = rA2.dot(pActor->mVelocity);
-        pVelocity->scale(along, rA2);
-        pVelocity->add(stack_8);
+        f32 along = rA2.dot(*pActor->getVelocity());
+        pActor->mVelocity.scale(along, rA2);
+        pActor->mVelocity.add(stack_8);
     }
 
     void restrictVelocity(LiveActor* pActor, f32 speed) {
@@ -977,7 +971,7 @@ namespace MR {
         TVec3f* pVelocity = &pActor->mVelocity;
         TVec3f* pGravThenVel = &pActor->mGravity;
         stack_38.killElement(*pVelocity, *pGravThenVel);
-        f32 along = pGravThenVel->dot(*pVelocity);
+        f32 along = pActor->mGravity.dot(*pVelocity);
         stack_2c.scale(along, *pGravThenVel);
         if (isOnGround(pActor)) {
             stack_38.scale(groundedScalar);
@@ -1243,6 +1237,38 @@ namespace MR {
         moveAndTurnToDirection(pActor, pA2, stack_8, a3, a4, a5, a6);
     }
 
+};  // namespace MR
+
+namespace {
+    void calcRotate(LiveActor* pActor, const TVec3f& rA2, f32 a3) {
+        TPos3f stack_44;
+        TVec3f stack_38;
+        TVec3f stack_2c;
+        TVec3f stack_20;
+        TVec3f stack_14;
+        if (MR::isBindedGround(pActor)) {
+            stack_38.set(*MR::getGroundNormal(pActor));
+        } else {
+            TVec3f stack_8 = -pActor->mGravity;
+            stack_38.set(stack_8);
+        }
+
+        MR::calcUpVec(&stack_2c, pActor);
+        MR::vecBlend(stack_2c, stack_38, &stack_20, 0.1f);
+        MR::normalizeOrZero(&stack_20);
+        if (MR::isNearZero(stack_20)) {
+            stack_20.set(stack_2c);
+        }
+
+        MR::makeMtxUpFront(&stack_44, stack_20, rA2);
+
+        DO_ROTATE(stack_44, &stack_14, a3);
+
+        pActor->mRotation.set< f32 >(stack_14.x * _180_PI, stack_14.y * _180_PI, stack_14.z * _180_PI);
+    }
+};  // namespace
+
+namespace MR {
     void moveAndTurnToDirection(LiveActor* pActor, const TVec3f& rA2, f32 a3, f32 a4, f32 a5, f32 a6) {
         TVec3f stack_8;
         calcFrontVec(&stack_8, pActor);
