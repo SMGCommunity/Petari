@@ -742,13 +742,18 @@ bool NPCActor::isEmptyNerve() const {
 }
 
 bool NPCActor::isScaleAnim() const {
-    AnimScaleController* scaleController = mScaleController;
+    AnimScaleController* pScaleController = mScaleController;
     if (mScaleController == nullptr) {
         return false;
     }
 
-    return !(MR::isNearZero(1.0f - scaleController->_C.x, 0.2f) && MR::isNearZero(1.0f - scaleController->_C.y, 0.2f) &&
-             MR::isNearZero(1.0f - scaleController->_C.z, 0.2f));
+    bool isDefaultScale = (MR::isNearZero(1.0f - pScaleController->_C.x, 0.2f) && MR::isNearZero(1.0f - pScaleController->_C.y, 0.2f) &&
+                           MR::isNearZero(1.0f - pScaleController->_C.z, 0.2f));
+    if (isDefaultScale) {
+        return false;
+    }
+
+    return true;
 }
 
 bool NPCActor::isPointingSe() const {
