@@ -176,8 +176,7 @@ AudSystem::AudSystem(JAUSectionHeap* pSectionHeap, JKRArchive* pChordArchive, JK
     setAudience(&mAudience);
 
     JAUStreamStaticAramMgr* streamAramMgr = new JAUStreamStaticAramMgr();
-    JASHeap* aramHeap = JASKernel::getAramHeap();
-    streamAramMgr->alloc(aramHeap, JASAramStream::getBlockSize() * AudParams::streamAramBlocks_perChunk);
+    streamAramMgr->alloc(AudParams::streamAramBlocks_perChunk, JASKernel::getAramHeap());
     mStreamAramMgr = streamAramMgr;
     mStreamMgr.setStreamAramMgr(mStreamAramMgr);
 
