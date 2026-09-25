@@ -16,8 +16,8 @@ public:
     const char* setMove(const char*, const char*);
     const char* setWriteSeq(const char*, const void*, u32, u8, u8);
     const char* setReadSeq(const char*, void*, u32, u32*);
-    const char* setCheck(u32, u32, u32*);
-    const char* setDelete(const char*);
+    NANDRequestInfo* setCheck(u32, u32, u32*);
+    NANDRequestInfo* setDelete(const char*);
 
     /* 0x00 */ char mPath[NAND_MAX_PATH];
     /* 0x40 */ u32 _40;

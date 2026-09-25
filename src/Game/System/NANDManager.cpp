@@ -59,7 +59,7 @@ const char* NANDRequestInfo::setReadSeq(const char* pName, void* pBuf, u32 fsBlo
     return mPath;
 }
 
-const char* NANDRequestInfo::setCheck(u32 fsBlock, u32 inode, u32* pAnswer) {
+NANDRequestInfo* NANDRequestInfo::setCheck(u32 fsBlock, u32 inode, u32* pAnswer) {
     init();
 
     mFsBlock = fsBlock;
@@ -67,7 +67,7 @@ const char* NANDRequestInfo::setCheck(u32 fsBlock, u32 inode, u32* pAnswer) {
     mInode = inode;
     mCheckAnswer = pAnswer;
 
-    return mPath;
+    return this;
 }
 
 NANDManager::NANDManager() : mManagerThread(nullptr) {
@@ -128,9 +128,9 @@ namespace MR {
     }
 };  // namespace MR
 
-const char* NANDRequestInfo::setDelete(const char* pName) {
+NANDRequestInfo* NANDRequestInfo::setDelete(const char* pName) {
     init();
     mType = 1;
     snprintf(mPath, sizeof(mPath), "%s", pName);
-    return mPath;
+    return this;
 }
