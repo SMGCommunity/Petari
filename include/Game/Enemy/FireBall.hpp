@@ -15,7 +15,7 @@ public:
     virtual void attackSensor(HitSensor*, HitSensor*);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
-    void initStarPointer(const char*);
+    void initHitSensors(const char*);
     void appearAndThrow(const TVec3f&, f32, f32);
     HitSensor* isBindedAny() const;
     void setVelocityToPlayer(f32);

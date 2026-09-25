@@ -36,7 +36,7 @@ namespace NrvFireBall {
 FireBall::FireBall(const char* pName) : LiveActor(pName), mHost(), mUp(0.0f, 1.0f, 0.0f) {
 }
 
-inline void FireBall::initStarPointer(const char* const hitSensor) {
+inline void FireBall::initHitSensors(const char* const hitSensor) {
     initHitSensor(1);
     MR::addHitSensorEnemy(this, hitSensor, 8, ::cSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
 }
@@ -46,7 +46,7 @@ void FireBall::init(const JMapInfoIter& rIter) {
 
     MR::connectToSceneEnemyDecoration(this);
 
-    initStarPointer("body");
+    initHitSensors("body");
 
     initBinder(::cBinderRadius, 0.0f, 0);
 

@@ -13,6 +13,7 @@ public:
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
+    void initHitSensors(const char* const, const char* const);
     void appear(const TVec3f&, const TVec3f&, const TVec3f&);
     void initMapToolInfo(const JMapInfoIter& rIter);
     void updateChaseFrontVec(f32);
