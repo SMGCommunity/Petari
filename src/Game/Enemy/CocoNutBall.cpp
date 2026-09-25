@@ -23,19 +23,21 @@ CocoNutBall::CocoNutBall(const char* pName)
       _C8(0.0f, 1.0f, 0.0f), _D4(10000.0f), _D8() {
 }
 
+inline void CocoNutBall::initSensors(const char* const hit1, const char* const hit2) {
+    initHitSensor(2);
+    MR::addHitSensor(this, hit1, ATYPE_COCO_NUT, 8, 40.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensor(this, hit2, ATYPE_COCO_NUT, 8, 500.0f, TVec3f(0.0f, 0.0f, 0.0f));
+
+}
+
 void CocoNutBall::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm(CocoNut::getModelName(), nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
     MR::initLightCtrl(this);
-    initHitSensor(2);
-
-    MR::addHitSensor(this, "body", ATYPE_COCO_NUT, 8, 40.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    MR::addHitSensor(this, "bind", ATYPE_COCO_NUT, 8, 500.0f, TVec3f(0.0f, 0.0f, 0.0f));
-
+    initSensors("body", "bind");
     initBinder(40.0f, 0.0f, 0);
     initEffectKeeper(0, "CocoNut", false);
-    // some weirdness with this TVec here
-    MR::initStarPointerTarget(this, 150.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::initStarPointerTarget(this, 150.0f, TVec3f(0, 0, 0));
     initSound(4, false);
     MR::initShadowVolumeCylinder(this, 60.0f);
     MR::invalidateClipping(this);
