@@ -635,7 +635,7 @@ void JetTurtle::exeTakenReserve() {
         mVelocity.zero();
 
         if (MR::isPlayerInWaterMode()) {
-            if (mShellType != JETTURTLETYPE_RED) {
+            if (mShellType != static_cast< s16 >(JETTURTLETYPE_RED)) {
                 MR::emitEffect(this, "SwimBubble");
             } else {
                 MR::emitEffect(this, "SwimBubbleRed");
