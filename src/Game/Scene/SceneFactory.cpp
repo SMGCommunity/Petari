@@ -2,9 +2,14 @@
 #include "Game/Scene/GameScene.hpp"
 #include "Game/Scene/IntermissionScene.hpp"
 #include "Game/Scene/LogoScene.hpp"
+#include <algorithm>
 
 namespace {
     struct Name2CreateFunc {
+        bool operator==(const char* pName) const {
+            return strcmp(mName, pName) == 0;
+        }
+
         /* 0x0 */ const char* mName;
         /* 0x4 */ Scene* (*mCreateFunc)();
     };
@@ -23,14 +28,7 @@ namespace {
 
 namespace MR {
     Scene* createScene(const char* pName) {
-        const Name2CreateFunc* pIter;
-        for (pIter = &::cCreateTable[0]; pIter != &::cCreateTable[ARRAY_SIZE(::cCreateTable)]; pIter++) {
-            bool isEqualName = strcmp(pIter->mName, pName) == false;
-
-            if (!isEqualName) {
-                break;
-            }
-        }
+        const Name2CreateFunc* pIter = std::find(::cCreateTable, ::cCreateTable + ARRAY_SIZE(::cCreateTable), pName);
 
         if (pIter == &::cCreateTable[ARRAY_SIZE(::cCreateTable)]) {
             return nullptr;

@@ -19,22 +19,12 @@ void IntermissionScene::update() {
 void IntermissionScene::draw() const {
     J2DOrthoGraphSimple graph;
     graph.setPort();
-    JUtility::TColor v1;
-    v1.r = 0;
-    v1.g = 0;
-    v1.b = 0;
-    v1.a = -1;
-    JUtility::TColor v4;
-    v4.r = 255;
-    v4.g = 255;
-    v4.b = 255;
-    v4.a = 255;
-    graph.setColor(v1, v1, v1, v4);
+    JUtility::TColor color(0, 0, 0, 255);
+    graph.setColor(color);
 
-    f32 height = JUTVideo::getManager()->getRenderMode()->efbHeight;
+    f32 height = static_cast< s32 >(JUTVideo::getManager()->getRenderMode()->efbHeight);
     f32 width = MR::getScreenWidth();
-    TBox2f box(0.0f, 0.0f, 0.0f + height, 0.0f + width);
-    graph.fillBox(box);
+    graph.fillBox(0.0f, 0.0f, width, height);
 }
 
 void IntermissionScene::setCurrentSceneControllerState(const char* pState, ...) {
