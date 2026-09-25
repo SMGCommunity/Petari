@@ -63,6 +63,7 @@ void BegomanBaby::init(const JMapInfoIter& rIter) {
     if (mHost == nullptr) {
         mHost = this;
     }
+
     initBinder(45.0f, 45.0f, 0);
     initNerve(GET_NERVE(BegomanBaby, HostTypeNrvWait));
     initSensor(0, 40.0f, 80.0f, "Locator1");
@@ -131,6 +132,7 @@ void BegomanBaby::killWithGenItem() {
     if (appearedStarPiece) {
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
+
     kill();
 }
 
@@ -144,7 +146,8 @@ void BegomanBaby::control() {
         mTiredCounter = 0;
     }
 
-    checkTouchElectricRail(isNerve(GET_NERVE(BegomanBaby, HostTypeNrvBlow)));
+    isNerve(GET_NERVE(BegomanBaby, HostTypeNrvBlow));
+    checkTouchElectricRail(true);
 
     if (MR::isStep(this, 1)) {
         if (isNerve(GET_NERVE(BegomanBaby, HostTypeNrvWait)) || isNerve(GET_NERVE(BegomanBaby, HostTypeNrvNoCalcWait))) {
@@ -220,6 +223,7 @@ void BegomanBaby::exePursue() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_EM_BABYBEGO_PURSUE_START");
     }
+
     updateRotateY(0.5f, 0.5f);
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_PURSUE");
     exePursueCore(::hPursueParam, GET_NERVE(BegomanBaby, HostTypeNrvBrake), GET_NERVE(BegomanBaby, HostTypeNrvTurn), *getSoundNormal(), 1.0f);
@@ -277,6 +281,7 @@ void BegomanBaby::exeHitReaction() {
 void BegomanBaby::exeTired() {
     if (MR::isFirstStep(this)) {
     }
+
     updateRotateY(0.2f, 0.5f);
     MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_TURN");
     exeTiredCore(::hTiredParam, GET_NERVE(BegomanBaby, HostTypeNrvWait));
@@ -325,6 +330,7 @@ void BegomanBaby::exeAfterLaunchOnGround() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Bound");
     }
+
     reboundWallAndGround(&mFaceVec, false);
     MR::applyVelocityDampAndGravity(this, 3.0f, 0.8f, 0.98f, 0.98f, 1.0f);
 
@@ -406,6 +412,7 @@ void BegomanBaby::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                 MR::startSound(this, "SE_EM_BABYBEGO_COLLI");
             }
         }
+
         setNerve(GET_NERVE(BegomanBaby, HostTypeNrvHitReaction));
     }
 }
@@ -460,8 +467,9 @@ bool BegomanBaby::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
             return true;
         }
 
-        f32 bodyRadius = getSensor("body")->mRadius;
-        f32 f1 = pSender->mRadius / bodyRadius;
+        const f32 bodyRadius = getSensor("body")->mRadius;
+        const f32 senderRadius = pSender->mRadius;
+        f32 f1 = senderRadius / bodyRadius;
 
         MR::addVelocityLimit(this, dirFromReceiverToSender * 4.0f * f1);
 
@@ -477,6 +485,7 @@ bool BegomanBaby::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
 
         return true;
     }
+
     return false;
 }
 

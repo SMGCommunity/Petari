@@ -1331,7 +1331,7 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/RingBeam.cpp"),
             Object(NonMatching, "Game/Enemy/RingBeamer.cpp"),
             Object(NonMatching, "Game/Enemy/SamboFunction.cpp"),
-            Object(NonMatching, "Game/Enemy/SamboHead.cpp"),
+            Object(Matching, "Game/Enemy/SamboHead.cpp"),
             Object(NonMatching, "Game/Enemy/SearchBeamer.cpp"),
             Object(NonMatching, "Game/Enemy/Snakehead.cpp"),
             Object(Matching, "Game/Enemy/SpinHitController.cpp"),

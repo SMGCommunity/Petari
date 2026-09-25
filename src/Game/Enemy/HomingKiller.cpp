@@ -98,6 +98,7 @@ namespace {
                 return true;
             }
         }
+
         return false;
     }
 };  // namespace
@@ -105,8 +106,8 @@ namespace {
 HomingKiller::HomingKiller(const char* pName)
     : LiveActor(pName), mType(Type_HomingKiller), mChaseStartDist(2000.0f), mChaseEndDist(::cChaseEndDistance), mChaseRotateSpeed(0.9997f),
       mChaseStartAngle(::cChaseStartAngle), mFront(0.0f, 0.0f, 1.0f), mUp(0.0f, 1.0f, 0.0f), mBasePos(gZeroVec), mBaseFront(0.0f, 0.0f, 1.0f),
-      mBaseUp(0.0f, 1.0f, 0.0f), mFreezeTime(0), mFreezePos(gZeroVec), mUnfreezeNerve(nullptr), mChaseInvalidTime(0), mMoveTime(0),
-      mTargetSensor(nullptr), mDisableChase(false), mIsLinearShot(false), mUseFullSightAngle(false), mPropeller(nullptr), mTorpedoLight(nullptr) {
+      mBaseUp(0.0f, 1.0f, 0.0f), mFreezeTime(0), mFreezePos(gZeroVec), mUnfreezeNerve(), mChaseInvalidTime(0), mMoveTime(0), mTargetSensor(),
+      mDisableChase(), mIsLinearShot(), mUseFullSightAngle(), mPropeller(), mTorpedoLight() {
     mBaseMtx.identity();
     mEffectMtx.identity();
 }
@@ -272,6 +273,7 @@ void HomingKiller::control() {
                 mUp.set(up);
             }
         }
+
         updateBaseMtxNoRotateZ();
     }
 }
@@ -301,6 +303,7 @@ void HomingKiller::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                 setNerve(GET_NERVE(HomingKiller, HomingKillerNrvGoToTarget));
             }
         }
+
         return;
     }
 
@@ -313,6 +316,7 @@ void HomingKiller::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         if (MR::sendMsgEnemyAttackExplosion(pReceiver, pSender)) {
             setNerve(GET_NERVE(HomingKiller, HomingKillerNrvBreak));
         }
+
         return;
     }
 
@@ -437,6 +441,7 @@ void HomingKiller::updateRotateZ(const TVec3f& rDir) {
                 angle = 0.0f;
             }
         }
+
         mRotation.z = angle;
     }
 }
@@ -457,6 +462,7 @@ bool HomingKiller::processMove() {
         } else {
             front.set(mFront);
         }
+
         MR::turnVecToVecCos(&mFront, mFront.copy(), front, ::cMoveRotateCosineMax, mGravity);
     }
 
@@ -630,15 +636,14 @@ bool HomingKiller::isUpdateChaseFrontVec(const TVec3f& rFront) const {
 }
 
 void HomingKiller::calcFrontVecToTarget(TVec3f* pFront) const {
-    // FIXME: TVec3 stack order
-    // https://decomp.me/scratch/EdWwc
-
+    TVec3f targetPos;
     TVec3f playerUp;
     MR::getPlayerUpVec(&playerUp);
     MR::normalize(&playerUp);
     playerUp.scale(mType == Type_Torpedo ? ::cChaseTargetHeightTorpedo : ::cChaseTargetHeight);
     TVec3f target;
-    target.sub(*MR::getPlayerPos() + playerUp, mPosition);
+    targetPos.add(*MR::getPlayerPos(), playerUp);
+    target.sub(targetPos, mPosition);
     MR::normalize(target, pFront);
 }
 
@@ -720,11 +725,13 @@ void HomingKiller::exeAppear() {
             MR::startBpk(this, "Move");
             MR::startBrk(this, "Move");
         }
+
         if (mType == Type_Torpedo) {  // FIXME
             MR::startBck(mPropeller, "RotateTorpedo");
             mTorpedoLight->appear();
             MR::startBck(mTorpedoLight, "Appear");
         }
+
         setBckRate(0.0f, true);
     }
 
@@ -813,6 +820,7 @@ void HomingKiller::exeFreeze() {
         if (mFreezeTime == 0) {
             MR::startDPDHitSound();
         }
+
         if (mType != Type_MagnumKiller) {
             MR::setBckRate(this, 0.0f);
         }
@@ -902,6 +910,7 @@ void HomingKiller::exeBreak() {
             MR::startSound(this, "SE_EM_KILLER_EXPLOSION");
             MR::releaseSoundHandle(this, "SE_EM_KILLER_EXPLOSION");
         }
+
         MR::startRumbleWithShakeCameraWeak(this, "強", "中", ::cCameraShakeDistance, ::cCameraShakeDistance * 2);
     }
 
@@ -931,7 +940,7 @@ void HomingKiller::exeGoToTarget() {
     }
 }
 
-HomingKillerLauncher::HomingKillerLauncher(const char* pName) : LiveActor("ホーミングキラーランチャー"), mKiller(nullptr) {
+HomingKillerLauncher::HomingKillerLauncher(const char* pName) : LiveActor("ホーミングキラーランチャー"), mKiller() {
 }
 
 void HomingKillerLauncher::init(const JMapInfoIter& rIter) {

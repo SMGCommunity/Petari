@@ -64,7 +64,7 @@ void JellyfishElectric::init(const JMapInfoIter& rIter) {
     initEffectKeeper(2, nullptr, false);
     MR::addEffectHitNormal(this, nullptr);
     initSound(4, false);
-    MR::initStarPointerTarget(this, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::initStarPointerTarget(this, 400.0f, TVec3f(0.0f, 0.0f, 0.0f));
     mController = new AnimScaleController(nullptr);
     mBindStarPtr = new WalkerStateBindStarPointer(this, mController);
     MR::initShadowVolumeSphere(this, 230.0f);
@@ -94,8 +94,7 @@ void JellyfishElectric::kill() {
 }
 
 void JellyfishElectric::control() {
-    Color8 clr = ::sPointLightColor;
-    MR::requestPointLight(this, TVec3f(mPosition), clr, 0.0998f, -1);
+    MR::requestPointLight(this, TVec3f(mPosition), ::sPointLightColor, 0.9999f, -1);
     MR::changeShowModelFlagSyncNearClipping(this, 700.0f);
     mController->updateNerve();
 
@@ -110,7 +109,8 @@ void JellyfishElectric::control() {
             }
         }
 
-        mVelocity.scale(MR::sin(_94 + 0x2D), mGravity);
+        f32 wave = MR::sinDegree(_94 + 45);
+        mVelocity.scale(wave, mGravity);
         _94++;
     }
 }
@@ -160,7 +160,7 @@ void JellyfishElectric::exeDeath() {
         MR::startAllAnim(this, "Death");
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_JELYELEC_PRE_DEAD");
+    MR::startLevelSound(this, "SE_EM_LV_JELLYELEC_PRE_DEAD");
     if (MR::isStep(this, 30) || MR::isBinded(this)) {
         MR::startSound(this, "SE_EM_JELLYELEC_DEAD");
         kill();
@@ -172,7 +172,7 @@ void JellyfishElectric::exeAttack() {
         MR::startAllAnim(this, "Attack");
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_JELYELEC_ATTACK");
+    MR::startLevelSound(this, "SE_EM_LV_JELLYELEC_ATTACK");
 
     if (MR::isBckStopped(this)) {
         setNerve(GET_NERVE(JellyfishElectric, JellyfishElectricNrvWait));

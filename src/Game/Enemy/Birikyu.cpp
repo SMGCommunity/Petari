@@ -22,15 +22,14 @@ namespace NrvBirikyu {
     NEW_NERVE(HostTypeStopPointing, Birikyu, StopPointing);
 };  // namespace NrvBirikyu
 
-void FORCE_OPERATOR() {
-    TVec3f vec;
+void Birikyu_FORCE_MATCH(const TVec3f& rVec) {
+    TVec3f vec(rVec);
     vec * 1.0f;
     vec + TVec3f(1.0f);
 }
 
 Birikyu::Birikyu(const char* pName)
-    : LiveActor(pName), _8C(nullptr), _90(gZeroVec), _9C(gZeroVec), _A8(false), _A9(false), _AC(0.0f, 1.0f, 0.0f), _B8(0.0f, 0.0f, 1.0f), _C4(0.0f),
-      _C8(10.0f) {
+    : LiveActor(pName), _8C(), _90(gZeroVec), _9C(gZeroVec), _A8(), _A9(), _AC(0.0f, 1.0f, 0.0f), _B8(0.0f, 0.0f, 1.0f), _C4(), _C8(10.0f) {
 }
 
 void Birikyu::init(const JMapInfoIter& rIter) {
@@ -69,17 +68,11 @@ void Birikyu::initAfterPlacement() {
         TPos3f matrix;
         matrix.identity();
         MR::makeMtxRotate(matrix.toMtxPtr(), mRotation);
-        f32 z1 = matrix.mMtx[2][1];
-        f32 y1 = matrix.mMtx[1][1];
-        f32 x1 = matrix.mMtx[0][1];
-        _AC.set(x1, y1, z1);
+        matrix.getYDir(_AC);
         MR::normalize(&_AC);
-        f32 z2 = matrix.mMtx[2][2];
-        f32 y2 = matrix.mMtx[1][2];
-        f32 x2 = matrix.mMtx[0][2];
-        _B8.set(x2, y2, z2);
+        matrix.getZDir(_B8);
         MR::normalize(&_B8);
-        mPosition.set(_9C + _9C * 400.0f);
+        mPosition.set(_9C + _B8 * 400.0f);
     }
 }
 
@@ -163,7 +156,10 @@ void Birikyu::initRail(const JMapInfoIter& rIter) {
 
 void Birikyu::initCollision() {
     initHitSensor(1);
-    MR::addHitSensorAtJointEnemy(this, "body", getCenterJointName(), 16, getHitRadius() * mScale.x, TVec3f(0.0f, 0.0f, 0.0f));
+    TVec3f offset(0.0f, 0.0f, 0.0f);
+    f32 radius = getHitRadius();
+    radius *= mScale.x;
+    MR::addHitSensorAtJointEnemy(this, "body", getCenterJointName(), 16, radius, offset);
 }
 
 void Birikyu::initShadow() {
@@ -207,6 +203,7 @@ void Birikyu::exeMove() {
 
             if (arg > 0) {
                 setNerve(GET_NERVE(Birikyu, HostTypeWaitAtEdge));
+                return;
             } else {
                 MR::emitEffect(this, "Clash");
             }
@@ -298,9 +295,11 @@ void BirikyuWithFace::calcAndSetBaseMtx() {
         if (_CC) {
             vec.negate();
         }
+
         if (!MR::isRailGoingToEnd(this)) {
             vec.negate();
         }
+
         TVec3f vec2(_AC);
         if (MR::isSameDirection(vec2, vec)) {
             MR::makeMtxSideFront(&vec3, vec, _B8);
@@ -310,6 +309,7 @@ void BirikyuWithFace::calcAndSetBaseMtx() {
     } else {
         vec3.makeRotate(_AC, _C4);
     }
+
     vec3.mMtx[0][3] = mPosition.x;
     vec3.mMtx[1][3] = mPosition.y;
     vec3.mMtx[2][3] = mPosition.z;
