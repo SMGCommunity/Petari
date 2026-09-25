@@ -76,10 +76,14 @@ void StrayTico::initSensor() {
     MR::invalidateHitSensor(this, "Body");
 }
 
+inline void StrayTico::setShadowDrop(const char* const pos) {
+    const TVec3f offset(0.0f, 0.0f, 0.0f);
+    MR::setShadowDropPositionAtJoint(this, nullptr, pos, offset);
+}
+
 void StrayTico::initShadow() {
     MR::initShadowVolumeOval(this, TVec3f(40.0f, 40.0f, 20.0f));
-    const TVec3f offset(0.0f, 0.0f, 0.0f);
-    MR::setShadowDropPositionAtJoint(this, nullptr, "PowerStarC", offset);
+    setShadowDrop("PowerStarC");
     MR::onCalcShadow(this, nullptr);
 }
 
