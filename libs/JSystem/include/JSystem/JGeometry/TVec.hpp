@@ -527,7 +527,8 @@ namespace JGeometry {
 
         // appears to be needed in RingBeam to match stack in some places
         TVec3 scaleInline(f32 scalar) const {
-            TVec3 ret(*this);
+            const TVec3& rSelf = *this;
+            TVec3 ret(rSelf);
             ret.scale(scalar);
             return ret;
         }

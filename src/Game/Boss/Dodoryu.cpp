@@ -343,7 +343,7 @@ void Dodoryu::snapToGround() {
     Triangle triangle;
     TVec3f v4;
 
-    if (MR::getFirstPolyOnLineToMap(&v4, &triangle, mPosition - mGravity.operator*(200.0f), mGravity * 1200.0f)) {
+    if (MR::getFirstPolyOnLineToMap(&v4, &triangle, mPosition - mGravity.scaleInline(200.0f), mGravity.scaleInline(1200.0f))) {
         _128 = *triangle.getNormal(0);
 
         turnUpVecTo(-mGravity);
@@ -1057,7 +1057,7 @@ void DodoryuRabbit::updatePos(f32 f1) {
 
     Triangle triangle = Triangle();
     TVec3f vecA4;
-    if (!MR::getFirstPolyOnLineToMap(&vecA4, &triangle, mPosition - mGravity * 200.0f, mGravity * 1200.0f)) {
+    if (!MR::getFirstPolyOnLineToMap(&vecA4, &triangle, mPosition - mGravity.scaleInline(200.0f), mGravity.scaleInline(1200.0f))) {
         vecA4.set(railPos);
     }
 

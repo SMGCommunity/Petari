@@ -546,10 +546,13 @@ bool SkeletalFishGuard::isInScreen() const NO_INLINE {
     return MR::calcScreenPosition(&screen, mPosition);
 }
 
+// this is the only way I could match this
+// TODO fix
+#pragma push
+#pragma opt_propagation off
 bool SkeletalFishGuard::isPlayerInAttackRange() const {
-    // FIXME: is there some inline that calculates vector to player?
-
-    TVec3f v7 = *MR::getPlayerCenterPos() - mPosition;
+    const TVec3f& rPosition = mPosition;
+    TVec3f v7 = *MR::getPlayerCenterPos() - rPosition;
 
     if (v7.length() > 5000.0f) {
         return false;
@@ -560,12 +563,15 @@ bool SkeletalFishGuard::isPlayerInAttackRange() const {
     }
 
     MR::normalize(&v7);
-    if (v7.dot(_D0) < MR::cosDegree(180.0f)) {
+    f32 minCos = MR::cosDegree(180.0f);
+    const TVec3f& rFront = _D0;
+    if (v7.dot(rFront) < minCos) {
         return false;
     }
 
     return true;
 }
+#pragma pop
 
 bool SkeletalFishGuard::isLineOfSightClear() const {
     TVec3f v12 = *MR::getPlayerCenterPos() - mPosition;

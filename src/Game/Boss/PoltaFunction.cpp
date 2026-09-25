@@ -179,6 +179,10 @@ namespace PoltaFunction {
         return true;
     }
 
+// this is the only way I could match this
+// TODO fix
+#pragma push
+#pragma opt_propagation off
     bool appearRockCircle(Polta* pPolta, const TVec3f& rCenter, f32 radius, s32 index, s32 count, s32 rockType) {
         PoltaRock* const pRock = pPolta->mRockHolder->getDeadMember();
         if (pRock == nullptr) {
@@ -200,10 +204,12 @@ namespace PoltaFunction {
             break;
         }
 
-        TVec3f direction(pPolta->_C4);
+        const TVec3f& rFront = pPolta->_C4;
+        TVec3f direction(rFront);
         f32 sign = index % 2 ? 1.0f : -1.0f;
         f32 angle = sign * (15.0f + 7.0f * (index + 1));
-        MR::rotateVecDegree(&direction, pPolta->mGravity, angle);
+        const TVec3f& rGravity = pPolta->mGravity;
+        MR::rotateVecDegree(&direction, rGravity, angle);
         direction.orthogonalize(pPolta->mGravity);
         MR::normalizeOrZero(&direction);
 
@@ -211,9 +217,11 @@ namespace PoltaFunction {
         position.scaleAdd(radius, direction, rCenter);
         TVec3f offset(radius * -MR::sinDegree(angle), 0.0f, radius * MR::cosDegree(angle));
 
-        pRock->start(pPolta, position, offset);
+        const TVec3f& rOffset = offset;
+        pRock->start(pPolta, position, rOffset);
         return true;
     }
+#pragma pop
 
     bool appearWhiteRockCircle(Polta* pPolta, const TVec3f& rCenter, f32 radius, s32 index, s32 count) {
         return appearRockCircle(pPolta, rCenter, radius, index, count, 0);
