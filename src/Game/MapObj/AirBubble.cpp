@@ -11,6 +11,13 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void AirBubble_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)MR::pi();
+    (void)2.0f;
+}
+
 namespace {
     const f32 cHitSensorRadius = 130.0f;
     const f32 cSwingRange = 250.0f;
@@ -83,6 +90,10 @@ void AirBubble::appearMove(const TVec3f& rTrans, s32 life) {
     mLife = life > 0 ? life : ::cDefaultLife;
 }
 
+// required to match
+// TODO remove
+#pragma push
+#pragma opt_propagation off
 void AirBubble::exeWait() {
     if (MR::isFirstStep(this)) {
     }
@@ -109,6 +120,7 @@ void AirBubble::exeWait() {
 
     mPosition = _8C + TVec3f(0.0f, 1.0f, 0.0f) * _B0 * 1.0f;
 }
+#pragma pop
 
 void AirBubble::exeMove() {
     if (MR::isFirstStep(this)) {

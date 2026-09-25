@@ -16,15 +16,15 @@ namespace NrvPalmIsland {
     NEW_NERVE(PalmIslandNrvFloat, PalmIsland, Float);
 };  // namespace NrvPalmIsland
 
+PalmIsland::~PalmIsland() {
+}
+
 PalmIsland::PalmIsland(const char* pName) : LiveActor(pName) {
     _8C = 0;
     _90.x = 0.0f;
     _90.y = 0.0f;
     _90.z = 0.0f;
     _9C = 0;
-}
-
-PalmIsland::~PalmIsland() {
 }
 
 void PalmIsland::init(const JMapInfoIter& rIter) {
@@ -50,6 +50,10 @@ inline void PalmIsland::exeWait() {
     }
 }
 
+// required to match
+// TODO remove
+#pragma push
+#pragma opt_propagation off
 void PalmIsland::exeFloat() {
     if (MR::isFirstStep(this)) {
         _90 = mPosition;
@@ -69,5 +73,6 @@ void PalmIsland::exeFloat() {
     }
 
     _9C = temp;
-    mVelocity.scale(value, mGravity);
+    mVelocity.scale(value, *getGravity());
 }
+#pragma pop

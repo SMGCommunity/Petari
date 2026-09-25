@@ -5,6 +5,11 @@
 #include "Game/Util.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
+void FireBar_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)-1.0f;
+}
+
 namespace NrvFireBar {
     NEW_NERVE(FireBarNrvWait, FireBar, Wait);
 };  // namespace NrvFireBar
@@ -76,7 +81,7 @@ void FireBarBall::controlEmitEffect() {
 }
 
 FireBar::FireBar(const char* pName) : LiveActor(pName) {
-    mFireBalls = 0;
+    mFireBalls = nullptr;
     mFireBallCount = 5;
     _94.x = 0.0f;
     _94.y = 0.0f;
@@ -177,7 +182,6 @@ void FireBar::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 void FireBar::updateHitSensor(HitSensor* pSensor) {
-    s32 i;
     f32 minDistance = FLOAT_MAX;
 
     TVec3f position = mPosition;
@@ -195,13 +199,11 @@ void FireBar::updateHitSensor(HitSensor* pSensor) {
     end.scale(mStickDistance + 100.0f * (fireBallCount - 1), _94);
     end.scaleAdd(50.0f, up, end);
 
-    for (i = 0; i < mStickCount; i++) {
-        const TVec3f& pos = mPosition;
-
+    for (s32 i = 0; i < mStickCount; i++) {
         TVec3f startWorld;
-        startWorld.add(start, pos);
+        startWorld.add(start, *getPosition());
         TVec3f endWorld;
-        endWorld.add(end, pos);
+        endWorld.add(end, *getPosition());
 
         TVec3f footPos;
         MR::calcPerpendicFootToLineInside(&footPos, *MR::getPlayerCenterPos(), startWorld, endWorld);
