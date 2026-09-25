@@ -166,7 +166,7 @@ void KoopaStateAttackShockWave::exeJump() {
 
         KoopaFunction::emitKoopaShockWave(mHost);
 
-        mHost->mVelocity.set2(0.0f);
+        mHost->mVelocity.zero();
 
         setNerve(GET_NERVE(KoopaStateAttackShockWave, KoopaStateAttackShockWaveNrvLand));
     }

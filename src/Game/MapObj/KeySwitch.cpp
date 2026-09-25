@@ -135,7 +135,7 @@ void KeySwitch::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::tryStartBck(this, "Rotation");
         MR::setBckRate(this, 1.0f);
-        mVelocity.set2(0.0f);
+        mVelocity.zero();
         MR::offCalcGravity(this);
     }
 }

@@ -79,7 +79,7 @@ bool MarioActor::tryThrow() {
         mMarioAnim->changeThrowAnimation(pSensor);
 
         _F1C = 30;
-        mVelocity.set2(0.0f);
+        mVelocity.zero();
 
         if (isJumping()) {
             _38C = 1;
