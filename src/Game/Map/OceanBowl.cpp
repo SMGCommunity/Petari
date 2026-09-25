@@ -31,7 +31,7 @@ namespace {
     const f32 sTexSpeedV2 = -0.001f;
     const f32 sIndirectScale = 0.1f;
     const f32 sClippingDistance = 1000.0f;
-    const f32 sPointIntervalHalf = sPointInterval / 2.0f;
+    const f32 sPointIntervalHalf = ::sPointInterval / 2.0f;
 
     static GXColor sOceanBowlTevReg0 = {40, 40, 40, 20};
     static GXColor sOceanBowlTevReg1 = {200, 230, 210, 255};
@@ -110,8 +110,9 @@ bool OceanBowl::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, WaterI
     TVec3f v5(rPos);
     v5.sub(mPosition);
 
-    if (v5.y > 0.0f)
+    if (v5.y > 0.0f) {
         v5.y = 0.0f;
+    }
 
     if (MR::isNearZero(v5)) {
         pInfo->mEdgeDistance = B0;
@@ -160,12 +161,12 @@ void OceanBowl::movement() {
 
     updatePoints();
 
-    mTexU0 = MR::repeat(mTexU0 + ::sTexSpeedU0, 0.0f, 1.0f);
-    mTexV0 = MR::repeat(mTexV0 + ::sTexSpeedV0, 0.0f, 1.0f);
-    mTexU1 = MR::repeat(mTexU1 + ::sTexSpeedU1, 0.0f, 1.0f);
-    mTexV1 = MR::repeat(mTexV1 + ::sTexSpeedV1, 0.0f, 1.0f);
-    mTexU2 = MR::repeat(mTexU2 + ::sTexSpeedU2, 0.0f, 1.0f);
-    mTexV2 = MR::repeat(mTexV2 + ::sTexSpeedV2, 0.0f, 1.0f);
+    mTexU0 = MR::repeat2(mTexU0 + ::sTexSpeedU0, 0.0f, 1.0f);
+    mTexV0 = MR::repeat2(mTexV0 + ::sTexSpeedV0, 0.0f, 1.0f);
+    mTexU1 = MR::repeat2(mTexU1 + ::sTexSpeedU1, 0.0f, 1.0f);
+    mTexV1 = MR::repeat2(mTexV1 + ::sTexSpeedV1, 0.0f, 1.0f);
+    mTexU2 = MR::repeat2(mTexU2 + ::sTexSpeedU2, 0.0f, 1.0f);
+    mTexV2 = MR::repeat2(mTexV2 + ::sTexSpeedV2, 0.0f, 1.0f);
 }
 
 void OceanBowl::initPoints() {
@@ -234,6 +235,7 @@ void OceanBowl::initPoints() {
 
             index += 4;
         }
+
         f6 = f5;
         f8 = f7;
         f10 = f9;
@@ -263,6 +265,7 @@ void OceanBowl::moveToLeft() {
         for (s32 y = 24; y > 0; y--) {
             setPoint(x, y, getPoint(x, y - 1));
         }
+
         setPoint(x, 0, mLastPoint);
 
         TVec3f resetvec(mSide);

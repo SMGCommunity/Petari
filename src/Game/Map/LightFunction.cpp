@@ -170,10 +170,14 @@ namespace {
         GXLoadLightObjImm(&lightObj, lightID);
     }
 
+    inline void loadCameraLight(const LightInfo& rInfo, GXLightID lightID) {
+        TVec3f position(rInfo.mPos);
+        ::loadLightDiffuse(GXColor(rInfo.mColor), position, lightID);
+    }
+
     void loadLightInfoDiffuse(const LightInfo& rInfo, GXLightID lightID) NO_INLINE {
         if (rInfo.mIsFollowCamera) {
-            TVec3f v13(rInfo.mPos);
-            ::loadLightDiffuse(GXColor(rInfo.mColor), v13, lightID);
+            ::loadCameraLight(rInfo, lightID);
         } else {
             TVec3f v14(rInfo.mPos);
             MR::getCameraViewMtx().mult(v14, v14);
