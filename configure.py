@@ -2100,7 +2100,9 @@ config.libs = [
             Object(Matching, "Game/Player/MarioMessenger.cpp"),
             Object(NonMatching, "Game/Player/MarioModule.cpp"),
             Object(
-                NonMatching, "Game/Player/MarioMove.cpp", cflags=[*cflags_game, "-O3,s"]
+                NonMatching,
+                "Game/Player/MarioMove.cpp",
+                cflags=[*cflags_game, "-O3,s", '-pragma "optimizewithasm off"'],
             ),
             Object(NonMatching, "Game/Player/MarioMove2D.cpp"),
             Object(Matching, "Game/Player/MarioMove25D.cpp"),

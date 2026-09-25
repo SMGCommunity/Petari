@@ -559,7 +559,7 @@ bool MarioActor::cylinderPushCheck(const TVec3f& rOffset, f32 radius, f32 width,
         }
     }
 
-    if (mMario->getMovementStates()._A && getMovementStates()._1) {
+    if (mMario->mMovementStates._A && mMario->getMovementStates()._1) {
         return false;
     }
 

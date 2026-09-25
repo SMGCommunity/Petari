@@ -1001,7 +1001,7 @@ void MarioActor::swapTexture(const char* pMaterialName, u8 texNo) const {
 }
 
 void MarioActor::copyMaterial(J3DModel* pModel, u16 materialNo, s32 packetIndex) {
-    J3DModelData* modelData = mModels[mCurrModel]->mModelData;
+    J3DModelData* modelData = getJ3DModel()->getModelData();
     J3DMaterial* material = modelData->getJointNodePointer(materialNo)->getMesh();
     if (material == nullptr) {
         return;
@@ -1021,7 +1021,7 @@ void MarioActor::copyMaterial(J3DModel* pModel, u16 materialNo, s32 packetIndex)
     }
 
     for (u16 i = start; i <= end; i++) {
-        J3DMatPacket* matPacket = &pModel->mMatPacket[i];
+        J3DMatPacket* matPacket = pModel->getMatPacket(i);
         matPacket->mpMaterial = modelData->getMaterialNodePointer(materialIndex);
         J3DShapePacket* shapePacket = &pModel->mShapePacket[i];
         matPacket->mpInitShapePacket = shapePacket;
