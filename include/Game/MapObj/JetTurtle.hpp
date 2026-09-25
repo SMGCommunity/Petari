@@ -2,8 +2,8 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-#define JETTURTLETYPE_RED (s16)1
-#define JETTURTLETYPE_GOLD (s16)2
+#define JETTURTLETYPE_RED 1
+#define JETTURTLETYPE_GOLD 2
 
 class JetTurtle : public LiveActor {
 public:

@@ -411,7 +411,7 @@ void JetTurtle::bound() {
 }
 
 inline void JetTurtle::endWait() {
-    if (mShellType == JETTURTLETYPE_GOLD) {
+    if (mShellType == (s16)JETTURTLETYPE_GOLD) {
         MR::deleteEffect(this, "Glow");
     }
 }
@@ -684,7 +684,7 @@ void JetTurtle::exeTakenStart() {
             MR::emitEffect(this, "HandyGlow");
         }
 
-        setNerve(GET_NERVE(JetTurtle, JetTurtleNrvWait));
+        setNerve(GET_NERVE(JetTurtle, JetTurtleNrvThrowWait));
         MR::invalidateShadow(this, nullptr);
     } else {
         reset(0);
