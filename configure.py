@@ -2339,7 +2339,7 @@ config.libs = [
             Object(Matching, "Game/Screen/PlayerActionGuidance.cpp"),
             Object(NonMatching, "Game/Screen/PlayerLeft.cpp"),
             Object(NonMatching, "Game/Screen/PlayerMissLeft.cpp"),
-            Object(NonMatching, "Game/Screen/PowerStarList.cpp"),
+            Object(Matching, "Game/Screen/PowerStarList.cpp"),
             Object(Matching, "Game/Screen/PrologueLetter.cpp"),
             Object(NonMatching, "Game/Screen/ProloguePictureBook.cpp"),
             Object(NonMatching, "Game/Screen/PurpleCoinCounter.cpp"),
