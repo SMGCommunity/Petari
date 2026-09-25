@@ -4,8 +4,6 @@
 #include <cmath>
 #include <revolution/types.h>
 
-static f32 flt_80630CA0[0x408];
-
 namespace JGeometry {
     template < typename T >
     class TUtil {
