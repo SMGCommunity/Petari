@@ -6,6 +6,8 @@ class ScenarioData;
 
 class GalaxyStatusAccessor {
 public:
+    GalaxyStatusAccessor() : mScenarioData() {
+    }
     GalaxyStatusAccessor(const ScenarioData*);
 
     const char* getName() const;
@@ -33,7 +35,7 @@ public:
     bool isValidCoin100(s32) const;
     bool isHiddenStar(s32) const;
 
-    const ScenarioData* mScenarioData;  // 0x0
+    /* 0x0 */ const ScenarioData* mScenarioData;
 };
 
 namespace MR {

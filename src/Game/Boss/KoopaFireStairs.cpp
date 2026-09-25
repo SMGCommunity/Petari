@@ -30,7 +30,7 @@ KoopaFireStairs::KoopaFireStairs(const char* pName, bool a2)
     : LiveActor(pName), mIsKoopaJr(a2), mStair(), _94(0.0f, 0.0f, 1.0f), _A0(0.0f, 0.0f, 0.0f), _AC(0.0f, 1.0f, 0.0f), mBreakModel() {
 }
 
-void KoopaFireStairs::init(const JMapInfoIter& rIteR) {
+void KoopaFireStairs::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("MeteorStrike", nullptr, false);
     MR::startBrk(this, "MeteorStrike");
 
@@ -75,23 +75,23 @@ void KoopaFireStairs::makeActorDead() {
     mBreakModel->makeActorDead();
 }
 
-void KoopaFireStairs::setInfo(const KoopaBattleMapStair* pStair, const TVec3f* a2) {
+void KoopaFireStairs::setInfo(const KoopaBattleMapStair* pStair, const TVec3f* pAxis) {
     mStair = pStair;
 
     _A0.set(mPosition);
 
     MR::calcGravity(this);
 
-    if (a2 != nullptr) {
+    if (pAxis != nullptr) {
         TVec3f vec1 = mStair->mPosition - _A0;
         TVec3f vec2 = mStair->_AC - _A0;
         TVec3f vec;
         vec.cross(vec1, vec2);
 
         if (vec.dot(pStair->mGravity) > 0.0f) {
-            MR::rotateVecDegree(&_AC, *a2, MR::getRandom(0.0f, ::sFlyUpDirDegreeMax));
+            MR::rotateVecDegree(&_AC, *pAxis, MR::getRandom(0.0f, ::sFlyUpDirDegreeMax));
         } else {
-            MR::rotateVecDegree(&_AC, *a2, MR::getRandom(-::sFlyUpDirDegreeMax, 0.0f));
+            MR::rotateVecDegree(&_AC, *pAxis, MR::getRandom(-::sFlyUpDirDegreeMax, 0.0f));
         }
     }
 
@@ -112,12 +112,17 @@ void KoopaFireStairs::setInfo(const KoopaBattleMapStair* pStair, const TVec3f* a
     }
 }
 
+// this is the only way I could match this
+// TODO fix
+#pragma push
+#pragma opt_propagation off
 void KoopaFireStairs::exeFly() {
     if (mStair->isBreak()) {
         TVec3f v15(mVelocity);
         MR::normalizeOrZero(&v15);
         v15.scale(100.0f);
-        v15.add(mPosition);
+        const TVec3f& rPosition = mPosition;
+        v15.add(rPosition);
         MR::emitEffectHit(this, v15, "Hit");
         MR::emitEffect(this, "MeteorStrikeBreak");
         mVelocity.zero();
@@ -133,7 +138,7 @@ void KoopaFireStairs::exeFly() {
 
             mPosition = _A0 * (1.0f - rate) + mStair->_AC * rate;
 
-            f32 v5 = (100.0f * mStair->calcTimeRate());
+            f32 v5 = (180.0f * mStair->calcTimeRate());
             f32 v6 = MR::sinDegree(v5);
 
             mPosition.add(_AC * v6 * 1500.0f);
@@ -152,6 +157,7 @@ void KoopaFireStairs::exeFly() {
         mRotation.x = MR::repeatDegree(mRotation.x);
     }
 }
+#pragma pop
 
 void KoopaFireStairs::exeBreak() {
     if (MR::isFirstStep(this)) {

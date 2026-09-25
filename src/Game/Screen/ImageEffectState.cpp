@@ -7,12 +7,18 @@
 #include "Game/Screen/ImageEffectDirector.hpp"
 #include "Game/Screen/ScreenBlurEffect.hpp"
 
+void ImageEffectState_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)0.5f;
+    (void)0.1f;
+    (void)255.0f;
+}
+
 void ImageEffectState::update() {
-    ImageEffectBase* pBase;
+    ImageEffectBase* pCurrent = mHost->mCurrentEffect;
+    bool isCurrent = pCurrent == getEffect();
 
-    bool b = mHost->mCurrentEffect == getEffect();
-
-    if (b) {
+    if (isCurrent) {
         if (getEffect() == nullptr) {
             return;
         }
@@ -21,13 +27,13 @@ void ImageEffectState::update() {
             return;
         }
 
-        pBase = getEffect();
+        ImageEffectBase* pBase = getEffect();
         pBase->_C = true;
         pBase->notifyTurnOn();
         return;
     }
 
-    pBase = mHost->mCurrentEffect;
+    ImageEffectBase* pBase = mHost->mCurrentEffect;
 
     if (pBase != nullptr) {
         if (pBase->_C) {
@@ -42,12 +48,13 @@ void ImageEffectState::update() {
     }
 
     if (getEffect() != nullptr) {
-        pBase = getEffect();
+        ImageEffectBase* pBase = getEffect();
         pBase->_C = true;
         pBase->notifyTurnOn();
     }
 
-    mHost->setCurrentEffect(getEffect());
+    ImageEffectDirector* pHost = mHost;
+    pHost->setCurrentEffect(getEffect());
 }
 
 void ImageEffectState::forceOff() {
@@ -66,8 +73,7 @@ void ImageEffectState::forceOff() {
 
 namespace ImageEffectStateImpl {
     StateBloomNormal::StateBloomNormal(ImageEffectDirector* pHost)
-        : ImageEffectState(pHost), _8(true), _C(0), _10(0.0f), mBloomIntensity(0), _18(0.0f), mThreshold(0), _20(0.0f), mIntensity1(0), _28(0.0f),
-          mIntensity2(0) {
+        : ImageEffectState(pHost), _8(true), _C(), _10(), mBloomIntensity(), _18(), mThreshold(), _20(), mIntensity1(), _28(), mIntensity2() {
     }
 
     void StateBloomNormal::update() {
@@ -78,10 +84,11 @@ namespace ImageEffectStateImpl {
             _28 = mIntensity2;
             _8 = false;
         } else {
-            _10 += ((mBloomIntensity + 0.5f) - _10) * 0.1f;
-            _18 += ((mThreshold + 0.5f) - _18) * 0.1f;
-            _20 += ((mIntensity1 + 0.5f) - _20) * 0.1f;
-            _28 += ((mIntensity2 + 0.5f) - _28) * 0.1f;
+            f32 rate = 0.1f;
+            _10 += ((mBloomIntensity + 0.5f) - _10) * rate;
+            _18 += ((mThreshold + 0.5f) - _18) * rate;
+            _20 += ((mIntensity1 + 0.5f) - _20) * rate;
+            _28 += ((mIntensity2 + 0.5f) - _28) * rate;
 
             if (_10 > 255.0f) {
                 _10 = 255.0f;
@@ -100,10 +107,17 @@ namespace ImageEffectStateImpl {
             }
         }
 
-        static_cast< BloomEffect* >(StateBloomNormal::getEffect())->_14 = _10;
-        static_cast< BloomEffect* >(StateBloomNormal::getEffect())->_20 = _18;
-        static_cast< BloomEffect* >(StateBloomNormal::getEffect())->_18 / 255.0f;
-        static_cast< BloomEffect* >(StateBloomNormal::getEffect())->_1C / 255.0f;
+        u8 bloomIntensity = _10;
+        static_cast< BloomEffect* >(StateBloomNormal::getEffect())->_14 = bloomIntensity;
+
+        u8 threshold = _18;
+        static_cast< BloomEffect* >(StateBloomNormal::getEffect())->_20 = threshold;
+
+        u8 intensity1 = _20;
+        static_cast< BloomEffect* >(StateBloomNormal::getEffect())->_18 = intensity1 / 255.0f;
+
+        u8 intensity2 = _28;
+        static_cast< BloomEffect* >(StateBloomNormal::getEffect())->_1C = intensity2 / 255.0f;
 
         ImageEffectState::update();
     }

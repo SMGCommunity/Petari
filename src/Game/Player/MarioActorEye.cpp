@@ -6,6 +6,11 @@
 #include "Game/Util/ModelUtil.hpp"
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 
+void MarioActorEye_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 static u8 sBlinkStates[] = {0, 1, 2, 2, 2, 2, 1, 1, 0, 0};
 
 void MarioActor::initBlink() {
@@ -39,11 +44,13 @@ void MarioActor::updateBlink() {
     }
 
     J3DAnmTexPattern* pPattern = mEyeRes;
-    if (pPattern) {
+    if (pPattern != nullptr) {
         f32 frame;
 
         if (pPattern->mAttribute == 2) {
-            frame = 1.0f + pPattern->mFrame;
+            const f32 currentFrame = pPattern->mFrame;
+            frame = currentFrame;
+            frame += 1.0f;
 
             if (frame >= pPattern->mFrameMax - 1.0f) {
                 frame = 0.0f;
@@ -60,7 +67,8 @@ void MarioActor::updateBlink() {
             u16 texNo;
             mEyeRes->getTexNo(i, &texNo);
 
-            if (eyeLidMaterial == mEyeRes->mUpdateMaterialID[i]) {
+            u16 materialID = mEyeRes->mUpdateMaterialID[i];
+            if (materialID == eyeLidMaterial) {
                 _B6A = texNo - _B70;
                 _B68 = 1;
                 return;
@@ -68,12 +76,13 @@ void MarioActor::updateBlink() {
         }
     }
 
-    if (isNerve(GET_NERVE(MarioActor, MarioActorNrvGameOver)) && !mEyeRes) {
+    if (isNerve(GET_NERVE(MarioActor, MarioActorNrvGameOver)) && mEyeRes == nullptr) {
         if (mMario->isAnimationTerminate(nullptr)) {
             _B6A = 2;
         } else {
             _B6A = 1;
         }
+
         return;
     }
 
@@ -86,7 +95,7 @@ void MarioActor::updateBlink() {
 
     if (_B72) {
         _B72--;
-        _B6A = sBlinkStates[9 - _B72];
+        _B6A = ::sBlinkStates[9 - _B72];
         _B74 = MR::getRandom(60L, 360L);
         return;
     }

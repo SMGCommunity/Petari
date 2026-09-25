@@ -19,6 +19,7 @@
 #include "Game/Util/SystemUtil.hpp"
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
+#include <JSystem/JUtility/JUTVideo.hpp>
 #include <nw4r/lyt/drawInfo.h>
 
 namespace {
@@ -93,7 +94,7 @@ void GalaxyMapController::init(const JMapInfoIter& rIter) {
     {
         MR::CurrentHeapRestorer heapRestorer(MR::getSceneHeapGDDR3());
 
-        _38 = new JUTTexture(MR::getScreenWidth() / 2, MR::getScreenHeight() / 2, GX_TF_RGB565);
+        _38 = new JUTTexture(JUTGetVideoManager()->getFbWidth() / 2, MR::getScreenHeight() / 2, GX_TF_RGB565);
     }
 
     if (MR::startFunctionAsyncExecuteOnMainThread(MR::Functor(this, GalaxyMapController::capture), "GalaxyMapController::capture")) {
@@ -282,14 +283,16 @@ void GalaxyMapController::exeFadeinModeMap() {
         case Mode_AstroMap:
             mBackButton->appear();
             mMapSelectButton->startAstroMap();
+        case Mode_NewGalaxyDiscover:
+        case Mode_NewTicoGalaxyDiscover:
+        case Mode_NewDomeDiscover:
         case Mode_ChallengeGalaxyDiscover:
             mMap->forceToAstroMap();
             break;
         case Mode_GalaxyMap:
             mBackButton->appear();
             mMapSelectButton->startAstroMap();
-            break;
-        case Mode_NewDomeDiscover:
+        case Mode_TicoCometPray:
             mMap->forceToGalaxyMap();
             break;
         }

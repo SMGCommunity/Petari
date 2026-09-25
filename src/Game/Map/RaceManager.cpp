@@ -52,7 +52,7 @@ namespace {
         {"サーフィン[チャレンジ]", MR::EventBgmID_Surfing, 180, "RaceName_SurfingChallenge", "SurfingLv2Galaxy", 1, false}};
 
     const RaceStructData& getRaceStruceData(s32 id) {
-        return sRaceStruct[id];
+        return ::sRaceStruct[id];
     }
 
     RaceManager* getRaceManager() {
@@ -577,3 +577,8 @@ namespace RaceManagerFunction {
         return MR::isOnGameEventFlagPowerStarSuccess(::getRaceStruceData(index).mGalaxyName, ::getRaceStruceData(index).mScenarioNo);
     }
 };  // namespace RaceManagerFunction
+
+void RaceManager_FORCE_MATCH(AbstractRacer* pRacer) {
+    pRacer->AbstractRacer::initRacer();
+    pRacer->AbstractRacer::initRacer();
+}

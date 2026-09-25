@@ -138,7 +138,8 @@ void LavaProminenceTriple::calcAndSetBaseMtx() {
 void LavaProminenceTriple::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     MR::sendMsgEnemyAttackFireStrong(pReceiver, pSender);
 }
-
+#pragma push
+#pragma opt_propagation off
 void LavaProminenceTriple::updateHitSensor(HitSensor* pSensor) {
     // issue with loading from secondary offset in table entries
     // load order swap
@@ -191,10 +192,10 @@ void LavaProminenceTriple::updateHitSensor(HitSensor* pSensor) {
     TVec3f offset = mFront * MR::cosDegree(angle);
     offset += mSide * MR::sinDegree(angle);
     offset *= mScale.y * ::sToSensorRadius;
-    pSensor->mPosition.set(mPosition);
+    pSensor->mPosition.set(*getPosition());
     pSensor->mPosition.add(offset);
 }
-
+#pragma pop
 void LavaProminenceTriple::updateEffectClipping() {
     updateEffectClippingIndividual(&mIsAppearDrop1, "Drop1", "Head1");
 

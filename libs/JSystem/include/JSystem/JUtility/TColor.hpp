@@ -6,18 +6,20 @@
 namespace JUtility {
     struct TColor : public GXColor {
     public:
-        TColor(u8 r, u8 g, u8 b, u8 a) NO_INLINE;
+        TColor(u8 r, u8 g, u8 b, u8 a);
         TColor() {
             set(0xffffffff);
         }
+
         TColor(u32 u32Color) {
             set(u32Color);
         }
+
         TColor(GXColor color) {
             set(color);
         }
 
-        TColor& operator=(const TColor& color);
+        TColor& operator=(const TColor& rColor);
 
         void set(u8 cR, u8 cG, u8 cB, u8 cA) {
             r = cR;
@@ -33,6 +35,7 @@ namespace JUtility {
         operator u32() const {
             return toUInt32();
         }
+
         u32 toUInt32() const {
             return *reinterpret_cast< const u32* >(&r);
         }

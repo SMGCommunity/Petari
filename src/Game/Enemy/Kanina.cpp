@@ -100,12 +100,15 @@ namespace {
         if (0.0f <= random && random < 0.25f) {
             return ::sRunAwayIntervalTime1;
         }
+
         if (0.25f <= random && random < 0.5f) {
             return ::sRunAwayIntervalTime2;
         }
+
         if (0.5f <= random && random < 0.75f) {
             return ::sRunAwayIntervalTime3;
         }
+
         return ::sRunAwayIntervalTime4;
     }
 
@@ -114,19 +117,22 @@ namespace {
         if (0.0f <= random && random < 0.25f) {
             return ::sRunAwayRunningTime1;
         }
+
         if (0.25f <= random && random < 0.5f) {
             return ::sRunAwayRunningTime2;
         }
+
         if (0.5f <= random && random < 0.75f) {
             return ::sRunAwayRunningTime3;
         }
+
         return ::sRunAwayRunningTime4;
     }
 };  // namespace
 
 Kanina::Kanina(const char* pName)
-    : LiveActor(pName), mJointRumbler(nullptr), mKinokoOneUp(nullptr), mAnimationRandomPlayer(nullptr), _98(gZeroVec), _B4(15), _B8(10), _BC(1.0f),
-      _C0(0.0f, 0.0f, 1.0f), mType(KaninaType_Blue), _D0(0.0f, 0.0f, 1.0f), _DC(0) {
+    : LiveActor(pName), mJointRumbler(), mKinokoOneUp(), mAnimationRandomPlayer(), _98(gZeroVec), _B4(15), _B8(10), _BC(1.0f), _C0(0.0f, 0.0f, 1.0f),
+      mType(KaninaType_Blue), _D0(0.0f, 0.0f, 1.0f), _DC() {
     _A4.set(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
@@ -275,6 +281,7 @@ bool Kanina::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
             kill();
             return true;
         }
+
         if (receiveTrample(pSender, pReceiver)) {
             MR::tryRumblePad(this, "中", WPAD_CHAN0);
             return true;
@@ -409,12 +416,12 @@ void Kanina::startRun() {
 
     mVelocity.set(multVec * getFloatDependentType(::sWalkSpeedRunAwayRed, ::sWalkSpeedRunAway));
 
-    angle = -1.0f * BC *
-            (getFloatDependentType(::sRunAwayFaceAngleRed, ::sRunAwayFaceAngle) +
-             getFloatDependentType(::sRunAwayDirectionAngleRed, ::sRunAwayDirectionAngle));
+    f32 faceAngle = -1.0f * BC *
+                    (getFloatDependentType(::sRunAwayDirectionAngleRed, ::sRunAwayDirectionAngle) +
+                     getFloatDependentType(::sRunAwayFaceAngleRed, ::sRunAwayFaceAngle));
     TPos3f rotate2;
     rotate2.identity();
-    rotate2.makeRotate(upVec, MR::toRadian(angle));
+    rotate2.makeRotate(upVec, MR::toRadian(faceAngle));
     TVec3f multVec2(vecFromPlayerH);
     rotate2.mult(multVec2, multVec2);
 
@@ -448,6 +455,7 @@ bool Kanina::receiveInvincibleAttack(HitSensor* pSender, HitSensor* pReceiver) {
     if (pReceiver == getSensor("attack")) {
         return false;
     }
+
     doDamageFireBall(pSender, pReceiver);
     return true;
 }
@@ -567,6 +575,7 @@ void Kanina::updateMovement() {
         } else if (isNerve(GET_NERVE(Kanina, HostTypeHitWall))) {
             gravityAccel = ::sGravityAccelHitWall;
         }
+
         MR::addVelocityToGravity(this, gravityAccel);
     }
 
@@ -774,6 +783,7 @@ void Kanina::exeRunAwayBreak() {
             setNerve(GET_NERVE(Kanina, HostTypeDig));
             return;
         }
+
         setNerve(GET_NERVE(Kanina, HostTypeRunAway));
     }
 }
@@ -848,6 +858,7 @@ void Kanina::exeGuardEnd() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "GuardReturn");
     }
+
     if (MR::isBckStopped(this)) {
         setNerve(GET_NERVE(Kanina, HostTypeRunAwayBreak));
     }

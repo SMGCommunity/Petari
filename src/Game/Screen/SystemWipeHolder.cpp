@@ -41,6 +41,7 @@ void SystemWipeHolder::calcAnim() {
 void SystemWipeHolder::draw() const {
     MR::captureScreenIfAllow("SystemWipe");
     drawGameScreenCapture();
+
     if (isCurrentAlive()) {
         getCurrent()->draw();
     }
@@ -59,6 +60,7 @@ void SystemWipeHolder::drawGameScreenCapture() const {
     if (!_1C) {
         return;
     }
+
     J2DOrthoGraphSimple graph;
     graph.setPort();
 
@@ -84,4 +86,4 @@ namespace MR {
         newHolder->initWithoutIter();
         return newHolder;
     }
-};  // namespace MR
+}  // namespace MR

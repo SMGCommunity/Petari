@@ -74,16 +74,22 @@ TVec2f LayoutActor::getTrans() const {
     return trans;
 }
 
+namespace {
+    inline void setRootTranslation(LayoutActor* pActor, const TVec2f& rTrans) {
+        f32 y = rTrans.y;
+        f32 x = rTrans.x;
+        TVec2f trans(x, y);
+        nw4r::lyt::Pane* pRootPane = MR::getRootPane(pActor);
+        TVec3f translation(trans.x, trans.y, 0.0f);
+        pRootPane->mTranslate.x = translation.x;
+        pRootPane->mTranslate.y = translation.y;
+        pRootPane->mTranslate.z = translation.z;
+    }
+}  // namespace
 void LayoutActor::setTrans(const TVec2f& rTrans) {
     TVec2f trans;
-    nw4r::lyt::Pane* rootPane;
-
     MR::convertScreenPosToLayoutPos(&trans, rTrans);
-
-    rootPane = MR::getRootPane(this);
-    rootPane->mTranslate.x = trans.x;
-    rootPane->mTranslate.y = trans.y;
-    rootPane->mTranslate.z = 0.0f;
+    ::setRootTranslation(this, trans);
 }
 
 LayoutManager* LayoutActor::getLayoutManager() const {

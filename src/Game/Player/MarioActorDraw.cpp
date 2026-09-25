@@ -355,7 +355,7 @@ void MarioActor::changeDisplayMode(u8 mode) {
 
     mModelManager->mDisplayListMaker->mModel = mModels[mCurrModel];
 
-    if (_494) {
+    if (_494 != nullptr) {
         MtxPtr handMtx = MR::getJointMtx(this, "HandR");
         _494->setBaseMtx(handMtx);
     }
@@ -378,7 +378,7 @@ void MarioActor::calcViewAndEntry() {
     model->setDrawView(0);
     calcViewBlurModel();
 
-    if (_B48) {
+    if (_B48 != nullptr) {
         calcViewFootPrint();
     }
 
@@ -411,11 +411,11 @@ void MarioActor::calcViewAndEntry() {
 
     calcViewSearchLight();
 
-    if (_A40) {
+    if (_A40 != nullptr) {
         _A40->updateMtx(_C8C.toMtxPtr());
     }
 
-    if (_A44) {
+    if (_A44 != nullptr) {
         _A44->updateMtx(_CBC.toMtxPtr());
     }
 
@@ -423,11 +423,11 @@ void MarioActor::calcViewAndEntry() {
 
     _A4C->updateMtx(_CBC.toMtxPtr());
 
-    if (_A50) {
+    if (_A50 != nullptr) {
         _A50->updateMtx(_C8C.toMtxPtr());
     }
 
-    if (_A54) {
+    if (_A54 != nullptr) {
         _A54->updateMtx(_CBC.toMtxPtr());
     }
 
@@ -446,7 +446,7 @@ void MarioActor::drawMarioModel() const {
         return;
     }
 
-    if (mTornadoMario) {
+    if (mTornadoMario != nullptr) {
         if (mMario->mMovementStates._F) {
             if (mMario->_544 > 2) {
                 return;
@@ -473,7 +473,7 @@ void MarioActor::drawMarioModel() const {
 
     J3DModelX* model = mModels[mCurrModel];
 
-    if (res) {
+    if (res != nullptr) {
         model->mFlags._10 = true;
     }
 
@@ -565,7 +565,7 @@ void MarioActor::swapTextureInit() {
     createTextureDL(&_B6C[2], 0, texNo + 2);
     createTextureDL(&_B6C[3], 0, texNo + 3);
 
-    if (_9E4) {
+    if (_9E4 != nullptr) {
         J3DModelData* beeData = MR::getJ3DModelData(_9E4);
         const u16 textureNum = beeData->mMaterialTable.mTexture->getNum();
 
@@ -588,7 +588,7 @@ void MarioActor::swapTextureInit() {
         createTextureDL(&_B6C[7], 0, texNo + 3);
     }
 
-    if (_A00) {
+    if (_A00 != nullptr) {
         J3DModelData* hopperData = MR::getJ3DModelData(_A00);
         const u16 textureNum = hopperData->mMaterialTable.mTexture->getNum();
 
@@ -668,7 +668,7 @@ void MarioActor::updateFace() {
         player->getMainAnimationTrans(static_cast< u32 >(partsControlJoint), &partsControl);
     }
 
-    _A60 = MR::clamp(static_cast< s32 >(0.49f + partsControl.x / 0.5f), 0, _A5B - 1);
+    _A60 = MR::clamp(static_cast< s32 >(0.49f + partsControl.x / 10.0f), 0, _A5B - 1);
 
     for (u16 i = 0; i < _A5B; i++) {
         J3DJoint* eyeJoint = MR::getJoint(_A5C, i + 1);
@@ -734,7 +734,7 @@ void MarioActor::calcViewMainModel() {
 }
 
 void MarioActor::draw() const {
-    if (_B48) {
+    if (_B48 != nullptr) {
         _B48->draw();
     }
 
@@ -778,7 +778,7 @@ void MarioActor::drawIndirectModel() const {
 
     drawReflectModel();
 
-    if (mTornadoMario) {
+    if (mTornadoMario != nullptr) {
         if (mMario->mMovementStates._F) {
             if (mMario->_544 > 2) {
                 return;
@@ -853,7 +853,7 @@ void MarioActor::drawReflectModel() const {
         MR::hideMaterial(model, "EyeLid_v");
     }
 
-    if (_468 == 0 ? nullptr : _428[0]) {
+    if ((_468 == 0 ? nullptr : _428[0]) != nullptr) {
         if (isUseScreenBox()) {
             mDLchanger->addDL(static_cast< J3DModelX* >(MR::getJ3DModel(_9A0)));
         }
@@ -1001,7 +1001,7 @@ void MarioActor::swapTexture(const char* pMaterialName, u8 texNo) const {
 }
 
 void MarioActor::copyMaterial(J3DModel* pModel, u16 materialNo, s32 packetIndex) {
-    J3DModelData* modelData = mModels[mCurrModel]->mModelData;
+    J3DModelData* modelData = getJ3DModel()->getModelData();
     J3DMaterial* material = modelData->getJointNodePointer(materialNo)->getMesh();
     if (material == nullptr) {
         return;
@@ -1021,7 +1021,7 @@ void MarioActor::copyMaterial(J3DModel* pModel, u16 materialNo, s32 packetIndex)
     }
 
     for (u16 i = start; i <= end; i++) {
-        J3DMatPacket* matPacket = &pModel->mMatPacket[i];
+        J3DMatPacket* matPacket = pModel->getMatPacket(i);
         matPacket->mpMaterial = modelData->getMaterialNodePointer(materialIndex);
         J3DShapePacket* shapePacket = &pModel->mShapePacket[i];
         matPacket->mpInitShapePacket = shapePacket;

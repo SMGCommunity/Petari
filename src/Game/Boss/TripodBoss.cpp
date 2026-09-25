@@ -29,6 +29,10 @@
 #include <cstdio>
 
 namespace {
+    inline void removeHeight(TVec3f* pPosition, const TVec3f& rDelta, TripodBoss* pBoss) {
+        pPosition->killElement(rDelta, pBoss->mMovableArea->mBaseAxis);
+    }
+
     static const char* sLegBoneNameTable[] = {"LeftLeg", "RightLeg", "BackLeg"};
     static TVec3f sPowerStarOffset(0.0f, 3200.0f, 0.0f);
     static TVec3f sAppearStarPieceOffset(0.0f, 3600.0f, 0.0f);
@@ -252,7 +256,8 @@ void TripodBoss::initMovableArea(const TPos3f& rPos) {
 }
 
 void TripodBoss::initBodyPosition() {
-    _5D4 = mMovableArea->mCenter + mMovableArea->mBaseAxis * (mMovableArea->mRadius + _604);
+    f32 radius = mMovableArea->mRadius;
+    _5D4 = mMovableArea->mCenter + mMovableArea->mBaseAxis * (_604 + radius);
     _5C8 = _5D4;
 
     MR::makeMtxTR(mBodyMtx, _5D4, mRotation);
@@ -616,9 +621,9 @@ void TripodBoss::exeDamage() {
         MR::normalizeOrZero(&vec);
 
         if (getNerveStep() % 6 < 3) {
-            _5E0 -= vec * 80.0f;
+            _5E0 -= vec * 79.5f;
         } else {
-            _5E0 += vec * 79.5f;
+            _5E0 += vec * 80.0f;
         }
     }
 
@@ -827,6 +832,7 @@ bool TripodBoss::isBroken() const {
     if (isEndBreakDownDemo() || isEndExplosionDemo() || MR::isDead(this)) {
         return true;
     }
+
     return false;
 }
 
@@ -899,8 +905,8 @@ TripodBossStepSequence* TripodBoss::getNextStepSequence() {
     return &mStepSequence[mNextStepSeq];
 }
 
-void TripodBoss::calcLegUpVector(TVec3f* pUp, const TVec3f& a2) {
-    TVec3f v8 = a2 - mMovableArea->mCenter;
+void TripodBoss::calcLegUpVector(TVec3f* pUp, const TVec3f& rA2) {
+    TVec3f v8 = rA2 - mMovableArea->mCenter;
     MR::normalizeOrZero(&v8);
     v8.orthogonalize(mMovableArea->mBaseAxis);
     MR::normalizeOrZero(&v8);
@@ -918,9 +924,7 @@ void TripodBoss::calcDemoMovement() {
         TVec3f v7;
         v8.getTrans(v7);
         TVec3f v6;
-        v6.x = JGeometry::TUtil< f32 >::sqrt(v8.dotX());
-        v6.y = JGeometry::TUtil< f32 >::sqrt(v8.dotY());
-        v6.z = JGeometry::TUtil< f32 >::sqrt(v8.dotZ());
+        v8.getScale(v6);
         mLegs[i]->setForceEndPoint(v7);
         mLegs[i]->setDemoEffectTiming(v6.x > 1.5f);
     }
@@ -968,14 +972,14 @@ void TripodBoss::addAccelToWeightPosition() {
     TVec3f v18;
     MR::vecBlend(v19, v20, &v18, 0.3f);
 
-    TVec3f v14 = v18 - mMovableArea->mCenter;
-    v18.killElement(v14, mMovableArea->mBaseAxis);
+    removeHeight(&v18, v18 - mMovableArea->mCenter, this);
     f32 v9 = mMovableArea->mRadius;
     v9 = _604 + v9;
     v9 = _5FC + v9;
     TVec3f v17 = mMovableArea->mBaseAxis * v9 + v18;
     MR::normalizeOrZero(&v17);
-    TVec3f v15 = mMovableArea->mCenter + v17 * v9 - _5D4;
+    TVec3f weightPosition = mMovableArea->mCenter + v17 * v9;
+    TVec3f v15 = weightPosition - _5D4;
     f32 v10 = v15.length();
     if (v10 < 500.0f) {
         v10 = 500.0f;
@@ -1162,24 +1166,32 @@ s32 TripodBoss::getPartIDFromBoneID(s32 boneID) {
 
 void TripodBossBone::setAttachBaseMatrix(const TPos3f& rPos) {
     _0.invert(rPos);
-    JGeometry::TUtil< f32 >::sqrt(_0.dot());
 
-    if (_0) {
-        f32 v3 =
-            JGeometry::TUtil< f32 >::inv_sqrt((_0.mMtx[1][0] * _0.mMtx[1][0]) + (_0.mMtx[0][0] * _0.mMtx[0][0]) + (_0.mMtx[2][0] * _0.mMtx[2][0]));
-        _0.mMtx[0][0] = v3 * _0.mMtx[0][0];
-        _0.mMtx[1][0] = v3 * _0.mMtx[1][0];
-        _0.mMtx[2][0] = v3 * _0.mMtx[2][0];
-        f32 v8 =
-            JGeometry::TUtil< f32 >::inv_sqrt((_0.mMtx[2][1] * _0.mMtx[2][1]) + ((_0.mMtx[1][1] * _0.mMtx[1][1]) + (_0.mMtx[0][1] * _0.mMtx[0][1])));
-        _0.mMtx[0][1] = v8 * _0.mMtx[0][1];
-        _0.mMtx[1][1] = v8 * _0.mMtx[1][1];
-        _0.mMtx[2][1] = v8 * _0.mMtx[2][1];
-        f32 v13 =
-            JGeometry::TUtil< f32 >::inv_sqrt((_0.mMtx[0][2] * _0.mMtx[0][2]) + ((_0.mMtx[1][2] * _0.mMtx[1][2]) + (_0.mMtx[2][2] * _0.mMtx[2][2])));
-        _0.mMtx[0][2] = v13 * _0.mMtx[0][2];
-        _0.mMtx[1][2] = v13 * _0.mMtx[1][2];
-        _0.mMtx[2][2] = v13 * _0.mMtx[2][2];
+    f32 scale = JGeometry::TUtil< f32 >::sqrt((_0.get(0, 0) * _0.get(0, 0)) + (_0.get(1, 0) * _0.get(1, 0)) + (_0.get(2, 0) * _0.get(2, 0)) +
+                                              (_0.get(0, 1) * _0.get(0, 1)) + (_0.get(1, 1) * _0.get(1, 1)) + (_0.get(2, 1) * _0.get(2, 1)) +
+                                              (_0.get(0, 2) * _0.get(0, 2)) + (_0.get(1, 2) * _0.get(1, 2)) + (_0.get(2, 2) * _0.get(2, 2)));
+
+    if (_0.toMtxPtr() != nullptr) {
+        f32 invLenX =
+            JGeometry::TUtil< f32 >::inv_sqrt((_0.get(0, 0) * _0.get(0, 0)) + (_0.get(1, 0) * _0.get(1, 0)) + (_0.get(2, 0) * _0.get(2, 0)));
+
+        _0.mMtx[0][0] = invLenX * _0.get(0, 0);
+        _0.mMtx[1][0] = invLenX * _0.get(1, 0);
+        _0.mMtx[2][0] = invLenX * _0.get(2, 0);
+
+        f32 invLenY =
+            JGeometry::TUtil< f32 >::inv_sqrt((_0.get(0, 1) * _0.get(0, 1)) + (_0.get(1, 1) * _0.get(1, 1)) + (_0.get(2, 1) * _0.get(2, 1)));
+
+        _0.mMtx[0][1] = invLenY * _0.get(0, 1);
+        _0.mMtx[1][1] = invLenY * _0.get(1, 1);
+        _0.mMtx[2][1] = invLenY * _0.get(2, 1);
+
+        f32 invLenZ =
+            JGeometry::TUtil< f32 >::inv_sqrt((_0.get(0, 2) * _0.get(0, 2)) + (_0.get(1, 2) * _0.get(1, 2)) + (_0.get(2, 2) * _0.get(2, 2)));
+
+        _0.mMtx[0][2] = invLenZ * _0.get(0, 2);
+        _0.mMtx[1][2] = invLenZ * _0.get(1, 2);
+        _0.mMtx[2][2] = invLenZ * _0.get(2, 2);
     }
 }
 

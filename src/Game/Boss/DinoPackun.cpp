@@ -37,6 +37,16 @@
 #include "Game/Util/SoundUtil.hpp"
 
 namespace {
+    template < bool IsRight >
+    inline void addDinoFootPrint(DinoPackun* pActor, const TVec3f& rStart) {
+        TVec3f position;
+        TVec3f normal;
+        TVec3f ray = pActor->mGravity * 200.0f;
+        if (MR::getFirstPolyNormalOnLineToMap(&normal, rStart, ray, &position, nullptr)) {
+            pActor->mFootPrint->addPrint(position, pActor->_E8, normal, IsRight);
+        }
+    }
+
     static TVec3f sHeadHitOffset = TVec3f(140.0f, -110.0f, 0.0f);
     static TVec3f sBodyHitOffset = TVec3f(0.0f, 200.0f, 0.0f);
     static TVec3f sEggHitOffset = TVec3f(0.0f, 200.0f, 0.0f);
@@ -45,9 +55,9 @@ namespace {
 
     static const char* sJointName[7] = {"Tail1", "Tail2", "Tail3", "Tail4", "Tail5", "Tail6", "Tail7"};
 
-    static f32 sKeepBendPower[7] = {30.0f, 25.0f, 20.0f, 15.0f, 10.0f, 10.0f, 10.0f};
+    static const f32 sKeepBendPower[7] = {30.0f, 25.0f, 20.0f, 15.0f, 10.0f, 10.0f, 10.0f};
 
-    static f32 sJointRadius[7] = {80.0f, 70.0f, 60.0f, 55.0f, 45.0f, 50.0f};
+    static const f32 sJointRadius[7] = {80.0f, 70.0f, 60.0f, 55.0f, 45.0f, 50.0f};
 
     class DinoPackunParam : public AnimScaleParam {
     public:
@@ -55,7 +65,7 @@ namespace {
             _0 = 0.1f;
             _10 = 30.0f;
             _14 = 0.60f;
-            _18 = 0.059f;
+            _18 = 0.06f;
             _1C = 3.0f;
             _20 = 0.07f;
             _24 = 0.12f;
@@ -68,9 +78,8 @@ namespace {
 };  // namespace
 
 DinoPackun::DinoPackun(const char* pName)
-    : LiveActor(pName), mTail(nullptr), mBall(nullptr), mFootPrint(nullptr), mShell(nullptr), mDemoPos(nullptr), mShellBreakModel(nullptr),
-      mTailBall(nullptr), mCamTargetMtx(nullptr), mCameraInfo(nullptr), mSequence(nullptr), _B4(nullptr), _B8(nullptr), _BC(0.0f, 0.0f, 0.0f, 1.0f),
-      _E8(0, 0, 1) {
+    : LiveActor(pName), mTail(), mBall(), mFootPrint(), mShell(), mDemoPos(), mShellBreakModel(), mTailBall(), mCamTargetMtx(), mCameraInfo(),
+      mSequence(), _B4(), _B8(), _BC(0.0f, 0.0f, 0.0f, 1.0f), _E8(0, 0, 1) {
     _F4 = -1;
     mCameraVec.x = 0.0f;
     mCameraVec.y = 0.0f;
@@ -83,14 +92,7 @@ DinoPackun::DinoPackun(const char* pName)
 
 void DinoPackun::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    s32 vs = mSequence->getVsCount();
-    const char* v5 = "DionPackun2";
-
-    if (vs == 1) {
-        v5 = "DionPackun";
-    }
-
-    initModelManagerWithAnm(v5, nullptr, false);
+    initModelManagerWithAnm(mSequence->getVsCount() == 1 ? "DinoPackun" : "DinoPackun2", nullptr, false);
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
     MR::makeQuatAndFrontFromRotate(&_BC, &_E8, this);
@@ -143,16 +145,17 @@ void DinoPackun::initTail() {
     DinoPackunTailRoot* root = new DinoPackunTailRoot("尻尾ルート", this);
     root->createJointController(this, "TailRoot");
     root->initWithoutIter();
-    root->mKeepBendPower = 30.0f;
+    root->mKeepBendPower = ::sKeepBendPower[0];
     mTail->addTailNode(root);
 
     for (u32 i = 0; i < 7; i++) {
         DinoPackunTailPart* p = new DinoPackunTailPart("尻尾ジョイント", this);
         MR::copyJointPos(this, ::sJointName[i], &p->mPosition);
         p->createJointController(this, ::sJointName[i]);
-        f32 r = ::sJointRadius[i];
-        p->mKeepBendPower = ::sKeepBendPower[i];
-        p->_D4 = r;
+        f32 keepBendPower = ::sKeepBendPower[i];
+        f32 radius = ::sJointRadius[i];
+        p->mKeepBendPower = keepBendPower;
+        p->_D4 = radius;
 
         if (i >= 3) {
             p->_D9 = 0;
@@ -260,16 +263,17 @@ bool DinoPackun::isHitReaction(s32 a1) const {
     if (_B8 != nullptr) {
         return _B8->isHitReaction(a1);
     }
+
     return false;
 }
 
-bool DinoPackun::hitScaleJoint(TPos3f* a1, const JointControllerInfo& a2) {
+bool DinoPackun::hitScaleJoint(TPos3f* pA1, const JointControllerInfo& rA2) {
     TVec3f v5(_B8->_C);
     TVec3f v4;
-    v4.x = v5.x;
-    v4.y = v5.y;
-    v4.z = v5.z;
-    MR::preScaleMtx(*a1, v4);
+    v4.x = v5.y;
+    v4.y = v5.z;
+    v4.z = v5.x;
+    MR::preScaleMtx(*pA1, v4);
     return true;
 }
 
@@ -381,38 +385,13 @@ void DinoPackun::updatePose() {
 }
 
 void DinoPackun::updateFootPrintNerve(s32 a2, s32 a3) {
-    TVec3f v20;
-    _BC.getXDir(v20);
-
+    TVec3f side;
+    _BC.getXDir(side);
     if (!(a2 % a3)) {
-        TVec3f v16 = mGravity * -100.0f;
-        TVec3f v17 = v20 * -100.0f;
-        TVec3f v18(mPosition);
-        v18.add(v17);
-        TVec3f v19(v18);
-        v19.add(v16);
-        TVec3f v11 = mGravity * 200.0f;
-
-        TVec3f v10;
-        TVec3f v9;
-        if (MR::getFirstPolyNormalOnLineToMap(&v10, v19, v11, &v9, nullptr)) {
-            mFootPrint->addPrint(v9, _E8, v10, false);
-        }
+        addDinoFootPrint< false >(this, mPosition + side * -100.0f + mGravity * -100.0f);
     } else {
         if (a3 / 2 == a2 % a3) {
-            TVec3f v12 = mGravity * -100.0f;
-            TVec3f v13 = v20 * 100.0f;
-            TVec3f v14(mPosition);
-            v14.add(v13);
-            TVec3f v15(v14);
-            v15.add(v12);
-            TVec3f v8 = mGravity * 200.0f;
-
-            TVec3f v7;
-            TVec3f v6;
-            if (MR::getFirstPolyNormalOnLineToMap(&v7, v15, v8, &v6, nullptr)) {
-                mFootPrint->addPrint(v6, _E8, v7, true);
-            }
+            addDinoFootPrint< true >(this, mPosition + side * 100.0f + mGravity * -100.0f);
         }
     }
 }
@@ -460,7 +439,7 @@ void DinoPackun::updateNormalVelocity() {
         MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
     }
 
-    MR::attenuateVelocity(this, 0.89f);
+    MR::attenuateVelocity(this, 0.9f);
 }
 
 void DinoPackun::updateRunVelocity() {

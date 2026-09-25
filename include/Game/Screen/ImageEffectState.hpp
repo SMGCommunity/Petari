@@ -71,9 +71,9 @@ namespace ImageEffectStateImpl {
         /* 0x18 */ f32 _18;
         /* 0x1C */ u8 mThreshold;
         /* 0x20 */ f32 _20;
-        /* 0x24 */ u32 mIntensity1;
+        /* 0x24 */ s32 mIntensity1;
         /* 0x28 */ f32 _28;
-        /* 0x2C */ u32 mIntensity2;
+        /* 0x2C */ s32 mIntensity2;
     };
 
     class StateBloomSimple : public ImageEffectState {

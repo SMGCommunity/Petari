@@ -13,11 +13,11 @@
 #include "Game/Util/MathUtil.hpp"
 #include <cstdio>
 
-const static JMapInfo StoryEventBCSV;
+extern const u8 StoryEventBCSV[];
 
 namespace {
     const char cPictureBookChapterSuffix[] = "ABCDEFGHI";
-};  // namespace
+}  // namespace
 
 GameDataHolder::GameDataHolder(const UserFile* pUserFile)
     : mUserFile(pUserFile), mEventFlagChecker(), mEventValueChecker(), mPlayerStatus(), mAllGalaxyStorage(), mSpinDriverPathStorage(),
@@ -31,7 +31,7 @@ GameDataHolder::GameDataHolder(const UserFile* pUserFile)
     mStarPieceAlmsStorage = new StarPieceAlmsStorage();
 
     mMapInfo = new JMapInfo();
-    mMapInfo->attach(&StoryEventBCSV);
+    mMapInfo->attach(StoryEventBCSV);
 
     mChunkHolder = new BinaryDataChunkHolder(4096, 6);
     mChunkHolder->addChunk(mPlayerStatus);
@@ -93,14 +93,16 @@ bool GameDataHolder::isOnGameEventValueForBit(const char* pName, int bit) const 
 }
 
 void GameDataHolder::setGameEventValueForBit(const char* pName, int bit, bool reset) {
+    u32 mask;
     u16 value = mEventValueChecker->getValue(pName);
-    u16 set = 1 << bit;
-    value = set & ~value;
+    mask = 1 << bit;
+    u16 result = value & ~mask;
+
     if (reset) {
-        value = value | set;
+        result = value | mask;
     }
 
-    setGameEventValue(pName, value);
+    setGameEventValue(pName, result);
 }
 
 s32 GameDataHolder::getPictureBookChapterCanRead() const {
@@ -211,12 +213,14 @@ bool GameDataHolder::isOnGalaxyScenarioFlagAlreadyVisited(const char* pGalaxyNam
         return true;
     }
 
-    return makeGalaxyScenarioAccessor(pGalaxyName, scenarioNum).isAlreadyVisited();
+    GameDataSomeScenarioAccessor accessor = makeGalaxyScenarioAccessor(pGalaxyName, scenarioNum);
+    return accessor.isAlreadyVisited();
 }
 
 void GameDataHolder::onGalaxyScenarioFlagAlreadyVisited(const char* pGalaxyName, s32 scenarioNum) {
     if (mAllGalaxyStorage->isExistAccessor(pGalaxyName, scenarioNum)) {
-        makeGalaxyScenarioAccessor(pGalaxyName, scenarioNum).setFlagAlreadyVisited(true);
+        GameDataSomeScenarioAccessor accessor = makeGalaxyScenarioAccessor(pGalaxyName, scenarioNum);
+        accessor.setFlagAlreadyVisited(true);
     }
 }
 
@@ -284,7 +288,7 @@ bool GameDataHolder::isPassedStoryEvent(const char* pEventName) const {
 
     u32 progress = 0;
     iter.getValue("progress", &progress);
-    return progress >= mPlayerStatus->mStoryProgress;
+    return progress <= mPlayerStatus->mStoryProgress;
 }
 
 void GameDataHolder::followStoryEventByName(const char* pEventName) {

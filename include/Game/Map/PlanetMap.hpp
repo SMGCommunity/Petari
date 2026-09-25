@@ -28,7 +28,7 @@ public:
     bool tryDeleteMyEffect();
 
     /* 0x8C */ const char* mModelName;
-    TVec3f _90;
+    /* 0x90 */ TVec3f _90;
     /* 0x9C */ LodCtrl* mLODCtrl;
     /* 0xA0 */ ModelObj* mBloomModel;
     /* 0xA4 */ PartsModel* mWaterModel;
@@ -61,10 +61,8 @@ public:
 };
 
 struct PlanetMapClippingInfo {
-    const char* mName;
-    f32 _4;
-    f32 _8;
-    f32 _C;
-    f32 _10;
-    s32 _14;
+    /* 0x00 */ const char* mName;
+    /* 0x04 */ f32 mRadius;
+    /* 0x08 */ Vec mOffset;
+    /* 0x14 */ s32 _14;
 };

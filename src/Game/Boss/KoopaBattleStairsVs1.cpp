@@ -17,6 +17,12 @@
 #include "Game/Util/SoundUtil.hpp"
 
 namespace {
+    inline KoopaFireStairs* emitFireStairs(Koopa* pKoopa, const KoopaBattleMapStair* pStair) {
+        TVec3f jointPos(0.0f, 0.0f, 0.0f);
+        MR::copyJointPos(pKoopa, "Tongue2", &jointPos);
+        return KoopaFunction::emitFireStairsToTarget(pKoopa, pStair, jointPos, false);
+    }
+
     static const s32 sAnimCameraInterpoleFrame = 60;
     static const s32 sStepToEmitFire = 15;
     static const f32 sFireSpeed = 20.0f;
@@ -97,12 +103,7 @@ void KoopaBattleStairsVs1::exeWaitDemo() {
 
 void KoopaBattleStairsVs1::exeDemo() {
     if (MR::isStep(this, 264)) {
-        KoopaBattleMapStair* pBattleMapStair = mFarBattleMapStair;
-        Koopa* pKoopa = mKoopa;
-        TVec3f jointPos = TVec3f(0.0f, 0.0f, 0.0f);
-        MR::copyJointPos(pKoopa, "Tongue2", &jointPos);
-
-        mFarFireStairs = KoopaFunction::emitFireStairsToTarget(pKoopa, pBattleMapStair, jointPos, false);
+        mFarFireStairs = emitFireStairs(mKoopa, mFarBattleMapStair);
 
         MR::startSound(mKoopa, "SE_OJ_KOOPA_BULLET_SHOOT");
 
@@ -111,12 +112,7 @@ void KoopaBattleStairsVs1::exeDemo() {
     }
 
     if (MR::isStep(this, 292)) {
-        KoopaBattleMapStair* pBattleMapStair = mNearBattleMapStair;
-        Koopa* pKoopa = mKoopa;
-        TVec3f jointPos = TVec3f(0.0f, 0.0f, 0.0f);
-        MR::copyJointPos(pKoopa, "Tongue2", &jointPos);
-
-        mNearFireStairs = KoopaFunction::emitFireStairsToTarget(pKoopa, pBattleMapStair, jointPos, false);
+        mNearFireStairs = emitFireStairs(mKoopa, mNearBattleMapStair);
 
         MR::startSound(mKoopa, "SE_OJ_KOOPA_BULLET_SHOOT");
 
@@ -156,20 +152,13 @@ void KoopaBattleStairsVs1::exeAttackFire() {
     }
 
     if (MR::isStep(this, ::sStepToEmitFire)) {
-        KoopaBattleMapStair* pBattleMapStair = _20;
-        Koopa* pKoopa = mKoopa;
-        TVec3f jointPos = TVec3f(0.0f, 0.0f, 0.0f);
-        MR::copyJointPos(pKoopa, "Tongue2", &jointPos);
-        KoopaFunction::emitFireStairsToTarget(pKoopa, pBattleMapStair, jointPos, false);
+        emitFireStairs(mKoopa, _20);
         _20 = nullptr;
     }
 
     KoopaBattleMapStair* pBattleMapStair = _20;
     if (MR::isLessStep(this, ::sStepToEmitFire) && tryAttackRequest()) {
-        Koopa* pKoopa = mKoopa;
-        TVec3f jointPos = TVec3f(0.0f, 0.0f, 0.0f);
-        MR::copyJointPos(pKoopa, "Tongue2", &jointPos);
-        KoopaFunction::emitFireStairsToTarget(pKoopa, pBattleMapStair, jointPos, false);
+        emitFireStairs(mKoopa, pBattleMapStair);
 
         setNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvAttackFire));
 
@@ -205,6 +194,10 @@ void KoopaBattleStairsVs1::exeJumpToNextPosStart() {
     }
 }
 
+// this is the only way I could match this
+// TODO fix
+#pragma push
+#pragma opt_propagation off
 void KoopaBattleStairsVs1::exeJumpToNextPosLoop() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mKoopa, "JumpFast");
@@ -237,6 +230,7 @@ void KoopaBattleStairsVs1::exeJumpToNextPosLoop() {
         setNerve(GET_NERVE(KoopaBattleStairsVs1, KoopaBattleStairsVs1NrvJumpToNextPosEnd));
     }
 }
+#pragma pop
 
 void KoopaBattleStairsVs1::exeJumpToNextPosEnd() {
     if (MR::isFirstStep(this)) {

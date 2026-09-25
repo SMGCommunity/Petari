@@ -15,6 +15,12 @@
 #include <revolution/mtx.h>
 #include <revolution/types.h>
 
+void DriftWood_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)3.0f;
+}
+
 struct SinCosPair {
     f32 sin;
     f32 cos;
@@ -23,7 +29,7 @@ struct SinCosPair {
 extern SinCosPair lbl_8060FC80[];
 
 DriftWood::DriftWood(const char* pName)
-    : MapObjActor(pName), mRailDirection(0.0f, 0.0f, 1.0f), mRailClipping(0.0f, 0.0f, 0.0f), mVibrateOffset(0.0f, 0.0f, 0.0f), mWaveSoundTimer(0l) {
+    : MapObjActor(pName), mRailDirection(0.0f, 0.0f, 1.0f), mRailClipping(0.0f, 0.0f, 0.0f), mVibrateOffset(0.0f, 0.0f, 0.0f), mWaveSoundTimer() {
 }
 
 namespace NrvDriftWood {
@@ -73,10 +79,11 @@ void DriftWood::exeWait() {
     }
 }
 
+// required to match
+// TODO remove
+#pragma push
+#pragma opt_propagation off
 void DriftWood::exeVibrate() {
-    // FIXME: load order in .scale
-    // https://decomp.me/scratch/z1m1A
-
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_DRIFT_WOOD_PLAYER_ON");
         mVibrateOffset.zero();
@@ -87,7 +94,7 @@ void DriftWood::exeVibrate() {
     f32 step = 30.0f * MR::sinDegree(16.0f * getNerveStep());
     f32 nerveValue = MR::calcNerveValue(this, 45, 0.1f, 1.0f);
 
-    mVibrateOffset.scale((1.0f - nerveValue) * step, mGravity);
+    mVibrateOffset.scale((1.0f - nerveValue) * step, *getGravity());
     mPosition.add(MR::getRailPos(this), mVibrateOffset);
 
     if (!tryVibrate()) {
@@ -102,6 +109,7 @@ void DriftWood::exeVibrate() {
         }
     }
 }
+#pragma pop
 
 void DriftWood::connectToScene(const MapObjActorInitInfo&) {
     MR::connectToSceneCollisionMapObj(this);

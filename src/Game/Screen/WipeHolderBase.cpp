@@ -2,8 +2,8 @@
 #include "Game/Screen/WipeLayoutBase.hpp"
 #include <cstdio>
 
-WipeHolderBase::WipeHolderBase(u32 num, const char* pName) : NameObj(pName), mCurrentWipeLayout(), mWipeLayoutArray() {
-    mWipeLayoutArray.init(num);
+WipeHolderBase::WipeHolderBase(u32 num, const char* pName)
+    : NameObj(pName), mCurrentWipeLayout(), mWipeLayoutArray(new WipeLayoutBase*[num]), mWipeLayoutCapacity(num), mWipeLayoutCount() {
 }
 
 void WipeHolderBase::setCurrent(const char* pWipeName) {
@@ -59,7 +59,8 @@ void WipeHolderBase::addWipeLayout(WipeLayoutBase* pWipeLayout) {
         mCurrentWipeLayout = pWipeLayout;
     }
 
-    mWipeLayoutArray.push_back(pWipeLayout);
+    mWipeLayoutArray[mWipeLayoutCount] = pWipeLayout;
+    mWipeLayoutCount++;
 }
 
 void WipeHolderBase::updateWipe(const char* pWipeName) {
@@ -79,7 +80,7 @@ WipeLayoutBase* WipeHolderBase::findWipe(const char* pWipeName) const {
         return mCurrentWipeLayout;
     }
 
-    for (u32 i = 0; i < mWipeLayoutArray.size(); i++) {
+    for (u32 i = 0; i < mWipeLayoutCount; i++) {
         if (strcmp(pWipeName, mWipeLayoutArray[i]->getWipeName()) == 0) {
             return mWipeLayoutArray[i];
         }

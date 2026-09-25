@@ -36,13 +36,17 @@ namespace NrvFireBall {
 FireBall::FireBall(const char* pName) : LiveActor(pName), mHost(), mUp(0.0f, 1.0f, 0.0f) {
 }
 
+inline void FireBall::initHitSensors(const char* const hitSensor) {
+    initHitSensor(1);
+    MR::addHitSensorEnemy(this, hitSensor, 8, ::cSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
+}
+
 void FireBall::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("FireBall", nullptr, false);
 
     MR::connectToSceneEnemyDecoration(this);
 
-    initHitSensor(1);
-    MR::addHitSensorEnemy(this, "body", 8, ::cSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
+    initHitSensors("body");
 
     initBinder(::cBinderRadius, 0.0f, 0);
 
@@ -93,7 +97,7 @@ void FireBall::appearAndThrow(const TVec3f& rAppearPos, f32 speed, f32 angle) {
 }
 
 void FireBall::control() {
-    GXColor color = {255, 192, 0, 255};
+    static const GXColor color = {255, 192, 0, 255};
     MR::requestPointLight(this, mPosition, color, 1.0f, -1);
 }
 

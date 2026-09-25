@@ -14,7 +14,7 @@ namespace {
     static const char* const sArcName = "PlanetMapDataTable.arc";
     static const char* const sFileName = "PlanetMapDataTable.bcsv";
 
-    void makeSubModelName(const char** ppDst, const JMapInfo* pIter, s32 idx, const char* pKey, const char* a3) {
+    void makeSubModelName(const char** ppDst, const JMapInfo* pIter, s32 idx, const char* pKey, const char* pSuffix) {
         s32 data;
         MR::getCsvDataS32(&data, pIter, pKey, idx);
 
@@ -22,9 +22,9 @@ namespace {
         MR::getCsvDataStr(&pPlanetName, pIter, "PlanetName", idx);
 
         if (data != 0) {
-            s32 size = strlen(pPlanetName) + strlen(a3) + 1;
+            s32 size = strlen(pPlanetName) + strlen(pSuffix) + 1;
             char* buf = new char[size];
-            snprintf(buf, size, "%s%s", pPlanetName, a3);
+            snprintf(buf, size, "%s%s", pPlanetName, pSuffix);
 
             *ppDst = buf;
         } else {
@@ -246,6 +246,17 @@ namespace {
         },
     };
 
+    const PlanetEntry* findUniquePlanetEntry(const char* pName) {
+        for (u32 i = 0; i < ARRAY_SIZE(::sUniquePlanetCreateFuncTable); i++) {
+            const PlanetEntry* pEntry = &::sUniquePlanetCreateFuncTable[i];
+            if (MR::isEqualString(pName, pEntry->mName)) {
+                return pEntry;
+            }
+        }
+
+        return nullptr;
+    }
+
     static bool isDataForceLow(const PlanetMapData* pMapData) {
         for (int i = 0; i < 8; i++) {
             if (!MR::isEqualString(pMapData->mForceScenarioData[i], "Low")) {
@@ -258,7 +269,7 @@ namespace {
 };  // namespace
 
 // FIXME: Scheduling issues
-PlanetMapCreator::PlanetMapCreator(const char* pName) : NameObj(pName), mPlanetMapData(nullptr) {
+PlanetMapCreator::PlanetMapCreator(const char* pName) : NameObj(pName), mPlanetMapData() {
     JMapInfo* pIter = MR::createCsvParser(::sArcName, ::sFileName);
 
     mTableCount = MR::getCsvDataElementNum(pIter);
@@ -271,15 +282,7 @@ CreatorFuncPtr PlanetMapCreator::getCreateFunc(const char* pParam1) {
         return createNameObj< PlanetMapWithoutHighModel >;
     }
 
-    const PlanetEntry* pEntry = nullptr;
-
-    for (u32 i = 0; i < ARRAY_SIZE(::sUniquePlanetCreateFuncTable); i++) {
-        pEntry = &::sUniquePlanetCreateFuncTable[i];
-
-        if (!MR::isEqualString(pParam1, pEntry->mName)) {
-            break;
-        }
-    }
+    const PlanetEntry* pEntry = ::findUniquePlanetEntry(pParam1);
 
     if (pEntry != nullptr) {
         return pEntry->mCreateFunc;
@@ -349,9 +352,9 @@ void PlanetMapCreator::addTableData(const JMapInfo* pInfo, s32 idx) {
     ::makeSubModelName(&curData->mData[4], pInfo, idx, "IndirectFlag", "Indirect");
 
     for (int i = 0; i < 5; i++) {
-        if (curData->mData[i]) {
+        if (curData->mData[i] != nullptr) {
             if (!MR::isExistModel(curData->mData[i])) {
-                curData->mData[i] = 0;
+                curData->mData[i] = nullptr;
             }
         }
     }
@@ -406,7 +409,7 @@ CreatorFuncPtr PlanetMapCreatorFunction::getPlanetMapCreator(const char* pParam1
 }
 
 bool PlanetMapCreatorFunction::isLoadArchiveAfterScenarioSelected(const char* pArchive) {
-    bool isExistTableData = MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->getTableData(pArchive);
+    bool isExistTableData = MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->getTableData(pArchive) != nullptr;
 
     if (!isExistTableData) {
         return false;
@@ -416,5 +419,5 @@ bool PlanetMapCreatorFunction::isLoadArchiveAfterScenarioSelected(const char* pA
 }
 
 bool PlanetMapCreatorFunction::isRegisteredObj(const char* pArchive) {
-    return MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->getTableData(pArchive);
+    return MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->getTableData(pArchive) != nullptr;
 }

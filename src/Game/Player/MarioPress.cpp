@@ -1,7 +1,3 @@
-#include <revolution/types.h>
-
-f32 JMAAcosRadian(f32) NO_INLINE;
-
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
@@ -11,6 +7,11 @@ f32 JMAAcosRadian(f32) NO_INLINE;
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
+
+void MarioPress_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)0.5f;
+}
 
 bool Mario::checkPressDamage() {
     if (_5FC) {
@@ -174,6 +175,7 @@ bool Mario::checkSidePressPre() {
     return false;
 }
 
+#pragma opt_propagation off
 bool Mario::checkSidePress() {
     TVec3f position;
     if (isStatusActive(MarioStatus_Hang)) {
@@ -306,11 +308,12 @@ bool Mario::checkSidePress() {
             if (getPlayer()->mMovementStates.jumping) {
                 MR::diffAngleAbsHorizontal(firstNormal, secondNormal, getAirGravityVec());
                 f32 normalDot = firstNormal.dot(secondNormal);
-                TVec3f tangent = firstNormal.cross(getAirGravityVec());
+                TVec3f tangent;
+                PSVECCrossProduct(&firstNormal, &getAirGravityVec(), &tangent);
                 MR::normalizeOrZero(&tangent);
                 TVec3f firstUp = tangent.cross(firstNormal);
                 MR::normalizeOrZero(&firstUp);
-                tangent.cross(secondNormal, getAirGravityVec());
+                PSVECCrossProduct(&secondNormal, &getAirGravityVec(), &tangent);
                 MR::normalizeOrZero(&tangent);
                 TVec3f secondUp = tangent.cross(secondNormal);
                 MR::normalizeOrZero(&secondUp);

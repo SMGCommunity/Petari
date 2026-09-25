@@ -21,11 +21,7 @@ void StinkBugBase::setDashVelocity(f32 velocity) {
     f32 radius = mRadius;
     result.scaleAdd(radius, _8C, _98);
     f32 distance = result.distance(mPosition);
-    // Illogical branching in the ASM. Possible inline?
-    if (velocity >= distance) {
-        distance = velocity;
-    }
-
+    distance = MR::min(velocity, distance);
     mVelocity.scale(distance, _8C);
 }
 
@@ -91,7 +87,7 @@ bool StinkBugBase::isPlayerInTerritory(f32 arg1, f32 arg2, f32 arg3, f32 arg4) c
         return true;
     }
 
-    f32 f1 = MR::abs(MR::sin(_B0));
+    f32 f1 = MR::abs(MR::sinDegree(_B0));
 
     TVec3f scaledAdded;
     // r3 and r4's assembly are in the wrong order

@@ -101,6 +101,7 @@ f32 Mario::getTargetWalkSpeed() const {
     if (_434 != 0) {
         targetWalkSpeed *= mActor->getConst().getTable()->mItemDashRatio;
     }
+
     return targetWalkSpeed;
 }
 
@@ -116,6 +117,7 @@ void Mario::decideSquatWalkAnimation() {
         } else {
             changeAnimation("しゃがみ終了", "基本");
         }
+
         mMovementStates._26 = false;
         return;
     }
@@ -162,6 +164,7 @@ void Mario::decideSquatWalkAnimation() {
         if (!mMovementStates._26) {
             animspeed = 1.0f;
         }
+
         getAnimator()->getXanimePlayer()->changeSpeed(animspeed);
     }
 
@@ -193,9 +196,15 @@ void Mario::decideSquatWalkAnimation() {
 }
 
 void Mario::decideWalkSpeed() {
-    bool canIndexDecrease = mTargetWalkSpeedIndex != 0 && mStickPos.z < ::sSpeedTableB[mTargetWalkSpeedIndex - 1];
-
     u32 i;
+    bool canIndexDecrease = false;
+    if (mTargetWalkSpeedIndex != 0) {
+        f32 threshold = ::sSpeedTableB[mTargetWalkSpeedIndex - 1];
+        if (mStickPos.z < threshold) {
+            canIndexDecrease = true;
+        }
+    }
+
     for (i = 0; i < ARRAY_SIZE(::sSpeedTableA); i++) {
         if (mStickPos.z < ::sSpeedTableA[i]) {
             break;
@@ -233,6 +242,7 @@ void Mario::decideWalkSpeed() {
         if (mTargetWalkSpeedIndex != 0) {
             startPadVib(1);
         }
+
         if (mTargetWalkSpeedIndex > 2) {
             getAnimator()->getXanimePlayer()->_0C = 0.5f;
         } else {
@@ -244,6 +254,7 @@ void Mario::decideWalkSpeed() {
         if (new0C > 1.0f) {
             new0C = 1.0f;
         }
+
         getAnimator()->getXanimePlayer()->_0C = new0C;
     }
 }
@@ -254,15 +265,19 @@ void Mario::decideWalkAnimation() {
     } else {
         getPlayer()->_10._F = false;
 
-        if (getPlayer()->mTargetWalkSpeedIndex == 0 && mSwim->_1B2 && isPlayerModeBee()) {
-            changeAnimation("飛び込み準備", 4);
-            return;
+        if (getPlayer()->mTargetWalkSpeedIndex == 0 && mSwim->_1B2) {
+            bool prepare = !isPlayerModeBee();
+            if (prepare) {
+                changeAnimation("飛び込み準備", 4);
+                return;
+            }
         }
 
         if (mSinkTimer == 0) {
             if (getPlayer()->mTargetWalkSpeedIndex != 0) {
                 getAnimator()->stopWaitAnimation();
             }
+
             getAnimator()->setWalkWeight(::sWeightTable[mTargetWalkSpeedIndex]);
         } else {
             f32 weights[] = {0, 0, 0, 0};
@@ -311,8 +326,10 @@ void Mario::decideWalkAnimation() {
                         playEffect("水はね左");
                     }
                 }
+
                 playEffectSRT("水波紋", 0.2f, _73C, (mGroundPos - mSideVec * 20.0f) + _368 * _738);
             }
+
             if (mPrevAnimFrame < 30.0f && animFrame >= 30.0f) {
                 if (mTargetWalkSpeedIndex >= 2) {
                     if (mTargetWalkSpeedIndex < 6) {
@@ -323,6 +340,7 @@ void Mario::decideWalkAnimation() {
                         playEffect("水はね右");
                     }
                 }
+
                 playEffectSRT("水波紋", 0.2f, _73C, (mGroundPos + mSideVec * 20.0f) + _368 * _738);
             }
         }
@@ -437,6 +455,7 @@ void Mario::decideWalkAnimation() {
             doBrakingAnimation();
             _71F = mActor->getConst().getTable()->mBrakeSecondTimer;
         }
+
         _71E = 0;
 
         s32 clingNum = MR::getKarikariClingNum();
@@ -457,6 +476,7 @@ void Mario::doBrakingAnimation() {
     if (gIsLuigi) {
         getAnimator()->getXanimePlayer()->changeSpeed(0.5f);
     }
+
     playEffect("共通ブレーキ");
     _71F = 0;
 }
@@ -468,7 +488,7 @@ void Mario::checkWallPush() {
 
     f32 angle = MR::diffAngleAbsHorizontal(mFrontVec, -getWallNorm(), *getGravityVec());
     bool sideStep = false;
-    f32 wallPushAngleRange = mActor->getConst().getTable()->mWallPushAngleRange;
+    f32 wallPushAngleRange = getActor()->getConst().getTable()->mWallPushAngleRange;
 
     bool checkAngle = mTargetWalkSpeedIndex != 0 && mMovementStates._8;
 
@@ -484,7 +504,7 @@ void Mario::checkWallPush() {
         sideStep = false;
     }
 
-    if (calcAngleD(getWallNorm()) < mActor->getConst().getTable()->mForceWallAngle) {
+    if (calcAngleD(getWallNorm()) < getActor()->getConst().getTable()->mForceWallAngle) {
         sideStep = false;
         if (mMovementStates._8 && mTargetWalkSpeedIndex != 0) {
             mTargetWalkSpeedIndex = 1;
@@ -506,6 +526,7 @@ void Mario::updateBrakeAnimation() {
             if (!MR::isNearZero(mStickPos.z)) {
                 _71F = 0;
             }
+
             if (_71F == 0) {
                 stopAnimation(nullptr);
                 stopWalk();
@@ -539,18 +560,18 @@ void Mario::updateWalkSpeed() {
     f32 f2 = 1.0f;
 
     if (targetWalkSpeed == 0.0f) {
-        _404 = mActor->getConst().getTable()->mSlowStartTime;
+        _404 = getActor()->getConst().getTable()->mSlowStartTime;
     }
 
     if (_404 != 0) {
-        f2 = mActor->getConst().getTable()->mSlowStartTime;
-        f2 /= (mActor->getConst().getTable()->mSlowStartTime - _404);
+        f2 = getActor()->getConst().getTable()->mSlowStartTime;
+        f2 /= (getActor()->getConst().getTable()->mSlowStartTime - _404);
         _404--;
     }
 
     targetWalkSpeed *= f2 * f2;
     if (mMovementStates._F || isStatusActive(17)) {
-        targetWalkSpeed *= mActor->getConst().getTable()->mTornadoMultiply;
+        targetWalkSpeed *= getActor()->getConst().getTable()->mTornadoMultiply;
     }
 
     bool press = mMovementStates._A;
@@ -573,8 +594,8 @@ void Mario::updateWalkSpeed() {
             }
         }
 
-        if (mMovementStates._1 &&
-            (strstr(getGroundPolygon()->mSensor->mHost->mName, "TriPod") || strstr(getGroundPolygon()->mSensor->mHost->mName, "Tripod"))) {
+        if (mMovementStates._1 && (strstr(getGroundPolygon()->mSensor->mHost->mName, "TriPod") != nullptr ||
+                                   strstr(getGroundPolygon()->mSensor->mHost->mName, "Tripod") != nullptr)) {
             press = false;
         }
 
@@ -593,11 +614,13 @@ void Mario::updateWalkSpeed() {
             if (!checkLockOnHoming()) {
                 mMovementStates._A = true;
             }
+
             if (!press && mMovementStates._A && (mMovementStates._8 || mMovementStates._32)) {
                 mTargetWalkSpeedIndex = 0;
                 mWalkSpeed = 0.0f;
             }
         }
+
         if (_1C._F && !mMovementStates._A && isAnimationRun("しゃがみ終了")) {
             mMovementStates._A = true;
         }
@@ -621,10 +644,11 @@ void Mario::updateWalkSpeed() {
 
     if (!mMovementStates._A && getPlayerMode() == 1) {
         if (mWalkSpeed >= 0.9999f) {
-            targetWalkSpeed *= mActor->getConst().getTable()->mDashMultiply;
+            targetWalkSpeed *= getActor()->getConst().getTable()->mDashMultiply;
             if (targetWalkSpeed > mWalkSpeed) {
                 inertia = 0.99f;
             }
+
             if (getPlayer()->mWalkSpeed >= 1.5f) {
                 getAnimator()->getXanimePlayer()->changeTrackAnimation(2, "メタルダッシュ");
             }
@@ -678,13 +702,16 @@ void Mario::updateOnSand() {
                         if (mSinkTimer == 1) {
                             playSound("声沼沈み");
                         }
+
                         playSound("沼強制沈み");
                     } else {
                         if (mSinkTimer == 1) {
                             playSound("声砂沈み");
                         }
+
                         playSound("砂強制沈み");
                     }
+
                     stopWalk();
                     mSinkTimer = MR::clamp(static_cast< s32 >(mSinkTimer) + 3, 0, 255);
 
@@ -704,6 +731,7 @@ void Mario::updateOnSand() {
                 mActor->forceGameOverSink();
                 return;
             }
+
             if (!isAnimationRun(nullptr)) {
                 getAnimator()->getXanimePlayer()->changeTrackAnimation(1, "埋まり歩行");
             }
@@ -711,6 +739,7 @@ void Mario::updateOnSand() {
             if (mSinkTimer != 0 && !isAnimationRun(nullptr)) {
                 getAnimator()->getXanimePlayer()->changeTrackAnimation(1, "歩行");
             }
+
             mSinkTimer = 0;
         }
     }
@@ -735,9 +764,11 @@ void Mario::updateOnPoison() {
                 if (mActor->mHealth == 0) {
                     mActor->forceGameOver();
                 }
+
                 startCamVib(0);
                 mActor->_BC4 = 1;
             }
+
             if (mPoisonTimer < 255) {
                 mPoisonTimer++;
             } else {
@@ -774,6 +805,7 @@ void Mario::updateOnWater() {
                 mDrawStates.mIsUnderwater = true;
             }
         }
+
         if (_960 == 23 && _962 == 23) {
             touchWater();
             mDrawStates._13 = true;

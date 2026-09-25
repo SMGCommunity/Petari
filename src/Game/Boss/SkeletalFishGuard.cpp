@@ -126,17 +126,13 @@ void SkeletalFishGuard::exeAppear() {
         s32 v7 = getNerveStep();
         s32 max = 0x63;
         f32 scaled = v7 / (f32)max;
-        TVec3f temp_vec = TVec3f(0.0f, 1.0f, 0.0f) * 0.0f * (f32)max;
-        TVec3f temp_vec2 = v30 * 10.0f * (f32)max;
-        mPosition.cubic(_10C, temp_vec, temp_vec2, v31, scaled);
+        mPosition.cubic(_10C, TVec3f(0.0f, 1.0f, 0.0f) * 0.0f * (f32)max, v30 * 10.0f * (f32)max, v31, scaled);
     } else {
         f32 v9 = (getNerveStep() - 0x63);
         s32 max = 0xC9;
         f32 scaled = v9 / (f32)max;
         f32 v11 = MR::getRailCoordSpeed(mFishBoss->getCurrentRail());
-        TVec3f temp_vec = v30 * 10.0f * (f32)max;
-        TVec3f temp_vec2 = _100 * v11 * (f32)max;
-        mPosition.cubic(v31, temp_vec, temp_vec2, _F4, scaled);
+        mPosition.cubic(v31, v30 * 10.0f * (f32)max, _100 * v11 * (f32)max, _F4, scaled);
     }
 
     TVec3f v28 = mPosition - v29;
@@ -159,7 +155,9 @@ void SkeletalFishGuard::exeNormal() {
     calcTransAndFront();
     MR::calcGravity(this);
     MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL");
-    tryShiftApart();
+    if (tryShiftApart()) {
+        return;
+    }
 }
 
 void SkeletalFishGuard::exeApart() {
@@ -220,22 +218,19 @@ void SkeletalFishGuard::exeFollow() {
     }
 
     f32 dist = MR::getPlayerCenterPos()->distance(mPosition);
-    f32 v6 = 0.0f;
-    f32 v7 = (dist - 1000.0f) / 500.0f;
-    if (v7 >= 0.0f) {
-        v6 = 1.0f;
-
-        if (v7 <= 1.0f) {
-            v6 = ((dist - 1000.0f) / 500.0f);
-        }
-    }
-
-    lookToPlayer((((1.5f * (1.0f - ((1.0f - v6) * (1.0f - v6)))) * 3.1415927f) / 180.0f),
-                 (((1.0f - ((1.0f - v6) * (1.0f - v6))) * 3.1415927f) / 180.0f));
+    f32 rate = MR::clamp((dist - 1000.0f) / 500.0f, 0.0f, 1.0f);
+    f32 oneMinusRate = 1.0f - rate;
+    oneMinusRate *= oneMinusRate;
+    f32 ease = 1.0f - oneMinusRate;
+    f32 yawRate = 1.5f * ease;
+    f32 pitchRate = ease;
+    lookToPlayer(yawRate * MR::pi() / 180.0f, pitchRate * MR::pi() / 180.0f);
     MR::calcGravity(this);
 
     if (!tryShiftNumb(GET_NERVE_ANON(SkeletalFishGuardNrvFollow))) {
-        tryShiftStraight();
+        if (tryShiftStraight()) {
+            return;
+        }
     }
 }
 
@@ -427,8 +422,8 @@ void SkeletalFishGuard::calcTransAndFront() {
     mPosition.set(_F4);
 }
 
-void SkeletalFishGuard::rotateHorizontal(const TVec3f& a2, f32 scalar) {
-    TVec3f v10 = a2.killElement(mGravity);
+void SkeletalFishGuard::rotateHorizontal(const TVec3f& rA2, f32 scalar) {
+    TVec3f v10 = rA2.killElement(mGravity);
     if (!MR::isNearZero(v10)) {
         MR::normalize(&v10);
         // TODO: this looks like an inline. Possible fakematch.
@@ -442,12 +437,12 @@ void SkeletalFishGuard::rotateHorizontal(const TVec3f& a2, f32 scalar) {
     }
 }
 
-void SkeletalFishGuard::rotateVertical(const TVec3f& a2, f32 a3) {
+void SkeletalFishGuard::rotateVertical(const TVec3f& rA2, f32 a3) {
     TVec3f v12 = mGravity.cross(_D0);
 
     if (!MR::isNearZero(v12)) {
         MR::normalize(&v12);
-        f32 angle = mGravity.angle(a2);
+        f32 angle = mGravity.angle(rA2);
         f32 v7 = (angle - mGravity.angle(_D0));
 
         if (v7 > 0.0f) {
@@ -507,18 +502,18 @@ bool SkeletalFishGuard::tryShiftKill() {
     return true;
 }
 
-void SkeletalFishGuard::turn(TVec3f* a1, const TVec3f& a2, const TVec3f& a3, f32 a4) {
+void SkeletalFishGuard::turn(TVec3f* pA1, const TVec3f& rA2, const TVec3f& rA3, f32 a4) {
     TQuat4f quat;
 
-    f32 angle = a2.angle(a3);
+    f32 angle = rA2.angle(rA3);
     f32 v10 = 1.0f;
 
     if (angle > a4) {
         v10 = (a4 / angle);
     }
 
-    quat.setRotate(a2, a3, v10);
-    quat.transform(*a1);
+    quat.setRotate(rA2, rA3, v10);
+    quat.transform(*pA1);
 }
 
 void SkeletalFishGuard::lookToPlayer(f32 a2, f32 a3) {
@@ -533,27 +528,31 @@ void SkeletalFishGuard::lookToPlayer(f32 a2, f32 a3) {
 }
 
 // functionally equiv. just needs stack work
-void SkeletalFishGuard::calcTarget(TVec3f* a1, TVec3f* a2, TVec3f* a3, s32 a4) {
+void SkeletalFishGuard::calcTarget(TVec3f* pA1, TVec3f* pA2, TVec3f* pA3, s32 a4) {
     f32 v11 = MR::getRailCoord(mFishBoss->getCurrentRail());
-    f32 v13 = (_94.z + (v11 + (MR::getRailCoordSpeed(mFishBoss->getCurrentRail()) * a4)));
-    MR::calcRailPosAtCoord(a1, mFishBoss->getCurrentRail(), v13);
-    MR::calcRailDirectionAtCoord(a3, mFishBoss->getCurrentRail(), v13);
+    f32 speed = MR::getRailCoordSpeed(mFishBoss->getCurrentRail());
+    f32 v13 = (_94.z + (v11 + (speed * a4)));
+    MR::calcRailPosAtCoord(pA1, mFishBoss->getCurrentRail(), v13);
+    MR::calcRailDirectionAtCoord(pA3, mFishBoss->getCurrentRail(), v13);
     TVec3f v22;
-    MR::calcGravityVector(this, *a1, &v22, nullptr, 0);
-    TVec3f v21 = a3->cross(v22);
+    MR::calcGravityVector(this, *pA1, &v22, nullptr, 0);
+    TVec3f v21 = pA3->cross(v22);
     MR::normalizeOrZero(&v21);
-    a2->add(*a1, v21 * _94.x + v22 * -_94.y);
+    pA2->add(*pA1, v21 * _94.x + v22 * -_94.y);
 }
 
-bool SkeletalFishGuard::isInScreen() const {
+bool SkeletalFishGuard::isInScreen() const NO_INLINE {
     TVec2f screen;
     return MR::calcScreenPosition(&screen, mPosition);
 }
 
+// this is the only way I could match this
+// TODO fix
+#pragma push
+#pragma opt_propagation off
 bool SkeletalFishGuard::isPlayerInAttackRange() const {
-    // FIXME: is there some inline that calculates vector to player?
-
-    TVec3f v7 = *MR::getPlayerCenterPos() - mPosition;
+    const TVec3f& rPosition = mPosition;
+    TVec3f v7 = *MR::getPlayerCenterPos() - rPosition;
 
     if (v7.length() > 5000.0f) {
         return false;
@@ -564,12 +563,15 @@ bool SkeletalFishGuard::isPlayerInAttackRange() const {
     }
 
     MR::normalize(&v7);
-    if (v7.dot(_D0) < MR::cosDegree(180.0f)) {
+    f32 minCos = MR::cosDegree(180.0f);
+    const TVec3f& rFront = _D0;
+    if (v7.dot(rFront) < minCos) {
         return false;
     }
 
     return true;
 }
+#pragma pop
 
 bool SkeletalFishGuard::isLineOfSightClear() const {
     TVec3f v12 = *MR::getPlayerCenterPos() - mPosition;

@@ -36,6 +36,20 @@
 #include "Game/Util/TalkUtil.hpp"
 #include <cstdio>
 
+void Dodoryu_FORCE_MATCH(DodoryuStateBase* pState, TPos3f* pMtx, TVec3f* pVec) {
+    pVec->setAll< f32 >(0.0f);
+    pState->DodoryuStateBase::catchSendPlayerFlying(nullptr, nullptr);
+    pState->DodoryuStateBase::catchSendPlayerFlying(nullptr, nullptr);
+    pMtx->getXDir(*pVec);
+    pMtx->getXDir(*pVec);
+    pMtx->getYDir(*pVec);
+    pMtx->getYDir(*pVec);
+}
+
+f32 Dodoryu_FORCE_MATCH_CONVERSION(s32 value) {
+    return value;
+}
+
 namespace {
     static const Vec sHeadOffset = {50.0f, 30.0f, 0.0f};
     static const Vec sBodyOffset = {0.0f, 0.0f, 30.0f};
@@ -324,15 +338,12 @@ void Dodoryu::endClipped() {
 }
 
 void Dodoryu::snapToGround() {
-    MR::calcGravityVector(this, &mGravity, nullptr, 0);
+    MR::calcGravityVector(this, &mGravity, nullptr, false);
 
     Triangle triangle;
     TVec3f v4;
-    TVec3f v3 = mGravity * 200.0f;
-    TVec3f v2 = mGravity * 1200.0f;
-    TVec3f v1 = mPosition - v2;
 
-    if (MR::getFirstPolyOnLineToMap(&v4, &triangle, v3, v1)) {
+    if (MR::getFirstPolyOnLineToMap(&v4, &triangle, mPosition - mGravity.scaleInline(200.0f), mGravity.scaleInline(1200.0f))) {
         _128 = *triangle.getNormal(0);
 
         turnUpVecTo(-mGravity);
@@ -489,7 +500,44 @@ void Dodoryu::endSpinOutCamera() {
     MR::endGlobalEventCamera(::sSpinOutCamera, 0, true);
 }
 
-// Dodoryu::keepOffFromClosedArea
+bool Dodoryu::keepOffFromClosedArea(TVec3f* pDirection) {
+    AreaObj* pArea = MR::getAreaObj("DodoryuClosedCylinder", mPosition);
+    if (pArea == nullptr) {
+        return false;
+    }
+
+    TVec3f center;
+    MR::calcCylinderPos(&center, pArea);
+    TVec3f up;
+    MR::calcCylinderUpVec(&up, pArea);
+    TVec3f direction = mPosition - center;
+    f32 height = up.dot(direction);
+    direction.orthogonalize(up);
+
+    if (MR::isNearZero(direction)) {
+        TVec3f oldUp;
+        mBaseMtx.getYDir(oldUp);
+        TQuat4f rotation;
+        rotation.setRotate(oldUp, up);
+        TVec3f side;
+        mBaseMtx.getXDir(side);
+        rotation.transform(side);
+        direction.set(side);
+    } else {
+        MR::normalize(&direction);
+    }
+
+    if (pDirection != nullptr) {
+        pDirection->set(direction);
+    }
+
+    direction.setLength(MR::getCylinderRadius(pArea));
+    TPos3f mtx;
+    mtx.set(mBaseMtx);
+    mtx.setTrans(center + up * height + direction);
+    setMtx(mtx);
+    return true;
+}
 
 void Dodoryu::tryRumblePad() {
     f32 playerDistance = MR::calcDistanceToPlayer(this);
@@ -698,27 +746,25 @@ void Dodoryu::createDodoryuBank() {
 }
 
 void Dodoryu::turnUpVecTo(const TVec3f& rVec) {
+    TPos3f rotation;
+    TVec3f zDir, yDir, xDir;
     TVec3f dir;
     mBaseMtx.getYDir(dir);
-
-    TQuat4f q;
-    q.setRotate(dir, rVec);
-
-    TPos3f mtx;
-    mtx.setQuat(q);
-    mBaseMtx.concat(mtx, mBaseMtx);
-
-    // FIXME: probably an inline
-    TVec3f xDir, yDir, zDir;
+    rotation.setRotate(dir, rVec);
+    mBaseMtx.concat(rotation, mBaseMtx);
     mBaseMtx.getXYZDir(xDir, yDir, zDir);
-
-    yDir.cross(zDir, xDir);
-    zDir.cross(xDir, yDir);
-
-    yDir.normalize();
-    zDir.normalize();
-
-    mBaseMtx.setXYZDir2(xDir, yDir, zDir);
+    Vec* pZ;
+    Vec* pY = &yDir;
+    pZ = &zDir;
+    PSVECCrossProduct(pZ, &xDir, pY);
+    PSVECCrossProduct(&xDir, pY, pZ);
+    PSVECMag(pY);
+    PSVECNormalize(pY, pY);
+    PSVECMag(pZ);
+    PSVECNormalize(pZ, pZ);
+    mBaseMtx.setXDir(xDir);
+    mBaseMtx.setYDir(yDir);
+    mBaseMtx.setZDir(zDir);
 }
 
 void Dodoryu::checkHipDrop() {
@@ -777,6 +823,10 @@ void DodoryuBank::exeAppear() {
         kill();
         MR::validateClipping(this);
     }
+}
+
+void Dodoryu_FORCE_MATCH_RABBIT(LiveActor* pActor) {
+    MR::startBck(pActor, "Jump");
 }
 
 DodoryuRabbit::DodoryuRabbit(Dodoryu* pHost, const JMapInfoIter& rIter)
@@ -996,7 +1046,7 @@ void DodoryuRabbit::updatePos(f32 f1) {
     MR::calcRailPosAtCoord(&railPos, mHost, _C4);
     mPosition.set(railPos);
 
-    MR::calcGravityVector(this, &mGravity, nullptr, 0);
+    MR::calcGravityVector(this, &mGravity, nullptr, false);
 
     TVec3f upVec(-mGravity);
     TVec3f railDir;
@@ -1007,7 +1057,7 @@ void DodoryuRabbit::updatePos(f32 f1) {
 
     Triangle triangle = Triangle();
     TVec3f vecA4;
-    if (!MR::getFirstPolyOnLineToMap(&vecA4, &triangle, mPosition - mGravity * 200.0f, mGravity * 1200.0f)) {
+    if (!MR::getFirstPolyOnLineToMap(&vecA4, &triangle, mPosition - mGravity.scaleInline(200.0f), mGravity.scaleInline(1200.0f))) {
         vecA4.set(railPos);
     }
 
@@ -1082,11 +1132,6 @@ void DodoryuLeadHill::initJoint() {
         char buf[64];
         snprintf(buf, sizeof(buf), "DodoryuLeadHill%d", i + 1);
 
-        JointControlDelegator< DodoryuLeadHill >* pJointDelegator =
-            new JointControlDelegator< DodoryuLeadHill >(this, &DodoryuLeadHill::calcJoint, nullptr);
-
-        MR::setJointControllerParam(pJointDelegator, this, buf);
-
-        _94[i] = pJointDelegator;
+        _94[i] = MR::createJointDelegatorWithNullChildFunc(this, &DodoryuLeadHill::calcJoint, buf);
     }
 }

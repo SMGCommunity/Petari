@@ -17,12 +17,21 @@
 namespace {
     const char* cFollowJointName = "Move";
 
-    static PlanetMapClippingInfo sClippingInfo = {"PhantomShipA", 3000.0f, 800.0f, 1300.0f, 0.0f, 0};
+    static PlanetMapClippingInfo sClippingInfo[] = {{"PhantomShipA", 3000.0f, {800.0f, 1300.0f, 0.0f}, 0}};
+    PlanetMapClippingInfo* findClippingInfo(const char* pName) {
+        for (u32 i = 0; i < ARRAY_SIZE(::sClippingInfo); i++) {
+            PlanetMapClippingInfo* pInfo = &::sClippingInfo[i];
+            if (MR::isEqualStringCase(pName, pInfo->mName)) {
+                return pInfo;
+            }
+        }
+
+        return nullptr;
+    }
 };  // namespace
 
 PlanetMap::PlanetMap(const char* pName, const char* pModelName)
-    : LiveActor(pName), mModelName(pModelName), _90(0.0f, 0.0f, 0.0f), mLODCtrl(nullptr), mBloomModel(nullptr), mWaterModel(nullptr),
-      mIndirectModel(nullptr) {
+    : LiveActor(pName), mModelName(pModelName), _90(0.0f, 0.0f, 0.0f), mLODCtrl(), mBloomModel(), mWaterModel(), mIndirectModel() {
 }
 
 void PlanetMap::init(const JMapInfoIter& rIter) {
@@ -32,8 +41,9 @@ void PlanetMap::init(const JMapInfoIter& rIter) {
         MR::getJMapInfoArg0NoInit(rIter, &v11);
         f32 v12 = -1.0f;
         MR::getJMapInfoArg2NoInit(rIter, &v12);
-        f32 unknownUse = -1.0f > v11 ? 1.0f : -1.0f;
+        f32 unknownUse = 0.0f > v11 ? 1.0f : -1.0f;
     }
+
     MR::initDefaultPos(this, rIter);
     initModel(mModelName, rIter);
     MR::connectToScenePlanet(this);
@@ -46,8 +56,10 @@ void PlanetMap::init(const JMapInfoIter& rIter) {
         if (MR::isExistJoint(this, ::cFollowJointName)) {
             jointMTX = MR::getJointMtx(this, ::cFollowJointName);
         }
+
         MR::initCollisionParts(this, mModelName, getSensor("body"), jointMTX);
     }
+
     MR::tryCreateCollisionMoveLimit(this, getSensor("body"));
     MR::tryCreateCollisionWaterSurface(this, getSensor("body"));
     initSound(4, false);
@@ -58,6 +70,7 @@ void PlanetMap::init(const JMapInfoIter& rIter) {
         calcAnim();
         MR::offCalcAnim(this);
     }
+
     initClipping(rIter);
     OceanHomeMapFunction::tryEntryOceanHomeMap(this);
     makeActorAppeared();
@@ -69,6 +82,7 @@ void PlanetMap::init(const JMapInfoIter& rIter) {
     if (MR::tryRegisterDemoCast(this, rIter) && MR::isRegisteredDemoActionAppear(this)) {
         makeActorDead();
     }
+
     MR::useStageSwitchSleep(this, rIter);
 }
 
@@ -85,28 +99,24 @@ void PlanetMap::makeActorDead() {
 }
 
 void PlanetMap::initClipping(const JMapInfoIter& rIter) {
-    f32 v2 = 0.0f;
+    f32 radius = 0.0f;
     if (MR::isValidInfo(rIter)) {
-        MR::getJMapInfoArg1NoInit(rIter, &v2);
-    }
-    PlanetMapClippingInfo* info = &::sClippingInfo;
-
-    if (MR::isEqualStringCase(mModelName, ::sClippingInfo.mName)) {
-        info = nullptr;
+        MR::getJMapInfoArg1NoInit(rIter, &radius);
     }
 
-    if (info != nullptr) {
-        TVec3f _4 = TVec3f(info->_4, info->_8, info->_C);
-        TVec3f _8;
-        _8.add(_4);
-        _90.set(_8);
-        MR::setClippingTypeSphere(this, v2, &_90);
+    PlanetMapClippingInfo* pInfo = ::findClippingInfo(mModelName);
+
+    if (pInfo != nullptr) {
+        radius = pInfo->mRadius;
+        _90.set(mPosition + TVec3f(pInfo->mOffset));
+        MR::setClippingTypeSphere(this, pInfo->mRadius, &_90);
     } else {
-        if (v2 <= 0.0f) {
-            MR::calcModelBoundingRadius(&v2, this);
-            v2 += 100.0f;
+        if (radius <= 0.0f) {
+            MR::calcModelBoundingRadius(&radius, this);
+            radius += 100.0f;
         }
-        MR::setClippingTypeSphere(this, v2);
+
+        MR::setClippingTypeSphere(this, radius);
     }
 
     if (MR::isValidInfo(rIter)) {
@@ -133,6 +143,7 @@ void PlanetMap::initBloomModel(const char* pModelName) {
         mBloomModel = nullptr;
         return;
     }
+
     char str[256];
     snprintf(str, 256, "%sBloom", mModelName);
     const char* name = mName;

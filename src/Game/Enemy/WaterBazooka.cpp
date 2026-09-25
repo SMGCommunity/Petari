@@ -65,9 +65,8 @@ namespace {
 };  // namespace
 
 WaterBazooka::WaterBazooka(const char* pName)
-    : LiveActor(pName), mShooter(nullptr), mCapsule(nullptr), mBreakModel(nullptr), mDemoActor(nullptr), mCameraInfo(nullptr), mAlreadyDoneFlag(-1),
-      mLife(3), mShotNum(0), mCannonCollisionParts(nullptr), mJointCtrl(nullptr), mIsPinchBGMStarted(false), mHasPowerStar(false), mIsElectric(false),
-      mBullets(nullptr), mElectricTime(-1) {
+    : LiveActor(pName), mShooter(), mCapsule(), mBreakModel(), mDemoActor(), mCameraInfo(), mAlreadyDoneFlag(-1), mLife(3), mShotNum(),
+      mCannonCollisionParts(), mJointCtrl(), mIsPinchBGMStarted(), mHasPowerStar(), mIsElectric(), mBullets(), mElectricTime(-1) {
     mBaseMtx.identity();
 }
 
@@ -137,6 +136,7 @@ void WaterBazooka::init(const JMapInfoIter& rIter) {
             if (MR::isValidSwitchDead(this)) {
                 MR::onSwitchDead(this);
             }
+
             makeActorDead();
             return;
         }
@@ -238,6 +238,7 @@ bool WaterBazooka::isFirstShoot() const {
     if (MR::isFirstStep(this)) {
         return isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvShot));
     }
+
     return false;
 }
 
@@ -548,6 +549,7 @@ void WaterBazooka::exeDemoBreakEnd() {
         if (MR::isValidSwitchDead(this)) {
             MR::onSwitchDead(this);
         }
+
         kill();
     }
 }
@@ -636,6 +638,7 @@ void WaterBazooka::kill() {
     if (mAlreadyDoneFlag >= 0) {
         MR::updateAlreadyDoneFlag(mAlreadyDoneFlag, 1);
     }
+
     LiveActor::kill();
 }
 
@@ -661,6 +664,7 @@ void WaterBazooka::control() {
     if (getSmokeLevel() != -1) {
         MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_SMOKE");
     }
+
     tryPanic();
 }
 
@@ -680,6 +684,7 @@ void WaterBazooka::startDemoAnger() {
     if (MR::isDemoPartExist(this, "乗組員怒り")) {
         MR::requestStartDemoRegisteredMarioPuppetable(this, nullptr, nullptr, "乗組員怒り");
     }
+
     mCapsule->crackCapsule();
     MR::invalidateCollisionParts(mCapsule);
     setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoAnger));
@@ -693,9 +698,9 @@ void WaterBazooka::startDemoBreakCapsule() {
     setNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoBreakWait));
 }
 
+#pragma push
+#pragma opt_propagation off
 bool WaterBazooka::aimAtMario() {
-    // FIXME: instruction order swap in MR::turnVecToVecCos register loads
-    // https://decomp.me/scratch/juRcM
     if (MR::isStageStateScenarioOpeningCamera()) {
         return true;
     }
@@ -711,7 +716,9 @@ bool WaterBazooka::aimAtMario() {
     TVec3f aim;
     aim.sub(aimPos, cannonPos);
     MR::normalize(&aim);
-    MR::turnVecToVecCos(&side, side, aim, MR::cosDegree(1.2f), mGravity);
+    const f32 turnCos = MR::cosDegree(1.2f);
+    const TVec3f& rGravity = mGravity;
+    MR::turnVecToVecCos(&side, side, aim, turnCos, rGravity);
 
     TVec3f v1;
     MR::turnVecToPlane(&v1, side, -mGravity);
@@ -727,6 +734,7 @@ bool WaterBazooka::aimAtMario() {
     mBaseMtx.getXDir(side2);
     return side2.angle(aim) * _180_PI <= 2.0f;
 }
+#pragma pop
 
 void WaterBazooka::switchShowOrHide() {
     if (isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoBreakExplosion)) || isNerve(GET_NERVE(WaterBazooka, WaterBazookaNrvDemoBreakEnd))) {
@@ -892,6 +900,7 @@ void WaterBazooka::initBreakModel() {
     } else {
         mBreakModel = MR::createModelObjEnemy("ウォーターバズーカ壊れモデル", "WaterBazookaBreak", getBaseMtx());
     }
+
     mBreakModel->initWithoutIter();
     MR::invalidateClipping(mBreakModel);
     mBreakModel->makeActorDead();
@@ -946,6 +955,7 @@ ElectricPressureBullet* WaterBazooka::selectBulletElectric() {
             return mBullets[idx];
         }
     }
+
     return nullptr;
 }
 

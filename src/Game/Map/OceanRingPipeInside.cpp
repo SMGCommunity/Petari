@@ -25,8 +25,8 @@ namespace {
 };  // namespace
 
 OceanRingPipeInside::OceanRingPipeInside(const OceanRingPipe* pPipe)
-    : LiveActor("オーシャンリングの内側"), mRingPipe(pPipe), mTexU0(0.0f), mTexV0(0.0f), mTexU1(0.0f), mTexV1(0.0f), mWaterPipeInsideTex(nullptr),
-      mDispListLength(0), mDispList(nullptr) {
+    : LiveActor("オーシャンリングの内側"), mRingPipe(pPipe), mTexU0(), mTexV0(), mTexU1(), mTexV1(), mWaterPipeInsideTex(), mDispListLength(),
+      mDispList() {
 }
 
 void OceanRingPipeInside::init(const JMapInfoIter& rIter) {
@@ -38,10 +38,10 @@ void OceanRingPipeInside::init(const JMapInfoIter& rIter) {
 }
 
 void OceanRingPipeInside::movement() {
-    mTexU0 = MR::repeat(mTexU0 + ::sTexSpeedU0, 0.0f, 1.0f);
-    mTexV0 = MR::repeat(mTexV0 + ::sTexSpeedV0, 0.0f, 1.0f);
-    mTexU1 = MR::repeat(mTexU1 + ::sTexSpeedU1, 0.0f, 1.0f);
-    mTexV1 = MR::repeat(mTexV1 + ::sTexSpeedV1, 0.0f, 1.0f);
+    mTexU0 = MR::repeat2(mTexU0 + ::sTexSpeedU0, 0.0f, 1.0f);
+    mTexV0 = MR::repeat2(mTexV0 + ::sTexSpeedV0, 0.0f, 1.0f);
+    mTexU1 = MR::repeat2(mTexU1 + ::sTexSpeedU1, 0.0f, 1.0f);
+    mTexV1 = MR::repeat2(mTexV1 + ::sTexSpeedV1, 0.0f, 1.0f);
 }
 
 void OceanRingPipeInside::initDisplayList() {
@@ -61,8 +61,9 @@ void OceanRingPipeInside::initDisplayList() {
 }
 
 void OceanRingPipeInside::draw() const {
-    if (!MR::isValidDraw(mRingPipe) || !mRingPipe->_90)
+    if (!MR::isValidDraw(mRingPipe) || !mRingPipe->_90) {
         return;
+    }
 
     loadMaterial();
     GXCallDisplayList(mDispList, mDispListLength);
@@ -166,6 +167,7 @@ void OceanRingPipeInside::sendGD() const {
             f24 += f29;
             f23 += f30;
         }
+
         f26 = f28;
         f25 = f27;
         f28 += ::sTexRateV0;

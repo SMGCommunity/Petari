@@ -8,6 +8,11 @@
 #include <JSystem/JGeometry/TVec.hpp>
 
 namespace {
+    inline void removeVelocity(DinoPackun* pHost, const TVec3f& rDir) {
+        TVec3f* pVelocity = &pHost->mVelocity;
+        pHost->mVelocity.scaleAdd(-rDir.dot(*pVelocity), rDir, *pVelocity);
+    }
+
     static TVec3f sEggOutPosition = TVec3f(0.0f, 60.0f, -320.0f);
 };  // namespace
 
@@ -59,13 +64,14 @@ bool DinoPackunBattleEgg::receiveMsgPush(HitSensor* pSender, HitSensor* pReceive
         return false;
     }
 
-    if (!isNerve(GET_NERVE(DinoPackunBattleEgg, DinoPackunBattleEggNrvWalk)) && isNerve(GET_NERVE(DinoPackunBattleEgg, DinoPackunBattleEggNrvTurn)) &&
-        getHost()->isSensorEgg(pSender) && MR::isSensorMapObj(pReceiver)) {
+    if ((isNerve(GET_NERVE(DinoPackunBattleEgg, DinoPackunBattleEggNrvWalk)) ||
+         isNerve(GET_NERVE(DinoPackunBattleEgg, DinoPackunBattleEggNrvTurn))) &&
+        getHost()->isSensorEgg(pReceiver) && MR::isSensorMapObj(pSender)) {
         TVec3f v11;
-        MR::calcSensorHorizonNormalize(&v11, getHost()->mGravity, pReceiver, pSender);
+        MR::calcSensorHorizonNormalize(&v11, getHost()->mGravity, pSender, pReceiver);
 
         if (getHost()->mVelocity.dot(v11) < 0.0f) {
-            getHost()->mVelocity.orthogonalize(v11);
+            removeVelocity(getHost(), v11);
         }
 
         if (isNerve(GET_NERVE(DinoPackunBattleEgg, DinoPackunBattleEggNrvWalk)) && getHost()->_E8.dot(v11) < 0.0f) {

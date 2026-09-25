@@ -4,6 +4,8 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 void CocoSambo_FORCE_MATCH_SDATA2() {
     (void)1.0f;
@@ -465,9 +467,11 @@ void CocoSambo::initSensor() {
     MR::addHitSensorMtx(this, "spine3", ATYPE_SAMBO_BODY, 8, f, MR::getJointMtx(this, "Spine3"), offset);
 }
 
+#pragma push
+#pragma opt_propagation off
 void CocoSambo::dirToPlayer(f32 angle) {
     TVec3f toPlayer;
-    toPlayer.sub(*MR::getPlayerPos(), mPosition);
+    toPlayer.sub(*MR::getPlayerPos(), *getPosition());
 
     if (!MR::isNearZero(toPlayer) && !MR::isSameDirection(mUpVec, toPlayer)) {
         TVec3f front;
@@ -479,6 +483,7 @@ void CocoSambo::dirToPlayer(f32 angle) {
         MR::turnVecToVecCos(&mFrontVec, front, targetFront, MR::cosDegree(angle), mUpVec);
     }
 }
+#pragma pop
 
 bool CocoSambo::tryDpdPointing(const Nerve* pNerve) {
     if (isPointing()) {

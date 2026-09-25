@@ -52,12 +52,15 @@ TitleSequenceProduct::TitleSequenceProduct()
 }
 
 // FIXME: GPR4 and GPR5 are swapped and missing addi instruction.
+#pragma push
+#pragma opt_propagation off
 void TitleSequenceProduct::exeDisplayEncouragePal60Window() {
     if (MR::isFirstStep(this)) {
         OSTime timeAnnounced = GameDataFunction::getSysConfigFileTimeAnnounced();
         OSTime ticks = OSGetTime();
         s32 day = OSTicksToSeconds(ticks) / (60 * 60 * 24);
         s32 dayAnnounced = OSTicksToSeconds(timeAnnounced) / (60 * 60 * 24);
+        dayAnnounced += 100;
 
         if (timeAnnounced == 0 || ticks < timeAnnounced || dayAnnounced < day) {
             mEncouragePal60Window->appear();
@@ -69,6 +72,7 @@ void TitleSequenceProduct::exeDisplayEncouragePal60Window() {
         setNerve(GET_NERVE_ANON(TitleSequenceProductBgmPrepare));
     }
 }
+#pragma pop
 
 void TitleSequenceProduct::exeBgmPrepare() {
     if (MR::isFirstStep(this)) {

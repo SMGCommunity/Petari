@@ -15,6 +15,13 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
+#include <JSystem/JUtility/JUTVideo.hpp>
+
+void HomeButtonLayout_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+}
 
 namespace {
     int SoundCallback(int evt, int num) {
@@ -204,7 +211,7 @@ void HomeButtonLayout::draw() const {
     GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
 
     Mtx44 projectionMtx;
-    f32 screenHalfHeight = MR::getScreenHeight() / 2.0f;
+    f32 screenHalfHeight = static_cast< s32 >(JUTGetVideoManager()->getEfbHeight()) / 2.0f;
     f32 screenHalfWidth = MR::getScreenWidth() / 2.0f;
     C_MTXOrtho(projectionMtx, screenHalfHeight, -screenHalfHeight, -screenHalfWidth, screenHalfWidth, 0.0f, 500.0f);
     GXSetProjection(projectionMtx, GX_ORTHOGRAPHIC);

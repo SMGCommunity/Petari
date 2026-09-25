@@ -144,6 +144,7 @@ bool Mario::fixWallingTop() {
     if (MR::isNearZero(side)) {
         return false;
     }
+
     _75C.cross(getWallNorm(), side);
     MR::normalizeOrZero(&_75C);
     if (MR::isNearZero(_75C)) {
@@ -453,7 +454,7 @@ bool MarioWall::update() {
         }
     }
 
-    if (_14 >= mActor->getConst().getTable()->mWallReleaseTime + mActor->getConst().getTable()->mWallStickTime) {
+    if (_14 >= getActor()->getConst().getTable()->mWallReleaseTime + getActor()->getConst().getTable()->mWallStickTime) {
         release = true;
     }
 
@@ -500,7 +501,7 @@ bool MarioWall::update() {
     }
 
     f32 blend = 0.9f;
-    f32 speed = mActor->getConst().getTable()->mWallDropSpeedNormal;
+    f32 speed = getActor()->getConst().getTable()->mWallDropSpeedNormal;
     u8 side = getPlayer()->checkStickWallSide();
     if (side == 1) {
         side = 0;
@@ -509,19 +510,19 @@ bool MarioWall::update() {
     switch (side) {
     case 1:
         blend = 0.7f;
-        if (_14 > mActor->getConst().getTable()->mWallStickTime) {
-            _14 = mActor->getConst().getTable()->mWallStickTime;
+        if (_14 > getActor()->getConst().getTable()->mWallStickTime) {
+            _14 = getActor()->getConst().getTable()->mWallStickTime;
         }
 
         _18 = 0;
-        speed = mActor->getConst().getTable()->mWallDropSpeedStop;
+        speed = getActor()->getConst().getTable()->mWallDropSpeedStop;
         changeAnimation("壁くっつき");
         stopEffect("共通壁手擦り");
         break;
     case 2:
         if (_1E) {
-            if (_14 < mActor->getConst().getTable()->mWallStickTimeIce - 15) {
-                _14 = mActor->getConst().getTable()->mWallStickTimeIce - 15;
+            if (_14 < getActor()->getConst().getTable()->mWallStickTimeIce - 15) {
+                _14 = getActor()->getConst().getTable()->mWallStickTimeIce - 15;
             }
         } else if (_14 < 165) {
             _14 = 165;
@@ -534,7 +535,7 @@ bool MarioWall::update() {
         stopEffect("共通壁手擦り");
         break;
     case 0:
-        if (_14 < mActor->getConst().getTable()->mWallStickTime) {
+        if (_14 < getActor()->getConst().getTable()->mWallStickTime) {
             stopEffect("共通壁手擦り");
         } else {
             if (!isAnimationRun("壁くっつき")) {
@@ -552,12 +553,12 @@ bool MarioWall::update() {
         _18++;
     }
 
-    if (_14 < mActor->getConst().getTable()->mWallStickTime) {
+    if (_14 < getActor()->getConst().getTable()->mWallStickTime) {
         blend = 1.0f;
     }
 
     if (_1E) {
-        if (_14 > mActor->getConst().getTable()->mWallStickTimeIce) {
+        if (_14 > getActor()->getConst().getTable()->mWallStickTimeIce) {
             _1C = 1;
             _24 = getPlayer()->getWallNorm();
             return false;
@@ -570,10 +571,10 @@ bool MarioWall::update() {
     addVelocity(getPlayer()->_75C, -_20);
     if (side <= 1) {
         f32 ratio;
-        if (_14 < mActor->getConst().getTable()->mWallStickTime) {
+        if (_14 < getActor()->getConst().getTable()->mWallStickTime) {
             ratio = 0.0f;
         } else {
-            ratio = 1.0f - (_14 - mActor->getConst().getTable()->mWallStickTime) * mActor->getConst().getTable()->mWallSideMoveRatio;
+            ratio = 1.0f - (_14 - getActor()->getConst().getTable()->mWallStickTime) * getActor()->getConst().getTable()->mWallSideMoveRatio;
         }
 
         getPlayer()->moveWallSlide(MR::clamp(ratio, 0.0f, 1.0f));

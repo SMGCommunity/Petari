@@ -14,10 +14,14 @@
 template const bool JMapInfo::getValue< s32 >(int, const char*, s32*) const NO_INLINE;
 
 namespace {
+    inline const char* getGalaxyName(const ScenarioData* pData) {
+        return pData->mGalaxyName;
+    }
+
     struct GalaxyNameSortLt {
         bool operator()(ScenarioData* ppLhs, ScenarioData* ppRhs) {
-            return static_cast< u32 >(GalaxyNameSortTable::getGalaxySortIndex(ppLhs->mGalaxyName)) <
-                   static_cast< u32 >(GalaxyNameSortTable::getGalaxySortIndex(ppRhs->mGalaxyName));
+            return static_cast< u32 >(GalaxyNameSortTable::getGalaxySortIndex(getGalaxyName(ppLhs))) <
+                   static_cast< u32 >(GalaxyNameSortTable::getGalaxySortIndex(getGalaxyName(ppRhs)));
         }
     };
 

@@ -35,7 +35,7 @@ void DinoPackunStateAwake::exeFind() {
     getHost()->updateNormalVelocity();
 
     if (MR::isBckStopped(getHost())) {
-        update();
+        kill();
     }
 }
 

@@ -206,7 +206,7 @@ bool DinoPackunBall::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSenso
 bool DinoPackunBall::requestPunch(HitSensor* pReceiver, HitSensor* pSender) {
     if (isNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvWait)) && MR::sendArbitraryMsg(ACTMES_DINO_PACKUN_PUNCHED_BALL, mWeakSensor, pReceiver)) {
         MR::addVelocitySeparateHV(this, pSender, pReceiver, 120.0f, 40.0f);
-        
+
         setNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvShoot));
 
         return true;
@@ -234,9 +234,9 @@ bool DinoPackunBall::tryRebound() {
         _118.set(v6 * 40.0f);
 
         MR::zeroVelocity(this);
-        
+
         setNerve(GET_NERVE(DinoPackunBall, DinoPackunBallNrvRebound));
-        
+
         return true;
     }
 
@@ -303,9 +303,9 @@ void DinoPackunBall::exeReverse() {
     TVec3f v6;
     v6.set(MR::getSensorPos(mWeakSensor) - mPosition);
     MR::normalizeOrZero(&v6);
-    
+
     mVelocity.add(v6 * 8.0f);
-    
+
     MR::attenuateVelocity(this, 0.98f);
 
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
@@ -317,9 +317,9 @@ void DinoPackunBall::exeReverse() {
 
 void DinoPackunBall::exeRebound() {
     MR::addVelocityToGravity(this, 1.0f);
-    
+
     MR::attenuateVelocity(this, 0.9f);
-    
+
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
 
     if (MR::isGreaterStep(this, 180)) {

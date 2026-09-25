@@ -5,6 +5,11 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/ValueControl.hpp"
 
+void TimeLimitLayout_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 namespace {
     static const Timing sTimingTable[] = {
         {18000, 100, true, true, true}, {10800, 100, true, true, true},  {3600, 100, true, true, true},
@@ -14,7 +19,7 @@ namespace {
     static const f32 sScaleMaxAdd = 0.5f;
     static const s32 sFadeoutBeforeFrame = 90;
     static const s32 sFadeinoutFrame = 60;
-};  // namespace
+}  // namespace
 
 void TimeUpLayout::init(const JMapInfoIter& rIter) {
     initLayoutManager("TimeUp", 1);
@@ -28,11 +33,10 @@ namespace NrvTimeLimitLayout {
     NEW_NERVE(TimeLimitLayoutScaleDown, TimeLimitLayout, ScaleDown);
     NEW_NERVE(TimeLimitLayoutFadeout, TimeLimitLayout, Fadeout);
     NEW_NERVE(TimeLimitLayoutTimeUpReady, TimeLimitLayout, TimeUpReady);
-};  // namespace NrvTimeLimitLayout
+}  // namespace NrvTimeLimitLayout
 
 TimeLimitLayout::TimeLimitLayout(u32 timeLimit)
-    : LayoutActor("タイムリミット", true), mTime(0), mTimeLimit(timeLimit), mScaleControl(nullptr), mFadeControl(nullptr), mCurrentTiming(nullptr),
-      mIsSuspend(false), _35(false) {
+    : LayoutActor("タイムリミット", true), mTime(), mTimeLimit(timeLimit), mScaleControl(), mFadeControl(), mCurrentTiming(), mIsSuspend(), _35() {
 }
 
 void TimeLimitLayout::init(const JMapInfoIter& rIter) {
@@ -84,8 +88,14 @@ void TimeLimitLayout::resetFrame() {
     mCurrentTiming = &::sTimingTable[0];
 }
 
+namespace {
+    inline bool equalTime(const u32& rTime, const u32& rLimit) {
+        return rTime == rLimit;
+    }
+}  // namespace
+
 void TimeLimitLayout::addFrame() {
-    if (mTime == mTimeLimit) {
+    if (equalTime(mTime, mTimeLimit)) {
         return;
     }
 

@@ -70,9 +70,10 @@ void BossStinkBugFunction::turnRail(BossStinkBug* pStinkBug, const TVec3f& rVec1
     addHeightOffset(&railPos, pStinkBug, f4);
 
     f32 flt1 = (a1 ? 1.0f : -1.0f);
-    f32 temp = 4.0f * f2 * (f2 - 1.0f);
-    temp *= temp;
-    pStinkBug->mRotation.z = MR::repeat(f1 * (1 - temp) + (90.0f * flt1) * temp, -180.0f, 360.0f);
+    f32 bend = 4.0f * f2 * (f2 - 1.0f);
+    f32 temp = bend * bend;
+    f32 rollAngle = f1 * (1.0f - temp) + (90.0f * flt1) * temp;
+    pStinkBug->mRotation.z = MR::repeat2(rollAngle, -180.0f, 360.0f);
 
     MR::rotateVecDegree(&pStinkBug->_EC, rVec1, pStinkBug->mGravity, MR::getEaseInOutValue(f2, 0.0f, 1.0f, 1.0f) * 180.0f * -flt1);
     addLocalHeightOffset(&railPos, pStinkBug, f5);

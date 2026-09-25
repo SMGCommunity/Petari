@@ -25,8 +25,8 @@ namespace NrvStarPieceGroup {
 };  // namespace NrvStarPieceGroup
 
 StarPieceGroup::StarPieceGroup(const char* pName)
-    : LiveActor(pName), mPieces(nullptr), mRailCoords(nullptr), _94(false), _95(false), mNumPieces(0), mCircleRadius(400.0f), mIsRail(false),
-      mPlaceAtPathPoints(false), _A4(-1), mRailSpeed(10.0f), _AC(0.0f, 0.0f, 0.0f) {
+    : LiveActor(pName), mPieces(), mRailCoords(), _94(), _95(), mNumPieces(), mCircleRadius(400.0f), mIsRail(), mPlaceAtPathPoints(), _A4(-1),
+      mRailSpeed(10.0f), _AC(0.0f, 0.0f, 0.0f) {
 }
 
 bool StarPieceGroup::isExistAnyStarPiece() {
@@ -35,6 +35,7 @@ bool StarPieceGroup::isExistAnyStarPiece() {
             return true;
         }
     }
+
     return false;
 }
 
@@ -149,6 +150,7 @@ void StarPieceGroup::init(const JMapInfoIter& rIter) {
             mPieces[i]->mFlags._1 = false;
         }
     }
+
     MR::connectToSceneMapObjMovement(this);
 
     if (isRail) {
@@ -193,6 +195,7 @@ void StarPieceGroup::appear() {
     if (!_94) {
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
+
     LiveActor::appear();
 }
 
@@ -225,6 +228,8 @@ void StarPieceGroup::placementAllPiece() {
     placementPieceOnRail();
 }
 
+#pragma push
+#pragma opt_propagation off
 void StarPieceGroup::placementPieceOnCircle() {
     if (mNumPieces == 1) {
         mPieces[0]->mPosition.set(mPosition);
@@ -239,7 +244,7 @@ void StarPieceGroup::placementPieceOnCircle() {
     mtxTRS.getXDir(xDir);
     mtxTRS.getZDir(zDir);
 
-    TVec3f center(mPosition);
+    const TVec3f center(*getPosition());
     f32 currentAngle = 0.0f;
     f32 angleBetweenPieces = TWO_PI / mNumPieces;
     for (u32 i = 0; i < mNumPieces; i++) {
@@ -251,6 +256,7 @@ void StarPieceGroup::placementPieceOnCircle() {
 
     MR::setClippingTypeSphere(this, mCircleRadius);
 }
+#pragma pop
 
 void StarPieceGroup::placementPieceOnRail() {
     f32 railLength = MR::getRailTotalLength(this);

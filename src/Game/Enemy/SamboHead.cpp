@@ -7,6 +7,12 @@
 #include "Game/Util.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
+void SamboHead_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)2.0f;
+}
+
 namespace NrvSamboHead {
     NEW_NERVE(HostTypeNrvWaitUnderGround, SamboHead, WaitUnderGround);
     NEW_NERVE(HostTypeNrvHide, SamboHead, Hide);
@@ -254,7 +260,7 @@ void SamboHead::exePursueEnd() {
     mVelocity.zero();
 
     if (MR::isActionEnd(this)) {
-        if (MR::calcDistanceToPlayer(this) > 1000.0f) {
+        if (1000.0f < MR::calcDistanceToPlayer(this)) {
             setNerve(GET_NERVE(SamboHead, HostTypeNrvWait));
         } else {
             setNerve(GET_NERVE(SamboHead, HostTypeNrvPursue));
@@ -380,63 +386,53 @@ void SamboHead::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    if (!MR::isSensorPlayer(pReceiver)) {
-        if (MR::isSensorEnemy(pReceiver)) {
-            MR::sendMsgPush(pReceiver, pSender);
+    if (MR::isSensorPlayer(pReceiver)) {
+        if (MR::isPlayerHipDropFalling() || MR::isPlayerHipDropLand()) {
+            return;
         }
 
-        return;
-    }
+        if (isNerve(GET_NERVE(SamboHead, HostTypeNrvPursue)) || isNerve(GET_NERVE(SamboHead, HostTypeNrvPrePursue)) ||
+            isNerve(GET_NERVE(SamboHead, HostTypeNrvPursueEnd)) || isNerve(GET_NERVE(SamboHead, HostTypeNrvWait))) {
+            HitSensor* sensor = getSensor("body");
 
-    if (MR::isPlayerHipDropFalling()) {
-        return;
-    }
+            if (MR::isPlayerExistUp(this, sensor->mRadius, 0.25f)) {
+                MR::sendMsgPush(pReceiver, pSender);
+                return;
+            }
 
-    if (MR::isPlayerHipDropLand()) {
-        return;
-    }
+            if (MR::sendMsgEnemyAttack(pReceiver, pSender) == 1) {
+                setNerve(GET_NERVE(SamboHead, HostTypeNrvHitToPlayer));
+                return;
+            }
 
-    if (isNerve(GET_NERVE(SamboHead, HostTypeNrvPursue)) || isNerve(GET_NERVE(SamboHead, HostTypeNrvPrePursue)) ||
-        isNerve(GET_NERVE(SamboHead, HostTypeNrvPursueEnd)) || isNerve(GET_NERVE(SamboHead, HostTypeNrvWait))) {
-        HitSensor* sensor = getSensor("body");
-
-        if (MR::isPlayerExistUp(this, sensor->mRadius, 0.25f)) {
             MR::sendMsgPush(pReceiver, pSender);
             return;
         }
 
-        if (MR::sendMsgEnemyAttack(pReceiver, pSender) == 1) {
-            setNerve(GET_NERVE(SamboHead, HostTypeNrvHitToPlayer));
+        if (isNerve(GET_NERVE(SamboHead, HostTypeNrvAppear)) && MR::isGreaterStep(this, 45)) {
+            HitSensor* sensor = getSensor("body");
+
+            if (MR::isPlayerExistUp(this, sensor->mRadius, 0.25f)) {
+                MR::sendMsgPush(pReceiver, pSender);
+                return;
+            }
+
+            if (MR::sendMsgEnemyAttack(pReceiver, pSender) != 1) {
+                MR::sendMsgPush(pReceiver, pSender);
+            }
+
             return;
         }
 
-        MR::sendMsgPush(pReceiver, pSender);
-        return;
-    }
-
-    if (isNerve(GET_NERVE(SamboHead, HostTypeNrvAppear)) && MR::isGreaterStep(this, 45)) {
-        HitSensor* sensor = getSensor("body");
-
-        if (MR::isPlayerExistUp(this, sensor->mRadius, 0.25f)) {
-            MR::sendMsgPush(pReceiver, pSender);
-            return;
-        }
-
-        if (MR::sendMsgEnemyAttack(pReceiver, pSender) != 1) {
+        if (!isNerve(GET_NERVE(SamboHead, HostTypeNrvWaitUnderGround)) && !isNerve(GET_NERVE(SamboHead, HostTypeNrvHide)) &&
+            !isNerve(GET_NERVE(SamboHead, HostTypeNrvStampFall)) && !isNerve(GET_NERVE(SamboHead, HostTypeNrvStampDeath)) &&
+            !isNerve(GET_NERVE(SamboHead, HostTypeNrvHitBlow))) {
             MR::sendMsgPush(pReceiver, pSender);
         }
-
-        return;
-    }
-
-    if (!isNerve(GET_NERVE(SamboHead, HostTypeNrvWaitUnderGround)) && !isNerve(GET_NERVE(SamboHead, HostTypeNrvHide)) &&
-        !isNerve(GET_NERVE(SamboHead, HostTypeNrvStampFall)) && !isNerve(GET_NERVE(SamboHead, HostTypeNrvStampDeath)) &&
-        !isNerve(GET_NERVE(SamboHead, HostTypeNrvHitBlow))) {
+    } else if (MR::isSensorEnemy(pReceiver)) {
         MR::sendMsgPush(pReceiver, pSender);
     }
 }
-
-// SamboHead::receiveOtherMsg
 
 bool SamboHead::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(GET_NERVE(SamboHead, HostTypeNrvHitBlow)) || isNerve(GET_NERVE(SamboHead, HostTypeNrvStampDeath)) ||
@@ -444,31 +440,38 @@ bool SamboHead::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
         isNerve(GET_NERVE(SamboHead, HostTypeNrvHide))) {
         return false;
     }
+
     if (MR::isMsgLockOnStarPieceShoot(msg)) {
         return true;
     }
+
     if (MR::isMsgStarPieceAttack(msg)) {
         if (isNerve(GET_NERVE(SamboHead, HostTypeNrvStarPieceHit))) {
             mScaleController->startHitReaction();
         } else {
             setNerve(GET_NERVE(SamboHead, HostTypeNrvStarPieceHit));
         }
+
         return true;
     }
+
     if (MR::isMsgPlayerHipDrop(msg) || MR::isMsgPlayerTrample(msg)) {
-        MR::startSound(this, "SE_EM_STOMPED_S", -1, -1);
+        MR::startSound(this, "SE_EM_STOMPED_S");
         if (MR::isOnGround(this)) {
             setNerve(GET_NERVE(SamboHead, HostTypeNrvStampDeath));
         } else {
             setNerve(GET_NERVE(SamboHead, HostTypeNrvStampFall));
         }
+
         return true;
     }
+
     if (MR::isMsgPlayerHitAll(msg)) {
         mSpinCtrl->start(this, pSender->mPosition, pReceiver->mPosition);
         setNerve(GET_NERVE(SamboHead, HostTypeNrvHitBlow));
         return true;
     }
+
     return false;
 }
 
@@ -476,14 +479,37 @@ bool SamboHead::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     if (!MR::isSensorEnemy(pSender) && !MR::isSensorMapObj(pSender)) {
         return false;
     }
-    if (!isNerve(GET_NERVE(SamboHead, HostTypeNrvWaitUnderGround)) && !isNerve(GET_NERVE(SamboHead, HostTypeNrvHide)) &&
-        !isNerve(GET_NERVE(SamboHead, HostTypeNrvStampFall)) && !isNerve(GET_NERVE(SamboHead, HostTypeNrvStampDeath))) {
-        if (isNerve(GET_NERVE(SamboHead, HostTypeNrvHitBlow))) {
+    if (isNerve(GET_NERVE(SamboHead, HostTypeNrvWaitUnderGround)) || isNerve(GET_NERVE(SamboHead, HostTypeNrvHide)) ||
+        isNerve(GET_NERVE(SamboHead, HostTypeNrvStampFall)) || isNerve(GET_NERVE(SamboHead, HostTypeNrvStampDeath)) ||
+        isNerve(GET_NERVE(SamboHead, HostTypeNrvHitBlow))) {
+        return false;
+    }
+    MR::addVelocityFromPush(this, 2.0f, pSender, pReceiver);
+    return true;
+}
+
+bool SamboHead::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (isNerve(GET_NERVE(SamboHead, HostTypeNrvHitBlow)) || isNerve(GET_NERVE(SamboHead, HostTypeNrvStampDeath)) ||
+        isNerve(GET_NERVE(SamboHead, HostTypeNrvStampFall)) || isNerve(GET_NERVE(SamboHead, HostTypeNrvWaitUnderGround)) ||
+        isNerve(GET_NERVE(SamboHead, HostTypeNrvHide))) {
+        return false;
+    }
+    if (MR::isMsgInhaleBlackHole(msg)) {
+        kill();
+        return true;
+    }
+    if (MR::isMsgPlayerKick(msg)) {
+        if (!MR::isPlayerExistSide(this, getSensor("body")->mRadius, 0.25f)) {
             return false;
         }
-        MR::addVelocityFromPush(this, 2.0f, pSender, pReceiver);
+        if (isNerve(GET_NERVE(SamboHead, HostTypeNrvStarPieceHit))) {
+            mSpinCtrl->start(this, pSender->mPosition, pReceiver->mPosition);
+            setNerve(GET_NERVE(SamboHead, HostTypeNrvHitBlow));
+            return true;
+        }
     }
-    return true;
+
+    return false;
 }
 
 void SamboHead::calcAndSetBaseMtx() {

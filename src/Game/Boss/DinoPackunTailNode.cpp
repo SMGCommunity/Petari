@@ -5,13 +5,27 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 
+void DinoPackunTailNode_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)3.1415927f;
+    (void)2.0f;
+    (void)90.0f;
+    (void)10.0f;
+    (void)0.001f;
+    (void)0.2f;
+    (void)5.0f;
+}
+
 typedef JointControlDelegator< DinoPackunTailNode > Delegator;
 
 typedef bool (DinoPackunTailNode::*func)(TPos3f*, const JointControllerInfo&);
 
 DinoPackunTailNode::DinoPackunTailNode(const char* pName, DinoPackun* pParent)
-    : LiveActor(pName), mParent(pParent), mNodeDirection(0, 0, 0), _9C(0, 0, 0), _A8(0.0f, 0.0f, 0.0f), _B4(nullptr), _B8(nullptr), _BC(nullptr),
-      _C0(nullptr), _C4(nullptr), mLinkLength(90.0f), mKeepBendPower(10.0f), _D0(0) {
+    : LiveActor(pName), mParent(pParent), mNodeDirection(0, 0, 0), _9C(0, 0, 0), _A8(0.0f, 0.0f, 0.0f), _B4(), _B8(), _BC(), _C0(), _C4(),
+      mLinkLength(90.0f), mKeepBendPower(10.0f), _D0() {
 }
 
 void DinoPackunTailNode::createJointController(LiveActor* pHost, const char* pJointName) {
@@ -87,31 +101,9 @@ bool DinoPackunTailNode::calcJointScale(TPos3f* pMtx, const JointControllerInfo&
     TVec3f v12;
     v12.set(_B8->mPosition);
     f32 v6 = v12.distance(mPosition);
-    f32 v7 = 0.2f;
-    f32 v8 = (v6 / mLinkLength);
-
-    if (v8 < 0.2f) {
-        v8 = v8;
-    } else {
-        v7 = 5.0f;
-
-        if (v8 > 5.0f) {
-            v7 = v7;
-        } else {
-            v7 = (v6 / mLinkLength);
-        }
-    }
-
-    f32 v9 = (1.0f / v7);
-    f32 v11;
-    if (v9 > 0.0f) {
-        f32 v10 = __frsqrte(v9);
-        v11 = ((-(((v10 * (1.0f / v7)) * v10) - 3.0f) * (v10 * (1.0f / v7))) * 0.5f);
-    } else {
-        v11 = (1.0f / v7);
-    }
-
-    MR::preScaleMtx(*pMtx, v7, v11, v11);
+    f32 stretch = MR::clamp(v6 / mLinkLength, 0.2f, 5.0f);
+    f32 shrink = MR::sqrt(1.0f / stretch);
+    MR::preScaleMtx(*pMtx, stretch, shrink, shrink);
     return true;
 }
 

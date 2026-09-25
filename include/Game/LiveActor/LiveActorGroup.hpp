@@ -44,7 +44,8 @@ public:
 
     T* getDeadMember() const {
         if (getDeadActor() != nullptr) {
-            return static_cast< T* >(getDeadActor());
+            T* pActor = static_cast< T* >(getDeadActor());
+            return pActor;
         }
 
         return nullptr;

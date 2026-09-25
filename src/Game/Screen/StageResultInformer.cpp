@@ -35,7 +35,7 @@ namespace {
     static const s32 sWaitBeforeCountUpPowerStar = 85;
     static const s32 sWaitAppearInformationWindow = 15;
     static const s32 sWaitDisplayStarPieceCount = 45;
-};  // namespace
+}  // namespace
 
 namespace {
     NEW_NERVE(StageResultInformerAppearGetPowerStar, StageResultInformer, AppearGetPowerStar);
@@ -60,7 +60,7 @@ namespace {
     NEW_NERVE(DisplayInformationForResultDisplay, DisplayInformationForResult, Display);
     NEW_NERVE(DisplayInformationForResultDisappear, DisplayInformationForResult, Disappear);
     NEW_NERVE(DisplayInformationForResultIdle, DisplayInformationForResult, Idle);
-};  // namespace
+}  // namespace
 
 DisplayInformationForResult::DisplayInformationForResult(StageResultInformer* pHost) : NerveExecutor("DisplayInformationForResult"), mHost(pHost) {
     initNerve(GET_NERVE_ANON(DisplayInformationForResultIdle));
@@ -102,7 +102,7 @@ void DisplayInformationForResult::exeIdle() {
 }
 
 StageResultInformer::StageResultInformer()
-    : LayoutActor("リザルト通知", true), mInformationDisplayer(nullptr), mSequenceChecker(nullptr), mIconAButton(nullptr), _30(false), _31(false) {
+    : LayoutActor("リザルト通知", true), mInformationDisplayer(), mSequenceChecker(), mIconAButton(), _30(), _31() {
     mInformationDisplayer = new DisplayInformationForResult(this);
     mSequenceChecker = new StageResultSequenceChecker();
 }
@@ -117,7 +117,7 @@ void StageResultInformer::init(const JMapInfoIter& rIter) {
 
 void StageResultInformer::appear() {
     LayoutActor::appear();
-    mIconAButton->appear();
+    mIconAButton->kill();
     MR::requestMovementOn(mIconAButton);
     MR::hideLayout(this);
     initBestScoreWindow();
@@ -131,8 +131,6 @@ void StageResultInformer::kill() {
 }
 
 void StageResultInformer::exeAppearGetPowerStar() {
-    const char* pMessageId = ::cMessageIdGetNormalStar;
-
     if (MR::isFirstStep(this)) {
         MR::showLayout(this);
         mSequenceChecker->check();
@@ -142,9 +140,8 @@ void StageResultInformer::exeAppearGetPowerStar() {
 
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(GameSequenceFunction::getClearedStageName());
 
-        if (accessor.isHiddenStar(GameSequenceFunction::getClearedPowerStarId())) {
-            pMessageId = ::cMessageIdGetHiddenStar;
-        }
+        bool isHiddenStar = accessor.isHiddenStar(GameSequenceFunction::getClearedPowerStarId());
+        const char* pMessageId = isHiddenStar ? ::cMessageIdGetHiddenStar : ::cMessageIdGetNormalStar;
 
         MR::setTextBoxGameMessageRecursive(this, "Result", pMessageId);
         MR::setTextBoxArgStringRecursive(this, "Result", MR::getGalaxyNameOnCurrentLanguage(GameSequenceFunction::getClearedStageName()), 0);
@@ -161,13 +158,11 @@ void StageResultInformer::exeAppearGetPowerStar() {
 }
 
 void StageResultInformer::exeWaitBeforeCountUpPowerStar() {
-    const Nerve* pNerve = GET_NERVE_ANON(StageResultInformerDisplayGetPowerStar);
-
-    if (mSequenceChecker->getPrevPowerStarNum() == mSequenceChecker->getAfterPowerStarNum()) {
-        pNerve = GET_NERVE_ANON(StageResultInformerCountUpPowerStar);
-    }
-
-    tryWaitIntervalBeforeKeyWait(pNerve, ::sWaitBeforeCountUpPowerStar);
+    StageResultSequenceChecker* pChecker = mSequenceChecker;
+    bool hasNewStar = pChecker->getPrevPowerStarNum() != pChecker->getAfterPowerStarNum();
+    tryWaitIntervalBeforeKeyWait(hasNewStar ? static_cast< const Nerve* >(GET_NERVE_ANON(StageResultInformerCountUpPowerStar)) :
+                                              GET_NERVE_ANON(StageResultInformerDisplayGetPowerStar),
+                                 ::sWaitBeforeCountUpPowerStar);
 }
 
 void StageResultInformer::exeCountUpPowerStar() {
@@ -190,7 +185,9 @@ void StageResultInformer::exeDisplayGetPowerStar() {
         mIconAButton->openWithoutMessage();
     }
 
-    tryWaitSystemPadTriggerDecide(GET_NERVE_ANON(StageResultInformerDisappearGetPowerStar));
+    if (tryWaitSystemPadTriggerDecide(GET_NERVE_ANON(StageResultInformerDisappearGetPowerStar))) {
+        return;
+    }
 }
 
 void StageResultInformer::exeDisappearGetPowerStar() {
@@ -227,7 +224,9 @@ void StageResultInformer::exeDisplayUpdateBestScore() {
         mIconAButton->openWithoutMessage();
     }
 
-    tryWaitSystemPadTriggerDecide(GET_NERVE_ANON(StageResultInformerDisappearUpdateBestScore));
+    if (tryWaitSystemPadTriggerDecide(GET_NERVE_ANON(StageResultInformerDisappearUpdateBestScore))) {
+        return;
+    }
 }
 
 void StageResultInformer::exeDisappearUpdateBestScore() {
@@ -263,7 +262,7 @@ void StageResultInformer::exeDisplayGetStarPiece() {
     }
 
     bool hasStarPiece = false;
-    
+
     if (mClearedStarPieceNum > 0) {
         mClearedStarPieceNum--;
 
@@ -351,8 +350,9 @@ void StageResultInformer::exeShowGetPictureBook() {
             pMessageId = ::cMessageIdOpenLibraryRoom;
         }
 
-        mInformationDisplayer->mMessageId = pMessageId;
-        mInformationDisplayer->setNerve(GET_NERVE_ANON(DisplayInformationForResultAppear));
+        DisplayInformationForResult* pDisplayer = mInformationDisplayer;
+        pDisplayer->mMessageId = pMessageId;
+        pDisplayer->setNerve(GET_NERVE_ANON(DisplayInformationForResultAppear));
     }
 
     mInformationDisplayer->updateNerve();
@@ -384,6 +384,7 @@ void StageResultInformer::initBestScoreWindow() {
     MR::setTextBoxNumberRecursive(this, ::cNameBestCoinNum, clearedCoinNum);
 
     bool newMax = accessor.getMaxCoinNum() < clearedCoinNum;
+
     if (newMax) {
         MR::showPane(this, ::cNameBestCoinRoot);
     } else {
@@ -393,7 +394,30 @@ void StageResultInformer::initBestScoreWindow() {
     _31 = newMax;
 }
 
-// StageResultInformer::decideNextNerve
+void StageResultInformer::decideNextNerve() {
+    bool afterStar = isNerve(GET_NERVE_ANON(StageResultInformerDisappearGetPowerStar));
+    bool afterComplete = afterStar || isNerve(GET_NERVE_ANON(StageResultInformerShowGalaxyComplete));
+    bool afterScore = afterComplete || isNerve(GET_NERVE_ANON(StageResultInformerDisappearUpdateBestScore));
+    bool afterPiece = afterScore || isNerve(GET_NERVE_ANON(StageResultInformerDisappearGetStarPiece));
+    bool afterMap = afterPiece || isNerve(GET_NERVE_ANON(StageResultInformerShowGalaxyMap));
+    bool afterBook = afterMap || isNerve(GET_NERVE_ANON(StageResultInformerShowGetPictureBook));
+
+    if (afterStar && mSequenceChecker->isJustCompleteGalaxy()) {
+        setNerve(GET_NERVE_ANON(StageResultInformerShowGalaxyComplete));
+    } else if (afterComplete && _31) {
+        setNerve(GET_NERVE_ANON(StageResultInformerAppearUpdateBestScore));
+    } else if (afterScore && GameSequenceFunction::isNeedToReflectStageResultSequenceStarPiece()) {
+        setNerve(GET_NERVE_ANON(StageResultInformerAppearGetStarPiece));
+    } else if (afterPiece && mSequenceChecker->isJustOpenGalaxyWithoutChallengeGalaxy()) {
+        setNerve(GET_NERVE_ANON(StageResultInformerShowNewGalaxyDiscover));
+    } else if (afterMap && mSequenceChecker->isAddPictureBook()) {
+        setNerve(GET_NERVE_ANON(StageResultInformerShowGetPictureBook));
+    } else if (afterBook && mSequenceChecker->isJustAppearTicoGalaxy()) {
+        setNerve(GET_NERVE_ANON(StageResultInformerShowTicoGalaxyAppear));
+    } else {
+        kill();
+    }
+}
 
 bool StageResultInformer::tryWaitSystemPadTriggerDecide(const Nerve* pNerve) {
     if (MR::testSystemPadTriggerDecide() || _30) {

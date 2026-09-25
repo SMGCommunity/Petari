@@ -12,6 +12,12 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/TriggerChecker.hpp"
 
+void LensFlare_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+}
+
 namespace {
     NEW_NERVE(LensFlareModelNrvKill, LensFlareModel, Kill);
     NEW_NERVE(LensFlareModelNrvHide, LensFlareModel, Hide);
@@ -267,58 +273,58 @@ bool LensFlareDirector::checkBrightObj(bool b1) {
     return ret;
 }
 
-void LensFlareDirector::controlFlare(s32 a1, bool a2) {
-    //FIXME
-    mRing->update(a1 >> 1 & 1, a2);
-    mGlow->update(a1 >> 2 & 1, a2);
-    mLine->update(a1 >> 3 & 1, a2);
+void LensFlareDirector::controlFlare(s32 area, bool hasBrightObj) {
+    mRing->update(area >> 1 & 1, hasBrightObj);
+    mGlow->update(area >> 2 & 1, hasBrightObj);
+    mLine->update(area >> 3 & 1, hasBrightObj);
 
-    if (!a2) {
+    if (!hasBrightObj || area == 0) {
         return;
     }
 
-    TVec3f vec3C(_60 + _6C + _74);
-    mRing->mPosition.set(vec3C);
-    mGlow->mPosition.set(vec3C);
-    mLine->mPosition.set(vec3C);
+    TVec2f position(_60 - _6C);
+    position += _74;
+    TVec3f flarePos(position.x, -position.y, 0.0f);
+    mRing->mPosition.set(flarePos);
+    mGlow->mPosition.set(flarePos);
+    mLine->mPosition.set(flarePos);
 
-    TVec2f vec58(static_cast<f32>(MR::getScreenWidth()), static_cast<f32>(JUTGetVideoManager()->getEfbHeight()));
+    TVec2f screenCenter(MR::getScreenWidth() / 2.0f, static_cast< s32 >(JUTGetVideoManager()->getEfbHeight()) / 2.0f);
 
-    TVec2f vec60(vec58 - vec3C);
-    f32 val = vec60.length() / vec58.length();
+    f32 screenRadius = screenCenter.length();
+    TVec2f offset(screenCenter - position);
+    f32 distanceRate = offset.length() / screenRadius;
 
-    TVec3f vec48(0.0f, 0.0f, 0.0f);
-    TVec2f vec68(vec60);
+    TVec3f rotation(0.0f, 0.0f, 0.0f);
+    TVec2f direction(offset.x, offset.y);
 
-    if (MR::isNearZero(vec68)) {
-        vec48.z = 0.0f;
+    if (MR::isNearZero(direction)) {
+        rotation.z = 0.0f;
     } else {
-        MR::normalize(&vec68);
-        vec48.z = MR::calcRotateY(vec68.x, vec68.y);
+        MR::normalize(&direction);
+        rotation.z = MR::calcRotateY(direction.x, direction.y);
     }
 
-    mRing->mRotation.set(vec48);
-    f32 A0val = val;
-    if (A0val > 1.0f) {
-        A0val = 1.0f;
+    mRing->mRotation.set(rotation);
+    f32 ringFrame = distanceRate;
+    if (ringFrame > 1.0f) {
+        ringFrame = 1.0f;
     }
-    mRing->_A0 = A0val;
-    mRing->_8C = MR::clamp((1.0f - val) * _68, 0.0f, 1.0f);
-    mGlow->_8C = MR::clamp((1.0f - val) * _68, 0.0f, 1.0f);
-    mLine->_8C = MR::clamp((1.0f - val) * _68, 0.0f, 1.0f);
+
+    mRing->_A0 = ringFrame;
+    mRing->_8C = MR::clamp((1.0f - distanceRate) * _68, 0.0f, 1.0f);
+    mGlow->_8C = MR::clamp((1.0f - distanceRate) * _68, 0.0f, 1.0f);
+    mLine->_8C = MR::clamp((1.0f - distanceRate) * _68, 0.0f, 1.0f);
 }
 
 namespace MR {
     void addBrightObj(BrightObjBase* pBrightObj) {
-        // FIXME
         if (!MR::isExistSceneObj(SceneObj_LensFlareDirector)) {
             MR::createSceneObj(SceneObj_LensFlareDirector);
         }
 
-        LensFlareDirector* director = ::getLensFlareDirector();
-        s32 count = director->mBrightObjCount;
-        director->mBrightObjArray[director->mBrightObjCount] = pBrightObj;
-        director->mBrightObjCount = count + 1;
+        LensFlareDirector* pDirector = ::getLensFlareDirector();
+        pDirector->mBrightObjArray[pDirector->mBrightObjCount++] = pBrightObj;
     }
 
     void setLensFlareDrawSyncToken() {
@@ -331,3 +337,7 @@ namespace MR {
         return ::getLensFlareDirector()->mDrawSyncTokenIndex;
     }
 };  // namespace MR
+
+TVec2f LensFlare_FORCE_MATCH(const TVec2f& rA, const TVec2f& rB) {
+    return rA - rB;
+}

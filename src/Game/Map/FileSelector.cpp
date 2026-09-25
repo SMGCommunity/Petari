@@ -46,8 +46,8 @@ namespace {
     static const f32 sSlopeDegree = 20.0f;
     static const f32 sItemPosRadius = 5000.0f;
     static const f32 sSelectEffectOffset = 1000.0f;
-    const char* cMarioNameMessageID = "System_FileSelect_Icon000";
     const char* cLuigiNameMessageID = "System_FileSelect_Icon001";
+    const char* cMarioNameMessageID = "System_FileSelect_Icon000";
     static s32 sBgmNearState = 6;
     static u32 sBgmNearStateChangeFrames = 60;
     static s32 sBgmFarState = 5;
@@ -204,6 +204,7 @@ void FileSelector::notifyItem(FileSelectItem* pItem, s32 msg) {
         if (isNerve(GET_NERVE(FileSelector, FileSelectorNrvCopySelect))) {
             onPoint(pItem);
         }
+
         break;
     default:
         break;
@@ -787,6 +788,14 @@ void FileSelector::playSelectedME() {
     default:
         break;
     }
+}
+
+void FileSelector_FORCE_MATCH() {
+    MR::startSystemME("ME_ASTRO_DOME_CALCEL1");
+    MR::startSystemME("ME_ASTRO_DOME_CALCEL2");
+    MR::startSystemME("ME_ASTRO_DOME_CALCEL3");
+    MR::startSystemME("ME_ASTRO_DOME_CALCEL4");
+    MR::startSystemME("ME_ASTRO_DOME_CALCEL5");
 }
 
 void FileSelector::updateBgm() {

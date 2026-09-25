@@ -40,18 +40,19 @@ namespace {
     static u8 unknownVal = 1;
 };  // namespace
 
-OceanRingPartDrawer::OceanRingPartDrawer(const OceanRing* pRing, int a3, int a4, bool a5, f32* a6, f32* a7, f32* a8) : mPosition(0.0f, 0.0f, 0.0f) {
+OceanRingPartDrawer::OceanRingPartDrawer(const OceanRing* pRing, int a3, int a4, bool a5, f32* pTexCoordU0, f32* pTexCoordU1, f32* pTexCoordU2)
+    : mPosition(0.0f, 0.0f, 0.0f) {
     mOceanRing = pRing;
     _10 = a3;
     _14 = a4;
     _18 = a5;
-    _1C = *a6;
-    _20 = *a7;
-    _24 = *a8;
+    _1C = *pTexCoordU0;
+    _20 = *pTexCoordU1;
+    _24 = *pTexCoordU2;
     mDispListLength = 0;
     mDispList = nullptr;
 
-    initDisplayList(a6, a7, a8);
+    initDisplayList(pTexCoordU0, pTexCoordU1, pTexCoordU2);
 
     for (int i = 0; i < a4; i++) {
         int v12 = a3 + i;
@@ -66,7 +67,7 @@ OceanRingPartDrawer::OceanRingPartDrawer(const OceanRing* pRing, int a3, int a4,
     mPosition.scale(1.0f / a4);
 }
 
-void OceanRingPartDrawer::initDisplayList(f32* a1, f32* a2, f32* a3) {
+void OceanRingPartDrawer::initDisplayList(f32* pTexCoordU0, f32* pTexCoordU1, f32* pTexCoordU2) {
     MR::ProhibitSchedulerAndInterrupts prohibit(false);
 
     u32 x = _14 * 0x50;
@@ -76,7 +77,7 @@ void OceanRingPartDrawer::initDisplayList(f32* a1, f32* a2, f32* a3) {
     GDLObj obj;
     GDInitGDLObj(&obj, mDispList, size);
     __GDCurrentDL = &obj;
-    drawGD(a1, a2, a3);
+    drawGD(pTexCoordU0, pTexCoordU1, pTexCoordU2);
     GDPadCurr32();
     mDispListLength = obj.ptr - obj.start;
     DCStoreRange(mDispList, size);
@@ -90,7 +91,7 @@ void OceanRingPartDrawer::draw() const {
     }
 }
 
-void OceanRingPartDrawer::drawGD(f32* a1, f32* a2, f32* a3) const {
+void OceanRingPartDrawer::drawGD(f32* pTexCoordU0, f32* pTexCoordU1, f32* pTexCoordU2) const {
     f32 f30 = 0.05f;
     f32 f29;
     f32 f28;
@@ -164,9 +165,9 @@ void OceanRingPartDrawer::drawGD(f32* a1, f32* a2, f32* a3) const {
         f25 = f24;
         f23 = f22;
         if (i != _14 - 1) {
-            *a1 += 0.05f * f21;
-            *a2 += 0.05f * f21;
-            *a3 += 0.1f * f21;
+            *pTexCoordU0 += 0.05f * f21;
+            *pTexCoordU1 += 0.05f * f21;
+            *pTexCoordU2 += 0.1f * f21;
         }
     }
 }
@@ -234,6 +235,7 @@ void OceanRingPartDrawer::drawDynamic() const {
             f19 += f28;
             f18 += f29;
         }
+
         GXEnd();
 
         f27 = f26;
@@ -292,6 +294,7 @@ void OceanRingPartDrawer::drawDynamicBloom() const {
             f20 += f28;
             f19 += f28;
         }
+
         GXEnd();
 
         f27 = f26;
@@ -321,12 +324,12 @@ OceanRingDrawer::OceanRingDrawer(const OceanRing* pOceanRing) {
 }
 
 void OceanRingDrawer::update() {
-    _C = MR::repeat(_C + ::sTexSpeed0U, 0.0f, 1.0f);
-    _10 = MR::repeat(_10 + ::sTexSpeed0V, 0.0f, 1.0f);
-    _14 = MR::repeat(_14 + ::sTexSpeed1U, 0.0f, 1.0f);
-    _18 = MR::repeat(_18 + ::sTexSpeed1V, 0.0f, 1.0f);
-    _1C = MR::repeat(_1C + 0.0f, 0.0f, 1.0f);
-    _20 = MR::repeat(_20 + ::sTexSpeed2V, 0.0f, 1.0f);
+    _C = MR::repeat2(_C + ::sTexSpeed0U, 0.0f, 1.0f);
+    _10 = MR::repeat2(_10 + ::sTexSpeed0V, 0.0f, 1.0f);
+    _14 = MR::repeat2(_14 + ::sTexSpeed1U, 0.0f, 1.0f);
+    _18 = MR::repeat2(_18 + ::sTexSpeed1V, 0.0f, 1.0f);
+    _1C = MR::repeat2(_1C + 0.0f, 0.0f, 1.0f);
+    _20 = MR::repeat2(_20 + ::sTexSpeed2V, 0.0f, 1.0f);
 }
 
 void OceanRingDrawer::draw() const {
@@ -367,6 +370,7 @@ void OceanRingDrawer::initParts() {
     for (s32 i = 0; i < mDrawerCount - 1; i++) {
         mPartDrawers[i] = new OceanRingPartDrawer(mRing, count2 * i, count2 + 1, false, &a, &b, &c);
     }
+
     s32 v;
     bool flag;
     s32 w;
@@ -380,6 +384,7 @@ void OceanRingDrawer::initParts() {
         flag = true;
         v += 1;
     }
+
     mPartDrawers[last] = new OceanRingPartDrawer(mRing, w, v, flag, &a, &b, &c);
 }
 
@@ -507,7 +512,7 @@ void OceanRingDrawer::loadMaterial() const {
     tex.load(GX_TEXMAP1);
     mWaterIndTex->load(GX_TEXMAP2);
 
-    if (unknownVal != 0 && MR::isCameraInWater()) {
+    if (::unknownVal != 0 && MR::isCameraInWater()) {
         GXSetNumIndStages(0);
         GXSetTevDirect(GX_TEVSTAGE0);
         GXSetTevDirect(GX_TEVSTAGE1);
@@ -530,8 +535,8 @@ void OceanRingDrawer::loadMaterial() const {
     }
 
     GXSetNumTevStages(4);
-    GXSetTevColor(GX_TEVREG0, (GXColor&)color1);
-    GXSetTevColor(GX_TEVREG1, (GXColor&)color2);
+    GXSetTevColor(GX_TEVREG0, (GXColor&)::color1);
+    GXSetTevColor(GX_TEVREG1, (GXColor&)::color2);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
     GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_TEXC, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
     GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 0, GX_TEVPREV);

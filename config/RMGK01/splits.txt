@@ -1326,14 +1326,14 @@ Game/Boss/SkeletalFishBoss.cpp:
 	.text       start:0x80077794 end:0x8007AE78
 	.ctors      start:0x8052E98C end:0x8052E990
 	.rodata     start:0x80531470 end:0x805314F8
-	.data       start:0x80570C68 end:0x805717C8
+	.data       start:0x80570C68 end:0x80571720
 	.sdata      start:0x806B1778 end:0x806B1780
 	.sbss       start:0x806B3778 end:0x806B37B8
 	.sdata2     start:0x806B8CC0 end:0x806B8D18
 
 Game/Boss/SkeletalFishBossBattleDirector.cpp:
 	.text       start:0x8007AE78 end:0x8007B4A8
-	.data       start:0x805717C8 end:0x805717F0
+	.data       start:0x80571720 end:0x805717F0
 
 Game/Boss/SkeletalFishBossFunc.cpp:
 	.text       start:0x8007B4A8 end:0x8007B5B0

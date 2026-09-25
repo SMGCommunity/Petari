@@ -21,25 +21,28 @@
 #include "Game/Util/StringUtil.hpp"
 #include <nw4r/lyt/drawInfo.h>
 #include <nw4r/lyt/pane.h>
-// #include <wprintf>
 
-extern int swprintf(wchar_t* s, size_t n, const wchar_t* format, ...);
+extern "C" int swprintf(wchar_t* pBuffer, size_t length, const wchar_t* pFormat, ...);
 
 #define MAX_PAGES 5
 #define ITEMS_PER_PAGE 15
 #define MAX_ITEMS MAX_PAGES* ITEMS_PER_PAGE
 
+void PowerStarList_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
+
 namespace {
     class ListItem {
     public:
         /// @brief Creates a new `ListItem`.
-        ListItem() NO_INLINE : _0(-1), _4() {
+        ListItem() NO_INLINE : mType(-1), mRaceId() {
         }
 
-        /* 0x0 */ s32 _0;
+        /* 0x0 */ s32 mType;
         union {
-            /* 0x4 */ GalaxyStatusAccessor* _4Accessor;
-            /* 0x4 */ s32 _4;
+            /* 0x4 */ GalaxyStatusAccessor mGalaxyAccessor;
+            /* 0x4 */ s32 mRaceId;
         };
     };
 
@@ -82,16 +85,16 @@ namespace {
         "PicBelt4",
     };
 
-    static const char* const cSeparatorSizeTable[] = {
+    static const char* const cSeparatorSizePaneTable[] = {
         "PicBelt1",
         "PicBelt2",
         "PicBelt3",
         "WinBelt4",
     };
 
+    const f32 cSeparatorOffset = 20.0f;
+    const f32 cTimePaneDefaultHeight = 72.0f;
     const char* cMailMessageID = "WiiMessageStarList";
-
-    const wchar_t cTemp = 0;
 
     s32 getSortPriority(const GalaxyStatusAccessor* pAccessor) NO_INLINE {
         const char* pName = pAccessor->getName();
@@ -127,20 +130,19 @@ namespace {
         return num;
     };
 
+    void sortGalaxyAccessors(GalaxyStatusAccessor* pBegin, GalaxyStatusAccessor* pEnd) {
+        for (GalaxyStatusAccessor* pCurrent = pBegin + 1; pCurrent != pEnd; pCurrent++) {
+            for (GalaxyStatusAccessor* p = pCurrent; p != pBegin && getSortPriority(p) < getSortPriority(p - 1); p--) {
+                GalaxyStatusAccessor temp = *p;
+                *p = *(p - 1);
+                *(p - 1) = temp;
+            }
+        }
+    }
+
     s32 getSortedList(ListItem* pItems) {
-        GalaxyStatusAccessor* galaxyAccessors[MAX_ITEMS];
-        void* auStack_28[10];
-
-        for (s32 idx = 0; idx < ARRAY_SIZE(galaxyAccessors); idx++) {
-            galaxyAccessors[idx] = nullptr;
-        }
-
-        for (s32 idx = 0; idx < ARRAY_SIZE(auStack_28); idx++) {
-            auStack_28[idx] = 0;
-        }
-
+        GalaxyStatusAccessor galaxyAccessors[MAX_ITEMS];
         s32 availableGalaxies = 0;
-        s32 byteOffset = 0;
 
         ScenarioDataIter iter = MR::makeBeginScenarioDataIter();
 
@@ -149,43 +151,37 @@ namespace {
             bool open = accessor.getPowerStarNum() == 0 ? false : MR::isOnGameEventFlagGalaxyOpen(accessor.getName());
 
             if (open) {
-                *galaxyAccessors[availableGalaxies] = iter.makeAccessor();
+                galaxyAccessors[availableGalaxies] = iter.makeAccessor();
                 availableGalaxies++;
             }
 
             iter.goNext();
         }
 
-        for (u32 idx = 0; idx != availableGalaxies; idx++) {
-            for (u32 curIndex = idx; getSortPriority(galaxyAccessors[curIndex]) < getSortPriority(galaxyAccessors[curIndex - 1]); curIndex--) {
-                GalaxyStatusAccessor* tmp = galaxyAccessors[curIndex];
-                galaxyAccessors[curIndex] = galaxyAccessors[curIndex - 1];
-                galaxyAccessors[curIndex - 1] = tmp;
-            }
-        }
+        sortGalaxyAccessors(galaxyAccessors, galaxyAccessors + availableGalaxies);
 
         s32 outCount = 0;
-        for (s32 readIndex = 0; availableGalaxies > 0; availableGalaxies--, outCount++) {
-            pItems[outCount]._0 = 0;
-            readIndex++;
-            pItems[outCount]._4Accessor = galaxyAccessors[readIndex];
+        for (s32 readIndex = 0; readIndex < availableGalaxies; readIndex++) {
+            pItems[outCount].mType = 0;
+            pItems[outCount].mGalaxyAccessor = galaxyAccessors[readIndex];
+            outCount++;
         }
 
         if (getDisplayRaceBestTimeNum() > 0) {
             while (outCount % ITEMS_PER_PAGE != 0) {
-                pItems[outCount]._0 = 3;
+                pItems[outCount].mType = 3;
                 outCount++;
             }
 
             while (outCount % ITEMS_PER_PAGE != 3) {
-                pItems[outCount]._0 = 3;
+                pItems[outCount].mType = 3;
                 outCount++;
             }
 
             for (s32 raceIdx = 0; raceIdx < 5; raceIdx++) {
                 if (RaceManagerFunction::hasPowerStarRaceScenario(raceIdx)) {
-                    pItems[outCount]._0 = 1;
-                    pItems[outCount]._4 = raceIdx;
+                    pItems[outCount].mType = 1;
+                    pItems[outCount].mRaceId = raceIdx;
                     outCount++;
                 }
             }
@@ -208,8 +204,8 @@ namespace NrvPowerStarList {
 };  // namespace NrvPowerStarList
 
 PowerStarList::PowerStarList()
-    : LayoutActor("全パワースターリスト", true), mArrowUpButtonCtrl(nullptr), mArrowDownButtonCtrl(nullptr), mCaptureButtonCtrl(nullptr),
-      mSysInfoWindow(nullptr), mPageNo(0), mMailMessageLength(0), mMailMessage(nullptr) {
+    : LayoutActor("全パワースターリスト", true), mArrowUpButtonCtrl(), mArrowDownButtonCtrl(), mCaptureButtonCtrl(), mSysInfoWindow(), mPageNo(),
+      mMailMessageLength(), mMailMessage() {
     mSeparatorArray = new Separator[4]();
 }
 
@@ -224,8 +220,9 @@ void PowerStarList::init(const JMapInfoIter& rIter) {
     MR::createAndAddPaneCtrl(this, "Title", 1);
     MR::createAndAddPaneCtrl(this, "Belt", 1);
 
+    const char* pPaneName;
     for (u32 i = 0; i < ARRAY_SIZE(::cSeparatorPaneTable); i++) {
-        const char* pPaneName = ::cSeparatorPaneTable[i];
+        pPaneName = ::cSeparatorPaneTable[i];
         MR::createAndAddPaneCtrl(this, pPaneName, 1);
         MR::setFollowPos(&mSeparatorArray[i]._4, this, pPaneName);
         MR::setFollowTypeAdd(this, pPaneName);
@@ -366,70 +363,70 @@ void PowerStarList::updateButtonAppearance() {
 namespace {
     class TextBuffer {
     public:
-        TextBuffer(LayoutActor* pActor, const char* const* ppParam2, s32 param3) : mActor(pActor), _4(ppParam2), _8(param3), mTail(mBuffer) {
+        TextBuffer(LayoutActor* pActor, const char* const* pPaneNames, s32 rowsPerPane)
+            : mActor(pActor), mPaneNames(pPaneNames), mRowsPerPane(rowsPerPane), mTail(mBuffer) {
             swprintf(mBuffer, ARRAY_SIZE(mBuffer), L"");
         }
 
-        void addNewLine(s32 param1) {
-            s32 v1 = param1 / _8;
+        void addNewLine(s32 row) {
+            s32 paneIndex = row / mRowsPerPane;
 
-            if (param1 - v1 * _8 != 0) {
+            if (row - paneIndex * mRowsPerPane != 0) {
                 mTail = MR::addNewLine(mTail);
             }
         }
 
-        void update(s32 param1) {
-            s32 v1 = param1 / _8;
+        void update(s32 row) {
+            s32 paneIndex = row / mRowsPerPane;
 
-            if (param1 - v1 * _8 == 0) {
-                MR::setTextBoxMessageRecursive(mActor, _4[v1 - 1], mBuffer);
+            if (row - paneIndex * mRowsPerPane == 0) {
+                MR::setTextBoxMessageRecursive(mActor, mPaneNames[paneIndex - 1], mBuffer);
                 mTail = mBuffer;
                 swprintf(mBuffer, ARRAY_SIZE(mBuffer), L"");
             }
         }
 
-        void finish(s32 param1) {
-            s32 v1 = param1 / _8;
+        void finish(s32 row) {
+            s32 paneIndex = row / mRowsPerPane;
 
-            if (param1 - v1 * _8 == 0) {
+            if (row - paneIndex * mRowsPerPane == 0) {
                 return;
             }
 
-            MR::setTextBoxMessageRecursive(mActor, _4[v1], mBuffer);
+            MR::setTextBoxMessageRecursive(mActor, mPaneNames[paneIndex], mBuffer);
         }
 
-    private:
         /* 0x000 */ LayoutActor* mActor;
-        /* 0x004 */ const char* const* _4;
-        /* 0x008 */ s32 _8;
+        /* 0x004 */ const char* const* mPaneNames;
+        /* 0x008 */ s32 mRowsPerPane;
         /* 0x00C */ wchar_t mBuffer[256];
         /* 0x20C */ wchar_t* mTail;
     };
 };  // namespace
 
-void PowerStarList::updateList(s32 pageNumber, bool myBool) {
+void PowerStarList::updateList(s32 pageNumber, bool isSinglePage) {
     if (pageNumber >= 0) {
         mPageNo = pageNumber;
     }
 
     for (u32 idx = 0; idx < ARRAY_SIZE(::cGalaxyNamePaneTable); idx++) {
-        MR::setTextBoxMessageRecursive(this, ::cGalaxyNamePaneTable[idx], &::cTemp);
+        MR::setTextBoxMessageRecursive(this, ::cGalaxyNamePaneTable[idx], L"");
     }
 
     for (u32 idx = 0; idx < ARRAY_SIZE(::cStarNumPaneTable); idx++) {
-        MR::setTextBoxMessageRecursive(this, ::cStarNumPaneTable[idx], &::cTemp);
+        MR::setTextBoxMessageRecursive(this, ::cStarNumPaneTable[idx], L"");
     }
 
     for (u32 idx = 0; idx < ARRAY_SIZE(::cCoinPaneTable); idx++) {
-        MR::setTextBoxMessageRecursive(this, ::cCoinPaneTable[idx], &::cTemp);
+        MR::setTextBoxMessageRecursive(this, ::cCoinPaneTable[idx], L"");
     }
 
     for (u32 idx = 0; idx < ARRAY_SIZE(::cCrownPaneTable); idx++) {
-        MR::setTextBoxMessageRecursive(this, ::cCrownPaneTable[idx], &::cTemp);
+        MR::setTextBoxMessageRecursive(this, ::cCrownPaneTable[idx], L"");
     }
 
-    for (u32 idx = 0; idx < ARRAY_SIZE(::cSeparatorPaneTable); idx++) {
-        MR::setTextBoxMessageRecursive(this, ::cSeparatorPaneTable[idx], &::cTemp);
+    for (u32 idx = 0; idx < ARRAY_SIZE(::cTimePaneTable); idx++) {
+        MR::setTextBoxMessageRecursive(this, ::cTimePaneTable[idx], L"");
     }
 
     for (u32 idx = 0; idx < ARRAY_SIZE(::cSeparatorPaneTable); idx++) {
@@ -438,8 +435,8 @@ void PowerStarList::updateList(s32 pageNumber, bool myBool) {
 
     ListItem listItems[MAX_ITEMS];
 
-    s32 pages = (::getSortedList(listItems) - 1) / ITEMS_PER_PAGE;
-    mPageNum = pages + 1;
+    s32 itemCount = ::getSortedList(listItems);
+    mPageNum = (itemCount - 1) / ITEMS_PER_PAGE + 1;
 
     TextBuffer galaxyBuffer(this, ::cGalaxyNamePaneTable, 4);
     TextBuffer starBuffer(this, ::cStarNumPaneTable, 8);
@@ -447,193 +444,213 @@ void PowerStarList::updateList(s32 pageNumber, bool myBool) {
     TextBuffer crownBuffer(this, ::cCrownPaneTable, 8);
     TextBuffer timeBuffer(this, ::cTimePaneTable, 8);
 
-    bool isEven = mPageNo % 2;
+    ListItem* pEnd;
+    bool isOdd = mPageNo % 2;
+    s32 row;
+    s32 rowLimit = isSinglePage ? 15 : 30;
     s32 bestTimeNum = ::getDisplayRaceBestTimeNum();
+    ListItem* pItem = listItems + mPageNo * ITEMS_PER_PAGE;
+    pEnd = listItems + itemCount;
+    row = isOdd;
+    s32 prevSeparator = -1;
+    s32 galaxyCount;
+    s32 separatorRows = 0;
+    galaxyCount = 0;
 
-    s32 prevValue = -1;
-    s32 sortPriority;
-    wchar_t* pNameText;
+    for (; pItem != pEnd; pItem++) {
+        switch (pItem->mType) {
+        case 0: {
+            galaxyBuffer.mTail = makeGalaxyNameText(galaxyBuffer.mBuffer, &pItem->mGalaxyAccessor, row % 4 == 0);
+            starBuffer.mTail = makeStarNumText(starBuffer.mTail, &pItem->mGalaxyAccessor, row % 8 == 0);
+            coinBuffer.mTail = makeCoinText(coinBuffer.mTail, &pItem->mGalaxyAccessor, row % 8 == 0);
+            crownBuffer.mTail = makeCrownText(crownBuffer.mTail, &pItem->mGalaxyAccessor, row % 8 == 0);
+            timeBuffer.addNewLine(row);
 
-    for (s32 idx = 0; idx < mPageNo; idx++) {
-        switch (listItems[idx]._0) {
-        case 0:
-            makeGalaxyNameText(pNameText, listItems[idx]._4Accessor, mPageNo % 4);
-            makeStarNumText(pNameText, listItems[idx]._4Accessor, mPageNo % 8);
-            makeCoinText(pNameText, listItems[idx]._4Accessor, mPageNo & 8);
-            makeCrownText(pNameText, listItems[idx]._4Accessor, mPageNo & 8);
-
-            timeBuffer.addNewLine(isEven);
-
-            sortPriority = ::getSortPriority(listItems[idx]._4Accessor);
-            s32 value;
-            if (sortPriority < 2) {
-                value = 0;
+            s32 priority = ::getSortPriority(&pItem->mGalaxyAccessor);
+            s32 separator;
+            if (priority <= 1) {
+                separator = 0;
             } else {
-                value = (3 - sortPriority) + 2;
+                separator = priority <= 3 ? 1 : 2;
             }
 
-            if (value != prevValue) {
-                if (prevValue >= 0) {
-                    tryShowSeparator(idx, 20.0f * idx);
+            if (prevSeparator != separator) {
+                if (prevSeparator >= 0) {
+                    tryShowSeparator(prevSeparator, ::cSeparatorOffset * separatorRows);
                 }
 
-                Separator separator = mSeparatorArray[idx];
-                separator._4.x = 0.0f;
-                separator._4.y = 20.0f * (isEven);
+                TVec2f& rOffset = mSeparatorArray[separator]._4;
+                rOffset.x = 0.0f;
+                rOffset.y = ::cSeparatorOffset * row;
+                prevSeparator = separator;
+                separatorRows = 0;
             }
+
+            separatorRows++;
+            galaxyCount++;
             break;
+        }
         case 1:
-            makeRaceNameText(pNameText, listItems[idx]._0, mPageNo % 4);
-            makeRaceTimeText(pNameText, listItems[idx]._0, mPageNo % 8);
+            galaxyBuffer.mTail = makeRaceNameText(galaxyBuffer.mBuffer, pItem->mRaceId, row % 4 == 0);
+            timeBuffer.mTail = makeRaceTimeText(timeBuffer.mBuffer, pItem->mRaceId, row % 8 == 0);
+            starBuffer.addNewLine(row);
+            coinBuffer.addNewLine(row);
+            crownBuffer.addNewLine(row);
 
-            starBuffer.addNewLine(mPageNo);
-            coinBuffer.addNewLine(mPageNo);
-            crownBuffer.addNewLine(mPageNo);
-
-            if (tryShowSeparator(3, 72.0f + 20.0f * bestTimeNum)) {
-                Separator separator = mSeparatorArray[idx];
-                separator._4.x = 0.0f;
-                separator._4.y = 20.0f * idx;
+            if (tryShowSeparator(3, ::cTimePaneDefaultHeight + ::cSeparatorOffset * (bestTimeNum - 1))) {
+                TVec2f& rOffset = mSeparatorArray[3]._4;
+                rOffset.x = 0.0f;
+                rOffset.y = ::cSeparatorOffset * row;
             }
+
             break;
         case 3:
-            galaxyBuffer.addNewLine(mPageNo);
-            starBuffer.addNewLine(mPageNo);
-            coinBuffer.addNewLine(mPageNo);
-            crownBuffer.addNewLine(mPageNo);
-            timeBuffer.addNewLine(mPageNo);
+            galaxyBuffer.addNewLine(row);
+            starBuffer.addNewLine(row);
+            coinBuffer.addNewLine(row);
+            crownBuffer.addNewLine(row);
+            timeBuffer.addNewLine(row);
             break;
         }
 
-        mPageNo++;
-        galaxyBuffer.update(mPageNo);
-        starBuffer.update(mPageNo);
-        coinBuffer.update(mPageNo);
-        crownBuffer.update(mPageNo);
-        timeBuffer.update(mPageNo);
+        row++;
+        galaxyBuffer.update(row);
+        starBuffer.update(row);
+        coinBuffer.update(row);
+        crownBuffer.update(row);
+        timeBuffer.update(row);
+
+        if (rowLimit <= row - isOdd) {
+            break;
+        }
     }
 
-    tryShowSeparator(0, 20.0f);
+    if (galaxyCount % ITEMS_PER_PAGE > 0) {
+        separatorRows += ITEMS_PER_PAGE - galaxyCount % ITEMS_PER_PAGE;
+    }
 
-    galaxyBuffer.finish(0);
-    starBuffer.finish(0);
-    coinBuffer.finish(0);
-    crownBuffer.finish(0);
-    timeBuffer.finish(0);
+    tryShowSeparator(prevSeparator, ::cSeparatorOffset * separatorRows);
+    galaxyBuffer.finish(row);
+    starBuffer.finish(row);
+    coinBuffer.finish(row);
+    crownBuffer.finish(row);
+    timeBuffer.finish(row);
 }
 
-wchar_t* PowerStarList::makeGalaxyNameText(wchar_t* s, const GalaxyStatusAccessor* pAccessor, bool a1) const {
+wchar_t* PowerStarList::makeGalaxyNameText(wchar_t* pBuffer, const GalaxyStatusAccessor* pAccessor, bool isFirstLine) const {
     s32 offset;
-    if (a1) {
-        offset = swprintf(s, 0x100, MR::getGalaxyNameShortOnCurrentLanguage(pAccessor->getName()));
+    if (isFirstLine) {
+        const wchar_t* pName = MR::getGalaxyNameShortOnCurrentLanguage(pAccessor->getName());
+        offset = swprintf(pBuffer, 0x100, pName);
     } else {
-        offset = swprintf(s, 0x100, L"%ls%s%ls", s, L"\n", MR::getGalaxyNameShortOnCurrentLanguage(pAccessor->getName()));
+        const wchar_t* pName = MR::getGalaxyNameShortOnCurrentLanguage(pAccessor->getName());
+        offset = swprintf(pBuffer, 0x100, L"%ls%s%ls", pBuffer, "\n", pName);
     }
-    return s + offset;
+
+    return pBuffer + offset;
 }
 
-wchar_t* PowerStarList::makeStarNumText(wchar_t* s, const GalaxyStatusAccessor* pAccessor, bool a1) const {
-    if (!a1) {
-        *s = L'\n';
-        s++;
+wchar_t* PowerStarList::makeStarNumText(wchar_t* pBuffer, const GalaxyStatusAccessor* pAccessor, bool isFirstLine) const {
+    wchar_t* pText = pBuffer;
+    if (!isFirstLine) {
+        *pText = L'\n';
+        pText++;
     }
 
-    s32 starId;
     const char* pName = pAccessor->getName();
-    s32 idx;
-    for (idx = 0; idx < pAccessor->getPowerStarNum(); idx++) {
-        starId = idx + 1;
+    for (s32 idx = 0; idx < pAccessor->getPowerStarNum(); idx++) {
+        s32 starId = idx + 1;
         if (!MR::isOnGameEventFlagPowerStarSuccess(pName, starId)) {
             continue;
         } else if (GameDataConst::isGrandStar(pName, starId)) {
-            *s = L'K';
-            s++;
+            *pText = L'K';
+            pText++;
         } else if (GameDataConst::isPowerStarGreen(pName, starId)) {
-            *s = L'O';
-            s++;
+            *pText = L'O';
+            pText++;
         } else if (GameDataConst::isPowerStarRed(pName, starId)) {
-            *s = L'S';
-            s++;
+            *pText = L'S';
+            pText++;
         } else if (pAccessor->isCometStar(starId)) {
-            *s = L'e';
-            s++;
+            *pText = L'e';
+            pText++;
         } else {
-            *s = L'7';
-            s++;
+            *pText = L'7';
+            pText++;
         }
     }
 
-    *s = L'\0';
-    return s;
+    *pText = L'\0';
+    return pText;
 }
 
-wchar_t* PowerStarList::makeCoinText(wchar_t* s, const GalaxyStatusAccessor* pAccessor, bool a1) const {
-    if (!a1) {
-        *s = L'\n';
-        s++;
+wchar_t* PowerStarList::makeCoinText(wchar_t* pBuffer, const GalaxyStatusAccessor* pAccessor, bool isFirstLine) const {
+    if (!isFirstLine) {
+        *pBuffer = L'\n';
+        pBuffer++;
     }
 
     s32 coinScore = MR::getCoinBestScore(pAccessor->getName());
 
-    s = MR::addPictureFontTag(s, L'A');
+    pBuffer = MR::addPictureFontTag(pBuffer, L'A');
 
-    *s = coinScore / 100 + L'0';
+    *pBuffer = coinScore / 100 + L'0';
 
-    s32 value = (coinScore % 100) / 10;
+    coinScore -= coinScore / 100 * 100;
+    s32 value = coinScore / 10;
 
-    s[1] = value + L'0';
-    s[2] = coinScore % 100 - 10 * value + L'0';
-    s[3] = L'\0';
+    pBuffer[1] = value + L'0';
+    coinScore -= 10 * value;
+    pBuffer[2] = coinScore + L'0';
+    pBuffer[3] = L'\0';
 
-    return s + 3;
+    return pBuffer + 3;
 }
 
-wchar_t* PowerStarList::makeCrownText(wchar_t* s, const GalaxyStatusAccessor* pAccessor, bool a1) const {
-    if (!a1) {
-        *s = L'\n';
-        s++;
+wchar_t* PowerStarList::makeCrownText(wchar_t* pBuffer, const GalaxyStatusAccessor* pAccessor, bool isFirstLine) const {
+    if (!isFirstLine) {
+        *pBuffer = L'\n';
+        pBuffer++;
     }
 
     if (MR::isStarComplete(pAccessor->getName())) {
-        *s = L'P';
-        s++;
+        *pBuffer = L'P';
+        pBuffer++;
     }
 
-    *s = L'\0';
-    return s;
+    *pBuffer = L'\0';
+    return pBuffer;
 }
 
-wchar_t* PowerStarList::makeRaceNameText(wchar_t* s, int raceId, bool a1) const {
+wchar_t* PowerStarList::makeRaceNameText(wchar_t* pBuffer, int raceId, bool isFirstLine) const {
     s32 offset;
-    if (a1) {
-        offset = swprintf(s, 0x100, MR::getRaceNameOnCurrentLanguage(raceId));
+    if (isFirstLine) {
+        const wchar_t* pName = MR::getRaceNameOnCurrentLanguage(raceId);
+        offset = swprintf(pBuffer, 0x100, pName);
     } else {
-        offset = swprintf(s, 0x100, L"%ls%s%ls", s, L"\n", MR::getRaceNameOnCurrentLanguage(raceId));
+        const wchar_t* pName = MR::getRaceNameOnCurrentLanguage(raceId);
+        offset = swprintf(pBuffer, 0x100, L"%ls%s%ls", pBuffer, "\n", pName);
     }
 
-    return s + offset;
+    return pBuffer + offset;
 }
 
-wchar_t* PowerStarList::makeRaceTimeText(wchar_t* s, int raceId, bool a1) const {
+wchar_t* PowerStarList::makeRaceTimeText(wchar_t* pBuffer, int raceId, bool isFirstLine) const {
     wchar_t raceBest[10];
     MR::makeRaceBestTimeString(raceBest, raceId);
 
     s32 offset;
-    if (a1) {
-        offset = swprintf(s, 0x100, raceBest);
+    if (isFirstLine) {
+        offset = swprintf(pBuffer, 0x100, raceBest);
     } else {
-        offset = swprintf(s, 0x100, L"%ls%s%ls", s, L"\n", raceBest);
+        offset = swprintf(pBuffer, 0x100, L"%ls%s%ls", pBuffer, "\n", raceBest);
     }
 
-    return s + offset;
+    return pBuffer + offset;
 }
 
 void PowerStarList::startScrollAnimNext(bool set) {
-    const char* pAnimName = "TurnOverPage2";
-
-    if (mPageNo % 2) {
-        pAnimName = "TurnOverPage1";
-    }
+    const char* pAnimName = mPageNo % 2 ? "TurnOverPage2" : "TurnOverPage1";
 
     MR::startPaneAnim(this, "List1", pAnimName, 0);
     MR::startPaneAnim(this, "List2", pAnimName, 0);
@@ -649,11 +666,7 @@ void PowerStarList::startScrollAnimNext(bool set) {
 }
 
 void PowerStarList::startScrollAnimPrev() {
-    const char* pAnimName = "TurnOverPage2";
-
-    if (mPageNo % 2) {
-        pAnimName = "TurnOverPage1";
-    }
+    const char* pAnimName = mPageNo % 2 ? "TurnOverPage2" : "TurnOverPage1";
 
     MR::startPaneAnimReverseOneTime(this, "List1", pAnimName, 0);
     MR::startPaneAnimReverseOneTime(this, "List2", pAnimName, 0);
@@ -676,8 +689,8 @@ bool PowerStarList::tryShowSeparator(s32 separatorIdx, f32 myFloat) {
 
 void PowerStarList::setSeparatorPaneSize() {
     const char* pPaneName;
-    for (u32 idx = 0; idx < ARRAY_SIZE(::cSeparatorSizeTable); idx++) {
-        pPaneName = ::cSeparatorSizeTable[idx];
+    for (u32 idx = 0; idx < ARRAY_SIZE(::cSeparatorSizePaneTable); idx++) {
+        pPaneName = ::cSeparatorSizePaneTable[idx];
 
         if (MR::isHiddenPane(this, pPaneName)) {
             continue;
@@ -699,13 +712,13 @@ void PowerStarList::setTotalPowerStarNumForMessageBoardCapture() {
     if (MR::getPowerStarNum() >= 100) {
         pMessage[0] = powerStarNum / 100 + L'0';
         pMessage++;
-        powerStarNum %= 100;
+        powerStarNum -= powerStarNum / 100 * 100;
     }
 
     if (MR::getPowerStarNum() >= 10) {
         pMessage[0] = powerStarNum / 10 + L'0';
         pMessage++;
-        powerStarNum %= 10;
+        powerStarNum -= powerStarNum / 10 * 10;
     }
 
     pMessage[0] = powerStarNum + L'0';
@@ -839,8 +852,9 @@ void PowerStarList::exeCaptureWait() {
 
 void PowerStarList::exeCaptureSend() {
     if (MR::isFirstStep(this)) {
-        ReplaceTagFunction::ReplaceArgs(mMailMessage, mMailMessageLength, MR::getGameMessageDirect(::cMailMessageID),
-                                        GameDataFunction::getUserName());
+        const wchar_t* pUserName = GameDataFunction::getUserName();
+        const wchar_t* pMessage = MR::getGameMessageDirect(::cMailMessageID);
+        ReplaceTagFunction::ReplaceArgs(mMailMessage, mMailMessageLength, pMessage, pUserName);
 
         MR::SendMailObj sendMailObj = MR::SendMailObj("スターリスト");
 

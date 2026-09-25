@@ -35,7 +35,7 @@ namespace {
     static const u8 sAngryLv1BlurAlpha = 80;
     static const s32 sAngryLv1BlurFadeIn = 5;
     static const s32 sAngryLv1BlurFadeOut = 30;
-    static const s32 sAngryLv2BlurStart = 205;
+    static const s32 sAngryLv2BlurStart = 220;
     static const s32 sAngryLv2BlurTime = 80;
     static const f32 sAngryLv2BlurOffset = 18.0f;
     static const u8 sAngryLv2BlurAlpha = 80;
@@ -194,6 +194,7 @@ void DinoPackunDemo::exeAngryDemo() {
                                       ::sAngryLv1BlurFadeOut);
         }
     }
+
     if (getHost()->mSequence->getVsCount() == 2) {
         if (MR::isLessStep(this, 205)) {
             MR::startLevelSound(getHost(), "SE_BM_LV_D_PAKKUN_ANGRY");

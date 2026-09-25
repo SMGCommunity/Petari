@@ -5,8 +5,8 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
-#include <revolution/types.h>
 #include <JSystem/JKernel/JKRHeap.hpp>
+#include <revolution/types.h>
 
 namespace {
     const PoltaSensorListEntry sCoreSensorList[] = {
@@ -222,8 +222,7 @@ namespace {
 };  // namespace
 
 PoltaSensorCtrl::PoltaSensorCtrl(Polta* pPolta)
-    : mPoltaPtr(pPolta), mScreamSensor(nullptr), mHeadSensor(nullptr), mCoreSensors(nullptr), mBodySensors(nullptr), mLeftArmSensors(nullptr),
-      mRightArmSensors(nullptr) {
+    : mPoltaPtr(pPolta), mScreamSensor(), mHeadSensor(), mCoreSensors(), mBodySensors(), mLeftArmSensors(), mRightArmSensors() {
 }
 
 s32 PoltaSensorCtrl::getSensorCount() const {
@@ -231,7 +230,7 @@ s32 PoltaSensorCtrl::getSensorCount() const {
 }
 
 void PoltaSensorCtrl::setScreamSensorSize(f32 screamSensorSize) {
-    if (mScreamSensor) {
+    if (mScreamSensor != nullptr) {
         mScreamSensor->mRadius = screamSensorSize;
     }
 }
@@ -254,9 +253,10 @@ void PoltaSensorCtrl::initSensor() {
     }
 
     mLeftArmSensors = new HitSensor*[getArmSensorCount()];
+    PoltaArm* poltaLeftArmTemp;
 
     for (int i = 0; i < getArmSensorCount(); i++) {
-        PoltaArm* poltaLeftArmTemp = mPoltaPtr->mLeftArm;
+        poltaLeftArmTemp = mPoltaPtr->mLeftArm;
         const PoltaSensorListEntry* leftArmListEntry = &::sLeftArmSensorList[i];
         mLeftArmSensors[i] = MR::addHitSensorMtxEnemy(mPoltaPtr, leftArmListEntry->mName, 8, leftArmListEntry->mRadius,
                                                       MR::getJointMtx(poltaLeftArmTemp, leftArmListEntry->mJointName),
@@ -283,6 +283,7 @@ bool PoltaSensorCtrl::isCoreSensor(const HitSensor* pSensor) const {
             return true;
         }
     }
+
     return false;
 }
 
@@ -292,6 +293,7 @@ bool PoltaSensorCtrl::isBodySensor(const HitSensor* pSensor) const {
             return true;
         }
     }
+
     return false;
 }
 
@@ -301,6 +303,7 @@ bool PoltaSensorCtrl::isLeftArmSensor(const HitSensor* pSensor) const {
             return true;
         }
     }
+
     return false;
 }
 
@@ -310,6 +313,7 @@ bool PoltaSensorCtrl::isRightArmSensor(const HitSensor* pSensor) const {
             return true;
         }
     }
+
     return false;
 }
 

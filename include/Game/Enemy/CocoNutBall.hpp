@@ -13,6 +13,7 @@ public:
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
+    void initSensors(const char*, const char*);
     void appearAndThrow(const TVec3f&, f32);
     void hitBackToPlayer();
     void demoBreak(const TVec3f&);

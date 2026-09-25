@@ -10,6 +10,17 @@
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void DinoPackunBattleVs1Lv2_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)1.3e+03f;
+    (void)9e+01f;
+    (void)1.3f;
+    (void)4.0f;
+    (void)1.8f;
+    (void)1.8e+02f;
+}
+
 namespace NrvDinoPackunBattleVs1Lv2 {
     NEW_NERVE(DinoPackunBattleVs1Lv2NrvStart, DinoPackunBattleVs1Lv2, Start);
     NEW_NERVE(DinoPackunBattleVs1Lv2NrvTurn, DinoPackunBattleVs1Lv2, Turn);
@@ -21,7 +32,7 @@ namespace NrvDinoPackunBattleVs1Lv2 {
     NEW_NERVE(DinoPackunBattleVs1Lv2NrvDamage, DinoPackunBattleVs1Lv2, Damage);
 };  // namespace NrvDinoPackunBattleVs1Lv2
 
-DinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2(DinoPackun* pPackun) : DinoPackunAction("ラス", pPackun) {
+DinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2(DinoPackun* pPackun) : DinoPackunAction("ラスト", pPackun) {
     mStateDamage = nullptr;
     _18 = 1;
     initNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvStart));
@@ -119,7 +130,7 @@ void DinoPackunBattleVs1Lv2::setStartContinueBattle() {
 }
 
 bool DinoPackunBattleVs1Lv2::tryFind() {
-    if (MR::isInSightConePlayer(getHost(), getHost()->_E8, 1000.0f, 80.0f)) {
+    if (MR::isInSightConePlayer(getHost(), getHost()->_E8, 1300.0f, 90.0f)) {
         setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvFind));
         return true;
     }
@@ -165,7 +176,7 @@ void DinoPackunBattleVs1Lv2::exeWalk() {
         MR::startAction(getHost(), "AngryWalk");
     }
 
-    if (updateWalk(180, 0.5f, 50)) {
+    if (updateWalk(180, 1.3f, 50)) {
         setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvTurn));
     } else {
         if (tryFind()) {
@@ -176,14 +187,14 @@ void DinoPackunBattleVs1Lv2::exeWalk() {
 
 void DinoPackunBattleVs1Lv2::exeChase() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(getHost(), "Chase");
+        MR::startBck(getHost(), "AngryChase");
         MR::startSound(getHost(), "SE_BV_D_PAKKUN_CHASE");
         MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
     }
 
     bool isHit = getHost()->isHitReaction(15);
-    f32 v3 = isHit ? 0.0f : 1.5f;
-    f32 v4 = isHit ? 0.0f : 1.0f;
+    f32 v3 = isHit ? 0.0f : 1.8f;
+    f32 v4 = isHit ? 0.0f : 1.3f;
 
     if (updateChase(300, 180.0f, v4, v3, 90, 46)) {
         setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvCoolDown));
@@ -209,7 +220,7 @@ void DinoPackunBattleVs1Lv2::exeCoolDown() {
 }
 
 void DinoPackunBattleVs1Lv2::exeFind() {
-    if (updateFind(0xE, 1.0f)) {
+    if (updateFind(0xE, 4.0f)) {
         setNerve(GET_NERVE(DinoPackunBattleVs1Lv2, DinoPackunBattleVs1Lv2NrvChase));
     }
 }

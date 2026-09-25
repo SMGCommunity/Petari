@@ -34,7 +34,7 @@ void FootPrint::initMember(s32 amount, s32 drawType) {
     _34 = 20.0f;
     mMinPrintDistance = 80.0f;
 
-    mLastPrintPos.set2(0.0f);
+    mLastPrintPos.zero();
 
     mPrints = new FootPrintInfo[amount];
     mPrintMaxNum = amount;

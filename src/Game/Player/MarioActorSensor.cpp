@@ -16,6 +16,26 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include <cstring>
 
+void MarioActorSensor_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)1.57079637f;
+    (void)100.0f;
+    (void)2000.0f;
+    (void)80.0f;
+    (void)60.0f;
+    (void)600.0f;
+    (void)1000.0f;
+    (void)2400.0f;
+    (void)3000.0f;
+    (void)300.0f;
+    (void)0.0872664675f;
+    (void)2607.59448f;
+    (void)200.0f;
+    (void)40.0f;
+    (void)1.20000005f;
+    (void)1.5f;
+}
+
 void MarioActor::setupSensors() {
     initHitSensor(4);
 
@@ -48,33 +68,33 @@ void MarioActor::setupSensors() {
     MR::initStarPointerTarget(this, 80.0f, TVec3f(0.0f, 80.0f, 0.0f));
 }
 
-void MarioActor::updateHitSensor(HitSensor* sensor) {
-    switch (sensor->mType) {
+void MarioActor::updateHitSensor(HitSensor* pSensor) {
+    switch (pSensor->mType) {
     case ATYPE_PLAYER:
         if (mMario->isStatusActive(MarioStatus_Hang)) {
-            getRealPos("Spine1", &sensor->mPosition);
-            sensor->mRadius = 60.0f;
+            getRealPos("Spine1", &pSensor->mPosition);
+            pSensor->mRadius = 60.0f;
             return;
         }
 
-        sensor->mPosition.set(_2A0);
-        if (mMario->mMovementStates._B && !mMario->mMovementStates._1) {
-            sensor->mPosition.add(mMario->mJumpVec);
+        pSensor->mPosition.set(_2A0);
+        if (getMovementStates()._B && !getMovementStates()._1) {
+            pSensor->mPosition.add(mMario->mJumpVec);
         }
 
-        sensor->mRadius = 100.0f;
+        pSensor->mRadius = 100.0f;
         return;
     case ATYPE_PUSH:
-        sensor->setType(ATYPE_EYE);
+        pSensor->setType(ATYPE_EYE);
         return;
     case ATYPE_EYE:
-        if (sensor == getSensor("ex-eye")) {
+        if (pSensor == getSensor("ex-eye")) {
             updateScouter();
             return;
         }
 
         f32 radius = 600.0f;
-        sensor->mPosition.set(_2A0);
+        pSensor->mPosition.set(_2A0);
         if (mMario->mMovementStates._F) {
             radius = 1000.0f;
         }
@@ -87,7 +107,7 @@ void MarioActor::updateHitSensor(HitSensor* sensor) {
             radius = 2000.0f;
         }
 
-        sensor->mRadius = radius;
+        pSensor->mRadius = radius;
         _3E5 = false;
         _3E6 = false;
         if (strcmp(mMarioAnim->mXanimePlayer->getCurrentBckName(), "spin2nd") == 0) {
@@ -181,11 +201,11 @@ void MarioActor::updateHitSensor(HitSensor* sensor) {
             }
         }
 
-        if (sensor->isValid()) {
+        if (pSensor->isValid()) {
             attackOrPushPolygons();
         }
 
-        if (_424) {
+        if (_424 != nullptr) {
             tryTornadoPull(_424);
         }
 
@@ -306,32 +326,32 @@ void MarioActor::trampleJump(f32 normal, f32 extra) {
     mMario->mMovementStates._3E = 0;
 }
 
-void MarioActor::attackSensor(HitSensor* own, HitSensor* other) {
+void MarioActor::attackSensor(HitSensor* pOwn, HitSensor* pOther) {
     if (!isEnableNerveChange()) {
         return;
     }
 
-    if (own->mType == ATYPE_PLAYER) {
+    if (pOwn->mType == ATYPE_PLAYER) {
         if (_934 && !getSensor("eye")->isValid()) {
-            addRushSensor(other, false);
+            addRushSensor(pOther, false);
         }
     } else {
-        if (own == getSensor("eye")) {
-            if (MR::isDead(other->mHost)) {
+        if (pOwn == getSensor("eye")) {
+            if (MR::isDead(pOther->mHost)) {
                 return;
             }
 
             if (_934) {
-                attackOrPushSensorInRush(other, (other->mPosition - own->mPosition).length());
+                attackOrPushSensorInRush(pOther, (pOther->mPosition - pOwn->mPosition).length());
             } else if (isDamaging()) {
-                attackOrPushSensorInDamage(other, (other->mPosition - own->mPosition).length());
+                attackOrPushSensorInDamage(pOther, (pOther->mPosition - pOwn->mPosition).length());
             } else {
-                attackOrPushSensor(other, (other->mPosition - own->mPosition).length());
+                attackOrPushSensor(pOther, (pOther->mPosition - pOwn->mPosition).length());
             }
         }
 
-        if (own == getSensor("ex-eye")) {
-            recordScoutingObject(other);
+        if (pOwn == getSensor("ex-eye")) {
+            recordScoutingObject(pOther);
         }
     }
 }
@@ -346,30 +366,31 @@ void MarioActor::resetSensorCount() {
     _46C = 0;
 }
 
-void MarioActor::recordScoutingObject(HitSensor* sensor) {
-    if (sensor == _424) {
+void MarioActor::recordScoutingObject(HitSensor* pSensor) {
+    if (pSensor == _424) {
         return;
     }
 
-    if (!MR::isSensorEnemy(sensor) && !MR::isSensorMapObj(sensor) && !MR::isSensorRide(sensor)) {
+    if (!MR::isSensorEnemy(pSensor) && !MR::isSensorMapObj(pSensor) && !MR::isSensorRide(pSensor)) {
         return;
     }
 
-    if (MR::diffAngleAbsHorizontal(sensor->mPosition - getSensor("ex-eye")->mPosition, mMario->mFrontVec, _240) >= 1.5707964f) {
+    if (MR::diffAngleAbsHorizontal(pSensor->mPosition - getSensor("ex-eye")->mPosition, mMario->mFrontVec, _240) >= 1.5707964f) {
         return;
     }
 
-    _9D4 = sensor;
+    _9D4 = pSensor;
     _9D8 = getSensor("ex-eye")->mPosition;
     _9CC = _9D0;
     _9D0 = 60.0f;
 }
 
 void MarioActor::updateScouter() {
+    const u32 count = _468;
     HitSensor* previous = _F24;
     _F24 = nullptr;
-    if (_468) {
-        if (_9D4 && MR::isExistInAttributeGroupSearchTurtle(_9D4->mHost)) {
+    if (count) {
+        if (_9D4 != nullptr && MR::isExistInAttributeGroupSearchTurtle(_9D4->mHost)) {
             if (MR::isSensorEnemy(_9D4)) {
                 _F28 = 16;
             } else {
@@ -415,7 +436,7 @@ void MarioActor::updateScouter() {
     getSensor("ex-eye")->mPosition = position;
     f32 radius = 100.0f;
     if (_9D0 >= 300.0f) {
-        radius = 100.0f + (_9D0 - 300.0f) * MR::tanDegree(5.0f);
+        radius = 100.0f + (_9D0 - 300.0f) * MR::tan(5.0f * MR::pi() / 180.0f);
     }
 
     if (_9D0 < 200.0f) {
@@ -429,7 +450,7 @@ void MarioActor::initScouter() {
     _9CC = 0.0f;
     _9D0 = 60.0f;
     _9D4 = 0;
-    _9D8.set2(0.0f);
+    _9D8.zero();
 
     HitSensor* sensor = getSensor("ex-eye");
     sensor->mRadius = 100.0f;

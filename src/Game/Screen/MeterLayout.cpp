@@ -28,7 +28,7 @@ namespace {
     static const s32 sBreakDelayTime = 40;
     static const s32 sPowerUpWaitTime = 60;
     static const s32 sRecoveryCountInterval = 5;
-};  // namespace
+}  // namespace
 
 namespace NrvMeterLayout {
     NEW_NERVE(MeterLayoutNrvHide, MeterLayout, Hide);
@@ -43,7 +43,7 @@ namespace NrvMeterLayout {
     NEW_NERVE(MeterLayoutNrvBreakMeter, MeterLayout, BreakMeter);
     NEW_NERVE(MeterLayoutNrvZeroMeter, MeterLayout, ZeroMeter);
     NEW_NERVE(MeterLayoutNrvZeroMeterBreak, MeterLayout, ZeroMeterBreak);
-};  // namespace NrvMeterLayout
+}  // namespace NrvMeterLayout
 
 MeterLayout::MeterLayout(const char* pName, const char* pArcName)
     : LayoutActor(pName, true), mCountUpPaneRumbler(), mFollowPos(0.0f, 0.0f), mFollowPosW(0.0f, 0.0f), _3C(0.0f, 0.0f), mCount(3), mAlpha(),
@@ -237,9 +237,13 @@ void MeterLayout::exeWait() {
 }
 
 // ! minus operator gets inlined - https://decomp.me/scratch/wWkjw
+void MeterLayout_FORCE_MATCH(TVec2f& rA, const TVec2f& rB) {
+    rA - rB;
+}
+
 void MeterLayout::exePowerUp() {
-    TVec2f headPos;
     TVec2f basePos;
+    TVec2f headPos;
 
     mFollowPos.y = 0.0f;
     mFollowPos.x = 0.0f;
@@ -411,6 +415,10 @@ void MeterLayout::calcMarioHeadPosition(TVec2f* pHeadPosition) const {
 
     pHeadPosition->x = screenPos.x;
     pHeadPosition->y = screenPos.y;
+}
+
+void MeterLayout_FORCE_MATCH_STRINGS(LayoutActor* pActor) {
+    MR::startAnim(pActor, "MoveMeter", 0);
 }
 
 void MeterLayout::calcPowerUpMeterBasePosition(TVec2f* pBasePosition) const {

@@ -13,6 +13,12 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void DodoryuDemo_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)2.0f;
+    (void)10.0f;
+}
+
 namespace {
     static const s32 sOpeningHideFrame = 60;
     // static const s32 sOpeningAppearFrame = _;
@@ -185,7 +191,7 @@ void DodoryuDemoOpening::exeWalk() {
 void DodoryuDemoOpening::exeHideReady() {
     if (MR::isFirstStep(this)) {
         MR::startBck(mHost, "Hide");
-        mHost->startLeadHillBck("Walk");
+        mHost->startLeadHillBck("Hide");
     }
 
     MR::startLevelSound(mHost, "SE_BM_LV_DODORYU_MOVE_GROUND");
@@ -221,7 +227,20 @@ bool DodoryuDemoOpening::tryFinish() {
     return false;
 }
 
-// DodoryuDemoOpening::turnToRabbit
+void DodoryuDemoOpening::turnToRabbit() {
+    TVec3f rabbitDir;
+    mHost->calcRabbitDir(&rabbitDir);
+    TPos3f mtx(mHost->mBaseMtx);
+    TVec3f up;
+    mtx.getZDir(up);
+    TVec3f front;
+    mtx.getTrans(front);
+    TPos3f rotation;
+    rotation.setRotate(up, rabbitDir);
+    mtx.concat(rotation, mtx);
+    mtx.setTrans(front);
+    mHost->setMtx(mtx);
+}
 
 DodoryuDemoAppear::DodoryuDemoAppear(Dodoryu* pHost, const char* pName) : DodoryuStateBase(pHost, pName), mActorCameraInfo() {
     initWithoutIter();
@@ -337,7 +356,7 @@ void DodoryuDemoAngry::exePlay() {
         Dodoryu* pHost = mHost;
         TVec3f jointPos;
         MR::copyJointPos(mHost, "Nose", &jointPos);
-        MR::appearStarPiece(pHost, jointPos, 8, 20.0f, 40.0f, false);
+        MR::appearStarPiece(pHost, jointPos, 16, 20.0f, 40.0f, false);
 
         MR::startSound(mHost, "SE_OJ_STAR_PIECE_BURST");
     }

@@ -20,6 +20,7 @@ public:
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void initSensor();
+    void setShadowDrop(const char*);
     void initShadow() NO_INLINE;
     void startGlad();
     bool requestCompleteDemo(const TVec3f&, const TVec3f&, f32);

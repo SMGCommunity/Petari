@@ -25,7 +25,7 @@ namespace {
     typedef void (MiiSelect::*CallbackFuncPtr)();
 
     static const CallbackFuncPtr func[2] = {&MiiSelect::callbackLeft, &MiiSelect::callbackRight};
-};  // namespace
+}  // namespace
 
 MiiSelect::MiiSelect(const char* pName)
     : LayoutActor(pName, true), _28(new MR::BitArray(5)), mFellowIconNum(), mFavoriteMiiNum(), mMiiNum(), _1EC(), _1F0(), _1F4(), _1F8(), _1FC(),
@@ -151,7 +151,7 @@ void MiiSelect::exeWait() {
 
     for (int i = 0; i < ARRAY_SIZE(_20); i++) {
         if (_20[i]->trySelect()) {
-            (this->*func[i])();
+            (this->*::func[i])();
             return;
         }
     }
@@ -461,6 +461,12 @@ namespace MiiSelectSub {
         }
     }
 
+    inline void setPointedMiiName(MiiSelect* pHost, s32 index) {
+        wchar_t name[RFL_NAME_LEN + 1];
+        FileSelectFunc::copyMiiName(reinterpret_cast< u16* >(name), pHost->makeIconID(index));
+        MR::setTextBoxMessageRecursive(pHost, "TxtName", name);
+    }
+
     void Page::movement() {
         bool isPointingAny = false;
 
@@ -477,9 +483,7 @@ namespace MiiSelectSub {
                     mHost->onSelect(mBaseIndex + i, mIconArray[i]->getTexMap());
                     mIconArray[i]->invalidate();
                 } else if (mIconArray[i]->isPointing()) {
-                    wchar_t name[RFL_NAME_LEN + 1];
-                    FileSelectFunc::copyMiiName(reinterpret_cast< u16* >(name), mHost->makeIconID(mBaseIndex + i));
-                    MR::setTextBoxMessageRecursive(mHost, "TxtName", name);  // TODO: Generate an mr instruction for the mHost load
+                    setPointedMiiName(mHost, mBaseIndex + i);
 
                     isPointingAny = true;
                 }
@@ -540,7 +544,7 @@ namespace MiiSelectSub {
             mIconArray[i]->prohibit();
         }
     }
-};  // namespace MiiSelectSub
+}  // namespace MiiSelectSub
 
 s32 MiiSelect::getIconNum() {
     return mMiiNum + mFavoriteMiiNum + mFellowIconNum;

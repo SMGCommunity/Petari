@@ -22,6 +22,7 @@ namespace JGeometry {
         T get(int row, int column) const {
             return mMtx[column][row];
         }
+
         void set(T xx, T xy, T xz, T yx, T yy, T yz, T zx, T zy, T zz) {
             mMtx[0][0] = xx;
             mMtx[1][0] = xy;
@@ -33,6 +34,7 @@ namespace JGeometry {
             mMtx[1][2] = zy;
             mMtx[2][2] = zz;
         }
+
         T mMtx[3][3];
     };
 
@@ -48,9 +50,11 @@ namespace JGeometry {
         void set(const ArrType* pSrc) {
             JMath::gekko_ps_copy12(this, pSrc);
         }
+
         void set(const SMatrix34C< T >& rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
         }
+
         void set(T xx, T xy, T xz, T tx, T yx, T yy, T yz, T ty, T zx, T zy, T zz, T tz) NO_INLINE {
             mMtx[0][0] = xx;
             mMtx[0][1] = xy;
@@ -179,6 +183,7 @@ namespace JGeometry {
                 this->mMtx[1][3] = this->mMtx[2][3] = 0.0f;
             this->mMtx[0][0] = this->mMtx[1][1] = this->mMtx[2][2] = 1.0f;
         }
+
         void concat(const T& rSrcA, const T& rSrcB) NO_INLINE {
             this->set(rSrcA(0, 2) * rSrcB(2, 0) + (rSrcA(0, 0) * rSrcB(0, 0) + rSrcA(0, 1) * rSrcB(1, 0)),
                       rSrcA(0, 2) * rSrcB(2, 1) + (rSrcA(0, 0) * rSrcB(0, 1) + rSrcA(0, 1) * rSrcB(1, 1)),
@@ -193,6 +198,7 @@ namespace JGeometry {
                       rSrcA(2, 2) * rSrcB(2, 2) + (rSrcA(2, 0) * rSrcB(0, 2) + rSrcA(2, 1) * rSrcB(1, 2)),
                       rSrcA(2, 3) + (rSrcA(2, 2) * rSrcB(2, 3) + (rSrcA(2, 0) * rSrcB(0, 3) + rSrcA(2, 1) * rSrcB(1, 3))));
         }
+
         void concat(const T& rSrc) NO_INLINE {
             this->set((*this)(0, 2) * rSrc(2, 0) + ((*this)(0, 0) * rSrc(0, 0) + (*this)(0, 1) * rSrc(1, 0)),
                       (*this)(0, 2) * rSrc(2, 1) + ((*this)(0, 0) * rSrc(0, 1) + (*this)(0, 1) * rSrc(1, 1)),
@@ -207,11 +213,13 @@ namespace JGeometry {
                       (*this)(2, 2) * rSrc(2, 2) + ((*this)(2, 0) * rSrc(0, 2) + (*this)(2, 1) * rSrc(1, 2)),
                       (*this)(2, 3) + ((*this)(2, 2) * rSrc(2, 3) + ((*this)(2, 0) * rSrc(0, 3) + (*this)(2, 1) * rSrc(1, 3))));
         }
+
         f32 determinant33() const {
             return (*this)(0, 0) * ((*this)(1, 1) * (*this)(2, 2) - (*this)(1, 2) * (*this)(2, 1)) -
                    (*this)(0, 1) * ((*this)(1, 0) * (*this)(2, 2) - (*this)(1, 2) * (*this)(2, 0)) +
                    (*this)(0, 2) * ((*this)(1, 0) * (*this)(2, 1) - (*this)(1, 1) * (*this)(2, 0));
         }
+
         bool invert(const TMatrix34< T >& rSrc) NO_INLINE {
             f32 determinant = rSrc.determinant33();
 
@@ -344,7 +352,8 @@ namespace JGeometry {
             this->mMtx[1][0] = rSrc.y;
             this->mMtx[2][0] = rSrc.z;
         }
-        void setXDir(f32 x, f32 y, f32 z) {
+
+        void setXDir(f32 x, f32 y, f32 z) NO_INLINE {
             this->mMtx[0][0] = x;
             this->mMtx[1][0] = y;
             this->mMtx[2][0] = z;
@@ -355,7 +364,8 @@ namespace JGeometry {
             this->mMtx[1][1] = rSrc.y;
             this->mMtx[2][1] = rSrc.z;
         }
-        void setYDir(f32 x, f32 y, f32 z) {
+
+        void setYDir(f32 x, f32 y, f32 z) NO_INLINE {
             this->mMtx[0][1] = x;
             this->mMtx[1][1] = y;
             this->mMtx[2][1] = z;
@@ -366,7 +376,8 @@ namespace JGeometry {
             this->mMtx[1][2] = rSrc.y;
             this->mMtx[2][2] = rSrc.z;
         }
-        void setZDir(f32 x, f32 y, f32 z) {
+
+        void setZDir(f32 x, f32 y, f32 z) NO_INLINE {
             this->mMtx[0][2] = x;
             this->mMtx[1][2] = y;
             this->mMtx[2][2] = z;
@@ -464,6 +475,7 @@ namespace JGeometry {
             this->mMtx[1][0] = 0.0f;
             this->mMtx[0][1] = 0.0f;
         }
+
         void setEulerZ(f32 angle) {
             f32 s = SIN(angle);
             f32 c = COS(angle);
@@ -516,6 +528,7 @@ namespace JGeometry {
                 }
             }
         }
+
         void setQuat(const TQuat4f& q) {
             f32 yy = 2.0f * q.y * q.y;
             f32 zz = 2.0f * q.z * q.z;
@@ -555,12 +568,14 @@ namespace JGeometry {
                 f32 z = this->mMtx[2][0];
                 rDest.x = TUtil< f32 >::sqrt(x * x + y * y + z * z);
             }
+
             {
                 f32 y = this->mMtx[1][1];
                 f32 x = this->mMtx[0][1];
                 f32 z = this->mMtx[2][1];
                 rDest.y = TUtil< f32 >::sqrt(x * x + y * y + z * z);
             }
+
             {
                 f32 y = this->mMtx[1][2];
                 f32 x = this->mMtx[0][2];
@@ -568,6 +583,7 @@ namespace JGeometry {
                 rDest.z = TUtil< f32 >::sqrt(x * x + y * y + z * z);
             }
         }
+
         void setScale(const TVec3f& rSrc);
         void setScale(f32 x, f32 y, f32 z) NO_INLINE {
             this->mMtx[0][0] = x;
@@ -709,7 +725,7 @@ namespace JGeometry {
     template < class T >
     struct TPosition3 : public TRotation3< T > {
     public:
-        TPosition3(){};
+        TPosition3() {};
 
         TPosition3(MtxPtr rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
@@ -938,30 +954,30 @@ namespace JGeometry {
 
         inline void normalizeBasis() {
             f32 scale = JGeometry::TUtil< f32 >::sqrt(
-                (this->mMtx[0][0] * this->mMtx[0][0]) + (this->mMtx[1][0] * this->mMtx[1][0]) + (this->mMtx[2][0] * this->mMtx[2][0]) +
-                (this->mMtx[0][1] * this->mMtx[0][1]) + (this->mMtx[1][1] * this->mMtx[1][1]) + (this->mMtx[2][1] * this->mMtx[2][1]) +
-                (this->mMtx[0][2] * this->mMtx[0][2]) + (this->mMtx[1][2] * this->mMtx[1][2]) + (this->mMtx[2][2] * this->mMtx[2][2]));
+                (this->get(0, 0) * this->get(0, 0)) + (this->get(1, 0) * this->get(1, 0)) + (this->get(2, 0) * this->get(2, 0)) +
+                (this->get(0, 1) * this->get(0, 1)) + (this->get(1, 1) * this->get(1, 1)) + (this->get(2, 1) * this->get(2, 1)) +
+                (this->get(0, 2) * this->get(0, 2)) + (this->get(1, 2) * this->get(1, 2)) + (this->get(2, 2) * this->get(2, 2)));
 
-            f32 invLenX = JGeometry::TUtil< f32 >::inv_sqrt((this->mMtx[0][0] * this->mMtx[0][0]) + (this->mMtx[1][0] * this->mMtx[1][0]) +
-                                                            (this->mMtx[2][0] * this->mMtx[2][0]));
+            f32 invLenX = JGeometry::TUtil< f32 >::inv_sqrt((this->get(0, 0) * this->get(0, 0)) + (this->get(1, 0) * this->get(1, 0)) +
+                                                            (this->get(2, 0) * this->get(2, 0)));
 
-            this->mMtx[0][0] = invLenX * this->mMtx[0][0];
-            this->mMtx[1][0] = invLenX * this->mMtx[1][0];
-            this->mMtx[2][0] = invLenX * this->mMtx[2][0];
+            this->mMtx[0][0] = invLenX * this->get(0, 0);
+            this->mMtx[1][0] = invLenX * this->get(1, 0);
+            this->mMtx[2][0] = invLenX * this->get(2, 0);
 
-            f32 invLenY = JGeometry::TUtil< f32 >::inv_sqrt((this->mMtx[0][1] * this->mMtx[0][1]) + (this->mMtx[1][1] * this->mMtx[1][1]) +
-                                                            (this->mMtx[2][1] * this->mMtx[2][1]));
+            f32 invLenY = JGeometry::TUtil< f32 >::inv_sqrt((this->get(0, 1) * this->get(0, 1)) + (this->get(1, 1) * this->get(1, 1)) +
+                                                            (this->get(2, 1) * this->get(2, 1)));
 
-            this->mMtx[0][1] = invLenY * this->mMtx[0][1];
-            this->mMtx[1][1] = invLenY * this->mMtx[1][1];
-            this->mMtx[2][1] = invLenY * this->mMtx[2][1];
+            this->mMtx[0][1] = invLenY * this->get(0, 1);
+            this->mMtx[1][1] = invLenY * this->get(1, 1);
+            this->mMtx[2][1] = invLenY * this->get(2, 1);
 
-            f32 invLenZ = JGeometry::TUtil< f32 >::inv_sqrt((this->mMtx[0][2] * this->mMtx[0][2]) + (this->mMtx[1][2] * this->mMtx[1][2]) +
-                                                            (this->mMtx[2][2] * this->mMtx[2][2]));
+            f32 invLenZ = JGeometry::TUtil< f32 >::inv_sqrt((this->get(0, 2) * this->get(0, 2)) + (this->get(1, 2) * this->get(1, 2)) +
+                                                            (this->get(2, 2) * this->get(2, 2)));
 
-            this->mMtx[0][2] = invLenZ * this->mMtx[0][2];
-            this->mMtx[1][2] = invLenZ * this->mMtx[1][2];
-            this->mMtx[2][2] = invLenZ * this->mMtx[2][2];
+            this->mMtx[0][2] = invLenZ * this->get(0, 2);
+            this->mMtx[1][2] = invLenZ * this->get(1, 2);
+            this->mMtx[2][2] = invLenZ * this->get(2, 2);
         }
     };
 
@@ -1083,6 +1099,7 @@ namespace JGeometry {
                       rA[3][3] * rB[3][2] + (rA[3][2] * rB[2][2] + (rA[3][0] * rB[0][2] + rA[3][1] * rB[1][2])),
                       rA[3][3] * rB[3][3] + (rA[3][2] * rB[2][3] + (rA[3][0] * rB[0][3] + rA[3][1] * rB[1][3])));
         }
+
         void concat(const T& rSrc);
 
         void invert(const TMatrix44< T >& rSrc);
@@ -1103,7 +1120,7 @@ namespace JGeometry {
     template < class T >
     struct TProjection3 : public T {
     public:
-        TProjection3(){};
+        TProjection3() {};
 
         TProjection3(const Mtx44Ptr rSrc) {
             JMath::gekko_ps_copy16(this, rSrc);

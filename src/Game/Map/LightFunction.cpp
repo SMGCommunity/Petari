@@ -130,32 +130,32 @@ AreaLightInfo* LightFunction::getAreaLightInfo(const ZoneLightID& rId) {
 }
 
 namespace {
-    void blendActorLightPos(const LightInfo& a1, const LightInfo& a2, LightInfo* a3, f32 a4) {
-        if (!a3->mIsFollowCamera) {
-            if (!a1.mIsFollowCamera) {
-                TVec3f v11(a1.mPos);
-                MR::getCameraViewMtx().mult(v11, v11);
-                MR::blendVec(&a3->mPos, v11, a2.mPos, a4);
-                return;
+    void blendActorLightPos(const LightInfo& rFrom, const LightInfo& rTo, LightInfo* pResult, f32 rate) {
+        if (pResult->mIsFollowCamera) {
+            if (rFrom.mIsFollowCamera) {
+                MR::blendVec(&pResult->mPos, rFrom.mPos, rTo.mPos, rate);
+            } else {
+                TVec3f pos(rFrom.mPos);
+                MR::getCameraViewMtx().mult(pos, pos);
+                MR::blendVec(&pResult->mPos, pos, rTo.mPos, rate);
             }
-        } else if (a1.mIsFollowCamera) {
-            TVec3f v9(a1.mPos);
-            MR::getCameraInvViewMtx().mult(v9, v9);
-            MR::blendVec(&a3->mPos, v9, a2.mPos, a4);
-            return;
+        } else if (rFrom.mIsFollowCamera) {
+            TVec3f pos(rFrom.mPos);
+            MR::getCameraInvViewMtx().mult(pos, pos);
+            MR::blendVec(&pResult->mPos, pos, rTo.mPos, rate);
+        } else {
+            MR::blendVec(&pResult->mPos, rFrom.mPos, rTo.mPos, rate);
         }
-
-        MR::blendVec(&a3->mPos, a1.mPos, a2.mPos, a4);
     }
 };  // namespace
 
-void LightFunction::blendActorLightInfo(ActorLightInfo* a1, const ActorLightInfo& a2, const ActorLightInfo& a3, f32 a4) {
-    MR::blendColor(&a1->mInfo0.mColor, a2.mInfo0.mColor, a3.mInfo0.mColor, a4);
-    MR::blendColor(&a1->mInfo1.mColor, a2.mInfo1.mColor, a3.mInfo1.mColor, a4);
-    MR::blendColor(&a1->mColor, a2.mColor, a3.mColor, a4);
-    ::blendActorLightPos(a2.mInfo0, a3.mInfo0, &a1->mInfo0, a4);
-    ::blendActorLightPos(a2.mInfo1, a3.mInfo1, &a1->mInfo1, a4);
-    a1->mAlpha2 = MR::getInterpolateValue(a4, a2.mAlpha2, a3.mAlpha2);
+void LightFunction::blendActorLightInfo(ActorLightInfo* pResult, const ActorLightInfo& rFrom, const ActorLightInfo& rTo, f32 rate) {
+    MR::blendColor(&pResult->mInfo0.mColor, rFrom.mInfo0.mColor, rTo.mInfo0.mColor, rate);
+    MR::blendColor(&pResult->mInfo1.mColor, rFrom.mInfo1.mColor, rTo.mInfo1.mColor, rate);
+    MR::blendColor(&pResult->mColor, rFrom.mColor, rTo.mColor, rate);
+    ::blendActorLightPos(rFrom.mInfo0, rTo.mInfo0, &pResult->mInfo0, rate);
+    ::blendActorLightPos(rFrom.mInfo1, rTo.mInfo1, &pResult->mInfo1, rate);
+    pResult->mAlpha2 = MR::getInterpolateValue(rate, rFrom.mAlpha2, rTo.mAlpha2);
 }
 
 namespace {
@@ -170,14 +170,18 @@ namespace {
         GXLoadLightObjImm(&lightObj, lightID);
     }
 
-    void loadLightInfoDiffuse(const LightInfo& a1, GXLightID a2) NO_INLINE {
-        if (a1.mIsFollowCamera) {
-            TVec3f v13(a1.mPos);
-            ::loadLightDiffuse(GXColor(a1.mColor), v13, a2);
+    inline void loadCameraLight(const LightInfo& rInfo, GXLightID lightID) {
+        TVec3f position(rInfo.mPos);
+        ::loadLightDiffuse(GXColor(rInfo.mColor), position, lightID);
+    }
+
+    void loadLightInfoDiffuse(const LightInfo& rInfo, GXLightID lightID) NO_INLINE {
+        if (rInfo.mIsFollowCamera) {
+            ::loadCameraLight(rInfo, lightID);
         } else {
-            TVec3f v14(a1.mPos);
+            TVec3f v14(rInfo.mPos);
             MR::getCameraViewMtx().mult(v14, v14);
-            ::loadLightDiffuse(GXColor(a1.mColor), v14, a2);
+            ::loadLightDiffuse(GXColor(rInfo.mColor), v14, lightID);
         }
     }
 }  // namespace
@@ -186,7 +190,8 @@ void LightFunction::loadActorLightInfo(const ActorLightInfo* pInfo) {
     ::loadLightInfoDiffuse(pInfo->mInfo0, GX_LIGHT0);
     ::loadLightInfoDiffuse(pInfo->mInfo1, GX_LIGHT1);
 
-    GXColor c = {0, 0, 0, pInfo->mAlpha2};
+    u8 alpha = pInfo->mAlpha2;
+    GXColor c = {0, 0, 0, alpha};
     ::loadLightDiffuse(c, TVec3f(0.0f, 0.0f, 0.0f), GX_LIGHT2);
     GXSetChanAmbColor(GX_COLOR0A0, GXColor(pInfo->mColor));
 }

@@ -19,6 +19,7 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
+#include "revolution/types.h"
 
 namespace {
     static const s32 sLiftUpSeTiming = 87;
@@ -106,6 +107,11 @@ bool LuigiNPC::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pR
     return NPCActor::receiveMsgPlayerAttack(msg, pSender, pReceiver);
 }
 
+inline void LuigiNPC::setShadowDrop(const char* const hitSensor) {
+    TVec3f offset(0.0f, 0.0f, ::sShadowOffset);
+    MR::setShadowDropPositionAtJoint(this, nullptr, hitSensor, offset);
+}
+
 void LuigiNPC::init(const JMapInfoIter& rIter) {
     const char* objName;
     MR::getObjectName(&objName, rIter);
@@ -148,8 +154,7 @@ void LuigiNPC::init(const JMapInfoIter& rIter) {
         break;
     case Type_OnTree:
         MR::onCalcShadowDropPrivateGravity(this, nullptr);
-        TVec3f offset(0.0f, 0.0f, ::sShadowOffset);
-        MR::setShadowDropPositionAtJoint(this, nullptr, "Center", offset);
+        setShadowDrop("Center");
         setNerve(GET_NERVE(LuigiNPC, LuigiNPCNrvOnTreeWait));
         break;
     default:

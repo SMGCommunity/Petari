@@ -16,10 +16,17 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     StaffRollLine(const char* pName);
 
+    virtual ~StaffRollLine() {
+    }
+
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
 
     void exeScroll();
+
+    void setPositionX(f32 x) {
+        mPosition.x = x;
+    }
 
 private:
     /* 0x20 */ TVec2f mPosition;
@@ -30,6 +37,9 @@ public:
     /// @brief Creates a new `StaffRollPicture`.
     /// @param pName A pointer to the null-terminated name of the object.
     StaffRollPicture(const char* pName);
+
+    virtual ~StaffRollPicture() {
+    }
 
     virtual void init(const JMapInfoIter& rIter);
 
@@ -47,6 +57,9 @@ public:
     /// @brief Creates a new `StaffRoll`.
     /// @param pName A pointer to the null-terminated name of the object.
     StaffRoll(const char* pName);
+
+    virtual ~StaffRoll() {
+    }
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();

@@ -326,8 +326,8 @@ namespace MR {
     /// @return The result of linear interpolation.
     GXColor lerp(GXColor start, GXColor end, f32 t);
 
-    void sortSmall(s32 length, f32* sortArray, s32* indexArray);
-    void sortSmall(s32 length, u32* sortArray, s32* indexArray);
+    void sortSmall(s32 length, f32* pSortArray, s32* pIndexArray);
+    void sortSmall(s32 length, u32* pSortArray, s32* pIndexArray);
 
     f32 vecKillElement(const TVec3f& rSrc, const TVec3f& rKillDir, TVec3f* pDst);
     void vecScaleAdd(const TVec3f* pScale, const TVec3f* pAdd, f32 scale);
@@ -415,8 +415,8 @@ namespace MR {
     /// @param q The number of bits reserved for the decimal portion.
     void fixed16ToFloat(TVec3f* pDst, const TVec3s& rSrc, u8 q);
 
-    void getRotatedAxisY(TVec3f* pDst, const TVec3f& pSrc);
-    void getRotatedAxisZ(TVec3f* pDst, const TVec3f& pSrc);
+    void getRotatedAxisY(TVec3f* pDst, const TVec3f& rSrc);
+    void getRotatedAxisZ(TVec3f* pDst, const TVec3f& rSrc);
 
     template < typename T >
     T converge(T current, T target, T step) {
@@ -576,7 +576,7 @@ namespace MR {
     /// @retval `min` if the integer is less than or equal to `min`.
     /// @retval `max` if the integer is greater than or equal to `max`.
     /// @retval `x` if the integer is greater than `min` and less than `max`.
-    inline s32 clamp(s32 x, s32 min, s32 max) NO_INLINE {
+    inline s32 clamp(s32 x, s32 min, s32 max) {
         s32 ret;
         if (x < min) {
             ret = min;
@@ -599,14 +599,16 @@ namespace MR {
         if (x < 0.0f) {
             x = 0.0f;
         }
+
         if (x > 1.0f) {
             x = 1.0f;
         }
+
         return x;
     }
 
-    inline void clampBoth(f32* value, f32 min, f32 max) {
-        *value = clamp(*value, min, max);
+    inline void clampBoth(f32* pValue, f32 min, f32 max) {
+        *pValue = clamp(*pValue, min, max);
     }
 
     inline void clampMax(f32* pValue, f32 max) NO_INLINE {
@@ -616,6 +618,7 @@ namespace MR {
         } else {
             ret = *pValue;
         }
+
         *pValue = ret;
     }
 
@@ -623,8 +626,15 @@ namespace MR {
         return min + (f32)fmod(max + (value - min), max);
     }
 
-    inline void repeatDegree(f32* value) {
-        *value = repeat(*value, 0.0f, 360.0f);
+    // this second variant matches other functions
+    // maybe this is a templated one?
+    inline f32 repeat2(f32 value, f32 min, f32 max) {
+        value = static_cast< f32 >(fmod(max + (value - min), max));
+        return min + value;
+    }
+
+    inline void repeatDegree(f32* pValue) {
+        *pValue = repeat(*pValue, 0.0f, 360.0f);
     }
 
     inline f32 repeatDegree(f32 value) {
@@ -647,6 +657,7 @@ namespace MR {
             frsqrte recip, x
 
         }
+
         return recip * x;
     }
 
@@ -664,6 +675,7 @@ namespace MR {
 
         return x;
     }
+
 #else
     f32 frsqrte(f32);
     f32 fastSqrtf(f32);

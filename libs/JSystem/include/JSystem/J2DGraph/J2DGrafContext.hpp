@@ -28,15 +28,22 @@ public:
     virtual void place(f32 x, f32 y, f32 width, f32 height) {
         place(TBox2f(x, y, x + width, y + height));
     }
+
     virtual void setPort();
     virtual void setup2D();
     virtual void setScissor();
     virtual J2DGrafType getGrafType() const;
     virtual void setLookat();
 
-    void setColor(JUtility::TColor c);
+    void setColor(JUtility::TColor c) {
+        setColor(c, c, c, c);
+    }
+
     void setColor(JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor);
     void fillBox(const TBox2f&);
+    void fillBox(f32 x, f32 y, f32 width, f32 height) {
+        fillBox(TBox2f(x, y, x + width, y + height));
+    }
 
     /* 0x04 */ TBox2f mBounds;
     /* 0x14 */ TBox2f mScissorBounds;

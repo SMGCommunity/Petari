@@ -53,7 +53,7 @@ public:
     /* 0x90 */ SphereSelectorHandle* mHandle;
     /* 0x94 */ LiveActor* mSelectedTarget;
     /* 0x98 */ LiveActor* _98;
-    /* 0x9C */ u32 _9C;  // This doesn't seem to exist
+    /* 0x9C */ u32 _9C;
     /* 0xA0 */ LiveActor* mPointingTarget;
     /* 0xA4 */ s32 _A4;
     /* 0xA8 */ TVec2f _A8;
@@ -93,13 +93,13 @@ public:
     static void calcHandledRotateMtx(const TVec3f&, TPos3f*);
     static TVec3f& getHandleTrans();
     static f32 getHandleRotateSpeed();
-    static bool isHandleHolding();
+    static bool isHandleHolding() NO_INLINE;
     static void registerPointingTarget(LiveActor*, HandlePointingPriority);
     static bool tryRegisterPointingTarget(LiveActor*, HandlePointingPriority);
     static bool isPointingTarget();
     static bool isPointingTarget(const LiveActor*);
     static LiveActor* getPointingTarget();
-    static LiveActor* getSelectedTarget();
+    static LiveActor* getSelectedTarget() NO_INLINE;
     static TVec3f& getSelectedActorTrans();
     static void calcOffsetPos(TVec3f*, const TVec3f&, const TVec3f&, const TVec3f&, const TVec3f&);
 };

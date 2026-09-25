@@ -19,23 +19,25 @@ namespace NrvCocoNutBall {
 };  // namespace NrvCocoNutBall
 
 CocoNutBall::CocoNutBall(const char* pName)
-    : LiveActor(pName), _8C(nullptr), _90(0.0f, -1.0f, 0.0f), _9C(0), _A0(0), _A4(gZeroVec), _B0(gZeroVec), _BC(false), _BD(false), _BE(false),
-      _C0(450.0f), _C4(0.0f), _C8(0.0f, 1.0f, 0.0f), _D4(10000.0f), _D8(false) {
+    : LiveActor(pName), _8C(), _90(0.0f, -1.0f, 0.0f), _9C(), _A0(), _A4(gZeroVec), _B0(gZeroVec), _BC(), _BD(), _BE(), _C0(450.0f), _C4(),
+      _C8(0.0f, 1.0f, 0.0f), _D4(10000.0f), _D8() {
+}
+
+inline void CocoNutBall::initSensors(const char* const hit1, const char* const hit2) {
+    initHitSensor(2);
+    MR::addHitSensor(this, hit1, ATYPE_COCO_NUT, 8, 40.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensor(this, hit2, ATYPE_COCO_NUT, 8, 500.0f, TVec3f(0.0f, 0.0f, 0.0f));
+
 }
 
 void CocoNutBall::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm(CocoNut::getModelName(), nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
     MR::initLightCtrl(this);
-    initHitSensor(2);
-
-    MR::addHitSensor(this, "body", ATYPE_COCO_NUT, 8, 40.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    MR::addHitSensor(this, "bind", ATYPE_COCO_NUT, 8, 500.0f, TVec3f(0.0f, 0.0f, 0.0f));
-
+    initSensors("body", "bind");
     initBinder(40.0f, 0.0f, 0);
     initEffectKeeper(0, "CocoNut", false);
-    // some weirdness with this TVec here
-    MR::initStarPointerTarget(this, 150.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::initStarPointerTarget(this, 150.0f, TVec3f(0, 0, 0));
     initSound(4, false);
     MR::initShadowVolumeCylinder(this, 60.0f);
     MR::invalidateClipping(this);
@@ -63,8 +65,8 @@ void CocoNutBall::kill() {
     MR::emitEffect(this, CocoNut::getBreakEffectName());
 }
 
-void CocoNutBall::appearAndThrow(const TVec3f& appearPos, f32 f1) {
-    mPosition.set(appearPos);
+void CocoNutBall::appearAndThrow(const TVec3f& rAppearPos, f32 f1) {
+    mPosition.set(rAppearPos);
     MR::calcGravity(this);
     _C8.negate(mGravity);
     setVelocityToPlayer(15.0f, f1);
@@ -86,8 +88,8 @@ void CocoNutBall::hitBackToPlayer() {
     setNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvHitBackToPlayer));
 }
 
-void CocoNutBall::demoBreak(const TVec3f& pos) {
-    mPosition.set(pos);
+void CocoNutBall::demoBreak(const TVec3f& rPos) {
+    mPosition.set(rPos);
     mRotation.zero();
     mVelocity.zero();
 
@@ -130,6 +132,7 @@ void CocoNutBall::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                     kill();
                 }
             }
+
             return;
         }
 
@@ -192,19 +195,20 @@ void CocoNutBall::calcHitBackVelocitAndGravity() {
 
     TVec3f dir;
     dir.sub(hitBackDstPos, mPosition);
+    TVec3f cross;
     TVec3f scaled;
     scaled.scale(_C8.dot(dir), _C8);
     MR::vecKillElement(dir, _C8, &dir);
     f32 f1 = dir.length() / 42.0f;
     MR::normalize(&dir);
-    TVec3f cross = _C8.cross(dir);
+    cross.cross(_C8, dir);
     MR::normalize(&cross);
     _90.scale(2.2f, mGravity);
     TVec3f scaled2;
     scaled2.scale(42.0f, dir);
-    TVec3f scaled3(_90 * f1 * f1);
-    scaled.sub(scaled * 2.0f);
-    mVelocity.add(scaled2, scaled * (1.0f / (2.0f * f1)));
+    TVec3f verticalVelocity;
+    verticalVelocity = (scaled.scaleInline(2.0f) - _90.scaleInline(f1).scaleInline(f1)).scaleInline(1.0f / (2.0f * f1));
+    mVelocity.add(scaled2, verticalVelocity);
 
     if (!hitBackFront) {
         f32 scaleFactor = (hitBackRight ? 1.2f : -1.2f);
@@ -249,7 +253,7 @@ bool CocoNutBall::isHitBackFront() const {
     MR::normalize(&vec1);
     MR::normalize(&vec2);
 
-    return vec1.dot(vec2) < 0.0f;
+    return vec1.dot(vec2) < -0.95f;
 }
 
 void CocoNutBall::calcHitBackDstPos(TVec3f* pOut, bool a1, bool a2) {
@@ -269,6 +273,7 @@ void CocoNutBall::calcHitBackDstPos(TVec3f* pOut, bool a1, bool a2) {
 
         vec1.scale(a1 ? 150.0f : -150.0f, cross);
     }
+
     TVec3f scaled;
 
     scaled.scale(100.0f, _C8);
@@ -284,6 +289,7 @@ bool CocoNutBall::tryToKill(bool alwaysKill) {
         if (bindedSensor->isType(ATYPE_PUNCH_BOX) && !isNerve(GET_NERVE(CocoNutBall, CocoNutBallNrvRebound))) {
             MR::sendMsgEnemyAttack(bindedSensor, getSensor("body"));
         }
+
         kill();
         return true;
     }
@@ -314,9 +320,10 @@ void CocoNutBall::setVelocityToPlayer(f32 f1, f32 f2) {
     vec1.add(mPosition, vec2);
 
     if (_BE) {
+        f32 minY = _C4 + _8C->mPosition.y;
         f32 val2 = _C0 + _8C->mPosition.y;
 
-        vec1.y = MR::max(vec1.y, _C4 + _8C->mPosition.y);
+        vec1.y = MR::max(vec1.y, minY);
 
         f32 flt = 120.0f;
         bool v1 = false;
@@ -337,6 +344,7 @@ void CocoNutBall::setVelocityToPlayer(f32 f1, f32 f2) {
             vec1.y = val2;
         }
     }
+
     vec2.sub(vec1, mPosition);
     mVelocity.setLength(vec2, f1);
 }
@@ -375,12 +383,12 @@ void CocoNutBall::exeThrow() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "SpinX");
         MR::emitEffect(this, "CocoNutLight");
-    }
 
-    if (_D8) {
-        MR::startSound(this, "SE_BM_OTAKING_SPIT_RALLY_BALL");
-    } else {
-        MR::startSound(this, "SE_OJ_COCONUT_BALL_SPIT_OUT");
+        if (_D8) {
+            MR::startSound(this, "SE_BM_OTAKING_SPIT_RALLY_BALL");
+        } else {
+            MR::startSound(this, "SE_OJ_COCONUT_BALL_SPIT_OUT");
+        }
     }
 
     processApproachToPlayer();
@@ -481,6 +489,7 @@ void CocoNutBall::exeFreeze() {
             MR::startDPDHitSound();
         }
     }
+
     _A0++;
     MR::startDPDFreezeLevelSound(this);
 

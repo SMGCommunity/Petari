@@ -1,7 +1,7 @@
 #include "Game/System/LayoutHolder.hpp"
 #include "Game/Util/SystemUtil.hpp"
-#include <JSystem/JKernel/JKRFileFinder.hpp>
 #include <JSystem/JKernel/JKRArchive.hpp>
+#include <JSystem/JKernel/JKRFileFinder.hpp>
 #include <cstdio>
 #include <cstring>
 
@@ -10,15 +10,15 @@ int strncasecmp(const char* s1, const char* s2, size_t n);
 }
 
 namespace {
-    const char* sLayoutExt[] = {
+    const char* const sLayoutExt[] = {
         ".brlyt",
         nullptr,
     };
-    const char* sAnimationExt[] = {
+    const char* const sAnimationExt[] = {
         ".brlan",
         nullptr,
     };
-};  // namespace
+}  // namespace
 
 LayoutHolder::LayoutHolder(JKRArchive& rArchive) : nw4r::lyt::ResourceAccessor(), mArchive(&rArchive) {
     initializeArc();
@@ -38,9 +38,11 @@ void* LayoutHolder::GetResource(u32 resourceKind, const char* pName, u32* pResou
         pResource = mAnimRes.getRes(pName);
         break;
     default:
-        if (strstr(pName, ".brfnt") == 0) {
+
+        if (strstr(pName, ".brfnt") == nullptr) {
             pResource = mResOther.getRes(pName);
         }
+
         break;
     }
 
@@ -133,6 +135,7 @@ u32 LayoutHolder::count(const char* pExtension, const char* pRoot) {
                 resCount++;
             }
         }
+
         pFinder->findNextFile();
     }
 
@@ -157,6 +160,7 @@ void LayoutHolder::mount(char* pRoot) {
             pInfo->_4 = mArchive->getResSize(pInfo->_8);
             pInfo->_C = pFinder->mFileID;
         }
+
         pFinder->findNextFile();
     }
 
