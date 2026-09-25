@@ -18,6 +18,8 @@ public:
     /// @brief Creates a new `GameSystemResetAndPowerProcess`.
     GameSystemResetAndPowerProcess();
 
+    virtual ~GameSystemResetAndPowerProcess();
+
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
     virtual void control();
