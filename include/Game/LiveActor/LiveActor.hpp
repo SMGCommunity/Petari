@@ -98,6 +98,10 @@ public:
         return mBinder;
     }
 
+    const TVec3f* getPosition() const {
+        return &mPosition;
+    }
+
     void calcAnmMtx();
     void setNerve(const Nerve* pNerve);
     bool isNerve(const Nerve* pNerve) const;

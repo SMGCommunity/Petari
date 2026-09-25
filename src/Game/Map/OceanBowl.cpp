@@ -264,7 +264,6 @@ void OceanBowl::updatePoints() {
 }
 
 void OceanBowl::moveToLeft() {
-    const TVec3f* pPosition = &mPosition;
     OceanBowlPoint* mLastPoint;
 
     for (s32 x = 0; x < 25; x++) {
@@ -279,7 +278,7 @@ void OceanBowl::moveToLeft() {
         TVec3f resetvec(mSide);
         resetvec.scale(-200.0f);
         resetvec.add(getPoint(x, 1)->mPosition);
-        mLastPoint->reset(resetvec, MR::clamp((mRadius - pPosition->distance(resetvec)) / ::sPointWaveRateDistMax, 0.0f, 1.0f));
+        mLastPoint->reset(resetvec, MR::clamp((mRadius - getPosition()->distance(resetvec)) / ::sPointWaveRateDistMax, 0.0f, 1.0f));
     }
 
     mTexV0 -= ::sTexRate0;
@@ -288,7 +287,6 @@ void OceanBowl::moveToLeft() {
 }
 
 void OceanBowl::moveToRight() {
-    const TVec3f* pPosition = &mPosition;
     OceanBowlPoint* mLastPoint;
 
     for (s32 x = 0; x < 25; x++) {
@@ -303,7 +301,7 @@ void OceanBowl::moveToRight() {
         TVec3f resetvec(mSide);
         resetvec.scale(::sPointInterval);
         resetvec.add(getPoint(x, 23)->mPosition);
-        mLastPoint->reset(resetvec, MR::clamp((mRadius - pPosition->distance(resetvec)) / ::sPointWaveRateDistMax, 0.0f, 1.0f));
+        mLastPoint->reset(resetvec, MR::clamp((mRadius - getPosition()->distance(resetvec)) / ::sPointWaveRateDistMax, 0.0f, 1.0f));
     }
 
     mTexV0 += ::sTexRate0;
@@ -312,7 +310,6 @@ void OceanBowl::moveToRight() {
 }
 
 void OceanBowl::moveToUpper() {
-    const TVec3f* pPosition = &mPosition;
     OceanBowlPoint* mLastPoint;
 
     for (s32 y = 0; y < 25; y++) {
@@ -327,7 +324,7 @@ void OceanBowl::moveToUpper() {
         TVec3f resetvec(mFront);
         resetvec.scale(-::sPointInterval);
         resetvec.add(getPoint(1, y)->mPosition);
-        mLastPoint->reset(resetvec, MR::clamp((mRadius - pPosition->distance(resetvec)) / ::sPointWaveRateDistMax, 0.0f, 1.0f));
+        mLastPoint->reset(resetvec, MR::clamp((mRadius - getPosition()->distance(resetvec)) / ::sPointWaveRateDistMax, 0.0f, 1.0f));
     }
 
     mTexU0 -= ::sTexRate0;
@@ -336,7 +333,6 @@ void OceanBowl::moveToUpper() {
 }
 
 void OceanBowl::moveToLower() {
-    const TVec3f* pPosition = &mPosition;
     OceanBowlPoint* mLastPoint;
 
     for (s32 y = 0; y < 25; y++) {
@@ -351,7 +347,7 @@ void OceanBowl::moveToLower() {
         TVec3f resetvec(mFront);
         resetvec.scale(::sPointInterval);
         resetvec.add(getPoint(23, y)->mPosition);
-        mLastPoint->reset(resetvec, MR::clamp((mRadius - pPosition->distance(resetvec)) / ::sPointWaveRateDistMax, 0.0f, 1.0f));
+        mLastPoint->reset(resetvec, MR::clamp((mRadius - getPosition()->distance(resetvec)) / ::sPointWaveRateDistMax, 0.0f, 1.0f));
     }
 
     mTexU0 += ::sTexRate0;
