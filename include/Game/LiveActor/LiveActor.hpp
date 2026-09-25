@@ -102,6 +102,10 @@ public:
         return &mGravity;
     }
 
+    const TVec3f* getVelocity() const {
+        return &mVelocity;
+    }
+
     const TVec3f* getPosition() const {
         return &mPosition;
     }
