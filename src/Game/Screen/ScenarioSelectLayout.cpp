@@ -50,11 +50,6 @@ namespace {
         return MR::getCurrentStagePowerStarNum() - normalNum;
     }
 
-    inline bool isBelowNormalScenarioNum(const s32& rIndex) {
-        s32 normalNum = MR::getCurrentStageNormalScenarioNum();
-        return rIndex < normalNum;
-    }
-
     bool isCurrentStageRaceComplete(s32 scenarioNo) {
         const char* stageName = MR::getCurrentStageName();
 
@@ -467,9 +462,11 @@ bool ScenarioSelectLayout::calcDisplayScenarioNum(s32* pNormalScenarioCompleteNu
     }
 
     bool isNewScenario = false;
+    s32 index;
 
-    for (*pNormalScenarioCompleteNum = 0; isBelowNormalScenarioNum(*pNormalScenarioCompleteNum); *pNormalScenarioCompleteNum += 1) {
-        if (MR::hasPowerStarInCurrentStage(*pNormalScenarioCompleteNum + 1)) {
+    for (*pNormalScenarioCompleteNum = 0; (index = *pNormalScenarioCompleteNum) < MR::getCurrentStageNormalScenarioNum();
+         *pNormalScenarioCompleteNum += 1) {
+        if (MR::hasPowerStarInCurrentStage(index + 1)) {
             continue;
         }
 

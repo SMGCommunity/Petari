@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/Color.hpp"
 
 class JUTTexture;
 
@@ -8,7 +9,7 @@ class WaterCameraFilter : public LiveActor {
 public:
     WaterCameraFilter();
 
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void draw() const;
     virtual void control();
 
@@ -22,7 +23,7 @@ public:
 
     /* 0x8C */ f32 mWaterAlpha;
     /* 0x90 */ f32 mWavePhase;
-    /* 0x94 */ GXColor _94;
+    /* 0x94 */ Color8 mWaterColor;
     /* 0x98 */ JUTTexture* mScreenTex;
     /* 0x9C */ JUTTexture* mFilterTex;
 };
