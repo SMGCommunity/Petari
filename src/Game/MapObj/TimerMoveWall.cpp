@@ -63,7 +63,7 @@ void TimerMoveWall::exeMove() {
     MR::startLevelSound(this, "SE_OJ_LV_TRIBBL_T_MVWALL_MV");
 
     if (MR::isStep(this, mTimer)) {
-        mVelocity.set2(0.0f);
+        mVelocity.zero();
 
         if (isNerve(GET_NERVE(TimerMoveWall, TimerMoveWallNrvMoveFront))) {
             setNerve(GET_NERVE(TimerMoveWall, TimerMoveWallNrvMoveBack));

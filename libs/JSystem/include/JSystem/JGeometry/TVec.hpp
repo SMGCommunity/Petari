@@ -452,12 +452,6 @@ namespace JGeometry {
             z = val;
         }
 
-        inline void set2(f32 val) {
-            z = val;
-            y = val;
-            x = val;
-        }
-
         template < typename T >
         void setAll(f32);
 

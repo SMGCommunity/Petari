@@ -450,7 +450,7 @@ void MarioActor::initScouter() {
     _9CC = 0.0f;
     _9D0 = 60.0f;
     _9D4 = 0;
-    _9D8.set2(0.0f);
+    _9D8.zero();
 
     HitSensor* sensor = getSensor("ex-eye");
     sensor->mRadius = 100.0f;
