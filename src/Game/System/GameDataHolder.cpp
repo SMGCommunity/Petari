@@ -13,7 +13,7 @@
 #include "Game/Util/MathUtil.hpp"
 #include <cstdio>
 
-const static JMapInfo StoryEventBCSV;
+extern const u8 StoryEventBCSV[];
 
 namespace {
     const char cPictureBookChapterSuffix[] = "ABCDEFGHI";
@@ -31,7 +31,7 @@ GameDataHolder::GameDataHolder(const UserFile* pUserFile)
     mStarPieceAlmsStorage = new StarPieceAlmsStorage();
 
     mMapInfo = new JMapInfo();
-    mMapInfo->attach(&StoryEventBCSV);
+    mMapInfo->attach(StoryEventBCSV);
 
     mChunkHolder = new BinaryDataChunkHolder(4096, 6);
     mChunkHolder->addChunk(mPlayerStatus);
@@ -213,12 +213,14 @@ bool GameDataHolder::isOnGalaxyScenarioFlagAlreadyVisited(const char* pGalaxyNam
         return true;
     }
 
-    return makeGalaxyScenarioAccessor(pGalaxyName, scenarioNum).isAlreadyVisited();
+    GameDataSomeScenarioAccessor accessor = makeGalaxyScenarioAccessor(pGalaxyName, scenarioNum);
+    return accessor.isAlreadyVisited();
 }
 
 void GameDataHolder::onGalaxyScenarioFlagAlreadyVisited(const char* pGalaxyName, s32 scenarioNum) {
     if (mAllGalaxyStorage->isExistAccessor(pGalaxyName, scenarioNum)) {
-        makeGalaxyScenarioAccessor(pGalaxyName, scenarioNum).setFlagAlreadyVisited(true);
+        GameDataSomeScenarioAccessor accessor = makeGalaxyScenarioAccessor(pGalaxyName, scenarioNum);
+        accessor.setFlagAlreadyVisited(true);
     }
 }
 
@@ -286,7 +288,7 @@ bool GameDataHolder::isPassedStoryEvent(const char* pEventName) const {
 
     u32 progress = 0;
     iter.getValue("progress", &progress);
-    return progress >= mPlayerStatus->mStoryProgress;
+    return progress <= mPlayerStatus->mStoryProgress;
 }
 
 void GameDataHolder::followStoryEventByName(const char* pEventName) {

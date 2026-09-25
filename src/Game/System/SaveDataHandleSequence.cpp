@@ -11,6 +11,7 @@
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include <JSystem/JKernel/JKRHeap.hpp>
 #include <cstdio>
 
@@ -31,10 +32,9 @@ namespace {
 };  // namespace
 
 SaveDataHandleSequence::SaveDataHandleSequence()
-    : NerveExecutor("セーブ/ロード"), mSysConfigFile(nullptr), mCurrentUserFile(nullptr), mBackupUserFile(nullptr), mSaveDataHandler(nullptr),
-      mNANDErrorSequence(nullptr), mSysInfoWindowConfirm(nullptr), mSysInfoWindowSave(nullptr), _24(0), mIsConfirmRemind(false),
-      mIsSaveAndQuitMsg(false), _2A(false), _2B(false), _2C(false), mWorkUserFile(nullptr), mNerveForError(nullptr), mTempBuffer(nullptr),
-      mOnSaveSuccessFunc(nullptr), mJustBeforeSaveFunc(nullptr), mSaveIcon(nullptr) {
+    : NerveExecutor("セーブ/ロード"), mSysConfigFile(), mCurrentUserFile(), mBackupUserFile(), mSaveDataHandler(), mNANDErrorSequence(),
+      mSysInfoWindowConfirm(), mSysInfoWindowSave(), _24(), mIsConfirmRemind(), mIsSaveAndQuitMsg(), _2A(), _2B(), _2C(), mWorkUserFile(),
+      mNerveForError(), mTempBuffer(), mOnSaveSuccessFunc(), mJustBeforeSaveFunc(), mSaveIcon() {
     mTempBuffer = new (32) u8[SaveDataHandler::getEnoughtTempBufferSize()];
 
     initNerve(GET_NERVE_ANON(SaveDataHandleSequenceNoOperation));
@@ -241,15 +241,15 @@ bool SaveDataHandleSequence::isInitializedGameDataHolder() const {
     return mCurrentUserFile != nullptr;
 }
 
-void SaveDataHandleSequence::restoreUserFile(UserFile* pParam1, int index) {
-    restoreUserFileConfigData(pParam1, index);
-    restoreUserFileGameData(pParam1, index, pParam1->isLastLoadedMario());
+void SaveDataHandleSequence::restoreUserFile(UserFile* pUserFile, int index) {
+    restoreUserFileConfigData(pUserFile, index);
+    restoreUserFileGameData(pUserFile, index, pUserFile->isLastLoadedMario());
 }
 
-void SaveDataHandleSequence::restoreUserFile(UserFile* pParam1, int index, bool isPlayerMario) {
-    restoreUserFileConfigData(pParam1, index);
-    restoreUserFileGameData(pParam1, index, isPlayerMario);
-    pParam1->setLastLoadedMario(isPlayerMario);
+void SaveDataHandleSequence::restoreUserFile(UserFile* pUserFile, int index, bool isPlayerMario) {
+    restoreUserFileConfigData(pUserFile, index);
+    restoreUserFileGameData(pUserFile, index, isPlayerMario);
+    pUserFile->setLastLoadedMario(isPlayerMario);
 }
 
 void SaveDataHandleSequence::backupCurrentUserFile() {
@@ -290,11 +290,7 @@ void SaveDataHandleSequence::exeSaveConfirm() {
         setNerve(GET_NERVE_ANON(SaveDataHandleSequenceSave));
     } else {
         bool isSelectedYes = false;
-        const char* pSystemMessageId = "System_Save00";
-
-        if (mIsSaveAndQuitMsg) {
-            pSystemMessageId = "System_Save07";
-        }
+        const char* const pSystemMessageId = mIsSaveAndQuitMsg ? "System_Save07" : "System_Save00";
 
         if (!tryConfirm(pSystemMessageId, &isSelectedYes)) {
             return;
@@ -466,7 +462,7 @@ void SaveDataHandleSequence::exePreLoad() {
         mNANDErrorSequence->startRemoveFile();
         setNerve(GET_NERVE_ANON(SaveDataHandleSequenceErrorHandling));
     } else if (tryNANDErrorSequence(resultCode.getCode())) {
-        // FIXME: cmpwi instruction should not be optimized out.
+        return;
     }
 }
 
@@ -529,26 +525,36 @@ UserFile* SaveDataHandleSequence::getBackupUserFile() {
     return mBackupUserFile;
 }
 
-void SaveDataHandleSequence::restoreUserFileConfigData(UserFile* pParam1, int index) {
+void SaveDataHandleSequence_FORCE_MATCH_STRINGS() {
+    MR::isEqualString("%s%1d", "%s%1d");
+    MR::isEqualString("mario", "mario");
+    MR::isEqualString("luigi", "luigi");
+    MR::isEqualString("config%1d", "config%1d");
+    MR::isEqualString("sysconf", "sysconf");
+    MR::isEqualString("NAND_08", "NAND_08");
+}
+
+void SaveDataHandleSequence::restoreUserFileConfigData(UserFile* pUserFile, int index) {
     char dataName[16];
     snprintf(dataName, sizeof(dataName), "config%1d", index);
 
     mSaveDataHandler->restoreGameDataFile(dataName, mTempBuffer, SaveDataHandler::getEnoughtTempBufferSize());
-    pParam1->loadFromConfigDataBinary(dataName, mTempBuffer, SaveDataHandler::getEnoughtTempBufferSize());
+    pUserFile->loadFromConfigDataBinary(dataName, mTempBuffer, SaveDataHandler::getEnoughtTempBufferSize());
 }
 
-void SaveDataHandleSequence::restoreUserFileGameData(UserFile* pParam1, int index, bool isPlayerMario) {
+void SaveDataHandleSequence::restoreUserFileGameData(UserFile* pUserFile, int index, bool isPlayerMario) {
     char dataName[16];
     snprintf(dataName, sizeof(dataName), "%s%1d", isPlayerMario ? "mario" : "luigi", index);
 
     mSaveDataHandler->restoreGameDataFile(dataName, mTempBuffer, SaveDataHandler::getEnoughtTempBufferSize());
-    pParam1->loadFromGameDataBinary(dataName, mTempBuffer, SaveDataHandler::getEnoughtTempBufferSize());
+    pUserFile->loadFromGameDataBinary(dataName, mTempBuffer, SaveDataHandler::getEnoughtTempBufferSize());
 
-    pParam1->mIsPlayerMario = isPlayerMario;
+    pUserFile->mIsPlayerMario = isPlayerMario;
 }
 
 void SaveDataHandleSequence::restoreSysConfigFile(SysConfigFile* pSysConfigFile) {
-    mSaveDataHandler->restoreGameDataFile("sysconf", mTempBuffer, SaveDataHandler::getEnoughtTempBufferSize());
+    const char* pName = "sysconf";
+    mSaveDataHandler->restoreGameDataFile(pName, mTempBuffer, SaveDataHandler::getEnoughtTempBufferSize());
     pSysConfigFile->loadFromDataBinary(mTempBuffer, SaveDataHandler::getEnoughtTempBufferSize());
 }
 

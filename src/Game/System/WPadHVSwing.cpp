@@ -1,10 +1,15 @@
 #include <JSystem/JGeometry/TVec.hpp>
 
-#include "Game/System/WPadHVSwing.hpp"
 #include "Game/System/WPad.hpp"
+#include "Game/System/WPadHVSwing.hpp"
+
+void WPadHVSwing_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
 
 WPadHVSwing::WPadHVSwing(const WPad* pPad, u32 channel) {
-    pPad = pPad;
+    this->pPad = pPad;
     mChannel = channel;
     mDistanceSwingThreshold = 1.0;
     mIsSwing = false;
@@ -55,8 +60,7 @@ void WPadHVSwing::updateCentrifugal() {
     TVec3f pastAccel;
     TVec3f curAccel;
 
-    if (!pPad->getPastAcceleration(&pastAccel, 20, mChannel) ||
-        !pPad->getAcceleration(&curAccel, mChannel)) {
+    if (!pPad->getPastAcceleration(&pastAccel, 20, mChannel) || !pPad->getAcceleration(&curAccel, mChannel)) {
         mSwingDetected = false;
         mSwingTriggered = false;
         mSwingHoldFrames = 0;

@@ -39,23 +39,6 @@ public:
     /* 0xc */ bool _C;
 };
 
-class ConditionUsePlayerHeap : public StationedArchiveLoader::Condition {
-public:
-    ConditionUsePlayerHeap();
-
-    virtual bool isExecute(const MR::StationedFileInfo*) const;
-    virtual JKRHeap* getProperHeap(const MR::StationedFileInfo*) const;
-
-    /* 0x4 */ JKRExpHeap* mNapaHeap;
-    /* 0x8 */ JKRExpHeap* mGDDRHeap;
-    /* 0xC */ bool mIsDataMario;
-};
-
-class ConditionIfIsNotPlayer : public StationedArchiveLoader::Condition {
-public:
-    virtual bool isExecute(const MR::StationedFileInfo*) const;
-};
-
 class ConditionIsEqualType : public StationedArchiveLoader::Condition {
 public:
     ConditionIsEqualType(bool isDataMario) {
@@ -73,13 +56,30 @@ public:
     /* 0x4 */ MR::StationedFileInfo::LoadType mLoadType;
 };
 
+class ConditionIfIsNotPlayer : public StationedArchiveLoader::Condition {
+public:
+    virtual bool isExecute(const MR::StationedFileInfo*) const;
+};
+
+class ConditionUsePlayerHeap : public StationedArchiveLoader::Condition {
+public:
+    ConditionUsePlayerHeap();
+
+    virtual bool isExecute(const MR::StationedFileInfo*) const;
+    virtual JKRHeap* getProperHeap(const MR::StationedFileInfo*) const;
+
+    /* 0x4 */ JKRExpHeap* mNapaHeap;
+    /* 0x8 */ JKRExpHeap* mGDDRHeap;
+    /* 0xC */ bool mIsDataMario;
+};
+
 class PlayerHeapHolder {
 public:
     PlayerHeapHolder();
 
     void adjust();
     void dispose();
-    void setIsDataMario(bool) NO_INLINE;
+    void setIsDataMario(bool isDataMario) NO_INLINE;
 
     static JKRExpHeap* createHeap(u32, JKRHeap*);
 
