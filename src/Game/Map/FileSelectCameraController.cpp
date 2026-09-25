@@ -81,7 +81,7 @@ bool FileSelectCameraController::isToOrAtNearPoint() const {
 void FileSelectCameraController::exeTitle() {
     if (MR::isFirstStep(this)) {
         mWPoint.set< f32 >(::cFarTarget.x, ::cFarTarget.y + 15000.0f, ::cFarTarget.z);
-        mPosition.set< f32 >(::cFarPoint.x, ::cFarPoint.y + 15000.0f, ::cFarPoint.z);
+        mPosition.set< f32 >(::cFarPoint.x, ::cFarTarget.y + 15000.0f, ::cFarPoint.z);
         mUpVec.set(0.0f, 1.0f, 0.0f);
     }
 }
@@ -104,7 +104,7 @@ void FileSelectCameraController::exeMoveToFarPoint() {
 void FileSelectCameraController::exeFarPoint() {
     mWPoint = ::cFarTarget;
     mFovy = ::cFarFovy;
-    mPosition.set(::cFarPoint);
+    mPosition.set(TVec3f(::cFarPoint));
 }
 
 void FileSelectCameraController::exeMoveToNearPoint() {

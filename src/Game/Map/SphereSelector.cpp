@@ -14,7 +14,7 @@ namespace {
         pPos->identity();
         if (MR::isExistSceneObj(SceneObj_SphereSelector)) {
             SphereSelectorHandle* pSelectorHandle = ::getSphereSelector()->mHandle;
-            if (pSelectorHandle && !MR::isDead(pSelectorHandle)) {
+            if (pSelectorHandle != nullptr && !MR::isDead(pSelectorHandle)) {
                 pPos->set(pSelectorHandle->getBaseMtx());
             }
         }
@@ -47,7 +47,7 @@ void SphereSelector::init(const JMapInfoIter& rIter) {
 void SphereSelector::appear() {
     LiveActor::appear();
     mSelectedTarget = nullptr;
-    _98 = 0;
+    _98 = nullptr;
     mPointingTarget = nullptr;
     mIsPointingInvalid = false;
     MR::deactivateDefaultGameLayout();
@@ -63,7 +63,39 @@ void SphereSelector::kill() {
     MR::endStarPointerMode(this);
 }
 
-// void SphereSelector::registerPointingTarget(LiveActor* pActor, HandlePointingPriority property) {}
+void SphereSelector::registerPointingTarget(LiveActor* pActor, HandlePointingPriority priority) {
+    if (mIsPointingInvalid) {
+        return;
+    }
+
+    if (!isNerve(GET_NERVE(SphereSelector, SphereSelectorNrvSelectWait))) {
+        return;
+    }
+
+    u32 distance;
+    switch (priority) {
+    case Unknown_1:
+        distance = -1;
+        break;
+    case Unknown_2:
+        distance = 0;
+        break;
+    default:
+        TVec3f viewPos;
+        MR::getCameraViewMtx().mult(pActor->mPosition, viewPos);
+        if (0.0f < viewPos.z) {
+            return;
+        }
+
+        distance = -viewPos.z;
+        break;
+    }
+
+    if (_98 == nullptr || _9C > distance) {
+        _98 = pActor;
+        _9C = distance;
+    }
+}
 
 void SphereSelector::validatePointing() {
     mIsPointingInvalid = false;
@@ -127,13 +159,13 @@ void SphereSelector::playCanceledME() {
 void SphereSelector::exeSelectWait() {
     if (MR::isFirstStep(this)) {
         mPointingTarget = nullptr;
-        _98 = 0;
+        _98 = nullptr;
         _A4 = -1;
         MR::startStarPointerModeSphereSelectorOnReaction(this);
     }
 
     if (_A4 < 0) {
-        if (mPointingTarget && isDecideTrigger()) {
+        if (mPointingTarget != nullptr && isDecideTrigger()) {
             sendSelectedMsgAndSetTarget(mPointingTarget);
         } else if (isButtonAPressed()) {
             if (mHandle->isPointing()) {
@@ -152,11 +184,12 @@ void SphereSelector::exeSelectWait() {
     }
 
     if (_A4 < 0) {
-        if (_98 && _98 != mPointingTarget && _98 != mHandle) {
+        if (_98 != nullptr && _98 != mPointingTarget && _98 != mHandle) {
             MR::tryRumblePadWeak(this, 0);
         }
+
         mPointingTarget = _98;
-        _98 = 0;
+        _98 = nullptr;
     }
 }
 
@@ -166,6 +199,7 @@ void SphereSelector::exeSelectCancel() {
             MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL");
             playCanceledME();
         }
+
         _B1 = false;
     }
 }
@@ -177,9 +211,11 @@ void SphereSelector::exeConfirmStart() {
             MR::startSystemSE("SE_SY_GALAXY_SELECTED");
             playSelectedME();
         }
+
         _B1 = false;
         MR::endStarPointerMode(this);
     }
+
     MR::setNerveAtStep(this, GET_NERVE(SphereSelector, SphereSelectorNrvConfirmWait), SphereSelectorFunction::getConfirmStartCancelFrame());
 }
 
@@ -191,8 +227,10 @@ void SphereSelector::exeConfirmCancel() {
         if (!_B1) {
             playCanceledME();
         }
+
         _B1 = false;
     }
+
     MR::setNerveAtStep(this, GET_NERVE(SphereSelector, SphereSelectorNrvSelectWait), SphereSelectorFunction::getConfirmStartCancelFrame());
 }
 
@@ -214,9 +252,9 @@ void SphereSelector::exeConfirm() {
     }
 }
 
-void SphereSelectorFunction::registerTarget(LiveActor* actor) {
+void SphereSelectorFunction::registerTarget(LiveActor* pActor) {
     MR::createSceneObj(SceneObj_SphereSelector);
-    ::getSphereSelector()->mSphereGroup->registerActor(actor);
+    ::getSphereSelector()->mSphereGroup->registerActor(pActor);
 }
 
 bool SphereSelectorFunction::isPadButton() {
@@ -239,6 +277,7 @@ void SphereSelectorFunction::selectCancel(bool b) {
     if (b) {
         ::getSphereSelector()->_B1 = true;
     }
+
     ::getSphereSelector()->setNerve(GET_NERVE(SphereSelector, SphereSelectorNrvSelectCancel));
 }
 
@@ -254,6 +293,7 @@ void SphereSelectorFunction::confirmCancel(bool b) {
     if (b) {
         ::getSphereSelector()->_B1 = true;
     }
+
     ::getSphereSelector()->setNerve(GET_NERVE(SphereSelector, SphereSelectorNrvConfirmCancel));
 }
 
@@ -298,10 +338,12 @@ bool SphereSelectorFunction::trySyncAppearMsgSelectStart(LiveActor* pActor, u32 
         pActor->appear();
         return true;
     }
+
     if (isMsgSelectEnd(msg)) {
         pActor->kill();
         return true;
     }
+
     return false;
 }
 
@@ -310,10 +352,12 @@ bool SphereSelectorFunction::trySyncKillMsgSelectStart(LiveActor* pActor, u32 ms
         pActor->kill();
         return true;
     }
+
     if (isMsgSelectEnd(msg)) {
         pActor->appear();
         return true;
     }
+
     return false;
 }
 
@@ -355,7 +399,7 @@ f32 SphereSelectorFunction::getHandleRotateSpeed() {
     return ::getSphereSelector()->mHandle->mRotateSpeed;
 }
 
-bool SphereSelectorFunction::isHandleHolding() {
+bool SphereSelectorFunction::isHandleHolding() NO_INLINE {
     return ::getSphereSelector()->mHandle->isHolding();
 }
 
@@ -364,10 +408,11 @@ void SphereSelectorFunction::registerPointingTarget(LiveActor* pActor, HandlePoi
 }
 
 bool SphereSelectorFunction::tryRegisterPointingTarget(LiveActor* pActor, HandlePointingPriority priority) {
-    if (isHandleHolding() && MR::isStarPointerPointing1PWithoutCheckZ(pActor, nullptr, true, false)) {
+    if (!isHandleHolding() && MR::isStarPointerPointing1PWithoutCheckZ(pActor, nullptr, true, false)) {
         ::getSphereSelector()->registerPointingTarget(pActor, priority);
         return true;
     }
+
     return false;
 }
 
@@ -383,7 +428,7 @@ LiveActor* SphereSelectorFunction::getPointingTarget() {
     return ::getSphereSelector()->mPointingTarget;
 }
 
-LiveActor* SphereSelectorFunction::getSelectedTarget() {
+LiveActor* SphereSelectorFunction::getSelectedTarget() NO_INLINE {
     return ::getSphereSelector()->mSelectedTarget;
 }
 
@@ -391,14 +436,15 @@ TVec3f& SphereSelectorFunction::getSelectedActorTrans() {
     return getSelectedTarget()->mPosition;
 }
 
-void SphereSelectorFunction::calcOffsetPos(TVec3f* pDst, const TVec3f& vec2, const TVec3f& vec3, const TVec3f& vec4, const TVec3f& vec5) {
-    TVec3f vec(vec4);
+void SphereSelectorFunction::calcOffsetPos(TVec3f* pDst, const TVec3f& rVec2, const TVec3f& rVec3, const TVec3f& rVec4, const TVec3f& rVec5) {
+    TVec3f vec(rVec4);
     TPos3f mtx;
-    if (MR::normalizeOrZero(&vec) || MR::isSameDirection(vec5, vec)) {
+    if (MR::normalizeOrZero(&vec) || MR::isSameDirection(rVec5, vec)) {
         vec.set< f32 >(0.0f, 0.0f, 1.0f);
     }
-    MR::makeMtxUpFrontPos(&mtx, vec5, vec, vec2);
-    mtx.mult(vec3, *pDst);
+
+    MR::makeMtxUpFrontPos(&mtx, rVec5, vec, rVec2);
+    mtx.mult(rVec3, *pDst);
 }
 
 SphereSelector::~SphereSelector() {

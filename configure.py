@@ -1514,7 +1514,7 @@ config.libs = [
             Object(NonMatching, "Game/Map/CollisionCode.cpp"),
             Object(NonMatching, "Game/Map/CollisionDirector.cpp"),
             Object(Matching, "Game/Map/CollisionParts.cpp", extra_cflags=["-sym off"]),
-            Object(NonMatching, "Game/Map/FileSelectCameraController.cpp"),
+            Object(Matching, "Game/Map/FileSelectCameraController.cpp"),
             Object(Matching, "Game/Map/FileSelectEffect.cpp"),
             Object(Matching, "Game/Map/FileSelectFunc.cpp"),
             Object(Matching, "Game/Map/FileSelectIconID.cpp"),
