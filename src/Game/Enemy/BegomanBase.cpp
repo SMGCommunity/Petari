@@ -121,14 +121,15 @@ void BegomanBase::initCore(const JMapInfoIter& rIter, const char* pModelArcName,
             mCanTrySetReturn = true;
         }
     }
+
     MR::connectToSceneEnemy(this);
 
     mBaseDelegator = MR::createJointDelegatorWithNullChildFunc(this, &BegomanBase::calcJointLocator1, "Locator1");
     MR::onCalcGravity(this);
     MR::initLightCtrl(this);
 
-    // this function should be inlined
-    MR::makeQuatAndFrontFromRotate(&_C0, &mFaceVec, this);
+    _C0.setEulerDegree(mRotation.x, mRotation.y, mRotation.z);
+    _C0.getZDir(mFaceVec);
     mRotation.set(0.0f);
 }
 
@@ -140,10 +141,8 @@ void BegomanBase::initEffectAndStarPointerBind() {
     f32 modelBoundingRadius;
     MR::calcModelBoundingRadius(&modelBoundingRadius, this);
 
-    // float regswaps here
-    f32 half = 0.5f;
     modelBoundingRadius *= 0.75f;
-    MR::initStarPointerTarget(this, 0.0f, TVec3f(0.0f, half * modelBoundingRadius, 0.0f));
+    MR::initStarPointerTarget(this, modelBoundingRadius, TVec3f(0.0f, 0.5f * modelBoundingRadius, 0.0f));
 
     mScaleControler = new AnimScaleController(nullptr);
     mScaleControler->setParamTight();
@@ -177,13 +176,13 @@ void BegomanBase::initEffect(s32 extraEffectNum) {
     MR::setEffectName(this, "BegomanFailureHit", "FailureHit");
 }
 
-void BegomanBase::initSensor(s32 extraSensorNum, f32 radius, f32 pushedRailRadius, const char* sensorJointName) {
+void BegomanBase::initSensor(s32 extraSensorNum, f32 radius, f32 pushedRailRadius, const char* pSensorJointName) {
     f32 yScale = mScale.y;
     initHitSensor(extraSensorNum + 3);
 
     MR::addHitSensor(this, "check", ATYPE_EYE, 1, radius * yScale, TVec3f(0.0f, 0.5f * radius * yScale, 1.5f * radius * yScale));
-    MR::addHitSensorAtJoint(this, "body", sensorJointName, ATYPE_BEGOMAN, 32, radius * yScale, TVec3f(0.0f, 0.5f * radius * yScale, 0.0f));
-    MR::addHitSensorAtJoint(this, "pushed_rail", sensorJointName, ATYPE_EYE, 32, pushedRailRadius * yScale,
+    MR::addHitSensorAtJoint(this, "body", pSensorJointName, ATYPE_BEGOMAN, 32, radius * yScale, TVec3f(0.0f, 0.5f * radius * yScale, 0.0f));
+    MR::addHitSensorAtJoint(this, "pushed_rail", pSensorJointName, ATYPE_EYE, 32, pushedRailRadius * yScale,
                             TVec3f(0.0f, 0.5f * pushedRailRadius * yScale, 0.0f));
 }
 
@@ -288,6 +287,7 @@ void BegomanBase::exeWaitCore(const MR::ActorMoveParam& rMoveParam, const Nerve*
             return;
         }
     }
+
     if (MR::calcDistanceToPlayer(mPosition) < 1000.0f) {
         if (MR::isValidSwitchA(this)) {
             if (!MR::isOnSwitchA(this)) {
@@ -362,6 +362,7 @@ void BegomanBase::exePursueCore(const MR::ActorMoveParam& rMoveParam, const Nerv
         setNerve(pNerve1);
         return;
     }
+
     MR::moveAndTurnToDirection(this, &mFaceVec, mTargetVec, rMoveParam._0 * f1, rMoveParam._4, rMoveParam._8, rMoveParam._C);
 
     if (MR::isGreaterStep(this, ::hPursueDashFrame)) {
@@ -374,6 +375,7 @@ void BegomanBase::exePursueCore(const MR::ActorMoveParam& rMoveParam, const Nerv
         if (!trySetReturnNerve()) {
             setNerve(getNerveWait());
         }
+
         return;
     }
 
@@ -425,6 +427,7 @@ void BegomanBase::exeTurnCore(const MR::ActorMoveParam& rMoveParam, const Nerve*
             if (!trySetReturnNerve()) {
                 setNerve(getNerveWait());
             }
+
             return;
         }
 
@@ -444,7 +447,7 @@ void BegomanBase::exeTurnCore(const MR::ActorMoveParam& rMoveParam, const Nerve*
 void BegomanBase::exeBrakeCore(const Nerve* pNerve) {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Brake");
-        MR::vecKillElement(mFaceVec, mVelocity, &mFaceVec);
+        MR::vecKillElement(mVelocity, mFaceVec, &mVelocity);
     }
 
     if (MR::isOnGround(this)) {
@@ -549,6 +552,7 @@ void BegomanBase::exeKeepDistanceCore(const Nerve* pNerve1, const Nerve* pNerve2
         setNerve(pNerve1);
         return;
     }
+
     if (farDist < distToPlayer) {
         MR::moveAndTurnToPlayer(this, &mFaceVec, ::hKeepDistanceFarParam._0, ::hKeepDistanceFarParam._4, ::hKeepDistanceFarParam._8,
                                 ::hKeepDistanceFarParam._C);
@@ -646,7 +650,7 @@ bool BegomanBase::incAndCheckTiredCounter() {
     return mTiredCounter == 180;
 }
 
-void BegomanBase::launchBegomanCore(LiveActor* pActor, BegomanBase** begomanArray, s32 numBegoman, f32 radius, f32 velH, f32 velV,
+void BegomanBase::launchBegomanCore(LiveActor* pActor, BegomanBase** pBegomanArray, s32 numBegoman, f32 radius, f32 velH, f32 velV,
                                     const TVec3f* pVec) {
     TVec3f vec2;
     TVec3f vec1;
@@ -662,28 +666,31 @@ void BegomanBase::launchBegomanCore(LiveActor* pActor, BegomanBase** begomanArra
     f32 angle = 0.0f;
 
     for (int i = 0; i < numBegoman; i++) {
-        if (!MR::isDead(begomanArray[i])) {
+        if (!MR::isDead(pBegomanArray[i])) {
             continue;
         }
+
         TVec3f directionFromLauncher(vec2);
         directionFromLauncher.scale(MR::cos(angle));
 
         directionFromLauncher += (vec1 * MR::sin(angle));
 
-        begomanArray[i]->mPosition.set(pActor->mPosition + directionFromLauncher * radius);
-        begomanArray[i]->mVelocity.set(directionFromLauncher * velH - pActor->mGravity * velV);
-        begomanArray[i]->mFaceVec.set(directionFromLauncher);
+        TVec3f& rPosition = pBegomanArray[i]->mPosition;
+        rPosition = pActor->mPosition + directionFromLauncher * radius;
+        TVec3f& rVelocity = pBegomanArray[i]->mVelocity;
+        rVelocity = directionFromLauncher * velH - pActor->mGravity * velV;
+        pBegomanArray[i]->mFaceVec.set(directionFromLauncher);
 
         angle += TWO_PI / (numBegoman);
     }
 }
 
-void BegomanBase::launchBegoman(LiveActor* pActor, BegomanBase** begomanArray, s32 numBegoman, f32 radius, f32 velH, f32 velV, const TVec3f* pVec) {
-    launchBegomanCore(pActor, begomanArray, numBegoman, radius, velH, velV, pVec);
+void BegomanBase::launchBegoman(LiveActor* pActor, BegomanBase** pBegomanArray, s32 numBegoman, f32 radius, f32 velH, f32 velV, const TVec3f* pVec) {
+    launchBegomanCore(pActor, pBegomanArray, numBegoman, radius, velH, velV, pVec);
 
     for (int i = 0; i < numBegoman; i++) {
-        begomanArray[i]->appear();
-        begomanArray[i]->setNerveLaunch();
+        pBegomanArray[i]->appear();
+        pBegomanArray[i]->setNerveLaunch();
     }
 }
 
@@ -708,25 +715,12 @@ void BegomanBase::launchBegomanBabyLauncher(LiveActor* pActor, BegomanBaby** bab
 void BegomanBase::setNerveLaunch() {
 }
 
-void BegomanBase::updateRotateY(f32 newRotationTarget, f32 tolerance) {
-    f32 rotateY = 0.0f;
-
-    if (newRotationTarget - mRotation.y < 0.0f) {
-        if (tolerance + mRotation.y >= newRotationTarget) {
-            rotateY = newRotationTarget;
-        } else {
-            rotateY = 0.0f;
-        }
-
-        mRotation.y = rotateY;
+void BegomanBase::updateRotateY(f32 target, f32 tolerance) {
+    f32 difference = target - mRotation.y;
+    if (0.0f < difference) {
+        mRotation.y = MR::min(tolerance + mRotation.y, target);
     } else {
-        if (mRotation.y - tolerance >= newRotationTarget) {
-            rotateY = 0.0f;
-        } else {
-            rotateY = newRotationTarget;
-        }
-
-        mRotation.y = rotateY;
+        mRotation.y = MR::max(mRotation.y - tolerance, target);
     }
 }
 
@@ -941,12 +935,11 @@ void BegomanBase::dampingVerticalAndParallelVelocity(f32 f1, f32 f2) {
 }
 
 bool BegomanBase::isInWaterAndSetWaterNerve(const Nerve* pWaterNerve, TPos3f* pPos) {
-    // wrong stack offsets and too much stack space;
     WaterInfo info;
     if (MR::getWaterAreaObj(&info, mPosition) != nullptr) {
         MR::getWaterAreaInfo(&info, mPosition, mGravity, false);
         setNerve(pWaterNerve);
-        MR::makeMtxUpNoSupportPos(pPos, TVec3f(), TVec3f());
+        MR::makeMtxUpNoSupportPos(pPos, info.mSurfaceNormal, info.mSurfacePos);
         MR::emitEffect(this, "WaterColumn");
         return true;
     } else {
@@ -992,8 +985,8 @@ void BegomanBase::calcAnimCore(TPos3f* pPos) {
 
 bool BegomanBase::calcJointLocator1(TPos3f* pPos, const JointControllerInfo& rJointInfo) {
     TPos3f v9;
-    TVec3f zDir;
-    // some inline matrix function with _D0 goes here
+    TQuat4f rotation(_D0);
+    v9.makeQuat(rotation);
     pPos->concat(*pPos, v9);
     return true;
 }
@@ -1017,8 +1010,7 @@ bool BegomanBase::requestAttack() {
     return MR::getSceneObj< BegomanAttackPermitter >(SceneObj_BegomanAttackPermitter)->requestAttack(this);
 }
 
-BegomanAttackPermitter::BegomanAttackPermitter(const char* pName)
-    : LiveActor(pName), _8C(nullptr), mBegoman(nullptr), mDistToPlayer(99999.0f), _98(false) {
+BegomanAttackPermitter::BegomanAttackPermitter(const char* pName) : LiveActor(pName), _8C(), mBegoman(), mDistToPlayer(99999.0f), _98() {
 }
 
 void BegomanAttackPermitter::init(const JMapInfoIter& rIter) {
@@ -1068,6 +1060,7 @@ bool BegomanAttackPermitter::requestAttack(BegomanBase* pBegoman) {
             return true;
         }
     }
+
     return false;
 }
 
