@@ -49,6 +49,43 @@ BossKameck::BossKameck(const char* pName, const char* pModelName)
     mActorList = new ActiveActorList(8);
 }
 
+void BossKameck::init(const JMapInfoIter& rIter) {
+    MR::initDefaultPos(this, rIter);
+    initModelManagerWithAnm(mModelName, nullptr, false);
+    MR::connectToSceneEnemy(this);
+    MR::initLightCtrl(this);
+    MR::makeQuatAndFrontFromRotate(&_90, &_A0, this);
+    MR::calcGravity(this);
+    MR::invalidateClipping(this);
+    MR::initShadowFromCSV(this, "Shadow");
+    initHitSensor(2);
+    MR::addHitSensorEnemy(this, "body", 8, 300.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEnemyAttack(this, "attack", 8, 240.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    initEffectKeeper(0, nullptr, false);
+    MR::createKameckBeamHolder();
+    MR::createKameckFireBallHolder();
+    MR::createKameckBeamTurtleHolder();
+    initKameckHolder(rIter);
+    initMoveRail(rIter);
+    MR::getJMapInfoArg7WithInit(rIter, &mObjArg7);
+
+    if (mObjArg7 != -1) {
+        MR::declareCameraRegisterVec(this, mObjArg7, &mPosition);
+    }
+
+    mJointCtrl = new ActorJointCtrl(this);
+    MR::addToAttributeGroupSearchTurtle(this);
+    initSound(4, false);
+    mSequencer->init(this, rIter);
+    MR::declarePowerStar(this);
+    s32 hasPowerStar = MR::hasPowerStarInCurrentStageWithDeclarer(mName, -1);
+    MR::startBrk(this, "Star");
+    MR::setBrkFrameAndStop(this, hasPowerStar);
+    MR::needStageSwitchReadA(this, rIter);
+    MR::listenStageSwitchOnA(this, MR::Functor(this, &BossKameck::startSequence));
+    makeActorDead();
+}
+
 BossKameckMoveRail* BossKameck::getMoveRail(s32 no) {
     for (s32 i = 0; i < mMoveRailNum; i++) {
         if (mMoveRail[i]->_8C == no) {
@@ -181,43 +218,6 @@ void BossKameck::updatePose() {
     }
 
     MR::blendQuatUpFront(&_90, v19, _A0, ::sUpVecBlendRate, ::sFrontVecBlendRate);
-}
-
-void BossKameck::init(const JMapInfoIter& rIter) {
-    MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm(mModelName, nullptr, false);
-    MR::connectToSceneEnemy(this);
-    MR::initLightCtrl(this);
-    MR::makeQuatAndFrontFromRotate(&_90, &_A0, this);
-    MR::calcGravity(this);
-    MR::invalidateClipping(this);
-    MR::initShadowFromCSV(this, "Shadow");
-    initHitSensor(2);
-    MR::addHitSensorEnemy(this, "body", 8, 300.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    MR::addHitSensorEnemyAttack(this, "attack", 8, 240.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    initEffectKeeper(0, nullptr, false);
-    MR::createKameckBeamHolder();
-    MR::createKameckFireBallHolder();
-    MR::createKameckBeamTurtleHolder();
-    initKameckHolder(rIter);
-    initMoveRail(rIter);
-    MR::getJMapInfoArg7WithInit(rIter, &mObjArg7);
-
-    if (mObjArg7 != -1) {
-        MR::declareCameraRegisterVec(this, mObjArg7, &mPosition);
-    }
-
-    mJointCtrl = new ActorJointCtrl(this);
-    MR::addToAttributeGroupSearchTurtle(this);
-    initSound(4, false);
-    mSequencer->init(this, rIter);
-    MR::declarePowerStar(this);
-    s32 hasPowerStar = MR::hasPowerStarInCurrentStageWithDeclarer(mName, -1);
-    MR::startBrk(this, "Star");
-    MR::setBrkFrameAndStop(this, hasPowerStar);
-    MR::needStageSwitchReadA(this, rIter);
-    MR::listenStageSwitchOnA(this, MR::Functor(this, &BossKameck::startSequence));
-    makeActorDead();
 }
 
 void BossKameck::initKameckHolder(const JMapInfoIter& rIter) {

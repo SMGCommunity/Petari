@@ -13,6 +13,10 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
+void TripodBossFixParts_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
+
 namespace NrvTripodBossFixParts {
     NEW_NERVE(TripodBossFixPartsNrvNonActive, TripodBossFixParts, NonActive);
     NEW_NERVE(TripodBossFixPartsNrvStartDemo, TripodBossFixParts, StartDemo);
@@ -32,11 +36,11 @@ namespace {
                                                           {"TripodBossEyeLight", 2},
                                                           {"TripodBossEyeLightBloom", 3}};
 
-    TripodBossSetting* getSetting(const char* pObjName) {
-        for (u32 i = 0; i < ARRAY_SIZE(sTripodBossSettingTable); i++) {
-            const char* partName = sTripodBossSettingTable[i].mPartName;
+    const TripodBossSetting* getSetting(const char* pObjName) {
+        for (u32 i = 0; i < ARRAY_SIZE(::sTripodBossSettingTable); i++) {
+            const char* partName = ::sTripodBossSettingTable[i].mPartName;
             if (MR::isEqualString(pObjName, partName)) {
-                return &sTripodBossSettingTable[i];
+                return &::sTripodBossSettingTable[i];
             }
         }
 
@@ -55,7 +59,7 @@ void TripodBossFixParts::init(const JMapInfoIter& rIter) {
     setName(objName);
     TripodBossFixPartsBase::init(rIter);
     bool val = false;
-    TripodBossSetting* setting = ::getSetting(objName);
+    const TripodBossSetting* setting = ::getSetting(objName);
 
     if (setting != nullptr) {
         val = (setting->mType & 0x1);

@@ -106,7 +106,7 @@ namespace DodoryuUtil {
 
         pDodoryu->mBaseMtx.getYDir(up);
         const f32 randomAngle = 2.0f * maxAngle * (MR::getRandom() - 0.5f);
-        f32 angle = randomAngle * PI / 180.0f;
+        f32 angle = randomAngle * MR::pi() / 180.0f;
         TPos3f rotation;
         rotation.makeRotate(up, angle);
         rotation.mult33(*pDirection);

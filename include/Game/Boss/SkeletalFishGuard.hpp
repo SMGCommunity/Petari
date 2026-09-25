@@ -50,7 +50,7 @@ public:
     /* 0x08C */ u32 _8C;
     /* 0x090 */ SkeletalFishBoss* mFishBoss;
     /* 0x094 */ TVec3f _94;
-    /* 0x0A) */ u32 _A0;
+    /* 0x0A0 */ u32 _A0;
     /* 0x0A4 */ TVec3f _A4;
     /* 0x0B0 */ f32 _B0;
     /* 0x0B4 */ f32 _B4;

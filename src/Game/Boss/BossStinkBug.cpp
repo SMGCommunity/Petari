@@ -49,11 +49,11 @@ namespace {
     const char* sLegJointNameList[] = {"RightFootA3", "LeftFootA3", "RightFootB3", "LeftFootB3", "RightFootC3", "LeftFootC3"};
 
     static TVec3f sAppearStarPieceOffset(0.0f, 200.0f, 0.0f);
-};  // namespace
+}  // namespace
 
 BossStinkBug::BossStinkBug(const char* pName)
-    : LiveActor(pName), _8C(0), _94(nullptr), _98(nullptr), _CC(nullptr), mActionSequencer(nullptr), _D4(nullptr), mBombLauncher(nullptr),
-      _DC(0.0f, 0.0f, 0.0f, 1.0f), _EC(0.0f, 0.0f, 1.0f), _F8(0.0f, 0.0f, 0.0f), _104(-1), _108(0.15f), _10C(1.0f), _110(false), _111(false) {
+    : LiveActor(pName), _8C(), _94(), _98(), _CC(), mActionSequencer(), _D4(), mBombLauncher(), _DC(0.0f, 0.0f, 0.0f, 1.0f), _EC(0.0f, 0.0f, 1.0f),
+      _F8(0.0f, 0.0f, 0.0f), _104(-1), _108(0.15f), _10C(1.0f), _110(), _111() {
     _9C.identity();
     _90 = new GroundChecker*[6];
 
@@ -76,6 +76,7 @@ void BossStinkBug::makeActorDead() {
 
 void BossStinkBug::kill() {
     LiveActor::kill();
+
     if (MR::isValidSwitchDead(this)) {
         MR::onSwitchDead(this);
     }
@@ -87,7 +88,6 @@ void BossStinkBug::init(const JMapInfoIter& rIter) {
     MR::connectToSceneCollisionEnemy(this);
     MR::makeQuatAndFrontFromRotate(&_DC, &_EC, this);
 
-    // is .zero because z is set first
     mRotation.zero();
     initSensor();
     initCollision();
@@ -130,10 +130,12 @@ void BossStinkBug::start() {
 
 void BossStinkBug::initCamera(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg7WithInit(rIter, &_104);
+
     if (_104 != -1) {
         MR::declareCameraRegisterVec(this, _104, &_F8);
         MR::declareCameraRegisterMtx(this, _104, _9C.toMtxPtr());
     }
+
     MR::initMultiActorCamera(this, rIter, &_CC, "Fall");
 }
 
@@ -141,10 +143,11 @@ void BossStinkBug::initSensor() {
     initHitSensor(5);
     MR::addHitSensorEye(this, "eye", 8, 1000.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::invalidateHitSensor(this, "eye");
-    MR::addHitSensorEnemyAttack(this, "attack_left", 8, 1000.0f, TVec3f(-120.0f, 50.0f, 300.0f));
-    MR::addHitSensorEnemyAttack(this, "attack_right", 8, 1000.0f, TVec3f(120.0f, 50.0f, 300.0f));
+    MR::addHitSensorEnemyAttack(this, "attack_left", 8, 200.0f, TVec3f(-120.0f, 50.0f, 300.0f));
+    MR::addHitSensorEnemyAttack(this, "attack_right", 8, 200.0f, TVec3f(120.0f, 50.0f, 300.0f));
     MR::invalidateHitSensor(this, "attack_left");
     MR::invalidateHitSensor(this, "attack_right");
+
     for (int i = 0; i < ARRAY_SIZE(::sSensorNameList); i++) {
         MR::addMessageSensorReceiver(this, ::sSensorNameList[i]);
     }
@@ -152,6 +155,7 @@ void BossStinkBug::initSensor() {
 
 void BossStinkBug::initCollision() {
     _8C = new CollisionParts*[3];
+
     for (int i = 0; i < 3; i++) {
         _8C[i] = MR::createCollisionPartsFromLiveActor(this, ::sCollisionInfo[i]._0, getSensor(::sCollisionInfo[i]._8),
                                                        MR::getJointMtx(this, ::sCollisionInfo[i]._4), MR::CollisionScaleType_AutoEqualScale);
@@ -217,6 +221,7 @@ void BossStinkBug::calcUpVec(TVec3f* pOut) const {
 
 void BossStinkBug::calcAnim() {
     LiveActor::calcAnim();
+
     for (int i = 0; i < 3; i++) {
         _8C[i]->setMtx();
     }
@@ -231,11 +236,13 @@ void BossStinkBug::updateAction() {
 void BossStinkBug::updatePose() {
     if (!_110) {
         _EC.orthogonalize(mGravity);
+
         if (MR::isNearZero(_EC)) {
             _DC.getZDir(_EC);
         } else {
             MR::normalize(&_EC);
         }
+
         MR::blendQuatUpFront(&_DC, -mGravity, _EC, 0.2f, 0.2f);
         _110 = true;
     }
@@ -301,9 +308,11 @@ void BossStinkBug::onBindLeg() {
 void BossStinkBug::offBindLeg() {
     if (_111) {
         _98->endIKCtrlAll();
+
         for (int i = 0; i < 6; i++) {
             _90[i]->kill();
         }
+
         _111 = false;
     }
 }
@@ -314,12 +323,14 @@ bool BossStinkBug::isLegInWater() const {
             return true;
         }
     }
+
     return false;
 }
 
 void BossStinkBug::updateJointControl() {
     ActorJointCtrl* jointCtrl = _98;
     jointCtrl->startUpdate();
+
     for (int i = 0; i < 6; i++) {
         TVec3f legJointPos;
         MR::copyJointPos(this, ::sLegJointNameList[i], &legJointPos);
@@ -339,6 +350,7 @@ void BossStinkBug::updateJointControl() {
 
         if (MR::isBinded(_90[i])) {
             TVec3f fix = *MR::getBindedFixReactionVector(_90[i]);
+
             if (!MR::isNearZero(fix)) {
                 MR::normalize(&fix);
                 jointCtrl->setIKEndDirection(::sLegJointNameList[i], fix, 0.1f * _10C);
@@ -349,6 +361,7 @@ void BossStinkBug::updateJointControl() {
             jointCtrl->setIKEndDirection(::sLegJointNameList[i], yDir, 0.05f * _10C);
         }
     }
+
     jointCtrl->endUpdate();
 }
 

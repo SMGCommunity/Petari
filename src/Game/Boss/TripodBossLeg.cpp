@@ -19,6 +19,14 @@
 #include "Game/Util/SoundUtil.hpp"
 
 namespace {
+    inline TVec3f calcAnkleShadowPosition(const TVec3f& rPosition, const TVec3f& rNormal) {
+        TVec3f offset(rNormal);
+        offset *= 630.0f;
+        TVec3f position(rPosition);
+        position -= offset;
+        return position;
+    }
+
     // static const f32 sUpPower = _;
     // static const f32 sUpEndNodeFreq = _;
     // static const s32 sLeaveOutStartTime = _;
@@ -43,7 +51,7 @@ namespace {
     static const f32 sLandShakeStrongDistance = 2000.0f;
     static const f32 sLandShakeMiddleDistance = 3500.0f;
     static const s32 sDamageVibrationTime = 27;
-    static const f32 sDamageVibrationCycle = 25.0f;
+    static const f32 sDamageVibrationCycle = 0.25f;
     static const f32 sDamageVibrationAmplitude = 40.0f;
     // static const f32 sInLimitStartRate = _;
     // static const f32 sOutLimitPower = _;
@@ -53,6 +61,19 @@ namespace {
     // static const f32 sInLimitPower = _;
 };  // namespace
 
+namespace {
+    inline f32 getStampVibrationAmplitude() {
+        return ::sStampSignVibrationAmplitude;
+    }
+
+    inline f32 getDamageVibrationAmplitude() {
+        return ::sDamageVibrationAmplitude;
+    }
+
+    inline f32 getDamageVibrationCycle() {
+        return ::sDamageVibrationCycle;
+    }
+}  // namespace
 namespace NrvTripodBossLeg {
     NEW_NERVE(TripodBossLegNrvHold, TripodBossLeg, Hold);
     NEW_NERVE(TripodBossLegNrvDemo, TripodBossLeg, Demo);
@@ -136,11 +157,11 @@ void TripodBossLeg::setMovableArea(TripodBossMovableArea* pArea) {
     mMoveArea = pArea;
 }
 
-void TripodBossLeg::setIKParam(f32 rootLength, f32 middleLength, const TVec3f& a3, const TVec3f& a4, const TVec3f& a5) {
+void TripodBossLeg::setIKParam(f32 rootLength, f32 middleLength, const TVec3f& rA3, const TVec3f& rA4, const TVec3f& rA5) {
     mJoint->setRootBoneLength(rootLength);
     mJoint->setMiddleBoneLength(middleLength);
-    mJoint->setFirstPose(a4, a5);
-    _210 = a3;
+    mJoint->setFirstPose(rA4, rA5);
+    _210 = rA3;
     TVec3f v12(_210);
     v12.y = 0.0f;
     _A0.identity();
@@ -390,7 +411,7 @@ void TripodBossLeg::exeStampSign() {
 
     if (MR::isGreaterStep(this, ::sStampSignVibrationTime)) {
         TVec3f v8(_98->mStepNormal);
-        mForceEndPoint += v8 * (::sStampSignVibrationAmplitude * MR::sin(getNerveStep() * TWO_PI / ::sStampSignVibrationCycle));
+        mForceEndPoint += v8 * (MR::sin(getNerveStep() * TWO_PI / ::sStampSignVibrationCycle) * getStampVibrationAmplitude());
     }
 
     updatePose();
@@ -413,14 +434,13 @@ void TripodBossLeg::exeLanding() {
         TripodBossStepPoint* point = _98;
         MR::makeMtxSideUp(&v18, -point->mStepNormal, point->mStepFront);
         v18.getQuat(_200);
-        _250 = (mForceEndPoint - _98->mStepPosition).dot(_98->mStepNormal);
+        TVec3f offset(mForceEndPoint - _98->mStepPosition);
+        _250 = offset.dot(_98->mStepNormal);
     }
 
     TVec3f v15(_240 - mForceEndPoint);
     MR::normalizeOrZero(&v15);
-    TVec3f v9(v15);
-    v9.mult(1.0f);
-    _234 += v9;
+    _234 += v15.multInLine(1.0f);
     addIKLimitPower();
     mForceEndPoint += _234;
     _234.x *= 0.98f;
@@ -470,7 +490,7 @@ void TripodBossLeg::exeDamageVibration() {
     }
 
     TVec3f v5(_98->mStepNormal);
-    mForceEndPoint = _240 + v5 * (::sDamageVibrationAmplitude * MR::sin(((getNerveStep() * TWO_PI * ::sDamageVibrationCycle))));
+    mForceEndPoint = _240 + v5 * (MR::sin(getNerveStep() * TWO_PI * getDamageVibrationCycle()) * getDamageVibrationAmplitude());
     updateIKPose();
 
     if (MR::isGreaterStep(this, ::sDamageVibrationTime)) {
@@ -500,8 +520,8 @@ void TripodBossLeg::exeHold() {
     updateIKPose();
 }
 
-void TripodBossLeg::addToTargetPower(const TVec3f& a1, f32 a2) {
-    TVec3f v11(a1 - mForceEndPoint);
+void TripodBossLeg::addToTargetPower(const TVec3f& rA1, f32 a2) {
+    TVec3f v11(rA1 - mForceEndPoint);
     f32 v7;
     MR::separateScalarAndDirection(&v7, &v11, v11);
     _234 += v11 * (a2 * MR::clamp(v7 / 300.0f, -1.0f, 1.0f));
@@ -577,6 +597,7 @@ void TripodBossLeg::updateIKPose() {
         mJoint->updateByUpVector(v4, mForceEndPoint, legUp);
         break;
     }
+
     case 1:
         mJoint->updateByLocalRootAndWorldTarget(bodyMtx, _210, mForceEndPoint);
         break;
@@ -642,6 +663,7 @@ void TripodBossLeg::updateAnkleUp(f32 angle) {
 
 void TripodBossLeg::updateAnkleSlerpToBasePose() {
     TQuat4f quat;
+    TQuat4f v5;
     TVec3f landingNormal;
     TVec3f landingFront;
     mEndJointMtx.getQuat(quat);
@@ -650,7 +672,6 @@ void TripodBossLeg::updateAnkleSlerpToBasePose() {
     TPos3f v7;
     v7.identity();
     MR::makeMtxSideUp(&v7, -landingNormal, landingFront);
-    TQuat4f v5;
     v7.getQuat(v5);
     quat.slerp(quat, v5, 0.2f);
     quat.normalize();
@@ -668,9 +689,9 @@ void TripodBossLeg::updateAnkleLanding() {
 }
 
 void TripodBossLeg::updateAnkleShadowMatrix() {
-    TVec3f v7, v8, v9;
     TVec3f landingPosition;
     TVec3f landingNormal;
+    TVec3f v7, v8, v9;
 
     mMoveArea->calcNearLandingPosition(&landingPosition, mForceEndPoint);
     mMoveArea->calcLandingNormal(&landingNormal, landingPosition);
@@ -679,35 +700,31 @@ void TripodBossLeg::updateAnkleShadowMatrix() {
     mEndJointMtx.getXYZDir(v7, v8, v9);
     _1C0.setXYZDir(-v9, -v7, v8);
 
-    TVec3f v2(landingNormal);
-    v2 *= 630.0f;
-    TVec3f v3(mForceEndPoint);
-    v3 -= v2;
-    _1C0.setTrans(v3);
+    _1C0.setTrans(calcAnkleShadowPosition(mForceEndPoint, landingNormal));
 }
 
 namespace MR {
-    void separateMatrixRotateYZX(TPos3f* a1, TPos3f* a2, const TPos3f& a3, const TPos3f& a4) {
+    void separateMatrixRotateYZX(TPos3f* pA1, TPos3f* pA2, const TPos3f& rA3, const TPos3f& rA4) {
         TPos3f v17;
-        v17.invert(a3);
-        v17.concat(v17, a4);
+        v17.invert(rA3);
+        v17.concat(v17, rA4);
         TVec3f v16;
         v17.getXDir(v16);
         f32 v10 = MR::sqrt((v16.x * v16.x) + (v16.z * v16.z));
 
         if (MR::isNearZero(v10, 0.000001f)) {
             if (v16.y >= 0.0f) {
-                a1->setXDir(0.0f, 1.0f, 0.0f);
-                a1->setYDir(-1.0f, 0.0f, 0.0f);
+                pA1->setXDir(0.0f, 1.0f, 0.0f);
+                pA1->setYDir(-1.0f, 0.0f, 0.0f);
 
             } else {
-                a1->setXDir(0.0f, -1.0f, 0.0f);
-                a1->setYDir(1.0f, 0.0f, 0.0f);
+                pA1->setXDir(0.0f, -1.0f, 0.0f);
+                pA1->setYDir(1.0f, 0.0f, 0.0f);
             }
 
-            a1->setZDir(0.0f, 0.0f, 1.0f);
-            a1->concat(a3, *a1);
-            a2->set(*a1);
+            pA1->setZDir(0.0f, 0.0f, 1.0f);
+            pA1->concat(rA3, *pA1);
+            pA2->set(*pA1);
         } else {
             f32 v11 = v16.length();
             f32 v12 = (v10 / v11);
@@ -715,16 +732,16 @@ namespace MR {
             f32 v15 = (v16.x / v10);
             f32 v13 = (v16.z / v10);
 
-            a1->setXDir(v15, 0.0f, v13);
-            a1->setYDir(0.0f, 1.0f, 0.0f);
-            a1->setZDir(-v13, 0.0f, v15);
-            a1->setTrans(0.0f, 0.0f, 0.0f);
-            a2->setXDir(v12, v14, 0.0f);
-            a2->setYDir(-v14, v12, 0.0f);
-            a2->setZDir(0.0f, 0.0f, 1.0f);
-            a2->setTrans(0.0f, 0.0f, 0.0f);
-            a1->concat(a3, *a1);
-            a2->concat(*a1, *a2);
+            pA1->setXDir(v15, 0.0f, v13);
+            pA1->setYDir(0.0f, 1.0f, 0.0f);
+            pA1->setZDir(-v13, 0.0f, v15);
+            pA1->setTrans(0.0f, 0.0f, 0.0f);
+            pA2->setXDir(v12, v14, 0.0f);
+            pA2->setYDir(-v14, v12, 0.0f);
+            pA2->setZDir(0.0f, 0.0f, 1.0f);
+            pA2->setTrans(0.0f, 0.0f, 0.0f);
+            pA1->concat(rA3, *pA1);
+            pA2->concat(*pA1, *pA2);
         }
     }
 };  // namespace MR

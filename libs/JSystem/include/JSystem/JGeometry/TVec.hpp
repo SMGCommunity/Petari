@@ -20,6 +20,7 @@ namespace JGeometry {
 
         rDest[2] = -rSrc[2];
     }
+
 #else
     inline void negateInternal(const f32* rSrc, f32* rDest);
 #endif
@@ -38,6 +39,7 @@ namespace JGeometry {
             psq_st z1, 8(dst), 1, 0
         }
     }
+
 #else
     static void subInternal(const f32* vec1, const f32* vec2, f32* dst);
 #endif
@@ -54,6 +56,7 @@ namespace JGeometry {
 
         dst[2] = vec1[2] * vec2[2];
     }
+
 #else
     void mulInternal(const f32* vec1, const f32* vec2, f32* dst);
 #endif
@@ -339,6 +342,7 @@ namespace JGeometry {
             }
             ;
         }
+
 #else
         TVec3(const Vec& vec);
 #endif
@@ -359,6 +363,7 @@ namespace JGeometry {
             }
             ;
         }
+
 #else
         TVec3(const TVec3< f32 >& vec);
 #endif
@@ -459,7 +464,11 @@ namespace JGeometry {
         }
 
         template < typename T >
-        void setAll(f32);
+        void setAll(f32 value) NO_INLINE {
+            x = value;
+            y = value;
+            z = value;
+        }
 
         void setTrans(MtxPtr mtx) {
             set< f32 >((*mtx)[3], (*mtx)[7], (*mtx)[11]);
@@ -634,6 +643,7 @@ namespace JGeometry {
             }
             ;
         }
+
 #else
         void setPSZeroVec();
 #endif
@@ -694,6 +704,7 @@ namespace JGeometry {
                 psq_st destXY, 0(dest), 0, 0
                 psq_st destZ, 8(dest), 1, 0
             }
+
 #else
             x += src.x * scale;
             y += src.y * scale;
@@ -873,6 +884,7 @@ namespace JGeometry {
             if (a > maxAngle) {
                 rate = maxAngle / a;
             }
+
             return rate;
         }
 
@@ -920,7 +932,12 @@ namespace JGeometry {
             w = _w;
         }
 
-        void scale(T val);
+        void scale(T val) NO_INLINE {
+            x *= val;
+            y *= val;
+            z *= val;
+            w *= val;
+        }
 
         inline TVec3< T >* toTVec3() {
             return (TVec3< T >*)this;
@@ -1041,6 +1058,7 @@ namespace JGeometry {
                 rDest.z = JMAATan2(m10, m00);
             }
         }
+
         void setEuler(T _x, T _y, T _z) NO_INLINE {
             f32 cx = cos(0.5f * _x);
             f32 cy = cos(0.5f * _y);
@@ -1057,6 +1075,7 @@ namespace JGeometry {
             this->z = cysz * cx - sycz * sx;
             this->w = cycz * cx + sysz * sx;
         }
+
         void setEuler(const TVec3< T >& rpy) {
             setEuler(rpy.x, rpy.y, rpy.z);
         }

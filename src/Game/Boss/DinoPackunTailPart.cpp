@@ -83,7 +83,7 @@ void DinoPackunTailPart::exeLockPosition() {
 }
 
 void DinoPackunTailPart::exeWait() {
-    MR::addVelocityToGravity(this, 0.69f);
+    MR::addVelocityToGravity(this, 0.7f);
     MR::attenuateVelocity(this, 0.88f);
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
 }

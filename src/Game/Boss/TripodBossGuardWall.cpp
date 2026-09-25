@@ -212,5 +212,5 @@ void TripodBossGuardWall::updateCameraTarget() {
     TPos3f mtx;
     mtx.identity();
     MR::makeMtxUpFrontPos(&mtx, up, front, mPosition);
-    mCameraTargetMtx->mMatrix.set(mtx);
+    mCameraTargetMtx->setMtx(mtx);
 }
