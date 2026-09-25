@@ -73,11 +73,11 @@ void Kiraira::init(const JMapInfoIter& rIter) {
     if (mIsRail) {
         initRailRider(rIter);
         MR::initAndSetRailClipping(&mRailVec, this, 100.0f, 500.0f);
-        MR::getJMapInfoArg2NoInit(rIter, &mRailCoordSpeed);
+        MR::getJMapInfoArg0NoInit(rIter, &mRailCoordSpeed);
         MR::setRailCoordSpeed(this, mRailCoordSpeed);
     }
     initNerve(GET_NERVE(Kiraira, KirairaNrvWait));
-    MR::useStageSwitchReadB(this, rIter);
+    MR::useStageSwitchWriteB(this, rIter);
     MR::setGroupClipping(this, rIter, 16);
     mSharedGroup = MR::joinToGroupArray(this, rIter, "キライラ軍団", 16);
     MR::addToAttributeGroupSearchTurtle(this);
@@ -215,9 +215,9 @@ void Kiraira::exeRecover() {
             mChain->mIsCut = false;
         }
         if (!MR::isNearPlayer(this, ::sEyeSensorOutRadius)) {
-            setNerve(GET_NERVE(Kiraira, KirairaNrvFaceToMarioAndStare));
-        } else {
             setNerve(GET_NERVE(Kiraira, KirairaNrvWait));
+        } else {
+            setNerve(GET_NERVE(Kiraira, KirairaNrvFaceToMarioAndStare));
         }
     }
 }
@@ -316,9 +316,8 @@ void Kiraira::closeEyes() {
 #pragma opt_propagation off
 void Kiraira::drift() {
     if (mIsRail) {
-        bool alive, dead;
-        alive = true;
-        dead = true;
+        bool dead, alive;
+        alive = dead = true;
 
         if (!isNerve(GET_NERVE(Kiraira, KirairaNrvDead)) && !isNerve(GET_NERVE(Kiraira, KirairaNrvRecoverSign))) {
             alive = false;
