@@ -17,6 +17,7 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
+#include "revolution/types.h"
 
 namespace {
     // static const f32 sDriftSpeedMax = 2.4f;
@@ -311,35 +312,36 @@ void Kiraira::closeEyes() {
     mEyesOpen = false;
 }
 
+#pragma push
+#pragma opt_propagation off
 void Kiraira::drift() {
     if (mIsRail) {
-        bool alive = true;
-        bool dead = true;
-        if (isNerve(GET_NERVE(Kiraira, KirairaNrvDead)) || !isNerve(GET_NERVE(Kiraira, KirairaNrvRecoverSign))) {
+        bool alive, dead;
+        alive = true;
+        dead = true;
+
+        if (!isNerve(GET_NERVE(Kiraira, KirairaNrvDead)) && !isNerve(GET_NERVE(Kiraira, KirairaNrvRecoverSign))) {
             alive = false;
         }
 
-        if (alive || !isNerve(GET_NERVE(Kiraira, KirairaNrvRecover))) {
+        if (!alive && !isNerve(GET_NERVE(Kiraira, KirairaNrvRecover))) {
             dead = false;
         }
+
         if (!dead) {
             driftOnRail();
-            return;
-        }
-
-        if (isNerve(GET_NERVE(Kiraira, KirairaNrvRecover))) {
+        } else if (isNerve(GET_NERVE(Kiraira, KirairaNrvRecover))) {
             mPosition.set(MR::getRailPos(this));
-            return;
+        } else if (mChain != nullptr) {
+            mPosition.set(*mChain->getCutPos());
         }
-        if (mChain != nullptr) {
-            mChain->mCutPos.set(mPosition);
-        }
-
     } else {
-        mVelocity.scale(1.5f * MR::sin(45.0f + 2.0f * _A8), mGravity);
+        mVelocity.scale(1.5f * MR::sinDegree(45.0f + 2.0f * _A8), mGravity);
     }
+
     _A8++;
 }
+#pragma pop
 
 void Kiraira::driftOnRail() {
     MR::moveCoordAndFollowTrans(this, mRailCoordSpeed);

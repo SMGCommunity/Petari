@@ -23,6 +23,10 @@ public:
     void restrictPointFromTopAndCalcAxis(s32, s32, const TVec3f&, f32);
     void restrictPointFromBottomAndCalcAxis(s32, s32, const TVec3f&, f32);
 
+    const TVec3f* getCutPos() const {
+        return &mCutPos;
+    }
+
     /* 0x8C */ const LiveActor* mHost;
     /* 0x90 */ bool mIsCut;
     /* 0x94 */ TVec3f mCutPos;
