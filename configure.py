@@ -2489,7 +2489,7 @@ config.libs = [
             Object(NonMatching, "Game/System/GameSequenceFunction.cpp"),
             Object(Matching, "Game/System/GameSequenceProgress.cpp"),
             Object(Matching, "Game/System/LuigiLeftSupplier.cpp"),
-            Object(NonMatching, "Game/System/SaveDataBannerCreator.cpp"),
+            Object(Matching, "Game/System/SaveDataBannerCreator.cpp"),
             Object(Matching, "Game/System/SaveDataFileAccessor.cpp"),
             Object(Matching, "Game/System/SaveDataHandler.cpp"),
             Object(Matching, "Game/System/SaveDataHandleSequence.cpp"),
