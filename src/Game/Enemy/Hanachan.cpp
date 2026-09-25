@@ -1189,14 +1189,15 @@ bool Hanachan::isOwnSensor(HitSensor* pSensor) {
     return false;
 }
 
-// NON_MATCHING
-// decomp.me: https://decomp.me/scratch/a2vQa
+#pragma push
+#pragma opt_propagation off
 void Hanachan::setNerveBlow(const TVec3f& rPos) {
-    TVec3f dir = mPosition - rPos;
+    TVec3f dir = *getPosition() - rPos;
     MR::vecKillElement(dir, mGravity, &dir);
     MR::normalizeOrZero(&dir);
 
-    TVec3f side = dir.cross(mGravity);
+    const TVec3f& rGravity = mGravity;
+    TVec3f side = dir.cross(rGravity);
 
     f32 angle = ::hInitBlowRadian;
     f32 numSegments = mBodyParts.size() - 1;
@@ -1204,7 +1205,7 @@ void Hanachan::setNerveBlow(const TVec3f& rPos) {
     TVec3f blow;
     TVec3f up;
 
-    TVec3f headDir = mBodyParts[0]->mPosition - rPos;
+    TVec3f headDir = *mBodyParts[0]->getPosition() - rPos;
 
     if (headDir.dot(side) < 0.0f) {
         angleStep = -angleStep;
@@ -1225,6 +1226,7 @@ void Hanachan::setNerveBlow(const TVec3f& rPos) {
 
     setNerve(GET_NERVE(Hanachan, HanachanNrvHanachanBlow));
 }
+#pragma pop
 
 void Hanachan::applyPlayerHipDropReaction() {
     if (MR::isPlayerHipDropLand()) {

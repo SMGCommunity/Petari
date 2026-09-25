@@ -650,6 +650,8 @@ bool BegomanBase::incAndCheckTiredCounter() {
     return mTiredCounter == 180;
 }
 
+#pragma push
+#pragma opt_propagation off
 void BegomanBase::launchBegomanCore(LiveActor* pActor, BegomanBase** pBegomanArray, s32 numBegoman, f32 radius, f32 velH, f32 velV,
                                     const TVec3f* pVec) {
     TVec3f vec2;
@@ -659,8 +661,8 @@ void BegomanBase::launchBegomanCore(LiveActor* pActor, BegomanBase** pBegomanArr
         MR::calcSideVec(&vec2, pActor);
     } else {
         vec1.set(*pVec);
-        vec2.cross(pActor->mGravity, vec1);
-        vec1.cross(vec2, pActor->mGravity);
+        PSVECCrossProduct(pActor->getGravity(), &vec1, &vec2);
+        PSVECCrossProduct(&vec2, pActor->getGravity(), &vec1);
     }
 
     f32 angle = 0.0f;
@@ -676,14 +678,15 @@ void BegomanBase::launchBegomanCore(LiveActor* pActor, BegomanBase** pBegomanArr
         directionFromLauncher += (vec1 * MR::sin(angle));
 
         TVec3f& rPosition = pBegomanArray[i]->mPosition;
-        rPosition = pActor->mPosition + directionFromLauncher * radius;
+        rPosition.set(*pActor->getPosition() + directionFromLauncher * radius);
         TVec3f& rVelocity = pBegomanArray[i]->mVelocity;
-        rVelocity = directionFromLauncher * velH - pActor->mGravity * velV;
+        rVelocity.set(directionFromLauncher * velH - *pActor->getGravity() * velV);
         pBegomanArray[i]->mFaceVec.set(directionFromLauncher);
 
         angle += TWO_PI / (numBegoman);
     }
 }
+#pragma pop
 
 void BegomanBase::launchBegoman(LiveActor* pActor, BegomanBase** pBegomanArray, s32 numBegoman, f32 radius, f32 velH, f32 velV, const TVec3f* pVec) {
     launchBegomanCore(pActor, pBegomanArray, numBegoman, radius, velH, velV, pVec);
@@ -694,21 +697,21 @@ void BegomanBase::launchBegoman(LiveActor* pActor, BegomanBase** pBegomanArray, 
     }
 }
 
-void BegomanBase::launchBegomanBabyFromGuarder(LiveActor* pActor, BegomanBaby** babyArray, s32 numBegoman, f32 radius, f32 velH, f32 velV,
+void BegomanBase::launchBegomanBabyFromGuarder(LiveActor* pActor, BegomanBaby** pBabyArray, s32 numBegoman, f32 radius, f32 velH, f32 velV,
                                                const TVec3f* pVec) {
-    launchBegomanCore(pActor, (BegomanBase**)babyArray, numBegoman, radius, velH, velV, pVec);
+    launchBegomanCore(pActor, (BegomanBase**)pBabyArray, numBegoman, radius, velH, velV, pVec);
 
     for (int i = 0; i < numBegoman; i++) {
-        babyArray[i]->appearFromGuarder();
+        pBabyArray[i]->appearFromGuarder();
     }
 }
 
-void BegomanBase::launchBegomanBabyLauncher(LiveActor* pActor, BegomanBaby** babyArray, s32 numBegoman, f32 radius, f32 velH, f32 velV,
+void BegomanBase::launchBegomanBabyLauncher(LiveActor* pActor, BegomanBaby** pBabyArray, s32 numBegoman, f32 radius, f32 velH, f32 velV,
                                             const TVec3f* pVec) {
-    launchBegomanCore(pActor, (BegomanBase**)babyArray, numBegoman, radius, velH, velV, pVec);
+    launchBegomanCore(pActor, (BegomanBase**)pBabyArray, numBegoman, radius, velH, velV, pVec);
 
     for (int i = 0; i < numBegoman; i++) {
-        babyArray[i]->appearFromLaunch(pActor->mPosition, -pActor->mGravity);
+        pBabyArray[i]->appearFromLaunch(pActor->mPosition, -pActor->mGravity);
     }
 }
 

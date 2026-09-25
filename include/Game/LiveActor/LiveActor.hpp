@@ -98,6 +98,10 @@ public:
         return mBinder;
     }
 
+    const TVec3f* getGravity() const {
+        return &mGravity;
+    }
+
     const TVec3f* getPosition() const {
         return &mPosition;
     }

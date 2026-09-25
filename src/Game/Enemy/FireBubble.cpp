@@ -36,8 +36,8 @@ namespace NrvFireBubble {
 };  // namespace NrvFireBubble
 
 FireBubble::FireBubble(const char* pName)
-    : LiveActor(pName), mIsValidInfo(false), _90(gZeroVec), _9C(0.0f, 0.0f, 1.0f), _A8(::cAppearVelocity), _B4(0.0f, 0.0f, 1.0f), mActFrame(0),
-      mChaseCounter(0) {
+    : LiveActor(pName), mIsValidInfo(), _90(gZeroVec), _9C(0.0f, 0.0f, 1.0f), _A8(::cAppearVelocity), _B4(0.0f, 0.0f, 1.0f), mActFrame(),
+      mChaseCounter() {
 }
 
 void FireBubble::init(const JMapInfoIter& rIter) {
@@ -74,10 +74,10 @@ void FireBubble::appear() {
     setNerve(GET_NERVE(FireBubble, FireBubbleNrvAppear));
 }
 
-void FireBubble::appear(const TVec3f& vec1, const TVec3f& vec2, const TVec3f& vec3) {
-    _90.set(vec1);
-    _9C.set(vec2);
-    _A8.set(vec3);
+void FireBubble::appear(const TVec3f& rVec1, const TVec3f& rVec2, const TVec3f& rVec3) {
+    _90.set(rVec1);
+    _9C.set(rVec2);
+    _A8.set(rVec3);
     appear();
 }
 
@@ -149,6 +149,8 @@ void FireBubble::initMapToolInfo(const JMapInfoIter& rIter) {
     Mtx.getZDir(_9C);
 }
 
+#pragma push
+#pragma opt_propagation off
 void FireBubble::updateChaseFrontVec(f32 flt) {
     TVec3f vec2;
     TVec3f vec3;
@@ -160,7 +162,7 @@ void FireBubble::updateChaseFrontVec(f32 flt) {
     playerUpVec.scale(40.0f);
 
     pos.add(*MR::getPlayerPos(), playerUpVec);
-    vec2.sub(pos, mPosition);
+    vec2.sub(pos, *getPosition());
 
     if (!MR::normalizeOrZero(&vec2)) {
         if (MR::isBindedGround(this)) {
@@ -175,10 +177,11 @@ void FireBubble::updateChaseFrontVec(f32 flt) {
 
             TVec3f copy(_B4);
 
-            MR::turnVecToVecCos(&_B4, copy, vec2, MR::cos(flt), vec3);
+            MR::turnVecToVecCos(&_B4, copy, vec2, MR::cosDegree(flt), vec3);
         }
     }
 }
+#pragma pop
 
 void FireBubble::updateChaseFrontVecAndVelocity(f32 flt) {
     updateChaseFrontVec(flt);
@@ -370,6 +373,7 @@ void FireBubble::exeDown() {
         mVelocity.zero();
         MR::invalidateHitSensors(this);
     }
+
     updateChaseFrontVecAndVelocity(::cChaseRotateSpeed);
 
     updateGravity(::cChaseGravity);
