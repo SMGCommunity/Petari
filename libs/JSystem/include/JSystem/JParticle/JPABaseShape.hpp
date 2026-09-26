@@ -124,8 +124,8 @@ public:
     BOOL isPrjTex() const {
         return mpData->mFlags & 0x00100000;
     }
-    bool isDrawFwdAhead() const {
-        return !!(mpData->mFlags & 0x00200000);
+    BOOL isDrawFwdAhead() const {
+        return mpData->mFlags & 0x00200000;
     }
     bool isDrawPrntAhead() const {
         return !!(mpData->mFlags & 0x00400000);

@@ -248,6 +248,10 @@ namespace {
         GXLoadTexMtxImm(mtx, GX_TEXMTX0, GX_MTX3x4);
     }
 
+// only way I can get these to match
+// TODO find better way
+#pragma push
+#pragma opt_common_subs off
     static void loadPrjAnm(JPAEmitterWorkData const* pWork, const Mtx pSrt) {
         f32 frame = pWork->mpEmtr->getAge();
         const JPABaseShape* pShape = pWork->mpRes->getBsp();
@@ -277,6 +281,7 @@ namespace {
         PSMTXConcat(matrix, pSrt, matrix);
         GXLoadTexMtxImm(matrix, 0x1e, GX_MTX3x4);
     }
+#pragma pop
 
     static u8 jpa_dl[32] ATTRIBUTE_ALIGN(32) = {
         0x80, 0x00, 0x04, 0x00, 0x00, 0x01, 0x01, 0x02, 0x02, 0x03, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -655,6 +660,13 @@ void JPADrawLine(JPAEmitterWorkData* pWork, JPABaseParticle* pParticle) {
     GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
 }
 
+// only way I can get these to match
+// TODO find better way
+#pragma push
+#pragma opt_propagation off
+#pragma opt_common_subs off
+#pragma opt_lifetimes off
+#pragma opt_loop_invariants off
 void JPADrawStripe(JPAEmitterWorkData* pWork) {
     const u32 count = pWork->mpAlivePtcl->getNum();
     JPABaseShape* pShape = pWork->mpRes->getBsp();
@@ -688,7 +700,7 @@ void JPADrawStripe(JPAEmitterWorkData* pWork) {
     TVec3f vertices[2];
     Mtx matrix;
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT1, count * 2);
-    for (JPANode< JPABaseParticle >*pNode = pFirst, *pEnd = pWork->mpAlivePtcl->getEnd(); pNode != pEnd;) {
+    for (JPANode< JPABaseParticle >* pNode = pFirst; pNode != pWork->mpAlivePtcl->getEnd();) {
         JPABaseParticle* pParticle = pNode->getObject();
         pWork->mpCurNode = pNode;
         position.set(pParticle->mPosition);
@@ -705,14 +717,14 @@ void JPADrawStripe(JPAEmitterWorkData* pWork) {
             MR::normalize(&direction);
         }
 
-        side.cross(pParticle->mBaseAxis, direction);
+        PSVECCrossProduct(&pParticle->mBaseAxis, &direction, &side);
         if (MR::isNearZero(side)) {
             side.set< f32 >(1.0f, 0.0f, 0.0f);
         } else {
             MR::normalize(&side);
         }
 
-        pParticle->mBaseAxis.cross(direction, side);
+        PSVECCrossProduct(&direction, &side, &pParticle->mBaseAxis);
         MR::normalize(&pParticle->mBaseAxis);
         matrix[0][0] = side.x;
         matrix[0][1] = direction.x;
@@ -739,7 +751,13 @@ void JPADrawStripe(JPAEmitterWorkData* pWork) {
     GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
     GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
 }
+#pragma pop
 
+#pragma push
+#pragma opt_propagation off
+#pragma opt_common_subs off
+#pragma opt_lifetimes off
+#pragma opt_loop_invariants off
 void JPADrawStripeX(JPAEmitterWorkData* pWork) {
     const u32 count = pWork->mpAlivePtcl->getNum();
     JPABaseShape* pShape = pWork->mpRes->getBsp();
@@ -777,7 +795,7 @@ void JPADrawStripeX(JPAEmitterWorkData* pWork) {
     TVec3f vertices[2];
     Mtx matrix;
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT1, count * 2);
-    for (JPANode< JPABaseParticle >*pNode = pFirst, *pEnd = pWork->mpAlivePtcl->getEnd(); pNode != pEnd;) {
+    for (JPANode< JPABaseParticle >* pNode = pFirst; pNode != pWork->mpAlivePtcl->getEnd();) {
         JPABaseParticle* pParticle = pNode->getObject();
         pWork->mpCurNode = pNode;
         position.set(pParticle->mPosition);
@@ -794,7 +812,7 @@ void JPADrawStripeX(JPAEmitterWorkData* pWork) {
             MR::normalize(&direction);
         }
 
-        side.cross(pParticle->mBaseAxis, direction);
+        PSVECCrossProduct(&pParticle->mBaseAxis, &direction, &side);
         if (MR::isNearZero(side)) {
             side.set< f32 >(1.0f, 0.0f, 0.0f);
         } else {
@@ -805,7 +823,7 @@ void JPADrawStripeX(JPAEmitterWorkData* pWork) {
             side.set< f32 >(0.0f, 1.0f, 0.0f);
         }
 
-        pParticle->mBaseAxis.cross(direction, side);
+        PSVECCrossProduct(&direction, &side, &pParticle->mBaseAxis);
         MR::normalize(&pParticle->mBaseAxis);
         matrix[0][0] = side.x;
         matrix[0][1] = direction.x;
@@ -831,7 +849,7 @@ void JPADrawStripeX(JPAEmitterWorkData* pWork) {
     GXEnd();
     texCoord = startTexCoord;
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT1, count * 2);
-    for (JPANode< JPABaseParticle >*pNode = pFirst, *pEnd = pWork->mpAlivePtcl->getEnd(); pNode != pEnd;) {
+    for (JPANode< JPABaseParticle >* pNode = pFirst; pNode != pWork->mpAlivePtcl->getEnd();) {
         JPABaseParticle* pParticle = pNode->getObject();
         pWork->mpCurNode = pNode;
         position.set(pParticle->mPosition);
@@ -848,7 +866,7 @@ void JPADrawStripeX(JPAEmitterWorkData* pWork) {
             MR::normalize(&direction);
         }
 
-        side.cross(pParticle->mBaseAxis, direction);
+        PSVECCrossProduct(&pParticle->mBaseAxis, &direction, &side);
         if (MR::isNearZero(side)) {
             side.set< f32 >(1.0f, 0.0f, 0.0f);
         } else {
@@ -859,7 +877,7 @@ void JPADrawStripeX(JPAEmitterWorkData* pWork) {
             side.set< f32 >(0.0f, 1.0f, 0.0f);
         }
 
-        pParticle->mBaseAxis.cross(direction, side);
+        PSVECCrossProduct(&direction, &side, &pParticle->mBaseAxis);
         MR::normalize(&pParticle->mBaseAxis);
         matrix[0][0] = side.x;
         matrix[0][1] = direction.x;
@@ -886,6 +904,7 @@ void JPADrawStripeX(JPAEmitterWorkData* pWork) {
     GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
     GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
 }
+#pragma pop
 
 void JPAFieldAir::prepare(JPAEmitterWorkData* pWork, JPAFieldBlock* pBlock) {
     TVec3f direction(pBlock->getDir());
