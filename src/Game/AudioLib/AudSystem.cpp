@@ -42,8 +42,8 @@
 
 const char sAudioResFile[] = "/AudioRes/SMR.szs";
 const char sJaiSeqArc[] = "/AudioRes/Seqs/JaiSeq.arc";
-const char sJaiChordArc[] = "/AudioRes/Seqs/JaiChord.arc";
-const char sJaiMeArc[] = "/AudioRes/Seqs/JaiMe.arc";
+const char sJaiChordArc[] = "/AudioRes/Info/JaiChord.arc";
+const char sJaiMeArc[] = "/AudioRes/Info/JaiMe.arc";
 const char sJaiRemixArc[] = "/AudioRes/Info/JaiRemixSeq.arc";
 const char sJaiAudioArc[] = "AudioRes/SMR.baa";
 const char sJaiSeqResArc[] = "/AudioRes/JaiSeq.arc";

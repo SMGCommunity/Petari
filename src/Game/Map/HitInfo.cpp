@@ -2,6 +2,7 @@
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Map/KCollision.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 Triangle::Triangle() {
     mParts = nullptr;
@@ -21,34 +22,34 @@ void Triangle::fillData(CollisionParts* pParts, u32 index, HitSensor* pSensor) {
     mIdx = index;
     mSensor = pSensor;
 
-    KCollisionServer* server = pParts->mServer;
-    MtxPtr matrix;
-    KC_PrismData* prism = server->getPrismData(index);
+    KCollisionServer* pServer = pParts->mServer;
+    TPos3f* pMatrix;
+    KC_PrismData* pPrism = pServer->getPrismData(index);
 
-    mNormals[0].set(*server->getFaceNormal(prism));
-    mNormals[1].set(*server->getEdgeNormal1(prism));
-    mNormals[2].set(*server->getEdgeNormal2(prism));
-    mNormals[3].set(*server->getEdgeNormal3(prism));
+    mNormals[0].set(*pServer->getFaceNormal(pPrism));
+    mNormals[1].set(*pServer->getEdgeNormal1(pPrism));
+    mNormals[2].set(*pServer->getEdgeNormal2(pPrism));
+    mNormals[3].set(*pServer->getEdgeNormal3(pPrism));
 
-    matrix = reinterpret_cast< MtxPtr >(&mParts->mBaseMatrix);
+    pMatrix = &mParts->mBaseMatrix;
 
-    PSMTXMultVecSR(matrix, &mNormals[0], &mNormals[0]);
-    PSMTXMultVecSR(matrix, &mNormals[1], &mNormals[1]);
-    PSMTXMultVecSR(matrix, &mNormals[2], &mNormals[2]);
-    PSMTXMultVecSR(matrix, &mNormals[3], &mNormals[3]);
+    PSMTXMultVecSR(pMatrix->mMtx, &mNormals[0], &mNormals[0]);
+    PSMTXMultVecSR(pMatrix->mMtx, &mNormals[1], &mNormals[1]);
+    PSMTXMultVecSR(pMatrix->mMtx, &mNormals[2], &mNormals[2]);
+    PSMTXMultVecSR(pMatrix->mMtx, &mNormals[3], &mNormals[3]);
 
     MR::normalize(&mNormals[0]);
     MR::normalize(&mNormals[1]);
     MR::normalize(&mNormals[2]);
     MR::normalize(&mNormals[3]);
 
-    mPos[0].set(server->getPos(prism, 0));
-    mPos[1].set(server->getPos(prism, 1));
-    mPos[2].set(server->getPos(prism, 2));
+    mPos[0].set(pServer->getPos(pPrism, 0));
+    mPos[1].set(pServer->getPos(pPrism, 1));
+    mPos[2].set(pServer->getPos(pPrism, 2));
 
-    PSMTXMultVecSR(matrix, &mPos[0], &mPos[0]);
-    PSMTXMultVecSR(matrix, &mPos[1], &mPos[1]);
-    PSMTXMultVecSR(matrix, &mPos[2], &mPos[2]);
+    pMatrix->mult(mPos[0], mPos[0]);
+    pMatrix->mult(mPos[1], mPos[1]);
+    pMatrix->mult(mPos[2], mPos[2]);
 }
 
 const char* Triangle::getHostName() const {
