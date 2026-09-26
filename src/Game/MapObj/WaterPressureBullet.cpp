@@ -61,19 +61,7 @@ void WaterPressureBullet::kill() {
 #pragma push
 #pragma opt_propagation off
 void WaterPressureBullet::control() {
-    // FIXME
-    bool v1 = true;
-    bool v2 = false;
-
-    if (_B2 && !isBound()) {
-        v2 = true;
-    }
-
-    if (!v2 && _B2) {
-        v1 = false;
-    }
-
-    if (v1 && MR::isStarPointerPointing2POnTriggerButton(this, "弱", true, false)) {
+    if (isNotBound() && MR::isStarPointerPointing2POnTriggerButton(this, "弱", true, false)) {
         kill();
     } else {
         TVec3f stack_8;
