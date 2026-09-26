@@ -25,7 +25,8 @@ void GameSystemFontHolder::createFontFromEmbeddedData() {
     MR::getMountedArchiveAndHeap("ErrorMessageArchive.arc", &pArchive, &pHeap);
 
     char embeddedFontPath[256];
-    snprintf(embeddedFontPath, sizeof(embeddedFontPath), "/%s/LayoutData/EmbeddedFont.arc", MR::getCurrentLanguagePrefix());
+    const char* languagePrefix = MR::getCurrentLanguagePrefix();
+    snprintf(embeddedFontPath, sizeof(embeddedFontPath), "/%s/LayoutData/EmbeddedFont.arc", languagePrefix);
 
     _0 = static_cast< u8* >(MR::decompressFileFromArchive(pArchive, embeddedFontPath, pHeap, -32));
     _4 = new (pHeap, 0) JKRMemArchive();
