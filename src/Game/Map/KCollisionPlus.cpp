@@ -8,37 +8,38 @@ bool KCollisionServer::outCheck(const TVec3f* pPosA, const TVec3f* pPosB, V3u* p
     objectSpaceToLocalSpace(pPointA, *pPosA);
     objectSpaceToLocalSpace(pPointB, *pPosB);
 
-    if (pPointA->x < 0) {
+    if (static_cast< s32 >(pPointA->x) < 0) {
         pPointA->x = 0;
     }
 
-    if (pPointA->y < 0) {
+    if (static_cast< s32 >(pPointA->y) < 0) {
         pPointA->y = 0;
     }
 
-    if (pPointA->z < 0) {
+    if (static_cast< s32 >(pPointA->z) < 0) {
         pPointA->z = 0;
     }
 
     s32 invertedXMask = ~mFile->mXMask;
 
-    if (invertedXMask < pPointB->x) {
+    if (invertedXMask < static_cast< s32 >(pPointB->x)) {
         pPointB->x = invertedXMask;
     }
 
     s32 invertedYMask = ~mFile->mYMask;
 
-    if (invertedYMask < pPointB->y) {
+    if (invertedYMask < static_cast< s32 >(pPointB->y)) {
         pPointB->y = invertedYMask;
     }
 
     s32 invertedZMask = ~mFile->mZMask;
 
-    if (invertedZMask < pPointB->z) {
+    if (invertedZMask < static_cast< s32 >(pPointB->z)) {
         pPointB->z = invertedZMask;
     }
 
-    if (pPointB->x < pPointA->x || pPointB->y < pPointA->y || pPointB->z < pPointA->z) {
+    if (static_cast< s32 >(pPointB->x) < static_cast< s32 >(pPointA->x) || static_cast< s32 >(pPointB->y) < static_cast< s32 >(pPointA->y) ||
+        static_cast< s32 >(pPointB->z) < static_cast< s32 >(pPointA->z)) {
         return false;
     }
 

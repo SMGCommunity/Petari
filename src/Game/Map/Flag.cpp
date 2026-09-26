@@ -56,23 +56,27 @@ namespace {
     GXColor sStickColors[] = {{0x00, 0xC8, 0x00, 0x00}, {0x00, 0xDC, 0x00, 0x00}, {0x00, 0xB4, 0x00, 0x00}, {0x00, 0xC8, 0x00, 0x00}};
 };  // namespace
 
+void Flag_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)-1.0f;
+}
+
 Flag::~Flag() {
 }
 
 Flag::Flag(const char* pName)
-    : LiveActor(pName), mObjName(nullptr), mDisableLighting(false), mNumPointsV(10), mNumPointsU(10), mPointIntervalU(::sDefaultPointIntervalU),
-      mPointIntervalV(::sDefaultPointIntervalV), mFixPoints(nullptr), mUp(0.0f, 1.0f, 0.0f), mClipCenter(0.0f, 0.0f, 0.0f), mBasePos(nullptr),
-      mBaseMtx(nullptr), mStickLength(0.0f), mWavePhase(0.0f), mSide(0.0f, 0.0f, 1.0f), mFront(0.0f, 0.0f, 0.0f), mIsVerticalFlag(false),
-      mWaitTime(0), mGravityScale(::sDefaultGravity), mFrictionRateMin(::sDefaultFrictionRateMin), mFrictionRateMax(::sDefaultFrictionRateMax),
+    : LiveActor(pName), mObjName(), mDisableLighting(), mNumPointsV(10), mNumPointsU(10), mPointIntervalU(::sDefaultPointIntervalU),
+      mPointIntervalV(::sDefaultPointIntervalV), mFixPoints(), mUp(0.0f, 1.0f, 0.0f), mClipCenter(0.0f, 0.0f, 0.0f), mBasePos(), mBaseMtx(),
+      mStickLength(), mWavePhase(), mSide(0.0f, 0.0f, 1.0f), mFront(0.0f, 0.0f, 0.0f), mIsVerticalFlag(), mWaitTime(),
+      mGravityScale(::sDefaultGravity), mFrictionRateMin(::sDefaultFrictionRateMin), mFrictionRateMax(::sDefaultFrictionRateMax),
       mWindAccelRate(::sDefaultWindAccelRate), mWindAccelMin(::sDefaultWindAccelMin), mRandomWindAccelMin(::sDefaultRandomWindAccelMin),
-      mRandomWindAccelMax(::sDefaultRandomWindAccelMax), mLightColorMin(::sLightColorMinFar), mColors(nullptr), mTexST(nullptr), mTexture(nullptr),
-      mUseAlpha(false), mAlpha(0xFF), mAlphaDistanceNear(::sDefaultAlphaDistanceNear), mAlphaDistanceFar(::sDefaultAlphaDistanceFar), mSeStep(0),
-      mDisableSound(false) {
+      mRandomWindAccelMax(::sDefaultRandomWindAccelMax), mLightColorMin(::sLightColorMinFar), mColors(), mTexST(), mTexture(), mUseAlpha(),
+      mAlpha(0xFF), mAlphaDistanceNear(::sDefaultAlphaDistanceNear), mAlphaDistanceFar(::sDefaultAlphaDistanceFar), mSeStep(), mDisableSound() {
 }
 
 void Flag::init(const JMapInfoIter& rIter) {
-    // FIXME : JUTTexture ctor needs to not inline
-
     MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_None, MR::DrawBufferType_None, MR::DrawType_Flag);
 
     if (MR::isValidInfo(rIter)) {
@@ -140,6 +144,7 @@ void Flag::init(const JMapInfoIter& rIter) {
             if (mIsVerticalFlag) {
                 posU.add(mGravity * (mPointIntervalU * (idxU + 1)));
             }
+
             mFixPoints[idxV].mPoints[idxU] = new SwingRopePoint(posU);
         }
     }
@@ -164,7 +169,6 @@ void Flag::init(const JMapInfoIter& rIter) {
         }
     }
 
-    // FIXME: JUTTexture inlines
     if (mObjName != nullptr) {
         mTexture = new JUTTexture(MR::loadTexFromArc(mObjName), 0);
     } else {
@@ -178,7 +182,6 @@ void Flag::init(const JMapInfoIter& rIter) {
         MR::setClippingTypeSphere(this, 500.0f + ::sClippingRadiusOffset, &mClipCenter);
     } else if (mStickLength > 0.0f) {
         if (mBasePos == nullptr && mBaseMtx == nullptr) {
-            // TODO: I dont think they use both "* 0.5f" and "/ 2"
             mClipCenter = mUp * (mStickLength * 0.5f) + mPosition;
             MR::setClippingTypeSphere(this, mStickLength / 2 + ::sClippingRadiusOffset, &mClipCenter);
         } else {
@@ -218,6 +221,7 @@ void Flag::setInfoPos(const char* pObjName, const TVec3f* pPos, const TVec3f& rS
     if (numPointsU > 0) {
         mNumPointsU = numPointsU;
     }
+
     if (numPointsV > 0) {
         mNumPointsV = numPointsV;
     }
@@ -225,6 +229,7 @@ void Flag::setInfoPos(const char* pObjName, const TVec3f* pPos, const TVec3f& rS
     if (width > 0.0f) {
         mPointIntervalU = width / mNumPointsU;
     }
+
     if (height > 0.0f) {
         mPointIntervalV = height / (mNumPointsV - 1);
     }
@@ -239,15 +244,16 @@ void Flag::movement() {
             mSeStep--;
         }
     }
+
     mWavePhase += ::sWindTimeSpeed;
     updateFlag();
 }
 
+#pragma push
+#pragma opt_propagation off
+#pragma opt_loop_invariants off
 void Flag::updateFlag() {
-    // FIXME: a few float, reg, and instruction order swaps
-    // https://decomp.me/scratch/Jx2O3
-
-    mFront.cross(mSide, mUp);
+    PSVECCrossProduct(&mSide, &mUp, &mFront);
     if (MR::isNearZero(mFront)) {
         mFront.set(mSide);
     } else {
@@ -282,7 +288,7 @@ void Flag::updateFlag() {
         for (s32 idxV = 0; idxV < mNumPointsV; idxV++) {
             TVec3f pos = mUp;
             pos.scale(mStickLength + mPointIntervalV * ((mNumPointsV - 1) - idxV));
-            pos.add(mPosition);  // FIXME: reg load order swapped
+            pos.add(*getPosition());
             mFixPoints[idxV].mPos.set(pos);
         }
     }
@@ -294,17 +300,17 @@ void Flag::updateFlag() {
         for (s32 idxV = 0; idxV < mNumPointsV; idxV++) {
             TVec3f pos = mUp;
             pos.scale(mStickLength + mPointIntervalV * ((mNumPointsV - 1) - idxV));
-            pos.add(mPosition);  // FIXME: reg load order swapped
+            pos.add(*getPosition());
             mFixPoints[idxV].mPos.set(pos);
         }
     }
 
     // Add gravity and side wind
-    TVec3f grav = mGravity;
-    grav.scale(mGravityScale);  // FIXME: reg load order swapped
+    TVec3f grav = *getGravity();
+    grav.scale(mGravityScale);
     for (s32 idxV = 0; idxV < mNumPointsV; idxV++) {
         for (s32 idxU = 0; idxU < mNumPointsU; idxU++) {
-            SwingRopePoint* point = mFixPoints[idxV].mPoints[idxU];  // FIXME: indexing reg swap
+            SwingRopePoint* point = mFixPoints[idxV].mPoints[idxU];
             point->addAccel(grav);
 
             TVec3f side = mSide;
@@ -345,7 +351,7 @@ void Flag::updateFlag() {
         TVec3f* pos = &mFixPoints[0].mPoints[idxU]->mPosition;
         TVec3f* vel = &mFixPoints[0].mPoints[idxU]->mVelocity;
         for (s32 idxV = 1; idxV < mNumPointsV; idxV++) {
-            SwingRopePoint* point = mFixPoints[idxV].mPoints[idxU];  // FIXME: indexing reg swap
+            SwingRopePoint* point = mFixPoints[idxV].mPoints[idxU];
             point->restrict(*pos, mPointIntervalV, vel);
             pos = &point->mPosition;
             vel = &point->mVelocity;
@@ -356,7 +362,7 @@ void Flag::updateFlag() {
     for (s32 idxV = 0; idxV < mNumPointsV; idxV++) {
         TVec3f* pos = &mFixPoints[idxV].mPos;
         for (s32 idxU = 0; idxU < mNumPointsU; idxU++) {
-            SwingRopePoint* point = mFixPoints[idxV].mPoints[idxU];  // FIXME: indexing reg swap
+            SwingRopePoint* point = mFixPoints[idxV].mPoints[idxU];
             point->restrict(*pos, mPointIntervalU, nullptr);
             pos = &point->mPosition;
         }
@@ -367,7 +373,7 @@ void Flag::updateFlag() {
             mFrictionRateMin + (1.0f - (static_cast< f32 >(idxU) / static_cast< f32 >(mNumPointsU - 1))) * (mFrictionRateMax - mFrictionRateMin);
 
         for (s32 idxV = 0; idxV < getNumPointsV(); idxV++) {
-            SwingRopePoint* point = mFixPoints[idxV].mPoints[idxU];  // FIXME: indexing reg swap
+            SwingRopePoint* point = mFixPoints[idxV].mPoints[idxU];
             point->updatePos(friction);
 
             if (!mDisableLighting) {
@@ -378,6 +384,7 @@ void Flag::updateFlag() {
         }
     }
 }
+#pragma pop
 
 void Flag::draw() const {
     if (!MR::isValidDraw(this)) {

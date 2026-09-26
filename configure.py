@@ -1548,7 +1548,7 @@ config.libs = [
             Object(Matching, "Game/Map/FileSelectEffect.cpp"),
             Object(Matching, "Game/Map/FileSelectFunc.cpp"),
             Object(Matching, "Game/Map/FileSelectIconID.cpp"),
-            Object(NonMatching, "Game/Map/FileSelectItem.cpp"),
+            Object(Matching, "Game/Map/FileSelectItem.cpp"),
             Object(Matching, "Game/Map/FileSelectModel.cpp"),
             Object(NonMatching, "Game/Map/FileSelector.cpp"),
             Object(NonMatching, "Game/Map/FileSelectSky.cpp"),

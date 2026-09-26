@@ -595,6 +595,10 @@ public:
         return _1FC;
     }
 
+    const TVec3f& getFrontVec() const {
+        return mFrontVec;
+    }
+
     const TVec3f& getJumpVec() const {
         return mJumpVec;
     }

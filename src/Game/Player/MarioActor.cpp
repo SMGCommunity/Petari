@@ -2148,6 +2148,8 @@ void MarioActor::calcAnim() {
     updateRasterScroll();
 }
 
+#pragma push
+#pragma opt_propagation off
 void MarioActor::calcAndSetBaseMtx() {
     if (_1C0 == false) {
         _1C1 = true;
@@ -2180,7 +2182,7 @@ void MarioActor::calcAndSetBaseMtx() {
 
     if (_EA4 || _EA5) {
         if (_EA5) {
-            PSMTXCopy(_EA8, getBaseMtx());
+            PSMTXCopy(_EA8.mMtx, getBaseMtx());
 
             TVec3f frontVec;
             TVec3f headVec;
@@ -2210,12 +2212,12 @@ void MarioActor::calcAndSetBaseMtx() {
 
     Mtx receivedMtx;
     if (b1) {
-        TVec3f vec(mPosition);
+        TVec3f vec(*getPosition());
         TVec3f* pPosition = &mPosition;
         MR::extractMtxTrans(getBaseMtx(), pPosition);
         mMario->invalidateRelativePosition();
 
-        _938 = *pPosition - vec;
+        _938 = *getPosition() - vec;
         PSMTXCopy(getBaseMtx(), receivedMtx);
 
         if (mMario->mMovementStates_HIGH_WORD >> 8 & 1) {
@@ -2229,7 +2231,7 @@ void MarioActor::calcAndSetBaseMtx() {
     if (_934 && !b1) {
         TVec3f vec;
         MR::extractMtxTrans(getBaseMtx(), &vec);
-        _938 = mPosition - vec;
+        _938 = *getPosition() - vec;
     }
 
     TPos3f mtx2;
@@ -2263,12 +2265,13 @@ void MarioActor::calcAndSetBaseMtx() {
         TVec3f vec5;
         f32 dot = 0.0f;
         if (!MR::normalizeOrZero(&vec4)) {
-            vec5.cross(mMario->mFrontVec, vec4);
+            PSVECCrossProduct(&mMario->mFrontVec, &vec4, &vec5);
             if (!MR::normalizeOrZero(&vec5)) {
                 dot = MR::acosEx(_9F4.dot(vec4));
-                f32 max = getConst().getTable()->mBeePoseDelayAngleAir;
-                if (mMario->mMovementStates._1) {
-                    max = getConst().getTable()->mBeePoseDelayAngleGround;
+                const MarioConstTable* pTable = getConst().getTable();
+                f32 max = pTable->mBeePoseDelayAngleAir;
+                if (getMario()->getMovementStates()._1) {
+                    max = pTable->mBeePoseDelayAngleGround;
                 }
 
                 dot = MR::clamp(dot, 0.0f, max);
@@ -2290,19 +2293,19 @@ void MarioActor::calcAndSetBaseMtx() {
         MR::normalizeOrZero(&vec258);
         f32 dot2 = MR::acosEx(_9F4.dot(vec258));
         f32 val = getConst().getTable()->mBeePoseLimitAngleAir;
-        if (mMario->mMovementStates._1) {
+        if (mMario->getMovementStates()._1) {
             val = getConst().getTable()->mBeePoseLimitAngleGround;
         }
 
         if (dot2 > val) {
             TVec3f vec264;
-            vec264.cross(_9F4, vec258);
+            PSVECCrossProduct(&_9F4, &vec258, &vec264);
             if (MR::normalizeOrZero(&vec264)) {
                 _360 = _9F4;
             } else {
                 Mtx rotation;
                 PSMTXRotAxisRad(rotation, vec264, val);
-                PSMTXMultVec(rotation, _9F4, _360);
+                PSMTXMultVec(rotation, &_9F4, &_360);
             }
         }
 
@@ -2326,16 +2329,16 @@ void MarioActor::calcAndSetBaseMtx() {
 
         _354.scale(friction);
         if (!MR::isSameDirection(_360, mMario->mFrontVec)) {
-            MR::makeMtxUpFront(&mtx2, -_360, mMario->mFrontVec);
-        } else if (!MR::isSameDirection(mMario->_1FC, mMario->mFrontVec)) {
-            MR::makeMtxUpFront(&mtx2, mMario->_1FC, mMario->mFrontVec);
+            MR::makeMtxUpFront(&mtx2, -_360, mMario->getFrontVec());
+        } else if (!MR::isSameDirection(mMario->_1FC, mMario->getFrontVec())) {
+            MR::makeMtxUpFront(&mtx2, mMario->_1FC, mMario->getFrontVec());
         } else {
-            MR::makeMtxUpFront(&mtx2, mMario->mHeadVec, mMario->mFrontVec);
+            MR::makeMtxUpFront(&mtx2, mMario->mHeadVec, mMario->getFrontVec());
         }
 
         if (mMario->mTargetWalkSpeedIndex > 2 || isJumping()) {
             _348 = _348 * getConst().getTable()->mBeePoseTransBlendingRatioMove +
-                   (_33C - mPosition) * (1.0f - getConst().getTable()->mBeePoseTransBlendingRatioMove);
+                   (_33C - *getPosition()) * (1.0f - getConst().getTable()->mBeePoseTransBlendingRatioMove);
             MR::setMtxTrans(mtx2, _348.x, _348.y, _348.z);
         } else {
             _348.scale(getConst().getTable()->mBeePoseTransBlendingRatioStop);
@@ -2348,12 +2351,12 @@ void MarioActor::calcAndSetBaseMtx() {
         _9F4 = getGravityVector();
     }
 
-    MR::addTransMtx(mtx2, mPosition);
+    MR::addTransMtx(mtx2, *getPosition());
 
     if (b1) {
         Mtx inverse;
         PSMTXInverse(mtx2, inverse);
-        PSMTXConcat(inverse, receivedMtx, _E3C);
+        PSMTXConcat(inverse, receivedMtx, _E3C.mMtx);
         XjointTransform* pJoint = mMarioAnim->getXanimePlayer()->getCore()->getJointTransform(0);
         pJoint->_64 = _E3C.mMtx;
     } else {
@@ -2361,7 +2364,7 @@ void MarioActor::calcAndSetBaseMtx() {
         TVec3f offset;
         mMario->createCorrectionMtx(correction, &offset);
         mMarioAnim->getXanimePlayer()->getCore()->getJointTransform(1)->_2C = offset;
-        PSMTXCopy(correction, _E3C);
+        PSMTXCopy(correction, _E3C.mMtx);
         XjointTransform* pJoint = mMarioAnim->getXanimePlayer()->getCore()->getJointTransform(0);
         pJoint->_64 = _E3C.mMtx;
     }
@@ -2453,7 +2456,7 @@ void MarioActor::calcAndSetBaseMtx() {
         mBlendMtxTimer--;
     }
 
-    PSMTXCopy(mtx2, _3EC);
+    PSMTXCopy(mtx2, _3EC.mMtx);
 
     if (_3B0 != 1.0f) {
         scaleMtx(mtx2);
@@ -2464,6 +2467,7 @@ void MarioActor::calcAndSetBaseMtx() {
 
     _EA5 = false;
 }
+#pragma pop
 
 void MarioActor::setBlendMtxTimer(u16 a1) {
     if (a1 == 0) {

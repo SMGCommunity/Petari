@@ -13,35 +13,9 @@ class MiiFaceParts;
 class PartsModel;
 
 namespace FileSelectItemSub {
-    class ScaleController : public NerveExecutor {
-    public:
-        ScaleController();
-
-        void exeToSmall();
-        void exeToBig();
-        void exeSmall();
-        void exeBig();
-
-        f32 _8;
-    };
-
-    class BlinkController : public NerveExecutor {
-    public:
-        BlinkController(FileSelectItem*);
-
-        void exeOpen();
-        void exeShut();
-        void exeSleep();
-        void exeBlink();
-        void shut();
-        void open();
-        void sleep();
-
-        FileSelectItem* mItem;  // 0x08
-        s32 _C;
-        s32 _10;
-    };
-};  // namespace FileSelectItemSub
+    class ScaleController;
+    class BlinkController;
+}  // namespace FileSelectItemSub
 
 class FileSelectItem : public LiveActor {
 public:
@@ -122,3 +96,38 @@ public:
     /* 0x168 */ s32 _168;
     /* 0x16C */ s32 _16C;
 };
+
+namespace FileSelectItemSub {
+    class ScaleController : public NerveExecutor {
+    public:
+        ScaleController();
+
+        void exeToSmall();
+        void exeToBig();
+        void exeSmall();
+        void exeBig();
+
+        f32 getScale() const {
+            return _8;
+        }
+
+        f32 _8;
+    };
+
+    class BlinkController : public NerveExecutor {
+    public:
+        BlinkController(FileSelectItem*);
+
+        void exeOpen();
+        void exeShut();
+        void exeSleep();
+        void exeBlink();
+        void shut();
+        void open();
+        void sleep();
+
+        /* 0x08 */ FileSelectItem* mItem;
+        s32 _C;
+        s32 _10;
+    };
+};  // namespace FileSelectItemSub

@@ -6,6 +6,18 @@
 #include "Game/Util/MathUtil.hpp"
 #include <algorithm>
 
+void KCollision_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.000003814697265625f;
+    (void)0.001f;
+    (void)1000000000.0f;
+    (void)0.01f;
+}
+f32 KCollision_FORCE_MATCH_CONVERSION(s32 value) {
+    return value;
+}
+
 // trying to get both operator== and operator/ to emit
 void DUMMY_KCollision() {
     TVec3f a, b, c;
@@ -539,22 +551,21 @@ KC_PrismData* KCollisionServer::checkArrow(const TVec3f& rOrigin, const TVec3f& 
 
     f32 length;
     TVec3f dir(rDir);
+    f32 startT = 0.0f;
     MR::separateScalarAndDirection(&length, &dir, dir);
 
     if (MR::isNearZero(dir)) {
         return nullptr;
     }
 
+    TVec3f hitPoint;
+    V3u cell;
     TVec3f start(rOrigin);
     start.x -= mFile->mMin.x;
     start.y -= mFile->mMin.y;
     start.z -= mFile->mMin.z;
 
-    V3u cell;
     cell.setUsingCast(start);
-
-    TVec3f hitPoint;
-    f32 startT = 0.0f;
 
     if (isInsideMinMaxInLocalSpace(cell)) {
         hitPoint.set(start);
@@ -565,10 +576,10 @@ KC_PrismData* KCollisionServer::checkArrow(const TVec3f& rOrigin, const TVec3f& 
         boxMax.z = (f32)(u32)~mFile->mZMask;
 
         if (dir.x != 0.0f) {
-            f32 edge = dir.x <= 0.0f ? boxMax.x : 0.0f;
+            f32 edge = 0.0f < dir.x ? 0.0f : boxMax.x;
             startT = (edge - start.x) / dir.x;
 
-            if (startT >= 0.0f && startT <= length) {
+            if (0.0f <= startT && startT <= length) {
                 TVec3f step(dir);
                 step.scale(startT);
                 hitPoint.set(step);
@@ -581,10 +592,10 @@ KC_PrismData* KCollisionServer::checkArrow(const TVec3f& rOrigin, const TVec3f& 
         }
 
         if (dir.y != 0.0f) {
-            f32 edge = dir.y <= 0.0f ? boxMax.y : 0.0f;
+            f32 edge = 0.0f < dir.y ? 0.0f : boxMax.y;
             startT = (edge - start.y) / dir.y;
 
-            if (startT >= 0.0f && startT <= length) {
+            if (0.0f <= startT && startT <= length) {
                 TVec3f step(dir);
                 step.scale(startT);
                 hitPoint.set(step);
@@ -597,10 +608,10 @@ KC_PrismData* KCollisionServer::checkArrow(const TVec3f& rOrigin, const TVec3f& 
         }
 
         if (dir.z != 0.0f) {
-            f32 edge = dir.z <= 0.0f ? boxMax.z : 0.0f;
+            f32 edge = 0.0f < dir.z ? 0.0f : boxMax.z;
             startT = (edge - start.z) / dir.z;
 
-            if (startT >= 0.0f && startT <= length) {
+            if (0.0f <= startT && startT <= length) {
                 TVec3f step(dir);
                 step.scale(startT);
                 hitPoint.set(step);
@@ -616,47 +627,78 @@ KC_PrismData* KCollisionServer::checkArrow(const TVec3f& rOrigin, const TVec3f& 
     }
 
 searchStart:
-    u32 foundCount = 0;
-    KC_PrismData* bestPrism = nullptr;
-
-    s32 stepX = dir.x < 0.0f ? -1 : 1;
-    s32 stepY = dir.y < 0.0f ? -1 : 1;
-    s32 stepZ = dir.z < 0.0f ? -1 : 1;
-
-    f32 accumT = startT;
-    f32 bestFraction = 1.0f;
+    u16* prismList;
+    u32 foundCount;
+    foundCount = 0;
 
     s32 shift;
+    s32 deltaPosX;
+    s32 deltaPosY;
+    s32 deltaPosZ;
+    s32 deltaNegX;
+    s32 deltaNegY;
+    s32 deltaNegZ;
+    s32* pDeltaX;
+    s32* pDeltaY;
+    s32* pDeltaZ;
+    s32 stepX;
+    s32 stepY;
+    s32 stepZ;
+    if (dir.x < 0.0f) {
+        pDeltaX = &deltaNegX;
+        stepX = -1;
+    } else {
+        pDeltaX = &deltaPosX;
+        stepX = 1;
+    }
+
+    if (dir.y < 0.0f) {
+        pDeltaY = &deltaNegY;
+        stepY = -1;
+    } else {
+        pDeltaY = &deltaPosY;
+        stepY = 1;
+    }
+
+    if (dir.z < 0.0f) {
+        pDeltaZ = &deltaNegZ;
+        stepZ = -1;
+    } else {
+        pDeltaZ = &deltaPosZ;
+        stepZ = 1;
+    }
+
+    KC_PrismData* bestPrism;
+    f32 accumT = startT;
+
+    bestPrism = nullptr;
 
     do {
-        s32* list = searchBlock(&shift, cell.x, cell.y, cell.z);
+        prismList = reinterpret_cast< u16* >(searchBlock(&shift, cell.x, cell.y, cell.z));
         u32 blockSize = 1 << shift;
         u32 mask = blockSize - 1;
 
-        s32 deltaPosX = blockSize - (cell.x & mask);
-        s32 deltaPosY = blockSize - (cell.y & mask);
-        s32 deltaPosZ = blockSize - (cell.z & mask);
-        s32 deltaNegX = -(s32)(cell.x & mask);
-        s32 deltaNegY = -(s32)(cell.y & mask);
-        s32 deltaNegZ = -(s32)(cell.z & mask);
+        deltaPosX = blockSize - (cell.x & mask);
+        deltaPosY = blockSize - (cell.y & mask);
+        deltaPosZ = blockSize - (cell.z & mask);
+        deltaNegX = -(s32)(cell.x & mask);
+        deltaNegY = -(s32)(cell.y & mask);
+        deltaNegZ = -(s32)(cell.z & mask);
 
-        s32 deltaX = stepX < 0 ? deltaNegX : deltaPosX;
-        s32 deltaY = stepY < 0 ? deltaNegY : deltaPosY;
-        s32 deltaZ = stepZ < 0 ? deltaNegZ : deltaPosZ;
-
-        if (deltaX == 0) {
-            deltaX = stepX;
+        if (*pDeltaX == 0) {
+            *pDeltaX = stepX;
         }
 
-        if (deltaY == 0) {
-            deltaY = stepY;
+        if (*pDeltaY == 0) {
+            *pDeltaY = stepY;
         }
 
-        if (deltaZ == 0) {
-            deltaZ = stepZ;
+        if (*pDeltaZ == 0) {
+            *pDeltaZ = stepZ;
         }
 
-        u16* prismList = (u16*)list;
+        f32 bestFraction = 1.0f;
+        f32 dist = 1.0f;
 
         while (*++prismList != 0) {
             KC_PrismData* prism = &mFile->mPrisms[*prismList];
@@ -665,7 +707,6 @@ searchStart:
                 continue;
             }
 
-            f32 dist;
             u8 flag = 0;
 
             if (!KCHitArrow(prism, rOrigin, rDir, &dist, &flag)) {
@@ -673,9 +714,9 @@ searchStart:
             }
 
             if (pOut != nullptr) {
+                pDists[foundCount] = dist;
+                pOut[foundCount] = prism;
                 foundCount++;
-                pDists[foundCount - 1] = dist;
-                pOut[foundCount - 1] = prism;
 
                 if (dist < bestFraction) {
                     bestFraction = dist;
@@ -690,12 +731,12 @@ searchStart:
                     return bestPrism;
                 }
             } else {
-                if (dist >= bestFraction) {
+                if (!(dist < bestFraction)) {
                     continue;
                 }
 
-                *pDists = dist;
                 bestFraction = dist;
+                *pDists = dist;
                 bestPrism = prism;
                 *pFlags = flag;
             }
@@ -705,9 +746,9 @@ searchStart:
             break;
         }
 
-        f32 tX = MR::isNearZero(dir.x) ? 1.0e9f : (f32)deltaX / dir.x;
-        f32 tY = MR::isNearZero(dir.y) ? 1.0e9f : (f32)deltaY / dir.y;
-        f32 tZ = MR::isNearZero(dir.z) ? 1.0e9f : (f32)deltaZ / dir.z;
+        f32 tX = MR::isNearZero(dir.x) ? 1.0e9f : (f32)*pDeltaX / dir.x;
+        f32 tY = MR::isNearZero(dir.y) ? 1.0e9f : (f32)*pDeltaY / dir.y;
+        f32 tZ = MR::isNearZero(dir.z) ? 1.0e9f : (f32)*pDeltaZ / dir.z;
 
         f32 tMin = tX;
 
@@ -910,7 +951,7 @@ vertex4:
     *pFlag = 4;
     goto finish;
 
-region5 : {
+region5: {
     f32 t = (nn * distances[2] - distances[1]) / (nn * nn - 1.0f);
     f32 s = distances[2] - t * nn;
     dir.x = t * n0->x + s * n1->x;
@@ -920,7 +961,7 @@ region5 : {
     goto edgeFinish;
 }
 
-region6 : {
+region6: {
     f32 t = (nn * distances[3] - distances[2]) / (nn * nn - 1.0f);
     f32 s = distances[3] - t * nn;
     dir.x = t * n1->x + s * n2->x;
@@ -930,7 +971,7 @@ region6 : {
     goto edgeFinish;
 }
 
-region7 : {
+region7: {
     f32 t = (nn * distances[1] - distances[3]) / (nn * nn - 1.0f);
     f32 s = distances[1] - t * nn;
     dir.x = t * n2->x + s * n0->x;
@@ -939,7 +980,7 @@ region7 : {
     *pFlag = 7;
 }
 
-edgeFinish : {
+edgeFinish: {
     f32 closestSq = dir.x * dir.x + dir.y * dir.y + dir.z * dir.z;
     f32 dist = MR::sqrt(closestSq);
 
@@ -1119,7 +1160,7 @@ vertex4:
     *pFlag = 4;
     goto finish;
 
-region5 : {
+region5: {
     f32 t = (nn * distances[2] - distances[1]) / (nn * nn - 1.0f);
     f32 s = distances[2] - t * nn;
     dir.x = t * n0->x + s * n1->x;
@@ -1129,7 +1170,7 @@ region5 : {
     goto edgeFinish;
 }
 
-region6 : {
+region6: {
     f32 t = (nn * distances[3] - distances[2]) / (nn * nn - 1.0f);
     f32 s = distances[3] - t * nn;
     dir.x = t * n1->x + s * n2->x;
@@ -1139,7 +1180,7 @@ region6 : {
     goto edgeFinish;
 }
 
-region7 : {
+region7: {
     f32 t = (nn * distances[1] - distances[3]) / (nn * nn - 1.0f);
     f32 s = distances[1] - t * nn;
     dir.x = t * n2->x + s * n0->x;
@@ -1148,7 +1189,7 @@ region7 : {
     *pFlag = 7;
 }
 
-edgeFinish : {
+edgeFinish: {
     f32 closestSq = dir.x * dir.x + dir.y * dir.y + dir.z * dir.z;
     f32 dist = MR::sqrt(closestSq);
 

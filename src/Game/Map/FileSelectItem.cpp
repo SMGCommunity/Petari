@@ -21,6 +21,27 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+void FileSelectItem_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)2.0f;
+    (void)1000.0f;
+    (void)900.0f;
+    (void)30.0f;
+    (void)27.0f;
+    (void)360.0f;
+    (void)-180.0f;
+    (void)0.03f;
+    (void)-25.0f;
+    (void)25.0f;
+    (void)0.98f;
+    (void)-0.5f;
+    (void)1.2f;
+    (void)10.0f;
+    (void)6.0f;
+}
+
 namespace {
     NEW_NERVE(FileSelectItemNrvNewWait, FileSelectItem, NewWait);
     NEW_NERVE(FileSelectItemNrvExistWait, FileSelectItem, ExistWait);
@@ -373,25 +394,25 @@ void FileSelectItem::control() {
     TVec3f trans;
     mtx.getTrans(trans);
     _A4.set(mtx);
-    _A4.setTrans(yDir * 30.0f + trans * 30.0f);
+    _A4.setTrans(trans + yDir * 30.0f * 30.0f);
 
     _D4.set(mtx);
     _104.set(mtx);
 
     mScaleCtrl->updateNerve();
 
-    mPlanetMapObj->mScale.setAll< f32 >(30.0f * mScaleCtrl->_8);
+    mPlanetMapObj->mScale.setAll< f32 >(30.0f * mScaleCtrl->getScale());
 
     for (s32 i = 0; i < 5; i++) {
-        mModels[i]->mScale.setAll< f32 >(30.0f * mScaleCtrl->_8);
+        mModels[i]->mScale.setAll< f32 >(30.0f * mScaleCtrl->getScale());
     }
 
-    mFaceParts->mScale.setAll< f32 >(30.0f * mScaleCtrl->_8);
+    mFaceParts->mScale.setAll< f32 >(27.0f * mScaleCtrl->getScale());
 
     mBlinkCtrl->updateNerve();
 
-    TVec3f screenPos;
     TVec3f newPos;
+    TVec3f screenPos;
     newPos.add(mPosition, ::sDataInfoOffset);
     MR::calcScreenPosition(&screenPos, newPos);
     _A0->setTrans(screenPos);
@@ -451,35 +472,133 @@ void FileSelectItem::updatePointing() {
     }
 }
 
-// still quite a ways to go with this one.
+namespace {
+    struct PointerSweepTriangle {
+        TVec3f mVertexA;
+        TVec3f mVertexB;
+        TVec3f mVertexC;
+        TVec3f mEdgeAB;
+        TVec3f mEdgeBC;
+        TVec3f mEdgeCA;
+        TVec3f mNormal;
+
+        void set(const TVec3f& rCameraPosition, const TVec3f& rCurrentPoint, const TVec3f& rPreviousPoint) {
+            mVertexA = rCameraPosition;
+            mVertexB = rCurrentPoint;
+            mVertexC = rPreviousPoint;
+
+            mEdgeAB = rCurrentPoint - rCameraPosition;
+            mEdgeBC = rPreviousPoint - rCurrentPoint;
+            mEdgeCA = rCameraPosition - rPreviousPoint;
+            mNormal.cross(mEdgeBC, mEdgeAB);
+            MR::normalize(&mNormal);
+        }
+
+        PointerSweepTriangle(const TVec3f& rA, const TVec3f& rB, const TVec3f& rC) {
+            set(rA, rB, rC);
+        }
+
+        bool contains(const TVec3f& rPoint) const {
+            bool containsPoint;
+            TVec3f cross;
+            cross.cross(rPoint - mVertexA, mEdgeAB);
+
+            if (cross.dot(mNormal) < 0.0f) {
+                containsPoint = false;
+            } else {
+                cross.cross(rPoint - mVertexB, mEdgeBC);
+
+                if (cross.dot(mNormal) < 0.0f) {
+                    containsPoint = false;
+                } else {
+                    cross.cross(rPoint - mVertexC, mEdgeCA);
+
+                    containsPoint = !(cross.dot(mNormal) < 0.0f);
+                }
+            }
+
+            return containsPoint;
+        }
+
+        void project(TVec3f* pResult, const TVec3f& rCenter, f32 distance) const {
+            TVec3f offset(mNormal);
+            offset.scale(distance);
+            *pResult = rCenter - offset;
+        }
+    };
+
+    inline bool checkCollisionOfPointAndTriangle(const TVec3f& rCenter, const TVec3f& rCameraPosition, const TVec3f& rCurrentPoint,
+                                                 const TVec3f& rPreviousPoint) {
+        PointerSweepTriangle triangle(rCameraPosition, rCurrentPoint, rPreviousPoint);
+
+        TVec3f delta(rCenter - rCameraPosition);
+        f32 planeDistance = triangle.mNormal.dot(delta);
+
+        bool containsPoint;
+        bool collides;
+
+        if (MR::abs(planeDistance) >= 900.0f) {
+            collides = false;
+        } else {
+            TVec3f projected;
+            triangle.project(&projected, rCenter, planeDistance);
+            containsPoint = triangle.contains(projected);
+            if (containsPoint) {
+                collides = true;
+            } else if (triangle.mVertexA.distance(rCenter) <= 900.0f) {
+                collides = true;
+            } else if (triangle.mVertexB.distance(rCenter) <= 900.0f) {
+                collides = true;
+            } else if (triangle.mVertexC.distance(rCenter) <= 900.0f) {
+                collides = true;
+            } else if (::checkCollisionOfPointAndCylinder(rCenter, triangle.mVertexA, triangle.mEdgeAB, 900.0f)) {
+                collides = true;
+            } else if (::checkCollisionOfPointAndCylinder(rCenter, triangle.mVertexB, triangle.mEdgeBC, 900.0f)) {
+                collides = true;
+            } else {
+                collides = ::checkCollisionOfPointAndCylinder(rCenter, triangle.mVertexC, triangle.mEdgeCA, 900.0f);
+            }
+        }
+
+        return collides;
+    }
+
+}  // namespace
+
 void FileSelectItem::updateRotate() {
     if (mIsInvalidRotate) {
         return;
     }
 
-    if (_168 > 0) {
+    const s32 duration = _168;
+    if (duration > 0) {
         _160 = 0.0f;
 
-        f32 v6 = (f32)++_16C / (_168);
-        v6 *= v6;
-        if (v6 > 1.0f) {
-            v6 = 1.0f;
+        _16C++;
+        const s32 step = _16C;
+        f32 rate = static_cast< f32 >(step) / duration;
+        rate *= rate;
+        if (rate > 1.0f) {
+            rate = 1.0f;
         }
 
-        if (v6 < 0.0f) {
-            v6 = 0.0f;
+        if (rate < 0.0f) {
+            rate = 0.0f;
         }
 
-        if (_16C >= _168) {
+        if (step >= duration) {
             _16C = 0;
             _168 = 0;
         }
 
-        mRotation.y = MR::repeat(mRotation.y, -180.0f, 360.0f);
-        mBlinkCtrl->open();
-        mBlinkCtrl->setNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvOpen));
+        f32 angle = MR::repeat(mRotation.y, -180.0f, 360.0f);
+        mRotation.y = angle - angle * rate;
+        FileSelectItemSub::BlinkController* pBlink = mBlinkCtrl;
+        pBlink->open();
+        pBlink->setNerve(GET_NERVE_DIRECT(FileSelectItemSub, BlinkControllerNrvOpen));
+        return;
     } else if (MR::isStarPointerInScreen(0)) {
-        TVec3f v43 = mPosition + TVec3f(0.0f, 900.0f, 0.0f);
+        TVec3f center = mPosition + TVec3f(0.0f, 900.0f, 0.0f);
         TVec2f screenPos(*MR::getStarPointerScreenPosition(0));
 
         if (_154) {
@@ -488,107 +607,36 @@ void FileSelectItem::updateRotate() {
             _154 = 0;
         }
 
-        TVec3f v42 = MR::getCamPos();  // 0x100
-        TVec3f stack_F4 = v43 - v42;
+        TVec3f cameraPosition = MR::getCamPos();
+        TVec3f cameraToCenter = center - cameraPosition;
 
-        f32 v11 = (900.0f + stack_F4.length());
+        f32 pointerDistance = (900.0f + cameraToCenter.length());
         if (JGeometry::TUtil< f32 >::sqrt(screenPos.squareDist(_158)) < 2.0f) {
-            TVec3f v40;
-            MR::calcWorldPositionFromScreen(&v40, screenPos, v11);
-            TVec3f v39 = v40 - v42;
-            MR::normalize(&v39);
-            TVec3f v38 = stack_F4.cross(v39);
+            TVec3f pointerPosition;
+            MR::calcWorldPositionFromScreen(&pointerPosition, screenPos, pointerDistance);
+            TVec3f pointerDirection = pointerPosition - cameraPosition;
+            MR::normalize(&pointerDirection);
+            TVec3f crossDirection = cameraToCenter.cross(pointerDirection);
 
-            if (v38.length() < 900.0f) {
+            if (crossDirection.length() < 900.0f) {
                 _155 = 1;
             }
         } else {
-            TVec3f v37;
-            MR::calcWorldPositionFromScreen(&v37, screenPos, v11);
-            TVec3f v36;
-            MR::calcWorldPositionFromScreen(&v36, _158, v11);
-            TVec3f v44;
-            v44 = v42;  // v44 = 0x118 / v42 = 0x100
-            TVec3f v45;
-            v45 = v37;  // v45 = 0x124 / v37 = 0xC4
-            TVec3f v46;
-            v46 = v36;  // v46 = 0x130 / v36 = 0xB8
+            TVec3f currentPoint;
+            MR::calcWorldPositionFromScreen(&currentPoint, screenPos, pointerDistance);
+            TVec3f previousPoint;
+            MR::calcWorldPositionFromScreen(&previousPoint, _158, pointerDistance);
+            bool collides = ::checkCollisionOfPointAndTriangle(center, cameraPosition, currentPoint, previousPoint);
 
-            TVec3f v47;
-            v47 = v37 - v42;  // v47 = 0x13C / v26 = 0x40
-
-            TVec3f v48;
-            v48 = v36 - v37;  // v48 = 0x148 / v27 = 0x4C
-
-            TVec3f v49;
-            v49 = v42 - v36;
-            TVec3f v50 = v48.cross(v47);  // 0x160
-            MR::normalize(&v50);
-
-            f32 v12 = v50.dot(v43 - v42);
-
-            bool v14;
-            bool v13;
-
-            if (MR::abs(v12) >= 900.0f) {
-                v13 = false;
-            } else {
-                TVec3f v29;
-                v29 = v43 - v50 * v12;
-                TVec3f v25 = v29 - v44;
-                TVec3f v34 = v25.cross(v47);
-
-                if (v34.dot(v50) < 0.0f) {
-                    v14 = 0;
-                } else {
-                    v34.cross(v25 - v45, v48);
-
-                    if (v34.dot(v50) < 0.0f) {
-                        v14 = 0;
-                    } else {
-                        v34.cross(v25 - v46, v49);
-
-                        v14 = !(v34.dot(v50) < 0.0f);
-                    }
-                }
-                if (v14) {
-                    v13 = 1;
-                } else if (v44.distance(v43) <= 900.0f) {
-                    v13 = 1;
-                } else if (v45.distance(v43) <= 900.0f) {
-                    v13 = 1;
-                } else if (v46.distance(v43) <= 900.0f) {
-                    v13 = 1;
-                } else if (::checkCollisionOfPointAndCylinder(v43, v44, v47, 900.0f)) {
-                    v13 = 1;
-                } else if (::checkCollisionOfPointAndCylinder(v43, v45, v48, 900.0f)) {
-                    v13 = 1;
-                } else {
-                    v13 = ::checkCollisionOfPointAndCylinder(v43, v46, v49, 900.0f);
-                }
-            }
-
-            if (v13) {
+            if (collides) {
                 _155 = 1;
             }
         }
 
         if (_155) {
-            f32 v15 = -25.0f;
-            f32 v21 = screenPos.x - _158.x;
-            f32 v20 = screenPos.y - _158.y;
-            f32 v16 = (_160 + (0.029f * v21) / mScale.x);
-            _160 += (0.029f * v21) / mScale.x;
-
-            if (v16 >= -25.0f) {
-                v15 = 25.0f;
-
-                if (v16 <= 25.0f) {
-                    v15 = v16;
-                }
-            }
-
-            _160 = v15;
+            TVec2f delta = screenPos - _158;
+            _160 += 0.03f * delta.x / mScale.x;
+            _160 = MR::clamp(_160, -25.0f, 25.0f);
         }
 
         _156 = _155;

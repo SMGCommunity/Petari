@@ -60,9 +60,9 @@ public:
 
         void setUsingCast(const TVec3f&);
 
-        s32 x;
-        s32 y;
-        s32 z;
+        u32 x;
+        u32 y;
+        u32 z;
     };
 
     KCollisionServer();
