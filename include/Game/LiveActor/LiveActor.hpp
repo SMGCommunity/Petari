@@ -110,6 +110,10 @@ public:
         return &mPosition;
     }
 
+    TVec3f* editPosition() {
+        return &mPosition;
+    }
+
     void calcAnmMtx();
     void setNerve(const Nerve* pNerve);
     bool isNerve(const Nerve* pNerve) const;
