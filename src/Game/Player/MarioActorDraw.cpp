@@ -49,13 +49,20 @@ public:
     void drawType0() const;
 };
 
+namespace {
+    inline void initExtraMtxBuffer(J3DModelX* pModel) {
+        for (u32 i = 0; i < pModel->_DD; i++) {
+            pModel->mExtraMtxBuffer[i] = new (0x20) Mtx[0xC00 / sizeof(Mtx)];
+        }
+    }
+}  // namespace
+
 void MarioActor::initDrawAndModel() {
-    const MarioActor* pActor = this;
-    _218 = new DrawAdaptor(MR::Functor(pActor, &MarioActor::drawShadow), MR::DrawType_AlphaShadow);
-    _21C = new DrawAdaptor(MR::Functor(pActor, &MarioActor::drawSilhouette), MR::DrawType_0x28);
-    _220 = new DrawAdaptor(MR::Functor(pActor, &MarioActor::drawPreWipe), MR::DrawType_CometScreenFilter);
-    _228 = new DrawAdaptor(MR::Functor(pActor, &MarioActor::drawScreenBlend), MR::DrawType_CenterScreenBlur);
-    _22C = new DrawAdaptor(MR::Functor(pActor, &MarioActor::drawIndirect), MR::DrawType_0x24);
+    _218 = new DrawAdaptor(MR::Functor(this, &MarioActor::drawShadow), MR::DrawType_AlphaShadow);
+    _21C = new DrawAdaptor(MR::Functor(this, &MarioActor::drawSilhouette), MR::DrawType_0x28);
+    _220 = new DrawAdaptor(MR::Functor(this, &MarioActor::drawPreWipe), MR::DrawType_CometScreenFilter);
+    _228 = new DrawAdaptor(MR::Functor(this, &MarioActor::drawScreenBlend), MR::DrawType_CenterScreenBlur);
+    _22C = new DrawAdaptor(MR::Functor(this, &MarioActor::drawIndirect), MR::DrawType_0x24);
 
     if (gIsLuigi) {
         initModelManagerWithAnm("Luigi", "MarioAnime", true);
@@ -66,9 +73,7 @@ void MarioActor::initDrawAndModel() {
     J3DModelX* baseModel = static_cast< J3DModelX* >(MR::getJ3DModel(this));
     baseModel->_DD = 8;
 
-    for (u32 i = 0; i < baseModel->_DD; i++) {
-        baseModel->mExtraMtxBuffer[i] = new (0x20) Mtx[0xC00 / sizeof(Mtx)];
-    }
+    ::initExtraMtxBuffer(baseModel);
 
     MR::initDLMakerFog(this, true);
     MR::newDifferedDLBuffer(this);
@@ -464,7 +469,6 @@ void MarioActor::drawMarioModel() const {
         return;
     default:
         break;
-        return;
     }
 
     drawSpinInhibit();
@@ -473,7 +477,7 @@ void MarioActor::drawMarioModel() const {
 
     J3DModelX* model = mModels[mCurrModel];
 
-    if (res != nullptr) {
+    if (res) {
         model->mFlags._10 = true;
     }
 
@@ -538,7 +542,7 @@ bool MarioActor::isAllHidden() const {
 
 void MarioActor::swapTextureInit() {
     J3DModelData* actorData = MR::getJ3DModelData(this);
-    const u16 textureCount = actorData->mMaterialTable.mTexture->getNum();
+    const u32 textureCount = actorData->mMaterialTable.mTexture->getNum();
     _B60 = textureCount;
     _B64 = new ResTIMG*[textureCount];
     _B6A = 0;
@@ -567,7 +571,7 @@ void MarioActor::swapTextureInit() {
 
     if (_9E4 != nullptr) {
         J3DModelData* beeData = MR::getJ3DModelData(_9E4);
-        const u16 textureNum = beeData->mMaterialTable.mTexture->getNum();
+        const u32 textureNum = beeData->mMaterialTable.mTexture->getNum();
 
         for (u16 i = 0; i < textureNum; i++) {
             J3DModelData* modelData = MR::getJ3DModelData(_9E4);
@@ -590,7 +594,7 @@ void MarioActor::swapTextureInit() {
 
     if (_A00 != nullptr) {
         J3DModelData* hopperData = MR::getJ3DModelData(_A00);
-        const u16 textureNum = hopperData->mMaterialTable.mTexture->getNum();
+        const u32 textureNum = hopperData->mMaterialTable.mTexture->getNum();
 
         for (u16 i = 0; i < textureNum; i++) {
             J3DModelData* modelData = MR::getJ3DModelData(_A00);
