@@ -122,12 +122,12 @@ void HeapMemoryWatcher::createRootHeap() {
     u32 arenaHi, arenaLo;
 
     JKRExpHeap::createRoot(1, true);
-    arenaLo = reinterpret_cast<u32>(OSGetMEM2ArenaLo());
-    arenaHi = reinterpret_cast<u32>(OSGetMEM2ArenaHi());
-    newHi = reinterpret_cast<void*>(arenaLo + 0xE00000);
+    arenaLo = reinterpret_cast< u32 >(OSGetMEM2ArenaLo());
+    arenaHi = reinterpret_cast< u32 >(OSGetMEM2ArenaHi());
+    newHi = reinterpret_cast< void* >(arenaLo + 0xE00000);
     OSSetMEM2ArenaHi(newHi);
     JKRHeap::setAltAramStartAdr(arenaLo);
-    pHeap = JKRExpHeap::create(newHi, arenaHi - reinterpret_cast<u32>(newHi), JKRHeap::sRootHeap, true);
+    pHeap = JKRExpHeap::create(newHi, arenaHi - reinterpret_cast< u32 >(newHi), JKRHeap::sRootHeap, true);
 
     if (MR::isEqualCurrentHeap(pHeap)) {
         JKRHeap::sRootHeap->becomeCurrentHeap();
