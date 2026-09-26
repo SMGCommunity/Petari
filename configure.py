@@ -2419,7 +2419,7 @@ config.libs = [
             Object(Matching, "Game/System/GameSystemDimmingWatcher.cpp"),
             Object(Matching, "Game/System/GameSystemErrorWatcher.cpp"),
             Object(Matching, "Game/System/GameSystemException.cpp"),
-            Object(NonMatching, "Game/System/GameSystemFontHolder.cpp"),
+            Object(Matching, "Game/System/GameSystemFontHolder.cpp"),
             Object(Matching, "Game/System/GameSystemFrameControl.cpp"),
             Object(Matching, "Game/System/GameSystemFunction.cpp"),
             Object(NonMatching, "Game/System/GameSystemObjHolder.cpp"),

@@ -47,7 +47,8 @@ void GameSystemObjHolder::initMessageResource() {
     MR::getMountedArchiveAndHeap("ErrorMessageArchive.arc", &archive, &heap);
 
     char systemMessagePath[128];
-    snprintf(systemMessagePath, sizeof(systemMessagePath), "/%s/MessageData/System.arc", MR::getCurrentLanguagePrefix());
+    const char* languagePrefix = MR::getCurrentLanguagePrefix();
+    snprintf(systemMessagePath, sizeof(systemMessagePath), "/%s/MessageData/System.arc", languagePrefix);
 
     void* systemMessageArchive = MR::decompressFileFromArchive(archive, systemMessagePath, nullptr, 0);
     MR::createAndAddArchive(systemMessageArchive, heap, "/Memory/SystemMessage.arc");
@@ -122,7 +123,7 @@ void GameSystemObjHolder::initNAND() {
 }
 
 void GameSystemObjHolder::initAudio() {
-    mAudioSystem = new AudSystemWrapper(SingletonHolder< HeapMemoryWatcher >::get()->mAudSystemHeap, MR::getStationedHeapNapa());
+    mAudioSystem = new AudSystemWrapper(SingletonHolder< HeapMemoryWatcher >::get()->getAudSystemHeap(), MR::getStationedHeapNapa());
     mAudioSystem->requestResourceForInitialize();
 }
 
