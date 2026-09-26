@@ -19,8 +19,21 @@ namespace {
 }  // namespace
 
 namespace TDDraw {
+    void DirectDraw_FORCE_MATCH_SDATA2() {
+        1.0f;
+        0.0f;
+        0.5f;
+        -1.0f;
+        3.1415927f;
+        2.0f;
+        6.2831855f;
+        0.001f;
+        -30.0f;
+        16777215.0f;
+    }
+
     void setViewMtx(MtxPtr pMtx) {
-        PSMTXCopy(pMtx, mViewMtx);
+        PSMTXCopy(pMtx, ::mViewMtx);
     }
 
     void loadViewMtx(MtxPtr pMtx) {
@@ -28,13 +41,13 @@ namespace TDDraw {
     }
 
     void setModelMtx(MtxPtr pMtx) {
-        MR::multMtx(mViewMtx, pMtx, MR::getCameraViewMtx());
-        GXLoadPosMtxImm(mViewMtx, 0);
+        MR::multMtx(::mViewMtx, pMtx, MR::getCameraViewMtx());
+        GXLoadPosMtxImm(::mViewMtx, 0);
     }
 
     void resetViewMtx() {
-        PSMTXCopy(MR::getCameraViewMtx(), mViewMtx);
-        GXLoadPosMtxImm(mViewMtx, 0);
+        PSMTXCopy(MR::getCameraViewMtx(), ::mViewMtx);
+        GXLoadPosMtxImm(::mViewMtx, 0);
     }
 
     void close() {
@@ -67,13 +80,13 @@ namespace TDDraw {
 
         switch (viewMode) {
         case 0:
-            PSMTXCopy(MR::getCameraViewMtx(), mViewMtx);
-            GXLoadPosMtxImm(mViewMtx, 0);
-            PSMTXCopy(mViewMtx, mtx);
+            PSMTXCopy(MR::getCameraViewMtx(), ::mViewMtx);
+            GXLoadPosMtxImm(::mViewMtx, 0);
+            PSMTXCopy(::mViewMtx, mtx);
             break;
         case 1:
             MR::loadProjectionMtx();
-            GXLoadPosMtxImm(mViewMtx, 0);
+            GXLoadPosMtxImm(::mViewMtx, 0);
             break;
         case 2:
             cameraInit2D();
@@ -311,20 +324,20 @@ namespace TDDraw {
         front.set< f32 >(rMtx(0, 2), rMtx(1, 2), rMtx(2, 2));
         TVec3f center;
         rMtx.getTrans(center);
-        f32 startSin = MR::sin(startAzimuth);
-        f32 startCos = MR::cos(startAzimuth);
-        TVec3f previousRadial((side * startCos + up * startSin) * radius);
-        f32 polarSpan = endPolar - startPolar;
+        f32 azimuthSin, azimuthCos;
+        azimuthSin = MR::sin(startAzimuth);
+        azimuthCos = MR::cos(startAzimuth);
+        TVec3f previousRadial((side * azimuthCos + up * azimuthSin) * radius);
 
         for (u32 i = 1; i <= azimuthSegments; i++) {
             f32 azimuth = startAzimuth + (static_cast< f32 >(i) / azimuthSegments) * (endAzimuth - startAzimuth);
-            f32 azimuthSin = MR::sin(azimuth);
-            f32 azimuthCos = MR::cos(azimuth);
+            azimuthSin = MR::sin(azimuth);
+            azimuthCos = MR::cos(azimuth);
             TVec3f radial((side * azimuthCos + up * azimuthSin) * radius);
 
             GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 2 * (polarSegments + 1));
             for (u32 j = 0; j <= polarSegments; j++) {
-                f32 polar = (startPolar + (static_cast< f32 >(j) / polarSegments) * polarSpan);
+                f32 polar = (startPolar + (static_cast< f32 >(j) / polarSegments) * (endPolar - startPolar));
                 f32 polarSin = MR::sin(polar);
                 f32 polarCos = MR::cos(polar);
                 TVec3f ringCenter(center + front * (polarCos * radius));
@@ -539,40 +552,54 @@ namespace TDDraw {
         u8 tileBuffer[0x800] ATTRIBUTE_ALIGN(32);
     }
 
-    void tileConversion8(u8* pTexture, u32 width, u32 height) {
+    inline void tileConversion8Impl(u8* pTexture, u32 width, u32 height, u8* pTileBuffer) {
         u8* pDest = pTexture;
-        u32 offset = 0;
-        for (u32 y = 0; y < height; y += 4) {
-            for (u32 x = 0; x < width; x += 8) {
-                for (u32 row = 0; row < 4; row++) {
-                    for (u32 column = 0; column < 8; column++) {
-                        tileBuffer[offset++] = pTexture[(y + row) * width + x + column];
-                    }
+        u8* pBuffer = pTileBuffer;
+        u32 offset, row, y, x, sourceOffset;
+        offset = 0;
+
+        for (y = 0; y < height; y += 4) {
+            for (x = 0; x < width; x += 8) {
+                for (row = 0; row < 4; row++) {
+                    sourceOffset = ((y + row) * width) + x;
+                    *reinterpret_cast< u32* >(&pBuffer[offset]) = *reinterpret_cast< const u32* >(&pTexture[sourceOffset]);
+                    *reinterpret_cast< u32* >(&pBuffer[offset + 4]) = *reinterpret_cast< const u32* >(&pTexture[sourceOffset + 4]);
+                    offset += 8;
                 }
             }
 
-            MR::copyMemory(pDest, tileBuffer, width * 4);
+            MR::copyMemory(pDest, pBuffer, width * 4);
             pDest += width * 4;
             offset = 0;
         }
     }
 
-    void tileConversion16(u16* pTexture, u32 width, u32 height) {
+    void tileConversion8(u8* pTexture, u32 width, u32 height) {
+        tileConversion8Impl(pTexture, width, height, tileBuffer);
+    }
+
+    inline void tileConversion16Impl(u16* pTexture, u32 width, u32 height, u8* pBuffer) {
         u8* pDest = reinterpret_cast< u8* >(pTexture);
-        u32 offset = 0;
-        for (u32 y = 0; y < height; y += 4) {
-            for (u32 x = 0; x < width; x += 4) {
-                for (u32 row = 0; row < 4; row++) {
-                    for (u32 column = 0; column < 4; column++) {
-                        tileBuffer[offset++] = pTexture[(y + row) * width + x + column];
+        u8* const pBufferLocal = pBuffer;
+        u32 offset, y, row, column, x;
+        offset = 0;
+        for (y = 0; y < height; y += 4, pDest += 32) {
+            for (x = 0; x < width; x += 4) {
+                for (row = 0; row < 4; row++) {
+                    for (column = 0; column < 4; column++) {
+                        pBufferLocal[offset] = pTexture[(y + row) * width + (x + column)];
+                        offset++;
                     }
                 }
             }
 
-            MR::copyMemory(pDest, tileBuffer, 32);
+            MR::copyMemory(pDest, pBufferLocal, 32);
             offset = 0;
-            pDest += 32;
         }
+    }
+
+    void tileConversion16(u16* pTexture, u32 width, u32 height) {
+        tileConversion16Impl(pTexture, width, height, tileBuffer);
     }
 
     u32 getTexel32(const JUTTexture* pTexture, u32 x, u32 y) {
@@ -661,13 +688,6 @@ namespace TDDraw {
         if (MR::isScreen16Per9()) {
             pPosition->x *= static_cast< f32 >(MR::getScreenWidth()) / MR::getFrameBufferWidth();
         }
-    }
-
-    void setGXColor(u32 color, GXColor* pColor) {
-        pColor->r = (color >> 24) & 0xFF;
-        pColor->g = (color >> 16) & 0xFF;
-        pColor->b = (color >> 8) & 0xFF;
-        pColor->a = color & 0xFF;
     }
 
 }  // namespace TDDraw

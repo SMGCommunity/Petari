@@ -2662,7 +2662,7 @@ config.libs = [
             Object(Matching, "Game/Util/BezierSurface.cpp"),
             Object(Matching, "Game/Util/BothDirList.cpp"),
             Object(Matching, "Game/Util/CollisionPartsFilter.cpp"),
-            Object(NonMatching, "Game/Util/DirectDraw.cpp"),
+            Object(Matching, "Game/Util/DirectDraw.cpp"),
             Object(Matching, "Game/Util/DirectDrawUtil.cpp"),
             Object(NonMatching, "Game/Util/FixedPosition.cpp"),
             Object(NonMatching, "Game/Util/GeometryBindUtil.cpp"),

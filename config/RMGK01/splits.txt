@@ -9644,6 +9644,7 @@ Game/Util/CollisionPartsFilter.cpp:
 
 Game/Util/DirectDraw.cpp:
 	.text       start:0x80401F78 end:0x804044C8
+	.rodata     start:0x8053F5B8 end:0x8053F5C8
 	.bss        start:0x8060C5A0 end:0x8060CE00
 	.sbss       start:0x806B7048 end:0x806B7050
 	.sdata2     start:0x806C1920 end:0x806C1948
