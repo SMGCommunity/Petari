@@ -4,8 +4,6 @@
 #include <cmath>
 #include <revolution/types.h>
 
-static f32 flt_80630CA0[0x408];
-
 namespace JGeometry {
     template < typename T >
     class TUtil {
@@ -54,10 +52,10 @@ namespace JGeometry {
             }
 
             if (val < 0.0f) {
-                return -flt_80630CA0[(u32)(1023.5f * -val)];
+                return -JMath::sAsinAcosTable.mTable[(u32)(1023.5f * -val)];
             }
 
-            return flt_80630CA0[(u32)(1023.5f * val)];
+            return JMath::sAsinAcosTable.mTable[(u32)(1023.5f * val)];
         }
 
         static f32 acos(f32 val) NO_INLINE {

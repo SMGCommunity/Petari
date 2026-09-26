@@ -375,8 +375,8 @@ void AudRhythmSeqParser::init() {
         initNoteInfo(i);
     }
     mCallDepth = 0;
-    mTempo = 0.0f;
-    mModifiedTempo = 0.0f;
+    mTempo = 120.0f;
+    mModifiedTempo = 120.0f;
 }
 
 void AudRhythmSeqParser::activate() {
