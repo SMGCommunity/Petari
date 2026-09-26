@@ -367,7 +367,8 @@ void ScenarioSelectLayout::fadeInText() {
     MR::startPaneAnim(this, "BestScore", "SelectIn", 0);
 
     if (isPlacedCoin) {
-        MR::setTextBoxFormatRecursive(this, "ShaCoinNum", L"%03d", MR::getCoinBestScore(stageName, mSelectedScenarioNo));
+        const s32 bestScore = MR::getCoinBestScore(stageName, mSelectedScenarioNo);
+        MR::setTextBoxFormatRecursive(this, "ShaCoinNum", L"%03d", bestScore);
     } else {
         MR::setPaneAnimFrameAndStop(this, "BestScore", 0.0f, 0);
     }
@@ -501,8 +502,10 @@ void ScenarioSelectLayout::appearAllStar(s32 normalScenarioCompleteNum, s32 extr
 
             if (!isNewScenario) {
                 starState = 2;
+            } else if (i < normalScenarioCompleteNum - 1) {
+                starState = 1;
             } else {
-                starState = i < normalScenarioCompleteNum - 1;
+                starState = 0;
             }
 
             appearStar(i, i + 1, starState);
