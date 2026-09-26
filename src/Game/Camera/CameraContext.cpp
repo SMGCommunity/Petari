@@ -76,7 +76,7 @@ void CameraContext::setShakeOffset(f32 x, f32 y) {
 }
 
 void CameraContext::updateProjectionMtx() {
-    mProjection.makePerspective(getFovy(), getAspect(), getNearZ(), getFarZ());
+    mProjection.makePerspective(mFovy, getAspect(), mNearZ, mFarZ);
 
     TProj3f trans;
     trans.makeTrans(mShakeOffset.x, mShakeOffset.y);
