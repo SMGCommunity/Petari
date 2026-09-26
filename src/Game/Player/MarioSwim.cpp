@@ -127,16 +127,15 @@ namespace {
     static f32 cUpperAngleWait = JGeometry::TUtil< f32 >::PI() / 100.0f;
     static f32 cWaterSurfaceRange = 160.0f;
     static f32 cTurnMotionSpeed = 5.0f;
-
 };  // namespace
 
-f32 getSwimValue(f32 stick, u32 index, const MarioConstTable* table) {
+f32 getSwimValue(f32 stick, u32 index, const MarioConstTable* pTable) {
     if (index == 2) {
-        return table->mSwimRotXIne;
+        return pTable->mSwimRotXIne;
     }
 
     if (index == 3) {
-        return table->mSwimRotZIne;
+        return pTable->mSwimRotZIne;
     }
 
     return 0.0f;
@@ -999,7 +998,7 @@ bool MarioSwim::update() {
 
             fr1d = ::cNeutralAngleWait + (fr1c - ::cNeutralAngleWait) * getStickY();
         } else if (getStickY() < 0.0f) {
-            fr1d = ::cLimitAngleSink + (::cLimitAngleWait - ::cLimitAngleSink) * -getStickY();
+            fr1d = ::cNeutralAngleWait + (::cUpperAngleWait - ::cNeutralAngleWait) * -getStickY();
         }
 
         f32 fr1e = 0.05f;
