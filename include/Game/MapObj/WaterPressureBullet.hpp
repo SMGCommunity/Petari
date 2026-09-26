@@ -19,9 +19,19 @@ public:
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void shotWaterBullet(LiveActor*, const TPos3f&, f32, bool, bool, bool, ActorCameraInfo**);
+
     bool isBound() const {
         return mHostActor != nullptr;
     }
+
+    bool isNotBoundInline() const {
+        return _B2 && !isBound();
+    }
+
+    bool isNotBound() {
+        return isNotBoundInline() || !_B2;
+    }
+
     void exeFly();
     void exeSpinKill();
     bool startHostCamera() const;
