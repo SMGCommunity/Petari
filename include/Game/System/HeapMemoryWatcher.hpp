@@ -32,16 +32,16 @@ public:
         return mAudSystemHeap;
     }
 
-    JKRExpHeap* mStationedHeapNapa;     // 0x0
-    JKRExpHeap* mStationedHeapGDDR;     // 0x4
-    JKRExpHeap* mGameHeapNapa;          // 0x8
-    JKRExpHeap* mGameHeapGDDR;          // 0xC
-    JKRHeap* mFileCacheHeap;            // 0x10
-    JKRSolidHeap* mSceneHeapNapa;       // 0x14
-    JKRSolidHeap* mSceneHeapGDDR;       // 0x18
-    JKRExpHeap* mWPadHeap;              // 0x1C
-    JKRExpHeap* mHomeButtonLayoutHeap;  // 0x20
-    JKRSolidHeap* mAudSystemHeap;       // 0x24
+    /* 0x00 */ JKRExpHeap* mStationedHeapNapa;
+    /* 0x04 */ JKRExpHeap* mStationedHeapGDDR;
+    /* 0x08 */ JKRExpHeap* mGameHeapNapa;
+    /* 0x0C */ JKRExpHeap* mGameHeapGDDR;
+    /* 0x10 */ JKRHeap* mFileCacheHeap;
+    /* 0x14 */ JKRSolidHeap* mSceneHeapNapa;
+    /* 0x18 */ JKRSolidHeap* mSceneHeapGDDR;
+    /* 0x1C */ JKRExpHeap* mWPadHeap;
+    /* 0x20 */ JKRExpHeap* mHomeButtonLayoutHeap;
+    /* 0x24 */ JKRSolidHeap* mAudSystemHeap;
 
     static JKRExpHeap* sRootHeapGDDR3;
 };
