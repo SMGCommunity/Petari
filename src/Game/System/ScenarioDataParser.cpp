@@ -19,9 +19,9 @@ namespace {
     }
 
     struct GalaxyNameSortLt {
-        bool operator()(ScenarioData* ppLhs, ScenarioData* ppRhs) {
-            return static_cast< u32 >(GalaxyNameSortTable::getGalaxySortIndex(getGalaxyName(ppLhs))) <
-                   static_cast< u32 >(GalaxyNameSortTable::getGalaxySortIndex(getGalaxyName(ppRhs)));
+        bool operator()(ScenarioData* pLhs, ScenarioData* pRhs) {
+            return static_cast< u32 >(GalaxyNameSortTable::getGalaxySortIndex(getGalaxyName(pLhs))) <
+                   static_cast< u32 >(GalaxyNameSortTable::getGalaxySortIndex(getGalaxyName(pRhs)));
         }
     };
 
@@ -30,7 +30,7 @@ namespace {
     }
 };  // namespace
 
-ScenarioData::ScenarioData(const char* pFilePath) : mScenarioData(nullptr), mGalaxyName(nullptr), mZoneList(nullptr) {
+ScenarioData::ScenarioData(const char* pFilePath) : mScenarioData(), mGalaxyName(), mZoneList() {
     char fileName[64];
     MR::removeExtensionString(fileName, sizeof(fileName), MR::getBasename(pFilePath));
 
@@ -57,25 +57,27 @@ ScenarioData::ScenarioData(const char* pFilePath) : mScenarioData(nullptr), mGal
 
 s32 ScenarioData::getScenarioNum() const {
     s32 count = 0;
-    for (s32 scenarioNo = 1; scenarioNo <= mScenarioData->getNumEntries(); ++scenarioNo) {
+    for (s32 scenarioNo = 1; scenarioNo <= mScenarioData->getNumEntries(); scenarioNo++) {
         bool hidden = false;
         getValueBool("IsHidden", scenarioNo, &hidden);
         if (!hidden) {
-            ++count;
+            count++;
         }
     }
+
     return count;
 }
 
 s32 ScenarioData::getPowerStarNum() const {
     s32 count = 0;
-    for (s32 scenarioNo = 1; scenarioNo <= mScenarioData->getNumEntries(); ++scenarioNo) {
+    for (s32 scenarioNo = 1; scenarioNo <= mScenarioData->getNumEntries(); scenarioNo++) {
         u32 powerStarId = 0;
         getValueU32("PowerStarId", scenarioNo, &powerStarId);
         if (powerStarId != 0) {
-            ++count;
+            count++;
         }
     }
+
     return count;
 }
 
@@ -152,6 +154,8 @@ GalaxyStatusAccessor ScenarioDataIter::makeAccessor() const {
     return GalaxyStatusAccessor(mParser->getScenarioData(mCur));
 }
 
+#pragma push
+#pragma opt_propagation off
 ScenarioDataParser::ScenarioDataParser(const char* pName) : NameObj(pName), mScenarioData() {
     DVDDir dir;
     DVDDirEntry dirent;
@@ -171,13 +175,19 @@ ScenarioDataParser::ScenarioDataParser(const char* pName) : NameObj(pName), mSce
 
         ScenarioData* pData = new ScenarioData(fileName);
 
-        mScenarioData.push_back(pData);
+        u32 index = mScenarioData.mCount;
+        u32 nextCount = index;
+        nextCount++;
+
+        mScenarioData.mArray[index] = pData;
+        mScenarioData.mCount = nextCount;
     }
 
     DVDCloseDir(&dir);
 
     std::sort(mScenarioData.begin(), mScenarioData.end(), GalaxyNameSortLt());
 }
+#pragma pop
 
 const ScenarioData* ScenarioDataParser::getScenarioData(const char* pGalaxyName) const {
     for (s32 i = 0; i < mScenarioData.size(); i++) {
@@ -200,7 +210,7 @@ GalaxyStatusAccessor ScenarioDataParser::makeAccessor(const char* pGalaxyName) c
 }
 
 namespace ScenarioDataFunction {
-    ScenarioDataParser* getScenarioDataParser() {
+    ScenarioDataParser* getScenarioDataParser() NO_INLINE {
         return SingletonHolder< GameSystem >::get()->mSceneController->mScenarioParser;
     }
 
