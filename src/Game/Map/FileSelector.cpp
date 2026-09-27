@@ -220,10 +220,12 @@ void FileSelector::control() {
         rPosition = _98[i] * 0.05f + rPosition * 0.95f;
     }
 
+    TVec3f* pEffectPosition;
+
     for (int i = 0; i < mItems->getObjNum(); i++) {
         LiveActor* pActor = mItems->getActor(i);
-        TVec3f& rEffectPosition = mSelectEffect[i].mPosition;
-        rEffectPosition.set(pActor->mPosition + TVec3f(0.0f, ::sSelectEffectOffset, 0.0f));
+        pEffectPosition = &mSelectEffect[i].mPosition;
+        pEffectPosition->set(pActor->mPosition + TVec3f(0.0f, ::sSelectEffectOffset, 0.0f));
     }
 
     updateBgm();
