@@ -2653,7 +2653,7 @@ config.libs = [
             Object(Matching, "Game/Util/SwitchEventFunctorListener.cpp"),
             Object(NonMatching, "Game/Util/SystemUtil.cpp"),
             Object(Matching, "Game/Util/TalkUtil.cpp"),
-            Object(NonMatching, "Game/Util/AreaObjUtil.cpp"),
+            Object(Matching, "Game/Util/AreaObjUtil.cpp"),
             Object(
                 Matching,
                 "Game/Util/BaseMatrixFollowTargetHolder.cpp",
