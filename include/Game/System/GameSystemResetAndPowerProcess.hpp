@@ -46,8 +46,8 @@ public:
     /* 0x20 */ TriggerChecker* mResetTriggerChecker;
     /* 0x24 */ ValueControl* mFadeinoutControl;
     /* 0x28 */ DVDCommandBlock mCommandBlock;
-    /* 0x58 */ s32 mResetOperation;
+    /* 0x58 */ volatile s32 mResetOperation;
     /* 0x5C */ bool _5C;
-    /* 0x5D */ bool mIsValidPowerOff;
+    /* 0x5D */ volatile bool mIsValidPowerOff;
     /* 0x5E */ bool _5E;
 };
