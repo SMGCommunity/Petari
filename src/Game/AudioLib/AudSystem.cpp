@@ -714,12 +714,23 @@ void AudSystem::initVolumeSetting() {
 }
 
 void AudSystem::initCategoryArrangement() {
-    // FIXME: struct shouldnt be cleared beforehand!
-    JAISeCategoryArrangement arrangement = {
-        AudParams::arrangeSE_SY, AudParams::arrangeSE_PV, AudParams::arrangeSE_PM, AudParams::arrangeSE_BV,  AudParams::arrangeSE_BM,
-        AudParams::arrangeSE_OJ, AudParams::arrangeSE_AT, AudParams::arrangeSE_DM, AudParams::arrangeSE_EV,  AudParams::arrangeSE_EM,
-        AudParams::arrangeSE_SV, AudParams::arrangeSE_SM, AudParams::arrangeSE_RS, AudParams::arrangeHOMESE,
-    };
+    JAISeCategoryArrangement arrangement;
+
+    arrangement.mItems[0] = AudParams::arrangeSE_SY;
+    arrangement.mItems[1] = AudParams::arrangeSE_PV;
+    arrangement.mItems[2] = AudParams::arrangeSE_PM;
+    arrangement.mItems[3] = AudParams::arrangeSE_BV;
+    arrangement.mItems[4] = AudParams::arrangeSE_BM;
+    arrangement.mItems[5] = AudParams::arrangeSE_OJ;
+    arrangement.mItems[6] = AudParams::arrangeSE_AT;
+    arrangement.mItems[7] = AudParams::arrangeSE_DM;
+    arrangement.mItems[8] = AudParams::arrangeSE_EV;
+    arrangement.mItems[9] = AudParams::arrangeSE_EM;
+    arrangement.mItems[10] = AudParams::arrangeSE_SV;
+    arrangement.mItems[11] = AudParams::arrangeSE_SM;
+    arrangement.mItems[12] = AudParams::arrangeSE_RS;
+    arrangement.mItems[13] = AudParams::arrangeHOMESE;
+
     mSeMgr.setCategoryArrangement(arrangement);
 }
 

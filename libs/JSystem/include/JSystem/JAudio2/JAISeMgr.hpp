@@ -26,8 +26,10 @@ struct JASNonCopyable {
 };
 
 struct JAISeCategoryArrangementItem {
-    u8 mMaxActiveSe;
-    u8 mMaxInactiveSe;
+    struct {
+        u8 mMaxActiveSe;
+        u8 mMaxInactiveSe;
+    };
 };
 
 struct JAISeCategoryArrangement {
