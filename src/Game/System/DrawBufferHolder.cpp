@@ -58,15 +58,12 @@ s32 DrawBufferHolder::registerDrawBuffer(LiveActor* pActor, s32 drawBufferType) 
 }
 
 void DrawBufferHolder::active(LiveActor* pActor, s32 drawBufferType, s32 executorIndex) {
-    // FIXME: regswap
-    // https://decomp.me/scratch/xttyc
-
     bool isEmpty = isBufferGroupEmpty(drawBufferType);
     mBufferGroups[drawBufferType].active(pActor, executorIndex);
 
     if (isEmpty) {
         ExecutorList& executeList = getExecuteList(drawBufferType);
-        executeList.push_back(&mBufferGroups[drawBufferType]);
+        executeList.mArray[executeList.mCount++] = &mBufferGroups[drawBufferType];
     }
 }
 

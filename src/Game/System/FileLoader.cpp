@@ -133,12 +133,14 @@ const RequestFileInfo* FileLoader::getRequestFileInfoConst(const char* pName) co
 RequestFileInfo* FileLoader::addRequest(const char* pName) {
     OSMutex* mutex = &mMutex;
     OSLockMutex(mutex);
-    s32 count = mRequestedFileCount;
-    mRequestedFileCount = count + 1;
-    RequestFileInfo* info = &mRequestFileInfos[count];
+
+    RequestFileInfo* info = &mRequestFileInfos[mRequestedFileCount];
+    mRequestedFileCount++;
     info->mFileEntry = nullptr;
     info->_88 = 0;
     snprintf(info->mFileName, sizeof(info->mFileName), "%s", pName);
+
     OSUnlockMutex(mutex);
+
     return info;
 }

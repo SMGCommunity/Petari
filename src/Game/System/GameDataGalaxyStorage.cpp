@@ -164,20 +164,19 @@ u32 GameDataAllGalaxyStorage::getSignature() const {
 }
 
 s32 GameDataAllGalaxyStorage::deserialize(const u8* pData, u32 dataSize) {
-    // FIXME: regswaps
-    // https://decomp.me/scratch/1nmoc
-
     s32 attributeNum = *(u16*)(pData + 0);
+    const char* name;
     BinaryDataContentAccessor accessor((u8*)(pData + 2));
     u32 readOffset = accessor.getHeaderSize() + 2;
 
     bool readError = false;
 
     for (s32 idx = 0; idx < attributeNum; idx++) {
-        const char* name = "mGalaxyName";
-        s32 galaxyIndex = findIndex(*(u16*)accessor.getPointer(name, (u8*)(pData + readOffset)));
+        name = "mGalaxyName";
+        u8* ptr = (u8*)(pData + readOffset);
+        s32 galaxyIndex = findIndex(*(u16*)accessor.getPointer(name, ptr));
         if (galaxyIndex >= 0) {
-            switch (mSomeGalaxyStorages[galaxyIndex]->deserialize(accessor, (u8*)(pData + readOffset))) {
+            switch (mSomeGalaxyStorages[galaxyIndex]->deserialize(accessor, ptr)) {
             case 0:
                 break;
             case 1:

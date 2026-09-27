@@ -40,14 +40,17 @@ s32 GameEventFlagStorage::serialize(u8* pData, u32 size) const {
 }
 
 s32 GameEventFlagStorage::deserialize(const u8* pData, u32 size) {
+    bool isOn;
     s32 deserializationFailed = false;
     JSUMemoryInputStream stream(pData, size);
 
-    for (s32 i = 0; i < (int)size / (int)sizeof(u16); i++) {
+    int num = (int)size / (int)sizeof(u16);
+
+    for (s32 i = 0; i < num; i++) {
         u16 data;
         stream.read(&data, sizeof(data));
 
-        bool isOn = ((data >> 15) & 0x1) != 0;
+        isOn = ((data >> 15) & 0x1) != 0;
         int index = GameEventFlagTable::getIndexFromHashCode(data & 0x7FFF);
 
         if (index >= 0) {
