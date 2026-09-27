@@ -2198,7 +2198,7 @@ config.libs = [
             Object(Matching, "Game/Player/RushEndInfo.cpp"),
             Object(Matching, "Game/Player/TornadoMario.cpp"),
             Object(Matching, "Game/Player/ModelHolder.cpp"),
-            Object(NonMatching, "Game/Player/MarioShadow.cpp"),
+            Object(Matching, "Game/Player/MarioShadow.cpp"),
             Object(Matching, "Game/Player/MarioMapCode.cpp"),
             Object(NonMatching, "Game/Player/MarioActorWipe.cpp"),
             Object(Matching, "Game/Player/DrawAdaptor.cpp"),

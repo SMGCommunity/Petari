@@ -17,6 +17,14 @@
 #include <cstring>
 #include <revolution/gd.h>
 
+void MarioShadow_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)-1.0f;
+    (void)2.0f;
+}
+
 namespace {
     f32 cCheckOffset0 = 5.0f;
     f32 cDrawOffset0 = -5.0f;
@@ -99,6 +107,7 @@ CollisionShadow::CollisionShadow(f32 radius, f32 length) : NameObj("投影シャ
     _306 = 0;
     _304 = 0;
     _307 = 1;
+
     for (u32 i = 0; i < 128; i++) {
         _70[i] = 0;
     }
@@ -242,12 +251,16 @@ void CollisionShadow::create(const TVec3f& rPosition, const TVec3f& rDirection, 
         }
     }
 
+    // TODO is this legit?
+    register f32 texScale = 0.0033333334f;
+
     for (u32 i = 0; i < _6C; i++) {
         TVec3f relative(_60[i] - rPosition);
         f32 s = relative.dot(side);
         f32 t = relative.dot(_30);
-        _64[i].x = 0.5f + s * 0.0033333334f;
-        _64[i].y = 0.5f + t * 0.0033333334f;
+
+        _64[i].x = 0.5f + s * texScale;
+        _64[i].y = 0.5f + t * texScale;
     }
 
     if (_33C > 40) {
