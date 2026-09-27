@@ -3,20 +3,16 @@
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include <revolution.h>
 
-#define NR_MESSAGES 8
-
-namespace {
-    JKRDecomp* gDecompInstance;       // 0x806B71D8
-    OSMessage gMessage[NR_MESSAGES];  // 0x8060D038
-    OSMessageQueue gMessageQueue;     // 0x8060D058
-}  // namespace
+JKRDecomp* JKRDecomp::sDecompObject;
+OSMessage JKRDecomp::sMessageBuffer[8];
+OSMessageQueue JKRDecomp::sMessageQueue;
 
 JKRDecomp* JKRDecomp::create(long a1) {
-    if (gDecompInstance == nullptr) {
-        gDecompInstance = new (JKRHeap::sSystemHeap, 0) JKRDecomp(a1);
+    if (sDecompObject == nullptr) {
+        sDecompObject = new (JKRHeap::sSystemHeap, 0) JKRDecomp(a1);
     }
 
-    return gDecompInstance;
+    return sDecompObject;
 }
 
 JKRDecomp::JKRDecomp(long a1) : JKRThread(0x4000, 0x10, a1) {
@@ -27,12 +23,12 @@ JKRDecomp::~JKRDecomp() {
 }
 
 void* JKRDecomp::run() {
-    OSInitMessageQueue(&gMessageQueue, &gMessage[0], NR_MESSAGES);
+    OSInitMessageQueue(&sMessageQueue, sMessageBuffer, 8);
 
     JKRDecompCommand* commandPtr;
 
     while (true) {
-        OSReceiveMessage(&gMessageQueue, reinterpret_cast< OSMessage* >(&commandPtr), OS_MESSAGE_BLOCK);
+        OSReceiveMessage(&sMessageQueue, reinterpret_cast< OSMessage* >(&commandPtr), OS_MESSAGE_BLOCK);
 
         JKRDecompCommand& command = *commandPtr;
 
@@ -73,7 +69,7 @@ JKRDecompCommand* JKRDecomp::prepareCommand(unsigned char* pSrc, unsigned char* 
 }
 
 void JKRDecomp::sendCommand(JKRDecompCommand* pCommand) {
-    OSSendMessage(&gMessageQueue, pCommand, OS_MESSAGE_NOBLOCK);
+    OSSendMessage(&sMessageQueue, pCommand, OS_MESSAGE_NOBLOCK);
 }
 
 bool JKRDecomp::sync(JKRDecompCommand* pCommand, int noBlock) {
@@ -90,10 +86,10 @@ bool JKRDecomp::sync(JKRDecompCommand* pCommand, int noBlock) {
 bool JKRDecomp::orderSync(unsigned char* pSrc, unsigned char* pDst, unsigned long compressedSize, unsigned long decompressedSize) {
     JKRDecompCommand* command = prepareCommand(pSrc, pDst, compressedSize, decompressedSize, nullptr);
 
-    OSSendMessage(&gMessageQueue, command, OS_MESSAGE_NOBLOCK);
+    OSSendMessage(&sMessageQueue, command, OS_MESSAGE_NOBLOCK);
     bool received = sync(command, 0);
 
-    if (command) {
+    if (command != nullptr) {
         delete command;
     }
 
@@ -110,7 +106,7 @@ void JKRDecomp::decode(unsigned char* pSrc, unsigned char* pDst, unsigned long c
     }
 }
 
-#define READU32_BE(ptr, offset) (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) | (u32)ptr[offset + 3]);
+#define READU32_BE(ptr, offset) (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) | (u32)ptr[offset + 3])
 
 void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength) {
     int linkInfo;
@@ -120,6 +116,7 @@ void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength) {
     int count;
     int dstOffset;
     u32 length = srcLength;
+    u32 skip = dstLength;
     int i;
 
     int decodedSize = READU32_BE(src, 4);
@@ -130,10 +127,13 @@ void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength) {
     dstOffset = 0;
     srcChunkOffset = 16;
 
-    if (srcLength == 0)
+    if (srcLength == 0) {
         return;
-    if (dstLength > decodedSize)
+    }
+
+    if (dstLength > decodedSize) {
         return;
+    }
 
     do {
         if (counter == 0) {
@@ -143,14 +143,17 @@ void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength) {
         }
 
         if (chunkBits & 0x80000000) {
-            if (dstLength == 0) {
+            if (skip == 0) {
                 dst[dstOffset] = src[srcDataOffset];
                 length--;
-                if (length == 0)
+
+                if (length == 0) {
                     return;
+                }
             } else {
-                dstLength--;
+                skip--;
             }
+
             dstOffset++;
             srcDataOffset++;
         } else {
@@ -158,23 +161,29 @@ void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength) {
             linkTableOffset += sizeof(u16);
 
             offset = dstOffset - (linkInfo & 0xFFF);
-            count = (linkInfo >> 12);
+            count = linkInfo >> 12;
+
             if (count == 0) {
                 count = (u32)src[srcDataOffset++] + 0x12;
-            } else
+            } else {
                 count += 2;
+            }
 
-            if (count > decodedSize - dstOffset)
+            if (count > decodedSize - dstOffset) {
                 count = decodedSize - dstOffset;
+            }
 
             for (i = 0; i < count; i++, dstOffset++, offset++) {
-                if (dstLength == 0) {
+                if (skip == 0) {
                     dst[dstOffset] = dst[offset - 1];
                     length--;
-                    if (length == 0)
+
+                    if (length == 0) {
                         return;
-                } else
-                    dstLength--;
+                    }
+                } else {
+                    skip--;
+                }
             }
         }
 

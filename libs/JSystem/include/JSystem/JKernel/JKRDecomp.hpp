@@ -41,6 +41,10 @@ public:
     static void decodeSZP(unsigned char*, unsigned char*, unsigned long, unsigned long);
     static void decodeSZS(u8*, u8*, u32, u32);
     static EJKRCompression checkCompressed(unsigned char*);
+
+    static JKRDecomp* sDecompObject;
+    static OSMessage sMessageBuffer[8];
+    static OSMessageQueue sMessageQueue;
 };
 
 inline void JKRDecompress(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLength) {
@@ -53,8 +57,11 @@ inline JKRDecomp* JKRCreateDecompManager(s32 priority) {
 
 inline JKRCompression JKRCheckCompressed_noASR(u8* pBuf) {
     JKRCompression compression = JKRDecomp::checkCompressed(pBuf);
-    if (compression == COMPRESSION_ASR)  // ternary i had before was either incorrect, or was not a ternary at all
+
+    if (compression == COMPRESSION_ASR) {
         compression = COMPRESSION_NONE;
+    }
+
     return compression;
 }
 

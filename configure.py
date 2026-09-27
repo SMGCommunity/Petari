@@ -3652,7 +3652,7 @@ config.libs = [
                 "JSystem/JKernel/JKRDvdAramRipper.cpp",
                 extra_cflags=["-ipa file", "-sym on"],
             ),
-            Object(NonMatching, "JSystem/JKernel/JKRDecomp.cpp"),
+            Object(Matching, "JSystem/JKernel/JKRDecomp.cpp"),
         ],
     ),
     JSysLib(
