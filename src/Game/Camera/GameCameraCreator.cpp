@@ -9,6 +9,12 @@
 #include <cstring>
 #include <mem.h>
 
+namespace {
+    CubeCameraMgr* getCubeCameraMgr(const char* pName) {
+        return static_cast< CubeCameraMgr* >(MR::getAreaObjManager(pName));
+    }
+};  // namespace
+
 GameCameraCreator::GameCameraCreator(CameraParamChunkHolder* pChunkHolder) {
     mChunkHolder = pChunkHolder;
     mName = nullptr;
@@ -63,10 +69,7 @@ void GameCameraCreator::scanStartPos() {
 }
 
 void GameCameraCreator::scanArea() {
-    // FIXME: regswap
-    // https://decomp.me/scratch/vU2zD
-
-    CubeCameraMgr* mgr = static_cast< CubeCameraMgr* >(MR::getAreaObjManager("CubeCamera"));
+    CubeCameraMgr* mgr = ::getCubeCameraMgr("CubeCamera");
     mgr->initAfterLoad();
 
     for (s32 idx = 0; idx < mgr->getNumAreaObj(); idx++) {
