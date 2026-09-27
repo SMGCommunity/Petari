@@ -245,22 +245,24 @@ void GameDataSomeGalaxyStorage::serialize(const BinaryDataContentAccessor& rAcce
 }
 
 s32 GameDataAllGalaxyStorage::serialize(u8* pData, u32 dataSize) const {
-    // FIXME: regswap and missing load
     // https://decomp.me/scratch/NCESx
 
-    *(u16*)(pData + 0) = getGalaxyNum();
-    MR::copyMemory(pData + 2, getSerializer()->getBuffer(), getSerializer()->getHeaderSize());
-
-    s32 writeOffset = getSerializer()->getHeaderSize() + 2;
+    const char* name;
+    s32 writeOffset = 0;
+    *(u16*)(pData + writeOffset) = getGalaxyNum();
+    writeOffset += 2;
+    name = (const char*)getSerializer()->getBuffer();
+    MR::copyMemory(pData + writeOffset, name, getSerializer()->getHeaderSize());
+    writeOffset += getSerializer()->getHeaderSize();
 
     BinaryDataContentAccessor accessor((u8*)getSerializer()->getBuffer());
-    u8* offs;
     for (s32 idx = 0; idx < getGalaxyNum(); idx++) {
         GameDataSomeGalaxyStorage* storage = mSomeGalaxyStorages[idx];
-        const char* name = "mGalaxyName";
-        u16* writePtr = (u16*)accessor.getPointer(name, pData + writeOffset);
+        name = "mGalaxyName";
+        u8* record = pData + writeOffset;
+        u16* writePtr = (u16*)accessor.getPointer(name, record);
         *writePtr = MR::getHashCode(storage->mGalaxyName);
-        storage->serialize(accessor, pData + writeOffset);
+        storage->serialize(accessor, record);
         writeOffset += getSerializer()->getDataSize();
     }
 
