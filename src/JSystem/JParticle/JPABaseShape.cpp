@@ -939,12 +939,15 @@ void JPADrawParticleCallBack(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
 
 static void makeColorTable(GXColor** o_color_table, JPAClrAnmKeyData const* i_data, u8 param_2, s16 i_size, JKRHeap* i_heap) {
     GXColor* color_table = (GXColor*)JKRAllocFromHeap(i_heap, (i_size + 1) * 4, 4);
-    f32 r_step, g_step, b_step, a_step;
+    f32 next_r, next_g, next_b, next_a;
+    f32 r_step, g_step, b_step, a_step, base_step;
     r_step = g_step = b_step = a_step = 0.0f;
+
     f32 r = i_data[0].color.r;
     f32 g = i_data[0].color.g;
     f32 b = i_data[0].color.b;
     f32 a = i_data[0].color.a;
+
     int j = 0;
     for (s16 i = 0; i < i_size + 1; i++) {
         if (i == i_data[j].index) {
@@ -954,16 +957,17 @@ static void makeColorTable(GXColor** o_color_table, JPAClrAnmKeyData const* i_da
             b = i_data[j].color.b;
             a = i_data[j].color.a;
             j++;
+
             if (j < param_2) {
-                r_step = static_cast< f32 >(i_data[j].color.r) - r;
-                b_step = static_cast< f32 >(i_data[j].color.b) - b;
-                g_step = static_cast< f32 >(i_data[j].color.g) - g;
-                a_step = static_cast< f32 >(i_data[j].color.a) - a;
-                f32 base_step = 1.0f / (i_data[j].index - i_data[j - 1].index);
-                r_step = base_step * r_step;
-                b_step = base_step * b_step;
-                g_step = base_step * g_step;
-                a_step = base_step * a_step;
+                next_r = i_data[j].color.r;
+                next_g = i_data[j].color.g;
+                next_b = i_data[j].color.b;
+                next_a = i_data[j].color.a;
+                base_step = 1.0f / (i_data[j].index - i_data[j - 1].index);
+                r_step = base_step * (next_r - r);
+                g_step = base_step * (next_g - g);
+                b_step = base_step * (next_b - b);
+                a_step = base_step * (next_a - a);
             } else {
                 r_step = g_step = b_step = a_step = 0.0f;
             }
