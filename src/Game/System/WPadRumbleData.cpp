@@ -185,18 +185,21 @@ static RumblePattern gRumblePatternTable[] = {
 };
 
 namespace RumbleData {
-    // FIXME: Register swaps.
+    u32 getTableSize() {
+        return ARRAY_SIZE(gRumblePatternTable) - 1;
+    }
+
+    RumblePattern* getData(u16 index) {
+        return &gRumblePatternTable[index];
+    }
+
     const RumblePattern* getPattern(const char* pName) {
         u32 hash = MR::getHashCode(pName);
 
-        for (u32 i = 0; i < getTableSize(); i++) {
-            const RumblePattern* pPattern = getData(i);
-
-            if (hash != pPattern->mHash) {
-                continue;
+        for (u16 i = 0; i < getTableSize(); i++) {
+            if (getData(i)->mHash == hash) {
+                return &gRumblePatternTable[i];
             }
-
-            return pPattern;
         }
 
         return nullptr;
@@ -211,13 +214,5 @@ namespace RumbleData {
     }
 
     void checkHashCollision() {
-    }
-
-    u32 getTableSize() {
-        return ARRAY_SIZE(gRumblePatternTable) - 1;
-    }
-
-    RumblePattern* getData(u16 index) {
-        return &gRumblePatternTable[index];
     }
 };  // namespace RumbleData
