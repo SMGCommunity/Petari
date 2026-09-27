@@ -49,6 +49,11 @@ public:
     void drawType0() const;
 };
 
+void MarioActorDraw_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 namespace {
     inline void initExtraMtxBuffer(J3DModelX* pModel) {
         for (u32 i = 0; i < pModel->_DD; i++) {
@@ -640,6 +645,10 @@ void MarioActor::initFace() {
     }
 }
 
+void MarioActorDraw_FORCE_MATCH_SDATA2_2() {
+    (void)0.00001f;
+}
+
 void MarioActor::updateFace() {
     switch (mCurrModel) {
     case 1:
@@ -853,7 +862,7 @@ void MarioActor::drawReflectModel() const {
     MR::showJoint(model, "HandL0");
     MR::showJoint(model, "Face0");
 
-    if (mCurrModel != 1) {
+    if (static_cast< s8 >(mCurrModel) != 1U) {
         MR::hideMaterial(model, "EyeLid_v");
     }
 
@@ -891,11 +900,11 @@ void MarioActor::drawReflectModel() const {
     MR::hideJoint(model, "HandR0");
     MR::hideJoint(model, "HandL0");
 
-    if (mCurrModel != 4) {
+    if (static_cast< s8 >(mCurrModel) != 4U) {
         MR::hideJoint(model, "Face0");
     }
 
-    if (mCurrModel != 1) {
+    if (static_cast< s8 >(mCurrModel) != 1U) {
         MR::showMaterial(model, "EyeLid_v");
     }
 
