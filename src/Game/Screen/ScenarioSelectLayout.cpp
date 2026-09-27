@@ -71,10 +71,11 @@ namespace NrvScenarioSelectLayout {
     NEW_NERVE(ScenarioSelectLayoutNrvDisappearCometWarning, ScenarioSelectLayout, DisappearCometWarning);
 }  // namespace NrvScenarioSelectLayout
 
-void ScenarioSelectLayout_FORCE_MATCH(TVec2f& rVec) {
-    rVec.zero();
-    rVec.zero();
-    rVec.zero();
+void ScenarioSelectLayout_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)2.0f;
 }
 
 ScenarioSelectLayout::ScenarioSelectLayout(EffectSystem* pEffectSystem, const CameraContext* pCameraContext)
