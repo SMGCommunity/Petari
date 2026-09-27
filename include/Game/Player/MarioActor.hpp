@@ -469,6 +469,7 @@ public:
     bool tryJetAttack(HitSensor*);
     void tryCounterJetAttack(HitSensor*);
     bool tryGetItem(HitSensor*);
+    bool cylinderPushCheck(HitSensor* pSensor, f32 radius, f32 width, f32 height);
     bool cylinderPushCheck(const TVec3f&, f32, f32, f32);
     void attackOrPushPolygons();
     void sendWallTouch(HitSensor*, HitSensor*);

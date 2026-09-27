@@ -1860,7 +1860,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/SimpleMapObj.cpp"),
             Object(Matching, "Game/MapObj/SimpleNormalMapObj.cpp"),
             Object(Matching, "Game/MapObj/SimpleTimerObj.cpp"),
-            Object(NonMatching, "Game/MapObj/SmallStone.cpp"),
+            Object(Matching, "Game/MapObj/SmallStone.cpp"),
             Object(NonMatching, "Game/MapObj/SnowCapsulePlanet.cpp"),
             Object(NonMatching, "Game/MapObj/SnowFloor.cpp"),
             Object(NonMatching, "Game/MapObj/SnowFloorTile.cpp"),

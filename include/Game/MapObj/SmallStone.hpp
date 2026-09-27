@@ -18,6 +18,9 @@ public:
     virtual void startClipped();
     virtual void endClipped();
 
+    s32 getStoneType() const {
+        return mStoneType;
+    }
     bool isAllMemberBreak();
     bool tryBreak();
     void initMember(const char* pModelName, bool useGravity);
@@ -36,6 +39,10 @@ public:
 
     virtual ~SmallStoneMember();
 
+    const TVec3f& getRotation() const {
+        return mRotation;
+    }
+    bool tryPlaceOnGround(const TVec3f& rStart, const TVec3f& rRay);
     bool tryShake();
     bool tryPush(HitSensor* pSender, HitSensor* pReceiver);
     void movementByHost(SmallStone* pHost);

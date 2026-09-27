@@ -52,11 +52,310 @@ void SmallStone_FORCE_MATCH_SDATA2() {
     (void)30.0f;
 }
 
+void SmallStone_FORCE_MATCH_STRINGS(const char** pStrings) {
+    pStrings[0] = "CircleShell";
+    pStrings[1] = "CircleStrawberry";
+    pStrings[2] = "SmallStone";
+    pStrings[3] = "Kind";
+    pStrings[4] = "Break2";
+    pStrings[5] = "Break1";
+    pStrings[6] = "Break3";
+    pStrings[7] = "Break";
+    pStrings[8] = "Range";
+    pStrings[9] = "SmallStoneMember";
+    pStrings[10] = "WindLoop";
+    pStrings[11] = "WindEnd";
+    pStrings[12] = "SE_OJ_STRAWBERRY_BREAK";
+    pStrings[13] = "SE_OJ_SMALL_STONE_BREAK";
+    pStrings[14] = "SE_OJ_STAR_PIECE_BURST";
+}
+
 SmallStone::SmallStone(const char* pName) : LiveActor(pName), mMembers(), mMemberCount(), mPlacementOffset(), mStoneType(), mUseGravity(true) {
 }
 
 SmallStone::~SmallStone() {
     delete[] mMembers;
+}
+
+#pragma push
+#pragma opt_loop_invariants off
+#pragma opt_propagation off
+#pragma opt_lifetimes off
+inline bool SmallStoneMember::tryPlaceOnGround(const TVec3f& rStart, const TVec3f& rRay) {
+    return MR::getFirstPolyOnLineToMap(&mPosition, nullptr, rStart, rRay);
+}
+void SmallStone::initAfterPlacement() {
+    TVec3f gravity;
+
+    if (mUseGravity) {
+        MR::calcGravityVector(this, mPosition, &gravity, nullptr, 0);
+    } else {
+        gravity.set(*getGravity());
+    }
+
+    TVec3f axisX;
+    axisX.set(1, 0, 0);
+    TVec3f axisY;
+    axisY.set(0, 1, 0);
+    MR::makeAxisCrossPlane(&axisX, &axisY, gravity);
+    HitSensor* pSensor = getSensor("Range");
+    pSensor->mRadius = 0.0f;
+    f32 angleStep = TWO_PI / mMemberCount;
+    TVec3f min;
+    min.set(0, 0, 0);
+    TVec3f max;
+    max.set(0, 0, 0);
+    s32 i;
+    bool failed = false;
+
+    for (i = 0; i < mMemberCount; i++) {
+        SmallStoneMember* pMember = mMembers[i];
+        TVec3f offset(axisX);
+        offset.scale(JMACosRadian(angleStep * i));
+        offset.add(axisY * JMASinRadian(angleStep * i));
+        offset.scale(::hCircleRadius);
+        TVec3f start(*getPosition());
+        start.add(offset);
+        start.sub(gravity);
+        failed |= !pMember->tryPlaceOnGround(start, gravity * ::hCheckLineLength);
+
+        if (mUseGravity) {
+            MR::calcGravityVector(pMember, &pMember->mGravity, nullptr, 0);
+        } else {
+            pMember->mGravity.set(gravity);
+        }
+
+        TVec3f& rPosition = pMember->mPosition;
+        rPosition += -*pMember->getGravity() * mPlacementOffset;
+        TVec3f front;
+        front.set(1, 0, 0);
+
+        if (MR::isSameDirection(*pMember->getGravity(), front, 0.01f)) {
+            front.set(0, 1, 0);
+        }
+
+        TPos3f posture;
+        MR::calcMtxFromGravityAndZAxis(&posture, pMember, *pMember->getGravity(), front);
+
+        if (getStoneType() == 1 || getStoneType() == 2) {
+            TPos3f rotation;
+            MR::makeMtxRotate(rotation, pMember->getRotation());
+            posture.concat(rotation);
+        }
+
+        TVec3f euler;
+        posture.getEuler(euler);
+        pMember->mRotation.set(euler.x * _180_PI, euler.y * _180_PI, euler.z * _180_PI);
+        pMember->calcAnim();
+
+        TVec3f memberMin(*pMember->getPosition());
+        TVec3f memberMax(*pMember->getPosition());
+        f32 radius;
+        MR::calcModelBoundingRadius(&radius, pMember);
+        memberMin -= TVec3f(radius, radius, radius);
+        memberMax += TVec3f(radius, radius, radius);
+
+        if (i == 0) {
+            min.set(memberMin);
+            max.set(memberMax);
+        } else {
+            if (memberMin.x < min.x) {
+                min.x = memberMin.x;
+            }
+
+            if (memberMin.y < min.y) {
+                min.y = memberMin.y;
+            }
+
+            if (memberMin.z < min.z) {
+                min.z = memberMin.z;
+            }
+
+            if (max.x < memberMax.x) {
+                max.x = memberMax.x;
+            }
+
+            if (max.y < memberMax.y) {
+                max.y = memberMax.y;
+            }
+
+            if (max.z < memberMax.z) {
+                max.z = memberMax.z;
+            }
+        }
+    }
+
+    TVec3f center((max + min) / 2.0f);
+    mPosition.set(center);
+    f32 radius = 0.0f;
+
+    for (i = 0; i < mMemberCount; i++) {
+        SmallStoneMember* pMember = mMembers[i];
+        TVec3f offset(pMember->mPosition);
+        offset.sub(center);
+        f32 memberRadius;
+        MR::calcModelBoundingRadius(&memberRadius, pMember);
+        f32 extent = memberRadius + offset.length();
+
+        if (radius < extent) {
+            radius = extent;
+        }
+    }
+
+    getSensor("Range")->mRadius = radius;
+    MR::setClippingTypeSphere(this, 2.0f * radius);
+}
+#pragma pop
+
+void SmallStone::control() {
+    for (s32 i = 0; i < mMemberCount; i++) {
+        mMembers[i]->movementByHost(this);
+    }
+}
+
+bool SmallStone::isAllMemberBreak() {
+    bool all = true;
+
+    for (s32 i = 0; i < mMemberCount; i++) {
+        all &= MR::isHiddenModel(mMembers[i]);
+    }
+
+    return all;
+}
+
+bool SmallStone::tryBreak() {
+    MR::calcGravityVector(this, mPosition, &mGravity, nullptr, 0);
+    TVec3f distance(mPosition);
+    distance.add(-mGravity * ::hBreakOffsetY);
+    distance.sub(*MR::getPlayerPos());
+    f32 radius = ::hBreakSize;
+
+    if (distance.squared() > radius * radius) {
+        return false;
+    }
+
+    for (s32 i = 0; i < mMemberCount; i++) {
+        mMembers[i]->mBreakTimer = 0;
+    }
+
+    if (isAllMemberBreak()) {
+        kill();
+    }
+
+    return true;
+}
+
+bool SmallStone::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (msg == ACTMES_SPIN_STORM_RANGE) {
+        for (s32 i = 0; i < mMemberCount; i++) {
+            mMembers[i]->tryShake();
+        }
+
+        return true;
+    }
+
+    return false;
+}
+
+bool SmallStone::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (!MR::isMsgPlayerSpinAttack(msg)) {
+        return false;
+    }
+
+    tryBreak();
+    return false;
+}
+
+void SmallStone::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensorPlayer(pReceiver) || MR::isSensorEnemy(pReceiver)) {
+        for (s32 i = 0; i < mMemberCount; i++) {
+            mMembers[i]->tryPush(pSender, pReceiver);
+        }
+    }
+}
+
+void SmallStone::startClipped() {
+    LiveActor::startClipped();
+
+    for (s32 i = 0; i < mMemberCount; i++) {
+        mMembers[i]->startClipped();
+    }
+}
+
+void SmallStone::endClipped() {
+    LiveActor::endClipped();
+
+    for (s32 i = 0; i < mMemberCount; i++) {
+        mMembers[i]->endClipped();
+    }
+}
+
+bool SmallStoneMember::tryShake() {
+    TVec3f distance(*MR::getPlayerPos());
+    distance.sub(mPosition);
+    MR::vecKillElement(distance, mGravity, &distance);
+    TVec3f zero(gZeroVec);
+    f32 y = MR::abs(distance.y - zero.y);
+    f32 x = MR::abs(distance.x - zero.x);
+    f32 z = MR::abs(distance.z - zero.z);
+    f32 ratio = (z + (x + y)) / ::hWindRadius;
+
+    if (ratio > 1.0f) {
+        ratio = 1.0f;
+    }
+
+    f32 intensity = 1.0f - ratio;
+
+    if (intensity == 0.0f) {
+        return false;
+    }
+
+    f32 rate = ::hMinAnimRate + (::hMaxAnimRate - ::hMinAnimRate) * intensity;
+    mShakeRequested = 1;
+    MR::setBckRate(this, rate);
+    mAnimRate = rate;
+    return true;
+}
+
+bool SmallStoneMember::tryPush(HitSensor* pSender, HitSensor* pReceiver) {
+    TVec3f distance(pReceiver->mPosition);
+    distance.sub(mPosition);
+    const f32 collisionRadius = ::hCollisionRadius * mScale.y;
+    const f32 otherRadius = pReceiver->mRadius;
+    f32 radius = collisionRadius + otherRadius;
+    radius *= radius;
+
+    if (distance.squared() < radius) {
+        f32 oldRadius = pSender->mRadius;
+        pSender->mRadius = ::hCollisionRadius * mScale.y;
+        TVec3f oldPosition(pSender->mPosition);
+        pSender->mPosition.set(mPosition);
+        pReceiver->receiveMessage(ACTMES_PUSH, pSender);
+        pSender->mPosition.set(oldPosition);
+        pSender->mRadius = oldRadius;
+        return true;
+    }
+
+    return false;
+}
+
+void SmallStoneMember::movementByHost(SmallStone* pHost) {
+    animControl();
+
+    if (mBreakTimer > -1) {
+        mBreakTimer--;
+
+        if (mBreakTimer == -1) {
+            doBreak(pHost);
+        }
+    }
+
+    if (MR::isValidCalcAnim(this)) {
+        MR::updateModelAnimPlayer(this);
+    }
+}
+
+SmallStoneMember::~SmallStoneMember() {
 }
 
 void SmallStone::init(const JMapInfoIter& rIter) {
@@ -190,263 +489,9 @@ void SmallStone::initMember(const char* pModelName, bool useGravity) {
     MR::addHitSensorMapObjSimple(this, "Range", 16, ::hSize, TVec3f(gZeroVec));
 }
 
-void SmallStone::initAfterPlacement() {
-    TVec3f gravity;
-
-    if (mUseGravity) {
-        MR::calcGravityVector(this, mPosition, &gravity, nullptr, 0);
-    } else {
-        gravity.set(mGravity);
-    }
-
-    TVec3f axisX;
-    axisX.set(1, 0, 0);
-    TVec3f axisY;
-    axisY.set(0, 1, 0);
-    MR::makeAxisCrossPlane(&axisX, &axisY, gravity);
-    HitSensor* pSensor = getSensor("Range");
-    pSensor->mRadius = 0.0f;
-    f32 angleStep = TWO_PI / mMemberCount;
-    TVec3f min;
-    min.set(0, 0, 0);
-    TVec3f max;
-    max.set(0, 0, 0);
-    s32 i;
-    bool failed = false;
-
-    for (i = 0; i < mMemberCount; i++) {
-        SmallStoneMember* pMember = mMembers[i];
-        TVec3f offset(axisX);
-        offset.scale(JMACosRadian(angleStep * i));
-        offset.add(axisY * JMASinRadian(angleStep * i));
-        offset.scale(::hCircleRadius);
-        TVec3f start(mPosition);
-        start.add(offset);
-        start.sub(gravity);
-        failed |= !MR::getFirstPolyOnLineToMap(&pMember->mPosition, nullptr, start, gravity * ::hCheckLineLength);
-
-        if (mUseGravity) {
-            MR::calcGravityVector(pMember, &pMember->mGravity, nullptr, 0);
-        } else {
-            pMember->mGravity.set(gravity);
-        }
-
-        TVec3f& rPosition = pMember->mPosition;
-        rPosition += -pMember->mGravity * mPlacementOffset;
-        TVec3f front;
-        front.set(1, 0, 0);
-
-        if (MR::isSameDirection(pMember->mGravity, front, 0.01f)) {
-            front.set(0, 1, 0);
-        }
-
-        TPos3f posture;
-        MR::calcMtxFromGravityAndZAxis(&posture, pMember, pMember->mGravity, front);
-
-        if (mStoneType == 1 || mStoneType == 2) {
-            TPos3f rotation;
-            MR::makeMtxRotate(rotation, pMember->mRotation);
-            posture.concat(rotation);
-        }
-
-        TVec3f euler;
-        posture.getEuler(euler);
-        pMember->mRotation.set(euler.x * _180_PI, euler.y * _180_PI, euler.z * _180_PI);
-        pMember->calcAnim();
-
-        TVec3f memberMin(pMember->mPosition);
-        TVec3f memberMax(pMember->mPosition);
-        f32 radius;
-        MR::calcModelBoundingRadius(&radius, pMember);
-        memberMin -= TVec3f(radius, radius, radius);
-        memberMax += TVec3f(radius, radius, radius);
-
-        if (i == 0) {
-            min.set(memberMin);
-            max.set(memberMax);
-        } else {
-            if (memberMin.x < min.x) {
-                min.x = memberMin.x;
-            }
-
-            if (memberMin.y < min.y) {
-                min.y = memberMin.y;
-            }
-
-            if (memberMin.z < min.z) {
-                min.z = memberMin.z;
-            }
-
-            if (max.x < memberMax.x) {
-                max.x = memberMax.x;
-            }
-
-            if (max.y < memberMax.y) {
-                max.y = memberMax.y;
-            }
-
-            if (max.z < memberMax.z) {
-                max.z = memberMax.z;
-            }
-        }
-    }
-
-    TVec3f center((max + min) / 2.0f);
-    mPosition.set(center);
-    f32 radius = 0.0f;
-
-    for (s32 i = 0; i < mMemberCount; i++) {
-        SmallStoneMember* pMember = mMembers[i];
-        TVec3f offset(pMember->mPosition);
-        offset.sub(center);
-        f32 memberRadius;
-        MR::calcModelBoundingRadius(&memberRadius, pMember);
-        f32 extent = memberRadius + offset.length();
-
-        if (radius < extent) {
-            radius = extent;
-        }
-    }
-
-    getSensor("Range")->mRadius = radius;
-    MR::setClippingTypeSphere(this, 2.0f * radius);
-}
-
-void SmallStone::control() {
-    for (s32 i = 0; i < mMemberCount; i++) {
-        mMembers[i]->movementByHost(this);
-    }
-}
-
-bool SmallStone::isAllMemberBreak() {
-    bool all = true;
-
-    for (s32 i = 0; i < mMemberCount; i++) {
-        all &= MR::isHiddenModel(mMembers[i]);
-    }
-
-    return all;
-}
-
-bool SmallStone::tryBreak() {
-    MR::calcGravityVector(this, mPosition, &mGravity, nullptr, 0);
-    TVec3f distance(mPosition);
-    distance.add(-mGravity * ::hBreakOffsetY);
-    distance.sub(*MR::getPlayerPos());
-    f32 radius = ::hBreakSize;
-
-    if (distance.squared() > radius * radius) {
-        return false;
-    }
-
-    for (s32 i = 0; i < mMemberCount; i++) {
-        mMembers[i]->mBreakTimer = 0;
-    }
-
-    if (isAllMemberBreak()) {
-        kill();
-    }
-
-    return true;
-}
-
-bool SmallStone::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (msg == ACTMES_SPIN_STORM_RANGE) {
-        for (s32 i = 0; i < mMemberCount; i++) {
-            mMembers[i]->tryShake();
-        }
-
-        return true;
-    }
-
-    return false;
-}
-
-bool SmallStone::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!MR::isMsgPlayerSpinAttack(msg)) {
-        return false;
-    }
-
-    tryBreak();
-    return false;
-}
-
-void SmallStone::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensorPlayer(pReceiver) || MR::isSensorEnemy(pReceiver)) {
-        for (s32 i = 0; i < mMemberCount; i++) {
-            mMembers[i]->tryPush(pSender, pReceiver);
-        }
-    }
-}
-
-void SmallStone::startClipped() {
-    LiveActor::startClipped();
-
-    for (s32 i = 0; i < mMemberCount; i++) {
-        mMembers[i]->startClipped();
-    }
-}
-
-void SmallStone::endClipped() {
-    LiveActor::endClipped();
-
-    for (s32 i = 0; i < mMemberCount; i++) {
-        mMembers[i]->endClipped();
-    }
-}
-
 SmallStoneMember::SmallStoneMember(const char* pModelName)
     : ModelObj("SmallStoneMember", pModelName, nullptr, MR::DrawBufferType_MapObjStrongLight, MR::MovementType_None, -2, false), mAnimRate(1.0f),
       mShakeRequested(), mAnimStopped(), mBreakTimer(-1), mBreakEffectName(), mUseGravity(true) {
-}
-
-bool SmallStoneMember::tryShake() {
-    TVec3f distance(*MR::getPlayerPos());
-    distance.sub(mPosition);
-    MR::vecKillElement(distance, mGravity, &distance);
-    TVec3f zero(gZeroVec);
-    f32 y = MR::abs(distance.y - zero.y);
-    f32 x = MR::abs(distance.x - zero.x);
-    f32 z = MR::abs(distance.z - zero.z);
-    f32 ratio = (z + (x + y)) / ::hWindRadius;
-
-    if (ratio > 1.0f) {
-        ratio = 1.0f;
-    }
-
-    f32 intensity = 1.0f - ratio;
-
-    if (intensity == 0.0f) {
-        return false;
-    }
-
-    f32 rate = ::hMinAnimRate + (::hMaxAnimRate - ::hMinAnimRate) * intensity;
-    mShakeRequested = 1;
-    MR::setBckRate(this, rate);
-    mAnimRate = rate;
-    return true;
-}
-
-bool SmallStoneMember::tryPush(HitSensor* pSender, HitSensor* pReceiver) {
-    TVec3f distance(pReceiver->mPosition);
-    distance.sub(mPosition);
-    const f32 collisionRadius = ::hCollisionRadius * mScale.y;
-    const f32 otherRadius = pReceiver->mRadius;
-    f32 radius = collisionRadius + otherRadius;
-    radius *= radius;
-
-    if (distance.squared() < radius) {
-        f32 oldRadius = pSender->mRadius;
-        pSender->mRadius = ::hCollisionRadius * mScale.y;
-        TVec3f oldPosition(pSender->mPosition);
-        pSender->mPosition.set(mPosition);
-        pReceiver->receiveMessage(ACTMES_PUSH, pSender);
-        pSender->mPosition.set(oldPosition);
-        pSender->mRadius = oldRadius;
-        return true;
-    }
-
-    return false;
 }
 
 void SmallStoneMember::animControl() {
@@ -490,23 +535,4 @@ void SmallStoneMember::doBreak(SmallStone* pHost) {
     MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     MR::offCalcAnim(this);
     MR::hideModel(this);
-}
-
-void SmallStoneMember::movementByHost(SmallStone* pHost) {
-    animControl();
-
-    if (mBreakTimer > -1) {
-        mBreakTimer--;
-
-        if (mBreakTimer == -1) {
-            doBreak(pHost);
-        }
-    }
-
-    if (MR::isValidCalcAnim(this)) {
-        MR::updateModelAnimPlayer(this);
-    }
-}
-
-SmallStoneMember::~SmallStoneMember() {
 }

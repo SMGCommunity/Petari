@@ -450,11 +450,10 @@ namespace {
 
     void waitDrawDoneAndSetAlarm() {
         MainLoopFrameworkAlarm alarm;
-        MR::BothDirLink< MainLoopFrameworkAlarm > link(&alarm);
         {
             MR::ProhibitSchedulerAndInterrupts prohibit(false);
             OSCreateAlarm(&alarm);
-            MainLoopFrameworkAlarm::sList.append(&link);
+            MainLoopFrameworkAlarm::sList.append(&alarm.mLink);
         }
         OSTime tick = __cvt_dbl_usll(OS_BUS_CLOCK / 4 * 0.5);
         OSSetAlarm(&alarm, tick, &handleGXAbortAlarm);
@@ -463,7 +462,7 @@ namespace {
         {
             MR::ProhibitSchedulerAndInterrupts prohibit(false);
             OSCancelAlarm(&alarm);
-            MainLoopFrameworkAlarm::sList.remove(&link);
+            MainLoopFrameworkAlarm::sList.remove(&alarm.mLink);
         }
     }
 

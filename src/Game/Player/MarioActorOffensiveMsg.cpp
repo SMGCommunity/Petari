@@ -22,6 +22,15 @@ static f32 mSensorRadiusTornadoStorm = 1000.0f;
 static f32 mSensorRadiusSpinPull = 450.0f;
 static f32 mSensorRadiusSpinPullOnGround = 450.0f;
 
+void MarioActorOffensiveMsg_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)0.000003814697265625f;
+}
+
+inline bool MarioActor::cylinderPushCheck(HitSensor* pSensor, f32 radius, f32 width, f32 height) {
+    TVec3f offset(pSensor->mPosition - _2A0);
+    return cylinderPushCheck(offset, radius, width, height);
+}
 void MarioActor::attackOrPushSensor(HitSensor* pSensor, f32 distance) {
     f32 radius = pSensor->getRadius();
     mMario->checkOnimasu(pSensor);
@@ -128,7 +137,7 @@ void MarioActor::attackOrPushSensor(HitSensor* pSensor, f32 distance) {
             }
 
             sensorRadius = pSensor->getRadius();
-            if (cylinderPushCheck(pSensor->mPosition - _2A0, sensorRadius, width, height)) {
+            if (cylinderPushCheck(pSensor, sensorRadius, width, height)) {
                 if (sendBodyAttack(pSensor)) {
                     return;
                 }
@@ -181,9 +190,7 @@ void MarioActor::attackOrPushSensor(HitSensor* pSensor, f32 distance) {
     }
 
     if (isUnderTarget(pSensor) && !selectNotHomingSensor(pSensor)) {
-        const TVec3f& rGravity = getGravityVector();
-        TVec3f offset = pSensor->mPosition - _2A0;
-        f32 angle = MR::diffAngleAbs(offset, rGravity);
+        f32 angle = MR::diffAngleAbs(pSensor->mPosition - _2A0, getGravityVector());
         if (_4AC > angle) {
             _4AC = angle;
             _4A8 = pSensor;

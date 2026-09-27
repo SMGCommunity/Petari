@@ -26,7 +26,7 @@ public:
     /* 0x00 */ MR::FunctorBase* mFunc;
     /* 0x04 */ int mPriority;
     /* 0x08 */ const char* mName;
-    /* 0x0C */ bool mIsEnd;
+    /* 0x0C */ volatile bool mIsEnd;
     /* 0x10 */ OSMessageQueue mQueue;
     /* 0x30 */ OSMessage mMessage;
 };

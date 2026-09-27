@@ -37,7 +37,6 @@ void* FileLoaderThread::run() {
     }
 }
 
-/* this function matches in other compiler versions */
 void FileLoaderThread::loadToMainRAM(RequestFileInfo* pInfo) {
     pInfo->_88 = 1;
     void* data = ::loadFileUsingRipper(pInfo);
@@ -45,7 +44,6 @@ void FileLoaderThread::loadToMainRAM(RequestFileInfo* pInfo) {
     pInfo->_88 = 2;
 }
 
-/* same with this one */
 void FileLoaderThread::mountArchiveAndStartCreateResource(RequestFileInfo* pInfo) {
     pInfo->_88 = 1;
     void* data = ::loadFileUsingRipper(pInfo);
