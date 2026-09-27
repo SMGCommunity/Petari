@@ -1957,7 +1957,7 @@ config.libs = [
     GameLib(
         "NPC",
         [
-            Object(NonMatching, "Game/NPC/Butler.cpp"),
+            Object(Matching, "Game/NPC/Butler.cpp"),
             Object(Matching, "Game/NPC/ButlerExplain.cpp"),
             Object(NonMatching, "Game/NPC/ButlerMap.cpp"),
             Object(NonMatching, "Game/NPC/ButlerStateStarPieceReaction.cpp"),
@@ -2020,7 +2020,7 @@ config.libs = [
             Object(Matching, "Game/NPC/CometEventKeeper.cpp"),
             Object(Matching, "Game/NPC/EventDirector.cpp"),
             Object(NonMatching, "Game/NPC/NPCActor.cpp"),
-            Object(NonMatching, "Game/NPC/NPCParameter.cpp"),
+            Object(Matching, "Game/NPC/NPCParameter.cpp"),
             Object(Matching, "Game/NPC/NPCDirector.cpp"),
             Object(Matching, "Game/NPC/NPCFunction.cpp"),
             Object(Matching, "Game/NPC/NPCSupportRail.cpp"),

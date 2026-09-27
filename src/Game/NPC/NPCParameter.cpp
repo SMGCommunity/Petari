@@ -6,6 +6,10 @@
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution/types.h>
 
+template MR::Vector< MR::FixedArray< NPCParameterBase*, 48 > >::~Vector();
+template MR::Vector< MR::FixedArray< NPCParameterBase*, 48 > >::Vector();
+template void MR::Vector< MR::FixedArray< NPCParameterBase*, 48 > >::push_back(NPCParameterBase* const&);
+
 NPCParameterEdit::NPCParameterEdit(const char* pName, const char** pPpChar, bool a3) : NPCParameterBase(pName), _8(pPpChar), _C(a3) {
 }
 
@@ -39,7 +43,7 @@ NPCParameterJoint::NPCParameterJoint(const char* pName, const char* pChar, const
     : NPCParameterBase(pName), _8(ppChar), _C(pChar), _10(-1) {
 }
 
-NPCParameterReader::NPCParameterReader(const char* pName) : NPCParameterBase(pName), mVector() {
+NPCParameterReader::NPCParameterReader(const char* pName) : NPCParameterBase(pName), MR::Vector< MR::FixedArray< NPCParameterBase*, 48 > >() {
 }
 
 void NPCParameterReader::read(JMapInfo* pInfo, s32 a2) {
@@ -47,8 +51,8 @@ void NPCParameterReader::read(JMapInfo* pInfo, s32 a2) {
         return;
     }
 
-    for (NPCParameterBase** it = mVector.begin(); it != mVector.end(); it++) {
-        (*it)->read(pInfo, a2);
+    for (NPCParameterBase** pIter = begin(); pIter != end(); pIter++) {
+        (*pIter)->read(pInfo, a2);
     }
 }
 
@@ -94,39 +98,42 @@ void NPCParameterJoint::read(JMapInfo* pInfo, s32 a2) {
 }
 
 void NPCCapsParameterReader::init() {
-    mVector.push_back(new NPCParameterBool("mModel", &mActorCaps.mModel));
-    mVector.push_back(new NPCParameterBool("mMakeActor", &mActorCaps.mMakeActor));
-    mVector.push_back(new NPCParameterBool("mHostIO", &mActorCaps.mHostIO));
-    mVector.push_back(new NPCParameterBool("mMessage", &mActorCaps.mMessage));
-    mVector.push_back(new NPCParameterV3f("mMessageOffset", &mActorCaps.mMessageOffset, 0.0f, 1000.0f));
-    mVector.push_back(new NPCParameterBool("mInterpole", &mActorCaps.mInterpole));
-    mVector.push_back(new NPCParameterBool("mConnectTo", &mActorCaps.mConnectTo));
-    mVector.push_back(new NPCParameterBool("mLightCtrl", &mActorCaps.mLightCtrl));
-    mVector.push_back(new NPCParameterBool("mEffect", &mActorCaps.mEffect));
-    mVector.push_back(new NPCParameterBool("mSound", &mActorCaps.mSound));
-    mVector.push_back(new NPCParameterRange< s32 >("mSoundSize", &mActorCaps.mSoundSize, 0, 16));
-    mVector.push_back(new NPCParameterBool("mAttribute", &mActorCaps.mAttribute));
-    mVector.push_back(new NPCParameterBool("mPosition", &mActorCaps.mPosition));
-    mVector.push_back(new NPCParameterBool("mLodCtrl", &mActorCaps.mLodCtrl));
-    mVector.push_back(new NPCParameterBool("mNerve", &mActorCaps.mNerve));
-    mVector.push_back(new NPCParameterBool("mBinder", &mActorCaps.mBinder));
-    mVector.push_back(new NPCParameterRange< f32 >("mBinderSize", &mActorCaps.mBinderSize, 0.0f, 1000.0f));
-    mVector.push_back(new NPCParameterBool("mSensor", &mActorCaps.mSensor));
-    mVector.push_back(new NPCParameterJoint("mSensorJoint", mActorCaps.mObjectName, &mActorCaps.mSensorJoint));
-    mVector.push_back(new NPCParameterRange< f32 >("mSensorSize", &mActorCaps.mSensorSize, 0.0f, 1000.0f));
-    mVector.push_back(new NPCParameterRange< s32 >("mSensorMax", &mActorCaps.mSensorMax, 0, 16));
-    mVector.push_back(new NPCParameterBool("mShadow", &mActorCaps.mShadow));
-    mVector.push_back(new NPCParameterRange< f32 >("mShadowSize", &mActorCaps.mShadowSize, 0.0f, 1000.0f));
-    mVector.push_back(new NPCParameterBool("mRailRider", &mActorCaps.mRailRider));
-    mVector.push_back(new NPCParameterBool("mSwitchDead", &mActorCaps.mSwitchDead));
-    mVector.push_back(new NPCParameterBool("mSwitchAppear", &mActorCaps.mSwitchAppear));
-    mVector.push_back(new NPCParameterBool("mPointer", &mActorCaps.mPointer));
-    mVector.push_back(new NPCParameterRange< f32 >("mPointerSize", &mActorCaps.mPointerSize, 0.0f, 1000.0f));
+    push_back(new NPCParameterBool("mModel", &mActorCaps.mModel));
+    push_back(new NPCParameterBool("mMakeActor", &mActorCaps.mMakeActor));
+    push_back(new NPCParameterBool("mHostIO", &mActorCaps.mHostIO));
+    push_back(new NPCParameterBool("mMessage", &mActorCaps.mMessage));
+    push_back(new NPCParameterV3f("mMessageOffset", &mActorCaps.mMessageOffset, 0.0f, 1000.0f));
+    push_back(new NPCParameterBool("mInterpole", &mActorCaps.mInterpole));
+    push_back(new NPCParameterBool("mConnectTo", &mActorCaps.mConnectTo));
+    push_back(new NPCParameterBool("mLightCtrl", &mActorCaps.mLightCtrl));
+    push_back(new NPCParameterBool("mEffect", &mActorCaps.mEffect));
+    push_back(new NPCParameterBool("mSound", &mActorCaps.mSound));
+    push_back(new NPCParameterRange< s32 >("mSoundSize", &mActorCaps.mSoundSize, 0, 16));
+    push_back(new NPCParameterBool("mAttribute", &mActorCaps.mAttribute));
+    push_back(new NPCParameterBool("mPosition", &mActorCaps.mPosition));
+    push_back(new NPCParameterBool("mLodCtrl", &mActorCaps.mLodCtrl));
+    push_back(new NPCParameterBool("mNerve", &mActorCaps.mNerve));
+    push_back(new NPCParameterBool("mBinder", &mActorCaps.mBinder));
+    push_back(new NPCParameterRange< f32 >("mBinderSize", &mActorCaps.mBinderSize, 0.0f, 1000.0f));
+    push_back(new NPCParameterBool("mSensor", &mActorCaps.mSensor));
+    push_back(new NPCParameterJoint("mSensorJoint", mActorCaps.mObjectName, &mActorCaps.mSensorJoint));
+    push_back(new NPCParameterRange< f32 >("mSensorSize", &mActorCaps.mSensorSize, 0.0f, 1000.0f));
+    push_back(new NPCParameterRange< s32 >("mSensorMax", &mActorCaps.mSensorMax, 0, 16));
+    push_back(new NPCParameterBool("mShadow", &mActorCaps.mShadow));
+    push_back(new NPCParameterRange< f32 >("mShadowSize", &mActorCaps.mShadowSize, 0.0f, 1000.0f));
+    push_back(new NPCParameterBool("mRailRider", &mActorCaps.mRailRider));
+    push_back(new NPCParameterBool("mSwitchDead", &mActorCaps.mSwitchDead));
+    push_back(new NPCParameterBool("mSwitchAppear", &mActorCaps.mSwitchAppear));
+    push_back(new NPCParameterBool("mPointer", &mActorCaps.mPointer));
+    push_back(new NPCParameterRange< f32 >("mPointerSize", &mActorCaps.mPointerSize, 0.0f, 1000.0f));
 }
 
 NPCItemParameterReader::NPCItemParameterReader(const char* pName) : NPCParameterReader(pName), mItem("") {
-    mVector.push_back(new NPCParameterEdit("mGoods0", &mItem.mGoods0, true));
-    mVector.push_back(new NPCParameterEdit("mGoods1", &mItem.mGoods1, true));
-    mVector.push_back(new NPCParameterJoint("mGoodsJoint0", pName, &mItem.mGoodsJoint0));
-    mVector.push_back(new NPCParameterJoint("mGoodsJoint1", pName, &mItem.mGoodsJoint1));
+    push_back(new NPCParameterEdit("mGoods0", &mItem.mGoods0, true));
+    push_back(new NPCParameterEdit("mGoods1", &mItem.mGoods1, true));
+    push_back(new NPCParameterJoint("mGoodsJoint0", pName, &mItem.mGoodsJoint0));
+    push_back(new NPCParameterJoint("mGoodsJoint1", pName, &mItem.mGoodsJoint1));
+}
+
+void NPCParameterBase::read(JMapInfo*, s32) {
 }

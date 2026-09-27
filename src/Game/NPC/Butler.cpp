@@ -25,6 +25,10 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
+void Butler_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
+
 namespace {
     const char* const cDemoNameDomeLecture1 = "ドームレクチャー１";
     const char* const cDemoNameDomeLecture2 = "ドームレクチャー２";
@@ -37,6 +41,11 @@ namespace {
         "AstroDome_Butler007", "AstroGalaxy_Butler005", "AstroGalaxy_Butler006",
     };
 };  // namespace
+
+void Butler_FORCE_MATCH_SDATA2_RADIUS() {
+    (void)50.0f;
+    (void)100.0f;
+}
 
 namespace NrvButler {
     NEW_NERVE(ButlerNrvStarPieceReaction, Butler, StarPieceReaction);
@@ -304,41 +313,48 @@ bool Butler::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) 
 
 void Butler::initTalkCtrlArray(const JMapInfoIter& rIter) {
     mTalkMessage = new TalkMessageCtrl*[0x7];
+
     for (s32 i = 0; i < 7; i++) {
         mTalkMessage[i] = createTalkCtrl(rIter, ::cMessageId[i]);
     }
 }
 
+namespace {
+    inline void initButlerDemo(Butler* pActor, const JMapInfoIter& rIter, const char* pDemoName, const char* pAnimName, TalkMessageCtrl* pTalkCtrl,
+                               const MR::FunctorBase& rStart, const MR::FunctorBase& rReset) {
+        MR::initDemoSheetTalkAnim(pActor, rIter, pDemoName, pAnimName, pTalkCtrl);
+        MR::registerDemoActionFunctorDirect(pActor, rStart, pDemoName, "開始");
+        MR::registerDemoActionFunctorDirect(pActor, rReset, pDemoName, "バトラーリセット");
+    }
+}  // namespace
+
 void Butler::initForAstroDome(const JMapInfoIter& rIter) {
     MR::tryRegisterDemoCast(this, rIter);
     AstroDemoFunction::tryRegisterDemo(this, "パワースター帰還", rIter);
-    const MR::FunctorBase& func1 = MR::Functor(this, &Butler::killIfBatlerMapAppear);
-    const char* demoNameButlerReport = ::cDemoNameButlerReport;
-    const MR::FunctorBase& func2 = MR::Functor(this, &Butler::startDemoButlerReport, demoNameButlerReport);
-    MR::initDemoSheetTalkAnim(this, rIter, demoNameButlerReport, "DemoButlerReport", mTalkMessage[2]);
-    MR::registerDemoActionFunctorDirect(this, func2, demoNameButlerReport, "開始");
-    MR::registerDemoActionFunctorDirect(this, func1, demoNameButlerReport, "バトラーリセット");
+
+    static void (Butler::*pResetReport)() = &Butler::killIfBatlerMapAppear;
+    static void (Butler::*pStartReport)(const char*) = &Butler::startDemoButlerReport;
+    ::initButlerDemo(this, rIter, ::cDemoNameButlerReport, "DemoButlerReport", mTalkMessage[2],
+                     MR::Functor(this, pStartReport, ::cDemoNameButlerReport), MR::Functor(this, pResetReport));
+
     const char* demoNameDomeLecture1 = ::cDemoNameDomeLecture1;
     MR::registerDemoCast(this, demoNameDomeLecture1, rIter);
     DemoFunction::tryCreateDemoTalkAnimCtrlForSceneDirect(this, demoNameDomeLecture1, rIter, "DemoButlerDomeLecture1", nullptr, 0, -1);
     DemoFunction::registerDemoTalkMessageCtrlDirect(this, createTalkCtrl(rIter, "AstroDome_Butler023"), demoNameDomeLecture1);
     MR::registerDemoActionFunctorDirect(this, MR::Functor(this, &Butler::startDemoDomeLecture1), demoNameDomeLecture1, nullptr);
-    MR::initDemoSheetTalkAnimFunctor(this, rIter, ::cDemoNameDomeLecture2, "DemoButlerDomeLecture2", *mTalkMessage,
+    MR::initDemoSheetTalkAnimFunctor(this, rIter, ::cDemoNameDomeLecture2, "DemoButlerDomeLecture2", getTalkMessage(0),
                                      MR::Functor(this, &Butler::startDemoDomeLecture2));
-    const MR::FunctorBase& func5 = MR::Functor(this, &Butler::resetStatus);
-    const MR::FunctorBase& func4 = MR::Functor(this, &Butler::startDemoStarPiece1);
-    TalkMessageCtrl* talkMsg2 = createTalkCtrl(rIter, "AstroDome_Butler011");
-    const char* demoNameStarPiece1 = ::cDemoNameStarPiece1;
-    MR::initDemoSheetTalkAnim(this, rIter, demoNameStarPiece1, "DemoButlerStarPiece1", talkMsg2);
-    MR::registerDemoActionFunctorDirect(this, func4, demoNameStarPiece1, "開始");
-    MR::registerDemoActionFunctorDirect(this, func5, demoNameStarPiece1, "バトラーリセット");
-    const MR::FunctorBase& func7 = MR::Functor(this, &Butler::resetStatus);
-    const MR::FunctorBase& func6 = MR::Functor(this, &Butler::startDemoStarPiece2);
-    TalkMessageCtrl* talkMsg3 = createTalkCtrl(rIter, "AstroDome_Butler014");
-    const char* demoNameStarPiece2 = ::cDemoNameStarPiece2;
-    MR::initDemoSheetTalkAnim(this, rIter, demoNameStarPiece2, "DemoButlerStarPiece2", talkMsg3);
-    MR::registerDemoActionFunctorDirect(this, func6, demoNameStarPiece2, "開始");
-    MR::registerDemoActionFunctorDirect(this, func7, demoNameStarPiece2, "バトラーリセット");
+
+    static void (Butler::*pResetPiece1)() = &Butler::resetStatus;
+    static void (Butler::*pStartPiece1)() = &Butler::startDemoStarPiece1;
+    ::initButlerDemo(this, rIter, ::cDemoNameStarPiece1, "DemoButlerStarPiece1", createTalkCtrl(rIter, "AstroDome_Butler011"),
+                     MR::Functor(this, pStartPiece1), MR::Functor(this, pResetPiece1));
+
+    static void (Butler::*pResetPiece2)() = &Butler::resetStatus;
+    static void (Butler::*pStartPiece2)() = &Butler::startDemoStarPiece2;
+    ::initButlerDemo(this, rIter, ::cDemoNameStarPiece2, "DemoButlerStarPiece2", createTalkCtrl(rIter, "AstroDome_Butler014"),
+                     MR::Functor(this, pStartPiece2), MR::Functor(this, pResetPiece2));
+
     MR::joinToGroupArray(this, rIter, nullptr, 32);
     MR::registerBranchFunc(mMsgCtrl, TalkMessageFunc_Inline(this, &Butler::messageBranchFunc));
     SphereSelectorFunction::registerTarget(this);
@@ -368,9 +384,10 @@ void Butler::initForAstroGalaxy(const JMapInfoIter& rIter) {
     }
 }
 
-TalkMessageCtrl* Butler::createTalkCtrl(const JMapInfoIter& rIter, const char* pTalk) {
+TalkMessageCtrl* Butler::createTalkCtrl(const JMapInfoIter& rIter, const char* pTalk) NO_INLINE {
     TVec3f vec;
     vec.setPSZeroVec();
+
     return MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, pTalk, vec, MR::getJointMtx(this, "Body"));
 }
 

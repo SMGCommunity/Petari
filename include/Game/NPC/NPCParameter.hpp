@@ -17,7 +17,7 @@ public:
 
     const char* mName;
 
-    virtual void read(JMapInfo*, s32) {};
+    virtual void read(JMapInfo*, s32);
 };
 
 class NPCParameterEdit : public NPCParameterBase {
@@ -61,13 +61,11 @@ public:
     s32 _10;
 };
 
-class NPCParameterReader : public NPCParameterBase {
+class NPCParameterReader : public NPCParameterBase, public MR::Vector< MR::FixedArray< NPCParameterBase*, 48 > > {
 public:
     NPCParameterReader(const char*);
 
     virtual void read(JMapInfo*, s32);
-
-    MR::Vector< MR::FixedArray< NPCParameterBase*, 48 > > mVector;
 };
 
 class NPCCapsParameterReader : public NPCParameterReader {

@@ -161,6 +161,9 @@ void Syati::exeWaitBlank() {
     }
 }
 
+#pragma push
+#pragma optimization_level 2
+#pragma opt_propagation off
 void PlayerPoseSetterInWater::update() {
     _1C++;
     _1C = (_1C + 90) % 90;
@@ -193,6 +196,7 @@ void PlayerPoseSetterInWater::update() {
     MR::makeMtxUpFrontPos(&baseMtx, forward, *MR::getPlayerGravity(), offsetPos + offset);
     MR::setPlayerBaseMtx(baseMtx);
 }
+#pragma pop
 
 void Syati::exeFadeinBeforeTalk() {
     if (MR::isFirstStep(this)) {
@@ -670,7 +674,9 @@ void Syati::emitRing() {
     TPos3f mtx;
     MR::calcMtxFromGravityAndZAxis(&mtx, this, mGravity, direction);
 
-    mtx.getEulerDegree(pPrizeRing->mRotation);
+    TVec3f rotation;
+    mtx.getEuler(rotation);
+    pPrizeRing->mRotation.set< f32 >(rotation.x * 57.29578f, rotation.y * 57.29578f, rotation.z * 57.29578f);
     pPrizeRing->appear();
     pPrizeRing->setNumber(mNumRings - mPrizeRingCount);
 

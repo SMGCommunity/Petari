@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Game/NPC/ButlerStateStarPieceReaction.hpp"
 #include "Game/NPC/NPCActor.hpp"
-#include "Game/NPC/TalkMessageCtrl.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/NPCUtil.hpp"
 #include <revolution/types.h>
+
+class ButlerStateStarPieceReaction;
+class JMapInfoIter;
+class TalkMessageCtrl;
 
 class Butler : public NPCActor {
 public:
@@ -30,7 +30,7 @@ public:
     void initTalkCtrlArray(const JMapInfoIter&);
     void initForAstroDome(const JMapInfoIter&);
     void initForAstroGalaxy(const JMapInfoIter&);
-    TalkMessageCtrl* createTalkCtrl(const JMapInfoIter&, const char*) NO_INLINE;
+    TalkMessageCtrl* createTalkCtrl(const JMapInfoIter&, const char*);
     void forceNerveToWait();
     void tryReplaceStarPieceIfExecLecture();
     bool tryStartStarPieceReaction();
@@ -41,11 +41,15 @@ public:
     void exeDemoShowGalaxyMap();
     inline void exeDemoWait();
 
-    TalkMessageCtrl** mTalkMessage;  // 15C
-    bool _160;
-    s32 _164;
-    s32 _168;
-    ButlerStateStarPieceReaction* mButlerState;  // 16C
-    bool _170;
-    bool _171;
+    TalkMessageCtrl* getTalkMessage(s32 index) const {
+        return mTalkMessage[index];
+    }
+
+    /* 0x15C */ TalkMessageCtrl** mTalkMessage;
+    /* 0x160 */ bool _160;
+    /* 0x164 */ s32 _164;
+    /* 0x168 */ s32 _168;
+    /* 0x16C */ ButlerStateStarPieceReaction* mButlerState;
+    /* 0x170 */ bool _170;
+    /* 0x171 */ bool _171;
 };
