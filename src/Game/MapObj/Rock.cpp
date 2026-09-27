@@ -81,9 +81,6 @@ Rock::Rock(f32 moveSpeed, const char* pName)
 }
 
 void Rock::init(const JMapInfoIter& rIter) {
-    // FIXME: load order of offset vec (+ probably not written this way)
-    // https://decomp.me/scratch/4hrlO
-
     mRockType = Rock::getType(rIter);
 
     if (mRockType != NormalRock) {
@@ -111,12 +108,7 @@ void Rock::init(const JMapInfoIter& rIter) {
     initBinder(mRadius, 0.0f, 0);
     initRailRider(rIter);
     initEffect();
-
-    TVec3f offset;
-    offset.x = 0.0f;
-    offset.y = 0.0f;
-    offset.z = 0.0f;
-    MR::initStarPointerTarget(this, ::cStarWandRadius3d * getRadius(), offset);
+    MR::initStarPointerTarget(this, ::cStarWandRadius3d * getRadius(), TVec3f(0, 0, 0));
     initSound(5, false);
 
     f32 shadowDrop;
