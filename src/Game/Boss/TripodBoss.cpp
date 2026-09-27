@@ -189,53 +189,55 @@ void TripodBoss::initLeg(const JMapInfoIter& rIter) {
     }
 }
 
+// TODO
+#pragma push
+#pragma opt_propagation off
+#pragma opt_loop_invariants off
+#pragma opt_common_subs off
 void TripodBoss::initLegIKPlacement() {
-    f32 temp618 = _618;
-    f32 v5 = MR::sqrt((1.0f - (temp618 * temp618)));
+    f32 heightRate = _618;
+    f32 widthRate = MR::sqrt(1.0f - heightRate * heightRate);
 
-    TVec3f v29(mMovableArea->mBaseAxis);
-    TVec3f v28(mMovableArea->mFront);
-    TVec3f v27 = v29.cross(v28);
-    v29 *= (temp618 * mMovableArea->mRadius);
-    v28 *= (v5 * mMovableArea->mRadius);
-    v27 *= (v5 * mMovableArea->mRadius);
+    TripodBossMovableArea* pArea = mMovableArea;
+    TVec3f baseAxis(pArea->mBaseAxis);
+    TVec3f front(mMovableArea->mFront);
+    TVec3f side = baseAxis.cross(front);
+    baseAxis *= heightRate * mMovableArea->mRadius;
+    front *= widthRate * mMovableArea->mRadius;
+    side *= widthRate * mMovableArea->mRadius;
 
-    f32 ONEPOINTFIVEPI = 2.0943952f;
+    f32 angleStep = 2.0943952f;
+
     for (u32 i = 0; i < ARRAY_SIZE(mLegs); i++) {
-        u32& rI = i;
-        f32 cur = -(f32)i * ONEPOINTFIVEPI;
-        f32 initAngle = ((0.5f * ONEPOINTFIVEPI) + cur);
-        f32 x = MR::sin(initAngle);
-        f32 z = MR::cos(initAngle);
+        f32 angle = 0.5f * angleStep + -(f32)i * angleStep;
+        f32 x = MR::sin(angle);
+        f32 z = MR::cos(angle);
 
         TVec3f legDirShadow;
         legDirShadow.x = x;
         legDirShadow.y = 0.0f;
         legDirShadow.z = z;
 
-        TVec3f j(0.0f, 1.0f, 0.0f);
+        TVec3f up(0.0f, 1.0f, 0.0f);
+        TVec3f legDir = legDirShadow * _610 + up * _614;
+        getLeg(i)->setIKParam(_608, _60C, legDir, legDirShadow, up);
 
-        TVec3f legDir = legDirShadow * _610 + j * _614;
+        TVec3f stepPos = baseAxis + side * x + front * z + mMovableArea->mCenter;
 
-        getLeg(rI)->setIKParam(_608, _60C, legDir, legDirShadow, j);
+        TVec3f stepNormal;
+        mMovableArea->calcLandingNormal(&stepNormal, stepPos);
 
-        TVec3f* center = &mMovableArea->mCenter;
+        TVec3f stepFront;
+        mMovableArea->calcLandingFront(&stepFront, stepPos);
 
-        TVec3f v23 = v29 + v27 * x + v28 * z + *center;
-
-        TVec3f v22;
-        mMovableArea->calcLandingNormal(&v22, v23);
-
-        TVec3f v21;
-        mMovableArea->calcLandingFront(&v21, v23);
-
-        getStepPoint(rI)->setStepPosition(v23);
-        getStepPoint(rI)->setStepNormal(v22);
-        getStepPoint(rI)->setStepFront(v21);
-        getLeg(rI)->setStepTarget(getStepPoint(rI));
-        getLeg(rI)->setWait();
+        getStepPoint(i)->setStepPosition(stepPos);
+        getStepPoint(i)->setStepNormal(stepNormal);
+        getStepPoint(i)->setStepFront(stepFront);
+        getLeg(i)->setStepTarget(mStepPoints[i]);
+        getLeg(i)->setWait();
     }
 }
+#pragma pop
 
 void TripodBoss::initMovableArea(const TPos3f& rPos) {
     TVec3f trans;
