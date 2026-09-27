@@ -36,7 +36,7 @@ void DinoPackunTailPart::control() {
 
 JointController* DinoPackunTailPart::createJointControllerOwn(LiveActor* pActor, const char* pJointName) {
     // we only do this because we already know it's a tail node type since it inherits
-    return MR::createJointDelegator((DinoPackunTailNode*)this, pActor, &DinoPackunTailNode::calcJointScale, &DinoPackunTailNode::turnJointLocalXDir,
+    return MR::createJointDelegator((DinoPackunTailNode*)this, pActor, &DinoPackunTailNode::turnJointLocalXDir, &DinoPackunTailNode::calcJointScale,
                                     pJointName);
 }
 

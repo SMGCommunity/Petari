@@ -34,7 +34,7 @@ namespace {
     static const f32 sBabyLaunchVelH = 10.0f;
     static const f32 sBabyLaunchVelV = 15.0f;
     static const f32 hSpikeLaunchVelH = 10.0f;
-    static const f32 hSpikeLaunchVelV = 15.0f;
+    static const f32 hSpikeLaunchVelV = 20.0f;
     static const f32 hSideCheckOffsetY = 80.0f;
     static const f32 hSideCheckDot = 0.25f;
     // static const _32 sCommonDampVel = _;

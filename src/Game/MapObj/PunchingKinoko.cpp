@@ -70,7 +70,7 @@ void PunchingKinoko::initShadow() {
     MR::initShadowController(this, 3);
     MR::addShadowVolumeSphere(this, "体", 10.0f);
     MR::onCalcShadowOneTime(this, "体");
-    MR::addShadowVolumeSphere(this, "頭", 10.0f);
+    MR::addShadowVolumeSphere(this, "頭", 70.0f);
     MR::setShadowDropPositionPtr(this, "頭", &mGroundChecker->mPosition);
     MR::setShadowDropDirectionPtr(this, "頭", &mGroundChecker->mGravity);
     MR::addShadowVolumeLine(this, "つた", this, "体", 10.0f, this, "頭", 10.0f);
