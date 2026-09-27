@@ -17,6 +17,9 @@ void MEMFreeToAllocator(MEMAllocator *pAllocator, void *pBlock) {
     (*pAllocator->pFunc->pfFree)(pAllocator, pBlock);
 }
 
+// These SDK entry points are retained in the retail binary for the product.sel export symbol table.
+#pragma push
+#pragma force_active on
 void MEMInitAllocatorForExpHeap(MEMAllocator *pAllocator, MEMHeapHandle handle, int align) {
     static const MEMAllocatorFunc sAllocatorFunc =
     {
@@ -29,3 +32,4 @@ void MEMInitAllocatorForExpHeap(MEMAllocator *pAllocator, MEMHeapHandle handle, 
     pAllocator->heapParam1 = align;
     pAllocator->heapParam2 = 0;
 }
+#pragma pop

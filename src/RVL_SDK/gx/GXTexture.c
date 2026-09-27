@@ -309,17 +309,24 @@ void GXInitTexObjLOD(GXTexObj* obj, GXTexFilter min_filt, GXTexFilter mag_filt, 
     SC_TX_SETMODE1_SET_MAXLOD(t->mode1, lmax);
 }
 
+// These SDK entry points are retained in the retail binary for the product.sel export symbol table.
+#pragma push
+#pragma force_active on
 void GXInitTexObjWrapMode(GXTexObj* obj, GXTexWrapMode sm, GXTexWrapMode tm) {
     GX_SETUP_TEXOBJ(t, obj)
     SC_TX_SETMODE0_SET_WRAP_S(t->mode0, sm);
     SC_TX_SETMODE0_SET_WRAP_T(t->mode0, tm);
 }
+#pragma pop
 
 void GXInitTexObjTlut(GXTexObj* obj, u32 tlut_name) {
     GX_SETUP_TEXOBJ(t, obj)
     t->tlutName = tlut_name;
 }
 
+// These SDK entry points are retained in the retail binary for the product.sel export symbol table.
+#pragma push
+#pragma force_active on
 void GXInitTexObjUserData(GXTexObj* obj, void* user_data) {
     GX_SETUP_TEXOBJ(t, obj)
     t->userData = user_data;
@@ -329,6 +336,7 @@ void* GXGetTexObjUserData(const GXTexObj* obj) {
     GX_SETUP_TEXOBJ(t, obj)
     return t->userData;
 }
+#pragma pop
 
 void GXGetTexObjAll(const GXTexObj* obj, void** image_ptr, u16* width, u16* height, GXTexFmt* format, GXTexWrapMode* wrap_s, GXTexWrapMode* wrap_t,
                     GXBool* mipmap) {
@@ -343,6 +351,9 @@ void GXGetTexObjAll(const GXTexObj* obj, void** image_ptr, u16* width, u16* heig
     *mipmap = (GXBool)((t->flags & 1) == 1);
 }
 
+// These SDK entry points are retained in the retail binary for the product.sel export symbol table.
+#pragma push
+#pragma force_active on
 u16 GXGetTexObjWidth(const GXTexObj* to) {
     GX_SETUP_TEXOBJ(t, to)
     return (u16)(TX_SETIMAGE0_GET_IMAGE_WIDTH(t->image0) + 1);
@@ -352,12 +363,16 @@ u16 GXGetTexObjHeight(const GXTexObj* to) {
     GX_SETUP_TEXOBJ(t, to)
     return (u16)(TX_SETIMAGE0_GET_IMAGE_HEIGHT(t->image0) + 1);
 }
+#pragma pop
 
 GXTexFmt GXGetTexObjFmt(const GXTexObj* to) {
     GX_SETUP_TEXOBJ(t, to)
     return (t->fmt);
 }
 
+// These SDK entry points are retained in the retail binary for the product.sel export symbol table.
+#pragma push
+#pragma force_active on
 GXTexWrapMode GXGetTexObjWrapS(const GXTexObj* to) {
     GX_SETUP_TEXOBJ(t, to)
     return (GXTexWrapMode)TX_SETMODE0_GET_WRAP_S(t->mode0);
@@ -367,6 +382,7 @@ GXTexWrapMode GXGetTexObjWrapT(const GXTexObj* to) {
     GX_SETUP_TEXOBJ(t, to)
     return (GXTexWrapMode)TX_SETMODE0_GET_WRAP_T(t->mode0);
 }
+#pragma pop
 
 GXBool GXGetTexObjMipMap(const GXTexObj* to) {
     GX_SETUP_TEXOBJ(t, to)

@@ -4,6 +4,9 @@ static u16 __AXAuxAVolume;
 static u16 __AXAuxBVolume;
 static u16 __AXAuxCVolume;
 
+// These SDK entry points are retained in the retail binary for the product.sel export symbol table.
+#pragma push
+#pragma force_active on
 u16 AXGetAuxAReturnVolume(void) {
     return __AXAuxAVolume;
 }
@@ -27,3 +30,4 @@ void AXSetAuxBReturnVolume(u16 volume) {
 void AXSetAuxCReturnVolume(u16 volume) {
     __AXAuxCVolume = volume;
 }
+#pragma pop

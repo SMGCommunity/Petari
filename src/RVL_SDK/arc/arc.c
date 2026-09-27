@@ -46,6 +46,9 @@ BOOL ARCInitHandle(void* arcStart, ARCHandle* handle) {
     return TRUE;
 }
 
+// These SDK entry points are retained in the retail binary for the product.sel export symbol table.
+#pragma push
+#pragma force_active on
 BOOL ARCOpen(ARCHandle* handle, const char* fileName, ARCFileInfo* af) {
     s32 entry;
     char currentDir[128];
@@ -68,6 +71,7 @@ BOOL ARCOpen(ARCHandle* handle, const char* fileName, ARCFileInfo* af) {
 
     return TRUE;
 }
+#pragma pop
 
 BOOL ARCFastOpen(ARCHandle* handle, s32 entrynum, ARCFileInfo* af) {
     FSTEntry* FSTEntries = (FSTEntry*)handle->FSTStart;

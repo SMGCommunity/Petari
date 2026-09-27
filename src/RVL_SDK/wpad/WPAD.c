@@ -1154,7 +1154,7 @@ void WPADInit(void) {
     }
 }
 
-// These SDK entry points are retained in the retail binary.
+// These SDK entry points are retained in the retail binary for the product.sel export symbol table.
 #pragma push
 #pragma force_active on
 BOOL WPADStartFastSimpleSync() {

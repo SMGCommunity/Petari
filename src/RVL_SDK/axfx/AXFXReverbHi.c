@@ -18,6 +18,9 @@ static void __ParamConvert(AXFX_REVERBHI* fx) {
     fx->exp.sendGain = 0.0f;
 }
 
+// These SDK entry points are retained in the retail binary for the product.sel export symbol table.
+#pragma push
+#pragma force_active on
 BOOL AXFXReverbHiInit(AXFX_REVERBHI* fx) {
     __ParamConvert(fx);
     return AXFXReverbHiExpInit(&fx->exp);
@@ -31,3 +34,4 @@ BOOL AXFXReverbHiShutdown(AXFX_REVERBHI* fx) {
 void AXFXReverbHiCallback(void* chans, void* context) {
     AXFXReverbHiExpCallback((AXFX_BUFFERUPDATE*)chans, (AXFX_REVERBHI_EXP*)context);
 }
+#pragma pop

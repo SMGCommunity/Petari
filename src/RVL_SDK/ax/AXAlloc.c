@@ -34,6 +34,9 @@ void __AXPushFreeStack(AXVPB* vpb) {
     vpb->priority = 0;
 }
 
+// These SDK entry points are retained in the retail binary for the product.sel export symbol table.
+#pragma push
+#pragma force_active on
 void AXFreeVoice(AXVPB* vpb) {
     BOOL enabled = OSDisableInterrupts();
 
@@ -48,3 +51,4 @@ void AXFreeVoice(AXVPB* vpb) {
 
     OSRestoreInterrupts(enabled);
 }
+#pragma pop
