@@ -815,6 +815,13 @@ void NormalMapBase::swapColorGB(JUTTexture* pTexture) {
     DCStoreRange(pTexture->mImage, pTexture->getWidth() * pTexture->getHeight() * 4);
 }
 
+namespace {
+    u16 getFbWidth() {
+        const u16& rWidth = JUTVideo::getManager()->getFbWidth();
+        return rWidth;
+    }
+}
+
 void NormalMapBase::indirectCapture() const {
     TDDraw::setup(1, 0, 2);
     GXSetZMode(0, GX_ALWAYS, 0);
@@ -883,7 +890,7 @@ void NormalMapBase::indirectCapture() const {
             if (!captured[textures[1]]) {
                 JUTTexture* pTexture = mTextures[textures[1]];
                 loadNormalTex(pTexture, GX_TEXMAP1);
-                s32 screenWidth = JUTVideo::getManager()->getFbWidth();
+                s32 screenWidth = getFbWidth();
                 f32 scaleX = static_cast< f32 >(MR::getScreenWidth()) / screenWidth;
                 s32 screenHeight = MR::getScreenHeight();
                 f32 scaleY = static_cast< f32 >(MR::getScreenHeight()) / screenHeight;

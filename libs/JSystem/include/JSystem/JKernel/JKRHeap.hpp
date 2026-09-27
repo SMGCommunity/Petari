@@ -213,7 +213,7 @@ public:
         return (void*)mEnd;
     }
 
-    /* 0x18 */ OSMutex mMutex;
+    /* 0x18 */ mutable OSMutex mMutex;
     /* 0x30 */ u8* mStart;
     /* 0x34 */ u8* mEnd;
     /* 0x38 */ u32 mSize;

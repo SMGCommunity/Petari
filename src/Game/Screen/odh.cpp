@@ -253,10 +253,11 @@ void CArGBAOdh::cdj_c_makeHeader(SArCDJ_OdhMaster* pMaster, u32 size) {
 
 u32 CArGBAOdh::cdj_c_colorConv(SArCDJ_OdhMaster* pMaster, u8* pSrc, int format) {
     u8* pY;
-    u32 stride;
-    u8* pV;
     u8* pU;
+    u8* pV;
     int height;
+    int y;
+    u32 stride;
     if ((pMaster->mSize[0] & 1) || (pMaster->mSize[1] & 1)) {
         return 1;
     }
@@ -285,7 +286,7 @@ u32 CArGBAOdh::cdj_c_colorConv(SArCDJ_OdhMaster* pMaster, u8* pSrc, int format) 
     }
 
     height = pMaster->mSize[1];
-    for (int y = 0; y < height; y++) {
+    for (y = 0; y < height; y++) {
         LineConv11(pSrc + (y & 3) * 8 + (y / 4) * stride, pY, pU, pV, pMaster->mSize[0], pMaster->mSize[1], gArConvPlttTbl, format);
         pY += size[0];
         pU += size[0];
