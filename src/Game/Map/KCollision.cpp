@@ -1424,13 +1424,14 @@ JMapInfoIter KCollisionServer::getAttributes(u32 index) const {
 
 s32* KCollisionServer::searchBlock(s32* pShift, const u32& rX, const u32& rY, const u32& rZ) const {
     KCLFile* file = mFile;
-    s32 blockWidthShift = file->mBlockWidthShift;
     u8* octree = reinterpret_cast< u8* >(file->mOctree);
-    *pShift = blockWidthShift;
+    s32 blockWidthShift = *pShift = file->mBlockWidthShift;
 
-    s32 offset = (((rZ >> blockWidthShift) << file->mBlockXYShift) | ((rY >> blockWidthShift) << file->mBlockXShift) | (rX >> blockWidthShift)) * 4;
+    s32 xyShift = file->mBlockXYShift;
+    s32 xShift = file->mBlockXShift;
+    s32 offset = (((rZ >> blockWidthShift) << xyShift) | ((rY >> blockWidthShift) << xShift) | (rX >> blockWidthShift)) * 4;
 
-    if (file->mBlockXYShift == -1 && file->mBlockXShift == -1) {
+    if (xyShift == -1 && xShift == -1) {
         offset = 0;
     }
 

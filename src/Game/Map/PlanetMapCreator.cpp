@@ -246,6 +246,15 @@ namespace {
         },
     };
 
+    inline void addUniqueArchive(NameObjArchiveListCollector* pCollector, const char* pPlanetName) {
+        for (u32 i = 0; i < ARRAY_SIZE(::sUniquePlanetUniqueArchiveName); i++) {
+            const UniqueEntry* pUniqueEntry = &::sUniquePlanetUniqueArchiveName[i];
+            if (MR::isEqualString(pPlanetName, pUniqueEntry->_0)) {
+                pCollector->addArchive(pUniqueEntry->_4);
+            }
+        }
+    }
+
     const PlanetEntry* findUniquePlanetEntry(const char* pName) {
         for (u32 i = 0; i < ARRAY_SIZE(::sUniquePlanetCreateFuncTable); i++) {
             const PlanetEntry* pEntry = &::sUniquePlanetCreateFuncTable[i];
@@ -325,13 +334,7 @@ void PlanetMapCreator::makeArchiveListPlanet(NameObjArchiveListCollector* pColle
         pCollector->addArchive(pData4);
     }
 
-    const char* pPlanetName = pTableData->mPlanetName;
-    for (u32 i = 0; i < ARRAY_SIZE(::sUniquePlanetUniqueArchiveName); i++) {
-        const UniqueEntry* pUniqueEntry = &::sUniquePlanetUniqueArchiveName[i];
-        if (MR::isEqualString(pPlanetName, pUniqueEntry->_0)) {
-            pCollector->addArchive(pUniqueEntry->_4);
-        }
-    }
+    ::addUniqueArchive(pCollector, pTableData->mPlanetName);
 }
 
 void PlanetMapCreator::createPlanetMapDataTable(JMapInfo* pInfo) {
@@ -342,6 +345,8 @@ void PlanetMapCreator::createPlanetMapDataTable(JMapInfo* pInfo) {
     }
 }
 
+#pragma push
+#pragma opt_loop_invariants off
 void PlanetMapCreator::addTableData(const JMapInfo* pInfo, s32 idx) {
     PlanetMapData* curData = mPlanetMapData[idx];
     MR::getCsvDataStr(&curData->mPlanetName, pInfo, "PlanetName", idx);
@@ -366,6 +371,7 @@ void PlanetMapCreator::addTableData(const JMapInfo* pInfo, s32 idx) {
         MR::getCsvDataStr(&curData->mForceScenarioData[i], pInfo, data, idx);
     }
 }
+#pragma pop
 
 PlanetMapData* PlanetMapCreator::getTableData(const char* pName) const {
     for (int i = 0; i < mTableCount; i++) {

@@ -121,7 +121,12 @@ WaterRoadModelInfo::WaterRoadModelInfo(WaterRoad* pRoad, bool isLow)
 }
 
 void WaterRoadModelInfo::initPoints(WaterRoad* pRoad) {
-    f32 dotPointCreate = mIsLow ? ::sDotPointCreateLow : ::sDotPointCreateHigh;
+    f32 dotPointCreate;
+    if (mIsLow) {
+        dotPointCreate = ::sDotPointCreateLow;
+    } else {
+        dotPointCreate = ::sDotPointCreateHigh;
+    }
 
     s32 numPoints = ::calcNumDrawLinePoints(pRoad, dotPointCreate);
 
@@ -263,9 +268,6 @@ void WaterRoadModelInfo::drawGD() const {
 }
 
 void WaterRoadModelInfo::drawDirect(const WaterRoad* pRoad) const {
-    // FIXME: regswaps in const ref section
-    // https://decomp.me/scratch/CA4sP
-
     loadMaterialHigh(pRoad);
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
@@ -322,16 +324,16 @@ void WaterRoadModelInfo::drawDirect(const WaterRoad* pRoad) const {
         if (pointNum < mNumLinePoints) {
             f32 t = (MR::getRailCoord(pRoad) - mRailCoords[pointNum - 1]) / (mRailCoords[pointNum] - mRailCoords[pointNum - 1]);
 
-            // FIXME: regswap
-            const TVec3s& n1 = mNormals[calcPointIndex(pointNum - 1, loopIdx)];
-            const TVec3s& n2 = mNormals[calcPointIndex(pointNum, loopIdx)];
-            const TVec3s& n3 = mNormals[calcPointIndex(pointNum - 1, nextLoopIdx)];
-            const TVec3s& n4 = mNormals[calcPointIndex(pointNum, nextLoopIdx)];
-
             const TVec3f& v1 = mPoints[calcPointIndex(pointNum - 1, loopIdx)];
-            const TVec3f& v2 = mPoints[calcPointIndex(pointNum, loopIdx)];
+            s32 idx2 = calcPointIndex(pointNum, loopIdx);
+            const TVec3f& v2 = mPoints[idx2];
             const TVec3f& v3 = mPoints[calcPointIndex(pointNum - 1, nextLoopIdx)];
             const TVec3f& v4 = mPoints[calcPointIndex(pointNum, nextLoopIdx)];
+
+            const TVec3s& n1 = mNormals[calcPointIndex(pointNum - 1, loopIdx)];
+            const TVec3s& n2 = mNormals[idx2];
+            const TVec3s& n3 = mNormals[calcPointIndex(pointNum - 1, nextLoopIdx)];
+            const TVec3s& n4 = mNormals[calcPointIndex(pointNum, nextLoopIdx)];
 
             TVec3f vA = v1 * (1.0f - t) + v2 * t;
             TVec3f vB = v3 * (1.0f - t) + v4 * t;

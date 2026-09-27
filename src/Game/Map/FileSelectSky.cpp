@@ -46,6 +46,8 @@ bool FileSelectSky::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRec
     return false;
 }
 
+#pragma push
+#pragma global_optimizer off
 void FileSelectSky::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "CometNearOrbitSky");
@@ -64,6 +66,7 @@ void FileSelectSky::exeWait() {
     mBaseMtx.invert(mBaseMtx);
     f32 step = (getNerveStep() * PI) / ::cCycleX;
 
-    mAngleX = (1.0f - MR::cos(step)) * 3.0f / 2.0f * PI / 4.0f;
+    mAngleX = 0.5f * (1.0f - MR::cos(step)) * MR::pi() * 3.0f / 4.0f;
     mAngleY += ::cAngleIncY;
 }
+#pragma pop
