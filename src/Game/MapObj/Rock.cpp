@@ -109,12 +109,7 @@ void Rock::init(const JMapInfoIter& rIter) {
     initRailRider(rIter);
     initEffect();
 
-    TVec3f offset;
-    offset.x = 0.0f;
-    offset.y = 0.0f;
-    offset.z = 0.0f;
-    const TVec3f& rOffset = offset;
-    MR::initStarPointerTarget(this, ::cStarWandRadius3d * getRadius(), rOffset);
+    MR::initStarPointerTarget(this, ::cStarWandRadius3d * getRadius(), TVec3f(0, 0, 0));
     initSound(5, false);
 
     f32 shadowDrop;

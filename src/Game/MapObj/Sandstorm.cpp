@@ -409,13 +409,14 @@ void Sandstorm::initTrapModel() {
     }
 }
 
+#pragma push
+#pragma optimization_level 3
 void Sandstorm::updateBindActorMtx() {
     f32 dVar9;
-    TVec3f& rPosition = mPosition;
     TVec3f* pPosition;
 
     if (_C8 < 10) {
-        pPosition = &rPosition;
+        pPosition = &mPosition;
         TVec3f toPlayerCenter;
         toPlayerCenter.sub(*MR::getPlayerCenterPos(), *pPosition);
 
@@ -425,7 +426,9 @@ void Sandstorm::updateBindActorMtx() {
         TVec3f vec;
         vec.killElement(toPlayerCenter, up);
 
-        dVar9 = MR::getLinerValue(_C8 / 10.0f, vec.length(), _BC, 1.0f);
+        f32 len = vec.length();
+        f32 rate = _C8 / 10.0f;
+        dVar9 = MR::getLinerValue(rate, len, _BC, 1.0f);
     } else {
         dVar9 = _BC;
     }
@@ -435,7 +438,9 @@ void Sandstorm::updateBindActorMtx() {
     vec.y = _C4;
     vec.z = dVar9 * MR::sin(_B8);
 
-    if (isSunakazeKun() == false && isNerve(GET_NERVE(Sandstorm, SandstormNrvStormFix))) {
+    bool isSunakaze = isSunakazeKun();
+
+    if (!isSunakaze && isNerve(GET_NERVE(Sandstorm, SandstormNrvStormFix))) {
         vec.y += MR::sinDegree(getNerveStep() * 3.0f) * 270.0f;
     }
 
@@ -446,6 +451,7 @@ void Sandstorm::updateBindActorMtx() {
     mtx.setTrans(mBindActor->mPosition);
     MR::setBaseTRMtx(mBindActor, mtx);
 }
+#pragma pop
 
 void Sandstorm::endBind() {
     MR::tryRumblePadStrong(this, 0);

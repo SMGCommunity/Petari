@@ -207,6 +207,12 @@ void CShader::calc(J3DModel* pModel) {
 void CShader::setup(J3DModelData* pData) {
 }
 
+namespace {
+    inline s32 getCount(u8* pRead) {
+        return *reinterpret_cast< u16* >(pRead + 1);
+    }
+}
+
 void CShader::makeIndexData(J3DShape* pShape) const {
     GXVtxDescList* pDesc = pShape->getVtxDesc();
     s32 stride = 0;
@@ -248,7 +254,7 @@ void CShader::makeIndexData(J3DShape* pShape) const {
         s32 count;
         u8* pStart;
         u8* pRead;
-        pStart = pShape->getShapeDraw(group)->getDisplayList();
+        pStart = static_cast< u8* >(pShape->getShapeDraw(group)->getDisplayList());
         pRead = pStart;
 
         while (u32(pRead - pStart) < pShape->getShapeDraw(group)->getDisplayListSize()) {
@@ -256,10 +262,10 @@ void CShader::makeIndexData(J3DShape* pShape) const {
                 break;
             }
 
-            count = *reinterpret_cast< u16* >(pRead + 1);
+            count = getCount(pRead);
 
             for (s32 i = 0; i < count; i++) {
-                u8* pVertex = pRead + stride * i + 3;
+                u8* pVertex = pRead + 3 + stride * i;
                 u16 pos = *reinterpret_cast< u16* >(pVertex + posOffset);
                 u16 nrm = *reinterpret_cast< u16* >(pVertex + nrmOffset);
                 u16 tex = *reinterpret_cast< u16* >(pVertex + texOffset);

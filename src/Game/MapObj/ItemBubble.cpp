@@ -241,6 +241,8 @@ void ItemBubble::calcAndSetBaseMtx() {
     reinterpret_cast< TPos3f* >(getBaseMtx())->setTrans(mPosition);
 }
 
+#pragma push
+#pragma global_optimizer off
 void ItemBubble::exeWait() {
     if (MR::isFirstStep(this)) {
         // Useless...
@@ -263,7 +265,8 @@ void ItemBubble::exeWait() {
     }
 
     PSMTXScale(_9C, mScale.x, mScale.y, mScale.z);
-    MR::multMtx(_9C, MR::tmpMtxRotZDeg(mRotation.z), _9C);
+    MtxPtr pMtx = MR::tmpMtxRotZDeg(mRotation.z);
+    MR::multMtx(_9C, pMtx, _9C);
 
     mPosition = _108 + TVec3f(0.0f, 1.0f, 0.0f).multInLine2(_8C).multInLine2(30.0f);
 
@@ -285,6 +288,7 @@ void ItemBubble::exeWait() {
         _90[i]->mRotation.y += 8.0f;
     }
 }
+#pragma pop
 
 void ItemBubble::exeBreak() {
     if (MR::isFirstStep(this)) {
