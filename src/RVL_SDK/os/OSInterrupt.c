@@ -67,29 +67,6 @@ __OSInterruptHandler __OSGetInterruptHandler(s32 interrupt) {
     return InterruptHandlerTable[interrupt];
 }
 
-OSInterruptMask __OSMaskInterrupts(OSInterruptMask new_mask) {
-    BOOL v2;
-    OSInterruptMask user_interrupt;
-    OSInterruptMask os_interrupt;
-    OSInterruptMask mask;
-
-    v2 = OSDisableInterrupts();
-    // load the user interrupt mask
-    user_interrupt = *(OSInterruptMask*)0x800000C4;
-    os_interrupt = *(OSInterruptMask*)0x800000C8;
-    mask = ~(user_interrupt | os_interrupt) & new_mask;
-    // set the new user interrupt mask
-    new_mask |= user_interrupt;
-    *(OSInterruptMask*)0x800000C4 = new_mask;
-
-    while (mask) {
-        mask = SetInterruptMask(mask, new_mask | os_interrupt);
-    }
-
-    OSRestoreInterrupts(v2);
-    return user_interrupt;
-}
-
 void __OSInterruptInit(void) {
     // set our interrupt handler table to the __OSInterruptTable
     InterruptHandlerTable = (void*)0x80003040;
@@ -301,6 +278,29 @@ static OSInterruptMask SetInterruptMask(OSInterruptMask mask, OSInterruptMask cu
     }
 
     return mask;
+}
+
+OSInterruptMask __OSMaskInterrupts(OSInterruptMask new_mask) {
+    BOOL v2;
+    OSInterruptMask user_interrupt;
+    OSInterruptMask os_interrupt;
+    OSInterruptMask mask;
+
+    v2 = OSDisableInterrupts();
+    // load the user interrupt mask
+    user_interrupt = *(OSInterruptMask*)0x800000C4;
+    os_interrupt = *(OSInterruptMask*)0x800000C8;
+    mask = ~(user_interrupt | os_interrupt) & new_mask;
+    // set the new user interrupt mask
+    new_mask |= user_interrupt;
+    *(OSInterruptMask*)0x800000C4 = new_mask;
+
+    while (mask) {
+        mask = SetInterruptMask(mask, new_mask | os_interrupt);
+    }
+
+    OSRestoreInterrupts(v2);
+    return user_interrupt;
 }
 
 OSInterruptMask __OSUnmaskInterrupts(OSInterruptMask new_mask) {

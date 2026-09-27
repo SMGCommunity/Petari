@@ -161,7 +161,7 @@ void GXSetZCompLoc(GXBool before_tex) {
 void GXSetPixelFmt(GXPixelFmt pix_fmt, GXZFmt16 z_fmt) {
     u32 oldPeCtrl;
     GXBool aa;
-    static u32 p2f[] = {0, 1, 2, 3, 4, 5, 6, 7};
+    static u32 p2f[] = {0, 1, 2, 3, 4,4,4, 5};
 
     oldPeCtrl = gx->peCtrl;
 

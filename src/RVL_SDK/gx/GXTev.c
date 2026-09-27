@@ -507,7 +507,7 @@ void GXSetZTexture(GXZTexOp op, GXTexFmt fmt, u32 bias) {
 
 void GXSetTevOrder(GXTevStageID stage, GXTexCoordID coord, GXTexMapID map, GXChannelID color) {
     u32* ptref, tmap, tcoord;
-    static u32 c2r[] = {0,1,0,1,0,1,7,5,6, 0, 0, 1, 2, 3, 4, 4, 4, 5};
+    static u32 c2r[] = {0,1,0,1,0,1,7,5,6};
     ptref = &gx->tref[stage / 2];
     gx->texmapId[stage] = map;
     tmap = (u32)(map & ~GX_TEX_DISABLE);
