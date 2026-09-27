@@ -368,9 +368,6 @@ namespace MR {
 
     template < class T >
     void Vector< T >::push_back(const Item& rItem) {
-        u32 index = mCount;
-
-        mCount++;
-        mArray[index] = rItem;
+        mArray[mCount++] = rItem;
     }
 };  // namespace MR

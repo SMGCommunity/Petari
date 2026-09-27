@@ -824,6 +824,8 @@ void StorySequenceExecutor::exeStaffRollSequence() {
     setNerve(GET_NERVE_ANON(StorySequenceExecutorPlayDemoSequence));
 }
 
+#pragma push
+#pragma opt_rebuildlogicals off
 void StorySequenceExecutor::decideNextEventForClearGalaxy(GalaxyMoveArgument* pMoveArgument) {
     pMoveArgument->mStageName = nullptr;
     pMoveArgument->mScenarioNo = -1;
@@ -955,6 +957,7 @@ void StorySequenceExecutor::decideNextEventForClearGalaxy(GalaxyMoveArgument* pM
         setNerve(GET_NERVE_ANON(StorySequenceExecutorWaitToSceneStart));
     }
 }
+#pragma pop
 
 void StorySequenceExecutor::decideNextEventForMoveGalaxy(GalaxyMoveArgument* pMoveArgument) {
     if (pMoveArgument->isEqualStage("AstroDome")) {
