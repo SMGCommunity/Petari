@@ -377,7 +377,7 @@ void OceanBowl::draw() const {
             GXTexCoord2s16(even, even);
 
             GXPosition3f32(pPoint2->mVertexPosition.x, pPoint2->mVertexPosition.y, pPoint2->mVertexPosition.z);
-            GXColor4u8(255, 255, 255, pPoint2->mAlpha);
+            GXColor4u8(255, 255, 255, getPoint(x, y)->mAlpha);
             GXTexCoord2s16(odd, odd);
             GXTexCoord2s16(odd, odd);
 

@@ -783,8 +783,8 @@ namespace JGeometry {
         // however using the exact same asm causes mismatches. Keeping it here instead
         // keeps the exact matches, and even allows for more use cases that match.
         f32 squared(const TVec3& rB) const {
-            const register Vec* b = &rB;
             const register Vec* a = this;
+            const register Vec* b = &rB;
 
             register f32 sqdist, dxy, dyz;
             register f32 v1xy, v0xy, v1yz, v0yz;
