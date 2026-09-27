@@ -525,7 +525,7 @@ void PenguinRacer::loseRacer() {
 
 void PenguinRacer::resetRacer(const RaceManager* pRaceManager) {
     MR::onBind(this);
-    mBinder->mOffsetY = 60.0f;
+    mBinder->mOffsetY = 80.0f;
     MR::setDefaultPose(this);
     mVelocity.zero();
     MR::calcGravity(this);

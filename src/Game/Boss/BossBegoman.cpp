@@ -251,10 +251,10 @@ void BossBegoman::control() {
     if (isNerve(GET_NERVE(BossBegoman, HostTypeNrvPursue)) || isNerve(GET_NERVE(BossBegoman, HostTypeNrvTurn))) {
         f32 max = 1.0f;
         f32 new150;
-        if (_150 + 0.01f >= max) {
+        if (_150 + 0.001f >= max) {
             new150 = max;
         } else {
-            new150 = _150 + 0.01f;
+            new150 = _150 + 0.001f;
         }
         _150 = new150;
     } else {

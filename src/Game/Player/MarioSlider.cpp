@@ -122,7 +122,7 @@ bool MarioSlider::update() {
             if (isSlipPolygon(getGroundPolygon())) {
                 Mario* player = getPlayer();
                 player->_8F8 = _14;
-                player->_8F0 = 0.0f;
+                player->_8F0 = 10.0f;
                 return false;
             }
         }

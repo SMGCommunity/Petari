@@ -97,7 +97,7 @@ namespace {
     static f32 sPushAccel;
     static const f32 sRecoveryDistance = 1500.0f;
     static const f32 sOverWallAccel = 0.9f;
-    static const f32 sMaxOverWallHeight = 150.0f;
+    static const f32 sMaxOverWallHeight = 250.0f;
     static const s32 sWaitTime = 300;
     static f32 sNormalAccel;
     static f32 sGravityAccel;
@@ -935,7 +935,7 @@ void Meramera::exeChaseStart() {
     startWaitLevelSound();
 
     MR::addVelocityKeepHeightUseShadow(this, 300.0f, 0.5f, 0.2f, 15.0f, nullptr);
-    addToTargetMovingAccel(*MR::getPlayerPos(), 0.05f, 0.98f);
+    addToTargetMovingAccel(*MR::getPlayerPos(), 0.05f, 0.99f);
     MR::attenuateVelocity(this, 0.97f);
     MR::reboundVelocityFromCollision(this);
 
@@ -1428,7 +1428,7 @@ void Meramera::addRunawayJumpPower() {
     MR::addRandomVector(&vec, vec, 0.5f * val);
 
     f32 val2 = 20.0f * (0.1f + val * 0.9f);
-    f32 randomVal = MR::getRandom(45.0f, 900.0f);
+    f32 randomVal = MR::getRandom(45.0f, 50.0f);
     val = (0.8f + val * 0.2f) * randomVal;
     addMovingAccel(vec, val2, -1.0f);
     mVelocity -= mGravity * val;

@@ -9,7 +9,7 @@ namespace {
     static const f32 sShakeDistance = 800.0f;
     static const s32 sGenerateInterval = 360;
     static const s32 sGenerateLife = 360;
-    static const f32 sGenerateOffsetY = 125.0f;
+    static const f32 sGenerateOffsetY = 1250.0f;
 };  // namespace
 
 namespace NrvSubmarineVolcanoBigColumn {
