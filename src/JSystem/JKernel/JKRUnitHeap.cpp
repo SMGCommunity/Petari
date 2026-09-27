@@ -4,6 +4,8 @@
 
 static const u8 bitTable[] = {0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01};
 
+#pragma push
+#pragma optimization_level 3
 JKRUnitHeap* JKRUnitHeap::create(u32 unitSize, u32 size, u32 alignment, JKRHeap* parent, bool errorFlag) {
     if (alignment == 0) {
         alignment = 4;
@@ -37,14 +39,14 @@ JKRUnitHeap* JKRUnitHeap::create(u32 unitSize, u32 size, u32 alignment, JKRHeap*
 
     u8* memoryEnd = memory + size;
     u8* units = reinterpret_cast< u8* >(ALIGN_NEXT(reinterpret_cast< u32 >(bat + ALIGN_NEXT(unitCount / 8, 4)), alignment));
-    u32 availableSize = memoryEnd - units;
-    unitCount = availableSize / alignedUnitSize;
-    JKRUnitHeap* heap = new (memory) JKRUnitHeap(bat, units, alignedUnitSize, unitCount, availableSize, alignment, parent, errorFlag);
+    unitCount = (memoryEnd - units) / alignedUnitSize;
+    JKRUnitHeap* heap = new (memory) JKRUnitHeap(bat, units, alignedUnitSize, unitCount, memoryEnd - units, alignment, parent, errorFlag);
     if (heap == nullptr) {
         JKRHeap::free(memory, nullptr);
     }
     return heap;
 }
+#pragma pop
 
 void JKRUnitHeap::do_destroy() {
     JKRHeap* parent = getParent();

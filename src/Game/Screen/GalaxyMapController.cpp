@@ -67,6 +67,13 @@ GalaxyMapController::GalaxyMapController()
       mWipeFrame(::sMapFadeinoutFrame) {
 }
 
+namespace {
+    u16 getFbWidth() {
+        const u16& rWidth = JUTGetVideoManager()->getFbWidth();
+        return rWidth;
+    }
+}
+
 void GalaxyMapController::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayoutOnPause(this);
 
@@ -94,7 +101,7 @@ void GalaxyMapController::init(const JMapInfoIter& rIter) {
     {
         MR::CurrentHeapRestorer heapRestorer(MR::getSceneHeapGDDR3());
 
-        _38 = new JUTTexture(JUTGetVideoManager()->getFbWidth() / 2, MR::getScreenHeight() / 2, GX_TF_RGB565);
+        _38 = new JUTTexture(getFbWidth() / 2, MR::getScreenHeight() / 2, GX_TF_RGB565);
     }
 
     if (MR::startFunctionAsyncExecuteOnMainThread(MR::Functor(this, GalaxyMapController::capture), "GalaxyMapController::capture")) {
