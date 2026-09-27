@@ -34,7 +34,7 @@ namespace {
     static const f32 sTurnMaxSpeed = 1.1f;
 };  // namespace
 
-BombTeresaHolder::BombTeresaHolder() : DeriveActorGroup< BombTeresa >("ポルタ地面岩管理", ::sBombTeresaBufferSize) {
+BombTeresaHolder::BombTeresaHolder() : DeriveActorGroup< BombTeresa >("ボムテレサ管理", ::sBombTeresaBufferSize) {
     BombTeresa* bombTeresa;
 
     for (int i = 0; i < ::sBombTeresaBufferSize; i++) {

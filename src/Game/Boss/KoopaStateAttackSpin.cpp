@@ -208,7 +208,7 @@ void KoopaStateAttackSpin::exeEven() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "SpinEven");
         MR::calcVecFromPlayerH(&mHost->mVelocity, mHost);
-        MR::scaleVelocity(mHost, ::sSpinBrakeStep);
+        MR::scaleVelocity(mHost, 30.0f);
     }
 
     KoopaFunction::moveAndTurnKoopaToPlayer(mHost, ::sEvenParam);

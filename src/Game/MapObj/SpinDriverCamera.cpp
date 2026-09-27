@@ -21,13 +21,13 @@ void SpinDriverCamera::startAppearCamera(LiveActor* pActor, const TVec3f& a2, co
         return;
     }
 
-    mAppearCameraFrame = MR::getMultiActorCameraFrames(pActor, mCameraInfo, "カメラターゲットダミー");
+    mAppearCameraFrame = MR::getMultiActorCameraFrames(pActor, mCameraInfo, "出現イベント用");
 
     if (mAppearCameraFrame <= 0) {
         return;
     }
 
-    MR::startMultiActorCameraTargetOther(pActor, mCameraInfo, "カメラターゲットダミー", CameraTargetArg(mTargetMtx), -1);
+    MR::startMultiActorCameraTargetOther(pActor, mCameraInfo, "出現イベント用", CameraTargetArg(mTargetMtx), -1);
 
     TPos3f upPos;
     MR::makeMtxUpFrontPos(&upPos, a2, a3, a4);
@@ -133,7 +133,7 @@ void SpinDriverCamera::init(const JMapInfoIter& rIter, LiveActor* pActor) {
     mCamera->setUp(pActor->mName, new ActorCameraInfo(rIter), arg3);
     mCamera->setEndCameraTypeAtLanding();
 
-    mTargetMtx = new CameraTargetMtx("出現イベント用");
+    mTargetMtx = new CameraTargetMtx("カメラターゲットダミー");
 }
 
 void SpinDriverCamera::initAppearCamera(const JMapInfoIter& rIter, LiveActor* pActor) {

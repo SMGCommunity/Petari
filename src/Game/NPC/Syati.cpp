@@ -82,7 +82,7 @@ void Syati::init(const JMapInfoIter& rIter) {
     initTalking(rIter);
     MR::connectToSceneNoSilhouettedMapObj(this);
     initHitSensor(3);
-    MR::addHitSensorAtJointEnemySimple(this, "head", "jaw", 4, 200.0f, TVec3f(0.0f, -60.0f, 0.0f));
+    MR::addHitSensorAtJointEnemySimple(this, "head", "Jaw", 4, 200.0f, TVec3f(0.0f, -60.0f, 0.0f));
     MR::addHitSensorEnemySimple(this, "body", 4, 230.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::addHitSensorAtJointEnemySimple(this, "tail", "Spin2", 4, 150.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::calcModelBoundingRadius(&mClippingRange, this);

@@ -245,7 +245,7 @@ bool DinoPackunBall::tryRebound() {
 
 void DinoPackunBall::exeWait() {
     MR::addVelocityToGravity(this, 1.0f);
-    MR::attenuateVelocity(this, 0.98f);
+    MR::attenuateVelocity(this, 0.9f);
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
 
     if (MR::isBindedGround(this) && mVelocity.length() > 5.0f) {

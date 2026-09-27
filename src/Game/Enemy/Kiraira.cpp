@@ -208,7 +208,7 @@ void Kiraira::exeRecover() {
         mIsForceDetonated = false;
     }
     if (MR::isNearPlayer(this, ::sEyeSensorOutRadius)) {
-        MR::turnDirectionToTargetDegree(this, &mFront, *MR::getPlayerPos(), ::sTurnRate);
+        MR::turnDirectionToTargetDegree(this, &mFront, *MR::getPlayerPos(), 20.0f);
     }
     if (MR::isBckStopped(this)) {
         if (mChain != nullptr) {

@@ -21,7 +21,7 @@ namespace NrvStarPieceMother {
     NEW_NERVE(HostTypeNrvWait, StarPieceMother, Wait);
 };  // namespace NrvStarPieceMother
 
-StarPieceMother::StarPieceMother(const char* pName) : LiveActor(pName), mStarPieceArray(), _90(), _94(6), _98(), _9C(), _A0() {
+StarPieceMother::StarPieceMother(const char* pName) : LiveActor(pName), mStarPieceArray(), _90(), _94(6), _98(), _9C(), _A0(10.0f) {
 }
 
 void StarPieceMother::init(const JMapInfoIter& rIter) {

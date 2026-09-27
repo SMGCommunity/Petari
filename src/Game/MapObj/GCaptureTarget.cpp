@@ -76,7 +76,7 @@ void GCaptureTarget::init(const JMapInfoIter& rIter) {
     }
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::listenStageSwitchOnB(this, MR::Functor(this, &GCaptureTarget::exeActive));
+        MR::listenStageSwitchOnB(this, MR::Functor< LiveActor >(this, &LiveActor::kill));
     }
 
     s32 arg;
