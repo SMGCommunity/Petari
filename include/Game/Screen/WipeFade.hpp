@@ -19,8 +19,9 @@ public:
     virtual bool isWipeOut() const;
 
     void setColor(GXColor color) {
-        mFillColor = color;
-    };
+        GXColor copy = color;
+        mFillColor = copy;
+    }
 
 private:
     /* 0x20 */ bool mIsWipeIn;
