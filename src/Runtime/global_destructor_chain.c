@@ -26,6 +26,3 @@ void __destroy_global_chain(void) {
         (((void (*)(void *,short))chain->dtor)(obj,-1));
     }
 }
-
-__declspec(section ".dtors")
-extern void * const __destroy_global_chain_reference = __destroy_global_chain;

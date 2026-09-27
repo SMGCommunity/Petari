@@ -666,11 +666,11 @@ config.libs = [
         "objects": [
             Object(Matching, "Runtime/__mem.c"),
             Object(Matching, "Runtime/__va_arg.c"),
-            Object(NonMatching, "Runtime/global_destructor_chain.c"),
+            Object(Matching, "Runtime/global_destructor_chain.c"),
             Object(NonMatching, "Runtime/NMWException.cpp"),
             Object(Matching, "Runtime/ptmf.c"),
             Object(Matching, "Runtime/runtime.c"),
-            Object(NonMatching, "Runtime/__init_cpp_exceptions.cpp"),
+            Object(Matching, "Runtime/__init_cpp_exceptions.cpp"),
             Object(NonMatching, "Runtime/Gecko_ExceptionPPC.cpp"),
             Object(Matching, "Runtime/GCN_mem_alloc.c"),
         ],
