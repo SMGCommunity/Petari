@@ -130,7 +130,6 @@ CameraParamChunk* CameraParamChunkHolder::findChunk(s32 zoneID, const char* pNam
     return nullptr;
 }
 
-// Stack is 0x10 bytes smaller
 void CameraParamChunkHolder::loadFile(s32 zoneID) {
     void* data;
     s32 local44;

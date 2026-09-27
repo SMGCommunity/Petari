@@ -532,10 +532,9 @@ void SnowFloor::updateCheckList() {
 f32 SnowFloor::calcCoverSnow(const TVec2f& rPoint, f32 radius) {
     f32 total = 0.0f;
     TVec2f point(rPoint);
+    f32 outerRadius = 1.732051f * radius;
     point.x *= ::sTextureSize;
     point.y *= ::sTextureSize;
-    f32 outerRadius = 1.732051f;
-    outerRadius *= radius;
     s32 left = static_cast< s16 >(point.x - outerRadius) - 1;
     s32 top = static_cast< s16 >(point.y - outerRadius) - 1;
     s32 right = static_cast< s16 >(point.x + outerRadius) + 1;

@@ -230,6 +230,8 @@ void JPAGenTexCrdMtxPrj(JPAEmitterWorkData* param_0) {
     GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3x4, GX_TG_POS, GX_TEXMTX0, GX_FALSE, GX_PTIDENTITY);
 }
 
+#pragma push
+#pragma opt_common_subs off
 void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData* work) {
     JPABaseShape* const shape = work->mpRes->getBsp();
     f32 dVar16 = work->mpEmtr->mTick;
@@ -258,7 +260,10 @@ void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData* work) {
     GXLoadTexMtxImm(local_108, 0x1e, GX_MTX2x4);
     GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 0x1e, false, 0x7d);
 }
+#pragma pop
 
+#pragma push
+#pragma opt_common_subs off
 void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
     JPABaseShape* const shape = work->mpRes->getBsp();
     f32 dVar16 = param_1->mAge;
@@ -286,6 +291,7 @@ void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* work, JPABaseParticle* param_1)
     local_108[2][3] = 0.0f;
     GXLoadTexMtxImm(local_108, 0x1e, GX_MTX2x4);
 }
+#pragma pop
 
 void JPALoadTex(JPAEmitterWorkData* work) {
     work->mpResMgr->load(work->mpRes->getTexIdx(work->mpRes->getBsp()->getTexIdx()), GX_TEXMAP0);
@@ -377,9 +383,11 @@ void loadPrj(JPAEmitterWorkData const* work, const Mtx srt) {
     GXLoadTexMtxImm(mtx, GX_TEXMTX0, GX_MTX3x4);
 }
 
+#pragma push
+#pragma opt_common_subs off
 static void loadPrjAnm(JPAEmitterWorkData const* work, const Mtx srt) {
-    JPABaseShape* const shape = work->mpRes->getBsp();
     f32 dVar16 = work->mpEmtr->getAge();
+    JPABaseShape* const shape = work->mpRes->getBsp();
     f32 dVar15 = 0.5f * (1.0f + shape->getTilingS());
     f32 dVar14 = 0.5f * (1.0f + shape->getTilingT());
     f32 dVar11 = (dVar16 * shape->getIncTransX()) + shape->getInitTransX();
@@ -406,6 +414,7 @@ static void loadPrjAnm(JPAEmitterWorkData const* work, const Mtx srt) {
     PSMTXConcat(local_108, srt, local_108);
     GXLoadTexMtxImm(local_108, 0x1e, GX_MTX3x4);
 }
+#pragma pop
 
 static u8 jpa_dl[32] ATTRIBUTE_ALIGN(32) = {
     0x80, 0x00, 0x04, 0x00, 0x00, 0x01, 0x01, 0x02, 0x02, 0x03, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00,

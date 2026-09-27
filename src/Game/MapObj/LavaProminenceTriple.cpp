@@ -141,10 +141,6 @@ void LavaProminenceTriple::attackSensor(HitSensor* pSender, HitSensor* pReceiver
 #pragma push
 #pragma opt_propagation off
 void LavaProminenceTriple::updateHitSensor(HitSensor* pSensor) {
-    // issue with loading from secondary offset in table entries
-    // load order swap
-    // https://decomp.me/scratch/4nBud
-
     TVec3f diff = *MR::getPlayerCenterPos();
     diff -= mPosition;
 
@@ -158,13 +154,12 @@ void LavaProminenceTriple::updateHitSensor(HitSensor* pSensor) {
     angle -= mRotation.y;
     MR::repeatDegree(&angle);
 
-    const f32* sensor0 = &::sNoSensorTable[0];
     const f32* sensor1 = &::sNoSensorTable[1];
 
     for (int i = 0; i < 3; i++) {
         s32 index = i * 2;
         s32 nextIndex = index + 1;
-        f32 half = (sensor0[index] + sensor0[nextIndex]) / 2.0f;
+        f32 half = (::sNoSensorTable[index] + ::sNoSensorTable[nextIndex]) / 2.0f;
 
         if (angle < half) {
             int j;
@@ -176,7 +171,7 @@ void LavaProminenceTriple::updateHitSensor(HitSensor* pSensor) {
                 j = i - 1;
             }
 
-            angle = MR::clamp(angle, sensor1[j * 2 + 0], sensor1[j * 2 + 1]);
+            angle = MR::clamp(angle, sensor1[static_cast< s32 >(j) * 2], sensor1[j * 2 + 1]);
             break;
         }
 

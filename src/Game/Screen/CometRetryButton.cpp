@@ -33,18 +33,26 @@ void CometRetryButton::init(const JMapInfoIter& rIter) {
     mButtonNoPaneCtrl = new ButtonPaneController(this, "NBackDown", "BoxButton2", 0, true);
     mButtonYesPaneCtrl->_22 = false;
     mButtonNoPaneCtrl->_22 = false;
-    mButtonYesPaneCtrl->mAppearAnimName = "ButtonAppear";
-    mButtonYesPaneCtrl->mWaitAnimName = "ButtonWait";
-    mButtonYesPaneCtrl->mPointingAnimName = "ButtonSelectIn";
-    mButtonYesPaneCtrl->mDecideAnimName = "ButtonDecide";
-    mButtonYesPaneCtrl->mNotPointingAnimName = "ButtonSelectOut";
-    mButtonYesPaneCtrl->mDisappearAnimName = "ButtonEnd";
-    mButtonNoPaneCtrl->mAppearAnimName = "ButtonAppear";
-    mButtonNoPaneCtrl->mWaitAnimName = "ButtonWait";
-    mButtonNoPaneCtrl->mPointingAnimName = "ButtonSelectIn";
-    mButtonNoPaneCtrl->mDecideAnimName = "ButtonDecide";
-    mButtonNoPaneCtrl->mNotPointingAnimName = "ButtonSelectOut";
-    mButtonNoPaneCtrl->mDisappearAnimName = "ButtonEnd";
+
+    const char* pAppear = "ButtonAppear";
+    const char* pWait = "ButtonWait";
+    const char* pSelectIn = "ButtonSelectIn";
+    const char* pDecide = "ButtonDecide";
+    const char* pSelectOut = "ButtonSelectOut";
+    const char* pEnd = "ButtonEnd";
+
+    mButtonYesPaneCtrl->mAppearAnimName = pAppear;
+    mButtonYesPaneCtrl->mWaitAnimName = pWait;
+    mButtonYesPaneCtrl->mPointingAnimName = pSelectIn;
+    mButtonYesPaneCtrl->mDecideAnimName = pDecide;
+    mButtonYesPaneCtrl->mNotPointingAnimName = pSelectOut;
+    mButtonYesPaneCtrl->mDisappearAnimName = pEnd;
+    mButtonNoPaneCtrl->mAppearAnimName = pAppear;
+    mButtonNoPaneCtrl->mWaitAnimName = pWait;
+    mButtonNoPaneCtrl->mPointingAnimName = pSelectIn;
+    mButtonNoPaneCtrl->mDecideAnimName = pDecide;
+    mButtonNoPaneCtrl->mNotPointingAnimName = pSelectOut;
+    mButtonNoPaneCtrl->mDisappearAnimName = pEnd;
 
     mPlayerMissLeft = new PlayerMissLeft("ミス時のプレイヤー残機表示");
     mPlayerMissLeft->initWithoutIter();

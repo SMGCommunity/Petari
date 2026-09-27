@@ -504,52 +504,58 @@ namespace MR {
         MR::makeMtxFrontUpPos(pDst, rFront, support, rPos);
     }
 
+#pragma push
+#pragma opt_propagation off
     void orthogonalize(TPos3f* pMtx) {
         TVec3f axisZ, axisY, axisX;
 
         pMtx->getXYZDir(axisX, axisY, axisZ);
 
-        axisX.cross(axisY, axisZ);
-        axisY.cross(axisZ, axisX);
+        TVec3f* pZ;
+        TVec3f* pY;
+        pY = &axisY;
+        pZ = &axisZ;
+
+        PSVECCrossProduct(pY, pZ, &axisX);
+        PSVECCrossProduct(pZ, &axisX, pY);
 
         axisX.normalize();
-        axisY.normalize();
+        pY->normalize();
 
-        pMtx->setXYZDir(axisX, axisY, axisZ);
+        pMtx->setXYZDir(axisX, *pY, *pZ);
 
         TVec3f zDir;
         pMtx->getZDir(zDir);
 
-        f32 magAll = pMtx->mMtx[0][0] * pMtx->mMtx[0][0] + pMtx->mMtx[1][0] * pMtx->mMtx[1][0] + pMtx->mMtx[2][0] * pMtx->mMtx[2][0] +
-                     pMtx->mMtx[0][1] * pMtx->mMtx[0][1] + pMtx->mMtx[1][1] * pMtx->mMtx[1][1] + pMtx->mMtx[2][1] * pMtx->mMtx[2][1] +
-                     pMtx->mMtx[0][2] * pMtx->mMtx[0][2] + pMtx->mMtx[1][2] * pMtx->mMtx[1][2] + pMtx->mMtx[2][2] * pMtx->mMtx[2][2];
-
-        JGeometry::TUtil< f32 >::sqrt(magAll);
+        JGeometry::TUtil< f32 >::sqrt((pMtx->get(0, 0) * pMtx->get(0, 0)) + (pMtx->get(1, 0) * pMtx->get(1, 0)) + (pMtx->get(2, 0) * pMtx->get(2, 0)) +
+                                      (pMtx->get(0, 1) * pMtx->get(0, 1)) + (pMtx->get(1, 1) * pMtx->get(1, 1)) + (pMtx->get(2, 1) * pMtx->get(2, 1)) +
+                                      (pMtx->get(0, 2) * pMtx->get(0, 2)) + (pMtx->get(1, 2) * pMtx->get(1, 2)) + (pMtx->get(2, 2) * pMtx->get(2, 2)));
 
         if (pMtx != nullptr) {
-            f32 magX = pMtx->mMtx[0][0] * pMtx->mMtx[0][0] + pMtx->mMtx[1][0] * pMtx->mMtx[1][0] + pMtx->mMtx[2][0] * pMtx->mMtx[2][0];
-            f32 invSqrtX = JGeometry::TUtil< f32 >::inv_sqrt(magX);
-            pMtx->mMtx[0][0] = invSqrtX * pMtx->mMtx[0][0];
-            pMtx->mMtx[1][0] = invSqrtX * pMtx->mMtx[1][0];
-            pMtx->mMtx[2][0] = invSqrtX * pMtx->mMtx[2][0];
+            f32 invLenX = JGeometry::TUtil< f32 >::inv_sqrt((pMtx->get(0, 0) * pMtx->get(0, 0)) + (pMtx->get(1, 0) * pMtx->get(1, 0)) +
+                                                            (pMtx->get(2, 0) * pMtx->get(2, 0)));
+            pMtx->mMtx[0][0] = invLenX * pMtx->get(0, 0);
+            pMtx->mMtx[1][0] = invLenX * pMtx->get(1, 0);
+            pMtx->mMtx[2][0] = invLenX * pMtx->get(2, 0);
 
-            f32 magY = pMtx->mMtx[0][1] * pMtx->mMtx[0][1] + pMtx->mMtx[1][1] * pMtx->mMtx[1][1] + pMtx->mMtx[2][1] * pMtx->mMtx[2][1];
-            f32 invSqrtY = JGeometry::TUtil< f32 >::inv_sqrt(magY);
-            pMtx->mMtx[0][1] = invSqrtY * pMtx->mMtx[0][1];
-            pMtx->mMtx[1][1] = invSqrtY * pMtx->mMtx[1][1];
-            pMtx->mMtx[2][1] = invSqrtY * pMtx->mMtx[2][1];
+            f32 invLenY = JGeometry::TUtil< f32 >::inv_sqrt((pMtx->get(0, 1) * pMtx->get(0, 1)) + (pMtx->get(1, 1) * pMtx->get(1, 1)) +
+                                                            (pMtx->get(2, 1) * pMtx->get(2, 1)));
+            pMtx->mMtx[0][1] = invLenY * pMtx->get(0, 1);
+            pMtx->mMtx[1][1] = invLenY * pMtx->get(1, 1);
+            pMtx->mMtx[2][1] = invLenY * pMtx->get(2, 1);
 
-            f32 magZ = pMtx->mMtx[0][2] * pMtx->mMtx[0][2] + pMtx->mMtx[1][2] * pMtx->mMtx[1][2] + pMtx->mMtx[2][2] * pMtx->mMtx[2][2];
-            f32 invSqrtZ = JGeometry::TUtil< f32 >::inv_sqrt(magZ);
-            pMtx->mMtx[0][2] = invSqrtZ * pMtx->mMtx[0][2];
-            pMtx->mMtx[1][2] = invSqrtZ * pMtx->mMtx[1][2];
-            pMtx->mMtx[2][2] = invSqrtZ * pMtx->mMtx[2][2];
+            f32 invLenZ = JGeometry::TUtil< f32 >::inv_sqrt((pMtx->get(0, 2) * pMtx->get(0, 2)) + (pMtx->get(1, 2) * pMtx->get(1, 2)) +
+                                                            (pMtx->get(2, 2) * pMtx->get(2, 2)));
+            pMtx->mMtx[0][2] = invLenZ * pMtx->get(0, 2);
+            pMtx->mMtx[1][2] = invLenZ * pMtx->get(1, 2);
+            pMtx->mMtx[2][2] = invLenZ * pMtx->get(2, 2);
         }
 
         pMtx->mMtx[0][2] = zDir.x;
         pMtx->mMtx[1][2] = zDir.y;
         pMtx->mMtx[2][2] = zDir.z;
     }
+#pragma pop
 
     void turnMtxToXDirRate(TPos3f* pMtx, const TVec3f& rDir, f32 rate) {
         TQuat4f quat;

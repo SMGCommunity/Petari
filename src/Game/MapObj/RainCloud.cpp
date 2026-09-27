@@ -43,6 +43,8 @@ RainCloud::RainCloud(const char* pName)
     mSplashMtx.identity();
 }
 
+#pragma push
+#pragma global_optimizer off
 void RainCloud::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("RainCloud", nullptr, false);
@@ -86,15 +88,16 @@ void RainCloud::init(const JMapInfoIter& rIter) {
     MR::initShadowVolumeFlatModel(this, "RainCloudVolume", MR::getJointMtx(this, "Shadow"));
     MR::getJMapInfoArg0NoInit(rIter, &mShadowDropLength);
 
-    if (mShadowDropLength != -1.0f) {
-        mRainLength = mShadowDropLength;
-        MR::setShadowDropLength(this, nullptr, mShadowDropLength);
+    f32 dropLength;
+    if ((dropLength = mShadowDropLength) != -1.0f) {
+        mRainLength = dropLength;
+        MR::setShadowDropLength(this, nullptr, dropLength);
         MR::setShadowVolumeEndDropOffset(this, nullptr, 80.0f);
         MR::excludeCalcShadowToMyCollision(this, nullptr);
         MR::onShadowVolumeCutDropLength(this, nullptr);
         MR::onCalcShadow(this, nullptr);
     } else {
-        mShadowDropLength = ::sNoShadowDropLengthMax;
+        mShadowDropLength = dropLength = ::sNoShadowDropLengthMax;
         MR::invalidateShadow(this, nullptr);
     }
 
@@ -127,6 +130,7 @@ void RainCloud::init(const JMapInfoIter& rIter) {
     initNerve(GET_NERVE(RainCloud, RainCloudNrvWait));
     makeActorAppeared();
 }
+#pragma pop
 
 void RainCloud::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     bool arg3 = false;

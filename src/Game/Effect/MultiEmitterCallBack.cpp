@@ -118,6 +118,16 @@ void MultiEmitterCallBack::setSRTFromHostMtx(JPABaseEmitter* pEmitter, MtxPtr pM
     setScaleFromHostScale(pEmitter, vecDC, rFlag.mTranslation, b2);
 }
 
+namespace {
+    inline s16 toS16(f32 deg) {
+        return DEGREE_TO_S16 * deg;
+    }
+
+    inline void setScaleFromHostScaleOne(MultiEmitterCallBack* pCallBack, JPABaseEmitter* pEmitter, bool b1, bool b2) {
+        pCallBack->setScaleFromHostScale(pEmitter, TVec3f(1.0f, 1.0f, 1.0f), b1, b2);
+    }
+}
+
 void MultiEmitterCallBack::setSRTFromHostSRT(JPABaseEmitter* pEmitter, const FlagSRT& rFlag, bool b2) {
     if (rFlag.mScale) {
         TVec3f vecE0;
@@ -140,13 +150,10 @@ void MultiEmitterCallBack::setSRTFromHostSRT(JPABaseEmitter* pEmitter, const Fla
     }
 
     if (rFlag.mRotation) {
-        s16 z = DEGREE_TO_S16 * mRotation->z;
-        s16 y = DEGREE_TO_S16 * mRotation->y;
-        s16 x = DEGREE_TO_S16 * mRotation->x;
-        JPAGetXYZRotateMtx(x, y, z, pEmitter->mGlobalRot);
+        JPAGetXYZRotateMtx(toS16(mRotation->x), toS16(mRotation->y), toS16(mRotation->z), pEmitter->mGlobalRot);
     }
 
-    setScaleFromHostScale(pEmitter, TVec3f(1.0f, 1.0f, 1.0f), rFlag.mTranslation, b2);
+    setScaleFromHostScaleOne(this, pEmitter, rFlag.mTranslation, b2);
 }
 
 void MultiEmitterCallBack::setScaleFromHostScale(JPABaseEmitter* pEmitter, const TVec3f& rVec, bool b1, bool b2) {

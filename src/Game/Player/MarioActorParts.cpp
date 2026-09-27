@@ -130,6 +130,8 @@ void MarioActor::updateTornado() {
     mTornadoMario->setTrHeight(mPosition, mMario->mFrontVec, mMario->_54C, _240);
 }
 
+#pragma push
+#pragma global_optimizer off
 void MarioActor::updateTakingPosition() {
     if (_480) {
         const HitSensor* sensor = _424;
@@ -177,7 +179,8 @@ void MarioActor::updateTakingPosition() {
             if (_B92 == -2)
                 frame = mMarioAnim->getFrame();
             PSMTXConcat(getBaseMtx(), _E3C.toMtxPtr(), base);
-            PSMTXCopy(base, MR::getJ3DModel(mNullAnimation)->getBaseTRMtx());
+            J3DModel* model = MR::getJ3DModel(mNullAnimation);
+            PSMTXCopy(base, model->getBaseTRMtx());
             if (mNullAnimation->getFramePos(frame, &position, &rotation)) {
                 clearNullAnimation(-3);
                 if (_424)
@@ -232,6 +235,7 @@ void MarioActor::updateTakingPosition() {
         carryRotation = _438[0] + rotation;
     }
 }
+#pragma pop
 
 const HitSensor* MarioActor::getCarrySensor() const {
     if (_468 == nullptr) {

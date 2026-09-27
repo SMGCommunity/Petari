@@ -17,10 +17,9 @@ bool DrawBufferHolder::isBufferGroupEmpty(s32 drawBufferType) const {
     return mBufferGroups[drawBufferType].mActiveExecutors.size() == 0;
 }
 
+#pragma push
+#pragma opt_loop_invariants off
 void DrawBufferHolder::initTable(const DrawBufferInitialTable* pInitialTable, s32 numGroups) {
-    // FIXME : regswap and load order
-    // https://decomp.me/scratch/RnE7Q
-
     mBufferGroups.init(numGroups);
 
     s32 cameraTypeCounts[3];
@@ -36,15 +35,17 @@ void DrawBufferHolder::initTable(const DrawBufferInitialTable* pInitialTable, s3
         mBufferGroups[drawType].setLightType(entry->mLightType);
     }
 
+    s32* pCounts = cameraTypeCounts;
+
     for (s32 idx = 0; idx < 3; idx++) {
-        s32 count = cameraTypeCounts[idx];
-        if (count > 0) {
-            mExecuteLists[idx].init(count);
+        if (pCounts[idx] > 0) {
+            mExecuteLists[idx].init(pCounts[idx]);
         }
     }
 
     mTableInitialized = true;
 }
+#pragma pop
 
 void DrawBufferHolder::allocateActorListBuffer() {
     mTableInitialized = false;

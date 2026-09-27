@@ -249,10 +249,14 @@ void MultiEmitter::addChildEmitter(MultiEmitter* pChild) {
     mChildren.push_back(pChild);
 }
 
+namespace {
+    inline s16 toS16(f32 deg) {
+        return DEGREE_TO_S16 * deg;
+    }
+}
+
 void MultiEmitter::setGlobalRotationDegree(const TVec3f& rRotation, s32 idx) {
-    setGlobalRotation(TVec3s(static_cast< s16 >(DEGREE_TO_S16 * rRotation.x), static_cast< s16 >(DEGREE_TO_S16 * rRotation.y),
-                             static_cast< s16 >(DEGREE_TO_S16 * rRotation.z)),
-                      idx);
+    setGlobalRotation(TVec3s(toS16(rRotation.x), toS16(rRotation.y), toS16(rRotation.z)), idx);
 }
 
 void MultiEmitter::allocateEmitter(const char* pName) {

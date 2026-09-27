@@ -124,12 +124,11 @@ AudSystem* AudNewAudSystem(JKRSolidHeap* pHeap, void* pV, JKRArchive* pSeqArchiv
     }
 
     if (pChordArchive == nullptr) {
-        pChordArchive =
-            JKRArchive::mount("/AudioRes/Info/JaiChord.arc", JKRArchive::MOUNT_MODE_MEM, newHeap->getHeap(), JKRArchive::MOUNT_DIRECTION_1);
+        pChordArchive = JKRArchive::mount(sJaiChordArc, JKRArchive::MOUNT_MODE_MEM, newHeap->getHeap(), JKRArchive::MOUNT_DIRECTION_1);
     }
 
     if (pMeArchive == nullptr) {
-        pMeArchive = JKRArchive::mount("/AudioRes/Info/JaiMe.arc", JKRArchive::MOUNT_MODE_MEM, newHeap->getHeap(), JKRArchive::MOUNT_DIRECTION_1);
+        pMeArchive = JKRArchive::mount(sJaiMeArc, JKRArchive::MOUNT_MODE_MEM, newHeap->getHeap(), JKRArchive::MOUNT_DIRECTION_1);
     }
 
     AudSystem* system = AudNewAudSystem_(newHeap, pChordArchive, pMeArchive, pRemixArchive, 1);

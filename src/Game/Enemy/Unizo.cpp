@@ -29,6 +29,46 @@
 #include "Game/Util/VectorUtil.hpp"
 
 namespace {
+    inline void setQuatXYZ(TQuat4f& rQuat, const TVec3f& rRot) {
+        f32 s;
+        f32 x;
+        f32 y;
+        f32 c;
+        f32 z;
+
+        x = rRot.x;
+        z = rRot.z;
+        y = rRot.y;
+
+        TQuat4f quatZ;
+        TQuat4f quatY;
+        TQuat4f quatX;
+
+        s = sin(x * 0.5f);
+        c = cos(x * 0.5f);
+        quatX.x = s;
+        quatX.y = 0.0f;
+        quatX.z = 0.0f;
+        quatX.w = c;
+
+        s = sin(y * 0.5f);
+        c = cos(y * 0.5f);
+        quatY.x = 0.0f;
+        quatY.y = s;
+        quatY.z = 0.0f;
+        quatY.w = c;
+
+        s = sin(z * 0.5f);
+        c = cos(z * 0.5f);
+        quatZ.x = 0.0f;
+        quatZ.y = 0.0f;
+        quatZ.z = s;
+        quatZ.w = c;
+
+        rQuat.mult(quatZ, quatX);
+        rQuat.mult(rQuat, quatY);
+    }
+
     const f32 sChaseRadius = 1500.0f;
     const f32 sChaseDegree = 90.0f;
     const f32 sChaseCycle = 20.0f;
@@ -78,6 +118,10 @@ namespace {
     const f32 sRollHeightLand = 0.0f;
     const s32 sStartSearch = 0;
     const f32 sSurfaceEffectMinRunLimit = 0.0f;
+
+    inline f32 toDeg(f32 x) {
+        return _180_PI * x;
+    }
 }  // namespace
 
 namespace NrvUnizo {
@@ -205,17 +249,7 @@ void Unizo::makeActorAppeared() {
     MR::showModel(this);
     mBaseMtx.setTrans(mPosition);
     LiveActor::makeActorAppeared();
-    f32 rotX = mRotation.x;
-    f32 rotY = mRotation.y;
-    f32 rotZ = mRotation.z;
-    TQuat4f quatX;
-    quatX.setEulerX(rotX);
-    TQuat4f quatY;
-    quatY.setEulerY(rotY);
-    TQuat4f quatZ;
-    quatZ.setEulerZ(rotZ);
-    mQuat.mult(quatZ, quatX);
-    mQuat.mult(mQuat, quatY);
+    setQuatXYZ(mQuat, mRotation);
     mQuat.normalize();
     mRotation.zero();
     mModelManager->calcView();
@@ -749,10 +783,10 @@ void Unizo::appearBreakModel() {
     TVec3f rotation;
     MR::makeMtxFrontUp(&mtx, -MR::getCamZdir(), MR::getCamYdir());
     mtx.getEuler(rotation);
-    f32 x = rotation.x;
-    f32 y = rotation.y;
-    f32 z = rotation.z;
-    rotation.set(_180_PI * x, _180_PI * y, _180_PI * z);
+    f32 x = toDeg(rotation.x);
+    f32 y = toDeg(rotation.y);
+    f32 z = toDeg(rotation.z);
+    rotation.set(x, y, z);
     mBreakModel->mPosition.set(mPosition);
     mBreakModel->mScale.set(mScale);
     mBreakModel->mRotation.set(rotation);

@@ -23,10 +23,23 @@ void CamKarikariEffector_FORCE_MATCH_SDATA2() {
 CamKarikariEffector::CamKarikariEffector() : mCounter(0) {
 }
 
-void CamKarikariEffector::update(CameraMan* pCameraMan) {
-    // FIXME: a few minor issues with float and register scheduling
-    // https://decomp.me/scratch/7CCpm
+namespace {
+    inline TVec3f calcPlayerFocusPos(const TVec3f& rOffset) {
+        const TVec3f* pOffset = &rOffset;
 
+        return *MR::getPlayerPos() + *pOffset;
+    }
+
+    inline f32 calcFovy(f32 dist) {
+        f32 fovAngle = MR::asin(75.0f / dist);
+
+        return MR::atan2((dist * MR::tan(fovAngle)) / 0.3f, dist);
+    }
+}
+
+#pragma push
+#pragma global_optimizer off
+void CamKarikariEffector::update(CameraMan* pCameraMan) {
     if (MR::isPlayerDead()) {
         CameraLocalUtil::setFovy(pCameraMan, CameraLocalUtil::getFovy(pCameraMan));
         return;
@@ -42,29 +55,34 @@ void CamKarikariEffector::update(CameraMan* pCameraMan) {
         }
     }
 
-    // FIXME: t stored in f0 but should be in f31
-    f32 t = MR::getClingNumMax() == 0 ? ::sKarikariViewRate : static_cast< f32 >(MR::getKarikariClingNum()) / MR::getClingNumMax();
+    f32 t;
+
+    if (MR::getClingNumMax() == 0) {
+        t = ::sKarikariViewRate;
+    } else {
+        t = static_cast< f32 >(MR::getKarikariClingNum()) / MR::getClingNumMax();
+    }
 
     if (mCounter <= 0) {
         return;
     }
 
-    f32 fovRate = 1.0f - (1.0f - t) * (1.0f - t);
+    t = 1.0f - t;
+    t *= t;
+    t = 1.0f - t;
 
     TVec3f diffWatchPos = CameraLocalUtil::getWatchPos(pCameraMan) - CameraLocalUtil::getPos(pCameraMan);
     TVec3f toWatchPos(diffWatchPos);
     MR::normalize(&toWatchPos);
 
-    // FIXME: register scheduling issue, result of operator * should be preloaded before the actual mult?
     TVec3f playerUp;
     MR::getPlayerUpVec(&playerUp);
-    TVec3f playerFocusPos = *MR::getPlayerPos() + playerUp * ::sPlayerRadius;
+    TVec3f playerFocusPos = calcPlayerFocusPos(playerUp * ::sPlayerRadius);
 
     TVec3f diffPlayerPos = playerFocusPos - CameraLocalUtil::getPos(pCameraMan);
     TVec3f toPlayerPos(diffPlayerPos);
     MR::normalize(&toPlayerPos);
 
-    // Blend WatchPos to player focus pos by rotation (ease in)
     f32 rotRatio = MR::clamp((1.0f - MR::cos(mCounter * MR::pi() / ::sKarikariCounterMax)) * 0.5f, 0.0f, 1.0f);
     TQuat4f rot;
     rot.setRotate(toWatchPos, toPlayerPos, rotRatio);
@@ -77,13 +95,10 @@ void CamKarikariEffector::update(CameraMan* pCameraMan) {
     rot.transform(camUp);
     CameraLocalUtil::setUpVec(pCameraMan, camUp);
 
-    // Blend FovY
-    f32 dist = diffPlayerPos.length();
-    f32 fovAngle = MR::asin(75.0f / dist);
-
-    f32 fovy = MR::atan2((dist * MR::tan(fovAngle)) / 0.3f, dist);
+    f32 fovy = calcFovy(diffPlayerPos.length());
 
     if (fovy < CameraLocalUtil::getFovy(pCameraMan) * MR::pi() / 180.0f) {
-        CameraLocalUtil::setFovy(pCameraMan, (fovy * 180.0f * fovRate) / MR::pi() + (1.0f - fovRate) * CameraLocalUtil::getFovy(pCameraMan));
+        CameraLocalUtil::setFovy(pCameraMan, (fovy * 180.0f * t) / MR::pi() + (1.0f - t) * CameraLocalUtil::getFovy(pCameraMan));
     }
 }
+#pragma pop

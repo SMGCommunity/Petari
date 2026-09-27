@@ -269,6 +269,14 @@ void FileSelector::createSky() {
     mSky->appear();
 }
 
+namespace {
+    inline FileSelectItem* createFileItem(s32 id) {
+        FileSelectIconID iconId = FileSelectIconID();
+
+        return new FileSelectItem(id, true, iconId, "ファイルセレクトアイテム");
+    }
+};  // namespace
+
 void FileSelector::createFileItems() {
     mItems = new DeriveActorGroup< FileSelectItem >("全ファイルアイテム保持", USER_FILE_NUM);
     _98 = new TVec3f[USER_FILE_NUM]();
@@ -278,12 +286,8 @@ void FileSelector::createFileItems() {
 
     FileSelectItemDelegator< FileSelector >* pDelegator = new FileSelectItemDelegator< FileSelector >(this, &FileSelector::notifyItem);
 
-    s32 id;
-
     for (int i = 0; i < USER_FILE_NUM; i++) {
-        id = ::sIndexOrder[i];
-        FileSelectIconID iconId = FileSelectIconID();
-        FileSelectItem* pItem = new FileSelectItem(id, true, iconId, "ファイルセレクトアイテム");
+        FileSelectItem* pItem = ::createFileItem(::sIndexOrder[i]);
 
         pItem->initWithoutIter();
         pItem->setSelectDelegator(pDelegator);
@@ -533,6 +537,35 @@ void FileSelector::clearPointing() {
     _BC = nullptr;
 }
 
+namespace {
+    inline OSTime getUserFileLastModified(const FileSelector* pSelector, s32 id) {
+        return pSelector->mUserFile[id - 1].getLastModified();
+    }
+
+    inline bool isUserFileViewCompleteEnding(const FileSelector* pSelector, s32 id) {
+        return pSelector->mUserFile[id - 1].isViewCompleteEnding();
+    }
+
+    inline bool isUserFileViewNormalEnding(const FileSelector* pSelector, s32 id) {
+        return pSelector->mUserFile[id - 1].isViewNormalEnding();
+    }
+
+    inline s32 getUserFileStarPieceNum(const FileSelector* pSelector, s32 id) {
+        return pSelector->mUserFile[id - 1].getStarPieceNum();
+    }
+
+    inline s32 getUserFilePowerStarNum(const FileSelector* pSelector, s32 id) {
+        return pSelector->mUserFile[id - 1].getPowerStarNum();
+    }
+
+    inline void copyIconMiiName(const FileSelector* pSelector, u16* pName, s32 id) {
+        FileSelectIconID iconId = FileSelectIconID();
+
+        pSelector->getIconId(&iconId, id);
+        FileSelectFunc::copyMiiName(pName, iconId);
+    }
+};  // namespace
+
 void FileSelector::setFileInfo(s32 id) {
     OSCalendarTime td;
     u16 nameBuffer[RFL_NAME_LEN + 1];
@@ -542,21 +575,18 @@ void FileSelector::setFileInfo(s32 id) {
     if (static_cast< FileSelectItem* >(mItems->getActor(::getItemArrayIndex(id)))->_146) {
         FileSelectFunc::copyMiiName(nameBuffer, FileSelectIconID());
     } else {
-        FileSelectIconID iconId = FileSelectIconID();
-
-        getIconId(&iconId, id);
-        FileSelectFunc::copyMiiName(nameBuffer, iconId);
+        ::copyIconMiiName(this, nameBuffer, id);
     }
 
-    OSTicksToCalendarTime(mUserFile[id - 1].getLastModified(), &td);
+    OSTicksToCalendarTime(::getUserFileLastModified(this, id), &td);
 
     MR::makeDateString(dateBuffer, ARRAY_SIZE(dateBuffer), td.year, td.mon + 1, td.mday);
     MR::makeTimeString(timeBuffer, ARRAY_SIZE(timeBuffer), td.hour, td.min);
 
-    bool isViewCompleteEnding = mUserFile[id - 1].isViewCompleteEnding();
-    bool isViewNormalEnding = mUserFile[id - 1].isViewNormalEnding();
-    s32 starPieceNum = mUserFile[id - 1].getStarPieceNum();
-    s32 powerStarNum = mUserFile[id - 1].getPowerStarNum();
+    bool isViewCompleteEnding = ::isUserFileViewCompleteEnding(this, id);
+    bool isViewNormalEnding = ::isUserFileViewNormalEnding(this, id);
+    s32 starPieceNum = ::getUserFileStarPieceNum(this, id);
+    s32 powerStarNum = ::getUserFilePowerStarNum(this, id);
     s32 missCount = getMissCount(id);
     bool isUserFileMario = !isUserFileLuigi(id);
 
@@ -612,31 +642,25 @@ void FileSelector::calcBasePos(f32 offset) {
     }
 }
 
-void FileSelector::initAllItems() {
-    s32 id;
-    s32 index;
-    FileSelectItem* pItem;
+namespace {
+    inline void initFileItem(FileSelector* pSelector, FileSelectItem* pItem) {
+        s32 id = pItem->_140;
 
-    for (int i = 0; i < USER_FILE_NUM; i++) {
-        pItem = static_cast< FileSelectItem* >(mItems->getActor(i));
-        id = pItem->_140;
-        index = id - 1;
-
-        if (!mUserFile[index].isCreated()) {
-            continue;
+        if (!pSelector->mUserFile[id - 1].isCreated()) {
+            return;
         }
 
-        FileSelectIconID iconId = FileSelectIconID();
         u32 tempIconId;
         RFLCreateID tempMiiId;
+        FileSelectIconID iconId = FileSelectIconID();
 
-        if (mUserFile[index].getIconId(&tempIconId)) {
-            iconId.setFellowID(getUserFileFellowID(id));
-        } else if (mUserFile[index].getMiiId(&tempMiiId)) {
+        if (pSelector->mUserFile[id - 1].getIconId(&tempIconId)) {
+            iconId.setFellowID(pSelector->getUserFileFellowID(id));
+        } else if (pSelector->mUserFile[id - 1].getMiiId(&tempMiiId)) {
             if (::getMiiFacePartsHolder()->isError()) {
                 pItem->_146 = true;
-            } else if (isUserFileMiiIdValid(id)) {
-                u32 miiIndex = getUserFileMiiIndex(id);
+            } else if (pSelector->isUserFileMiiIdValid(id)) {
+                u32 miiIndex = pSelector->getUserFileMiiIndex(id);
 
                 iconId.setMiiIndex(miiIndex);
             } else {
@@ -644,7 +668,13 @@ void FileSelector::initAllItems() {
             }
         }
 
-        pItem->forceChange(iconId, _CC[id - 1]);
+        pItem->forceChange(iconId, pSelector->_CC[id - 1]);
+    }
+};  // namespace
+
+void FileSelector::initAllItems() {
+    for (int i = 0; i < USER_FILE_NUM; i++) {
+        ::initFileItem(this, static_cast< FileSelectItem* >(mItems->getActor(i)));
     }
 }
 

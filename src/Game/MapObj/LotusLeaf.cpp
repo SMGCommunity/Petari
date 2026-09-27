@@ -80,10 +80,9 @@ void LotusLeaf::exeWaitPlayerOn() {
     setNerve(GET_NERVE(LotusLeaf, HostTypeWait));
 }
 
+#pragma push
+#pragma global_optimizer off
 void LotusLeaf::exeShake() {
-    // FIXME: incorrect load time for mVelocity vector register, regswaps
-    // https://decomp.me/scratch/oDDPt
-
     if (MR::isFirstStep(this)) {
         mShakeSpeed = ::sShakeInitSpeed;
         mShakePeriod = ::sShakePeriodStart;
@@ -128,6 +127,7 @@ void LotusLeaf::exeShake() {
         }
     }
 }
+#pragma pop
 
 void LotusLeaf::convergeToInitPos() {
     if (mPosition.y < mInitPos.y) {

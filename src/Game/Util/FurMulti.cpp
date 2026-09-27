@@ -127,10 +127,18 @@ void FurMulti::onDraw(u32 mask) {
     }
 }
 
+namespace {
+    void loadFurText(LiveActor* pActor, FurParam* pParam, DynamicFurParam* pDynamic, const char* pName) {
+        char* pText = static_cast< char* >(MR::getResourceHolder(pActor)->mFileInfoTable->getRes(pName));
+        ResFileInfo* pInfo = MR::getResourceHolder(pActor)->mFileInfoTable->findFileInfo(pName);
+        MR::initFurParamFromDvd(pParam, pDynamic, pText, pInfo->_4);
+    }
+}  // namespace
+
 namespace MR {
     FurMulti* initMultiFur(LiveActor* pActor, s32 lightType) {
-        u16 i;
         u16 count;
+        u16 i;
         u16 shape;
         FurMulti* pMulti;
         CurrentHeapRestorer heapRestorer(getSceneHeapGDDR3());
@@ -198,9 +206,7 @@ namespace MR {
                 strcat(name, ".fur.txt");
 
                 if (getResourceHolder(pActor)->mFileInfoTable->isExistRes(name)) {
-                    char* pText = static_cast< char* >(getResourceHolder(pActor)->mFileInfoTable->getRes(name));
-                    ResFileInfo* pInfo = getResourceHolder(pActor)->mFileInfoTable->findFileInfo(name);
-                    initFurParamFromDvd(pParam, &dynamicParam, pText, pInfo->_4);
+                    loadFurText(pActor, pParam, &dynamicParam, name);
                 }
 
                 pMulti->setLayerDirect(layer, 0, shape, pParam->mNumLayers, pParam, pBody, pLength, pIndirect, pDensity);

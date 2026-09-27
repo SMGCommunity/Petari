@@ -52,14 +52,16 @@ void StinkBugBase::init(const JMapInfoIter& rIter) {
     mGravity.negate(upVec);
 }
 
+#pragma push
+#pragma global_optimizer off
 bool StinkBugBase::isPlayerInTerritory(f32 arg1, f32 arg2, f32 arg3, f32 arg4) const {
     if (!MR::isNearPlayer(this, mRadius + arg1)) {
         return false;
     }
 
+    const TVec3f& rPos = mPosition;
     TVec3f v1;
-    // r5 goes through r31 before MR::getPlayerPos()
-    v1.sub(*MR::getPlayerPos(), mPosition);
+    v1.sub(*MR::getPlayerPos(), rPos);
 
     TVec3f upVec;
     MR::calcUpVec(&upVec, this);
@@ -89,9 +91,9 @@ bool StinkBugBase::isPlayerInTerritory(f32 arg1, f32 arg2, f32 arg3, f32 arg4) c
 
     f32 f1 = MR::abs(MR::sinDegree(_B0));
 
+    const TVec3f& rPos2 = mPosition;
     TVec3f scaledAdded;
-    // r3 and r4's assembly are in the wrong order
-    scaledAdded.scaleAdd(-arg4 / f1, _A4, mPosition);
+    scaledAdded.scaleAdd(-arg4 / f1, _A4, rPos2);
 
     TVec3f v3;
     v3.sub(*MR::getPlayerPos(), scaledAdded);
@@ -100,6 +102,7 @@ bool StinkBugBase::isPlayerInTerritory(f32 arg1, f32 arg2, f32 arg3, f32 arg4) c
 
     return MR::isNearAngleDegree(v5, _A4, _B0);
 }
+#pragma pop
 
 bool StinkBugBase::tryTurnSearch(f32 angle) {
     if (_B8) {

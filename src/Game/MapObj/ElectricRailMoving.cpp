@@ -450,6 +450,8 @@ void ElectricRailMoving::calcPointPos(TVec3f* pOutPos, f32 c) const {
     pOutPos->lerp(_E8[v5], _E8[v5 + 1], (v6 / v7));
 }
 
+#pragma push
+#pragma global_optimizer off
 void ElectricRailMoving::move() {
     _EC = getRepeatedCoord(_EC + mMovementSpeed);
 
@@ -466,16 +468,20 @@ void ElectricRailMoving::move() {
     sinValue = JMASinRadian(angle);
     f32 value = (15.0f * sinValue) + ((255.0f * mSegmentLength) / segmentLength);
 
+    s32 c;
     if (static_cast< s32 >(value) < 0) {
-        _CC = 0;
+        c = 0;
     } else if (static_cast< s32 >(value) > 255) {
-        _CC = 255;
+        c = 255;
     } else {
-        _CC = static_cast< s32 >(value);
+        c = static_cast< s32 >(value);
     }
+
+    _CC = c;
 
     updatePointPosAndModel();
 }
+#pragma pop
 
 void ElectricRailMoving::exeDisappear() {
     if (MR::isFirstStep(this)) {

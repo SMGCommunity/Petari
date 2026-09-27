@@ -63,17 +63,18 @@ void GameCameraCreator::scanStartPos() {
 }
 
 void GameCameraCreator::scanArea() {
-    // FIXME: regswap
-    // https://decomp.me/scratch/vU2zD
+    CubeCameraMgr* mgr;
+    CubeCameraArea* area;
 
-    CubeCameraMgr* mgr = static_cast< CubeCameraMgr* >(MR::getAreaObjManager("CubeCamera"));
+    mgr = static_cast< CubeCameraMgr* >(MR::getAreaObjManager("CubeCamera"));
     mgr->initAfterLoad();
 
     for (s32 idx = 0; idx < mgr->getNumAreaObj(); idx++) {
-        CubeCameraArea* area = static_cast< CubeCameraArea* >(mgr->getAreaObj(idx));
+        area = static_cast< CubeCameraArea* >(mgr->getAreaObj(idx));
         if (area->isValidCameraID()) {
             CameraParamChunkID_Tmp chunk = CameraParamChunkID_Tmp();
-            chunk.createCubeID(area->getZoneID(), area->getCameraID());
+            s32 zone = area->getZoneID();
+            chunk.createCubeID(zone, area->getCameraID());
 
             mChunkHolder->createChunk(chunk, nullptr);
         }

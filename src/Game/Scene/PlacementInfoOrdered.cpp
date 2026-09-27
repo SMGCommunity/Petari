@@ -79,8 +79,10 @@ void PlacementInfoOrdered::requestFileLoad() {
 }
 
 void PlacementInfoOrdered::initPlacement() {
-    SameIdSet* pSet;
     NameObj* pObj;
+    SameIdSet* pSet;
+    MR::BothDirPtrLink* link;
+
     MR::startInitLiveActorSystemInfo();
 
     s32 count = getUsedArrayNum();
@@ -89,8 +91,8 @@ void PlacementInfoOrdered::initPlacement() {
         CreationFuncPtr creator = ::getCreator(*pSet);
         if (creator != nullptr) {
             const char* pName = MR::getJapaneseObjectName(pSet->mName);
-            for (MR::BothDirList< Index >::iterator iter = pSet->mList.begin(); !iter.isEnd(); iter++) {
-                const JMapInfoIter& rIter = iter->getInfoIter();
+            for (link = pSet->mList.mHead; link != nullptr; link = link->mNextLink) {
+                const JMapInfoIter& rIter = static_cast< Index* >(link->mValue)->getInfoIter();
                 MR::setCurrentPlacementZoneId(MR::getPlacedZoneId(rIter));
                 pObj = creator(pName);
                 MR::initLiveActorSystemInfo(rIter);

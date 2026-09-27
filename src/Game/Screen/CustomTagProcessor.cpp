@@ -486,11 +486,11 @@ CustomTagProcessor::Operation CustomTagProcessor::exeSoundGroup(nw4r::ut::Rect* 
         return OPERATION_NO_CHAR_SPACE;
     }
 
-    u32 mask = static_cast< u8 >(1 << mSoundIndex);
-    if (mask != (mPlayedSounds & mask)) {
+    u8 mask = 1 << mSoundIndex;
+
+    if (mask != static_cast< u8 >(mPlayedSounds & mask)) {
         char name[256];
-        s32 length = static_cast< s32 >(tag.getParamLength()) / 2;
-        MR::convertUTF16ToASCII(name, tag.getParamPtr(0), length + 1);
+        MR::convertUTF16ToASCII(name, tag.getParamPtr(0), static_cast< s32 >(tag.getParamLength()) / 2 + 1);
         MR::startSystemSE(name, -1, -1);
         mPlayedSounds |= static_cast< u8 >(1 << mSoundIndex);
     }

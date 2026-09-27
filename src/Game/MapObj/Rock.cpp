@@ -81,9 +81,6 @@ Rock::Rock(f32 moveSpeed, const char* pName)
 }
 
 void Rock::init(const JMapInfoIter& rIter) {
-    // FIXME: load order of offset vec (+ probably not written this way)
-    // https://decomp.me/scratch/4hrlO
-
     mRockType = Rock::getType(rIter);
 
     if (mRockType != NormalRock) {
@@ -116,7 +113,8 @@ void Rock::init(const JMapInfoIter& rIter) {
     offset.x = 0.0f;
     offset.y = 0.0f;
     offset.z = 0.0f;
-    MR::initStarPointerTarget(this, ::cStarWandRadius3d * getRadius(), offset);
+    const TVec3f& rOffset = offset;
+    MR::initStarPointerTarget(this, ::cStarWandRadius3d * getRadius(), rOffset);
     initSound(5, false);
 
     f32 shadowDrop;
@@ -701,9 +699,6 @@ const char* Rock::getTouchEffect() const {
 }
 
 void Rock::exeAppear() {
-    // FIXME: float regswaps and swapped load order near beginning
-    // https://decomp.me/scratch/gOOpa
-
     f32 rotateSpeed = (::cAppearMoveSpeed * 180.0f * ::cRotateSpeedRate) / (mRadius * MR::pi());
     s32 spawnDelay = mRockType == NormalRock ? ::cAppearStopFrameRock : ::cAppearStopFrame;
 
@@ -727,12 +722,12 @@ void Rock::exeAppear() {
 
     if (MR::isGreaterStep(this, mAppearTime) && MR::isLessStep(this, mAppearTime + ::cAppearRumbleFrame)) {
         s32 step = getNerveStep() - mAppearTime;
-        f32 f1 = MR::sinDegree(MR::repeatDegree(step * ::cAppearRumbleSpeed));
-        f32 rotation = f1 * ::cAppearRumbleAngle;
-        rotation *= ::cAppearRumbleFrame - step;
-        rotation /= ::cAppearRumbleFrame;
-        mRotation.x = rotation;
-        updateRotateX(mAppearAngle + mRotation.x);
+        f32 rot = MR::sinDegree(MR::repeatDegree(step * ::cAppearRumbleSpeed)) * ::cAppearRumbleAngle;
+        f32 rate = ::cAppearRumbleFrame - step;
+        mRotation.x = rate * rot;
+        mRotation.x /= ::cAppearRumbleFrame;
+        f32 appearAngle = mAppearAngle;
+        updateRotateX(mRotation.x + appearAngle);
     }
 
     if (MR::isStep(this, spawnDelay + mAppearTime + ::cAppearRumbleFrame)) {
@@ -942,13 +937,21 @@ void Rock::exeBreak() {
     }
 }
 
+#pragma push
+#pragma global_optimizer off
 void Rock::exeFreeze() {
-    // FIXME: issues with getTouchEffect
-    // https://decomp.me/scratch/SSFkq
-
     if (MR::isFirstStep(this)) {
         mVelocity.zero();
-        MR::emitEffect(this, getTouchEffect());
+
+        const char* name;
+        bool isMini = mRockType == WanwanRollingMini;
+        if (isMini) {
+            name = "MiniTouch";
+        } else {
+            name = "Touch";
+        }
+
+        MR::emitEffect(this, name);
         MR::deleteEffect(this, "Smoke");
 
         if (mFreezeTime == 0) {
@@ -959,12 +962,12 @@ void Rock::exeFreeze() {
     mFreezeTime++;
     MR::startDPDFreezeLevelSound(this);
 
-    f32 f1 = MR::cosDegree(MR::repeatDegree(mFreezeTime * ::cFreezeRumbleSpeed));
-    s32 step = ::cFreezeFrame - getNerveStep();
-    f32 f2 = step * (f1 * ::cFreezeRumbleWidth) / ::cFreezeFrame;
+    f32 rumbleOffset = ::cFreezeRumbleWidth * MR::cosDegree(MR::repeatDegree(mFreezeTime * ::cFreezeRumbleSpeed)) *
+                       static_cast< f32 >(::cFreezeFrame - getNerveStep()) / ::cFreezeFrame;
+
     TVec3f v1;
     v1.set(MR::getCamXdir());
-    v1 *= f2;
+    v1 *= rumbleOffset;
     mPosition.add(mFreezePos, v1);
 
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
@@ -974,7 +977,17 @@ void Rock::exeFreeze() {
 
     if (MR::isStep(this, ::cFreezeFrame)) {
         mPosition.set(mFreezePos);
-        MR::deleteEffect(this, getTouchEffect());
+
+        const char* name;
+        bool isMini = mRockType == WanwanRollingMini;
+        if (isMini) {
+            name = "MiniTouch";
+        } else {
+            name = "Touch";
+        }
+
+        MR::deleteEffect(this, name);
         setNerve(mUnfreezeNerve);
     }
 }
+#pragma pop

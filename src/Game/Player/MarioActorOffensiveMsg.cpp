@@ -558,6 +558,12 @@ bool MarioActor::tryGetItem(HitSensor* pSensor) {
     return true;
 }
 
+namespace {
+    inline HitSensor* getDummySensor(MarioActor* pActor) {
+        return pActor->getSensor("dummy");
+    }
+}
+
 bool MarioActor::cylinderPushCheck(const TVec3f& rOffset, f32 radius, f32 width, f32 height) {
     TVec3f radial;
     f32 axial = MR::vecKillElement(rOffset, _4C4, &radial);
@@ -566,9 +572,7 @@ bool MarioActor::cylinderPushCheck(const TVec3f& rOffset, f32 radius, f32 width,
         f32 axialPenetration = radius + height - axial;
         if (radialPenetration > 0.0f && axialPenetration > 0.0f) {
             if (radialPenetration > 0.0f) {
-                const TVec3f& axialOffset = _4C4 * axial;
-                HitSensor* dummy = getSensor("dummy");
-                dummy->mPosition.set(_2A0 + axialOffset);
+                getDummySensor(this)->mPosition.set(_2A0 + _4C4 * axial);
                 getSensor("dummy")->mRadius = width;
             } else {
                 HitSensor* dummy = getSensor("dummy");
@@ -593,9 +597,7 @@ bool MarioActor::cylinderPushCheck(const TVec3f& rOffset, f32 radius, f32 width,
     f32 axialPenetration = radius + height - axial;
     if (radialPenetration > 0.0f && axialPenetration > 0.0f) {
         if (radialPenetration > 0.0f) {
-            const TVec3f& axialOffset = _4B8 * axial;
-            HitSensor* dummy = getSensor("dummy");
-            dummy->mPosition.set(_2A0 + axialOffset);
+            getDummySensor(this)->mPosition.set(_2A0 + _4B8 * axial);
             getSensor("dummy")->mRadius = width;
         } else {
             HitSensor* dummy = getSensor("dummy");

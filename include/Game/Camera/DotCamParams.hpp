@@ -39,4 +39,5 @@ public:
     u8* _8;
     JMapInfo mMapInfo;      // 0xC
     JMapInfoIter mMapIter;  // 0x14
+    u8 _1C[0x10];
 };

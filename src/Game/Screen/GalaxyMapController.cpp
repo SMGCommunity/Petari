@@ -563,9 +563,9 @@ bool GalaxyMapController::tryChangeMode() {
         case Mode_GalaxyMap:
             mMode = Mode_AstroMap;
             return true;
+        case Mode_PowerStarList:
+            break;
         }
-
-        // FIXME: Missing duplicate unconditional branch instruction at end of switch statement.
     }
 
     return false;

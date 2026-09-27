@@ -1,6 +1,18 @@
 #include "JSystem/JParticle/JPAMath.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 
+namespace {
+    inline f32 JPASinShort(s16 v) {
+        const std::pair< f32, f32 >* p = &JMath::sSinCosTable.table[static_cast< u16 >(v) >> 2];
+        return p->a1;
+    }
+
+    inline f32 JPACosShort(s16 v) {
+        const std::pair< f32, f32 >* p = &JMath::sSinCosTable.table[static_cast< u16 >(v) >> 2];
+        return p->b1;
+    }
+}
+
 void JPAGetDirMtx(JGeometry::TVec3< f32 > const& param_0, f32 (*param_1)[4]) {
     JGeometry::TVec3< f32 > local_78 = JGeometry::TVec3< f32 >(param_0.y, -param_0.x, 0.0f);
     f32 len = local_78.length();
@@ -50,12 +62,12 @@ void JPAGetYZRotateMtx(s16 angleY, s16 angleZ, f32 (*param_2)[4]) {
 }
 
 void JPAGetXYZRotateMtx(s16 x, s16 y, s16 z, Mtx mtx) {
-    f32 cosx = JMASCos(x);
-    f32 siny = JMASSin(y);
-    f32 cosy = JMASCos(y);
-    f32 cosz = JMASCos(z);
-    f32 sinx = JMASSin(x);
-    f32 sinz = JMASSin(z);
+    f32 cosx = JPACosShort(x);
+    f32 siny = JPASinShort(y);
+    f32 cosy = JPACosShort(y);
+    f32 cosz = JPACosShort(z);
+    f32 sinx = JPASinShort(x);
+    f32 sinz = JPASinShort(z);
     mtx[0][0] = cosy * cosz;
     mtx[1][0] = cosy * sinz;
     mtx[2][0] = -siny;

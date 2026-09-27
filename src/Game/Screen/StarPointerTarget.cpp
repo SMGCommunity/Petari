@@ -11,6 +11,13 @@
 
 namespace {
     static const f32 hZCheckAddDepth = 60.0f;
+
+    inline void multProj(const TProj3f& rMtx, const TVec3f& rSrc, TVec3f& rDest) {
+        f32 w = -rSrc.z;
+        s32 col = 3;
+        TVec4f pos(rSrc.x * rMtx.mMtx[0][0] + rSrc.z * rMtx.mMtx[0][2], rSrc.y * rMtx.mMtx[1][1] + rSrc.z * rMtx.mMtx[1][2], rSrc.z * rMtx.mMtx[2][2] + rMtx.mMtx[2][col], w);
+        rDest.scale(1.0f / pos.w, *pos.toTVec3());
+    }
 };  // namespace
 
 StarPointerTarget::StarPointerTarget(f32 radius, const TVec3f* pPosition, MtxPtr pMtx, TVec3f offset)
@@ -74,13 +81,10 @@ f32 StarPointerTarget::calcRadius2d(f32 radius3d, f32 margin, f32 z) const {
 }
 
 bool StarPointerTarget::calcScreenPositionFromView(TVec2f* pScreenPos, const TVec3f& rViewPos) const {
-    // FIXME: float regswaps, one in y parameter of TVec4 in mtx.mult
-    // https://decomp.me/scratch/RdGzK
-
     TProj3f mtx;
     mtx.setInline(MR::getStarPointerProjMtx());
     TVec3f pos;
-    mtx.mult(rViewPos, pos);
+    multProj(mtx, rViewPos, pos);
     pos.y = -pos.y;
 
     if (1.0f < MR::abs(pos.x) || 1.0f < MR::abs(pos.y)) {
@@ -122,15 +126,18 @@ bool StarPointerLayoutTarget::isPointingCircle(const TVec2f& rPos) const {
     return dist < r;
 }
 
-bool StarPointerLayoutTarget::isPointingRectangle(const TVec2f& rPos) const {
-    // FIXME: float regswaps
-    // https://decomp.me/scratch/PLVjp
+namespace {
+    inline void setRectangle(TBox2f& rBox, f32 x, f32 y, f32 width, f32 height) {
+        rBox.setInline(x, y, x + width, y + height);
+    }
+}  // namespace
 
+bool StarPointerLayoutTarget::isPointingRectangle(const TVec2f& rPos) const {
     TVec2f pos;
     calcBasePos(&pos);
 
     TBox2f bounds;
-    bounds.setInline(pos.x, pos.y, pos.x + mWidth, pos.y + mHeight);
+    setRectangle(bounds, pos.x, pos.y, mWidth, mHeight);
 
     return bounds.intersectsPoint(rPos);
 }

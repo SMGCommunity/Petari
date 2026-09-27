@@ -283,9 +283,8 @@ public:
         u32 deltaPriority[MAX_CHANNELS];
 
         for (int i = 0; i < mMaxChannels; i++) {
-            // FIXME!!!!!
-            JAUDopplerAudibleChannel* channel = audible->mChannels[i];
-            if (channel != nullptr) {
+            if (audible->mChannels[i] != nullptr) {
+                JAUDopplerAudibleChannel* channel = audible->mChannels[i];
                 u32 volDistBit = audible->getAudibleParam().getVolDistBit();
                 mStates[i].convertAbsToRel(audible->getPos(), &audible->mChannels[i]->mRelPos);
                 bool bit = audible->getAudibleParam().get_BIT8();

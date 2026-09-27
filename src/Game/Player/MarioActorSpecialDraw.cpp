@@ -498,6 +498,15 @@ void MarioActor::updateRandomTexture(f32 distance) {
     DCStoreRange(image, 64);
 }
 
+namespace {
+    inline TVec3f subtractOffset(const TVec3f& rBase, const TVec3f& rOffset) {
+        const TVec3f* pOffset = &rOffset;
+        return rBase - *pOffset;
+    }
+}
+
+#pragma push
+#pragma global_optimizer off
 void MarioActor::drawWallShade(const TVec3f& rPosition, const TVec3f& rNormal, f32 unused) const {
     f32 radius = 100.0f;
     TDDraw::setup(1, 1, 0);
@@ -531,7 +540,7 @@ void MarioActor::drawWallShade(const TVec3f& rPosition, const TVec3f& rNormal, f
 
     for (u32 i = 0; i <= 16; i++) {
         f32 angle = 2.0f * ((i / 16.0f) * JGeometry::TUtil< f32 >::PI());
-        TVec3f point = rPosition - rNormal * 5.0f + tangent * radius;
+        TVec3f point = subtractOffset(rPosition, rNormal * 5.0f) + tangent * radius;
         GXPosition3f32(point.x, point.y, point.z);
         GXColor1u32(1);
         GXTexCoord2f32(10.0f * JMACosRadian(angle), 10.0f * MR::sin(angle));
@@ -540,6 +549,7 @@ void MarioActor::drawWallShade(const TVec3f& rPosition, const TVec3f& rNormal, f
 
     GXEnd();
 }
+#pragma pop
 
 void MarioActor::drawSpinInhibit() const {
 }

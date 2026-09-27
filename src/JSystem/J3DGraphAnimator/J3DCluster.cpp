@@ -79,6 +79,8 @@ void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer* i_buffer, J3DCluster* i_clus
     }
 }
 
+#pragma push
+#pragma global_optimizer off
 void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer* i_buffer, J3DCluster* i_cluster, J3DClusterKey* i_key, f32* i_weights) {
     f32* vtxNrmArray = (f32*)i_buffer->getVtxNrmArrayPointer(0);
     f32* deformVtxNrm = mDeformData->getVtxNrm();
@@ -173,6 +175,7 @@ void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer* i_buffer, J3DCluster* i_clus
         }
     }
 }
+#pragma pop
 
 void J3DDeformer::deform(J3DVertexBuffer* i_buffer, u16 param_1, f32* i_weights) {
     if (checkFlag(2)) {

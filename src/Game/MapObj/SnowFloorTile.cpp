@@ -166,13 +166,13 @@ void SnowFloorTile::createReduceMap(u16 size) {
 void SnowFloorTile::digPlayerWalk(const TVec3f& rPoint) {
     TVec2f point(rPoint.x, rPoint.y);
     MR::setPlayerWalkingResist(0.1f);
-    doMove(mLastPlayerPoint, point, 20.0f / mCellSize, ::cPlayerDigAmount);
+    doMove(mLastPlayerPoint, point, 20.0f / static_cast< f32 >(mCellSize), ::cPlayerDigAmount);
     mLastPlayerPoint = point;
 }
 
 void SnowFloorTile::digDpd(const TVec3f& rPoint) {
     TVec2f point(rPoint.x, rPoint.y);
-    s32 volume = doMove(mLastDpdPoint, point, 50.0f / mCellSize, ::cDpdDigAmount) / 200.0f;
+    s32 volume = doMove(mLastDpdPoint, point, 50.0f / static_cast< f32 >(mCellSize), ::cDpdDigAmount) / 200.0f;
 
     if (volume > 100) {
         volume = 100;

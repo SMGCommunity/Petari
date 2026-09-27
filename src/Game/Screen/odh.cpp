@@ -302,6 +302,9 @@ void CArGBAOdh::LineConv11(u8* pSrc, u8* pY, u8* pU, u8* pV, u16 width, u16 heig
         s32 red;
         s32 green;
         s32 blue;
+        s32 u;
+        s32 v;
+
         if (format == 0) {
             int offset = (x & ~3) * 8 + (x & 3) * 2;
             u16 pixel = pSrc[offset];
@@ -352,8 +355,8 @@ void CArGBAOdh::LineConv11(u8* pSrc, u8* pY, u8* pU, u8* pV, u16 width, u16 heig
             blue >>= 3;
         }
 
-        s32 u = (pTable[red + 96] + pTable[green + 128] + pTable[blue + 160]) >> 16;
-        s32 v = (pTable[red + 192] + pTable[green + 224] + pTable[blue + 256]) >> 16;
+        u = (pTable[red + 96] + pTable[green + 128] + pTable[blue + 160]) >> 16;
+        v = (pTable[red + 192] + pTable[green + 224] + pTable[blue + 256]) >> 16;
         *pY++ = (pTable[red] + pTable[green + 32] + pTable[blue + 64]) >> 16;
         *pU++ = u;
         *pV++ = v;

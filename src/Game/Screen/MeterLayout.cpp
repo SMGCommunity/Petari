@@ -10,6 +10,14 @@
 #include "Game/Util/StarPointerUtil.hpp"
 
 namespace {
+    inline void calcFollowPosW(const MeterLayout* pLayout, TVec2f* pFollowPosW, TVec2f* pBasePos) {
+        TVec2f headPos;
+
+        pLayout->calcMarioHeadPosition(&headPos);
+        pLayout->calcPowerUpMeterBasePosition(pBasePos);
+        pFollowPosW->set(headPos - *pBasePos);
+    }
+
     // static const f32 sMarioWorldOffset = ...;
     static const f32 sMarioScreenOffsetX = 32.0f;
     static const f32 sMarioScreenOffsetY = -38.0f;
@@ -243,14 +251,11 @@ void MeterLayout_FORCE_MATCH(TVec2f& rA, const TVec2f& rB) {
 
 void MeterLayout::exePowerUp() {
     TVec2f basePos;
-    TVec2f headPos;
 
     mFollowPos.y = 0.0f;
     mFollowPos.x = 0.0f;
 
-    calcMarioHeadPosition(&headPos);
-    calcPowerUpMeterBasePosition(&basePos);
-    mFollowPosW.set(headPos - basePos);
+    calcFollowPosW(this, &mFollowPosW, &basePos);
 
     if (MR::isFirstStep(this)) {
         MR::showLayout(this);

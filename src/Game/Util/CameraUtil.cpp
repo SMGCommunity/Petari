@@ -34,7 +34,6 @@ void CameraUtil_DUMMY() {
     TVec4f a(1.0f, 0.0f, 0.0f, 0.0f);
     TVec3f b;
     TVec3f c = -b;
-    TVec2f d(1.0f, 0.0f);
     f32 f1 = MR::tan(1.0f);
     c = b;
     TVec3f e = b - c;
@@ -106,10 +105,9 @@ namespace MR {
         f32 width = MR::getScreenWidth();
         f32 height = MR::getScreenHeight();
 
-        f32 centerX = rScreenPos.x - width * 0.5f;
-        f32 centerY = rScreenPos.y - height * 0.5f;
+        TVec2f center(rScreenPos.x - width * 0.5f, rScreenPos.y - height * 0.5f);
 
-        return calcWorldPositionFromCenterScreen(pPos, TVec2f(centerX, centerY), distZ);
+        return calcWorldPositionFromCenterScreen(pPos, center, distZ);
     }
 
     bool calcWorldPositionFromCenterScreen(TVec3f* pPos, const TVec2f& rScreenPos, f32 distZ) {
@@ -711,3 +709,7 @@ namespace MR {
         camTarget.setTarget();
     }
 };  // namespace MR
+
+void CameraUtil_DUMMY2() {
+    TVec2f d(1.0f, 0.0f);
+}

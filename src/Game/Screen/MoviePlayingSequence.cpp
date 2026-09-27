@@ -218,9 +218,14 @@ const char* MoviePlayingSequence::getMovieName(MoviePlayingSequence::MovieType t
     return nullptr;
 }
 
-// https://decomp.me/scratch/O5orZ
-MoviePlayingSequence::MoviePlayingSequence(const char* pName, s32 movieType) : LayoutActor(pName, true), mSubtitles() {
-    mInfo = &::sInfoTable[movieType];
+namespace {
+    inline MovieSubtitles* createSubtitles(const MoviePlayingInfo* pInfo, s32 i) {
+        return new MovieSubtitles(MovieSubtitlesUtil::getSubtitlesMessageId(pInfo->mMovieName, i),
+                                  MovieSubtitlesUtil::getSubtitlesAppearTime(pInfo->mMovieName, i));
+    }
+};  // namespace
+
+MoviePlayingSequence::MoviePlayingSequence(const char* pName, s32 movieType) : LayoutActor(pName, true), mInfo(&::sInfoTable[movieType]), mSubtitles() {
     mPadRumbler = new DemoPadRumbler(getMovieName(MovieType(movieType)));
 
     MR::createSceneObj(SceneObj_MoviePlayerSimple);
@@ -234,11 +239,7 @@ MoviePlayingSequence::MoviePlayingSequence(const char* pName, s32 movieType) : L
 
         for (s32 i = 0; i < subtitleNum; i++) {
             if (MovieSubtitlesUtil::isExistSubtitles(mInfo->mMovieName, i)) {
-                const MoviePlayingInfo* pInfo = mInfo;
-                MovieSubtitles* pSubtitles = new MovieSubtitles(MovieSubtitlesUtil::getSubtitlesMessageId(pInfo->mMovieName, i),
-                                                                MovieSubtitlesUtil::getSubtitlesAppearTime(pInfo->mMovieName, i));
-
-                mSubtitles.push_back(pSubtitles);
+                mSubtitles.push_back(createSubtitles(mInfo, i));
             }
         }
     }
