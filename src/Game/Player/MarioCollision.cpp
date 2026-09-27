@@ -886,13 +886,13 @@ void Mario::calcFrontFloor() {
             start = wallPos - getAirGravityVec() * 200.0f;
             start += mFrontVec * 20.0f;
             direction = getAirGravityVec() * 210.0f;
-            bool floorHit = MR::getFirstPolyOnLineBFast(start, direction, &floorPos, &floor);
+            hit = MR::getFirstPolyOnLineBFast(start, direction, &floorPos, &floor);
 
-            if (floorHit && floor.getNormal(0)->dot(getAirGravityVec()) > -0.9f) {
-                floorHit = false;
+            if (hit && floor.getNormal(0)->dot(getAirGravityVec()) > -0.9f) {
+                hit = false;
             }
 
-            if (floorHit) {
+            if (hit) {
                 _4E0 = (wallPos - floorPos).dot(getAirGravityVec());
 
                 if (_4E0 > 0.0f) {
