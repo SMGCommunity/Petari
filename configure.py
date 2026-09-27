@@ -2685,22 +2685,22 @@ config.libs = [
     SDKLib(
         "aralt", [Object(Matching, "RVL_SDK/aralt/aralt.c", cflags=cflags_sdk_aralt)]
     ),
-    SDKLib("arc", [Object(NonMatching, "RVL_SDK/arc/arc.c")]),
+    SDKLib("arc", [Object(Matching, "RVL_SDK/arc/arc.c")]),
     SDKLib(
         "ax",
         [
-            Object(NonMatching, "RVL_SDK/ax/AXAlloc.c"),
-            Object(NonMatching, "RVL_SDK/ax/AXAux.c"),
-            Object(NonMatching, "RVL_SDK/ax/AXCL.c"),
+            Object(Matching, "RVL_SDK/ax/AXAlloc.c"),
+            Object(Matching, "RVL_SDK/ax/AXAux.c"),
+            Object(Matching, "RVL_SDK/ax/AXCL.c"),
             Object(Matching, "RVL_SDK/ax/AXVPB.c"),
         ],
     ),
     SDKLib(
         "axfx",
         [
-            Object(NonMatching, "RVL_SDK/axfx/AXFXReverbHi.c"),
+            Object(Matching, "RVL_SDK/axfx/AXFXReverbHi.c"),
             Object(NonMatching, "RVL_SDK/axfx/AXFXReverbHiExp.c"),
-            Object(NonMatching, "RVL_SDK/axfx/AXFXHooks.c"),
+            Object(Matching, "RVL_SDK/axfx/AXFXHooks.c"),
         ],
     ),
     SDKLib("base", [Object(Matching, "RVL_SDK/base/PPCArch.c")]),
@@ -2831,9 +2831,9 @@ config.libs = [
             Object(Matching, "RVL_SDK/gx/GXAttr.c"),
             Object(Matching, "RVL_SDK/gx/GXMisc.c"),
             Object(Matching, "RVL_SDK/gx/GXGeometry.c"),
-            Object(NonMatching, "RVL_SDK/gx/GXFrameBuf.c"),
+            Object(Matching, "RVL_SDK/gx/GXFrameBuf.c"),
             Object(Matching, "RVL_SDK/gx/GXLight.c"),
-            Object(NonMatching, "RVL_SDK/gx/GXTexture.c"),
+            Object(Matching, "RVL_SDK/gx/GXTexture.c"),
             Object(Matching, "RVL_SDK/gx/GXBump.c"),
             Object(Matching, "RVL_SDK/gx/GXTev.c"),
             Object(Matching, "RVL_SDK/gx/GXPixel.c", mw_version="GC/3.0a5.2"),
@@ -2857,7 +2857,7 @@ config.libs = [
         [
             Object(Matching, "RVL_SDK/mem/mem_heapCommon.c"),
             Object(Matching, "RVL_SDK/mem/mem_expHeap.c"),
-            Object(NonMatching, "RVL_SDK/mem/mem_allocator.c"),
+            Object(Matching, "RVL_SDK/mem/mem_allocator.c"),
             Object(Matching, "RVL_SDK/mem/mem_list.c"),
         ],
     ),
@@ -3079,25 +3079,25 @@ config.libs = [
     RFLib(
         "RVLFaceLib",
         [
-            Object(NonMatching, "RVLFaceLib/RFL_System.c"),
-            Object(NonMatching, "RVLFaceLib/RFL_NANDLoader.c"),
-            Object(NonMatching, "RVLFaceLib/RFL_NANDAccess.c"),
+            Object(Matching, "RVLFaceLib/RFL_System.c"),
+            Object(Matching, "RVLFaceLib/RFL_NANDLoader.c"),
+            Object(Matching, "RVLFaceLib/RFL_NANDAccess.c"),
             Object(NonMatching, "RVLFaceLib/RFL_Model.c"),
-            Object(NonMatching, "RVLFaceLib/RFL_MakeTex.c"),
+            Object(Matching, "RVLFaceLib/RFL_MakeTex.c"),
             Object(NonMatching, "RVLFaceLib/RFL_Icon.c"),
-            Object(NonMatching, "RVLFaceLib/RFL_HiddenDatabase.c"),
+            Object(Matching, "RVLFaceLib/RFL_HiddenDatabase.c"),
             Object(Matching, "RVLFaceLib/RFL_Database.c"),
             Object(Matching, "RVLFaceLib/RFL_Controller.c"),
             Object(Matching, "RVLFaceLib/RFL_MiddleDatabase.c"),
             Object(Matching, "RVLFaceLib/RFL_DefaultDatabase.c"),
             Object(Matching, "RVLFaceLib/RFL_DataUtility.c"),
-            Object(NonMatching, "RVLFaceLib/RFL_Format.c"),
+            Object(Matching, "RVLFaceLib/RFL_Format.c"),
         ],
     ),
     MSLib_WPRINTF(
         "MSL_C",
         [
-            Object(NonMatching, "MSL_C/wprintf.c"),
+            Object(Matching, "MSL_C/wprintf.c"),
             Object(Matching, "MSL_C/printf.c"),
         ],
     ),
@@ -3196,13 +3196,13 @@ config.libs = [
                 Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_fmod.c"
             ),
             Object(
-                NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_log10.c"
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_log10.c"
             ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_pow.c"),
             Object(
                 Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_sqrt.c"
             ),
-            Object(NonMatching, "MSL_C/PPC_EABI/SRC/math_ppc.c"),
+            Object(Matching, "MSL_C/PPC_EABI/SRC/math_ppc.c"),
             Object(
                 Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c"
             ),
