@@ -9,6 +9,13 @@
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
+namespace {
+    inline s32 writeU16(void* pData, u16 value) {
+        *static_cast< u16* >(pData) = value;
+        return sizeof(value);
+    }
+};  // namespace
+
 bool GameDataSomeScenarioAccessor::hasPowerStar() const {
     return mSomeGalaxyStorage->hasPowerStar(mScenarioNum - 1);
 }
@@ -244,22 +251,23 @@ void GameDataSomeGalaxyStorage::serialize(const BinaryDataContentAccessor& rAcce
 }
 
 s32 GameDataAllGalaxyStorage::serialize(u8* pData, u32 dataSize) const {
-    // FIXME: regswap and missing load
     // https://decomp.me/scratch/NCESx
 
-    *(u16*)(pData + 0) = getGalaxyNum();
-    MR::copyMemory(pData + 2, getSerializer()->getBuffer(), getSerializer()->getHeaderSize());
+    const char* name;
+    s32 writeOffset = 0;
+    writeOffset += ::writeU16(pData + writeOffset, getGalaxyNum());
+    name = reinterpret_cast< const char* >(getSerializer()->getBuffer());
+    MR::copyMemory(pData + writeOffset, name, getSerializer()->getHeaderSize());
+    writeOffset += getSerializer()->getHeaderSize();
 
-    s32 writeOffset = getSerializer()->getHeaderSize() + 2;
-
-    BinaryDataContentAccessor accessor((u8*)getSerializer()->getBuffer());
-    u8* offs;
+    BinaryDataContentAccessor accessor(static_cast< u8* >(getSerializer()->getBuffer()));
     for (s32 idx = 0; idx < getGalaxyNum(); idx++) {
         GameDataSomeGalaxyStorage* storage = mSomeGalaxyStorages[idx];
-        const char* name = "mGalaxyName";
-        u16* writePtr = (u16*)accessor.getPointer(name, pData + writeOffset);
-        *writePtr = MR::getHashCode(storage->mGalaxyName);
-        storage->serialize(accessor, pData + writeOffset);
+        name = "mGalaxyName";
+        u8* record = pData + writeOffset;
+        void* writePtr = accessor.getPointer(name, record);
+        ::writeU16(writePtr, MR::getHashCode(storage->mGalaxyName));
+        storage->serialize(accessor, record);
         writeOffset += getSerializer()->getDataSize();
     }
 
