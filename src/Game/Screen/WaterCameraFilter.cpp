@@ -29,6 +29,16 @@ namespace NrvWaterCameraFilter {
     NEW_NERVE(WaterCameraFilterNrvWaterToAir, WaterCameraFilter, WaterToAir);
 };  // namespace NrvWaterCameraFilter
 
+namespace {
+    s32 getFrameBufferWidth() {
+        return MR::getFrameBufferWidth();
+    }
+
+    s32 getScreenHeight() {
+        return MR::getScreenHeight();
+    }
+};  // namespace
+
 static GXColor sDefaultColor;
 
 WaterCameraFilter::WaterCameraFilter()
@@ -53,7 +63,7 @@ namespace {
 
 void WaterCameraFilter::initScreenTex() {
     MR::CurrentHeapRestorer restorer(MR::getSceneHeapGDDR3());
-    mScreenTex = new JUTTexture(MR::getFrameBufferWidth(), getScreenTexHeight(), GX_TF_RGB565);
+    mScreenTex = new JUTTexture(::getFrameBufferWidth(), ::getScreenHeight(), GX_TF_RGB565);
 }
 
 void WaterCameraFilter::exeAirToWater() {
