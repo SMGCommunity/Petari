@@ -10,6 +10,10 @@ void WPadAcceleration_FORCE_MATCH_SDATA2() {
 
 namespace {
     bool sSelectDominantRotation;
+
+    inline f32 squareDistance(const TVec3f& rA, const TVec3f& rB) {
+        return JMathInlineVEC::PSVECSquareDistance(&rA, &rB);
+    }
 }
 
 WPadAcceleration::WPadAcceleration(const WPad* pPad, u32 device)
@@ -203,7 +207,7 @@ void WPadAcceleration::updateAccAverage() {
             break;
         }
 
-        total += current.squared(previous);
+        total += ::squareDistance(current, previous);
         previous = current;
         count++;
     }

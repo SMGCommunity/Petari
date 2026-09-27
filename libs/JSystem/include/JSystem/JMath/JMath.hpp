@@ -243,8 +243,8 @@ namespace JMathInlineVEC {
     }
 
     ALWAYS_INLINE inline f32 PSVECSquareDistance(const register Vec* a, const register Vec* b) {
-        register f32 dyz, dxy, sqdist;
-        register f32 v0xy, v1yz, v0yz, v1xy;
+        register f32 sqdist, dxy, dyz;
+        register f32 v1xy, v0xy, v0yz, v1yz;
 
         asm
         {
