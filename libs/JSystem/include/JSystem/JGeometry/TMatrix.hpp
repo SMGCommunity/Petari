@@ -231,16 +231,19 @@ namespace JGeometry {
             f32 scale = TUtil< f32 >::invert(determinant);
 
             TVec3f translation;
-            translation.set(rSrc(0, 3), rSrc(1, 3), rSrc(2, 3));
+            translation.x = rSrc(0, 3);
             translation.x = -translation.x;
-            translation.y = -translation.y;
-            translation.z = -translation.z;
 
             inverse.set(scale * (rSrc(1, 1) * rSrc(2, 2) - rSrc(1, 2) * rSrc(2, 1)), scale * -(rSrc(0, 1) * rSrc(2, 2) - rSrc(0, 2) * rSrc(2, 1)),
                         scale * (rSrc(0, 1) * rSrc(1, 2) - rSrc(0, 2) * rSrc(1, 1)), scale * -(rSrc(1, 0) * rSrc(2, 2) - rSrc(1, 2) * rSrc(2, 0)),
                         scale * (rSrc(0, 0) * rSrc(2, 2) - rSrc(0, 2) * rSrc(2, 0)), scale * -(rSrc(0, 0) * rSrc(1, 2) - rSrc(0, 2) * rSrc(1, 0)),
                         scale * (rSrc(1, 0) * rSrc(2, 1) - rSrc(1, 1) * rSrc(2, 0)), scale * -(rSrc(0, 0) * rSrc(2, 1) - rSrc(0, 1) * rSrc(2, 0)),
                         scale * (rSrc(0, 0) * rSrc(1, 1) - rSrc(0, 1) * rSrc(1, 0)));
+
+            translation.y = rSrc(1, 3);
+            translation.y = -translation.y;
+            translation.z = rSrc(2, 3);
+            translation.z = -translation.z;
 
             translation.set< f32 >(translation.x * inverse.mMtx[0][0] + translation.y * inverse.mMtx[1][0] + translation.z * inverse.mMtx[2][0],
                                    translation.x * inverse.mMtx[0][1] + translation.y * inverse.mMtx[1][1] + translation.z * inverse.mMtx[2][1],
