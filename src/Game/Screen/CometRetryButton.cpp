@@ -21,7 +21,6 @@ CometRetryButton::CometRetryButton(const char* pName)
     : LayoutActor(pName, true), mButtonYesPaneCtrl(nullptr), mButtonNoPaneCtrl(nullptr), mPlayerMissLeft(nullptr) {
 }
 
-// FIXME: There are a lot of register swaps.
 void CometRetryButton::init(const JMapInfoIter& rIter) {
     initLayoutManager("RetryButton", 1);
     MR::connectToSceneLayout(this);
@@ -33,18 +32,26 @@ void CometRetryButton::init(const JMapInfoIter& rIter) {
     mButtonNoPaneCtrl = new ButtonPaneController(this, "NBackDown", "BoxButton2", 0, true);
     mButtonYesPaneCtrl->_22 = false;
     mButtonNoPaneCtrl->_22 = false;
-    mButtonYesPaneCtrl->mAppearAnimName = "ButtonAppear";
-    mButtonYesPaneCtrl->mWaitAnimName = "ButtonWait";
-    mButtonYesPaneCtrl->mPointingAnimName = "ButtonSelectIn";
-    mButtonYesPaneCtrl->mDecideAnimName = "ButtonDecide";
-    mButtonYesPaneCtrl->mNotPointingAnimName = "ButtonSelectOut";
-    mButtonYesPaneCtrl->mDisappearAnimName = "ButtonEnd";
-    mButtonNoPaneCtrl->mAppearAnimName = "ButtonAppear";
-    mButtonNoPaneCtrl->mWaitAnimName = "ButtonWait";
-    mButtonNoPaneCtrl->mPointingAnimName = "ButtonSelectIn";
-    mButtonNoPaneCtrl->mDecideAnimName = "ButtonDecide";
-    mButtonNoPaneCtrl->mNotPointingAnimName = "ButtonSelectOut";
-    mButtonNoPaneCtrl->mDisappearAnimName = "ButtonEnd";
+
+    const char* buttonAppear = "ButtonAppear";
+    const char* buttonWait = "ButtonWait";
+    const char* buttonSelectIn = "ButtonSelectIn";
+    const char* buttonDecide = "ButtonDecide";
+    const char* buttonSelectOut = "ButtonSelectOut";
+    const char* buttonEnd = "ButtonEnd";
+
+    mButtonYesPaneCtrl->mAppearAnimName = buttonAppear;
+    mButtonYesPaneCtrl->mWaitAnimName = buttonWait;
+    mButtonYesPaneCtrl->mPointingAnimName = buttonSelectIn;
+    mButtonYesPaneCtrl->mDecideAnimName = buttonDecide;
+    mButtonYesPaneCtrl->mNotPointingAnimName = buttonSelectOut;
+    mButtonYesPaneCtrl->mDisappearAnimName = buttonEnd;
+    mButtonNoPaneCtrl->mAppearAnimName = buttonAppear;
+    mButtonNoPaneCtrl->mWaitAnimName = buttonWait;
+    mButtonNoPaneCtrl->mPointingAnimName = buttonSelectIn;
+    mButtonNoPaneCtrl->mDecideAnimName = buttonDecide;
+    mButtonNoPaneCtrl->mNotPointingAnimName = buttonSelectOut;
+    mButtonNoPaneCtrl->mDisappearAnimName = buttonEnd;
 
     mPlayerMissLeft = new PlayerMissLeft("ミス時のプレイヤー残機表示");
     mPlayerMissLeft->initWithoutIter();
