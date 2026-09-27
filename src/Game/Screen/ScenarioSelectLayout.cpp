@@ -448,7 +448,15 @@ void ScenarioSelectLayout::calcWorldPositionFromScreenPos(TVec3f* pWorldPos, con
     f32 fovy = mCameraContext->getFovy() * (PI / 180.0f);
     f32 height = static_cast< s32 >(JUTVideo::getManager()->getEfbHeight());
     f32 focalLength = (height * 0.5f) / MR::tan(fovy * 0.5f);
-    f32 distance = depth >= 0.0f ? depth : focalLength;
+    f32 distance;
+
+    if (depth >= 0.0f) {
+        distance = depth;
+    } else {
+        f32 defaultDistance = focalLength;
+        distance = defaultDistance;
+    }
+
     f32 scale = distance / focalLength;
     TVec3f pos(scale * (rScreenPos.x - MR::getScreenWidth() * 0.5f), scale * -(rScreenPos.y - height * 0.5f), -distance);
     TPos3f invView(mCameraContext->getInvViewMtx());
