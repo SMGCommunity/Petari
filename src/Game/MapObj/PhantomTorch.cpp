@@ -64,7 +64,7 @@ void PhantomTorch::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchSleep(this, rIter);
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::listenStageSwitchOnOffAppear(this, MR::Functor(this, &PhantomTorch::soundOrder), MR::Functor(this, &PhantomTorch::soundOrder));
+        MR::listenStageSwitchOnOffAppear(this, MR::Functor(this, &PhantomTorch::makeActorAppeared), MR::Functor(this, &PhantomTorch::makeActorDead));
         makeActorDead();
     }
 }

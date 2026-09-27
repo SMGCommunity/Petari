@@ -126,9 +126,9 @@ void DinoPackunBattleEggVs2::exeWalk() {
 
     s32 div = (step / 100);
     if (div % 2 != 0) {
-        v3 = 1.0f;
-    } else {
         v3 = -1.0f;
+    } else {
+        v3 = 1.0f;
     }
 
     MR::rotateDirectionGravityDegree(getHost(), &getHost()->_E8, (0.75f * v3));

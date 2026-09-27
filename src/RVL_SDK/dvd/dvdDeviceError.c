@@ -164,7 +164,7 @@ const char* const __DVDDeviceErrorMessage[] = {
     "entdeckt.",
 
     "\n\n\nErreur 001:\n"
-    "un dispositif non autoris・a 騁・d騁ect・",
+    "un dispositif non autoris\xe9 a \xe9t\xe9 d\xe9tect\xe9.",
 
     "\n\n\nError 001:\n"
     "Se ha detectado un dispositivo no\n"

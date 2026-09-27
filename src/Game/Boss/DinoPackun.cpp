@@ -57,7 +57,7 @@ namespace {
 
     static const f32 sKeepBendPower[7] = {30.0f, 25.0f, 20.0f, 15.0f, 10.0f, 10.0f, 10.0f};
 
-    static const f32 sJointRadius[7] = {80.0f, 70.0f, 60.0f, 55.0f, 45.0f, 50.0f};
+    static const f32 sJointRadius[7] = {80.0f, 70.0f, 60.0f, 55.0f, 50.0f, 45.0f, 50.0f};
 
     class DinoPackunParam : public AnimScaleParam {
     public:

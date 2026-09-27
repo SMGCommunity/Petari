@@ -172,7 +172,7 @@ void FloaterFloatingForceTypeSpring::exeMoveReturn() {
     }
 
     if (MR::isNearZero(_1C - mHost->mPosition)) {
-        if (MR::isNearZero(getCurrentSinkSpeed())) {
+        if (MR::isNearZero(getCurrentSinkSpeed(), 0.1f)) {
             mHost->mPosition.set(_1C);
             setNerve(GET_NERVE(FloaterFloatingForceTypeSpring, HostTypeWait));
             return;
