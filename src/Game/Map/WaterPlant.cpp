@@ -74,6 +74,11 @@ void WaterPlant::initAfterPlacement() {
     initPlantAfterPlacement();
 }
 
+// TODO remove me
+#pragma push
+#pragma opt_common_subs off
+#pragma opt_prelinearize off
+#pragma opt_rebuildconditionals off
 void WaterPlant::movement() {
     if (mIsSpin) {
         s32 count = 0;
@@ -123,13 +128,14 @@ void WaterPlant::movement() {
             continue;
         }
 
-        f32 distPlayerToPlant = MR::getPlayerPos()->distance(mPlantDataArray[i].mPosition);
+        f32 distPlayerToPlant = mPlantDataArray[i].mPosition.distance(*MR::getPlayerPos());
 
         if (distPlayerToPlant > ::sSpinWaveDistanceMax) {
             continue;
         }
 
-        TVec3f dirPlantToPlayer(mPlantDataArray[i].mPosition - *MR::getPlayerPos());
+        TVec3f dirPlantToPlayer(mPlantDataArray[i].mPosition);
+        dirPlantToPlayer.sub(*MR::getPlayerPos());
         MR::normalizeOrZero(&dirPlantToPlayer);
 
         mPlantDataArray[i].mTempSpinSwingDir.set(dirPlantToPlayer);
@@ -147,6 +153,7 @@ void WaterPlant::movement() {
         mIsSpin = true;
     }
 }
+#pragma pop
 
 void WaterPlant::draw() const {
     if (!MR::isValidDraw(this)) {
