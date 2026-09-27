@@ -22,7 +22,7 @@ void TreasureSpot::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     info.setupHitSensor();
-    info.setupHitSensorParam(4, 80.0f, TVec3f(0.0f, 3.0f, 0.0f));
+    info.setupHitSensorParam(4, 80.0f, TVec3f(0.0f, 30.0f, 0.0f));
     info.setupNerve(GET_NERVE(TreasureSpot, TreasureSpotNrvWait));
     info.setupSound(4);
     MapObjActor::initialize(rIter, info);

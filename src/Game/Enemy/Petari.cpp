@@ -655,7 +655,7 @@ void Petari::avoidPlayer() {
 
     TVec3f dirToPlayer = *MR::getPlayerCenterPos() - mBodyCenter;
     if (!MR::isNearZero(dirToPlayer)) {
-        f32 avoidWeight = 3.0f / (dirToPlayer * 0.1f).squared();
+        f32 avoidWeight = 3.0f / (dirToPlayer * 0.01f).squared();
         MR::clamp01(&avoidWeight);
         MR::normalize(&dirToPlayer);
         dirToPlayer.negate();

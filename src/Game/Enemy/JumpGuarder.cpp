@@ -251,7 +251,7 @@ void JumpGuarder::exeUp() {
 void JumpGuarder::exeWait() {
     updateRotate();
 
-    if (!MR::enableGroupAttack(this, ::sAppearDistance, ::sAppearHeight)) {
+    if (!MR::enableGroupAttack(this, ::sDisappearDistance, ::sAppearHeight)) {
         MR::sendMsgToGroupMember(ACTMES_GROUP_HIDE, this, getSensor("Body"), "Body");
     } else if (enableAttack()) {
         setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvPreOpen));
@@ -341,7 +341,7 @@ void JumpGuarder::exeHopEnd() {
 void JumpGuarder::exePreOpen() {
     updateRotate();
 
-    if (!MR::enableGroupAttack(this, ::sAppearDistance, ::sAppearHeight)) {
+    if (!MR::enableGroupAttack(this, ::sDisappearDistance, ::sAppearHeight)) {
         MR::sendMsgToGroupMember(ACTMES_GROUP_HIDE, this, getSensor("Body"), "Body");
     } else if (MR::isStep(this, 0)) {
         setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvOpen));

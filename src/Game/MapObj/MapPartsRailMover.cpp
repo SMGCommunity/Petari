@@ -267,7 +267,7 @@ void MapPartsRailMover::endRotateAtPoint() {
 }
 
 void MapPartsRailMover::calcMoveSpeed(f32* pMoveSpeed) const {
-    bool isNotNear = MR::isNearZero(mAcceleration) == false;
+    bool isNotNear = MR::isNearZero(mAcceleration, 0.0001f) == false;
 
     if (isNotNear) {
         *pMoveSpeed = MR::getRailCoordSpeed(mHost);
@@ -395,7 +395,7 @@ void MapPartsRailMover::exeMove() {
         sendMsgToHost(ACTMES_MAPPARTS_START_ROTATE_BETWEEN_POINTS);
     }
 
-    bool isNotNear = !MR::isNearZero(mAcceleration);
+    bool isNotNear = !MR::isNearZero(mAcceleration, 0.0001f);
 
     if (isNotNear && getStep() < mAccelTime) {
         mSpeed += mAcceleration;

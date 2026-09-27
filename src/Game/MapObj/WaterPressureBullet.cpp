@@ -72,7 +72,7 @@ void WaterPressureBullet::control() {
             stack_8.set(*getVelocity());
         }
 
-        MR::turnVecToVecCosOnPlane(&_8C, stack_8, _98, MR::cosDegree(-2.5f));
+        MR::turnVecToVecCosOnPlane(&_8C, stack_8, _98, MR::cosDegree(2.5f));
     }
 }
 #pragma pop

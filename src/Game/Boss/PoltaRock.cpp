@@ -82,7 +82,7 @@ void PoltaRock::setColorWhite() {
 void PoltaRock::setColorBlack() {
     mType = 1;
     MR::startBva(this, "Color");
-    MR::setBvaFrameAndStop(this, 0.0f);
+    MR::setBvaFrameAndStop(this, 1.0f);
 }
 
 void PoltaRock::setColorYellow() {
@@ -176,7 +176,7 @@ void PoltaRock::exeMove() {
         mVelocity.add(_A0 * (3.0f * MR::calcNerveRate(this, 30)));
     }
     MR::addVelocityToGravity(this, -0.02f);
-    MR::attenuateVelocity(this, 0.99f);
+    MR::attenuateVelocity(this, 0.999f);
     MR::rotateQuatRollBall(&_90, mVelocity, -mGravity, 120.0f);
     if (MR::isBinded(this)) {
         MR::sendMsgEnemyAttackToBindedSensor(this, getSensor("Body"));
