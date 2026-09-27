@@ -4,6 +4,7 @@
 #include "Game/Map/KCollision.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
+#include <new>
 
 DynamicCollisionObj::DynamicCollisionObj(const char* pName) : LiveActor(pName) {
     _A4 = 0;
@@ -51,7 +52,7 @@ void DynamicCollisionObj::updateTriangle() {
         MR::normalizeOrZero(&cross);
         _9C[i] = cross;
 
-        if (!mKCLFile) {
+        if (mKCLFile == nullptr) {
             continue;
         }
 
@@ -104,9 +105,11 @@ void DynamicCollisionObj::updateCollisionHeader() {
     if (!masks[0]) {
         masks[0] = 1;
     }
+
     if (!masks[1]) {
         masks[1] = 1;
     }
+
     if (!masks[2]) {
         masks[2] = 1;
     }
@@ -125,6 +128,7 @@ void DynamicCollisionObj::updateCollisionHeader() {
                 if (max_entropy < i) {
                     max_entropy = i;
                 }
+
                 break;
             }
 
@@ -143,6 +147,11 @@ void DynamicCollisionObj::updateCollisionHeader() {
     this->mKCLFile->mZMask = area_z_width_mask;
     this->mKCLFile->mBlockWidthShift = bit_shift;
     this->mKCLFile->mMin = min;
+}
+
+void DynamicCollisionObj_FORCE_MATCH(TVec2f* pDst, const TVec2f& rA) {
+    new (pDst) TVec2f(rA);
+    new (pDst + 1) TVec2f(rA);
 }
 
 void DynamicCollisionObj::createCollision() {

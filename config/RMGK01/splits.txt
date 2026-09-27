@@ -4784,12 +4784,12 @@ Game/MapObj/DriftWood.cpp:
 Game/MapObj/DummyDisplayModel.cpp:
 	.text       start:0x801D085C end:0x801D119C
 	.rodata     start:0x80533150 end:0x80533300
-	.data       start:0x80593290 end:0x80593410
+	.data       start:0x80593290 end:0x80593408
 	.sdata2     start:0x806BCDF8 end:0x806BCE10
 
 Game/MapObj/DynamicCollisionObj.cpp:
 	.text       start:0x801D119C end:0x801D1864
-	.data       start:0x80593410 end:0x80593488
+	.data       start:0x80593408 end:0x80593488
 	.sdata2     start:0x806BCE10 end:0x806BCE18
 
 Game/MapObj/EarthenPipe.cpp:

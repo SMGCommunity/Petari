@@ -1718,7 +1718,7 @@ config.libs = [
             Object(Matching, "Game/MapObj/DragonHeadFlower.cpp"),
             Object(Matching, "Game/MapObj/DriftWood.cpp"),
             Object(NonMatching, "Game/MapObj/DummyDisplayModel.cpp"),
-            Object(NonMatching, "Game/MapObj/DynamicCollisionObj.cpp"),
+            Object(Matching, "Game/MapObj/DynamicCollisionObj.cpp"),
             Object(Matching, "Game/MapObj/EarthenPipe.cpp"),
             Object(NonMatching, "Game/MapObj/ElectricBall.cpp"),
             Object(NonMatching, "Game/MapObj/ElectricRail.cpp"),
