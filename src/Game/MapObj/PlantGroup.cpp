@@ -27,6 +27,19 @@ namespace {
     const f32 hWeakDist = 500.0f;
 }  // namespace
 
+void PlantGroup_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)3.8146973e-06f;
+    (void)-3.8146973e-06f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)PI;
+    (void)HALF_PI;
+    (void)2.0f;
+    (void)-HALF_PI;
+}
+
 namespace NrvPlantMember {
     NEW_NERVE(HostTypeNrvWait, PlantMember, Wait);
     NEW_NERVE(HostTypeNrvHint, PlantMember, Hint);
@@ -149,6 +162,8 @@ void PlantGroup::initMember(s32 itemCount, const JMapInfoIter&) {
     MR::addHitSensorMapObj(this, "境界球", 16, 100.0f, TVec3f(gZeroVec));
 }
 
+#pragma push
+#pragma global_optimizer off
 s32 PlantGroup::placeOnCollisionFormCircle(TVec3f* pCenter, const TVec3f& rGravity, const TVec3f& rAxisX, const TVec3f& rAxisY) {
     pCenter->set(0, 0, 0);
     s32 ring = 0;
@@ -164,9 +179,12 @@ s32 PlantGroup::placeOnCollisionFormCircle(TVec3f* pCenter, const TVec3f& rGravi
         offset.scale(radius);
         TVec3f start(mPosition);
         start += offset;
-        start -= rGravity * 100.0f;
+        const TVec3f* pUp = &(rGravity * 100.0f);
+        start -= *pUp;
 
-        if (MR::getFirstPolyOnLineToMap(&mMembers[i]->mPosition, nullptr, start, rGravity * ::sCheckLineLength)) {
+        const TVec3f* pRay = &(rGravity * ::sCheckLineLength);
+
+        if (MR::getFirstPolyOnLineToMap(&mMembers[i]->mPosition, nullptr, start, *pRay)) {
             *pCenter += mMembers[i]->mPosition;
             placedCount++;
         } else {
@@ -187,6 +205,7 @@ s32 PlantGroup::placeOnCollisionFormCircle(TVec3f* pCenter, const TVec3f& rGravi
     pCenter->scale(1.0f / placedCount);
     return placedCount;
 }
+#pragma pop
 
 f32 PlantGroup::calcBoundingSphereRadius(const TVec3f& rCenter) {
     TVec3f min(rCenter);
