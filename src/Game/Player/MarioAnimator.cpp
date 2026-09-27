@@ -949,6 +949,8 @@ u16 MarioAnimator::getUpperJointID() const {
 
 const char* jname_chest = "Spine1";
 
+#pragma push
+#pragma opt_propagation off
 void MarioAnimator::updateJointRumble() {
     u32 timer = _74;
     if (timer == 0) {
@@ -969,8 +971,9 @@ void MarioAnimator::updateJointRumble() {
         sineVal *= fade;
     }
 
+    MarioActor* actor = mActor;
     XanimeCore* core = mXanimePlayer->mCore;
-    XjointTransform* larmJt = core->getJointTransform(static_cast< u16 >(MR::getJointIndex(mActor, "ArmL1")));
+    XjointTransform* larmJt = core->getJointTransform(static_cast< u16 >(MR::getJointIndex(actor, "ArmL1")));
     larmJt->_2C.y = sineVal * power;
 
     core = mXanimePlayer->mCore;
@@ -1004,6 +1007,7 @@ void MarioAnimator::updateJointRumble() {
     XjointTransform* hipJt = core->getJointTransform(static_cast< u16 >(MR::getJointIndex(mActor, "Spine2")));
     hipJt->_64 = _AC.toMtxPtr();
 }
+#pragma pop
 
 void MarioAnimator::addRumblePower(f32 power, u32 time) {
     if (_70 < power) {

@@ -846,6 +846,9 @@ void Mario::checkAllWall(const TVec3f& rPosition, f32 radius) {
     }
 }
 
+#pragma push
+#pragma opt_propagation off
+#pragma opt_lifetimes off
 void Mario::calcFrontFloor() {
     Triangle wall;
     Triangle floor;
@@ -929,6 +932,7 @@ void Mario::calcFrontFloor() {
         mMovementStates._39 = false;
     }
 }
+#pragma pop
 
 const TVec3f& Mario::getWallNorm() const {
     if (mMovementStates._8) {

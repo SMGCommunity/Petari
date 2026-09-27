@@ -11,15 +11,15 @@ public:
         Type_DemoNear,
     };
 
-    KoopaBattleMapStair(const char*);
+    KoopaBattleMapStair(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
 
     bool isRequestAttackVs1() const;
     s32 calcRemainTimeToBreak() const;
     bool isRequestAttackVs3() const;
-    f32 calcAndSetTargetPos(TVec3f*, const TVec3f&);
+    f32 calcAndSetTargetPos(TVec3f* pPos, const TVec3f& rReferencePos);
     f32 calcTimeRate() const;
     bool isBreak() const;
     bool isTypeNormal() const NO_INLINE;

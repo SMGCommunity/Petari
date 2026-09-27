@@ -1081,7 +1081,7 @@ void MarioActor::updateEffect() {
         effectA = 1;
     }
 
-    if (mMario->mMovementStates._1 && mMario->_3F4 > 0.001f) {
+    if (mMario->mMovementStates._1 && mMario->_3F4 > 0.1f) {
         effectA = 1;
     }
 
@@ -1090,7 +1090,7 @@ void MarioActor::updateEffect() {
     }
 
     if (getMovementStates()._34 || getMovementStates()._35) {
-        if (mMario->mWalkSpeed > 0.001f) {
+        if (mMario->mWalkSpeed > 0.1f) {
             effectA = 1;
         }
 
@@ -1168,8 +1168,11 @@ void MarioActor::updateEffect() {
         if (mPlayerMode == 4 && mMario->checkLvlA() && mMario->_402 != 0 && ((_37C & 3) == 0)) {
             if (mMario->mVerticalSpeed < 300.0f) {
                 effectC = 1;
-            } else if (mMario->mSwim->_1B2 != 0 && mMario->mSwim->_1B8 < 300.0f) {
-                effectC = 1;
+            } else if (mMario->mSwim->_1B2 != 0) {
+                f32 swimSpeed = mMario->mSwim->_1B8;
+                if (swimSpeed < 300.0f) {
+                    effectC = 1;
+                }
             }
         }
     }

@@ -122,6 +122,18 @@ void MarioActor::updateSearchLight() {
     }
 }
 
+namespace {
+    inline J3DModelX* getModelX(LiveActor* pActor) {
+        return static_cast< J3DModelX* >(MR::getJ3DModel(pActor));
+    }
+
+    inline void initExtraMtxBuffer(J3DModelX* pModel, s32 num) {
+        for (u32 i = 0; i < pModel->_DD; i++) {
+            pModel->mExtraMtxBuffer[i] = new (0x20) Mtx[num];
+        }
+    }
+}  // namespace
+
 void MarioActor::initSearchLight() {
     mSearchLight = new MarioSearchLight(this);
     mSearchLight->initWithoutIter();
@@ -130,9 +142,7 @@ void MarioActor::initSearchLight() {
     model->_DD = 16;
 
     s32 drawMtxNum = model->getModelData()->getDrawMtxNum();
-    for (u32 i = 0; i < model->_DD; i++) {
-        model->mExtraMtxBuffer[i] = new (0x20) Mtx[drawMtxNum];
-    }
+    ::initExtraMtxBuffer(model, drawMtxNum);
 
     mDrawSearchLight = new DrawAdaptor(MR::Functor(this, &MarioActor::drawSearchLight), MR::DrawType_0x33);
 }
@@ -165,7 +175,7 @@ void MarioActor::calcViewSearchLight() {
     }
 
     if (!MR::isDead(mSearchLight)) {
-        J3DModelX* model = static_cast< J3DModelX* >(MR::getJ3DModel(mSearchLight));
+        J3DModelX* model = ::getModelX(mSearchLight);
 
         // The search light is has three scaled cone "shells" to fake a blur effect.
         Mtx modelMdx;

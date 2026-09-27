@@ -249,7 +249,9 @@ void Mario::decideWalkSpeed() {
             getAnimator()->getXanimePlayer()->_0C = 1.0f;
         }
     } else {
-        f32 new0C = 0.1f + getAnimator()->getXanimePlayer()->_0C;
+        f32 speed = getAnimator()->getXanimePlayer()->_0C;
+        f32 new0C = speed;
+        new0C += 0.1f;
 
         if (new0C > 1.0f) {
             new0C = 1.0f;
@@ -555,6 +557,8 @@ void Mario::updateBrakeAnimation() {
     }
 }
 
+#pragma push
+#pragma opt_common_subs off
 void Mario::updateWalkSpeed() {
     f32 targetWalkSpeed = getTargetWalkSpeed();
     f32 f2 = 1.0f;
@@ -564,8 +568,8 @@ void Mario::updateWalkSpeed() {
     }
 
     if (_404 != 0) {
-        f2 = getActor()->getConst().getTable()->mSlowStartTime;
-        f2 /= (getActor()->getConst().getTable()->mSlowStartTime - _404);
+        f2 = getActor()->getConst().getTable()->mSlowStartTime - _404;
+        f2 /= getActor()->getConst().getTable()->mSlowStartTime;
         _404--;
     }
 
@@ -599,7 +603,7 @@ void Mario::updateWalkSpeed() {
             press = false;
         }
 
-        if (mMovementStates._1 && _730 == getGroundPolygon()->mSensor) {
+        if (mMovementStates._1 && _730 == getGroundPolygon()->getSensor()) {
             press = false;
         }
 
@@ -657,8 +661,10 @@ void Mario::updateWalkSpeed() {
         }
     }
 
-    mWalkSpeed = (mWalkSpeed * inertia) + (targetWalkSpeed * static_cast< f32 >(256 - mSinkTimer) * (1.0f / 256.0f)) * (1.0f - inertia);
+    targetWalkSpeed = targetWalkSpeed * static_cast< f32 >(256 - mSinkTimer) / 256.0f;
+    mWalkSpeed = mWalkSpeed * inertia + targetWalkSpeed * (1.0f - inertia);
 }
+#pragma pop
 
 void Mario::decideOnIceAnimation() {
     if (mTargetWalkSpeedIndex == 0) {

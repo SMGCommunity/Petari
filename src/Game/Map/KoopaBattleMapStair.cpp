@@ -17,8 +17,8 @@ struct OffsetPair {
 
 namespace {
     static const s32 sDefaultTimeToBreak = 300;
-    static const f32 sNormalHalfWidthX = 300.0f;
-    static const f32 sNormalHalfWidthZ = 200.0f;
+    static const f32 sNormalHalfWidthX = 200.0f;
+    static const f32 sNormalHalfWidthZ = 300.0f;
     static const f32 sHalfHeight = 100.0f;
     static const f32 sBigHalfWidthX = 600.0f;
     static const f32 sBigHalfWidthZ = 400.0f;
@@ -31,7 +31,7 @@ namespace {
     // static const f32 sDebugRadius = _;
     static const OffsetPair offset_table[] = {{0.0f, -1.0f}, {1.0f, -1.0f}, {1.0f, 0.0f},  {1.0f, 1.0f},
                                               {0.0f, 1.0f},  {-1.0f, 1.0f}, {-1.0f, 0.0f}, {-1.0f, -1.0f}};
-};  // namespace
+}  // namespace
 
 namespace NrvKoopaBattleMapStair {
     NEW_NERVE(KoopaBattleMapStairNrvWaitSwitch, KoopaBattleMapStair, WaitSwitch);
@@ -39,7 +39,7 @@ namespace NrvKoopaBattleMapStair {
     NEW_NERVE(KoopaBattleMapStairNrvWaitFall, KoopaBattleMapStair, WaitFall);
     NEW_NERVE(KoopaBattleMapStairNrvFall, KoopaBattleMapStair, Fall);
     NEW_NERVE(KoopaBattleMapStairNrvDisappear, KoopaBattleMapStair, Disappear);
-};  // namespace NrvKoopaBattleMapStair
+}  // namespace NrvKoopaBattleMapStair
 
 KoopaBattleMapStair::KoopaBattleMapStair(const char* pName)
     : LiveActor(pName), mTimeToBreak(::sDefaultTimeToBreak), mFireAttackStep(-1), mArg1(), mArg5(-1), mArg6(), mType(), mIsBig(), mIsTurn(), _A6(),
@@ -114,60 +114,67 @@ bool KoopaBattleMapStair::isRequestAttackVs3() const {
 }
 
 namespace {
-    void updateNearestPos(TVec3f* pPos, f32* pDist, const TVec3f& a3, const TVec3f& a4, s32 a5, s32 a6) {
-        if (a5 >= 0) {
-            if (a5 == a6) {
-                pPos->set(a3);
+    void updateNearestPos(TVec3f* pPos, f32* pDist, const TVec3f& rCandidatePos, const TVec3f& rReferencePos, s32 targetIndex, s32 index) {
+        if (targetIndex >= 0) {
+            if (targetIndex == index) {
+                pPos->set(rCandidatePos);
             }
         } else {
-            f32 dist = a3.distance(a4);
+            f32 dist = rCandidatePos.distance(rReferencePos);
 
             if (dist > *pDist) {
                 return;
             }
 
-            pPos->set(a3);
+            pPos->set(rCandidatePos);
             *pDist = dist;
         }
     }
-};  // namespace
 
-f32 KoopaBattleMapStair::calcAndSetTargetPos(TVec3f* pPos, const TVec3f& a2) {
-    TVec3f axisZ, axisY, axisX;
+    inline void updateOffsetPos(TVec3f* pPos, f32* pDist, const TVec3f& rCenter, const TVec3f& rX, const TVec3f& rZ, f32 width, f32 depth,
+                                const OffsetPair& rOffset, const TVec3f& rOrigin, s32 selection, s32 index) {
+        TVec3f candidate = rCenter + (rX * width * rOffset.x) + (rZ * depth * rOffset.z);
+
+        updateNearestPos(pPos, pDist, candidate, rOrigin, selection, index);
+    }
+
+    inline void updateTurnPos(TVec3f* pPos, f32* pDist, const TVec3f& rCenter, const TVec3f& rX, const TVec3f& rZ, const TVec3f& rOrigin) {
+        updateNearestPos(pPos, pDist, rCenter + rZ * ::sTurnHalfWidthZ - rX * ::sTurnHalfWidthX, rOrigin, -1, -1);
+    }
+}  // namespace
+
+f32 KoopaBattleMapStair::calcAndSetTargetPos(TVec3f* pPos, const TVec3f& rReferencePos) {
+    TVec3f axisZ;
+    TVec3f axisY;
+    TVec3f axisX;
     MR::calcActorAxis(&axisX, &axisY, &axisZ, this);
-    TVec3f v38 = (axisY * ::sHalfHeight) + mPosition;
-    f32 v20 = v38.distance(a2);
-    pPos->set(v38);
-    s32 val;
+
+    TVec3f center = (axisY * ::sHalfHeight) + mPosition;
+    f32 distance = center.distance(rReferencePos);
+    pPos->set(center);
 
     if (mIsBig) {
-        val = mArg5;
+        s32 targetIndex = mArg5;
 
-        for (s32 i = 0; i < ARRAY_SIZE(offset_table); i++) {
-            TVec3f v31 = v38 + (axisX * ::sBigHalfWidthX * offset_table[i].x) + (axisZ * ::sBigHalfWidthZ * offset_table[i].z);
-
-            ::updateNearestPos(pPos, &v20, v31, a2, val, i);
+        for (s32 i = 0; i < ARRAY_SIZE(::offset_table); i++) {
+            const OffsetPair& rOffset = ::offset_table[i];
+            updateOffsetPos(pPos, &distance, center, axisX, axisZ, ::sBigHalfWidthX, ::sBigHalfWidthZ, rOffset, rReferencePos, targetIndex, i);
         }
     } else if (mIsTurn) {
-        TVec3f v30 = axisX * ::sTurnHalfWidthX;
-        TVec3f tmp = v38 + (axisZ * ::sTurnHalfWidthZ);
-        TVec3f v27 = tmp;
-        v27 -= v30;
-
-        ::updateNearestPos(pPos, &v20, v27, a2, -1, -1);
+        updateTurnPos(pPos, &distance, center, axisX, axisZ, rReferencePos);
     } else {
-        val = mArg5;
+        const OffsetPair* pOffset;
+        s32 targetIndex = mArg5;
 
-        for (s32 i = 0; i < ARRAY_SIZE(offset_table); i++) {
-            TVec3f v21 = v38 + (axisX * ::sNormalHalfWidthX * offset_table[i].x) + (axisZ * ::sNormalHalfWidthZ * offset_table[i].z);
-
-            ::updateNearestPos(pPos, &v20, v21, a2, val, i);
+        for (s32 i = 0; i < ARRAY_SIZE(::offset_table); i++) {
+            pOffset = &::offset_table[i];
+            updateOffsetPos(pPos, &distance, center, axisX, axisZ, ::sNormalHalfWidthX, ::sNormalHalfWidthZ, *pOffset, rReferencePos, targetIndex, i);
         }
     }
 
     _AC.set(*pPos);
 
-    return v20;
+    return distance;
 }
 
 f32 KoopaBattleMapStair::calcTimeRate() const {
@@ -178,7 +185,7 @@ bool KoopaBattleMapStair::isBreak() const {
     return isNerve(GET_NERVE(KoopaBattleMapStair, KoopaBattleMapStairNrvWaitFall));
 }
 
-bool KoopaBattleMapStair::isTypeNormal() const {
+bool KoopaBattleMapStair::isTypeNormal() const NO_INLINE {
     return mType == Type_Normal;
 }
 
@@ -190,7 +197,7 @@ bool KoopaBattleMapStair::isTypeDemoNear() const {
     return mType == Type_DemoNear;
 }
 
-bool KoopaBattleMapStair::isTypeNoRequestFire() const {
+bool KoopaBattleMapStair::isTypeNoRequestFire() const NO_INLINE {
     return mType == Type_NoRequestFire;
 }
 
