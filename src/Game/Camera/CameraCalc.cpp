@@ -35,7 +35,7 @@ namespace MR {
     }
 
     f32 diffRadian(f32 angleA, f32 angleB) {
-        f32 diff = MR::repeatDegree(angleB) - MR::repeatDegree(angleA);
+        f32 diff = MR::repeat(angleB, 0.0f, TWO_PI) - MR::repeat(angleA, 0.0f, TWO_PI);
         if (diff > 0.0f) {
             if (diff > MR::pi()) {
                 diff = -(MR::pi() * 2.0f - diff);
