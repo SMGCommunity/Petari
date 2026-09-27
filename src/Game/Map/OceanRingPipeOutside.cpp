@@ -21,7 +21,7 @@ namespace {
 };  // namespace
 
 OceanRingPipeOutside::OceanRingPipeOutside(const OceanRingPipe* pPipe)
-    : LiveActor("オーシャンリングの内側"), mRingPipe(pPipe), mTexU(0.0f), mWaterPipeIndirectTex(nullptr), mWaterPipeHighLightTex(nullptr),
+    : LiveActor("オーシャンリングの外側"), mRingPipe(pPipe), mTexU(0.0f), mWaterPipeIndirectTex(nullptr), mWaterPipeHighLightTex(nullptr),
       mDispListLength(0), mDispList(nullptr) {
 }
 
