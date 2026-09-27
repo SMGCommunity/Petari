@@ -6,7 +6,6 @@
 #include "Game/AudioLib/AudSpeakerWrap.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
 #include "Game/AudioLib/CSSoundNameConverter.hpp"
-#include "Game/RhythmLib/AudRhythmWrap.hpp"
 #include "Game/Util/FileUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 #include <JSystem/JKernel/JKRDvdRipper.hpp>
@@ -14,21 +13,25 @@
 #include <JSystem/JKernel/JKRMemArchive.hpp>
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 
-AudSystemWrapper::AudSystemWrapper(JKRSolidHeap* pSolidHeap, JKRHeap* pHeap) : mIsResetDone() {
-    // FIXME: out-of-order assignment to mIsResetDone
-    // https://decomp.me/scratch/vUG77
+namespace AudRhythmWrap {
+    void rhythmProc();
+};  // namespace AudRhythmWrap
 
-    mAudSystem = nullptr;
-    mSolidHeap = pSolidHeap;
-    mHeap = pHeap;
-    mSmrRes = nullptr;
-    mJaiSeqRes = nullptr;
-    mJaiChordRes = nullptr;
-    mJaiMeRes = nullptr;
-    mJaiRemixSeqRes = nullptr;
-    mSpkRes = nullptr;
-    _28 = false;
-    mDisableReset = false;
+AudSystemWrapper::AudSystemWrapper(JKRSolidHeap* pSolidHeap, JKRHeap* pHeap) {
+    volatile AudSystemWrapper* self = this;
+
+    self->mIsResetDone = false;
+    self->mSolidHeap = pSolidHeap;
+    self->mAudSystem = nullptr;
+    self->mHeap = pHeap;
+    self->mSmrRes = nullptr;
+    self->mJaiSeqRes = nullptr;
+    self->mJaiChordRes = nullptr;
+    self->mJaiMeRes = nullptr;
+    self->mJaiRemixSeqRes = nullptr;
+    self->mSpkRes = nullptr;
+    self->_28 = false;
+    self->mDisableReset = false;
     mSpkHeap = JKRExpHeap::create(AudSpeakerWrap::getRequiredHeapSize(), pSolidHeap, false);
 }
 
