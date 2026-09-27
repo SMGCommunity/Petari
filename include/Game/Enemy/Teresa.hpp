@@ -11,7 +11,6 @@ class Teresa : public LiveActor {
 public:
     Teresa(const char*);
 
-    virtual ~Teresa();
     virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void makeActorAppeared();
@@ -96,20 +95,20 @@ public:
         return isNearPlayer;
     }
 
-    PartsModel* mDisplayModel;  // 0x8C
-    KeySwitch* mKeySwitch;      // 0x90
-    TQuat4f _94;
-    TVec3f mWallNormal;  // _A4
-    TVec3f mWallHitPos;  // _B0
-    TVec3f _BC;
-    TVec3f _C8;
-    TVec3f _D4;
-    TVec3f _E0;
-    f32 _EC;
-    f32 _F0;
-    f32 _F4;
-    s32 mAppearanceType;  // _F8
-    u8 _FC;
-    u8 _FD;
-    u8 _FE;
+    /* 0x8C */ PartsModel* mDisplayModel;
+    /* 0x90 */ KeySwitch* mKeySwitch;
+    /* 0x94 */ TQuat4f _94;
+    /* 0xA4 */ TVec3f mWallNormal;
+    /* 0xB0 */ TVec3f mWallHitPos;
+    /* 0xBC */ TVec3f _BC;
+    /* 0xC8 */ TVec3f _C8;
+    /* 0xD4 */ TVec3f _D4;
+    /* 0xE0 */ TVec3f _E0;
+    /* 0xEC */ f32 _EC;
+    /* 0xF0 */ f32 _F0;
+    /* 0xF4 */ f32 _F4;
+    /* 0xF8 */ s32 mAppearanceType;
+    /* 0xFC */ u8 _FC;
+    /* 0xFD */ u8 _FD;
+    /* 0xFE */ u8 _FE;
 };

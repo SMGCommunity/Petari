@@ -6,6 +6,49 @@
 #include "Game/Util/JointRumbler.hpp"
 #include <revolution/wpad.h>
 
+void Kanina_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)2.0f;
+    (void)-1.5707964f;
+    (void)1.5707964f;
+    (void)-1.0f;
+    (void)3.0f;
+    (void)0.25f;
+    (void)0.75f;
+    (void)1e+02f;
+    (void)8e+01f;
+    (void)6.0f;
+    (void)0.1f;
+    (void)1e+01f;
+    (void)4e+01f;
+    (void)15.0f;
+    (void)3e+01f;
+    (void)1.5f;
+    (void)25.0f;
+    (void)0.001f;
+    (void)6e+01f;
+    (void)0.017453292f;
+    (void)7.0f;
+    (void)13.0f;
+    (void)45.0f;
+    (void)0.3f;
+    (void)0.05f;
+    (void)8e+02f;
+    (void)2.2f;
+    (void)0.93f;
+    (void)0.99f;
+    (void)0.88f;
+    (void)1e+03f;
+    (void)1.8e+02f;
+    (void)1.2e+02f;
+    (void)2e+03f;
+    (void)2e+01f;
+    (void)5e+02f;
+    (void)1.7f;
+}
+
 namespace NrvKanina {
     NEW_NERVE(HostTypeAppear, Kanina, Appear);
     NEW_NERVE(HostTypeWait, Kanina, Wait);
@@ -689,15 +732,13 @@ void Kanina::exeWait() {
     }
 }
 
-void Kanina::exeWalk() {
-    if (MR::isFirstStep(this)) {
-        _DC++;
-        MR::startBck(this, "Walk");
-        TVec3f temp;
-        TVec3f up;
+namespace {
+    inline void calcWalkDirection(TVec3f* pDirection, const LiveActor* pActor) {
         TVec3f front;
-        MR::calcFrontVec(&front, this);
-        MR::calcUpVec(&up, this);
+        TVec3f up;
+        MR::calcFrontVec(&front, pActor);
+        MR::calcUpVec(&up, pActor);
+
         f32 angle = MR::getRandom(-HALF_PI, HALF_PI);
 
         TPos3f rotate;
@@ -706,7 +747,17 @@ void Kanina::exeWalk() {
         rotate.mult(front, front);
 
         MR::normalize(&front);
-        temp.set(front);
+        pDirection->set(front);
+    }
+}  // namespace
+
+void Kanina::exeWalk() {
+    if (MR::isFirstStep(this)) {
+        _DC++;
+        MR::startBck(this, "Walk");
+
+        TVec3f temp;
+        ::calcWalkDirection(&temp, this);
         _D0.set(temp);
 
         MR::blendQuatFromGroundAndFront(&_A4, this, _D0, ::sUpVecBlendRate, ::sFrontVecBlendRate);

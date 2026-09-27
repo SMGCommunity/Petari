@@ -120,7 +120,7 @@ void Snakehead::init(const JMapInfoIter& rIter) {
     const char* smokeName = ::getParam(_E8)->_18;
     if (smokeName != nullptr) {
         _C4 = mPosition;
-        MR::setEffectHostSRT(this, smokeName, nullptr, nullptr, nullptr);
+        MR::setEffectHostSRT(this, smokeName, &_C4, nullptr, nullptr);
     }
 
     initSound(4, false);

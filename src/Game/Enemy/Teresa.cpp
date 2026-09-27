@@ -24,6 +24,51 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TriangleFilter.hpp"
 
+void Teresa_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)2.0f;
+    (void)3e+03f;
+    (void)6e+02f;
+    (void)8e+01f;
+    (void)7e+01f;
+    (void)85.0f;
+    (void)6e+01f;
+    (void)0.95f;
+    (void)0.1f;
+    (void)0.2f;
+    (void)0.9f;
+    (void)2e+01f;
+    (void)2e+02f;
+    (void)1.8e+03f;
+    (void)2e+03f;
+    (void)1.5e+03f;
+    (void)1e+04f;
+    (void)0.9995f;
+    (void)1e+01f;
+    (void)0.35f;
+    (void)0.9997f;
+    (void)0.98f;
+    (void)0.999f;
+    (void)0.75f;
+    (void)0.99f;
+    (void)0.96f;
+    (void)1.5e+02f;
+    (void)0.4f;
+    (void)4e+01f;
+    (void)-0.2f;
+    (void)4.0f;
+    (void)0.12f;
+    (void)-1.25f;
+    (void)53.0f;
+    (void)0.3f;
+    (void)0.02f;
+    (void)9.0f;
+    (void)0.0f;
+}
+
 namespace {
     static Color8 sPointLightColor(255, 255, 255, 255);
 };  // namespace
@@ -204,6 +249,12 @@ void Teresa::kill() {
     }
 }
 
+namespace {
+    inline void blendTeresaQuat(TQuat4f* pQuat, const TVec3f& rGravity, const TVec3f& rFront) {
+        MR::blendQuatUpFront(pQuat, -rGravity, rFront, 0.1f, 0.2f);
+    }
+}  // namespace
+
 void Teresa::control() {
     if (!isNerve(GET_NERVE(Teresa, TeresaNrvDrift)) && !isNerve(GET_NERVE(Teresa, TeresaNrvAscension))) {
         _D4.x = 1.0f + (0.95f * (_D4.x - 1.0f));
@@ -211,7 +262,7 @@ void Teresa::control() {
     }
 
     tryHideWater();
-    MR::blendQuatUpFront(&_94, -mGravity, mWallNormal, 0.1f, 0.2f);
+    ::blendTeresaQuat(&_94, mGravity, mWallNormal);
     _FE = 0;
 
     if (_F4 > 0.9f) {
@@ -1091,13 +1142,20 @@ bool Teresa::isCheckWater() const {
     return true;
 }
 
+namespace {
+    inline bool isFacingTeresa(const TVec3f& rPosition) {
+        TVec3f playerFront;
+        MR::getPlayerFrontVec(&playerFront);
+
+        return playerFront.dot(rPosition - *MR::getPlayerPos()) > 0.0f;
+    }
+}  // namespace
+
 bool Teresa::isShay() const {
     bool isNotSquat = MR::isPlayerSquat() == false;
 
     if (isNotSquat) {
-        TVec3f playerFront;
-        MR::getPlayerFrontVec(&playerFront);
-        isNotSquat = playerFront.dot(mPosition - *MR::getPlayerPos()) > 0.0f;
+        isNotSquat = ::isFacingTeresa(mPosition);
     }
 
     if (isNotSquat) {
@@ -1105,9 +1163,6 @@ bool Teresa::isShay() const {
     }
 
     return isNotSquat;
-}
-
-Teresa::~Teresa() {
 }
 
 void Teresa_FORCE_MATCH(TVec3f* pVec, f32 scale) {
