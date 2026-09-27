@@ -169,7 +169,7 @@ s32 PlantGroup::placeOnCollisionFormCircle(TVec3f* pCenter, const TVec3f& rGravi
     s32 ring = 0;
     f32 angle = 0.0f;
     f32 angleStep = 2.0f * PI;
-    f32 radius = ::sSize * ring;
+    f32 radius = ::sSize * (s16)ring;
     s32 placedCount = 0;
 
     for (s32 i = 0; i < mMemberCount; i++) {
