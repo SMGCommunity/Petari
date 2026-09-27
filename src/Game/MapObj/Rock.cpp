@@ -727,10 +727,8 @@ void Rock::exeAppear() {
 
     if (MR::isGreaterStep(this, mAppearTime) && MR::isLessStep(this, mAppearTime + ::cAppearRumbleFrame)) {
         s32 step = getNerveStep() - mAppearTime;
-        f32 f1 = MR::sinDegree(MR::repeatDegree(step * ::cAppearRumbleSpeed));
-        f32 rotation = f1 * ::cAppearRumbleAngle;
-        rotation *= ::cAppearRumbleFrame - step;
-        rotation /= ::cAppearRumbleFrame;
+        f32 rotation = MR::sinDegree(MR::repeatDegree(step * ::cAppearRumbleSpeed)) * ::cAppearRumbleAngle * (::cAppearRumbleFrame - step) /
+                       ::cAppearRumbleFrame;
         mRotation.x = rotation;
         updateRotateX(mAppearAngle + mRotation.x);
     }
@@ -942,13 +940,22 @@ void Rock::exeBreak() {
     }
 }
 
+#pragma push
+#pragma global_optimizer off
 void Rock::exeFreeze() {
-    // FIXME: issues with getTouchEffect
-    // https://decomp.me/scratch/SSFkq
-
     if (MR::isFirstStep(this)) {
         mVelocity.zero();
-        MR::emitEffect(this, getTouchEffect());
+
+        // inlined stripped emitEffect()
+        bool isRollingMini = mRockType == WanwanRollingMini;
+        const char* effect;
+        if (isRollingMini) {
+            effect = "MiniTouch";
+        } else {
+            effect = "Touch";
+        }
+
+        MR::emitEffect(this, effect);
         MR::deleteEffect(this, "Smoke");
 
         if (mFreezeTime == 0) {
@@ -959,12 +966,11 @@ void Rock::exeFreeze() {
     mFreezeTime++;
     MR::startDPDFreezeLevelSound(this);
 
-    f32 f1 = MR::cosDegree(MR::repeatDegree(mFreezeTime * ::cFreezeRumbleSpeed));
-    s32 step = ::cFreezeFrame - getNerveStep();
-    f32 f2 = step * (f1 * ::cFreezeRumbleWidth) / ::cFreezeFrame;
+    f32 f2 = (MR::cosDegree(MR::repeatDegree(mFreezeTime * ::cFreezeRumbleSpeed)) * ::cFreezeRumbleWidth) * (::cFreezeFrame - getNerveStep()) /
+             ::cFreezeFrame;
     TVec3f v1;
     v1.set(MR::getCamXdir());
-    v1 *= f2;
+    v1.scale(f2);
     mPosition.add(mFreezePos, v1);
 
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
@@ -974,7 +980,18 @@ void Rock::exeFreeze() {
 
     if (MR::isStep(this, ::cFreezeFrame)) {
         mPosition.set(mFreezePos);
-        MR::deleteEffect(this, getTouchEffect());
+
+        // inlined stripped emitEffect()
+        bool isRollingMini = mRockType == WanwanRollingMini;
+        const char* effect;
+        if (isRollingMini) {
+            effect = "MiniTouch";
+        } else {
+            effect = "Touch";
+        }
+
+        MR::deleteEffect(this, effect);
         setNerve(mUnfreezeNerve);
     }
 }
+#pragma pop
