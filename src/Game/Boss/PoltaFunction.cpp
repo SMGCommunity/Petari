@@ -158,14 +158,16 @@ namespace PoltaFunction {
     }
 
     bool appearGroundRock(Polta* pPolta, f32 distance, f32 angle) {
-        PoltaGroundRock* pRock = pPolta->mGroundRockHolder->getDeadMember();
+        PoltaGroundRockHolder* pHolder = pPolta->mGroundRockHolder;
+        PoltaGroundRock* pRock = pHolder->getDeadMember();
         if (pRock == nullptr) {
             return false;
         }
 
         TVec3f direction(*MR::getPlayerPos());
+        const TVec3f& rGravity = pPolta->mGravity;
         direction.sub(pPolta->mPosition);
-        direction.orthogonalize(pPolta->mGravity);
+        direction.orthogonalize(rGravity);
 
         if (MR::normalizeOrZero(&direction)) {
             direction = pPolta->_C4;
