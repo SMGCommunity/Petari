@@ -247,12 +247,6 @@ inline TVec3f Meramera::getDistanceToPlayer() const {
     return playerPos;
 }
 
-inline TVec3f Meramera::getParabolicPos(f32 a2) const {
-    TVec3f pos;
-    mParabolicPath->calcPosition(&pos, a2);
-    return pos;
-}
-
 Meramera::Meramera(const char* pName)
     : LiveActor(pName), mAnimScaleController(), mWalkerStateBindStarPointer(), _128(0.0f, 1.0f), _138(0, 0, 1), _144(0, 1, 0), mHomePosition(0, 0, 0),
       _15C(0, 0, 1), _174(0, 0, 0), _180(0, 0, 0), _18C(0, 0, 1), _198(0, 1, 0), _1A4(-1.0f), mChaseDistance(900.0f), mAppearStatus(-1),
@@ -1146,7 +1140,6 @@ void Meramera::exeStartDiving() {
 }
 
 void Meramera::exeDiving() {
-    // FIXME: stack
     if (MR::isFirstStep(this)) {
         mParabolicPath->initFromUpVector(mPosition, _180, _198, 300.0f);
 
@@ -1162,7 +1155,10 @@ void Meramera::exeDiving() {
         MR::startSound(this, "SE_EM_MERAMERA_JUMP");
     }
 
-    mVelocity.set(getParabolicPos(getNerveStep() / 40.0f) - mPosition);
+    TVec3f pos;
+    mParabolicPath->calcPosition(&pos, getNerveStep() / 40.0f);
+    const TVec3f& vel = pos - mPosition;
+    mVelocity.set(vel);
 
     MR::turnVecToVecDegree(&_144, _144, -mGravity, 180.0f, _138);
 

@@ -114,7 +114,6 @@ public:
     inline bool isSensor(const HitSensor*, const char*) const;
     inline bool isActionDisabled() const;
     inline TVec3f getDistanceToPlayer() const;
-    inline TVec3f getParabolicPos(f32) const;
 
     /* 0x08C */ AnimScaleController* mAnimScaleController;
     /* 0x090 */ WalkerStateBindStarPointer* mWalkerStateBindStarPointer;

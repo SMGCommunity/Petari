@@ -30,7 +30,7 @@ namespace {
     static const f32 sAirFrec = 0.99f;
     static const f32 sGroundFrec = 0.94999999f;
     static const s32 sFreezeFrame = 20;
-    static const f32 sFreezeRumbleSpeed = 0.75f;
+    static const f32 sFreezeRumbleSpeed = 75.0f;
     static const f32 sFreezeRumbleWidth = 5.0f;
     static const s32 sWallHitInvalidTime = 10;
 };  // namespace

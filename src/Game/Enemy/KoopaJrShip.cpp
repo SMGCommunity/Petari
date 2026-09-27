@@ -38,6 +38,21 @@ namespace {
 
     static const char* const cJointNameCannon[] = {"FirePoint0", "FirePoint1", "FirePoint2", "FirePoint4", "FirePoint5", "FirePoint6"};
     static const char* const cEffectNameShoot[] = {"ShootJ0", "ShootJ1", "ShootJ2", "ShootJ4", "ShootJ5", "ShootJ6"};
+
+    inline void setRotateY(TRot3f& rMtx, f32 angle) {
+        f32 s = SIN(angle);
+        f32 c = COS(angle);
+
+        rMtx.mMtx[0][0] = c;
+        rMtx.mMtx[1][1] = 1.0f;
+        rMtx.mMtx[0][2] = s;
+        rMtx.mMtx[2][0] = -s;
+        rMtx.mMtx[2][2] = c;
+        rMtx.mMtx[2][1] = 0.0f;
+        rMtx.mMtx[1][2] = 0.0f;
+        rMtx.mMtx[1][0] = 0.0f;
+        rMtx.mMtx[0][1] = 0.0f;
+    }
 };  // namespace
 
 namespace NrvKoopaJrShip {
@@ -130,7 +145,7 @@ void KoopaJrShip::kill() {
 void KoopaJrShip::control() {
     _EC = MR::repeatDegree(_EC + mPropRotateSpeed);
 
-    mPropellerMtx.setEulerY(MR::toRadian(_EC));
+    setRotateY(mPropellerMtx, MR::toRadian(_EC));
     mScrew00Mtx.setEulerZ(MR::toRadian(_EC));
     mScrew01Mtx.setEulerZ(MR::toRadian(_EC));
     MR::setRailCoordSpeed(this, _184);
