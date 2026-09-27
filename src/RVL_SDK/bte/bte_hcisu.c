@@ -18,8 +18,8 @@
  */
 
 // .sbss
-tHCI_IF *p_hcisu_if;
 tHCI_CFG *p_hcisu_cfg;
+tHCI_IF *p_hcisu_if;
 
 /*******************************************************************************
  * functions

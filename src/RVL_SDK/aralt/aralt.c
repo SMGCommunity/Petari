@@ -3,19 +3,19 @@
 #include "revolution/aralt.h"
 #include "revolution/os.h"
 
-static u32 __AR_init_flag;
-static s32 __ARQ_init_flag;
-static u32 __ARQChunkSize;
-static ARQCallback __ARQCallbackLo;
-static ARQCallback __ARQCallbackHi;
-static ARQRequest* __ARQRequestPendingLo;
-static ARQRequest* __ARQRequestPendingHi;
-static ARQRequest* __ARQRequestQueueLo;
-static ARQRequest* __ARQRequestQueueHi;
-static u32 __ARH_BaseAdr;
-static u32 __AR_InternalSize;
-static u32 __AR_Size;
 static ARCallback __AR_Callback;
+static u32 __AR_Size;
+static u32 __AR_InternalSize;
+static u32 __ARH_BaseAdr;
+static ARQRequest* __ARQRequestQueueHi;
+static ARQRequest* __ARQRequestQueueLo;
+static ARQRequest* __ARQRequestPendingHi;
+static ARQRequest* __ARQRequestPendingLo;
+static ARQCallback __ARQCallbackHi;
+static ARQCallback __ARQCallbackLo;
+static u32 __ARQChunkSize;
+static s32 __ARQ_init_flag;
+static u32 __AR_init_flag;
 
 static u32 __ARH_MemoryTop = 0x90000000;
 
