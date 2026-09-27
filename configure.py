@@ -2665,7 +2665,7 @@ config.libs = [
             Object(Matching, "Game/Util/DirectDraw.cpp"),
             Object(Matching, "Game/Util/DirectDrawUtil.cpp"),
             Object(NonMatching, "Game/Util/FixedPosition.cpp"),
-            Object(NonMatching, "Game/Util/GeometryBindUtil.cpp"),
+            Object(Matching, "Game/Util/GeometryBindUtil.cpp"),
             Object(Matching, "Game/Util/IKJoint.cpp"),
             Object(Matching, "Game/Util/JMapIdInfo.cpp"),
             Object(Matching, "Game/Util/JMapInfo.cpp"),

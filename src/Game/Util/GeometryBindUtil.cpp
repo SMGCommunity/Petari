@@ -1,6 +1,17 @@
 #include "Game/Util/GeometryBindUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 
+namespace {
+    inline s32 isWithinConeSide(f32 along, f32 length) {
+        s32 result = 0;
+        if (0.0f < along && along < length) {
+            result = 1;
+        }
+
+        return result;
+    }
+}  // namespace
+
 void GeometryBindUtil_FORCE_MATCH_SDATA2() {
     (void)1.0f;
     (void)0.0f;
@@ -59,7 +70,7 @@ namespace MR {
             if (radial.isZero()) {
                 f32 height = rCone.mDirection.dot(rCone.mVertex - nextPosition);
                 if (-rSphere.getRadius() < height && height < 0.0f) {
-                    if (pResult) {
+                    if (pResult != nullptr) {
                         pResult->mPosition = rCone.mVertex + rCone.mDirection * rSphere.getRadius();
                         pResult->mContactPosition = rCone.mVertex;
                         pResult->mNormal = rCone.mDirection;
@@ -70,7 +81,7 @@ namespace MR {
                 }
 
                 if (0.0f <= height && height < expandedHeight) {
-                    if (pResult) {
+                    if (pResult != nullptr) {
                         pResult->mPosition = rCone.mVertex - rCone.mDirection * expandedHeight;
                         pResult->mContactPosition = rCone.mVertex - rCone.mDirection * (expandedHeight + rSphere.getRadius());
                         pResult->mNormal = -rCone.mDirection;
@@ -80,7 +91,7 @@ namespace MR {
                     return true;
                 }
 
-                if (pResult) {
+                if (pResult != nullptr) {
                     pResult->mPosition = nextPosition;
                     pResult->mIsBound = false;
                 }
@@ -95,7 +106,7 @@ namespace MR {
         f32 generatrixLength = rCone.getGeneratrixLength();
         generatrixDirection /= generatrixLength;
         f32 along = generatrixDirection.dot(nextPosition - rCone.mVertex);
-        s32 within = 0.0f < along && along < generatrixLength;
+        s32 within = isWithinConeSide(along, generatrixLength);
         along = MR::clamp(along, 0.0f, generatrixLength);
         TVec3f closest(rCone.mVertex + generatrixDirection * along);
         TVec3f contactDirection(nextPosition - closest);
@@ -112,7 +123,7 @@ namespace MR {
 
             if (baseProjection.squared() < rCone.getRadius() * rCone.getRadius()) {
                 if (rCone.mDirection.dot(rCone.mVertex - nextPosition) < expandedHeight) {
-                    if (pResult) {
+                    if (pResult != nullptr) {
                         pResult->mPosition = rCone.mVertex - rCone.mDirection * expandedHeight;
                         pResult->mContactPosition = rCone.mVertex - rCone.mDirection * (expandedHeight + rSphere.getRadius());
                         pResult->mNormal = -rCone.mDirection;
@@ -125,7 +136,7 @@ namespace MR {
         }
 
         if (within && wasInside != isInside) {
-            if (pResult) {
+            if (pResult != nullptr) {
                 TVec3f correction(nextPosition - contactDirection * (distance + rSphere.getRadius()));
                 pResult->mContactPosition = closest;
                 pResult->mNormal = -contactDirection;
@@ -136,7 +147,7 @@ namespace MR {
         }
 
         if (distance < rSphere.getRadius()) {
-            if (pResult) {
+            if (pResult != nullptr) {
                 TVec3f pushedPosition(nextPosition + contactDirection * (rSphere.getRadius() - distance));
                 pResult->mPosition = pushedPosition;
                 pResult->mContactPosition = closest;
@@ -147,7 +158,7 @@ namespace MR {
             return true;
         }
 
-        if (pResult) {
+        if (pResult != nullptr) {
             pResult->mPosition = nextPosition;
             pResult->mIsBound = false;
         }
