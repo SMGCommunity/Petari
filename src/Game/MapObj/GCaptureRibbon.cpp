@@ -34,7 +34,7 @@ void GCaptureRibbon::draw() const {
                 GXPosition3f32(v1.x + _90[i].x, v1.y + _90[i].y, v1.z + _90[i].z);
                 GXTexCoord2f32(0.0f, v2);
                 GXPosition3f32(_90[i].x - v1.x, _90[i].y - v1.y, _90[i].z - v1.z);
-                GXTexCoord2f32(0.0f, v2);
+                GXTexCoord2f32(1.0f, v2);
             }
         }
         GXEnd();
@@ -49,7 +49,7 @@ void GCaptureRibbon::draw() const {
                 GXPosition3f32(v1.x + _90[j].x, v1.y + _90[j].y, v1.z + _90[j].z);
                 GXTexCoord2f32(0.0f, v2);
                 GXPosition3f32(_90[j].x - v1.x, _90[j].y - v1.y, _90[j].z - v1.z);
-                GXTexCoord2f32(0.0f, v2);
+                GXTexCoord2f32(1.0f, v2);
             }
         }
         GXEnd();

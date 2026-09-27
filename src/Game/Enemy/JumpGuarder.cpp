@@ -243,7 +243,7 @@ void JumpGuarder::exeUp() {
     MR::setShadowVolumeSphereRadius(this, nullptr, (::sShadowRadius - ::sHideShadowRadius) * ratio + ::sHideShadowRadius);
 
     if (MR::isBckStopped(this)) {
-        MR::setShadowVolumeSphereRadius(this, nullptr, ::sHideShadowRadius);
+        MR::setShadowVolumeSphereRadius(this, nullptr, ::sShadowRadius);
         setNerve(GET_NERVE(JumpGuarder, JumpGuarderNrvWait));
     }
 }
@@ -468,10 +468,10 @@ void JumpGuarder::init(const JMapInfoIter& rIter) {
     MR::initLightCtrl(this);
     initHitSensor(2);
 
-    MR::addHitSensorMtx(this, "Jump", ATYPE_PLAYER_AUTO_JUMP, 8, ::sShadowRadius, MR::getJointMtx(mHeadModel, "SpringJoint3"),
+    MR::addHitSensorMtx(this, "Jump", ATYPE_PLAYER_AUTO_JUMP, 8, 145.0f, MR::getJointMtx(mHeadModel, "SpringJoint3"),
                         TVec3f(0.0f, ::sHeadOffset, 0.0f));
 
-    MR::addHitSensorMtxEnemy(this, "Body", 8, ::sShadowRadius, MR::getJointMtx(this, "Body"), TVec3f(0.0f, 35.0f, 0.0f));
+    MR::addHitSensorMtxEnemy(this, "Body", 8, 145.0f, MR::getJointMtx(this, "Body"), TVec3f(0.0f, 35.0f, 0.0f));
     getSensor("Body")->setType(29);
     getSensor("Body")->validate();
     getSensor("Jump")->invalidate();

@@ -37,8 +37,8 @@ namespace {
 };  // namespace
 
 namespace {
-    Vec sBodyOffset;
-    Vec sHeadOffset;
+    const Vec sHeadOffset = {40.0f, 0.0f, -8.0f};
+    const Vec sBodyOffset = {0.0f, 0.0f, 0.0f};
 };  // namespace
 
 Mogucchi::Mogucchi(const char* pName)

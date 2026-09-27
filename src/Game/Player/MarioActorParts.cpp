@@ -465,7 +465,7 @@ void MarioActor::createIceFloor(const TVec3f& rVec) {
     TVec3f vec;
     mtx.getEuler(vec);
 
-    vec *= _180_PI;
+    vec *= 180.0f / PI;
     createIceFloor(rVec, vec);
 }
 
@@ -489,7 +489,7 @@ void MarioActor::createIceWall(const TVec3f& rVec1, const TVec3f& rVec2) {
 
     TVec3f vec;
     mtx.getEuler(vec);
-    vec *= _180_PI;
+    vec *= 180.0f / PI;
     _B4C[_B50]->setOn(_B50, rVec1, vec);
 
     _B50 = (_B50 + 1) % 20;

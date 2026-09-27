@@ -35,7 +35,7 @@ void CocoNutBall::init(const JMapInfoIter& rIter) {
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
     MR::initLightCtrl(this);
     initSensors("body", "bind");
-    initBinder(40.0f, 0.0f, 0);
+    initBinder(60.0f, 0.0f, 0);
     initEffectKeeper(0, "CocoNut", false);
     MR::initStarPointerTarget(this, 150.0f, TVec3f(0, 0, 0));
     initSound(4, false);

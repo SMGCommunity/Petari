@@ -1429,7 +1429,7 @@ void Meramera::addRunawayJumpPower() {
 
     f32 val2 = 20.0f * (0.1f + val * 0.9f);
     f32 randomVal = MR::getRandom(45.0f, 50.0f);
-    val = (0.8f + val * 0.2f) * randomVal;
+    val = (0.2f + val * 0.8f) * randomVal;
     addMovingAccel(vec, val2, -1.0f);
     mVelocity -= mGravity * val;
 }

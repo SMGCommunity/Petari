@@ -72,12 +72,12 @@ void KoopaStateAttackShockWave::appear() {
             mMaxAttacks = 3;
 
             if (KoopaFunction::isKoopaAngry(mHost)) {
-                mJumpVelocity = ::sJumpSpeed;
-                mGravity = ::sJumpGravity;
-                mJumpDelay = ::sLandStepVs3Angry;
-            } else {
                 mJumpVelocity = ::sJumpSpeedVs3;
                 mGravity = ::sJumpGravityVs3;
+                mJumpDelay = ::sLandStepVs3Angry;
+            } else {
+                mJumpVelocity = ::sJumpSpeed;
+                mGravity = ::sJumpGravity;
                 mJumpDelay = ::sLandStepVs2;
             }
         } else {
