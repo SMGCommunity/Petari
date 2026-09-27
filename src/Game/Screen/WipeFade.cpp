@@ -8,8 +8,7 @@ namespace {
 };  // namespace
 
 WipeFade::WipeFade(const char* pName, const Color8& rFillColor)
-    : WipeLayoutBase(pName), mIsWipeIn(false), mFrame(::sFadeFrame), mStep(::sFadeFrame),
-      mFillColor(rFillColor.r, rFillColor.g, rFillColor.b, rFillColor.a) {
+    : WipeLayoutBase(pName), mIsWipeIn(false), mFrame(::sFadeFrame), mStep(::sFadeFrame), mFillColor(rFillColor) {
 }
 
 void WipeFade::init(const JMapInfoIter& rIter) {

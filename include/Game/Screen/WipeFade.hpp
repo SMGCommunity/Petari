@@ -19,12 +19,12 @@ public:
     virtual bool isWipeOut() const;
 
     void setColor(GXColor color) {
-        mFillColor.set(color);
+        mFillColor = color;
     };
 
 private:
     /* 0x20 */ bool mIsWipeIn;
     /* 0x24 */ s32 mFrame;
     /* 0x28 */ s32 mStep;
-    /* 0x2C */ Color8 mFillColor;
+    /* 0x2C */ GXColor mFillColor;
 };
