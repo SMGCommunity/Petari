@@ -188,7 +188,7 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx() {
     int i;
     int max;
     u16* indices;
-    f32* weights;
+    __REGISTER f32* weights;
     u8* pScale;
 
     __REGISTER f32 var_f1;
@@ -200,6 +200,7 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx() {
     __REGISTER f32 var_f7;
     __REGISTER f32 var_f8;
     __REGISTER f32 var_f9;
+    __REGISTER f32 var_f9b;
     __REGISTER f32 var_f10;
     __REGISTER f32 var_f11;
     __REGISTER f32 var_f12;
@@ -244,8 +245,8 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx() {
             invMtx = mJointTree->getInvJointMtx((u16)idx);
             worldMtx = mpAnmMtx[idx];
 
-            weight = *++weights;
             asm {
+                lfsu weight, 0x4(weights)
                 psq_l var_f2, 0x0(invMtx), 0, 0
                 psq_l var_f1, 0x0(worldMtx), 0, 0
                 psq_l var_f3, 0x10(worldMtx), 0, 0
@@ -268,7 +269,7 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx() {
                 ps_muls0 var_f28, var_f7, var_f1
                 ps_muls0 var_f26, var_f7, var_f3
                 ps_madds0 var_f25, var_f9, var_f6, var_f25
-                psq_l var_f9, 0x28(invMtx), 0, 0
+                psq_l var_f9b, 0x28(invMtx), 0, 0
                 ps_madds0 var_f10, var_f29, weight, var_f10
                 ps_muls0 var_f7, var_f7, var_f5
                 ps_madds1 var_f28, var_f8, var_f1, var_f28
@@ -276,11 +277,11 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx() {
                 psq_st var_f10, 0x0(weightAnmMtx), 0, 0
                 ps_madds0 var_f12, var_f27, weight, var_f12
                 ps_madds1 var_f7, var_f8, var_f5, var_f7
-                ps_madds0 var_f28, var_f9, var_f2, var_f28
-                ps_madds0 var_f26, var_f9, var_f4, var_f26
+                ps_madds0 var_f28, var_f9b, var_f2, var_f28
+                ps_madds0 var_f26, var_f9b, var_f4, var_f26
                 psq_st var_f12, 0x10(weightAnmMtx), 0, 0
                 ps_madds0 var_f31, var_f25, weight, var_f31
-                ps_madds0 var_f7, var_f9, var_f6, var_f7
+                ps_madds0 var_f7, var_f9b, var_f6, var_f7
                 ps_madd var_f28, var_f24, var_f2, var_f28
                 psq_st var_f31, 0x20(weightAnmMtx), 0, 0
                 ps_madd var_f26, var_f24, var_f4, var_f26
