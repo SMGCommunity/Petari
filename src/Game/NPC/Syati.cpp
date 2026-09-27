@@ -162,8 +162,7 @@ void Syati::exeWaitBlank() {
 }
 
 #pragma push
-#pragma optimization_level 2
-#pragma opt_propagation off
+#pragma global_optimizer off
 void PlayerPoseSetterInWater::update() {
     _1C++;
     _1C = (_1C + 90) % 90;
@@ -193,7 +192,8 @@ void PlayerPoseSetterInWater::update() {
     offset.zero();
 
     TPos3f baseMtx;
-    MR::makeMtxUpFrontPos(&baseMtx, forward, *MR::getPlayerGravity(), offsetPos + offset);
+    const TVec3f& pos = offsetPos + offset;
+    MR::makeMtxUpFrontPos(&baseMtx, forward, *MR::getPlayerGravity(), pos);
     MR::setPlayerBaseMtx(baseMtx);
 }
 #pragma pop

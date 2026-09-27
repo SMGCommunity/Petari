@@ -259,7 +259,7 @@ void KoopaJrShipCannonShell::exeDown() {
 }
 
 #pragma push
-#pragma opt_propagation off
+#pragma global_optimizer off
 void KoopaJrShipCannonShell::exeFreeze() {
     if (MR::isFirstStep(this)) {
         mVelocity.zero();

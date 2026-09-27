@@ -307,6 +307,8 @@ void BegomanBaby::exeBlow() {
     }
 }
 
+#pragma push
+#pragma global_optimizer off
 void BegomanBaby::exeAfterLaunch() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Fly");
@@ -314,7 +316,9 @@ void BegomanBaby::exeAfterLaunch() {
 
     if (MR::isLessStep(this, 80)) {
         f32 f1 = 5.0f * MR::cos(getNerveStep() * (16 * PI) / 80.0f);
-        mVelocity.set(mFaceVec * 5.0f - mGravity * f1);
+        TVec3f& vel = mVelocity;
+        const TVec3f& gravity = mGravity;
+        vel.set(mFaceVec * 5.0f - gravity * f1);
     } else if (MR::isLessStep(this, 85)) {
         mVelocity.zero();
     } else {
@@ -325,6 +329,7 @@ void BegomanBaby::exeAfterLaunch() {
         setNerve(GET_NERVE(BegomanBaby, HostTypeNrvAfterLaunchOnGround));
     }
 }
+#pragma pop
 
 void BegomanBaby::exeAfterLaunchOnGround() {
     if (MR::isFirstStep(this)) {
