@@ -19,7 +19,9 @@ extern const J3DIndTevStageInfo j3dDefaultIndTevStageInfo;
 // doing this matches. figure out why
 namespace J3DTevsDefault {
     extern "C" J3DIndTevStageInfo j3dDefaultIndTevStageInfo;
-}
+    extern "C" J3DTevStageInfo j3dDefaultTevStageInfo;
+    extern "C" J3DTevSwapModeInfo j3dDefaultTevSwapMode;
+}  // namespace J3DTevsDefault
 extern const J3DFogInfo j3dDefaultFogInfo;
 extern const J3DNBTScaleInfo j3dDefaultNBTScaleInfo;
 
@@ -66,8 +68,13 @@ public:
 
 struct J3DTevStage {
     J3DTevStage() {
+#ifdef J3D_TEV_STAGE_MUTABLE_DEFAULTS
+        setTevStageInfo(J3DTevsDefault::j3dDefaultTevStageInfo);
+        setTevSwapModeInfo(J3DTevsDefault::j3dDefaultTevSwapMode);
+#else
         setTevStageInfo(j3dDefaultTevStageInfo);
         setTevSwapModeInfo(j3dDefaultTevSwapMode);
+#endif
     }
 
     void setTevColorOp(u8 param_1, u8 param_2, u8 param_3, u8 param_4, u8 param_5) {
@@ -109,7 +116,11 @@ struct J3DTevStage {
         mTevSwapModeInfo = mTevSwapModeInfo & ~(0x07 << 4) | d << 4;
     }
 
+#ifdef J3D_TEV_STAGE_MUTABLE_DEFAULTS
+    void setAlphaABCD(u8 a, const u8& b, u8 c, const u8& d) {
+#else
     void setAlphaABCD(u8 a, u8 b, u8 c, u8 d) {
+#endif
         setAlphaA(a);
         setAlphaB(b);
         setAlphaC(c);
