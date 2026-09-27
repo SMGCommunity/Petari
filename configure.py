@@ -3687,7 +3687,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "JSystem/JParticle/JPADynamicsBlock.cpp",
-                extra_cflags=["-opt nolifetimes,nocse", "-sym on"],
+                extra_cflags=["-opt nolifetimes,nocse,noprop", "-sym on"],
             ),
             Object(NonMatching, "JSystem/JParticle/JPAFieldBlock.cpp"),
             Object(Matching, "JSystem/JParticle/JPAKeyBlock.cpp"),

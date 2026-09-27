@@ -443,11 +443,7 @@ bool Mogucchi::receiveAttackByBodySensor(u32 msg, HitSensor* pSender, HitSensor*
 void Mogucchi::updateReferenceMtx() {
     TVec3f v1 = mRotation * (PI / 180.0f);
 
-    // mNewHolePos.setRotate(v1.x, v1.y, v1.z);
-    // mNewHolePos.setRotate(v1);
-    // mNewHolePos.setTrans(mHole->mPosition);
-    mNewHolePos.setRT(v1.x, v1.y, v1.z, mPosition);
-    // mNewHolePos.setRT(v1, mHole->mPosition);
+    mNewHolePos.setRT(v1, mPosition);
 
     mHole->mPosition.set(mPosition);
 }

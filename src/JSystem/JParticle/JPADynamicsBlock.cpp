@@ -4,13 +4,11 @@
 
 namespace {
     inline f32 JPASinShort(s16 v) {
-        const std::pair< f32, f32 >* p = &JMath::sSinCosTable.table[static_cast< u16 >(v) >> 2];
-        return p->a1;
+        return JMath::sSinCosTable.table[static_cast< u16 >(v) >> 2].a1;
     }
 
     inline f32 JPACosShort(s16 v) {
-        const std::pair< f32, f32 >* p = &JMath::sSinCosTable.table[static_cast< u16 >(v) >> 2];
-        return p->b1;
+        return reinterpret_cast< const f32* >(&JMath::sSinCosTable.table[static_cast< u16 >(v) >> 2])[1];
     }
 }
 
@@ -71,8 +69,8 @@ static void JPAVolumeSphere(JPAEmitterWorkData* work) {
     s16 phi, theta;
     if (work->mpEmtr->checkFlag(JPADynFlag_FixedInterval)) {
         phi = (u16)(work->mVolumeX * 0x8000 / (work->mDivNumber - 1) + 0x4000);
-        f32 tmp = (u16)(work->mVolumeAngleNum * 0x10000 / (work->mVolumeAngleMax - 1));
-        theta = tmp * work->mVolumeSweep + 0x8000;
+        u16 angle = (u16)(work->mVolumeAngleNum * 0x10000 / (work->mVolumeAngleMax - 1));
+        theta = (f32)angle * work->mVolumeSweep + 0x8000;
         work->mVolumeAngleNum++;
         if (work->mVolumeAngleNum == work->mVolumeAngleMax) {
             work->mVolumeAngleNum = 0;
