@@ -47,12 +47,12 @@ u16 AlreadyDoneInfo::mask() const {
     return _0 & 0x7FFF;
 }
 
-AlreadyDoneFlagInGalaxy::AlreadyDoneFlagInGalaxy(int numInfos) : mDoneInfos(), _8(0) {
+AlreadyDoneFlagInGalaxy::AlreadyDoneFlagInGalaxy(int numInfos) : mDoneInfos() {
     mDoneInfos.init(numInfos);
 }
 
 void AlreadyDoneFlagInGalaxy::clear() {
-    _8 = 0;
+    mDoneInfos.clear();
 }
 
 u32 AlreadyDoneFlagInGalaxy::setupFlag(const char* pName, const JMapInfoIter& rIter, u32* a3) {
@@ -65,16 +65,14 @@ u32 AlreadyDoneFlagInGalaxy::setupFlag(const char* pName, const JMapInfoIter& rI
     AlreadyDoneInfo info;
     info.init(pName, zoneID, linkID);
 
-    AlreadyDoneInfo* it = std::find(mDoneInfos.begin(), &mDoneInfos[_8], info);
+    AlreadyDoneInfo* it = std::find(mDoneInfos.begin(), mDoneInfos.end(), info);
 
-    AlreadyDoneInfo* end = &mDoneInfos[_8];
-
-    if (it != end) {
+    if (it != mDoneInfos.end()) {
         result = it - mDoneInfos.begin();
         *a3 = (it->_0 >> 15) & 0x1;
     } else {
-        result = _8++;
-        *end = info;
+        result = mDoneInfos.size();
+        mDoneInfos.push_back(info);
         *a3 = 0;
     }
 
