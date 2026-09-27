@@ -101,12 +101,12 @@ OceanSpherePlane::OceanSpherePlane(s32 pointCount, const TVec3f* pCenter, const 
             s32 index;
 
             if (col <= row) {
-                f32 rate = static_cast< f32 >(col) / row;
                 index = (row - 1) * mAxisPointCount + col - 1;
+                f32 rate = static_cast< f32 >(col) / row;
                 tex = texB * (1.0f - rate) + texA * rate;
             } else {
-                f32 rate = static_cast< f32 >(col - row) / row;
                 index = (row - 1) * (mAxisPointCount + 1) - mAxisPointCount * (col - row);
+                f32 rate = static_cast< f32 >(col - row) / row;
                 tex = texA * (1.0f - rate) + texC * rate;
             }
 
@@ -198,10 +198,13 @@ void OceanSphere::init(const JMapInfoIter& rIter) {
         mAlwaysUseRealDrawing = true;
         mIsStartPosCamera = false;
         GXColor front;
-        front = GXColor(sOceanSphereTevReg1FrontTear);
-        mTevReg1Front = front;
         GXColor back;
-        back = GXColor(sOceanSphereTevReg1BackTear);
+        GXColor frontTear = sOceanSphereTevReg1FrontTear;
+        front = frontTear;
+        mTevReg1Front = front;
+
+        GXColor backTear = sOceanSphereTevReg1BackTear;
+        back = backTear;
         mTevReg1Back = back;
     }
 
@@ -239,23 +242,24 @@ bool OceanSphere::isInWater(const TVec3f& rPos) const {
     return rPos.distance(mPosition) <= mRadius;
 }
 
+#pragma push
+#pragma opt_propagation off
 bool OceanSphere::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, WaterInfo* pInfo) const {
-    const TVec3f* const pPosition = &mPosition;
+    const TVec3f& rPosition = mPosition;
     const f32 radius = mRadius;
-    TVec3f offset = rPos - *pPosition;
+    TVec3f offset = rPos - rPosition;
     const f32 alongGravity = MR::vecKillElement(offset, -rGravity, &offset);
-    const f32 angle = offset.length() / radius * PI / 2.0f;
-    const f32 height = radius * MR::cos(angle);
+    const f32 height = radius * MR::cos(offset.length() / radius * MR::pi() / 2.0f);
     pInfo->mCamWaterDepth = height - alongGravity;
     pInfo->_4 = height + alongGravity;
 
-    TVec3f normal = rPos - *pPosition;
+    TVec3f normal = rPos - rPosition;
     MR::normalizeOrZero(&normal);
     pInfo->mSurfaceNormal.set(normal);
-    TVec3f surfacePos = *pPosition + normal * radius;
-    pInfo->mSurfacePos.set(surfacePos);
+    pInfo->mSurfacePos.set(rPosition + normal * radius);
     return true;
 }
+#pragma pop
 
 void OceanSphere::initPoints() {
     if (mRadius <= 300.0f) {
@@ -812,23 +816,34 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
 
 void OceanSphere::sendVertex(const OceanSpherePoint* pPoint, bool useEnvMap, bool useGD) const {
     if (useGD) {
-        f32 posX = pPoint->mPos.x;
-        f32 posZ = pPoint->mPos.z;
-        f32 posY = pPoint->mPos.y;
+        f32 posX, posY, posZ;
+        posX = pPoint->mPos.x;
+        posZ = pPoint->mPos.z;
+        posY = pPoint->mPos.y;
         GDWrite_f32(posX);
         GDWrite_f32(posY);
         GDWrite_f32(posZ);
 
         if (useEnvMap) {
-            f32 normalX = pPoint->mNormal.x;
-            f32 normalZ = pPoint->mNormal.z;
-            f32 normalY = pPoint->mNormal.y;
+            f32 normalX, normalY, normalZ;
+            normalX = pPoint->mNormal.x;
+            normalZ = pPoint->mNormal.z;
+            normalY = pPoint->mNormal.y;
             GDWrite_f32(normalX);
             GDWrite_f32(normalY);
             GDWrite_f32(normalZ);
         } else {
-            GDTexCoord2f32(pPoint->mTexCoord.x + mTexOffs0X, pPoint->mTexCoord.y + mTexOffs0Y);
-            GDTexCoord2f32(pPoint->mTexCoord.x + mTexOffs1X, pPoint->mTexCoord.y + mTexOffs1Y);
+            f32 u0 = pPoint->mTexCoord.x;
+            f32 v0 = pPoint->mTexCoord.y;
+            f32 texY0 = mTexOffs0Y + v0;
+            f32 texX0 = mTexOffs0X + u0;
+            GDTexCoord2f32(texX0, texY0);
+
+            f32 u1 = pPoint->mTexCoord.x;
+            f32 v1 = pPoint->mTexCoord.y;
+            f32 texY1 = mTexOffs1Y + v1;
+            f32 texX1 = mTexOffs1X + u1;
+            GDTexCoord2f32(texX1, texY1);
         }
     } else {
         GXPosition3f32(pPoint->mPos.x, pPoint->mPos.y, pPoint->mPos.z);
@@ -836,8 +851,13 @@ void OceanSphere::sendVertex(const OceanSpherePoint* pPoint, bool useEnvMap, boo
         if (useEnvMap) {
             GXNormal3f32(pPoint->mNormal.x, pPoint->mNormal.y, pPoint->mNormal.z);
         } else {
-            GXTexCoord2f32(pPoint->mTexCoord.x + mTexOffs0X, pPoint->mTexCoord.y + mTexOffs0Y);
-            GXTexCoord2f32(pPoint->mTexCoord.x + mTexOffs1X, pPoint->mTexCoord.y + mTexOffs1Y);
+            f32 v0 = pPoint->mTexCoord.y;
+            f32 u0 = pPoint->mTexCoord.x;
+            GXTexCoord2f32(mTexOffs0X + u0, mTexOffs0Y + v0);
+
+            f32 v1 = pPoint->mTexCoord.y;
+            f32 u1 = pPoint->mTexCoord.x;
+            GXTexCoord2f32(mTexOffs1X + u1, mTexOffs1Y + v1);
         }
     }
 }
