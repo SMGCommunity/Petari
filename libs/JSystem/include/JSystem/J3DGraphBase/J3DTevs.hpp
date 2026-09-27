@@ -15,6 +15,11 @@ extern const J3DIndTexMtxInfo j3dDefaultIndTexMtxInfo;
 
 extern const J3DTevStageInfo j3dDefaultTevStageInfo;
 extern const J3DIndTevStageInfo j3dDefaultIndTevStageInfo;
+
+// doing this matches. figure out why
+namespace J3DTevsDefault {
+    extern "C" J3DIndTevStageInfo j3dDefaultIndTevStageInfo;
+}
 extern const J3DFogInfo j3dDefaultFogInfo;
 extern const J3DNBTScaleInfo j3dDefaultNBTScaleInfo;
 
@@ -286,7 +291,7 @@ struct J3DTevSwapModeTable {
 
 struct J3DIndTevStage {
     J3DIndTevStage() : mInfo() {
-        setIndTevStageInfo(j3dDefaultIndTevStageInfo);
+        setIndTevStageInfo(J3DTevsDefault::j3dDefaultIndTevStageInfo);
     }
 
     J3DIndTevStage(J3DIndTevStageInfo const& info) : mInfo() {

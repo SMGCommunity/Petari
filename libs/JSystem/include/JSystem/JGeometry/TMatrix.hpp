@@ -1141,7 +1141,6 @@ namespace JGeometry {
         void makePerspective(f32 fov, f32 aspect, f32 near, f32 far) {
             f32 power = ::tan(((2.0f * JGeometry::TUtil< f32 >::PI()) * fov) / (360.0f * 2.0f));
             f32 focalLen = 1.0f / power;
-            f32 scale = 1.0f / (far - near);
 
             this->mMtx[0][0] = focalLen / aspect;
             this->mMtx[0][1] = 0.0f;
@@ -1152,6 +1151,8 @@ namespace JGeometry {
             this->mMtx[1][1] = focalLen;
             this->mMtx[1][2] = 0.0f;
             this->mMtx[1][3] = 0.0f;
+
+            f32 scale = 1.0f / (far - near);
 
             this->mMtx[2][0] = 0.0f;
             this->mMtx[2][1] = 0.0f;

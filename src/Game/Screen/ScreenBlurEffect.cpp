@@ -84,7 +84,7 @@ void ScreenBlurEffect::drawBlur() const {
     GXSetZMode(GX_TRUE, GX_LEQUAL, GX_FALSE);
     GXSetZCompLoc(GX_TRUE);
     GXSetDither(GX_FALSE);
-    GXSetChanMatColor(GX_COLOR0A0, Color8(255, 255, 255, get_10() * 220.0f * mIntensity));
+    GXSetChanMatColor(GX_COLOR0A0, Color8(255, 255, 255, static_cast< s32 >(get_10() * 220.0f * mIntensity)));
     GXSetChanAmbColor(GX_COLOR0A0, Color8(255, 255, 255, 255));
     GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
     GXSetTevKColor(GX_KCOLOR0, Color8(240, 240, 240, 240));

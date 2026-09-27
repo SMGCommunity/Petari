@@ -5,7 +5,18 @@
 class ActorCameraInfo;
 class BenefitItemObj;
 
-class SimpleBreakableObj : public MapObjActor {
+class SimpleBreakableObjBase : public MapObjActor {
+public:
+    SimpleBreakableObjBase(const char* pName) : MapObjActor(pName) {
+    }
+
+    virtual ~SimpleBreakableObjBase() {
+    }
+
+    virtual void control();
+};
+
+class SimpleBreakableObj : public SimpleBreakableObjBase {
 public:
     SimpleBreakableObj(const char*);
 

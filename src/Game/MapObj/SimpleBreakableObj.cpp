@@ -22,7 +22,7 @@ namespace NrvSimpleBreakableObj {
 }  // namespace NrvSimpleBreakableObj
 
 SimpleBreakableObj::SimpleBreakableObj(const char* pName)
-    : MapObjActor(pName), mCameraInfo(), mBreakOffsetFrame(::sDefaultBreakOffsetFrame), _CC(-1), mSwitchDeadDelay(-1), mBreakFlags(1), mItemType(-1),
+    : SimpleBreakableObjBase(pName), mCameraInfo(), mBreakOffsetFrame(::sDefaultBreakOffsetFrame), _CC(-1), mSwitchDeadDelay(-1), mBreakFlags(1), mItemType(-1),
       mItemNum(-1), mKinokoOneUp(), mPlayRiddleSound(), mBreakEnded(), _E6() {
 }
 
