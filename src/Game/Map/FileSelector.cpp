@@ -48,13 +48,13 @@ namespace {
     static const f32 sSelectEffectOffset = 1000.0f;
     const char* cLuigiNameMessageID = "System_FileSelect_Icon001";
     const char* cMarioNameMessageID = "System_FileSelect_Icon000";
-    static s32 sBgmNearState = 6;
-    static u32 sBgmNearStateChangeFrames = 60;
     static s32 sBgmFarState = 5;
     static u32 sBgmFarStateChangeFrames = 60;
+    static s32 sBgmNearState = 6;
+    static u32 sBgmNearStateChangeFrames = 60;
     // static _ sThetaOffset = _;
     // static _ sCreatorOffset = _;
-    static const f32 sItemThetaOffset[USER_FILE_NUM] = {10.0f, -10.0f, 0.0f, 0.0f, 0.0f, 0.0f};
+    static const f32 sItemThetaOffset[USER_FILE_NUM] ATTRIBUTE_ALIGN(4) = {10.0f, -10.0f, 0.0f, 0.0f, 0.0f, 0.0f};
     static const s32 sIndexOrder[USER_FILE_NUM] = {1, 2, 4, 6, 5, 3};
 };  // namespace
 
@@ -125,6 +125,12 @@ namespace NrvFileSelector {
     NEW_NERVE(FileSelectorNrvManualStart, FileSelector, ManualStart);
     NEW_NERVE(FileSelectorNrvManual, FileSelector, Manual);
 };  // namespace NrvFileSelector
+
+void FileSelector_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)PI;
+}
 
 FileSelector::FileSelector(const char* pName)
     : LiveActor(pName), mCameraController(), mSky(), mItems(), mOperationButton(), mBackButton(), mBrosButton(), mInfoMessage(), mSysInfoWindow(),
@@ -618,12 +624,70 @@ void FileSelector::goToNearPoint() {
     mCameraController->goToNearPoint(_98[::getItemArrayIndex(_B4->_140)]);
 }
 
+namespace {
+    inline f32 calcSin(f32 angle) {
+        f32 r = sin(angle);
+        return r;
+    }
+
+    inline f32 calcCos(f32 angle) {
+        f32 r = cos(angle);
+        return r;
+    }
+
+    class RotateMtx : public TPos3f {
+    public:
+        f32& ref(int x, int y) {
+            return mMtx[x][y];
+        }
+
+        void makeRotate(const TVec3f& rAxis, f32 angle) {
+            zeroTrans();
+            setRotate(rAxis, angle);
+        }
+
+        void setRotate(const TVec3f& rAxis, f32 angle) {
+            TVec3f vec;
+            vec.normalize(rAxis);
+
+            f32 s = calcSin(angle);
+            f32 c = calcCos(angle);
+
+            f32 negc = 1.0f - c;
+
+            f32 x, y, z;
+
+            x = vec.x;
+            y = vec.y;
+            z = vec.z;
+
+            f32 xx, yy, zz;
+            xx = x * x;
+            yy = y * y;
+            zz = z * z;
+
+            ref(0, 0) = c + negc * xx;
+            ref(0, 1) = negc * x * y - s * z;
+            ref(0, 2) = negc * x * z + s * y;
+            ref(1, 0) = negc * x * y + s * z;
+            ref(1, 1) = c + negc * yy;
+            ref(1, 2) = negc * y * z - s * x;
+            ref(2, 0) = negc * x * z - s * y;
+            ref(2, 1) = negc * y * z + s * x;
+            ref(2, 2) = c + negc * zz;
+        }
+    };
+}
+
+#pragma push
+#pragma opt_prelinearize off
 void FileSelector::calcBasePos(f32 offset) {
     f32 thetaStep = 2.0f * PI / USER_FILE_NUM;
-    TPos3f translation;
+    TPos3f translationMtx;
+    TPos3f& translation = translationMtx;
     translation.makeTrans(0.0f, offset, 0.0f);
 
-    TPos3f rotation;
+    RotateMtx rotation;
     rotation.makeRotate(TVec3f(1.0f, 0.0f, 0.0f), ::sSlopeDegree * PI / 180.0f);
 
     TPos3f transform;
@@ -634,13 +698,14 @@ void FileSelector::calcBasePos(f32 offset) {
             continue;
         }
 
-        f32 theta = static_cast< f32 >(-(i + 4)) * thetaStep - ::sItemThetaOffset[i] * PI / 180.0f;
+        f32 theta = static_cast< f32 >(-(i + 4)) * thetaStep - ::sItemThetaOffset[i] * MR::pi() / 180.0f;
         f32 cosTheta = MR::cos(theta);
         f32 sinTheta = MR::sin(theta);
         _98[i].set(::sItemPosRadius * cosTheta, 0.0f, ::sItemPosRadius * sinTheta);
         transform.mult(_98[i], _98[i]);
     }
 }
+#pragma pop
 
 namespace {
     inline void initFileItem(FileSelector* pSelector, FileSelectItem* pItem) {
