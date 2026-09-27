@@ -110,7 +110,7 @@ DharmaSambo::DharmaSambo(const char* pName)
 }
 
 void DharmaSambo::init(const JMapInfoIter& rIter) {
-    bool dead;
+    s32 i;
     MR::initDefaultPos(this, rIter);
     mInitialPos.set(mPosition);
     MR::needStageSwitchReadAppear(this, rIter);
@@ -126,7 +126,8 @@ void DharmaSambo::init(const JMapInfoIter& rIter) {
     initNerve(GET_NERVE(DharmaSambo, HostTypeNrvWaitUnderGround));
     MR::onCalcGravity(this);
     MR::declareStarPiece(this, 6);
-
+    
+    bool dead;
     if (MR::isValidSwitchAppear(this)) {
         dead = true;
         makeActorDead();
@@ -140,7 +141,7 @@ void DharmaSambo::init(const JMapInfoIter& rIter) {
     mParts.init(::hBodyPartsNum);
     mFixedPositions.init(::hBodyPartsNum);
 
-    for (s32 i = 0; i < ::hBodyPartsNum; i++) {
+    for (i = 0; i < ::hBodyPartsNum; i++) {
         MR::hideJoint(this, joint_name[i]);
         DharmaSamboParts* part = new DharmaSamboParts(this, "だるまサンボパーツ", "DharmaSamboParts", nullptr, 18, 43, -2);
         part->initWithoutIter();
