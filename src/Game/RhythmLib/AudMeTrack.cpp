@@ -399,60 +399,53 @@ void AudMeTrack::setOscAdsr(s16 attackTime, s16 decayTime, s16 sustainTime, s16 
     setRelease(release);
 }
 
+#pragma push
+#pragma opt_prelinearize off
 void AudMeTrack::updateChannelParams() {
-    // FIXME: float regswaps
-    // https://decomp.me/scratch/WLyeN
-
-    for (s32 i = 0; i < mNumChannelMgrs; i++) {
+    for (u32 i = 0; i < mNumChannelMgrs; i++) {
         AudMeChannelMgr* mgr = mChannelMgrs[i];
-        if (mgr == nullptr) {
-            continue;
-        }
+        if (mgr != nullptr) {
+            f32 vol = mVolume;
+            vol *= vol;
+            f32 pitch = 1.0f;
+            f32 bend = mPitchBend * mTrackInfo.mBendSense * (1.0f / 3.0f);
+            f32 pan = mPan - 0.5f;
+            f32 dolby = mDolby;
+            f32 fxmix = mFxMix;
 
-        f32 third = (1.0f / 3.0f);
+            vol *= mgr->mParams.getVolume();
+            pitch *= mgr->mParams.getPitch();
+            pan += mgr->mParams.mPan - 0.5f;
+            fxmix += mgr->mParams.getFxMix();
+            dolby += mgr->mParams.getDolby();
 
-        f32 bend, vol, pitch, pan, dolby, fxmix;
-        vol = mVolume;
-        vol *= vol;
-        vol *= mgr->mParams.getVolume();
+            if (isMainTrack()) {
+                mgr->mChannelParams.mVolume = vol;
+                mgr->mChannelParams.mPitch = pitch;
+                mgr->mChannelParams.mPan = pan;
+                mgr->mChannelParams.mFxMix = fxmix;
+                mgr->mChannelParams.mDolby = dolby;
+                mgr->mChannelParams._8 = bend;
+            } else {
+                AudMeChannelMgr* pmgr = mParent->mChannelMgrs[i];
+                if (pmgr == nullptr) {
+                    pmgr = mParent->mChannelMgrs[0];
+                }
 
-        pan = mPan - 0.5f;
-        pitch = 1.0f;
-        dolby = mDolby;
-        fxmix = mFxMix;
-
-        bend = mPitchBend * mTrackInfo.getBendSense() * third;
-
-        pan += (mgr->mParams.mPan - 0.5f);
-        pitch *= mgr->mParams.getPitch();
-
-        dolby += mgr->mParams.getDolby();
-        fxmix += mgr->mParams.getFxMix();
-
-        if (isMainTrack()) {
-            mgr->mChannelParams.mVolume = vol;
-            mgr->mChannelParams.mPitch = pitch;
-            mgr->mChannelParams.mPan = pan;
-            mgr->mChannelParams.mFxMix = fxmix;
-            mgr->mChannelParams.mDolby = dolby;
-            mgr->mChannelParams._8 = bend;
-        } else {
-            AudMeChannelMgr* pmgr = mParent->mChannelMgrs[i];
-            if (pmgr == nullptr) {
-                pmgr = mParent->mChannelMgrs[0];
+                mgr->mChannelParams.mVolume = pmgr->mChannelParams.mVolume * vol;
+                mgr->mChannelParams.mPitch = pmgr->mChannelParams.mPitch * pitch;
+                mgr->mChannelParams.mPan = (pmgr->mChannelParams.mPan - 0.5f) + pan;
+                mgr->mChannelParams.mFxMix = pmgr->mChannelParams.mFxMix + fxmix;
+                mgr->mChannelParams.mDolby = pmgr->mChannelParams.mDolby + dolby;
+                mgr->mChannelParams._8 = pmgr->mChannelParams._8 + bend;
             }
 
-            mgr->mChannelParams.mVolume = pmgr->mChannelParams.mVolume * vol;
-            mgr->mChannelParams.mPitch = pmgr->mChannelParams.mPitch * pitch;
-            mgr->mChannelParams.mPan = (pmgr->mChannelParams.mPan - 0.5f) + pan;
-            mgr->mChannelParams.mFxMix = pmgr->mChannelParams.mFxMix + fxmix;
-            mgr->mChannelParams.mDolby = pmgr->mChannelParams.mDolby + dolby;
-            mgr->mChannelParams._8 = pmgr->mChannelParams._8 + bend;
+            mgr->mChannelParams.mPan += 0.5f;
         }
-
-        mgr->mChannelParams.mPan += 0.5f;
     }
 }
+#pragma pop
+
 
 bool AudMeTrack::gframeProc() {
     updateChannelParams();
