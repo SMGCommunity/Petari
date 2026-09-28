@@ -45,7 +45,7 @@ When running under WSL, [objdiff](#diffing) is unable to get filesystem notifica
 macOS
 ------
 
-- Install [ninja](https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages):
+- Install [ninja](https://github.com/ninja-build/ninja/releases):
 
   ```sh
   brew install ninja
@@ -56,7 +56,7 @@ macOS
 Linux
 ------
 
-- Install [ninja](https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages).
+- Install [ninja](https://github.com/ninja-build/ninja/releases).
 
 [wibo](https://github.com/decompals/wibo), a minimal 32-bit Windows binary wrapper, will be automatically downloaded and used.
 
@@ -69,7 +69,7 @@ Building
   git clone https://github.com/SMGCommunity/Petari.git
   ```
 
-- Using [Dolphin Emulator](https://dolphin-emu.org/), extract your game to `orig/GAMEID`.
+- Using [Dolphin Emulator](https://dolphin-emu.org/), extract your game to `orig/RMGK01`.
 ![](assets/dolphin-extract.png)
   - To save space, the only necessary files are the following. Any others can be deleted.
     - `sys/main.dol`
@@ -79,7 +79,7 @@ Building
   python configure.py
   ```
 
-  To use a version other than `GAMEID` (USA), specify it with `--version`.
+  To use a version other than `RMGK01` (Korea), specify it with `--version`.
 - Build:
 
   ```sh
@@ -99,4 +99,4 @@ Select an object from the left sidebar to begin diffing. Changes to the project 
 
 Credits
 =======
-Big thanks to the [doldecomp team](https://github.com/doldecomp/sdk_2009-12-11) for their efforts on bte, [tp](https://github.com/zeldaret/tp) for JSystem, and [ogws](https://github.com/doldecomp/ogws/tree/master), where this repository has sourced code and headers from.
+Big thanks to the [doldecomp team](https://github.com/doldecomp) for their efforts on bte, [tp](https://github.com/zeldaret/tp) for JSystem, and [ogws](https://github.com/doldecomp/ogws/tree/master), where this repository has sourced code and headers from.
