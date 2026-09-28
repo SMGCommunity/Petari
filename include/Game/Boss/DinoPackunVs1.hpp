@@ -14,8 +14,12 @@ public:
     virtual ~DinoPackunVs1();
     virtual void start();
     virtual void init();
-    virtual bool isUseEggShell() const;
-    virtual s32 getVsCount() const;
+    virtual bool isUseEggShell() const {
+        return true;
+    };
+    virtual s32 getVsCount() const {
+        return 1;
+    };
 
     void exeWaitStart();
     void exeOpeningDemo();

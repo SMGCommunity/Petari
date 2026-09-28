@@ -26,6 +26,10 @@ namespace {
     const Vec cFoot05SensorOffset = {80.0f, 0.0f, -40.0f};
 };  // namespace
 
+void OtaKingLongFoot_FORCE_MATCH_SDATA2() {
+    (void) 1.0f;
+}
+
 OtaKingLongFoot::OtaKingLongFoot(LiveActor* pHost, s32 demoBckStep, const char* pName)
     : PartsModel(pHost, pName, "OtaKingLongFoot", nullptr, MR::DrawBufferType_Enemy, false), mDemoBckStep(demoBckStep), mScaleController(nullptr) {
 }
@@ -86,6 +90,13 @@ bool OtaKingLongFoot::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSen
     return false;
 }
 
+bool OtaKingLongFoot::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (isNerve(GET_NERVE(OtaKingLongFoot, OtaKingLongFootNrvWait))) {
+        setNerve(GET_NERVE(OtaKingLongFoot, OtaKingLongFootNrvDamage));
+    }
+    return true;
+}
+
 void OtaKingLongFoot::initSensor() {
     initHitSensor(6);
     MR::addHitSensorAtJointEnemy(this, "Foot14", "Foot14", 8, ::cFoot14SensorRadius, TVec3f(::cFoot14SensorOffset));
@@ -94,13 +105,6 @@ void OtaKingLongFoot::initSensor() {
     MR::addHitSensorAtJointEnemy(this, "Foot08", "Foot08", 8, ::cFoot08SensorRadius, TVec3f(::cFoot08SensorOffset));
     MR::addHitSensorAtJointEnemy(this, "Foot06", "Foot06", 8, ::cFoot06SensorRadius, TVec3f(::cFoot06SensorOffset));
     MR::addHitSensorAtJointEnemy(this, "Foot05", "Foot05", 8, ::cFoot05SensorRadius, TVec3f(::cFoot05SensorOffset));
-}
-
-bool OtaKingLongFoot::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(GET_NERVE(OtaKingLongFoot, OtaKingLongFootNrvWait))) {
-        setNerve(GET_NERVE(OtaKingLongFoot, OtaKingLongFootNrvDamage));
-    }
-    return true;
 }
 
 void OtaKingLongFoot::exeWait() {

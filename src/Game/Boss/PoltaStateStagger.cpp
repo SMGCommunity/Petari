@@ -14,6 +14,10 @@ namespace NrvPoltaStateStagger {
     NEW_NERVE(PoltaStateStaggerNrvWait, PoltaStateStagger, Wait);
 };  // namespace NrvPoltaStateStagger
 
+void PoltaStateStagger_FORCE_MATCH_SDATA2() {
+    (void)0.5f;
+}
+
 PoltaStateStagger::PoltaStateStagger(Polta* pPolta) : ActorStateBase< Polta >("[state]ポルタ弱り状態", pPolta) {
     mActionName = "Stagger";
     _20 = true;
@@ -23,6 +27,12 @@ PoltaStateStagger::PoltaStateStagger(Polta* pPolta) : ActorStateBase< Polta >("[
 void PoltaStateStagger::setActionName(const char* pActionName) {
     mActionName = pActionName;
 }
+
+void PoltaStateStagger::appear() {
+    mIsDead = false;
+    setNerve(GET_NERVE(PoltaStateStagger, PoltaStateStaggerNrvWait));
+}
+
 void PoltaStateStagger::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::zeroVelocity(getHost());
@@ -49,10 +59,6 @@ void PoltaStateStagger::exeWait() {
     if (MR::isIntervalStep(this, 210) && PoltaFunction::appearBombTeresaFromRoot(getHost(), 20.0f, 15.0f, 1)) {
         MR::startSound(getHost(), "SE_BM_POLTA_GEN_BOMB_TERESA");
     }
-}
-void PoltaStateStagger::appear() {
-    mIsDead = false;
-    setNerve(GET_NERVE(PoltaStateStagger, PoltaStateStaggerNrvWait));
 }
 
 bool PoltaStateStagger::isEnableSensor() const {

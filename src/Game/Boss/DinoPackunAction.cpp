@@ -7,6 +7,12 @@
 #include "Game/Util/MathUtil.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
+void DinoPackunAction_FORCE_MATCH_SDATA2() {
+    (void) 1.0f;
+    (void) 0.0f;
+    (void) -1.0f;
+}
+
 DinoPackunAction::DinoPackunAction(const char* pName, DinoPackun* pParent) : ActorStateBase< DinoPackun >(pName, pParent) {
     _10 = 1.0f;
 }

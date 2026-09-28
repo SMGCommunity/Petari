@@ -157,11 +157,3 @@ void DinoPackunVs2::exeWaitStart() {
 DinoPackunVs2::~DinoPackunVs2() {
     
 }
-
-s32 DinoPackunVs2::getVsCount() const {
-    return 2;
-}
-
-bool DinoPackunVs2::isUseEggShell() const {
-    return true;
-}

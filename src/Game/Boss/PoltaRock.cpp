@@ -21,6 +21,13 @@ namespace NrvPoltaRock {
     NEW_NERVE(PoltaRockNrvMove, PoltaRock, Move);
 };  // namespace NrvPoltaRock
 
+void PoltaRock_FORCE_MATCH_SDATA2() {
+    (void) 1.0f;
+    (void) 0.0f;
+    (void) 3.0f;
+    (void) 2.0f;
+}
+
 PoltaRock::PoltaRock(const char* pName)
     : LiveActor(pName), mOwner(nullptr), _90(0.0f, 0.0f, 0.0f, 1.0f), _A0(0.0f, 0.0f, 1.0f), _AC(0.0f, 0.0f, 0.0f), mType(0) {
 }
