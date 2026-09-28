@@ -15,7 +15,7 @@ Petari
 [<img src="https://decomp.dev/SMGCommunity/Petari.svg?w=512&h=256" width="512" height="256" alt="A visual">][progress_link]
 <!-- markdownlint-enable MD033 -->
 
-A work-in-progress decompilation of Super Mario Galaxy 1.
+A complete decompilation of Super Mario Galaxy 1.
 
 This repository does **not** contain any game assets or assembly whatsoever. An existing copy of the game is required.
 
