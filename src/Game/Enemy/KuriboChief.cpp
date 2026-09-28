@@ -134,9 +134,6 @@ KuriboChief::KuriboChief(const char* pName) : LiveActor(pName) {
     _BC.set(0.0f, 0.0f, 1.0f);
 }
 
-KuriboChief::~KuriboChief() {
-}
-
 void KuriboChief::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("KuriboChief", nullptr, false);

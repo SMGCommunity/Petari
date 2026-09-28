@@ -9,7 +9,6 @@ class JumpSpider : public LiveActor {
 public:
     JumpSpider(const char*);
 
-    virtual ~JumpSpider();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void kill();

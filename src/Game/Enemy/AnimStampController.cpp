@@ -21,9 +21,6 @@ AnimStampController::AnimStampController() : NerveExecutor("つぶれアニメ�
     init(8, 0.2f, 1.5f, 0.125f, 4.0f, 0.12, 4.0f);
 }
 
-AnimStampController::~AnimStampController() {
-}
-
 void AnimStampController::init(s32 a1, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6, f32 a7) {
     _44 = a1;
     _14[3][1] = a2;

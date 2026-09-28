@@ -174,7 +174,7 @@ void Birikyu::initShadow() {
 }
 
 bool Birikyu::tryStopPointing() {
-    if (MR::isStarPointerPointing2POnPressButton(this, "Hit", true, false)) {
+    if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
         MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_STOP, this, getSensor("body"), "body");
         setNerve(GET_NERVE(Birikyu, HostTypeStopPointing));
 
@@ -266,7 +266,7 @@ void Birikyu::exeStopPointing() {
 
     MR::startDPDFreezeLevelSound(this);
 
-    if (!MR::isStarPointerPointing2POnPressButton(this, "Hit", true, false)) {
+    if (!MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
         if (MR::isRegisteredEffect(this, "Touch")) {
             MR::deleteEffect(this, "Touch");
         }

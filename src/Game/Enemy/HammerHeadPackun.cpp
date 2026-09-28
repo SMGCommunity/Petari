@@ -68,9 +68,6 @@ namespace {
     NEW_NERVE_ONEND(HammerHeadPackunNrvNumb, HammerHeadPackun, Numb, Numb);
 };  // namespace
 
-HammerHeadPackun::~HammerHeadPackun() {
-}
-
 void HammerHeadPackun::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initPosture();

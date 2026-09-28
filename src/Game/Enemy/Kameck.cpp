@@ -47,6 +47,10 @@ namespace NrvKameck {
     NEW_NERVE(KameckNrvPressDown, Kameck, PressDown);
 };  // namespace NrvKameck
 
+void Kameck_FORCE_MATCH_SDATA2() {
+    (void) 1.0f;
+}
+
 Kameck::Kameck(const char* pName)
     : LiveActor(pName), mBeam(), mActiveActorList(), mBeamEventListener(), mAnimScaleController(), mStateBindStarPointer(),
       mRotateQuat(0.0f, 0.0f, 0.0f, 1.0f), mFrontVec(0.0f, 0.0f, 1.0f), mBeamType(), mMoveStep(240), mRailCoord(), mRailNextPointCoord(),
@@ -741,3 +745,7 @@ namespace MR {
         return pKameck;
     }
 };  // namespace MR
+
+void SmallKameckBeamEventListener::hitBeam(s32 beamType) {
+    mHost->hitBeam(beamType);
+}

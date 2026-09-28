@@ -27,6 +27,15 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
 
+ void BegomanBase_FORCE_MATCH_SDATA2() {
+    (void) 1.0f;
+    (void) 0.0f;
+    (void) 0.5f;
+    (void) 3.0f;
+    (void) -1.0f;
+    (void) 2.0f;
+ }
+
 namespace {
     const MR::ActorMoveParam hReturnWaitParam = {0.0f, 1.0f, 0.95f, 0.0f};
     const MR::ActorMoveParam hReturnMoveParam = {0.2f, 1.0f, 0.95f, 3.0f};
@@ -50,9 +59,9 @@ namespace {
     static const f32 hRailPushJump = 20.0f;
     static const f32 hRailPushHBoss = 30.0f;
     static const f32 hRailPushJumpBoss = 30.0f;
-    static const f32 hTurnStartDegree = 3.0f;
-    static const f32 hTurnEndDegree = 10.0f;
-    static const f32 hIsFaceToPlayerDegree = 30.0f;
+    static const f32 hTurnStartDegree = 3;
+    static const f32 hTurnEndDegree = 10;
+    static const f32 hIsFaceToPlayerDegree = 30;
     static const f32 hPursueRange = 2000.0f;
     static const s32 hPursueLimitTime = 180;
     static const s32 hPursueAnimFrame = 10;
