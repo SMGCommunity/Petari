@@ -438,8 +438,6 @@ bool Mogucchi::receiveAttackByBodySensor(u32 msg, HitSensor* pSender, HitSensor*
     return false;
 }
 
-// FIXME: special rotation + translation function in use
-// https://decomp.me/scratch/rUfad
 void Mogucchi::updateReferenceMtx() {
     TVec3f v1 = mRotation * (PI / 180.0f);
 
