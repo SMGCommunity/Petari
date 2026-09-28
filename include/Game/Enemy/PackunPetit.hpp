@@ -10,7 +10,6 @@ class PackunPetit : public LiveActor {
 public:
     PackunPetit(const char*);
 
-    virtual ~PackunPetit();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void kill();

@@ -98,9 +98,6 @@ Metbo::Metbo(const char* pName) : LiveActor(pName) {
     mIsClipped = false;
 }
 
-Metbo::~Metbo() {
-}
-
 void Metbo::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("Metbo", nullptr, false);

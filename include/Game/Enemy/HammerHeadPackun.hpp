@@ -11,7 +11,6 @@ class HammerHeadPackun : public LiveActor {
 public:
     HammerHeadPackun(const char*);
 
-    virtual ~HammerHeadPackun();
     virtual void init(const JMapInfoIter&);
     virtual void makeActorAppeared();
     virtual void kill();

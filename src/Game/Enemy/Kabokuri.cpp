@@ -59,6 +59,10 @@ namespace NrvKabokuri {
     NEW_NERVE(KabokuriNrvBreak, Kabokuri, Break);
 };  // namespace NrvKabokuri
 
+void Kabokuri_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 Kabokuri::Kabokuri(const char* pName)
     : LiveActor(pName), mKuribo(), mBreakModel(), mAnimeScale(), mStateBindStartPointer(), mRotationQuat(0.0f, 0.0f, 0.0f, 1.0f),
       mFrontVec(0.0f, 0.0f, 1.0f), _B8(-1), mIsValidDropFire() {
@@ -170,6 +174,11 @@ void Kabokuri::addVelocityBase() {
     }
 
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
+}
+
+void Kabokuri::addVelocityHitAttacked() {
+    MR::addVelocityToGravity(this, ::sHitAttackedGravity);
+    MR::attenuateVelocity(this, ::sHitAttackedFreq);
 }
 
 void Kabokuri::addVelocityToRailPoint(f32 speed) {
@@ -386,8 +395,7 @@ void Kabokuri::exeHitAttacked() {
         }
     }
 
-    MR::addVelocityToGravity(this, ::sHitAttackedGravity);
-    MR::attenuateVelocity(this, ::sHitAttackedFreq);
+    addVelocityHitAttacked();
     MR::reboundVelocityFromCollision(this, 0.9f);
 
     if (MR::isGreaterStep(this, ::sHitAttackedMaxTime) || (MR::isGreaterStep(this, ::sHitAttackedMinTime) && MR::isBinded(this))) {

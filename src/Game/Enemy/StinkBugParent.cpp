@@ -65,22 +65,19 @@ namespace NrvStinkBugParent {
 };  // namespace NrvStinkBugParent
 
 namespace {
-    const Param sParams[] = {{20.0f, 5.0f, 30}, {25.0f, 10.0f, 20}};
+    const Param sParam[] = {{20.0f, 5.0f, 30}, {25.0f, 10.0f, 20}};
 
     const Param* getParam(bool isChildAlive) {
         if (!isChildAlive) {
-            return &sParams[1];
+            return &sParam[1];
         }
-        return &sParams[0];
+        return &sParam[0];
     }
 };  // namespace
 
 StinkBugParent::StinkBugParent(const char* pName) : StinkBugBase(pName) {
     mParent = nullptr;
     mIsChildAlive = true;
-}
-
-StinkBugParent::~StinkBugParent() {
 }
 
 void StinkBugParent::init(const JMapInfoIter& rIter) {

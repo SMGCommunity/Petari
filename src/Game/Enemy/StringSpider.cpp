@@ -125,9 +125,6 @@ StringSpider::StringSpider(const char* pName)
       _A0(0, 0, 0, 1), _B8(false), _B0(300.0f), _B4(300.0f), _BC(0), _C0(nullptr), _C4(nullptr) {
 }
 
-StringSpider::~StringSpider() {
-}
-
 s32 StringSpider::getSearchToAttackTime() {
     if (_C0 == nullptr) {
         return 300;
@@ -943,9 +940,6 @@ StringSpiderString::StringSpiderString(const char* pName) : LiveActor(pName), _8
     initModelManagerWithAnm("StringSpiderString", nullptr, false);
     MR::connectToScene(this, MR::MovementType_None, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_Enemy, MR::DrawType_None);
     MR::invalidateClipping(this);
-}
-
-StringSpiderString::~StringSpiderString() {
 }
 
 void StringSpiderString::calcAndSetBaseMtx() {

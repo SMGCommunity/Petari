@@ -22,7 +22,6 @@
 #include "math_types.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
-
 namespace {
     const f32 hThrowableSightParam[] = {900.0f, 10.0f, 90.0f};
     const f32 hCannonFleetSightParam[] = {1500.0f, 10.0f, 90.0f};
@@ -46,6 +45,13 @@ namespace NrvMogu {
 Mogu::Mogu(const char* pName)
     : LiveActor(pName), mAnimScaleController(nullptr), _90(nullptr), mStone(nullptr), mHole(nullptr), mSight(0, 0, 1), _A8(0, 1, 0), _B4(true),
       mIsCannonFleet(false) {
+}
+
+void Mogu_FORCE_MATCH_SDATA2() {
+    (void) 1.0f;
+    (void) 0.0f;
+    (void) MR::pi();
+    (void) 2.0f;
 }
 
 void Mogu::init(const JMapInfoIter& rIter) {
@@ -146,24 +152,6 @@ void Mogu::exeHideWait() {
     }
 }
 
-bool Mogu::isPlayerExistUp() {
-    TVec3f toPlayerCenter = *MR::getPlayerCenterPos() - mPosition;
-
-    if (_A8.dot(toPlayerCenter) < 0.0f) {
-        return false;
-    }
-
-    MR::vecKillElement(toPlayerCenter, *MR::getPlayerGravity(), &toPlayerCenter);
-
-    return toPlayerCenter.length() < 400.0f;
-}
-
-void Mogu::tearDownThrow() {
-    if (mStone->isTaken()) {
-        mStone->kill();
-    }
-}
-
 void Mogu::exeHide() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Hide");
@@ -220,6 +208,18 @@ void Mogu::exeAppear() {
     if (MR::isActionEnd(this)) {
         setNerve(GET_NERVE(Mogu, HostTypeNrvSearch));
     }
+}
+
+bool Mogu::isPlayerExistUp() {
+    TVec3f toPlayerCenter = *MR::getPlayerCenterPos() - mPosition;
+
+    if (_A8.dot(toPlayerCenter) < 0.0f) {
+        return false;
+    }
+
+    MR::vecKillElement(toPlayerCenter, *MR::getPlayerGravity(), &toPlayerCenter);
+
+    return toPlayerCenter.length() < 400.0f;
 }
 
 void Mogu::exeSearch() {
@@ -342,6 +342,12 @@ void Mogu::exeThrow() {
 
     if (MR::isActionEnd(this)) {
         setNerve(GET_NERVE(Mogu, HostTypeNrvSearch));
+    }
+}
+
+void Mogu::tearDownThrow() {
+    if (mStone->isTaken()) {
+        mStone->kill();
     }
 }
 
@@ -506,19 +512,6 @@ bool Mogu::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRecei
     return false;
 }
 
-void Mogu::calcAndSetBaseMtx() {
-    TPos3f mtx;
-    MR::makeMtxUpFrontPos(&mtx, _A8, mSight, mPosition);
-    MR::setBaseTRMtx(this, mtx);
-    TVec3f scale = mAnimScaleController->_C * mScale;
-    MR::setBaseScale(this, scale);
-
-    if (isNerve(GET_NERVE(Mogu, HostTypeNrvThrow)) && MR::isLessStep(this, 47)) {
-        _90->calc();
-        _90->mMtx.getTrans(mStone->mPosition);
-    }
-}
-
 bool Mogu::tryPunchHitted(HitSensor* pSender, HitSensor* pReceiver, bool arg3) {
     TVec3f direction(pReceiver->mPosition);
     direction -= pSender->mPosition;
@@ -541,4 +534,17 @@ bool Mogu::tryPunchHitted(HitSensor* pSender, HitSensor* pReceiver, bool arg3) {
     }
 
     return true;
+}
+
+void Mogu::calcAndSetBaseMtx() {
+    TPos3f mtx;
+    MR::makeMtxUpFrontPos(&mtx, _A8, mSight, mPosition);
+    MR::setBaseTRMtx(this, mtx);
+    TVec3f scale = mAnimScaleController->_C * mScale;
+    MR::setBaseScale(this, scale);
+
+    if (isNerve(GET_NERVE(Mogu, HostTypeNrvThrow)) && MR::isLessStep(this, 47)) {
+        _90->calc();
+        _90->mMtx.getTrans(mStone->mPosition);
+    }
 }

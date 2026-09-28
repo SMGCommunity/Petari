@@ -12,7 +12,6 @@ class StringSpider : public LiveActor {
 public:
     StringSpider(const char*);
 
-    virtual ~StringSpider();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void calcAnim();
@@ -74,7 +73,6 @@ class StringSpiderString : public LiveActor {
 public:
     StringSpiderString(const char*);
 
-    virtual ~StringSpiderString();
     virtual void calcAndSetBaseMtx();
 
     /* 0x8C */ TQuat4f _8C;

@@ -20,6 +20,13 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+void HomingKiller_FORCE_MATCH_SDATA2() {
+    (void) 1.0f;
+    (void) 0.0f;
+    (void) 0.5f;
+    (void) 2.0f;
+}
+
 namespace {
     static const Vec cBodyHitSensorOffset = {0.0f, 0.0f, -10.0f};
 
@@ -84,11 +91,6 @@ namespace NrvHomingKiller {
     NEW_NERVE(HomingKillerLauncherNrvAppearKiller, HomingKillerLauncher, AppearKiller);
     NEW_NERVE(HomingKillerLauncherNrvDeadKiller, HomingKillerLauncher, DeadKiller);
 };  // namespace NrvHomingKiller
-
-// TODO: this replace with something global
-f32 toRadian(f32 degree) {
-    return PI_180 * degree;
-}
 
 namespace {
     bool isSensorType(const HitSensor* pSensor, const u32* pTypes, u32 numTypes) {

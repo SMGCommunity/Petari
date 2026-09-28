@@ -1,4 +1,5 @@
 #include "Game/Enemy/RingBeamer.hpp"
+#include "Game/Enemy/JumpGuarder.hpp"
 #include "Game/Enemy/RingBeam.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
@@ -11,17 +12,15 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-// MR function that has not been defined elsewhere yet
-//
-namespace MR {
-    bool enableGroupAttack(LiveActor*, f32, f32);
-};  // namespace MR
-
 namespace NrvRingBeamer {
     NEW_NERVE(RingBeamerNrvWait, RingBeamer, Wait);
     NEW_NERVE(RingBeamerNrvAttack, RingBeamer, Attack);
     NEW_NERVE(RingBeamerNrvInter, RingBeamer, Inter);
 };  // namespace NrvRingBeamer
+
+void RingBeamer_FORCE_MATCH_SDATA2() {
+    (void) 0.0f;
+}
 
 RingBeamer::RingBeamer(const char* pName) : LiveActor(pName), mBeams(nullptr) {
 }

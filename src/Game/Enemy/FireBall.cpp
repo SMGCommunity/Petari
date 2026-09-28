@@ -1,4 +1,5 @@
 #include "Game/Enemy/FireBall.hpp"
+#include "Game/Enemy/FireBubble.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
@@ -14,6 +15,11 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+void FireBubble_FORCE_MATCH_SDATA2() {
+    (void) 1.0f;
+    (void) 0.0f;
+}
+
 namespace {
     const f32 cSensorRadius = 40.0f;
     const f32 cBinderRadius = 60.0f;
@@ -26,6 +32,7 @@ namespace {
     const s32 cReflectInvalidFrame = 60;
     const f32 cReflectCursorSpeed = 30.0f;
     const f32 cReflectRandomVelocityY = 1.0f;
+    static const GXColor color = {255, 192, 0, 255};
 };  // namespace
 
 namespace NrvFireBall {
@@ -97,7 +104,6 @@ void FireBall::appearAndThrow(const TVec3f& rAppearPos, f32 speed, f32 angle) {
 }
 
 void FireBall::control() {
-    static const GXColor color = {255, 192, 0, 255};
     MR::requestPointLight(this, mPosition, color, 1.0f, -1);
 }
 

@@ -16,7 +16,6 @@ class StinkBugParent : public StinkBugBase {
 public:
     StinkBugParent(const char*);
 
-    virtual ~StinkBugParent();
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void control();

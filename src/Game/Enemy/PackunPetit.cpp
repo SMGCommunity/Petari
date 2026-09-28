@@ -43,6 +43,12 @@ namespace NrvPackunPetit {
     NEW_NERVE_ONEND(PackunPetitNrvDPDSwoon, PackunPetit, DPDSwoon, DPDSwoon);
 };  // namespace NrvPackunPetit
 
+void PackunPetit_FORCE_MATCH_SDATA2() {
+    (void) 1.0f;
+    (void) 0.0f;
+    (void) 2.0f;
+}
+
 PackunPetit::PackunPetit(const char* pName)
     : LiveActor(pName), mScaleController(nullptr), mStarPointerState(nullptr), _94(0.0f, 0.0f, 1.0f), mBlownModel(nullptr), mDontTurn(false) {
 }
@@ -537,7 +543,4 @@ bool PackunPetit::tryDPDSwoon() {
 
     setNerve(GET_NERVE(PackunPetit, PackunPetitNrvDPDSwoon));
     return true;
-}
-
-PackunPetit::~PackunPetit() {
 }
