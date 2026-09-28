@@ -1813,7 +1813,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/PhantomShipHandle.cpp"),
             Object(NonMatching, "Game/MapObj/PhantomTorch.cpp"),
             Object(NonMatching, "Game/MapObj/PicketSwitch.cpp"),
-            Object(NonMatching, "Game/MapObj/PlantGroup.cpp"),
+            Object(Matching, "Game/MapObj/PlantGroup.cpp"),
             Object(Matching, "Game/MapObj/PlantPoint.cpp"),
             Object(Matching, "Game/MapObj/PlantRailInfo.cpp"),
             Object(Matching, "Game/MapObj/PomponPlant.cpp"),
@@ -1889,7 +1889,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/SpinningBox.cpp"),
             Object(Matching, "Game/MapObj/SpringJetWater.cpp"),
             Object(Matching, "Game/MapObj/SpringWaterFloaterSpot.cpp"),
-            Object(NonMatching, "Game/MapObj/StageEffectDataTable.cpp"),
+            Object(Matching, "Game/MapObj/StageEffectDataTable.cpp"),
             Object(NonMatching, "Game/MapObj/StarPiece.cpp"),
             Object(Matching, "Game/MapObj/StarPieceDirector.cpp"),
             Object(NonMatching, "Game/MapObj/StarPieceFollowGroup.cpp"),
@@ -2129,7 +2129,7 @@ config.libs = [
             Object(NonMatching, "Game/Player/MarioAnimationEfx.cpp"),
             Object(NonMatching, "Game/Player/MarioWait.cpp"),
             Object(NonMatching, "Game/Player/MarioClimb.cpp"),
-            Object(NonMatching, "Game/Player/MarioCollision.cpp"),
+            Object(Matching, "Game/Player/MarioCollision.cpp"),
             Object(Matching, "Game/Player/MarioConst.cpp"),
             Object(NonMatching, "Game/Player/MarioDamage.cpp"),
             Object(NonMatching, "Game/Player/MarioDamageParalyze.cpp"),
@@ -2216,7 +2216,7 @@ config.libs = [
         [
             Object(NonMatching, "Game/RhythmLib/AudRhythmSeqParser.cpp"),
             Object(Matching, "Game/RhythmLib/AudBgmTempoAdjuster.cpp"),
-            Object(NonMatching, "Game/RhythmLib/AudMeTrack.cpp"),
+            Object(Matching, "Game/RhythmLib/AudMeTrack.cpp"),
             Object(Matching, "Game/RhythmLib/AudMeChannelMgr.cpp"),
             Object(Matching, "Game/RhythmLib/AudMeSeqCtrl.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudMeSeqReader.cpp"),
@@ -2424,7 +2424,7 @@ config.libs = [
             Object(Matching, "Game/Screen/ReplaceTagProcessor.cpp"),
             Object(Matching, "Game/Screen/SaveIcon.cpp"),
             Object(
-                NonMatching,
+                Matching,
                 "Game/Screen/ScenarioSelectLayout.cpp",
                 mw_version="GC/3.0a3.2",
             ),
@@ -3443,7 +3443,7 @@ config.libs = [
         "J3DGraphLoader",
         [
             Object(
-                NonMatching,
+                Matching,
                 "JSystem/J3DGraphLoader/J3DMaterialFactory.cpp",
                 extra_cflags=["-ipa file", "-sym on"],
             ),
