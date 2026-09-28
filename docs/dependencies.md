@@ -15,7 +15,7 @@ When running under WSL, [objdiff](https://github.com/encounter/objdiff) is unabl
 macOS
 ------
 
-- Install [ninja](https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages):
+- Install [ninja](https://github.com/ninja-build/ninja/releases):
 
   ```sh
   brew install ninja
@@ -36,6 +36,6 @@ sudo xattr -rd com.apple.quarantine '/Applications/Wine Crossover.app'
 Linux
 ------
 
-- Install [ninja](https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages).
+- Install [ninja](https://github.com/ninja-build/ninja/releases).
 - For non-x86(_64) platforms: Install wine from your package manager.
   - For x86(_64), [wibo](https://github.com/decompals/wibo), a minimal 32-bit Windows binary wrapper, will be automatically downloaded and used.
