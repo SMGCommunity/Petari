@@ -1,5 +1,10 @@
 #include "Game/Screen/ImageEffectBase.hpp"
 
+void ImageEffectBase_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 ImageEffectBase::ImageEffectBase(const char* pName) : NameObj(pName), _C(), _D(), _10() {
 }
 

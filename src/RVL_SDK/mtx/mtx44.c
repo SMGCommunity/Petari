@@ -1,5 +1,12 @@
 #include "revolution/mtx.h"
 
+void mtx44_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)2.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
+
 extern f64 tan(f64);
 
 void C_MTXPerspective(Mtx44 m, f32 fovY, f32 aspect, f32 n, f32 f) {

@@ -6,10 +6,10 @@ static u32 IpcReqPtrArray[32];
 static u32 IpcNumPendingReqs = 0;
 static u32 IpcNumUnIssuedReqs = 0;
 
-static void AddReqInfo(void *, s32);
-static void DelReqInfo(void *, s32);
+static void AddReqInfo(void*, s32);
+static void DelReqInfo(void*, s32);
 
-static s32 IPCGetQueueStatus(u32 i) {
+s32 IPCGetQueueStatus(u32 i) {
     if (i > 32) {
         return -1;
     }
@@ -28,7 +28,7 @@ void IPCiProfInit(void) {
     }
 }
 
-void IPCiProfQueueReq(void *req, s32 fd) {
+void IPCiProfQueueReq(void* req, s32 fd) {
     ++IpcNumPendingReqs;
     ++IpcNumUnIssuedReqs;
     AddReqInfo(req, fd);
