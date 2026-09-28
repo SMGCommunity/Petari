@@ -93,9 +93,6 @@ KuriboMini::KuriboMini(const char* pName) : LiveActor(pName) {
     _B8.set(0.0f, 0.0f, 1.0f);
 }
 
-KuriboMini::~KuriboMini() {
-}
-
 void KuriboMini::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("KuriboMini", nullptr, false);

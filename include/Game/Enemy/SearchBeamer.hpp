@@ -11,7 +11,6 @@ class SearchBeamer : public LiveActor {
 public:
     SearchBeamer(const char*);
 
-    virtual ~SearchBeamer();
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void calcAndSetBaseMtx();

@@ -10,7 +10,6 @@ class Takobo : public LiveActor {
 public:
     Takobo(const char*);
 
-    virtual ~Takobo();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void kill();

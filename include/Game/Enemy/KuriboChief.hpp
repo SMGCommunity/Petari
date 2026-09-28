@@ -16,7 +16,6 @@ class KuriboChief : public LiveActor {
 public:
     KuriboChief(const char*);
 
-    virtual ~KuriboChief();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void kill();

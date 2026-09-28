@@ -10,7 +10,9 @@ public:
 
     virtual ~DinoPackunTrackFire();
     virtual void init(const JMapInfoIter&);
-    virtual MtxPtr getBaseMtx() const;
+    virtual MtxPtr getBaseMtx() const {
+        return (MtxPtr)&_8C;
+    };
     virtual void control();
     virtual void attackSensor(HitSensor*, HitSensor*);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);

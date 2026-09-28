@@ -48,6 +48,15 @@ namespace {
 
 };  // namespace
 
+void BegomanBaby_FORCE_MATCH_SDATA2() {
+    (void) 1.0f;
+    (void) 0.0f;
+    (void) MR::epsilon();
+    (void) 0.5f;
+    (void) 3.0f;
+    (void) 2.0f;
+}
+
 BegomanBaby::BegomanBaby(const char* pName) : BegomanBase(pName), mBabyDelegator(), mHost(), mAppearThreeStarPiece() {
     mWaterColumnMatrix.identity();
 }

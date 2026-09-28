@@ -1,9 +1,9 @@
 #include "Game/Enemy/MogucchiRefuseTerritory.hpp"
 #include "Game/Util.hpp"
 
-MogucchiRefuseTerritory::MogucchiRefuseTerritory(const char* pName) : LiveActor(pName) {
-}
 MogucchiRefuseTerritory::~MogucchiRefuseTerritory() {
+}
+MogucchiRefuseTerritory::MogucchiRefuseTerritory(const char* pName) : LiveActor(pName) {
 }
 
 void MogucchiRefuseTerritory::init(const JMapInfoIter& rIter) {

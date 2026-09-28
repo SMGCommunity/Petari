@@ -28,8 +28,6 @@
 void MechanicKoopaMini_FORCE_MATCH_SDATA2() {
     (void)0.0f;
     (void)3.0f;
-    (void)80.0f;
-    (void)130.0f;
 }
 
 namespace NrvMechanicKoopaMini {
@@ -65,8 +63,8 @@ namespace {
     static const MR::ActorMoveParam hJumpAirParam = {0.5f, 2.0f, 0.95f, 0.0f};
     static const MR::ActorMoveParam hTurnParam = {0.0f, 2.0f, 0.8f, 2.0f};
     static const TVec3f hBinderOffset(0.0f, 110.0f, 20.0f);
-    static const f32 hTrampleUpRangeSub = 80.0f;
-    static const f32 hPushUpRangeSub = 130.0f;
+    static const f32 hTrampleUpRangeSub = 80;
+    static const f32 hPushUpRangeSub = 130;
 };  // namespace
 
 MechanicKoopaMini::MechanicKoopaMini(const char* pName) : LiveActor(pName) {

@@ -67,9 +67,6 @@ namespace NrvJumpSpider {
 JumpSpider::JumpSpider(const char* pName) : LiveActor(pName), mSpinHitController(nullptr), mScaleController(nullptr), _94(0, 0, 1), _A0(0, 0, 0) {
 }
 
-JumpSpider::~JumpSpider() {
-}
-
 void JumpSpider::init(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         MR::initDefaultPos(this, rIter);

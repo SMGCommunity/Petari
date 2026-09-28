@@ -33,6 +33,13 @@ namespace {
     }
 }  // namespace
 
+void SearchBeamer_FORCE_MATCH_SDATA2() {
+    (void) 1.0f;
+    (void) 0.0f;
+    (void) 0.5f;
+    (void) 3.0f;
+}
+
 SearchBeamer::SearchBeamer(const char* pName) : LiveActor(pName) {
     mScaleController = nullptr;
     mBindStarPointer = nullptr;
@@ -586,7 +593,4 @@ void SearchBeamer::exeStopForPlayerOff() {
     if (MR::isStep(this, 5)) {
         setNerve(GET_NERVE(SearchBeamer, SearchBeamerNrvRecover));
     }
-}
-
-SearchBeamer::~SearchBeamer() {
 }

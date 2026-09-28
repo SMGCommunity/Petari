@@ -14,7 +14,6 @@ class KuriboMini : public LiveActor {
 public:
     KuriboMini(const char*);
 
-    virtual ~KuriboMini();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void makeActorAppeared();
