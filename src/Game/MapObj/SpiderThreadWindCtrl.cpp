@@ -3,6 +3,11 @@
 #include "Game/Util.hpp"
 #include "Game/Util/MathUtil.hpp"
 
+void SpiderThreadWindCtrl_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 namespace {
     static const f32 sWindAccelBattle = 0.5f;
     static const f32 sWindAccelChance = 1.0f;
