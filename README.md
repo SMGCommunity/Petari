@@ -21,6 +21,15 @@ This repository does **not** contain any game assets or assembly whatsoever. An 
 
 This project is **not** meant to be an effort to create a PC Port. Please do not ask for any information on a PC port on this repository or in the Discord server.
 
+## Regarding AI usage
+A lot of dicussion and accusations have been made saying we used AI/LLMs to accelerate the decompilation process. **We did not**.
+
+Although AI was allowed for tasks that did not directly affect progress, such as variable naming, cleanup, and documentation, **it never ended up playing a role in this project**. The quick acceleration of the project was a result of **new collaborators**, a ton of **motivation**, and **great community efforts**. It was not a result of AI usage or other kind of automated decompilation work.
+
+If you don't trust this statement enough, read the source code yourself and form your own conclusions.
+
+Below are our AI usage guidelines:
+
 > [!NOTE]
 > AI may be used for code cleanup, formatting, documentation, and naming assistance. AI-generated decompilation work is not allowed. Pull requests containing obvious AI-generated decompilation output or other AI slop will be rejected. Contributors should be able to explain and justify any decompilation work they submit. This also applies to all tool-generated code. We want to keep this project as human as possible.
 
