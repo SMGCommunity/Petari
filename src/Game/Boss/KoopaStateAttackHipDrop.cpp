@@ -42,6 +42,13 @@ namespace NrvKoopaStateAttackHipDrop {
     NEW_NERVE(KoopaStateAttackHipDropNrvDamage, KoopaStateAttackHipDrop, Damage);
 };  // namespace NrvKoopaStateAttackHipDrop
 
+void KoopaStateAttackHipDrop_FORCE_MATCH_SDATA2() {
+    (void) 1.0f;
+    (void) 0.0f;
+    (void) 3.0f;
+    (void) 2.0f;
+}
+
 KoopaStateAttackHipDrop::KoopaStateAttackHipDrop(Koopa* pKoopa)
     : ActorStateBase< Koopa >("State[ヒップドロップ攻撃]", pKoopa), mGroundPosition(0.0f, 0.0f, 0.0f), mMaxAttacks(1), mAttacks(), mAttackDelay(30),
       mJumpTime() {

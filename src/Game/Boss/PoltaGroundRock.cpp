@@ -17,6 +17,11 @@ namespace NrvPoltaGroundRock {
     NEW_NERVE(PoltaGroundRockNrvWait, PoltaGroundRock, Wait);
     NEW_NERVE(PoltaGroundRockNrvBreak, PoltaGroundRock, Break);
 };  // namespace NrvPoltaGroundRock
+
+void PoltaGroundRock_FORCE_MATCH_SDATA2() {
+    (void) 1.0f;
+}
+
 PoltaGroundRock::PoltaGroundRock(const char* pName)
     : LiveActor(pName), mOwner(nullptr), mBreakModel(nullptr), _94(0.0f, 0.0f, 0.0f, 1.0f), _A4(0.0f, 0.0f, 0.0f) {
 }

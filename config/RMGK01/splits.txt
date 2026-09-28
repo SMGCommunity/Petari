@@ -720,14 +720,14 @@ Game/Boss/DinoPackun.cpp:
 	.text       start:0x800433F4 end:0x80045064
 	.ctors      start:0x8052E888 end:0x8052E88C
 	.rodata     start:0x80530F18 end:0x80530F60
-	.data       start:0x80568960 end:0x80568C68
+	.data       start:0x80568960 end:0x80568BF8
 	.bss        start:0x8060A5F8 end:0x8060A660
 	.sdata      start:0x806B16C0 end:0x806B16D0
 	.sdata2     start:0x806B83D8 end:0x806B8450
 
 Game/Boss/DinoPackunAction.cpp:
 	.text       start:0x80045064 end:0x800457FC
-	.data       start:0x80568C68 end:0x80568CC8
+	.data       start:0x80568BF8 end:0x80568CC8
 	.sdata2     start:0x806B8450 end:0x806B8460
 
 Game/Boss/DinoPackunBall.cpp:
@@ -833,13 +833,13 @@ Game/Boss/DinoPackunTail.cpp:
 
 Game/Boss/DinoPackunTailNode.cpp:
 	.text       start:0x8004CBEC end:0x8004D204
-	.data       start:0x80569DA0 end:0x80569E40
+	.data       start:0x80569DA0 end:0x80569E38
 	.sdata2     start:0x806B8600 end:0x806B8630
 
 Game/Boss/DinoPackunTailPart.cpp:
 	.text       start:0x8004D204 end:0x8004D6E0
 	.ctors      start:0x8052E8C0 end:0x8052E8C4
-	.data       start:0x80569E40 end:0x80569F08
+	.data       start:0x80569E38 end:0x80569F08
 	.sbss       start:0x806B3228 end:0x806B3230
 	.sdata2     start:0x806B8630 end:0x806B8650
 
@@ -870,7 +870,7 @@ Game/Boss/DinoPackunVs2.cpp:
 Game/Boss/Dodoryu.cpp:
 	.text       start:0x8004ED54 end:0x80051C54
 	.ctors      start:0x8052E8D0 end:0x8052E8D4
-	.rodata     start:0x80530F60 end:0x80530FC8
+	.rodata     start:0x80530F60 end:0x80530FA8
 	.data       start:0x8056A2B8 end:0x8056ADD8
 	.sdata      start:0x806B16E0 end:0x806B1720
 	.sbss       start:0x806B3288 end:0x806B32B0
@@ -908,6 +908,7 @@ Game/Boss/DodoryuStateLv1.cpp:
 Game/Boss/DodoryuStateLv2.cpp:
 	.text       start:0x800550D8 end:0x80057E04
 	.ctors      start:0x8052E8DC end:0x8052E8E0
+	.rodata     start:0x80530FA8 end:0x80530FB0
 	.data       start:0x8056B828 end:0x8056BD00
 	.sbss       start:0x806B3310 end:0x806B3368
 	.sdata2     start:0x806B8750 end:0x806B8798
@@ -948,6 +949,7 @@ Game/Boss/KoopaBattleStairsBase.cpp:
 Game/Boss/KoopaBattleStairsVs1.cpp:
 	.text       start:0x8005A450 end:0x8005B120
 	.ctors      start:0x8052E8E8 end:0x8052E8EC
+	.rodata     start:0x80530FB0 end:0x80530FB8
 	.data       start:0x8056C138 end:0x8056C2B8
 	.sdata      start:0x806B1730 end:0x806B1740
 	.sbss       start:0x806B33A8 end:0x806B33C8
@@ -1013,6 +1015,7 @@ Game/Boss/KoopaFireShort.cpp:
 Game/Boss/KoopaFireStairs.cpp:
 	.text       start:0x8005E874 end:0x8005F0F8
 	.ctors      start:0x8052E90C end:0x8052E910
+	.rodata     start:0x80530FB8 end:0x80530FC8
 	.data       start:0x8056CE28 end:0x8056CF70
 	.sdata      start:0x806B1748 end:0x806B1750
 	.sbss       start:0x806B3468 end:0x806B3470
@@ -1184,12 +1187,13 @@ Game/Boss/OtaKingLongFoot.cpp:
 Game/Boss/OtaKingMagma.cpp:
 	.text       start:0x8006DD98 end:0x8006E654
 	.ctors      start:0x8052E954 end:0x8052E958
-	.rodata     start:0x80531078 end:0x80531098
+	.rodata     start:0x80531078 end:0x80531088
 	.data       start:0x8056F4C8 end:0x8056F6B8
 	.sbss       start:0x806B3650 end:0x806B3670
 
 Game/Boss/Polta.cpp:
 	.text       start:0x8006E654 end:0x8006F3F4
+	.rodata     start:0x80531088 end:0x80531090
 	.data       start:0x8056F6B8 end:0x8056F8A8
 	.sdata2     start:0x806B8B40 end:0x806B8B68
 
@@ -1207,6 +1211,7 @@ Game/Boss/PoltaActionSequencer.cpp:
 Game/Boss/PoltaArm.cpp:
 	.text       start:0x8006FE6C end:0x80070AB0
 	.ctors      start:0x8052E95C end:0x8052E960
+	.rodata     start:0x80531090 end:0x80531098
 	.data       start:0x8056FA78 end:0x8056FC70
 	.sbss       start:0x806B3688 end:0x806B36A8
 	.sdata2     start:0x806B8B70 end:0x806B8B80

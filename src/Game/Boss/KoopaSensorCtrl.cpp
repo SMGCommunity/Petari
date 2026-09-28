@@ -2,6 +2,10 @@
 #include "Game/Boss/Koopa.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 
+void KoopaSensorCtrl_FORCE_MATCH_SDATA2() {
+    (void) 0.0f;
+}
+
 KoopaSensorCtrl::KoopaSensorCtrl(Koopa* pHost) : mHost(pHost) {
 }
 
