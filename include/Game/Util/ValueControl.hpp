@@ -50,7 +50,9 @@ public:
     /// @brief Returns the sign of the direction of progression.
     /// @retval -1 The value approaches `0.0`.
     /// @retval 1 The value approaches `1.0`.
-    s32 getDirection() const;
+    s32 getDirection() const {
+        return mDirection;
+    }
 
     /// @brief Resets the current frame based on the direction of progression.
     void resetFrame();
