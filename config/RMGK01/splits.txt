@@ -9722,7 +9722,7 @@ Game/Util/TriggerChecker.cpp:
 
 Game/Util/ValueControl.cpp:
 	.text       start:0x80408364 end:0x80408558
-	.rodata     start:0x8053F5D0 end:0x8053F5E0
+	.rodata     start:0x8053F5D0 end:0x8053F5D8
 
 Game/NWC24/NWC24Function.cpp:
 	.text       start:0x80408558 end:0x804087A4

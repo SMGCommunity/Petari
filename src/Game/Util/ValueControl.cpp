@@ -50,10 +50,6 @@ f32 ValueControl::getValue() const {
     return static_cast< f32 >(mFrame) / mMaxFrame;
 }
 
-s32 ValueControl::getDirection() const {
-    return mDirection;
-}
-
 void ValueControl::resetFrame() {
     if (mDirection > 0) {
         mFrame = 0;
