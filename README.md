@@ -19,12 +19,12 @@ A work-in-progress decompilation of Super Mario Galaxy 1.
 
 This repository does **not** contain any game assets or assembly whatsoever. An existing copy of the game is required.
 
-This project is **not** meant to be an effort to create a PC Port. Please do not ask for any information on a PC port on this repository or in the Discord server.
+This project is **not** meant to be an effort to create a PC Port. Join the the Discord server to learn more and ask about our work-in-progress PC port "AstroCore".
 
 ## Regarding AI usage
-A lot of dicussion and accusations have been made saying we used AI/LLMs to accelerate the decompilation process. **We did not**.
+A lot of dicussion and accusations have been made claiming we used AI/LLMs to accelerate the decompilation process. **We did not**.
 
-Although AI was allowed for tasks that did not directly affect progress, such as variable naming, cleanup, and documentation, **it never ended up playing a role in this project**. The quick acceleration of the project was a result of **new collaborators**, a ton of **motivation**, and **great community efforts**. It was not a result of AI usage or other kind of automated decompilation work.
+Although AI was allowed for tasks that did not directly affect progress, such as variable naming, code cleanup, and documentation, **it never ended up playing a role in this project**. The fast progress acceleration of the project was a result of **new collaborators**, a ton of **motivation**, and **great community efforts**. It was not a result of AI usage or any other kind of automated decompilation work.
 
 If you don't trust this statement enough, read the source code yourself and form your own conclusions.
 
