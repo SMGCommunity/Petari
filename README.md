@@ -1,11 +1,12 @@
 Petari
-[![Build Status]][actions] ![Progress] [![Discord Badge]][discord]
+[![Build Status]][actions] ![Progress] ![Linking] [![Discord Badge]][discord]
 =============
 
 [Build Status]: https://github.com/SMGCommunity/Petari/actions/workflows/build.yml/badge.svg
 [actions]: https://github.com/SMGCommunity/Petari/actions/workflows/build.yml
 
 [Progress]: https://decomp.dev/SMGCommunity/Petari.svg?mode=shield&measure=code&label=Code
+[Linking]: https://decomp.dev/SMGCommunity/Petari.svg?mode=shield&measure=data&label=Data
 
 [Discord Badge]: https://img.shields.io/discord/727908905392275526?color=%237289DA&logo=discord&logoColor=%23FFFFFF
 [discord]: https://discord.gg/ZxEqyYeZbf
