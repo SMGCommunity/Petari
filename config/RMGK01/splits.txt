@@ -3668,11 +3668,11 @@ Game/LiveActor/ShadowSurfaceCircle.cpp:
 
 Game/LiveActor/ShadowSurfaceDrawer.cpp:
 	.text       start:0x8016D51C end:0x8016D704
-	.data       start:0x805882E0 end:0x80588350
+	.data       start:0x805882E0 end:0x80588328
 
 Game/LiveActor/ShadowSurfaceOval.cpp:
 	.text       start:0x8016D704 end:0x8016DA28
-	.data       start:0x80588350 end:0x80588378
+	.data       start:0x80588328 end:0x80588378
 	.sdata2     start:0x806BBD28 end:0x806BBD38
 
 Game/LiveActor/ShadowVolumeBox.cpp:
