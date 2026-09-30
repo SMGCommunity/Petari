@@ -2290,7 +2290,7 @@ config.libs = [
             Object(Matching, "Game/Scene/SceneFunction.cpp"),
             Object(NonMatching, "Game/Scene/SceneObjHolder.cpp"),
             Object(Matching, "Game/Scene/ScenePlayingResult.cpp"),
-            Object(NonMatching, "Game/Scene/SceneNameObjListExecutor.cpp"),
+            Object(Matching, "Game/Scene/SceneNameObjListExecutor.cpp"),
             Object(Matching, "Game/Scene/SceneNameObjMovementController.cpp"),
             Object(
                 Matching, "Game/Scene/StageDataHolder.cpp", extra_cflags=["-sym off"]
@@ -2419,7 +2419,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/PlayerMissLeft.cpp"),
             Object(Matching, "Game/Screen/PowerStarList.cpp"),
             Object(Matching, "Game/Screen/PrologueLetter.cpp"),
-            Object(NonMatching, "Game/Screen/ProloguePictureBook.cpp"),
+            Object(Matching, "Game/Screen/ProloguePictureBook.cpp"),
             Object(NonMatching, "Game/Screen/PurpleCoinCounter.cpp"),
             Object(Matching, "Game/Screen/ReplaceTagProcessor.cpp"),
             Object(Matching, "Game/Screen/SaveIcon.cpp"),
@@ -2783,7 +2783,7 @@ config.libs = [
         [
             Object(Matching, "RVL_SDK/dsp/dsp.c"),
             Object(Matching, "RVL_SDK/dsp/dsp_debug.c"),
-            Object(NonMatching, "RVL_SDK/dsp/dsp_task.c"),
+            Object(Matching, "RVL_SDK/dsp/dsp_task.c"),
         ],
     ),
     SDKLib(
@@ -2795,7 +2795,7 @@ config.libs = [
             Object(Matching, "RVL_SDK/dvd/dvderror.c"),
             Object(Matching, "RVL_SDK/dvd/dvdidutils.c"),
             Object(Matching, "RVL_SDK/dvd/dvdFatal.c"),
-            Object(NonMatching, "RVL_SDK/dvd/dvdDeviceError.c"),
+            Object(Matching, "RVL_SDK/dvd/dvdDeviceError.c"),
             Object(Matching, "RVL_SDK/dvd/dvd_broadway.c"),
         ],
     ),

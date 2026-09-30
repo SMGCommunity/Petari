@@ -7,6 +7,7 @@ public:
     SceneNameObjListExecutor() : NameObjListExecutor() {
     }
 
+    virtual ~SceneNameObjListExecutor();
     virtual void initMovementList();
     virtual void initCalcAnimList();
     virtual void initCalcViewAndEntryList();

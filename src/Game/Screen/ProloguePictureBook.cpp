@@ -8,15 +8,15 @@
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 
 namespace {
-    static s32 sBookPageInfo[] = {0, 350, 700, 1050, 1400, 1748, -1};
-}  // namespace
+    static const s32 sBookPageInfo[] = {0, 350, 700, 1050, 1400, 1748, -1};
+};  // namespace
 
 namespace NrvProloguePictureBook {
     NEW_NERVE(ProloguePictureBookActive, ProloguePictureBook, Active);
     NEW_NERVE(ProloguePictureBookPlaying, ProloguePictureBook, Playing);
     NEW_NERVE(ProloguePictureBookKeyWait, ProloguePictureBook, KeyWait);
     NEW_NERVE(ProloguePictureBookEnd, ProloguePictureBook, End);
-}  // namespace NrvProloguePictureBook
+};  // namespace NrvProloguePictureBook
 
 ProloguePictureBook::ProloguePictureBook() : LayoutActor("プロローグの絵本", true), mIconAButton(), mPage() {
 }
@@ -56,23 +56,23 @@ void ProloguePictureBook::exePlaying() {
 
     if (MR::isAnimStopped(this, 0)) {
         setNerve(GET_NERVE(ProloguePictureBook, ProloguePictureBookEnd));
-    } else {
-        int index = mPage + 1;
-
-        if (::sBookPageInfo[index] < 0) {
-            return;
-        }
-
-        MR::testSystemPadTriggerDecide();
-
-        if (::sBookPageInfo[index] > static_cast< s32 >(animCtrl->getFrame())) {
-            return;
-        }
-
-        animCtrl->setFrame(::sBookPageInfo[index] - 1.0f);
-
-        setNerve(GET_NERVE(ProloguePictureBook, ProloguePictureBookKeyWait));
+        return;
     }
+    const s32& bookPageInfo = ::sBookPageInfo[mPage + 1];
+
+    if (bookPageInfo < 0) {
+        return;
+    }
+
+    MR::testSystemPadTriggerDecide();
+
+    if (bookPageInfo > static_cast< s32 >(animCtrl->getFrame())) {
+        return;
+    }
+
+    animCtrl->setFrame(bookPageInfo - 1.0f);
+
+    setNerve(GET_NERVE(ProloguePictureBook, ProloguePictureBookKeyWait));
 }
 
 void ProloguePictureBook::exeKeyWait() {
