@@ -10,19 +10,6 @@
 TransparentWall::TransparentWall(const char* pName) : InvisiblePolygonObj(pName) {
 }
 
-TransparentWall::~TransparentWall() {
-}
-
-void TransparentWall::init(const JMapInfoIter& rrIter) {
-    InvisiblePolygonObj::init(rrIter);
-    MR::getJMapInfoArg4WithInit(rrIter, &_BC);
-    makeActorAppeared();
-    _C0 = false;
-    MR::invalidateCollisionParts(this);
-    HitSensor* sensor = getSensor("body");
-    sensor->setType(ATYPE_ICEJUMP_WALL);
-}
-
 void TransparentWall::control() {
     if (!_C0) {
         for (u32 i = 0; i < 10; i++) {
@@ -65,4 +52,17 @@ void TransparentWall::control() {
             _C0 = false;
         }
     }
+}
+
+TransparentWall::~TransparentWall() {
+}
+
+void TransparentWall::init(const JMapInfoIter& rrIter) {
+    InvisiblePolygonObj::init(rrIter);
+    MR::getJMapInfoArg4WithInit(rrIter, &_BC);
+    makeActorAppeared();
+    _C0 = false;
+    MR::invalidateCollisionParts(this);
+    HitSensor* sensor = getSensor("body");
+    sensor->setType(ATYPE_ICEJUMP_WALL);
 }

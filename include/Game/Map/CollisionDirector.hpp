@@ -9,6 +9,7 @@ class CollisionDirector : public NameObj {
 public:
     /// @brief Creates a new `CollisionDirector`.
     CollisionDirector();
+    virtual ~CollisionDirector();
 
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
