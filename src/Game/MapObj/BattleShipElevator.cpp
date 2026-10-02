@@ -13,9 +13,6 @@ namespace NrvBattleShipElevator {
 BattleShipElevator::BattleShipElevator(const char* pName) : MapObjActor(pName) {
 }
 
-BattleShipElevator::~BattleShipElevator() {
-}
-
 void BattleShipElevator::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
@@ -29,9 +26,6 @@ void BattleShipElevator::init(const JMapInfoIter& rIter) {
     MapObjActor::initialize(rIter, info);
 }
 
-void BattleShipElevator::exeWait() {
-}
-
 void BattleShipElevator::exeMove() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_B_SHIP_ELEV_START");
@@ -42,9 +36,6 @@ void BattleShipElevator::exeMove() {
         MR::startSound(this, "SE_OJ_B_SHIP_ELEV_STOP");
         setNerve(GET_NERVE(BattleShipElevator, BattleShipElevatorNrvEnd));
     }
-}
-
-void BattleShipElevator::exeEnd() {
 }
 
 void BattleShipElevator::control() {
@@ -66,4 +57,7 @@ bool BattleShipElevator::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor*
     }
 
     return false;
+}
+
+BattleShipElevator::~BattleShipElevator() {
 }
