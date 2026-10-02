@@ -328,10 +328,7 @@ void SpinningBox::endSpinning() {
 
 void SpinningBox::exePointed() {
     if (MR::isFirstStep(this)) {
-        // TODO: mVelocity.zero();
-        mVelocity.z = 0.0f;
-        mVelocity.y = 0.0f;
-        mVelocity.x = 0.0f;
+        mVelocity.zero();
         MR::startDPDHitSound();
         MR::emitEffect(this, "Touch");
         MR::invalidateClipping(this);

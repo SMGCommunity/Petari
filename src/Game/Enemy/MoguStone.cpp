@@ -55,9 +55,7 @@ void MoguStone::emit(bool arg1, const TVec3f& pArg2, const TVec3f& pArg3, f32 ar
 
     mPosition.set(pArg2);
 
-    mVelocity.z = 0.0f;
-    mVelocity.y = 0.0f;
-    mVelocity.x = 0.0f;
+    mVelocity.zero();
 
     MR::calcGravity(this);
 
