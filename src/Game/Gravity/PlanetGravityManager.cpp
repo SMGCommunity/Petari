@@ -10,9 +10,7 @@ void PlanetGravityManager::init(const JMapInfoIter& rIter) {
 
 bool PlanetGravityManager::calcTotalGravityVector(TVec3f* pGravity, GravityInfo* pInfo, const TVec3f& rPosition, u32 gravityType, u32 host) const {
     TVec3f totalGravity;
-    totalGravity.z = 0.0f;
-    totalGravity.y = 0.0f;
-    totalGravity.x = 0.0f;
+    totalGravity.zero();
 
     PlanetGravity** pGravities = (PlanetGravity**)&mGravities;
     bool hasCalculated = false;

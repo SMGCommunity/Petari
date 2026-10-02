@@ -331,9 +331,7 @@ void CrystalCage::exeBreak() {
 
         if (mHasBinding) {
             MR::offBind(this);
-            mVelocity.z = 0.0f;
-            mVelocity.y = 0.0f;
-            mVelocity.x = 0.0f;
+            mVelocity.zero();
         }
 
         mBreakObj->appear();

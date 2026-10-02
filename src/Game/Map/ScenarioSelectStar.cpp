@@ -218,9 +218,7 @@ void ScenarioSelectStar::exeSelectedMove() {
         mTranslation.scale(1.0f - t, mTranslationOnSelect);
         mRotateSpeed = MR::getLinerValue(t, ::cPointingRotateSpeedZ, ::cSelectedRotateMoveRate, 1.0f);
     } else {
-        mTranslation.z = 0.0f;
-        mTranslation.y = 0.0f;
-        mTranslation.x = 0.0f;
+        mTranslation.zero();
         mRotateSpeed = MR::getLinerValue(MultiScene::calcNerveRate(this, ::cSelectedMoveFrame, ::cSelectedRotateAccelFrame),
                                          ::cSelectedRotateMoveRate, ::cSelectedRotateSpeedZ, 1.0f);
     }

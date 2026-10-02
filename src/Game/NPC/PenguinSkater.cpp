@@ -56,9 +56,7 @@ PenguinSkater::PenguinSkater(const char* pName)
     : NPCActor(pName), mCameraInfo(0), mCurrentRail(nullptr), mSwitchRail(nullptr), mRail(nullptr), mNumRails(0) {
     // TODO: doubtful this is written like this, fix later.
     mMarioQuat.set< f32 >(0.0f, 0.0f, 0.0f, 1.0f);
-    mMarioPos.z = 0.0f;
-    mMarioPos.y = 0.0f;
-    mMarioPos.x = 0.0f;
+    mMarioPos.zero();
 }
 
 void PenguinSkater::init(const JMapInfoIter& rIter) {

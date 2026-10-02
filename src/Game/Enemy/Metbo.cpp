@@ -140,9 +140,7 @@ void Metbo::init(const JMapInfoIter& rIter) {
 
 void Metbo::exeNonActive() {
     if (MR::isFirstStep(this)) {
-        mVelocity.z = 0.0f;
-        mVelocity.y = 0.0f;
-        mVelocity.x = 0.0f;
+        mVelocity.zero();
         if (!mIsClipped) {
             MR::offBind(this);
             MR::offCalcShadow(this, nullptr);
