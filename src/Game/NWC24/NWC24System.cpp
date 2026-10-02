@@ -18,7 +18,7 @@ namespace {
     static u32 sWorkSize = VF_DRIVE_WORKSIZE;
 };  // namespace
 
-NWC24System::NWC24System(JKRHeap* pHeap, s32 threadPriority) : _0(false), mWorkBuffer(nullptr), mVFWorkBuffer(nullptr) {
+NWC24System::NWC24System(JKRHeap* pHeap, s32 threadPriority) : _0(), mWorkBuffer(), mVFWorkBuffer() {
     mVFWorkBuffer = new (pHeap, 32) u8[::sWorkSize];
     VFInitEx(mVFWorkBuffer, ::sWorkSize);
     mWorkBuffer = new (pHeap, 32) u8[NWC24_WORK_MEM_SIZE];

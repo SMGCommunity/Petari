@@ -23,7 +23,7 @@ void BallBeamer_FORCE_MATCH_SDATA2() {
     (void)0.0f;
 }
 
-BallBeamer::BallBeamer(const char* pName) : LiveActor(pName), mBeams(nullptr), _90(false) {
+BallBeamer::BallBeamer(const char* pName) : LiveActor(pName), mBeams(), _90() {
     _98.identity();
 }
 

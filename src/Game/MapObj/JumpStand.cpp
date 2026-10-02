@@ -14,7 +14,7 @@ namespace NrvJumpStand {
     NEW_NERVE(JumpStandNrvStarPieceBound, JumpStand, StarPieceBound);
 };  // namespace NrvJumpStand
 
-JumpStand::JumpStand(const char* pName) : LiveActor(pName), mBindedActor(nullptr), mIsMarioJumpingHigh() {
+JumpStand::JumpStand(const char* pName) : LiveActor(pName), mBindedActor(), mIsMarioJumpingHigh() {
     _90.identity();
 }
 

@@ -21,7 +21,7 @@ namespace {
 RaceRail::RaceRail(const char* pName) : NameObj(pName) {
 }
 
-PlayerRacer::PlayerRacer(const char* pName) : LiveActor(pName), _B0(0), _B4(0), mCameraInfo(nullptr) {
+PlayerRacer::PlayerRacer(const char* pName) : LiveActor(pName), _B0(), _B4(), mCameraInfo() {
 }
 
 void PlayerRacer::appear() {

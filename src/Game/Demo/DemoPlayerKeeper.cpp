@@ -5,7 +5,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-DemoPlayerKeeper::DemoPlayerKeeper(const DemoExecutor* pExecutor) : mExecutor(pExecutor), mNumPlayerInfos(0), mPlayerInfos(nullptr) {
+DemoPlayerKeeper::DemoPlayerKeeper(const DemoExecutor* pExecutor) : mExecutor(pExecutor), mNumPlayerInfos(), mPlayerInfos() {
     JMapInfo* map = nullptr;
     mNumPlayerInfos = DemoFunction::createSheetParser(mExecutor, "Player", &map);
     mPlayerInfos = new DemoPlayerInfo[mNumPlayerInfos];

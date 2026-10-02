@@ -52,7 +52,7 @@ namespace NrvPenguinRacer {
     NEW_NERVE(PenguinRacerNrvRaceTurn, PenguinRacer, RaceTurn);
 };  // namespace NrvPenguinRacer
 
-PenguinRacer::PenguinRacer(const char* pName) : NPCActor(pName), mRaceDisabled(0), mMoveSpeed(0.0f), mSpeed(1.0f), mRailPointNo(0) {
+PenguinRacer::PenguinRacer(const char* pName) : NPCActor(pName), mRaceDisabled(), mMoveSpeed(0.0f), mSpeed(1.0f), mRailPointNo() {
 }
 
 void PenguinRacer::init(const JMapInfoIter& rIter) {

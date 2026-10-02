@@ -22,7 +22,7 @@ void FORCE_OPERATOR() {
     vec *= 1.0f;
 }
 
-ItemBubble::ItemBubble(const char* pName) : LiveActor(pName), _90(nullptr), _94(nullptr) {
+ItemBubble::ItemBubble(const char* pName) : LiveActor(pName), _90(), _94() {
     _8C = 0.0f;
 }
 

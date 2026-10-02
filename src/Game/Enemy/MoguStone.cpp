@@ -187,7 +187,7 @@ void MoguStone::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, mtx);
 }
 
-ThrowingIce::ThrowingIce(const char* pName) : MoguStone(pName, "IceManIce"), mPath(nullptr) {
+ThrowingIce::ThrowingIce(const char* pName) : MoguStone(pName, "IceManIce"), mPath() {
     mPath = new ParabolicPath();
     mScale.x = 1.3f;
     mScale.y = 1.3f;

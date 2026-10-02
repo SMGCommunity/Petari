@@ -43,7 +43,7 @@ namespace NrvTeresaRacer {
     NEW_NERVE(TeresaRacerNrvTakeOutStar, TeresaRacer, TakeOutStar);
 };  // namespace NrvTeresaRacer
 
-TeresaRacer::TeresaRacer(const char* pName) : NPCActor(pName), mTakeOutStar(nullptr), mCameraInfo(nullptr), mIsGoal(false), mBgmState(0) {
+TeresaRacer::TeresaRacer(const char* pName) : NPCActor(pName), mTakeOutStar(), mCameraInfo(), mIsGoal(), mBgmState() {
 }
 
 void TeresaRacer::init(const JMapInfoIter& rIter) {

@@ -36,7 +36,7 @@ namespace NrvPenguinCoach {
     NEW_NERVE(PenguinCoachNrvPraise, PenguinCoach, Praise);
 };  // namespace NrvPenguinCoach
 
-PenguinCoach::PenguinCoach(const char* pName) : NPCActor(pName), mIsRaceComplete(false), mTakeOutStar(nullptr), mBehavior(-1), mCameraInfo(nullptr) {
+PenguinCoach::PenguinCoach(const char* pName) : NPCActor(pName), mIsRaceComplete(), mTakeOutStar(), mBehavior(-1), mCameraInfo() {
 }
 
 void PenguinCoach::init(const JMapInfoIter& rIter) {

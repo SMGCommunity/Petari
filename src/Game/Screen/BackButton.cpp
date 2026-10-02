@@ -4,7 +4,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-BackButton::BackButton(const char* pName, bool param2) : LayoutActor(pName, true), mPaneCtrl(nullptr), _24(false), _25(true) {
+BackButton::BackButton(const char* pName, bool param2) : LayoutActor(pName, true), mPaneCtrl(), _24(), _25(true) {
     if (param2) {
         MR::connectToSceneLayoutDecoration(this);
     }

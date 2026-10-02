@@ -7,7 +7,7 @@ void LayoutAnmPlayer_FORCE_MATCH_SDATA2() {
     (void)0.0f;
 }
 
-LayoutAnmPlayer::LayoutAnmPlayer(const LayoutManager* pManager) : mManager(pManager), mAnimName(), mAnimTransform(), mFrameCtrl(0) {
+LayoutAnmPlayer::LayoutAnmPlayer(const LayoutManager* pManager) : mManager(pManager), mAnimName(), mAnimTransform(), mFrameCtrl() {
 }
 
 void LayoutAnmPlayer::movement() {

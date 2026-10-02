@@ -44,7 +44,7 @@ namespace {
     NEW_NERVE(DemoKoopaJrShipNrvFlyAway, DemoKoopaJrShip, FlyAway);
 };  // namespace
 
-DemoKoopaJrShip::DemoKoopaJrShip(const char* pName) : LiveActor(pName), mKoopaJrObj(nullptr), mAnimCameraIndex(-1) {
+DemoKoopaJrShip::DemoKoopaJrShip(const char* pName) : LiveActor(pName), mKoopaJrObj(), mAnimCameraIndex(-1) {
 }
 
 void DemoKoopaJrShip::init(const JMapInfoIter& rIter) {

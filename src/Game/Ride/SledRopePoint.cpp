@@ -5,7 +5,7 @@ void SledRopePoint_FORCE_MATCH_SDATA2() {
     (void)1.0f;
 }
 
-SledRopePoint::SledRopePoint(const TVec3f& rPos, f32 bindRadius) : SwingRopePoint(rPos), mBinder(nullptr), mNoBind(false) {
+SledRopePoint::SledRopePoint(const TVec3f& rPos, f32 bindRadius) : SwingRopePoint(rPos), mBinder(), mNoBind() {
     mBinder = new Binder(nullptr, &mPosition, new TVec3f(0.0f, -1.0f, 0.0f), bindRadius, 0.0f, 8);
 }
 

@@ -12,7 +12,7 @@ namespace {
     NEW_NERVE(PrologueLetterNrvDisappear, PrologueLetter, Disappear);
 };  // namespace
 
-PrologueLetter::PrologueLetter(const char* pName) : LayoutActor(pName, true), mAButtonIcon(nullptr) {
+PrologueLetter::PrologueLetter(const char* pName) : LayoutActor(pName, true), mAButtonIcon() {
 }
 
 void PrologueLetter::init(const JMapInfoIter& rIter) {

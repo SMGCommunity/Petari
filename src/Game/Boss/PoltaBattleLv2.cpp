@@ -30,7 +30,7 @@ namespace NrvPoltaBattleLv2 {
     NEW_NERVE(PoltaBattleLv2NrvDamageCore, PoltaBattleLv2, DamageCore);
 };  // namespace NrvPoltaBattleLv2
 
-PoltaBattleLv2::PoltaBattleLv2(Polta* pPolta) : PoltaActionBase("ボステレサ2戦目", pPolta), mPoltaHealth(3), _2C(0) {
+PoltaBattleLv2::PoltaBattleLv2(Polta* pPolta) : PoltaActionBase("ボステレサ2戦目", pPolta), mPoltaHealth(3), _2C() {
     initNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvWait));
     mStateAttackGround = new PoltaStateAttackGround(pPolta);
     mStatePunch = new PoltaStatePunch(pPolta);
