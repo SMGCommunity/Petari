@@ -17,7 +17,7 @@ namespace NrvPenguinRacerLeader {
     NEW_NERVE(PenguinRacerLeaderNrvTakeOutStar, PenguinRacerLeader, TakeOutStar);
 };  // namespace NrvPenguinRacerLeader
 
-PenguinRacerLeader::PenguinRacerLeader(const char* pName) : PenguinRacer(pName), mTakeOutStar(nullptr), mCameraInfo(nullptr) {
+PenguinRacerLeader::PenguinRacerLeader(const char* pName) : PenguinRacer(pName), mTakeOutStar(), mCameraInfo() {
 }
 
 void PenguinRacerLeader::init(const JMapInfoIter& rIter) {

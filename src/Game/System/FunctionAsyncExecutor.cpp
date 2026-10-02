@@ -46,7 +46,7 @@ void* FunctionAsyncExecutorThread::run() {
     }
 }
 
-FunctionAsyncExecutorOnMainThread::FunctionAsyncExecutorOnMainThread(OSThread* pThread) : mThread(pThread), _0(false) {
+FunctionAsyncExecutorOnMainThread::FunctionAsyncExecutorOnMainThread(OSThread* pThread) : mThread(pThread), _0() {
     OSInitMessageQueue(&mQueue, mMsgArray, ARRAY_SIZE(mMsgArray));
 }
 

@@ -43,7 +43,7 @@ namespace NrvKoopaJrShipCannonShell {
     NEW_NERVE(HostTypeFreeze, KoopaJrShipCannonShell, Freeze);
 };  // namespace NrvKoopaJrShipCannonShell
 
-KoopaJrShipCannonShell::KoopaJrShipCannonShell(const char* pName) : CannonShellBase(pName), _9C(gZeroVec), _A8(gZeroVec), _B4(0), _B8(true) {
+KoopaJrShipCannonShell::KoopaJrShipCannonShell(const char* pName) : CannonShellBase(pName), _9C(gZeroVec), _A8(gZeroVec), _B4(), _B8(true) {
     f32 one = 1.0f;  // This makes Data match
     _8C.set< f32 >(0.0f, 0.0f, 0.0f, one);
     mPosition.x = gZeroVec.x;

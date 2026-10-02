@@ -9,7 +9,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-TombSpiderEnvironment::TombSpiderEnvironment(LiveActor* pActor) : mActor(pActor), mPlanet(nullptr), mCocoon(nullptr) {
+TombSpiderEnvironment::TombSpiderEnvironment(LiveActor* pActor) : mActor(pActor), mPlanet(), mCocoon() {
     MR::setEffectHostSRT(mActor, "Noctiluca", MR::getPlayerPos(), nullptr, nullptr);
     MR::createSceneObj(SceneObj_SpiderThread);
     MR::initSpiderThread(mActor->mPosition);

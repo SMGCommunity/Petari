@@ -19,10 +19,10 @@ namespace NrvRingBeamer {
 };  // namespace NrvRingBeamer
 
 void RingBeamer_FORCE_MATCH_SDATA2() {
-    (void) 0.0f;
+    (void)0.0f;
 }
 
-RingBeamer::RingBeamer(const char* pName) : LiveActor(pName), mBeams(nullptr) {
+RingBeamer::RingBeamer(const char* pName) : LiveActor(pName), mBeams() {
 }
 
 void RingBeamer::init(const JMapInfoIter& rIter) {

@@ -36,7 +36,7 @@ void AudSeKeeperBox::updateJointPos() {
     mPos.z = MR::getJointTransZ(mJoint);
 }
 
-AudSeKeeper::AudSeKeeper(LiveActor* pActor, int maxBoxes) : JKRDisposer(), mActor(pActor), mMaxBoxes(maxBoxes), mNumBoxes(0) {
+AudSeKeeper::AudSeKeeper(LiveActor* pActor, int maxBoxes) : JKRDisposer(), mActor(pActor), mMaxBoxes(maxBoxes), mNumBoxes() {
     mBoxes = new AudSeKeeperBox[mMaxBoxes];
 }
 

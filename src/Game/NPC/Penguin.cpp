@@ -81,7 +81,7 @@ bool RemovableTurtle::tryAttach() {
     return false;
 }
 
-Penguin::Penguin(const char* pName) : NPCActor(pName), mBehavior(Behavior_Default), mStepToDive(0) {
+Penguin::Penguin(const char* pName) : NPCActor(pName), mBehavior(Behavior_Default), mStepToDive() {
 }
 
 void Penguin::init(const JMapInfoIter& rIter) {

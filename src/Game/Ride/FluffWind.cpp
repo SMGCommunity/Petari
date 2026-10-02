@@ -30,7 +30,7 @@ namespace NrvFluffWindEffect {
     NEW_NERVE(FluffWindEffectNrvBrowWind, FluffWindEffect, BrowWind);
 };  // namespace NrvFluffWindEffect
 
-FluffWindEffect::FluffWindEffect(const char* pName) : LiveActor(pName), mEffectName(nullptr), mTimer(-1) {
+FluffWindEffect::FluffWindEffect(const char* pName) : LiveActor(pName), mEffectName(), mTimer(-1) {
     mMtx.identity();
 }
 

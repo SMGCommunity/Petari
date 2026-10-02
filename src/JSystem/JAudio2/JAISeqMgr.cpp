@@ -26,7 +26,7 @@ int JAISeqMgr::releaseSeqData(const JAISeqDataRegion& seqDataRegion) {
     return bVar1 ? RELEASE_SEQ_1 : RELEASE_SEQ_2;
 }
 
-JAISeqMgr::JAISeqMgr(bool setInstance) : JASGlobalInstance< JAISeqMgr >(setInstance), mAudience(nullptr) {
+JAISeqMgr::JAISeqMgr(bool setInstance) : JASGlobalInstance< JAISeqMgr >(setInstance), mAudience() {
     seqDataMgr = nullptr;
     soundStrategyMgr = nullptr;
     mNumTracks = 16;
