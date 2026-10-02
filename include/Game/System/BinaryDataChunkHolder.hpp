@@ -1,6 +1,7 @@
 #pragma once
 
 #include <revolution/types.h>
+#include <cstddef>
 
 class BinaryDataChunkBase {
 public:
@@ -14,7 +15,7 @@ public:
 struct BinaryDataChunkHolderChunkData {
 public:
     u32 getDataOffset() const {
-        return 0x0C;  // TODO: offsetof?
+        return offsetof(BinaryDataChunkHolderChunkData, mData);
     }
 
     u8* getData() const {

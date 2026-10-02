@@ -155,7 +155,7 @@ public:
     /* 0x018 */ JAISoundHandle mRhythmHandle;
     /* 0x01C */ AudTrackController mTrackController[mNumTracks];
     /* 0x1DC */ AudFader mFader[mNumFaders];
-    /* 0x1F4 */ s32 _1F4;  // mSyncState
+    /* 0x1F4 */ s32 mSyncState;
     /* 0x1F8 */ s32 mBgmId;
-    /* 0x1FC */ bool mIsLocked;  // TODO: better name?
+    /* 0x1FC */ bool mIsLocked;
 };

@@ -141,7 +141,6 @@ JAISoundHandle* AudSoundObject::startLevelSound(const char* pName) {
 JAISoundHandle* AudSoundObject::startSoundParam(JAISoundID soundID, s32 volume, s32 a2) {
     JAISoundHandle* handle = startSound(soundID);
     if (handle != nullptr && handle->isSoundAttached()) {
-        // TODO: param names!
         modifySe_Kawamura(handle, volume);
         modifySe_Takezawa(handle, volume, a2);
         modifySe_Gohara(handle, volume, a2);
@@ -153,7 +152,6 @@ JAISoundHandle* AudSoundObject::startSoundParam(JAISoundID soundID, s32 volume, 
 JAISoundHandle* AudSoundObject::startLevelSoundParam(JAISoundID soundID, s32 volume, s32 a2) {
     JAISoundHandle* handle = startLevelSound(soundID);
     if (handle != nullptr && handle->isSoundAttached()) {
-        // TODO: param names!
         modifySe_Kawamura(handle, volume);
         modifySe_Takezawa(handle, volume, a2);
         modifySe_Gohara(handle, volume, a2);
