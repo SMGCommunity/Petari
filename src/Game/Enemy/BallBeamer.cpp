@@ -19,7 +19,7 @@ namespace NrvBallBeamer {
     NEW_NERVE(BallBeamerNrvInter, BallBeamer, Inter);
 };  // namespace NrvBallBeamer
 
-BallBeamer::BallBeamer(const char* pName) : LiveActor(pName), mBeams(nullptr), _90(false) {
+BallBeamer::BallBeamer(const char* pName) : LiveActor(pName), mBeams(), _90() {
     _98.identity();
 }
 

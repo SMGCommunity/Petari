@@ -18,7 +18,7 @@ namespace NrvRingBeamer {
     NEW_NERVE(RingBeamerNrvInter, RingBeamer, Inter);
 };  // namespace NrvRingBeamer
 
-RingBeamer::RingBeamer(const char* pName) : LiveActor(pName), mBeams(nullptr) {
+RingBeamer::RingBeamer(const char* pName) : LiveActor(pName), mBeams() {
 }
 
 void RingBeamer::init(const JMapInfoIter& rIter) {

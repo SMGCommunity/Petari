@@ -2,7 +2,7 @@
 #include "Game/Screen/LayoutManager.hpp"
 #include <nw4r/lyt/animation.h>
 
-LayoutAnmPlayer::LayoutAnmPlayer(const LayoutManager* pManager) : mManager(pManager), mAnimName(), mAnimTransform(), mFrameCtrl(0) {
+LayoutAnmPlayer::LayoutAnmPlayer(const LayoutManager* pManager) : mManager(pManager), mAnimName(), mAnimTransform(), mFrameCtrl() {
 }
 
 void LayoutAnmPlayer::movement() {

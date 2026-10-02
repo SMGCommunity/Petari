@@ -266,9 +266,7 @@ void BombHei::exeStarting() {
     if (MR::isFirstStep(this)) {
         MR::validateExCollisionParts(this);
         MR::startBck(this, "Starting");
-        mVelocity.z = 0.0f;
-        mVelocity.y = 0.0f;
-        mVelocity.x = 0.0f;
+        mVelocity.zero();
     }
 
     if (!MR::isNearZero(mGravity)) {

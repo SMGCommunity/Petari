@@ -18,7 +18,7 @@ namespace NrvPlayerMissLeft {
     NEW_NERVE(HostTypeNrvEnd, PlayerMissLeft, End);
 };  // namespace NrvPlayerMissLeft
 
-PlayerMissLeft::PlayerMissLeft(const char* pName) : LayoutActor(pName, true), mLayoutAppearer(nullptr), mPaneRumbler(nullptr) {
+PlayerMissLeft::PlayerMissLeft(const char* pName) : LayoutActor(pName, true), mLayoutAppearer(), mPaneRumbler() {
 }
 
 void PlayerMissLeft::init(const JMapInfoIter& rIter) {

@@ -15,7 +15,7 @@ namespace {
     }
 };  // namespace
 
-BigBubbleHolder::BigBubbleHolder(const char* pName) : NameObj(pName), mDrawer(nullptr), mNumLimitters(0), mNumBubbles(0), mIsMarioBinded(false) {
+BigBubbleHolder::BigBubbleHolder(const char* pName) : NameObj(pName), mDrawer(), mNumLimitters(), mNumBubbles(), mIsMarioBinded() {
     for (s32 idx = 0; idx < 16; idx++) {
         mBubbles[idx] = nullptr;
         mDrawBubbles[idx] = nullptr;

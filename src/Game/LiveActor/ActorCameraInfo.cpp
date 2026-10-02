@@ -2,7 +2,7 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 
-ActorCameraInfo::ActorCameraInfo(const JMapInfoIter& rIter) : mCameraSetID(-1), mZoneID(0) {
+ActorCameraInfo::ActorCameraInfo(const JMapInfoIter& rIter) : mCameraSetID(-1), mZoneID() {
     s32 cameraSetID = -1;
 
     if (MR::getJMapInfoCameraSetID(rIter, &cameraSetID)) {

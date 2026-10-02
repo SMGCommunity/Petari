@@ -3,7 +3,7 @@
 #include "Game/Util.hpp"
 #include <cstring>
 
-DemoSubPartKeeper::DemoSubPartKeeper(const DemoExecutor* pExecutor) : mExecutor(pExecutor), mNumSubPartInfos(0), mSubPartInfos(nullptr) {
+DemoSubPartKeeper::DemoSubPartKeeper(const DemoExecutor* pExecutor) : mExecutor(pExecutor), mNumSubPartInfos(), mSubPartInfos() {
     JMapInfo* map = nullptr;
     mNumSubPartInfos = DemoFunction::createSheetParser(mExecutor, "SubPart", &map);
     mSubPartInfos = new DemoSubPartInfo[mNumSubPartInfos];

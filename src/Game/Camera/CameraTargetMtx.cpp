@@ -58,9 +58,7 @@ void CameraTargetMtx::movement() {
 
     if (mInvalidLastMove) {
         mInvalidLastMove = false;
-        mLastMove.z = 0.0f;
-        mLastMove.y = 0.0f;
-        mLastMove.x = 0.0f;
+        mLastMove.zero();
     } else {
         mLastMove.sub(position, mPosition);
     }

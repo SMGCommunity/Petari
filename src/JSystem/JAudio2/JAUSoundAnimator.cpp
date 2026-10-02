@@ -22,7 +22,7 @@ u32 JAUSoundAnimation::getEndSoundIndex(f32 time) const {
     return idx;
 }
 
-JAUSoundAnimator::JAUSoundAnimator(JAISoundHandles* pHandles) : mSoundAnimation(nullptr) {
+JAUSoundAnimator::JAUSoundAnimator(JAISoundHandles* pHandles) : mSoundAnimation() {
     mHandles = pHandles;
     mIsReversed = false;
 }

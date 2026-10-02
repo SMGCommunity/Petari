@@ -15,7 +15,8 @@ namespace {
     inline void multProj(const TProj3f& rMtx, const TVec3f& rSrc, TVec3f& rDest) {
         f32 w = -rSrc.z;
         s32 col = 3;
-        TVec4f pos(rSrc.x * rMtx.mMtx[0][0] + rSrc.z * rMtx.mMtx[0][2], rSrc.y * rMtx.mMtx[1][1] + rSrc.z * rMtx.mMtx[1][2], rSrc.z * rMtx.mMtx[2][2] + rMtx.mMtx[2][col], w);
+        TVec4f pos(rSrc.x * rMtx.mMtx[0][0] + rSrc.z * rMtx.mMtx[0][2], rSrc.y * rMtx.mMtx[1][1] + rSrc.z * rMtx.mMtx[1][2],
+                   rSrc.z * rMtx.mMtx[2][2] + rMtx.mMtx[2][col], w);
         rDest.scale(1.0f / pos.w, *pos.toTVec3());
     }
 };  // namespace
@@ -154,7 +155,7 @@ void StarPointerLayoutTarget::calcBasePos(TVec2f* pPos) const {
     pPos->y += mPosition.y;
 }
 
-StarPointerLayoutTargetKeeper::StarPointerLayoutTargetKeeper(int maxNumTargets) : mMaxNumTargets(maxNumTargets), mNumTargets(0), mTargets(nullptr) {
+StarPointerLayoutTargetKeeper::StarPointerLayoutTargetKeeper(int maxNumTargets) : mMaxNumTargets(maxNumTargets), mNumTargets(), mTargets() {
     mTargets = new StarPointerLayoutTarget*[mMaxNumTargets];
     memset(mTargets, 0, mMaxNumTargets * sizeof(StarPointerLayoutTarget*));
 }

@@ -302,7 +302,7 @@ void PrologueDirector::pauseOff() {
     MR::requestMovementOn(mMarioPosDummyModel);
 }
 
-PrologueHolder::PrologueHolder(const char* pName) : NameObj(pName), mDirector(nullptr) {
+PrologueHolder::PrologueHolder(const char* pName) : NameObj(pName), mDirector() {
 }
 
 void PrologueHolder::registerPrologueObj(PrologueDirector* pDirector) {

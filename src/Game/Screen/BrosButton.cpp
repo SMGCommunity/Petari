@@ -12,7 +12,7 @@ namespace {
     NEW_NERVE(BrosButtonNrvDisappear, BrosButton, Disappear);
 };  // namespace
 
-BrosButton::BrosButton(const char* pName) : LayoutActor(pName, true), mIsSelectedMario(true), mPaneCtrl(nullptr) {
+BrosButton::BrosButton(const char* pName) : LayoutActor(pName, true), mIsSelectedMario(true), mPaneCtrl() {
 }
 
 void BrosButton::init(const JMapInfoIter& rIter) {

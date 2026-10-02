@@ -26,9 +26,7 @@ void StinkBugBase::setDashVelocity(f32 velocity) {
 }
 
 void StinkBugBase::fixInitPos() {
-    mVelocity.z = 0.0f;
-    mVelocity.y = 0.0f;
-    mVelocity.x = 0.0f;
+    mVelocity.zero();
     mPosition.set(_98);
 }
 

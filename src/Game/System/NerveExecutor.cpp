@@ -1,7 +1,7 @@
 #include "Game/System/NerveExecutor.hpp"
 #include "Game/LiveActor/Spine.hpp"
 
-NerveExecutor::NerveExecutor(const char* pName) : mSpine(nullptr) {
+NerveExecutor::NerveExecutor(const char* pName) : mSpine() {
 }
 
 NerveExecutor::~NerveExecutor() {

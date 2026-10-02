@@ -3,7 +3,7 @@
 
 void JUTPalette::storeTLUT(_GXTlut param_0, ResTLUT* tlut) {
     if (tlut == nullptr) {
-        OSPanic("JUTPalette.cpp", 35, "JUTTexture: TLUT is NULL\n");
+        OSPanic(__FILE__, 35, "JUTTexture: TLUT is NULL\n");
     }
     mName = param_0;
     mFormat = tlut->mFormat;

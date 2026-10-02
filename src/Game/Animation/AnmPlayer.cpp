@@ -43,7 +43,7 @@ int (*AnmPlayer_FORCE_EMIT(TQuat4f& rQuat, const TQuat4f& rOther, TPos3f& rMtx, 
     return &JGeometry::TUtil< f32 >::epsilonEquals;
 }
 
-AnmPlayerBase::AnmPlayerBase(const ResTable* pResTable) : mResTable(pResTable), mAnmRes(), mFrameCtrl(0) {
+AnmPlayerBase::AnmPlayerBase(const ResTable* pResTable) : mResTable(pResTable), mAnmRes(), mFrameCtrl() {
 }
 
 void AnmPlayerBase::update() {

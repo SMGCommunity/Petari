@@ -16,5 +16,5 @@ public:
     /* 0x58 */ TVec3f mUp;
     /* 0x64 */ f32 mHeight;
     /* 0x68 */ f32 mDist;
-    /* 0x6C */ bool mAxisReversed;  // TODO: rename for actual use
+    /* 0x6C */ bool mAxisReversed;
 };

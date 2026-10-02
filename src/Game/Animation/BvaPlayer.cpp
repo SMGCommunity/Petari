@@ -27,8 +27,7 @@ void BvaPlayer::calc() {
 
 J3DAnmVisibilityFull* BvaPlayer::getAnmVisibility() {
     if (mAnmRes != nullptr) {
-        // TODO: Should be `static_cast` because `J3DAnmVisibilityFull` inherits J3DAnmBase`.
-        return reinterpret_cast< J3DAnmVisibilityFull* >(mAnmRes);
+        return static_cast< J3DAnmVisibilityFull* >(mAnmRes);
     }
 
     return nullptr;

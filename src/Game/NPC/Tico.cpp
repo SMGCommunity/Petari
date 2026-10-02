@@ -77,9 +77,7 @@ void Tico::initBase(const JMapInfoIter& rIter, s32 color) {
     caps.mWaitNerve = GET_NERVE(Tico, TicoNrvWait);
     caps.mSensorJoint = "Body";
     caps.mSensorSize = 60.0f;
-    caps.mSensorOffset.z = 0.0f;
-    caps.mSensorOffset.y = 0.0f;
-    caps.mSensorOffset.x = 0.0f;
+    caps.mSensorOffset.zero();
     caps._6C = "Body";
     caps.mBinder = 0;
 

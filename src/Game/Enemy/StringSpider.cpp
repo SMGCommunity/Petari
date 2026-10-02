@@ -620,9 +620,7 @@ void StringSpider::exeTrampleFall() {
 
 void StringSpider::exeWallHitDeath() {
     if (MR::isFirstStep(this)) {
-        mVelocity.z = 0.0f;
-        mVelocity.y = 0.0f;
-        mVelocity.x = 0.0f;
+        mVelocity.zero();
     }
 
     if (MR::isGreaterStep(this, 35)) {

@@ -34,7 +34,7 @@ namespace NrvTakobo {
     NEW_NERVE_ONEND(HostTypeNrvDpdPointed, Takobo, DpdPointed, DpdPointed);
 };  // namespace NrvTakobo
 
-Takobo::Takobo(const char* pName) : LiveActor(pName), _8C(0), _90(0, 0, 1), _A0(0), _9C(-1), _A1(0), _B0(1, 0, 0) {
+Takobo::Takobo(const char* pName) : LiveActor(pName), _8C(), _90(0, 0, 1), _A0(), _9C(-1), _A1(), _B0(1, 0, 0) {
     _BC = 0;
     _C0 = 5.0f;
     _C4 = 500.0f;
@@ -64,7 +64,7 @@ void Takobo::init(const JMapInfoIter& rIter) {
 
     TPos3f mtx;
     mtx.set(getBaseMtx());
-    
+
     mtx.getZDir(_90);
 
     TVec3f stack_24;
@@ -161,7 +161,7 @@ void Takobo::control() {
             return;
         }
     }
-    
+
     if (_A1) {
         HitInfo info;
         if (Collision::checkStrikePointToMap(mPosition, &info)) {
@@ -213,7 +213,7 @@ void Takobo::exeMove() {
             _C8 = -_C4;
             f32 v6 = v21.dot(_B0);
             _CC = -_C4 + v6;
-            _D0 = ((-_C4 + v6) - _C8) / _C0;           
+            _D0 = ((-_C4 + v6) - _C8) / _C0;
         }
 
         _D0 *= 1.3;

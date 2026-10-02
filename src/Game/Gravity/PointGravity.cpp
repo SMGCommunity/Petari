@@ -10,9 +10,7 @@ bool PointGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3
 
     // Epsilon-equals zero? If so, direction is the zero vector.
     if (MR::isNearZero(distance)) {
-        direction.z = 0.0f;
-        direction.y = 0.0f;
-        direction.x = 0.0f;
+        direction.zero();
     }
     // Otherwise, it's a proper direction and it should be normalized.
     else {
