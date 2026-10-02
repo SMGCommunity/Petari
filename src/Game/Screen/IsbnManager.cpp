@@ -33,7 +33,7 @@ void IsbnManager::setAdjustRate(f32 x, f32 y) {
 
 void IsbnManager::setDrawTime(u16 minDraw, u16 maxDraw) {
     if (minDraw >= maxDraw) {
-        nw4r::db::Panic("IsbnManager.cpp", __LINE__, "NW4R:Failed assertion minDraw<maxDraw");
+        nw4r::db::Panic(__FILE__, __LINE__, "NW4R:Failed assertion minDraw<maxDraw");
     }
 
     _64 = minDraw;
@@ -42,31 +42,31 @@ void IsbnManager::setDrawTime(u16 minDraw, u16 maxDraw) {
 
 void IsbnManager::setNumber(const wchar_t* pIsbnNumber, const wchar_t* pRegistNumber, const wchar_t* pOtherNumber) {
     if (pIsbnNumber == nullptr) {
-        nw4r::db::Panic("IsbnManager.cpp", 97, "NW4R:Failed assertion pIsbnNumber");
+        nw4r::db::Panic(__FILE__, 97, "NW4R:Failed assertion pIsbnNumber");
     }
 
     if (pRegistNumber == nullptr) {
-        nw4r::db::Panic("IsbnManager.cpp", 98, "NW4R:Failed assertion pRegistNumber");
+        nw4r::db::Panic(__FILE__, 98, "NW4R:Failed assertion pRegistNumber");
     }
 
     if (pOtherNumber == nullptr) {
-        nw4r::db::Panic("IsbnManager.cpp", 99, "NW4R:Failed assertion pOtherNumber");
+        nw4r::db::Panic(__FILE__, 99, "NW4R:Failed assertion pOtherNumber");
     }
 
     if (mpLayout == nullptr) {
-        nw4r::db::Panic("IsbnManager.cpp", 100, "NW4R:Failed assertion mpLayout");
+        nw4r::db::Panic(__FILE__, 100, "NW4R:Failed assertion mpLayout");
     }
 
     if (wcslen(pIsbnNumber) != 13) {
-        nw4r::db::Panic("IsbnManager.cpp", 102, "NW4R:Failed assertion wcslen( pIsbnNumber ) == 13");
+        nw4r::db::Panic(__FILE__, 102, "NW4R:Failed assertion wcslen( pIsbnNumber ) == 13");
     }
 
     if (wcslen(pRegistNumber) != 10) {
-        nw4r::db::Panic("IsbnManager.cpp", 103, "NW4R:Failed assertion wcslen( pRegistNumber ) == 10");
+        nw4r::db::Panic(__FILE__, 103, "NW4R:Failed assertion wcslen( pRegistNumber ) == 10");
     }
 
     if (wcslen(pOtherNumber) != 7) {
-        nw4r::db::Panic("IsbnManager.cpp", 104, "NW4R:Failed assertion wcslen( pOtherNumber ) == 7");
+        nw4r::db::Panic(__FILE__, 104, "NW4R:Failed assertion wcslen( pOtherNumber ) == 7");
     }
 
     nw4r::lyt::Pane* pRootPane = mpLayout->mpRootPane;
@@ -114,23 +114,23 @@ void IsbnManager::calculateView() {
 
 IsbnManager* IsbnManager::create(void* pArchiveBuf, MEMAllocator* pAllocator) {
     if (pArchiveBuf == nullptr) {
-        nw4r::db::Panic("IsbnManager.cpp", 188, "NW4R:Failed assertion pArchiveBuf");
+        nw4r::db::Panic(__FILE__, 188, "NW4R:Failed assertion pArchiveBuf");
     }
 
     if (pAllocator == nullptr) {
-        nw4r::db::Panic("IsbnManager.cpp", 189, "NW4R:Failed assertion pAllocator");
+        nw4r::db::Panic(__FILE__, 189, "NW4R:Failed assertion pAllocator");
     }
 
     void* pIsbnBuffer = MEMAllocFromAllocator(pAllocator, sizeof(IsbnManager));
 
     if (pIsbnBuffer == nullptr) {
-        nw4r::db::Panic("IsbnManager.cpp", 192, "NW4R:Failed assertion pIsbnBuffer");
+        nw4r::db::Panic(__FILE__, 192, "NW4R:Failed assertion pIsbnBuffer");
     }
 
     IsbnManager* pIsbn = new (pIsbnBuffer) IsbnManager(pAllocator);
 
     if (pIsbn == nullptr) {
-        nw4r::db::Panic("IsbnManager.cpp", 194, "NW4R:Failed assertion pIsbn");
+        nw4r::db::Panic(__FILE__, 194, "NW4R:Failed assertion pIsbn");
     }
 
     pIsbn->mpIsbnBuffer = pIsbnBuffer;
@@ -138,25 +138,25 @@ IsbnManager* IsbnManager::create(void* pArchiveBuf, MEMAllocator* pAllocator) {
     pIsbn->mpResAccBuffer = MEMAllocFromAllocator(pAllocator, sizeof(nw4r::lyt::ArcResourceAccessor));
 
     if (pIsbn->mpResAccBuffer == nullptr) {
-        nw4r::db::Panic("IsbnManager.cpp", 199, "NW4R:Failed assertion pIsbn->mpResAccBuffer");
+        nw4r::db::Panic(__FILE__, 199, "NW4R:Failed assertion pIsbn->mpResAccBuffer");
     }
 
     pIsbn->mpResAccessor = new (pIsbn->mpResAccBuffer) nw4r::lyt::ArcResourceAccessor();
 
     if (pIsbn->mpResAccessor == nullptr) {
-        nw4r::db::Panic("IsbnManager.cpp", 201, "NW4R:Failed assertion pIsbn->mpResAccessor");
+        nw4r::db::Panic(__FILE__, 201, "NW4R:Failed assertion pIsbn->mpResAccessor");
     }
 
     pIsbn->mpLayoutBuffer = MEMAllocFromAllocator(pAllocator, sizeof(nw4r::lyt::Layout));
 
     if (pIsbn->mpLayoutBuffer == nullptr) {
-        nw4r::db::Panic("IsbnManager.cpp", 205, "NW4R:Failed assertion pIsbn->mpLayoutBuffer");
+        nw4r::db::Panic(__FILE__, 205, "NW4R:Failed assertion pIsbn->mpLayoutBuffer");
     }
 
     pIsbn->mpLayout = new (pIsbn->mpLayoutBuffer) nw4r::lyt::Layout();
 
     if (pIsbn->mpLayout == nullptr) {
-        nw4r::db::Panic("IsbnManager.cpp", 207, "NW4R:Failed assertion pIsbn->mpLayout");
+        nw4r::db::Panic(__FILE__, 207, "NW4R:Failed assertion pIsbn->mpLayout");
     }
 
     MEMAllocator* pPreviousAllocator = nw4r::lyt::Layout::mspAllocator;
@@ -164,19 +164,19 @@ IsbnManager* IsbnManager::create(void* pArchiveBuf, MEMAllocator* pAllocator) {
     bool result = pIsbn->mpResAccessor->Attach(pArchiveBuf, "./");
 
     if (!result) {
-        nw4r::db::Panic("IsbnManager.cpp", 215, "NW4R:Failed assertion result");
+        nw4r::db::Panic(__FILE__, 215, "NW4R:Failed assertion result");
     }
 
     void* pLayoutResource = pIsbn->mpResAccessor->GetResource(0, "IsbnLayout_00.brlyt", nullptr);
 
     if (pLayoutResource == nullptr) {
-        nw4r::db::Panic("IsbnManager.cpp", 219, "NW4R:Failed assertion lytRes");
+        nw4r::db::Panic(__FILE__, 219, "NW4R:Failed assertion lytRes");
     }
 
     result = pIsbn->mpLayout->Build(pLayoutResource, pIsbn->mpResAccessor);
 
     if (!result) {
-        nw4r::db::Panic("IsbnManager.cpp", 221, "NW4R:Failed assertion result");
+        nw4r::db::Panic(__FILE__, 221, "NW4R:Failed assertion result");
     }
 
     nw4r::lyt::Layout::mspAllocator = pPreviousAllocator;
