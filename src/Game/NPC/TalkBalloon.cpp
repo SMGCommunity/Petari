@@ -17,13 +17,6 @@
 #include <JSystem/JMath/JMath.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
 
-void TalkBalloon_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)2.0f;
-}
-
 namespace NrvTalkBalloonShort {
     NEW_NERVE(TalkBalloonShortNrvOpen, TalkBalloonShort, Open);
     NEW_NERVE(TalkBalloonShortNrvTalk, TalkBalloonShort, Talk);

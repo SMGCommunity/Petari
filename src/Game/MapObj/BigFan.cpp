@@ -5,12 +5,6 @@
 #include "Game/Util.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
-void BigFan_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-}
-
 namespace {
     static const f32 sBaseWindWidth = 400.0f;
 };  // namespace

@@ -7,12 +7,6 @@
 #include "Game/LiveActor/RailRider.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void CameraRailWatch_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)2.0f;
-}
-
 CameraRailWatch::CameraRailWatch(const char* pName)
     : Camera(pName), mRailRider(), mDirection(), mSetDirection(), mRailCoordOffset(), mDist(1200.0f), mAngleX() {
 }

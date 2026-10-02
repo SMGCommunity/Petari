@@ -3,11 +3,6 @@
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Util.hpp"
 
-void MechaKoopaPartsHead_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)2.0f;
-}
-
 namespace {
     static const s32 sStepForWhiteFadeOut = 60;
     static const s32 sStepForWhiteFadeIn = 60;

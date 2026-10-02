@@ -33,10 +33,6 @@ namespace NrvOtaRock {
     NEW_NERVE(OtaRockNrvShow, OtaRock, Show);
 };  // namespace NrvOtaRock
 
-void otarock_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 OtaRock::OtaRock(const char* pName)
     : LiveActor(pName), mNoThrowCocoNut(false), mCocoNutArray(nullptr), mFireBallArray(nullptr), mFixedPosition(nullptr),
       mThrowCocoNutCounter(nullptr), mWaitFrame(0), _A4(), _D4(0.0f, 0.0f, 1.0f), mAnimScaleController(nullptr) {

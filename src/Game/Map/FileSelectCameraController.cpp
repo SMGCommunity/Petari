@@ -4,10 +4,6 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-void FileSelectCameraController_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 namespace {
     // const Vec cTitleTargetPos = {};
     // const Vec cTitlePos = {};

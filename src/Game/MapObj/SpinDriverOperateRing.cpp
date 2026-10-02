@@ -5,13 +5,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
-void SpinDriverOperateRing_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)2.0f;
-}
-
 namespace {
     // static const f32 sExpandOparateRingSpeed = 0.0f;
     // static const f32 sOparateRange = 0.0f;

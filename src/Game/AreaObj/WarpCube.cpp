@@ -11,11 +11,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include <cstdio>
 
-void WarpCube_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 WarpCube::~WarpCube() {
 }
 

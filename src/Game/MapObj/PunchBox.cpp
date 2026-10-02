@@ -19,7 +19,6 @@ namespace NrvPunchBox {
 }  // namespace NrvPunchBox
 
 void PunchBox_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
     (void)90.0f;
     (void)150.0f;
     (void)77.0f;

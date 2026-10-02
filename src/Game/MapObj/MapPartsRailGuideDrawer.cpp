@@ -8,8 +8,6 @@
 #include <algorithm>
 
 void MapPartsRailGuideDrawer_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)2.0f;
     (void)200.0f;
 }
 

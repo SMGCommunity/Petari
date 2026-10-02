@@ -49,13 +49,6 @@ namespace NrvBegomanSpring {
     NEW_NERVE_ONEND(HostTypeNrvBindStarPointer, BegomanSpring, BindStarPointer, BindStarPointer);
 }  // namespace NrvBegomanSpring
 
-void BegomanSpring_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)2.0f;
-}
-
 namespace {
     const MR::ActorMoveParam hWaitParam = {0.0f, 3.0f, 0.95f, 1.0f};
     const MR::ActorMoveParam hSignAttackParam = {0.0f, 3.0f, 0.8f, 3.0f};

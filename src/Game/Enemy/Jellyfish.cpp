@@ -22,10 +22,6 @@
 #include "Game/Util/StarPointerUtil.hpp"
 
 void Jellyfish_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)-1.0f;
     (void)5.0f;
     (void)30.0f;
     (void)100.0f;

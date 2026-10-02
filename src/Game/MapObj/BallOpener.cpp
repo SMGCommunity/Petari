@@ -3,12 +3,6 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
-void BallOpener_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.000003814697265625f;
-}
-
 namespace {
     const f32 sGravityAcc = 1.2f;
     const f32 sHoleRadius = 200.0f;

@@ -19,11 +19,6 @@
 #include "Game/Util/SoundUtil.hpp"
 
 void DinoPackunBattleVs2Lv1_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)3.0f;
-    (void)-1.0f;
-    (void)2.0f;
     (void)1.05e+03f;
     (void)6e+01f;
     (void)1.5f;

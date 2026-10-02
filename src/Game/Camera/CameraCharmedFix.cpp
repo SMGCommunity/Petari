@@ -4,10 +4,6 @@
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void CameraCharmedFix_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 CameraCharmedFix::CameraCharmedFix(const char* pName)
     : Camera(pName), mBasePos(0.0f, 0.0f, 0.0f), mUp(0.0f, 1.0f, 0.0f), mWPoint(0.0f, 0.0f, 1000.0f) {
 }

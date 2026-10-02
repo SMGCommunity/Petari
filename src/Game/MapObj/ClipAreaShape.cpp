@@ -4,9 +4,6 @@
 #include "Game/Util/MtxUtil.hpp"
 
 void ClipAreaShape_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)2.0f;
     (void)0.001f;
     (void)500.0f;
     (void)0.01f;

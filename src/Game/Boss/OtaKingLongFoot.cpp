@@ -26,10 +26,6 @@ namespace {
     const Vec cFoot05SensorOffset = {80.0f, 0.0f, -40.0f};
 };  // namespace
 
-void OtaKingLongFoot_FORCE_MATCH_SDATA2() {
-    (void) 1.0f;
-}
-
 OtaKingLongFoot::OtaKingLongFoot(LiveActor* pHost, s32 demoBckStep, const char* pName)
     : PartsModel(pHost, pName, "OtaKingLongFoot", nullptr, MR::DrawBufferType_Enemy, false), mDemoBckStep(demoBckStep), mScaleController(nullptr) {
 }

@@ -13,10 +13,7 @@
 #include "Game/Util/RailUtil.hpp"
 
 void ElectricRailHolder_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
     (void)30.0f;
-    (void)0.0f;
 }
 
 namespace {

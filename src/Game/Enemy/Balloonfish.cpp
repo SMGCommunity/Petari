@@ -33,13 +33,6 @@ namespace NrvBalloonfish {
     NEW_NERVE_ONEND(HostTypeNrvStarPointerBind, Balloonfish, StarPointerBind, StarPointerBind);
 };  // namespace NrvBalloonfish
 
-void Balloonfish_FORCE_MATCH_SDATA2() {
-    (void) 1.0f;
-    (void) 0.0f;
-    (void) 0.5f;
-    (void) 2.0f;
-}
-
 Balloonfish::Balloonfish(const char* pName)
     : LiveActor(pName), mAnimScaleController(), mNerveBeforeBind(), mQuat(0.0f, 0.0f, 0.0f, 1.0f), mRotateAngle(::hRotateAngle) {
 }

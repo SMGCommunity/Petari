@@ -14,9 +14,6 @@
 #include "Game/Util/StarPointerUtil.hpp"
 
 void KoopaFireShort_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)3.0f;
     (void)130.0f;
     (void)50.0f;
     (void)100.0f;

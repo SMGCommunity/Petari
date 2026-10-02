@@ -12,14 +12,6 @@ namespace {
     }
 }  // namespace
 
-void GeometryBindUtil_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.000003814697265625f;
-    (void)0.5f;
-    (void)3.0f;
-}
-
 BindSphere::BindSphere(const TVec3f& rPosition, f32 radius) : mPosition(rPosition), mRadius(radius) {
 }
 

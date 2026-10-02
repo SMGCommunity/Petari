@@ -6,11 +6,6 @@
 #include "Game/Player/MarioSwim.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void MarioActorCamera_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0000038146973f;
-}
-
 MtxPtr MarioActor::getMapBaseMtx() const {
     HitSensor* pSensor = mMario->_46C->mSensor;
     if (pSensor == nullptr) {

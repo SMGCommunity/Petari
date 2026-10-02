@@ -6,12 +6,6 @@
 #include "Game/Screen/StarPointerDirector.hpp"
 #include "Game/Util.hpp"
 
-void StarPieceDirector_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)3.814697265625e-06f;
-    (void)-1.0f;
-}
-
 namespace NrvStarPieceShooter {
     NEW_NERVE(HostTypeNrvWait, StarPieceShooter, Wait);
     NEW_NERVE(HostTypeNrvLockOn, StarPieceShooter, LockOn);

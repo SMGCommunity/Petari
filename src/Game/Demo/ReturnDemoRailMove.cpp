@@ -6,10 +6,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void ReturnDemoRailMove_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 namespace {
     void setResultFlyStartFrame(LiveActor* liveActor, s32 frame) NO_INLINE {
         int maxFrames = MR::getBckFrameMax(liveActor);

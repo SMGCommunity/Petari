@@ -6,12 +6,6 @@
 #include "Game/Util.hpp"
 #include <revolution/wpad.h>
 
-void Fluff_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-}
-
 namespace {
     static const s32 sFreeBloomFlyUpStep = 15;
     static const f32 sSpeedWaitAir = 10.0f;

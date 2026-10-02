@@ -4,10 +4,6 @@
 #include "Game/Util/JointController.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
-void BossBegomanHead_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 namespace {
     static const f32 hSpikeRotate = 0.23f;
     static const f32 hSpikeRotateTurn = 0.2f;

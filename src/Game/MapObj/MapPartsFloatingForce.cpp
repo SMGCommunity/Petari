@@ -16,12 +16,6 @@ namespace NrvMapPartsFloatingForce {
     NEW_NERVE(HostTypeMoveReturn, MapPartsFloatingForce, MoveReturn);
 }  // namespace NrvMapPartsFloatingForce
 
-void MapPartsFloatingForce_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)3.0f;
-}
-
 SpringStep::SpringStep(f32 cond, f32 speed, f32 angle) : mSpringValue() {
     mCondition = cond;
     mSpeed = speed;

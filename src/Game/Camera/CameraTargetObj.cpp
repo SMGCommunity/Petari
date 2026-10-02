@@ -12,10 +12,6 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-void CameraTargetObj_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 namespace {
     static TVec3f sZeroVec(0.0f, 0.0f, 0.0f);
 };  // namespace

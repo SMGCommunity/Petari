@@ -22,11 +22,6 @@ namespace NrvKoopaStateJumpAway {
     NEW_NERVE(KoopaStateJumpAwayNrvLand, KoopaStateJumpAway, Land);
 };  // namespace NrvKoopaStateJumpAway
 
-void KoopaStateJumpAway_FORCE_MATCH_SDATA2() {
-    (void) 1.0f;
-    (void) 0.0f;
-}
-
 KoopaStateJumpAway::KoopaStateJumpAway(Koopa* pKoopa) : ActorStateBase< Koopa >("State[ジャンプで離れる]", pKoopa) {
 }
 

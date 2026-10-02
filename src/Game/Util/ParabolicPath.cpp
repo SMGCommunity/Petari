@@ -3,13 +3,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
-void ParabolicPath_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.0f;
-}
-
 ParabolicPath::ParabolicPath() : mPosition(0, 0, 0), mAxisY(0, 1, 0), mAxisZ(0, 0, 1) {
     _24 = 0.0f;
     _28 = 0.0f;

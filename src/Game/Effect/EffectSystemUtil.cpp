@@ -26,12 +26,6 @@
 #include <cstdio>
 #include <cstring>
 
-void EffectSystemUtil_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 namespace {
     s32 countAnimNames(const char* pNames) {
         s32 count = 0;

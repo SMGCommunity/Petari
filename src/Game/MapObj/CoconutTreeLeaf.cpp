@@ -2,12 +2,6 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
-void CoconutTreeLeaf_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 namespace {
     const f32 sPointInterval = 100.0f;
     const f32 sSpringAccelRateFree = 0.001f;

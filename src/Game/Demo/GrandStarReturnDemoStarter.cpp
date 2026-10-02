@@ -19,11 +19,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include <cstdio>
 
-void GrandStarReturnDemoStarter_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 namespace {
     const char* const cDemoMovePartName = "移動";
     const char* const cDemoWaitPartName = "ウェイト→コア突入";

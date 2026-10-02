@@ -13,11 +13,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void DemoKoopaJrShip_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)-1.0f;
-}
-
 namespace {
     struct Anim {
         /* 0x00 */ const char* mEntryAnimName;

@@ -14,11 +14,6 @@ namespace NrvDinoPackunFire {
     NEW_NERVE(DinoPackunTrackFireNrvGround, DinoPackunTrackFire, Ground);
 };  // namespace NrvDinoPackunFire
 
-void DinoPackunTrackFire_FORCE_MATCH_SDATA2() {
-    (void) 0.0f;
-    (void) 2.0f;
-}
-
 DinoPackunTrackFireHolder::DinoPackunTrackFireHolder(s32 max) : DeriveActorGroup< DinoPackunTrackFire >("シッポ跡炎管理", max) {
     DinoPackunTrackFire* pTrackFire;
 

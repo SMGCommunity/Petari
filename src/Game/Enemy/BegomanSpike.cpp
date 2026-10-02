@@ -125,13 +125,6 @@ namespace {
     const f32 hKeepDistNear = 600.0f;
 }  // namespace
 
-void BegomanSpike_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)2.0f;
-}
-
 BegomanSpike::BegomanSpike(const char* pName) : BegomanBase(pName), mHead(), mBrokenModel(), mTurnAfterBlow() {
     mHeadMatrix.identity();
     mWaterColumnMatrix.identity();

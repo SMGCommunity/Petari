@@ -3,15 +3,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-void DodoryuUtil_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.0000038146973f;
-    (void)0.5f;
-    (void)3.1415927f;
-    (void)2.0f;
-}
-
 namespace DodoryuUtil {
     bool calcVerticalizedDir(Dodoryu* pDodoryu, TVec3f* pVec, const TVec3f& rVec) {
         TVec3f yDir;

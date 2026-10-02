@@ -10,10 +10,6 @@
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution/types.h>
 
-void LavaBreakColumn_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace {
     static const f32 sEffectPosOffsetY = 5000.0f;
 };  // namespace

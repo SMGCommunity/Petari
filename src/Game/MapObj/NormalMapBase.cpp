@@ -29,12 +29,6 @@ s16 sgrad_tex_thresh;
 static s16 width = 0x100;
 static s16 height = 0x100;
 
-void NormalMapBase_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-}
-
 NormalMapBase::NormalMapBase(const char* pName) : LiveActor(pName) {
     mBtkPlayer = nullptr;
     _150 = 0;

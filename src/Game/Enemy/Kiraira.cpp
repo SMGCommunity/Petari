@@ -48,13 +48,6 @@ namespace NrvKiraira {
     NEW_NERVE(KirairaNrvRecover, Kiraira, Recover);
 };  // namespace NrvKiraira
 
-void Kiraira_FORCE_MATCH_SDATA2() {
-    (void) 1.0f;
-    (void) 0.0f;
-    (void) -1.0f;
-    (void) 2.0f;
-}
-
 Kiraira::Kiraira(const char* pName)
     : LiveActor(pName), mRailCoordSpeed(5.0f), mRailVec(0.0f, 0.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f), _A8(0.0f), mIsRail(false),
       mIsForceDetonated(false), mEyesOpen(true), mSharedGroup(nullptr), mChain(nullptr) {

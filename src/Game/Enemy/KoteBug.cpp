@@ -9,14 +9,6 @@
 #include "Game/Util.hpp"
 #include "Game/Util/JointController.hpp"
 
-void KoteBug_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)-1.0f;
-    (void)3.1415927f;
-    (void)2.0f;
-}
-
 namespace {
     const f32 hCommonGravity = 1.5f;
     const f32 hGroundDamp = 0.8f;

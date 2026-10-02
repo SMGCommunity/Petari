@@ -16,13 +16,6 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
-void AssemblyBlock_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)0.5f;
-    (void)-1.0f;
-    (void)2.0f;
-}
-
 namespace {
     static const s32 sDefaultTimer = 300;
     static const s32 sStepForAssemble = 10;

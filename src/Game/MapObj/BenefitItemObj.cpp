@@ -23,8 +23,6 @@
 #include "Game/Util/SoundUtil.hpp"
 
 void BenefitItemObj_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
     (void)50.0f;
     (void)5.0f;
     (void)10.0f;

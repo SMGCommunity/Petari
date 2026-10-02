@@ -15,12 +15,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
-void PoltaFunction_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)3.0f;
-}
-
 namespace PoltaFunction {
     void onMovement(Polta* pPolta) {
         MR::forceDeleteEffectAll(pPolta);

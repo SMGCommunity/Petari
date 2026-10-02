@@ -11,10 +11,6 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void ArrowSwitchMulti_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 namespace {
     static const f32 sRotYTargetList[] = {0.0f, 90.0f, 180.0f, -90.0f};
 

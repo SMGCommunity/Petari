@@ -4,10 +4,6 @@
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void CameraInnerCylinder_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 CameraInnerCylinder::CameraInnerCylinder(const char* pName)
     : Camera(pName), mWPoint(0.0f, 0.0f, 0.0f), mAxis(0.0f, 0.0f, 0.0f), mAngleA(), mAngleB(), mDist(), mLastWatchPoint(0.0f, 0.0f, 0.0f),
       mIsNotInitialized() {

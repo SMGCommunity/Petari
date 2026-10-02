@@ -42,8 +42,6 @@
 #include <cstdio>
 
 void SkeletalFishBoss_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
     (void)1000.0f;
     (void)1.8325958f;
     (void)2607.5945f;

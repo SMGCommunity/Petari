@@ -18,10 +18,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
-void ButlerMap_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace {
     const char* cDemoNameMapLecture = "バトラーマップレクチャー";
 };  // namespace

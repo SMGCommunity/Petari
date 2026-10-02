@@ -16,12 +16,6 @@
 #include <JSystem/JUtility/JUTTexture.hpp>
 
 void MarioFoo_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.14159274f;
-    (void)1.57079637f;
-    (void)2.0f;
     (void)0.52359879f;
     (void)0.100000001f;
     (void)120.0f;

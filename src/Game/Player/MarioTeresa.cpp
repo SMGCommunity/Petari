@@ -18,11 +18,6 @@
 #include "Game/Util/StringUtil.hpp"
 
 void MarioTeresa_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.14159274f;
-    (void)2.0f;
     (void)100.0f;
     (void)10.0f;
     (void)0.00100000005f;

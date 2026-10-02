@@ -4,10 +4,6 @@
 #include "Game/Util/ObjUtil.hpp"
 #include <cstdio>
 
-void SkeletalFishBossInfo_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace {
     static const char* sParamFileName = "Param";
     static const char* sParamNameLevelNum = "LevelNum";

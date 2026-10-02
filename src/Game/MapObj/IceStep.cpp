@@ -13,7 +13,6 @@ namespace NrvIceStep {
 };  // namespace NrvIceStep
 
 void IceStep_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
     (void)90.0f;
     (void)0.2f;
 }

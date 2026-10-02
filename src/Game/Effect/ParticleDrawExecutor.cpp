@@ -11,11 +11,6 @@
 #include <JSystem/JParticle/JPAEmitterManager.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
 
-void ParticleDrawExecutor_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)0.5f;
-}
-
 namespace {
     void connectToSceneDrawAdaptor(NameObjAdaptor* pAdaptor, const MR::FunctorBase& rFunctor, int drawType) NO_INLINE {
         pAdaptor->connectToDraw(rFunctor);

@@ -14,10 +14,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include <revolution/types.h>
 
-void Jiraira_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace {
     static const s32 hPreRecoverTime = 188;
     static const s32 hBeginExplodeTime = 30;

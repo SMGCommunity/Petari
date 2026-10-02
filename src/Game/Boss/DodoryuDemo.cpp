@@ -14,8 +14,6 @@
 #include "Game/Util/SoundUtil.hpp"
 
 void DodoryuDemo_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)2.0f;
     (void)10.0f;
 }
 

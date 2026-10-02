@@ -34,12 +34,6 @@ namespace NrvTakobo {
     NEW_NERVE_ONEND(HostTypeNrvDpdPointed, Takobo, DpdPointed, DpdPointed);
 };  // namespace NrvTakobo
 
-void Takobo_FORCE_MATCH_SDATA2() {
-    (void) 1.0f;
-    (void) 0.0f;
-    (void) 2.0f;
-}
-
 Takobo::Takobo(const char* pName) : LiveActor(pName), _8C(0), _90(0, 0, 1), _A0(0), _9C(-1), _A1(0), _B0(1, 0, 0) {
     _BC = 0;
     _C0 = 5.0f;

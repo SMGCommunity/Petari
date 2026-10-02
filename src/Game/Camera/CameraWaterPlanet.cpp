@@ -5,11 +5,6 @@
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void CameraWaterPlanet_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)0.5f;
-}
-
 CameraWaterPlanet::CameraWaterPlanet(const char* pName) : Camera(pName), mDistMin(500.0f), mDistMax(2000.0f), mAngleX(MR::pi() / 4.0f) {
 }
 

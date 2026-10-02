@@ -17,12 +17,6 @@
 #include "Game/Util/SystemUtil.hpp"
 #include <JSystem/JUtility/JUTVideo.hpp>
 
-void HomeButtonLayout_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-}
-
 namespace {
     int SoundCallback(int evt, int num) {
         switch (evt) {

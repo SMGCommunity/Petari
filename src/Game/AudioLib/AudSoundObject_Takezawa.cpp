@@ -4,13 +4,6 @@
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void AudSoundObject_Takezawa_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)2.0f;
-}
-
 namespace {
     static const s32 cMagicPntGVolMinPrm = 100;
     static const s32 cMagicPntGVolMaxPrm = 1500;

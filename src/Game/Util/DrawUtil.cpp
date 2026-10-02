@@ -32,10 +32,6 @@ static bool sIsReinitTextureCache = true;
 static GXTexCacheSize sReinitTextureCacheSize = GX_TEXCACHE_128K;
 
 void DrawUtil_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)-1.0f;
     (void)-10000.0f;
     (void)10000.0f;
     (void)608.0f;

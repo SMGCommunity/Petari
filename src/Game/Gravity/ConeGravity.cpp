@@ -1,12 +1,6 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void ConeGravity_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 ConeGravity::ConeGravity() : PlanetGravity() {
     mValidDegree = 360.0f;
     mValidCos = -1.0f;

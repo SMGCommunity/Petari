@@ -12,9 +12,6 @@
 #include <cstring>
 
 void MarioActorTakeMsg_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)3.14159274f;
-    (void)2.0f;
     (void)1.04719758f;
     (void)500.0f;
     (void)57.2957802f;

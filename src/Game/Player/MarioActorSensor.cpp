@@ -17,8 +17,6 @@
 #include <cstring>
 
 void MarioActorSensor_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)1.57079637f;
     (void)100.0f;
     (void)2000.0f;
     (void)80.0f;

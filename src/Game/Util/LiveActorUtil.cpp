@@ -35,9 +35,6 @@
 #include <cstdio>
 
 void LiveActorUtil_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)2.0f;
     (void)360.0f;
     (void)0.001f;
     (void)5000.0f;

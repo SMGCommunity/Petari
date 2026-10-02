@@ -20,15 +20,6 @@ namespace {
 }  // namespace
 
 void SmallStone_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)3.814697265625e-06f;
-    (void)-3.814697265625e-06f;
-    (void)0.5f;
-    (void)-1.0f;
-    (void)1.5707964f;
-    (void)2.0f;
-    (void)-1.5707964f;
     (void)0.017453292f;
     (void)-360.0f;
     (void)360.0f;

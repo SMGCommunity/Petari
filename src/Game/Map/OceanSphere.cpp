@@ -16,14 +16,6 @@
 #include <JSystem/JUtility/JUTTexture.hpp>
 #include <revolution/gx/GXVert.h>
 
-void OceanSphere_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.1415927f;
-    (void)1.5707964f;
-}
-
 GXColor sOceanSphereTevReg0Face = {0x48, 0x80, 0xBE, 0x1C};
 GXColor sOceanSphereTevReg1FrontDefault = {0x00, 0x51, 0x70, 0x6F};
 GXColor sOceanSphereTevReg1FrontTear = {0x00, 0x64, 0xFF, 0x6F};

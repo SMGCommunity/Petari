@@ -12,10 +12,6 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-void ShockWaveGenerator_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace {
     static const char* cDemoCameraName = "衝撃波カメラ";
     static const s32 sStepForGenerate = 50;

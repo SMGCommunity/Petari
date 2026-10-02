@@ -15,11 +15,6 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 
-void GravityLight_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)0.5f;
-}
-
 namespace {
     // const f32 sBaseInterpoleRate = 0.0f;
     // const f32 sAccel = 0.0f;

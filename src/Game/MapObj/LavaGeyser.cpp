@@ -12,12 +12,6 @@ namespace NrvLavaGeyser {
     NEW_NERVE(HostTypeNrvShootDown, LavaGeyser, ShootDown);
 };  // namespace NrvLavaGeyser
 
-void LavaGeyser_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)2.0f;
-}
-
 LavaGeyser::LavaGeyser(const char* pName) : LiveActor(pName) {
     mArg0 = 180;
     mArg1 = 180;

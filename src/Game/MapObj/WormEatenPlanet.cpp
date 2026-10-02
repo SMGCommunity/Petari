@@ -7,10 +7,6 @@
 #include "Game/Util.hpp"
 #include <cstdio>
 
-void WormEatenPlanet_FORCE_MATCH_SDATA2() {
-    (void)-1.0f;
-}
-
 namespace {
     static const s32 sNumWormEatenHill = 5;
 };  // namespace

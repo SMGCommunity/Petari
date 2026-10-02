@@ -9,8 +9,6 @@
 #include "Game/Util/SoundUtil.hpp"
 
 void FORCE_MATCH_KOOPABATTLEMAPDAMAGEPLATE_SDATA2() {
-    (void)0.0f;
-    (void)3.0f;
     (void)-150.0f;
     (void)250.0f;
 }

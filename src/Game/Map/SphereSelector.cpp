@@ -5,11 +5,6 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
 
-void SphereSelector_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 namespace {
     inline bool isWaitingForClick(const SphereSelector* pSelector) {
         return pSelector->_A4 < 0;

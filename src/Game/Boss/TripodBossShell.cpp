@@ -29,10 +29,6 @@ namespace NrvTripodBossShell {
     NEW_NERVE(TripodBossShellNrvBreak, TripodBossShell, Break);
 };  // namespace NrvTripodBossShell
 
-void TripodBossShell_FORCE_MATCH_SDATA2() {
-    (void) 0.0f;
-}
-
 TripodBossShell::~TripodBossShell() {
 }
 

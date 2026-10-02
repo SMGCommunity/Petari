@@ -17,14 +17,6 @@
 #include <cstring>
 #include <revolution/gd.h>
 
-void MarioShadow_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)-1.0f;
-    (void)2.0f;
-}
-
 namespace {
     f32 cCheckOffset0 = 5.0f;
     f32 cDrawOffset0 = -5.0f;

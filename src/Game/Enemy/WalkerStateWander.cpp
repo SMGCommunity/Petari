@@ -8,10 +8,6 @@
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 
-void WalkerStateWander_FORCE_MATCH_SDATA2() {
-    (void)3.0f;
-}
-
 namespace {
     WalkerStateWanderParam sDefaultParam;
 };  // namespace

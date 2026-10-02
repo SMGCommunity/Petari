@@ -6,10 +6,6 @@
 #include "Game/Util/StringUtil.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
-void TripodBossKillerGeneraterCircle_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 struct SetUpData {
     /* 0x00 */ const char* mName;
     /* 0x04 */ const f32* mAngleTable;

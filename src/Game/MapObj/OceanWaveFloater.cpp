@@ -15,10 +15,7 @@
 #include <revolution/types.h>
 
 void OceanWaveFloater_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)-1.0f;
     (void)0.01745329238474369f;
-    (void)0.0f;
 }
 
 namespace {

@@ -3,10 +3,6 @@
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/GravityUtil.hpp"
 
-void CameraTargetMtx_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 CameraTargetMtx::CameraTargetMtx(const char* pName)
     : CameraTargetObj(pName), mPosition(0.0f, 0.0f, 0.0f), mLastMove(0.0f, 0.0f, 0.0f), mGravityVector(0.0f, -1.0f, 0.0f), mUp(0.0f, 1.0f, 0.0f),
       mFront(0.0f, 0.0f, 1.0f), mSide(0.0f, 0.0f, 1.0f), mInvalidLastMove(), mCameraArea() {

@@ -11,10 +11,6 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void Tsukidashikun_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace {
     static const f32 sDefaultMoveSpeed = 10.0f;
     static const s32 sDefaultWaitTime = 120;

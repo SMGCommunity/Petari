@@ -11,12 +11,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
 
-void CameraLocalUtil_FORCE_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-}
-
 namespace CameraLocalUtil {
     const TVec3f& getWatchPos(const CameraMan* pCameraMan) {
         return pCameraMan->mPoseParam->mWatchPos;

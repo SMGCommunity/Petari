@@ -8,11 +8,6 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/MultiEventCamera.hpp"
 
-void SpinDriverCamera_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)2.0f;
-}
-
 SpinDriverCamera::SpinDriverCamera() : mCamera(), mTargetMtx(), mCameraInfo(), mAppearCameraFrame() {
 }
 

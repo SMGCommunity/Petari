@@ -22,14 +22,6 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
-void BombHei_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.0f;
-    (void)2.0f;
-}
-
 void BombHei_DUMMY() {
     TVec3f a;
     a *= 1.0f;

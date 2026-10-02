@@ -7,11 +7,6 @@ void ParallelGravity_FORCE_MATCH(const TVec3f& rVector) {
     TVec3f negated = -rVector;
 }
 
-void ParallelGravity_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 ParallelGravity::ParallelGravity()
     : PlanetGravity(), mPlanePosition(0, 0, 0), mPlaneUpVec(0.0f, 1.0f, 0.0f), mWorldPlanePosition(0, 0, 0), mWorldPlaneUpVec(0.0f, 1.0f, 0.0f) {
     mCylinderHeight = 1000.0f;

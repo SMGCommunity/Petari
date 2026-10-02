@@ -3,12 +3,10 @@
 #include "Game/Util.hpp"
 
 void IronCannonShell_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
     (void)30.0f;
     (void)75.0f;
     (void)100.0f;
     (void)1.2999999523162842f;
-    (void)0.0f;
 }
 
 namespace {

@@ -5,10 +5,6 @@
 #include "Game/Camera/CameraRailHolder.hpp"
 #include "Game/LiveActor/RailRider.hpp"
 
-void CameraRailDemo_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 CameraRailDemo::CameraRailDemo(const char* pName) : Camera(pName) {
 }
 

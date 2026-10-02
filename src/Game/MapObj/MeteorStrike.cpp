@@ -16,16 +16,6 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void MeteorStrike_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.000003814697265625f;
-    (void)-0.000003814697265625f;
-    (void)-1.0f;
-    (void)1.5707963705062866f;
-    (void)-1.5707963705062866f;
-}
-
 namespace {
     inline f32 toDegree(f32 angle) {
         return _180_PI * angle;

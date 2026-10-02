@@ -9,10 +9,8 @@
 #include <cstdio>
 
 void BeamGoRoundPlanet_FORCE_MATCH_SDATA2() {
-    (void)-1.0f;
     (void)100.0f;
     (void)2700.0f;
-    (void)0.0f;
 }
 
 BeamGoRoundBeam::BeamGoRoundBeam(MtxPtr pMtx) : LiveActor("ビームゴーラウンドビーム") {

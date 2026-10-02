@@ -18,10 +18,6 @@
 #include <revolution/types.h>
 
 void BossStinkBugActionBase_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.0f;
     (void)15.0f;
     (void)0.02f;
     (void)0.95f;
@@ -45,7 +41,6 @@ void BossStinkBugActionBase_FORCE_MATCH_SDATA2() {
     (void)4.5e+03f;
     (void)126.0f;
     (void)2e+01f;
-    (void)0.0f;
 }
 
 void BossStinkBugActionBase_FORCE_MATCH_STRINGS() {

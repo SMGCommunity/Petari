@@ -5,11 +5,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include <cstring>
 
-void CameraParamChunk_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 namespace {
     static const char* sFlagName[] = {"flag.noreset",     "flag.nofovy",       "flag.lofserpoff",
                                       "flag.antibluroff", "flag.collisionoff", "flag.subjectiveoff"};

@@ -7,13 +7,6 @@
 #include <JSystem/JKernel/JKRHeap.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
 
-void TrampleStar_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)3.814697265625e-06f;
-    (void)0.5f;
-}
-
 namespace {
     f32 debug1 = 0.003331f;
     f32 debug2 = -0.003331f;

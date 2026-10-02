@@ -16,11 +16,6 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include <cstdio>
 
-void PictureBookLayout_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 namespace {
     inline void advanceBookIndex(s32& rIndex, const s32& rDirection) {
         rIndex += rDirection;

@@ -3,13 +3,6 @@
 #include "Game/Camera/CameraPoseParam.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void OnlyCamera_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)-1.0f;
-}
-
 namespace {
     static const f32 sMinDistance = 1.0f;
     static const f32 sBaseLength = 300.0f;

@@ -15,8 +15,6 @@
 #include "Game/Util/ObjUtil.hpp"
 
 void FORCE_MATCH_KOOPABATTLEMAPPLANET_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
     (void)100.0f;
     (void)1180.0f;
     (void)1200.0f;

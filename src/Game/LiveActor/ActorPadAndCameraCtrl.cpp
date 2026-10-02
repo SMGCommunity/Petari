@@ -7,10 +7,6 @@
 #include "Game/Util/StringUtil.hpp"
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 
-void ActorPadAndCameraCtrl_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace {
     const char* sFileName = "PadAndCameraCtrl";
     // sDefaultDistanceNear

@@ -31,11 +31,6 @@
 #include <revolution/types.h>
 
 void BombTeresa_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.0f;
-    (void)2.0f;
     (void)70.0f;
     (void)80.0f;
     (void)20.0f;

@@ -25,10 +25,6 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
-void Butler_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace {
     const char* const cDemoNameDomeLecture1 = "ドームレクチャー１";
     const char* const cDemoNameDomeLecture2 = "ドームレクチャー２";

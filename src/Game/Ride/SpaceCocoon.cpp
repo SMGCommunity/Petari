@@ -34,14 +34,6 @@
 #include <revolution/mtx.h>
 #include <revolution/wpad.h>
 
-void SpaceCocoon_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)3.0f;
-    (void)-1.0f;
-    (void)2.0f;
-}
-
 namespace {
     static const s32 sAimAnimInterpole = 10;
     static const f32 sAimDistanceToStretch = 300.0f;

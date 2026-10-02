@@ -1,11 +1,6 @@
 #include "Game/Enemy/SamboFunction.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 
-void SamboFunctionTalkSupportPlayerWatcher_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)2.0f;
-}
-
 AnimScaleController* SamboFunction::createAnimScaleController(AnimScaleParam* pParam) {
     pParam->_10 = 4.0f;
     pParam->_14 = 1.0f;

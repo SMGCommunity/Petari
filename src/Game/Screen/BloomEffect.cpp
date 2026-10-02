@@ -14,12 +14,6 @@
 #include "revolution/gx/GXTev.h"
 #include <JSystem/JUtility/JUTTexture.hpp>
 
-void BloomEffect_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 namespace {
     struct RadAndOfs {
         /* 0x00 */ f32 _0;

@@ -31,13 +31,6 @@
 #include <revolution/gx/GXVert.h>
 #include <revolution/wpad.h>
 
-void WaterRoad_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)-1.0f;
-}
-
 void WaterRoad_DUMMY() {
     TVec3f a, b;
     a.sub(b);

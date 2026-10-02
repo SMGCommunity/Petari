@@ -5,12 +5,9 @@
 #include "Game/Util.hpp"
 
 void ValveSwitch_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)3.0f;
     (void)100.0f;
     (void)-75.0f;
     (void)150.0f;
-    (void)0.0f;
 }
 
 namespace NrvValveSwitch {

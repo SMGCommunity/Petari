@@ -8,11 +8,6 @@ namespace NrvSeesawMoveNut {
     NEW_NERVE(SeesawMoveNutNrvEdge, SeesawMoveNut, Edge);
 }  // namespace NrvSeesawMoveNut
 
-void SeesawMoveNut_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)0.5f;
-}
-
 SeesawMoveNut::SeesawMoveNut(const char* pName) : MapObjActor(pName), mSpeed(100.0f), mPrevAngularSpeed() {
 }
 

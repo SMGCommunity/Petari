@@ -5,10 +5,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-void CameraFixedPoint_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 CameraFixedPoint::CameraFixedPoint(const char* pName) : Camera(pName), mPos(0.0f, 0.0f, 0.0f) {
 }
 

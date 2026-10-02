@@ -6,10 +6,6 @@
 #include "Game/MapObj/ClipAreaHolder.hpp"
 #include "Game/Util.hpp"
 
-void KameckBeam_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace {
     const f32 sFireAngleLebel1[] = {0.0f};
     const f32 sFireAngleLebel2[] = {30.0f, -30.0f};

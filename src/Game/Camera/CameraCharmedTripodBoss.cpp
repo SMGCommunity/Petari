@@ -5,12 +5,6 @@
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void CameraCharmedTripodBoss_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 CameraCharmedTripodBoss::CameraCharmedTripodBoss(const char* pName)
     : Camera(pName), mJointId(-1), mUp(0.0f, 1.0f, 0.0f), mWPoint(0.0f, 0.0f, 1000.0f), mAngleX(), mAngleY() {
 }

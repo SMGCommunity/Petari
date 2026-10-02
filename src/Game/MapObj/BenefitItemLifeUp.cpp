@@ -5,10 +5,6 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-void BenefitItemLifeUp_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 BenefitItemLifeUp::BenefitItemLifeUp(const char* pName) : BenefitItemObj(pName, "KinokoLifeUp") {
     if (MR::isGalaxyDarkCometAppearInCurrentStage()) {
         _D8 = 1;

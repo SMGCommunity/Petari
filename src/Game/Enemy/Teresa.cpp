@@ -25,11 +25,6 @@
 #include "Game/Util/TriangleFilter.hpp"
 
 void Teresa_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.0f;
-    (void)2.0f;
     (void)3e+03f;
     (void)6e+02f;
     (void)8e+01f;
@@ -66,7 +61,6 @@ void Teresa_FORCE_MATCH_SDATA2() {
     (void)0.3f;
     (void)0.02f;
     (void)9.0f;
-    (void)0.0f;
 }
 
 namespace {

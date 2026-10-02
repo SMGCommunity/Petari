@@ -9,11 +9,6 @@ namespace {
     const char* sTextOutFileName = "FaceJointCtrl";
 }  // namespace
 
-void FaceJointCtrl_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 FaceJointCtrl::FaceJointCtrl(LiveActor* pActor)
     : mHostActor(pActor), mDegreeMax(::sDefaultDegreeMax), _8(0.0f, 0.0f, 1.0f), _14(0.0f, 0.0f, 1.0f), mJointController() {
     mJointCtrlRate = new JointCtrlRate();

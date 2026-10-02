@@ -1,11 +1,6 @@
 #include "Game/Util/RumbleCalculator.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
 
-void RumbleCalculator_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 RumbleCalculator::RumbleCalculator(f32 frequency, f32 phaseOffset, f32 amplitude, u32 duration) {
     _4 = duration;
     _8 = duration;

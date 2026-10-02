@@ -23,11 +23,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
-void StarReturnDemoStarter_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 namespace {
     const s32 cDemoAppearEffectStep = 30;
     const s32 cDemoAppearWaitFrame = 45;

@@ -5,11 +5,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/ValueControl.hpp"
 
-void TimeLimitLayout_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 namespace {
     static const Timing sTimingTable[] = {
         {18000, 100, true, true, true}, {10800, 100, true, true, true},  {3600, 100, true, true, true},

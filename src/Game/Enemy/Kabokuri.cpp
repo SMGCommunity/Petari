@@ -59,10 +59,6 @@ namespace NrvKabokuri {
     NEW_NERVE(KabokuriNrvBreak, Kabokuri, Break);
 };  // namespace NrvKabokuri
 
-void Kabokuri_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 Kabokuri::Kabokuri(const char* pName)
     : LiveActor(pName), mKuribo(), mBreakModel(), mAnimeScale(), mStateBindStartPointer(), mRotationQuat(0.0f, 0.0f, 0.0f, 1.0f),
       mFrontVec(0.0f, 0.0f, 1.0f), _B8(-1), mIsValidDropFire() {

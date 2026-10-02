@@ -7,8 +7,6 @@
 #include "Game/Util/MathUtil.hpp"
 
 void BeeFlowerHover_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
     (void)50.0f;
 }
 

@@ -18,15 +18,6 @@
 #include "Game/Util/SoundUtil.hpp"
 
 void MarioSwim_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)3.81469727e-06f;
-    (void)0.5f;
-    (void)3.0f;
-    (void)-1.0f;
-    (void)3.14159274f;
-    (void)1.57079637f;
-    (void)2.0f;
     (void)100.0f;
     (void)50.0f;
     (void)0.52359879f;
