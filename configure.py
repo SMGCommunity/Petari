@@ -238,6 +238,10 @@ cflags_game = [
     f"-DVERSION={version_num}",
 ]
 
+# Game TUs whose original .sdata2 pool doesn't start with the shared constants in this order
+cflags_game_noprefix = cflags_game[:]
+cflags_game.append("-prefix include/Game/SData2Order.hpp")
+
 cflags_jsys = [
     "-nodefaults",
     "-proc gekko",
@@ -785,7 +789,7 @@ config.libs = [
             Object(Matching, "Game/AreaObj/ImageEffectArea.cpp"),
             Object(Matching, "Game/AreaObj/LightArea.cpp"),
             Object(Matching, "Game/AreaObj/LightAreaHolder.cpp"),
-            Object(NonMatching, "Game/AreaObj/MercatorTransformCube.cpp"),
+            Object(NonMatching, "Game/AreaObj/MercatorTransformCube.cpp", cflags=cflags_game_noprefix),
             Object(Matching, "Game/AreaObj/MessageArea.cpp"),
             Object(Matching, "Game/AreaObj/PlayerSeArea.cpp"),
             Object(Matching, "Game/AreaObj/QuakeEffectArea.cpp"),
@@ -805,7 +809,7 @@ config.libs = [
         "AudioLib",
         [
             Object(NonMatching, "Game/AudioLib/AudSystem.cpp"),
-            Object(Matching, "Game/AudioLib/AudParams.cpp"),
+            Object(Matching, "Game/AudioLib/AudParams.cpp", cflags=cflags_game_noprefix),
             Object(Matching, "Game/AudioLib/AudSystemVolumeController.cpp"),
             Object(Matching, "Game/AudioLib/AudAudience.cpp"),
             Object(Matching, "Game/AudioLib/AudSoundInfo.cpp"),
@@ -1121,9 +1125,9 @@ config.libs = [
             Object(Matching, "Game/Camera/CameraFix.cpp"),
             Object(Matching, "Game/Camera/CameraFixedPoint.cpp"),
             Object(Matching, "Game/Camera/CameraFixedThere.cpp"),
-            Object(Matching, "Game/Camera/CameraFollow.cpp"),
+            Object(Matching, "Game/Camera/CameraFollow.cpp", cflags=cflags_game_noprefix),
             Object(Matching, "Game/Camera/CameraFooFighter.cpp"),
-            Object(Matching, "Game/Camera/CameraFooFighterPlanet.cpp"),
+            Object(Matching, "Game/Camera/CameraFooFighterPlanet.cpp", cflags=cflags_game_noprefix),
             Object(Matching, "Game/Camera/CameraFrontAndBack.cpp"),
             Object(Matching, "Game/Camera/CameraGround.cpp"),
             Object(NonMatching, "Game/Camera/CameraHeightArrange.cpp"),
@@ -1137,7 +1141,7 @@ config.libs = [
             Object(Matching, "Game/Camera/CameraManGame.cpp"),
             Object(Matching, "Game/Camera/CameraManPause.cpp"),
             Object(Matching, "Game/Camera/CameraManSubjective.cpp"),
-            Object(Matching, "Game/Camera/CameraMedianPlanet.cpp"),
+            Object(Matching, "Game/Camera/CameraMedianPlanet.cpp", cflags=cflags_game_noprefix),
             Object(Matching, "Game/Camera/CameraMedianTower.cpp"),
             Object(Matching, "Game/Camera/CameraMtxRegParallel.cpp"),
             Object(Matching, "Game/Camera/CameraObjParallel.cpp"),
@@ -1179,7 +1183,7 @@ config.libs = [
             Object(Matching, "Game/Camera/CameraTripodPlanet.cpp"),
             Object(Matching, "Game/Camera/CameraTrundle.cpp"),
             Object(Matching, "Game/Camera/CameraTwistedPassage.cpp"),
-            Object(Matching, "Game/Camera/CameraViewInterpolator.cpp"),
+            Object(Matching, "Game/Camera/CameraViewInterpolator.cpp", cflags=cflags_game_noprefix),
             Object(Matching, "Game/Camera/CameraWaterFollow.cpp"),
             Object(Matching, "Game/Camera/CameraWaterPlanet.cpp"),
             Object(Matching, "Game/Camera/CameraWaterPlanetBoss.cpp"),
@@ -1323,7 +1327,7 @@ config.libs = [
             Object(Matching, "Game/Enemy/KameckFireBall.cpp"),
             Object(Matching, "Game/Enemy/KameckHolder.cpp"),
             Object(Matching, "Game/Enemy/KameckTurtle.cpp"),
-            Object(Matching, "Game/Enemy/Kanina.cpp"),
+            Object(Matching, "Game/Enemy/Kanina.cpp", cflags=cflags_game_noprefix),
             Object(Matching, "Game/Enemy/Karikari.cpp"),
             Object(Matching, "Game/Enemy/KarikariDirector.cpp"),
             Object(Matching, "Game/Enemy/Karon.cpp"),
@@ -1346,7 +1350,7 @@ config.libs = [
             Object(Matching, "Game/Enemy/MogucchiShooter.cpp"),
             Object(NonMatching, "Game/Enemy/MoguStone.cpp"),
             Object(Matching, "Game/Enemy/NokonokoLand.cpp"),
-            Object(Matching, "Game/Enemy/Onimasu.cpp"),
+            Object(Matching, "Game/Enemy/Onimasu.cpp", cflags=cflags_game_noprefix),
             Object(Matching, "Game/Enemy/OnimasuJump.cpp"),
             Object(Matching, "Game/Enemy/OnimasuPivot.cpp"),
             Object(Matching, "Game/Enemy/OtaRock.cpp"),
@@ -1829,7 +1833,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/PurpleCoinStarter.cpp"),
             Object(Matching, "Game/MapObj/QuarterRollGravityRoomArrow.cpp"),
             Object(Matching, "Game/MapObj/QuestionBoxGalleryObj.cpp"),
-            Object(Matching, "Game/MapObj/QuestionCoin.cpp"),
+            Object(Matching, "Game/MapObj/QuestionCoin.cpp", cflags=cflags_game_noprefix),
             Object(Matching, "Game/MapObj/RailBlock.cpp"),
             Object(Matching, "Game/MapObj/RailCoin.cpp"),
             Object(NonMatching, "Game/MapObj/RailMoveObj.cpp"),
@@ -1879,7 +1883,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/SpiderThreadPoint.cpp"),
             Object(Matching, "Game/MapObj/SpiderThreadRadialLine.cpp"),
             Object(Matching, "Game/MapObj/SpiderThreadWindCtrl.cpp"),
-            Object(Matching, "Game/MapObj/SpinDriver.cpp"),
+            Object(Matching, "Game/MapObj/SpinDriver.cpp", cflags=cflags_game_noprefix),
             Object(NonMatching, "Game/MapObj/SpinDriverCamera.cpp"),
             Object(Matching, "Game/MapObj/SpinDriverOperateRing.cpp"),
             Object(Matching, "Game/MapObj/SpinDriverPathDrawer.cpp"),
@@ -1933,7 +1937,7 @@ config.libs = [
             Object(Matching, "Game/MapObj/FloaterFloatingForceTypeNormal.cpp"),
             Object(NonMatching, "Game/MapObj/FloaterFloatingForceTypeSpring.cpp"),
             Object(Matching, "Game/MapObj/FloaterFunction.cpp"),
-            Object(Matching, "Game/MapObj/LavaHomeSeesawRotator.cpp"),
+            Object(Matching, "Game/MapObj/LavaHomeSeesawRotator.cpp", cflags=cflags_game_noprefix),
             Object(
                 Matching,
                 "Game/MapObj/MapPartsAppearController.cpp",
@@ -2237,7 +2241,7 @@ config.libs = [
             Object(
                 Matching,
                 "Game/Ride/BigBubble.cpp",
-                extra_cflags=['-pragma "opt_generateconditionalassignments off"'],
+                cflags=[*cflags_game_noprefix, '-pragma "opt_generateconditionalassignments off"'],
             ),
             Object(Matching, "Game/Ride/Creeper.cpp"),
             Object(Matching, "Game/Ride/Fluff.cpp"),
@@ -2303,7 +2307,7 @@ config.libs = [
     GameLib(
         "Screen",
         [
-            Object(Matching, "Game/Screen/THPDraw.c"),
+            Object(Matching, "Game/Screen/THPDraw.c", cflags=cflags_game_noprefix),
             Object(Matching, "Game/Screen/BackButton.cpp"),
             Object(Matching, "Game/Screen/BatteryInfo.cpp"),
             Object(Matching, "Game/Screen/BloomEffect.cpp"),
@@ -2666,7 +2670,7 @@ config.libs = [
             Object(Matching, "Game/Util/DirectDrawUtil.cpp"),
             Object(NonMatching, "Game/Util/FixedPosition.cpp"),
             Object(Matching, "Game/Util/GeometryBindUtil.cpp"),
-            Object(Matching, "Game/Util/IKJoint.cpp"),
+            Object(Matching, "Game/Util/IKJoint.cpp", cflags=cflags_game_noprefix),
             Object(Matching, "Game/Util/JMapIdInfo.cpp"),
             Object(Matching, "Game/Util/JMapInfo.cpp"),
             Object(Matching, "Game/Util/JMapLinkInfo.cpp"),
