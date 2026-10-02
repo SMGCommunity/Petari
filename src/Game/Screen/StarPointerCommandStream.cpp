@@ -9,6 +9,10 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
 
+void StarPointerCommandStream_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 namespace {
     // static const _32 hFlashShiftNum =
     // static const _32 hTexSpeed =

@@ -19,6 +19,10 @@
 #include <revolution/gx/GXTransform.h>
 #include <revolution/gx/GXVert.h>
 
+void PlantStalk_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 s32 PlantStalk_FORCE_MATCH_CLAMP(s32 a, s32 b, s32 c) {
     return MR::clamp(a, b, c) + MR::clamp(b, c, a) + MR::clamp(c, a, b);
 }

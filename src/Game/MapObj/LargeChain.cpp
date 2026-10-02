@@ -7,6 +7,10 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
+void LargeChain_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
+
 namespace {
     static const f32 sPartsLength = 200.0f;
     static const s32 sBreakInterval = 5;

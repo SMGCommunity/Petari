@@ -26,6 +26,8 @@ namespace NrvScrewSwitchReverse {
 };  // namespace NrvScrewSwitchReverse
 
 void ScrewSwitchReverse_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)3.0f;
     (void)28.0f;
     (void)-130.0f;
     (void)120.0f;
