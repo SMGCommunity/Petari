@@ -1,10 +1,5 @@
 #include "Game/Player/MarioActor.hpp"
 
-void MarioActorInit_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 void MarioActor::initMember() {
     _8C = 0;
     mDLchanger = nullptr;

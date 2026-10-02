@@ -6,10 +6,6 @@
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void CameraTwistedPassage_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace {
     static const f32 sUpVecBlend = 0.97f;
 };  // namespace

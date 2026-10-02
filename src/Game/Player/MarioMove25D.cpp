@@ -4,11 +4,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 
-void MarioMove25D_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 void Mario::set25Dmode(const AreaObj* pArea) {
     Mtx matrix;
     TVec3f rotation;

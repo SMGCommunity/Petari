@@ -11,12 +11,6 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void KoopaStateDamageEscape_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)-1.0f;
-    (void)2.0f;
-}
-
 namespace {
     static MR::ActorMoveParam sEscapeStartParam = {1.8f, 1.5f, 0.95f, 3.0f};
     static MR::ActorMoveParam sEscapeRunParamLv1 = {7.0f, 1.5f, 0.8f, 0.0f};

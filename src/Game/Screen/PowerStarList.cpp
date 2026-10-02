@@ -28,10 +28,6 @@ extern "C" int swprintf(wchar_t* pBuffer, size_t length, const wchar_t* pFormat,
 #define ITEMS_PER_PAGE 15
 #define MAX_ITEMS MAX_PAGES* ITEMS_PER_PAGE
 
-void PowerStarList_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace {
     class ListItem {
     public:

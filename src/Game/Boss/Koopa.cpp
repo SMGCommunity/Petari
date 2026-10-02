@@ -12,10 +12,6 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-void Koopa_FORCE_MATCH_SDATA2() {
-    (void) 1.0f;
-}
-
 Koopa::Koopa(const char* pName, KoopaSequencer* pSequencer)
     : LiveActor(pName), mFront(0.0f, 0.0f, 1.0f), mSequencer(pSequencer), mSensorCtrl(), mParts(), mJointCtrl() {
 }

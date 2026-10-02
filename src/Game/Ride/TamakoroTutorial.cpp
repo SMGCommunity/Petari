@@ -18,11 +18,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
-void TamakoroTutorial_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 namespace NrvTamakoroTutorial {
     NEW_NERVE(HostTypeNrvFirst, TamakoroTutorial, First);
     NEW_NERVE(HostTypeNrvDenyTalk, TamakoroTutorial, DenyTalk);

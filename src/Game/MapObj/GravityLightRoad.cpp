@@ -25,9 +25,6 @@ namespace NrvGravityLightRoad {
 };  // namespace NrvGravityLightRoad
 
 void GravityLightRoad_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)0.5f;
-    (void)2.0f;
     (void)2500.0f;
     (void)250.0f;
     (void)20.0f;

@@ -3,11 +3,6 @@
 #include "Game/System/WPad.hpp"
 #include "Game/System/WPadHVSwing.hpp"
 
-void WPadHVSwing_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 WPadHVSwing::WPadHVSwing(const WPad* pPad, u32 channel) {
     this->pPad = pPad;
     mChannel = channel;

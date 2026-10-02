@@ -15,15 +15,6 @@
 #include <JSystem/JUtility/JUTVideo.hpp>
 
 void BrightObj_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.000003814697265625f;
-    (void)-0.000003814697265625f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.1415927f;
-    (void)1.5707964f;
-    (void)2.0f;
-    (void)-1.5707964f;
     (void)0.001f;
     (void)0.25f;
     (void)0.4f;

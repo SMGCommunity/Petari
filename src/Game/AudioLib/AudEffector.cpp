@@ -1,10 +1,6 @@
 #include "Game/AudioLib/AudEffector.hpp"
 #include <JSystem/JKernel/JKRHeap.hpp>
 
-void AudEffector_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 JASDsp::FxlineConfig_ AudEffector::mFxLine[] = {
     {1, 0, 0, 0x7000, 1, 0x0000, 0, 64, {0, 0x1000, 0, 0, 0, 0, 0x3FFF, 0}},
     {1, 0, 0, 0x0000, 1, 0x7000, 0, 64, {0, 0x1000, 0, 0, 0, 0, 0x3FFF, 0}},

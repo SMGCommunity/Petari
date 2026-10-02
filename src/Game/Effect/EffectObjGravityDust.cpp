@@ -2,11 +2,6 @@
 #include "Game/Map/GravityDust.hpp"
 #include "Game/Util/EffectUtil.hpp"
 
-void EffectObjGravityDust_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 EffectObjGravityDust::EffectObjGravityDust(const char* pName) : SimpleEffectObj(pName), _9C(), _A0(1.0f) {
 }
 

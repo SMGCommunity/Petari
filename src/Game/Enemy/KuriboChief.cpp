@@ -34,14 +34,6 @@
 #include <revolution/os.h>
 #include <revolution/types.h>
 
-void KuriboChief_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.0f;
-    (void)2.0f;
-}
-
 namespace {
     static const f32 sBinderSize = 300.0f;
     static const f32 sBinderYOffset = 300.0f;

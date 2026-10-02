@@ -6,7 +6,6 @@
 #include "Game/Util/MathUtil.hpp"
 
 void PlantRailInfo_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
     (void)10000000000.0f;
 }
 

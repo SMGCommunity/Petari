@@ -7,12 +7,6 @@
 #include "Game/Util.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
-void SamboHead_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)2.0f;
-}
-
 namespace NrvSamboHead {
     NEW_NERVE(HostTypeNrvWaitUnderGround, SamboHead, WaitUnderGround);
     NEW_NERVE(HostTypeNrvHide, SamboHead, Hide);

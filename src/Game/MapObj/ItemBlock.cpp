@@ -2,10 +2,6 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
-void ItemBlock_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace {
     // static const f32 cVanishEffectScale = ;
     static const s32 cAppearItemStep = 1;

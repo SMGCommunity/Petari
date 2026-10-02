@@ -3,10 +3,6 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
-void BallRail_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)3.0f;
-}
 namespace NrvBallRail {
     NEW_NERVE(BallRailNrvWait, BallRail, Wait);
     NEW_NERVE(BallRailNrvSetUp, BallRail, SetUp);

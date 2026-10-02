@@ -8,11 +8,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
 
-void MarioPress_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)0.5f;
-}
-
 bool Mario::checkPressDamage() {
     if (_5FC) {
         return false;

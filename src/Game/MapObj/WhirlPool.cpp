@@ -6,14 +6,6 @@
 #include <JSystem/JUtility/JUTTexture.hpp>
 #include <revolution/gx/GXVert.h>
 
-void WhirlPool_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)-1.0f;
-    (void)2.0f;
-}
-
 GXColor sWhirlPoolTevReg1 = {0x28, 0x28, 0x28, 0x14};
 GXColor sWhirlPoolTevReg2 = {0x55, 0x96, 0xBE, 0xFF};
 

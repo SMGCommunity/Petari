@@ -1,10 +1,6 @@
 #include "Game/Map/WaterPoint.hpp"
 #include "Game/Util.hpp"
 
-void WaterPoint_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 namespace {
     static const f32 sSinRate0 = 0.003f;
     static const f32 sSinRate1 = 0.0003f;

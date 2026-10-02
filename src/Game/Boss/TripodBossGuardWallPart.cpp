@@ -11,10 +11,6 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void TripodBossGuardWallPart_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 namespace {
     static const f32 sRepairPlayerDistance = 1000.0f;
     static const s32 sRepairTiming = 600;

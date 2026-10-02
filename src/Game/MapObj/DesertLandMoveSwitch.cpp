@@ -22,11 +22,6 @@
 #include <revolution/mtx.h>
 #include <revolution/types.h>
 
-void DesertLandMoveSwitch_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 namespace NrvDesertLandMoveSwitch {
     NEW_NERVE(HostTypeWait, DesertLandMoveSwitch, Wait);
     NEW_NERVE(HostTypeSwitchDown, DesertLandMoveSwitch, SwitchDown);

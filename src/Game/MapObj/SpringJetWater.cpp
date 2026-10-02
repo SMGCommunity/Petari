@@ -4,10 +4,6 @@
 #include "Game/Util.hpp"
 #include "Game/Util/CollisionShapeUtil.hpp"
 
-void SpringJetWater_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 namespace {
     static const f32 sSensorRadius = 300.0f;
     static const f32 sSensorOffsetY = 300.0f;

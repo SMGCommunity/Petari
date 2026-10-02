@@ -3,10 +3,6 @@
 #include "Game/Util.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
 
-void CircleCoinGroup_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 CircleCoinGroup::CircleCoinGroup(const char* pName) : CoinGroup(pName) {
     mCoinRadius = 200.0f;
 }

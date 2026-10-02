@@ -2,10 +2,6 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/StringUtil.hpp"
 
-void AutoEffectInfo_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 extern "C" u32 strtoul(const char*, char**, int);
 
 namespace {

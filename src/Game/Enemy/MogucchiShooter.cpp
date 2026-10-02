@@ -15,12 +15,6 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void MogucchiShooter_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)2.0f;
-}
-
 namespace {
     static const s32 sStepForLaugh = 120;
     static const s32 sStepToAngerBlur = 40;

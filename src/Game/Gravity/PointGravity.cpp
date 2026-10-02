@@ -1,11 +1,6 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util.hpp"
 
-void PointGravity_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 PointGravity::PointGravity() : PlanetGravity(), mOrigPosition(0, 0, 0), mTranslation(0, 0, 0) {
 }
 

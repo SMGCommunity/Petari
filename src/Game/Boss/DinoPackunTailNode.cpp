@@ -6,12 +6,6 @@
 #include "Game/Util/MtxUtil.hpp"
 
 void DinoPackunTailNode_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.0f;
-    (void)3.1415927f;
-    (void)2.0f;
     (void)90.0f;
     (void)10.0f;
     (void)0.001f;

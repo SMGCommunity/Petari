@@ -10,10 +10,6 @@
 #include <JSystem/JAudio2/JAUSoundAnimator.hpp>
 #include <JSystem/JKernel/JKRHeap.hpp>
 
-void AudAnmSoundObject_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 AudAnmSoundObject::AudAnmSoundObject(TVec3f* pPos, u8 numHandles, JKRHeap* pHeap) : AudSoundObject(pPos, numHandles, pHeap), JAUSoundAnimator(this) {
 }
 

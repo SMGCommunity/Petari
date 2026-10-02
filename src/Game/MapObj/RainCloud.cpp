@@ -14,12 +14,6 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-void RainCloud_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-}
-
 namespace {
     const f32 sNoShadowDropLengthMax = 2000.0f;
     const f32 sRainCylinderBaseLength = 1000.0f;

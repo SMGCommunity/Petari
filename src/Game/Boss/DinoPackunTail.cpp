@@ -5,10 +5,6 @@
 #include "Game/Util/ObjUtil.hpp"
 
 void DinoPackunTail_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)-1.0f;
     (void)0.001f;
     (void)1.1f;
     (void)0.1f;

@@ -48,12 +48,6 @@
 #include <va_list.h>
 
 void ObjUtil_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)3.81469727e-06f;
-    (void)-3.81469727e-06f;
-    (void)1.57079637f;
-    (void)-1.57079637f;
     (void)57.2957802f;
     (void)15.0f;
     (void)100.0f;

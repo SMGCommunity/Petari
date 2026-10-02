@@ -7,11 +7,6 @@
 #include <JSystem/JMath/JMath.hpp>
 #include <revolution/mtx.h>
 
-void RailUtil_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 namespace {
     const char* getRailPointArgName(s32 argNum);
 };  // namespace

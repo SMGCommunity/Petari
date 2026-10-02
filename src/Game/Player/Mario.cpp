@@ -47,13 +47,6 @@
 #include "Game/Util.hpp"
 
 void Mario_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)-1.0f;
-    (void)3.14159274f;
-    (void)1.57079637f;
-    (void)2.0f;
     (void)0.00100000005f;
     (void)0.800000012f;
     (void)-0.514999986f;

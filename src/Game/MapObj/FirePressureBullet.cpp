@@ -2,11 +2,6 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
-void FirePressureBullet_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)3.0f;
-}
-
 namespace NrvFirePressureBullet {
     NEW_NERVE(FirePressureBulletNrvFly, FirePressureBullet, Fly);
 };  // namespace NrvFirePressureBullet

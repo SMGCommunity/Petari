@@ -16,11 +16,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void ChipBase_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 namespace {
     static const f32 sBubbleHitRadius = 150.0f;
     static const f32 sBodyHitRadius = 80.0f;

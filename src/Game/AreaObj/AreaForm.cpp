@@ -2,15 +2,6 @@
 #include "Game/Util.hpp"
 
 void AreaForm_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.000003814697265625f;
-    (void)-0.000003814697265625f;
-    (void)0.5f;
-    (void)-1.0f;
-    (void)1023.5f;
-    (void)1.5707963705062866f;
-    (void)-1.5707963705062866f;
     (void)57.295780181884766f;
     (void)1000.0f;
     (void)500.0f;

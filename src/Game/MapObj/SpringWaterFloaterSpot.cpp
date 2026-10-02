@@ -16,14 +16,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include <JSystem/J3DGraphAnimator/J3DJoint.hpp>
 
-void SpringWaterFloaterSpot_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.0f;
-    (void)-1.0f;
-}
-
 namespace {
     // static const sRisingSpeed;
     // static const sRisingSpeedAtFloatSignal;

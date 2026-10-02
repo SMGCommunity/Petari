@@ -3,9 +3,6 @@
 #include <JSystem/JUtility/JUTVideo.hpp>
 
 void WPadPointer_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
     (void)0.03f;
     (void)0.0001f;
 }

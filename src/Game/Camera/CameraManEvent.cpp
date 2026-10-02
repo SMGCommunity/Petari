@@ -11,10 +11,6 @@
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void CameraManEvent_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 namespace {
     static const f32 sMinDistance = 300.0f;
     static const s32 sDefaultBlendFrame = 60;

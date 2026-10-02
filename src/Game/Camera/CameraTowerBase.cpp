@@ -3,12 +3,6 @@
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void CameraTowerBase_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-}
-
 CameraTowerBase::~CameraTowerBase() {
 }
 

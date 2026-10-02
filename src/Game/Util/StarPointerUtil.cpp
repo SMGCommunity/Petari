@@ -25,14 +25,6 @@
 #include <JSystem/JUtility/JUTVideo.hpp>
 #include <revolution/wpad.h>
 
-void StarPointerUtil_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.0f;
-    (void)-1.0f;
-}
-
 namespace {
 
     static const f32 hPointColRayLength = 99999.0f;

@@ -10,12 +10,6 @@
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 #include <cstdio>
 
-void Manual2P_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 namespace {
     NEW_NERVE(Manual2PNrvAppear, Manual2P, Appear);
     NEW_NERVE(Manual2PNrvWait, Manual2P, Wait);

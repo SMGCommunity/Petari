@@ -20,11 +20,6 @@
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JMath/JMath.hpp>
 
-void BlueStarCupsulePlanet_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 namespace {
     static const f32 sPointableRange = 3400.0f;
     // static const f32 sCaptureRange =

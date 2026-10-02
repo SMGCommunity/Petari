@@ -11,9 +11,6 @@
 #include "Game/Util/SoundUtil.hpp"
 
 void FallDownBridge_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
     (void)1250.0f;
     (void)90.0f;
     (void)2600.0f;
@@ -28,7 +25,6 @@ void FallDownBridge_FORCE_MATCH_SDATA2() {
     (void)0.44999998807907104f;
     (void)0.30000001192092896f;
     (void)400.0f;
-    (void)0.0f;
 }
 
 namespace {

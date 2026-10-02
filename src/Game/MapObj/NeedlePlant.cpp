@@ -12,7 +12,6 @@
 #include "Game/Util/StarPointerUtil.hpp"
 
 void NeedlePlant_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
     (void)150.0f;
     (void)180.0f;
     (void)10.0f;

@@ -4,14 +4,6 @@
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void AudSoundObject_Kawamura_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.0f;
-    (void)2.0f;
-}
-
 void AudSoundObject::modifySe_Kawamura(JAISoundHandle* pHandle, s32 level) {
     f32 volume = 1.0f;
     f32 pitch = 1.0f;

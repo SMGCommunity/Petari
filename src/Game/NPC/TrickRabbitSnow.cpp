@@ -8,13 +8,6 @@
 #include "Game/NPC/TrickRabbitUtil.hpp"
 #include "Game/Util.hpp"
 
-void TrickRabbitSnow_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)3.0f;
-    (void)2.0f;
-}
-
 TrickRabbitSnowListener::TrickRabbitSnowListener() {
 }
 

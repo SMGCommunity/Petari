@@ -27,13 +27,6 @@
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution/types.h>
 
-void KuriboMini_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.0f;
-}
-
 namespace {
     class KuriboMiniParam {
     public:

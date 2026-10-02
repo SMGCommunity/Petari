@@ -31,12 +31,6 @@ namespace NrvBossKameckBeamFire {
     NEW_NERVE(KameckFireBallNrvSweep, KameckFireBall, Sweep);
 };  // namespace NrvBossKameckBeamFire
 
-void KameckFireBall_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-}
-
 KameckFireBall::KameckFireBall(const char* pName) : LiveActor(pName), mRotateQuat(0.0f, 0.0f, 0.0f, 1.0f), mEventListener() {
 }
 

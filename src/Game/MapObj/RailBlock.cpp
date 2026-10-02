@@ -4,10 +4,6 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void RailBlock_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 namespace {
     static const s32 sStartSignTime = 60;
     static const s32 sCycle = 3;

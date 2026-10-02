@@ -14,11 +14,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void ScrewSwitch_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)3.0f;
-}
-
 namespace {
     static const s32 sStepForAdjust = 3;
     static const s32 sStepToRumbleCamera = 30;

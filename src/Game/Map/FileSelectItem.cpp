@@ -22,10 +22,6 @@
 #include "Game/Util/StarPointerUtil.hpp"
 
 void FileSelectItem_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)2.0f;
     (void)1000.0f;
     (void)900.0f;
     (void)30.0f;

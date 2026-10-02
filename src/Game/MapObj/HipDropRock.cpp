@@ -11,10 +11,6 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void HipDropRock_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 namespace {
     static const s32 sStepToSwitchOn = 30;
     static const s32 sDefaultStarPeaceNum = 6;

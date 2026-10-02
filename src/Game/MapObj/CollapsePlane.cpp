@@ -5,10 +5,6 @@
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Util.hpp"
 
-void CollapsePlane_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 namespace {
     static const s32 sDefaultCollapseTime = 140;
     static const f32 sScaleMin = 0.7f;

@@ -7,12 +7,6 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include <JSystem/JUtility/JUTTexture.hpp>
 
-void FullScreenBlur_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)0.5f;
-    (void)2.0f;
-}
-
 namespace MR {
     void drawFullScreenBlur(f32 param1) {
         drawFullScreenBlur(param1, param1, param1 / 30.0f, (param1 / 30.0f) / 2.0f);

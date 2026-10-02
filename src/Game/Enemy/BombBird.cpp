@@ -8,12 +8,6 @@
 #include "Game/Util.hpp"
 #include "Game/Util/FixedPosition.hpp"
 
-void BombBird_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-}
-
 namespace {
     const BombBirdParam hFallParam = {0.0f, 1.2f, 0.98f, 0.0f};
     const BombBirdParam hOnGroundParam = {0.0f, 1.2f, 0.8f, 0.0f};

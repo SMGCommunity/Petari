@@ -2,11 +2,6 @@
 #include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Util.hpp"
 
-void CamTranslatorCharmedVecRegTower_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 void CamTranslatorCharmedVecRegTower::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;
 

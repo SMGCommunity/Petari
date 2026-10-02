@@ -11,13 +11,6 @@
 #include "Game/Util/RailUtil.hpp"
 #include <JSystem/JUtility/JUTTexture.hpp>
 
-void SpinDriverPathDrawer_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)2.0f;
-}
-
 namespace {
     inline u32 packPathColor(const TVec3f& rColor, const f32& rAlpha) {
         u32 result = 0;

@@ -5,14 +5,6 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 
-void SphereSelectorHandle_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)-1.0f;
-    (void)2.0f;
-}
-
 namespace {
     const s32 cHoldReduceOutScreenFrame = 5;
     const f32 cRotateSpeedChangeMax = 0.2f;

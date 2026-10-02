@@ -7,12 +7,6 @@
 #include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/Util.hpp"
 
-void Kinopio_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.000003814697265625f;
-}
-
 namespace NrvKinopio {
     NEW_NERVE(KinopioNrvReaction, Kinopio, Reaction);
     NEW_NERVE(KinopioNrvTakeOutStar, Kinopio, TakeOutStar);

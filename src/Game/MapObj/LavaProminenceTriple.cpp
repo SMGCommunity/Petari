@@ -7,13 +7,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-void LavaProminenceTriple_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)2.0f;
-}
-
 void LavaProminenceTriple_DUMMY() {
     TVec3f a, b;
     a.add(b);

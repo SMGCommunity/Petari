@@ -5,10 +5,6 @@
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void CameraInwardTower_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 namespace {
     // static const s32 sFollowFrame =
     static const f32 sRoundThreshold = 0.3f;

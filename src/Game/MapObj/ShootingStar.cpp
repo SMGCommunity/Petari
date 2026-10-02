@@ -7,12 +7,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-void ShootingStar_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 namespace {
     static const f32 sFallHeight = 2000.0f;
     // static const f32 sAppearWidth =

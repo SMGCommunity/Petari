@@ -2,10 +2,6 @@
 #include "Game/Camera/CamTranslatorTripodBoss.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
 
-void CameraTripodBoss_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 CameraTripodBoss::~CameraTripodBoss() {
 }
 

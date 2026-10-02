@@ -6,12 +6,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/VectorUtil.hpp"
 
-void CameraCharmedVecReg_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-}
-
 namespace {
     static const f32 sRate = 0.02f;
 };  // namespace

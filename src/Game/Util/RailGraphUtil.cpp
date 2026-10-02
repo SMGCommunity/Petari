@@ -5,10 +5,6 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "math_types.hpp"
 
-void RailGraphUtil_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace {
     inline void addRailToGraph(RailGraph* pGraph, JMapInfoIter currentRail, const JMapInfo* pPoints) {
         s32 pointCount = pPoints->getNumEntries();

@@ -8,11 +8,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/TriangleFilter.hpp"
 
-void CameraInwardSphere_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 namespace {
     static const f32 sBaseDist = 300.0f;
 };  // namespace

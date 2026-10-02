@@ -14,12 +14,6 @@
 #include <revolution/mtx.h>
 #include <revolution/wpad.h>
 
-void JumpBranch_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 namespace {
     static Vec sStartPointVelocity = {0.0f, 0.0f, 0.0f};
 

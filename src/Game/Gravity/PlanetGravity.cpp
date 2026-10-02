@@ -1,11 +1,6 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util.hpp"
 
-void PlanetGravity_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 PlanetGravity::PlanetGravity() {
     mRange = -1.0f;
     mDistant = 0.0f;

@@ -5,12 +5,6 @@
 #include "Game/MapObj/JetTurtle.hpp"
 #include "Game/Util.hpp"
 
-void KameckTurtle_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-}
-
 namespace {
     // const f32 sBeamRadius =
     const f32 sUpVecBlendRate = 0.2f;

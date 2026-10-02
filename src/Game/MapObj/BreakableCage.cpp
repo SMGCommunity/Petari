@@ -7,11 +7,6 @@
 #include "Game/Util.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void BreakableCage_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 namespace {
     const Vec cHitSensorOffsetCage = {0.0f, 0.0f, 0.0f};
     const Vec cHitSensorOffsetFixation = {0.0f, 0.0f, 0.0f};

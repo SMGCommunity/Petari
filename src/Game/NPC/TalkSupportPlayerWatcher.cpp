@@ -4,10 +4,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-void TalkSupportPlayerWatcher_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace {
     static const f32 sPlayerSpeedMin = 4.0f;
     // static const s32 sStepToTalkStart = _;

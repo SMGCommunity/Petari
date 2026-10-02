@@ -3,11 +3,6 @@
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 
-void CounterLayoutAppearer_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 namespace NrvCounterLayoutAppearer {
     NEW_NERVE(CounterLayoutAppearerNrvHide, CounterLayoutAppearer, Hide);
     NEW_NERVE(CounterLayoutAppearerNrvAppear, CounterLayoutAppearer, Appear);

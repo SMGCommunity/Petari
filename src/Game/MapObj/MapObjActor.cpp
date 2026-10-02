@@ -19,12 +19,6 @@
 #include <cstdio>
 #include <cstring>
 
-void MapObjActor_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 namespace NrvMapObjActor {
     NEW_NERVE(HostTypeWait, MapObjActor, Wait);
     NEW_NERVE(HostTypeMove, MapObjActor, Move);

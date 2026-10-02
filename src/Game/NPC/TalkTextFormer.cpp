@@ -6,11 +6,6 @@
 #include "Game/Util/MessageUtil.hpp"
 #include <nw4r/lyt/textBox.h>
 
-void TalkTextFormer_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 namespace {
     nw4r::lyt::TextBox* getTextBoxPane(LayoutActor* pActor, const char* pPaneName) NO_INLINE {
         nw4r::lyt::Pane* pPane = MR::getPane(pActor, pPaneName);

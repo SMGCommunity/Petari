@@ -10,12 +10,6 @@
 #include <JSystem/J3DGraphBase/J3DSys.hpp>
 #include <JSystem/JGeometry/TMatrix.hpp>
 
-void PlantLeaf_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-}
-
 namespace {
     static const f32 sScaleMin = 0.0001f;
     static const f32 sDistancePush = 50.0f;

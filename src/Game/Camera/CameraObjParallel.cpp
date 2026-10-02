@@ -3,10 +3,6 @@
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
 
-void CameraObjParallel_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 CameraObjParallel::CameraObjParallel(const char* pName) : Camera(pName), mAngleX(), mAngleY(), mDist(3000.0f) {
 }
 

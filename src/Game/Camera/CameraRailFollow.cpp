@@ -7,13 +7,6 @@
 #include "Game/LiveActor/RailRider.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void CameraRailFollow_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)2.0f;
-}
-
 CameraRailFollow::CameraRailFollow(const char* pName)
     : Camera(pName), mRailRider(), mRailCoord(), mRailSpeed(), mTargetMargin(), mRailSpeedMax(30.0f), mRailAccel(0.35f) {
 }

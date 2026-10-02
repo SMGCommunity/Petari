@@ -21,13 +21,6 @@
 #include <revolution/mtx.h>
 
 void MarioCollision_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.0f;
-    (void)-1.0f;
-    (void)1.5707964f;
-    (void)2.0f;
     (void)0.001f;
     (void)3e+01f;
     (void)0.3f;

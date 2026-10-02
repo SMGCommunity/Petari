@@ -5,11 +5,6 @@
 #include "Game/Screen/NoteCounter.hpp"
 #include "Game/Util.hpp"
 
-void Note_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 namespace {
     static const f32 sRotateSpeed = 8.0f;
     static const s32 sStepFlyUp = 10;

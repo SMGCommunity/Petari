@@ -20,15 +20,6 @@ namespace NrvMapPartsRailMover {
     NEW_NERVE(HostTypeVanish, MapPartsRailMover, Vanish);
 };  // namespace NrvMapPartsRailMover
 
-void MapPartsRailMover_FORCE_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.0f;
-    (void)-1.0f;
-    (void)2.0f;
-}
-
 MapPartsRailMover::MapPartsRailMover(LiveActor* pActor)
     : MapPartsFunction(pActor, "レイル移動"), mRailPointPassChecker(), mMoveConditionType(), mMoveStopType(1), mSignMotionType(), _28(gZeroVec) {
     _34 = 0.0f;

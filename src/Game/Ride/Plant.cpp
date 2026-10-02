@@ -30,12 +30,6 @@
 #include <revolution/types.h>
 #include <revolution/wpad.h>
 
-void Plant_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 namespace {
     static const f32 sDistanceNear = 700.0f;
     static const f32 sDistanceBody = 300.0f;

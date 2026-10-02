@@ -30,13 +30,6 @@
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 #include <cstdio>
 
-void NPCUtil_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)2.0f;
-}
-
 namespace {
     static s32 sStarAppearSeStep = 103;
     static s32 sStarAppearSeStepCaretaker = 32;

@@ -33,10 +33,6 @@ namespace NrvBombBirdBomb {
     NEW_NERVE(HostTypeNrvExplosion, BombBirdBomb, Explosion);
 };  // namespace NrvBombBirdBomb
 
-void BombBirdBomb_FORCE_MATCH_SDATA2() {
-    (void) 1.0f;
-}
-
 BombBirdBomb::BombBirdBomb(const char* pName) : LiveActor(pName), _8C(0.0f, 0.0f, 0.0f, 1.0f), _9C(0.0f, 0.0f, 0.0f) {
 }
 

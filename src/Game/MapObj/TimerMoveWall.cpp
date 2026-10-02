@@ -10,10 +10,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
-void TimerMoveWall_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace {
     static const s32 sDefaultTimer = 300;
     static const f32 sDefaultMoveLength = 1000.0f;

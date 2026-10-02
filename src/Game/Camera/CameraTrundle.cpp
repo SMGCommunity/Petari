@@ -4,12 +4,6 @@
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void CameraTrundle_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 CameraTrundle::CameraTrundle(const char* pName)
     : Camera(pName), mWPoint(0.0f, 0.0f, 0.0f), mAxis(1.0f, 0.0f, 0.0f), mDist(2000.0f), mAngleX(), mAngleY(), mDotMax() {
 }

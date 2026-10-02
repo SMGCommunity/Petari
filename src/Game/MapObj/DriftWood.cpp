@@ -15,12 +15,6 @@
 #include <revolution/mtx.h>
 #include <revolution/types.h>
 
-void DriftWood_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)3.0f;
-}
-
 struct SinCosPair {
     f32 sin;
     f32 cos;

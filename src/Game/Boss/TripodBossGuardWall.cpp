@@ -33,10 +33,6 @@ namespace {
     static s32 sMoveSeLength = 58;
 };  // namespace
 
-void TripodBossGuardWall_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 namespace NrvTriPodBossGuardWall {
     NEW_NERVE(TripodBossGuardWallNrvWait, TripodBossGuardWall, Wait);
     NEW_NERVE(TripodBossGuardWallNrvTryDemo, TripodBossGuardWall, TryDemo);

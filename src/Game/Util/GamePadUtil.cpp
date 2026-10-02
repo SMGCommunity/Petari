@@ -11,12 +11,8 @@
 #include "Game/Util/VectorUtil.hpp"
 
 void GamePadUtil_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)-1.0f;
     (void)-2607.59448f;
     (void)2607.59448f;
-    (void)0.0f;
 }
 
 namespace MR {

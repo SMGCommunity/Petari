@@ -19,11 +19,6 @@
 
 // FIXME: String "Record" is out of order in .data, yet function order matches in retail and debug
 
-void RaceManager_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 namespace {
     // static const _ sTimeOutSecond = _;
     static const s32 sBgmStartStep = 166;

@@ -5,10 +5,6 @@
 #include "Game/Screen/ImageEffectSystemHolder.hpp"
 #include "Game/Util/DrawUtil.hpp"
 
-void BloomEffectSimple_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 namespace {
     // static const s32 sLen = _;
     // static const s32 sDivNum = _;

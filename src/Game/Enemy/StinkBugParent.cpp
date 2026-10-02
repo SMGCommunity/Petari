@@ -16,14 +16,6 @@
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution/types.h>
 
-void StinkBugParent_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)3.0f;
-    (void)-1.0f;
-    (void)2.0f;
-}
-
 namespace {
     // sGravity
     static const f32 sTurnRateSearch = 1.0f;

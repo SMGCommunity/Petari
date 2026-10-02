@@ -61,12 +61,6 @@ namespace {
     static Color8 sColorMinusX(0xC8, 0xC8, 0xC8, 0xFF);
 };  // namespace
 
-void Creeoer_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 CreeperPoint::CreeperPoint(const TVec3f& rPos, const TVec3f& rUp, const CreeperPoint* pPrevPoint)
     : mPosition(rPos), mNeutralPos(rPos), mVelocity(0.0f, 0.0f, 0.0f), mSide(1.0f, 0.0f, 0.0f), mUp(rUp), mFront(0.0f, 0.0f, 1.0f),
       mProjection(0.0f, 0.0f, 0.0f), mPrevPoint(pPrevPoint) {

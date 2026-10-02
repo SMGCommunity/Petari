@@ -7,12 +7,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
-void CocoSambo_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)2.0f;
-}
-
 namespace NrvCocoSamboHead {
     NEW_NERVE(CocoSamboHeadNrvHeadConnectedBody, CocoSamboHead, ConnectedBody);
     NEW_NERVE(CocoSamboHeadNrvHeadFall, CocoSamboHead, Fall);

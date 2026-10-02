@@ -7,9 +7,6 @@
 #include <algorithm>
 
 void KCollision_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.000003814697265625f;
     (void)0.001f;
     (void)1000000000.0f;
     (void)0.01f;

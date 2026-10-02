@@ -15,11 +15,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
-void FireBubble_FORCE_MATCH_SDATA2() {
-    (void) 1.0f;
-    (void) 0.0f;
-}
-
 namespace {
     const f32 cSensorRadius = 40.0f;
     const f32 cBinderRadius = 60.0f;

@@ -3,11 +3,6 @@
 #include "Game/MapObj/FloaterFunction.hpp"
 #include "Game/Util.hpp"
 
-void FloaterSpringForce_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)3.0f;
-}
-
 namespace {
     static const f32 sSpeedMin = 0.1f;
 };  // namespace

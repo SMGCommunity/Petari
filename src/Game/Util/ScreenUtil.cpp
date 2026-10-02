@@ -90,10 +90,8 @@ namespace {
 };  // namespace
 
 void ScreenUtil_FORCE_MATCH_SDATA2() {
-    (void)0.5f;
     (void)0.87f;
     (void)0.844f;
-    (void)0.0f;
 }
 namespace MR {
     u32 getViWidth() {

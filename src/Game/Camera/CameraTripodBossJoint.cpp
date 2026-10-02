@@ -4,12 +4,6 @@
 #include "Game/Camera/CameraCalc.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
 
-void CameraTripodBossJoint_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-}
-
 namespace {
     static const f32 sDistance = 300.0f;
     static const f32 sAtternuation = 0.7f;

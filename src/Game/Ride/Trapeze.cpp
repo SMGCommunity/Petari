@@ -28,14 +28,6 @@
 #include <revolution/gx/GXVert.h>
 #include <revolution/mtx.h>
 
-void Trapeze_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.0f;
-    (void)-1.0f;
-}
-
 namespace {
     static const f32 sStickLength = 120.0f;
     static const f32 sDrawWidthX = 12.0f;

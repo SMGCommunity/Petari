@@ -4,9 +4,6 @@
 #include "Game/Util.hpp"
 
 void StarPieceMother_FORCE_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
     (void)10.0f;
 }
 

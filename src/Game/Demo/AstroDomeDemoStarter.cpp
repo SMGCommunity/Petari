@@ -5,12 +5,6 @@
 #include "Game/Util.hpp"
 #include "math_types.hpp"
 
-void AstroDomeDemoStarter_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 namespace {
     const char* const cJumpOutPartName = "飛び出す";
     const Vec cAppearRotate = {90.0f, -5.0f, 0.0f};

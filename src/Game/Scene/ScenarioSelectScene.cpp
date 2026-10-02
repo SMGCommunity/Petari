@@ -32,11 +32,6 @@ namespace NrvScenarioSelectScene {
     NEW_NERVE(ScenarioSelectSceneNrvWaitResumeInitializeThreadIfCanceledSelect, ScenarioSelectScene, WaitResumeInitializeThreadIfCanceledSelect);
 };  // namespace NrvScenarioSelectScene
 
-void ScenarioSelectScene_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 namespace {
     J3DDrawBuffer* createDrawBuffer() {
         J3DDrawBuffer* buffer = new J3DDrawBuffer(1);

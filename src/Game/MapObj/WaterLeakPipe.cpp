@@ -3,11 +3,6 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 
-void WaterLeakPipe_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)0.5f;
-}
-
 namespace {
     static const f32 sDefaultHeight = 500.0f;
     static const s32 sLifeTime = 15;

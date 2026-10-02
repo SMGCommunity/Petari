@@ -6,10 +6,6 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-void ClipAreaDrop_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace {
     static const s32 sExtendsEndTime = 15;
     static const s32 sShrinkStartTime = 60;

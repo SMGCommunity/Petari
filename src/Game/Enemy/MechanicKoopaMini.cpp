@@ -25,11 +25,6 @@
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution/types.h>
 
-void MechanicKoopaMini_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-    (void)3.0f;
-}
-
 namespace NrvMechanicKoopaMini {
     NEW_NERVE(HostTypeNrvWait, MechanicKoopaMini, Wait);
     NEW_NERVE(HostTypeNrvWalkOnRail, MechanicKoopaMini, WalkOnRail);

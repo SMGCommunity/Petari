@@ -8,16 +8,11 @@
 #include "Game/Util/MathUtil.hpp"
 
 void MapPartsRotator_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)-1.0f;
     (void)0.0010000000474974513f;
     (void)0.01745329238474369f;
     (void)360.0f;
     (void)0.009999999776482582f;
     (void)9.999999747378752e-06f;
-    (void)0.0f;
 }
 
 namespace NrvMapPartsRotator {

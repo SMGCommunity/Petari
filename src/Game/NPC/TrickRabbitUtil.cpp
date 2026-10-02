@@ -2,10 +2,6 @@
 #include "Game/Util/FootPrint.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
-void TrickRabbitUtil_FORCE_MATCH_SDATA2() {
-    (void)0.0f;
-}
-
 namespace TrickRabbitUtil {
     FootPrint* createRabbitFootPrint(LiveActor* pActor) {
         FootPrint* footPrint;

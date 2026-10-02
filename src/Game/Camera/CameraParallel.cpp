@@ -5,12 +5,6 @@
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void CameraParallel_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-}
-
 namespace {
     static const f32 sDistance = 3000.0f;
     static const f32 sRoundDiv = 8.0f;

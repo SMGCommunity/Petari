@@ -5,10 +5,6 @@
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Util/VectorUtil.hpp"
 
-void CameraGround_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 CameraGround::CameraGround(const char* pName)
     : Camera(pName), mAngleA(), mAngleB(), mDist(1000.0f), mUp(0.0f, 1.0f, 0.0f), mLastWatchPoint(0.0f, 0.0f, 0.0f), mIsNotInitialized(true) {
 }

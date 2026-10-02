@@ -25,15 +25,6 @@
 #define POIHANA_BEHAVIOR_SLEEP 1
 #define POIHANA_BEHAVIOR_NEW_HOME 2
 
-void Poihana_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.000003814697265625f;
-    (void)0.5f;
-    (void)3.0f;
-    (void)2.0f;
-}
-
 namespace {
     static const f32 sGravity = 2.0f;
     static const f32 sReceivePushPower = 1.5f;

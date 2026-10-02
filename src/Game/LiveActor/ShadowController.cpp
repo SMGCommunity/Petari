@@ -16,12 +16,6 @@ namespace {
     const s32 sGravityCountLimit = 1;
 }  // namespace
 
-void ShadowController_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)-1.0f;
-}
-
 ShadowControllerHolder::ShadowControllerHolder() : NameObj("影管理"), _C(), _18(), _24() {
     mFarClip = 4000.0f;
     _C.init(0x500);

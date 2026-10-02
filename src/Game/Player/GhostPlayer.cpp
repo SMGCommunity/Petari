@@ -37,11 +37,6 @@
 #include "Game/Util/StringUtil.hpp"
 #include <cstdio>
 
-void GhostPlayer_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 namespace {
     struct AnimSoundInfo {
         /* 0x00 */ const char* pAnimName;

@@ -15,12 +15,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void BossKameckStateBattle_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-}
-
 namespace {
     static const f32 sTurnPlayerDegree = 6.0f;
     static const s32 sWaitTime = 60;

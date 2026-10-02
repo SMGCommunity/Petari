@@ -12,11 +12,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void KoopaShockWave_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 namespace {
     // static const s32 sStepWaveAttack = _;
     // static const f32 sModelRadius = _;

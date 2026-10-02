@@ -5,12 +5,6 @@
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-void WalkerStateRunaway_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)3.0f;
-}
-
 namespace {
     static WalkerStateRunawayParam sDefaultParam;
 };  // namespace

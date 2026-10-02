@@ -8,10 +8,6 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
-void RabbitStateWaitStart_FORCE_MATCH_SDATA2() {
-    (void)2.0f;
-}
-
 namespace {
     static const f32 sGravityAccel = 0.1f;
     static const s32 sSmallTurnTime = 30;

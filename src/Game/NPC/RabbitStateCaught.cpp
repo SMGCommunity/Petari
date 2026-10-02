@@ -11,10 +11,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
-void RabbitStateCaught_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 namespace {
     // static const f32 sGravityAccel = _;
     // static const f32 sBodyRadius = _;

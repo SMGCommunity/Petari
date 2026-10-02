@@ -4,10 +4,6 @@
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-void CameraTripodPlanet_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
-
 CameraTripodPlanet::CameraTripodPlanet(const char* pName)
     : Camera(pName), mAxis(0.0f, 1.0f, 0.0f), mWPoint(0.0f, 0.0f, 0.0f), mAngleX(), mAngleY(), mDist(1000.0f) {
 }

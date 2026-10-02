@@ -14,11 +14,6 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-void Dossun_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-}
-
 namespace {
     // sShadowBoxSize
     const f32 sUpperHeight = 1000.0f;

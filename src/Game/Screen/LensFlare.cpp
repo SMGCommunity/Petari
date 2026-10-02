@@ -12,12 +12,6 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/TriggerChecker.hpp"
 
-void LensFlare_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-}
-
 namespace {
     NEW_NERVE(LensFlareModelNrvKill, LensFlareModel, Kill);
     NEW_NERVE(LensFlareModelNrvHide, LensFlareModel, Hide);
