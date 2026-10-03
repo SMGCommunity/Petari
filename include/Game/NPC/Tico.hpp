@@ -48,7 +48,7 @@ public:
     void exeGuide3();
     void exeLead0();
 
-    static f32 sFloatSeMinVolume;
+    static const f32 sFloatSeMinVolume;
 
     /* 0x15C */ u32 _15C;
     /* 0x160 */ TVec3f _160;
