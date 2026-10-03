@@ -10,7 +10,7 @@ GXColor sWhirlPoolAcceleratorTevReg2 = {0x7C, 0xA9, 0xBD, 0xFF};
 
 namespace {
     extern const f32 sAlphaPointNum;
-}
+};  // namespace
 
 WhirlPoolPoint::WhirlPoolPoint(const TVec3f& rPosition, const TVec3f& rDirection, const TVec3f& rNormal, f32 radius, f32 texCoord, u8 alpha)
     : mPosition(rPosition), mSide(1.0f, 0.0f, 0.0f), mNormal(rNormal), mDirection(0.0f, 0.0f, 1.0f), mRadius(radius), mTexCoord(texCoord),
@@ -204,4 +204,4 @@ WhirlPoolAccelerator::~WhirlPoolAccelerator() {
 
 namespace {
     const f32 sAlphaPointNum = 2.0f;
-}
+};  // namespace

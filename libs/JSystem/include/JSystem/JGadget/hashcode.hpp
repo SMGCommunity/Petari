@@ -4,4 +4,4 @@
 
 namespace JGadget {
     u32 getHashCode(const char*);
-};
+};  // namespace JGadget

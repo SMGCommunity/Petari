@@ -4,7 +4,7 @@
 namespace {
     extern const f32 kIdentityW;
     extern const f32 kIdentityZero;
-}
+};  // namespace
 
 void J3DTexMtxInfo::operator=(J3DTexMtxInfo const& param_0) {
     mProjection = param_0.mProjection;
@@ -63,4 +63,4 @@ J3DNBTScaleInfo& J3DNBTScaleInfo::operator=(const J3DNBTScaleInfo& other) {
 namespace {
     const f32 kIdentityW = 1.0f;
     const f32 kIdentityZero = 0.0f;
-}
+}  // namespace

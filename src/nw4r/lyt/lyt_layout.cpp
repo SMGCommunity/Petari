@@ -1,15 +1,15 @@
-#include "nw4r/lyt/textBox.h"
-#include "nw4r/lyt/picture.h"
-#include "nw4r/lyt/window.h"
-#include "nw4r/lyt/bounding.h"
 #include "nw4r/lyt/animation.h"
+#include "nw4r/lyt/bounding.h"
 #include "nw4r/lyt/common.h"
 #include "nw4r/lyt/group.h"
 #include "nw4r/lyt/layout.h"
 #include "nw4r/lyt/material.h"
 #include "nw4r/lyt/pane.h"
+#include "nw4r/lyt/picture.h"
 #include "nw4r/lyt/resources.h"
+#include "nw4r/lyt/textBox.h"
 #include "nw4r/lyt/util.h"
+#include "nw4r/lyt/window.h"
 #include "nw4r/ut/Rect.h"
 #include <revolution/mem/allocator.h>
 
@@ -25,7 +25,7 @@ namespace {
             SetTagProcessorImpl(&(*it), pTagProcessor);
         }
     }
-}
+}  // namespace
 
 namespace nw4r {
     namespace lyt {
@@ -351,5 +351,5 @@ namespace nw4r {
 
             return 0;
         }
-    }
-}
+    }  // namespace lyt
+}  // namespace nw4r

@@ -796,7 +796,7 @@ bool IceMerameraKing::calcJoint(TPos3f* a2, const JointControllerInfo& info) {
 
 namespace {
     static const char* hScaleJointName[] = {"WideInSide", "WideOutSide", "Hirgh1"};
-};
+};  // namespace
 
 IceMerameraKingShockWave::IceMerameraKingShockWave() : ModelObj("衝撃", "IceMerameraKingShock", nullptr, -2, -2, -2, false) {
     initHitSensor(2);

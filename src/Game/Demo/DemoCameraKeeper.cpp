@@ -13,7 +13,7 @@
 
 namespace {
     extern char sSheetName[];
-}
+};  // namespace
 
 DemoCameraInfo::DemoCameraInfo()
     : mPartName(), mCameraTargetName(), mCameraTargetCastID(-1), mAnimCameraName(), mAnimCameraStartFrame(-1), mAnimCameraEndFrame(-1),
@@ -155,4 +155,4 @@ DemoCameraKeeper::DemoCameraKeeper(DemoExecutor* pExecutor, const JMapInfoIter& 
 
 namespace {
     char sSheetName[] = "Camera";
-}
+};  // namespace

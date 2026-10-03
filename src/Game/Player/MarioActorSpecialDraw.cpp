@@ -498,7 +498,7 @@ namespace {
         const TVec3f* pOffset = &rOffset;
         return rBase - *pOffset;
     }
-}
+};  // namespace
 
 #pragma push
 #pragma global_optimizer off

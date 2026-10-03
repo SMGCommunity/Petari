@@ -9,7 +9,7 @@ class ParticleResourceHolder;
 
 namespace MR {
     class FunctorBase;
-};
+};  // namespace MR
 
 namespace nw4r {
     namespace ut {

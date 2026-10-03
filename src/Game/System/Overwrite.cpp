@@ -51,7 +51,7 @@ void Overwrite_FORCE_MATCH_SDATA2() {
 
 namespace {
     const u8 sUnitMask[] = {0x80, 0x40, 0x20, 0x10, 8, 4, 2, 1};
-}
+};  // namespace
 
 void* JKRUnitHeap::do_alloc(u32 size, int alignment) {
     u32 bit;

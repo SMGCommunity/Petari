@@ -9,7 +9,7 @@ namespace {
     // static const f32 hTurnToConnectAngle = _;
     static const s32 hWhistleStepMin = 180;
     static const s32 hWhistleStepMax = 600;
-};
+};  // namespace
 
 ChooChooTrain::ChooChooTrain(const char* pName) : LiveActor(pName), mModelArray(), _98(0.0f, 0.0f, 0.0f), mRailSpeed(5.0f), mWhistleTimer() {
 }
@@ -69,8 +69,8 @@ void ChooChooTrain::init(const JMapInfoIter& rIter) {
     int i;
 
     for (i = 0; i < defTrainParts; i++) {
-        ModelObj* pObj =
-            new ModelObj("汽車ポッポ客車", "ChooChooTrainBody", nullptr, -2, MR::MovementType_CollisionMapObj, MR::CalcAnimType_CollisionMapObj, false);
+        ModelObj* pObj = new ModelObj("汽車ポッポ客車", "ChooChooTrainBody", nullptr, -2, MR::MovementType_CollisionMapObj,
+                                      MR::CalcAnimType_CollisionMapObj, false);
         pObj->initWithoutIter();
         MR::initCollisionParts(pObj, "ChooChooTrainBody", getSensor("body"), nullptr);
         MR::invalidateClipping(pObj);

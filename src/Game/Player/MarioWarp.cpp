@@ -10,7 +10,7 @@
 
 namespace JGeometry {
     TVec3< f32 > TVec3< f32 >::operator*(f32) const NO_INLINE;
-}
+};  // namespace JGeometry
 
 bool Mario::doObjWarp(LiveActor* pActor) {
     if (getPlayer()->getMovementStates().debugMode) {

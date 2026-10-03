@@ -121,6 +121,6 @@ namespace nw4r {
             fileHeader->signature = 'RFNU';
 
             return info;
-        };  // namespace ut
+        };
     };  // namespace ut
 };  // namespace nw4r
