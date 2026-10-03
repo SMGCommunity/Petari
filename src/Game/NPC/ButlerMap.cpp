@@ -19,7 +19,7 @@
 #include "Game/Util/TalkUtil.hpp"
 
 namespace {
-    const char* const cDemoNameMapLecture = "バトラーマップレクチャー";
+    const char* cDemoNameMapLecture = "バトラーマップレクチャー";
 };  // namespace
 
 namespace NrvButlerMap {
