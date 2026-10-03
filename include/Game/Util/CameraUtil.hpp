@@ -47,7 +47,7 @@ namespace MR {
     void startCameraInterpolation(u32);
 
     void declareEventCamera(const ActorCameraInfo*, const char*);
-    void endEventCamera(const ActorCameraInfo*, const char*, bool, s32);
+    void endEventCamera(const ActorCameraInfo*, const char*, bool, s32 = -1);
     void endEventCameraAtLanding(const ActorCameraInfo*, const char*, s32);
     bool isEventCameraActive();
     bool isEventCameraActive(const ActorCameraInfo*, const char*);
@@ -124,10 +124,10 @@ namespace MR {
     void setGameCameraTarget(const CameraTargetArg&);
 
     void changeEventCameraTarget(const ActorCameraInfo*, const char*, const CameraTargetArg&);
-    void startEventCameraNoTarget(const ActorCameraInfo*, const char*, s32);
-    void startEventCameraTargetPlayer(const ActorCameraInfo*, const char*, s32);
-    void startEventCamera(const ActorCameraInfo*, const char*, const CameraTargetArg&, s32);
-    void startGlobalEventCameraNoTarget(const char*, s32);
+    void startEventCameraNoTarget(const ActorCameraInfo*, const char*, s32 = -1);
+    void startEventCameraTargetPlayer(const ActorCameraInfo*, const char*, s32 = -1);
+    void startEventCamera(const ActorCameraInfo*, const char*, const CameraTargetArg&, s32 = -1);
+    void startGlobalEventCameraNoTarget(const char*, s32 = -1);
     void startGlobalEventCameraTargetPlayer(const char*, s32);
     void startGlobalEventCamera(const char*, const CameraTargetArg&, s32);
     void startEventCameraAnim(const ActorCameraInfo*, const char*, const CameraTargetArg&, s32, f32);

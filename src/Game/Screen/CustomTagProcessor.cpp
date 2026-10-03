@@ -491,7 +491,7 @@ CustomTagProcessor::Operation CustomTagProcessor::exeSoundGroup(nw4r::ut::Rect* 
     if (mask != static_cast< u8 >(mPlayedSounds & mask)) {
         char name[256];
         MR::convertUTF16ToASCII(name, tag.getParamPtr(0), static_cast< s32 >(tag.getParamLength()) / 2 + 1);
-        MR::startSystemSE(name, -1, -1);
+        MR::startSystemSE(name);
         mPlayedSounds |= static_cast< u8 >(1 << mSoundIndex);
     }
 

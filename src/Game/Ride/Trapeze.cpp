@@ -466,7 +466,7 @@ bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         MR::startSound(mRider, "SE_PM_GRAB_OBJ");
 
         if (!MR::isActiveActorCamera(this, mCameraInfo) || MR::isActiveActorCamera(this, mCameraInfo)) {
-            MR::startActorCameraNoTarget(this, mCameraInfo, -1);
+            MR::startActorCameraNoTarget(this, mCameraInfo);
         }
 
         setNerve(GET_NERVE(Trapeze, TrapezeNrvSwingSlideDownStart));
@@ -532,7 +532,7 @@ bool Trapeze::tryJump() {
         }
 
         MR::setPlayerFrontTargetVec(frontDir, 1);
-        MR::endActorCameraAtLanding(this, mCameraInfo, -1);
+        MR::endActorCameraAtLanding(this, mCameraInfo);
 
         getSensor("body")->invalidate();
         getSensor("bind")->validate();

@@ -188,9 +188,9 @@ void ChipGroup::noticeGet(ChipBase* pChip) {
                 }
 
                 if (mChipType == 0) {
-                    MR::startSystemSE("SE_OJ_BLUECHIP_COMPLETE", mGotCount, -1);
+                    MR::startSystemSE("SE_OJ_BLUECHIP_COMPLETE", mGotCount);
                 } else if (mChipType == 1) {
-                    MR::startSystemSE("SE_OJ_YELLOWCHIP_COMPLETE", mGotCount, -1);
+                    MR::startSystemSE("SE_OJ_YELLOWCHIP_COMPLETE", mGotCount);
                 }
 
                 mCounterTimer = -1;

@@ -436,11 +436,11 @@ void KoopaFunction::initKoopaAnimCamera(Koopa* pKoopa, const char* pName) {
 }
 
 void KoopaFunction::startKoopaCamera(Koopa* pKoopa, const char* pName) {
-    MR::startMultiActorCameraNoTarget(pKoopa, pKoopa->mParts->mActorCameraInfo, pName, -1);
+    MR::startMultiActorCameraNoTarget(pKoopa, pKoopa->mParts->mActorCameraInfo, pName);
 }
 
 void KoopaFunction::startKoopaTargetCamera(Koopa* pKoopa, const char* pName) {
-    MR::startMultiActorCameraTargetSelf(pKoopa, pKoopa->mParts->mActorCameraInfo, pName, -1);
+    MR::startMultiActorCameraTargetSelf(pKoopa, pKoopa->mParts->mActorCameraInfo, pName);
 }
 
 void KoopaFunction::startKoopaAnimCamera(Koopa* pKoopa, const char* pName, s32 a1) {

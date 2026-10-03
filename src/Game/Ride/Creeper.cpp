@@ -221,7 +221,7 @@ void Creeper::exeHangDown() {
     mHangSpeed = MR::clamp(mHangSpeed, 0.0f, ::sHangDownSpeedMax);
 
     if (MR::isRailReachedNearGoal(this, ::sHangEndCoord)) {
-        MR::endMultiActorCamera(this, mCameraInfo, "掴まり", true, -1);
+        MR::endMultiActorCamera(this, mCameraInfo, "掴まり", true);
         MR::endBindAndPlayerJump(this, TVec3f(0.0f, 0.0f, 0.0f), 0);
         MR::startSound(mRider, "SE_PV_JUMP_S");
         MR::startSound(this, "SE_OJ_CREEPER_SWING");
@@ -308,7 +308,7 @@ bool Creeper::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
 
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
 
-        MR::startMultiActorCameraNoTarget(this, mCameraInfo, "掴まり", -1);
+        MR::startMultiActorCameraNoTarget(this, mCameraInfo, "掴まり");
         return true;
     }
 
@@ -321,7 +321,7 @@ bool Creeper::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
     }
 
     if (MR::isMsgRushCancel(msg)) {
-        MR::endMultiActorCamera(this, mCameraInfo, "掴まり", true, -1);
+        MR::endMultiActorCamera(this, mCameraInfo, "掴まり", true);
         MR::endBindAndPlayerJump(this, TVec3f(0.0f, 0.0f, 0.0f), 0);
         mRider = nullptr;
         setNerve(GET_NERVE(Creeper, CreeperNrvFreeInvalid));
@@ -400,7 +400,7 @@ bool Creeper::tryJump() {
     launch = launchFront * mJumpSpeedFront - mGravity * mJumpSpeedUp;
 
     MR::startBckPlayer("GrowPlantJump");
-    MR::endMultiActorCamera(this, mCameraInfo, "掴まり", true, -1);
+    MR::endMultiActorCamera(this, mCameraInfo, "掴まり", true);
     MR::endBindAndPlayerForceWeakGravityJump(this, launch);
 
     MR::setPlayerSwingInhibitTimer(::sStepInvalidSpin);

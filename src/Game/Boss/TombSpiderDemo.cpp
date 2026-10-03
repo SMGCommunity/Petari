@@ -54,7 +54,7 @@ TombSpiderDemo::TombSpiderDemo(TombSpider* pParent) : mParent(pParent), mRotateS
 bool TombSpiderDemo::updateGateOpen() {
     if (MR::isFirstStep(mParent)) {
         TombSpiderFunction::startTombSpiderDemo(mParent, "ゲートオープンデモ[トゥームスパイダー]", nullptr);
-        MR::startEventCamera(getCameraInfo(), "ゲートオープンデモ[トゥームスパイダー]", CameraTargetArg(mParent), -1);
+        MR::startEventCamera(getCameraInfo(), "ゲートオープンデモ[トゥームスパイダー]", CameraTargetArg(mParent));
 
         TVec3f pos(mParent->mPosition);
         pos.z += ::sPlanetRadius;
@@ -98,8 +98,8 @@ bool TombSpiderDemo::updateGateOpen() {
     }
 
     if (MR::isStep(mParent, ::sStepGateOpenChangeCamera)) {
-        MR::endEventCamera(getCameraInfo(), "ゲートオープンデモ[トゥームスパイダー]", false, -1);
-        MR::startEventCameraNoTarget(getCameraInfo(), "マリオ着地デモ[トゥームスパイダー]", -1);
+        MR::endEventCamera(getCameraInfo(), "ゲートオープンデモ[トゥームスパイダー]", false);
+        MR::startEventCameraNoTarget(getCameraInfo(), "マリオ着地デモ[トゥームスパイダー]");
     }
 
     if (MR::isStep(mParent, ::sStepDemoGateOpen)) {

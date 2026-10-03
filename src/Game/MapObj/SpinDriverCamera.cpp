@@ -22,7 +22,7 @@ void SpinDriverCamera::startAppearCamera(LiveActor* pActor, const TVec3f& a2, co
         return;
     }
 
-    MR::startMultiActorCameraTargetOther(pActor, mCameraInfo, "出現イベント用", CameraTargetArg(mTargetMtx), -1);
+    MR::startMultiActorCameraTargetOther(pActor, mCameraInfo, "出現イベント用", CameraTargetArg(mTargetMtx));
 
     TPos3f upPos;
     MR::makeMtxUpFrontPos(&upPos, a2, a3, a4);
@@ -38,7 +38,7 @@ void SpinDriverCamera::endAppearCamera(LiveActor* pActor) {
         return;
     }
 
-    MR::endMultiActorCamera(pActor, mCameraInfo, "出現イベント用", false, -1);
+    MR::endMultiActorCamera(pActor, mCameraInfo, "出現イベント用", false);
 }
 
 s32 SpinDriverCamera::getAppearCameraFrames() const {

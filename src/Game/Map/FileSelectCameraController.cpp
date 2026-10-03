@@ -40,7 +40,7 @@ void FileSelectCameraController::init(const JMapInfoIter& rIter) {
 void FileSelectCameraController::appear() {
     LiveActor::appear();
     setNerve(GET_NERVE_ANON(FileSelectCameraControllerNrvTitle));
-    MR::startActorCameraProgrammable(this, -1);
+    MR::startActorCameraProgrammable(this);
 }
 
 void FileSelectCameraController::kill() {

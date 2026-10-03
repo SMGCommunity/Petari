@@ -152,12 +152,12 @@ void KoopaJrShip::control() {
 
     if (_D0 > 0) {
         if (_D0 <= 3) {
-            MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN1", -1, -1, -1);
+            MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN1");
         }
         if (_D0 <= 1) {
-            MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN2", -1, -1, -1);
+            MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN2");
         }
-        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MOVE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MOVE");
     }
 
     updateKoopaJrPos();

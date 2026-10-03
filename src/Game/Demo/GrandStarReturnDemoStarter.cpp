@@ -172,18 +172,18 @@ void GrandStarReturnDemoStarter::exeMove() {
 
     if (!isActiveGrandStarReturnDemoIndex(0)) {
         if (MR::isFirstStep(this)) {
-            MR::startMultiActorCameraTargetPlayer(this, mActorCameraInfo, "移動", -1);
+            MR::startMultiActorCameraTargetPlayer(this, mActorCameraInfo, "移動");
         }
 
         if (MR::isDemoPartStep(::cDemoMovePartName, 300)) {
-            MR::startMultiActorCameraTargetPlayer(this, mActorCameraInfo, "ウェイト", -1);
+            MR::startMultiActorCameraTargetPlayer(this, mActorCameraInfo, "ウェイト");
         }
     }
 
     const char* pDemoName = ::cDemoMovePartName;
     mReturnDemoRailMove->update(MR::getDemoPartStep(pDemoName) + 1, MR::getDemoPartTotalStep(pDemoName));
 
-    MR::startLevelSoundPlayer("SE_PM_LV_SPIN_DRV_FLY", -1);
+    MR::startLevelSoundPlayer("SE_PM_LV_SPIN_DRV_FLY");
 
     updateRailMoveEndDir();
 
@@ -267,7 +267,7 @@ void GrandStarReturnDemoStarter::exeRevival() {
     }
 
     if (MR::isDemoPartFirstStep("リザルト画面")) {
-        MR::startMultiActorCameraTargetPlayer(this, mActorCameraInfo, "リザルト", -1);
+        MR::startMultiActorCameraTargetPlayer(this, mActorCameraInfo, "リザルト");
     }
 
     tryStartStageResult("リザルト画面");
@@ -285,7 +285,7 @@ void GrandStarReturnDemoStarter::exeFadeOut() {
     }
 
     if (!MR::isWipeActive()) {
-        MR::endMultiActorCamera(this, mActorCameraInfo, "リザルト", false, -1);
+        MR::endMultiActorCamera(this, mActorCameraInfo, "リザルト", false);
         setNerve(GET_NERVE(GrandStarReturnDemoStarter, GrandStarReturnDemoStarterNrvWaitDemoEnd));
     }
 }

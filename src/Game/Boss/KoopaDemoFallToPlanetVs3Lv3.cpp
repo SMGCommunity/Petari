@@ -50,7 +50,7 @@ void KoopaDemoFallToPlanetVs3Lv3::appear() {
 void KoopaDemoFallToPlanetVs3Lv3::kill() {
     mIsDead = true;
 
-    KoopaFunction::endKoopaCamera(mHost, "惑星Ｌｖ３内側を落下", false, -1);
+    KoopaFunction::endKoopaCamera(mHost, "惑星Ｌｖ３内側を落下", false);
 }
 
 void KoopaDemoFallToPlanetVs3Lv3::exeWaitFallDemo() {

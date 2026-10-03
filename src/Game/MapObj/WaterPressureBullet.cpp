@@ -228,7 +228,7 @@ bool WaterPressureBullet::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor
 
 bool WaterPressureBullet::startHostCamera() const {
     if (_A4 != nullptr && mCameraInfo != nullptr) {
-        MR::startActorCameraNoTarget(_A4, *mCameraInfo, -1);
+        MR::startActorCameraNoTarget(_A4, *mCameraInfo);
         return true;
     }
 
@@ -237,7 +237,7 @@ bool WaterPressureBullet::startHostCamera() const {
 
 bool WaterPressureBullet::endHostCamera() const {
     if (_A4 != nullptr && mCameraInfo != nullptr) {
-        MR::endActorCamera(_A4, *mCameraInfo, true, -1);
+        MR::endActorCamera(_A4, *mCameraInfo, true);
         return true;
     }
 

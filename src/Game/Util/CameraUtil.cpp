@@ -385,7 +385,7 @@ namespace MR {
         if (chunk != nullptr) {
             chunk->mGeneralParam->mWPoint.set(rWPoint);
             chunk->mGeneralParam->mAxis.set(rPos);
-            startGlobalEventCameraNoTarget(pEventName, -1);
+            startGlobalEventCameraNoTarget(pEventName);
         }
     }
 

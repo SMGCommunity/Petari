@@ -81,7 +81,7 @@ void GravityLightRoad::exeWait() {
 void GravityLightRoad::exeDraw() {
     if (MR::isFirstStep(this)) {
         mSpeed = 0.0f;
-        MR::startSoundPlayer("SE_PM_GRAV_LIGHT_DRAWN_ST", -1);
+        MR::startSoundPlayer("SE_PM_GRAV_LIGHT_DRAWN_ST");
     }
 
     TVec3f upVec;

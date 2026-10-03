@@ -1836,7 +1836,7 @@ void Mario::procHipDrop() {
     } else {
         _3BC++;
 
-        if (MR::isNearZero(mActor->getLastMove(), 0.001f)) {
+        if (MR::isNearZero(mActor->getLastMove())) {
             _422++;
             if (_422 == 0xF) {
                 stopAnimation(nullptr, "基本");

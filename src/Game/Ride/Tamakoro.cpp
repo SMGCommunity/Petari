@@ -268,7 +268,7 @@ bool Tamakoro::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
     if (MR::isMsgExplosionAttack(msg) && isEnableEnemyAttack()) {
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::setVelocitySeparateHV(this, pSender, pReceiver, ::sExplosionReactionH, ::sExplosionReactionV);
-        MR::startSoundPlayer("SE_PV_UPSET", -1);
+        MR::startSoundPlayer("SE_PV_UPSET");
         return true;
     }
     return false;
@@ -503,7 +503,7 @@ void Tamakoro::reactionCollision() {
 
     if (wallHitPower > ::sCollisionWeakPower) {
         MR::startSound(this, "SE_SM_IRONSPH_HIT");
-        MR::startSoundPlayer("SE_PV_GUARD", -1);
+        MR::startSoundPlayer("SE_PV_GUARD");
     }
 
     if (hitPower > ::sCollisionStrongPower) {
@@ -583,7 +583,7 @@ void Tamakoro::exeBindStartLand() {
         }
 
         MR::emitEffectHit(this, mMarioPos, mMarioPos - mPosition, "TamakoroLand");
-        MR::startSoundPlayer("SE_PV_CATCH", -1);
+        MR::startSoundPlayer("SE_PV_CATCH");
         MR::startSound(this, "SE_SM_RIDE_START");
 
         if (MR::isValidSwitchA(this)) {
@@ -663,7 +663,7 @@ void Tamakoro::exeFall() {
 void Tamakoro::exeJump() {
     if (MR::isFirstStep(this)) {
         MR::startBckPlayer("BallJump", "BallJump");
-        MR::startSoundPlayer("SE_PV_JUMP_M", -1);
+        MR::startSoundPlayer("SE_PV_JUMP_M");
         MR::startSound(this, "SE_SM_BALLOONSPH_JUMP");
         MR::addVelocityToGravity(this, (-::sJumpPowerV - mVelocity.dot(mGravity)));
         MR::addVelocityMoveToDirection(this, mAccelDir, mAccelRate * ::sJumpPowerH);
@@ -769,7 +769,7 @@ void Tamakoro::endJumpHoleLaunch() {
 void Tamakoro::exeDashRail() {
     if (MR::isFirstStep(this)) {
         MR::startBckPlayer("BallRoll");
-        MR::startSoundPlayer("SE_PV_JUMP_JOY", -1);
+        MR::startSoundPlayer("SE_PV_JUMP_JOY");
         MR::startSound(this, "SE_SM_IRONSPH_RAILDASH");
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
         mAccelDir.zero();
@@ -867,7 +867,7 @@ void Tamakoro::exeBindEnd() {
         }
         MR::emitEffect(this, "Break");
         MR::startSound(this, "SE_SM_RIDE_END");
-        MR::startSoundPlayer("SE_PV_JUMP_S", -1);
+        MR::startSoundPlayer("SE_PV_JUMP_S");
         MR::stopStageBGM(10);
     }
 

@@ -161,7 +161,7 @@ void GCaptureTarget::exeAppear() {
     if (MR::isGreaterStep(this, 150)) {
         if (MR::isExistActorCamera(mCameraInfo)) {
             MR::endDemoWaitCameraInterpolating(this, "出現");
-            MR::endActorCamera(this, mCameraInfo, false, -1);
+            MR::endActorCamera(this, mCameraInfo, false);
         }
         setNerve(GET_NERVE(GCaptureTarget, GCaptureTargetNrvWait));
     }

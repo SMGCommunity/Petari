@@ -504,7 +504,7 @@ void JetTurtle::exeThrowing() {
                 MR::emitEffect(this, "WaterBlur");
             } else {
                 MR::startSound(this, "SE_OJ_TURTLE_JET_LAUNCH_L");
-                MR::startSoundPlayer("SE_PV_THROW", -1);
+                MR::startSoundPlayer("SE_PV_THROW");
                 MR::startBck(this, "Bullet");
 
                 switch (mShellType) {
@@ -673,7 +673,7 @@ void JetTurtle::exeTakenStart() {
         MR::startSystemSE("SE_SY_GET_TURTLE_JET");
 
         if (!MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-            MR::startSoundPlayer("SE_PV_CATCH", -1);
+            MR::startSoundPlayer("SE_PV_CATCH");
         }
 
         MR::deleteEffect(this, "SpinBlur");

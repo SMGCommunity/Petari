@@ -48,7 +48,7 @@ void KoopaDemoFallToPlanetVs3Lv2::appear() {
 void KoopaDemoFallToPlanetVs3Lv2::kill() {
     mIsDead = true;
 
-    KoopaFunction::endKoopaCamera(mHost, "惑星Ｌｖ２まで落下（後半）", false, -1);
+    KoopaFunction::endKoopaCamera(mHost, "惑星Ｌｖ２まで落下（後半）", false);
 }
 
 void KoopaDemoFallToPlanetVs3Lv2::exeWaitFall() {

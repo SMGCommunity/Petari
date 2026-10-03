@@ -176,7 +176,7 @@ void Plant::exeSeedWait() {
 
 void Plant::exeWaitDemoWaitGrowUp() {
     if (MR::tryStartDemoWithoutCinemaFrame(this, "伸び植物（成長）")) {
-        MR::startMultiActorCameraTargetOther(this, mCameraInfo, "出現デモ", CameraTargetArg(mTopPartsModel), -1);
+        MR::startMultiActorCameraTargetOther(this, mCameraInfo, "出現デモ", CameraTargetArg(mTopPartsModel));
         MR::requestMovementOn(mSeedPartsModel);
         setNerve(GET_NERVE(Plant, PlantNrvDemoWaitGrowUp));
     }
@@ -339,7 +339,7 @@ void Plant::exeHangDown() {
     updateBindLeaf();
 
     if (MR::isRailReachedNearGoal(this, ::sHangReachedDistance)) {
-        MR::endMultiActorCameraAtLanding(this, mCameraInfo, "掴まり", -1);
+        MR::endMultiActorCameraAtLanding(this, mCameraInfo, "掴まり");
         MR::startBckPlayer("GrowPlantJump");
         MR::endBindAndPlayerJump(this, TVec3f(0.0f, 0.0f, 0.0f), 0);
         mRider = nullptr;
@@ -513,7 +513,7 @@ bool Plant::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::startSound(mRider, "SE_PM_GRAB_OBJ");
         MR::startSound(mRider, "SE_PV_CATCH");
-        MR::startMultiActorCameraNoTarget(this, mCameraInfo, "掴まり", -1);
+        MR::startMultiActorCameraNoTarget(this, mCameraInfo, "掴まり");
         return true;
     }
 
@@ -528,7 +528,7 @@ bool Plant::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (MR::isMsgRushCancel(msg)) {
-        MR::endMultiActorCamera(this, mCameraInfo, "掴まり", false, -1);
+        MR::endMultiActorCamera(this, mCameraInfo, "掴まり", false);
         mRider = nullptr;
         setNerve(GET_NERVE(Plant, PlantNrvGrowthWaitInvalid));
         return true;
@@ -563,7 +563,7 @@ bool Plant::updateGrowUp() {
     if (growStalk) {
         if (mPlayAppearDemo) {
             MR::endDemo(this, "伸び植物（成長）");
-            MR::endMultiActorCamera(this, mCameraInfo, "出現デモ", false, -1);
+            MR::endMultiActorCamera(this, mCameraInfo, "出現デモ", false);
         }
 
         if (mRider != nullptr) {
@@ -683,7 +683,7 @@ bool Plant::tryReachGoal() {
     MR::startSound(mRider, "SE_PM_JUMP_L");
     MR::startSound(mRider, "SE_PV_JUMP_JOY");
 
-    MR::endMultiActorCameraAtLanding(this, mCameraInfo, "掴まり", -1);
+    MR::endMultiActorCameraAtLanding(this, mCameraInfo, "掴まり");
     MR::endBindAndPlayerForceWeakGravityJump(this, endUp);
     mRider = nullptr;
 

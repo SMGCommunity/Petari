@@ -778,7 +778,7 @@ bool WaterRoad::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
 
         mRider = MR::getSensorHost(pSender);
         MR::moveCoordToNearestPos(this, mRider->mPosition);
-        MR::startMultiActorCameraTargetPlayer(this, mCameraInfo, "バインド中", -1);
+        MR::startMultiActorCameraTargetPlayer(this, mCameraInfo, "バインド中");
         setNerve(GET_NERVE(WaterRoad, WaterRoadNrvRideStart));
         return true;
     }
@@ -807,7 +807,7 @@ bool WaterRoad::updateRide() {
         MR::startSound(mRider, "SE_OJ_WATER_ROAD_BIND_END");
         MR::startSound(mRider, "SE_PV_JUMP_M");
         MR::endBindAndPlayerJump(this, TVec3f(0.0f, 0.0f, 0.0f), 0);
-        MR::endMultiActorCamera(this, mCameraInfo, "バインド中", true, -1);
+        MR::endMultiActorCamera(this, mCameraInfo, "バインド中", true);
         mRider = nullptr;
         setNerve(GET_NERVE(WaterRoad, WaterRoadNrvDisappear));
         return true;

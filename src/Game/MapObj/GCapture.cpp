@@ -505,7 +505,7 @@ void GCapture::exeTraction() {
     if (scalar > 180.0f * _128) {
         v20.set(mPosition + dir * _128 * 180.0f);
         mCaptureRibbon->shorten(targetPos, v20);
-        if (MR::isNearZero(dir, 0.001f)) {
+        if (MR::isNearZero(dir)) {
             _8C.setTrans(v20);
         } else {
             MR::makeMtxUpNoSupportPos(&_8C, dir, v20);

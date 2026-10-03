@@ -171,7 +171,7 @@ void DragonHeadFlower::exeRailMove() {
 
         MR::emitEffect(this, "Launch");
 
-        MR::startSoundPlayer("SE_PV_JUMP_JOY", -1);
+        MR::startSoundPlayer("SE_PV_JUMP_JOY");
 
         MR::showPlayer();
         MR::showModel(mPlayerSensor->mHost);

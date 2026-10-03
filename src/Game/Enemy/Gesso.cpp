@@ -134,7 +134,7 @@ void Gesso::control() {
 
     mVelocity.add(_C8);
     _C8 *= 0.7f;
-    if (MR::isNearZero(_C8, 0.001f)) {
+    if (MR::isNearZero(_C8)) {
         _C8.zero();
     }
 

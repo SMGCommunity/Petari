@@ -128,8 +128,8 @@ void JumpHole::exeRailMove() {
         initParabola(mBoundSensor->mHost->mPosition);
         MR::shakeCameraNormal();
         MR::startSound(this, "SE_OJ_JUMP_HOLE_FLIP");
-        MR::startSoundPlayer("SE_PV_JUMP_JOY", -1);
-        MR::startSoundPlayer("SE_PM_JUMP_LONG", -1);
+        MR::startSoundPlayer("SE_PV_JUMP_JOY");
+        MR::startSoundPlayer("SE_PM_JUMP_LONG");
         mBoundSensor->receiveMessage(ACTMES_SHOOT_JUMP_HOLE, getSensor("body"));
     }
 

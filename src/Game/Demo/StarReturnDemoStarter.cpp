@@ -214,7 +214,7 @@ void StarReturnDemoStarter::exeMove() {
     int totalStep = MR::getDemoPartTotalStep(pDemoName) - 45;
     mReturnDemoRailMove->update(partStep, totalStep);
     PowerStar::requestPointLightAtResultSequence(mPowerStar);
-    MR::startLevelSoundPlayer("SE_PM_LV_SPIN_DRV_FLY", -1);
+    MR::startLevelSoundPlayer("SE_PM_LV_SPIN_DRV_FLY");
 
     if (MR::isDemoPartLastStep(pDemoName)) {
         setNerve(::isGrandStar() ? static_cast< const Nerve* >(GET_NERVE(StarReturnDemoStarter, StarReturnDemoStarterNrvFlyWaitGrandStar)) :
@@ -274,7 +274,7 @@ void StarReturnDemoStarter::exeFall() {
     mTransform.getTrans(position);
 
     if (MR::isFirstStep(this)) {
-        MR::startSoundPlayer("SE_PV_DM_ASTRO_RET_LANDING", -1);
+        MR::startSoundPlayer("SE_PV_DM_ASTRO_RET_LANDING");
         MR::startBckPlayer("Fall");
         mPowerStar->kill();
 

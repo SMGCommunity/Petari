@@ -146,7 +146,7 @@ bool TeresaRacer::eventFunc(u32 state) {
 void TeresaRacer::exeWait() {
     if (MR::tryTalkNearPlayerAndStartTalkAction(this)) {
         if (mRacerId == -1) {
-            MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "会話", -1);
+            MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "会話");
         }
         setNerve(GET_NERVE(TeresaRacer, TeresaRacerNrvPre));
     }
@@ -163,7 +163,7 @@ void TeresaRacer::exePre() {
             setNerve(GET_NERVE(TeresaRacer, TeresaRacerNrvReady));
         } else {
             if (mRacerId == -1) {
-                MR::endMultiActorCamera(this, mCameraInfo, "会話", false, -1);
+                MR::endMultiActorCamera(this, mCameraInfo, "会話", false);
             }
             setNerve(GET_NERVE(TeresaRacer, TeresaRacerNrvWait));
         }
@@ -175,7 +175,7 @@ void TeresaRacer::exeReady() {
 
 void TeresaRacer::exePost() {
     if (!MR::isActionContinuous(this) && MR::tryTalkForceAtEndAndStartTalkAction(this)) {
-        MR::endMultiActorCamera(this, mCameraInfo, "会話", true, -1);
+        MR::endMultiActorCamera(this, mCameraInfo, "会話", true);
         if (RaceManagerFunction::getRaceRank() == 1) {
             setNerve(GET_NERVE(TeresaRacer, TeresaRacerNrvTalk));
         } else {
@@ -294,7 +294,7 @@ void TeresaRacer::resetRacer(const RaceManager* pRaceManager) {
 
     turnToPlayer(180.0f);
     setNerve(GET_NERVE(TeresaRacer, TeresaRacerNrvPost));
-    MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "会話", -1);
+    MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "会話");
     mParam._0 = true;
     mParam._1 = true;
 }

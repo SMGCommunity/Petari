@@ -275,7 +275,7 @@ void PenguinSkater::exeWait() {
     } else if (MR::tryTalkNearPlayerAtEndAndStartTalkAction(this)) {
         MR::invalidateClipping(this);
         MR::tryStartDemo(this, "ペンギンスケート開始");
-        MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "開始", -1);
+        MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "開始");
         MR::forwardNode(mMsgCtrl);
         TVec3f pos;
         MR::calcRailStartPointDirection(&pos, mRail);
@@ -303,7 +303,7 @@ void PenguinSkater::exeDemo() {
     }
     moveRail(::sDemoSpeed, ::sBlendRatio);
     if (inProvokeRangeIn(calcLead())) {
-        MR::endMultiActorCamera(this, mCameraInfo, "開始", false, -1);
+        MR::endMultiActorCamera(this, mCameraInfo, "開始", false);
         MR::endDemo(this, "ペンギンスケート開始");
         setNerve(GET_NERVE(PenguinSkater, PenguinSkaterNrvAway));
     }
@@ -373,7 +373,7 @@ void PenguinSkater::exeProvoke() {
 void PenguinSkater::exeCaught() {
     if (MR::isFirstStep(this)) {
         MR::tryStartDemoMarioPuppetable(this, "捕まり");
-        MR::startMultiActorCameraTargetPlayer(this, mCameraInfo, "終了", -1);
+        MR::startMultiActorCameraTargetPlayer(this, mCameraInfo, "終了");
         MR::startAction(this, "Caught");
         MR::startBckPlayer("TossStart");
         MR::startSound(this, "SE_SM_PENGUIN_CAUGHT");
@@ -410,7 +410,7 @@ void PenguinSkater::exeFadeIn() {
         MR::findNamePos("マリオ移動後", pos);
         MR::setNPCActorPos(this, "ペンギン移動後");
         MR::setPlayerPosOnGroundAndWait("マリオ移動後");
-        MR::endMultiActorCamera(this, mCameraInfo, "終了", false, -1);
+        MR::endMultiActorCamera(this, mCameraInfo, "終了", false);
         MR::endDemo(this, "捕まり");
         MR::startTalkingSequence(this);
         MR::startNPCTalkCamera(getMsgCtrl(), getBaseMtx(), pos, 1.0f, 0);
@@ -430,7 +430,7 @@ void PenguinSkater::exeGiveUp() {
         MR::endTalkingSequence(this);
     }
     if (MR::tryTalkForceAtEndAndStartTalkAction(this)) {
-        MR::endNPCTalkCamera(false, -1);
+        MR::endNPCTalkCamera(false);
         MR::forwardNode(mMsgCtrl);
         MR::onSwitchA(this);
         MR::validateClipping(this);

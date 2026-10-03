@@ -558,7 +558,7 @@ extern const char* jname_chest;
 void MarioAnimator::setTilt() {
     f32 tiltAngle = 0.0f;
 
-    if (!MR::isNearZero(_60, 0.001f)) {
+    if (!MR::isNearZero(_60)) {
         f32 frontDot = _60.dot(getFrontVec());
         tiltAngle = 1.0f - frontDot;
 

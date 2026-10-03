@@ -876,7 +876,7 @@ f32 Mario::decideInertiaOnSlip(f32 speed) {
 void Mario::calcShadowDir(const TVec3f& rInput, TVec3f* pShadowDir) {
     TVec3f direction;
     direction = rInput;
-    if (!MR::isNormalize(direction, 0.001f)) {
+    if (!MR::isNormalize(direction)) {
         MR::normalizeOrZero(&direction);
     }
 

@@ -119,7 +119,7 @@ void AstroDomeDemoStarter::movePlayer() {
     }
 
     _90->setCoord(demoPartStepRate);
-    MR::startLevelSoundPlayer("SE_PM_LV_SPIN_DRV_FLY", -1);
+    MR::startLevelSoundPlayer("SE_PM_LV_SPIN_DRV_FLY");
 }
 
 void AstroDomeDemoStarter::exeSpinDriverAppear() {
@@ -154,7 +154,7 @@ void AstroDomeDemoStarter::exeSpinDriverStart() {
         MR::setPlayerBaseMtx(_94);
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::startCSSound("CS_SPIN_DRIVE_LONG", "SE_SY_CS_S_SPIN_DRV_START", 0);
-        MR::startSoundPlayer("SE_PM_SPIN_ATTACK", -1);
+        MR::startSoundPlayer("SE_PM_SPIN_ATTACK");
     }
 
     if (MR::isLessStep(this, 43)) {
@@ -182,7 +182,7 @@ void AstroDomeDemoStarter::exeSpinDriverShoot() {
         }
 
         MR::startSound(this, "SE_OJ_S_SPIN_DRV_JUMP");
-        MR::startSoundPlayer("SE_PV_JUMP_JOY", -1);
+        MR::startSoundPlayer("SE_PV_JUMP_JOY");
     }
 
     TPos3f playerBaseMtx = _94;

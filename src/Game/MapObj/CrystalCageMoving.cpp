@@ -66,7 +66,7 @@ void CrystalCageMoving::exeWaitBig() {
 void CrystalCageMoving::exeBreakBig() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "CoreWait");
-        MR::startActorCameraNoTarget(this, mCameraInfo, -1);
+        MR::startActorCameraNoTarget(this, mCameraInfo);
         MR::setSensorRadius(this, "body", 30.0f);
         _108 = 1;
         MR::emitEffect(this, "BreakOutside");
@@ -142,7 +142,7 @@ void CrystalCageMoving::exeDemoTicoChange() {
 }
 
 void CrystalCageMoving::endBreakBig() {
-    MR::endActorCamera(this, mCameraInfo, true, -1);
+    MR::endActorCamera(this, mCameraInfo, true);
 }
 
 void CrystalCageMoving::kill() {

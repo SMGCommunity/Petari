@@ -357,7 +357,7 @@ void Poihana::exeShootUp() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Throw");
         MR::startSound(this, "SE_EV_POIHANA_SHOOT_UP");
-        MR::startActorCameraNoTarget(this, mCamInfo, -1);
+        MR::startActorCameraNoTarget(this, mCamInfo);
     }
 
     TVec3f& rGravity = mGravity;
@@ -392,7 +392,7 @@ void Poihana::endShootUp() NO_INLINE {
     MR::setSensorRadius(this, "binder", ::sNormalBinderRadius);
     MR::validateHitSensor(this, "binder");
 
-    MR::endActorCamera(this, mCamInfo, true, -1);
+    MR::endActorCamera(this, mCamInfo, true);
 }
 
 void Poihana::exeGoBack() {

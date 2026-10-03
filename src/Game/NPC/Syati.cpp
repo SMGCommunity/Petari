@@ -201,7 +201,7 @@ void PlayerPoseSetterInWater::update() {
 void Syati::exeFadeinBeforeTalk() {
     if (MR::isFirstStep(this)) {
         MR::openWipeFade(-1);
-        MR::startMultiActorCameraTargetSelf(this, mActorCameraInfo, "会話", -1);
+        MR::startMultiActorCameraTargetSelf(this, mActorCameraInfo, "会話");
         MR::startBck(this, "Talk");
         MR::startBtk(this, "Talk");
 
@@ -231,7 +231,7 @@ void Syati::exeTalkStartMission() {
     mPlayerPoseSetterInWater->update();
 
     if (MR::tryTalkForceWithoutDemoMarioPuppetableAtEnd(mTalkMessageCtrl)) {
-        MR::endMultiActorCamera(this, mActorCameraInfo, "会話", false, -1);
+        MR::endMultiActorCamera(this, mActorCameraInfo, "会話", false);
         setNerve(GET_NERVE(Syati, SyatiReadyToStart));
     }
 }
@@ -241,7 +241,7 @@ void Syati::exeReadyToStart() {
         MR::invalidateClipping(this);
         resetScore();
         MR::requestMovementOn(mRaceManagerLayout);
-        MR::startMultiActorCameraTargetSelf(this, mActorCameraInfo, "開始デモ", -1);
+        MR::startMultiActorCameraTargetSelf(this, mActorCameraInfo, "開始デモ");
         MR::startBck(this, "TurnReverse");
         MR::startBtk(this, "Normal");
         MR::startBva(this, "Open");
@@ -267,7 +267,7 @@ void Syati::exeCountDown() {
     }
 
     if (getNerveStep() % 0x3C == 0) {
-        MR::startSystemSE("SE_SY_RACE_COUNT_DOWN", -1, -1);
+        MR::startSystemSE("SE_SY_RACE_COUNT_DOWN");
     }
 
     MR::setBckRate(this, 0.5f);
@@ -276,8 +276,8 @@ void Syati::exeCountDown() {
 
     if (!mRaceManagerLayout->isPlayCountAnim()) {
         MR::endDemo(this, "開始デモ");
-        MR::endMultiActorCamera(this, mActorCameraInfo, "開始デモ", true, -1);
-        MR::startSystemSE("SE_SY_RACE_START", -1, -1);
+        MR::endMultiActorCamera(this, mActorCameraInfo, "開始デモ", true);
+        MR::startSystemSE("SE_SY_RACE_START");
         setNerve(GET_NERVE(Syati, SyatiSwim));
     }
 }
@@ -371,7 +371,7 @@ void Syati::exeTalkRetryMission() {
 
     if (MR::tryTalkForceWithoutDemoMarioPuppetableAtEnd(mTalkMessageCtrl)) {
         MR::endDemo(this, "再挑戦デモ");
-        MR::endMultiActorCamera(this, mActorCameraInfo, "会話", true, -1);
+        MR::endMultiActorCamera(this, mActorCameraInfo, "会話", true);
         setNerve(GET_NERVE(Syati, SyatiForceKill));
     }
 }

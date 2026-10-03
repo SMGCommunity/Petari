@@ -81,7 +81,7 @@ void GCaptureRibbon::updateAxis() {
         TVec3f v1 = _90[1] - _90[0];
         MR::normalizeOrZero(&v1);
 
-        if (MR::isNearZero(v1, 0.001f)) {
+        if (MR::isNearZero(v1)) {
             _390[0] = TVec3f(1, 0, 0);
             _690[0] = TVec3f(0, 1, 0);
             v1 = TVec3f(0, 0, 1);
@@ -92,7 +92,7 @@ void GCaptureRibbon::updateAxis() {
 
         for (s32 i = 1; i < _990 - 1; i++) {
             TVec3f v2 = _90[i + 1] - _90[i];
-            if (MR::isNearZero(v2, 0.001f)) {
+            if (MR::isNearZero(v2)) {
                 _390[i] = _390[i - 1];
                 _690[i] = _690[i - 1];
             } else {

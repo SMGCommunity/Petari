@@ -315,7 +315,7 @@ bool SwingRope::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         MR::invalidateClipping(this);
         MR::startSound(mRider, "SE_PV_CATCH");
         MR::startSound(mRider, "SE_PM_GRAB_OBJ");
-        MR::startActorCameraNoTarget(this, mCameraInfo, -1);
+        MR::startActorCameraNoTarget(this, mCameraInfo);
 
         setNerve(GET_NERVE(SwingRope, SwingRopeNrvBindSlideDownStart));
 
@@ -455,7 +455,7 @@ bool SwingRope::tryJump() {
         TVec3f jumpVec = jumpXZ;
         jumpVec.add(jumpY);
 
-        MR::endActorCameraAtLanding(this, mCameraInfo, -1);
+        MR::endActorCameraAtLanding(this, mCameraInfo);
         MR::startSound(mRider, "SE_PV_JUMP_S");
         MR::startSound(mRider, "SE_PM_JUMP_M");
         MR::startBckPlayer("SwingRopeSpin", 0L);

@@ -22,7 +22,7 @@ void DemoCtrlBase::end() {
         MR::validateClipping(mActor);
     }
 
-    MR::endActorCamera(mActor, mCameraInfo, false, -1);
+    MR::endActorCamera(mActor, mCameraInfo, false);
 
     if (MR::Demo::isExistCameraShaking(mDemoName)) {
         MR::stopShakingCamera(mActor);
@@ -67,7 +67,7 @@ bool DemoCtrlBase::tryStart() {
         MR::invalidateClipping(mActor);
     }
 
-    MR::startActorCameraNoTarget(mActor, mCameraInfo, -1);
+    MR::startActorCameraNoTarget(mActor, mCameraInfo);
 
     if (MR::Demo::isExistCameraShaking(mDemoName)) {
         MR::shakeCameraInfinity(mActor, MR::Demo::getCameraShakeIntensity(mDemoName), MR::Demo::getCameraShakeSpeed(mDemoName));

@@ -90,7 +90,7 @@ void KoopaStateDamageEscape::init() {
 void KoopaStateDamageEscape::appear() {
     mIsDead = false;
 
-    KoopaFunction::endKoopaCamera(mHost, "逃走開始", false, -1);
+    KoopaFunction::endKoopaCamera(mHost, "逃走開始", false);
     MR::validateHitSensor(mHost, "ReceiverTail");
     MR::validateHitSensor(mHost, "ReceiverTailTop");
 
@@ -148,9 +148,9 @@ void KoopaStateDamageEscape::kill() {
 
     mIsDead = true;
 
-    KoopaFunction::endKoopaCamera(mHost, "逃走", false, -1);
-    KoopaFunction::endKoopaCamera(mHost, "逃走（尻尾ダメージ）", false, -1);
-    KoopaFunction::endKoopaCamera(mHost, "逃走ダウン", false, -1);
+    KoopaFunction::endKoopaCamera(mHost, "逃走", false);
+    KoopaFunction::endKoopaCamera(mHost, "逃走（尻尾ダメージ）", false);
+    KoopaFunction::endKoopaCamera(mHost, "逃走ダウン", false);
 
     MR::invalidateHitSensor(mHost, "ReceiverTail");
     MR::invalidateHitSensor(mHost, "ReceiverTailTop");

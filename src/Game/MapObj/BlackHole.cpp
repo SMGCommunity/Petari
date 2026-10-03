@@ -82,7 +82,7 @@ void BlackHole::kill() {
 
 bool BlackHole::tryStartDemoCamera() {
     if (mCameraInfo != nullptr) {
-        MR::startActorCameraTargetSelf(this, mCameraInfo, -1);
+        MR::startActorCameraTargetSelf(this, mCameraInfo);
         return true;
     }
 
