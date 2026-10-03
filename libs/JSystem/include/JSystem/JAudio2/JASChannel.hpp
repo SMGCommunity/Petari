@@ -11,7 +11,7 @@ struct JASDSPChannel;
 
 namespace JASDsp {
     struct TChannel;
-};
+};  // namespace JASDsp
 
 class JASChannelParams {
 public:

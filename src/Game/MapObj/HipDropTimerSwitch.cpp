@@ -24,7 +24,7 @@
 namespace {
     const char* const sTimerSeSet[2][4] = {{"SE_SY_TIMER_A_2", "SE_SY_TIMER_A_1", "SE_SY_TIMER_A_QUASI_0", "SE_SY_TIMER_A_0"},
                                            {"SE_SY_TIMER_B_2", "SE_SY_TIMER_B_1", "SE_SY_TIMER_B_QUASI_0", "SE_SY_TIMER_B_0"}};
-};
+};  // namespace
 
 namespace NrvHipDropSwitch {
     NEW_NERVE(HipDropTimerSwitchNrvOff, HipDropTimerSwitch, Off);

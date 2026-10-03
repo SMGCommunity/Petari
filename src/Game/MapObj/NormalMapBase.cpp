@@ -10,7 +10,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include <JSystem/JUtility/JUTTexture.hpp>
 #include <JSystem/J3DGraphAnimator/J3DJoint.hpp>
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <JSystem/J3DGraphBase/J3DMaterial.hpp>
@@ -18,6 +17,7 @@
 #include <JSystem/J3DGraphBase/J3DTransform.hpp>
 #include <JSystem/JKernel/JKRHeap.hpp>
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
 #include <cmath>
 #include <cstring>
@@ -814,7 +814,7 @@ namespace {
         const u16& rWidth = JUTVideo::getManager()->getFbWidth();
         return rWidth;
     }
-}
+};  // namespace
 
 void NormalMapBase::indirectCapture() const {
     TDDraw::setup(1, 0, 2);

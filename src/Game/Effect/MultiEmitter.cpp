@@ -253,7 +253,7 @@ namespace {
     inline s16 toS16(f32 deg) {
         return DEGREE_TO_S16 * deg;
     }
-}
+};  // namespace
 
 void MultiEmitter::setGlobalRotationDegree(const TVec3f& rRotation, s32 idx) {
     setGlobalRotation(TVec3s(toS16(rRotation.x), toS16(rRotation.y), toS16(rRotation.z)), idx);

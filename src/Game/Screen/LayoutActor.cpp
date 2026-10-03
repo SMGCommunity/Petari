@@ -85,7 +85,8 @@ namespace {
         pRootPane->mTranslate.y = translation.y;
         pRootPane->mTranslate.z = translation.z;
     }
-}  // namespace
+};  // namespace
+
 void LayoutActor::setTrans(const TVec2f& rTrans) {
     TVec2f trans;
     MR::convertScreenPosToLayoutPos(&trans, rTrans);

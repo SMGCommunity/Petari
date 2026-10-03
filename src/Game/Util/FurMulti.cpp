@@ -36,7 +36,7 @@ namespace {
                           {0.8f, 0.6f, 0.3f, 0.09f},
                           {0.517f, 0.386f, 0.3645f, 0.1713f},
                           {26, 64, 98, 212}};
-}
+};  // namespace
 
 FurMulti::FurMulti(LiveActor* pActor, u32 count) {
     mActor = pActor;

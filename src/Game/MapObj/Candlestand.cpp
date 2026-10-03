@@ -7,7 +7,7 @@
 
 namespace {
     extern char sBurnSound[];
-}
+};  // namespace
 
 namespace NrvCandlestand {
     NEW_NERVE(HostTypeWaitFire, Candlestand, WaitFire);
@@ -279,7 +279,7 @@ void Candlestand::exeFire() {
 
 namespace {
     char sBurnSound[] = "SE_OJ_LV_PHANTOM_TOACH_BURN";
-}
+};  // namespace
 
 void Candlestand::exeExtinguish() {
     if (MR::isFirstStep(this)) {

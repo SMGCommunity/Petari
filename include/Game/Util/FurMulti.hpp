@@ -50,4 +50,4 @@ public:
 
 namespace MR {
     FurMulti* initMultiFur(LiveActor*, s32);
-}
+};  // namespace MR

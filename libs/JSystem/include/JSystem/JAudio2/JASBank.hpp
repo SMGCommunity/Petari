@@ -5,7 +5,7 @@
 
 namespace JASDsp {
     struct TChannel;
-};
+};  // namespace JASDsp
 
 class JASChannel;
 struct JASInstParam;
@@ -18,7 +18,7 @@ public:
     JASBank() {
         mWaveBank = NULL;
     }
-    virtual ~JASBank(){};
+    virtual ~JASBank() {};
     virtual bool getInstParam(int, int, int, JASInstParam*) const = 0;
     virtual u32 getType() const = 0;
 

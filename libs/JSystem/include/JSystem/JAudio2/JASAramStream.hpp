@@ -6,7 +6,7 @@ class JASChannel;
 
 namespace JASDsp {
     struct TChannel;
-}
+};  // namespace JASDsp
 
 class JASAramStream {
 public:

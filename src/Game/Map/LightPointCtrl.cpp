@@ -6,11 +6,11 @@
 namespace {
     static const s32 sDefaultBlendTime = 30;
     static const f32 sDefaultDistRef = 15.0f;
-};
+};  // namespace
 
 LightPointCtrl::LightPointCtrl()
-    : mStep(-1), mBlendTime(::sDefaultBlendTime), mCurrentActor(), mPreviousActor(), mCandidateActor(), mCurrentInfo(),
-      mTargetInfo(), mPreviousInfo() {
+    : mStep(-1), mBlendTime(::sDefaultBlendTime), mCurrentActor(), mPreviousActor(), mCandidateActor(), mCurrentInfo(), mTargetInfo(),
+      mPreviousInfo() {
     mCurrentInfo = new PointLightInfo();
     mTargetInfo = new PointLightInfo();
     mPreviousInfo = new PointLightInfo();

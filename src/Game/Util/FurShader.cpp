@@ -211,7 +211,7 @@ namespace {
     inline s32 getCount(u8* pRead) {
         return *reinterpret_cast< u16* >(pRead + 1);
     }
-}
+};  // namespace
 
 void CShader::makeIndexData(J3DShape* pShape) const {
     GXVtxDescList* pDesc = pShape->getVtxDesc();

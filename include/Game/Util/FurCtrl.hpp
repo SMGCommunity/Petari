@@ -93,4 +93,4 @@ public:
 
 namespace MR {
     FurDrawManager* getFurDrawManager();
-}
+};  // namespace MR

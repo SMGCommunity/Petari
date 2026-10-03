@@ -18,7 +18,7 @@ namespace NrvOtaKingMagma {
 
 namespace {
     const Vec cBloomModelOffset = {0.0, 10.0f, 0.0f};
-}
+};  // namespace
 
 OtaKingMagma::OtaKingMagma(LiveActor* pHost, s32 drawBufferType)
     : PartsModel(pHost, "オタキングマグマ", "OtaKingMagma", nullptr, drawBufferType, true), mBloomModel(), _A0(), _A4() {

@@ -72,7 +72,7 @@ namespace {
         const u16& rWidth = JUTGetVideoManager()->getFbWidth();
         return rWidth;
     }
-}
+};  // namespace
 
 void GalaxyMapController::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayoutOnPause(this);

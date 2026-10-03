@@ -13,7 +13,7 @@
 
 namespace {
     const char* cSensorNameTable[] = {"body0", "body1", "body2", "body3", "body4", "body5", "body6", "body7"};
-}
+};  // namespace
 
 namespace NrvElectricRailMoving {
     NEW_NERVE(ElectricRailMovingNrvWait, ElectricRailMoving, Wait);

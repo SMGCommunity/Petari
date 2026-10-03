@@ -18,4 +18,4 @@ namespace ReplaceTagProcessor {
 
 namespace ReplaceTagFunction {
     u32 ReplaceArgs(wchar_t* pDst, s32 length, const wchar_t* pFormat, ...);
-}
+};  // namespace ReplaceTagFunction

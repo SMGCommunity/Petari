@@ -178,7 +178,7 @@ namespace {
         SE_SV_KINOPIO_TALK_TIRED,
         SE_SV_CARETAKER_ANGRY_FAST,
     };
-};
+};  // namespace
 
 JAISoundID AudTalkSoundData::getSoundIDFromTalkSoundNo(u8 soundNo) {
     if ((s32)soundNo >= ARRAY_SIZE(::cTalkSoundList)) {

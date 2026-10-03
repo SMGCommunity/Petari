@@ -557,7 +557,7 @@ namespace {
     inline HitSensor* getDummySensor(MarioActor* pActor) {
         return pActor->getSensor("dummy");
     }
-}
+};  // namespace
 
 bool MarioActor::cylinderPushCheck(const TVec3f& rOffset, f32 radius, f32 width, f32 height) {
     TVec3f radial;

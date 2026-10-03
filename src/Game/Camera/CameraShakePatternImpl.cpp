@@ -10,7 +10,7 @@ void CameraShakePatternImpl_FORCE_MATCH_SDATA2() {
 
 namespace {
     static const s32 sSinglyMaxFrame = 25;
-}
+};  // namespace
 
 CameraShakePatternSingly::CameraShakePatternSingly(f32 intensity) : CameraShakePattern(), mIntensity(intensity), mDirection(0.0f, 1.0f) {
 }

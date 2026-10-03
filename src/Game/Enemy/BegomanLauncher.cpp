@@ -25,7 +25,7 @@ namespace NrvBegomanLauncher {
 
 namespace {
     const s32 sLaunchTime = 0;
-}
+};  // namespace
 
 BegomanLauncher::BegomanLauncher(const char* pName) : LiveActor(pName), mBegomanCount(), mAppearDelay(), mBegomanArray(), mLaunchType(3) {
 }

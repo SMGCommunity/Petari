@@ -11,7 +11,7 @@
 
 namespace NrvItemAppearStone {
     NEW_NERVE(HostTypeWait, ItemAppearStone, Wait);
-};
+};  // namespace NrvItemAppearStone
 
 ItemAppearStone::ItemAppearStone(const char* pName) : LiveActor(pName) {
 }

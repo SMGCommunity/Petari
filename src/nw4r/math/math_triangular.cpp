@@ -262,7 +262,7 @@ namespace nw4r {
                 -0.024541f, 0.999699f,  0.024541f,  0.000301f,   // rad = 6.258642, deg = 358.593750
                 -0.000000f, 1.000000f,  0.024541f,  -0.000301f,  // rad = 6.283185, deg = 360.000000
             };
-        };
+        };  // namespace detail
 
         f32 SinFIdx(f32 fidx) {
             f32 abs_fidx = FAbs(fidx);
