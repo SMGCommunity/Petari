@@ -1,5 +1,7 @@
 #include "RVLFaceLibInternal.h"
 
+static const f32 RAD_TO_DEG = 57.29578f;
+
 double atan2(double y, double x);
 
 inline float atan2f(float x, float y) {
@@ -84,9 +86,9 @@ void RFLiMakeIcon(void* buf, RFLiCharInfo* info, RFLExpression expression, const
 
     aspect = (f32)setting->width / (f32)setting->height;
     if (setting->width < setting->height) {
-        fovy = 2 * ((180 / 3.141592653589793f) * atan2f(43.2f / aspect, 500.0f));
+        fovy = 2 * (RAD_TO_DEG * atan2f(43.2f / aspect, 500.0f));
     } else {
-        fovy = 2 * ((180 / 3.141592653589793f) * atan2f(43.2f, 500.0f));
+        fovy = 2 * (RAD_TO_DEG * atan2f(43.2f, 500.0f));
     }
 
     C_MTXPerspective(projMtx, fovy, aspect, 500.0f, 700.0f);
