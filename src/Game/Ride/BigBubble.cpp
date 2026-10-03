@@ -805,8 +805,8 @@ void BigBubble::exeEscape() {
     if (MR::isFirstStep(this)) {
         mWarningColor.a = 0;
         MR::startBckPlayer("SwimDive", "BigBubbleEscape");
-        MR::startSoundPlayer("SE_PV_HIP_DROP", -1);
-        MR::startSoundPlayer("SE_PM_PRE_HIPDROP", -1);
+        MR::startSoundPlayer("SE_PV_HIP_DROP");
+        MR::startSoundPlayer("SE_PM_PRE_HIPDROP");
         mRiderBasePos = mRiderPos;
         mInterpolateRate = 0.0f;
     }

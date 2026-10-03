@@ -126,7 +126,7 @@ void MultiEventCamera::startCamera() {
     char name[256];
     snprintf(name, sizeof(name), "%s:%03d:%02d番目", mName, mCameraInfo->mCameraSetID, _8);
 
-    MR::startEventCamera(mCameraInfo, name, mTarget, -1);
+    MR::startEventCamera(mCameraInfo, name, mTarget);
 
     _10 = MR::getEventCameraFrames(mCameraInfo, name);
 }
@@ -137,7 +137,7 @@ void MultiEventCamera::endCamera(s32 type) {
 
     switch (type) {
     case CameraType_Soon:
-        MR::endEventCamera(mCameraInfo, name, true, -1);
+        MR::endEventCamera(mCameraInfo, name, true);
         break;
     case CameraType_AtLanding:
         MR::endEventCameraAtLanding(mCameraInfo, name, -1);

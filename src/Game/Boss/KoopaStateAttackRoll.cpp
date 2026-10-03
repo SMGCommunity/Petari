@@ -120,8 +120,8 @@ void KoopaStateAttackRoll::kill() {
     MR::invalidateHitSensor(mHost, "AttackRollReceiver");
     MR::invalidateHitSensor(mHost, "AttackRollStarPiece");
 
-    KoopaFunction::endKoopaCamera(mHost, "ローリング攻撃開始", false, -1);
-    KoopaFunction::endKoopaCamera(mHost, "ローリング攻撃", false, -1);
+    KoopaFunction::endKoopaCamera(mHost, "ローリング攻撃開始", false);
+    KoopaFunction::endKoopaCamera(mHost, "ローリング攻撃", false);
 }
 
 bool KoopaStateAttackRoll::tryCalcAndSetBaseMtx() {
@@ -250,7 +250,7 @@ void KoopaStateAttackRoll::exeEndAir() {
         MR::startAction(mHost, "AttackRollEnd");
         MR::startAction(KoopaFunction::getKoopaRollBall(mHost), "AttackRollEnd");
 
-        KoopaFunction::endKoopaCamera(mHost, "ローリング攻撃", false, -1);
+        KoopaFunction::endKoopaCamera(mHost, "ローリング攻撃", false);
 
         MR::setVelocityJump(mHost, ::sEndJumpSpeed);
     }

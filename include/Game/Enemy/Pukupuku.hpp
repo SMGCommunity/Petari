@@ -65,7 +65,7 @@ public:
     f32 getBlownOffSpeedRate() const;
 
     inline void startAnim(const char* pBck, const char* pBtp) {
-        MR::startBck(this, pBck, nullptr);
+        MR::startBck(this, pBck);
         MR::startBtp(this, pBtp);
     }
 

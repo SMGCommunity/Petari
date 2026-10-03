@@ -389,11 +389,11 @@ bool BossStinkBug::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
 }
 
 void BossStinkBug::startEventCamera(const char* pName) {
-    MR::startMultiActorCameraTargetSelf(this, _CC, pName, -1);
+    MR::startMultiActorCameraTargetSelf(this, _CC, pName);
 }
 
 void BossStinkBug::endEventCamera(const char* pName) {
-    MR::endMultiActorCamera(this, _CC, pName, false, -1);
+    MR::endMultiActorCamera(this, _CC, pName, false);
 }
 
 bool BossStinkBug::isSensorBody(const HitSensor* pSensor) const {

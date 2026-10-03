@@ -29,7 +29,7 @@ namespace MR {
     void timeKeepDemoFadeOut();
     void startNPCTalkCamera(const TalkMessageCtrl*, MtxPtr, f32, s32);
     void startNPCTalkCamera(const TalkMessageCtrl*, MtxPtr, MtxPtr, f32, s32);
-    void endNPCTalkCamera(bool, s32);
+    void endNPCTalkCamera(bool, s32 = -1);
     void initDefaultPosAndQuat(NPCActor*, const JMapInfoIter&);
     PartsModel* createNPCGoods(LiveActor*, const char*, const char*);
     PartsModel* createIndirectNPCGoods(LiveActor*, const char*, const char*);

@@ -379,7 +379,7 @@ void TrampleStar::exeWait() {
 void TrampleStar::exeBindingCapture() {
     if (MR::isFirstStep(this)) {
         MR::startBckPlayer("Wait");
-        MR::startSoundPlayer("SE_OJ_TRAMPOLINE_LAND_L", -1);
+        MR::startSoundPlayer("SE_OJ_TRAMPOLINE_LAND_L");
     }
 
     TVec3f down = -mVtxs[mCaptureVtx];
@@ -430,11 +430,11 @@ void TrampleStar::exeBindingShoot() {
 
                     if (MR::getPlayerLevelA()) {
                         mJumpVel *= 1.5f;
-                        MR::startSoundPlayer("SE_OJ_TRAMPOLINE_BOUND_L", -1);
-                        MR::startSoundPlayer("SE_PV_JUMP_JOY", -1);
+                        MR::startSoundPlayer("SE_OJ_TRAMPOLINE_BOUND_L");
+                        MR::startSoundPlayer("SE_PV_JUMP_JOY");
                     } else {
-                        MR::startSoundPlayer("SE_OJ_TRAMPOLINE_BOUND_S", -1);
-                        MR::startSoundPlayer("SE_PV_JUMP_M", -1);
+                        MR::startSoundPlayer("SE_OJ_TRAMPOLINE_BOUND_S");
+                        MR::startSoundPlayer("SE_PV_JUMP_M");
                     }
 
                     MR::endBindAndPlayerJump(this, up * mJumpVel, 0);

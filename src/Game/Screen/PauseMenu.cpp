@@ -269,7 +269,7 @@ void PauseMenu::exeSelecting() {
                              (!(_38 == nullptr || _38->isHidden()) && _38->isPointingTrigger());
 
     if (isPointingTrigger) {
-        MR::startSystemSE("SE_SY_SELECT_PAUSE_ITEM", -1, -1);
+        MR::startSystemSE("SE_SY_SELECT_PAUSE_ITEM");
     }
 
     bool isLetterHidden;
@@ -283,7 +283,7 @@ void PauseMenu::exeSelecting() {
                          ((_38 == nullptr || _38->isHidden()) || !_38->isAppearing());
 
     if (isAnimStopped && (MR::testCorePadTriggerPlus(0) || MR::testCorePadTriggerMinus(0))) {
-        MR::startSystemSE("SE_SY_PAUSE_OFF", -1, -1);
+        MR::startSystemSE("SE_SY_PAUSE_OFF");
         MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
         setNerve(GET_NERVE(PauseMenu, PauseMenuNrvDisappear));
     }
@@ -292,7 +292,7 @@ void PauseMenu::exeSelecting() {
 void PauseMenu::exeDecided() {
     if (_20->mIsSelected) {
         if (_20->isTimingForSelectedSe()) {
-            MR::startSystemSE("SE_SY_PAUSE_OFF", -1, -1);
+            MR::startSystemSE("SE_SY_PAUSE_OFF");
             MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
         }
 
@@ -301,7 +301,7 @@ void PauseMenu::exeDecided() {
         }
     } else if (_24 != nullptr && _24->mIsSelected) {
         if (_24->isTimingForSelectedSe()) {
-            MR::startSystemSE("SE_SY_PAUSE_OFF", -1, -1);
+            MR::startSystemSE("SE_SY_PAUSE_OFF");
             MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
         }
 
@@ -317,7 +317,7 @@ void PauseMenu::exeDecided() {
 
         if (!isLetterHidden && _38->mIsSelected) {
             if (_38->isTimingForSelectedSe()) {
-                MR::startSystemSE("SE_SY_FILE_SEL_UPPER_DECIDE", -1, -1);
+                MR::startSystemSE("SE_SY_FILE_SEL_UPPER_DECIDE");
                 MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
             }
 

@@ -1165,7 +1165,7 @@ void TrickRabbit::updateTime() {
     }
 
     if (!_E4) {
-        MR::startSoundPlayer("SE_PM_LAST_DAMAGE", -1);
+        MR::startSoundPlayer("SE_PM_LAST_DAMAGE");
         MR::forceKillPlayerByAbyss();
     }
 }

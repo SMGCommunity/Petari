@@ -92,7 +92,7 @@ void ReturnDemoRailMove::update(s32 currentStep, s32 maxSteps) {
         MR::startBck(mPowerStar, pBckName);
 
         if (!mIsGrandStar) {
-            MR::startSoundPlayer("SE_PM_S_SPIN_DRV_COOL_DOWN", -1);
+            MR::startSoundPlayer("SE_PM_S_SPIN_DRV_COOL_DOWN");
         }
     }
 

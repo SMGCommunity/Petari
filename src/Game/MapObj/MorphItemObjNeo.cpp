@@ -401,7 +401,7 @@ void MorphItemObjNeo::control() {
 
         TPos3f* pMtx = &mCameraTargetMtx->mMatrix;
         pMtx->set(getBaseMtx());
-        MR::startMultiActorCameraTargetSelf(this, mActorCameraInfo, "出現1", -1);
+        MR::startMultiActorCameraTargetSelf(this, mActorCameraInfo, "出現1");
         mAppearFrames = MR::getMultiActorCameraFrames(this, mActorCameraInfo, "出現1");
 
         if (mAppearFrames != 0) {
@@ -833,8 +833,8 @@ void MorphItemObjNeo::exeSwitchAppear() {
     }
 
     if (mCameraMode != 0 && mAppearFrames != 0 && --mAppearFrames == 0) {
-        MR::endMultiActorCamera(this, mActorCameraInfo, "出現1", false, -1);
-        MR::endMultiActorCamera(this, mActorCameraInfo, "出現2", false, -1);
+        MR::endMultiActorCamera(this, mActorCameraInfo, "出現1", false);
+        MR::endMultiActorCamera(this, mActorCameraInfo, "出現2", false);
 
         mCameraMode--;
 
@@ -845,7 +845,7 @@ void MorphItemObjNeo::exeSwitchAppear() {
             TPos3f* pMtx = &mCameraTargetMtx->mMatrix;
             pMtx->set(getBaseMtx());
 
-            MR::startMultiActorCameraTargetOther(this, mActorCameraInfo, "出現2", CameraTargetArg(nullptr, mCameraTargetMtx, nullptr, nullptr), -1);
+            MR::startMultiActorCameraTargetOther(this, mActorCameraInfo, "出現2", CameraTargetArg(nullptr, mCameraTargetMtx, nullptr, nullptr));
 
             mAppearFrames = MR::getMultiActorCameraFrames(this, mActorCameraInfo, "出現2");
         }

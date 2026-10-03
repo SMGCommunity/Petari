@@ -87,7 +87,7 @@ void KoopaStateChaseRoll::kill() {
     MR::tryDeleteEffect(KoopaFunction::getKoopaRock(mHost), "RollingSmoke");
     KoopaFunction::getKoopaRock(mHost)->kill();
 
-    KoopaFunction::endKoopaCamera(mHost, "ロール追跡開始", false, -1);
+    KoopaFunction::endKoopaCamera(mHost, "ロール追跡開始", false);
 
     KoopaFunction::startFaceCtrl(mHost);
 }
@@ -213,7 +213,7 @@ void KoopaStateChaseRoll::exeRollAir() {
 
 void KoopaStateChaseRoll::exeRollGround() {
     if (MR::isFirstStep(this)) {
-        KoopaFunction::endKoopaCamera(mHost, "ロール追跡開始", false, -1);
+        KoopaFunction::endKoopaCamera(mHost, "ロール追跡開始", false);
         MR::emitEffect(KoopaFunction::getKoopaRock(mHost), "RollingSmoke");
     }
 

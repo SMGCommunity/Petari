@@ -182,7 +182,7 @@ void EarthenPipe::makeActorAppeared() {
 
 bool EarthenPipe::tryShowUp() {
     MR::invalidateClipping(this);
-    MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "出現", -1);
+    MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "出現");
     if (mPipeMode != 1 && mPipeMode != 2) {
         return false;
     }
@@ -193,7 +193,7 @@ bool EarthenPipe::tryShowUp() {
 
 bool EarthenPipe::tryHideDown() {
     MR::validateClipping(this);
-    MR::endMultiActorCamera(this, mCameraInfo, "出現", true, -1);
+    MR::endMultiActorCamera(this, mCameraInfo, "出現", true);
 
     if (!mPipeMode || (mPipeMode - 3) <= 1u) {
         setNerve(GET_NERVE(EarthenPipe, EarthenPipeNrvInvalid));

@@ -110,7 +110,7 @@ namespace KoopaFunction {
     void startKoopaCamera(Koopa* pKoopa, const char* pName);
     void startKoopaTargetCamera(Koopa* pKoopa, const char* pName);
     void startKoopaAnimCamera(Koopa* pKoopa, const char* pName, s32);
-    void endKoopaCamera(Koopa* pKoopa, const char* pName, bool, s32);
+    void endKoopaCamera(Koopa* pKoopa, const char* pName, bool, s32 = -1);
     void endKoopaAnimCamera(Koopa* pKoopa, const char* pName, s32);
     void startKoopaPlateDamageAnimPowerStarAppear(Koopa* pKoopa);
     void changeBgmStateNormal(u32);

@@ -64,7 +64,7 @@ void ShockWaveGenerator::exeWait() {
 
 void ShockWaveGenerator::exeDemoEcho() {
     if (MR::isFirstStep(this)) {
-        MR::startActorCameraTargetSelf(this, mCameraInfo, -1);
+        MR::startActorCameraTargetSelf(this, mCameraInfo);
     }
 
     MR::tryRumblePadVeryWeak(this, WPAD_CHAN0);
@@ -86,7 +86,7 @@ void ShockWaveGenerator::exeGenerate() {
 
     if (MR::isStep(this, ::sStepForGenerate)) {
         if (mCameraInfo != nullptr) {
-            MR::endActorCamera(this, mCameraInfo, false, -1);
+            MR::endActorCamera(this, mCameraInfo, false);
         }
         setNerve(GET_NERVE(ShockWaveGenerator, ShockWaveGeneratorNrvWait));
     }

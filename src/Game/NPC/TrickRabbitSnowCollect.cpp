@@ -211,7 +211,7 @@ void TrickRabbitSnowCollect::exeWaitHideSnow() {
     }
 
     if (isAllHideSnow) {
-        MR::endMultiActorCamera(this, mCameraInfo, "ウサギと会話", 0, -1);
+        MR::endMultiActorCamera(this, mCameraInfo, "ウサギと会話", false);
         MR::endDemo(this, "雪ウサギ開始");
         setNerve(GET_NERVE(TrickRabbitFreeRunCollect, TrickRabbitSnowCollectNrvStart));
     }
@@ -285,9 +285,9 @@ void TrickRabbitSnowCollect::exeFailedWipeIn() {
 
 void TrickRabbitSnowCollect::exeFailedTalk() {
     if (MR::tryTalkForceWithoutDemoMarioPuppetableAtEnd(mMsgCtrl)) {
-        MR::endMultiActorCamera(this, mCameraInfo, "ウサギと会話", 1, -1);
+        MR::endMultiActorCamera(this, mCameraInfo, "ウサギと会話", true);
         MR::endDemo(this, "雪ウサギ集め失敗");
-        MR::startSoundPlayer("SE_PM_LAST_DAMAGE", -1);
+        MR::startSoundPlayer("SE_PM_LAST_DAMAGE");
         MR::forceKillPlayerByGroundRace();
         setNerve(GET_NERVE(TrickRabbitFreeRunCollect, TrickRabbitSnowCollectNrvEnd));
     }
@@ -313,7 +313,7 @@ void TrickRabbitSnowCollect::exeSuccessWipeIn() {
     if (MR::isFirstStep(this)) {
         mTimerLayout->kill();
         MR::startBckPlayer("BattleWait");
-        MR::startMultiActorCameraTargetPlayer(this, mCameraInfo, "ウサギと会話", -1);
+        MR::startMultiActorCameraTargetPlayer(this, mCameraInfo, "ウサギと会話");
         MR::startLastStageBGM();
         MR::openWipeFade();
     }
@@ -358,7 +358,7 @@ void TrickRabbitSnowCollect::exeAppearPowerStar() {
     }
 
     if (MR::isEndPowerStarAppearDemo(this)) {
-        MR::endMultiActorCamera(this, mCameraInfo, "ウサギと会話", 1, -1);
+        MR::endMultiActorCamera(this, mCameraInfo, "ウサギと会話", true);
         MR::endDemo(this, "雪ウサギ集め成功");
         setNerve(GET_NERVE(TrickRabbitFreeRunCollect, TrickRabbitSnowCollectNrvEnd));
     }

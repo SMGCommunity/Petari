@@ -181,7 +181,7 @@ bool MarioRecovery::start() {
     } else if (!calcFirstVector()) {
         return false;
     }
-    MR::startGlobalEventCameraNoTarget("引き戻し", -1);
+    MR::startGlobalEventCameraNoTarget("引き戻し");
     return true;
 }
 

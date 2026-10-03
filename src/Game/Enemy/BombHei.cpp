@@ -349,11 +349,11 @@ void BombHei::exePursue() {
     }
 
     if (isNerve(GET_NERVE(BombHei, HostTypeNrvPursueFast))) {
-        MR::tryStartBck(this, "CountDown", nullptr);
+        MR::tryStartBck(this, "CountDown");
         MR::moveAndTurnToPlayer(this, &mFront, ::hPursueFastFarParam.mSpeedH, ::hPursueFastFarParam.mGravAccel, ::hPursueFastFarParam.mFriction,
                                 ::hPursueFastFarParam.mTurnRate);
     } else {
-        MR::tryStartBck(this, "Run", nullptr);
+        MR::tryStartBck(this, "Run");
         MR::moveAndTurnToPlayer(this, &mFront, ::hPursueFarParam.mSpeedH, ::hPursueFarParam.mGravAccel, ::hPursueFarParam.mFriction,
                                 ::hPursueFarParam.mTurnRate);
     }
@@ -492,7 +492,7 @@ void BombHei::exeStop() {
 void BombHei::exeThrown() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Stop");
-        MR::startSoundPlayer("SE_PV_THROW", -1);
+        MR::startSoundPlayer("SE_PV_THROW");
         MR::startSound(this, "SE_EM_BOMB_THROW");
         MR::invalidateExCollisionParts(this);
         MR::offCalcGravity(this);
@@ -536,7 +536,7 @@ void BombHei::exeTaken() {
         MR::startBck(this, "Carry");
         if (MR::sendMsgTaken(mCarrySensor, getSensor("body"))) {
             getSensor("body")->invalidate();
-            MR::startSoundPlayer("SE_PV_LIFT_UP", -1);
+            MR::startSoundPlayer("SE_PV_LIFT_UP");
             MR::startSound(this, "SE_EM_BOMB_LIFT");
         } else {
             setNerve(GET_NERVE(BombHei, HostTypeNrvPhysics));

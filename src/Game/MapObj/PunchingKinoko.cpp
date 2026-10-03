@@ -162,7 +162,7 @@ void PunchingKinoko::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                             hit = MR::sendMsgEnemyAttackFlipToDir(pReceiver, pSender, stack_3C * 70.0f);
                         }
                         if (hit) {
-                            MR::startSoundPlayer("SE_PM_WALL_HIT_BODY", -1);
+                            MR::startSoundPlayer("SE_PM_WALL_HIT_BODY");
                             MR::scatterStarPiecePlayer(10);
                         }
                     } else {

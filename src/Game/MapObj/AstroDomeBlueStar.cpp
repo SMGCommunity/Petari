@@ -377,7 +377,7 @@ void AstroDomeBlueStar::exeBindTraction() {
 
         mBindStartMtx.set(mHostMtx);
 
-        MR::startActorCameraTargetPlayer(this, mCameraInfo, -1);
+        MR::startActorCameraTargetPlayer(this, mCameraInfo);
     }
 
     TVec3f trans;

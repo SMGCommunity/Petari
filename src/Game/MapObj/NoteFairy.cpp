@@ -301,7 +301,7 @@ void NoteFairy::exeAppearNoteBloom() {
 
     if (!_CC && !_CD && MR::isStep(this, 60) && mAppearanceType != -1) {
         MR::endDemo(this, "出現");
-        MR::endActorCamera(this, mCameraInfo, false, -1);
+        MR::endActorCamera(this, mCameraInfo, false);
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_FLOWER_FAIRY_MOVE");
@@ -322,7 +322,7 @@ void NoteFairy::exeAppearNoteBloom() {
     if (_B0 >= mMelodyNoteNum) {
         if (_CC) {
             MR::endDemo(this, "出現");
-            MR::endActorCamera(this, mCameraInfo, false, -1);
+            MR::endActorCamera(this, mCameraInfo, false);
         }
 
         MR::hideModel(this);
@@ -401,7 +401,7 @@ void NoteFairy::exeSuccess() {
 }
 
 void NoteFairy::enterDemoAppear(const Nerve* pNerve, bool hasNoFrame) {
-    MR::startActorCameraTargetSelf(this, mCameraInfo, -1);
+    MR::startActorCameraTargetSelf(this, mCameraInfo);
 
     if (hasNoFrame) {
         MR::requestStartDemo(this, "出現", pNerve, nullptr);

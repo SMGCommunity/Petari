@@ -345,7 +345,7 @@ void MarioLauncher::exeReject() {
         TVec3f jumpZ;
         MR::extractMtxZDir(getBaseMtx(), &jumpZ);
         MR::endBindAndPlayerJump(this, jumpY * ::sRejectJumpY - jumpZ * ::sRejectJumpZ, 0);
-        MR::startSoundPlayer("SE_PV_JUMP_S", -1);
+        MR::startSoundPlayer("SE_PV_JUMP_S");
     }
 
     if (MR::isStep(this, ::sWaitFrame)) {

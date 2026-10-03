@@ -90,12 +90,12 @@ void DemoCameraKeeper::executeFirst(const DemoCameraInfo* pInfo) {
             MR::removeExtensionString(animCameraName, sizeof(animCameraName), pInfo->mAnimCameraName);
             MR::startAnimCameraTargetSelf(pInfo->_24, pInfo->_20, animCameraName, pInfo->mAnimCameraStartFrame, 1.0f);
         } else {
-            MR::startEventCamera(pInfo->_20, pInfo->_1C, CameraTargetArg(pInfo->_24), -1);
+            MR::startEventCamera(pInfo->_20, pInfo->_1C, CameraTargetArg(pInfo->_24));
         }
     } else if (DemoCameraFunction::isCameraTargetMario(pInfo)) {
-        MR::startEventCameraTargetPlayer(pInfo->_20, pInfo->_1C, -1);
+        MR::startEventCameraTargetPlayer(pInfo->_20, pInfo->_1C);
     } else {
-        MR::startEventCameraNoTarget(pInfo->_20, pInfo->_1C, -1);
+        MR::startEventCameraNoTarget(pInfo->_20, pInfo->_1C);
     }
 }
 
@@ -111,7 +111,7 @@ void DemoCameraKeeper::executeLast(const DemoCameraInfo* pInfo) {
 
 void DemoCameraKeeper::endCurrentCamera() {
     if (_10 != nullptr) {
-        MR::endEventCamera(_10->_20, _10->_1C, _10->mIsContinuous != false, -1);
+        MR::endEventCamera(_10->_20, _10->_1C, _10->mIsContinuous != false);
     }
 
     _10 = nullptr;

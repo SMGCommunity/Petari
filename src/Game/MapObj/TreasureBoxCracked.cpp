@@ -258,7 +258,7 @@ bool TreasureBoxCracked::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, Hit
         if (mOpenCondition == 1 && pSender->mType != ATYPE_SPECIAL_WEAPON) {
             MR::startBck(this, "Shock");
             MR::startSound(this, "SE_OJ_TERAS_BOX_GOLD_REFUSE");
-            MR::startSystemSE("SE_SY_FAILURE_1", -1, -1);
+            MR::startSystemSE("SE_SY_FAILURE_1");
             return false;
         }
 

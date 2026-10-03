@@ -416,7 +416,7 @@ void RunawayRabbit::exeCaught() {
         MR::startAction(this, "TossStart");
         MR::startBckPlayer("TossStart");
         MR::startSound(this, "SE_SM_RABBIT_CAUGHT");
-        MR::startSoundPlayer("SE_PV_CATCH", -1);
+        MR::startSoundPlayer("SE_PV_CATCH");
         mSpotMarkLight->kill();
         MR::makeQuatRotateDegree(&mPlayerPoseQuat, *MR::getPlayerRotate());
         mPlayerBindPos.set(*MR::getPlayerPos());
@@ -461,7 +461,7 @@ void RunawayRabbit::exeCaughtEnd() {
         MR::startBckPlayer("Toss");
     }
     if (MR::isStep(this, ::sTossStep)) {
-        MR::startSoundPlayer("SE_PV_THROW", -1);
+        MR::startSoundPlayer("SE_PV_THROW");
     }
     updateBindActorMatrix();
     if (MR::isBckStopped(this)) {

@@ -95,9 +95,9 @@ void KoopaStateAttackHipDrop::appear() {
 }
 
 void KoopaStateAttackHipDrop::kill() {
-    KoopaFunction::endKoopaCamera(mHost, "ヒップドロップ攻撃", false, -1);
-    KoopaFunction::endKoopaCamera(mHost, "ヒップドロップ着地", false, -1);
-    KoopaFunction::endKoopaCamera(mHost, "ヒップドロップ着地（マリオ痺れ）", false, -1);
+    KoopaFunction::endKoopaCamera(mHost, "ヒップドロップ攻撃", false);
+    KoopaFunction::endKoopaCamera(mHost, "ヒップドロップ着地", false);
+    KoopaFunction::endKoopaCamera(mHost, "ヒップドロップ着地（マリオ痺れ）", false);
 
     MR::invalidateHitSensor(mHost, "AttackHipDrop");
 

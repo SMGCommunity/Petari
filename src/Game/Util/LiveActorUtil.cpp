@@ -1,3 +1,4 @@
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Animation/BckCtrl.hpp"
 #include "Game/Animation/XanimeCore.hpp"
 #include "Game/AudioLib/AudAnmSoundObject.hpp"
@@ -31,7 +32,6 @@
 #include "Game/Util.hpp"
 #include "Game/Util/CollisionPartsFilter.hpp"
 #include "Game/Util/FurMulti.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
 #include <cstdio>
 
 void LiveActorUtil_FORCE_MATCH_SDATA2() {
@@ -2162,7 +2162,7 @@ namespace MR {
         TVec3f gravity;
         calcGravityVectorOrZero(pActor, rPos, &gravity, nullptr, 0);
 
-        if (!isNearZero(gravity, 0.001f)) {
+        if (!isNearZero(gravity)) {
             pActor->mGravity.set(gravity);
             return;
         }

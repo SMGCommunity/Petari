@@ -264,7 +264,7 @@ bool Mario::doPointWarpRecovery(const TVec3f& rVec1, const TVec3f& rVec2) {
 
     stopJump();
 
-    MR::startGlobalEventCameraNoTarget("引き戻し", -1);
+    MR::startGlobalEventCameraNoTarget("引き戻し");
 
     return true;
 }

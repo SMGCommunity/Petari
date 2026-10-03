@@ -784,7 +784,7 @@ void TicoFat::exeTest() {
         MR::tryTalkForceWithoutDemo(_16C);
 
         if (_1EC == 6) {
-            MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "喜び", -1);
+            MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "喜び");
         }
 
         MR::requestMovementOn(_94);
@@ -822,7 +822,7 @@ void TicoFat::exeMeta() {
 
 void TicoFat::exeDemo() {
     if (MR::isFirstStep(this)) {
-        MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "変身", -1);
+        MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "変身");
         MR::startAction(this, getActionName("Demo"));
         MR::startSound(this, "SE_SM_TICOFAT_META");
     }
@@ -846,7 +846,7 @@ void TicoFat::exeDemo() {
     }
 
     if (MR::isBckStopped(this)) {
-        MR::endMultiActorCamera(this, mCameraInfo, "変身", false, -1);
+        MR::endMultiActorCamera(this, mCameraInfo, "変身", false);
         if (_1DC == -1 && MR::isExistRail(this)) {
             setNerve(GET_NERVE(TicoFat, TicoFatNrvFly));
         } else {
@@ -859,7 +859,7 @@ void TicoFat::exeDemo() {
 void TicoFat::exeFly() {
     if (MR::isFirstStep(this)) {
         _1F8 = 0.0f;
-        MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "飛行", -1);
+        MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "飛行");
         MR::startAction(this, getActionName("Fly"));
         MR::startSound(this, "SE_DM_TICOFAT_MORPH_FLY");
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
@@ -965,7 +965,7 @@ void TicoFat::exeAfter() {
     }
 
     if (MR::isGreaterEqualStep(this, 60)) {
-        MR::endMultiActorCamera(this, mCameraInfo, "飛行", false, -1);
+        MR::endMultiActorCamera(this, mCameraInfo, "飛行", false);
         MR::endDemo(this, "変身");
         disappear(true);
         kill();

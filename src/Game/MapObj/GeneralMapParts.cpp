@@ -295,7 +295,7 @@ void GeneralMapParts::receiveMsgSwitchBOn() {
     }
 
     if (MR::isExistActorCamera(mCameraInfo) && !mIsCameraEnded) {
-        MR::startActorCameraNoTarget(this, mCameraInfo, -1);
+        MR::startActorCameraNoTarget(this, mCameraInfo);
     }
 
     if (MR::getGroupFromArray(this) != nullptr) {
@@ -355,7 +355,7 @@ void GeneralMapParts::startMove() {
 void GeneralMapParts::exeWait() {
     if (isNerve(GET_NERVE(GeneralMapParts, HostTypeMove)) && MR::isExistActorCamera(mCameraInfo) && !mIsCameraEnded) {
         if (MR::isStep(this, MR::getActorCameraFrames(this, mCameraInfo))) {
-            MR::endActorCamera(this, mCameraInfo, false, -1);
+            MR::endActorCamera(this, mCameraInfo, false);
             mIsCameraEnded = 1;
         }
     }

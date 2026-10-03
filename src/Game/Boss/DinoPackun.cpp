@@ -546,13 +546,13 @@ void DinoPackun::endDemo(const char* pName) {
 
 void DinoPackun::startDamageCamera() {
     CameraTargetArg arg(nullptr, mCamTargetMtx, nullptr, nullptr);
-    MR::startMultiActorCameraTargetOther(this, mCameraInfo, ::sEventCameraName, arg, -1);
+    MR::startMultiActorCameraTargetOther(this, mCameraInfo, ::sEventCameraName, arg);
     _10C = 0;
 }
 
 void DinoPackun::endDamageCamera() {
     if (_10C != -1) {
-        MR::endMultiActorCamera(this, mCameraInfo, ::sEventCameraName, false, -1);
+        MR::endMultiActorCamera(this, mCameraInfo, ::sEventCameraName, false);
         _10C = -1;
     }
 }

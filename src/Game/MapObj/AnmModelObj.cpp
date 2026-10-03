@@ -234,10 +234,10 @@ bool AnmModelSwitchMoveEventCamera::isDone() const {
 
 void AnmModelSwitchMoveEventCamera::startInner() {
     if (mCameraInfo != nullptr) {
-        MR::startActorCameraNoTarget(this, mCameraInfo, -1);
+        MR::startActorCameraNoTarget(this, mCameraInfo);
     }
 }
 
 void AnmModelSwitchMoveEventCamera::stopInner() {
-    MR::endActorCamera(this, mCameraInfo, false, -1);
+    MR::endActorCamera(this, mCameraInfo, false);
 }

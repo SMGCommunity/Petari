@@ -45,7 +45,7 @@ void PlayerRacer::init(const JMapInfoIter& rIter) {
 }
 
 void PlayerRacer::startRacer() {
-    MR::endActorCamera(this, mCameraInfo, true, -1);
+    MR::endActorCamera(this, mCameraInfo, true);
 }
 
 bool PlayerRacer::updateRacer(const RaceManager* pRaceManager) {
@@ -151,7 +151,7 @@ void PlayerRacer::prepRacer(const RaceManager* pRaceManager) {
 
     MR::tryPlayerKillTakingActor();
     MR::setPlayerBaseMtx(mtx);
-    MR::startActorCameraTargetPlayer(this, mCameraInfo, -1);
+    MR::startActorCameraTargetPlayer(this, mCameraInfo);
 }
 
 void PlayerRacer::resetRacer(const RaceManager* pRaceManager) {

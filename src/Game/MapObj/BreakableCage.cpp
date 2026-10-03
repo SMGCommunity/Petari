@@ -321,7 +321,7 @@ void BreakableCage::exeBreak() {
         const ActorCameraInfo* pCamera = mCameraInfo;
 
         if (pCamera != nullptr) {
-            MR::startActorCameraTargetSelf(this, getCamInfo(), -1);
+            MR::startActorCameraTargetSelf(this, getCamInfo());
 
             if (mBreakModel != nullptr) {
                 MR::requestMovementOn(mBreakModel);
@@ -384,7 +384,7 @@ void BreakableCage::exeBreak() {
         }
 
         if (mCameraInfo != nullptr) {
-            MR::endActorCamera(this, getCamInfo(), false, -1);
+            MR::endActorCamera(this, getCamInfo(), false);
             MR::endDemo(this, "破壊");
         }
 

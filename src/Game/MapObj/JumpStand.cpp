@@ -62,10 +62,10 @@ void JumpStand::exeTrampleBound() {
     if (MR::isStep(this, 5)) {
         if (mIsMarioJumpingHigh) {
             MR::startSound(this, "SE_OJ_JUMP_STAND_BOUND_M");
-            MR::startSoundPlayer("SE_PV_JUMP_L", -1);
+            MR::startSoundPlayer("SE_PV_JUMP_L");
         } else {
             MR::startSound(this, "SE_OJ_JUMP_STAND_BOUND_S");
-            MR::startSoundPlayer("SE_PV_JUMP_M", -1);
+            MR::startSoundPlayer("SE_PV_JUMP_M");
         }
 
         if (mIsMarioJumpingHigh) {
@@ -103,7 +103,7 @@ void JumpStand::exeHipDropBound() {
 
     if (MR::isStep(this, 15)) {
         MR::startSound(this, "SE_OJ_JUMP_STAND_BOUND_L");
-        MR::startSoundPlayer("SE_PV_JUMP_JOY", -1);
+        MR::startSoundPlayer("SE_PV_JUMP_JOY");
         endBindAndShootUp(43.0f, Jump_High);
     }
 

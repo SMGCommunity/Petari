@@ -141,8 +141,8 @@ namespace MR {
     void tryPlayerKillTakingActor();
     bool isPlayerTakingActor(const char*);
     bool isPlayerCarryAny();
-    void startSoundPlayer(const char*, s32);
-    void startLevelSoundPlayer(const char*, s32);
+    void startSoundPlayer(const char*, s32 = -1);
+    void startLevelSoundPlayer(const char*, s32 = -1);
     void stopSoundPlayer(const char*, u32);
     void startSoundPlayerJ(const char*);
     void showPlayer();

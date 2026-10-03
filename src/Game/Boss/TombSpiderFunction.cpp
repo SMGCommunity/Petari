@@ -301,7 +301,7 @@ void TombSpiderFunction::startTombSpiderDemo(TombSpider* pParent, const char* pD
 
     ActorCameraInfo* info = pParent->mCameraInfo;  // ok
 
-    MR::startEventCamera(info, pCameraName, CameraTargetArg(pParent), -1);
+    MR::startEventCamera(info, pCameraName, CameraTargetArg(pParent));
     pauseOffTombSpiderParts(pParent);
     MR::setBckRate(MR::getPlayerDemoActor(), 0.0f);
 }
@@ -321,7 +321,7 @@ void TombSpiderFunction::endTombSpiderDemo(TombSpider* pParent, const char* pDem
         pCameraName = pDemoName;
     }
 
-    MR::endEventCamera(pParent->mCameraInfo, pCameraName, false, -1);
+    MR::endEventCamera(pParent->mCameraInfo, pCameraName, false);
     MR::endDemo(pParent, pDemoName);
 }
 

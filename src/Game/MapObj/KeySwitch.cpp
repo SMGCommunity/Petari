@@ -87,7 +87,7 @@ void KeySwitch::exeDemoStart() {
     }
 
     if (MR::tryStartDemoWithoutCinemaFrame(this, ::cDemoName)) {
-        MR::startActorCameraTargetSelf(this, mCameraInfo, -1);
+        MR::startActorCameraTargetSelf(this, mCameraInfo);
         mCurDemoFrame = 0;
         setNerve(GET_NERVE(KeySwitch, KeySwitchNrvAppear));
     }
@@ -162,7 +162,7 @@ void KeySwitch::calcAndSetBaseMtx() {
 void KeySwitch::control() {
     if (mCurDemoFrame != -1 && mCameraInfo) {
         if (mCurDemoFrame >= 0x28) {
-            MR::endActorCamera(this, mCameraInfo, false, -1);
+            MR::endActorCamera(this, mCameraInfo, false);
             MR::endDemo(this, ::cDemoName);
             mCameraInfo = 0;
             mCurDemoFrame = -1;

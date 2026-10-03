@@ -38,9 +38,9 @@ void KoopaDemoJumpToPlanet::init() {
 void KoopaDemoJumpToPlanet::kill() {
     mIsDead = true;
 
-    KoopaFunction::endKoopaCamera(mHost, "ウェイト（惑星までジャンプ）", false, -1);
-    KoopaFunction::endKoopaCamera(mHost, "落下（惑星までジャンプ）", false, -1);
-    KoopaFunction::endKoopaCamera(mHost, "ワープ後（惑星までジャンプ）", false, -1);
+    KoopaFunction::endKoopaCamera(mHost, "ウェイト（惑星までジャンプ）", false);
+    KoopaFunction::endKoopaCamera(mHost, "落下（惑星までジャンプ）", false);
+    KoopaFunction::endKoopaCamera(mHost, "ワープ後（惑星までジャンプ）", false);
 }
 
 void KoopaDemoJumpToPlanet::startReady() {
@@ -71,7 +71,7 @@ void KoopaDemoJumpToPlanet::exeFall() {
         KoopaFunction::setKoopaPos(mHost, "Ｌｖ１開始（クッパ）");
         MR::setPlayerPosAndWait("Ｌｖ１開始（マリオ）");
 
-        KoopaFunction::endKoopaCamera(mHost, "落下（惑星までジャンプ）", false, -1);
+        KoopaFunction::endKoopaCamera(mHost, "落下（惑星までジャンプ）", false);
         KoopaFunction::startKoopaCamera(mHost, "ワープ後（惑星までジャンプ）");
     }
 

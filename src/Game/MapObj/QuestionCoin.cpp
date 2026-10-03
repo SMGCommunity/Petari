@@ -229,14 +229,14 @@ void QuestionCoin::updateActorMtx() {
 void QuestionCoin::exeThrowActor() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "Get");
-        MR::startSystemSE("SE_SY_QUESTION_COIN", -1, -1);
+        MR::startSystemSE("SE_SY_QUESTION_COIN");
         MR::tryRumblePadMiddle(this, 0);
         MR::hideModel(this);
         MR::startBck(mBoundActor, "QuestionCoinJumpStart");
         MR::startSound(mBoundActor, "SE_PV_JUMP_JOY");
 
         if (MR::isExistActorCamera(mCameraInfo)) {
-            MR::startActorCameraNoTarget(this, mCameraInfo, -1);
+            MR::startActorCameraNoTarget(this, mCameraInfo);
         }
     }
 
@@ -255,7 +255,7 @@ void QuestionCoin::exeThrowActor() {
             MR::endBindAndPlayerJump(this, velocity, 3);
         }
 
-        MR::endActorCameraAtLanding(this, mCameraInfo, -1);
+        MR::endActorCameraAtLanding(this, mCameraInfo);
         kill();
     }
 }
@@ -263,7 +263,7 @@ void QuestionCoin::exeThrowActor() {
 void QuestionCoin::exeCaught() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "Get");
-        MR::startSystemSE("SE_SY_QUESTION_COIN", -1, -1);
+        MR::startSystemSE("SE_SY_QUESTION_COIN");
         MR::tryRumblePadMiddle(this, 0);
         MR::hideModel(this);
         kill();

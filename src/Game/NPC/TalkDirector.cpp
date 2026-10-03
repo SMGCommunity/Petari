@@ -289,7 +289,7 @@ void TalkDirector::termTalk() {
     if (mMessageInfo.isCameraNormal()) {
         MR::endNPCTalkCamera(false, -1);
     } else if (mMessageInfo.isCameraEvent()) {
-        MR::endMultiActorCamera(mHostActor, mCameraInfo, "会話", false, -1);
+        MR::endMultiActorCamera(mHostActor, mCameraInfo, "会話", false);
     }
 
     if (!mIsInvalidClipping) {

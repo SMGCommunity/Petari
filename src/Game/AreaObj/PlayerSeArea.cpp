@@ -21,6 +21,6 @@ void PlayerSeArea::movement() {
     }
 
     if (!MR::isPlayerJumpRising()) {
-        MR::startLevelSoundPlayer("SE_PM_LV_LONG_FALL", -1);
+        MR::startLevelSoundPlayer("SE_PM_LV_LONG_FALL");
     }
 }

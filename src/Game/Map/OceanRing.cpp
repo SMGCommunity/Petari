@@ -168,7 +168,7 @@ bool OceanRing::calcWaterInfo(const TVec3f& a1, const TVec3f& a2, WaterInfo* pIn
     TVec3f v19(a1);
     v19.sub(v24);
 
-    if (MR::isNearZero(v19, 0.001f)) {
+    if (MR::isNearZero(v19)) {
         pInfo->mEdgeDistance = v9;
         TVec3f v18(a2);
         v18.scale(v9);

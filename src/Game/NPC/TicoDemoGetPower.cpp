@@ -85,7 +85,7 @@ void TicoDemoGetPower::exeDemo() {
         }
 
         if (partStep == ::sMarioJumpFrame) {
-            MR::startSoundPlayer("SE_PV_POWER_STAR_GET", -1);
+            MR::startSoundPlayer("SE_PV_POWER_STAR_GET");
         }
     }
 }
