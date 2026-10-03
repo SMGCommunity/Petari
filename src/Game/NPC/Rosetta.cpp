@@ -15,8 +15,8 @@ namespace {
 };  // namespace
 
 namespace NrvRosetta {
-    NEW_NERVE(RosettaNrvReaction, Rosetta, Reaction);
     NEW_NERVE(RosettaNrvDemo, Rosetta, Demo);
+    NEW_NERVE(RosettaNrvReaction, Rosetta, Reaction);
 };  // namespace NrvRosetta
 
 Rosetta::Rosetta(const char* pName) : NPCActor(pName), mFadeStarter(this, -1), mDemoExecutor(), mTalkDemoExecutor(), mObjArg0(-1) {

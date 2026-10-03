@@ -48,7 +48,7 @@ namespace {
                                    Color8(0xFF, 0, 0, 0xFF),    Color8(0x78, 0, 0xFF, 0xFF), Color8(0xFF, 0x64, 0x64, 0xFF)};
 };  // namespace
 
-f32 Tico::sFloatSeMinVolume = 0.2f;
+const f32 Tico::sFloatSeMinVolume = 0.2f;
 
 Tico::Tico(const char* pName)
     : NPCActor(pName), _15C(), _160(0.0f, 0.0f, 0.0f), _16C(), mDemoGetPower(), _174(), _178(), _17C(255, 255, 255, 255), _180(), mDemoStarter(this) {
