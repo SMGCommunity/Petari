@@ -10341,7 +10341,7 @@ RVLFaceLib/RFL_Model.c:
 	extab       start:0x800065F8 end:0x80006660
 	extabindex  start:0x80006B44 end:0x80006BE0
 	.text       start:0x8045B458 end:0x8045D400
-	.rodata     start:0x8055C568 end:0x8055C678
+	.rodata     start:0x8055C568 end:0x8055C650
 	.data       start:0x805EA810 end:0x805EA820
 	.sdata2     start:0x806C1D38 end:0x806C1D78
 
@@ -12349,6 +12349,7 @@ MetroTRK/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c:
 
 NDEV/DebuggerDriver.c:
 	.text       start:0x8052DD40 end:0x8052E074
+	.sdata      start:0x806B2E50 end:0x806B2E51
 	.sbss       start:0x806B7BF8 end:0x806B7C0C
 
 NDEV/exi2.c:

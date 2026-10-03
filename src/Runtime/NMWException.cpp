@@ -28,15 +28,6 @@ public:
 
 extern "C" {
 
-void __construct_array(void* pBlock, ctor_dtor_ptr ctor, ctor_dtor_ptr dtor, size_t size, size_t n) {
-    __partial_array_destructor pad(pBlock, size, n, dtor);
-
-    char* p = (char*)pBlock;
-    for (pad.mCurElement = 0; pad.mCurElement < n; p += size, pad.mCurElement++) {
-        ((void (*)(void*, short))ctor)(p, 1);
-    }
-}
-
 void* __construct_new_array(void* block, ctor_dtor_ptr ctor, ctor_dtor_ptr dtor, size_t size, size_t n) {
     char* ptr = (char*)block;
 
@@ -55,6 +46,15 @@ void* __construct_new_array(void* block, ctor_dtor_ptr ctor, ctor_dtor_ptr dtor,
         }
     }
     return ptr;
+}
+
+void __construct_array(void* pBlock, ctor_dtor_ptr ctor, ctor_dtor_ptr dtor, size_t size, size_t n) {
+    __partial_array_destructor pad(pBlock, size, n, dtor);
+
+    char* p = (char*)pBlock;
+    for (pad.mCurElement = 0; pad.mCurElement < n; p += size, pad.mCurElement++) {
+        ((void (*)(void*, short))ctor)(p, 1);
+    }
 }
 
 void __destroy_arr(void* pArraySource, ctor_dtor_ptr dtor, size_t size, size_t num) {

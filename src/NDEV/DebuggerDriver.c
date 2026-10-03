@@ -4,11 +4,11 @@
 #include <revolution/exi.h>
 #include <revolution/os.h>
 
-static __OSInterruptHandler __DBDbgCallback;
-static __OSInterruptHandler __DBMtrCallback;
+static u32 __DBRecvDataSize;
 static u32 __DBRecvMail;
 static u8 __DBEXIInputFlag;
-static u32 __DBRecvDataSize;
+static __OSInterruptHandler __DBDbgCallback;
+static __OSInterruptHandler __DBMtrCallback;
 
 static u8 __DBReadUSB_CSR(void);
 static void __DBWaitForSendMail(void);
@@ -20,6 +20,12 @@ void __DBMtrHandler(s16 type, OSContext* ctx) {
         __DBMtrCallback(0, ctx);
 }
 
+void __DBIntrHandler(s16 type, OSContext* ctx) {
+    __PIRegs[0] = 0x1000;
+    if (__DBDbgCallback != NULL)
+        __DBDbgCallback(type, ctx);
+}
+
 void DBInitComm(u8** flagOut, __OSInterruptHandler handler) {
     BOOL enabled = OSDisableInterrupts();
 
@@ -28,12 +34,6 @@ void DBInitComm(u8** flagOut, __OSInterruptHandler handler) {
     __DBEXIInit();
 
     OSRestoreInterrupts(enabled);
-}
-
-void __DBIntrHandler(s16 type, OSContext* ctx) {
-    __PIRegs[0] = 0x1000;
-    if (__DBDbgCallback != NULL)
-        __DBDbgCallback(type, ctx);
 }
 
 static u8 __DBReadUSB_CSR(void) {
@@ -124,6 +124,8 @@ static void __DBWaitForSendMail(void) {
     }
 }
 
-void DBOpen(void) {}
+void DBOpen(void) {
+}
 
-void DBClose(void) {}
+void DBClose(void) {
+}

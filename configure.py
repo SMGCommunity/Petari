@@ -671,7 +671,11 @@ config.libs = [
             Object(Matching, "Runtime/__mem.c"),
             Object(Matching, "Runtime/__va_arg.c"),
             Object(Matching, "Runtime/global_destructor_chain.c"),
-            Object(NonMatching, "Runtime/NMWException.cpp"),
+            Object(
+                Matching,
+                "Runtime/NMWException.cpp",
+                cflags=[*cflags_runtime, "-Cpp_exceptions on"],
+            ),
             Object(Matching, "Runtime/ptmf.c"),
             Object(Matching, "Runtime/runtime.c"),
             Object(Matching, "Runtime/__init_cpp_exceptions.cpp"),
@@ -3078,7 +3082,7 @@ config.libs = [
     ),
     SDKLib(
         "NDEV",
-        [Object(NonMatching, "NDEV/DebuggerDriver.c"), Object(Matching, "NDEV/exi2.c")],
+        [Object(Matching, "NDEV/DebuggerDriver.c"), Object(Matching, "NDEV/exi2.c")],
     ),
     RFLib(
         "RVLFaceLib",
@@ -3086,9 +3090,9 @@ config.libs = [
             Object(Matching, "RVLFaceLib/RFL_System.c"),
             Object(Matching, "RVLFaceLib/RFL_NANDLoader.c"),
             Object(Matching, "RVLFaceLib/RFL_NANDAccess.c"),
-            Object(NonMatching, "RVLFaceLib/RFL_Model.c"),
+            Object(Matching, "RVLFaceLib/RFL_Model.c"),
             Object(Matching, "RVLFaceLib/RFL_MakeTex.c"),
-            Object(NonMatching, "RVLFaceLib/RFL_Icon.c"),
+            Object(Matching, "RVLFaceLib/RFL_Icon.c"),
             Object(Matching, "RVLFaceLib/RFL_HiddenDatabase.c"),
             Object(Matching, "RVLFaceLib/RFL_Database.c"),
             Object(Matching, "RVLFaceLib/RFL_Controller.c"),
