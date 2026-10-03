@@ -4,10 +4,9 @@
 #include "revolution/nand.h"
 #include "private/OSLoMem.h"
 
-OSThread* __OSExpireThread;
 OSAlarm __OSExpireAlarm;
 OSTime __OSExpireTime;
-OSPlayTimeCallbackFunc __OSExpireCallback;
+OSThread* __OSExpireThread;
 BOOL __OSExpireSetExpiredFlag;
 
 #ifdef __MWERKS__
@@ -16,8 +15,7 @@ OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | OS_ACTIVETHREADQUEUE_ADD
 OSThreadQueue __OSActiveThreadQueue;
 #endif
 
-static void __OSPlayTimeRebootCallback(OSAlarm *, OSContext *);
-static void*  __OSPlayTimeRebootThread(void *);
+void* __OSPlayTimeRebootThread(void*);
 
 extern void __OSHotResetForError(void);
 
@@ -31,10 +29,35 @@ typedef struct {
 	AIDCallback gameAIDCallback;
 } __OSExpireAIFadeStruct;
 
-static __OSExpireAIFadeStruct* __OSExpireAIFade = NULL;
+__OSExpireAIFadeStruct* __OSExpireAIFade = NULL;
 
 BOOL OSPlayTimeIsLimited() {
     return __OSExpireTime != 0;
+}
+
+void __OSPlayTimeRebootCallback(OSAlarm* alarm, OSContext* context) {
+    void* arenaHi;
+    u32 memSize;
+    OSThread* thread;
+    void* stack;
+
+    for (thread = __OSActiveThreadQueue.head; thread; thread = thread->linkActive.next) {
+        OSSuspendThread(thread);
+    }
+
+    memSize = OSRoundUp32B(sizeof(OSThread)) + 0x1000;
+    arenaHi = *(void**)OSPhysicalToCached(0x3128);
+    arenaHi = (void*)((u32)arenaHi - memSize);
+
+    thread = (OSThread*)arenaHi;
+    arenaHi = (void*)((u32)arenaHi + OSRoundUp32B(sizeof(OSThread)));
+    stack = arenaHi;
+
+    if (!OSCreateThread(thread, __OSPlayTimeRebootThread, NULL, (void*)((u32)stack + 0x1000), 0x1000, 0, 0)) {
+        __OSHotResetForError();
+    }
+
+    OSResumeThread(thread);
 }
 
 void __OSPlayTimeFadeLastAIDCallback(void) {
@@ -130,32 +153,7 @@ out:
     return rv == 0 ? TRUE : FALSE;
 }
 
-static void __OSPlayTimeRebootCallback(OSAlarm* alarm, OSContext* context) {
-    void* arenaHi;
-	u32 memSize;
-	OSThread* thread;
-	void* stack;
-        
-    for (thread = __OSActiveThreadQueue.head; thread; thread = thread->linkActive.next) {
-        OSSuspendThread(thread);
-    }
-
-    memSize = OSRoundUp32B(sizeof(OSThread)) + 0x1000;
-    arenaHi = *(void**)OSPhysicalToCached(0x3128);
-    arenaHi = (void*)((u32)arenaHi - memSize);
-
-    thread  = (OSThread*)arenaHi;
-    arenaHi = (void*)((u32)arenaHi + OSRoundUp32B(sizeof(OSThread)));
-    stack   = arenaHi;
-
-    if (!OSCreateThread(thread, __OSPlayTimeRebootThread, NULL, (void*)((u32)stack + 0x1000), 0x1000, 0, 0)) {
-        __OSHotResetForError();
-    }
-
-    OSResumeThread(thread);
-}
-
-BOOL __OSWriteExpiredFlagIfSet(void) {
+static BOOL __OSWriteExpiredFlagIfSet(void) {
     if (__OSExpireSetExpiredFlag) {
         return __OSWriteExpiredFlag();
     }
@@ -324,7 +322,7 @@ out:
 	return rv;
 }
 
-s32 __OSGetPlayTimeCurrent(__OSPlayTimeType* type, u32* playTime) {
+static s32 __OSGetPlayTimeCurrent(__OSPlayTimeType* type, u32* playTime) {
     s32 rv;
     ESTicketView ticket __attribute__ ((aligned(32)));
 

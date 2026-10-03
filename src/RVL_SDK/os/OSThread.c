@@ -3,21 +3,20 @@
 
 extern OSErrorHandler __OSErrorTable[];
 
-static void DefaultSwitchThreadCallback(OSThread*, OSThread*);
+void DefaultSwitchThreadCallback(OSThread*, OSThread*);
 static void OSClearStack(u8);
 
 #define OFFSET(n, a) (((u32)(n)) & ((a) - 1))
 #define TRUNC(n, a) (((u32)(n)) & ~((a) - 1))
 #define ROUND(n, a) (((u32)(n) + (a) - 1) & ~((a) - 1))
 
-static volatile u32 RunQueueBits;
-static OSThreadQueue RunQueue[32];
-static volatile BOOL RunQueueHint;
+volatile u32 RunQueueBits;
+OSThreadQueue RunQueue[32];
+volatile BOOL RunQueueHint;
 
-static volatile s32 Reschedule;
-static OSThread IdleThread;
+volatile s32 Reschedule;
 static OSThread DefaultThread;
-static OSContext IdleContext;
+OSContext IdleContext;
 
 #ifdef __MWERKS__
 OSThread* __OSCurrentThread : (OS_BASE_CACHED | OS_CURRENTTHREAD_ADDR);
@@ -29,7 +28,7 @@ OSThreadQueue __OSActiveThreadQueue;
 volatile OSContext* __OSFPUContext;
 #endif
 
-static OSSwitchThreadCallback SwitchThreadCallback = DefaultSwitchThreadCallback;
+OSSwitchThreadCallback SwitchThreadCallback = DefaultSwitchThreadCallback;
 
 void UnsetRun(OSThread*) __attribute__((noinline));
 
@@ -677,7 +676,7 @@ OSPriority OSGetThreadPriority(OSThread* thread) {
     return thread->base;
 }
 
-static void SleepAlarmHandler(OSAlarm* alarm, OSContext* context) {
+void SleepAlarmHandler(OSAlarm* alarm, OSContext* context) {
     OSResumeThread((OSThread*)OSGetAlarmUserData(alarm));
 }
 

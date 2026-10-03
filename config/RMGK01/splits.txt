@@ -11163,7 +11163,7 @@ RVL_SDK/os/OSSync.c:
 
 RVL_SDK/os/OSThread.c:
 	.text       start:0x804AC29C end:0x804AD9FC
-	.bss        start:0x806651F8 end:0x80665C00
+	.bss        start:0x806651F8 end:0x806658D8
 	.sdata      start:0x806B2A80 end:0x806B2A88
 	.sbss       start:0x806B76E8 end:0x806B76F8
 
@@ -11204,7 +11204,7 @@ RVL_SDK/os/OSStateFlags.c:
 
 RVL_SDK/os/OSNet.c:
 	.text       start:0x804AF02C end:0x804AF0E0
-	.data       start:0x805FCD40 end:0x805FCEA8
+	.data       start:0x805FCD40 end:0x805FCDE8
 
 RVL_SDK/os/OSNandbootInfo.c:
 	.text       start:0x804AF0E0 end:0x804AF2E8
@@ -11220,7 +11220,7 @@ RVL_SDK/os/OSPlayTime.c:
 
 RVL_SDK/os/OSLaunch.c:
 	.text       start:0x804AFB80 end:0x804B0940
-	.data       start:0x805FCF08 end:0x805FD0F8
+	.data       start:0x805FCF08 end:0x805FD020
 	.sdata      start:0x806B2AA0 end:0x806B2AA8
 	.sbss       start:0x806B7760 end:0x806B7768
 

@@ -60,7 +60,7 @@ static BOOL PackArgs(void* addr, s32 argc, char* argv[]) {
     return TRUE;
 }
 
-BOOL __OSCheckTmdCountryCode(ESTmdView* tmd) {
+static BOOL __OSCheckTmdCountryCode(ESTmdView* tmd) {
     u32 TmdCountryCode = 0;
     TmdCountryCode = *((u32*)tmd->head.reserved);
 

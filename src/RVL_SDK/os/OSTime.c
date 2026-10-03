@@ -56,7 +56,29 @@ static int GetLeapDays(int year) {
     return (year + 3) / 4 - (year - 1) / 100 + (year - 1) / 400; 
 }
 
-static void GetDates(s32 days, OSCalendarTime *pTime) NO_INLINE;
+static void GetDates(s32 days, OSCalendarTime *pTime) NO_INLINE {
+    int year;
+    int dayCount;
+    int month;
+    int* monthArr;
+
+    pTime->wday = (days + 6) % 7;
+
+    for (year = days / 365; days < (dayCount = GetLeapDays(year) + 365 * year); --year)
+        ;
+
+    days -= dayCount;
+    pTime->year = year;
+    pTime->yday = days;
+
+    monthArr = IsLeapYear(year) ? LeapYearDays : YearDays;
+
+    for (month = 12; days < monthArr[--month];)
+        ;
+
+    pTime->mon = month;
+    pTime->mday = days - monthArr[month] + 1;
+}
 
 void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime *pTime) {
     int numDays;
@@ -86,26 +108,4 @@ void OSTicksToCalendarTime(OSTime ticks, OSCalendarTime *pTime) {
     pTime->hour = numSecs / 60 / 60;
     pTime->min = (numSecs / 60) % 60;
     pTime->sec = numSecs % 60;
-}
-
-static void GetDates(s32 days, OSCalendarTime *pTime) {
-    int year;
-    int dayCount;
-    int month;
-    int* monthArr;
-
-    pTime->wday = (days + 6) % 7;
-
-    for (year = days / 365; days < (dayCount = GetLeapDays(year) + 365 * year); --year);
-
-    days -= dayCount;
-    pTime->year = year;
-    pTime->yday = days;
-
-    monthArr = IsLeapYear(year) ? LeapYearDays : YearDays;
-
-    for (month = 12; days < monthArr[--month];);
-
-    pTime->mon = month;
-    pTime->mday = days - monthArr[month] + 1;
 }
