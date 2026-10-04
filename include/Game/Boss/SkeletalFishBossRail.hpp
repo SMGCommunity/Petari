@@ -16,8 +16,8 @@ public:
     void createFillUpNamePosID();
     void linkFillUpNamePosID();
 
-    s32 _8C;
-    bool* mFillUpFlags;  // 0x90
-    s32* mNamePosIDs;    // 0x94
-    f32 _98;
+    /* 0x8C */ s32 _8C;
+    /* 0x90 */ bool* mFillUpFlags;
+    /* 0x94 */ s32* mNamePosIDs;
+    /* 0x98 */ f32 _98;
 };

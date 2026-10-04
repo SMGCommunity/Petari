@@ -24,10 +24,10 @@ public:
     void appearBirdLouse();
     void killBirdLouse();
 
-    SkeletalFishBoss* mFishBoss;                // 0xC
-    SubmarineVolcanoBigColumn* mColumns[0x20];  // 0x10
-    s32 _90;
-    LiveActor* _94[0x10];
-    s32 _D4;
-    ModelObj* mGuardModels[4];  // 0xD8
+    /* 0x0C */ SkeletalFishBoss* mFishBoss;
+    /* 0x10 */ SubmarineVolcanoBigColumn* mColumns[0x20];
+    /* 0x90 */ s32 _90;
+    /* 0x94 */ LiveActor* _94[0x10];
+    /* 0xD4 */ s32 _D4;
+    /* 0xD8 */ ModelObj* mGuardModels[4];
 };
