@@ -22,18 +22,18 @@ public:
     void executeActionFirst() const;
     void executeActionLast() const;
 
-    const char* mPartName;        // 0x00
-    const char* mCastName;        // 0x04
-    s32 mCastID;                  // 0x08
-    s32 mActionType;              // 0x0C
-    const char* mPosName;         // 0x10
-    const char* mAnimName;        // 0x14
-    s32 _18;                      // 0x18
-    s32 mCastCount;               // 0x1C
-    LiveActor** mCastList;        // 0x20
-    MR::FunctorBase** mFunctors;  // 0x24
-    const Nerve** mNerves;        // 0x28
-    u8 _2C;                       // 0x2C
+    /* 0x00 */ const char* mPartName;
+    /* 0x04 */ const char* mCastName;
+    /* 0x08 */ s32 mCastID;
+    /* 0x0C */ s32 mActionType;
+    /* 0x10 */ const char* mPosName;
+    /* 0x14 */ const char* mAnimName;
+    /* 0x18 */ s32 _18;
+    /* 0x1C */ s32 mCastCount;
+    /* 0x20 */ LiveActor** mCastList;
+    /* 0x24 */ MR::FunctorBase** mFunctors;
+    /* 0x28 */ const Nerve** mNerves;
+    /* 0x2C */ u8 _2C;
 };
 
 class DemoActionKeeper {
@@ -49,7 +49,7 @@ public:
     bool isRegisteredDemoActionNerve(const LiveActor*) const;
     bool isRegisteredDemoAction(const LiveActor*, s32) const;
 
-    const DemoExecutor* mDemoExecutor;  // 0x00
-    s32 mNumInfos;                      // 0x04
-    DemoActionInfo** mInfoArray;        // 0x08
+    /* 0x00 */ const DemoExecutor* mDemoExecutor;
+    /* 0x04 */ s32 mNumInfos;
+    /* 0x08 */ DemoActionInfo** mInfoArray;
 };
