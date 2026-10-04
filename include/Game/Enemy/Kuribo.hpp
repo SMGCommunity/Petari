@@ -78,17 +78,17 @@ public:
     bool isEnablePanch() const;
     bool isEnablePushMove() const;
 
-    AnimScaleController* mScaleController;         // 0x8C
-    ItemGenerator* mItemGenerator;                 // 0x90
-    WalkerStateWander* mStateWander;               // 0x94
-    WalkerStateFindPlayer* mStateFindPlayer;       // 0x98
-    WalkerStateBindStarPointer* mBindStarPointer;  // 0x9C
-    WalkerStateStagger* mStateStagger;             // 0xA0
-    WalkerStateChase* mStateChase;                 // 0xA4
-    TQuat4f _A8;
-    TVec3f _B8;
-    bool _C4;
-    u8 _C5;
+    /* 0x8C */ AnimScaleController* mScaleController;
+    /* 0x90 */ ItemGenerator* mItemGenerator;
+    /* 0x94 */ WalkerStateWander* mStateWander;
+    /* 0x98 */ WalkerStateFindPlayer* mStateFindPlayer;
+    /* 0x9C */ WalkerStateBindStarPointer* mBindStarPointer;
+    /* 0xA0 */ WalkerStateStagger* mStateStagger;
+    /* 0xA4 */ WalkerStateChase* mStateChase;
+    /* 0xA8 */ TQuat4f _A8;
+    /* 0xB8 */ TVec3f _B8;
+    /* 0xC4 */ bool _C4;
+    /* 0xC5 */ u8 _C5;
 };
 
 namespace MR {

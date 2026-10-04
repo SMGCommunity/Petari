@@ -70,26 +70,26 @@ public:
         return _D0;
     }
 
-    CannonShellHolder* mShellHolder;                      // 0x8C
-    CannonShellHolder* mMainShellHolder;                  // 0x90
-    KoopaJr* mJr;                                         // 0x94
-    ModelObj* mShipBreakModel;                            // 0x98
-    ModelObj* mPodModel;                                  // 0x9C
-    MR::Vector< MR::FixedArray< Kameck*, 2 > > mKamecks;  // 0xA0
-    MR::Vector< MR::FixedArray< Kameck*, 2 > > _AC;       // 0xA0
-    MR::FixedArray< HomingKiller*, 6 > mKillers;          // 0xB8
-    s32 _D0;
-    TVec3f _D4;
-    TVec3f _E0;
-    f32 _EC;
-    f32 mPropRotateSpeed;  // 0xF0
-    TPos3f mScrew00Mtx;    // 0xF4
-    TPos3f mScrew01Mtx;    // 0x124
-    TRot3f mPropellerMtx;  // 0x154
-    f32 _184;
-    s32 _188;
-    TMtx34f mShipMtx;  // 0x18C
-    TMtx34f mPodMtx;   // 0x1BC
-    TVec3f _1EC;
-    TVec3f _1F8;
+    /* 0x08C */ CannonShellHolder* mShellHolder;
+    /* 0x090 */ CannonShellHolder* mMainShellHolder;
+    /* 0x094 */ KoopaJr* mJr;
+    /* 0x098 */ ModelObj* mShipBreakModel;
+    /* 0x09C */ ModelObj* mPodModel;
+    /* 0x0A0 */ MR::Vector< MR::FixedArray< Kameck*, 2 > > mKamecks;
+    /* 0x0A0 */ MR::Vector< MR::FixedArray< Kameck*, 2 > > _AC;
+    /* 0x0B8 */ MR::FixedArray< HomingKiller*, 6 > mKillers;
+    /* 0x0D0 */ s32 _D0;
+    /* 0x0D4 */ TVec3f _D4;
+    /* 0x0E0 */ TVec3f _E0;
+    /* 0x0EC */ f32 _EC;
+    /* 0x0F0 */ f32 mPropRotateSpeed;
+    /* 0x0F4 */ TPos3f mScrew00Mtx;
+    /* 0x124 */ TPos3f mScrew01Mtx;
+    /* 0x154 */ TRot3f mPropellerMtx;
+    /* 0x184 */ f32 _184;
+    /* 0x188 */ s32 _188;
+    /* 0x18C */ TMtx34f mShipMtx;
+    /* 0x1BC */ TMtx34f mPodMtx;
+    /* 0x1EC */ TVec3f _1EC;
+    /* 0x1F8 */ TVec3f _1F8;
 };

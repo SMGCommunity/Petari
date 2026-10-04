@@ -41,10 +41,10 @@ public:
     void endBindStarPointer();
     void exeBindStarPointerEnd();
 
-    SpinHitController* mSpinCtrl;                  // 0x8C
-    AnimScaleController* mScaleController;         // 0x90
-    WalkerStateBindStarPointer* mBindStarPointer;  // 0x94
-    TVec3f _98;
-    TVec3f _A4;
-    bool _B0;
+    /* 0x8C */ SpinHitController* mSpinCtrl;
+    /* 0x90 */ AnimScaleController* mScaleController;
+    /* 0x94 */ WalkerStateBindStarPointer* mBindStarPointer;
+    /* 0x98 */ TVec3f _98;
+    /* 0xA4 */ TVec3f _A4;
+    /* 0xB0 */ bool _B0;
 };

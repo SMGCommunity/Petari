@@ -6,9 +6,9 @@ class CollisionParts;
 
 namespace {
     struct Param {
-        f32 mDashVelocity;  // 0x0
-        f32 mDashDistance;  // 0x4
-        s32 mPanicStep;     // 0x8
+        /* 0x0 */ f32 mDashVelocity;
+        /* 0x4 */ f32 mDashDistance;
+        /* 0x8 */ s32 mPanicStep;
     };
 };  // namespace
 
