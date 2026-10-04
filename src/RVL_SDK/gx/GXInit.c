@@ -38,7 +38,7 @@ static BOOL __GXShutdown(BOOL, u32);
 #define GX_32k 0x08000
 #define GX_8k 0x02000
 
-static u16 DefaultTexData[] __attribute__((aligned(32))) = {0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,
+static u16 DefaultTexData[] ATTRIBUTE_ALIGN(32) = {0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,
                                                             0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF};
 
 static GXVtxAttrFmtList GXDefaultVATList[] = {

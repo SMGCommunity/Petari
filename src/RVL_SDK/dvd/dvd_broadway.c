@@ -32,16 +32,16 @@ typedef struct dvdContext {
     u32 pad[3];
 } dvdContext_t;
 
-static dvdContext_t dvdContexts[4] __attribute__((aligned(32)));
-static diRegVals_t diRegValCache __attribute__((aligned(32)));
-static u32 registerBuf[8] __attribute__((aligned(32)));
+static dvdContext_t dvdContexts[4] ATTRIBUTE_ALIGN(32);
+static diRegVals_t diRegValCache ATTRIBUTE_ALIGN(32);
+static u32 registerBuf[8] ATTRIBUTE_ALIGN(32);
 
-static u32 coverRegister[8] __attribute__((aligned(32)));
-static u32 coverStatus[8] __attribute__((aligned(32)));
-static u32 statusRegister[8] __attribute__((aligned(32)));
-static s32 lastTicketError[8] __attribute__((aligned(32)));
+static u32 coverRegister[8] ATTRIBUTE_ALIGN(32);
+static u32 coverStatus[8] ATTRIBUTE_ALIGN(32);
+static u32 statusRegister[8] ATTRIBUTE_ALIGN(32);
+static s32 lastTicketError[8] ATTRIBUTE_ALIGN(32);
 
-static IOSIoVector ioVec[10] __attribute__((aligned(32)));
+static IOSIoVector ioVec[10] ATTRIBUTE_ALIGN(32);
 
 static void* ddrAllocAligned32(const int size) {
     void *low, *high;

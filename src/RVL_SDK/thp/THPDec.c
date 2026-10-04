@@ -2,19 +2,19 @@
 
 const char* __THPVersion = "<< RVL_SDK - THP \trelease build: Aug  8 2007 01:31:54 (0x4199_60831) >>";
 
-static THPHuffmanTab* Ydchuff __attribute__((aligned(32)));
-static THPHuffmanTab* Udchuff __attribute__((aligned(32)));
-static THPHuffmanTab* Vdchuff __attribute__((aligned(32)));
-static THPHuffmanTab* Yachuff __attribute__((aligned(32)));
-static THPHuffmanTab* Uachuff __attribute__((aligned(32)));
-static THPHuffmanTab* Vachuff __attribute__((aligned(32)));
-static f32 __THPIDCTWorkspace[64] __attribute__((aligned(32)));
+static THPHuffmanTab* Ydchuff ATTRIBUTE_ALIGN(32);
+static THPHuffmanTab* Udchuff ATTRIBUTE_ALIGN(32);
+static THPHuffmanTab* Vdchuff ATTRIBUTE_ALIGN(32);
+static THPHuffmanTab* Yachuff ATTRIBUTE_ALIGN(32);
+static THPHuffmanTab* Uachuff ATTRIBUTE_ALIGN(32);
+static THPHuffmanTab* Vachuff ATTRIBUTE_ALIGN(32);
+static f32 __THPIDCTWorkspace[64] ATTRIBUTE_ALIGN(32);
 static u8* __THPHuffmanBits;
 static u8* __THPHuffmanSizeTab;
 static u16* __THPHuffmanCodeTab;
-static THPSample* Gbase __attribute__((aligned(32)));
-static u32 Gwid __attribute__((aligned(32)));
-static f32* Gq __attribute__((aligned(32)));
+static THPSample* Gbase ATTRIBUTE_ALIGN(32);
+static u32 Gwid ATTRIBUTE_ALIGN(32);
+static f32* Gq ATTRIBUTE_ALIGN(32);
 static u8 *__THPLCWork512[3];
 static u8 *__THPLCWork672[3];
 static u32 __THPOldGQR5;

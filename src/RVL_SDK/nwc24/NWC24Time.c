@@ -31,9 +31,9 @@ static s64 nwc24TimeDifference = 0;
 
 static u8 buf[128];
 
-static CommonResult nwc24TimeCommonResult __attribute__((aligned(32)));
-static CommonBuffer nwc24TimeCommonBuffer __attribute__((aligned(32)));
-static OSMutex nwc24TimeCommandMutex __attribute__((aligned(32)));
+static CommonResult nwc24TimeCommonResult ATTRIBUTE_ALIGN(32);
+static CommonBuffer nwc24TimeCommonBuffer ATTRIBUTE_ALIGN(32);
+static OSMutex nwc24TimeCommandMutex ATTRIBUTE_ALIGN(32);
 
 static NWC24Err GetRTC(u32* pRTC);
 static NWC24Err CheckCallingStatus(const char* pUser);

@@ -60,8 +60,8 @@ NWC24Err NWC24iPrepareShutdown(void) {
 }
 
 NWC24Err NWC24iRequestShutdown(u32 event, NWC24Err* pResult) {
-    static u8 shtBuffer[32] __attribute__((aligned(32)));
-    static u8 shtResult[32] __attribute__((aligned(32)));
+    static u8 shtBuffer[32] ATTRIBUTE_ALIGN(32);
+    static u8 shtResult[32] ATTRIBUTE_ALIGN(32);
 
     *(u32*)shtBuffer = event;
     return NWC24_IOCTL_DEVICE_ASYNC(nwc24ShtFd, NWC24_IOCTL_SHUTDOWN, shtBuffer, sizeof(shtBuffer), shtResult, sizeof(shtResult), pResult);
