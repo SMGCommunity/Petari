@@ -91,8 +91,8 @@ static long uusb_get_devId(int vid, int pid);
 
 // .bss
 static tUUSB_CB usb;
-unsigned char __uusb_ppc_stack1[0x1000] __attribute__((aligned(32)));
-unsigned char __uusb_ppc_stack2[0x1000] __attribute__((aligned(32)));
+unsigned char __uusb_ppc_stack1[0x1000] ATTRIBUTE_ALIGN(32);
+unsigned char __uusb_ppc_stack2[0x1000] ATTRIBUTE_ALIGN(32);
 
 // .sdata
 // TODO: IOSFd, IOS_INVALID_FD

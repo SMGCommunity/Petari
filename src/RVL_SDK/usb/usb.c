@@ -30,7 +30,7 @@ typedef struct iusb_Ctxt {
         char path[ROUNDUP(64)];
         char des[ROUNDUP(sizeof(USB_DevDescr))];
         char reqBuf[ROUNDUP(sizeof(IntBlkCtrlReq))];
-    } u __attribute__((aligned(32)));
+    } u ATTRIBUTE_ALIGN(32);
 
 } iusb_ctxt;
 

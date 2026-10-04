@@ -28,7 +28,7 @@ typedef struct isfs_GetUsage {
 } isfs_GetUsage;
 
 typedef struct __isfsCtxt {
-    u8 ioBuf[ROUNDUP(256)] __attribute__((aligned(32)));
+    u8 ioBuf[ROUNDUP(256)] ATTRIBUTE_ALIGN(32);
     ISFSCallback cb;
     void* ctxt;
     u32 func;

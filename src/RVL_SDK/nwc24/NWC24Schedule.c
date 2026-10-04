@@ -37,10 +37,10 @@ static s32 nwc24ScdOpenCnt = 0;
 static OSMutex nwc24ScdCommandMutex;
 static OSMutex nwc24ScdCounterMutex;
 
-static CommonBuffer nwc24ScdCommonBuffer __attribute__((aligned(32)));
-static CommonResult nwc24ScdCommonResult __attribute__((aligned(32)));
+static CommonBuffer nwc24ScdCommonBuffer ATTRIBUTE_ALIGN(32);
+static CommonResult nwc24ScdCommonResult ATTRIBUTE_ALIGN(32);
 
-u8 nwc24ScdStatBuf[256] __attribute__((aligned(32)));
+u8 nwc24ScdStatBuf[256] ATTRIBUTE_ALIGN(32);
 
 static NWC24Err ExecSuspendScheduler(void) NO_INLINE;
 static NWC24Err ExecTrySuspendScheduler(u32 arg0);

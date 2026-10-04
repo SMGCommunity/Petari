@@ -54,8 +54,8 @@ static const char ConfDirName[] = "/shared2/sys";
 static const char ConfFileName[] = "/shared2/sys/SYSCONF";
 static const char ProductInfoFileName[] = "/title/00000001/00000002/data/setting.txt";
 
-static u8 ConfBuf[16384] __attribute__((aligned(32)));
-static u8 ConfBufForFlush[16384] __attribute__((aligned(32)));
+static u8 ConfBuf[16384] ATTRIBUTE_ALIGN(32);
+static u8 ConfBufForFlush[16384] ATTRIBUTE_ALIGN(32);
 
 static u8 Initialized;
 static u8 DirtyFlag;
