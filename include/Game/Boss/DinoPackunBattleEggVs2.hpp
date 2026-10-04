@@ -24,8 +24,8 @@ public:
     void exeWalk();
     void exeDamage();
 
-    DinoPackunStateDamage* mStateDamage;          // 0x14
-    DinoPackunTrackFireHolder* mTrackFireHolder;  // 0x18
-    DinoPackunStateFire* mStateFire;              // 0x1C
-    f32 _20;
+    /* 0x14 */ DinoPackunStateDamage* mStateDamage;
+    /* 0x18 */ DinoPackunTrackFireHolder* mTrackFireHolder;
+    /* 0x1C */ DinoPackunStateFire* mStateFire;
+    /* 0x20 */ f32 _20;
 };

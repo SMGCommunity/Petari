@@ -20,6 +20,6 @@ public:
     void exeWalk();
     void exeDamage();
 
-    DinoPackunStateDamage* mStateDamage;  // 0x14
-    f32 _18;
+    /* 0x14 */ DinoPackunStateDamage* mStateDamage;
+    /* 0x18 */ f32 _18;
 };

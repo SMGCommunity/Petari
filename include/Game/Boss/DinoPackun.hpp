@@ -67,28 +67,28 @@ public:
     void startDamageCamera();
     void endDamageCamera();
 
-    DinoPackunTail* mTail;             // 0x8C
-    DinoPackunBall* mBall;             // 0x90
-    FootPrint* mFootPrint;             // 0x94
-    DinoPackunEggShell* mShell;        // 0x98
-    DinoPackunDemoPosition* mDemoPos;  // 0x9C
-    PartsModel* mShellBreakModel;      // 0xA0
-    PartsModel* mTailBall;             // 0xA4
-    CameraTargetMtx* mCamTargetMtx;    // 0xA8
-    ActorCameraInfo* mCameraInfo;      // 0xAC
-    DinoPackunSequencer* mSequence;    // 0xB0
-    JointControlDelegator< DinoPackun >* _B4;
-    AnimScaleController* _B8;
-    TQuat4f _BC;
-    TVec4f _CC;
-    TVec3f _DC;
-    TVec3f _E8;
-    s32 _F4;
-    TVec3f mCameraVec;  // 0xF8
-    f32 _104;
-    f32 _108;
-    s32 _10C;
-    u8 _110;
+    /* 0x08C */ DinoPackunTail* mTail;
+    /* 0x090 */ DinoPackunBall* mBall;
+    /* 0x094 */ FootPrint* mFootPrint;
+    /* 0x098 */ DinoPackunEggShell* mShell;
+    /* 0x09C */ DinoPackunDemoPosition* mDemoPos;
+    /* 0x0A0 */ PartsModel* mShellBreakModel;
+    /* 0x0A4 */ PartsModel* mTailBall;
+    /* 0x0A8 */ CameraTargetMtx* mCamTargetMtx;
+    /* 0x0AC */ ActorCameraInfo* mCameraInfo;
+    /* 0x0B0 */ DinoPackunSequencer* mSequence;
+    /* 0x0B4 */ JointControlDelegator< DinoPackun >* _B4;
+    /* 0x0B8 */ AnimScaleController* _B8;
+    /* 0x0BC */ TQuat4f _BC;
+    /* 0x0CC */ TVec4f _CC;
+    /* 0x0DC */ TVec3f _DC;
+    /* 0x0E8 */ TVec3f _E8;
+    /* 0x0F4 */ s32 _F4;
+    /* 0x0F8 */ TVec3f mCameraVec;
+    /* 0x104 */ f32 _104;
+    /* 0x108 */ f32 _108;
+    /* 0x10C */ s32 _10C;
+    /* 0x110 */ u8 _110;
 };
 
 namespace MR {

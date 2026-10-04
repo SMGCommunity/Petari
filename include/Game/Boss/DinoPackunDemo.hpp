@@ -22,6 +22,6 @@ public:
     void exeDownDemo();
     void exeAppearPowerStar();
 
-    const Nerve* _14;
-    const char* mDemoName;  // 0x18
+    /* 0x14 */ const Nerve* _14;
+    /* 0x18 */ const char* mDemoName;
 };
