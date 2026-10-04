@@ -16,19 +16,19 @@ public:
     void drawDynamic() const;
     void drawDynamicBloom() const;
 
-    const OceanRing* mOceanRing;  // 0x0
-    TVec3f mPosition;             // 0x4
-    int _10;
-    int _14;
-    bool _18;
-    u8 _19;
-    u8 _1A;
-    u8 _1B;
-    f32 _1C;
-    f32 _20;
-    f32 _24;
-    u32 mDispListLength;  // 0x28
-    u8* mDispList;        // 0x2C
+    /* 0x00 */ const OceanRing* mOceanRing;
+    /* 0x04 */ TVec3f mPosition;
+    /* 0x10 */ int _10;
+    /* 0x14 */ int _14;
+    /* 0x18 */ bool _18;
+    /* 0x19 */ u8 _19;
+    /* 0x1A */ u8 _1A;
+    /* 0x1B */ u8 _1B;
+    /* 0x1C */ f32 _1C;
+    /* 0x20 */ f32 _20;
+    /* 0x24 */ f32 _24;
+    /* 0x28 */ u32 mDispListLength;
+    /* 0x2C */ u8* mDispList;
 };
 
 class OceanRingDrawer {
@@ -52,17 +52,17 @@ public:
         return (a1 - a2) / a3;
     }
 
-    const OceanRing* mRing;              // 0x0
-    s32 mDrawerCount;                    // 0x4
-    OceanRingPartDrawer** mPartDrawers;  // 0x8
-    f32 _C;
-    f32 _10;
-    f32 _14;
-    f32 _18;
-    f32 _1C;
-    f32 _20;
-    JUTTexture* mWaterTex;     // 0x24
-    JUTTexture* mWaterIndTex;  // 0x28
-    u32 mDispListLength;
-    u8* mDispList;  // 0x30
+    /* 0x00 */ const OceanRing* mRing;
+    /* 0x04 */ s32 mDrawerCount;
+    /* 0x08 */ OceanRingPartDrawer** mPartDrawers;
+    /* 0x0C */ f32 _C;
+    /* 0x10 */ f32 _10;
+    /* 0x14 */ f32 _14;
+    /* 0x18 */ f32 _18;
+    /* 0x1C */ f32 _1C;
+    /* 0x20 */ f32 _20;
+    /* 0x24 */ JUTTexture* mWaterTex;
+    /* 0x28 */ JUTTexture* mWaterIndTex;
+    /* 0x2C */ u32 mDispListLength;
+    /* 0x30 */ u8* mDispList;
 };
