@@ -10,18 +10,6 @@ namespace {
 AirBubbleHolder::AirBubbleHolder(const char* pName) : DeriveActorGroup< AirBubble >(pName, ::sAirBubbleMax) {
 }
 
-void AirBubbleHolder::init(const JMapInfoIter& rIter) {
-    AirBubble* pAirBubble;
-
-    for (s32 i = 0; i < ::sCreateAirBubbleNum; i++) {
-        pAirBubble = new AirBubble("空気アワ(共用)");
-        pAirBubble->initWithoutIter();
-        pAirBubble->makeActorDead();
-
-        registerActor(pAirBubble);
-    }
-}
-
 void AirBubbleHolder::appearAirBubble(const TVec3f& rTrans, s32 lifeTime) {
     AirBubble* pAirBubble = getDeadMember();
 
@@ -39,3 +27,18 @@ namespace MR {
         MR::getSceneObj< AirBubbleHolder >(SceneObj_AirBubbleHolder)->appearAirBubble(rTrans, lifeTime);
     }
 };  // namespace MR
+
+AirBubbleHolder::~AirBubbleHolder() {
+}
+
+void AirBubbleHolder::init(const JMapInfoIter& rIter) {
+    AirBubble* pAirBubble;
+
+    for (s32 i = 0; i < ::sCreateAirBubbleNum; i++) {
+        pAirBubble = new AirBubble("空気アワ(共用)");
+        pAirBubble->initWithoutIter();
+        pAirBubble->makeActorDead();
+
+        registerActor(pAirBubble);
+    }
+}

@@ -86,11 +86,11 @@ void BigBubbleGenerator::offActive() {
     }
 }
 
-bool BigBubbleGenerator::isActiveRange() {
+inline bool BigBubbleGenerator::isActiveRange() {
     return MR::isNearPlayerAnyTime(this, ::sActiveDistance);
 }
 
-bool BigBubbleGenerator::isNonActiveRange() {
+inline bool BigBubbleGenerator::isNonActiveRange() {
     return !MR::isNearPlayerAnyTime(this, ::sNonActiveDistance);
 }
 
@@ -112,7 +112,7 @@ bool BigBubbleGenerator::tryNonActive() {
     return false;
 }
 
-void BigBubbleGenerator::exeNonActive() {
+inline void BigBubbleGenerator::exeNonActive() {
     tryActive();
 }
 
