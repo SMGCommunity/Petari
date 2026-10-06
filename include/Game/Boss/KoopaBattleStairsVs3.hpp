@@ -6,7 +6,7 @@ class KoopaBattleStairsVs3 : public KoopaBattleStairsBase {
 public:
     KoopaBattleStairsVs3(Koopa* pKoopa);
 
-    virtual ~KoopaBattleStairsVs3();
+    virtual ~KoopaBattleStairsVs3() {};
     virtual s32 registerStair(KoopaBattleMapStair* pStair);
 
     void exeWaitDemo();

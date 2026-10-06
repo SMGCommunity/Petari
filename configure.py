@@ -929,7 +929,7 @@ config.libs = [
                 cflags=[*cflags_game, "-sym off"],
             ),
             Object(Matching, "Game/Boss/KoopaBattleStairsVs1.cpp"),
-            Object(NonMatching, "Game/Boss/KoopaBattleStairsVs3.cpp"),
+            Object(Matching, "Game/Boss/KoopaBattleStairsVs3.cpp"),
             Object(Matching, "Game/Boss/KoopaBattleVs3Lv1.cpp"),
             Object(Matching, "Game/Boss/KoopaBattleVs3Lv2.cpp"),
             Object(Matching, "Game/Boss/KoopaDemoPowerUp.cpp"),
