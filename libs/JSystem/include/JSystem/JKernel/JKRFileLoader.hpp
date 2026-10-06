@@ -33,10 +33,10 @@ public:
     static JKRFileLoader* sCurrentVolume;
     static OSMutex sVolumeListMutex;
 
-    JSULink< JKRFileLoader > mLoaderLink;  // 0x18
-    char* mLoaderName;                     // 0x28
-    u32 mLoaderType;                       // 0x2C
-    bool mIsMounted;                       // 0x30
-    u8 _31[3];
-    u32 _34;
+    /* 0x18 */ JSULink< JKRFileLoader > mLoaderLink;
+    /* 0x28 */ char* mLoaderName;
+    /* 0x2C */ u32 mLoaderType;
+    /* 0x30 */ bool mIsMounted;
+    /* 0x31 */ u8 _31[3];
+    /* 0x34 */ u32 _34;
 };

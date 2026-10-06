@@ -119,11 +119,11 @@ struct J3DTexMtxInfo {
 
 class J3DLightInfo {
 public:
-    Vec mLightPosition;   // 0x0
-    Vec mLightDirection;  // 0xC
-    GXColor mColor;       // 0x18
-    Vec mCosAtten;        // 0x1C
-    Vec mDistAtten;       // 0x28
+    /* 0x00 */ Vec mLightPosition;
+    /* 0x0C */ Vec mLightDirection;
+    /* 0x18 */ GXColor mColor;
+    /* 0x1C */ Vec mCosAtten;
+    /* 0x28 */ Vec mDistAtten;
 };
 
 struct J3DColorChanInfo {

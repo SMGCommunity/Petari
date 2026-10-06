@@ -35,21 +35,21 @@ public:
     };
 
     struct RarcHeader {
-        /* 0x0 */ u32 mMagic;
-        /* 0x4 */ u32 mFileSize;
-        /* 0x8 */ u32 mHeaderSize;
-        /* 0xC */ u32 mFileDataOffset;
+        /* 0x00 */ u32 mMagic;
+        /* 0x04 */ u32 mFileSize;
+        /* 0x08 */ u32 mHeaderSize;
+        /* 0x0C */ u32 mFileDataOffset;
         /* 0x10 */ u32 mTotalDataSize;
         /* 0x14 */ u32 mMRamDataSize;
         /* 0x18 */ u32 mARamDataSize;
-        u32 _1C;
+        /* 0x1C */ u32 _1C;
     };
 
     struct RarcInfoBlock {
-        /* 0x0 */ u32 mNrDirs;
-        /* 0x4 */ u32 mDirOffset;
-        /* 0x8 */ u32 mNrFiles;
-        /* 0xC */ u32 mFileOffset;
+        /* 0x00 */ u32 mNrDirs;
+        /* 0x04 */ u32 mDirOffset;
+        /* 0x08 */ u32 mNrFiles;
+        /* 0x0C */ u32 mFileOffset;
         /* 0x10 */ u32 mStringTableSize;
         /* 0x14 */ u32 mStringTableOffset;
         /* 0x18 */ u16 mNextAvailableFileID;
@@ -58,18 +58,16 @@ public:
     };
 
     struct SDIFileEntry {
-        /* 0x0 */ u16 mFileID;
-        /* 0x2 */ u16 mHash;
-        /* 0x4 */ u32 mFlag : 8;
-        /* 0x5 */ u32 mNameOffset : 24;
+        /* 0x00 */ u16 mFileID;
+        /* 0x02 */ u16 mHash;
+        /* 0x04 */ u32 mFlag : 8;
+        /* 0x05 */ u32 mNameOffset : 24;
         union {
-            /* 0x8 */ u32 mDataOffset;
-            /* 0x8 */ u32 mDirIndex;
+            /* 0x08 */ u32 mDataOffset;
+            /* 0x08 */ u32 mDirIndex;
         };
-        union {
-            /* 0xC */ u32 mDataSize;
-        };
-        void* /* 0x10 */ mFileData;
+        /* 0x0C */ u32 mDataSize;
+        /* 0x10 */ void* mFileData;
     };
 
     struct SDIDirEntry {
@@ -82,7 +80,7 @@ public:
 
     struct SDirEntry {
         /* 0x0 */ u8 mFileFlag;
-        u8 _1;
+        /* 0x1 */ u8 _1;
         /* 0x2 */ u16 mFileID;
         /* 0x4 */ char* mName;
     };
@@ -148,18 +146,18 @@ public:
     SDIFileEntry* findPtrResource(const void*) const;
     SDIFileEntry* findIdResource(u16) const;
 
-    static u32 sCurrentDirID;  // 0x806B7148
+    /* 0x806B7148 */ static u32 sCurrentDirID;
 
     /* 0x38 */ JKRHeap* mHeap;
     /* 0x3C */ u8 mMountMode;
-    u8 _3D[3];
+    /* 0x3D */ u8 _3D[3];
     /* 0x40 */ s32 mEntryNum;
     /* 0x44 */ RarcInfoBlock* mInfoBlock;
     /* 0x48 */ SDIDirEntry* mDirs;
     /* 0x4C */ SDIFileEntry* mFiles;
     /* 0x50 */ s32* mExpandSizes;
     /* 0x54 */ char* mStringTable;
-    u32 _58;
-    int _5C;
+    /* 0x58 */ u32 _58;
+    /* 0x5C */ int _5C;
     /* 0x60 */ EMountDirection mMountDir;
 };
