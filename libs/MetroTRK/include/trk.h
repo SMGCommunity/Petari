@@ -232,15 +232,15 @@ typedef struct TRKState_PPC {
 typedef struct CommandReply {
     /* 0x00 */ u32 _00;
     union {
-        u8 b;
-        MessageCommandID m;
-    } commandID;  // _04, use MessageCommandID enum
+        /* 0x04 */ u8 b;
+        /* 0x04 */ MessageCommandID m;
+    } commandID;  // use MessageCommandID enum
     union {
-        u8 b;
-        DSReplyError r;
-    } replyError;  // _08, use DSReplyError enum - should be enum type? check size.
+        /* 0x08 */ u8 b;
+        /* 0x08 */ DSReplyError r;
+    } replyError;  // use DSReplyError enum - should be enum type? check size.
     /* 0x0C */ u32 _0C;
-    u8 _10[0x30];  // _10, unknown
+    /* 0x10 */ u8 _10[0x30];  // unknown
 } CommandReply;
 
 typedef struct ProcessorRestoreFlags_PPC {
