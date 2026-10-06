@@ -16,9 +16,9 @@ public:
         mGoodsJoint1 = "";
     }
 
-    const char* mActor;        // 0x00
-    const char* mGoods0;       // 0x4
-    const char* mGoodsJoint0;  // 0x08
-    const char* mGoods1;       // 0x0C
-    const char* mGoodsJoint1;  // 0x10
+    /* 0x00 */ const char* mActor;
+    /* 0x04 */ const char* mGoods0;
+    /* 0x08 */ const char* mGoodsJoint0;
+    /* 0x0C */ const char* mGoods1;
+    /* 0x10 */ const char* mGoodsJoint1;
 };
