@@ -16,6 +16,6 @@ public:
     void setOnFunctor(const MR::FunctorBase&);
     void setOffFunctor(const MR::FunctorBase&);
 
-    MR::FunctorBase* mOnFunctor;   // 0x4
-    MR::FunctorBase* mOffFunctor;  // 0x8
+    /* 0x4 */ MR::FunctorBase* mOnFunctor;
+    /* 0x8 */ MR::FunctorBase* mOffFunctor;
 };
