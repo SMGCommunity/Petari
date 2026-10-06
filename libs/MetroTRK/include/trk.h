@@ -209,28 +209,28 @@ typedef struct TRKBuffer {
 } TRKBuffer;
 
 typedef struct TRKFramingState {
-    MessageBufferID msgBufID;    // _00
-    TRKBuffer* buffer;           // _04
-    ReceiverState receiveState;  // _08
-    BOOL isEscape;               // _0C
-    u8 fcsType;                  // _10
+    /* 0x00 */ MessageBufferID msgBufID;
+    /* 0x04 */ TRKBuffer* buffer;
+    /* 0x08 */ ReceiverState receiveState;
+    /* 0x0C */ BOOL isEscape;
+    /* 0x10 */ u8 fcsType;
 } TRKFramingState;
 
 typedef struct TRKState_PPC {
-    u32 GPR[32];          // 0x0
-    u32 LR;               // 0x80
-    u32 CTR;              // 0x84
-    u32 XER;              // 0x88
-    u32 MSR;              // 0x8c
-    u32 DAR;              // 0x90
-    u32 DSISR;            // 0x94
-    BOOL stopped;         // 0x98
-    BOOL inputActivated;  // 0x9c
-    u8* inputPendingPtr;  // 0xA0
+    /* 0x00 */ u32 GPR[32];
+    /* 0x80 */ u32 LR;
+    /* 0x84 */ u32 CTR;
+    /* 0x88 */ u32 XER;
+    /* 0x8C */ u32 MSR;
+    /* 0x90 */ u32 DAR;
+    /* 0x94 */ u32 DSISR;
+    /* 0x98 */ BOOL stopped;
+    /* 0x9C */ BOOL inputActivated;
+    /* 0xA0 */ u8* inputPendingPtr;
 } TRKState_PPC;
 
 typedef struct CommandReply {
-    u32 _00;  // _00
+    /* 0x00 */ u32 _00;
     union {
         u8 b;
         MessageCommandID m;
@@ -239,14 +239,14 @@ typedef struct CommandReply {
         u8 b;
         DSReplyError r;
     } replyError;  // _08, use DSReplyError enum - should be enum type? check size.
-    u32 _0C;       // _0C
+    /* 0x0C */ u32 _0C;
     u8 _10[0x30];  // _10, unknown
 } CommandReply;
 
 typedef struct ProcessorRestoreFlags_PPC {
-    u8 TBR;
-    u8 DEC;
-    u8 linker_padding[0x9 - 0x2];
+    /* 0x0 */ u8 TBR;
+    /* 0x1 */ u8 DEC;
+    /* 0x2 */ u8 linker_padding[0x9 - 0x2];
 } ProcessorRestoreFlags_PPC;
 
 void TRKSaveExtended1Block();
