@@ -12,6 +12,6 @@ public:
     static void makeStageArchiveName(char*, u32, const char*);
     void mountFilesInStageMapFile(const char*);
 
-    char* mStageFiles[0x18];  // 0x0
-    s32 mZoneCount;           // 0x60
+    /* 0x00 */ char* mStageFiles[0x18];
+    /* 0x60 */ s32 mZoneCount;
 };
