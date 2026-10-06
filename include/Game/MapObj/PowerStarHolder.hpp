@@ -3,9 +3,9 @@
 #include "Game/MapObj/PowerStar.hpp"
 
 struct PowerStarRequestInfo {
-    PowerStar* mStar;  // 0x0
-    int mStarNum;      // 0x4
-    bool mIsAppear;    // 0x8
+    /* 0x0 */ PowerStar* mStar;
+    /* 0x4 */ int mStarNum;
+    /* 0x8 */ bool mIsAppear;
 };
 
 class PowerStarHolder : public NameObj {
@@ -21,8 +21,8 @@ public:
     PowerStar* getAppearedPowerStar(int) const;
     PowerStarRequestInfo* findPowerStarRequestInfo(int) const;
 
-    PowerStarRequestInfo* mInfos[0x10];  // 0xC
-    s32 mNumInfos;                       // 0x4C
+    /* 0x0C */ PowerStarRequestInfo* mInfos[0x10];
+    /* 0x4C */ s32 mNumInfos;
 };
 
 namespace MR {

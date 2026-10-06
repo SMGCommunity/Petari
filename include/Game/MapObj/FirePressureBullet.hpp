@@ -17,9 +17,9 @@ public:
     void exeFly();
     bool isCrash() const;
 
-    TVec3f _8C;
-    LiveActor* mFirePressure;  // 0x98
-    f32 _9C;
-    bool _A0;
-    bool _A1;
+    /* 0x8C */ TVec3f _8C;
+    /* 0x98 */ LiveActor* mFirePressure;
+    /* 0x9C */ f32 _9C;
+    /* 0xA0 */ bool _A0;
+    /* 0xA1 */ bool _A1;
 };

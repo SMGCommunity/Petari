@@ -26,12 +26,12 @@ public:
     bool calcJointMove(TPos3f*, const JointControllerInfo&);
     bool checkPlayerOnTop();
 
-    JointControlDelegator< FlipPanel >* mDelegator;  // 0xC4
-    MsgSharedGroup* mFlipPanelGroup;                 // 0xC8
-    bool _CC;
-    u8 _CD;
-    s32 _D0;
-    bool mIsReverse;  // 0xD4
+    /* 0xC4 */ JointControlDelegator< FlipPanel >* mDelegator;
+    /* 0xC8 */ MsgSharedGroup* mFlipPanelGroup;
+    /* 0xCC */ bool _CC;
+    /* 0xCD */ u8 _CD;
+    /* 0xD0 */ s32 _D0;
+    /* 0xD4 */ bool mIsReverse;
 };
 
 class FlipPanelObserver : public LiveActor {
@@ -46,9 +46,9 @@ public:
     void exeComplete();
     void exeDemoWait();
 
-    MsgSharedGroup* _8C;
-    s32 _90;
-    s32 mDemoDelay;    // 0x94
-    s32 mPowerStarId;  // 0x98
-    u8 _9C;
+    /* 0x8C */ MsgSharedGroup* _8C;
+    /* 0x90 */ s32 _90;
+    /* 0x94 */ s32 mDemoDelay;
+    /* 0x98 */ s32 mPowerStarId;
+    /* 0x9C */ u8 _9C;
 };

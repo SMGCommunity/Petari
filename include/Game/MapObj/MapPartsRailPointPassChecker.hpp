@@ -18,5 +18,5 @@ public:
     bool isPassedStartPoint() const;
     bool isPassedEndPoint() const;
 
-    s32 mRailPointNo;  // 0x18
+    /* 0x18 */ s32 mRailPointNo;
 };

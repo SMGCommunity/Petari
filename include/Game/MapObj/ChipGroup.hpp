@@ -11,8 +11,8 @@ public:
     ChipGroup(const char*, s32);
 
     struct ChipEntry {
-        ChipBase* mChip;  // 0x0
-        bool mIsGotten;   // 0x4
+        /* 0x0 */ ChipBase* mChip;
+        /* 0x4 */ bool mIsGotten;
     };
 
     virtual ~ChipGroup();
@@ -27,7 +27,7 @@ public:
     void noticeGet(ChipBase*);
     void receiveAppearRequest();
 
-    /* 0xC */ ChipEntry mChips[5];
+    /* 0x0C */ ChipEntry mChips[5];
     /* 0x34 */ StageSwitchCtrl* mSwitchCtrl;
     /* 0x38 */ TVec3f mUIPos;
     /* 0x44 */ s32 mGotCount;

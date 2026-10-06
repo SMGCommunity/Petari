@@ -17,6 +17,6 @@ public:
     void exeSpout();
     void exeSpoutEnd();
 
-    TVec3f mClippingRadius;  // 0x8C
-    s32 mSpoutTimer;         // 0x98
+    /* 0x8C */ TVec3f mClippingRadius;
+    /* 0x98 */ s32 mSpoutTimer;
 };

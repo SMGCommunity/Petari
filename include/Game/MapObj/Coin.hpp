@@ -15,10 +15,10 @@ public:
         _C = 0;
     }
 
-    const NameObj* mHostActor;  // 0x0
-    s32 _4;
-    s32 _8;
-    u32 _C;
+    /* 0x0 */ const NameObj* mHostActor;
+    /* 0x4 */ s32 _4;
+    /* 0x8 */ s32 _8;
+    /* 0xC */ u32 _C;
 };
 
 class Coin : public LiveActor {
@@ -68,19 +68,19 @@ public:
     static bool isNeedBubble(const JMapInfoIter&);
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 
-    CoinHostInfo* mHostInfo;   // 0x8C
-    FlashingCtrl* mFlashCtrl;  // 0x90
-    PartsModel* mAirBubble;    // 0x94
-    TVec3f mDropPosition;      // 0x98
-    TVec3f mClippingRange;     // 0xA4
-    int _B0;
-    s32 mCannotTime;  // 0xB4
-    bool mIsInWater;  // 0xB8
-    bool _B9;         // obj_arg3
-    bool _BA;         // obj_arg4
-    bool _BB;
-    bool mIsPurpleCoin;  // 0xBC
-    bool mIsNeedBubble;  // 0xBD
+    /* 0x8C */ CoinHostInfo* mHostInfo;
+    /* 0x90 */ FlashingCtrl* mFlashCtrl;
+    /* 0x94 */ PartsModel* mAirBubble;
+    /* 0x98 */ TVec3f mDropPosition;
+    /* 0xA4 */ TVec3f mClippingRange;
+    /* 0xB0 */ int _B0;
+    /* 0xB4 */ s32 mCannotTime;
+    /* 0xB8 */ bool mIsInWater;
+    /* 0xB9 */ bool _B9;  // obj_arg3
+    /* 0xBA */ bool _BA;  // obj_arg4
+    /* 0xBB */ bool _BB;
+    /* 0xBC */ bool mIsPurpleCoin;
+    /* 0xBD */ bool mIsNeedBubble;
 };
 
 namespace MR {

@@ -18,10 +18,10 @@ public:
     void updateAxis();
     f32 calcLineWidth() const;
 
-    JUTTexture* mTexture;  // 0x8C
-    TVec3f _90[0x40];
-    TVec3f _390[0x40];
-    TVec3f _690[0x40];
-    s32 _990;
-    s32 _994;
+    /* 0x08C */ JUTTexture* mTexture;
+    /* 0x090 */ TVec3f _90[0x40];
+    /* 0x390 */ TVec3f _390[0x40];
+    /* 0x690 */ TVec3f _690[0x40];
+    /* 0x990 */ s32 _990;
+    /* 0x994 */ s32 _994;
 };
