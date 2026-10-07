@@ -20,7 +20,7 @@ A work-in-progress decompilation of Super Mario Galaxy 1.
 
 This repository does **not** contain any game assets or assembly whatsoever. An existing copy of the game is required.
 
-This project is **not** meant to be an effort to create a PC Port. Join the the Discord server to learn more and ask about our work-in-progress PC port "AstroCore".
+This project is **not** meant to be an effort to create a PC Port. Join the Discord server to learn more and ask about our work-in-progress PC port "AstroCore".
 
 ## Regarding AI usage
 A lot of dicussion and accusations have been made claiming we used AI/LLMs to accelerate the decompilation process. **We did not**.
