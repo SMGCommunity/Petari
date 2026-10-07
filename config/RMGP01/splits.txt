@@ -1,0 +1,21 @@
+Sections:
+	.init       type:code align:4
+	extab       type:rodata align:32
+	extabindex  type:rodata align:32
+	.text       type:code align:32
+	.ctors      type:rodata align:32
+	.dtors      type:rodata align:32
+	.rodata     type:rodata align:32
+	.data       type:data align:16
+	.bss        type:bss align:64
+	.sdata      type:data align:8
+	.sbss       type:bss align:16
+	.sdata2     type:rodata align:32
+	.sbss2      type:bss align:32
+
+RVL_SDK/vi/vi.c:
+	.text       start:0x804B1474 end:0x804B3DDC
+	.data       start:0x805E8828 end:0x805E8D80
+	.bss        start:0x80651870 end:0x806519E0
+	.sdata      start:0x8069E108 end:0x8069E128
+	.sbss       start:0x806A2DD8 end:0x806A2E88

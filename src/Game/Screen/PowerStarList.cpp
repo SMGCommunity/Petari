@@ -851,7 +851,7 @@ void PowerStarList::exeCaptureSend() {
         const wchar_t* pUserName = GameDataFunction::getUserName();
         const wchar_t* pMessage = MR::getGameMessageDirect(::cMailMessageID);
         ReplaceTagFunction::ReplaceArgs(mMailMessage, mMailMessageLength, pMessage, pUserName);
-
+#if (VERSION == RMGK01)
         MR::SendMailObj sendMailObj = MR::SendMailObj("スターリスト");
 
         sendMailObj.setMessageDirect(mMailMessage);
@@ -860,6 +860,9 @@ void PowerStarList::exeCaptureSend() {
         sendMailObj.setBGDisable();
         sendMailObj.setLedOff();
         sendMailObj.send();
+#else
+        MR::sendMail("スターリスト", mMailMessage, "WiiMessageTitle", MR::getOdhImage(), MR::getOdhImageSize(), false);
+#endif
     }
 
     if (MR::isMailSent("スターリスト")) {

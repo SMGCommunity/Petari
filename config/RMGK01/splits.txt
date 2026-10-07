@@ -5818,7 +5818,7 @@ Game/MapObj/SnowFloor.cpp:
 	.rodata     start:0x80533790 end:0x805337A0
 	.data       start:0x8059FFD8 end:0x805A0088
 	.sdata      start:0x806B1F88 end:0x806B1FD8
-	.sbss       start:0x806B5848 end:0x806B584A
+	.sbss       start:0x806B5848 end:0x806B5850
 	.sdata2     start:0x806BDF78 end:0x806BDFD8
 
 Game/MapObj/SnowFloorTile.cpp:

@@ -31,8 +31,8 @@ private:
     /* 0x0C */ wchar_t* mFoundMessage;
 
     /// @brief The number of messages to send describing Luigi as having gone missing.
-    /* 0x10 */ s32 mLostMessageNum;
+    /* 0x10 */ u32 mLostMessageNum;
 
     /// @brief The number of messages to send describing Luigi as having been saved.
-    /* 0x14 */ s32 mFoundMessageNum;
+    /* 0x14 */ u32 mFoundMessageNum;
 };

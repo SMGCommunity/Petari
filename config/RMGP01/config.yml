@@ -1,0 +1,13 @@
+# See config.example.yml for documentation.
+object_base: orig/RMGP01
+object: sys/main.dol
+hash: 9BD1DAA520BD1F573B6A4B82E03336E9C51B511F
+symbols: config/RMGP01/symbols.txt
+splits: config/RMGP01/splits.txt
+# Change this to match the linker version.
+# See config.example.yml for a list.
+mw_comment_version: 14
+
+block_relocations:
+- source: .data:0x805668DC
+- source: .rodata:0x80547AB8

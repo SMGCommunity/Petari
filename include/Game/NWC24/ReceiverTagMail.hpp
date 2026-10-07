@@ -10,7 +10,11 @@ public:
     /// @param[in] pSenderID A pointer to the null-terminated name of the title message.
     ReceiverTagMail(const char* pTaskName, const char* pMessageID, const char* pSenderID);
 
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+    void send(const u8* pImage, u32 imageSize);
+#elif (VERSION == RMGK01)
     void send(const u8* pImage, u32 imageSize, bool isLedOn);
+#endif
     void update();
     bool isDone() const;
     bool isError() const;
