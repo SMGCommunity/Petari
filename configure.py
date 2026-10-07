@@ -2066,7 +2066,7 @@ config.libs = [
             Object(MatchingFor(), "Game/NPC/TalkState.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/NPC/TalkSupportPlayerWatcher.cpp"),
             Object(
-                MatchingFor(KOR), "Game/NPC/TalkTextFormer.cpp", extra_cflags=["-DNW4R_DEBUG"]
+                MatchingFor(JPN, KOR), "Game/NPC/TalkTextFormer.cpp", extra_cflags=["-DNW4R_DEBUG"]
             ),
             Object(MatchingFor(JPN, KOR), "Game/NPC/TimeAttackEventKeeper.cpp"),
         ],

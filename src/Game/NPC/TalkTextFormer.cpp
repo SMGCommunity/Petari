@@ -22,16 +22,27 @@ namespace {
 }  // namespace
 
 namespace MR {
+#if (VERSION == RMGJ01)
+    inline f32 getLanguageRate() {
+        return getLanguage() == 0x10 ? 1.0f : 1.25f;
+    }
+#else
+    inline f32 getLanguageRate() {
+        f32 rate = 1.25f;
+        if (getLanguage() == 0x10) {
+            rate = 1.0f;
+        } else if (getLanguage() == 0x37) {
+            rate = 0.75f;
+        }
+        return rate;
+    }
+#endif
+
     void initTagProcessorRecursive(LayoutActor* pActor, const char* pPaneName, s32 mode) {
         nw4r::lyt::TextBox* pTextBox = ::getTextBoxPane(pActor, pPaneName);
         if (pTextBox != nullptr) {
             CustomTagProcessor* pProcessor = static_cast< CustomTagProcessor* >(pTextBox->mpTagProcessor);
-            f32 rate = 1.25f;
-            if (getLanguage() == 0x10) {
-                rate = 1.0f;
-            } else if (getLanguage() == 0x37) {
-                rate = 0.75f;
-            }
+            f32 rate = getLanguageRate();
 
             switch (mode) {
             case 2:
