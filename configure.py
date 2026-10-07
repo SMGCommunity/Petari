@@ -2484,7 +2484,7 @@ config.libs = [
             Object(MatchingFor(JPN, KOR), "Game/Screen/SystemWipeHolder.cpp"),
             Object(MatchingFor(), "Game/Screen/THPSimplePlayerWrapper.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/Screen/TimeLimitLayout.cpp"),
-            Object(MatchingFor(KOR), "Game/Screen/TitleSequenceProduct.cpp"),
+            Object(MatchingFor(JPN, KOR), "Game/Screen/TitleSequenceProduct.cpp"),
             Object(MatchingFor(), "Game/Screen/WaterCameraFilter.cpp"),
             Object(MatchingFor(), "Game/Screen/WipeFade.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/Screen/WipeGameOver.cpp"),
