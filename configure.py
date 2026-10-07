@@ -2534,7 +2534,7 @@ config.libs = [
             Object(MatchingFor(JPN, KOR), "Game/System/GameSystemErrorWatcher.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/System/GameSystemException.cpp"),
             Object(
-                MatchingFor(KOR),
+                MatchingFor(JPN, KOR),
                 "Game/System/GameSystemFontHolder.cpp",
                 mw_version="GC/3.0a3.2",
             ),
