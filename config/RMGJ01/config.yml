@@ -1,0 +1,15 @@
+# See config.example.yml for documentation.
+object_base: orig/RMGJ01
+object: sys/main.dol
+hash: 604D0B47D446CAEC0AAB9AC370014F132E1B4016
+symbols: config/RMGJ01/symbols.txt
+splits: config/RMGJ01/splits.txt
+# Change this to match the linker version.
+# See config.example.yml for a list.
+mw_comment_version: 14
+
+
+
+block_relocations:
+- source: .data:0x805668DC
+- source: .rodata:0x80547AB8
