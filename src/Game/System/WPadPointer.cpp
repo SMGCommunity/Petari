@@ -14,22 +14,10 @@ namespace {
     static const s32 sLostSensorTime = 20;
 };  // namespace
 
-WPadPointer::WPadPointer(const WPad* pPad) {
-    mPad = pPad;
-    mPosPlayRadius = 0.03f;
-    mPosSensitivity = 0.5f;
-    mHoriPlayRadius = 0.0f;
-    mHoriSensitivity = 1.0f;
-    mDistPlayRadius = 0.0f;
-    mDistSensitivity = 1.0f;
-    mLostSensorTime = 0;
-    mDistDisplay = 0.0f;
-    mDpdValidFg = 0;
-    mValidInScreenTime = 0;
-    mInValidOutScreenTime = 0;
-    mEnablePastCount = 0;
-    mIsPointInScreen = false;
-    mIsPointerMoved = false;
+WPadPointer::WPadPointer(const WPad* pPad)
+    : mPad(pPad), mPosPlayRadius(0.03f), mPosSensitivity(0.5f), mHoriPlayRadius(), mHoriSensitivity(1.0f), mDistPlayRadius(), mDistSensitivity(1.0f),
+      mLostSensorTime(), mDistDisplay(0.0f), mDpdValidFg(), mValidInScreenTime(), mInValidOutScreenTime(), mEnablePastCount(), mIsPointInScreen(),
+      mIsPointerMoved() {
     mPointingPosArray = new TVec2f[120];
     mHorizonArray = new TVec2f[120];
     mMaxPastCount = 120;
@@ -38,12 +26,8 @@ WPadPointer::WPadPointer(const WPad* pPad) {
 
 void WPadPointer::reset() {
     for (s32 i = 0; i < mMaxPastCount; i++) {
-        TVec2f* cur = &mPointingPosArray[i];
-        cur->x = 0.0f;
-        cur->y = 0.0f;
-        cur = &mHorizonArray[i];
-        cur->x = 0.0f;
-        cur->y = 0.0f;
+        mPointingPosArray[i].set(0.0f);
+        mHorizonArray[i].set(0.0f);
     }
 
     mDpdValidFg = 0;

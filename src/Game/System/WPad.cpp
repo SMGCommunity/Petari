@@ -11,9 +11,8 @@
 #include "Game/System/WPadStick.hpp"
 
 WPad::WPad(s32 channel)
-    : mChannel(channel), mReadInfo(nullptr), mButton(nullptr), mPointer(nullptr), mCorePadAccel(nullptr), mCorePadSwing(nullptr), _18(nullptr),
-      _1C(nullptr), mStick(nullptr), mSubPadAccel(nullptr), mSubPadSwing(nullptr), mLeaveWatcher(nullptr), mInfoChecker(nullptr), _34(true),
-      mIsConnected(false), mIsSubPadConnected(false) {
+    : mChannel(channel), mReadInfo(), mButton(), mPointer(), mCorePadAccel(), mCorePadSwing(), _18(), _1C(), mStick(), mSubPadAccel(), mSubPadSwing(),
+      mLeaveWatcher(), mInfoChecker(), _34(true), mIsConnected(), mIsSubPadConnected() {
     mButton = new WPadButton(this);
     mPointer = new WPadPointer(this);
     mCorePadAccel = new WPadAcceleration(this, WPAD_DEV_CORE);
@@ -142,80 +141,78 @@ void WPad::getInfoCallback(s32 chan, s32 result) {
     MR::getWPad(chan)->mInfoChecker->successGetInfo();
 }
 
-namespace MR {
-    bool isDeviceFreeStyle(const KPADStatus* pStatus) {
-        return pStatus != nullptr && pStatus->wpad_err == WPAD_ERR_NONE && pStatus->dev_type == WPAD_DEV_FREESTYLE;
+bool MR::isDeviceFreeStyle(const KPADStatus* pStatus) {
+    return pStatus != nullptr && pStatus->wpad_err == WPAD_ERR_NONE && pStatus->dev_type == WPAD_DEV_FREESTYLE;
+}
+
+void MR::getPadDataForExceptionNoInit(u32 chan, u32* pHold, u32* pTrigger) {
+    KPADStatus status[1];
+
+    if (KPADRead(chan, status, ARRAY_SIZE(status)) <= 0) {
+        return;
     }
 
-    void getPadDataForExceptionNoInit(u32 chan, u32* pHold, u32* pTrigger) {
-        KPADStatus status[1];
+    for (s32 i = 0; i < ARRAY_SIZE(status); i++) {
+        bool isDevTypeCore = status[i].dev_type == WPAD_DEV_CORE;
+        bool isDevTypeFreestyle = status[i].dev_type == WPAD_DEV_FREESTYLE;
 
-        if (KPADRead(chan, status, ARRAY_SIZE(status)) <= 0) {
-            return;
+        if (!(isDevTypeCore | isDevTypeFreestyle)) {
+            continue;
         }
 
-        for (s32 i = 0; i < ARRAY_SIZE(status); i++) {
-            bool isDevTypeCore = status[i].dev_type == WPAD_DEV_CORE;
-            bool isDevTypeFreestyle = status[i].dev_type == WPAD_DEV_FREESTYLE;
+        if (status[i].hold & WPAD_BUTTON_UP) {
+            *pHold |= 0x8;
+        }
 
-            if (!(isDevTypeCore | isDevTypeFreestyle)) {
-                continue;
-            }
+        if (status[i].hold & WPAD_BUTTON_DOWN) {
+            *pHold |= 0x4;
+        }
 
-            if (status[i].hold & WPAD_BUTTON_UP) {
-                *pHold |= 0x8;
-            }
+        if (status[i].hold & WPAD_BUTTON_LEFT) {
+            *pHold |= 0x1;
+        }
 
-            if (status[i].hold & WPAD_BUTTON_DOWN) {
-                *pHold |= 0x4;
-            }
+        if (status[i].hold & WPAD_BUTTON_RIGHT) {
+            *pHold |= 0x2;
+        }
 
-            if (status[i].hold & WPAD_BUTTON_LEFT) {
-                *pHold |= 0x1;
-            }
+        if (status[i].hold & WPAD_BUTTON_A) {
+            *pHold |= 0x100;
+        }
 
-            if (status[i].hold & WPAD_BUTTON_RIGHT) {
-                *pHold |= 0x2;
-            }
+        if (status[i].hold & WPAD_BUTTON_B) {
+            *pHold |= 0x200;
+        }
 
-            if (status[i].hold & WPAD_BUTTON_A) {
-                *pHold |= 0x100;
-            }
+        if (status[i].trig & WPAD_BUTTON_UP) {
+            *pTrigger |= 0x8;
+        }
 
-            if (status[i].hold & WPAD_BUTTON_B) {
-                *pHold |= 0x200;
-            }
+        if (status[i].trig & WPAD_BUTTON_DOWN) {
+            *pTrigger |= 0x4;
+        }
 
-            if (status[i].trig & WPAD_BUTTON_UP) {
-                *pTrigger |= 0x8;
-            }
+        if (status[i].trig & WPAD_BUTTON_LEFT) {
+            *pTrigger |= 0x1;
+        }
 
-            if (status[i].trig & WPAD_BUTTON_DOWN) {
-                *pTrigger |= 0x4;
-            }
+        if (status[i].trig & WPAD_BUTTON_RIGHT) {
+            *pTrigger |= 0x2;
+        }
 
-            if (status[i].trig & WPAD_BUTTON_LEFT) {
-                *pTrigger |= 0x1;
-            }
+        if (status[i].trig & WPAD_BUTTON_A) {
+            *pTrigger |= 0x100;
+        }
 
-            if (status[i].trig & WPAD_BUTTON_RIGHT) {
-                *pTrigger |= 0x2;
-            }
+        if (status[i].trig & WPAD_BUTTON_B) {
+            *pTrigger |= 0x200;
+        }
 
-            if (status[i].trig & WPAD_BUTTON_A) {
-                *pTrigger |= 0x100;
-            }
-
-            if (status[i].trig & WPAD_BUTTON_B) {
-                *pTrigger |= 0x200;
-            }
-
-            if (status[i].hold & WPAD_BUTTON_1 && status[i].hold & WPAD_BUTTON_2) {
-                *pTrigger |= 0x10;
-            }
+        if (status[i].hold & WPAD_BUTTON_1 && status[i].hold & WPAD_BUTTON_2) {
+            *pTrigger |= 0x10;
         }
     }
-};  // namespace MR
+}
 
 KPADStatus* WPad::getKPadStatus(u32 index) const {
     return mReadInfo->getKPadStatus(index);
