@@ -17,7 +17,6 @@
 #include <JSystem/JKernel/JKRDisposer.hpp>
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
-#include <revolution/gx/GXEnum.h>
 
 namespace {
     static const s16 sCinemaFrameHeightTop = 44;
@@ -253,11 +252,17 @@ u32 MoviePlayerSimple::calcNeedMemoryForMovieWorks() {
     u32 needMemory = 0;
     needMemory += 0x140000;
 
+#if (VERSION == RMGJ01)
+    needMemory += OSRoundUp32B(MR::getFrameBufferWidth() * MR::getFrameBufferHeight());
+    needMemory += OSRoundUp32B(MR::getFrameBufferWidth() * MR::getFrameBufferHeight() / 4);
+    needMemory += OSRoundUp32B(MR::getFrameBufferWidth() * MR::getFrameBufferHeight() / 4);
+#else
     s32 texCount = mPlayerWrapper->getUseTextureCount();
 
     needMemory += OSRoundUp32B(texCount * (MR::getFrameBufferWidth() * MR::getFrameBufferHeight()));
     needMemory += OSRoundUp32B(texCount * (MR::getFrameBufferWidth() * MR::getFrameBufferHeight() / 4));
     needMemory += OSRoundUp32B(texCount * (MR::getFrameBufferWidth() * MR::getFrameBufferHeight() / 4));
+#endif
 
     return needMemory + 0x1188;
 }
