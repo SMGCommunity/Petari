@@ -125,6 +125,10 @@ void ScenarioSelectLayout::init(const JMapInfoIter& rIter) {
     mBackButton = new BackButton("戻るボタン", false);
     mBackButton->initWithoutIter();
 
+    #if (VERSION == RMGJ01)
+    MR::hidePaneRecursive(this, "CometAppear");
+    #endif
+
     initNerve(GET_NERVE(ScenarioSelectLayout, ScenarioSelectLayoutNrvAppearStar));
 }
 
@@ -206,7 +210,11 @@ void ScenarioSelectLayout::appear() {
     mScenarioSky->mScale.set(::cSkyScale);
     mScenarioSky->appear();
     MultiScene::startBtk(mScenarioSky, "ScenarioSelectSky");
+
+#if (VERSION == RMGK01)
     MR::hidePaneRecursive(this, "CometAppear");
+#endif
+
     mSelectedScenarioNo = -1;
     _24 = 0;
     _28 = 0;
