@@ -6477,7 +6477,7 @@ namespace {
             "FileSelector",
             "SysPALInfo",
         },
-        #if VERSION == RMGK01
+        #if (VERSION == RMGK01)
         {
             "FileSelector",
             "MiiFont",

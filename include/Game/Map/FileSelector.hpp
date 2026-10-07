@@ -60,7 +60,7 @@ public:
     void createTitle();
     void createMiiSelect();
     void createMiiConfirmIcon();
-    #if VERSION == RMGK01
+    #if (VERSION == RMGK01)
     void createMiiFont();
     #endif
     void createManual();
@@ -170,7 +170,7 @@ public:
     /* 0xE4 */ bool mIsMiiSelectStartFirst;
     /* 0xE8 */ s32 mBgmState;
     /* 0xEC */ FileSelectEffect* mSelectEffect;
-    #if VERSION == RMGK01
+    #if (VERSION == RMGK01)
     /* 0xF0 */ nw4r::ut::ResFont* mFont;
     #endif
 };
