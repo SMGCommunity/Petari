@@ -16,8 +16,11 @@
 #define RFLiGetLastReason_() (RFLAvailable() ? RFLiGetManager()->lastReason : 0)
 #define RFLGetLastReason_() (RFLAvailable() ? RFLiGetLastReason_() : sRFLLastReason)
 
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+static char* __RFLVersion = "<< RVL_SDK - RFL \trelease build: Aug 22 2007 11:53:43 (0x4199_60831) >>";
+#elif (VERSION == RMGK01)
 static char* __RFLVersion = "<< RVL_SDK - RFL \trelease build: Mar  6 2008 17:40:04 (0x4199_60831) >>";
-
+#endif
 const RFLiCoordinateData scCoordinate = {1, 2, 0, FALSE, FALSE, FALSE};
 
 static RFLiManager* sRFLManager = NULL;

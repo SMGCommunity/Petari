@@ -6,7 +6,11 @@
 #include <cstring>
 #include <wstring.h>
 
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+const char* __NANDVersion = "<< RVL_SDK - NAND \trelease build: Aug  8 2007 02:08:58 (0x4199_60831) >>";
+#elif (VERSION == RMGK01)
 const char* __NANDVersion = "<< RVL_SDK - NAND \trelease build: Dec 11 2007 01:35:48 (0x4199_60831) >>";
+#endif
 enum LibState {
     STATE_NOT_INITIALIZED, 
     STATE_WORKING, 

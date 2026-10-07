@@ -6477,10 +6477,12 @@ namespace {
             "FileSelector",
             "SysPALInfo",
         },
+#if (VERSION == RMGK01)
         {
             "FileSelector",
             "MiiFont",
         },
+#endif
         {
             "FireBallBeamKameck",
             "BossKameckFireBall",

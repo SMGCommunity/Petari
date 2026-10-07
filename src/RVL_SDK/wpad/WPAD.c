@@ -8,7 +8,11 @@
 #include <cstdio>
 #include <mem.h>
 
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+static const char* __WPADVersion = "<< RVL_SDK - WPAD \trelease build: Aug  8 2007 02:07:23 (0x4199_60831) >>";
+#elif (VERSION == RMGK01)
 static const char* __WPADVersion = "<< RVL_SDK - WPAD \trelease build: Dec 11 2007 01:35:07 (0x4199_60831) >>";
+#endif
 
 extern volatile BOOL __OSIsReturnToIdle;
 
