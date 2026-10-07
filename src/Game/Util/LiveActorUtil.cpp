@@ -125,6 +125,25 @@ namespace {
         return !pActor->mFlag.mIsHiddenModel;
     }
 
+    void callFuncAllGroupMember(const NameObj* pActor, void (*pFunc)(NameObj*)) NO_INLINE {
+        LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
+        LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(static_cast<const LiveActor*>(pActor));
+
+        if (pGroup == nullptr) {
+            return;
+        }
+
+        for (s32 i = 0; i < pGroup->getObjNum(); i++) {
+            LiveActor* pMember = pGroup->getActor(i);
+
+            if (pMember == pActor) {
+                continue;
+            }
+
+            pFunc(pMember);
+        }
+    }
+
     void callFuncAllGroupMember(const LiveActor* pActor, void (*pFunc)(LiveActor*)) NO_INLINE {
         LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
         LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(pActor);
@@ -1206,7 +1225,7 @@ namespace MR {
     }
 
     void callRequestMovementOnAllGroupMember(const LiveActor* pActor) {
-        ::callFuncAllGroupMember(pActor, requestMovementOn);
+        ::callFuncAllGroupMember(static_cast<const NameObj*>(pActor), requestMovementOn);
     }
 
     void callInvalidateClippingAllGroupMember(const LiveActor* pActor) {
