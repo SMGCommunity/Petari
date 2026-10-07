@@ -386,7 +386,11 @@ static void ReportOSInfo(void) {
     void* MEM2Lo;
 
     OSReport("\nRevolution OS\n");
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     OSReport("Kernel built : %s %s\n", "Aug  8 2007", "02:06:24");
+#elif (VERSION == RMGK01)
+     OSReport("Kernel built : %s %s\n", "Jan 30 2008", "01:38:43");
+#endif
     OSReport("Console Type : " );
 
     consoleType = OSGetConsoleType();
