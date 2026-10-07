@@ -1,7 +1,7 @@
 #pragma once
 
 #include <JSystem/JGeometry/TVec.hpp>
-#include <revolution.h>
+#include <revolution/types.h>
 
 class WPad;
 
@@ -18,14 +18,14 @@ public:
     void updateAccAverage();
     void updateIsStable();
 
-    /* 0x00 */ const WPad* mPad;
-    /* 0x04 */ u32 _4;
-    /* 0x08 */ f32 _8;
-    /* 0x0C */ f32 _C;
-    /* 0x10 */ TVec3f _10;
-    /* 0x1C */ f32 _1C;
-    /* 0x20 */ bool _20;
-    /* 0x24 */ TVec3f mHistory[128];
+    /* 0x000 */ const WPad* mPad;
+    /* 0x004 */ u32 _4;
+    /* 0x008 */ f32 _8;
+    /* 0x00C */ f32 _C;
+    /* 0x010 */ TVec3f _10;
+    /* 0x01C */ f32 _1C;
+    /* 0x020 */ bool _20;
+    /* 0x024 */ TVec3f mHistory[128];
     /* 0x624 */ s32 _624;
     /* 0x628 */ s32 _628;
     /* 0x62C */ TVec3f _62C;

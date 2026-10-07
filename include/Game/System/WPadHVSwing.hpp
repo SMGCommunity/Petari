@@ -1,6 +1,6 @@
 #pragma once
 
-#include <revolution.h>
+#include <revolution/types.h>
 
 class WPad;
 
@@ -12,7 +12,7 @@ public:
     void updateCentrifugal();
     void update();
 
-    /* 0x00 */ const WPad* pPad;
+    /* 0x00 */ const WPad* mPad;
     /* 0x04 */ s32 mChannel;
     /* 0x08 */ f32 mDistanceSwingThreshold;
     /* 0x0C */ bool mIsSwing;
