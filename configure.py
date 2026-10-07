@@ -2466,7 +2466,7 @@ config.libs = [
             Object(MatchingFor(KOR), "Game/Screen/ScreenBlurEffect.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/Screen/ScreenPreserver.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/Screen/SimpleLayout.cpp"),
-            Object(MatchingFor(KOR), "Game/Screen/StaffRoll.cpp"),
+            Object(MatchingFor(JPN, KOR), "Game/Screen/StaffRoll.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/Screen/StageResultInformer.cpp"),
             Object(MatchingFor(KOR), "Game/Screen/StarCounter.cpp"),
             Object(MatchingFor(KOR), "Game/Screen/StarPieceCounter.cpp"),
