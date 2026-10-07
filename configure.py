@@ -2606,7 +2606,7 @@ config.libs = [
             Object(MatchingFor(JPN, KOR), "Game/System/GameEventFlagTable.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/System/GameEventFlagChecker.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/System/GameEventFlagStorage.cpp"),
-            Object(MatchingFor(KOR), "Game/System/GameEventValueChecker.cpp"),
+            Object(MatchingFor(JPN, KOR), "Game/System/GameEventValueChecker.cpp"),
             Object(MatchingFor(), "Game/System/GameSequenceDirector.cpp"),
             Object(MatchingFor(KOR), "Game/System/GameSequenceFunction.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/System/GameSequenceProgress.cpp"),
