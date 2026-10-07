@@ -25,6 +25,10 @@
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 #include <cstdio>
 
+#if (VERSION == RMGJ01)
+#include "Game/System/DrawSyncManager.hpp"
+#endif
+
 namespace {
     AudSystemWrapper* getAudioSystemWrapper() NO_INLINE {
         return SingletonHolder< GameSystem >::get()->mObjHolder->mAudioSystem;
@@ -137,9 +141,15 @@ void GameSystemSceneController::initializeScene() {
 void GameSystemSceneController::destroyScene() {
     bool stopSound = isStopSound();
 
+#if (VERSION == RMGJ01)
+    DrawSyncManager::sInstance->clearSceneCallback();
+    delete mScene;
+    mScene = nullptr;
+#else
     Scene* pScene = mScene;
     mScene = nullptr;
     delete pScene;
+#endif
 
     mObjHolder->clearArray();
 

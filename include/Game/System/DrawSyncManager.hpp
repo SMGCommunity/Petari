@@ -62,8 +62,12 @@ public:
     void clearFifo();
     static void end();
 
-    void pushBreakPoint();
     void drawSyncCallbackSub(u16 token);
+    void pushBreakPoint();
+    
+#if (VERSION == RMGJ01)
+    void clearSceneCallback();
+#endif
 
     static void drawSyncCallback(u16 token);
     static void* threadFunc(void* pArg);
