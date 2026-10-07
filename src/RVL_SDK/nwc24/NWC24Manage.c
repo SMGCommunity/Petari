@@ -7,7 +7,11 @@ typedef enum { NWC24_LIB_CLOSED, NWC24_LIB_OPENED, NWC24_LIB_OPENED_BY_TOOL, NWC
 
 typedef enum { NWC24_FAIL_SFL = 1 << 0, NWC24_FAIL_DL_TASK = 1 << 1, NWC24_FAIL_FATAL = 1 << 2 } NWC24FailFlag;
 
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+const char* __NWC24Version = "<< RVL_SDK - NWC24 	release build: Aug  8 2007 19:23:17 (0x4199_60831) >>";
+#elif (VERSION == RMGK01)
 const char* __NWC24Version = "<< RVL_SDK - NWC24 	release build: Dec 10 2007 10:02:25 (0x4199_60831) >>";
+#endif
 
 NWC24iWork* NWC24WorkP = NULL;
 

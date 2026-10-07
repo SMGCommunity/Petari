@@ -55,8 +55,12 @@ static __OSExceptionHandler* OSExceptionTable;
 static void OSExceptionInit(void);
 void OSDefaultExceptionHandler( __OSException exception, OSContext* context );
 
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+static const char* __OSVersion = "<< RVL_SDK - OS \trelease build: Aug  8 2007 02:06:24 (0x4199_60831) >>";
+#elif (VERSION == RMGK01)
 static const char* __OSVersion = "<< RVL_SDK - OS \trelease build: Jan 30 2008 01:38:43 (0x4199_60831) >>";
 
+#endif
 asm void __OSFPRInit(void) {
     nofralloc
     mfmsr r3
@@ -382,7 +386,7 @@ static void ReportOSInfo(void) {
     void* MEM2Lo;
 
     OSReport("\nRevolution OS\n");
-    OSReport("Kernel built : %s %s\n", "Jan 30 2008", "01:38:43");
+    OSReport("Kernel built : %s %s\n", "Aug  8 2007", "02:06:24");
     OSReport("Console Type : " );
 
     consoleType = OSGetConsoleType();

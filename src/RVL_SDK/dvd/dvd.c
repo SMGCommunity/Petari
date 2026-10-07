@@ -12,7 +12,11 @@ static DVDDiskID CurrDiskID ATTRIBUTE_ALIGN(32);
 
 static DVDDiskID* IDShouldBe;
 static OSBootInfo* bootInfo;
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+const char* __DVDVersion = "<< RVL_SDK - DVD \trelease build: Aug  8 2007 01:59:13 (0x4199_60831) >>";
+#elif (VERSION == RMGK01)
 const char* __DVDVersion = "<< RVL_SDK - DVD \trelease build: Feb 22 2008 06:17:35 (0x4199_60831) >>";
+#endif
 static BOOL autoInvalidation = TRUE;
 
 static DVDCommandBlock DummyCommandBlock;
