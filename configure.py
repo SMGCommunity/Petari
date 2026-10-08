@@ -1883,7 +1883,7 @@ config.libs = [
             Object(MatchingFor(JPN, KOR), "Game/MapObj/SeaBottomTriplePropeller.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/MapObj/SeesawMoveNut.cpp"),
             Object(MatchingFor(KOR), "Game/MapObj/Shellfish.cpp"),
-            Object(MatchingFor(KOR), "Game/MapObj/ShockWaveGenerator.cpp"),
+            Object(MatchingFor(JPN, KOR), "Game/MapObj/ShockWaveGenerator.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/MapObj/ShootingStar.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/MapObj/SideSpikeMoveStep.cpp"),
             Object(MatchingFor(), "Game/MapObj/SimpleBreakableObj.cpp"),
