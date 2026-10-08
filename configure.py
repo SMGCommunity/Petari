@@ -742,7 +742,7 @@ config.libs = [
             Object(MatchingFor(KOR), "nw4r/lyt/lyt_init.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "nw4r/lyt/lyt_pane.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "nw4r/lyt/lyt_group.cpp"),
-            Object(MatchingFor(KOR), "nw4r/lyt/lyt_layout.cpp"),
+            Object(MatchingFor(JPN, KOR), "nw4r/lyt/lyt_layout.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "nw4r/lyt/lyt_picture.cpp"),
             Object(MatchingFor(KOR), "nw4r/lyt/lyt_textBox.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "nw4r/lyt/lyt_window.cpp"),
