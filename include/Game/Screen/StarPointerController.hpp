@@ -34,9 +34,15 @@ public:
 
     void drawDebug3D() const;
 
+    #if (VERSION == RMGJ01)
+    bool isInScreen() const {
+        return mPastInfo.mInScreen;
+    }
+    #else
     bool isInScreen() const {
         return !isOutScreenLong();
     }
+    #endif
 
     f32 getViewDistZ() const {
         return mPastInfo.mViewDistZ;

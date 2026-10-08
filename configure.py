@@ -2680,7 +2680,7 @@ config.libs = [
             Object(MatchingFor(JPN, USA, KOR), "Game/Util/SequenceUtil.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "Game/Util/ShareUtil.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "Game/Util/SoundUtil.cpp"),
-            Object(MatchingFor(KOR), "Game/Util/StarPointerUtil.cpp"),
+            Object(MatchingFor(JPN, KOR), "Game/Util/StarPointerUtil.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "Game/Util/StringUtil.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "Game/Util/SwitchEventFunctorListener.cpp"),
             Object(MatchingFor(), "Game/Util/SystemUtil.cpp"),
