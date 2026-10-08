@@ -40,7 +40,7 @@ namespace nw4r {
             void SetTextColor(ut::Color, ut::Color);
             void SetFont(const ut::Font*);
             u16 GetStringBufferLength() const;
-            #if (VERSION == RMGJ01)
+            #if (VERSION == RMGJ01 || VERSION == RMGE01)
             u32 MakeDrawFlag() const NO_INLINE;
             #else
             u32 MakeDrawFlag() const;

@@ -51,7 +51,7 @@ namespace nw4r {
             mFontSize = pBlock->fontSize;
             mTextPosition = pBlock->textPosition;
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
             mBits.textAlignment = pBlock->textAlignment;
 #endif
 
@@ -322,7 +322,7 @@ namespace nw4r {
             return mag;
         }
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
         u32 TextBox::MakeDrawFlag() const {
             u32 flag = 0;
             switch (mBitsu8 >> 5 & 0x3) {

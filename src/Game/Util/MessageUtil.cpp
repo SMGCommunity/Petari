@@ -158,7 +158,7 @@ namespace MR {
                 } else if (tag.getGroup() == 5) {
                     count += 3;
                 }
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
                 else if (tag.getGroup() == 11) {
                     count += 2;
                 }
