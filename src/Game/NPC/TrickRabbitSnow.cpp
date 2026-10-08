@@ -394,9 +394,14 @@ void TrickRabbitSnow::exeBlowDamage() {
 }
 
 void TrickRabbitSnow::exeCaught() {
+#if (VERSION != RMGJ01)
     if (MR::isFirstStep(this) && MR::isDemoActive()) {
         setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvCaught));
-    } else if (MR::updateActorState(this, mStateCaught)) {
+        return;
+    }
+#endif
+
+    if (MR::updateActorState(this, mStateCaught)) {
         MR::endDemo(this, "捕まり");
         MR::forwardNode(mMsgCtrl);
         mSpotMarkLight->kill();

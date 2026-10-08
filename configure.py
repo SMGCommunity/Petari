@@ -2043,7 +2043,7 @@ config.libs = [
             Object(MatchingFor(JPN, KOR), "Game/NPC/TicoReading.cpp"),
             Object(MatchingFor(), "Game/NPC/TicoShop.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/NPC/TicoStarRing.cpp"),
-            Object(MatchingFor(KOR), "Game/NPC/TrickRabbit.cpp"),
+            Object(MatchingFor(JPN, KOR), "Game/NPC/TrickRabbit.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/NPC/TrickRabbitFreeRun.cpp"),
             Object(MatchingFor(), "Game/NPC/TrickRabbitSnowCollect.cpp"),
             Object(MatchingFor(), "Game/NPC/TrickRabbitSnow.cpp"),
