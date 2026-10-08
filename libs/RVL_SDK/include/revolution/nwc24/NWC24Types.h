@@ -167,7 +167,11 @@ typedef struct NWC24MsgObj {
     u32 data[64];
 } NWC24MsgObj;
 
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#define NWC24_LED_APP_DEFAULT 0x00000001U
+#else
 #define NWC24_LED_APP_DEFAULT 0x00002019U
+#endif
 
 #ifdef __cplusplus
 }

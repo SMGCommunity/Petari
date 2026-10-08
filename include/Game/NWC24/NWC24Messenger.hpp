@@ -50,20 +50,28 @@ namespace NWC24MessengerSub {
     class SendTask {
     public:
         /// @brief Creates a new `SendTask`.
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+        SendTask() : _0(), mIsBG(), _2(), mRetryNo(), mErr(NWC24_OK), mErrCode(), mSentSize(), mTaskName(), mMessage(), mAltName() {
+        }
+#else
         SendTask()
             : _0(), mIsBG(), _2(), mIsMsgLedPattern(), mRetryNo(), mErr(NWC24_OK), mErrCode(), mSentSize(), mTaskName(), mMessage(), mAltName() {
         }
-
+#endif
         /* 0x00 */ bool _0;
         /* 0x01 */ bool mIsBG;
         /* 0x02 */ bool _2;
+#if (VERSION == RMGK01)
         /* 0x03 */ bool mIsMsgLedPattern;
+#endif
         /* 0x04 */ s32 mRetryNo;
         /* 0x08 */ NWC24Err mErr;
         /* 0x0C */ s32 mErrCode;
         /* 0x10 */ u32 mSentSize;
+#if (VERSION == RMGK01)
         /* 0x14 */ u16 mTag;
-        /* 0x14 */ u8 mDelayHours;
+        /* 0x16 */ u8 mDelayHours;
+#endif
         /* 0x18 */ const char* mTaskName;
         /* 0x1C */ const wchar_t* mMessage;
         /* 0x20 */ const wchar_t* mAltName;
