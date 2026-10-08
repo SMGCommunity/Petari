@@ -2826,7 +2826,7 @@ config.libs = [
             Object(MatchingFor(KOR), "RVL_SDK/dvd/dvdqueue.c"),
             Object(MatchingFor(JPN, USA, KOR), "RVL_SDK/dvd/dvderror.c"),
             Object(MatchingFor(JPN, USA, KOR), "RVL_SDK/dvd/dvdidutils.c"),
-            Object(MatchingFor(KOR), "RVL_SDK/dvd/dvdFatal.c"),
+            Object(MatchingFor(JPN, KOR), "RVL_SDK/dvd/dvdFatal.c"),
             Object(MatchingFor(KOR), "RVL_SDK/dvd/dvdDeviceError.c"),
             Object(MatchingFor(JPN, USA, KOR), "RVL_SDK/dvd/dvd_broadway.c"),
         ],
