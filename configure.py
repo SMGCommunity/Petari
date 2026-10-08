@@ -2475,7 +2475,7 @@ config.libs = [
             Object(MatchingFor(KOR), "Game/Screen/StarPointerController.cpp"),
             Object(MatchingFor(), "Game/Screen/StarPointerDirector.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/Screen/StarPointerGuidance.cpp"),
-            Object(MatchingFor(KOR), "Game/Screen/StarPointerLayout.cpp"),
+            Object(MatchingFor(JPN, KOR), "Game/Screen/StarPointerLayout.cpp"),
             Object(MatchingFor(KOR), "Game/Screen/StarPointerTarget.cpp"),
             Object(MatchingFor(KOR), "Game/Screen/SubMeterLayout.cpp"),
             Object(MatchingFor(KOR), "Game/Screen/SuddenDeathMeter.cpp"),

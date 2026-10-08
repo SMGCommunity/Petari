@@ -8,22 +8,19 @@
 #include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include <JSystem/JGeometry/TMatrix.hpp>
-#include <JSystem/JMath/JMath.hpp>
-#include <revolution/gx/GXGet.h>
 
 StarPointerDirector::StarPointerDirector()
-    : mIsUpdateTransHolder(false), mIsAllowP1StarPieceShot(false), mIsAllowP2StarPieceShot(false), mControllers(nullptr),
-      mStarPointerLayouts(nullptr), mTransHolder(nullptr), mPeekZ(nullptr), mGuidance(nullptr), mNozzleAimPos(0.0f, 0.0f, 0.0f) {
+    : mIsUpdateTransHolder(), mIsAllowP1StarPieceShot(), mIsAllowP2StarPieceShot(), mControllers(), mStarPointerLayouts(), mTransHolder(), mPeekZ(),
+      mGuidance(), mNozzleAimPos(0.0f, 0.0f, 0.0f) {
     mPeekZ = new StarPointerPeekZ();
     mTransHolder = new StarPointerTransformHolder();
     mControllers = new StarPointerController[StarPointerFunction::getNumStarPointer()];
+
     for (s32 channel = 0; channel < StarPointerFunction::getNumStarPointer(); channel++) {
         mControllers[channel].initAndSetPort(channel);
         mPeekZ->mInfos[channel] = &mControllers[channel].mInfo;
@@ -174,6 +171,28 @@ void StarPointerPeekZ::drawSyncCallback(u16 token) {
 }
 
 namespace StarPointerFunction {
+#if (VERSION == RMGJ01)
+    bool isInScreen(const TVec2f& rPos, f32 marginX, f32 marginY) {
+        if (rPos.x < marginX) {
+            return false;
+        }
+
+        if (rPos.y < marginY) {
+            return false;
+        }
+
+        if (MR::getScreenWidth() - marginX < rPos.x) {
+            return false;
+        }
+
+        if (MR::getScreenHeight() - marginY < rPos.y) {
+            return false;
+        }
+
+        return true;
+    }
+#endif
+
     bool isOnScreenEdge(const TVec2f& rPos, f32 marginX, f32 marginY) {
         if (rPos.x <= marginX) {
             return true;
