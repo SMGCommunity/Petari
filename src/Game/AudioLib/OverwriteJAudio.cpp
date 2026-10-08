@@ -138,9 +138,15 @@ void JASWaveArc::setFileName(const char* pName) {
     strcpy(path, currentDir);
     strcat(path, pName);
     path[length] = '\0';
-    char name[256];
-    MR::makeFileNameConsideringLanguage(name, sizeof(name), path);
-    int entryNum = DVDConvertPathToEntrynum(name);
+
+    #if (VERSION == RMGJ01)
+    const char* fileName = path;
+    #else
+    char fileName[256];
+    MR::makeFileNameConsideringLanguage(fileName, sizeof(fileName), path);
+    #endif
+
+    int entryNum = DVDConvertPathToEntrynum(fileName);
     delete[] path;
     if (entryNum < 0) {
         return;

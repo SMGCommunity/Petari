@@ -871,7 +871,7 @@ config.libs = [
             ),
             Object(MatchingFor(JPN, KOR), "Game/AudioLib/AudTrackController.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/AudioLib/AudUtil.cpp"),
-            Object(MatchingFor(KOR), "Game/AudioLib/OverwriteJAudio.cpp"),
+            Object(MatchingFor(JPN, KOR), "Game/AudioLib/OverwriteJAudio.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/AudioLib/CSSoundNameConverter.cpp"),
         ],
     ),
