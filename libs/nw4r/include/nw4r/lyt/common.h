@@ -94,12 +94,20 @@ namespace nw4r {
             const Size GetTextureSize(Material* pMaterial, u8 texMapIdx);
 
             inline void SetHorizontalPosition(u8* pVar, u8 newVal) {
+#if (VERSION == RMGJ01)
+                NW4R_ASSERT_AT(256, newVal < HORIZONTALPOSITION_MAX);
+#else
                 NW4R_ASSERT_AT(252, newVal < HORIZONTALPOSITION_MAX);
+#endif
                 *pVar = u8(GetVerticalPosition(*pVar) * 3 + newVal);
             }
 
             inline void SetVerticalPosition(u8* pVar, u8 newVal) {
+#if (VERSION == RMGJ01)
+                NW4R_ASSERT_AT(265, newVal < VERTICALPOSITION_MAX);
+#else
                 NW4R_ASSERT_AT(261, newVal < VERTICALPOSITION_MAX);
+#endif
                 *pVar = u8(newVal * 3 + GetHorizontalPosition(*pVar));
             }
 
