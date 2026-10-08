@@ -2858,8 +2858,8 @@ config.libs = [
     SDKLib(
         "gx",
         [
-            Object(MatchingFor(KOR), "RVL_SDK/gx/GXInit.c"),
-            Object(MatchingFor(KOR), "RVL_SDK/gx/GXFifo.c"),
+            Object(MatchingFor(JPN, KOR), "RVL_SDK/gx/GXInit.c"),
+            Object(MatchingFor(JPN, KOR), "RVL_SDK/gx/GXFifo.c"),
             Object(MatchingFor(JPN, KOR), "RVL_SDK/gx/GXAttr.c"),
             Object(MatchingFor(JPN, KOR), "RVL_SDK/gx/GXMisc.c"),
             Object(MatchingFor(JPN, KOR), "RVL_SDK/gx/GXGeometry.c"),
