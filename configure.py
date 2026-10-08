@@ -1153,7 +1153,7 @@ config.libs = [
             Object(MatchingFor(JPN, KOR), "Game/Camera/CameraFix.cpp"),
             Object(MatchingFor(KOR), "Game/Camera/CameraFixedPoint.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/Camera/CameraFixedThere.cpp"),
-            Object(MatchingFor(KOR), "Game/Camera/CameraFollow.cpp", cflags=cflags_game_noprefix),
+            Object(MatchingFor(JPN, KOR), "Game/Camera/CameraFollow.cpp", cflags=cflags_game_noprefix),
             Object(MatchingFor(JPN, KOR), "Game/Camera/CameraFooFighter.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/Camera/CameraFooFighterPlanet.cpp", cflags=cflags_game_noprefix),
             Object(MatchingFor(JPN, KOR), "Game/Camera/CameraFrontAndBack.cpp"),
