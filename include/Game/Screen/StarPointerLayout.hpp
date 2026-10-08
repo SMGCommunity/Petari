@@ -114,7 +114,7 @@ public:
         return mRadius;
     }
 
-    #if (VERSION == RMGJ01)
+    #if (VERSION == RMGJ01 || VERSION == RMGE01)
     /* 0x20 */ TVec2f mPosition;
     /* 0x28 */ StarPointerKind mPointerKind;
     /* 0x2C */ AnimType mAnimType;

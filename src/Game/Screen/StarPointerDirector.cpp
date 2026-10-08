@@ -171,7 +171,7 @@ void StarPointerPeekZ::drawSyncCallback(u16 token) {
 }
 
 namespace StarPointerFunction {
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     bool isInScreen(const TVec2f& rPos, f32 marginX, f32 marginY) {
         if (rPos.x < marginX) {
             return false;

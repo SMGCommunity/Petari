@@ -23,7 +23,7 @@ enum TalkMessageCtrl_Type {
     /* 0xA */ TalkMessageCtrl_TypeA,
     /* 0xB */ TalkMessageCtrl_TypeB,
     /* 0xC */ TalkMessageCtrl_TypeC,
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
     /* 0xD */ TalkMessageCtrl_TypeD,
 #endif
     /* 0xE */ TalkMessageCtrl_TypeE,
@@ -49,7 +49,7 @@ enum BranchNode_Type {
     /* 0x10 */ BranchNode_Type10,
     /* 0x11 */ BranchNode_Type11,
     /* 0x12 */ BranchNode_Type12,
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
     /* 0x13 */ BranchNode_Type13,
 #endif
 };

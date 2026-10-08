@@ -81,7 +81,7 @@ namespace MR {
     /// @param[out] ppHeap A pointer to the heap pointer to initialize.
     void getMountedArchiveAndHeap(const char* pFilePath, JKRArchive** ppArchive, JKRHeap** ppHeap);
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     void removeFile(const char*);
 #endif
 

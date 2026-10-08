@@ -162,7 +162,7 @@ namespace nw4r {
     namespace ut {
         template <>
         f32 TextWriterBase< wchar_t >::PrintImpl(StreamType str, int length) {
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
             NW4R_POINTER_ASSERT_AT(271, this);
             NW4R_POINTER_ASSERT_AT(272, str);
             NW4R_POINTER_ASSERT_AT(273, GetFont());
@@ -230,7 +230,7 @@ namespace nw4r {
                     operation = mTagProcessor->Process(code, &context);
 
                     if (operation == TagProcessor::OPERATION_NEXT_LINE) {
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
                         NW4R_POINTER_ASSERT_AT(341, context.str);
 #else
                         NW4R_POINTER_ASSERT_AT(378, context.str);
@@ -265,7 +265,7 @@ namespace nw4r {
                         break;
                     }
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
                     NW4R_POINTER_ASSERT_AT(386, context.str);
 #else
                     NW4R_POINTER_ASSERT_AT(423, context.str);

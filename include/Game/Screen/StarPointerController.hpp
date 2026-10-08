@@ -26,7 +26,7 @@ public:
     void updateDpdInfo();
     void updateAdditionalInfo();
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     void forcePointerOut();
 #endif
 
@@ -34,7 +34,7 @@ public:
 
     void drawDebug3D() const;
 
-    #if (VERSION == RMGJ01)
+    #if (VERSION == RMGJ01 || VERSION == RMGE01)
     bool isInScreen() const {
         return mPastInfo.mInScreen;
     }

@@ -38,7 +38,7 @@ namespace {
 
 GalaxyMap::GalaxyMap()
     : LayoutActor("ギャラクシー・天文台マップ", true), mMarioIcon1(), mMarioIcon2(), mGalaxyPlain(), mGalaxyDetail(), mPointingIcon(), mGalaxyName(),
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
       mIconAButton(),
 #endif
       _70(), _71(true) {
@@ -77,7 +77,7 @@ void GalaxyMap::init(const JMapInfoIter& rIter) {
     mTitle = new GalaxyMapTitle();
     mTitle->initWithoutIter();
 
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
     mIconAButton = new IconAButton(false, false);
     mIconAButton->initWithoutIter();
     mIconAButton->setFollowActorPane(this, "AButtonPosition");
@@ -116,7 +116,7 @@ void GalaxyMap::kill() {
     mGalaxyDetail->kill();
     mMarioIcon1->kill();
     mTitle->kill();
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
     mIconAButton->kill();
 #endif
 
@@ -144,7 +144,7 @@ void GalaxyMap::movement() {
     mGalaxyDetail->movement();
     mGalaxyPlain->movement();
     mTitle->movement();
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
     mIconAButton->movement();
 #endif
 }
@@ -161,7 +161,7 @@ void GalaxyMap::calcAnim() {
     mGalaxyDetail->calcAnim();
     mGalaxyPlain->calcAnim();
     mTitle->calcAnim();
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
     mIconAButton->calcAnim();
 #endif
 
@@ -191,7 +191,7 @@ void GalaxyMap::draw() const {
     std::for_each(mCometIcon.begin(), mCometIcon.end(), std::mem_func(&GalaxyMapCometIcon::draw));
     drawGalaxyIconWithOrder(2);
 
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
     mIconAButton->draw();
 #endif
 }
@@ -281,7 +281,7 @@ void GalaxyMap::setModeCapture() {
 
     mTitle->kill();
     mMarioIcon1->kill();
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
     mIconAButton->kill();
 #endif
 
@@ -311,7 +311,7 @@ bool GalaxyMap::isShowDetail() const {
     return !MR::isDead(this) && isNerve(GET_NERVE_ANON(GalaxyMapShowDetail));
 }
 
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
 void GalaxyMap::dispIconAButton() {
     mIconAButton->openWithoutMessage();
 }

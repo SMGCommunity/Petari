@@ -5,7 +5,7 @@
 #include <cstdio>
 #include <cstring>
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
 #include "Game/Util/StringUtil.hpp"
 #endif
 
@@ -61,7 +61,7 @@ void* LayoutHolder::GetResource(u32 resourceKind, const char* pName, u32* pResou
     return pResource;
 }
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
 nw4r::ut::Font* LayoutHolder::GetFont(const char* pName) {
     if (!MR::strcasecmp(pName, "MessageFont26.brfnt")) {
         return MR::getFontOnCurrentLanguage();

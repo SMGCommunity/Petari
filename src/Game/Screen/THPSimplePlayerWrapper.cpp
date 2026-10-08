@@ -17,7 +17,7 @@ static u16 VolumeTable[] = {0,     2,     8,     18,    32,    50,    73,    99,
 
 static s32 WorkBuffer[16] ATTRIBUTE_ALIGN(32);
 
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
 THPSimplePlayerStaticAudio THPSimplePlayerWrapper::mStaticAudioPlayer;
 THPSimplePlayerWrapper* THPSimplePlayerStaticAudio::mPlayer;
 #endif
@@ -31,7 +31,7 @@ namespace NrvTHPSimplePlayerWrapper {
     NEW_NERVE(HostTypeReadPreLoad, THPSimplePlayerWrapper, ReadPreLoad);
 };  // namespace NrvTHPSimplePlayerWrapper
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
 THPSimplePlayerStaticAudio THPSimplePlayerWrapper::mStaticAudioPlayer;
 THPSimplePlayerWrapper* THPSimplePlayerStaticAudio::mPlayer;
 #endif
@@ -47,7 +47,7 @@ THPSimplePlayerWrapper::THPSimplePlayerWrapper(const char* pName)
     : NerveExecutor(pName), _8(), _9(), _C(), _10(), mTHPWork(), mOpen(), mPreFetchState(), mAudioState(), mLoop(), mAudioExist(), mCurOffset(),
       mDvdError(), mReadProgress(), mNextDecodeIndex(), mReadIndex(), mReadSize(), mTotalReadFrame(), mCurrentVolume(), mTargetVolume(),
       mDeltaVolume(), mRampCount(), mAudioDecodeIndex(), mAudioOutputIndex(), _2F0(), _2F4(1.0f), _2F8(), _2FC(), mSoundBufferIndex(), _30C()
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
       ,
       _310()
 #endif
@@ -65,7 +65,7 @@ THPSimplePlayerWrapper::THPSimplePlayerWrapper(const char* pName)
     MR::zeroMemory(&mAudioInfo, sizeof(mAudioInfo));
     MR::zeroMemory(mReadBuffer, sizeof(mReadBuffer));
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     MR::zeroMemory(&mTextureSet, sizeof(mTextureSet));
 #else
     MR::zeroMemory(&mTextureSet[0], 0x10);
@@ -145,7 +145,7 @@ u32 THPSimplePlayerWrapper::calcNeedMemory() {
         return 0;
     }
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     u32 size = OSRoundUp32B(mHeader.bufSize) * 20;
     size += OSRoundUp32B(mVideoInfo.xSize * mVideoInfo.ySize);
     size += OSRoundUp32B(mVideoInfo.xSize * mVideoInfo.ySize / 4);
@@ -165,7 +165,7 @@ u32 THPSimplePlayerWrapper::calcNeedMemory() {
     return size;
 }
 
-// FIXME: JPN
+// FIXME: JPN AND USA
 bool THPSimplePlayerWrapper::setBuffer(u8* pBuffer) {
     if (mOpen && !mPreFetchState) {
         if (mAudioState == 1) {
@@ -175,7 +175,7 @@ bool THPSimplePlayerWrapper::setBuffer(u8* pBuffer) {
         u32 ysize = OSRoundUp32B(mVideoInfo.xSize * mVideoInfo.ySize);
         u32 uvsize = OSRoundUp32B(mVideoInfo.xSize * mVideoInfo.ySize / 4);
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
         mTextureSet.ytexture = pBuffer;
         DCInvalidateRange(pBuffer, ysize);
         pBuffer += ysize;
@@ -242,7 +242,7 @@ bool THPSimplePlayerWrapper::preLoad(s32 loop) {
     return true;
 }
 
-// FIXME: JPN
+// FIXME: JPN AND USA
 bool THPSimplePlayerWrapper::loadStop() {
     if (mOpen && !mAudioState) {
         mPreFetchState = 0;
@@ -260,7 +260,7 @@ bool THPSimplePlayerWrapper::loadStop() {
             mAudioBuffer[i].validSample = 0;
         }
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
         mTextureSet.frameNumber = -1;
 #else
         mTextureSet[0].frameNumber = -1;
@@ -278,7 +278,7 @@ bool THPSimplePlayerWrapper::loadStop() {
         mCurrentVolume = mTargetVolume;
         mRampCount = 0;
 
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
         _310 = 0;
 #endif
         return true;
@@ -351,7 +351,7 @@ s32 THPSimplePlayerWrapper::decode(s32 audio) {
     return 2;
 }
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
 s32 THPSimplePlayerWrapper::drawCurrentFrame(_GXRenderModeObj* rmode, u32 x, u32 y, u32 polyW, u32 polyH) {
     if (mTextureSet.frameNumber < 0) {
         return -1;
@@ -404,7 +404,7 @@ s32 THPSimplePlayerWrapper::getTotalFrame() const {
     return 0;
 }
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
 bool THPSimplePlayerWrapper::videoDecode(u8* pFile) {
     if (THPVideoDecode(pFile, mTextureSet.ytexture, mTextureSet.utexture, mTextureSet.vtexture, mTHPWork)) {
         return false;
@@ -565,7 +565,7 @@ void THPSimplePlayerWrapper::setupParams() {
     mReadIndex = 0;
     mTotalReadFrame = 0;
     mDvdError = 0;
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     mTextureSet.frameNumber = -1;
 #else
     mTextureSet[0].frameNumber = -1;
@@ -576,7 +576,7 @@ void THPSimplePlayerWrapper::setupParams() {
     mAudioState = 0;
     mLoop = 0;
     mOpen = 1;
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
     _310 = 0;
 #endif
     resetAudioParams();

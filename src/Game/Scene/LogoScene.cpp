@@ -27,7 +27,7 @@ const wchar_t* pOtherNumber = L"0000000";
 #endif
 
 namespace {
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     const s32 FADEINOUT_FRAME = 60;
 #else
     const s32 FADEINOUT_FRAME = 30;
@@ -95,7 +95,7 @@ void LogoScene::draw() const {
     MR::drawInit();
 
     GXColor color;
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     color.r = 0;
     color.g = 0;
     color.b = 0;

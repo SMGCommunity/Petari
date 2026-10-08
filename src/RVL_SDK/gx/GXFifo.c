@@ -345,7 +345,7 @@ GXBool GXGetCPUFifo(GXFifoObj *fifo) {
         return GX_FALSE;
     }
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     GXFlush();
 #endif
     __GXSaveFifo();

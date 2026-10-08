@@ -130,7 +130,7 @@ void __OSShutdownDevices(u32 event) {
     KillThreads();
 }
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
 u8 __OSGetDiscState(u8 last) {
     u32 flags;
 

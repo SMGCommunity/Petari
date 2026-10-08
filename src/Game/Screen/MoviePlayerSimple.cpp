@@ -252,7 +252,7 @@ u32 MoviePlayerSimple::calcNeedMemoryForMovieWorks() {
     u32 needMemory = 0;
     needMemory += 0x140000;
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     needMemory += OSRoundUp32B(MR::getFrameBufferWidth() * MR::getFrameBufferHeight());
     needMemory += OSRoundUp32B(MR::getFrameBufferWidth() * MR::getFrameBufferHeight() / 4);
     needMemory += OSRoundUp32B(MR::getFrameBufferWidth() * MR::getFrameBufferHeight() / 4);

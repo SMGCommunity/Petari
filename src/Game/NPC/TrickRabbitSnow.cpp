@@ -394,7 +394,7 @@ void TrickRabbitSnow::exeBlowDamage() {
 }
 
 void TrickRabbitSnow::exeCaught() {
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
     if (MR::isFirstStep(this) && MR::isDemoActive()) {
         setNerve(GET_NERVE(TrickRabbitFreeRun, TrickRabbitSnowNrvCaught));
         return;
