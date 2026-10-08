@@ -2869,7 +2869,7 @@ config.libs = [
             Object(MatchingFor(JPN, KOR), "RVL_SDK/gx/GXBump.c"),
             Object(MatchingFor(JPN, KOR), "RVL_SDK/gx/GXTev.c"),
             Object(MatchingFor(JPN, KOR), "RVL_SDK/gx/GXPixel.c", mw_version="GC/3.0a5.2"),
-            Object(MatchingFor(KOR), "RVL_SDK/gx/GXDisplayList.c"),
+            Object(MatchingFor(JPN, KOR), "RVL_SDK/gx/GXDisplayList.c"),
             Object(MatchingFor(JPN, KOR), "RVL_SDK/gx/GXTransform.c"),
             Object(MatchingFor(JPN, KOR), "RVL_SDK/gx/GXPerf.c"),
         ],
