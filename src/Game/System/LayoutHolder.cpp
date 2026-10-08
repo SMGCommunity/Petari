@@ -5,6 +5,10 @@
 #include <cstdio>
 #include <cstring>
 
+#if (VERSION == RMGJ01)
+#include "Game/Util/StringUtil.hpp"
+#endif
+
 extern "C" {
 int strncasecmp(const char* s1, const char* s2, size_t n);
 }
@@ -57,6 +61,31 @@ void* LayoutHolder::GetResource(u32 resourceKind, const char* pName, u32* pResou
     return pResource;
 }
 
+#if (VERSION == RMGJ01)
+nw4r::ut::Font* LayoutHolder::GetFont(const char* pName) {
+    if (!MR::strcasecmp(pName, "MessageFont26.brfnt")) {
+        return MR::getFontOnCurrentLanguage();
+    }
+
+    if (!MR::strcasecmp(pName, "MenuFont64.brfnt")) {
+        return MR::getMenuFontNW4R();
+    }
+
+    if (!MR::strcasecmp(pName, "NumberFont.brfnt")) {
+        return MR::getNumberFontNW4R();
+    }
+
+    if (!MR::strcasecmp(pName, "PictureFont.brfnt")) {
+        return MR::getPictureFontNW4R();
+    }
+
+    if (MR::strcasecmp(pName, "CinemaFont26.brfnt") == 0) {
+        return MR::getCinemaFontNW4R();
+    }
+
+    return MR::getFontOnCurrentLanguage();
+}
+#else
 nw4r::ut::Font* LayoutHolder::GetFont(const char* pName) {
     if (strncasecmp(pName, "MessageFont26", strlen("MessageFont26")) == 0) {
         return MR::getFontOnCurrentLanguage();
@@ -80,6 +109,7 @@ nw4r::ut::Font* LayoutHolder::GetFont(const char* pName) {
 
     return MR::getFontOnCurrentLanguage();
 }
+#endif
 
 bool LayoutHolder::isAnimationHashEqual(u32 hash, u32 fileID) const {
     return mAnimRes.getFileInfo(fileID)->isEqualHashCode(hash);

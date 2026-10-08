@@ -2550,7 +2550,7 @@ config.libs = [
             Object(MatchingFor(KOR), "Game/System/GameSystemResetAndPowerProcess.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/System/HeapMemoryWatcher.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/System/Language.cpp"),
-            Object(MatchingFor(), "Game/System/LayoutHolder.cpp"),
+            Object(MatchingFor(JPN), "Game/System/LayoutHolder.cpp"),
             Object(MatchingFor(), "Game/System/MainLoopFramework.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/System/MessageHolder.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/System/NANDErrorSequence.cpp"),
