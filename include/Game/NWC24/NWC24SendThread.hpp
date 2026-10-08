@@ -10,7 +10,11 @@ class NWC24SendThread : OSThread {
 public:
     NWC24SendThread(s32, JKRHeap*);
 
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+    bool requestSend(const u16*, const u16*, const u8*, u32, const u8*, u32);
+#else
     bool requestSend(const u16*, const u16*, const u8*, u32, const u8*, u32, u16, bool, u8);
+#endif
     bool isDone(NWC24Err*, u32*);
 
 private:
@@ -22,11 +26,15 @@ private:
         /* 0x10 */ const u8* mPicture;
         /* 0x14 */ u32 mPictureSize;
         /* 0x18 */ bool _18;
+#if (VERSION == RMGK01)
         /* 0x19 */ bool mIsMsgLedPattern;
+#endif
         /* 0x1C */ NWC24Err mSentErr;
         /* 0x20 */ u32 mSentSize;
+#if (VERSION == RMGK01)
         /* 0x24 */ u16 mTag;
         /* 0x28 */ u8 mDelayHours;
+#endif
     };
 
     static void* threadProc(void*);

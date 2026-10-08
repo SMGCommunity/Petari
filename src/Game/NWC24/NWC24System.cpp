@@ -63,11 +63,16 @@ bool NWC24System::close(NWC24Err* pErr) {
     }
 }
 
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+bool NWC24System::send(const u16* pText, const u16* pAltName, const u8* pLetter, u32 letterSize, const u8* pPicture, u32 pictureSize) {
+    return mSendThread->requestSend(pText, pAltName, pLetter, letterSize, pPicture, pictureSize);
+}
+#else
 bool NWC24System::send(const u16* pText, const u16* pAltName, const u8* pLetter, u32 letterSize, const u8* pPicture, u32 pictureSize, u16 tag,
                        bool isMsgLedPattern, u8 delayHours) {
     return mSendThread->requestSend(pText, pAltName, pLetter, letterSize, pPicture, pictureSize, tag, isMsgLedPattern, delayHours);
 }
-
+#endif
 bool NWC24System::isSent(NWC24Err* pErr, u32* pSize) {
     return mSendThread->isDone(pErr, pSize);
 }

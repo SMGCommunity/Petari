@@ -26,8 +26,12 @@ NWC24SendThread::NWC24SendThread(s32 priority, JKRHeap* pHeap) {
     OSResumeThread(this);
 }
 
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+bool NWC24SendThread::requestSend(const u16* pText, const u16* pAltName, const u8* pLetter, u32 letterSize, const u8* pPicture, u32 pictureSize) {
+#else
 bool NWC24SendThread::requestSend(const u16* pText, const u16* pAltName, const u8* pLetter, u32 letterSize, const u8* pPicture, u32 pictureSize,
                                   u16 tag, bool isMsgLedPattern, u8 delayHours) {
+#endif
     BOOL status = OSDisableInterrupts();
 
     if (mMessageQueue.usedCount >= mMessageQueue.msgCount) {
@@ -43,11 +47,15 @@ bool NWC24SendThread::requestSend(const u16* pText, const u16* pAltName, const u
     mMsgSendStatus.mPicture = pPicture;
     mMsgSendStatus.mPictureSize = pictureSize;
     mMsgSendStatus._18 = false;
+#if (VERSION == RMGK01)
     mMsgSendStatus.mIsMsgLedPattern = isMsgLedPattern;
+#endif
     mMsgSendStatus.mSentErr = NWC24_OK;
     mMsgSendStatus.mSentSize = 0;
+#if (VERSION == RMGK01)
     mMsgSendStatus.mTag = tag;
     mMsgSendStatus.mDelayHours = delayHours;
+#endif
 
     OSSendMessage(&mMessageQueue, &mMsgSendStatus, OS_MESSAGE_NOBLOCK);
     OSRestoreInterrupts(status);
@@ -92,10 +100,14 @@ void NWC24SendThread::initMsgSendStatus() {
     mMsgSendStatus.mPicture = nullptr;
     mMsgSendStatus.mPictureSize = 0;
     mMsgSendStatus._18 = true;
+#if (VERSION == RMGK01)
     mMsgSendStatus.mIsMsgLedPattern = false;
+#endif
     mMsgSendStatus.mSentErr = NWC24_OK;
+#if (VERSION == RMGK01)
     mMsgSendStatus.mTag = 0;
     mMsgSendStatus.mDelayHours = 0;
+#endif
 }
 
 NWC24Err NWC24SendThread::sendMessage(MsgSendStatus* pMsgSendStatus, u32* pMsgSize) {
@@ -123,7 +135,7 @@ NWC24Err NWC24SendThread::sendMessage(MsgSendStatus* pMsgSendStatus, u32* pMsgSi
             return err;
         }
     }
-
+#if (VERSION == RMGK01)
     err = NWC24SetMsgTag(&msgObj, pMsgSendStatus->mTag);
 
     if (err != NWC24_OK) {
@@ -137,7 +149,7 @@ NWC24Err NWC24SendThread::sendMessage(MsgSendStatus* pMsgSendStatus, u32* pMsgSi
             return err;
         }
     }
-
+#endif
     const u16* pText = pMsgSendStatus->mText;
     u32 textLength = MR::strlenUTF16(pText);
     err = NWC24SetMsgText(&msgObj, reinterpret_cast< const char* >(pText), textLength * sizeof(u16), NWC24_UTF_16, NWC24_ENC_8BIT);
@@ -163,15 +175,21 @@ NWC24Err NWC24SendThread::sendMessage(MsgSendStatus* pMsgSendStatus, u32* pMsgSi
             return err;
         }
     }
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+    err = NWC24SetMsgLedPattern(&msgObj, NWC24_LED_APP_DEFAULT);
 
-    if (pMsgSendStatus->mIsMsgLedPattern) {
-        err = NWC24SetMsgLedPattern(&msgObj, NWC24_LED_APP_DEFAULT);
-
-        if (err != NWC24_OK) {
-            return err;
-        }
+    if (err != NWC24_OK) {
+        return err;
     }
+#else
+                                      if (pMsgSendStatus->mIsMsgLedPattern) {
+                                          err = NWC24SetMsgLedPattern(&msgObj, NWC24_LED_APP_DEFAULT);
 
+                                          if (err != NWC24_OK) {
+                                              return err;
+                                          }
+                                      }
+#endif
     err = NWC24SetMsgMBNoReply(&msgObj, true);
 
     if (err != NWC24_OK) {

@@ -606,7 +606,18 @@ namespace NWC24MessengerSub {
 
         return err == NWC24_ERR_MUTEX || err == NWC24_ERR_BUSY || err == NWC24_ERR_INPROGRESS;
     }
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+    bool SendState::send() {
+        if (!mHost->mSystem->send(reinterpret_cast< const u16* >(mTask->mMessage), reinterpret_cast< const u16* >(mTask->mAltName), nullptr, 0,
+                                  mTask->mPicture, mTask->mPictureSize)) {
+            setNerve(GET_NERVE_GLOBAL(SendStateNrvRetry));
 
+            return false;
+        }
+
+        return true;
+    }
+#else
     bool SendState::send() {
         if (!mHost->mSystem->send(reinterpret_cast< const u16* >(mTask->mMessage), reinterpret_cast< const u16* >(mTask->mAltName), nullptr, 0,
                                   mTask->mPicture, mTask->mPictureSize, mTask->mTag, mTask->mIsMsgLedPattern, mTask->mDelayHours)) {
@@ -617,7 +628,7 @@ namespace NWC24MessengerSub {
 
         return true;
     }
-
+#endif
     bool SendState::checkFinish() {
         return mHost->mSystem->isSent(&mTask->mErr, &mTask->mSentSize);
     }
