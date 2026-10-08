@@ -16,14 +16,15 @@ Petari
 [<img src="https://decomp.dev/SMGCommunity/Petari.svg?w=512&h=256" width="512" height="256" alt="A visual">][progress_link]
 <!-- markdownlint-enable MD033 -->
 
-A work-in-progress decompilation of Super Mario Galaxy 1.
+A work-in-progress decompilation of Super Mario Galaxy.
 
 This repository does **not** contain any game assets or assembly whatsoever. An existing copy of the game is required.
 
-This project is **not** meant to be an effort to create a PC Port. Join the Discord server to learn more and ask about our work-in-progress PC port "AstroCore".
+This project is **not** meant to be an effort to create a PC port. Join the Discord server to learn more and ask about our work-in-progress PC port "AstroCore".
 
-## Regarding AI usage
-A lot of dicussion and accusations have been made claiming we used AI/LLMs to accelerate the decompilation process. **We did not**.
+## Regarding AI Usage
+
+A lot of discussion and accusations have been made claiming we used AI/LLMs to accelerate the decompilation process. **We did not**.
 
 Although AI was allowed for tasks that did not directly affect progress, such as variable naming, code cleanup, and documentation, **it never ended up playing a role in this project**. The fast progress acceleration of the project was a result of **new collaborators**, a ton of **motivation**, and **great community efforts**. It was not a result of AI usage or any other kind of automated decompilation work.
 
@@ -36,7 +37,9 @@ Below are our AI usage guidelines:
 
 Supported versions:
 
-- `RMGK01`: Rev 0 (Korea)
+- `RMGJ01` (Japan)
+- `RMGE01` (North America)
+- `RMGK01` (Korea)
 
 Dependencies
 ============

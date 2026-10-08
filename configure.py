@@ -2075,9 +2075,9 @@ config.libs = [
         "NWC24",
         [
             Object(MatchingFor(JPN, USA, KOR), "Game/NWC24/NWC24Function.cpp"),
-            Object(MatchingFor(JPN, KOR), "Game/NWC24/NWC24Messenger.cpp"),
-            Object(MatchingFor(JPN, KOR), "Game/NWC24/NWC24SendThread.cpp"),
-            Object(MatchingFor(JPN, KOR), "Game/NWC24/NWC24System.cpp"),
+            Object(MatchingFor(JPN, USA, KOR), "Game/NWC24/NWC24Messenger.cpp"),
+            Object(MatchingFor(JPN, USA, KOR), "Game/NWC24/NWC24SendThread.cpp"),
+            Object(MatchingFor(JPN, USA, KOR), "Game/NWC24/NWC24System.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "Game/NWC24/UTF16Util.cpp"),
             Object(
                 MatchingFor(JPN, USA, KOR), "Game/NWC24/LuigiMailDirector.cpp", mw_version="GC/3.0a3.2"
