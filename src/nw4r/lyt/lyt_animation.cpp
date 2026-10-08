@@ -1,11 +1,11 @@
 #include <revolution.h>
 
-#include "nw4r/lyt/common.h"
-#include "nw4r/lyt/pane.h"
-#include "nw4r/lyt/group.h"
-#include "nw4r/lyt/material.h"
 #include "nw4r/lyt/animation.h"
+#include "nw4r/lyt/common.h"
+#include "nw4r/lyt/group.h"
 #include "nw4r/lyt/layout.h"
+#include "nw4r/lyt/material.h"
+#include "nw4r/lyt/pane.h"
 #include "nw4r/lyt/resourceAccessor.h"
 #include <new>
 
@@ -14,9 +14,7 @@ const f32 R_FRAME_TOLERANCE = 0.001F;
 
 namespace nw4r {
     namespace lyt {
-
         namespace {
-
             inline bool RIsSame(const f32 a, const f32 b, const f32 tolerance = R_SAME_TOLERANCE) {
                 f32 c = a - b;
                 return (-tolerance < c && c < tolerance);
@@ -211,7 +209,7 @@ namespace nw4r {
                 return false;
             }
 
-        }
+        }  // namespace
 
         AnimTransform::AnimTransform() : mpRes(0), mFrame(0) {
         }
@@ -400,7 +398,6 @@ namespace nw4r {
             Init();
 
             const res::BinaryFileHeader* const pFileHeader = static_cast< const res::BinaryFileHeader* >(anmResBuf);
-
             if (!detail::TestFileHeader(*pFileHeader, res::FILESIGNATURE_RLAN)) {
                 return;
             }
@@ -465,7 +462,7 @@ namespace nw4r {
                 }
             }
 
-        }
+        };  // namespace detail
 
-    }
-}
+    };  // namespace lyt
+};  // namespace nw4r

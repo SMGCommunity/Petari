@@ -750,7 +750,7 @@ config.libs = [
             Object(MatchingFor(JPN, USA, KOR), "nw4r/lyt/lyt_material.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "nw4r/lyt/lyt_texMap.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "nw4r/lyt/lyt_drawInfo.cpp"),
-            Object(MatchingFor(KOR), "nw4r/lyt/lyt_animation.cpp"),
+            Object(MatchingFor(JPN, KOR), "nw4r/lyt/lyt_animation.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "nw4r/lyt/lyt_resourceAccessor.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "nw4r/lyt/lyt_arcResourceAccessor.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "nw4r/lyt/lyt_common.cpp"),
