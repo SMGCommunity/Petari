@@ -457,8 +457,13 @@ bool StarPieceShooter::shoot() {
 }
 
 bool StarPieceShooter::tryShoot() {
-    if (!((!StarPointerFunction::isOnScreenEdge(_A0) || MR::isStarPointerInScreen(_A0)) && MR::isStarPointerValid(_A0) && MR::getStarPieceNum() > 0 &&
-          MR::isEnableStarPointerShootStarPiece(_A0) && (_A0 != 0 || !MR::isStarPointer1PInvalid2PValidMode()))) {
+    if (!((
+#if (VERSION != RMGJ01)
+              !StarPointerFunction::isOnScreenEdge(_A0) ||
+#endif
+              MR::isStarPointerInScreen(_A0)) &&
+          MR::isStarPointerValid(_A0) && MR::getStarPieceNum() > 0 && MR::isEnableStarPointerShootStarPiece(_A0) &&
+          (_A0 != 0 || !MR::isStarPointer1PInvalid2PValidMode()))) {
         _90 = nullptr;
         _94 = 999999.9f;
         _A4 = -1;

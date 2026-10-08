@@ -1923,7 +1923,7 @@ config.libs = [
             Object(MatchingFor(JPN, KOR), "Game/MapObj/SpringWaterFloaterSpot.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/MapObj/StageEffectDataTable.cpp"),
             Object(MatchingFor(), "Game/MapObj/StarPiece.cpp"),
-            Object(MatchingFor(KOR), "Game/MapObj/StarPieceDirector.cpp"),
+            Object(MatchingFor(JPN, KOR), "Game/MapObj/StarPieceDirector.cpp"),
             Object(MatchingFor(), "Game/MapObj/StarPieceFollowGroup.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/MapObj/StarPieceGroup.cpp"),
             Object(MatchingFor(KOR), "Game/MapObj/StarPieceMother.cpp"),
