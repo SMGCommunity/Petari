@@ -595,9 +595,11 @@ bool GalaxyMapController::tryDisplayAndKeyWait() {
         mMap->_71 = false;
     }
 
+#if (VERSION != RMGJ01)
     if (MR::isStep(this, ::sDisplayKeepFrame)) {
         mMap->dispIconAButton();
     }
+#endif
 
     if (MR::isGreaterStep(this, ::sDisplayKeepFrame) && MR::testCorePadTriggerA(WPAD_CHAN0)) {
         setNerve(GET_NERVE_ANON(GalaxyMapControllerFadeout));
