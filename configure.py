@@ -535,13 +535,22 @@ def SDKLib_NET(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
 
 
 def SDKLib_KPAD(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
-    return {
-        "lib": lib_name,
-        "mw_version": "Wii/1.0",
-        "cflags": cflags_sdk,
-        "progress_category": "sdk",
-        "objects": objects,
-    }
+    if config.version == "RMGJ01" or config.version == "RMGE01" or config.version == "RMGP01":
+        return  {
+            "lib": lib_name,
+            "mw_version": "GC/3.0a3",
+            "cflags": cflags_sdk,
+            "progress_category": "sdk",
+            "objects": objects,
+        }
+    elif config.version == "RMGK01":
+        return {
+            "lib": lib_name,
+            "mw_version": "Wii/1.0",
+            "cflags": cflags_sdk,
+            "progress_category": "sdk",
+            "objects": objects,
+        }
 
 
 def SDKLib_WENC(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
