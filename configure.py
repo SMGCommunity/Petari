@@ -2653,7 +2653,7 @@ config.libs = [
             Object(MatchingFor(JPN, KOR), "Game/Util/GravityUtil.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/Util/HashUtil.cpp"),
             Object(MatchingFor(), "Game/Util/JMapUtil.cpp"),
-            Object(MatchingFor(KOR), "Game/Util/JointUtil.cpp"),
+            Object(MatchingFor(JPN, KOR), "Game/Util/JointUtil.cpp"),
             Object(
                 MatchingFor(), "Game/Util/LayoutUtil.cpp", extra_cflags=["-DNW4R_DEBUG"]
             ),
