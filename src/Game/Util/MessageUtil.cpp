@@ -157,9 +157,13 @@ namespace MR {
                     count += countMessageFigure(*reinterpret_cast< const s32* >(tag.getParamPtr(0)));
                 } else if (tag.getGroup() == 5) {
                     count += 3;
-                } else if (tag.getGroup() == 11) {
+                }
+#if (VERSION != RMGJ01)
+                else if (tag.getGroup() == 11) {
                     count += 2;
-                } else if (tag.getGroup() == 7) {
+                }
+#endif
+                else if (tag.getGroup() == 7) {
                     count += countMessageChar(*reinterpret_cast< const wchar_t* const* >(tag.getParamPtr(0)));
                 } else if (tag.isGroupTagId(1, 1)) {
                     break;

@@ -2663,7 +2663,7 @@ config.libs = [
             Object(MatchingFor(JPN, USA, KOR), "Game/Util/MapUtil.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "Game/Util/MathUtil.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "Game/Util/MemoryUtil.cpp"),
-            Object(MatchingFor(KOR), "Game/Util/MessageUtil.cpp"),
+            Object(MatchingFor(JPN, KOR), "Game/Util/MessageUtil.cpp"),
             Object(MatchingFor(), "Game/Util/ModelUtil.cpp"),
             Object(MatchingFor(), "Game/Util/MtxUtil.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "Game/Util/MultiEventCamera.cpp"),
