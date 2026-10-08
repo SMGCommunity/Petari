@@ -50,11 +50,12 @@ void NWC24Messenger::draw() const {
 }
 
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
-void NWC24Messenger::send(const char* pTaskName, const wchar_t* pMessage, const wchar_t* pAltName, const u8* pPicture, u32 pictureSize, bool isBG) {
+void NWC24Messenger::send(const char* pTaskName, const wchar_t* pMessage, const wchar_t* pAltName, const u8* pPicture, u32 pictureSize, bool isBG)
 #elif (VERSION == RMGK01)
 void NWC24Messenger::send(const char* pTaskName, const wchar_t* pMessage, const wchar_t* pAltName, const u8* pPicture, u32 pictureSize, bool isBG,
-                          bool isMsgLedPattern, u16 tag, u8 delayHours) {
+                          bool isMsgLedPattern, u16 tag, u8 delayHours)
 #endif
+{
     if (_1C) {
         return;
     }
