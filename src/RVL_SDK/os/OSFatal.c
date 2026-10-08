@@ -217,10 +217,9 @@ void OSFatal(GXColor fg, GXColor bg, const char* msg) {
     if (!bootInfo->FSTLocation) {
         OSSetArenaHi(*(void**)OSPhysicalToCached(0x3110));
     }
-    else {
-    #else
-        OSSetArenaHi(bootInfo->FSTLocation);
+    else
     #endif
+        OSSetArenaHi(bootInfo->FSTLocation);
 
     FatalParam.fg = fg;
     FatalParam.bg = bg;
