@@ -25,6 +25,11 @@ public:
     void calcPastPointingPosOnScreen(TVec2f*, s32) const;
     void updateDpdInfo();
     void updateAdditionalInfo();
+
+#if (VERSION == RMGJ01)
+    void forcePointerOut();
+#endif
+
     f32 calcViewDistanceZ(const TVec3f&, MtxPtr);
 
     void drawDebug3D() const;

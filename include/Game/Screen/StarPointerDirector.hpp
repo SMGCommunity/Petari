@@ -82,10 +82,10 @@ public:
 };
 
 namespace StarPointerFunction {
-    #if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01)
     bool forceOutsideScreenEdge(TVec2f*, const TVec2f&, const TVec2f&, f32, f32);
     bool isInScreen(const TVec2f&, f32, f32);
-    #endif
+#endif
     bool isOnScreenEdge(const TVec2f&, f32, f32);
     bool isOnScreenEdge(s32);
     bool forceInsideScreenEdge(TVec2f*);

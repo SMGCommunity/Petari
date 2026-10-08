@@ -2472,7 +2472,7 @@ config.libs = [
             Object(MatchingFor(KOR), "Game/Screen/StarPieceCounter.cpp"),
             Object(MatchingFor(), "Game/Screen/StarPointerBlur.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/Screen/StarPointerCommandStream.cpp", cflags=cflags_game_noprefix),
-            Object(MatchingFor(KOR), "Game/Screen/StarPointerController.cpp"),
+            Object(MatchingFor(JPN, KOR), "Game/Screen/StarPointerController.cpp"),
             Object(MatchingFor(), "Game/Screen/StarPointerDirector.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/Screen/StarPointerGuidance.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/Screen/StarPointerLayout.cpp"),

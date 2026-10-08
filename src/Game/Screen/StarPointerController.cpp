@@ -8,20 +8,24 @@
 #include <JSystem/JUtility/JUTVideo.hpp>
 
 namespace {
-    // static const _32 hMarginH =
-    // static const _32 hMarginV =
-    // static const _32 hForcePointerOutVel =
+// static const _32 hMarginH =
+// static const _32 hMarginV =
+// static const _32 hForcePointerOutVel =
+#if (VERSION == RMGJ01)
+    static const s32 hIsOutScreenCounter = 5;
+#else
     static const s32 hIsOutScreenCounter = 35;
+#endif
     // static const _32 hNearValue =
     // static const _32 hDrawDebugRadius =
 };  // namespace
 
-DpdInfo::DpdInfo() : mPos(0.0f, 0.0f), mInScreen(false), mDrawReady(false), mZDepth(0), mViewDistZ(0.0f) {
+DpdInfo::DpdInfo() : mPos(0.0f, 0.0f), mInScreen(), mDrawReady(), mZDepth(), mViewDistZ() {
 }
 
 StarPointerController::StarPointerController()
-    : mPadChannel(-1), mScreenPos(0.0f, 0.0f), mOutScreenTime(0), mPastPosition(nullptr), mPastPointNum(0), mNextPastPosition(nullptr),
-      mNextPastPointNum(0), mScreenDist(0.0f), mScreenSpeed(0.0f), mScreenVel(0.0f, 0.0f), mWorldVel(0.0f, 0.0f, 0.0f), mWorldPos(0.0f, 0.0f, 0.0f) {
+    : mPadChannel(-1), mScreenPos(0.0f, 0.0f), mOutScreenTime(), mPastPosition(), mPastPointNum(), mNextPastPosition(), mNextPastPointNum(),
+      mScreenDist(), mScreenSpeed(), mScreenVel(0.0f, 0.0f), mWorldVel(0.0f, 0.0f, 0.0f), mWorldPos(0.0f, 0.0f, 0.0f) {
     // FIXME: TVec2 emitting default ctor in new[], needs to be a null ctor.
     mPastPosition = new TVec2f[16];
     mNextPastPosition = new TVec2f[16];
@@ -83,11 +87,18 @@ void StarPointerController::calcPastPointingPosOnScreen(TVec2f* pPos, s32 idx) c
 
 void StarPointerController::updateDpdInfo() {
     if (!MR::isCorePadPointInScreen(mPadChannel)) {
-        TVec2f v1;
-        v1.x = mInfo.mPos.x;
-        v1.y = mInfo.mPos.y;
+        TVec2f vec;
+        vec.x = mInfo.mPos.x;
+        vec.y = mInfo.mPos.y;
+
+#if (VERSION == RMGJ01)
+        if (mInfo.mInScreen && 10.0f < mScreenVel.length()) {
+            forcePointerOut();
+        }
+#endif
+
         mInfo.mInScreen = false;
-        mScreenPos.set(v1);
+        mScreenPos.set(vec);
         updateAdditionalInfo();
     } else {
         mScreenPos.set(mInfo.mPos);
@@ -110,6 +121,19 @@ void StarPointerController::updateAdditionalInfo() {
     PSMTXMultVecSR(mtx, &mWorldVel, &mWorldVel);
     MR::normalizeOrZero(&mWorldVel);
 }
+
+#if (VERSION == RMGJ01)
+void StarPointerController::forcePointerOut() {
+    if (!StarPointerFunction::isInScreen(mInfo.mPos, 0.0f, 0.0f)) {
+        return;
+    }
+
+    TVec2f vec;
+    vec.set(mInfo.mPos);
+    vec.sub(mScreenPos);
+    StarPointerFunction::forceOutsideScreenEdge(&mInfo.mPos, mInfo.mPos, vec, -20.0f, -20.0f);
+}
+#endif
 
 f32 StarPointerController::calcViewDistanceZ(const TVec3f& rPos, MtxPtr pMtx) {
     return MR::abs(rPos.x * pMtx[2][0] + rPos.y * pMtx[2][1] + rPos.z * pMtx[2][2] + pMtx[2][3]);
