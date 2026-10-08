@@ -2523,7 +2523,7 @@ config.libs = [
             Object(MatchingFor(JPN, USA, KOR), "Game/System/DrawBufferExecuter.cpp"),
             Object(MatchingFor(), "Game/System/DrawBufferGroup.cpp"),
             Object(MatchingFor(), "Game/System/DrawBufferHolder.cpp"),
-            Object(MatchingFor(KOR), "Game/System/DrawSyncManager.cpp"),
+            Object(MatchingFor(JPN, KOR), "Game/System/DrawSyncManager.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "Game/System/FileHolder.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "Game/System/FileLoader.cpp"),
             Object(MatchingFor(JPN, USA, KOR), "Game/System/FileLoaderThread.cpp"),
