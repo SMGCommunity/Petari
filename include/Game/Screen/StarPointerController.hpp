@@ -26,7 +26,7 @@ public:
     void updateDpdInfo();
     void updateAdditionalInfo();
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     void forcePointerOut();
 #endif
 

@@ -58,7 +58,7 @@ void ShockWaveGenerator::exeWait() {
         MR::startBtk(this, "SpinHit");
         MR::setBrkFrameAndStop(this, 0.0f);
         MR::setBtkFrameAndStop(this, 0.0f);
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
         MR::validateClipping(this);
 #endif
     }
@@ -126,14 +126,14 @@ bool ShockWaveGenerator::isPlayerInCameraStartRange() const {
 }
 
 void ShockWaveGenerator::startShockWave() {
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
     MR::invalidateClipping(this);
 #endif
 
     MR::startSound(this, "SE_OJ_SHOCK_WAVE_GENERATE");
     if (mCameraInfo != nullptr) {
         if (isPlayerInCameraStartRange()) {
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
             MR::requestStartDemoWithoutCinemaFrame(this, ::cDemoCameraName, GET_NERVE(ShockWaveGenerator, ShockWaveGeneratorNrvDemoEcho), nullptr);
 #else
             if (MR::tryStartDemoWithoutCinemaFrame(this, ::cDemoCameraName)) {

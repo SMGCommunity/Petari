@@ -125,7 +125,7 @@ void ScenarioSelectLayout::init(const JMapInfoIter& rIter) {
     mBackButton = new BackButton("戻るボタン", false);
     mBackButton->initWithoutIter();
 
-    #if (VERSION == RMGJ01)
+    #if (VERSION == RMGJ01 || VERSION == RMGE01)
     MR::hidePaneRecursive(this, "CometAppear");
     #endif
 

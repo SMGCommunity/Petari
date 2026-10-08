@@ -162,7 +162,7 @@ bool KinopioAstro::eventFunc(u32 letterEvent) {
     } else if (letterEvent == LetterEvent_SendLetter) {
         return sendLetter();
     }
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
     else if (letterEvent == LetterEvent_OnMsgLedPattern) {
         MR::onMsgLedPattern();
         return true;

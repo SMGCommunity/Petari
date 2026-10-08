@@ -24,7 +24,7 @@ void GameSystemFontHolder::createFontFromEmbeddedData() {
 
     MR::getMountedArchiveAndHeap("ErrorMessageArchive.arc", &pArchive, &pHeap);
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     const char* embeddedFontPath = "/LayoutData/EmbeddedFont.arc";
 #else
     char embeddedFontPath[256];

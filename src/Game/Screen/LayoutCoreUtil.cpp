@@ -57,7 +57,7 @@ namespace LayoutCoreUtil {
             setTextBoxMessage(pTextBox, message);
         } else {
             reallocateTextBoxMessage(pTextBox, allocSize - 1);
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
             const wchar_t* message = ::sDefaultMsg;
 #else
             s32 maxNumChars = pTextBox->mSize.width / pTextBox->mFontSize.width;

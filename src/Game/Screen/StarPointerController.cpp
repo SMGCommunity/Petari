@@ -11,7 +11,7 @@ namespace {
 // static const _32 hMarginH =
 // static const _32 hMarginV =
 // static const _32 hForcePointerOutVel =
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     static const s32 hIsOutScreenCounter = 5;
 #else
     static const s32 hIsOutScreenCounter = 35;
@@ -91,7 +91,7 @@ void StarPointerController::updateDpdInfo() {
         vec.x = mInfo.mPos.x;
         vec.y = mInfo.mPos.y;
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
         if (mInfo.mInScreen && 10.0f < mScreenVel.length()) {
             forcePointerOut();
         }
@@ -122,7 +122,7 @@ void StarPointerController::updateAdditionalInfo() {
     MR::normalizeOrZero(&mWorldVel);
 }
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
 void StarPointerController::forcePointerOut() {
     if (!StarPointerFunction::isInScreen(mInfo.mPos, 0.0f, 0.0f)) {
         return;

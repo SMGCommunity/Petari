@@ -269,7 +269,7 @@ void PowerStarList::drawForMessageBoardCapture() {
     MR::addPictureFontTagPlayerIcon(pictureFont);
     MR::setTextBoxMessageRecursive(this, "BlosBase", pictureFont);
 
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
     setTotalPowerStarNumForMessageBoardCapture();
 #endif
 
@@ -701,7 +701,7 @@ void PowerStarList::setSeparatorPaneSize() {
     }
 }
 
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
 void PowerStarList::setTotalPowerStarNumForMessageBoardCapture() {
     wchar_t message[256];
     wchar_t* pMessage;

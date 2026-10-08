@@ -213,7 +213,7 @@ void OSFatal(GXColor fg, GXColor bg, const char* msg) {
     GXAbortFrame();
     OSSetArenaLo((void*)0x81400000);
 
-    #if (VERSION != RMGJ01)
+    #if (VERSION != RMGJ01 && VERSION != RMGE01)
     if (!bootInfo->FSTLocation) {
         OSSetArenaHi(*(void**)OSPhysicalToCached(0x3110));
     }

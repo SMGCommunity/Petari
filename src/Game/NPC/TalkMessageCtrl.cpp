@@ -205,7 +205,7 @@ void TalkMessageCtrl::rootNodePre(bool arg) {
         case TalkMessageCtrl_TypeC:
             cond = MR::isOnMessageAlreadyRead(branch->mNextIdx);
             break;
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
         case TalkMessageCtrl_TypeD:
             cond = MR::isMsgLedPattern();
             break;
@@ -424,7 +424,7 @@ const char* TalkMessageCtrl::getBranchID() const {
     case BranchNode_Type12:
         result = "KnockOnTheDoor";
         break;
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
     case BranchNode_Type13:
         result = "LedPattern";
         break;

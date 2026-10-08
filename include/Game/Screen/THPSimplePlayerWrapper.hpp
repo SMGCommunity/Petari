@@ -64,7 +64,7 @@ public:
     static THPSimplePlayerStaticAudio mStaticAudioPlayer;
 
     // TODO: make proper member names
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     /* 0x008 */ u8 _8;
     /* 0x009 */ u8 _9;
     /* 0x00C */ u32 _C;

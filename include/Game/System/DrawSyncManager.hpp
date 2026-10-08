@@ -65,7 +65,7 @@ public:
     void drawSyncCallbackSub(u16 token);
     void pushBreakPoint();
     
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     void clearSceneCallback();
 #endif
 

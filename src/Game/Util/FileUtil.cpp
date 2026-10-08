@@ -123,7 +123,7 @@ namespace MR {
         SingletonHolder< FileLoader >::get()->getMountedArchiveAndHeap(filePath, ppArchive, ppHeap);
     }
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     void removeFile(const char* pFilePath) {
         SingletonHolder< FileLoader >::get()->removeFile(pFilePath);
     }

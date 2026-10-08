@@ -76,7 +76,7 @@ namespace NrvStarPointerLayout {
 StarPointerLayout::StarPointerLayout(const char* pName)
     : LayoutActor(pName, true), mPosition(0.0f, 0.0f), mPointerKind(StarPointerKind_NULL), mAnimType(AnimType_HandPaa), mTouchTimer(),
       mPadChannel(-1), mRadius(::sNormalRadius), _3C(),
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
       mRotateAngle(),
 #endif
       mDirector(), mBlur(), mCommandStream(), mNumber(), mActor(), mNewTouchedID(), mTouchedID(), mStartTouch(), mStartDisableShoot(), mSingleTouch(),
@@ -585,7 +585,7 @@ void StarPointerLayout::control() {
     }
 
     updateDecoration();
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     rotateTest();
 #endif
     updateTouch();
@@ -628,7 +628,7 @@ void StarPointerLayout::control() {
                 }
                 setNerve(GET_NERVE(StarPointerLayout, HostTypeNrvOutScreen));
 
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
                 MR::tryRumblePadWeak(this, mPadChannel);
 #else
                 rotateTest();
@@ -636,18 +636,18 @@ void StarPointerLayout::control() {
 #endif
             }
             
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
             return;
 #endif
         } else {
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
             rotateTest();
 #endif
             return;
         }
     }
 
-#if (VERSION != RMGJ01)
+#if (VERSION != RMGJ01 && VERSION != RMGE01)
     rotateTest();
 #endif
 
@@ -674,7 +674,7 @@ void StarPointerLayout::setPosition() {
 }
 
 void StarPointerLayout::rotateTest() {
-#if (VERSION == RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01)
     TVec2f horiz;
     MR::getWPad(mPadChannel)->mPointer->getHorizonVec(&horiz);
     f32 angle = MR::normalizeAbs(MR::toDegree(MR::atan2(horiz.y, horiz.x)), ::sDegreeMin, 180.0f);
