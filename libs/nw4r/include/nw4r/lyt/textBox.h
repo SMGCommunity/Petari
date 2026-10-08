@@ -40,7 +40,11 @@ namespace nw4r {
             void SetTextColor(ut::Color, ut::Color);
             void SetFont(const ut::Font*);
             u16 GetStringBufferLength() const;
+            #if (VERSION == RMGJ01)
+            u32 MakeDrawFlag() const NO_INLINE;
+            #else
             u32 MakeDrawFlag() const;
+            #endif
             f32 GetTextMagH() const;
             f32 GetTextMagV() const;
             void SetTextColor(u32, ut::Color);
@@ -91,10 +95,13 @@ namespace nw4r {
             u16 mTextBufBytes;
             u16 mTextLen;
             u8 mTextPosition;
-            struct {
-                u8 bAllocFont : 1;
-                u8 textAlignment : 2;
-            } mBits;
+            union {
+                struct {
+                    u8 bAllocFont : 1;
+                    u8 textAlignment : 2;
+                } mBits;
+                u8 mBitsu8;
+            };
         };
     };  // namespace lyt
 };  // namespace nw4r
