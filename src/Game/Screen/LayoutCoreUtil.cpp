@@ -8,6 +8,8 @@
 #include <cstring>
 #include <revolution/mtx.h>
 
+static const wchar_t sDefaultMsg[] = L"XXXXXXXX";
+
 namespace LayoutCoreUtil {
 
     const char* getPaneUserData(const nw4r::lyt::Pane* pPane, char* pUserData) {
@@ -55,12 +57,16 @@ namespace LayoutCoreUtil {
             setTextBoxMessage(pTextBox, message);
         } else {
             reallocateTextBoxMessage(pTextBox, allocSize - 1);
+#if (VERSION == RMGJ01)
+            const wchar_t* message = ::sDefaultMsg;
+#else
             s32 maxNumChars = pTextBox->mSize.width / pTextBox->mFontSize.width;
-            wchar_t defaultStr[] = L"XXXXXXXX";
+            wchar_t message[] = L"XXXXXXXX";
 
             s32 end = maxNumChars <= 9 ? maxNumChars : 9;
-            defaultStr[end] = L'\0';
-            setTextBoxMessage(pTextBox, defaultStr);
+            message[end] = L'\0';
+#endif
+            setTextBoxMessage(pTextBox, message);
         }
     }
 
