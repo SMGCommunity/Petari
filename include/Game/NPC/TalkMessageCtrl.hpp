@@ -9,6 +9,51 @@ class TalkMessageFuncBase;
 class TalkMessageInfo;
 class TalkNodeCtrl;
 
+enum TalkMessageCtrl_Type {
+    /* 0x0 */ TalkMessageCtrl_Type0,
+    /* 0x1 */ TalkMessageCtrl_Type1,
+    /* 0x2 */ TalkMessageCtrl_Type2,
+    /* 0x3 */ TalkMessageCtrl_Type3,
+    /* 0x4 */ TalkMessageCtrl_Type4,
+    /* 0x5 */ TalkMessageCtrl_Type5,
+    /* 0x6 */ TalkMessageCtrl_Type6,
+    /* 0x7 */ TalkMessageCtrl_Type7,
+    /* 0x8 */ TalkMessageCtrl_Type8,
+    /* 0x9 */ TalkMessageCtrl_Type9,
+    /* 0xA */ TalkMessageCtrl_TypeA,
+    /* 0xB */ TalkMessageCtrl_TypeB,
+    /* 0xC */ TalkMessageCtrl_TypeC,
+#if (VERSION != RMGJ01)
+    /* 0xD */ TalkMessageCtrl_TypeD,
+#endif
+    /* 0xE */ TalkMessageCtrl_TypeE,
+};
+
+enum BranchNode_Type {
+    /* 0x00 */ BranchNode_Type0,
+    /* 0x01 */ BranchNode_Type1,
+    /* 0x02 */ BranchNode_Type2,
+    /* 0x03 */ BranchNode_Type3,
+    /* 0x04 */ BranchNode_Type4,
+    /* 0x05 */ BranchNode_Type5,
+    /* 0x06 */ BranchNode_Type6,
+    /* 0x07 */ BranchNode_Type7,
+    /* 0x08 */ BranchNode_Type8,
+    /* 0x09 */ BranchNode_Type9,
+    /* 0x0A */ BranchNode_TypeA,
+    /* 0x0B */ BranchNode_TypeB,
+    /* 0x0C */ BranchNode_TypeC,
+    /* 0x0D */ BranchNode_TypeD,
+    /* 0x0E */ BranchNode_TypeE,
+    /* 0x0F */ BranchNode_TypeF,
+    /* 0x10 */ BranchNode_Type10,
+    /* 0x11 */ BranchNode_Type11,
+    /* 0x12 */ BranchNode_Type12,
+#if (VERSION != RMGJ01)
+    /* 0x13 */ BranchNode_Type13,
+#endif
+};
+
 class CustomTagArg {
 public:
     enum TagType { Type_Int = 0, Type_Char = 1, Type_Uninitialized = 2 };
