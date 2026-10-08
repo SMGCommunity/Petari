@@ -81,6 +81,10 @@ namespace MR {
     /// @param[out] ppHeap A pointer to the heap pointer to initialize.
     void getMountedArchiveAndHeap(const char* pFilePath, JKRArchive** ppArchive, JKRHeap** ppHeap);
 
+#if (VERSION == RMGJ01)
+    void removeFile(const char*);
+#endif
+
     /// @brief Removes a file from memory, with respect to the current language.
     /// @param[in] pFilePath A pointer to the null-terminated absolute path of the file.
     void removeFileConsideringLanguage(const char* pFilePath);

@@ -2642,7 +2642,7 @@ config.libs = [
             Object(MatchingFor(JPN, KOR), "Game/Util/EffectUtil.cpp"),
             Object(MatchingFor(KOR), "Game/Util/EventUtil.cpp"),
             Object(
-                MatchingFor(KOR), "Game/Util/FileUtil.cpp", cflags=[*cflags_game, "-sym off"]
+                MatchingFor(JPN, KOR), "Game/Util/FileUtil.cpp", cflags=[*cflags_game, "-sym off"]
             ),
             Object(MatchingFor(), "Game/Util/FootPrint.cpp"),
             Object(MatchingFor(JPN, KOR), "Game/Util/FurCtrl.cpp"),
