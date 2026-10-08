@@ -66,7 +66,7 @@ namespace {
     }
 #else
     const GXColor& getTextColor(s32 index) NO_INLINE {
-        return MR::getLanguage() == 0x49 ? ::sTextColorKorean[index] : ::sTextColor[index];
+        return MR::getLanguage() == LANGUAGE_KRKOREAN ? ::sTextColorKorean[index] : ::sTextColor[index];
     }
 #endif
 
@@ -686,7 +686,7 @@ CustomTagProcessor::Operation CustomTagProcessor::exeSystemGroupColor(nw4r::ut::
 }
 
 CustomTagProcessor::Operation CustomTagProcessor::exeSystemGroupRuby(nw4r::ut::Rect* rect, const MessageEditorMessageTag& tag, ContextType* context) {
-    if (MR::getLanguage() != 0x10) {
+    if (MR::getLanguage() != LANGUAGE_JPJAPANESE) {
         return OPERATION_NO_CHAR_SPACE;
     }
 
