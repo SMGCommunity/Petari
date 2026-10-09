@@ -61,13 +61,13 @@ nw4r/db/db_console.cpp:
 
 nw4r/db/db_assert.cpp:
 	.text       start:0x8000B8C4 end:0x8000BBA0
-	.data       start:0x8054EFA0 end:0x8054F000
+	.data       start:0x8054EFA0 end:0x8054F010
 	.sdata      start:0x8069CCA0 end:0x8069CCA8
 	.sbss       start:0x8069E4B8 end:0x8069E4C0
 
 nw4r/math/math_triangular.cpp:
 	.text       start:0x8000BBA0 end:0x8000BC68
-	.data       start:0x8054F000 end:0x80550030
+	.data       start:0x8054F020 end:0x80550030
 	.sdata2     start:0x806A32C0 end:0x806A32C8
 
 nw4r/math/math_types.cpp:
