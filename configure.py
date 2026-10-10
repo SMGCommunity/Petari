@@ -3344,7 +3344,7 @@ config.libs = [
                 "JSystem/J2DGraph/J2DGrafContext.cpp",
                 extra_cflags=["-ipa file", "-sym on"],
             ),
-            Object(MatchingFor(), "JSystem/J2DGraph/J2DOrthoGraph.cpp"),
+            Object(MatchingFor(ALL), "JSystem/J2DGraph/J2DOrthoGraph.cpp"),
             Object(MatchingFor(ALL), "JSystem/J2DGraph/J2DMatBlock.cpp"),
             Object(MatchingFor(), "JSystem/J2DGraph/J2DPane.cpp"),
             Object(MatchingFor(ALL), "JSystem/J2DGraph/J2DScreen.cpp"),
