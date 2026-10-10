@@ -4,32 +4,32 @@
 #include <stdint.h>
 
 typedef struct memRange {
-    u8* start;
-    u8* end;
-    BOOL readable;
-    BOOL writeable;
+    /* 0x0 */ u8* start;
+    /* 0x4 */ u8* end;
+    /* 0x8 */ BOOL readable;
+    /* 0xC */ BOOL writeable;
 } memRange;
 
 const memRange gTRKMemMap[1] = {{(u8*)0, (u8*)-1, TRUE, TRUE}};
 
 typedef struct StopInfo_PPC {
-    u32 PC;
-    u32 PCInstruction;
-    u16 exceptionID;
+    /* 0x0 */ u32 PC;
+    /* 0x4 */ u32 PCInstruction;
+    /* 0x8 */ u16 exceptionID;
 } StopInfo_PPC;
 
 typedef struct TRKExceptionStatus {
-    StopInfo_PPC exceptionInfo;
-    u8 inTRK;
-    u8 exceptionDetected;
+    /* 0x0 */ StopInfo_PPC exceptionInfo;
+    /* 0xC */ u8 inTRK;
+    /* 0xD */ u8 exceptionDetected;
 } TRKExceptionStatus;
 
 typedef struct TRKStepStatus {
-    BOOL active;                // 0x0
-    DSMessageStepOptions type;  // 0x4
-    u32 count;                  // 0x8
-    u32 rangeStart;             // 0xC
-    u32 rangeEnd;               // 0x10
+    /* 0x00 */ BOOL active;
+    /* 0x04 */ DSMessageStepOptions type;
+    /* 0x08 */ u32 count;
+    /* 0x0C */ u32 rangeStart;
+    /* 0x10 */ u32 rangeEnd;
 } TRKStepStatus;
 
 ProcessorRestoreFlags_PPC gTRKRestoreFlags = {FALSE, FALSE};

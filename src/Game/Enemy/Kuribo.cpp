@@ -32,11 +32,11 @@ namespace {
     public:
         KuriboParam();
 
-        WalkerStateParam mStateParam;                 // 0x00
-        WalkerStateStaggerParam mStaggerParam;        // 0x18
-        WalkerStateFindPlayerParam mFindPlayerParam;  // 0x48
-        WalkerStateChaseParam mChaseParam;            // 0x54
-        WalkerStateWanderParam mWanderParam;          // 0x68
+        /* 0x00 */ WalkerStateParam mStateParam;
+        /* 0x18 */ WalkerStateStaggerParam mStaggerParam;
+        /* 0x48 */ WalkerStateFindPlayerParam mFindPlayerParam;
+        /* 0x54 */ WalkerStateChaseParam mChaseParam;
+        /* 0x68 */ WalkerStateWanderParam mWanderParam;
     };
 
     KuriboParam::KuriboParam() {
