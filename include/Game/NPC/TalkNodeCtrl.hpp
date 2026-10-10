@@ -35,7 +35,7 @@ public:
 
 class MessageNode {
 public:
-    const char* mMessage;  // 0x0
+    /* 0x0 */ const char* mMessage;
 };
 
 class TalkNodeCtrl {
@@ -63,11 +63,11 @@ public:
     void createFlowNode(TalkMessageCtrl*, const JMapInfoIter&, const char*, ActorCameraInfo**);
     void initNodeRecursive(TalkMessageCtrl*, const JMapInfoIter&, ActorCameraInfo*, RecursiveHelper*);
 
-    char* _0;
+    /* 0x0 */ char* _0;
     /* 0x4 */ s32 mCurrentNodeIdx;
     /* 0x8 */ TalkMessageInfo mMessageInfo;
     /* 0x14 */ TalkMessageHistory mHistory;
-    TalkNode* _38;
+    /* 0x38 */ TalkNode* _38;
     /* 0x3C */ TalkNode* mCurrentNode;
     /* 0x40 */ TalkNode* mFlowNode;
     /* 0x44 */ s16 mNodeData;

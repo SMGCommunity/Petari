@@ -18,6 +18,6 @@ public:
     virtual bool tryRegisterDemoActor(LiveActor*, const char*, const JMapInfoIter&);
     virtual void registerDemoActor(LiveActor*, const JMapInfoIter&);
 
-    JMapIdInfo* mInfo;       // 0xC
-    LiveActorGroup* mGroup;  // 0x10
+    /* 0x0C */ JMapIdInfo* mInfo;
+    /* 0x10 */ LiveActorGroup* mGroup;
 };

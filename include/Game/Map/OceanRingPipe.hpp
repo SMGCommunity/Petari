@@ -23,15 +23,15 @@ public:
         return (i * _9C) + j;
     }
 
-    const OceanRing* mOceanRing;  // 0x8C
-    bool _90;
-    u32 _94;
-    s32 _98;
-    s32 _9C;
-    TVec3f* _A0;
-    TVec3s* _A4;
-    f32 _A8;
-    f32 _AC;
-    OceanRingPipeInside* mPipeInside;    // 0xB0
-    OceanRingPipeOutside* mPipeOutside;  // 0xB4
+    /* 0x8C */ const OceanRing* mOceanRing;
+    /* 0x90 */ bool _90;
+    /* 0x94 */ u32 _94;
+    /* 0x98 */ s32 _98;
+    /* 0x9C */ s32 _9C;
+    /* 0xA0 */ TVec3f* _A0;
+    /* 0xA4 */ TVec3s* _A4;
+    /* 0xA8 */ f32 _A8;
+    /* 0xAC */ f32 _AC;
+    /* 0xB0 */ OceanRingPipeInside* mPipeInside;
+    /* 0xB4 */ OceanRingPipeOutside* mPipeOutside;
 };

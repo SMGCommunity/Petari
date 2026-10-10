@@ -17,7 +17,7 @@ public:
     void updateSwitch();
     PlanetGravity* getGravity();
 
-    GravityCreator* mGravityCreator;  // 0x8C
+    /* 0x8C */ GravityCreator* mGravityCreator;
 };
 
 namespace MR {

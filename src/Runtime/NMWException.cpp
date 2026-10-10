@@ -2,11 +2,11 @@
 
 class __partial_array_destructor {
 public:
-    void* mArrayStart;       // 0x0
-    size_t mElemSize;        // 0x4
-    size_t mArraySize;       // 0x8
-    ctor_dtor_ptr mDtorPtr;  // 0xC
-    size_t mCurElement;      // 0x10
+    /* 0x00 */ void* mArrayStart;
+    /* 0x04 */ size_t mElemSize;
+    /* 0x08 */ size_t mArraySize;
+    /* 0x0C */ ctor_dtor_ptr mDtorPtr;
+    /* 0x10 */ size_t mCurElement;
 
     __partial_array_destructor(void* arr, unsigned int size, unsigned int count, ctor_dtor_ptr ptr) {
         mArrayStart = arr;

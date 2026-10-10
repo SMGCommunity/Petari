@@ -86,34 +86,34 @@ public:
         return mXanimePlayer;
     }
 
-    XanimeResourceTable* mResourceTable;  // 0x8
-    XanimePlayer* mXanimePlayer;          // 0xC
-    XanimePlayer* mXanimePlayerUpper;     // 0x10
-    u8 _14;
-    u8 _15;
-    u8 _16;
-    f32 _18;
-    f32 _1C;
-    f32 _20;
-    f32 _24;
-    TMtx34f _28;
-    f32 _58;
-    f32 _5C;
-    TVec3f _60;
-    bool _6C;
-    f32 _70;
-    u32 _74;
-    u16 _78;
-    TMtx34f _7C;
-    TMtx34f _AC;
-    TMtx34f _DC;
-    bool _10C;
-    bool _10D;
-    bool mUpperDefaultSet;  // 0x10E
+    /* 0x008 */ XanimeResourceTable* mResourceTable;
+    /* 0x00C */ XanimePlayer* mXanimePlayer;
+    /* 0x010 */ XanimePlayer* mXanimePlayerUpper;
+    /* 0x014 */ u8 _14;
+    /* 0x015 */ u8 _15;
+    /* 0x016 */ u8 _16;
+    /* 0x018 */ f32 _18;
+    /* 0x01C */ f32 _1C;
+    /* 0x020 */ f32 _20;
+    /* 0x024 */ f32 _24;
+    /* 0x028 */ TMtx34f _28;
+    /* 0x058 */ f32 _58;
+    /* 0x05C */ f32 _5C;
+    /* 0x060 */ TVec3f _60;
+    /* 0x06C */ bool _6C;
+    /* 0x070 */ f32 _70;
+    /* 0x074 */ u32 _74;
+    /* 0x078 */ u16 _78;
+    /* 0x07C */ TMtx34f _7C;
+    /* 0x0AC */ TMtx34f _AC;
+    /* 0x0DC */ TMtx34f _DC;
+    /* 0x10C */ bool _10C;
+    /* 0x10D */ bool _10D;
+    /* 0x10E */ bool mUpperDefaultSet;
     /* 0x10F */ bool mCallbackEnded;
-    f32 _110;
-    const char* mCurrBck;  // 0x114
-    f32 _118;
+    /* 0x110 */ f32 _110;
+    /* 0x114 */ const char* mCurrBck;
+    /* 0x118 */ f32 _118;
 
     /* 0x11C */ s32 mCallbackId;
     /* 0x120 */ HashSortTable* mCallbackTable;

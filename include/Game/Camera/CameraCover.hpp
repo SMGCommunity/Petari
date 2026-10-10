@@ -20,11 +20,11 @@ public:
         return _3C;
     }
 
-    TMtx34f _C;
-    volatile s32 _3C;
-    u8 _40;
-    bool _41;
-    u8 _42[2];
-    u32 _44;
-    CaptureScreenActor* mActor;  // 0x48
+    /* 0x0C */ TMtx34f _C;
+    /* 0x3C */ volatile s32 _3C;
+    /* 0x40 */ u8 _40;
+    /* 0x41 */ bool _41;
+    /* 0x42 */ u8 _42[2];
+    /* 0x44 */ u32 _44;
+    /* 0x48 */ CaptureScreenActor* mActor;
 };

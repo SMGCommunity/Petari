@@ -28,9 +28,9 @@ public:
     void exeWait();
     void exeFreeze();
 
-    IceStepNoSlip* mIceStep;  // 0x8C
-    f32 mPipeHeight;          // 0x90
-    MtxPtr mTopMtx;           // 0x94
-    MtxPtr mBottomMtx;        // 0x98
-    TVec3f _9C;
+    /* 0x8C */ IceStepNoSlip* mIceStep;
+    /* 0x90 */ f32 mPipeHeight;
+    /* 0x94 */ MtxPtr mTopMtx;
+    /* 0x98 */ MtxPtr mBottomMtx;
+    /* 0x9C */ TVec3f _9C;
 };

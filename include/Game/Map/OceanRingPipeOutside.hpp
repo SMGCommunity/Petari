@@ -18,10 +18,10 @@ public:
     void loadMaterial() const;
     void sendGD() const;
 
-    const OceanRingPipe* mRingPipe;      // 0x8C
-    f32 mTexU;                           // 0x90
-    JUTTexture* mWaterPipeIndirectTex;   // 0x94
-    JUTTexture* mWaterPipeHighLightTex;  // 0x98
-    u32 mDispListLength;                 // 0x9C
-    u8* mDispList;                       // 0xA0
+    /* 0x8C */ const OceanRingPipe* mRingPipe;
+    /* 0x90 */ f32 mTexU;
+    /* 0x94 */ JUTTexture* mWaterPipeIndirectTex;
+    /* 0x98 */ JUTTexture* mWaterPipeHighLightTex;
+    /* 0x9C */ u32 mDispListLength;
+    /* 0xA0 */ u8* mDispList;
 };

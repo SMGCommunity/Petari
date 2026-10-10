@@ -6,9 +6,9 @@
 class NameObjArchiveListCollector;
 
 struct SoundEffectDataEntry {
-    const char* objectName;  // 0x0
-    const char* soundName;   // 0x4
-    f32 _8;
+    /* 0x0 */ const char* objectName;
+    /* 0x4 */ const char* soundName;
+    /* 0x8 */ f32 _8;
 };
 
 class SimpleMapObj : public MapObjActor {
@@ -69,7 +69,7 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void control();
 
-    TMtx34f _C4;
+    /* 0xC4 */ TMtx34f _C4;
 };
 
 class SimpleMirrorObj : public MapObjActor {
@@ -80,7 +80,7 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void calcAndSetBaseMtx();
 
-    MtxPtr mMtx;  // 0xC4
+    /* 0xC4 */ MtxPtr mMtx;
 };
 
 class SimpleMirrorReflectionObj : public SimpleMapObj {

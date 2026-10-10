@@ -3,10 +3,10 @@
 #include <revolution.h>
 
 struct ResNTAB {
-    u16 mEntryNum;
-    u16 _2;
+    /* 0x0 */ u16 mEntryNum;
+    /* 0x2 */ u16 _2;
 
-    struct Entry {
+    /* 0x4 */ struct Entry {
         u16 mKeyCode;
         u16 mOffs;
     } mEntries[1];
@@ -25,8 +25,8 @@ public:
     const char* getName(u16) const;
     u16 calcKeyCode(const char*) const;
 
-    const ResNTAB* mResource;  // 0x4
-    const char* mStrData;      // 0x8
-    u16 mNameNum;              // 0xC
-    u16 _E;
+    /* 0x4 */ const ResNTAB* mResource;
+    /* 0x8 */ const char* mStrData;
+    /* 0xC */ u16 mNameNum;
+    /* 0xE */ u16 _E;
 };

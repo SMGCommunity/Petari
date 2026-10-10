@@ -40,23 +40,23 @@ public:
     bool isInBeamRange(const TVec3f& rVec) const;
     bool isOnBeam() const;
 
-    MapPartsRailMover* mRailMover;         // 0x8C
-    ModelObj* mBeamBloom;                  // 0x90
-    ModelObj* mBeamMdl;                    // 0x94
-    VolumeModelDrawer* mBeamVolumeDrawer;  // 0x98
-    TPos3f _9C;
-    TQuat4f _CC;
-    TQuat4f _DC;
-    TVec3f _EC;
-    TVec3f _F8;
-    TVec3f _104;
-    TPos3f mWaterSurfaceMtx;  // 0x110
-    TVec3f _140;
-    u32 _14C;
-    u32 _150;
-    u32 _154;
-    u32 _158;
-    f32 _15C;
-    f32 _160;
-    bool mIsInMercatorCube;  // 0x164
+    /* 0x08C */ MapPartsRailMover* mRailMover;
+    /* 0x090 */ ModelObj* mBeamBloom;
+    /* 0x094 */ ModelObj* mBeamMdl;
+    /* 0x098 */ VolumeModelDrawer* mBeamVolumeDrawer;
+    /* 0x09C */ TPos3f _9C;
+    /* 0x0CC */ TQuat4f _CC;
+    /* 0x0DC */ TQuat4f _DC;
+    /* 0x0EC */ TVec3f _EC;
+    /* 0x0F8 */ TVec3f _F8;
+    /* 0x104 */ TVec3f _104;
+    /* 0x110 */ TPos3f mWaterSurfaceMtx;
+    /* 0x140 */ TVec3f _140;
+    /* 0x14C */ u32 _14C;
+    /* 0x150 */ u32 _150;
+    /* 0x154 */ u32 _154;
+    /* 0x158 */ u32 _158;
+    /* 0x15C */ f32 _15C;
+    /* 0x160 */ f32 _160;
+    /* 0x164 */ bool mIsInMercatorCube;
 };

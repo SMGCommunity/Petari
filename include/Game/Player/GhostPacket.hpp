@@ -15,8 +15,8 @@ public:
     void read(TVec3Sc*);
     void read(TVec3s*);
 
-    u32 _0;
-    u8* mDataPtr;  // 0x04
-    u32 mCurOffs;  // 0x08
-    u32 _C;
+    /* 0x0 */ u32 _0;
+    /* 0x4 */ u8* mDataPtr;
+    /* 0x8 */ u32 mCurOffs;
+    /* 0xC */ u32 _C;
 };

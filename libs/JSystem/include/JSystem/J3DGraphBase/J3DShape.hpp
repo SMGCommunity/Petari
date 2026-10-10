@@ -20,8 +20,8 @@ enum J3DShpFlag {
 
 class J3DCurrentMtxInfo {
 public:
-    u32 mMtxIdxRegA;  // 0x00
-    u32 mMtxIdxRegB;  // 0x04
+    /* 0x00 */ u32 mMtxIdxRegA;
+    /* 0x04 */ u32 mMtxIdxRegB;
 };
 
 class J3DCurrentMtx : public J3DCurrentMtxInfo {

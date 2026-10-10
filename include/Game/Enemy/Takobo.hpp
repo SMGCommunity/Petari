@@ -39,22 +39,22 @@ public:
     void endDpdPointed();
     void exeDpdPointed();
 
-    u32 _8C;
-    TVec3f _90;
-    s32 _9C;
-    u8 _A0;
-    u8 _A1;
-    u8 _A2;
-    u8 _A3;
-    TVec3f _A4;
-    TVec3f _B0;
-    bool _BC;
-    f32 _C0;
-    f32 _C4;
-    f32 _C8;
-    f32 _CC;
-    s32 _D0;
-    SpinningBox* mBox;                      // 0xD4
-    AnimScaleController* mScaleController;  // 0xD8
-    SpinHitController* mSpinController;     // 0xDC
+    /* 0x8C */ u32 _8C;
+    /* 0x90 */ TVec3f _90;
+    /* 0x9C */ s32 _9C;
+    /* 0xA0 */ u8 _A0;
+    /* 0xA1 */ u8 _A1;
+    /* 0xA2 */ u8 _A2;
+    /* 0xA3 */ u8 _A3;
+    /* 0xA4 */ TVec3f _A4;
+    /* 0xB0 */ TVec3f _B0;
+    /* 0xBC */ bool _BC;
+    /* 0xC0 */ f32 _C0;
+    /* 0xC4 */ f32 _C4;
+    /* 0xC8 */ f32 _C8;
+    /* 0xCC */ f32 _CC;
+    /* 0xD0 */ s32 _D0;
+    /* 0xD4 */ SpinningBox* mBox;
+    /* 0xD8 */ AnimScaleController* mScaleController;
+    /* 0xDC */ SpinHitController* mSpinController;
 };

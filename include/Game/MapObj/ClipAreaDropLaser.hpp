@@ -17,9 +17,9 @@ public:
     void exeMove();
     void incrementDrawCount();
 
-    TVec3f mPoints[0x40];       // 0x8C
-    f32 mNumPointsToDraw;       // 0x38C
-    int mPointIndexToSkipDraw;  // 0x390
-    int mDrawCount;             // 0x394
-    f32 mSpeed;                 // 0x398
+    /* 0x08C */ TVec3f mPoints[0x40];
+    /* 0x38C */ f32 mNumPointsToDraw;
+    /* 0x390 */ int mPointIndexToSkipDraw;
+    /* 0x394 */ int mDrawCount;
+    /* 0x398 */ f32 mSpeed;
 };

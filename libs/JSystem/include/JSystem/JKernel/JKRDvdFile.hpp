@@ -25,7 +25,7 @@ public:
         return mIsAvailable;
     }
 
-    bool mIsAvailable;  // 0x18
+    /* 0x18 */ bool mIsAvailable;
 };
 
 class JKRDvdFile : public JKRFile {

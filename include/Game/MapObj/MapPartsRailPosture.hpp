@@ -18,6 +18,6 @@ public:
     void exeDoNothing();
     void exeMove();
 
-    TPos3f _18;
-    s32 mMovePosture;  // 0x48
+    /* 0x18 */ TPos3f _18;
+    /* 0x48 */ s32 mMovePosture;
 };

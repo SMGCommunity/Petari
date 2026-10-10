@@ -36,11 +36,11 @@ void __OSEnableBarnacle(s32, u32);
 /* exi2 */
 
 typedef struct EXIChannelParam {
-    u32 cpr;     // 0x0
-    void* mar;   // 0x4
-    u32 length;  // 0x8
-    u32 cr;      // 0xC
-    u32 data;    // 0x10
+    /* 0x00 */ u32 cpr;
+    /* 0x04 */ void* mar;
+    /* 0x08 */ u32 length;
+    /* 0x0C */ u32 cr;
+    /* 0x10 */ u32 data;
 } EXIChannelParam;
 
 #ifdef __MWERKS__

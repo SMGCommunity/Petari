@@ -17,7 +17,7 @@ namespace {
     public:
         AnimScaleDefaultParam();
 
-        AnimScaleParam tightParam;  // 0x34;
+        /* 0x34 */ AnimScaleParam tightParam;
     };
 
     AnimScaleDefaultParam::AnimScaleDefaultParam() {
@@ -189,4 +189,4 @@ void AnimScaleController::updateScale(f32 f1, f32 f2) {
     _C.z = _C.x;
 }
 
-AnimScaleController::~AnimScaleController(){};
+AnimScaleController::~AnimScaleController() {};

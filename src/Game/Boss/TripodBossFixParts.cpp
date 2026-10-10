@@ -21,8 +21,8 @@ namespace NrvTripodBossFixParts {
 };  // namespace NrvTripodBossFixParts
 
 struct TripodBossSetting {
-    const char* mPartName;  // 0x00
-    s32 mType;              // 0x04
+    /* 0x0 */ const char* mPartName;
+    /* 0x4 */ s32 mType;
 };
 
 namespace {

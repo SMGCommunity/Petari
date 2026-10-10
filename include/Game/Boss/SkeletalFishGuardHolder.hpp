@@ -26,10 +26,10 @@ public:
     void appearGuard(s32, s32);
     void createAndInitGuard();
 
-    SkeletalFishBoss* mFishBoss;      // 0xC
-    SkeletalFishBossRail* mBossRail;  // 0x10
-    s32 mNumGuards;                   // 0x14
-    SkeletalFishGuard** mGuards;      // 0x18
-    f32 _1C;
-    u8 _20;
+    /* 0x0C */ SkeletalFishBoss* mFishBoss;
+    /* 0x10 */ SkeletalFishBossRail* mBossRail;
+    /* 0x14 */ s32 mNumGuards;
+    /* 0x18 */ SkeletalFishGuard** mGuards;
+    /* 0x1C */ f32 _1C;
+    /* 0x20 */ u8 _20;
 };

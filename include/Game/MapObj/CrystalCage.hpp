@@ -26,25 +26,25 @@ public:
     void exeBreak();
     void exeBreakAfter();
 
-    s32 mCrystalCageType;  // 0x8C
-    ModelObj* mBreakObj;   // 0x90
-    TPos3f _94;
-    s32 _C4;
-    s32 _C8;
-    RumbleCalculatorCosMultLinear* mRumbleCalc;  // 0xCC
-    TVec3f _D0;
-    TVec3f _DC;
-    TVec3f _E8;
-    DummyDisplayModel* mDisplayModel;  // 0xF4
-    TVec3f _F8;
-    bool _104;
-    u8 _105;
-    u8 _106;
-    u8 _107;
-    s32 _108;
-    bool mIsBreakObjVisible;  // 0x10C
-    bool mPlayRiddleSFX;      // 0x10D
-    bool mHasBinding;         // 0x10E
-    u8 _10F;
-    TVec3f _110;
+    /* 0x08C */ s32 mCrystalCageType;
+    /* 0x090 */ ModelObj* mBreakObj;
+    /* 0x094 */ TPos3f _94;
+    /* 0x0C4 */ s32 _C4;
+    /* 0x0C8 */ s32 _C8;
+    /* 0x0CC */ RumbleCalculatorCosMultLinear* mRumbleCalc;
+    /* 0x0D0 */ TVec3f _D0;
+    /* 0x0DC */ TVec3f _DC;
+    /* 0x0E8 */ TVec3f _E8;
+    /* 0x0F4 */ DummyDisplayModel* mDisplayModel;
+    /* 0x0F8 */ TVec3f _F8;
+    /* 0x104 */ bool _104;
+    /* 0x105 */ u8 _105;
+    /* 0x106 */ u8 _106;
+    /* 0x107 */ u8 _107;
+    /* 0x108 */ s32 _108;
+    /* 0x10C */ bool mIsBreakObjVisible;
+    /* 0x10D */ bool mPlayRiddleSFX;
+    /* 0x10E */ bool mHasBinding;
+    /* 0x10F */ u8 _10F;
+    /* 0x110 */ TVec3f _110;
 };

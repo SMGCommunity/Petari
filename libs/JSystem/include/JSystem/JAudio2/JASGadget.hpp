@@ -19,8 +19,8 @@ public:
         return mData;
     }
 
-    /* 0x00 */ JASPtrListAdaptor< T >* mNext;
-    /* 0x04 */ T* mData;
+    /* 0x0 */ JASPtrListAdaptor< T >* mNext;
+    /* 0x4 */ T* mData;
 };
 
 template < typename T >
@@ -42,7 +42,7 @@ public:
         return mList;
     }
 
-    /* 0x00 */ JASPtrListAdaptor< T >* mList;
+    /* 0x0 */ JASPtrListAdaptor< T >* mList;
 };
 
 template < typename T >
@@ -64,8 +64,8 @@ public:
         mPtrTable[idx] = value;
     }
 
-    T** mPtrTable;  // 0x0
-    u32 mLen;       // 0x4
+    /* 0x0 */ T** mPtrTable;
+    /* 0x4 */ u32 mLen;
 };
 
 template < typename T, u32 LEN >
@@ -74,5 +74,5 @@ public:
     JASPtrArray() : JASPtrTable(mPtrArray, LEN) {
     }
 
-    T* mPtrArray[LEN];  // 0x8
+    /* 0x8 */ T* mPtrArray[LEN];
 };

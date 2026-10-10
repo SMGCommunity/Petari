@@ -31,5 +31,5 @@ public:
         return mState & state;
     }
 
-    bool mState;  // 0x4
+    /* 0x4 */ bool mState;
 };

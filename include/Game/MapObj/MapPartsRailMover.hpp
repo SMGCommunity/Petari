@@ -48,15 +48,15 @@ public:
     void exeStopAtEndWithPlayerOn();
     void exeRotateAtEndPoint();
 
-    MapPartsRailPointPassChecker* mRailPointPassChecker;  // 0x18
-    s32 mMoveConditionType;                               // 0x1C
-    s32 mMoveStopType;                                    // 0x20
-    s32 mSignMotionType;                                  // 0x24
-    TVec3f _28;
-    f32 _34;
-    s32 mStopTime;      // 0x38
-    f32 mSpeed;         // 0x3C
-    s32 mAccelTime;     // 0x40
-    f32 mAcceleration;  // 0x44
-    f32 _48;
+    /* 0x18 */ MapPartsRailPointPassChecker* mRailPointPassChecker;
+    /* 0x1C */ s32 mMoveConditionType;
+    /* 0x20 */ s32 mMoveStopType;
+    /* 0x24 */ s32 mSignMotionType;
+    /* 0x28 */ TVec3f _28;
+    /* 0x34 */ f32 _34;
+    /* 0x38 */ s32 mStopTime;
+    /* 0x3C */ f32 mSpeed;
+    /* 0x40 */ s32 mAccelTime;
+    /* 0x44 */ f32 mAcceleration;
+    /* 0x48 */ f32 _48;
 };

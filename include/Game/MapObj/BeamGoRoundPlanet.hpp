@@ -16,9 +16,9 @@ public:
     virtual void updateHitSensor(HitSensor*);
     virtual void attackSensor(HitSensor*, HitSensor*);
 
-    VolumeModelDrawer* mModelDrawer;  // 0x8C
-    ModelObj* mBloomModel;            // 0x90
-    MtxPtr mBeamJointMtx;             // 0x94
+    /* 0x8C */ VolumeModelDrawer* mModelDrawer;
+    /* 0x90 */ ModelObj* mBloomModel;
+    /* 0x94 */ MtxPtr mBeamJointMtx;
 };
 
 class BeamGoRoundPlanet : public MapObjActor {
@@ -32,7 +32,7 @@ public:
     void initBeam();
     void exeWait();
 
-    BeamGoRoundBeam** mBeams;  // 0xC4
-    CollisionParts* _C8;
-    CollisionParts* _CC;
+    /* 0xC4 */ BeamGoRoundBeam** mBeams;
+    /* 0xC8 */ CollisionParts* _C8;
+    /* 0xCC */ CollisionParts* _CC;
 };

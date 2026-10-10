@@ -54,13 +54,13 @@ public:
     void addVelocityKeepHeight();
 
 private:
-    GroundChecker* mGroundChecker;                        // 0x8C
-    AnimScaleController* mScaleController;                // 0x90
-    JointControlDelegator< PunchingKinoko >* mDelegator;  // 0x94
-    s32 _98;
-    TVec3f _9C;
-    TVec3f _A8;
-    s32 mStarPointerHitCoolDown;  // 0xB4
-    bool _B8;
-    s32 mInvincibleHitCoolDown;  // 0xBC
+    /* 0x8C */ GroundChecker* mGroundChecker;
+    /* 0x90 */ AnimScaleController* mScaleController;
+    /* 0x94 */ JointControlDelegator< PunchingKinoko >* mDelegator;
+    /* 0x98 */ s32 _98;
+    /* 0x9C */ TVec3f _9C;
+    /* 0xA8 */ TVec3f _A8;
+    /* 0xB4 */ s32 mStarPointerHitCoolDown;
+    /* 0xB8 */ bool _B8;
+    /* 0xBC */ s32 mInvincibleHitCoolDown;
 };

@@ -11,6 +11,6 @@ public:
 
     void setCurrentSceneControllerState(const char*, ...);
 
-    char mState[0x40];  // 0x14
-    u32 _54;
+    /* 0x14 */ char mState[0x40];
+    /* 0x54 */ u32 _54;
 };

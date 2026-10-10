@@ -19,5 +19,5 @@ public:
     bool tryEndShow();
     void setPosition();
 
-    TVec2f mFollowPosition;  // 0x20
+    /* 0x20 */ TVec2f mFollowPosition;
 };

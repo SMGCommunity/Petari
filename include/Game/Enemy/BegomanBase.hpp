@@ -99,28 +99,28 @@ public:
     bool incAndCheckTiredCounter();
     bool isInWaterAndSetWaterNerve(const Nerve*, TPos3f*);
 
-    JointControlDelegator< BegomanBase >* mBaseDelegator;  // _8C
+    /* 0x8C */ JointControlDelegator< BegomanBase >* mBaseDelegator;
 
-    TVec3f mFaceVec;    // 0x90
-    TVec3f mTargetVec;  // 0x9C
+    /* 0x90 */ TVec3f mFaceVec;
+    /* 0x9C */ TVec3f mTargetVec;
 
-    TVec3f _A8;
-    TVec3f _B4;
+    /* 0xA8 */ TVec3f _A8;
+    /* 0xB4 */ TVec3f _B4;
 
-    TQuat4f _C0;
-    TQuat4f _D0;
+    /* 0xC0 */ TQuat4f _C0;
+    /* 0xD0 */ TQuat4f _D0;
 
-    s32 mTiredCounter;     // _E0
-    s32 mElectricCounter;  //_E4
+    /* 0xE0 */ s32 mTiredCounter;
+    /* 0xE4 */ s32 mElectricCounter;
 
-    TVec3f mInitPos;  //_E8
+    /* 0xE8 */ TVec3f mInitPos;
 
-    AnimScaleController* mScaleControler;
-    WalkerStateBindStarPointer* mStarPointBind;
+    /* 0xF4 */ AnimScaleController* mScaleControler;
+    /* 0xF8 */ WalkerStateBindStarPointer* mStarPointBind;
 
-    bool mIsTouchElectricRail;
-    bool mCanTrySetReturn;
-    bool mInvertSideVec;
+    /* 0xFC */ bool mIsTouchElectricRail;
+    /* 0xFD */ bool mCanTrySetReturn;
+    /* 0xFE */ bool mInvertSideVec;
 };
 
 class BegomanAttackPermitter : public LiveActor {
@@ -136,10 +136,10 @@ public:
     void exeReceive();
     inline void exePermit();
 
-    BegomanBase* _8C;
-    BegomanBase* mBegoman;
+    /* 0x8C */ BegomanBase* _8C;
+    /* 0x90 */ BegomanBase* mBegoman;
 
-    f32 mDistToPlayer;
+    /* 0x94 */ f32 mDistToPlayer;
 
-    bool _98;
+    /* 0x98 */ bool _98;
 };

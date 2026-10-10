@@ -1,8 +1,8 @@
 #pragma once
 
 #include "nw4r/lyt/types.h"
-#include <revolution/tpl.h>
 #include <revolution.h>
+#include <revolution/tpl.h>
 
 namespace nw4r {
     namespace lyt {
@@ -166,27 +166,27 @@ namespace nw4r {
                 return Size(mWidth, mHeight);
             }
 
-            void* mImage;      // 0x00
-            void* mPalette;    // 0x04
-            u16 mWidth;        // 0x08
-            u16 mHeight;       // 0x0A
-            f32 mMinLOD;       // 0x0C
-            f32 mMaxLOD;       // 0x10
-            u16 mLODBias;      // 0x14
-            u16 mPltEntryNum;  // 0x16
+            /* 0x00 */ void* mImage;
+            /* 0x04 */ void* mPalette;
+            /* 0x08 */ u16 mWidth;
+            /* 0x0A */ u16 mHeight;
+            /* 0x0C */ f32 mMinLOD;
+            /* 0x10 */ f32 mMaxLOD;
+            /* 0x14 */ u16 mLODBias;
+            /* 0x16 */ u16 mPltEntryNum;
 
-            struct {
-                u32 textureFormat : 4;
-                u32 mipmap : 1;
-                u32 wrapS : 2;
-                u32 wrapT : 2;
-                u32 minFilter : 3;
-                u32 magFilter : 1;
-                u32 biasClampEnable : 1;
-                u32 edgeLODEnable : 1;
-                u32 anisotropy : 2;
-                u32 paletteFormat : 2;
-            } mBits;  // 0x18
+            /* 0x18 */ struct {
+                /* 0x18 */ u32 textureFormat : 4;
+                /* 0x1C */ u32 mipmap : 1;
+                /* 0x20 */ u32 wrapS : 2;
+                /* 0x24 */ u32 wrapT : 2;
+                /* 0x28 */ u32 minFilter : 3;
+                /* 0x2C */ u32 magFilter : 1;
+                /* 0x30 */ u32 biasClampEnable : 1;
+                /* 0x34 */ u32 edgeLODEnable : 1;
+                /* 0x38 */ u32 anisotropy : 2;
+                /* 0x3C */ u32 paletteFormat : 2;
+            } mBits;
         };
     };  // namespace lyt
 };  // namespace nw4r

@@ -9,7 +9,7 @@ public:
 
     void init();
 
-    TVec3f mGravityVector;            // 0x0
-    s32 mLargestPriority;             // 0xC
-    PlanetGravity* mGravityInstance;  // 0x10
+    /* 0x00 */ TVec3f mGravityVector;
+    /* 0x0C */ s32 mLargestPriority;
+    /* 0x10 */ PlanetGravity* mGravityInstance;
 };

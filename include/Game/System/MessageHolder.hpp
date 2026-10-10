@@ -7,29 +7,29 @@ class TalkMessageInfo;
 class TalkNode;
 
 struct MessageInfoBlock {
-    u32 mMagic;
-    u32 mBlockSize;
-    u16 mItemCount;
-    u16 mItemSize;
-    u32 _C;
+    /* 0x0 */ u32 mMagic;
+    /* 0x4 */ u32 mBlockSize;
+    /* 0x8 */ u16 mItemCount;
+    /* 0xA */ u16 mItemSize;
+    /* 0xC */ u32 _C;
 };
 
 struct MessageDataBlock {
-    u32 mMagic;
-    u32 mBlockSize;
+    /* 0x0 */ u32 mMagic;
+    /* 0x4 */ u32 mBlockSize;
 };
 
 struct MessageFlowBlock {
-    u32 mMagic;
-    u32 mBlockSize;
-    u16 mNodeCount;
-    u16 _A;
-    u32 _C;
+    /* 0x0 */ u32 mMagic;
+    /* 0x4 */ u32 mBlockSize;
+    /* 0x8 */ u16 mNodeCount;
+    /* 0xA */ u16 _A;
+    /* 0xC */ u32 _C;
 };
 
 struct MessageFLI1Block {
-    u32 mMagic;
-    u32 mBlockSize;
+    /* 0x0 */ u32 mMagic;
+    /* 0x4 */ u32 mBlockSize;
 };
 
 class MessageData {
@@ -45,14 +45,14 @@ public:
     u8* getMessageInfoTool(int) const;
     s32 findMessageIndex(const char*) const;
 
-    JMapInfo* mIDTable;            // 0x0
-    MessageInfoBlock* mInfoBlock;  // 0x4
-    MessageDataBlock* mDataBlock;  // 0x8
-    u32 _C;
-    MessageFlowBlock* mFlowBlock;  // 0x10
-    u16* _14;
-    u8* _18;
-    MessageFLI1Block* mFLI1Block;  // 0x1C
+    /* 0x00 */ JMapInfo* mIDTable;
+    /* 0x04 */ MessageInfoBlock* mInfoBlock;
+    /* 0x08 */ MessageDataBlock* mDataBlock;
+    /* 0x0C */ u32 _C;
+    /* 0x10 */ MessageFlowBlock* mFlowBlock;
+    /* 0x14 */ u16* _14;
+    /* 0x18 */ u8* _18;
+    /* 0x1C */ MessageFLI1Block* mFLI1Block;
 };
 
 class MessageHolder {

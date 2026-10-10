@@ -192,9 +192,9 @@ public:
     static void setAltAramStartAdr(u32);
     static u32 getAltAramStartAdr();
 
-    static JKRHeap* sGameHeap;     // 0x806B70A8
-    static JKRHeap* sCurrentHeap;  // 0x806B70AC
-    static JKRHeap* sRootHeap;     // 0x806B70B0
+    /* 0x806B70A8 */ static JKRHeap* sGameHeap;
+    /* 0x806B70AC */ static JKRHeap* sCurrentHeap;
+    /* 0x806B70B0 */ static JKRHeap* sRootHeap;
     static JKRHeap* sSystemHeap;
 
     static JKRErrorHandler mErrorHandler;
@@ -217,14 +217,14 @@ public:
     /* 0x30 */ u8* mStart;
     /* 0x34 */ u8* mEnd;
     /* 0x38 */ u32 mSize;
-    u8 _3C;
-    u8 _3D;
-    u8 _3E;
-    u8 _3F;
+    /* 0x3C */ u8 _3C;
+    /* 0x3D */ u8 _3D;
+    /* 0x3E */ u8 _3E;
+    /* 0x3F */ u8 _3F;
     /* 0x40 */ JSUTree< JKRHeap > mChildTree;
     /* 0x5C */ JSUList< JKRDisposer > mDisposerList;
     /* 0x68 */ bool mErrorFlag;
-    u8 _69;
+    /* 0x69 */ u8 _69;
 };
 
 #ifdef __MWERKS__

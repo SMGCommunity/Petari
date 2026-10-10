@@ -16,6 +16,6 @@ public:
     void exeMoveB();
     void exeWait();
 
-    CollisionParts* _8C;
-    s32 mIsNutShipBridge;  // 0x90
+    /* 0x8C */ CollisionParts* _8C;
+    /* 0x90 */ s32 mIsNutShipBridge;
 };

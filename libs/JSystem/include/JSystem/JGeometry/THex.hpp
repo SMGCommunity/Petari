@@ -11,7 +11,7 @@ namespace JGeometry {
 
         bool mayIntersectBall3(const TVec3f& rVec, f32 a2) const;
 
-        TPartition3< f32 > mPlanes[0x6];  // 0x0
+        /* 0x0 */ TPartition3< f32 > mPlanes[0x6];
     };
 
     template < typename T >

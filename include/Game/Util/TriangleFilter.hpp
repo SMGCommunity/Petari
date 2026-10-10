@@ -12,7 +12,7 @@ public:
 
     virtual bool isInvalidTriangle(const Triangle*) const = 0;
 
-    //    TriangleFunc mFunction; // 0x4
+    //  /* 0x4 */ TriangleFunc mFunction;
 };
 
 class TriangleFilterFunc : public TriangleFilterBase {

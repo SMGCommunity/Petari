@@ -10,8 +10,8 @@ namespace JGeometry {
 
         void set(const TVec3< T >& rNormal, const TVec3< T >& rPoint);
 
-        TVec3< T > mNormal;  // 0x0
-        T mDot;              // 0xC
+        /* 0x0 */ TVec3< T > mNormal;
+        /* 0xC */ T mDot;
     };
 
     template < typename T >

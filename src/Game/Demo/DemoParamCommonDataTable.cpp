@@ -3,10 +3,10 @@
 
 namespace {
     struct Param {
-        const char* mParamName;     // 0x0
-        f32 mCameraShakeIntensity;  // 0x4
-        f32 mCameraShakeSpeed;      // 0x8
-        const char* pRumbleName;    // 0xC
+        /* 0x0 */ const char* mParamName;
+        /* 0x4 */ f32 mCameraShakeIntensity;
+        /* 0x8 */ f32 mCameraShakeSpeed;
+        /* 0xC */ const char* pRumbleName;
     };
 
     const Param sDataTable[] = {

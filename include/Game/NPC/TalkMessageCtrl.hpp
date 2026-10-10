@@ -69,8 +69,8 @@ public:
     }
 
     union {
-        int mIntArg;
-        const wchar_t* mCharArg;
+        /* 0x0 */ int mIntArg;
+        /* 0x0 */ const wchar_t* mCharArg;
     };
 
     /* 0x4 */ TagType mArgType;
@@ -120,25 +120,25 @@ public:
     void startCamera(s32);
     const char* getBranchID() const;
 
-    LiveActor* mHostActor;    // 0xC
-    TalkNodeCtrl* mNodeCtrl;  // 0x10
-    s32 mZoneID;              // 0x14
-    u32 _18;
-    TVec3f _1C;
-    MtxPtr mMtx;                   // 0x28
-    TVec3f mMsgBalloonFollowOffs;  // 0x2C
-    f32 mTalkDistance;             // 0x38
-    u32 _3C;
-    u32 mAlreadyDoneFlags;             // 0x40
-    bool mIsOnRootNodeAuto;            // 0x44
-    bool mIsOnReadNodeAuto;            // 0x45
-    bool mIsStartOnlyFront;            // 0x46
-    ActorCameraInfo* mCameraInfo;      // 0x48
-    TalkMessageFuncBase* mBranchFunc;  // 0x4C
-    TalkMessageFuncBase* mEventFunc;   // 0x50
-    TalkMessageFuncBase* mAnimeFunc;   // 0x54
-    TalkMessageFuncBase* mKillFunc;    // 0x58
-    CustomTagArg mTagArg;              // 0x5C
+    /* 0x0C */ LiveActor* mHostActor;
+    /* 0x10 */ TalkNodeCtrl* mNodeCtrl;
+    /* 0x14 */ s32 mZoneID;
+    /* 0x18 */ u32 _18;
+    /* 0x1C */ TVec3f _1C;
+    /* 0x28 */ MtxPtr mMtx;
+    /* 0x2C */ TVec3f mMsgBalloonFollowOffs;
+    /* 0x38 */ f32 mTalkDistance;
+    /* 0x3C */ u32 _3C;
+    /* 0x40 */ u32 mAlreadyDoneFlags;
+    /* 0x44 */ bool mIsOnRootNodeAuto;
+    /* 0x45 */ bool mIsOnReadNodeAuto;
+    /* 0x46 */ bool mIsStartOnlyFront;
+    /* 0x48 */ ActorCameraInfo* mCameraInfo;
+    /* 0x4C */ TalkMessageFuncBase* mBranchFunc;
+    /* 0x50 */ TalkMessageFuncBase* mEventFunc;
+    /* 0x54 */ TalkMessageFuncBase* mAnimeFunc;
+    /* 0x58 */ TalkMessageFuncBase* mKillFunc;
+    /* 0x5C */ CustomTagArg mTagArg;
 };
 
 class TalkFunction {

@@ -8,8 +8,8 @@ struct ResFONT {};
 class JUTFont {
 public:
     struct TWidth {
-        u8 _0;
-        u8 _1;
+        /* 0x0 */ u8 _0;
+        /* 0x1 */ u8 _1;
     };
 
     virtual ~JUTFont();
@@ -47,11 +47,11 @@ public:
         return static_cast< int >(drawString_size_scale(posX, posY, width, height, str, strlen(str), visible));
     }
 
-    bool mValid;               // 0x04
-    bool mFixed;               // 0x05
-    int mFixedWidth;           // 0x08
-    JUtility::TColor mColor1;  // 0x0C
-    JUtility::TColor mColor2;  // 0x10
-    JUtility::TColor mColor3;  // 0x14
-    JUtility::TColor mColor4;  // 0x18
+    /* 0x04 */ bool mValid;
+    /* 0x05 */ bool mFixed;
+    /* 0x08 */ int mFixedWidth;
+    /* 0x0C */ JUtility::TColor mColor1;
+    /* 0x10 */ JUtility::TColor mColor2;
+    /* 0x14 */ JUtility::TColor mColor3;
+    /* 0x18 */ JUtility::TColor mColor4;
 };

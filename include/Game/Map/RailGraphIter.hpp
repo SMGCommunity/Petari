@@ -27,9 +27,9 @@ public:
     RailGraphEdge* getCurrentEdge() const;
     RailGraphEdge* getWatchEdge() const;
 
-    const RailGraph* mGraph;  // 0x0
-    s32 _4;
-    s32 mSelectedEdge;  // 0x8
-    s32 mNextEdge;      // 0xC
-    s32 _10;
+    /* 0x00 */ const RailGraph* mGraph;
+    /* 0x04 */ s32 _4;
+    /* 0x08 */ s32 mSelectedEdge;
+    /* 0x0C */ s32 mNextEdge;
+    /* 0x10 */ s32 _10;
 };

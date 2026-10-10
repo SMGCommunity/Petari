@@ -35,9 +35,9 @@ public:
 
     void init(const void*);
 
-    u32 mVersion;  // 0x4
-    u8* _8;
-    JMapInfo mMapInfo;      // 0xC
-    JMapInfoIter mMapIter;  // 0x14
-    u8 _1C[0x10];
+    /* 0x04 */ u32 mVersion;
+    /* 0x08 */ u8* _8;
+    /* 0x0C */ JMapInfo mMapInfo;
+    /* 0x14 */ JMapInfoIter mMapIter;
+    /* 0x1C */ u8 _1C[0x10];
 };

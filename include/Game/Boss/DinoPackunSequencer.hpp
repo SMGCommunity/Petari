@@ -10,7 +10,8 @@ class DinoPackunSequencer : public NerveExecutor {
 public:
     DinoPackunSequencer(const char*, DinoPackun*);
 
-    virtual ~DinoPackunSequencer() {}
+    virtual ~DinoPackunSequencer() {
+    }
 
     virtual void start() {
         return;
@@ -34,6 +35,6 @@ public:
     virtual bool receiveMsgPlayerAttackTail(u32, HitSensor*, HitSensor*);
     virtual bool receiveOtherMsgTail(u32, HitSensor*, HitSensor*);
 
-    DinoPackun* mParent;               // 0x8
-    DinoPackunAction* mCurrentAction;  // 0xC
+    /* 0x8 */ DinoPackun* mParent;
+    /* 0xC */ DinoPackunAction* mCurrentAction;
 };

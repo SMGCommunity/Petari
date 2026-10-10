@@ -22,8 +22,8 @@ public:
     bool open(void*, unsigned long, JKRMemBreakFlag);
     static s32 fetchResource_subroutine(unsigned char*, unsigned long, unsigned char*, unsigned long, int);
 
-    RarcHeader* mHeader;  // 0x64
-    u8* mFileDataStart;   // 0x68
-    bool _6C;
-    u8 _6D[3];
+    /* 0x64 */ RarcHeader* mHeader;
+    /* 0x68 */ u8* mFileDataStart;
+    /* 0x6C */ bool _6C;
+    /* 0x6D */ u8 _6D[3];
 };

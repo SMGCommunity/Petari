@@ -18,8 +18,8 @@ public:
     s32 calcNoRescuedCount() const;
     void startAppearPowerStar();
 
-    StrayTico** mStrayTicos;  // 0x8C
-    s32 mTicoNum;             // 0x90
-    TVec3f _94;
-    u8 _A0;
+    /* 0x8C */ StrayTico** mStrayTicos;
+    /* 0x90 */ s32 mTicoNum;
+    /* 0x94 */ TVec3f _94;
+    /* 0xA0 */ u8 _A0;
 };

@@ -17,6 +17,6 @@ public:
     void exeOpen();
     void exeWaitAfterOpen();
 
-    LodCtrl* mPlanetLODCtrl;          // 0x8C
-    CollisionParts* mCollisionParts;  // 0x90
+    /* 0x8C */ LodCtrl* mPlanetLODCtrl;
+    /* 0x90 */ CollisionParts* mCollisionParts;
 };

@@ -1,13 +1,13 @@
 #include "ansi_fp.h"
-#include "stdio_api.h"
-#include "va_list.h"
-#include "wmem.h"
-#include "wstring.h"
 #include "cmath"
 #include "cstdarg"
 #include "cstdlib"
 #include "cwctype"
+#include "stdio_api.h"
+#include "va_list.h"
 #include "wchar_t.h"
+#include "wmem.h"
+#include "wstring.h"
 
 #pragma exceptions on
 
@@ -50,20 +50,20 @@ enum argument_options {
 };
 
 typedef struct {
-    unsigned char justification_options;  // 0x0
-    unsigned char sign_options;           // 0x1
-    unsigned char precision_specified;    // 0x2
-    unsigned char alternate_form;         // 0x3
-    unsigned char argument_options;       // 0x4
-    wchar_t conversion_char;              // 0x5
-    int field_width;                      // 0x8
-    int precision;                        // 0xC
+    /* 0x0 */ unsigned char justification_options;
+    /* 0x1 */ unsigned char sign_options;
+    /* 0x2 */ unsigned char precision_specified;
+    /* 0x3 */ unsigned char alternate_form;
+    /* 0x4 */ unsigned char argument_options;
+    /* 0x5 */ wchar_t conversion_char;
+    /* 0x8 */ int field_width;
+    /* 0xC */ int precision;
 } print_format;
 
 typedef struct {
-    char* CharStr;
-    size_t MaxCharCount;
-    size_t CharsWritten;
+    /* 0x0 */ char* CharStr;
+    /* 0x4 */ size_t MaxCharCount;
+    /* 0x8 */ size_t CharsWritten;
 } __OutStrCtrl;
 
 /*static*/ const wchar_t* parse_format(const wchar_t* format_string, va_list* arg, print_format* format) {
