@@ -11,7 +11,7 @@ mw_comment_version: 14
 extract:
 - symbol: cErrorArchive
   binary: assets/ErrorArchive.arc
-  header: assets/ErrorArchive.h
+  header: assets/ErrorArchive.hpp
 
 
 

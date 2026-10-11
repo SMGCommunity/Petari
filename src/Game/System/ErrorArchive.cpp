@@ -1,2 +1,2 @@
 #include "Game/System/ErrorArchive.hpp"
-#include "assets/ErrorArchive.h"
+#include "assets/ErrorArchive.hpp"
