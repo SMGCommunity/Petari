@@ -26,7 +26,7 @@ SRCS := \
 	$(ROOT)/src/JSystem/JMath/JMATrigonometric.cpp \
 	$(ROOT)/src/JSystem/JMath/random.cpp
 
-LOCAL_SRCS := source/main.cpp
+LOCAL_SRCS := source/main.cpp source/petari_test.cpp source/rvl_stubs.cpp
 
 INCLUDE := \
 	-I$(CTRULIB)/include \
@@ -50,6 +50,10 @@ LDFLAGS  := -specs=3dsx.specs -g $(ARCH) -Wl,--gc-sections
 LIBS     := -L$(CTRULIB)/lib -lcitro3d -lctru -lm
 
 OBJS := $(patsubst %.cpp,$(BUILD)/%.o,$(subst ../,up/,$(SRCS)) $(LOCAL_SRCS))
+
+# main.cpp must NOT see the Petari/MSL headers (they shadow devkitARM libc headers and break <3ds.h>).
+PLAIN_CXXFLAGS := -g -O2 -Wall $(ARCH) -mword-relocations -ffunction-sections -fdata-sections -D__3DS__ -I$(CTRULIB)/include -std=gnu++14
+$(BUILD)/source/main.o: CXXFLAGS := $(PLAIN_CXXFLAGS)
 
 all: $(TARGET).3dsx
 
