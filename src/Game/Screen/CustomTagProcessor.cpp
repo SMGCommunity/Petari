@@ -60,7 +60,7 @@ namespace {
         return value < 0 ? 0 : value > 255 ? 255 : value;
     }
 
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
     const GXColor& getTextColor(s32 index) {
         return ::sTextColor[index];
     }
@@ -162,7 +162,7 @@ namespace nw4r {
     namespace ut {
         template <>
         f32 TextWriterBase< wchar_t >::PrintImpl(StreamType str, int length) {
-#if (VERSION == RMGJ01 || VERSION == RMGE01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
             NW4R_POINTER_ASSERT_AT(271, this);
             NW4R_POINTER_ASSERT_AT(272, str);
             NW4R_POINTER_ASSERT_AT(273, GetFont());
@@ -230,7 +230,7 @@ namespace nw4r {
                     operation = mTagProcessor->Process(code, &context);
 
                     if (operation == TagProcessor::OPERATION_NEXT_LINE) {
-#if (VERSION == RMGJ01 || VERSION == RMGE01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
                         NW4R_POINTER_ASSERT_AT(341, context.str);
 #else
                         NW4R_POINTER_ASSERT_AT(378, context.str);
@@ -265,7 +265,7 @@ namespace nw4r {
                         break;
                     }
 
-#if (VERSION == RMGJ01 || VERSION == RMGE01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
                     NW4R_POINTER_ASSERT_AT(386, context.str);
 #else
                     NW4R_POINTER_ASSERT_AT(423, context.str);
@@ -358,7 +358,7 @@ CustomTagProcessor::CustomTagProcessor(nw4r::lyt::TextBox* textBox)
     mIsText = false;
     mIsInfo = false;
 
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
     mNoCharSpace = true;
 #else
     mNoCharSpace = false;
@@ -560,7 +560,7 @@ CustomTagProcessor::Operation CustomTagProcessor::exePictureGroup(nw4r::ut::Rect
             }
         }
 
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
         writer.MoveCursorY(-writer.GetFontAscent());
 #else
         writer.MoveCursorY(mPictureFontOffset + -writer.GetFontAscent());
@@ -576,7 +576,7 @@ CustomTagProcessor::Operation CustomTagProcessor::exePictureGroup(nw4r::ut::Rect
 }
 
 CustomTagProcessor::Operation CustomTagProcessor::exeFontSizeGroup(nw4r::ut::Rect* rect, const MessageEditorMessageTag& tag, ContextType* context) {
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
     if (rect != nullptr) {
         return OPERATION_NO_CHAR_SPACE;
     }

@@ -22,7 +22,7 @@ public:
     virtual void calcAnim();
 
     void initAfterResourceLoaded();
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
     void send(const char*, const wchar_t*, const wchar_t*, const u8*, u32, bool);
 #elif VERSION == RMGK01
     void send(const char*, const wchar_t*, const wchar_t*, const u8*, u32, bool, bool, u16, u8);
@@ -50,7 +50,7 @@ namespace NWC24MessengerSub {
     class SendTask {
     public:
         /// @brief Creates a new `SendTask`.
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
         SendTask() : _0(), mIsBG(), _2(), mRetryNo(), mErr(NWC24_OK), mErrCode(), mSentSize(), mTaskName(), mMessage(), mAltName() {
         }
 #else
@@ -127,7 +127,7 @@ namespace NWC24MessengerSub {
 };  // namespace NWC24MessengerSub
 
 namespace MR {
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
     void sendMail(const char*, const wchar_t*, const char*, const u8*, u32, bool);
 #elif VERSION == RMGK01
     class SendMailObj {

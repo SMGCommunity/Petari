@@ -139,7 +139,7 @@ void JASWaveArc::setFileName(const char* pName) {
     strcat(path, pName);
     path[length] = '\0';
 
-    #if (VERSION == RMGJ01 || VERSION == RMGE01)
+    #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     const char* fileName = path;
     #else
     char fileName[256];

@@ -30,7 +30,7 @@ void LuigiMailDirector::initAfterResourceLoaded() {
 }
 
 void LuigiMailDirector::lost() {
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
     mLostMessageNum++;
 #elif (VERSION == RMGK01)
     mLostMessageNum = 1;
@@ -39,7 +39,7 @@ void LuigiMailDirector::lost() {
 }
 
 void LuigiMailDirector::found() {
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
     mFoundMessageNum++;
 #elif (VERSION == RMGK01)
     mFoundMessageNum = 1;
@@ -48,7 +48,7 @@ void LuigiMailDirector::found() {
 }
 
 void LuigiMailDirector::sendMail() {
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
     prepareMessage();
 
     while (mLostMessageNum != 0 || mFoundMessageNum != 0) {
@@ -111,7 +111,7 @@ void LuigiMailDirector::writeSendSize() {
     u32 foundMessageNum = mFoundMessageNum;
     u32 mailSize = 0;
 
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
     while (lostMessageNum != 0 || foundMessageNum != 0) {
         if (lostMessageNum != 0 && lostMessageNum >= foundMessageNum) {
             mailSize += MR::calcWiiMailSize(pMailSender, reinterpret_cast< u16* >(mLostMessage), 0, 0);

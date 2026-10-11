@@ -3,7 +3,7 @@
 #include <cmath>
 #include <cstdio>
 
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
 static const char* __KPADVersion = "<< RVL_SDK - KPAD \trelease build: Aug 29 2007 11:54:56 (0x4200_60422) >>";
 #elif (VERSION == RMGK01)
 static const char* __KPADVersion = "<< RVL_SDK - KPAD \trelease build: Jun  3 2008 11:53:11 (0x4201_134) >>";

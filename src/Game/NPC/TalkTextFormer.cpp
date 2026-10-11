@@ -22,7 +22,7 @@ namespace {
 }  // namespace
 
 namespace MR {
-#if (VERSION == RMGJ01 || VERSION == RMGE01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     inline f32 getLanguageRate() {
         return getLanguage() == 0x10 ? 1.0f : 1.25f;
     }

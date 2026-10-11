@@ -106,7 +106,7 @@ bool KinopioAstro::sendLetter() {
         const char* pImage = MR::isPlayerLuigi() ? "AllCompleteImage2.bin" : "AllCompleteImage1.bin";
 
         size = _19C->mArchive->getExpandedResSize(_19C->mArchive->getResource(pImage));
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
         _198->send(reinterpret_cast< u8* >(_19C->mFileInfoTable->getRes(pImage)), size);
 #elif (VERSION == RMGK01)
         _198->send(reinterpret_cast< u8* >(_19C->mFileInfoTable->getRes(pImage)), size, false);
@@ -162,7 +162,7 @@ bool KinopioAstro::eventFunc(u32 letterEvent) {
     } else if (letterEvent == LetterEvent_SendLetter) {
         return sendLetter();
     }
-#if (VERSION != RMGJ01 && VERSION != RMGE01)
+#if (VERSION == RMGK01)
     else if (letterEvent == LetterEvent_OnMsgLedPattern) {
         MR::onMsgLedPattern();
         return true;
