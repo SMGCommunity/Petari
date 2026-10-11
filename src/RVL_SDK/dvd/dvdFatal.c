@@ -176,7 +176,7 @@ void __DVDShowFatalMessage(void) {
         case 2:
             messageList = __DVDErrorMessageEurope;
             break;
-#if (VERSION != RMGJ01 && VERSION != RMGE01)
+#if (VERSION == RMGK01)
         case 4:
         case 5:
             messageList = __DVDErrorMessage104;

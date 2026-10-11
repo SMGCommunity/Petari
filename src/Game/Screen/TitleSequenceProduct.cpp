@@ -64,7 +64,7 @@ void TitleSequenceProduct::exeDisplayEncouragePal60Window() {
 
         if (timeAnnounced == 0 || ticks < timeAnnounced || dayAnnounced < day) {
             mEncouragePal60Window->appear();
-#if (VERSION == RMGK01)
+#if (VERSION == RMGP01 || VERSION == RMGK01)
             GameDataFunction::updateSysConfigFileTimeAnnounced();
 #endif
         }

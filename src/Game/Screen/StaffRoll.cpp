@@ -544,7 +544,7 @@ void StaffRoll::movement() {
     LayoutActor::movement();
     tryGenerateLine();
 
-    #if (VERSION == RMGJ01 || VERSION == RMGE01)
+    #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     if (MR::isPlayingStageBgm()) {
         _4C++;
     }

@@ -27,7 +27,7 @@ s32 __OSCurrentTGCOffset : OS_BASE_CACHED + 0x30F4;
 vu32 __OSLaunchPartitionType : (OS_BASE_CACHED | 0x3194);
 vu8 __OSLockedFlag : (OS_BASE_CACHED | 0x3187);
 
-#if (VERSION == RMGJ01 || VERSION == RMGE01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
 #define TitleIdLo(t) ((u32)(((u64)t)&0xffffffff))
 #define TitleIdHi(t) ((u32)((((u64)t)>>32)&0xffffffff))
 #endif
@@ -467,7 +467,7 @@ void __OSLaunchMenu(void) {
     }
 }
 
-#if (VERSION == RMGJ01 || VERSION == RMGE01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     static BOOL __OSCheckTmdCountryCode(ESTmdView* tmd) {
     u32 TmdCountryCode = 0;
     TmdCountryCode = *((u32*)tmd->head.reserved);

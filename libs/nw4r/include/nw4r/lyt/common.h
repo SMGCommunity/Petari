@@ -77,7 +77,7 @@ namespace nw4r {
             bool TestFileHeader(const res::BinaryFileHeader&, u32);
 
             inline bool TestFileVersion(const res::BinaryFileHeader& fileHeader) {
-#if (VERSION == RMGJ01 || VERSION == RMGE01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
                 u8 upper = ut::BitExtract(fileHeader.version, 8, 8);
                 u8 lower = ut::BitExtract(fileHeader.version, 0, 8);
                 return upper == 0 && lower >= 8 && lower <= 10;
@@ -100,7 +100,7 @@ namespace nw4r {
             const Size GetTextureSize(Material* pMaterial, u8 texMapIdx);
 
             inline void SetHorizontalPosition(u8* pVar, u8 newVal) {
-#if (VERSION == RMGJ01 || VERSION == RMGE01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
                 NW4R_ASSERT_AT(256, newVal < HORIZONTALPOSITION_MAX);
 #else
                 NW4R_ASSERT_AT(252, newVal < HORIZONTALPOSITION_MAX);
@@ -109,7 +109,7 @@ namespace nw4r {
             }
 
             inline void SetVerticalPosition(u8* pVar, u8 newVal) {
-#if (VERSION == RMGJ01 || VERSION == RMGE01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
                 NW4R_ASSERT_AT(265, newVal < VERTICALPOSITION_MAX);
 #else
                 NW4R_ASSERT_AT(261, newVal < VERTICALPOSITION_MAX);

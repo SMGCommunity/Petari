@@ -193,7 +193,7 @@ void DrawSyncManager::pushBreakPoint() {
     }
 }
 
-#if (VERSION == RMGJ01 || VERSION == RMGE01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
 void DrawSyncManager::clearSceneCallback() {
     mHighTokenCount = 0;
 

@@ -427,7 +427,7 @@ void StarPointerOnOffController::clearInfo() {
         (*request)->mMode = -1;
     }
 
-    #if (VERSION != RMGJ01 && VERSION != RMGE01)
+    #if (VERSION == RMGK01)
     updateMode();
     #endif
 }
