@@ -38,10 +38,10 @@ void OceanRingPipeInside::init(const JMapInfoIter& rIter) {
 }
 
 void OceanRingPipeInside::movement() {
-    mTexU0 = MR::repeat2(mTexU0 + ::sTexSpeedU0, 0.0f, 1.0f);
-    mTexV0 = MR::repeat2(mTexV0 + ::sTexSpeedV0, 0.0f, 1.0f);
-    mTexU1 = MR::repeat2(mTexU1 + ::sTexSpeedU1, 0.0f, 1.0f);
-    mTexV1 = MR::repeat2(mTexV1 + ::sTexSpeedV1, 0.0f, 1.0f);
+    mTexU0 = MR::repeat(mTexU0 + ::sTexSpeedU0, 0.0f, 1.0f);
+    mTexV0 = MR::repeat(mTexV0 + ::sTexSpeedV0, 0.0f, 1.0f);
+    mTexU1 = MR::repeat(mTexU1 + ::sTexSpeedU1, 0.0f, 1.0f);
+    mTexV1 = MR::repeat(mTexV1 + ::sTexSpeedV1, 0.0f, 1.0f);
 }
 
 void OceanRingPipeInside::initDisplayList() {
