@@ -324,12 +324,12 @@ OceanRingDrawer::OceanRingDrawer(const OceanRing* pOceanRing) {
 }
 
 void OceanRingDrawer::update() {
-    _C = MR::repeat2(_C + ::sTexSpeed0U, 0.0f, 1.0f);
-    _10 = MR::repeat2(_10 + ::sTexSpeed0V, 0.0f, 1.0f);
-    _14 = MR::repeat2(_14 + ::sTexSpeed1U, 0.0f, 1.0f);
-    _18 = MR::repeat2(_18 + ::sTexSpeed1V, 0.0f, 1.0f);
-    _1C = MR::repeat2(_1C + 0.0f, 0.0f, 1.0f);
-    _20 = MR::repeat2(_20 + ::sTexSpeed2V, 0.0f, 1.0f);
+    _C = MR::repeat(_C + ::sTexSpeed0U, 0.0f, 1.0f);
+    _10 = MR::repeat(_10 + ::sTexSpeed0V, 0.0f, 1.0f);
+    _14 = MR::repeat(_14 + ::sTexSpeed1U, 0.0f, 1.0f);
+    _18 = MR::repeat(_18 + ::sTexSpeed1V, 0.0f, 1.0f);
+    _1C = MR::repeat(_1C + 0.0f, 0.0f, 1.0f);
+    _20 = MR::repeat(_20 + ::sTexSpeed2V, 0.0f, 1.0f);
 }
 
 void OceanRingDrawer::draw() const {

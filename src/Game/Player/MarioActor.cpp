@@ -308,9 +308,9 @@ void MarioActor::init(const JMapInfoIter& rInfo) {
     MR::getJMapInfoRotate(rInfo, &rotation);
     MR::getJMapInfoScale(rInfo, &scale);
 
-    rotation.x = BASE_ROTATION + (f32)fmod(rotation.x - BASE_ROTATION + 360.0f, 360.0);
-    rotation.y = BASE_ROTATION + (f32)fmod(rotation.y - BASE_ROTATION + 360.0f, 360.0);
-    rotation.z = BASE_ROTATION + (f32)fmod(rotation.z - BASE_ROTATION + 360.0f, 360.0);
+    rotation.x = MR::repeat(rotation.x, 0.0f, 360.0f);
+    rotation.y = MR::repeat(rotation.y, 0.0f, 360.0f);
+    rotation.z = MR::repeat(rotation.z, 0.0f, 360.0f);
 
     if (MR::isExistJMapArg(rInfo)) {
         MR::getJMapInfoArg0NoInit(rInfo, &initialAnimation);

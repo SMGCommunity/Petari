@@ -622,15 +622,13 @@ namespace MR {
         *pValue = ret;
     }
 
-    inline f32 repeat(f32 value, f32 min, f32 max) {
-        return min + (f32)fmod(max + (value - min), max);
+    // wrapper function needed to match all instances of MR::repeat
+    inline f32 MOD(f32 x, f32 y) {
+        return fmod(x, y);
     }
 
-    // this second variant matches other functions
-    // maybe this is a templated one?
-    inline f32 repeat2(f32 value, f32 min, f32 max) {
-        value = static_cast< f32 >(fmod(max + (value - min), max));
-        return min + value;
+    inline f32 repeat(f32 value, f32 min, f32 max) {
+        return min + MOD(max + (value - min), max);
     }
 
     inline void repeatDegree(f32* pValue) {
@@ -641,26 +639,7 @@ namespace MR {
         return repeat(value, 0.0f, 360.0f);
     }
 
-    inline f32 negateIfLessZero(f32 val) {
-        if (val < 0.0f) {
-            val = -val;
-        }
-
-        return val;
-    }
-
 #ifdef __MWERKS__
-    inline f32 frsqrte(register f32 x) {
-        register f32 recip;
-
-        __asm {
-            frsqrte recip, x
-
-        }
-
-        return recip * x;
-    }
-
     inline f32 fastSqrtf(register f32 x) {
         register f32 recip;
 
@@ -677,7 +656,6 @@ namespace MR {
     }
 
 #else
-    f32 frsqrte(f32);
     f32 fastSqrtf(f32);
 #endif
 

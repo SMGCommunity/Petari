@@ -747,12 +747,12 @@ void WaterRoad::movement() {
 
     LiveActor::movement();
 
-    mTexUV0.x = MR::repeat2(mTexUV0.x + ::sTexSpeedU0, 0.0f, 1.0f);
-    mTexUV0.y = MR::repeat2(mTexUV0.y + ::sTexSpeedV0, 0.0f, 1.0f);
-    mTexUV1.x = MR::repeat2(mTexUV1.x + ::sTexSpeedU1, 0.0f, 1.0f);
-    mTexUV1.y = MR::repeat2(mTexUV1.y + ::sTexSpeedV1, 0.0f, 1.0f);
-    mTexUV2.x = MR::repeat2(mTexUV2.x + ::sTexSpeedU2, 0.0f, 1.0f);
-    mTexUV2.y = MR::repeat2(mTexUV2.y + ::sTexSpeedV2, 0.0f, 1.0f);
+    mTexUV0.x = MR::repeat(mTexUV0.x + ::sTexSpeedU0, 0.0f, 1.0f);
+    mTexUV0.y = MR::repeat(mTexUV0.y + ::sTexSpeedV0, 0.0f, 1.0f);
+    mTexUV1.x = MR::repeat(mTexUV1.x + ::sTexSpeedU1, 0.0f, 1.0f);
+    mTexUV1.y = MR::repeat(mTexUV1.y + ::sTexSpeedV1, 0.0f, 1.0f);
+    mTexUV2.x = MR::repeat(mTexUV2.x + ::sTexSpeedU2, 0.0f, 1.0f);
+    mTexUV2.y = MR::repeat(mTexUV2.y + ::sTexSpeedV2, 0.0f, 1.0f);
 
     MR::calcNearestRailPos(&mCamRailNearestPos, this, MR::getCamPos());
     MR::startSoundObjectLevel(mSoundObj, "SE_AT_LV_WATER_ROAD");
