@@ -8,6 +8,11 @@ splits: config/RMGJ01/splits.txt
 # See config.example.yml for a list.
 mw_comment_version: 14
 
+extract:
+- symbol: cErrorArchive
+  binary: assets/ErrorArchive.arc
+  header: assets/ErrorArchive.hpp
+
 
 
 block_relocations:
