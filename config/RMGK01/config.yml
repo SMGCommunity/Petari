@@ -5,6 +5,11 @@ symbols: config/RMGK01/symbols.txt
 splits: config/RMGK01/splits.txt
 mw_comment_version: 14
 
+extract:
+- symbol: cErrorArchive
+  binary: assets/ErrorArchive.arc
+  header: assets/ErrorArchive.h
+
 block_relocations:
 - source: .rodata:0x8053B8C0
 - source: .data:0x805E84F8
