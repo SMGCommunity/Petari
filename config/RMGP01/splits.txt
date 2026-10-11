@@ -9712,7 +9712,7 @@ Game/Util/ValueControl.cpp:
 	.text       start:0x80406CB8 end:0x80406EAC
 	.rodata     start:0x8053DFD0 end:0x8053DFE0
 
-Game/System/ErrorArchive.cpp:
+Game/System/ErrorMessageArchive.cpp:
 	.rodata     start:0x8053DFE0 end:0x80547AA0
 
 Game/NWC24/NWC24Function.cpp:

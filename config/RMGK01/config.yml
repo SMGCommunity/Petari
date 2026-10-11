@@ -1,14 +1,17 @@
+# See config.example.yml for documentation.
 object_base: orig/RMGK01
 object: sys/main.dol
 hash: 25c5959534b3c21246c6c7e42021b916b41fb578
 symbols: config/RMGK01/symbols.txt
 splits: config/RMGK01/splits.txt
+# Change this to match the linker version.
+# See config.example.yml for a list.
 mw_comment_version: 14
 
 extract:
-- symbol: cErrorArchive
-  binary: assets/ErrorArchive.arc
-  header: assets/ErrorArchive.hpp
+- symbol: cErrorMessageArchive
+  binary: assets/ErrorMessageArchive.arc
+  header: assets/ErrorMessageArchive.hpp
 
 block_relocations:
 - source: .rodata:0x8053B8C0
@@ -69,4 +72,3 @@ add_relocations:
 - source: .text:0x80009A34
   type: l
   target: "@5713"
-

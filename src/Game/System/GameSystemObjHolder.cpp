@@ -5,7 +5,7 @@
 #include "Game/Screen/ScreenPreserver.hpp"
 #include "Game/Screen/StarPointerDirector.hpp"
 #include "Game/System/AudSystemWrapper.hpp"
-#include "Game/System/ErrorArchive.hpp"
+#include "Game/System/ErrorMessageArchive.hpp"
 #include "Game/System/FileLoader.hpp"
 #include "Game/System/FunctionAsyncExecutor.hpp"
 #include "Game/System/HeapMemoryWatcher.hpp"
@@ -31,7 +31,7 @@ GameSystemObjHolder::GameSystemObjHolder()
     initDvd();
     initNAND();
     initNameObj();
-    MR::createAndAddArchive((void*)cErrorArchive, MR::getStationedHeapNapa(), "ErrorMessageArchive.arc");
+    MR::createAndAddArchive((void*)cErrorMessageArchive, MR::getStationedHeapNapa(), "ErrorMessageArchive.arc");
 }
 
 void GameSystemObjHolder::initAfterStationedResourceLoaded() {

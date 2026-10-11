@@ -12,7 +12,7 @@
 #include "Game/System/DrawBufferGroup.hpp"
 #include "Game/System/DrawBufferHolder.hpp"
 #include "Game/System/DrawSyncManager.hpp"
-#include "Game/System/ErrorArchive.hpp"
+#include "Game/System/ErrorMessageArchive.hpp"
 #include "Game/System/FileHolder.hpp"
 #include "Game/System/FileLoader.hpp"
 #include "Game/System/FileLoaderThread.hpp"

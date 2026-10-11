@@ -2632,7 +2632,7 @@ config.libs = [
             Object(MatchingFor(ALL), "Game/System/SysConfigFile.cpp"),
             Object(MatchingFor(ALL), "Game/System/UserFile.cpp"),
             Object(MatchingFor(ALL), "Game/System/BCSVInclude.s"),
-            Object(MatchingFor(ALL), "Game/System/ErrorArchive.cpp"),
+            Object(MatchingFor(ALL), "Game/System/ErrorMessageArchive.cpp"),
         ],
     ),
     GameLib(
