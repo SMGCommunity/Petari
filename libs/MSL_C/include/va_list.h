@@ -5,6 +5,7 @@
 extern "C" {
 #endif
 
+#ifdef __MWERKS__
 typedef struct __va_list_struct {
     char gpr;
     char fpr;
@@ -14,6 +15,11 @@ typedef struct __va_list_struct {
 } __va_list[1];
 
 typedef __va_list va_list;
+#else
+// 3DS port: the PPC EABI va_list struct is meaningless on ARM; use the compiler's.
+typedef __builtin_va_list va_list;
+typedef va_list __va_list;
+#endif
 
 #ifdef __cplusplus
 }

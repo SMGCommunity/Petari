@@ -2,8 +2,9 @@
 #define NEW_H
 
 #include "ansi_params.h"
+#include <stddef.h>
 
-inline void* operator new(unsigned long, void* ptr) _MSL_THROW { 
+inline void* operator new(size_t, void* ptr) _MSL_THROW { 
     return ptr; 
 }
 

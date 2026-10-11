@@ -222,7 +222,7 @@ s32 JKRMemArchive::fetchResource_subroutine(unsigned char* pSrc, unsigned long s
 
         return srcSize;
     case JKR_COMPRESSION_SZP:
-    case JKR_COMPRESSION_SZS:
+    case JKR_COMPRESSION_SZS: {
         u32 size = JKRDecompExpandSize(pSrc);
 
         if (size > dstSize) {
@@ -231,6 +231,7 @@ s32 JKRMemArchive::fetchResource_subroutine(unsigned char* pSrc, unsigned long s
 
         JKRDecomp::orderSync(pSrc, pDst, size, 0);
         return size;
+    }
     default:
         JUTException::panic(__FILE__, 723, "??? bad sequence\n");
         break;

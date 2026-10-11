@@ -71,7 +71,7 @@ public:
 template < typename T, u32 LEN >
 class JASPtrArray : public JASPtrTable< T > {
 public:
-    JASPtrArray() : JASPtrTable(mPtrArray, LEN) {
+    JASPtrArray() : JASPtrTable< T >(mPtrArray, LEN) {
     }
 
     /* 0x8 */ T* mPtrArray[LEN];

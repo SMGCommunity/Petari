@@ -124,6 +124,10 @@ namespace JMath {
         T _1000;
     };
 
+    // 3DS port: GCC/clang require the specialization to be declared before its first use (JMAATan2 below).
+    template < >
+    f32 TAtanTable< 1024, f32 >::atan2_(f32, f32) const;
+
     template < s32 Len, typename T >
     class TAsinAcosTable {
     public:

@@ -4,6 +4,7 @@
 #include "JSystem/JKernel/JKRDisposer.hpp"
 #include "JSystem/JSupport/JSUList.hpp"
 #include <revolution.h>
+#include <stddef.h>
 
 typedef void (*JKRErrorHandler)(void*, u32, int);
 void JKRDefaultMemoryErrorRoutine(void*, u32, int);
@@ -227,14 +228,15 @@ public:
     /* 0x69 */ u8 _69;
 };
 
-#ifdef __MWERKS__
-void* operator new(u32, int);
-void* operator new(u32, JKRHeap*);
-void* operator new(u32, JKRHeap*, int);
-void* operator new[](u32, int);
+// 3DS port: declared on every compiler (Functor.hpp etc. use `new (pHeap, 0)`), and with size_t instead of u32.
+// On 32-bit ARM size_t is unsigned int while the decomp's u32 is unsigned long; on MWCC/PPC they are the same type,
+// so matching and mangled names are unaffected.
+void* operator new(size_t, int);
+void* operator new(size_t, JKRHeap*);
+void* operator new(size_t, JKRHeap*, int);
+void* operator new[](size_t, int);
 
-void* operator new[](u32, JKRHeap*, int);
-#endif
+void* operator new[](size_t, JKRHeap*, int);
 
 inline void* JKRAllocFromHeap(JKRHeap* pHeap, u32 size, int alignment) {
     return JKRHeap::alloc(size, alignment, pHeap);

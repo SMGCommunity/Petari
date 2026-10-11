@@ -22,10 +22,23 @@ static inline u16 __OSf32tou16(register f32 in) {
 static inline void OSf32tou16(register f32* in, volatile register u16* out) {
     *out = __OSf32tou16(*in);
 }
-#else
+#elif defined(__powerpc__) || defined(__ppc__)
 #define OSf32tou16(in, out) asm volatile("psq_st   %1, 0(%0), 1, 3 " : : "b"(out), "f"(*(in)) : "memory")
+#else
+// 3DS port: portable equivalents of the Gekko quantized load/store (GQR3 = u16, no scale).
+// psq_st to u16 truncates toward zero and saturates to [0, 65535].
+static inline void OSf32tou16(const f32* in, volatile u16* out) {
+    f32 v = *in;
+    *out = !(v > 0.0f) ? (u16)0 : (v >= 65535.0f ? (u16)65535 : (u16)v);
+}
 #endif
+#if defined(__MWERKS__) || defined(__powerpc__) || defined(__ppc__)
 #define OSu16tof32(in, out) asm volatile("psq_l   %0, 0(%1), 1, 3  " : "=f"(*(out)) : "b"(in))
+#else
+static inline void OSu16tof32(const volatile u16* in, f32* out) {
+    *out = (f32)*in;
+}
+#endif
 
 static inline void OSInitFastCast(void) {
 #ifdef __MWERKS__

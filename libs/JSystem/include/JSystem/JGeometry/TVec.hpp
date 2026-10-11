@@ -1127,7 +1127,7 @@ namespace JGeometry {
             f32 crossPart = dir.length();
 
             if (crossPart <= JGeometry::TUtil< f32 >::epsilon()) {
-                set< f32 >(0.0f, 0.0f, 0.0f, 1.0f);
+                this->template set< f32 >(0.0f, 0.0f, 0.0f, 1.0f);
             } else {
                 f32 dotPart = rA.dot(rB);
                 f32 halfAngle = ratio * (JMAATan2(crossPart, dotPart) * 0.5f);

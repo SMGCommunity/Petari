@@ -28,7 +28,9 @@ template const nw4r::lyt::Pane* nw4r::ut::LinkList< nw4r::lyt::Pane, 4 >::ConstI
 template void JGeometry::TVec2< f32 >::set< f32 >(f32, f32);
 template void JGeometry::TBox2< f32 >::set(const TVec2f&, const TVec2f&);
 
+#ifdef __MWERKS__  // 3DS port: forced instantiation only needed for matching
 template nw4r::lyt::PaneList::Iterator nw4r::ut::LinkList< nw4r::lyt::Pane, 4 >::Iterator::operator++(int);
+#endif
 
 extern "C" int vswprintf(wchar_t*, size_t, const wchar_t*, va_list);
 

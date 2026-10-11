@@ -3,6 +3,14 @@
 #include <climits>
 #include <cmath>
 
+// 3DS port: MSL has no <cfloat>; FLT_MAX/NAN come from the compiler/libc on non-MWCC builds.
+#ifndef __MWERKS__
+#include <float.h>
+#ifndef NAN
+#define NAN __builtin_nanf("")
+#endif
+#endif
+
 namespace std {
     template < typename T >
     class numeric_limits {

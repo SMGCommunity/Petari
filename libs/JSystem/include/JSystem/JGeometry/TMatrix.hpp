@@ -717,11 +717,11 @@ namespace JGeometry {
         }
 
         void mult33(const TVec3f& rSrc, TVec3f& rDst) const {
-            rDst.set< f32 >(rSrc.x * get(0, 0) + rSrc.y * get(0, 1) + rSrc.z * get(0, 2),
+            rDst.set< f32 >(rSrc.x * this->get(0, 0) + rSrc.y * this->get(0, 1) + rSrc.z * this->get(0, 2),
 
-                            rSrc.x * get(1, 0) + rSrc.y * get(1, 1) + rSrc.z * get(1, 2),
+                            rSrc.x * this->get(1, 0) + rSrc.y * this->get(1, 1) + rSrc.z * this->get(1, 2),
 
-                            rSrc.x * get(2, 0) + rSrc.y * get(2, 1) + rSrc.z * get(2, 2));
+                            rSrc.x * this->get(2, 0) + rSrc.y * this->get(2, 1) + rSrc.z * this->get(2, 2));
         }
     };
 

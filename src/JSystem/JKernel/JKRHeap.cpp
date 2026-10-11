@@ -295,27 +295,27 @@ JKRErrorHandler JKRHeap::setErrorHandler(JKRErrorHandler errorHandler) {
     return prev;
 }
 
-void* operator new(u32 size) {
+void* operator new(size_t size) {
     return JKRHeap::alloc(size, 4, nullptr);
 }
 
-void* operator new(u32 size, int align) {
+void* operator new(size_t size, int align) {
     return JKRHeap::alloc(size, align, nullptr);
 }
 
-void* operator new(u32 size, JKRHeap* pHeap, int align) {
+void* operator new(size_t size, JKRHeap* pHeap, int align) {
     return JKRHeap::alloc(size, align, pHeap);
 }
 
-void* operator new[](u32 size) {
+void* operator new[](size_t size) {
     return JKRHeap::alloc(size, 4, nullptr);
 }
 
-void* operator new[](u32 size, int align) {
+void* operator new[](size_t size, int align) {
     return JKRHeap::alloc(size, align, nullptr);
 }
 
-void* operator new[](u32 size, JKRHeap* pHeap, int align) {
+void* operator new[](size_t size, JKRHeap* pHeap, int align) {
     return JKRHeap::alloc(size, align, pHeap);
 }
 

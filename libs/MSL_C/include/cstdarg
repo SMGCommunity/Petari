@@ -7,6 +7,7 @@ extern "C" {
 
 #include <va_list.h>
 
+#ifdef __MWERKS__
 extern void* __va_arg(void*, int);
 
 #define __va_start(ap,fmt) ((void)fmt,__builtin_va_info(&ap))
@@ -16,6 +17,10 @@ extern void* __va_arg(void*, int);
 #define va_end   __va_end
 
 #define __va_end(ap) ((void)0)
+#else
+// 3DS port: compiler built-ins (see stdarg.h).
+#include <stdarg.h>
+#endif
 
 #ifdef __cplusplus
 }

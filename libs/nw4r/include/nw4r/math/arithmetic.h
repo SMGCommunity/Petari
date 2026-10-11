@@ -17,6 +17,7 @@ namespace nw4r {
             return rval;
         }
 
+#ifdef __MWERKS__
         inline f32 FAbs(register f32 x) {
             register f32 ax;
 
@@ -33,5 +34,16 @@ namespace nw4r {
             asm { fsel   ret, cond, ifPos, ifNeg }
             return ret;
         }
+#else
+        // 3DS port: portable equivalents of the PPC fabs / fsel instructions.
+        inline f32 FAbs(f32 x) {
+            return __builtin_fabsf(x);
+        }
+
+        // fsel: result = (cond >= 0.0) ? ifPos : ifNeg (NaN selects ifNeg).
+        inline f32 FSelect(f32 cond, f32 ifPos, f32 ifNeg) {
+            return cond >= 0.0f ? ifPos : ifNeg;
+        }
+#endif
     };  // namespace math
 };  // namespace nw4r

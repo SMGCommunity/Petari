@@ -17,11 +17,21 @@ extern const J3DTevStageInfo j3dDefaultTevStageInfo;
 extern const J3DIndTevStageInfo j3dDefaultIndTevStageInfo;
 
 // doing this matches. figure out why
+// 3DS port: this is a PPC-matching hack whose C-linkage declarations conflict with the C++ ones above on other compilers.
+#ifdef __MWERKS__
 namespace J3DTevsDefault {
     extern "C" J3DIndTevStageInfo j3dDefaultIndTevStageInfo;
     extern "C" J3DTevStageInfo j3dDefaultTevStageInfo;
     extern "C" J3DTevSwapModeInfo j3dDefaultTevSwapMode;
 }  // namespace J3DTevsDefault
+#else
+extern const J3DTevSwapModeInfo j3dDefaultTevSwapMode;
+namespace J3DTevsDefault {
+    using ::j3dDefaultIndTevStageInfo;
+    using ::j3dDefaultTevStageInfo;
+    using ::j3dDefaultTevSwapMode;
+}  // namespace J3DTevsDefault
+#endif
 extern const J3DFogInfo j3dDefaultFogInfo;
 extern const J3DNBTScaleInfo j3dDefaultNBTScaleInfo;
 

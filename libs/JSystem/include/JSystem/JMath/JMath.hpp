@@ -20,6 +20,9 @@ inline f32 JMAFastSqrt(__REGISTER const f32 input) {
     } else {
         return input;
     }
+#else
+    // Portable fallback (3DS): frsqrte gives a coarse estimate, so exact sqrt is at least as accurate.
+    return input > 0.0f ? __builtin_sqrtf(input) : input;
 #endif
 }
 
@@ -52,6 +55,18 @@ inline f32 JMAHermiteInterpolation(__REGISTER f32 p1, __REGISTER f32 p2, __REGIS
     }
     // clang-format on
     return ff25;
+#else
+    // Portable fallback (3DS), hand-decoded from the asm above (fmsubs = a*c - b, fnmsubs = -(a*c - b)).
+    f32 d = p1 - p2;
+    f32 t = d / (p5 - p2);
+    f32 t2 = t * t;
+    f32 k = t2 - t;
+    f32 a = (t + t) * k - t2;
+    a = a * (p3 - p6) + p3;
+    f32 b = p4 * k + p4;
+    b = p7 * k + b;
+    b = t * p4 - b;
+    return a - d * b;
 #endif
 }
 

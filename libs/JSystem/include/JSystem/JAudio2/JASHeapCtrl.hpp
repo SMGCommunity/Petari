@@ -292,11 +292,11 @@ namespace JASKernel {
 template < typename T >
 class JASPoolAllocObject {
 public:
-    static void* operator new(u32 size) {
+    static void* operator new(size_t size) {
         return memPool_.alloc(size);
     }
 
-    static void operator delete(void* addr, u32 size) {
+    static void operator delete(void* addr, size_t size) {
         memPool_.free(addr, size);
     }
 
@@ -331,11 +331,11 @@ public:
 template < typename T >
 class JASPoolAllocObject_MultiThreaded {
 public:
-    static void* operator new(u32 size) {
+    static void* operator new(size_t size) {
         return memPool_.alloc(size);
     }
 
-    static void operator delete(void* addr, u32 size) {
+    static void operator delete(void* addr, size_t size) {
         memPool_.free(addr, size);
     }
 

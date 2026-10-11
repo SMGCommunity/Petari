@@ -337,7 +337,11 @@ namespace nw4r {
 
                 TItC_base_ it_;
 
+#ifdef __MWERKS__
                 friend class Self;
+#else
+                friend Self;  // 3DS port: C++11 form; `class` can't be applied to a typedef name
+#endif
             };
             explicit LinkList() {
             }

@@ -1628,6 +1628,7 @@ f32 JMASqrt(__REGISTER f32 value) {
         return value;
     }
 
+#ifdef __MWERKS__
     __REGISTER f32 inverse;
     __asm { frsqrte inverse, value }
     f32 estimate = inverse * value;
@@ -1635,4 +1636,8 @@ f32 JMASqrt(__REGISTER f32 value) {
     inverse *= estimate;
     inverse *= 0.5f;
     return inverse;
+#else
+    // 3DS port: the PPC code is frsqrte + one Newton-Raphson step, i.e. an approximate sqrt.
+    return __builtin_sqrtf(value);
+#endif
 }
