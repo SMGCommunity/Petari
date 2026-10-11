@@ -11395,7 +11395,7 @@ RVL_SDK/ax/AXAux.c:
 
 RVL_SDK/ax/AXCL.c:
 	.text       start:0x804C8624 end:0x804C8654
-	.sbss       start:0x806A3070 end:0x806A3098
+	.sbss       start:0x806A3070 end:0x806A3078
 
 RVL_SDK/ax/AXVPB.c:
 	.text       start:0x804C8654 end:0x804C8694
@@ -11406,8 +11406,11 @@ RVL_SDK/axfx/AXFXReverbHi.c:
 
 RVL_SDK/axfx/AXFXReverbHiExp.c:
 	.text       start:0x804C8720 end:0x804C94FC
-	.data       start:0x805EB718 end:0x805EBAB8
+	.data       start:0x805EB718 end:0x805EB8B8
 	.sdata2     start:0x806AD890 end:0x806AD8D0
+
+RVL_SDK/syn/synmix.c:
+	.data       start:0x805EB8B8 end:0x805EBAB8
 
 RVL_SDK/axfx/AXFXHooks.c:
 	.text       start:0x804C94FC end:0x804C9534
@@ -11416,17 +11419,37 @@ RVL_SDK/axfx/AXFXHooks.c:
 RVL_SDK/mem/mem_heapCommon.c:
 	.text       start:0x804C9534 end:0x804C99A0
 	.bss        start:0x80657A00 end:0x80657A40
-	.sbss       start:0x806A3098 end:0x806A30A0
+	.sbss       start:0x806A3078 end:0x806A3080
 
 RVL_SDK/mem/mem_expHeap.c:
 	.text       start:0x804C99A0 end:0x804CA1E4
 
 RVL_SDK/mem/mem_allocator.c:
 	.text       start:0x804CA1E4 end:0x804CA238
-	.sdata2     start:0x806AD8D0 end:0x806AD8F0
+	.sdata2     start:0x806AD8D0 end:0x806AD8D8
 
 RVL_SDK/mem/mem_list.c:
-	.text       start:0x804CA238 end:0x804CB28C
+	.text       start:0x804CA238 end:0x804CA34C
+
+RVL_SDK/mix/mix.c:
+	.text       start:0x804CA34C end:0x804CA364
+	.sbss       start:0x806A3080 end:0x806A3088
+
+RVL_SDK/syn/syn.c:
+	.text       start:0x804CA364 end:0x804CA718
+	.sbss       start:0x806A3088 end:0x806A3090
+
+RVL_SDK/syn/synctrl.c:
+	.text       start:0x804CA718 end:0x804CADE0
+
+RVL_SDK/syn/synvoice.c:
+	.text       start:0x804CADE0 end:0x804CADF4
+	.sbss       start:0x806A3090 end:0x806A3098
+
+RVL_SDK/seq/seq.c:
+	.text       start:0x804CADF4 end:0x804CB28C
+	.sbss       start:0x806A3098 end:0x806A30A0
+	.sdata2     start:0x806AD8D8 end:0x806AD8F0
 
 RVL_SDK/dsp/dsp.c:
 	.text       start:0x804CB28C end:0x804CB3D0
