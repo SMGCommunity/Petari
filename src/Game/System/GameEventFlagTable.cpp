@@ -1,12 +1,11 @@
 #include "Game/System/GameEventFlagTable.hpp"
+#include "Game/System/GalaxyInfoTable.hpp"
 #include "Game/Util/HashUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include <algorithm>
 #include <cstdio>
-
-extern const JMapData GalaxyIDBCSV;
 
 namespace {
     static const GameEventFlag sGameEventFlagStatic[] = {
@@ -17,7 +16,8 @@ namespace {
         {"AppearCubeBubbleExLv1Galaxy", GameEventFlag::Type_GalaxyOpenStar, 1, 0, 0, 0, "CubeBubbleExLv1Galaxy", 0},
         {"StarNumOceanFloaterLandGalaxy", GameEventFlag::Type_GalaxyOpenStar, 1, 0, 0, 0, "OceanFloaterLandGalaxy", 0},
         {"SpecialStarOpenOceanFloaterLandGalaxy", GameEventFlag::Type_SpecialStar, 1, 1, 0, 0, "HeavenlyBeachGalaxy", 0},
-        {"AppearOceanFloaterLandGalaxy", GameEventFlag::Type_EventFlag, 1, 0, 0, 0, "StarNumOceanFloaterLandGalaxy", "SpecialStarOpenOceanFloaterLandGalaxy"},
+        {"AppearOceanFloaterLandGalaxy", GameEventFlag::Type_EventFlag, 1, 0, 0, 0, "StarNumOceanFloaterLandGalaxy",
+         "SpecialStarOpenOceanFloaterLandGalaxy"},
         {"StarNumHoneyBeeExGalaxy", GameEventFlag::Type_GalaxyOpenStar, 1, 0, 0, 0, "HoneyBeeExGalaxy", 0},
         {"SpecialStarOpenHoneyBeeExGalaxy", GameEventFlag::Type_SpecialStar, 1, 1, 0, 0, "HoneyBeeKingdomGalaxy", 0},
         {"AppearHoneyBeeExGalaxy", GameEventFlag::Type_EventFlag, 1, 0, 0, 0, "StarNumHoneyBeeExGalaxy", "SpecialStarOpenHoneyBeeExGalaxy"},
@@ -197,7 +197,8 @@ namespace {
         {"PlayEggStarGalaxy2", GameEventFlag::Type_EventFlag, 1, 0, 0, 0, "SpecialStarEggStarGalaxy1", 0},
         {"[同期]スターピースレクチャー", GameEventFlag::Type_StoryEventSync, 1, 0, 0, 0, "PlayEggStarGalaxy2", "スターピースレクチャー"},
         {"PowerStarNumForButlerKoopaDemo", GameEventFlag::Type_GalaxyOpenStar, 1, 0, 0, 0, "KoopaBattleVs1Galaxy", 0},
-        {"[同期]クッパスタープラント発見", GameEventFlag::Type_StoryEventSync, 1, 0, 0, 0, "PowerStarNumForButlerKoopaDemo", "クッパスタープラント発見"},
+        {"[同期]クッパスタープラント発見", GameEventFlag::Type_StoryEventSync, 1, 0, 0, 0, "PowerStarNumForButlerKoopaDemo",
+         "クッパスタープラント発見"},
     };
 
     struct GameEventFlagSortLt {
@@ -457,7 +458,7 @@ namespace GameEventFlagTable {
 
     s32 getGalaxyDependedFlags(const char** pFlags, int a1, const char* pName) {
         JMapInfo info;
-        info.attach(&GalaxyIDBCSV);
+        info.attach(&cGalaxyInfoTable);
 
         JMapInfoIter iter = info.findElement("name", pName, 0);
 

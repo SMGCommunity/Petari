@@ -9326,8 +9326,11 @@ Game/System/StorySequenceExecutor.cpp:
 	.sdata      start:0x8069DC50 end:0x8069DC58
 	.sbss       start:0x806A2608 end:0x806A2630
 
-Game/System/BCSVInclude.s:
-	.rodata     start:0x8053C620 end:0x8053D520
+Game/System/StoryProgressTable.cpp:
+	.rodata     start:0x8053C620 end:0x8053C800
+
+Game/System/GalaxyInfoTable.cpp:
+	.rodata     start:0x8053C800 end:0x8053D520
 
 Game/System/SysConfigFile.cpp:
 	.text       start:0x803BBDDC end:0x803BC1C4

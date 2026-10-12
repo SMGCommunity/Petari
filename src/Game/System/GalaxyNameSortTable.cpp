@@ -1,11 +1,10 @@
 #include "Game/System/GalaxyNameSortTable.hpp"
+#include "Game/System/GalaxyInfoTable.hpp"
 #include "Game/Util/JMapInfo.hpp"
-
-extern const JMapData GalaxyIDBCSV;
 
 s32 GalaxyNameSortTable::getGalaxySortIndex(const char* pName) {
     JMapInfo info;
-    info.attach(&GalaxyIDBCSV);
+    info.attach(&cGalaxyInfoTable);
 
     JMapInfoIter iter = info.findElement("name", pName, 0);
 

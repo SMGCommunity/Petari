@@ -1,9 +1,6 @@
 #pragma once
 
-#include "Game/Util/JMapInfo.hpp"
-#include <revolution.h>
-
-extern const JMapData GalaxyIDBCSV;
+#include <revolution/types.h>
 
 namespace GameDataConst {
     s32 getPowerStarNumToOpenGalaxy(const char*);

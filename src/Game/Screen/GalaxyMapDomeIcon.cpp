@@ -1,5 +1,6 @@
 #include "Game/Screen/GalaxyMapDomeIcon.hpp"
 #include "Game/Screen/GalaxyNamePlate.hpp"
+#include "Game/System/GalaxyInfoTable.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
 #include "Game/System/GameDataConst.hpp"
 #include "Game/Util/EventUtil.hpp"
@@ -126,8 +127,7 @@ s32 GalaxyMapDomeIcon::calcDomeStatus() const {
 bool GalaxyMapDomeIcon::isComplete() const {
     JMapInfo mapInfo = JMapInfo();
 
-    // TODO: Replace with embedded BCSV file.
-    mapInfo.attach(&GalaxyIDBCSV);
+    mapInfo.attach(&cGalaxyInfoTable);
 
     CheckerIsComplete checker = CheckerIsComplete(_20);
 
@@ -187,8 +187,7 @@ void GalaxyMapDomeIcon::syncStatus() {
 bool GalaxyMapDomeIcon::hasNewGalaxy() const {
     JMapInfo mapInfo = JMapInfo();
 
-    // TODO: Replace with embedded BCSV file.
-    mapInfo.attach(&GalaxyIDBCSV);
+    mapInfo.attach(&cGalaxyInfoTable);
 
     CheckerIsExistNewGalaxy checker = CheckerIsExistNewGalaxy(_20);
 

@@ -9,6 +9,12 @@ splits: config/RMGP01/splits.txt
 mw_comment_version: 14
 
 extract:
+- symbol: cStoryProgressTable
+  binary: assets/StoryProgressTable.bcsv
+  header: assets/StoryProgressTable.hpp
+- symbol: cGalaxyInfoTable
+  binary: assets/GalaxyInfoTable.bcsv
+  header: assets/GalaxyInfoTable.hpp
 - symbol: cErrorMessageArchive
   binary: assets/ErrorMessageArchive.arc
   header: assets/ErrorMessageArchive.hpp

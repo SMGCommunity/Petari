@@ -10,6 +10,7 @@
 #include "Game/Screen/GalaxyMapTitle.hpp"
 #include "Game/Screen/IconAButton.hpp"
 #include "Game/Screen/LayoutManager.hpp"
+#include "Game/System/GalaxyInfoTable.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
 #include "Game/System/GameDataConst.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
@@ -420,7 +421,7 @@ namespace {
 
 void GalaxyMap::initPaneCtrlPointing() {
     JMapInfo galaxyInfo;
-    galaxyInfo.attach(&GalaxyIDBCSV);
+    galaxyInfo.attach(&cGalaxyInfoTable);
     ::initIconArray(mIcon, new GalaxyMapIcon*[galaxyInfo.getNumEntries()], galaxyInfo.getNumEntries());
     ::initIconArray(mCometIcon, new GalaxyMapCometIcon*[galaxyInfo.getNumEntries()], galaxyInfo.getNumEntries());
     initPointingTarget(galaxyInfo.getNumEntries());

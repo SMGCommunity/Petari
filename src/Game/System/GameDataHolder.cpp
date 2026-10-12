@@ -8,16 +8,15 @@
 #include "Game/System/ScenarioProgressTestRun.hpp"
 #include "Game/System/SpinDriverPathStorage.hpp"
 #include "Game/System/StarPieceAlmsStorage.hpp"
+#include "Game/System/StoryProgressTable.hpp"
 #include "Game/System/UserFile.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include <cstdio>
 
-extern const u8 StoryEventBCSV[];
-
 namespace {
     const char cPictureBookChapterSuffix[] = "ABCDEFGHI";
-}  // namespace
+};  // namespace
 
 GameDataHolder::GameDataHolder(const UserFile* pUserFile)
     : mUserFile(pUserFile), mEventFlagChecker(), mEventValueChecker(), mPlayerStatus(), mAllGalaxyStorage(), mSpinDriverPathStorage(),
@@ -31,7 +30,7 @@ GameDataHolder::GameDataHolder(const UserFile* pUserFile)
     mStarPieceAlmsStorage = new StarPieceAlmsStorage();
 
     mMapInfo = new JMapInfo();
-    mMapInfo->attach(StoryEventBCSV);
+    mMapInfo->attach(cStoryProgressTable);
 
     mChunkHolder = new BinaryDataChunkHolder(4096, 6);
     mChunkHolder->addChunk(mPlayerStatus);
