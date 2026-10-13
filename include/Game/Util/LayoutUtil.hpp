@@ -53,31 +53,31 @@ private:
 class TextBoxRecursiveSetArgNumber : public TextBoxRecursiveOperation {
 public:
     /// @brief Creates a new `TextBoxRecursiveSetArgNumber`.
-    TextBoxRecursiveSetArgNumber(s32 arg, s32 param2) : mArg(arg), _8(param2) {
+    TextBoxRecursiveSetArgNumber(s32 arg, s32 argIndex) : mArg(arg), mArgIndex(argIndex) {
     }
 
     virtual void execute(nw4r::lyt::TextBox* pTextBox) const {
-        static_cast< CustomTagProcessor* >(pTextBox->mpTagProcessor)->setArgNumber(mArg, _8);
+        static_cast< CustomTagProcessor* >(pTextBox->mpTagProcessor)->setArgNumber(mArg, mArgIndex);
     }
 
 private:
     /* 0x4 */ s32 mArg;
-    /* 0x8 */ s32 _8;
+    /* 0x8 */ s32 mArgIndex;
 };
 
 class TextBoxRecursiveSetArgString : public TextBoxRecursiveOperation {
 public:
     /// @brief Creates a new `TextBoxRecursiveSetArgString`.
-    TextBoxRecursiveSetArgString(const wchar_t* pArg, s32 param2) : mArg(pArg), _8(param2) {
+    TextBoxRecursiveSetArgString(const wchar_t* pArg, s32 argIndex) : mArg(pArg), mArgIndex(argIndex) {
     }
 
     virtual void execute(nw4r::lyt::TextBox* pTextBox) const {
-        static_cast< CustomTagProcessor* >(pTextBox->mpTagProcessor)->setArgString(mArg, _8);
+        static_cast< CustomTagProcessor* >(pTextBox->mpTagProcessor)->setArgString(mArg, mArgIndex);
     }
 
 private:
     /* 0x4 */ const wchar_t* mArg;
-    /* 0x8 */ s32 _8;
+    /* 0x8 */ s32 mArgIndex;
 };
 
 class TextBoxRecursiveSetVerticalPosition : public TextBoxRecursiveOperation {
