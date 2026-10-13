@@ -7,7 +7,7 @@
 namespace {
     const f32 sDefaultDegreeMax = 45.0f;
     const char* sTextOutFileName = "FaceJointCtrl";
-}  // namespace
+};  // namespace
 
 FaceJointCtrl::FaceJointCtrl(LiveActor* pActor)
     : mHostActor(pActor), mDegreeMax(::sDefaultDegreeMax), _8(0.0f, 0.0f, 1.0f), _14(0.0f, 0.0f, 1.0f), mJointController() {

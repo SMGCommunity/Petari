@@ -41,7 +41,7 @@ namespace {
         MR::addHitSensor(pActor, "body", ATYPE_JUMP_HOLE, 8, 560.0f, TVec3f(0.0f, 300.0f, 650.0f));
         MR::addHitSensorMapObj(pActor, "push", 16, 400.0f, TVec3f(0.0f, 350.0f, 0.0f));
     }
-}  // namespace
+};  // namespace
 
 void DragonHeadFlower::init(const JMapInfoIter& rIter) {
     const char* pModelName = nullptr;

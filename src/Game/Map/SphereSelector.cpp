@@ -240,7 +240,7 @@ namespace {
             }
         }
     }
-}  // namespace
+};  // namespace
 
 void SphereSelector::exeSelectStart() {
     if (MR::isFirstStep(this)) {

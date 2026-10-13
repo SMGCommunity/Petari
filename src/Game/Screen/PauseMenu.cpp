@@ -25,7 +25,7 @@ namespace {
     bool isStageHideScenarioTitle() {
         return MR::isStageBeginPrologueEvent() || MR::isStageAstroLocation();
     }
-}  // namespace
+};  // namespace
 
 namespace NrvPauseMenu {
     NEW_NERVE(PauseMenuNrvSelecting, PauseMenu, Selecting);
@@ -34,7 +34,7 @@ namespace NrvPauseMenu {
     NEW_NERVE(PauseMenuNrvConfirm, PauseMenu, Confirm);
     NEW_NERVE(PauseMenuNrvGameDataSave, PauseMenu, GameDataSave);
     NEW_NERVE(PauseMenuNrvLuigiLetter, PauseMenu, LuigiLetter);
-}  // namespace NrvPauseMenu
+};  // namespace NrvPauseMenu
 
 PauseMenu::PauseMenu()
     : LayoutActor("ポーズメニュー", true), _20(), _24(), _28(0.0f, 50.0f), _30(), mLuigiLetter(), _38(), mStageTitleOffset(0.0f, 39.0f),

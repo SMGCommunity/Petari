@@ -681,7 +681,7 @@ namespace {
             ref(2, 2) = c + negc * zz;
         }
     };
-}  // namespace
+};  // namespace
 
 #pragma push
 #pragma opt_prelinearize off

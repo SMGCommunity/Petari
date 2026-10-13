@@ -70,7 +70,7 @@ namespace {
 
         return 1;
     }
-}  // namespace
+};  // namespace
 
 namespace NrvPictureBookLayout {
     NEW_NERVE(PictureBookLayoutNrvOpen, PictureBookLayout, Open);
@@ -84,7 +84,7 @@ namespace NrvPictureBookLayout {
     NEW_NERVE(PictureBookLayoutNrvPageNext, PictureBookLayout, PageNext);
     NEW_NERVE(PictureBookLayoutNrvFadeOut, PictureBookLayout, FadeOut);
     NEW_NERVE(PictureBookLayoutNrvClose, PictureBookLayout, Close);
-}  // namespace NrvPictureBookLayout
+};  // namespace NrvPictureBookLayout
 
 PictureBookLayout::PictureBookLayout(s32 chapterMin, s32 chapterMax, bool isRosettaReading)
     : LayoutActor("絵本レイアウト", true), mChapterMin(chapterMin), mChapterMax(chapterMax), mChapterRosettaMax(chapterMax), mChapterNo(1), mPageNo(),
@@ -237,7 +237,7 @@ namespace {
         snprintf(messageId, sizeof(messageId), "PictureBookChapter%d_Title", chapter);
         MR::setTextBoxGameMessageRecursive(pActor, pPaneName, messageId);
     }
-}  // namespace
+};  // namespace
 namespace {
     inline bool setPageText(LayoutActor* pActor, char (&rMessageId)[64], const s32& rChapter, const s32& rPage, const s32& rTextIndex) {
         snprintf(rMessageId, sizeof(rMessageId), "PictureBookChapter%d_Page%d_%03d", rChapter, rPage, rTextIndex);
@@ -250,7 +250,7 @@ namespace {
 
         return false;
     }
-}  // namespace
+};  // namespace
 bool PictureBookLayout::updateText() {
     if (mPageNo == 0) {
         ::setChapterTitle(this, "Title", mChapterNo);

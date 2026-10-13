@@ -16,7 +16,7 @@ namespace NrvCandlestand {
     NEW_NERVE(HostTypeAttack, Candlestand, Attack);
     NEW_NERVE(HostTypeExtinguish, Candlestand, Extinguish);
     NEW_NERVE(HostTypeFlicker, Candlestand, Flicker);
-}  // namespace NrvCandlestand
+};  // namespace NrvCandlestand
 
 namespace {
     struct Param {
@@ -44,7 +44,7 @@ namespace {
 
         return nullptr;
     }
-}  // namespace
+};  // namespace
 
 Candlestand::Candlestand(const char* pName) : MapObjActor(pName), mItem(-1), mHasItemAppear(), mSpinPtclCb() {
 }

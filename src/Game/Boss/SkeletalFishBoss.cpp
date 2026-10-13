@@ -82,7 +82,7 @@ namespace {
         {"WoundJow0", "Jow", {35.98041f, -300.88702f, 76.61445f}},   {"WoundJow1", "Jow", {-181.04329f, -124.71387f, 593.6195f}},
         {"WoundJow2", "Jow", {475.85388f, -146.99239f, 119.52184f}}, {"WoundJow3", "Jow", {-473.8122f, -146.99239f, 119.52184f}},
         {"WoundJow4", "Jow", {233.05017f, -124.71387f, 575.92737f}}, {"WoundJow5", "Jow", {-4.140523f, -318.03336f, 394.53833f}}};
-}  // namespace
+};  // namespace
 
 namespace {
     NEW_NERVE(SkeletalFishBossNrvSwim, SkeletalFishBoss, Swim);
@@ -100,7 +100,7 @@ namespace {
     NEW_NERVE(SkeletalFishBossNrvDeadDemo, SkeletalFishBoss, DeadDemo);
     NEW_NERVE(SkeletalFishBossNrvBreakDemo, SkeletalFishBoss, BreakDemo);
     NEW_NERVE(SkeletalFishBossNrvDemoWait, SkeletalFishBoss, DemoWait);
-}  // namespace
+};  // namespace
 
 void SkeletalFishBoss_FORCE_MATCH(TVec3f& rVec) {
     rVec.scale(1.0f);

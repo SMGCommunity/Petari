@@ -11,4 +11,4 @@ namespace DodoryuUtil {
     void addVelocity(Dodoryu* pDodoryu, bool isSnap);
     void rotateVelocityByWall(Dodoryu* pDodoryu);
     void calcEscapeDir(Dodoryu* pDodoryu, TVec3f* pDirection, f32 maxAngle);
-}  // namespace DodoryuUtil
+};  // namespace DodoryuUtil

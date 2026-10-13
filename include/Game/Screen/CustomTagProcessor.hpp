@@ -6,8 +6,8 @@
 namespace nw4r {
     namespace lyt {
         class TextBox;
-    }
-}  // namespace nw4r
+    };  // namespace lyt
+};  // namespace nw4r
 
 class CustomTagAlphaCtrl {
 public:
@@ -70,7 +70,7 @@ public:
         static GroupFunctionInfo sGroupFunctionTable[];
     };
 
-    #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
     /* 0x04 */ bool mIsShadow;
     /* 0x05 */ bool mIsText;
     /* 0x06 */ bool mIsInfo;
@@ -86,7 +86,7 @@ public:
     /* 0x44 */ f32 mRubyFontHeight;
     /* 0x48 */ f32 mFontWidth;
     /* 0x4C */ f32 mFontHeight;
-    #else
+#else
     /* 0x04 */ bool mIsShadow;
     /* 0x05 */ bool mIsText;
     /* 0x06 */ bool mIsInfo;
@@ -103,5 +103,5 @@ public:
     /* 0x44 */ f32 mRubyFontHeight;
     /* 0x48 */ f32 mFontWidth;
     /* 0x4C */ f32 mFontHeight;
-    #endif
+#endif
 };

@@ -15,7 +15,7 @@ class PartsModel;
 namespace FileSelectItemSub {
     class ScaleController;
     class BlinkController;
-}  // namespace FileSelectItemSub
+};  // namespace FileSelectItemSub
 
 class FileSelectItem : public LiveActor {
 public:

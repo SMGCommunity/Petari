@@ -14,7 +14,7 @@ namespace NrvMapPartsFloatingForce {
     NEW_NERVE(HostTypeMove, MapPartsFloatingForce, Move);
     NEW_NERVE(HostTypeMoveSpring, MapPartsFloatingForce, MoveSpring);
     NEW_NERVE(HostTypeMoveReturn, MapPartsFloatingForce, MoveReturn);
-}  // namespace NrvMapPartsFloatingForce
+};  // namespace NrvMapPartsFloatingForce
 
 SpringStep::SpringStep(f32 cond, f32 speed, f32 angle) : mSpringValue() {
     mCondition = cond;

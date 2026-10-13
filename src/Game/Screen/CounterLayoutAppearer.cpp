@@ -8,7 +8,7 @@ namespace NrvCounterLayoutAppearer {
     NEW_NERVE(CounterLayoutAppearerNrvAppear, CounterLayoutAppearer, Appear);
     NEW_NERVE(CounterLayoutAppearerNrvShow, CounterLayoutAppearer, Show);
     NEW_NERVE(CounterLayoutAppearerNrvDisappear, CounterLayoutAppearer, Disappear);
-}  // namespace NrvCounterLayoutAppearer
+};  // namespace NrvCounterLayoutAppearer
 
 CounterLayoutAppearer::CounterLayoutAppearer(LayoutActor* pActor, const TVec2f& rAppearOffset)
     : NerveExecutor("カウンタ出現制御"), mLayout(pActor), mAppearOffset(rAppearOffset), mFollowPos(0.0f, 0.0f), _1C(0.0f, 0.0f) {

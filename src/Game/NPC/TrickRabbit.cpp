@@ -1183,4 +1183,4 @@ namespace {
 
         return false;
     }
-}  // namespace
+};  // namespace

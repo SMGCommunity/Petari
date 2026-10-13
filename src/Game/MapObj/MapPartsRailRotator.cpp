@@ -15,7 +15,7 @@ namespace NrvMapPartsRailRotator {
     NEW_NERVE(HostTypeRotateAtPoint, MapPartsRailRotator, Rotate);
     NEW_NERVE(HostTypeRotateBetweenPoints, MapPartsRailRotator, Rotate);
     NEW_NERVE(HostTypeDone, MapPartsRailRotator, Done);
-}  // namespace NrvMapPartsRailRotator
+};  // namespace NrvMapPartsRailRotator
 
 MapPartsRailRotator::MapPartsRailRotator(LiveActor* pHost)
     : MapPartsFunction(pHost, "レイル回転"), mRotateAxis(), mRotateType(), mRotateSpeed(), mTargetAngle(), mAngle(), mHostRotateMtx() {

@@ -17,7 +17,7 @@ namespace {
             PSMTXRotAxisRad(pMtx, &axis, -MR::min(acos(dot), MR::abs(MR::toRadian(degree))));
         }
     }
-}  // namespace
+};  // namespace
 
 TurnJointCtrl::TurnJointCtrl(LiveActor* pActor)
     : mActor(pActor), mCtrlRate(new JointCtrlRate()), mHorizontalDegreeMax(45.0f), mPositiveDegreeMax(22.5f), mNegativeDegreeMax(22.5f),

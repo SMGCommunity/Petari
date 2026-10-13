@@ -511,7 +511,7 @@ namespace {
     inline bool isDemoSequenceEnd(const StorySequenceExecutorType::DemoSequenceInfo* pInfo) {
         return pInfo->_0 == 12 || pInfo->_0 == 13;
     }
-}  // namespace
+};  // namespace
 
 bool StorySequenceExecutor::isNeedMoviePlayerExecutingEventEnum() const {
     for (s32 i = 0; i < _48.size(); i++) {

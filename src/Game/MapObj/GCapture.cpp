@@ -93,7 +93,7 @@ namespace {
     // sStartActiveEffectTime
     // sFreeSpinYPower
     // sNearTargetTractionPower
-}  // namespace
+};  // namespace
 
 namespace NrvGCapture {
     NEW_NERVE(GCaptureNrvWait, GCapture, Wait);
@@ -821,4 +821,4 @@ namespace MR {
 
         return gCapture->_108;
     }
-}  // namespace MR
+};  // namespace MR

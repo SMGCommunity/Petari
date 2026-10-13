@@ -6,13 +6,13 @@
 
 namespace {
     const char* const cEffectName = "Ripple";
-}  // namespace
+};  // namespace
 
 namespace NrvPhantomShipBoxFloater {
     NEW_NERVE(HostTypeWait, PhantomShipBoxFloater, Wait);
     NEW_NERVE(HostTypeMove, PhantomShipBoxFloater, Move);
     NEW_NERVE(HostTypeMoveUnderWater, PhantomShipBoxFloater, MoveUnderWater);
-}  // namespace NrvPhantomShipBoxFloater
+};  // namespace NrvPhantomShipBoxFloater
 
 PhantomShipBoxFloater::PhantomShipBoxFloater(const char* pName) : LiveActor(pName), mObjectName(), mFloaterOffset(gZeroVec), mRippleSeCounter() {
 }

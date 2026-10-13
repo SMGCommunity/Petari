@@ -31,7 +31,7 @@ namespace {
         MR::getPlayerUpVec(&up);
         pPos->scaleAdd(-20.0f, up, *MR::getPlayerCenterPos());
     }
-}  // namespace
+};  // namespace
 
 SearchBeamer::SearchBeamer(const char* pName) : LiveActor(pName) {
     mScaleController = nullptr;

@@ -17,7 +17,7 @@ namespace {
         MR::connectToScene(pAdaptor, -1, -1, -1, drawType);
         MR::registerPreDrawFunction(MR::Functor(&ParticleDrawExecutor::initDraw), drawType);
     }
-}  // namespace
+};  // namespace
 
 ParticleDrawExecutor::ParticleDrawExecutor(const EffectSystem* pSystem, bool createAdaptors)
     : mHost(pSystem), _4(), _8(), _C(), _10(), _14(), _18(), _1C(), _20(true), _21() {

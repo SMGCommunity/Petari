@@ -15,7 +15,7 @@ namespace NrvMapPartsRailGuideDrawer {
     NEW_NERVE(HostTypeHideAll, MapPartsRailGuideDrawer, HideAll);
     NEW_NERVE(HostTypeDrawAll, MapPartsRailGuideDrawer, DrawAll);
     NEW_NERVE(HostTypeDrawForward, MapPartsRailGuideDrawer, DrawForward);
-}  // namespace NrvMapPartsRailGuideDrawer
+};  // namespace NrvMapPartsRailGuideDrawer
 
 MapPartsRailGuideDrawer::MapPartsRailGuideDrawer(LiveActor* pHost, const char* pModelName)
     : MapPartsFunction(pHost, "ガイド描画"), mGuidePoints(), mGuideType(), mRailId(-1), mModelName(pModelName) {

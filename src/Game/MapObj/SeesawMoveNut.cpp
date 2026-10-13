@@ -6,7 +6,7 @@
 namespace NrvSeesawMoveNut {
     NEW_NERVE(SeesawMoveNutNrvHalfway, SeesawMoveNut, Halfway);
     NEW_NERVE(SeesawMoveNutNrvEdge, SeesawMoveNut, Edge);
-}  // namespace NrvSeesawMoveNut
+};  // namespace NrvSeesawMoveNut
 
 SeesawMoveNut::SeesawMoveNut(const char* pName) : MapObjActor(pName), mSpeed(100.0f), mPrevAngularSpeed() {
 }

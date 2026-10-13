@@ -79,4 +79,4 @@ namespace MR {
         pController->mModel = getJ3DModel(pActor);
         pController->mJoint = pJoint;
     }
-}  // namespace MR
+};  // namespace MR

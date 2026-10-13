@@ -133,7 +133,7 @@ namespace {
         ResFileInfo* pInfo = MR::getResourceHolder(pActor)->mFileInfoTable->findFileInfo(pName);
         MR::initFurParamFromDvd(pParam, pDynamic, pText, pInfo->_4);
     }
-}  // namespace
+};  // namespace
 
 namespace MR {
     FurMulti* initMultiFur(LiveActor* pActor, s32 lightType) {
@@ -219,7 +219,7 @@ namespace MR {
         pMulti->addToManager();
         return pMulti;
     }
-}  // namespace MR
+};  // namespace MR
 
 void FurBank::regist(FurMulti* pMulti, u32 layer) {
     mEntries[mCount] = pMulti;

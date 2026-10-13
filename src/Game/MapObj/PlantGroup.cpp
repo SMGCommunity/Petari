@@ -25,7 +25,7 @@ namespace {
     const f32 hStrongDist = 100.0f;
     const f32 hMiddleDist = 300.0f;
     const f32 hWeakDist = 500.0f;
-}  // namespace
+};  // namespace
 
 void PlantGroup_FORCE_MATCH_SDATA2() {
     (void)1.0f;
@@ -46,7 +46,7 @@ namespace NrvPlantMember {
     NEW_NERVE(HostTypeNrvShakeWeak, PlantMember, ShakeWeak);
     NEW_NERVE(HostTypeNrvShakeMiddle, PlantMember, ShakeMiddle);
     NEW_NERVE(HostTypeNrvShakeStrong, PlantMember, ShakeStrong);
-}  // namespace NrvPlantMember
+};  // namespace NrvPlantMember
 
 PlantGroup::PlantGroup(const char* pName)
     : LiveActor(pName), mMembers(), mMemberCount(7), mPlantType(), mIsStarPiece(), mHintPosition(0.0f), mHintRotation(0.0f),

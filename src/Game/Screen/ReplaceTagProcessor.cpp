@@ -25,7 +25,7 @@ namespace ReplaceTagProcessor {
 
             return nullptr;
         }
-    }  // namespace Impl
+    };  // namespace Impl
 
     namespace ImplArgs {
         struct GroupFunctionInfo {
@@ -44,7 +44,7 @@ namespace ReplaceTagProcessor {
 
             return nullptr;
         }
-    }  // namespace ImplArgs
+    };  // namespace ImplArgs
 
     u32 Replace(wchar_t* pDst, const wchar_t* pSrc) {
         wchar_t* pStart = pDst;
@@ -195,7 +195,7 @@ namespace ReplaceTagProcessor {
 
         return 8;
     }
-}  // namespace ReplaceTagProcessor
+};  // namespace ReplaceTagProcessor
 
 u32 ReplaceTagFunction::ReplaceArgs(wchar_t* pDst, s32 length, const wchar_t* pFormat, ...) {
     wchar_t buffer[0x200];

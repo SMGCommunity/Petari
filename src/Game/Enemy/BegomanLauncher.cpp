@@ -21,7 +21,7 @@ namespace NrvBegomanLauncher {
     NEW_NERVE(HostTypeNrvLaunch, BegomanLauncher, Launch);
     NEW_NERVE(HostTypeNrvAppear, BegomanLauncher, Appear);
     NEW_NERVE(HostTypeNrvDisappear, BegomanLauncher, Disappear);
-}  // namespace NrvBegomanLauncher
+};  // namespace NrvBegomanLauncher
 
 namespace {
     const s32 sLaunchTime = 0;

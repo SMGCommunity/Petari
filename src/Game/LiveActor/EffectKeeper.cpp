@@ -75,7 +75,7 @@ namespace {
 
         return MR::getFloorCodeIndex(triangle.getAttributes());
     }
-}  // namespace
+};  // namespace
 
 void EffectKeeper::initAfterPlacementForAttributeEffect(MtxPtr pMtx) {
     if (mBinder != nullptr) {
@@ -365,7 +365,7 @@ namespace {
 
         return pBinder->isBindedGround() || pBinder->isBindedWall() || pBinder->isBindedRoof();
     }
-}  // namespace
+};  // namespace
 
 void EffectKeeper::updateFloorCode() {
     if (mBinder == nullptr) {

@@ -67,7 +67,7 @@ namespace {
         return MR::isEqualString(pValue, "on");
     }
 
-}  // namespace
+};  // namespace
 
 AutoEffectInfo::AutoEffectInfo()
     : mGroupName(), mAnimName(), mUniqueName(), mEffectName(), mParentName(), mJointName(), mFlag(), mOffset(), mStartFrame(), mEndFrame(-1),
@@ -175,4 +175,4 @@ namespace {
         return strchr(value, 'T') != nullptr;
     }
 
-}  // namespace
+};  // namespace

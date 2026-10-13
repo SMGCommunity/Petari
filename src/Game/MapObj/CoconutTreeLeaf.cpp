@@ -25,7 +25,7 @@ namespace {
     const s32 sSteptoWindStartAfterLand = 120;
     const s32 sStepWindMin = 10;
     const s32 sStepWindMax = 30;
-}  // namespace
+};  // namespace
 
 CoconutTreeLeaf::CoconutTreeLeaf(const CoconutTreeLeafGroup* pGroup, MtxPtr pJointMtx, const TVec3f* pWindDirection)
     : LiveActor("ヤシの木の葉"), mGroup(pGroup), mTipPosition(0.0f), mRestTipPosition(0.0f),

@@ -55,4 +55,4 @@ public:
 
 namespace OnimasuFunction {
     bool getPolygonOnRailPoint(TVec3f* pPosition, TVec3f* pNormal, const LiveActor* pActor, int pointNo);
-}  // namespace OnimasuFunction
+};  // namespace OnimasuFunction

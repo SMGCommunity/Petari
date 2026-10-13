@@ -22,7 +22,7 @@ namespace {
         ".brlan",
         nullptr,
     };
-}  // namespace
+};  // namespace
 
 LayoutHolder::LayoutHolder(JKRArchive& rArchive) : nw4r::lyt::ResourceAccessor(), mArchive(&rArchive) {
     initializeArc();

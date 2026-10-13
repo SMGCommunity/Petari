@@ -22,7 +22,7 @@ namespace {
             return *pGroup->mIdInfo == rIdInfo;
         }
     };
-}  // namespace
+};  // namespace
 
 MsgSharedGroup::MsgSharedGroup(const char* pName, s32 numMax, const JMapInfoIter& rIter)
     : LiveActorGroup(mGroupName, numMax), mIdInfo(), mMsg(-1), mSensor(), mSensorName() {
@@ -87,7 +87,7 @@ namespace {
     std::binder2nd< HasGroupId, const JMapIdInfo& > makeGroupIdPredicate(const JMapIdInfo& rIdInfo) {
         return std::binder2nd< HasGroupId, const JMapIdInfo& >(HasGroupId(), rIdInfo);
     }
-}  // namespace
+};  // namespace
 
 LiveActorGroup* LiveActorGroupArray::findGroup(const JMapInfoIter& rIter) const {
     MsgSharedGroup* const* it = std::find_if(mGroups.begin(), mGroups.end(), ::makeGroupIdPredicate(MR::createJMapIdInfoFromGroupId(rIter)));

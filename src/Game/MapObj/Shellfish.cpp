@@ -25,7 +25,7 @@ namespace {
     const s32 sStepToRecover = 540;
     const s32 sShockToInterpole = 2;
     const f32 sHitPushPower = 40.0f;
-}  // namespace
+};  // namespace
 
 namespace NrvShellfish {
     NEW_NERVE(ShellfishNrvWait, Shellfish, Wait);
@@ -35,7 +35,7 @@ namespace NrvShellfish {
     NEW_NERVE(ShellfishNrvClose, Shellfish, Close);
     NEW_NERVE(ShellfishNrvShock, Shellfish, Shock);
     NEW_NERVE_ONEND(ShellfishNrvDPDOpen, Shellfish, DPDOpen, DPDOpen);
-}  // namespace NrvShellfish
+};  // namespace NrvShellfish
 
 Shellfish::Shellfish(const char* pName)
     : LiveActor(pName), mScaleController(), mStarPointerState(), mItem(), mItemType(), mIsItemBound(), mLowCollision(), _A4() {

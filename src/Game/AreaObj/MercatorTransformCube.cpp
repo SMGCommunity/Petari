@@ -33,7 +33,7 @@ namespace {
         getMercatorCube()->convertTransAndRotate(pPos, &rotation, railPos, true);
     }
 
-}  // namespace
+};  // namespace
 
 void MercatorTransformCube_FORCE_EMIT() {
     TVec3f vec;
@@ -310,7 +310,7 @@ namespace MR {
 
         return pMover;
     }
-}  // namespace MR
+};  // namespace MR
 
 MercatorTransformCube::~MercatorTransformCube() {
 }

@@ -73,7 +73,7 @@ namespace {
     inline f32 getDamageVibrationCycle() {
         return ::sDamageVibrationCycle;
     }
-}  // namespace
+};  // namespace
 namespace NrvTripodBossLeg {
     NEW_NERVE(TripodBossLegNrvHold, TripodBossLeg, Hold);
     NEW_NERVE(TripodBossLegNrvDemo, TripodBossLeg, Demo);

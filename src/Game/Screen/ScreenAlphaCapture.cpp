@@ -10,7 +10,7 @@ namespace {
     ScreenAlphaCapture* getScreenAlphaCapture() {
         return MR::getSceneObj< ScreenAlphaCapture >(SceneObj_ScreenAlphaCapture);
     }
-}  // namespace
+};  // namespace
 
 ScreenAlphaCapture::ScreenAlphaCapture(const char* pName) : NameObj(pName) {
     for (s32 i = 0; i < ARRAY_SIZE(mTexture); i++) {
@@ -66,4 +66,4 @@ namespace MR {
     JUTTexture* getScreenAlphaTexture(s32 index) {
         return ::getScreenAlphaCapture()->getTexture(index);
     }
-}  // namespace MR
+};  // namespace MR

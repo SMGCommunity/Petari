@@ -9,12 +9,12 @@
 namespace {
     const s32 sUnizoNumber = 4;
     const s32 sUnizoInter = 300;
-}  // namespace
+};  // namespace
 
 namespace NrvUnizoLauncher {
     NEW_NERVE(UnizoLauncherNrvWait, UnizoLauncher, Wait);
     NEW_NERVE(UnizoLauncherNrvLaunch, UnizoLauncher, Launch);
-}  // namespace NrvUnizoLauncher
+};  // namespace NrvUnizoLauncher
 
 UnizoLauncher::UnizoLauncher(const char* pName) : LiveActor(pName) {
 }

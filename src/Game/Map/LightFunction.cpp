@@ -184,7 +184,7 @@ namespace {
             ::loadLightDiffuse(GXColor(rInfo.mColor), v14, lightID);
         }
     }
-}  // namespace
+};  // namespace
 
 void LightFunction::loadActorLightInfo(const ActorLightInfo* pInfo) {
     ::loadLightInfoDiffuse(pInfo->mInfo0, GX_LIGHT0);

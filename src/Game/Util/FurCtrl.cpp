@@ -172,7 +172,7 @@ namespace MR {
     FurDrawManager* getFurDrawManager() {
         return static_cast< FurDrawManager* >(getSceneObjHolder()->getObj(SceneObj_FurDrawManager));
     }
-}  // namespace MR
+};  // namespace MR
 
 FurDrawManager::FurDrawManager(u8 capacity) : NameObj("ファー描画マネージャ") {
     mCounts[0] = 0;
@@ -330,7 +330,7 @@ namespace MR {
             pLight->mColorSource = colorSource;
         }
     }
-}  // namespace MR
+};  // namespace MR
 
 J3DModel2::J3DModel2(J3DModel* pModel) {
     mModelData = pModel->mModelData;

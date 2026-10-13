@@ -19,7 +19,7 @@ namespace {
 
         return pTextBox;
     }
-}  // namespace
+};  // namespace
 
 namespace MR {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
@@ -99,7 +99,7 @@ namespace MR {
 
         return isEnd;
     }
-}  // namespace MR
+};  // namespace MR
 
 TalkTextFormer::TalkTextFormer(LayoutActor* pActor, const char* pPaneName) : mHostActor(pActor), mMsg(), _8(), mPaneName(pPaneName) {
 }

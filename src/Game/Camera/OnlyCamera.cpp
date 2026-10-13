@@ -9,7 +9,7 @@ namespace {
     static const f32 sAccel = 1.0f;
     static const f32 sSpeedMax = 100.0f;
     // static const s32 sPenetrateCount =
-}  // namespace
+};  // namespace
 
 OnlyCamera::OnlyCamera(const char* pName)
     : NameObj(pName), mPoseParam(new CameraPoseParam()), mStartPose(true), mCalcIdeal(), mPos(0.0f, 0.0f, 0.0f), mSpeed(), _28(), _2C(true),

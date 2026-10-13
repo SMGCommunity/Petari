@@ -24,13 +24,13 @@ namespace {
     const s32 sBindAnimFrame = 3;
     // sBindEndBlendFrame
     const s32 sBindStartBlendFrame = 0;
-}  // namespace
+};  // namespace
 
 namespace NrvQuestionCoin {
     NEW_NERVE(HostTypeWait, QuestionCoin, Wait);
     NEW_NERVE(HostTypeThrowActor, QuestionCoin, ThrowActor);
     NEW_NERVE(HostTypeCaught, QuestionCoin, Caught);
-}  // namespace NrvQuestionCoin
+};  // namespace NrvQuestionCoin
 
 QuestionCoin::QuestionCoin(const char* pName)
     : LiveActor(pName), mBoundActor(), mCameraInfo(), mLaunchSpeed(), mIsWeakGravity(), mCalcShadow(), mPoseType(), mShadowDropLengthType(),

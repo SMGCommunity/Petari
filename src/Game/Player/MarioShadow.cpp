@@ -28,7 +28,7 @@ void MarioShadow_FORCE_MATCH_SDATA2() {
 namespace {
     f32 cCheckOffset0 = 5.0f;
     f32 cDrawOffset0 = -5.0f;
-}  // namespace
+};  // namespace
 
 CollisionShadow::~CollisionShadow() {
 }

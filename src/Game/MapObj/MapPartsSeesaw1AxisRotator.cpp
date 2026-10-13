@@ -19,7 +19,7 @@ namespace {
     const f32 sAngularSpeedMin = 0.1f;
     const s32 sMoveStartFrame = 2;
     const f32 sInertiaConstDefault = 1000.0f;
-}  // namespace
+};  // namespace
 
 namespace NrvMapPartsSeesaw1AxisRotator {
     NEW_NERVE(HostTypeWait, MapPartsSeesaw1AxisRotator, Wait);
@@ -27,7 +27,7 @@ namespace NrvMapPartsSeesaw1AxisRotator {
     NEW_NERVE(HostTypeMove, MapPartsSeesaw1AxisRotator, Move);
     NEW_NERVE(HostTypeStay, MapPartsSeesaw1AxisRotator, Stay);
     NEW_NERVE(HostTypeHipDrop, MapPartsSeesaw1AxisRotator, HipDrop);
-}  // namespace NrvMapPartsSeesaw1AxisRotator
+};  // namespace NrvMapPartsSeesaw1AxisRotator
 
 MapPartsSeesaw1AxisRotator::MapPartsSeesaw1AxisRotator(LiveActor* pHost, const char* pMoveSound, f32 moveSoundSpeed)
     : MapPartsRotatorBase(pHost, "シーソー(1軸)"), mAngularSpeedMax(), mInertiaConst(::sInertiaConstDefault), mRotateAngle(), mRestoreForce(),

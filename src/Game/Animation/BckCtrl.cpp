@@ -30,7 +30,7 @@ namespace {
     bool isLessBckName(const BckCtrlData& rData, const char* pName) {
         return MR::strcasecmp(rData.mName, pName) < 0;
     }
-}  // namespace
+};  // namespace
 
 BckCtrl::BckCtrl(ResourceHolder* pResHolder, const char* pResName) : mControlData() {
     mDefaultCtrlData.mName = ::sDefaultPlayDataName;

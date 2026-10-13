@@ -8,7 +8,7 @@
 namespace {
     // hPrintFixReactionLength
     const f32 hOverlapAddValue = 1.2f;
-}  // namespace
+};  // namespace
 
 Binder::Binder(MtxPtr pMtx, const TVec3f* pPosition, const TVec3f* pGravity, f32 radius, f32 offsetY, u32 planeNum)
     : mTriangleFilter(), mCollisionPartsFilter(), mExCollisionParts(), _C(pMtx), _10(pPosition), _14(pGravity), mRadius(radius), mOffsetY(offsetY),

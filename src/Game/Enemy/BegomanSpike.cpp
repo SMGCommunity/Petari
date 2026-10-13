@@ -38,7 +38,7 @@ namespace NrvBegomanSpike {
     NEW_NERVE(HostTypeNrvKeepDistance, BegomanSpike, KeepDistance);
     NEW_NERVE(HostTypeNrvLaunch, BegomanSpike, Launch);
     NEW_NERVE_ONEND(HostTypeNrvBindStarPointer, BegomanSpike, BindStarPointer, BindStarPointer);
-}  // namespace NrvBegomanSpike
+};  // namespace NrvBegomanSpike
 
 namespace {
     const MR::ActorMoveParam hWaitParam = {0.0f, 3.0f, 0.95f, 1.0f};
@@ -123,7 +123,7 @@ namespace {
     const s32 sIsInWaterTime = 60;
     const f32 hKeepDistFar = 800.0f;
     const f32 hKeepDistNear = 600.0f;
-}  // namespace
+};  // namespace
 
 BegomanSpike::BegomanSpike(const char* pName) : BegomanBase(pName), mHead(), mBrokenModel(), mTurnAfterBlow() {
     mHeadMatrix.identity();

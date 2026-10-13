@@ -14,7 +14,7 @@
 namespace {
     const s32 sCollisionCountLimit = 1;
     const s32 sGravityCountLimit = 1;
-}  // namespace
+};  // namespace
 
 ShadowControllerHolder::ShadowControllerHolder() : NameObj("影管理"), _C(), _18(), _24() {
     mFarClip = 4000.0f;
@@ -473,7 +473,7 @@ namespace MR {
             pActor->mShadowControllerList->requestCalc();
         }
     }
-}  // namespace MR
+};  // namespace MR
 
 template MR::AssignableArray< ShadowController* >::~AssignableArray();
 

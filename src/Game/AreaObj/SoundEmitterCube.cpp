@@ -10,7 +10,7 @@
 
 namespace {
     const char* cSoundNameTable[] = {"SE_AT_LV_GRAVE", "SE_AT_LV_KOOPA_WIND", "SE_AT_LV_WIND_DESERT", "SE_AT_LV_WIND_ICE_MT_TOP"};
-}  // namespace
+};  // namespace
 
 SoundEmitterCube::~SoundEmitterCube() {
 }

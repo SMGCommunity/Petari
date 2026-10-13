@@ -32,7 +32,7 @@ namespace {
     const f32 hSwoonEndUpVel = 5.0f;
     const s32 hSwoonEndFlyStartTime = 30;
     const f32 hBombFallFrontVel = 0.0f;
-}  // namespace
+};  // namespace
 
 namespace NrvBombBird {
     NEW_NERVE(HostTypeNrvFlyOnRail, BombBird, FlyOnRail);
@@ -48,7 +48,7 @@ namespace NrvBombBird {
     NEW_NERVE(HostTypeNrvTrample, BombBird, Trample);
     NEW_NERVE(HostTypeNrvSinkDown, BombBird, SinkDown);
     NEW_NERVE_ONEND(HostTypeNrvBindStarPointer, BombBird, BindStarPointer, BindStarPointer);
-}  // namespace NrvBombBird
+};  // namespace NrvBombBird
 
 BombBird::~BombBird() {
 }

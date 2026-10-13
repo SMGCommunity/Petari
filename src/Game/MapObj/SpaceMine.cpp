@@ -12,7 +12,7 @@ namespace {
     const f32 sDistanceNear = 1500.0f;
     const f32 sDistanceFar = 1450.0f;
     const s32 sAppearEffectTime = 120;
-}  // namespace
+};  // namespace
 
 namespace NrvSpaceMine {
     NEW_NERVE(HostTypeWait, SpaceMine, Wait);

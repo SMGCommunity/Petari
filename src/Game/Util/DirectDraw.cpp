@@ -16,7 +16,7 @@
 namespace {
     static Mtx mViewMtx;
 
-}  // namespace
+};  // namespace
 
 namespace TDDraw {
     void DirectDraw_FORCE_MATCH_SDATA2() {
@@ -690,7 +690,7 @@ namespace TDDraw {
         }
     }
 
-}  // namespace TDDraw
+};  // namespace TDDraw
 
 void DirectDraw_FORCE_MATCH(TPos3f* pMtx, TVec3f* pVec) {
     pMtx->getTrans(*pVec);

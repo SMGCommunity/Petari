@@ -11,4 +11,4 @@ namespace MR {
     f32 diffRadian(f32 angleA, f32 angleB);
     bool diffRadianAroundAxis(f32* pAngle, const TVec3f& rAxis, const TVec3f& rA, const TVec3f& rB);
     void projectVecOnPlane(TVec3f* pDst, const TVec3f& rSrc, const TVec3f& rNorm);
-}  // namespace MR
+};  // namespace MR

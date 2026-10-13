@@ -62,7 +62,7 @@ namespace {
     f32 cNeutralAngleWait = JGeometry::TUtil< f32 >::PI() / 2.0f - JGeometry::TUtil< f32 >::PI() / 6.0f;
     f32 cLimitAngleWait = JGeometry::TUtil< f32 >::PI() / 1.0001f;
     f32 cUpperAngleWait = JGeometry::TUtil< f32 >::PI() / 100.0f;
-}  // namespace
+};  // namespace
 
 void Mario::tryStartFoo() {
     if (MR::getAreaObj("CelestrialSphere", getTrans()) || !mFoo->_48) {

@@ -196,4 +196,4 @@ namespace MR {
     void offDiffFlagBrk(u32* pFlags, const J3DAnmTevRegKey* pAnm, const char* pName) {
         modifyDiffFlagBrk(pFlags, pAnm, false, pName);
     }
-}  // namespace MR
+};  // namespace MR

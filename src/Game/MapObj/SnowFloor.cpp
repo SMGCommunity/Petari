@@ -33,7 +33,7 @@ namespace {
     f32 cSnowFallRateFirst = 0.1f;
     f32 cPlayerWalkResist = 0.5f;
     u16 sCellSize = 1024 / sTextureSize;
-}  // namespace
+};  // namespace
 
 SnowFloor::~SnowFloor() {
 }

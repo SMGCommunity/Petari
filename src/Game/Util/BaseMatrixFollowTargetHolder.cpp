@@ -9,7 +9,7 @@ namespace {
     BaseMatrixFollowTargetHolder* getBaseMatrixFollowTargetHolder() {
         return MR::getSceneObj< BaseMatrixFollowTargetHolder >(SceneObj_BaseMatrixFollowTargetHolder);
     }
-}  // namespace
+};  // namespace
 
 BaseMatrixFollower::BaseMatrixFollower(NameObj* pObj, const JMapInfoIter& rIter) {
     mFollowerObj = pObj;
@@ -170,7 +170,7 @@ namespace MR {
             ::getBaseMatrixFollowTargetHolder()->setFollowTargetInfo(pActor, rIter, pBaseMtx, pValidater);
         }
     }
-}  // namespace MR
+};  // namespace MR
 
 void BaseMatrixFollower::update() {
 }

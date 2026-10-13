@@ -417,7 +417,7 @@ namespace {
         rIcons.mArray.mArr = pBuffer;
         rIcons.mArray.mMaxSize = capacity;
     }
-}  // namespace
+};  // namespace
 
 void GalaxyMap::initPaneCtrlPointing() {
     JMapInfo galaxyInfo;
@@ -489,7 +489,7 @@ namespace {
         pIcon->initWithoutIter();
         return pIcon;
     }
-}  // namespace
+};  // namespace
 
 void GalaxyMap::initMarioIcon() {
     s32 scenarioNo = 0;

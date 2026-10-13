@@ -50,7 +50,7 @@ namespace {
     // hHitReactionVelH
     // hHitReactionVelV
     // hBrokenTime
-}  // namespace
+};  // namespace
 
 namespace {
     static const MR::ActorMoveParam hNoMoveNoTurnParam = {0.0f, 1.2f, 0.8f, 0.0f};

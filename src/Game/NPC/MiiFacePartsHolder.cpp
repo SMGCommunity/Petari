@@ -188,7 +188,7 @@ void MiiFacePartsHolder::drawExtra() const {
 namespace {
     static const GXColorS10 sTevColor0 = {0, 0, 0, -89};
     const GXColorS10 sTevColor1 = {0, 0, 0, 246};
-}  // namespace
+};  // namespace
 
 void MiiFacePartsHolder::setTevOpa() const {
     GXColorS10 color0 = sTevColor0;

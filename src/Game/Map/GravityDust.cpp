@@ -6,7 +6,7 @@
 namespace {
     const f32 sGravity = 1.0f;
     const f32 sFrictionRate = 0.995f;
-}  // namespace
+};  // namespace
 
 GravityDustParticleCallBack::GravityDustParticleCallBack(const LiveActor* pActor) : MultiEmitterParticleCallBack(), mActor(pActor) {
 }

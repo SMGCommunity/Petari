@@ -47,7 +47,7 @@ namespace NrvBegomanSpring {
     NEW_NERVE(HostTypeNrvInWater, BegomanSpring, InWater);
     NEW_NERVE(HostTypeNrvKeepDistance, BegomanSpring, KeepDistance);
     NEW_NERVE_ONEND(HostTypeNrvBindStarPointer, BegomanSpring, BindStarPointer, BindStarPointer);
-}  // namespace NrvBegomanSpring
+};  // namespace NrvBegomanSpring
 
 namespace {
     const MR::ActorMoveParam hWaitParam = {0.0f, 3.0f, 0.95f, 1.0f};
@@ -103,7 +103,7 @@ namespace {
     const s32 sIsInWaterTime = 60;
     const f32 hKeepDistFar = 800.0f;
     const f32 hKeepDistNear = 600.0f;
-}  // namespace
+};  // namespace
 
 BegomanSpring::BegomanSpring(const char* pName)
     : BegomanBase(pName), mEventCamera(), mHead(), mCameraStartPos(0, 0, 0), mIsCameraActive(), mCameraInfo(), mType(), mBaby(), mHidePos(0, 0, 0) {

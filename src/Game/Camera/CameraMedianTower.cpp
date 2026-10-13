@@ -16,7 +16,7 @@ namespace {
     static const f32 sPartialRate = 0.5f;
     static const f32 sAngularVel = 0.5f;
     static const s32 sInterpolate = 120;
-}  // namespace
+};  // namespace
 
 CameraMedianTower::CameraMedianTower(const char* pName)
     : Camera(pName), mString(), mWPoint(0.0f, 0.0f, 0.0f), mAxis(0.0f, 1.0f, 0.0f), mAngleA(MR::toRadian(30.0f)), mDist(1200.0f), mMaxFocusDist(),

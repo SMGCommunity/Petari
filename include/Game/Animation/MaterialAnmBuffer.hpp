@@ -34,4 +34,4 @@ namespace MR {
     void offDiffFlagBtk(u32* pFlags, const J3DAnmTextureSRTKey* pAnm, const char* pName);
     void onDiffFlagBrk(u32* pFlags, const J3DAnmTevRegKey* pAnm, const char* pName);
     void offDiffFlagBrk(u32* pFlags, const J3DAnmTevRegKey* pAnm, const char* pName);
-}  // namespace MR
+};  // namespace MR

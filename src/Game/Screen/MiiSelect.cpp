@@ -25,7 +25,7 @@ namespace {
     typedef void (MiiSelect::*CallbackFuncPtr)();
 
     static const CallbackFuncPtr func[2] = {&MiiSelect::callbackLeft, &MiiSelect::callbackRight};
-}  // namespace
+};  // namespace
 
 MiiSelect::MiiSelect(const char* pName)
     : LayoutActor(pName, true), _28(new MR::BitArray(5)), mFellowIconNum(), mFavoriteMiiNum(), mMiiNum(), _1EC(), _1F0(), _1F4(), _1F8(), _1FC(),
@@ -544,7 +544,7 @@ namespace MiiSelectSub {
             mIconArray[i]->prohibit();
         }
     }
-}  // namespace MiiSelectSub
+};  // namespace MiiSelectSub
 
 s32 MiiSelect::getIconNum() {
     return mMiiNum + mFavoriteMiiNum + mFellowIconNum;

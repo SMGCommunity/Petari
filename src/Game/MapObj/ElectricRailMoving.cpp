@@ -404,7 +404,7 @@ namespace {
 
         return reachedEnd;
     }
-}  // namespace
+};  // namespace
 
 bool ElectricRailMoving::updatePointPos() {
     return ::updateMovingPoints(this);

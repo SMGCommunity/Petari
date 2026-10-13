@@ -35,7 +35,7 @@ namespace {
         {"Comet5Status", 0},
         {"Comet6Status", 0},
     };
-}  // namespace
+};  // namespace
 
 GameEventValueChecker::GameEventValueChecker() : mValues(), mNumValues() {
     mValues = new u16[ARRAY_SIZE(::cGameEventValueTable)];

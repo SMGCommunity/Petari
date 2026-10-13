@@ -8,13 +8,13 @@ namespace {
     const f32 sSensorRadius = 70.0f;
     const f32 sItemSpeed = 20.0f;
     const f32 sPlayerVelFactor = 0.7f;
-}  // namespace
+};  // namespace
 
 namespace NrvPomponPlant {
     NEW_NERVE(HostTypeWait, PomponPlant, Wait);
     NEW_NERVE(HostTypeSwingDpd, PomponPlant, SwingDpd);
     NEW_NERVE(HostTypeSwingPlayer, PomponPlant, SwingPlayer);
-}  // namespace NrvPomponPlant
+};  // namespace NrvPomponPlant
 
 PomponPlant::PomponPlant(const char* pName) : LiveActor(pName), mItemType(-1), mItemCount(1), mCanGenItem(true) {
 }

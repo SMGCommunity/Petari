@@ -33,7 +33,7 @@ namespace {
 
         return nullptr;
     }
-}  // namespace
+};  // namespace
 
 void MirrorCamera::setMirrorMapInfo(const TVec3f& rNormal, const TVec3f& rPosition) {
     _18.set(rNormal);

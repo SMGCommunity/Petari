@@ -355,7 +355,7 @@ namespace {
         pStartInfo->mDemoExecutor = DemoFunction::findDemoExecutor(pDemoName);
         pStartInfo->_1C = pChar2;
     }
-}  // namespace
+};  // namespace
 
 namespace DemoStartRequestUtil {
     bool isExistStartDemoRequest(const DemoStartRequestHolder* pStartRequestHolder) {

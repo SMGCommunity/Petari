@@ -65,7 +65,7 @@ namespace {
             pEmitter->_2C = pInfo->mLightAffectValue;
         }
     }
-}  // namespace
+};  // namespace
 
 namespace MR {
     namespace Effect {
@@ -299,5 +299,5 @@ namespace MR {
             pEffectInfo->init(iter);
             return pEffectInfo;
         }
-    }  // namespace Effect
-}  // namespace MR
+    };  // namespace Effect
+};  // namespace MR

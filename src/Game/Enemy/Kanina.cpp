@@ -749,7 +749,7 @@ namespace {
         MR::normalize(&front);
         pDirection->set(front);
     }
-}  // namespace
+};  // namespace
 
 void Kanina::exeWalk() {
     if (MR::isFirstStep(this)) {

@@ -43,7 +43,7 @@ namespace {
     const char* sLegJointNameList[] = {"RightFootA3", "LeftFootA3", "RightFootB3", "LeftFootB3", "RightFootC3", "LeftFootC3"};
 
     static TVec3f sAppearStarPieceOffset(0.0f, 200.0f, 0.0f);
-}  // namespace
+};  // namespace
 
 BossStinkBug::BossStinkBug(const char* pName)
     : LiveActor(pName), _8C(), _94(), _98(), _CC(), mActionSequencer(), _D4(), mBombLauncher(), _DC(0.0f, 0.0f, 0.0f, 1.0f), _EC(0.0f, 0.0f, 1.0f),

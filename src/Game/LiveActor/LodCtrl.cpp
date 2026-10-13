@@ -189,7 +189,7 @@ namespace {
     }
 
     template void LodFuntionCall< f32 >(LodCtrl*, void (*)(LiveActor*, f32), f32);
-}  // namespace
+};  // namespace
 
 void LodCtrl::setClippingTypeSphereContainsModelBoundingBox(f32 bounds) {
     ::LodFuntionCall< f32 >(this, MR::setClippingTypeSphereContainsModelBoundingBox, bounds);

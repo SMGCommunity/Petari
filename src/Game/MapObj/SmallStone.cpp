@@ -17,7 +17,7 @@ namespace {
     const f32 hRandomRotateAngle = 360.0f;
     const f32 hRandomScaleMin = 0.75f;
     const f32 hRandomScaleMax = 1.25f;
-}  // namespace
+};  // namespace
 
 void SmallStone_FORCE_MATCH_SDATA2() {
     (void)0.017453292f;

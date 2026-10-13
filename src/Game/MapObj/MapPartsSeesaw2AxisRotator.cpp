@@ -11,14 +11,14 @@
 namespace {
     const f32 sInertiaConstDefault = 500.0f;
     const f32 sRestoreForceDefault = 100.0f;
-}  // namespace
+};  // namespace
 
 namespace NrvMapPartsSeesaw2AxisRotator {
     NEW_NERVE(HostTypeWait, MapPartsSeesaw2AxisRotator, Wait);
     NEW_NERVE(HostTypeStay, MapPartsSeesaw2AxisRotator, Stay);
     NEW_NERVE(HostTypeMove, MapPartsSeesaw2AxisRotator, Move);
     NEW_NERVE(HostTypeHipDrop, MapPartsSeesaw2AxisRotator, HipDrop);
-}  // namespace NrvMapPartsSeesaw2AxisRotator
+};  // namespace NrvMapPartsSeesaw2AxisRotator
 
 MapPartsSeesaw2AxisRotator::MapPartsSeesaw2AxisRotator(LiveActor* pHost, const char* pMoveSound, f32 moveSoundSpeed)
     : MapPartsRotatorBase(pHost, "シーソー(2軸)"), mRotateAngle(), mInertiaConst(::sInertiaConstDefault), mRestoreForce(::sRestoreForceDefault),

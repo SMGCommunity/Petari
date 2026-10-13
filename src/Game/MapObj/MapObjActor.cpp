@@ -807,7 +807,7 @@ void MapObjActorUtil::startBreak(MapObjActor* pActor) {
 namespace {
     const char* const cEffectNameBreak = "Break";
     const char* const cBckNameBreak = "Break";
-}  // namespace
+};  // namespace
 
 bool MapObjActorUtil::tryStartBreak(MapObjActor* pActor) {
     const char* stopSe = MR::StageEffect::getStopSe(pActor->mObjectName);

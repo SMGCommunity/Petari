@@ -21,11 +21,11 @@ namespace {
     // const f32 sSpeedMax = 0.0f;
 
     const GXColor color = {170, 170, 255, 140};
-}  // namespace
+};  // namespace
 
 namespace NrvGravityLight {
     NEW_NERVE(GravityLightNrvWait, GravityLight, Wait);
-}  // namespace NrvGravityLight
+};  // namespace NrvGravityLight
 
 GravityLight::GravityLight(const char* pName)
     : LiveActor(pName), mLightCylinder(), mMapPartsRailMover(), mMapPartsRotator(), mRadius(2500.0f), mCenter(0.0f, 0.0f, 0.0f), _D8() {

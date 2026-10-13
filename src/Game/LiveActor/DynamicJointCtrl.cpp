@@ -16,7 +16,7 @@ namespace {
             return calcJointChildNum(pJoint->mChild) + 1;
         }
     }
-}  // namespace
+};  // namespace
 
 JointCtrlRate::JointCtrlRate() : _0(1.0f), _4(), _8(-1), _C(-1) {
 }

@@ -40,7 +40,7 @@ namespace {
     static const f32 sCamShakeDistanceStrong = 2000.0f;
     static const f32 sCamShakeDistanceWeak = 3500.0f;
     static const f32 sSensorRadius = 800.0f;
-}  // namespace
+};  // namespace
 
 namespace NrvOnimasu {
     NEW_NERVE(HostTypeWaitForSwitchOn, Onimasu, WaitForSwitchOn);
@@ -48,7 +48,7 @@ namespace NrvOnimasu {
     NEW_NERVE(HostTypeWaitForStamp, Onimasu, Wait);
     NEW_NERVE(HostTypeJump, Onimasu, Move);
     NEW_NERVE(HostTypeStamp, Onimasu, Stamp);
-}  // namespace NrvOnimasu
+};  // namespace NrvOnimasu
 
 Onimasu::~Onimasu() {
 }
@@ -369,4 +369,4 @@ namespace OnimasuFunction {
         pNormal->set(*triangle.getFaceNormal());
         return true;
     }
-}  // namespace OnimasuFunction
+};  // namespace OnimasuFunction

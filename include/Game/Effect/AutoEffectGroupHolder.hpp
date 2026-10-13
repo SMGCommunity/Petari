@@ -27,5 +27,5 @@ namespace MR {
         void registerAutoEffectInfos(AutoEffectGroupHolder* pHolder, PaneEffectKeeper* pKeeper, const LayoutActor* pActor, const char* pName);
         void registerAutoEffectInfos(AutoEffectGroupHolder* pHolder, MultiSceneEffectKeeper* pKeeper, const MultiSceneActor* pActor,
                                      const char* pName);
-    }  // namespace Effect
-}  // namespace MR
+    };  // namespace Effect
+};  // namespace MR

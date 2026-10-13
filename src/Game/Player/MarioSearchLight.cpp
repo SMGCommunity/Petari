@@ -132,7 +132,7 @@ namespace {
             pModel->mExtraMtxBuffer[i] = new (0x20) Mtx[num];
         }
     }
-}  // namespace
+};  // namespace
 
 void MarioActor::initSearchLight() {
     mSearchLight = new MarioSearchLight(this);

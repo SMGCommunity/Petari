@@ -15,7 +15,7 @@ namespace {
 
         return NameObjFactory::getCreator(rIdentifier.mName);
     }
-}  // namespace
+};  // namespace
 
 PlacementInfoOrdered::PlacementInfoOrdered(int count) : mIndexArray(), mIndexCount(), mSetArray(), mOrderedSetArray(), mCount(count) {
     mIndexArray = new Index[count];

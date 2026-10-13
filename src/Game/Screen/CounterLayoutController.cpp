@@ -113,7 +113,7 @@ namespace {
     bool isHiddenOrWait(const T* pLayout) {
         return MR::isDead(pLayout) || MR::isHiddenLayout(pLayout) || pLayout->isWait();
     }
-}  // namespace
+};  // namespace
 
 bool CounterLayoutController::isHiddenOrWaitAllLayout() const {
     return ::isHiddenOrWait(mCoinCounter) && ::isHiddenOrWait(mStarPieceCounter) && ::isHiddenOrWait(mPlayerLeft) && ::isHiddenOrWait(mStarCounter);

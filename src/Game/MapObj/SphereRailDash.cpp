@@ -12,7 +12,7 @@
 namespace NrvSphereRailDash {
     NEW_NERVE(SphereRailDashNrvWait, SphereRailDash, Wait);
     NEW_NERVE(SphereRailDashNrvRailMove, SphereRailDash, RailMove);
-}  // namespace NrvSphereRailDash
+};  // namespace NrvSphereRailDash
 
 SphereRailDash::~SphereRailDash() {
 }

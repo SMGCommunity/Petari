@@ -322,7 +322,7 @@ namespace {
         MR::registerDemoActionFunctorDirect(pActor, rStart, pDemoName, "開始");
         MR::registerDemoActionFunctorDirect(pActor, rReset, pDemoName, "バトラーリセット");
     }
-}  // namespace
+};  // namespace
 
 void Butler::initForAstroDome(const JMapInfoIter& rIter) {
     MR::tryRegisterDemoCast(this, rIter);

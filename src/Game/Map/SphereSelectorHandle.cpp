@@ -31,7 +31,7 @@ namespace {
     s32 cBgmConfirmFrames = 60;
     s32 cBgmNotConfirmState = 5;
     s32 cBgmNotConfirmFrames = 60;
-}  // namespace
+};  // namespace
 
 namespace NrvSphereSelectorHandle {
     NEW_NERVE(SphereSelectorHandleNrvWait, SphereSelectorHandle, Wait);
@@ -45,7 +45,7 @@ namespace NrvSphereSelectorHandle {
     NEW_NERVE(SphereSelectorHandleNrvGalaxyConfirmCancel, SphereSelectorHandle, GalaxyConfirmCancel);
     NEW_NERVE(SphereSelectorHandleNrvIdleForFileSelect, SphereSelectorHandle, IdleForFileSelect);
     NEW_NERVE(SphereSelectorHandleNrvIdleEndForFileSelect, SphereSelectorHandle, IdleEndForFileSelect);
-}  // namespace NrvSphereSelectorHandle
+};  // namespace NrvSphereSelectorHandle
 
 SphereSelectorHandle::SphereSelectorHandle(const char* pName)
     : LiveActor(pName), mIsFileSelectMode(), _C0(0.0f, 0.0f, -1.0f), mRotateSpeed(), mTargetRotateSpeed(), _D4(), _D8(), _DC(1.0f, 0.0f, 0.0f),

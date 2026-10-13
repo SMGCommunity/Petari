@@ -32,5 +32,5 @@ public:
 namespace MR {
     namespace Effect {
         bool isExistSyncBckDeleteFrame(const SyncBckEffectInfo* pInfo);
-    }
-}  // namespace MR
+    };
+};  // namespace MR

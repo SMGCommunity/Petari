@@ -122,7 +122,7 @@ namespace {
     inline f32 toDeg(f32 x) {
         return _180_PI * x;
     }
-}  // namespace
+};  // namespace
 
 namespace NrvUnizo {
     NEW_NERVE(UnizoNrvWait, Unizo, Wait);
@@ -135,7 +135,7 @@ namespace NrvUnizo {
     NEW_NERVE(UnizoNrvFireDown, Unizo, FireDown);
     NEW_NERVE(UnizoNrvJumpDown, Unizo, JumpDown);
     NEW_NERVE_ONEND(UnizoNrvPointing, Unizo, Pointing, Pointing);
-}  // namespace NrvUnizo
+};  // namespace NrvUnizo
 
 Unizo::Unizo(const char* pName)
     : LiveActor(pName), mFrame(0), mBlinkCount(0), mBlinkFrame(0), mSpinAnimTimer(0), mRadiusScale(::sRadiusScale), mBreakModel(nullptr),

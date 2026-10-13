@@ -1088,4 +1088,4 @@ namespace MR {
     void onMsgLedPattern() {
         GameDataFunction::setGameEventValue("MsgLedPattern", 1);
     }
-}  // namespace MR
+};  // namespace MR

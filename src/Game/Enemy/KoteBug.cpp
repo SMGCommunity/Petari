@@ -57,7 +57,7 @@ namespace {
     const f32 hRecoverRotateRate = 0.2f;
     const f32 hBlowRotateAngle = -1.0f;
     // hStampDeathOffset
-}  // namespace
+};  // namespace
 
 namespace NrvKoteBug {
     NEW_NERVE_ONEND(HostTypeNrvNoCalcWait, KoteBug, NoCalcWait, NoCalcWait);
@@ -77,7 +77,7 @@ namespace NrvKoteBug {
     NEW_NERVE(HostTypeNrvBlow, KoteBug, Blow);
     NEW_NERVE(HostTypeNrvStampDeath, KoteBug, StampDeath);
     NEW_NERVE_ONEND(HostTypeNrvBindStarPointer, KoteBug, BindStarPointer, BindStarPointer);
-}  // namespace NrvKoteBug
+};  // namespace NrvKoteBug
 
 KoteBug::KoteBug(const char* pName)
     : LiveActor(pName), mScaleController(), mStampController(), mSpinHitController(), mStarPointer(), mFront(0, 0, 1), mPosture(0, 0, 0, 1),

@@ -102,4 +102,4 @@ namespace DodoryuUtil {
         rotation.makeRotate(up, angle);
         rotation.mult33(*pDirection);
     }
-}  // namespace DodoryuUtil
+};  // namespace DodoryuUtil

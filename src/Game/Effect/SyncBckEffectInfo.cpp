@@ -65,5 +65,5 @@ namespace MR {
             const f32 endFrame = pInfo->mEndFrame;
             return 0.0f <= endFrame;
         }
-    }  // namespace Effect
-}  // namespace MR
+    };  // namespace Effect
+};  // namespace MR

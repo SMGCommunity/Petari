@@ -32,5 +32,5 @@ namespace MR {
         void addAutoEffectsFromGroup(const AutoEffectGroup* pGroup, PaneEffectKeeper* pKeeper, const LayoutActor* pActor);
         void addAutoEffectsFromGroup(const AutoEffectGroup* pGroup, MultiSceneEffectKeeper* pKeeper, const MultiSceneActor* pActor);
         AutoEffectGroup* createAutoEffectGroup(const char* pName);
-    }  // namespace Effect
-}  // namespace MR
+    };  // namespace Effect
+};  // namespace MR

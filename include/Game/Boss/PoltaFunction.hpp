@@ -49,4 +49,4 @@ namespace PoltaFunction {
     void killBombTeresa(Polta* pPolta);
     void killPoltaRock(Polta* pPolta);
     void killGroundRock(Polta* pPolta);
-}  // namespace PoltaFunction
+};  // namespace PoltaFunction

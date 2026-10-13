@@ -98,7 +98,7 @@ namespace {
     inline LargeChainParts* createChainArray(u32 count) {
         return new LargeChainParts[count];
     }
-}  // namespace
+};  // namespace
 
 void LargeChain::createChainParts() {
     _8C = new LargeChainParts("固定鎖 下");

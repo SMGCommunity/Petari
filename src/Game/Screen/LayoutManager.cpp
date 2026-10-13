@@ -54,14 +54,14 @@ namespace {
 
             /* 0x04 */ u32 mBits[N / 32];
         };
-    }  // namespace Local
+    };  // namespace Local
 
     static const char* const cRemoveString[] = {
         "4x3",
         "16x9",
         "Replace",
     };
-}  // namespace
+};  // namespace
 
 namespace {
     namespace Local {
@@ -125,8 +125,8 @@ namespace {
                 }
             }
         }
-    }  // namespace Local
-}  // namespace
+    };  // namespace Local
+};  // namespace
 
 LayoutManager::LayoutManager(const char* pLayoutName, bool useArchiveNamePrefix, u32 rootPaneAnimLayerNum, u32 textBoxBufferLength)
     : mLayoutHolder(), mLayout(), mAnimTransList(), mDrawInfo(), mIsScreenHidden(), _61(true), mIndDummyTexMap(), mPaneCount(), mPaneInfoList(),
@@ -729,5 +729,5 @@ namespace {
             index -= word * 32;
             return (mBits[word] & (1 << index)) != 0;
         }
-    }  // namespace Local
-}  // namespace
+    };  // namespace Local
+};  // namespace

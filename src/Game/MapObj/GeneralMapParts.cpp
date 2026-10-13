@@ -282,7 +282,7 @@ namespace {
             }
         }
     }
-}  // namespace
+};  // namespace
 
 void GeneralMapParts::receiveMsgSwitchBOn() {
     if (!MR::isValidSwitchB(this)) {

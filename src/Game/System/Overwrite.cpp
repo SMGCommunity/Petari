@@ -452,7 +452,7 @@ namespace {
         basePlaneTypeX,
     };
 
-}  // namespace
+};  // namespace
 
 void JPABaseEmitter::init(JPAEmitterManager* pManager, JPAResource* pResource) {
     mpEmtrMgr = pManager;
@@ -1125,7 +1125,7 @@ namespace {
     u32 sAudioThreadStackSize = 0x8000;
     u32 sAramThreadStackSize = 0xC000;
     s32 sAramThreadMsgSize = 0x20;
-}  // namespace
+};  // namespace
 
 JASAudioThread::JASAudioThread(int priority, int, u32)
     : JKRThread(JASDram, ::sAudioThreadStackSize, ::sAudioThreadMsgSize, priority), JASGlobalInstance< JASAudioThread >(true), sbPauseFlag() {

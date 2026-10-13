@@ -28,7 +28,7 @@ namespace {
     const char sDamageLandAnimation[] = "中ダメージ着地";
     const char sBackDamageAirAnimation[] = "中後ダメージ空中";
     const char sBackDamageLandAnimation[] = "中後ダメージ着地";
-}  // namespace
+};  // namespace
 
 void MarioDamage_FORCE_MATCH_SDATA2() {
     (void)10.0f;

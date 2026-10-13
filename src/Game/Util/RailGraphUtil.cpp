@@ -39,7 +39,7 @@ namespace {
             pGraph->connectNodeTwoWay(previousNode, firstNode, &edge);
         }
     }
-}  // namespace
+};  // namespace
 
 namespace MR {
     RailGraph* createRailGraphFromJMap(const JMapInfoIter& rIter) {
@@ -155,4 +155,4 @@ namespace MR {
     s32 getWatchEdgeArg7(const RailGraphIter* pIter) {
         return pIter->getWatchEdge()->mPointArg7;
     }
-}  // namespace MR
+};  // namespace MR

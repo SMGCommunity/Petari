@@ -73,7 +73,7 @@ namespace {
         pPoint->_C.cross(pPoint->_24, rUp);
         MR::normalizeOrZero(&pPoint->_C);
     }
-}  // namespace
+};  // namespace
 
 void BallRail::initRailPoints() {
     u32 numPoints = (u32)(MR::getRailTotalLength(this) / 100.0f) + 2;

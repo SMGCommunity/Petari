@@ -14,7 +14,7 @@ namespace NrvCocoSamboHead {
     NEW_NERVE(CocoSamboHeadNrvHeadSwoon, CocoSamboHead, Swoon);
     NEW_NERVE(CocoSamboHeadNrvHeadSwoonEnd, CocoSamboHead, SwoonEnd);
     NEW_NERVE(CocoSamboHeadNrvHeadBlow, CocoSamboHead, Blow);
-}  // namespace NrvCocoSamboHead
+};  // namespace NrvCocoSamboHead
 
 namespace {
     const Vec cHeadSensorOffset = {60.0f, 0.0f, 0.0f};
@@ -48,7 +48,7 @@ namespace {
     // const f32 cPointingRadius =
     // const f32 cPointingOffset =
     // const f32 cAppearDistance =
-}  // namespace
+};  // namespace
 
 namespace NrvCocoSambo {
     NEW_NERVE(CocoSamboNrvHideWait, CocoSambo, HideWait);
@@ -64,7 +64,7 @@ namespace NrvCocoSambo {
     NEW_NERVE(CocoSamboNrvPressY, CocoSambo, PressY);
     NEW_NERVE(CocoSamboNrvBlow, CocoSambo, Blow);
     NEW_NERVE_ONEND(CocoSamboNrvDpdPointing, CocoSambo, DpdPointing, DpdPointing);
-}  // namespace NrvCocoSambo
+};  // namespace NrvCocoSambo
 
 inline bool CocoSambo::isSensorTryToFallHead(HitSensor* pSensor) {
     return pSensor->isType(ATYPE_COCO_NUT) || pSensor->isType(ATYPE_KURIBO) || pSensor->isType(ATYPE_BEGOMAN);

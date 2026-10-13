@@ -17,7 +17,7 @@ namespace {
         pAdaptor->connectToMovement(rFunctor);
         MR::connectToScene(pAdaptor, movementType, -1, -1, -1);
     }
-}  // namespace
+};  // namespace
 
 ParticleCalcExecutor::ParticleCalcExecutor(const EffectSystem* pEffectSystem, bool createAdaptors)
     : mEffectSystem(pEffectSystem), mNormalAdaptor(), mIgnorePause3DAdaptor(), mIgnorePause2DAdaptor(), mCheckUpdateAdaptor(), mMovementEnabled(true),

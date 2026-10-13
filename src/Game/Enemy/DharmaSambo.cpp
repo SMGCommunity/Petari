@@ -69,7 +69,7 @@ namespace {
     const s32 hAppearSeTiming = 60;
     const s32 hHideSeTiming = 65;
     const s32 hPreHideSeTiming = 30;
-}  // namespace
+};  // namespace
 
 void DharmaSambo::endStarPointerBind() {
     tearDownStarPointerBind();
@@ -96,13 +96,13 @@ namespace NrvDharmaSambo {
     NEW_NERVE(HostTypeNrvEscapeWaitRun, DharmaSambo, EscapeRun);
     NEW_NERVE(HostTypeNrvEscapeWaitLand, DharmaSambo, EscapeLand);
     NEW_NERVE(HostTypeNrvTrampleDeath, DharmaSambo, TrampleDeath);
-}  // namespace NrvDharmaSambo
+};  // namespace NrvDharmaSambo
 
 namespace NrvDharmaSamboParts {
     NEW_NERVE(HostTypeNrvDoNothing, DharmaSamboParts, DoNothing);
     NEW_NERVE(HostTypeNrvBlow, DharmaSamboParts, Blow);
     NEW_NERVE_ONEND(HostTypeNrvPartsStarPointerBind, DharmaSamboParts, StarPointerBind, StarPointerBind);
-}  // namespace NrvDharmaSamboParts
+};  // namespace NrvDharmaSamboParts
 
 DharmaSambo::DharmaSambo(const char* pName)
     : LiveActor(pName), mStarPointerBindEndNerve(), mInitialPos(0, 0, 0), mHideTimer(::hAppearTime), mPartsCount(::hBodyPartsNum), mHitSensor(),

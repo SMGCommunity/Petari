@@ -128,7 +128,7 @@ namespace {
         return max;
     }
 
-}  // namespace
+};  // namespace
 
 namespace MR {
     LayoutHolder* createAndAddLayoutHolder(const char* pArcName) {
@@ -230,7 +230,7 @@ namespace MR {
         setTextBoxArgStringRecursive(pActor, pPaneName, getGameMessageDirect(pMessageId), param4);
     }
 
-}  // namespace MR
+};  // namespace MR
 
 void setTextBoxVerticalPositionRecursive(LayoutActor* pActor, const char* pPaneName, u8 position) {
     MR::executeTextBoxRecursive(pActor, pPaneName, TextBoxRecursiveSetVerticalPosition(position));
@@ -249,7 +249,7 @@ namespace MR {
         setTextBoxVerticalPositionRecursive(pActor, pPaneName, 2);
     }
 
-}  // namespace MR
+};  // namespace MR
 
 void setTextBoxHorizontalPositionRecursive(LayoutActor* pActor, const char* pPaneName, u8 position) {
     MR::executeTextBoxRecursive(pActor, pPaneName, TextBoxRecursiveSetHorizontalPosition(position));
@@ -825,7 +825,7 @@ namespace MR {
         pLayoutManager->_61 = 0;
     }
 
-}  // namespace MR
+};  // namespace MR
 
 namespace {
     f32 getCometColorAnimFrameFromId(s32 id) {
@@ -852,7 +852,7 @@ namespace {
         return frame;
     }
 
-}  // namespace
+};  // namespace
 
 namespace MR {
     void setCometPaneAnimFromId(LayoutActor* pActor, const char* pPaneName, int cometId, u32 animLayer) {
@@ -860,7 +860,7 @@ namespace MR {
         setPaneAnimFrameAndStop(pActor, pPaneName, ::getCometColorAnimFrameFromId(cometId), animLayer);
     }
 
-}  // namespace MR
+};  // namespace MR
 
 namespace MR {
     void setTextBoxNumberRecursive(LayoutActor* pActor, const char* pPaneName, s32 number) {
@@ -885,7 +885,7 @@ namespace MR {
         setAnimFrameAndStop(pActor, ::getCometColorAnimFrameFromId(cometId), animLayer);
     }
 
-}  // namespace MR
+};  // namespace MR
 
 void LayoutUtil_FORCE_MATCH(nw4r::lyt::Pane* pPane, J2DPicture* pPicture) {
     pPane->SetInfluencedAlpha(true);

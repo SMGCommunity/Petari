@@ -297,4 +297,4 @@ namespace PoltaFunction {
             break;
         }
     }
-}  // namespace PoltaFunction
+};  // namespace PoltaFunction

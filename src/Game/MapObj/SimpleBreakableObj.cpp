@@ -12,13 +12,13 @@ namespace {
     const s32 sDefaultItemNumStarPiece = 5;
     const char* const cBckNameBreak = "Break";
     const char* const cDemoName = "注目カメラ";
-}  // namespace
+};  // namespace
 
 namespace NrvSimpleBreakableObj {
     NEW_NERVE(HostTypeWait, SimpleBreakableObj, Wait);
     NEW_NERVE(HostTypeTryStartDemo, SimpleBreakableObj, TryStartDemo);
     NEW_NERVE(HostTypeDemo, SimpleBreakableObj, Demo);
-}  // namespace NrvSimpleBreakableObj
+};  // namespace NrvSimpleBreakableObj
 
 SimpleBreakableObj::SimpleBreakableObj(const char* pName)
     : SimpleBreakableObjBase(pName), mCameraInfo(), mBreakOffsetFrame(::sDefaultBreakOffsetFrame), _CC(-1), mSwitchDeadDelay(-1), mBreakFlags(1),

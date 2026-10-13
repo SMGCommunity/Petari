@@ -61,7 +61,7 @@ namespace {
             }
         }
     };
-}  // namespace
+};  // namespace
 
 GalaxyMapDomeIcon::GalaxyMapDomeIcon(int param1, LayoutActor* pHost, const char* pPaneName, const char* pParam4)
     : LayoutActor(pPaneName, true), _20(param1), mHost(pHost), mPaneName(pPaneName), _2C(pParam4), mNamePlate(), mMode() {
@@ -203,7 +203,7 @@ namespace {
     AstroDomeCheckerBase::AstroDomeCheckerBase(int param1) {
         snprintf(_4, sizeof(_4), "Galaxy%1d", param1);
     }
-}  // namespace
+};  // namespace
 
 namespace {
     void AstroDomeCheckerBase::operator()(const JMapInfoIter& rIter) {
@@ -217,4 +217,4 @@ namespace {
             execute(pName);
         }
     }
-}  // namespace
+};  // namespace

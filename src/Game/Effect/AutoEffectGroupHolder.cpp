@@ -15,7 +15,7 @@ namespace MR {
 
         /* 0x00 */ const char* mName;
     };
-}  // namespace MR
+};  // namespace MR
 
 AutoEffectGroupHolder::AutoEffectGroupHolder() : mCount() {
 }
@@ -76,5 +76,5 @@ namespace MR {
                 addAutoEffectsFromGroup(pGroup, pKeeper, pActor);
             }
         }
-    }  // namespace Effect
-}  // namespace MR
+    };  // namespace Effect
+};  // namespace MR

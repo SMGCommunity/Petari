@@ -85,7 +85,7 @@ namespace {
     bool isNodeEventContinue(const MessageSystem::FlowNodeEvent* pArg) NO_INLINE {
         return pArg->mEventType <= 4 && (1 << pArg->mEventType & 0x15);
     }
-}  // namespace
+};  // namespace
 
 void TalkMessageCtrl::createMessageDirect(const JMapInfoIter& rIter, const char* pName) {
     mNodeCtrl = new TalkNodeCtrl();

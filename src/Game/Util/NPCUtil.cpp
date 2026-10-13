@@ -443,7 +443,7 @@ namespace MR {
 
         return tryStartAction(pActor, pActor->_11C);
     }
-}  // namespace MR
+};  // namespace MR
 
 namespace MR {
     bool tryStartReaction(NPCActor* pActor) {
@@ -614,7 +614,7 @@ namespace MR {
         pActor->NPCActor::calcAndSetBaseMtx();
         pActor->mPosition.set(pos);
     }
-}  // namespace MR
+};  // namespace MR
 
 TakeOutStar::TakeOutStar(NPCActor* pActor, const char* pActionName, const char* pAnimName, const Nerve* pNerve)
     : NerveExecutor("パワースター取り出しデモ実行者"), mActor(pActor), mNerve(pNerve), mActionName(pActionName), mAnimName(pAnimName) {

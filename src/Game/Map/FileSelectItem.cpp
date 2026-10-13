@@ -559,7 +559,7 @@ namespace {
         return collides;
     }
 
-}  // namespace
+};  // namespace
 
 void FileSelectItem::updateRotate() {
     if (mIsInvalidRotate) {

@@ -14,7 +14,7 @@ namespace ReplaceTagProcessor {
     u32 exeLocalizeGroup(wchar_t* pDst, const MessageEditorMessageTag& rTag);
     u32 exeLocalizeGroupPlayerName(wchar_t* pDst, u8 form);
     u32 exeRaceTimeGroup(wchar_t* pDst, const MessageEditorMessageTag& rTag);
-}  // namespace ReplaceTagProcessor
+};  // namespace ReplaceTagProcessor
 
 namespace ReplaceTagFunction {
     u32 ReplaceArgs(wchar_t* pDst, s32 length, const wchar_t* pFormat, ...);

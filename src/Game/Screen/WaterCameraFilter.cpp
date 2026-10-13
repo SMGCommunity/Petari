@@ -59,7 +59,7 @@ namespace {
     s32 getScreenTexHeight() {
         return MR::getScreenHeight();
     }
-}  // namespace
+};  // namespace
 
 void WaterCameraFilter::initScreenTex() {
     MR::CurrentHeapRestorer restorer(MR::getSceneHeapGDDR3());

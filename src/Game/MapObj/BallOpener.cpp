@@ -19,7 +19,7 @@ namespace {
     const f32 sLaunchValidHeight = 160.0f;
     // sOpenVelocityRateH
     // sOpenVelocityV
-}  // namespace
+};  // namespace
 
 namespace NrvBallOpener {
     NEW_NERVE(BallOpenerNrvWait, BallOpener, Wait);

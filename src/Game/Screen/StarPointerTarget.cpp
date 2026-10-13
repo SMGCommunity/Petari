@@ -131,7 +131,7 @@ namespace {
     inline void setRectangle(TBox2f& rBox, f32 x, f32 y, f32 width, f32 height) {
         rBox.setInline(x, y, x + width, y + height);
     }
-}  // namespace
+};  // namespace
 
 bool StarPointerLayoutTarget::isPointingRectangle(const TVec2f& rPos) const {
     TVec2f pos;

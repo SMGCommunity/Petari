@@ -25,7 +25,7 @@ namespace {
 
         return nullptr;
     }
-}  // namespace
+};  // namespace
 
 LightCylinder::LightCylinder(const char* pName, MtxPtr pHostMtx, const Color8& rColor)
     : MapObjActor(pName), mHostMtx(pHostMtx), mLightVolume(), mColor() {

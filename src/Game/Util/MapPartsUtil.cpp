@@ -34,7 +34,7 @@ namespace {
 
     bool getJMapInfoArgNoInit(const JMapInfoIter& rIter, const char* pName, s32* pValue);
     bool getJMapInfoArgNoInit(const JMapInfoIter& rIter, const char* pName, f32* pValue);
-}  // namespace
+};  // namespace
 
 namespace MR {
     const HitSensor* getBodySensor(LiveActor* pActor) {
@@ -229,7 +229,7 @@ namespace MR {
             setShadowDropPositionAtJoint(pActor, nullptr, ::cFollowJointName, offset);
         }
     }
-}  // namespace MR
+};  // namespace MR
 
 namespace {
     bool getJMapInfoArgNoInit(const JMapInfoIter& rIter, const char* pName, s32* pValue) {
@@ -255,7 +255,7 @@ namespace {
         *pValue = value;
         return true;
     }
-}  // namespace
+};  // namespace
 
 namespace MR {
     bool getMapPartsArgMoveConditionType(s32* pValue, const JMapInfoIter& rIter) {

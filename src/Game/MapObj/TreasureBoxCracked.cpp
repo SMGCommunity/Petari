@@ -15,7 +15,7 @@ namespace NrvTreasureBoxCracked {
     NEW_NERVE(TreasureBoxCrackedNrvItemBound, TreasureBoxCracked, ItemBound);
     NEW_NERVE(TreasureBoxCrackedNrvOpenWait, TreasureBoxCracked, OpenWait);
     NEW_NERVE(TreasureBoxCrackedNrvAlwaysOpen, TreasureBoxCracked, AlwaysOpen);
-}  // namespace NrvTreasureBoxCracked
+};  // namespace NrvTreasureBoxCracked
 
 namespace {
     Color8 sPointLightColor(0xFF, 0xFF, 0x96, 0xFF);
@@ -33,7 +33,7 @@ namespace {
     const s32 sDefaultWaitForSwitchOn = 5;
     const f32 sPointLightBrightness = 0.99f;
     const f32 sStepForCollisionMove = 15.0f;
-}  // namespace
+};  // namespace
 
 TreasureBoxCracked::TreasureBoxCracked(const char* pName)
     : LiveActor(pName), mBoxCollider(), mBoxType(), mOpenCondition(), mItem(), mItemType(1), mItemVelocity(0.0f), mItemTargetPos(0.0f),

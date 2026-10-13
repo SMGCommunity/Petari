@@ -10,7 +10,7 @@ namespace {
 
         return result;
     }
-}  // namespace
+};  // namespace
 
 BindSphere::BindSphere(const TVec3f& rPosition, f32 radius) : mPosition(rPosition), mRadius(radius) {
 }
@@ -167,4 +167,4 @@ namespace MR {
             }
         }
     }
-}  // namespace MR
+};  // namespace MR

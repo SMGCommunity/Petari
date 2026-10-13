@@ -55,7 +55,7 @@ namespace {
             pModel->mExtraMtxBuffer[i] = new (0x20) Mtx[0xC00 / sizeof(Mtx)];
         }
     }
-}  // namespace
+};  // namespace
 
 void MarioActor::initDrawAndModel() {
     _218 = new DrawAdaptor(MR::Functor(this, &MarioActor::drawShadow), MR::DrawType_AlphaShadow);

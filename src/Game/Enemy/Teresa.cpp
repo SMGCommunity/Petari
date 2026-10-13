@@ -247,7 +247,7 @@ namespace {
     inline void blendTeresaQuat(TQuat4f* pQuat, const TVec3f& rGravity, const TVec3f& rFront) {
         MR::blendQuatUpFront(pQuat, -rGravity, rFront, 0.1f, 0.2f);
     }
-}  // namespace
+};  // namespace
 
 void Teresa::control() {
     if (!isNerve(GET_NERVE(Teresa, TeresaNrvDrift)) && !isNerve(GET_NERVE(Teresa, TeresaNrvAscension))) {
@@ -1143,7 +1143,7 @@ namespace {
 
         return playerFront.dot(rPosition - *MR::getPlayerPos()) > 0.0f;
     }
-}  // namespace
+};  // namespace
 
 bool Teresa::isShay() const {
     bool isNotSquat = MR::isPlayerSquat() == false;

@@ -51,5 +51,5 @@ namespace MR {
 
             return pGroup;
         }
-    }  // namespace Effect
-}  // namespace MR
+    };  // namespace Effect
+};  // namespace MR

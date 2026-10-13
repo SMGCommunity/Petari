@@ -515,4 +515,4 @@ namespace MR {
 
         return result;
     }
-}  // namespace MR
+};  // namespace MR

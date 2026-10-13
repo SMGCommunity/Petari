@@ -12,7 +12,7 @@ namespace NrvSeaGull {
     NEW_NERVE(SeaGullNrvHoverFront, SeaGull, HoverFront);
     NEW_NERVE(SeaGullNrvHoverLeft, SeaGull, HoverLeft);
     NEW_NERVE(SeaGullNrvHoverRight, SeaGull, HoverRight);
-}  // namespace NrvSeaGull
+};  // namespace NrvSeaGull
 
 SeaGull::SeaGull(SeaGullGroup* pGroup)
     : LiveActor("カモメ"), mSeaGullGroup(pGroup), mPointIndex(), mIsReverse(), mTargetUpdateTimer(MR::getRandom(0L, 180L)), mTargetPosition(),

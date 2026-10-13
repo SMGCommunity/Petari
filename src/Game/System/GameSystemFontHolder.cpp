@@ -45,7 +45,7 @@ namespace {
         pFont->SetResource(pArchive->getResource(pName));
         return pFont;
     }
-}  // namespace
+};  // namespace
 
 void GameSystemFontHolder::createFontFromFile() {
     JKRMemArchive* pArchive = MR::receiveArchive("/LayoutData/Font.arc");

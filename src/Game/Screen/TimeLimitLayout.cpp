@@ -14,7 +14,7 @@ namespace {
     static const f32 sScaleMaxAdd = 0.5f;
     static const s32 sFadeoutBeforeFrame = 90;
     static const s32 sFadeinoutFrame = 60;
-}  // namespace
+};  // namespace
 
 void TimeUpLayout::init(const JMapInfoIter& rIter) {
     initLayoutManager("TimeUp", 1);
@@ -28,7 +28,7 @@ namespace NrvTimeLimitLayout {
     NEW_NERVE(TimeLimitLayoutScaleDown, TimeLimitLayout, ScaleDown);
     NEW_NERVE(TimeLimitLayoutFadeout, TimeLimitLayout, Fadeout);
     NEW_NERVE(TimeLimitLayoutTimeUpReady, TimeLimitLayout, TimeUpReady);
-}  // namespace NrvTimeLimitLayout
+};  // namespace NrvTimeLimitLayout
 
 TimeLimitLayout::TimeLimitLayout(u32 timeLimit)
     : LayoutActor("タイムリミット", true), mTime(), mTimeLimit(timeLimit), mScaleControl(), mFadeControl(), mCurrentTiming(), mIsSuspend(), _35() {
@@ -87,7 +87,7 @@ namespace {
     inline bool equalTime(const u32& rTime, const u32& rLimit) {
         return rTime == rLimit;
     }
-}  // namespace
+};  // namespace
 
 void TimeLimitLayout::addFrame() {
     if (equalTime(mTime, mTimeLimit)) {

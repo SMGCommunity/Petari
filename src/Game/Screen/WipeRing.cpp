@@ -174,7 +174,7 @@ namespace {
 
         return !MR::isStageSuddenDeathDodoryu();
     }
-}  // namespace
+};  // namespace
 
 bool WipeRing::getMarioCenterPos(TVec3f* pCenterPos) {
     if (MR::isExistMario() && ::canCenterOnMario()) {

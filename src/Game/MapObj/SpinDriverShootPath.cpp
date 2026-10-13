@@ -58,7 +58,7 @@ namespace {
         pOutDirection->set(direction);
         MR::normalizeOrZero(pOutDirection);
     }
-}  // namespace
+};  // namespace
 
 void SpinDriverShootPath::calcDirection(TVec3f* pOutDirection, f32 a2, f32 a3) const {
     f32 v6;

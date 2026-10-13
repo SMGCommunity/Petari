@@ -17,7 +17,7 @@ namespace {
         /* 0x00 */ u32 mHash;
         /* 0x04 */ const char* mName;
     };
-}  // namespace
+};  // namespace
 
 NameObjHolder::NameObjHolder(int num) {
     mObjArray1.init(num);

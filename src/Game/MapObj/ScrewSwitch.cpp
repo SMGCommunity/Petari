@@ -19,7 +19,7 @@ namespace {
     static const s32 sStepToRumbleCamera = 30;
     static const s32 sStepForScrewStart = 30;
     static const s32 sStepForPause = 0;
-}  // namespace
+};  // namespace
 
 namespace NrvScrewSwitch {
     NEW_NERVE(ScrewSwitchNrvWait, ScrewSwitch, Wait);

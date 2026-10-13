@@ -11,7 +11,7 @@ namespace {
     static const s32 sCollideCountMax = 60;
     static const f32 sLastMoveLen = 5.0f;
     static const f32 sRateWhenBraking = 0.05f;
-}  // namespace
+};  // namespace
 
 CameraFooFighter::CameraFooFighter(const char* pName)
     : Camera(pName), mDistMin(300.0f), mDistMax(1200.0f), mAngleXRateMin(0.03f), mAngleXRate(0.03f), mCollideCount(),

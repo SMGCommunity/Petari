@@ -31,7 +31,7 @@ namespace {
     // static const f32 sDebugRadius = _;
     static const OffsetPair offset_table[] = {{0.0f, -1.0f}, {1.0f, -1.0f}, {1.0f, 0.0f},  {1.0f, 1.0f},
                                               {0.0f, 1.0f},  {-1.0f, 1.0f}, {-1.0f, 0.0f}, {-1.0f, -1.0f}};
-}  // namespace
+};  // namespace
 
 namespace NrvKoopaBattleMapStair {
     NEW_NERVE(KoopaBattleMapStairNrvWaitSwitch, KoopaBattleMapStair, WaitSwitch);
@@ -39,7 +39,7 @@ namespace NrvKoopaBattleMapStair {
     NEW_NERVE(KoopaBattleMapStairNrvWaitFall, KoopaBattleMapStair, WaitFall);
     NEW_NERVE(KoopaBattleMapStairNrvFall, KoopaBattleMapStair, Fall);
     NEW_NERVE(KoopaBattleMapStairNrvDisappear, KoopaBattleMapStair, Disappear);
-}  // namespace NrvKoopaBattleMapStair
+};  // namespace NrvKoopaBattleMapStair
 
 KoopaBattleMapStair::KoopaBattleMapStair(const char* pName)
     : LiveActor(pName), mTimeToBreak(::sDefaultTimeToBreak), mFireAttackStep(-1), mArg1(), mArg5(-1), mArg6(), mType(), mIsBig(), mIsTurn(), _A6(),
@@ -141,7 +141,7 @@ namespace {
     inline void updateTurnPos(TVec3f* pPos, f32* pDist, const TVec3f& rCenter, const TVec3f& rX, const TVec3f& rZ, const TVec3f& rOrigin) {
         updateNearestPos(pPos, pDist, rCenter + rZ * ::sTurnHalfWidthZ - rX * ::sTurnHalfWidthX, rOrigin, -1, -1);
     }
-}  // namespace
+};  // namespace
 
 f32 KoopaBattleMapStair::calcAndSetTargetPos(TVec3f* pPos, const TVec3f& rReferencePos) {
     TVec3f axisZ;

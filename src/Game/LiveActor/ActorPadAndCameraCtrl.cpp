@@ -12,7 +12,7 @@ namespace {
     // sDefaultDistanceNear
     // sDefaultDistanceFar
     const f32 sDefaultDistanceInvalid = 3000.0f;
-}  // namespace
+};  // namespace
 
 ActorPadAndCameraCtrl::ActorPadAndCameraCtrl(const ModelManager* pModelManager, const TVec3f* pPosition)
     : _0(pModelManager), _4(pPosition), _8(pModelManager->getResourceHolder()), _C(), mInfoNum(), mInfo() {
@@ -135,7 +135,7 @@ namespace {
 
         return distance > threshold;
     }
-}  // namespace
+};  // namespace
 
 void ActorPadAndCameraCtrl::updatePadAndCamera(const ActorPadAndCameraCtrlInfo* pInfo) {
     f32 distance = MR::getPlayerPos()->distance(*_4);

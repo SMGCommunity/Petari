@@ -10,7 +10,7 @@
 namespace {
     // sLodCtrlNumMax
     const u32 sAllLodCtrlNumMax = 0x100;
-}  // namespace
+};  // namespace
 
 ViewGroupCtrl::ViewGroupCtrl() : mViewCubeMgr(), mMaxViewGroupId(), mViewGroupData(), mViewCtrlCount(), mLodCtrls() {
     mLodCtrls = new LodCtrl*[::sAllLodCtrlNumMax];

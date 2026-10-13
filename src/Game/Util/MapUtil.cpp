@@ -853,4 +853,4 @@ namespace Collision {
     u32 getStrikeInfoNumMap() {
         return ::getStrikeInfoNumCategory(0);
     }
-}  // namespace Collision
+};  // namespace Collision

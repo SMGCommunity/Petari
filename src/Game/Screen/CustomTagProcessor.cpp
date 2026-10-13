@@ -75,7 +75,7 @@ namespace {
         color.a = writer->GetTextColor().a;
         writer->SetTextColor(color);
     }
-}  // namespace
+};  // namespace
 
 CustomTagAlphaCtrl::CustomTagAlphaCtrl() : mStartDelay(), mEndDelay(), mFrame() {
     mCharInterval = 0.0f;
@@ -339,8 +339,8 @@ namespace nw4r {
 
             return textWidth;
         }
-    }  // namespace ut
-}  // namespace nw4r
+    };  // namespace ut
+};  // namespace nw4r
 
 CustomTagProcessor::CustomTagProcessor(nw4r::lyt::TextBox* textBox)
     : mAlphaCtrl(), mPlayedSounds(), mColorMappingMin(::setGXColor(textBox->GetMaterial()->GetTevColor(0))),

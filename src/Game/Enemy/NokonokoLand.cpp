@@ -57,7 +57,7 @@ namespace {
             MR::startBtp(pActor, pBtp);
         }
     }
-}  // namespace
+};  // namespace
 
 namespace NrvNokonokoLand {
     NEW_NERVE(HostTypeAppearReady, NokonokoLand, AppearReady);
@@ -81,7 +81,7 @@ namespace NrvNokonokoLand {
     NEW_NERVE(HostTypeShellEnd, NokonokoLand, ShellEnd);
     NEW_NERVE(HostTypeShellStartPunch, NokonokoLand, ShellStartPunch);
     NEW_NERVE(HostTypeBecomeJetTurtle, NokonokoLand, BecomeJetTurtle);
-}  // namespace NrvNokonokoLand
+};  // namespace NrvNokonokoLand
 
 NokonokoLand::NokonokoLand(const char* pName)
     : LiveActor(pName), mJetTurtle(new JetTurtle("陸ノコ用ジェット亀")), mRailPointPassChecker(new MapPartsRailPointPassChecker(this)),

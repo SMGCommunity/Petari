@@ -21,7 +21,7 @@ namespace {
         GXSetTevColor(GX_TEVREG0, color);
         ImageEffectLocalUtil::sendTextureVertex(1, 0);
     }
-}  // namespace
+};  // namespace
 
 namespace {
     static GXTevOp sAlphaTevOperater = GX_TEV_COMP_A8_GT;

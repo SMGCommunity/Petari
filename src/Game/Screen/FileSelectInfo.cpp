@@ -9,27 +9,27 @@
 
 namespace {
     static const f32 sDisappearAnimRate = 0.25f;
-}  // namespace
+};  // namespace
 
 namespace {
     NEW_NERVE(FileSelectInfoNrvAppear, FileSelectInfo, Appear);
     NEW_NERVE(FileSelectInfoNrvDisplay, FileSelectInfo, Display);
     NEW_NERVE(FileSelectInfoNrvDisappear, FileSelectInfo, Disappear);
-}  // namespace
+};  // namespace
 
 namespace FileSelectInfoSub {
     NEW_NERVE(SlideStateNrvNormalPos, SlideState, NormalPos);
     NEW_NERVE(SlideStateNrvSliding, SlideState, Sliding);
     NEW_NERVE(SlideStateNrvSlidePos, SlideState, SlidePos);
     NEW_NERVE(SlideStateNrvSlidingBack, SlideState, SlidingBack);
-}  // namespace FileSelectInfoSub
+};  // namespace FileSelectInfoSub
 
 namespace FileSelectInfoSub {
     NEW_NERVE(CharaStateNrvMario, CharaState, Mario);
     NEW_NERVE(CharaStateNrvToLuigi, CharaState, ToLuigi);
     NEW_NERVE(CharaStateNrvLuigi, CharaState, Luigi);
     NEW_NERVE(CharaStateNrvToMario, CharaState, ToMario);
-}  // namespace FileSelectInfoSub
+};  // namespace FileSelectInfoSub
 
 FileSelectInfo::FileSelectInfo(s32 nameBufferSize, const char* pName)
     : LayoutActor(pName, 1), mNumber(), mStarNum(), mStarPieceNum(), mNameBufferSize(nameBufferSize), mName(new wchar_t[nameBufferSize]),
@@ -253,7 +253,7 @@ namespace FileSelectInfoSub {
             setNerve(GET_NERVE_GLOBAL(SlideStateNrvNormalPos));
         }
     }
-}  // namespace FileSelectInfoSub
+};  // namespace FileSelectInfoSub
 
 namespace FileSelectInfoSub {
     CharaState::CharaState(FileSelectInfo* pHost) : NerveExecutor("キャラ選択状態"), mHost(pHost) {
@@ -299,4 +299,4 @@ namespace FileSelectInfoSub {
             setNerve(GET_NERVE_GLOBAL(CharaStateNrvMario));
         }
     }
-}  // namespace FileSelectInfoSub
+};  // namespace FileSelectInfoSub

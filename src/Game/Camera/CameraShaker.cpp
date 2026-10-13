@@ -8,7 +8,7 @@
 namespace {
     static const f32 sInfinityIntensity = 1.0f;
     static const f32 sInfinitySpeed = 15.0f;
-}  // namespace
+};  // namespace
 
 CameraShaker::CameraShaker(const char* pName) : NameObj(pName) {
     createSinglyVerticalTask();

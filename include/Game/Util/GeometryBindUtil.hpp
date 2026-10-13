@@ -46,8 +46,8 @@ public:
     BindResult() : mPosition(0, 0, 0), mNormal(0, 0, 0), mContactPosition(0, 0, 0), mIsBound() {
     }
 
-    /* 0x0 */ TVec3f mPosition;
-    /* 0xC */ TVec3f mNormal;
+    /* 0x00 */ TVec3f mPosition;
+    /* 0x0C */ TVec3f mNormal;
     /* 0x18 */ TVec3f mContactPosition;
     /* 0x24 */ bool mIsBound;
 };
@@ -55,4 +55,4 @@ public:
 namespace MR {
     bool bindSpereToCone(BindResult* pResult, const TVec3f& rMovement, const BindSphere& rSphere, const BindCone& rCone);
     void updateBindPositionAndVelocity(TVec3f* pPosition, TVec3f* pVelocity, const BindResult& rResult, f32 factor);
-}  // namespace MR
+};  // namespace MR
