@@ -8,13 +8,12 @@ class JMapInfoIter;
 
 class BitFlag128 {
 public:
-    inline BitFlag128() {
+    BitFlag128() {
         u32* pFlag = mFlags;
 
         do {
-            *pFlag = 0;
-            pFlag++;
-        } while (pFlag < mFlags + 4);
+            *pFlag++ = 0;
+        } while (pFlag < &mFlags[4]);
     }
 
     bool get(int idx) const;
@@ -60,7 +59,7 @@ private:
 
 class StageSwitchFunction {
 public:
-    static SwitchIdInfo* createSwitchIdInfo(const char* pSwitchName, const JMapInfoIter& rIter, bool unused);
+    static SwitchIdInfo* createSwitchIdInfo(const char* pSwitchName, const JMapInfoIter& rIter, bool);
     static void onSwitchBySwitchIdInfo(const SwitchIdInfo& rInfo);
     static void offSwitchBySwitchIdInfo(const SwitchIdInfo& rInfo);
     static bool isOnSwitchBySwitchIdInfo(const SwitchIdInfo& rInfo);
@@ -86,10 +85,10 @@ public:
     bool isOnAllSwitchAfterB(int idx) const;
     bool isOnAnyOneSwitchAfterB(int idx) const;
 
-    /* 0x0 */ SwitchIdInfo* mSW_A;
-    /* 0x4 */ SwitchIdInfo* mSW_B;
-    /* 0x8 */ SwitchIdInfo* mSW_Appear;
-    /* 0xC */ SwitchIdInfo* mSW_Dead;
+    /* 0x0 */ SwitchIdInfo* mSwitchA;
+    /* 0x4 */ SwitchIdInfo* mSwitchB;
+    /* 0x8 */ SwitchIdInfo* mSwitchAppear;
+    /* 0xC */ SwitchIdInfo* mSwitchDead;
 };
 
 namespace MR {
