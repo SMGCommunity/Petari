@@ -18,9 +18,9 @@ public:
         return mSurfacePos;
     }
 
-    /* 0x0 */ f32 mCamWaterDepth;
-    /* 0x4 */ f32 _4;
-    /* 0x8 */ TVec3f mSurfacePos;
+    /* 0x00 */ f32 mCamWaterDepth;
+    /* 0x04 */ f32 _4;
+    /* 0x08 */ TVec3f mSurfacePos;
     /* 0x14 */ TVec3f mSurfaceNormal;
     /* 0x20 */ f32 mWaveHeight;
     /* 0x24 */ TVec3f mStreamVec;

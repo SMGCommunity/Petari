@@ -16,10 +16,9 @@ public:
     /* 0x0 */ const char* mAnimationName;
 };
 
-// Size is 0x14
 class XanimeOfsInfo {
 public:
-    /* 0x0 */ XanimeBckTable mParent;
+    /* 0x00 */ XanimeBckTable mParent;
     f32 _4;
     f32 _8;
     f32 _C;
@@ -28,10 +27,10 @@ public:
 
 class XanimeGroupInfo {
 public:
-    /* 0x0 */ XanimeBckTable mParent;
-    /* 0x4 */ f32 mRate;
+    /* 0x00 */ XanimeBckTable mParent;
+    /* 0x04 */ f32 mRate;
     u32 _8;
-    /* 0xC */ f32 mStart;
+    /* 0x0C */ f32 mStart;
     /* 0x10 */ f32 mEnd;
     /* 0x14 */ f32 mLoop;
     /* 0x18 */ s32 mAttribute;
@@ -50,13 +49,13 @@ class XanimeDirectory {
 public:
     enum DIRECTORY_TYPE { Recursive = 0, Leaf = 1 };
 
-    /* 0x0 */ const char* mName;
-    /* 0x4 */ u8 mDirectoryType;
+    /* 0x00 */ const char* mName;
+    /* 0x04 */ u8 mDirectoryType;
     union {
-        /* 0x8 */ XanimeDirectory* mSubDirectories;
-        /* 0x8 */ XanimeGroupInfo* mSubInformations;
+        /* 0x08 */ XanimeDirectory* mSubDirectories;
+        /* 0x08 */ XanimeGroupInfo* mSubInformations;
     };
-    /* 0xC */ u32 mHash;
+    /* 0x0C */ u32 mHash;
     /* 0x10 */ u32 mSize;
 };
 
@@ -135,10 +134,10 @@ public:
     void init();
 
     u8 _0;
-    /* 0x1 */ u8 mMaxGroupInfoTableSize;
-    /* 0x4 */ u32 mAmountOfGroupInfos;
-    /* 0x8 */ u32 mAmountOfBckTables;
-    /* 0xC */ u32 mAmountOfSimpleGroupInfos;
+    /* 0x01 */ u8 mMaxGroupInfoTableSize;
+    /* 0x04 */ u32 mAmountOfGroupInfos;
+    /* 0x08 */ u32 mAmountOfBckTables;
+    /* 0x0C */ u32 mAmountOfSimpleGroupInfos;
     /* 0x10 */ XanimeGroupInfo* mGroupInfos;
     /* 0x14 */ XanimeDirectory* mDirectories;
     /* 0x18 */ XanimeBckTable1* mBckTables;

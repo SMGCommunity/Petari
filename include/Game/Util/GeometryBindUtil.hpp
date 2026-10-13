@@ -33,8 +33,8 @@ public:
         return mGeneratrixLength;
     }
 
-    /* 0x0 */ TVec3f mPosition;
-    /* 0xC */ TVec3f mVertex;
+    /* 0x00 */ TVec3f mPosition;
+    /* 0x0C */ TVec3f mVertex;
     /* 0x18 */ TVec3f mDirection;
     /* 0x24 */ f32 mHeight;
     /* 0x28 */ f32 mRadius;

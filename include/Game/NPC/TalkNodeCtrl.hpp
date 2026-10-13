@@ -8,7 +8,7 @@ public:
     void entry(u16);
     bool search(u16) const;
 
-    /* 0x0 */ u16 mHistory[0x10];
+    /* 0x00 */ u16 mHistory[0x10];
     /* 0x20 */ s32 mCount;
 };
 
@@ -63,9 +63,9 @@ public:
     void createFlowNode(TalkMessageCtrl*, const JMapInfoIter&, const char*, ActorCameraInfo**);
     void initNodeRecursive(TalkMessageCtrl*, const JMapInfoIter&, ActorCameraInfo*, RecursiveHelper*);
 
-    /* 0x0 */ char* _0;
-    /* 0x4 */ s32 mCurrentNodeIdx;
-    /* 0x8 */ TalkMessageInfo mMessageInfo;
+    /* 0x00 */ char* _0;
+    /* 0x04 */ s32 mCurrentNodeIdx;
+    /* 0x08 */ TalkMessageInfo mMessageInfo;
     /* 0x14 */ TalkMessageHistory mHistory;
     /* 0x38 */ TalkNode* _38;
     /* 0x3C */ TalkNode* mCurrentNode;

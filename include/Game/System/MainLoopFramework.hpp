@@ -56,10 +56,10 @@ public:
     static u32 frameToTick(f32);
     static void setForOSResetSystem();
 
-    /* 0x0 */ Color8 mClearColor;
-    /* 0x4 */ u32 mClearZ;
-    /* 0x8 */ u16 mDispCopyGamma;
-    /* 0xA */ u16 mCopyClamp;
+    /* 0x00 */ Color8 mClearColor;
+    /* 0x04 */ u32 mClearZ;
+    /* 0x08 */ u16 mDispCopyGamma;
+    /* 0x0A */ u16 mCopyClamp;
     u32 _C;
     /* 0x10 */ u16 mRetraceCount;
     /* 0x14 */ u32 mTickDuration;

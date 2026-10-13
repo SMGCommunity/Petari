@@ -25,10 +25,10 @@ public:
         return mTransform;
     }
 
-    /* 0x0 */ LiveActor* mDemoStarter;  // Can be either StarReturnDemoStarter or GrandStarReturnDemoStarter
-    /* 0x4 */ LiveActor* mPowerStar;
-    /* 0x8 */ bool mIsGrandStar;
-    /* 0xC */ TPos3f* mTransform;
+    /* 0x00 */ LiveActor* mDemoStarter;  // Can be either StarReturnDemoStarter or GrandStarReturnDemoStarter
+    /* 0x04 */ LiveActor* mPowerStar;
+    /* 0x08 */ bool mIsGrandStar;
+    /* 0x0C */ TPos3f* mTransform;
     /* 0x10 */ SpinDriverShootPath* mShootPath;
     /* 0x14 */ SpinDriverPathDrawer* mPathDrawer;
     /* 0x18 */ TVec3f mForward;

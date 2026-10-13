@@ -26,11 +26,11 @@ public:
     void setIndirect();
 
     const char* _0;
-    /* 0x4 */ bool mModel;
-    /* 0x8 */ const char* mObjectName;
-    /* 0xC */ bool mMakeActor;
-    /* 0xD */ bool mHostIO;
-    /* 0xE */ bool mMessage;
+    /* 0x04 */ bool mModel;
+    /* 0x08 */ const char* mObjectName;
+    /* 0x0C */ bool mMakeActor;
+    /* 0x0D */ bool mHostIO;
+    /* 0x0E */ bool mMessage;
     bool _F;
     const char* _10;
     /* 0x14 */ TVec3f mMessageOffset;

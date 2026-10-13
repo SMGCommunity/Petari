@@ -7,9 +7,9 @@ class ResTIMG;
 
 struct TimingInfo {
     /* 0x0 */ const char* mName;
-    /* 0x0 */ s32 mTiming;
-    /* 0x0 */ bool _8;
-    /* 0x0 */ u32 _C;
+    /* 0x4 */ s32 mTiming;
+    /* 0x8 */ bool _8;
+    /* 0xC */ u32 _C;
 };
 
 class CaptureScreenDirector : public NameObj {

@@ -107,11 +107,11 @@ public:
         return &mTransformList[index];
     }
 
-    /* 0x4 */ u8 _4;
-    /* 0x5 */ u8 mTrackCount;
-    /* 0x6 */ u8 _6;
-    /* 0x8 */ u32 mJointCount;
-    /* 0xC */ u16 _C;
+    /* 0x04 */ u8 _4;
+    /* 0x05 */ u8 mTrackCount;
+    /* 0x06 */ u8 _6;
+    /* 0x08 */ u32 mJointCount;
+    /* 0x0C */ u16 _C;
     /* 0x10 */ XjointInfo* mJointList;
     /* 0x14 */ XjointTransform* mTransformList;
     /* 0x18 */ XanimeTrack* mTrackList;

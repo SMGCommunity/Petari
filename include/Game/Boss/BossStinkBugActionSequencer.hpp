@@ -33,8 +33,8 @@ public:
     void exeFinishDemo();
     void exeEnd();
 
-    /* 0x8 */ BossStinkBug* mStinkBug;
-    /* 0xC */ BossStinkBugActionBase* mCurrentAction;
+    /* 0x08 */ BossStinkBug* mStinkBug;
+    /* 0x0C */ BossStinkBugActionBase* mCurrentAction;
     /* 0x10 */ BossStinkBugOpeningDemo* mOpeningDemo;
     /* 0x14 */ BossStinkBugActionGround* mActionGround;
     /* 0x18 */ BossStinkBugFlyDemo* mFlyDemo;

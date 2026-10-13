@@ -4,7 +4,11 @@
 
 class EffectSystem;
 
-enum SingleEmitterSpawn { SINGLE_EMITTER_ONE_TIME_SPAWN, SINGLE_EMITTER_CONTINUOUS_SPAWN, SINGLE_EMITTER_UNDEF_SPAWN };
+enum SingleEmitterSpawn {
+    /* 0x0 */ SINGLE_EMITTER_ONE_TIME_SPAWN,
+    /* 0x1 */ SINGLE_EMITTER_CONTINUOUS_SPAWN,
+    /* 0x2 */ SINGLE_EMITTER_UNDEF_SPAWN,
+};
 
 class SingleEmitter {
 public:

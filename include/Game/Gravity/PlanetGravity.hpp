@@ -38,9 +38,9 @@ public:
     void setPriority(s32 priority);
     void updateIdentityMtx();
 
-    /* 0x4 */ f32 mRange;
-    /* 0x8 */ f32 mDistant;
-    /* 0xC */ s32 mPriority;
+    /* 0x04 */ f32 mRange;
+    /* 0x08 */ f32 mDistant;
+    /* 0x0C */ s32 mPriority;
     /* 0x10 */ s32 mGravityId;     // read from the stage files but never used
     /* 0x14 */ const void* mHost;  // host object pointer, can be any pointer
     /* 0x18 */ u32 mGravityType;   // gravity type bits

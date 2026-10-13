@@ -11,8 +11,8 @@ struct ActorAnimDataInfo {
 };
 
 struct ActorAnimKeeperInfo {
-    /* 0x0 */ const char* mName;
-    /* 0x4 */ ActorAnimDataInfo mBckInfo;
+    /* 0x00 */ const char* mName;
+    /* 0x04 */ ActorAnimDataInfo mBckInfo;
     /* 0x10 */ ActorAnimDataInfo mBtkInfo;
     /* 0x1C */ ActorAnimDataInfo mBrkInfo;
     /* 0x28 */ ActorAnimDataInfo mBpkInfo;
