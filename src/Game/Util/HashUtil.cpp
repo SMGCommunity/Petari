@@ -10,8 +10,8 @@ inline int tolower(int c) {
 HashSortTable::HashSortTable(u32 maxLength) {
     mHashCodes = new u32[maxLength];
     mValues = new u32[maxLength];
-    indexFirstHashForUpperByte = new u16[0x100];
-    numHashesForUpperByte = new u16[0x100];
+    mIndexFirstHashForUpperByte = new u16[0x100];
+    mNumHashesForUpperByte = new u16[0x100];
     mCurrentLength = 0;
     mMaxLength = maxLength;
     mHasBeenSorted = false;
@@ -87,10 +87,10 @@ void HashSortTable::sort() {
         */
         if (upperByte > currentByteValue) {
             // No hash codes with this upper byte
-            indexFirstHashForUpperByte[currentByteValue] = 0xFFFF;
-            numHashesForUpperByte[currentByteValue] = 0;
+            mIndexFirstHashForUpperByte[currentByteValue] = 0xFFFF;
+            mNumHashesForUpperByte[currentByteValue] = 0;
         } else if (upperByte == currentByteValue) {
-            indexFirstHashForUpperByte[currentByteValue] = i;
+            mIndexFirstHashForUpperByte[currentByteValue] = i;
             i++;
             u32 counter3 = 1;
 
@@ -110,7 +110,7 @@ void HashSortTable::sort() {
                 i++;
             }
 
-            numHashesForUpperByte[currentByteValue] = counter3;
+            mNumHashesForUpperByte[currentByteValue] = counter3;
 
             if (i == mCurrentLength) {
                 currentByteValue++;
@@ -124,8 +124,8 @@ void HashSortTable::sort() {
     then there are zero hash codes whose upper bytes match any of the remaining possible bytes.
     */
     for (u32 i = currentByteValue; i < 0x100; i++) {
-        indexFirstHashForUpperByte[i] = 0xFFFF;
-        numHashesForUpperByte[i] = 0;
+        mIndexFirstHashForUpperByte[i] = 0xFFFF;
+        mNumHashesForUpperByte[i] = 0;
     }
 
     mHasBeenSorted = true;
@@ -138,18 +138,18 @@ bool HashSortTable::search(u32 hashCode, u32* ptr) {
         *ptr = 0;
     }
 
-    u32 count = numHashesForUpperByte[upperByte];
+    u32 count = mNumHashesForUpperByte[upperByte];
 
     if (count == 0) {
         return false;
     }
 
-    u32* thing = &mHashCodes[indexFirstHashForUpperByte[upperByte]];
+    u32* thing = &mHashCodes[mIndexFirstHashForUpperByte[upperByte]];
 
     for (int i = 0; i < count; i++) {
         if (*thing == hashCode) {
             if (ptr != nullptr) {
-                *ptr = mValues[indexFirstHashForUpperByte[upperByte] + i];
+                *ptr = mValues[mIndexFirstHashForUpperByte[upperByte] + i];
             }
 
             return true;

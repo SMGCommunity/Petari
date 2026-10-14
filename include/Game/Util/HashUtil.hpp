@@ -58,12 +58,12 @@ public:
     /* 0x04 */ u32* mHashCodes;      ///< An array containing the hash codes of all the names in the name/value pairs.
     /* 0x08 */ u32* mValues;  ///< An array containing all the values in the name/value pairs. For any i, mHashCodes[i] and mValues[i] form a pair.
     /* 0x0C */ u16*
-        indexFirstHashForUpperByte;  ///< For any byte i (0-255), indexFirstHashForUpperByte[i] is the index of the first hash code in mHashCodes
-                                     ///< whose upper byte is i. If no such hash code exists, indexFirstHashForUpperByte[i] = 65535.
-    /* 0x10 */ u16* numHashesForUpperByte;  ///< For any byte i (0-255), numHashesForUpperByte[i] is the number of hash codes in mHashCodes whose
-                                            ///< upper byte is i.
-    /* 0x14 */ u32 mCurrentLength;          ///< The current number of name/value pairs in the table.
-    /* 0x18 */ u32 mMaxLength;              ///< The maximum possible number of name/value pairs in the table.
+        mIndexFirstHashForUpperByte;  ///< For any byte i (0-255), indexFirstHashForUpperByte[i] is the index of the first hash code in mHashCodes
+                                      ///< whose upper byte is i. If no such hash code exists, indexFirstHashForUpperByte[i] = 65535.
+    /* 0x10 */ u16* mNumHashesForUpperByte;  ///< For any byte i (0-255), numHashesForUpperByte[i] is the number of hash codes in mHashCodes whose
+                                             ///< upper byte is i.
+    /* 0x14 */ u32 mCurrentLength;           ///< The current number of name/value pairs in the table.
+    /* 0x18 */ u32 mMaxLength;               ///< The maximum possible number of name/value pairs in the table.
 };
 
 namespace MR {
