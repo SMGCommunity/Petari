@@ -21,4 +21,7 @@ extract:
 
 block_relocations:
 - source: .data:0x805668DC
+- source: .data:0x805ECB5C
+- source: .data:0x805ECFD0
+- source: .data:0x805EE9D8
 - source: .rodata:0x80547AB8
