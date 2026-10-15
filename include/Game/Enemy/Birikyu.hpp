@@ -24,6 +24,7 @@ public:
     void initShadow();
     bool tryStopPointing();
     void goMove();
+    bool isMoving() const;
     void exeMove();
     void exeMoveCircle();
     void exeWaitAtEdge();

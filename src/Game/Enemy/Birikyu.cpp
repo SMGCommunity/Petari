@@ -105,25 +105,21 @@ bool Birikyu::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
     return MR::isMsgStarPieceReflect(msg);
 }
 
+bool Birikyu::isMoving() const {
+    return isNerve(GET_NERVE(Birikyu, HostTypeMove)) || isNerve(GET_NERVE(Birikyu, HostTypeMoveCircle));
+}
+
 bool Birikyu::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (msg == ACTMES_GROUP_MOVE_STOP) {
-        bool bool4 = isNerve(GET_NERVE(Birikyu, HostTypeMove)) || isNerve(GET_NERVE(Birikyu, HostTypeMoveCircle));
+    if (msg == ACTMES_GROUP_MOVE_STOP && isMoving()) {
+        setNerve(GET_NERVE(Birikyu, HostTypeAttackWait));
 
-        if (bool4) {
-            setNerve(GET_NERVE(Birikyu, HostTypeAttackWait));
-
-            return true;
-        }
+        return true;
     }
 
-    if (msg == ACTMES_GROUP_MOVE_START) {
-        bool bool5 = isNerve(GET_NERVE(Birikyu, HostTypeMove)) || isNerve(GET_NERVE(Birikyu, HostTypeMoveCircle));
+    if (msg == ACTMES_GROUP_MOVE_START && !isMoving()) {
+        goMove();
 
-        if (!bool5) {
-            goMove();
-
-            return true;
-        }
+        return true;
     }
 
     return false;
