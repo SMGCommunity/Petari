@@ -32,7 +32,7 @@ public:
     void exeAttackWait();
     void exeStopPointing();
 
-    /* 0x0C */ const char* mObjectName;
+    /* 0x8C */ const char* mObjectName;
     /* 0x90 */ TVec3f mRailClipCenter;
     /* 0x9C */ TVec3f mOrbitCenter;
 
