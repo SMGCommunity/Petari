@@ -7,13 +7,13 @@ inline int tolower(int c) {
     return ((c < 0) || (c >= 0x100)) ? c : (int)(_current_locale.ctype_cmpt_ptr->lower_map_ptr[c]);
 }
 
-HashSortTable::HashSortTable(u32 maxLength) {
-    mHashCodes = new u32[maxLength];
-    mValues = new u32[maxLength];
-    mIndexFirstHashForUpperByte = new u16[0x100];
-    mNumHashesForUpperByte = new u16[0x100];
-    mCurrentLength = 0;
-    mMaxLength = maxLength;
+HashSortTable::HashSortTable(u32 numMax) {
+    mHashCodes = new u32[numMax];
+    mValues = new u32[numMax];
+    mBucketStartIndices = new u16[0x100];
+    mBucketSizes = new u16[0x100];
+    mTableSize = 0;
+    mTableMaxSize = numMax;
     mHasBeenSorted = false;
 }
 
@@ -28,29 +28,29 @@ bool HashSortTable::add(const char* pName, u32 value, bool isValidSkip) {
 }
 
 bool HashSortTable::add(u32 hash, u32 value) {
-    mHashCodes[mCurrentLength] = hash;
-    mValues[mCurrentLength] = value;
-    mCurrentLength++;
+    mHashCodes[mTableSize] = hash;
+    mValues[mTableSize] = value;
+    mTableSize++;
 
     return true;
 }
 
 bool HashSortTable::addOrSkip(u32 hash, u32 value) {
-    for (u32 i = 0; i < mCurrentLength; i++) {
+    for (u32 i = 0; i < mTableSize; i++) {
         if (hash == mHashCodes[i]) {
             return false;
         }
     }
 
-    mHashCodes[mCurrentLength] = hash;
-    mValues[mCurrentLength] = value;
-    mCurrentLength++;
+    mHashCodes[mTableSize] = hash;
+    mValues[mTableSize] = value;
+    mTableSize++;
 
     return true;
 }
 
 void HashSortTable::sort() {
-    if (mCurrentLength == 0) {
+    if (mTableSize == 0) {
         return;
     }
 
@@ -59,18 +59,18 @@ void HashSortTable::sort() {
     Once this function is complete, originalIndices[0] will contain the index of the lowest hash code in mHashCodeArray,
     originalIndices[1] will contain the index of the second-lowest hash code, and so on.
     */
-    MR::sortSmall(mCurrentLength, mHashCodes, originalIndices);
+    MR::sortSmall(mTableSize, mHashCodes, originalIndices);
     u32 swapArray[0x400];
 
     /*
     The values in mValues will be transferred here (in the order indicated in originalIndices)
     before being copied back into mValues.
     */
-    for (int i = 0; i < mCurrentLength; i++) {
+    for (int i = 0; i < mTableSize; i++) {
         swapArray[i] = mValues[originalIndices[i]];
     }
 
-    for (int i = 0; i < mCurrentLength; i++) {
+    for (int i = 0; i < mTableSize; i++) {
         mValues[i] = swapArray[i];
     }
 
@@ -87,10 +87,10 @@ void HashSortTable::sort() {
         */
         if (upperByte > currentByteValue) {
             // No hash codes with this upper byte
-            mIndexFirstHashForUpperByte[currentByteValue] = 0xFFFF;
-            mNumHashesForUpperByte[currentByteValue] = 0;
+            mBucketStartIndices[currentByteValue] = 0xFFFF;
+            mBucketSizes[currentByteValue] = 0;
         } else if (upperByte == currentByteValue) {
-            mIndexFirstHashForUpperByte[currentByteValue] = i;
+            mBucketStartIndices[currentByteValue] = i;
             i++;
             u32 counter3 = 1;
 
@@ -99,7 +99,7 @@ void HashSortTable::sort() {
             We'll keep track of how many hash codes we ended up finding with an upper byte equal to currentByteValue.
             Then, we can move on to the next currentByteValue.
             */
-            while (i < mCurrentLength) {
+            while (i < mTableSize) {
                 u32 upperByte = mHashCodes[i] >> 24;
 
                 if (upperByte != currentByteValue) {
@@ -110,9 +110,9 @@ void HashSortTable::sort() {
                 i++;
             }
 
-            mNumHashesForUpperByte[currentByteValue] = counter3;
+            mBucketSizes[currentByteValue] = counter3;
 
-            if (i == mCurrentLength) {
+            if (i == mTableSize) {
                 currentByteValue++;
                 break;
             }
@@ -124,32 +124,32 @@ void HashSortTable::sort() {
     then there are zero hash codes whose upper bytes match any of the remaining possible bytes.
     */
     for (u32 i = currentByteValue; i < 0x100; i++) {
-        mIndexFirstHashForUpperByte[i] = 0xFFFF;
-        mNumHashesForUpperByte[i] = 0;
+        mBucketStartIndices[i] = 0xFFFF;
+        mBucketSizes[i] = 0;
     }
 
     mHasBeenSorted = true;
 }
 
-bool HashSortTable::search(u32 hashCode, u32* ptr) {
+bool HashSortTable::search(u32 hashCode, u32* pDst) {
     u8 upperByte = hashCode >> 24;
 
-    if (ptr != nullptr) {
-        *ptr = 0;
+    if (pDst != nullptr) {
+        *pDst = 0;
     }
 
-    u32 count = mNumHashesForUpperByte[upperByte];
+    u32 count = mBucketSizes[upperByte];
 
     if (count == 0) {
         return false;
     }
 
-    u32* thing = &mHashCodes[mIndexFirstHashForUpperByte[upperByte]];
+    u32* thing = &mHashCodes[mBucketStartIndices[upperByte]];
 
     for (int i = 0; i < count; i++) {
         if (*thing == hashCode) {
-            if (ptr != nullptr) {
-                *ptr = mValues[mIndexFirstHashForUpperByte[upperByte] + i];
+            if (pDst != nullptr) {
+                *pDst = mValues[mBucketStartIndices[upperByte] + i];
             }
 
             return true;
@@ -165,29 +165,29 @@ bool HashSortTable::search(u32 hashCode, u32* ptr) {
     return false;
 }
 
-bool HashSortTable::search(const char* pName, u32* ptr) {
+bool HashSortTable::search(const char* pName, u32* pDst) {
     u32 hash = MR::getHashCode(pName);
 
-    return search(hash, ptr);
+    return search(hash, pDst);
 }
 
-bool HashSortTable::search(const char* pName1, const char* pName2, u32* ptr) {
+bool HashSortTable::search(const char* pName1, const char* pName2, u32* pDst) {
     u32 hash = MR::getHashCode(pName1) + MR::getHashCode(pName2);
 
-    return search(hash, ptr);
+    return search(hash, pDst);
 }
 
 void HashSortTable::swap(const char* pNameOld, const char* pNameNew) {
     u32 hash = MR::getHashCode(pNameOld);
 
-    for (int i = 0; i < mCurrentLength; i++) {
+    for (int i = 0; i < mTableSize; i++) {
         if (hash == mHashCodes[i]) {
             mHashCodes[i] = MR::getHashCode(pNameNew);
             return;
         }
     }
 
-    mHashCodes[mCurrentLength] = hash;
+    mHashCodes[mTableSize] = hash;
 }
 
 namespace MR {
