@@ -38,7 +38,7 @@ namespace MR {
     f32 calcMovingDirectionAlongRailH(LiveActor*, TVec3f*, const TVec3f&, f32, bool*);
 
     void calcRailClippingInfo(TVec3f*, f32*, const LiveActor*, f32, f32);
-    void initAndSetRailClipping(TVec3f*, LiveActor*, f32, f32);
+    void initAndSetRailClipping(TVec3f*, LiveActor*, f32 = 100.0f, f32 = 500.0f);  // CLEANME: remove explicit default args in uses of this function
 
     f32 calcNearestRailCoord(const LiveActor*, const TVec3f&);
     f32 calcNearestRailPos(TVec3f*, const LiveActor*, const TVec3f&);

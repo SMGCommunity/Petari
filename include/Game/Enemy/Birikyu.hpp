@@ -2,6 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
+/// @brief Zap Ball
 class Birikyu : public LiveActor {
 public:
     Birikyu(const char*);
@@ -30,15 +31,22 @@ public:
     void exeAttackWait();
     void exeStopPointing();
 
-    const char* _8C;
-    TVec3f _90;
-    TVec3f _9C;
-    bool _A8;
-    bool _A9;
-    TVec3f _AC;
-    TVec3f _B8;
-    f32 _C4;
-    f32 _C8;
+    /* 0x0C */ const char* mObjectName;
+    /* 0x90 */ TVec3f mRailClipCenter;
+    /* 0x9C */ TVec3f mOrbitCenter;
+
+    /// @brief JMapInfo arg 2.
+    /* 0xA8 */ bool mHasShadow;
+
+    /* 0xA9 */ bool mConnected;
+    /* 0xAC */ TVec3f mUpVec;
+    /* 0xB8 */ TVec3f mFront;
+
+    /// @brief In radians.
+    /* 0xC4 */ f32 mOrbitAngle;
+
+    /// @brief Used for both rail movement and orbit speed.
+    /* 0xC8 */ f32 mMoveSpeed;
 };
 
 class BirikyuWithFace : public Birikyu {
@@ -50,5 +58,6 @@ public:
     virtual f32 getHitRadius() const;
     virtual char* getCenterJointName() const;
 
-    bool _CC;
+    /// @brief JMapInfo arg 1.
+    /* 0xCC */ bool _CC;
 };

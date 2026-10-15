@@ -627,6 +627,7 @@ namespace MR {
         return fmod(x, y);
     }
 
+    /// @brief Modulo with offset.
     inline f32 repeat(f32 value, f32 min, f32 max) {
         return min + MOD(max + (value - min), max);
     }
