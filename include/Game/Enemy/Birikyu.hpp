@@ -2,7 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-/// @brief Zap Ball
+/// @brief Faceless Amp
 class Birikyu : public LiveActor {
 public:
     Birikyu(const char*);
@@ -50,6 +50,7 @@ public:
     /* 0xC8 */ f32 mMoveSpeed;
 };
 
+/// @brief Amp
 class BirikyuWithFace : public Birikyu {
 public:
     BirikyuWithFace(const char*);
