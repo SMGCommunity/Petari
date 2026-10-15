@@ -13,6 +13,15 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+namespace {
+    static const f32 sHitRadiusWithFace = 50.0f;
+    static const f32 sHitRadiusWithoutFace = 120.0f;
+    static const s32 sAttackTime = 90;
+    static const f32 sShadowRadiusRatio = 0.8f;
+    static const f32 sMoveRadius = 400.0f;
+    static const f32 sMoveSpeedDefault = 10.0f;
+};  // namespace
+
 namespace NrvBirikyu {
     NEW_NERVE(HostTypeMove, Birikyu, Move);
     NEW_NERVE(HostTypeMoveCircle, Birikyu, MoveCircle);
@@ -22,19 +31,14 @@ namespace NrvBirikyu {
     NEW_NERVE(HostTypeStopPointing, Birikyu, StopPointing);
 };  // namespace NrvBirikyu
 
-void Birikyu_FORCE_MATCH(const TVec3f& rVec) {
-    TVec3f vec(rVec);
-    vec * 1.0f;
-    vec + TVec3f(1.0f);
-}
-
 Birikyu::Birikyu(const char* pName)
-    : LiveActor(pName), _8C(), _90(gZeroVec), _9C(gZeroVec), _A8(), _A9(), _AC(0.0f, 1.0f, 0.0f), _B8(0.0f, 0.0f, 1.0f), _C4(), _C8(10.0f) {
+    : LiveActor(pName), mObjectName(), mRailClipCenter(gZeroVec), mOrbitCenter(gZeroVec), mHasShadow(), mConnected(), mUpVec(0.0f, 1.0f, 0.0f),
+      mFront(0.0f, 0.0f, 1.0f), mOrbitAngle(), mMoveSpeed(::sMoveSpeedDefault) {
 }
 
 void Birikyu::init(const JMapInfoIter& rIter) {
-    MR::getObjectName(&_8C, rIter);
-    initModelManagerWithAnm(_8C, nullptr, false);
+    MR::getObjectName(&mObjectName, rIter);
+    initModelManagerWithAnm(mObjectName, nullptr, false);
     MR::connectToSceneEnemy(this);
     initFromJmpArgs(rIter);
     initRail(rIter);
@@ -45,13 +49,10 @@ void Birikyu::init(const JMapInfoIter& rIter) {
     MR::setGroupClipping(this, rIter, 64);
     MR::joinToGroupArray(this, rIter, nullptr, 64);
     initSound(4, false);
-    TVec3f offset;
-    offset.x = 0.0f;
-    offset.y = 0.0f;
-    offset.z = 0.0f;
+    TVec3f offset(0.0f);
     MR::initStarPointerTarget(this, 100.0f, offset);
 
-    if (_A9) {
+    if (mConnected) {
         initNerve(GET_NERVE(Birikyu, HostTypeMove));
     } else {
         initNerve(GET_NERVE(Birikyu, HostTypeMoveCircle));
@@ -61,28 +62,28 @@ void Birikyu::init(const JMapInfoIter& rIter) {
 }
 
 void Birikyu::initAfterPlacement() {
-    if (_A9) {
+    if (mConnected) {
         MR::moveCoordAndTransToNearestRailPos(this);
     } else {
-        _9C.set(mPosition);
+        mOrbitCenter.set(mPosition);
         TPos3f matrix;
         matrix.identity();
         MR::makeMtxRotate(matrix.toMtxPtr(), mRotation);
-        matrix.getYDir(_AC);
-        MR::normalize(&_AC);
-        matrix.getZDir(_B8);
-        MR::normalize(&_B8);
-        mPosition.set(_9C + _B8 * 400.0f);
+        matrix.getYDir(mUpVec);
+        MR::normalize(&mUpVec);
+        matrix.getZDir(mFront);
+        MR::normalize(&mFront);
+        mPosition.set(mOrbitCenter + mFront * ::sMoveRadius);
     }
 }
 
 void Birikyu::appear() {
     LiveActor::appear();
-    MR::emitEffect(this, _8C);
+    MR::emitEffect(this, mObjectName);
 }
 
 f32 Birikyu::getHitRadius() const {
-    return 120.0f;
+    return ::sHitRadiusWithoutFace;
 }
 
 char* Birikyu::getCenterJointName() const {
@@ -104,25 +105,21 @@ bool Birikyu::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
     return MR::isMsgStarPieceReflect(msg);
 }
 
+bool Birikyu::isMoving() const {
+    return isNerve(GET_NERVE(Birikyu, HostTypeMove)) || isNerve(GET_NERVE(Birikyu, HostTypeMoveCircle));
+}
+
 bool Birikyu::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (msg == ACTMES_GROUP_MOVE_STOP) {
-        bool bool4 = isNerve(GET_NERVE(Birikyu, HostTypeMove)) || isNerve(GET_NERVE(Birikyu, HostTypeMoveCircle));
+    if (msg == ACTMES_GROUP_MOVE_STOP && isMoving()) {
+        setNerve(GET_NERVE(Birikyu, HostTypeAttackWait));
 
-        if (bool4) {
-            setNerve(GET_NERVE(Birikyu, HostTypeAttackWait));
-
-            return true;
-        }
+        return true;
     }
 
-    if (msg == ACTMES_GROUP_MOVE_START) {
-        bool bool5 = isNerve(GET_NERVE(Birikyu, HostTypeMove)) || isNerve(GET_NERVE(Birikyu, HostTypeMoveCircle));
+    if (msg == ACTMES_GROUP_MOVE_START && !isMoving()) {
+        goMove();
 
-        if (!bool5) {
-            goMove();
-
-            return true;
-        }
+        return true;
     }
 
     return false;
@@ -130,27 +127,26 @@ bool Birikyu::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
 
 void Birikyu::startClipped() {
     LiveActor::startClipped();
-    MR::forceDeleteEffect(this, _8C);
+    MR::forceDeleteEffect(this, mObjectName);
 }
 
 void Birikyu::endClipped() {
     LiveActor::endClipped();
-    MR::emitEffect(this, _8C);
+    MR::emitEffect(this, mObjectName);
 }
 
 void Birikyu::initFromJmpArgs(const JMapInfoIter& rIter) {
-    MR::getJMapInfoArg0NoInit(rIter, &_C8);
+    MR::getJMapInfoArg0NoInit(rIter, &mMoveSpeed);
     s32 num = -1;
     MR::getJMapInfoArg2NoInit(rIter, &num);
-    _A8 = num == true;
+    mHasShadow = num == true;
 }
 
 void Birikyu::initRail(const JMapInfoIter& rIter) {
-    bool result = MR::isConnectedWithRail(rIter);
-    _A9 = result;
-    if (_A9) {
+    mConnected = MR::isConnectedWithRail(rIter);
+    if (mConnected) {
         initRailRider(rIter);
-        MR::initAndSetRailClipping(&_90, this, 100.0f, 500.0f);
+        MR::initAndSetRailClipping(&mRailClipCenter, this);
     }
 }
 
@@ -163,14 +159,16 @@ void Birikyu::initCollision() {
 }
 
 void Birikyu::initShadow() {
-    if (_A8) {
-        f32 num = getHitRadius();
-        MR::initShadowVolumeSphere(this, (0.8f * (num * mScale.x)));
-        MR::onCalcShadowDropPrivateGravity(this, nullptr);
-        MR::onCalcShadow(this, nullptr);
-        MR::onCalcGravity(this);
-        MR::setShadowDropPositionPtr(this, nullptr, &getSensor("body")->mPosition);
+    if (!mHasShadow) {
+        return;
     }
+
+    f32 hitRadius = getHitRadius();
+    MR::initShadowVolumeSphere(this, (::sShadowRadiusRatio * (hitRadius * mScale.x)));
+    MR::onCalcShadowDropPrivateGravity(this, nullptr);
+    MR::onCalcShadow(this, nullptr);
+    MR::onCalcGravity(this);
+    MR::setShadowDropPositionPtr(this, nullptr, &getSensor("body")->mPosition);
 }
 
 bool Birikyu::tryStopPointing() {
@@ -185,7 +183,7 @@ bool Birikyu::tryStopPointing() {
 }
 
 void Birikyu::goMove() {
-    if (_A9) {
+    if (mConnected) {
         setNerve(GET_NERVE(Birikyu, HostTypeMove));
     } else {
         setNerve(GET_NERVE(Birikyu, HostTypeMoveCircle));
@@ -195,44 +193,52 @@ void Birikyu::goMove() {
 void Birikyu::exeMove() {
     MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE");
 
-    if (!tryStopPointing()) {
-        if (MR::isRailReachedGoal(this)) {
-            MR::reverseRailDirection(this);
-            s32 arg = 0;
-            MR::getCurrentRailPointArg0NoInit(this, &arg);
+    if (tryStopPointing()) {
+        return;
+    }
 
-            if (arg > 0) {
-                setNerve(GET_NERVE(Birikyu, HostTypeWaitAtEdge));
-                return;
-            } else {
-                MR::emitEffect(this, "Clash");
-            }
+    if (MR::isRailReachedGoal(this)) {
+        MR::reverseRailDirection(this);
+
+        s32 waitTime = 0;
+        MR::getCurrentRailPointArg0NoInit(this, &waitTime);
+        if (waitTime > 0) {
+            setNerve(GET_NERVE(Birikyu, HostTypeWaitAtEdge));
+            return;
         }
 
-        MR::moveCoordAndFollowTrans(this, _C8);
+        MR::emitEffect(this, "Clash");
     }
+
+    MR::moveCoordAndFollowTrans(this, mMoveSpeed);
 }
 
 void Birikyu::exeMoveCircle() {
     MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE");
-    if (!tryStopPointing()) {
-        _C4 = MR::repeat(_C4 + (_C8 / 400.0f), 0.0f, TWO_PI);
-        TPos3f matrix;
-        matrix.identity();
-        matrix.makeRotate(_AC, _C4);
-        TVec3f temp = _B8 * 400.0f;
-        matrix.mult(temp, temp);
-        TVec3f matrix2 = (_9C + temp);
-        mPosition.set(matrix2);
+    if (tryStopPointing()) {
+        return;
     }
+
+    mOrbitAngle = MR::repeat(mOrbitAngle + (mMoveSpeed / ::sMoveRadius), 0.0f, TWO_PI);
+
+    TPos3f rotationMtx;
+    rotationMtx.identity();
+    rotationMtx.makeRotate(mUpVec, mOrbitAngle);
+
+    TVec3f orbitOffset = mFront * ::sMoveRadius;
+    rotationMtx.mult(orbitOffset, orbitOffset);
+
+    TVec3f finalOrbitPos = (mOrbitCenter + orbitOffset);
+    mPosition.set(finalOrbitPos);
 }
 
 void Birikyu::exeWaitAtEdge() {
     MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE");
-    s32 arg = 0;
-    MR::getCurrentRailPointArg0NoInit(this, &arg);
 
-    if (MR::isStep(this, arg)) {
+    s32 waitTime = 0;
+    MR::getCurrentRailPointArg0NoInit(this, &waitTime);
+
+    if (MR::isStep(this, waitTime)) {
         setNerve(GET_NERVE(Birikyu, HostTypeMove));
     }
 }
@@ -245,7 +251,7 @@ void Birikyu::exeAttack() {
 
     MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE");
 
-    if (MR::isStep(this, 90)) {
+    if (MR::isStep(this, ::sAttackTime)) {
         MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_START, this, getSensor("body"), "body");
         goMove();
     }
@@ -274,8 +280,7 @@ void Birikyu::exeStopPointing() {
     }
 }
 
-BirikyuWithFace::BirikyuWithFace(const char* pName) : Birikyu(pName) {
-    _CC = false;
+BirikyuWithFace::BirikyuWithFace(const char* pName) : Birikyu(pName), _CC() {
 }
 
 void BirikyuWithFace::init(const JMapInfoIter& rIter) {
@@ -286,36 +291,35 @@ void BirikyuWithFace::init(const JMapInfoIter& rIter) {
 }
 
 void BirikyuWithFace::calcAndSetBaseMtx() {
-    TPos3f vec3;
-    vec3.identity();
-    if (_A9) {
-        TVec3f vec(MR::getRailDirection(this));
+    TPos3f mtx;
+    mtx.identity();
+
+    if (mConnected) {
+        TVec3f sideVec(MR::getRailDirection(this));
         if (_CC) {
-            vec.negate();
+            sideVec.negate();
         }
 
         if (!MR::isRailGoingToEnd(this)) {
-            vec.negate();
+            sideVec.negate();
         }
 
-        TVec3f vec2(_AC);
-        if (MR::isSameDirection(vec2, vec)) {
-            MR::makeMtxSideFront(&vec3, vec, _B8);
+        TVec3f upVec(mUpVec);
+        if (MR::isSameDirection(upVec, sideVec)) {
+            MR::makeMtxSideFront(&mtx, sideVec, mFront);
         } else {
-            MR::makeMtxSideUp(&vec3, vec, vec2);
+            MR::makeMtxSideUp(&mtx, sideVec, upVec);
         }
     } else {
-        vec3.makeRotate(_AC, _C4);
+        mtx.makeRotate(mUpVec, mOrbitAngle);
     }
 
-    vec3.mMtx[0][3] = mPosition.x;
-    vec3.mMtx[1][3] = mPosition.y;
-    vec3.mMtx[2][3] = mPosition.z;
-    MR::setBaseTRMtx(this, vec3);
+    mtx.setTrans(mPosition);
+    MR::setBaseTRMtx(this, mtx);
 }
 
 f32 BirikyuWithFace::getHitRadius() const {
-    return 50.0f;
+    return ::sHitRadiusWithFace;
 }
 
 char* BirikyuWithFace::getCenterJointName() const {
