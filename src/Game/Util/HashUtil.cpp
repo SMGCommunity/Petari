@@ -14,7 +14,7 @@ HashSortTable::HashSortTable(u32 numMax) {
     mBucketSizes = new u16[0x100];
     mTableSize = 0;
     mTableMaxSize = numMax;
-    mHasBeenSorted = false;
+    mlsSorted = false;
 }
 
 bool HashSortTable::add(const char* pName, u32 value, bool isValidSkip) {
@@ -92,7 +92,7 @@ void HashSortTable::sort() {
         } else if (upperByte == currentByteValue) {
             mBucketStartIndices[currentByteValue] = i;
             i++;
-            u32 counter3 = 1;
+            u32 bucketSize = 1;
 
             /*
             Keep advancing through mHashCodes until we find a hash code whose upper byte is greater than currentByteValue.
@@ -106,11 +106,11 @@ void HashSortTable::sort() {
                     break;
                 }
 
-                counter3++;
+                bucketSize++;
                 i++;
             }
 
-            mBucketSizes[currentByteValue] = counter3;
+            mBucketSizes[currentByteValue] = bucketSize;
 
             if (i == mTableSize) {
                 currentByteValue++;
@@ -124,11 +124,11 @@ void HashSortTable::sort() {
     then there are zero hash codes whose upper bytes match any of the remaining possible bytes.
     */
     for (u32 i = currentByteValue; i < 0x100; i++) {
-        mBucketStartIndices[i] = 0xFFFF;
+        mBucketStartIndices[i] = -1;
         mBucketSizes[i] = 0;
     }
 
-    mHasBeenSorted = true;
+    mlsSorted = true;
 }
 
 bool HashSortTable::search(u32 hashCode, u32* pDst) {

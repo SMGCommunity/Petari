@@ -66,11 +66,11 @@ public:
     /// @param pNameNew Pointer to the name that will replace the old one in the table.
     void swap(const char* pNameOld, const char* pNameNew);
 
-    /* 0x00 */ bool mHasBeenSorted;  ///< True if this table is sorted in ascending order by the keys' hash codes; False otherwise.
-    /* 0x04 */ u32* mHashCodes;      ///< An array containing the hash codes of all the names in the name/value pairs.
-    /* 0x08 */ u32* mValues;  ///< An array containing all the values in the name/value pairs. For any i, mHashCodes[i] and mValues[i] form a pair.
+    /* 0x00 */ bool mlsSorted;   ///< True if this table is sorted in ascending order by the keys' hash codes; False otherwise.
+    /* 0x04 */ u32* mHashCodes;  ///< An array containing the hash codes of all the names in the name/value pairs.
+    /* 0x08 */ u32* mValues;     ///< An array containing all the values in the name/value pairs. For any i, mHashCodes[i] and mValues[i] form a pair.
     /* 0x0C */ u16* mBucketStartIndices;  ///< For any byte i (0-255), mBucketStartIndices[i] is the index of the first hash code in mHashCodes
-                                          ///< whose upper byte is i. If no such hash code exists, mBucketStartIndices[i] = 0xFFFF. This facilitates
+                                          ///< whose upper byte is i. If no such hash code exists, mBucketStartIndices[i] = -1. This facilitates
                                           ///< much faster searches by allowing the game to skip a bunch of hash codes.
     /* 0x10 */ u16* mBucketSizes;         ///< For any byte i (0-255), mBucketSizes[i] is the number of hash codes in mHashCodes whose
                                    ///< upper byte is i. This facilitates much faster searches by allowing the game to skip a bunch of hash codes.
