@@ -2893,7 +2893,7 @@ config.libs = [
             Object(MatchingFor(ALL), "RVL_SDK/ipc/ipcProfile.c"),
         ],
     ),
-    SDKLib_KPAD("kpad", [Object(MatchingFor(JPN, KOR), "RVL_SDK/kpad/KPAD.c")]),
+    SDKLib_KPAD("kpad", [Object(MatchingFor(JPN, KOR, PAL), "RVL_SDK/kpad/KPAD.c")]),
     SDKLib(
         "mem",
         [

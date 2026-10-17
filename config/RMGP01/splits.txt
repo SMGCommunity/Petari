@@ -10271,7 +10271,7 @@ RVL_SDK/kpad/KPAD.c:
 	.data       start:0x805D5A38 end:0x805D5A90
 	.bss        start:0x8061D340 end:0x80624360
 	.sdata      start:0x8069DDE0 end:0x8069DE50
-	.sbss       start:0x806A28F0 end:0x806A2920
+	.sbss       start:0x806A28F0 end:0x806A2910
 	.sdata2     start:0x806AD2E8 end:0x806AD350
 
 RVL_SDK/thp/THPDec.c:
