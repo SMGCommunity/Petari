@@ -39,9 +39,9 @@ public:
     /// @brief JMapInfo arg 2.
     /* 0xA8 */ bool mHasShadow;
 
-    /* 0xA9 */ bool mConnected;
+    /* 0xA9 */ bool mIsConnected;
     /* 0xAC */ TVec3f mUpVec;
-    /* 0xB8 */ TVec3f mFront;
+    /* 0xB8 */ TVec3f mFrontVec;
 
     /// @brief In radians.
     /* 0xC4 */ f32 mOrbitAngle;

@@ -32,8 +32,8 @@ namespace NrvBirikyu {
 };  // namespace NrvBirikyu
 
 Birikyu::Birikyu(const char* pName)
-    : LiveActor(pName), mObjectName(), mRailClipCenter(gZeroVec), mOrbitCenter(gZeroVec), mHasShadow(), mConnected(), mUpVec(0.0f, 1.0f, 0.0f),
-      mFront(0.0f, 0.0f, 1.0f), mOrbitAngle(), mMoveSpeed(::sMoveSpeedDefault) {
+    : LiveActor(pName), mObjectName(), mRailClipCenter(gZeroVec), mOrbitCenter(gZeroVec), mHasShadow(), mIsConnected(), mUpVec(0.0f, 1.0f, 0.0f),
+      mFrontVec(0.0f, 0.0f, 1.0f), mOrbitAngle(), mMoveSpeed(::sMoveSpeedDefault) {
 }
 
 void Birikyu::init(const JMapInfoIter& rIter) {
@@ -52,7 +52,7 @@ void Birikyu::init(const JMapInfoIter& rIter) {
     TVec3f offset(0.0f);
     MR::initStarPointerTarget(this, 100.0f, offset);
 
-    if (mConnected) {
+    if (mIsConnected) {
         initNerve(GET_NERVE(Birikyu, HostTypeMove));
     } else {
         initNerve(GET_NERVE(Birikyu, HostTypeMoveCircle));
@@ -62,7 +62,7 @@ void Birikyu::init(const JMapInfoIter& rIter) {
 }
 
 void Birikyu::initAfterPlacement() {
-    if (mConnected) {
+    if (mIsConnected) {
         MR::moveCoordAndTransToNearestRailPos(this);
     } else {
         mOrbitCenter.set(mPosition);
@@ -71,9 +71,9 @@ void Birikyu::initAfterPlacement() {
         MR::makeMtxRotate(matrix.toMtxPtr(), mRotation);
         matrix.getYDir(mUpVec);
         MR::normalize(&mUpVec);
-        matrix.getZDir(mFront);
-        MR::normalize(&mFront);
-        mPosition.set(mOrbitCenter + mFront * ::sMoveRadius);
+        matrix.getZDir(mFrontVec);
+        MR::normalize(&mFrontVec);
+        mPosition.set(mOrbitCenter + mFrontVec * ::sMoveRadius);
     }
 }
 
@@ -143,8 +143,8 @@ void Birikyu::initFromJmpArgs(const JMapInfoIter& rIter) {
 }
 
 void Birikyu::initRail(const JMapInfoIter& rIter) {
-    mConnected = MR::isConnectedWithRail(rIter);
-    if (mConnected) {
+    mIsConnected = MR::isConnectedWithRail(rIter);
+    if (mIsConnected) {
         initRailRider(rIter);
         MR::initAndSetRailClipping(&mRailClipCenter, this);
     }
@@ -183,7 +183,7 @@ bool Birikyu::tryStopPointing() {
 }
 
 void Birikyu::goMove() {
-    if (mConnected) {
+    if (mIsConnected) {
         setNerve(GET_NERVE(Birikyu, HostTypeMove));
     } else {
         setNerve(GET_NERVE(Birikyu, HostTypeMoveCircle));
@@ -225,7 +225,7 @@ void Birikyu::exeMoveCircle() {
     rotationMtx.identity();
     rotationMtx.makeRotate(mUpVec, mOrbitAngle);
 
-    TVec3f orbitOffset = mFront * ::sMoveRadius;
+    TVec3f orbitOffset = mFrontVec * ::sMoveRadius;
     rotationMtx.mult(orbitOffset, orbitOffset);
 
     TVec3f finalOrbitPos = (mOrbitCenter + orbitOffset);
@@ -294,7 +294,7 @@ void BirikyuWithFace::calcAndSetBaseMtx() {
     TPos3f mtx;
     mtx.identity();
 
-    if (mConnected) {
+    if (mIsConnected) {
         TVec3f sideVec(MR::getRailDirection(this));
         if (_CC) {
             sideVec.negate();
@@ -306,7 +306,7 @@ void BirikyuWithFace::calcAndSetBaseMtx() {
 
         TVec3f upVec(mUpVec);
         if (MR::isSameDirection(upVec, sideVec)) {
-            MR::makeMtxSideFront(&mtx, sideVec, mFront);
+            MR::makeMtxSideFront(&mtx, sideVec, mFrontVec);
         } else {
             MR::makeMtxSideUp(&mtx, sideVec, upVec);
         }
