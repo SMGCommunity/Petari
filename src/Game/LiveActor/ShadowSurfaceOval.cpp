@@ -12,9 +12,6 @@
 #include <revolution/gx/GXEnum.h>
 #include <revolution/gx/GXLighting.h>
 
-ShadowSurfaceOval::~ShadowSurfaceOval() {
-}
-
 ShadowSurfaceOval::ShadowSurfaceOval() : ShadowSurfaceDrawer("影描画[水面楕円影]"), mModelData(), mSize(100.0f, 100.0f, 200.0f), mColor(0, 0, 0, 64) {
     mModelData = MR::getJ3DModelData("ShadowVolumeSphere");
 }
@@ -63,4 +60,7 @@ void ShadowSurfaceOval::draw() const {
     TDDraw::setModelMtx(mtx.toMtxPtr());
     MR::drawSimpleModel(mModelData);
     GXSetChanMatColor(GX_COLOR0A0, Color8(128));
+}
+
+ShadowSurfaceOval::~ShadowSurfaceOval() {
 }
