@@ -41,7 +41,7 @@ public:
     bool tryFadeoutLayout();
 
 private:
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     /* 0x14 */ SimpleLayout* mStrapLayout;
     /* 0x18 */ LogoFader* mLogoFader;
 #else

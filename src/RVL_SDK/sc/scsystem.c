@@ -2,7 +2,7 @@
 #include <mem.h>
 #include "revolution/sc.h"
 
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
 const char* __SCVersion = "<< RVL_SDK - SC \trelease build: Aug  8 2007 02:09:03 (0x4199_60831) >>";
 #elif (VERSION == RMGK01)
 const char* __SCVersion = "<< RVL_SDK - SC \trelease build: Feb 22 2008 06:21:38 (0x4199_60831) >>";

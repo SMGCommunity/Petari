@@ -63,7 +63,7 @@ bool NWC24System::close(NWC24Err* pErr) {
     }
 }
 
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
 bool NWC24System::send(const u16* pText, const u16* pAltName, const u8* pLetter, u32 letterSize, const u8* pPicture, u32 pictureSize) {
     return mSendThread->requestSend(pText, pAltName, pLetter, letterSize, pPicture, pictureSize);
 }
