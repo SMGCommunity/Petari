@@ -1,4 +1,4 @@
-#include "Game/Enemy/KariKariDirector.hpp"
+#include "Game/Enemy/KarikariDirector.hpp"
 #include "Game/MapObj/BlackHole.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioConst.hpp"

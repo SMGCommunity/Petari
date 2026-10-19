@@ -1,9 +1,9 @@
 #ifndef RVL_FACE_LIBRARY_INTERNAL_NAND_ACCESS_H
 #define RVL_FACE_LIBRARY_INTERNAL_NAND_ACCESS_H
 #include "RFLi_Types.h"
-#include <revolution/FS.h>
-#include <revolution/MEM.h>
-#include <revolution/NAND.h>
+#include <revolution/fs.h>
+#include <revolution/mem.h>
+#include <revolution/nand.h>
 #include <revolution/types.h>
 #ifdef __cplusplus
 extern "C" {

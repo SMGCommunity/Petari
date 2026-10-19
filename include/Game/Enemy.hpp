@@ -20,7 +20,7 @@
 #include "Game/Enemy/KameckBeam.hpp"
 #include "Game/Enemy/KameckBeamHolder.hpp"
 #include "Game/Enemy/KameckHolder.hpp"
-#include "Game/Enemy/KariKariDirector.hpp"
+#include "Game/Enemy/KarikariDirector.hpp"
 #include "Game/Enemy/Karon.hpp"
 #include "Game/Enemy/Kuribo.hpp"
 #include "Game/Enemy/Meramera.hpp"

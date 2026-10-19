@@ -68,7 +68,7 @@ Prefer forward declarations whenever possible instead of adding unnecessary incl
 Use angle brackets (`<>`) for library and SDK headers:
 
 ```cpp
-#include <revolution/OS.h>
+#include <revolution/os.h>
 #include <JSystem/JGeometry.hpp>
 ```
 

@@ -2,8 +2,8 @@
 #define RVL_FACE_LIBRARY_INTERNAL_DATABASE_H
 #include "RFLi_HiddenDatabase.h"
 #include "RFLi_Types.h"
-#include <revolution/MEM.h>
-#include <revolution/OS.h>
+#include <revolution/mem.h>
+#include <revolution/os.h>
 #include <revolution/types.h>
 #ifdef __cplusplus
 extern "C" {

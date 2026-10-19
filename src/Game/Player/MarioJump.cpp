@@ -1,4 +1,4 @@
-#include "Game/Enemy/KariKariDirector.hpp"
+#include "Game/Enemy/KarikariDirector.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Map/HitInfo.hpp"
