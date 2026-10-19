@@ -258,7 +258,7 @@ void LogoScene::initLayout() {
 }
 
 bool LogoScene::tryFadeinLayout(LayoutActor* pActor) {
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     if (MR::isFirstStep(this)) {
         mLogoFader->startFadeIn();
         pActor->appear();
@@ -283,7 +283,7 @@ bool LogoScene::tryFadeinLayout(LayoutActor* pActor) {
 }
 
 bool LogoScene::tryFadeoutLayout(LayoutActor* pActor) {
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     if (MR::isFirstStep(this)) {
         mLogoFader->startFadeOut();
     }

@@ -49,7 +49,7 @@ void NWC24Messenger::draw() const {
     mSendState->draw();
 }
 
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
 void NWC24Messenger::send(const char* pTaskName, const wchar_t* pMessage, const wchar_t* pAltName, const u8* pPicture, u32 pictureSize, bool isBG)
 #elif (VERSION == RMGK01)
 void NWC24Messenger::send(const char* pTaskName, const wchar_t* pMessage, const wchar_t* pAltName, const u8* pPicture, u32 pictureSize, bool isBG,
@@ -607,7 +607,7 @@ namespace NWC24MessengerSub {
 
         return err == NWC24_ERR_MUTEX || err == NWC24_ERR_BUSY || err == NWC24_ERR_INPROGRESS;
     }
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     bool SendState::send() {
         if (!mHost->mSystem->send(reinterpret_cast< const u16* >(mTask->mMessage), reinterpret_cast< const u16* >(mTask->mAltName), nullptr, 0,
                                   mTask->mPicture, mTask->mPictureSize)) {
@@ -695,7 +695,7 @@ namespace NWC24MessengerSub {
 };  // namespace NWC24MessengerSub
 
 namespace MR {
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
 
     void sendMail(const char* pTaskName, const wchar_t* pMessage, const char* pMessageId, const u8* pImage, u32 imageSize, bool isBG) {
         ::getNWC24Messenger()->send(pTaskName, pMessage, MR::getMailSender(pMessageId), pImage, imageSize, isBG);

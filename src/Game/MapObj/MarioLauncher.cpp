@@ -227,7 +227,7 @@ void MarioLauncher::exeAim() {
         MR::hideModel(this);
     }
 
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     if (MR::isStarPointerInScreen(WPAD_CHAN0)) {
         mLayout->appearAt(MR::getStarPointerScreenPositionOrEdge(WPAD_CHAN0));
         MR::requestMarioLauncherGuidance();
@@ -516,7 +516,7 @@ void MarioLauncherLayout::kill() {
 }
 
 bool MarioLauncher::doEject() {
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     if (!MR::isStarPointerInScreen(WPAD_CHAN0)) {
         return false;
     }
@@ -530,7 +530,7 @@ bool MarioLauncher::doEject() {
     }
 
     TVec3f shootDir;
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     MR::calcWorldRayDirectionFromScreen(&shootDir, *MR::getStarPointerScreenPosition(WPAD_CHAN0));
 #elif (VERSION == RMGK01)
     MR::calcWorldRayDirectionFromScreen(&shootDir, MR::getStarPointerScreenPositionOrEdge(WPAD_CHAN0));

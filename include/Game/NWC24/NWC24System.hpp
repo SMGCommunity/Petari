@@ -12,7 +12,7 @@ public:
 
     bool open(NWC24Err*, s32*);
     bool close(NWC24Err*);
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     bool send(const u16*, const u16*, const u8*, u32, const u8*, u32);
 #else
     bool send(const u16*, const u16*, const u8*, u32, const u8*, u32, u16, bool, u8);

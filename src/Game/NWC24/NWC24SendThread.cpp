@@ -26,7 +26,7 @@ NWC24SendThread::NWC24SendThread(s32 priority, JKRHeap* pHeap) {
     OSResumeThread(this);
 }
 
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
 bool NWC24SendThread::requestSend(const u16* pText, const u16* pAltName, const u8* pLetter, u32 letterSize, const u8* pPicture, u32 pictureSize) {
 #else
 bool NWC24SendThread::requestSend(const u16* pText, const u16* pAltName, const u8* pLetter, u32 letterSize, const u8* pPicture, u32 pictureSize,
@@ -175,7 +175,7 @@ NWC24Err NWC24SendThread::sendMessage(MsgSendStatus* pMsgSendStatus, u32* pMsgSi
             return err;
         }
     }
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     err = NWC24SetMsgLedPattern(&msgObj, NWC24_LED_APP_DEFAULT);
 
     if (err != NWC24_OK) {

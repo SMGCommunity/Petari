@@ -18,7 +18,7 @@ ReceiverTagMail::ReceiverTagMail(const char* pTaskName, const char* pMessageID, 
     MR::zeroMemory(mMessage, mMessageLength * sizeof(wchar_t));
 }
 
-#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
 
 void ReceiverTagMail::send(const u8* pImage, u32 imageSize) {
     ReplaceTagFunction::ReplaceArgs(mMessage, mMessageLength, MR::getGameMessageDirect(mMessageID), GameDataFunction::getUserName());
