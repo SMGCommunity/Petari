@@ -357,9 +357,9 @@ void SpinDriverPathDrawer::draw() const {
 }
 
 void SpinDriverPathDrawer::sendPoint(const TVec3f& rA1, f32 a2, f32 a3) const {
-    GXWGFifo.f32 = rA1.x;
-    GXWGFifo.f32 = rA1.y;
-    GXWGFifo.f32 = rA1.z;
-    GXWGFifo.f32 = a2;
-    GXWGFifo.f32 = a3;
+    GXCmd1f32(rA1.x);
+    GXCmd1f32(rA1.y);
+    GXCmd1f32(rA1.z);
+    GXCmd1f32(a2);
+    GXCmd1f32(a3);
 }
