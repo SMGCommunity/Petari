@@ -1,4 +1,4 @@
-#ifndef RVL_FACE_LIBRARY_INTENRAL_CONFIG_H
+#ifndef RVL_FACE_LIBRARY_INTERNAL_CONFIG_H
 #define RVL_FACE_LIBRARY_INTERNAL_CONFIG_H
 #include "RFLi_Types.h"
 #include <revolution/gx.h>
