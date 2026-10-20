@@ -170,7 +170,7 @@ MultiEmitter* EffectKeeper::getEmitter(const char* pParam1) const {
         pParam1 = buf;
     }
 
-    if (_18 != nullptr && _18->mlsSorted) {
+    if (_18 != nullptr && _18->isSorted()) {
         u32 result = 0;
 
         if (_18->search(pParam1, &result)) {
