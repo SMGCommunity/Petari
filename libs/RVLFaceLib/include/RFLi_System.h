@@ -7,7 +7,7 @@
 #include "RFLi_NANDAccess.h"
 #include "RFLi_NANDLoader.h"
 #include "RFLi_Types.h"
-#include <revolution/MEM.h>
+#include <revolution/mem.h>
 #include <revolution/types.h>
 #ifdef __cplusplus
 extern "C" {
