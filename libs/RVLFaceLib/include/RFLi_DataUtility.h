@@ -1,4 +1,4 @@
-#ifndef RVL_FACE_LIBRARY_INTENRAL_DATA_UTILITY_H
+#ifndef RVL_FACE_LIBRARY_INTERNAL_DATA_UTILITY_H
 #define RVL_FACE_LIBRARY_INTERNAL_DATA_UTILITY_H
 #include "RFLi_Types.h"
 #include <revolution/types.h>
