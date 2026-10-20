@@ -1,8 +1,7 @@
 #include "revolution/dvd.h"
 #include "revolution/os.h"
 #include "revolution/os/OSBootInfo.h"
-#include <ctype.h>
-#include <locale.h>
+#include <cctype>
 
 extern u32  __DVDLayoutFormat;
 
@@ -29,11 +28,6 @@ u32 __DVDLongFileNameFlag = 1;
 #define filePosition(i) (FstStart[i].parentOrPosition)
 #define fileLength(i)   (FstStart[i].nextEntryOrLength)
 #define offsetof(type, memb) ((u32)&((type *)0)->memb)
-
-/* this is here because it won't be inlined otherwise */
-inline int tolower(int c) {
-    return ((c < 0) || (c >= 0x100)) ? c : (int) (_current_locale.ctype_cmpt_ptr->lower_map_ptr[c]);
-}
 
 void __DVDFSInit(void) {
     BootInfo = (OSBootInfo*)OSPhysicalToCached(0);

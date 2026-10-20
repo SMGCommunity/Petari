@@ -1,6 +1,5 @@
-#include "ctype.h"
+#include "cctype"
 #include "file_struct.h"
-#include "locale.h"
 
 #pragma exceptions on
 
@@ -9,10 +8,6 @@ void free(void*);
 int __flush_all(void);
 long ftell(FILE*);
 int __flush_buffer(FILE*, size_t*);
-
-inline int tolower_inline(int c) {
-    return ((c < 0) || (c >= 0x100)) ? c : (int)(_current_locale.ctype_cmpt_ptr->lower_map_ptr[c]);
-}
 
 int fclose(FILE* pFile) {
     int flush_res, close_res;
@@ -83,14 +78,14 @@ int fflush(FILE* pFile) {
     return 0;
 }
 
-/* tolower is inlined here, but for some reason CW won't inline the one in ctype */
 int __msl_strnicmp(const char* pStr1, const char* pStr2, int n) {
     int i;
     char c1, c2;
 
     for (i = 0; i < n; i++) {
-        c1 = tolower_inline(*pStr1++);
-        c2 = tolower_inline(*pStr2++);
+        c1 = tolower(*pStr1++);
+        c2 = tolower(*pStr2++);
+
         if (c1 < c2) {
             return -1;
         }

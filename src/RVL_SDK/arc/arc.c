@@ -1,11 +1,5 @@
 #include "revolution.h"
-#include <ctype.h>
-#include <locale.h>
-
-/* this is here because it won't be inlined otherwise */
-inline int tolower(int c) {
-    return ((c < 0) || (c >= 0x100)) ? c : (int) (_current_locale.ctype_cmpt_ptr->lower_map_ptr[c]);
-}
+#include <cctype>
 
 typedef struct FSTEntry FSTEntry;
 
@@ -56,7 +50,7 @@ BOOL ARCOpen(ARCHandle* handle, const char* fileName, ARCFileInfo* af) {
     entry = ARCConvertPathToEntrynum(handle, fileName);
 
     if (0 > entry) {
-        ARCGetCurrentDir(handle, currentDir, 128);
+        ARCGetCurrentDir(handle, currentDir, sizeof(currentDir));
         OSReport("Warning: ARCOpen(): file '%s' was not found under %s in the archive.\n", fileName, currentDir);
         return FALSE;
     }
@@ -87,7 +81,7 @@ BOOL ARCFastOpen(ARCHandle* handle, s32 entrynum, ARCFileInfo* af) {
 }
 
 static BOOL isSame(const char* path, const char* string) {
-    while(*string != '\0') {
+    while (*string != '\0') {
         if (tolower(*path++) != tolower(*string++)) {
             return FALSE;
         }
@@ -170,7 +164,7 @@ dot:
 
         return -1;
 
-      next_hier:
+next_hier:
         if (!isDir) {
             return (s32)i;
         }
