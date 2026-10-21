@@ -1,0 +1,19 @@
+{
+  "configurations": [
+    {
+      "name": "IntelliSense",
+      "includePath": [
+        "${workspaceRoot}\\include\\**",
+        "${workspaceRoot}\\libs\\**"
+      ],
+      "defines": [
+        "GEKKO",
+        "REVOLUTION",
+        "__MWERKS__",
+        "INTELLISENSE_FIX"
+      ],
+      "compilerSwitches": "-pno-ms-extensions, -std=c++98, -fpack-struct=4",
+      "intelliSenseMode": "windows-clang-x86"
+    }
+  ]
+}
