@@ -11,6 +11,7 @@ class WalkerStateBindStarPointer;
  * @class Kabokuri
  * @brief Enemy actor class handling state and behaviour for the Jack O'Goomba.
  *
+ * @original "カボクリ"
  * @translation "Pumpkin Goomba"
  * @localisation "Jack O'Goomba"
  * @details A Goomba with a pumpkin mask on its head; used in ghost-themed galaxies, such as Ghostly Galaxy and Flash Black Galaxy.
