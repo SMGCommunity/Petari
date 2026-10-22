@@ -7,7 +7,17 @@ class Kuribo;
 class ModelObj;
 class WalkerStateBindStarPointer;
 
-/// @brief Jack O'Goomba
+/**
+ * @class Kabokuri
+ * @brief Enemy actor class handling state and behaviour for the Jack O'Goomba.
+ *
+ * @translate "Kabokuri" "Pumpkin Goomba"
+ * @localisation "Jack O'Goomba"
+ * @details Represents the pumpkin-helmeted Goomba variant found in the Ghostly Galaxy.
+ *          The name is a portmanteau of "Kabocha" (Pumpkin) and "Kuribō" (Goomba)
+ */
+
+ 
 class Kabokuri : public LiveActor {
 public:
     Kabokuri(const char*);
