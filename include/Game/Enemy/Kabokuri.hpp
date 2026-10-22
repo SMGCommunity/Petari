@@ -14,7 +14,7 @@ class WalkerStateBindStarPointer;
  * @translate "Kabokuri" "Pumpkin Goomba"
  * @localisation "Jack O'Goomba"
  * @details A Goomba with a pumpkin mask on its head; used in ghost-themed galaxies, such as Ghostly Galaxy and Flash Black Galaxy.
- *          The name is a portmanteau of "Kabocha" (Pumpkin) and "Kuribō" (Goomba)
+ *          The name is a portmanteau of "Kabocha" (Pumpkin) and "Kuribō" (Goomba).
  */
 
  
