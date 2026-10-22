@@ -32,6 +32,7 @@ SOURCE_BROWSER         = YES
 SOURCE_TOOLTIPS        = YES
 SORT_MEMBER_DOCS       = NO
 CALL_GRAPH             = NO
-ALIASES += translation{1}="<br><b>Transliteration:</b> \1"
-ALIASES += localisation{1}="<br><b>Localisation:</b> \1"
+ALIASES += original{1}="<br><b>Original Name:</b> \1"
+ALIASES += translation{1}="<br><b>Translated Name:</b> \1"
+ALIASES += localisation{1}="<br><b>Localised Name:</b> \1"
 
