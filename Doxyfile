@@ -32,3 +32,5 @@ SOURCE_BROWSER         = YES
 SOURCE_TOOLTIPS        = YES
 SORT_MEMBER_DOCS       = NO
 CALL_GRAPH             = NO
+ALIASES += localisation{1}="<br><b>Localised Name:</b> \1"
+ALIASES += translate{2}="<br><b>Transliteration:</b> <i>\1</i> &rarr; <b>English:</b> <i>\2</i>"
