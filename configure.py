@@ -2936,7 +2936,7 @@ config.libs = [
     SDKLib_NWC24(
         "nwc24",
         [
-            Object(MatchingFor(KOR), "RVL_SDK/nwc24/NWC24StdAPI.c"),
+            Object(MatchingFor(ALL), "RVL_SDK/nwc24/NWC24StdAPI.c"),
             Object(MatchingFor(ALL), "RVL_SDK/nwc24/NWC24FileAPI.c"),
             Object(MatchingFor(ALL), "RVL_SDK/nwc24/NWC24Config.c"),
             Object(MatchingFor(ALL), "RVL_SDK/nwc24/NWC24Utils.c"),
