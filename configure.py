@@ -2953,7 +2953,7 @@ config.libs = [
             Object(MatchingFor(ALL), "RVL_SDK/nwc24/NWC24UserId.c"),
             Object(MatchingFor(ALL), "RVL_SDK/nwc24/NWC24Time.c"),
             Object(MatchingFor(KOR), "RVL_SDK/nwc24/NWC24Ipc.c"),
-            Object(MatchingFor(KOR), "RVL_SDK/nwc24/NWC24Download.c"),
+            Object(MatchingFor(ALL), "RVL_SDK/nwc24/NWC24Download.c"),
             Object(MatchingFor(ALL), "RVL_SDK/nwc24/NWC24System.c"),
         ],
     ),
