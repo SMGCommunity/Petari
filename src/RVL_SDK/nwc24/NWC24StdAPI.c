@@ -35,9 +35,7 @@ int STD_strnlen(const char* pStr, size_t maxlen) {
 }
 
 void* Mail_memcpy(void* dst, const void* src, size_t n) {
-#if (VERSION == RMGK01)
-    NETMemCpy(dst, src, n);
-#else
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     size_t i;
 
     for (i = 0; i < n; i++) {
@@ -45,13 +43,13 @@ void* Mail_memcpy(void* dst, const void* src, size_t n) {
     }
 
     return dst;
+#elif (VERSION == RMGK01)
+    NETMemCpy(dst, src, n);
 #endif
 }
 
 void* Mail_memset(void* dst, int ch, size_t n) {
-#if (VERSION == RMGK01)
-    NETMemSet(dst, ch, n);
-#else
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     size_t i;
 
     for (i = 0; i < n; i++) {
@@ -59,6 +57,8 @@ void* Mail_memset(void* dst, int ch, size_t n) {
     }
 
     return dst;
+#elif (VERSION == RMGK01)
+    NETMemSet(dst, ch, n);
 #endif
 }
 
