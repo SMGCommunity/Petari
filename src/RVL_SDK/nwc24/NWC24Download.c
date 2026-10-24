@@ -36,14 +36,16 @@ NWC24Err NWC24CheckDlTask(const NWC24DlTask* pTask, BOOL wantWrite) {
         return NWC24_ERR_LIB_NOT_OPENED;
     }
 
-    if (pTaskImpl->appId == 0 || pTaskImpl->titleIdLo == 0) {
-        return NWC24_ERR_INVALID_VALUE;
-    }
-    if (wantWrite && !NWC24IsMsgLibOpenedByTool() && !IsMyApp(pTaskImpl->appId)) {
-        if (!IsGroupWritable(pTaskImpl->groupId, pTaskImpl->flags)) {
-            return NWC24_ERR_PROTECTED;
+    #if (VERSION == RMGK01)
+        if (pTaskImpl->appId == 0 || pTaskImpl->titleIdLo == 0) {
+            return NWC24_ERR_INVALID_VALUE;
         }
-    }
+        if (wantWrite && !NWC24IsMsgLibOpenedByTool() && !IsMyApp(pTaskImpl->appId)) {
+            if (!IsGroupWritable(pTaskImpl->groupId, pTaskImpl->flags)) {
+                return NWC24_ERR_PROTECTED;
+            }
+        }
+    #endif
     if (pTaskImpl->id != 0xFFFF && pTaskImpl->id >= pHeader->maxTasks) {
         return NWC24_ERR_INVALID_VALUE;
     }
@@ -74,10 +76,13 @@ NWC24Err NWC24DeleteDlTaskForced(NWC24DlTask* pTask) {
         return result;
     }
 
-    result = CheckDlEntryAvailable(pTaskImpl->id);
-    if (result < 0) {
-        return result;
-    }
+    #if (VERSION == RMGK01)
+        result = CheckDlEntryAvailable(pTaskImpl->id);
+        if (result < 0) {
+            return result;
+        }
+    #endif
+
     result = DeleteDlTask(pTaskImpl);
     if (result < 0) {
         return result;
