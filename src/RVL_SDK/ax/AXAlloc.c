@@ -34,21 +34,6 @@ void __AXPushFreeStack(AXVPB* vpb) {
     vpb->priority = 0;
 }
 
-void __AXPushStackHead(AXVPB* vpb, u32 prio) {
-    vpb->next = __AXStackHead[prio];
-    vpb->prev = NULL;
-
-    if (vpb->next != NULL) {
-        __AXStackHead[prio]->prev = vpb;
-        __AXStackHead[prio] = vpb;
-    } else {
-        __AXStackTail[prio] = vpb;
-        __AXStackHead[prio] = vpb;
-    }
-
-    vpb->priority = prio;
-}
-
 // These SDK entry points are retained in the retail binary for the product.sel export symbol table.
 #pragma push
 #pragma force_active on
@@ -67,6 +52,22 @@ void AXFreeVoice(AXVPB* vpb) {
     OSRestoreInterrupts(enabled);
 }
 
+#if (VERSION != RMGK01)
+void __AXPushStackHead(AXVPB* vpb, u32 prio) {
+    vpb->next = __AXStackHead[prio];
+    vpb->prev = NULL;
+
+    if (vpb->next != NULL) {
+        __AXStackHead[prio]->prev = vpb;
+        __AXStackHead[prio] = vpb;
+    } else {
+        __AXStackTail[prio] = vpb;
+        __AXStackHead[prio] = vpb;
+    }
+
+    vpb->priority = prio;
+}
+
 void AXSetVoicePriority(AXVPB* vpb, u32 prio) {
     BOOL enabled = OSDisableInterrupts();
 
@@ -75,4 +76,5 @@ void AXSetVoicePriority(AXVPB* vpb, u32 prio) {
 
     OSRestoreInterrupts(enabled);
 }
+#endif
 #pragma pop
