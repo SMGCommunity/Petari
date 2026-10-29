@@ -10,6 +10,6 @@ public:
     virtual ~MapPartsRailGuidePoint();
     virtual void init(const JMapInfoIter&);
 
-    f32 mRailCoord;
-    bool mHasShadow;
+    /* 0x8C */ f32 mRailCoord;
+    /* 0x90 */ bool mHasShadow;
 };
