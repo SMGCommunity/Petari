@@ -102,7 +102,7 @@ void MapPartsRailGuideDrawer::exeDrawAll() {
 void MapPartsRailGuideDrawer::exeDrawForward() {
     const f32 coord = MR::getRailCoord(mHost);
     for (MapPartsRailGuidePoint** pPoint = mGuidePoints.begin(); pPoint != mGuidePoints.end(); pPoint++) {
-        if (coord < (*pPoint)->_8C) {
+        if (coord < (*pPoint)->mRailCoord) {
             break;
         }
 
