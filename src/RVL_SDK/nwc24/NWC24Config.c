@@ -1,4 +1,4 @@
-#include "revolution/DVD.h"
+#include "revolution/dvd.h"
 #include "revolution/nwc24.h"
 #include "revolution/nwc24/NWC24Internal.h"
 #include "revolution/os.h"

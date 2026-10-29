@@ -2,8 +2,8 @@
 #define RVL_SDK_WUD_H
 #include "revolution/types.h"
 
-#include "revolution/BTE.h"
-#include "revolution/SC.h"
+#include "revolution/bte.h"
+#include "revolution/sc.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
