@@ -5,7 +5,7 @@
 #include "revolution/os.h"
 #include "revolution/os/OSExecParams.h"
 #include "revolution/os/OSNandbootinfo.h"
-#include "revolution/os/OSTIme.h"
+#include "revolution/os/OSTime.h"
 #include "revolution/os/OSTitle.h"
 #include "revolution/types.h"
 #include <wstring.h>
