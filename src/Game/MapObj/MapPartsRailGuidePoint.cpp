@@ -8,28 +8,26 @@ namespace {
     static const f32 sShadowRadius = 20.0f;
 };  //  namespace
 
-MapPartsRailGuidePoint::MapPartsRailGuidePoint(const LiveActor* pActor, const char* pName, f32 a3, bool a4) : LiveActor("レイル点") {
-    _8C = a3;
-    _90 = a4;
-    initModelManagerWithAnm(pName, 0, false);
-    MR::calcRailPosAtCoord(&mPosition, pActor, _8C);
+MapPartsRailGuidePoint::MapPartsRailGuidePoint(const LiveActor* pActor, const char* pName, f32 railCoord, bool hasShadow)
+    : LiveActor("レイル点"), mRailCoord(railCoord), mHasShadow(hasShadow) {
+    initModelManagerWithAnm(pName, nullptr, false);
+    MR::calcRailPosAtCoord(&mPosition, pActor, mRailCoord);
 }
 
-MapPartsRailGuidePoint::MapPartsRailGuidePoint(const LiveActor* pActor, const char* pName, int a3, bool a4) : LiveActor("レイル点") {
-    _90 = a4;
-    _8C = 0.0f;
-    initModelManagerWithAnm(pName, 0, false);
-    MR::calcRailPointPos(&mPosition, pActor, a3);
-    _8C = MR::getRailPointCoord(pActor, a3);
+MapPartsRailGuidePoint::MapPartsRailGuidePoint(const LiveActor* pActor, const char* pName, int railPointIndex, bool hasShadow)
+    : LiveActor("レイル点"), mRailCoord(), mHasShadow(hasShadow) {
+    initModelManagerWithAnm(pName, nullptr, false);
+    MR::calcRailPointPos(&mPosition, pActor, railPointIndex);
+    mRailCoord = MR::getRailPointCoord(pActor, railPointIndex);
 }
 
 void MapPartsRailGuidePoint::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjNoMovement(this);
 
-    if (_90) {
+    if (mHasShadow) {
         MR::initShadowVolumeSphere(this, ::sShadowRadius);
-        MR::setShadowDropLength(this, 0, 5000.0f);
-        MR::onCalcShadowOneTime(this, 0);
+        MR::setShadowDropLength(this, nullptr, 5000.0f);
+        MR::onCalcShadowOneTime(this, nullptr);
     }
 
     kill();
