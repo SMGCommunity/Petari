@@ -18,16 +18,14 @@ void AreaObjFollower::update() {
     }
 }
 
-namespace MR {
-    bool addBaseMatrixFollowerAreaObj(AreaObj* pObj, const JMapInfoIter& rIter) {
-        if (!MR::isValidFollowID(rIter)) {
-            return false;
-        }
-
-        AreaObjFollower* follower = new AreaObjFollower(pObj, rIter);
-
-        MR::addBaseMatrixFollower(follower);
-
-        return true;
+bool MR::addBaseMatrixFollowerAreaObj(AreaObj* pObj, const JMapInfoIter& rIter) {
+    if (!MR::isValidFollowID(rIter)) {
+        return false;
     }
-};  // namespace MR
+
+    AreaObjFollower* follower = new AreaObjFollower(pObj, rIter);
+
+    MR::addBaseMatrixFollower(follower);
+
+    return true;
+}

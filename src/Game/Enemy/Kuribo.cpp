@@ -785,13 +785,14 @@ void Kuribo::exeBlowLand() {
     tryEndBlowLand();
 }
 
-namespace MR {
-    LiveActor* createNoItemKuriboActor(const char* pName) {
-        Kuribo* kuribo = new Kuribo(pName);
-        kuribo->_C5 = 0;
-        return kuribo;
-    }
-};  // namespace MR
+LiveActor* MR::createNoItemKuriboActor(const char* pName) {
+    Kuribo* kuribo;
+
+    kuribo = new Kuribo(pName);
+    kuribo->_C5 = false;
+
+    return kuribo;
+}
 
 Kuribo::~Kuribo() {
 }

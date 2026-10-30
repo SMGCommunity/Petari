@@ -16,20 +16,18 @@ TakoHeiInkHolder::TakoHeiInkHolder() : DeriveActorGroup< TakoHeiInk >("タコヘ
     }
 }
 
-namespace MR {
-    void createTakoHeiInkHolder() {
-        createSceneObj(SceneObj_TakoHeiInkHolder);
+void MR::createTakoHeiInkHolder() {
+    createSceneObj(SceneObj_TakoHeiInkHolder);
+}
+
+bool MR::spurtTakoHeiInk(const TVec3f& rTrans, const TVec3f& rVelocity) {
+    TakoHeiInk* pInk = MR::getSceneObj< TakoHeiInkHolder >(SceneObj_TakoHeiInkHolder)->getDeadMember();
+
+    if (pInk == nullptr) {
+        return false;
     }
 
-    bool spurtTakoHeiInk(const TVec3f& rTrans, const TVec3f& rVelocity) {
-        TakoHeiInk* pInk = MR::getSceneObj< TakoHeiInkHolder >(SceneObj_TakoHeiInkHolder)->getDeadMember();
+    pInk->start(rTrans, rVelocity, false);
 
-        if (pInk == nullptr) {
-            return false;
-        }
-
-        pInk->start(rTrans, rVelocity, false);
-
-        return true;
-    }
-};  // namespace MR
+    return true;
+}

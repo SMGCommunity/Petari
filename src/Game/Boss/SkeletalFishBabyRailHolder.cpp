@@ -117,23 +117,16 @@ SkeletalFishBabyRailGroupNode* SkeletalFishBabyRailHolder::createGroup(s32 a1) {
     return groupNode;
 }
 
-namespace MR {
-    SkeletalFishBabyRailHolder* getSkeletalFishBabyRailHolder() {
-        return MR::getSceneObj< SkeletalFishBabyRailHolder >(SceneObj_SkeletalFishBabyRailHolder);
-    }
+SkeletalFishBabyRailHolder* MR::getSkeletalFishBabyRailHolder() {
+    return MR::getSceneObj< SkeletalFishBabyRailHolder >(SceneObj_SkeletalFishBabyRailHolder);
+}
 
-    void createSkeletalFishBabyRailHolder() {
-        MR::createSceneObj(SceneObj_SkeletalFishBabyRailHolder);
-    }
-};  // namespace MR
+void MR::createSkeletalFishBabyRailHolder() {
+    MR::createSceneObj(SceneObj_SkeletalFishBabyRailHolder);
+}
 
 SkeletalFishBabyRailHolder::~SkeletalFishBabyRailHolder() {
 }
 
-SkeletalFishBabyRailSetLinkNode::SkeletalFishBabyRailSetLinkNode() {
-    _0 = 0;
-    _4 = nullptr;
-    _8 = 0;
-    _C = nullptr;
-    _10 = nullptr;
+SkeletalFishBabyRailSetLinkNode::SkeletalFishBabyRailSetLinkNode() : _0(), _4(), _8(), _C(), _10() {
 }

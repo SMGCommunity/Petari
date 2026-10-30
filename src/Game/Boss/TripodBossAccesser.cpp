@@ -78,132 +78,130 @@ TripodBossAccesser* TripodBossAccesser::createSceneObj() {
     return static_cast< TripodBossAccesser* >(MR::createSceneObj(SceneObj_TripodBossAccesser));
 }
 
-namespace MR {
-    TripodBossAccesser* getTripodBossAccesser() {
-        return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser);
-    }
+TripodBossAccesser* MR::getTripodBossAccesser() {
+    return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser);
+}
 
-    void addTripodBossParts(LiveActor* pActor) {
-        TripodBossAccesser::createSceneObj()->addTripodBossParts(pActor);
-        MR::joinToMovementOnOffGroup("三脚ボス部品", pActor, 256);
-    }
+void MR::addTripodBossParts(LiveActor* pActor) {
+    TripodBossAccesser::createSceneObj()->addTripodBossParts(pActor);
+    MR::joinToMovementOnOffGroup("三脚ボス部品", pActor, 256);
+}
 
-    void addTripodBossPartsMovement(NameObj* pObj) {
-        MR::joinToMovementOnOffGroup("三脚ボス部品", pObj, 256);
-    }
+void MR::addTripodBossPartsMovement(NameObj* pObj) {
+    MR::joinToMovementOnOffGroup("三脚ボス部品", pObj, 256);
+}
 
-    bool isTripoddBossParts(const NameObj* pObj) {
-        return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->isTripoddBossParts(pObj);
-    }
+bool MR::isTripoddBossParts(const NameObj* pObj) {
+    return MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->isTripoddBossParts(pObj);
+}
 
-    void showTripodBossParts() {
-        TripodBossAccesser::createSceneObj()->showTripodBossParts();
-    }
+void MR::showTripodBossParts() {
+    TripodBossAccesser::createSceneObj()->showTripodBossParts();
+}
 
-    void hideTripodBossParts() {
-        TripodBossAccesser::createSceneObj()->hideTripodBossParts();
-    }
+void MR::hideTripodBossParts() {
+    TripodBossAccesser::createSceneObj()->hideTripodBossParts();
+}
 
-    void activeTripodBossParts() {
-        TripodBossAccesser::createSceneObj()->activeTripodBossParts();
-    }
+void MR::activeTripodBossParts() {
+    TripodBossAccesser::createSceneObj()->activeTripodBossParts();
+}
 
-    void requestMovementTripodBossParts() {
-        MR::onMovementOnOffGroup("三脚ボス部品");
-    }
+void MR::requestMovementTripodBossParts() {
+    MR::onMovementOnOffGroup("三脚ボス部品");
+}
 
-    bool isCreatedTripodBoss() {
-        if (!MR::isExistSceneObj(SceneObj_TripodBossAccesser)) {
-            return false;
-        }
-
-        return getTripodBossAccesser()->getTriPodBoss() != nullptr;
-    }
-
-    bool isStartedTripodBoss() {
-        return getTripodBossAccesser()->getTriPodBoss()->isStarted();
-    }
-
-    bool isBrokenTripodBoss() {
-        return getTripodBossAccesser()->getTriPodBoss()->isBroken();
-    }
-
-    bool isDemoTripodBoss() {
-        return getTripodBossAccesser()->getTriPodBoss()->isDemo();
-    }
-
-    bool isStartDemoTripodBoss() {
-        return getTripodBossAccesser()->getTriPodBoss()->isStartDemo();
-    }
-
-    bool isDamageDemoTripodBoss() {
-        return getTripodBossAccesser()->getTriPodBoss()->isDamageDemo();
-    }
-
-    bool isEndBreakDownDemoTripodBoss() {
-        return getTripodBossAccesser()->getTriPodBoss()->isEndBreakDownDemo();
-    }
-
-    bool isLeaveMarioNowTripodBoss() {
-        return getTripodBossAccesser()->getTriPodBoss()->isLeaveMarioNow();
-    }
-
-    bool isRideMarioTripodBoss() {
-        return getTripodBossAccesser()->getTriPodBoss()->isRideMario();
-    }
-
-    bool tryDamageDemoTripodBoss() {
-        return getTripodBossAccesser()->getTriPodBoss()->tryDamageDemo();
-    }
-
-    void requestEndDamageDemoTripodBoss() {
-        getTripodBossAccesser()->getTriPodBoss()->requestEndDamageDemo();
-    }
-
-    u32 getTripodBossGravityHostID() {
-        return reinterpret_cast< u32 >(getTripodBossAccesser());
-    }
-
-    void setTripodBossJointAttachBaseMatrix(const TPos3f& rPos, s32 id) {
-        getTripodBossAccesser()->getTriPodBoss()->setJointAttachBaseMatrix(rPos, ::convertBoneIDToIndex(id));
-    }
-
-    void requestStartTripodBossStepSequence(s32 seq) {
-        getTripodBossAccesser()->getTriPodBoss()->requestStartStepSequence(seq);
-    }
-
-    void addTripodBossStepPoint(TripodBossStepPoint* pPoint) {
-        getTripodBossAccesser()->getTriPodBoss()->addStepPoint(pPoint);
-    }
-
-    void getTripodBossJointMatrix(TPos3f* pMtx, s32 id) {
-        getTripodBossAccesser()->getTriPodBoss()->getJointMatrix(pMtx, ::convertBoneIDToIndex(id));
-    }
-
-    void getTripodBossAttachJointMatrix(TPos3f* pMtx, s32 id) {
-        getTripodBossAccesser()->getTriPodBoss()->getJointAttachMatrix(pMtx, ::convertBoneIDToIndex(id));
-    }
-
-    void concatTripodBossAttachJointMatrix(TPos3f* pMtx, s32 id) {
-        if (MR::isCreatedTripodBoss()) {
-            TPos3f mtx;
-            MR::getTripodBossAttachJointMatrix(&mtx, id);
-            pMtx->concat(mtx, *pMtx);
-        }
-    }
-
-    bool isSteppingTripodBossLegID(s32 id) {
-        return !getTripodBossAccesser()->getTriPodBoss()->isStopLeg(id);
-    }
-
-    bool isSteppingTripodBossJointID(s32 id) {
-        s32 partID = TripodBoss::getPartIDFromBoneID(::convertBoneIDToIndex(id));
-        bool isValidPartID = partID >= TripodBoss::PART_ID_LEFT_LEG && partID < TripodBoss::PART_ID_MAX;
-
-        if (isValidPartID) {
-            return MR::isSteppingTripodBossLegID(partID);
-        }
-
+bool MR::isCreatedTripodBoss() {
+    if (!MR::isExistSceneObj(SceneObj_TripodBossAccesser)) {
         return false;
     }
-};  // namespace MR
+
+    return getTripodBossAccesser()->getTriPodBoss() != nullptr;
+}
+
+bool MR::isStartedTripodBoss() {
+    return getTripodBossAccesser()->getTriPodBoss()->isStarted();
+}
+
+bool MR::isBrokenTripodBoss() {
+    return getTripodBossAccesser()->getTriPodBoss()->isBroken();
+}
+
+bool MR::isDemoTripodBoss() {
+    return getTripodBossAccesser()->getTriPodBoss()->isDemo();
+}
+
+bool MR::isStartDemoTripodBoss() {
+    return getTripodBossAccesser()->getTriPodBoss()->isStartDemo();
+}
+
+bool MR::isDamageDemoTripodBoss() {
+    return getTripodBossAccesser()->getTriPodBoss()->isDamageDemo();
+}
+
+bool MR::isEndBreakDownDemoTripodBoss() {
+    return getTripodBossAccesser()->getTriPodBoss()->isEndBreakDownDemo();
+}
+
+bool MR::isLeaveMarioNowTripodBoss() {
+    return getTripodBossAccesser()->getTriPodBoss()->isLeaveMarioNow();
+}
+
+bool MR::isRideMarioTripodBoss() {
+    return getTripodBossAccesser()->getTriPodBoss()->isRideMario();
+}
+
+bool MR::tryDamageDemoTripodBoss() {
+    return getTripodBossAccesser()->getTriPodBoss()->tryDamageDemo();
+}
+
+void MR::requestEndDamageDemoTripodBoss() {
+    getTripodBossAccesser()->getTriPodBoss()->requestEndDamageDemo();
+}
+
+u32 MR::getTripodBossGravityHostID() {
+    return reinterpret_cast< u32 >(getTripodBossAccesser());
+}
+
+void MR::setTripodBossJointAttachBaseMatrix(const TPos3f& rPos, s32 id) {
+    getTripodBossAccesser()->getTriPodBoss()->setJointAttachBaseMatrix(rPos, ::convertBoneIDToIndex(id));
+}
+
+void MR::requestStartTripodBossStepSequence(s32 seq) {
+    getTripodBossAccesser()->getTriPodBoss()->requestStartStepSequence(seq);
+}
+
+void MR::addTripodBossStepPoint(TripodBossStepPoint* pPoint) {
+    getTripodBossAccesser()->getTriPodBoss()->addStepPoint(pPoint);
+}
+
+void MR::getTripodBossJointMatrix(TPos3f* pMtx, s32 id) {
+    getTripodBossAccesser()->getTriPodBoss()->getJointMatrix(pMtx, ::convertBoneIDToIndex(id));
+}
+
+void MR::getTripodBossAttachJointMatrix(TPos3f* pMtx, s32 id) {
+    getTripodBossAccesser()->getTriPodBoss()->getJointAttachMatrix(pMtx, ::convertBoneIDToIndex(id));
+}
+
+void MR::concatTripodBossAttachJointMatrix(TPos3f* pMtx, s32 id) {
+    if (MR::isCreatedTripodBoss()) {
+        TPos3f mtx;
+        MR::getTripodBossAttachJointMatrix(&mtx, id);
+        pMtx->concat(mtx, *pMtx);
+    }
+}
+
+bool MR::isSteppingTripodBossLegID(s32 id) {
+    return !getTripodBossAccesser()->getTriPodBoss()->isStopLeg(id);
+}
+
+bool MR::isSteppingTripodBossJointID(s32 id) {
+    s32 partID = TripodBoss::getPartIDFromBoneID(::convertBoneIDToIndex(id));
+    bool isValidPartID = partID >= TripodBoss::PART_ID_LEFT_LEG && partID < TripodBoss::PART_ID_MAX;
+
+    if (isValidPartID) {
+        return MR::isSteppingTripodBossLegID(partID);
+    }
+
+    return false;
+}

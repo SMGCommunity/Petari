@@ -722,25 +722,23 @@ bool Kameck::isEnableDown() const {
     return true;
 }
 
-namespace MR {
-    NameObj* createFireBallBeamKameck(const char* pName) {
-        Kameck* pKameck;
+NameObj* MR::createFireBallBeamKameck(const char* pName) {
+    Kameck* kameck;
 
-        pKameck = new Kameck(pName);
-        pKameck->setBeamType(KameckBeam::BeamType_FireBall1);
+    kameck = new Kameck(pName);
+    kameck->setBeamType(KameckBeam::BeamType_FireBall1);
 
-        return pKameck;
-    }
+    return kameck;
+}
 
-    NameObj* createTurtleBeamKameck(const char* pName) {
-        Kameck* pKameck;
+NameObj* MR::createTurtleBeamKameck(const char* pName) {
+    Kameck* kameck;
 
-        pKameck = new Kameck(pName);
-        pKameck->setBeamType(KameckBeam::BeamType_Turtle);
+    kameck = new Kameck(pName);
+    kameck->setBeamType(KameckBeam::BeamType_Turtle);
 
-        return pKameck;
-    }
-};  // namespace MR
+    return kameck;
+}
 
 void SmallKameckBeamEventListener::hitBeam(s32 beamType) {
     mHost->hitBeam(beamType);

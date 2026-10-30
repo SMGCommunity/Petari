@@ -30,12 +30,10 @@ SkeletalFishBossRail* SkeletalFishBossRailHolder::getByID(s32 id) const {
     return mRails[0];
 }
 
-namespace MR {
-    SkeletalFishBossRailHolder* getSkeletalFishBossRailHolder() {
-        return MR::getSceneObj< SkeletalFishBossRailHolder >(SceneObj_SkeletalFishBossRailHolder);
-    }
+SkeletalFishBossRailHolder* MR::getSkeletalFishBossRailHolder() {
+    return MR::getSceneObj< SkeletalFishBossRailHolder >(SceneObj_SkeletalFishBossRailHolder);
+}
 
-    void createSkeletalFishBossRailHolder() {
-        MR::createSceneObj(SceneObj_SkeletalFishBossRailHolder);
-    }
-};  // namespace MR
+void MR::createSkeletalFishBossRailHolder() {
+    MR::createSceneObj(SceneObj_SkeletalFishBossRailHolder);
+}

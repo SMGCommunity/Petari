@@ -313,8 +313,6 @@ void PrologueHolder::start() {
     mDirector->appear();
 }
 
-namespace MR {
-    void startPrologue() {
-        ::getPrologueHolder()->start();
-    }
-};  // namespace MR
+void MR::startPrologue() {
+    ::getPrologueHolder()->start();
+}
