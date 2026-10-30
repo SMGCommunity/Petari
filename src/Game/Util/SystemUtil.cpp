@@ -173,7 +173,7 @@ bool MR::isDisplayEncouragePal60Window() {
     return VIGetTvFormat() == VI_PAL;
 }
 
-JMapIdInfo* getPlayerRestartIdInfo() {
+JMapIdInfo* MR::getPlayerRestartIdInfo() {
     return ::getGameDataTemporaryInGalaxy()->mPlayerRestartIdInfo;
 }
 
