@@ -251,7 +251,7 @@ const XanimeGroupInfo* XanimeResourceTable::getGroupInfo(const char* pPath, Xani
 
         if (pPath[i] == '/') {
             char pathOneDirectoryDown[32];
-            MR::extractString(pathOneDirectoryDown, &pPath[i], i, 32);
+            MR::extractString(pathOneDirectoryDown, &pPath[i], i, sizeof(pathOneDirectoryDown));
 
             u32 index = getIndex(pDir, pathOneDirectoryDown);
 

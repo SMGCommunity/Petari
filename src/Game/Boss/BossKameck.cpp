@@ -314,22 +314,20 @@ void BossKameck::hitBeam(s32 beamType) {
     }
 }
 
-namespace MR {
-    NameObj* createBossKameck1(const char* pName) {
-        BossKameck* bossKameck1;
+NameObj* MR::createBossKameck1(const char* pName) {
+    BossKameck* bossKameck;
 
-        bossKameck1 = new BossKameck(pName, "BossKameck");
-        bossKameck1->mSequencer = new BossKameckVs1();
+    bossKameck = new BossKameck(pName, "BossKameck");
+    bossKameck->mSequencer = new BossKameckVs1();
 
-        return bossKameck1;
-    }
+    return bossKameck;
+}
 
-    NameObj* createBossKameck2(const char* pName) {
-        BossKameck* bossKameck2;
+NameObj* MR::createBossKameck2(const char* pName) {
+    BossKameck* bossKameck;
 
-        bossKameck2 = new BossKameck(pName, "BossKameck");
-        bossKameck2->mSequencer = new BossKameckVs2();
+    bossKameck = new BossKameck(pName, "BossKameck");
+    bossKameck->mSequencer = new BossKameckVs2();
 
-        return bossKameck2;
-    }
-};  // namespace MR
+    return bossKameck;
+}

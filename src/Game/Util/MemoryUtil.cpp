@@ -7,218 +7,219 @@
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 #include <mem.h>
 
-namespace MR {
-    CurrentHeapRestorer::CurrentHeapRestorer(JKRHeap* pHeap) {
-        _0 = JKRHeap::sCurrentHeap;
-        OSLockMutex(&MR::MutexHolder< 1 >::sMutex);
-        MR::becomeCurrentHeap(pHeap);
+MEMAllocatorFunc MR::NewDeleteAllocator::sAllocatorFunc = {
+    NewDeleteAllocator::alloc,
+    NewDeleteAllocator::free,
+};
+MEMAllocator MR::NewDeleteAllocator::sAllocator = {&sAllocatorFunc};
+
+MR::CurrentHeapRestorer::CurrentHeapRestorer(JKRHeap* pHeap) {
+    _0 = JKRHeap::sCurrentHeap;
+    OSLockMutex(&MR::MutexHolder< 1 >::sMutex);
+    MR::becomeCurrentHeap(pHeap);
+}
+
+MR::CurrentHeapRestorer::~CurrentHeapRestorer() {
+    MR::becomeCurrentHeap(_0);
+    OSUnlockMutex(&MR::MutexHolder< 1 >::sMutex);
+}
+
+void* MR::NewDeleteAllocator::alloc(MEMAllocator* pAllocator, u32 size) {
+    return new u8[size];
+}
+
+void MR::NewDeleteAllocator::free(MEMAllocator* pAllocator, void* pPtr) {
+    delete static_cast< u8* >(pPtr);
+}
+
+MEMAllocator* MR::getHomeButtonLayoutAllocator() {
+    JKRHeapAllocator< 0 >::sHeap = SingletonHolder< HeapMemoryWatcher >::get()->mHomeButtonLayoutHeap;
+
+    return &JKRHeapAllocator< 0 >::sAllocator;
+}
+
+JKRHeap* MR::getCurrentHeap() {
+    return JKRHeap::sCurrentHeap;
+}
+
+namespace {
+    f32 getHeapFreeRate(JKRHeap* pHeap) {
+        u32 heapSize = pHeap->mSize;
+
+        return static_cast< f32 >(pHeap->getTotalFreeSize()) / heapSize;
+    }
+};  // namespace
+
+JKRHeap* MR::getAproposHeapForSceneArchive(f32 heapFreeRateMax) {
+    JKRHeap* pFileCacheHeap = SingletonHolder< HeapMemoryWatcher >::get()->mFileCacheHeap;
+
+    if (pFileCacheHeap != nullptr) {
+        if (::getHeapFreeRate(pFileCacheHeap) < heapFreeRateMax) {
+            pFileCacheHeap = SingletonHolder< HeapMemoryWatcher >::get()->mSceneHeapGDDR;
+        }
     }
 
-    CurrentHeapRestorer::~CurrentHeapRestorer() {
-        MR::becomeCurrentHeap(_0);
-        OSUnlockMutex(&MR::MutexHolder< 1 >::sMutex);
-    }
+    return pFileCacheHeap;
+}
 
-    void* NewDeleteAllocator::alloc(MEMAllocator* pAllocator, u32 size) {
-        return new u8[size];
-    }
+JKRExpHeap* MR::getStationedHeapNapa() {
+    return SingletonHolder< HeapMemoryWatcher >::get()->mStationedHeapNapa;
+}
 
-    void NewDeleteAllocator::free(MEMAllocator* pAllocator, void* pPtr) {
-        delete static_cast< u8* >(pPtr);
-    }
+JKRExpHeap* MR::getStationedHeapGDDR3() {
+    return SingletonHolder< HeapMemoryWatcher >::get()->mStationedHeapGDDR;
+}
 
-    MEMAllocatorFunc NewDeleteAllocator::sAllocatorFunc = {
-        NewDeleteAllocator::alloc,
-        NewDeleteAllocator::free,
-    };
-    MEMAllocator NewDeleteAllocator::sAllocator = {&sAllocatorFunc};
+JKRSolidHeap* MR::getSceneHeapNapa() {
+    return SingletonHolder< HeapMemoryWatcher >::get()->mSceneHeapNapa;
+}
 
-    MEMAllocator* getHomeButtonLayoutAllocator() {
-        JKRHeapAllocator< 0 >::sHeap = SingletonHolder< HeapMemoryWatcher >::get()->mHomeButtonLayoutHeap;
+JKRSolidHeap* MR::getSceneHeapGDDR3() {
+    return SingletonHolder< HeapMemoryWatcher >::get()->mSceneHeapGDDR;
+}
 
-        return &JKRHeapAllocator< 0 >::sAllocator;
-    }
+JKRHeap* MR::getHeapNapa(const JKRHeap* pHeap) {
+    return SingletonHolder< HeapMemoryWatcher >::get()->getHeapNapa(pHeap);
+}
 
-    JKRHeap* getCurrentHeap() {
-        return JKRHeap::sCurrentHeap;
-    }
+JKRHeap* MR::getHeapGDDR3(const JKRHeap* pHeap) {
+    return SingletonHolder< HeapMemoryWatcher >::get()->getHeapGDDR3(pHeap);
+}
 
-    f32 getHeapFreeRatio(JKRHeap* pHeap) {
-        u32 size = pHeap->mSize;
-        return static_cast< f32 >(pHeap->getTotalFreeSize()) / size;
-    }
+void MR::becomeCurrentHeap(JKRHeap* pHeap) {
+    JASMutexLock lock(&MR::MutexHolder< 1 >::sMutex);
+    pHeap->becomeCurrentHeap();
+}
 
-    JKRHeap* getAproposHeapForSceneArchive(f32 maxFreeSizeRate) {
-        JKRHeap* pFileCacheHeap = SingletonHolder< HeapMemoryWatcher >::get()->mFileCacheHeap;
+bool MR::isEqualCurrentHeap(JKRHeap* pHeap) {
+    return JKRHeap::sCurrentHeap == pHeap;
+}
 
-        if (pFileCacheHeap != nullptr) {
-            if (getHeapFreeRatio(pFileCacheHeap) < maxFreeSizeRate) {
-                pFileCacheHeap = SingletonHolder< HeapMemoryWatcher >::get()->mSceneHeapGDDR;
+void MR::adjustHeapSize(JKRExpHeap* pHeap, const char* pParam2) {
+    pHeap->adjustSize();
+}
+
+void MR::copyMemory(void* pDst, const void* pSrc, u32 size) {
+    u8* pDstBytes = static_cast< u8* >(pDst);
+    const u8* pSrcBytes = static_cast< const u8* >(pSrc);
+    u32 srcAlignment = reinterpret_cast< u32 >(pSrc) & 3;
+    u32 dstAlignment = reinterpret_cast< u32 >(pDst) & 3;
+
+    if (srcAlignment == dstAlignment && (size & 0xF) == 0) {
+        const u32* pSrcWords = reinterpret_cast< const u32* >(pSrcBytes);
+        u32* pDstWords = reinterpret_cast< u32* >(pDstBytes);
+
+        for (u32 count = size / 16; count != 0; count--) {
+            u32 word3, word2, word1, word0;
+            word0 = *pSrcWords++;
+            word1 = *pSrcWords++;
+            word2 = *pSrcWords++;
+            word3 = *pSrcWords++;
+            *pDstWords++ = word0;
+            *pDstWords++ = word1;
+            *pDstWords++ = word2;
+            *pDstWords++ = word3;
+        }
+    } else if (srcAlignment == dstAlignment && size >= 16) {
+        if (srcAlignment != 0) {
+            for (u8 count = 4 - srcAlignment; count != 0; count--) {
+                *pDstBytes++ = *pSrcBytes++;
+                size--;
             }
         }
 
-        return pFileCacheHeap;
-    }
+        while (size >= 4) {
+            *reinterpret_cast< u32* >(pDstBytes) = *reinterpret_cast< const u32* >(pSrcBytes);
+            size -= 4;
+            pSrcBytes += 4;
+            pDstBytes += 4;
+        }
 
-    JKRExpHeap* getStationedHeapNapa() {
-        return SingletonHolder< HeapMemoryWatcher >::get()->mStationedHeapNapa;
-    }
-
-    JKRExpHeap* getStationedHeapGDDR3() {
-        return SingletonHolder< HeapMemoryWatcher >::get()->mStationedHeapGDDR;
-    }
-
-    JKRSolidHeap* getSceneHeapNapa() {
-        return SingletonHolder< HeapMemoryWatcher >::get()->mSceneHeapNapa;
-    }
-
-    JKRSolidHeap* getSceneHeapGDDR3() {
-        return SingletonHolder< HeapMemoryWatcher >::get()->mSceneHeapGDDR;
-    }
-
-    JKRHeap* getHeapNapa(const JKRHeap* pHeap) {
-        return SingletonHolder< HeapMemoryWatcher >::get()->getHeapNapa(pHeap);
-    }
-
-    JKRHeap* getHeapGDDR3(const JKRHeap* pHeap) {
-        return SingletonHolder< HeapMemoryWatcher >::get()->getHeapGDDR3(pHeap);
-    }
-
-    void becomeCurrentHeap(JKRHeap* pHeap) {
-        JASMutexLock lock(&MR::MutexHolder< 1 >::sMutex);
-        pHeap->becomeCurrentHeap();
-    }
-
-    bool isEqualCurrentHeap(JKRHeap* pHeap) {
-        return JKRHeap::sCurrentHeap == pHeap;
-    }
-
-    void adjustHeapSize(JKRExpHeap* pHeap, const char* pParam2) {
-        pHeap->adjustSize();
-    }
-
-    void copyMemory(void* pDst, const void* pSrc, u32 size) {
-        u8* pDstBytes = static_cast< u8* >(pDst);
-        const u8* pSrcBytes = static_cast< const u8* >(pSrc);
-        u32 srcAlignment = reinterpret_cast< u32 >(pSrc) & 3;
-        u32 dstAlignment = reinterpret_cast< u32 >(pDst) & 3;
-
-        if (srcAlignment == dstAlignment && (size & 0xF) == 0) {
-            const u32* pSrcWords = reinterpret_cast< const u32* >(pSrcBytes);
-            u32* pDstWords = reinterpret_cast< u32* >(pDstBytes);
-
-            for (u32 count = size / 16; count != 0; count--) {
-                u32 word3, word2, word1, word0;
-                word0 = *pSrcWords++;
-                word1 = *pSrcWords++;
-                word2 = *pSrcWords++;
-                word3 = *pSrcWords++;
-                *pDstWords++ = word0;
-                *pDstWords++ = word1;
-                *pDstWords++ = word2;
-                *pDstWords++ = word3;
-            }
-        } else if (srcAlignment == dstAlignment && size >= 16) {
-            if (srcAlignment != 0) {
-                for (u8 count = 4 - srcAlignment; count != 0; count--) {
-                    *pDstBytes++ = *pSrcBytes++;
-                    size--;
-                }
-            }
-
-            while (size >= 4) {
-                *reinterpret_cast< u32* >(pDstBytes) = *reinterpret_cast< const u32* >(pSrcBytes);
-                size -= 4;
-                pSrcBytes += 4;
-                pDstBytes += 4;
-            }
-
-            if (size != 0) {
-                for (; size != 0; size--) {
-                    *pDstBytes++ = *pSrcBytes++;
-                }
-            }
-        } else {
+        if (size != 0) {
             for (; size != 0; size--) {
                 *pDstBytes++ = *pSrcBytes++;
             }
         }
-    }
-
-    void fillMemory(void* pDst, u8 ch, u32 size) {
-        if (ch == 0) {
-            zeroMemory(pDst, size);
-        } else {
-            memset(pDst, ch, size);
+    } else {
+        for (; size != 0; size--) {
+            *pDstBytes++ = *pSrcBytes++;
         }
     }
+}
 
-    void zeroMemory(void* pDst, u32 size) {
-        u8* pDstBytes = static_cast< u8* >(pDst);
-        u32 alignment = reinterpret_cast< u32 >(pDst) & 3;
+void MR::fillMemory(void* pDst, u8 ch, u32 size) {
+    if (ch == 0) {
+        zeroMemory(pDst, size);
+    } else {
+        memset(pDst, ch, size);
+    }
+}
 
-        if ((reinterpret_cast< u32 >(pDst) & 0x1F) == 0 && (size & 0x1F) == 0) {
-            DCZeroRange(pDst, size);
-        } else if (alignment == 0 && (size & 0xF) == 0) {
-            for (u32 count = size / 16; count != 0; count--) {
-                u32* pWords = reinterpret_cast< u32* >(pDstBytes);
-                pWords[0] = 0;
-                pWords[1] = 0;
-                pWords[2] = 0;
-                pWords[3] = 0;
-                pDstBytes += 16;
-            }
-        } else if (size >= 16) {
-            if (alignment != 0) {
-                for (u8 count = 4 - alignment; count != 0; count--) {
-                    *pDstBytes++ = 0;
-                    size--;
-                }
-            }
+void MR::zeroMemory(void* pDst, u32 size) {
+    u8* pDstBytes = static_cast< u8* >(pDst);
+    u32 alignment = reinterpret_cast< u32 >(pDst) & 3;
 
-            while (size >= 4) {
-                *reinterpret_cast< u32* >(pDstBytes) = 0;
-                pDstBytes += 4;
-                size -= 4;
+    if ((reinterpret_cast< u32 >(pDst) & 0x1F) == 0 && (size & 0x1F) == 0) {
+        DCZeroRange(pDst, size);
+    } else if (alignment == 0 && (size & 0xF) == 0) {
+        for (u32 count = size / 16; count != 0; count--) {
+            u32* pWords = reinterpret_cast< u32* >(pDstBytes);
+            pWords[0] = 0;
+            pWords[1] = 0;
+            pWords[2] = 0;
+            pWords[3] = 0;
+            pDstBytes += 16;
+        }
+    } else if (size >= 16) {
+        if (alignment != 0) {
+            for (u8 count = 4 - alignment; count != 0; count--) {
+                *pDstBytes++ = 0;
+                size--;
             }
+        }
 
-            if (size != 0) {
-                for (; size != 0; size--) {
-                    *pDstBytes++ = 0;
-                }
-            }
-        } else {
+        while (size >= 4) {
+            *reinterpret_cast< u32* >(pDstBytes) = 0;
+            pDstBytes += 4;
+            size -= 4;
+        }
+
+        if (size != 0) {
             for (; size != 0; size--) {
                 *pDstBytes++ = 0;
             }
         }
-    }
-
-    u32 calcCheckSum(const void* pPtr, u32 size) {
-        u16 sum;
-        u16 invSum;
-
-        invSum = 0;
-        sum = 0;
-
-        const u16* p = static_cast< const u16* >(pPtr);
-        u32 checkSize = size / sizeof(u16);
-
-        for (int i = 0; i < checkSize; i++, p++) {
-            sum += *p;
-            invSum += ~(*p);
+    } else {
+        for (; size != 0; size--) {
+            *pDstBytes++ = 0;
         }
+    }
+}
 
-        return (sum << 16) | invSum;
+u32 MR::calcCheckSum(const void* pPtr, u32 size) {
+    u16 sum;
+    u16 invSum;
+
+    invSum = 0;
+    sum = 0;
+
+    const u16* p = static_cast< const u16* >(pPtr);
+    u32 checkSize = size / sizeof(u16);
+
+    for (int i = 0; i < checkSize; i++, p++) {
+        sum += *p;
+        invSum += ~(*p);
     }
 
-    void* allocFromWPadHeap(u32 size) {
-        return SingletonHolder< HeapMemoryWatcher >::get()->mWPadHeap->alloc(size, 0);
-    }
+    return (sum << 16) | invSum;
+}
 
-    u8 freeFromWPadHeap(void* pPtr) {
-        SingletonHolder< HeapMemoryWatcher >::get()->mWPadHeap->free(pPtr);
+void* MR::allocFromWPadHeap(u32 size) {
+    return SingletonHolder< HeapMemoryWatcher >::get()->mWPadHeap->alloc(size, 0);
+}
 
-        return 1;
-    }
-};  // namespace MR
+u8 MR::freeFromWPadHeap(void* pPtr) {
+    SingletonHolder< HeapMemoryWatcher >::get()->mWPadHeap->free(pPtr);
+
+    return 1;
+}

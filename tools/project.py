@@ -1674,6 +1674,7 @@ def generate_objdiff_config(
                 and not flag.startswith("-I ")
                 and not flag.startswith("-I+")
                 and not flag.startswith("-I-")
+                and not flag.startswith("-prefix")
             )
 
         all_cflags = list(

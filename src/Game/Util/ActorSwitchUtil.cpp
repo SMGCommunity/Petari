@@ -7,215 +7,213 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-namespace MR {
-    bool useStageSwitchReadA(LiveActor* pActor, const JMapInfoIter& rIter) {
-        if (!isValidInfo(rIter)) {
-            return false;
-        }
-
-        if (!isExistStageSwitchA(rIter)) {
-            return false;
-        }
-
-        if (pActor->mStageSwitchCtrl == nullptr) {
-            pActor->initStageSwitch(rIter);
-        }
-
-        return true;
+bool MR::useStageSwitchReadA(LiveActor* pActor, const JMapInfoIter& rIter) {
+    if (!isValidInfo(rIter)) {
+        return false;
     }
 
-    bool useStageSwitchReadB(LiveActor* pActor, const JMapInfoIter& rIter) {
-        if (!isValidInfo(rIter)) {
-            return false;
-        }
-
-        if (!isExistStageSwitchB(rIter)) {
-            return false;
-        }
-
-        if (pActor->mStageSwitchCtrl == nullptr) {
-            pActor->initStageSwitch(rIter);
-        }
-
-        return true;
+    if (!isExistStageSwitchA(rIter)) {
+        return false;
     }
 
-    bool useStageSwitchReadAppear(LiveActor* pActor, const JMapInfoIter& rIter) {
-        if (!isValidInfo(rIter)) {
-            return false;
-        }
-
-        if (!isExistStageSwitchAppear(rIter)) {
-            return false;
-        }
-
-        if (pActor->mStageSwitchCtrl == nullptr) {
-            pActor->initStageSwitch(rIter);
-        }
-
-        return true;
+    if (pActor->mStageSwitchCtrl == nullptr) {
+        pActor->initStageSwitch(rIter);
     }
 
-    void useStageSwitchSleep(LiveActor* pActor, const JMapInfoIter& rIter) {
-        SleepControlFunc::addSleepControl(pActor, rIter);
+    return true;
+}
+
+bool MR::useStageSwitchReadB(LiveActor* pActor, const JMapInfoIter& rIter) {
+    if (!isValidInfo(rIter)) {
+        return false;
     }
 
-    // Same as useStageSwitchReadA
-    bool useStageSwitchWriteA(LiveActor* pActor, const JMapInfoIter& rIter) {
-        if (!isValidInfo(rIter)) {
-            return false;
-        }
-
-        if (!isExistStageSwitchA(rIter)) {
-            return false;
-        }
-
-        if (pActor->mStageSwitchCtrl == nullptr) {
-            pActor->initStageSwitch(rIter);
-        }
-
-        return true;
+    if (!isExistStageSwitchB(rIter)) {
+        return false;
     }
 
-    // Same as useStageSwitchReadB
-    bool useStageSwitchWriteB(LiveActor* pActor, const JMapInfoIter& rIter) {
-        if (!isValidInfo(rIter)) {
-            return false;
-        }
-
-        if (!isExistStageSwitchB(rIter)) {
-            return false;
-        }
-
-        if (pActor->mStageSwitchCtrl == nullptr) {
-            pActor->initStageSwitch(rIter);
-        }
-
-        return true;
+    if (pActor->mStageSwitchCtrl == nullptr) {
+        pActor->initStageSwitch(rIter);
     }
 
-    bool useStageSwitchWriteDead(LiveActor* pActor, const JMapInfoIter& rIter) {
-        if (!isValidInfo(rIter)) {
-            return false;
-        }
+    return true;
+}
 
-        if (!isExistStageSwitchDead(rIter)) {
-            return false;
-        }
-
-        if (pActor->mStageSwitchCtrl == nullptr) {
-            pActor->initStageSwitch(rIter);
-        }
-
-        return true;
+bool MR::useStageSwitchReadAppear(LiveActor* pActor, const JMapInfoIter& rIter) {
+    if (!isValidInfo(rIter)) {
+        return false;
     }
 
-    bool needStageSwitchReadA(LiveActor* pActor, const JMapInfoIter& rIter) {
-        return useStageSwitchReadA(pActor, rIter);
+    if (!isExistStageSwitchAppear(rIter)) {
+        return false;
     }
 
-    bool needStageSwitchReadB(LiveActor* pActor, const JMapInfoIter& rIter) {
-        return useStageSwitchReadB(pActor, rIter);
+    if (pActor->mStageSwitchCtrl == nullptr) {
+        pActor->initStageSwitch(rIter);
     }
 
-    bool needStageSwitchReadAppear(LiveActor* pActor, const JMapInfoIter& rIter) {
-        return useStageSwitchReadAppear(pActor, rIter);
+    return true;
+}
+
+void MR::useStageSwitchSleep(LiveActor* pActor, const JMapInfoIter& rIter) {
+    SleepControlFunc::addSleepControl(pActor, rIter);
+}
+
+// Same as useStageSwitchReadA
+bool MR::useStageSwitchWriteA(LiveActor* pActor, const JMapInfoIter& rIter) {
+    if (!isValidInfo(rIter)) {
+        return false;
     }
 
-    bool needStageSwitchWriteA(LiveActor* pActor, const JMapInfoIter& rIter) {
-        return useStageSwitchWriteA(pActor, rIter);
+    if (!isExistStageSwitchA(rIter)) {
+        return false;
     }
 
-    bool needStageSwitchWriteB(LiveActor* pActor, const JMapInfoIter& rIter) {
-        return useStageSwitchWriteB(pActor, rIter);
+    if (pActor->mStageSwitchCtrl == nullptr) {
+        pActor->initStageSwitch(rIter);
     }
 
-    bool needStageSwitchWriteDead(LiveActor* pActor, const JMapInfoIter& rIter) {
-        return useStageSwitchWriteDead(pActor, rIter);
+    return true;
+}
+
+// Same as useStageSwitchReadB
+bool MR::useStageSwitchWriteB(LiveActor* pActor, const JMapInfoIter& rIter) {
+    if (!isValidInfo(rIter)) {
+        return false;
     }
 
-    bool isValidSwitchA(const LiveActor* pActor) {
-        return pActor->mStageSwitchCtrl != nullptr && pActor->mStageSwitchCtrl->isValidSwitchA();
+    if (!isExistStageSwitchB(rIter)) {
+        return false;
     }
 
-    bool isValidSwitchB(const LiveActor* pActor) {
-        return pActor->mStageSwitchCtrl != nullptr && pActor->mStageSwitchCtrl->isValidSwitchB();
+    if (pActor->mStageSwitchCtrl == nullptr) {
+        pActor->initStageSwitch(rIter);
     }
 
-    bool isValidSwitchAppear(const LiveActor* pActor) {
-        return pActor->mStageSwitchCtrl != nullptr && pActor->mStageSwitchCtrl->isValidSwitchAppear();
+    return true;
+}
+
+bool MR::useStageSwitchWriteDead(LiveActor* pActor, const JMapInfoIter& rIter) {
+    if (!isValidInfo(rIter)) {
+        return false;
     }
 
-    bool isValidSwitchDead(const LiveActor* pActor) {
-        return pActor->mStageSwitchCtrl != nullptr && pActor->mStageSwitchCtrl->isValidSwitchDead();
+    if (!isExistStageSwitchDead(rIter)) {
+        return false;
     }
 
-    bool isOnSwitchA(const LiveActor* pActor) {
-        return pActor->mStageSwitchCtrl->isOnSwitchA();
+    if (pActor->mStageSwitchCtrl == nullptr) {
+        pActor->initStageSwitch(rIter);
     }
 
-    bool isOnSwitchB(const LiveActor* pActor) {
-        return pActor->mStageSwitchCtrl->isOnSwitchB();
-    }
+    return true;
+}
 
-    bool isOnSwitchAppear(const LiveActor* pActor) {
-        return pActor->mStageSwitchCtrl->isOnSwitchAppear();
-    }
+bool MR::needStageSwitchReadA(LiveActor* pActor, const JMapInfoIter& rIter) {
+    return useStageSwitchReadA(pActor, rIter);
+}
 
-    void onSwitchA(LiveActor* pActor) {
-        pActor->mStageSwitchCtrl->onSwitchA();
-    }
+bool MR::needStageSwitchReadB(LiveActor* pActor, const JMapInfoIter& rIter) {
+    return useStageSwitchReadB(pActor, rIter);
+}
 
-    void onSwitchB(LiveActor* pActor) {
-        pActor->mStageSwitchCtrl->onSwitchB();
-    }
+bool MR::needStageSwitchReadAppear(LiveActor* pActor, const JMapInfoIter& rIter) {
+    return useStageSwitchReadAppear(pActor, rIter);
+}
 
-    void onSwitchDead(LiveActor* pActor) {
-        pActor->mStageSwitchCtrl->onSwitchDead();
-    }
+bool MR::needStageSwitchWriteA(LiveActor* pActor, const JMapInfoIter& rIter) {
+    return useStageSwitchWriteA(pActor, rIter);
+}
 
-    void offSwitchA(LiveActor* pActor) {
-        pActor->mStageSwitchCtrl->offSwitchA();
-    }
+bool MR::needStageSwitchWriteB(LiveActor* pActor, const JMapInfoIter& rIter) {
+    return useStageSwitchWriteB(pActor, rIter);
+}
 
-    void offSwitchB(LiveActor* pActor) {
-        pActor->mStageSwitchCtrl->offSwitchB();
-    }
+bool MR::needStageSwitchWriteDead(LiveActor* pActor, const JMapInfoIter& rIter) {
+    return useStageSwitchWriteDead(pActor, rIter);
+}
 
-    void offSwitchDead(LiveActor* pActor) {
-        pActor->mStageSwitchCtrl->offSwitchDead();
-    }
+bool MR::isValidSwitchA(const LiveActor* pActor) {
+    return pActor->mStageSwitchCtrl != nullptr && pActor->mStageSwitchCtrl->isValidSwitchA();
+}
 
-    void syncStageSwitchAppear(LiveActor* pActor) {
-        ActorAppearSwitchListener* pSwitchListener = new ActorAppearSwitchListener(pActor, true, true);
-        getSwitchWatcherHolder()->joinSwitchEventListenerAppear(pActor->mStageSwitchCtrl, pSwitchListener);
-    }
+bool MR::isValidSwitchB(const LiveActor* pActor) {
+    return pActor->mStageSwitchCtrl != nullptr && pActor->mStageSwitchCtrl->isValidSwitchB();
+}
 
-    void listenStageSwitchOnAppear(LiveActor* pActor, const MR::FunctorBase& rFunctor) {
-        listenNameObjStageSwitchOnAppear(pActor, pActor->mStageSwitchCtrl, rFunctor);
-    }
+bool MR::isValidSwitchAppear(const LiveActor* pActor) {
+    return pActor->mStageSwitchCtrl != nullptr && pActor->mStageSwitchCtrl->isValidSwitchAppear();
+}
 
-    void listenStageSwitchOnOffAppear(LiveActor* pActor, const MR::FunctorBase& rFunctor1, const MR::FunctorBase& rFunctor2) {
-        listenNameObjStageSwitchOnOffAppear(pActor, pActor->mStageSwitchCtrl, rFunctor1, rFunctor2);
-    }
+bool MR::isValidSwitchDead(const LiveActor* pActor) {
+    return pActor->mStageSwitchCtrl != nullptr && pActor->mStageSwitchCtrl->isValidSwitchDead();
+}
 
-    void listenStageSwitchOnA(LiveActor* pActor, const MR::FunctorBase& rFunctor) {
-        listenNameObjStageSwitchOnA(pActor, pActor->mStageSwitchCtrl, rFunctor);
-    }
+bool MR::isOnSwitchA(const LiveActor* pActor) {
+    return pActor->mStageSwitchCtrl->isOnSwitchA();
+}
 
-    void listenStageSwitchOnOffA(LiveActor* pActor, const MR::FunctorBase& rFunctor1, const MR::FunctorBase& rFunctor2) {
-        listenNameObjStageSwitchOnOffA(pActor, pActor->mStageSwitchCtrl, rFunctor1, rFunctor2);
-    }
+bool MR::isOnSwitchB(const LiveActor* pActor) {
+    return pActor->mStageSwitchCtrl->isOnSwitchB();
+}
 
-    void listenStageSwitchOnB(LiveActor* pActor, const MR::FunctorBase& rFunctor) {
-        listenNameObjStageSwitchOnB(pActor, pActor->mStageSwitchCtrl, rFunctor);
-    }
+bool MR::isOnSwitchAppear(const LiveActor* pActor) {
+    return pActor->mStageSwitchCtrl->isOnSwitchAppear();
+}
 
-    void listenStageSwitchOffB(LiveActor* pActor, const MR::FunctorBase& rFunctor) {
-        listenNameObjStageSwitchOffB(pActor, pActor->mStageSwitchCtrl, rFunctor);
-    }
+void MR::onSwitchA(LiveActor* pActor) {
+    pActor->mStageSwitchCtrl->onSwitchA();
+}
 
-    void listenStageSwitchOnOffB(LiveActor* pActor, const MR::FunctorBase& rFunctor1, const MR::FunctorBase& rFunctor2) {
-        listenNameObjStageSwitchOnOffB(pActor, pActor->mStageSwitchCtrl, rFunctor1, rFunctor2);
-    }
-};  // namespace MR
+void MR::onSwitchB(LiveActor* pActor) {
+    pActor->mStageSwitchCtrl->onSwitchB();
+}
+
+void MR::onSwitchDead(LiveActor* pActor) {
+    pActor->mStageSwitchCtrl->onSwitchDead();
+}
+
+void MR::offSwitchA(LiveActor* pActor) {
+    pActor->mStageSwitchCtrl->offSwitchA();
+}
+
+void MR::offSwitchB(LiveActor* pActor) {
+    pActor->mStageSwitchCtrl->offSwitchB();
+}
+
+void MR::offSwitchDead(LiveActor* pActor) {
+    pActor->mStageSwitchCtrl->offSwitchDead();
+}
+
+void MR::syncStageSwitchAppear(LiveActor* pActor) {
+    ActorAppearSwitchListener* pSwitchListener = new ActorAppearSwitchListener(pActor, true, true);
+    getSwitchWatcherHolder()->joinSwitchEventListenerAppear(pActor->mStageSwitchCtrl, pSwitchListener);
+}
+
+void MR::listenStageSwitchOnAppear(LiveActor* pActor, const MR::FunctorBase& rFunctor) {
+    listenNameObjStageSwitchOnAppear(pActor, pActor->mStageSwitchCtrl, rFunctor);
+}
+
+void MR::listenStageSwitchOnOffAppear(LiveActor* pActor, const MR::FunctorBase& rFunctor1, const MR::FunctorBase& rFunctor2) {
+    listenNameObjStageSwitchOnOffAppear(pActor, pActor->mStageSwitchCtrl, rFunctor1, rFunctor2);
+}
+
+void MR::listenStageSwitchOnA(LiveActor* pActor, const MR::FunctorBase& rFunctor) {
+    listenNameObjStageSwitchOnA(pActor, pActor->mStageSwitchCtrl, rFunctor);
+}
+
+void MR::listenStageSwitchOnOffA(LiveActor* pActor, const MR::FunctorBase& rFunctor1, const MR::FunctorBase& rFunctor2) {
+    listenNameObjStageSwitchOnOffA(pActor, pActor->mStageSwitchCtrl, rFunctor1, rFunctor2);
+}
+
+void MR::listenStageSwitchOnB(LiveActor* pActor, const MR::FunctorBase& rFunctor) {
+    listenNameObjStageSwitchOnB(pActor, pActor->mStageSwitchCtrl, rFunctor);
+}
+
+void MR::listenStageSwitchOffB(LiveActor* pActor, const MR::FunctorBase& rFunctor) {
+    listenNameObjStageSwitchOffB(pActor, pActor->mStageSwitchCtrl, rFunctor);
+}
+
+void MR::listenStageSwitchOnOffB(LiveActor* pActor, const MR::FunctorBase& rFunctor1, const MR::FunctorBase& rFunctor2) {
+    listenNameObjStageSwitchOnOffB(pActor, pActor->mStageSwitchCtrl, rFunctor1, rFunctor2);
+}

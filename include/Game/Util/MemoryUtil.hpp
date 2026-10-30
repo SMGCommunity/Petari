@@ -28,7 +28,6 @@ namespace MR {
 
     MEMAllocator* getHomeButtonLayoutAllocator();
     JKRHeap* getCurrentHeap();
-    f32 getHeapFreeRatio(JKRHeap* pHeap);
     JKRHeap* getAproposHeapForSceneArchive(f32 maxFreeSizeRate);
     JKRExpHeap* getStationedHeapNapa();
     JKRExpHeap* getStationedHeapGDDR3();

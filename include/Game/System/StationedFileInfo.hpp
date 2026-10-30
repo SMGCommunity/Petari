@@ -5,18 +5,18 @@
 namespace MR {
     struct StationedFileInfo {
         enum HeapType {
-            HEAP_TYPE_NAPA = 0,
-            HEAP_TYPE_GDDR = 1,
-            HEAP_TYPE_NONE = 2,
+            /* 0x0 */ HEAP_TYPE_NAPA,
+            /* 0x1 */ HEAP_TYPE_GDDR,
+            /* 0x2 */ HEAP_TYPE_NONE,
         };
 
         enum LoadType {
-            LOAD_TYPE_FILE = 0,
-            LOAD_TYPE_MOUNT = 1,
-            LOAD_TYPE_MOUNT_RESOURCE_MARIO = 2,
-            LOAD_TYPE_MOUNT_RESOURCE_LUIGI = 3,
-            LOAD_TYPE_MOUNT_RESOURCE = 4,
-            LOAD_TYPE_MOUNT_RESOURCE_LAYOUT = 5,
+            /* 0x0 */ LOAD_TYPE_FILE,
+            /* 0x1 */ LOAD_TYPE_MOUNT,
+            /* 0x2 */ LOAD_TYPE_MOUNT_RESOURCE_MARIO,
+            /* 0x3 */ LOAD_TYPE_MOUNT_RESOURCE_LUIGI,
+            /* 0x4 */ LOAD_TYPE_MOUNT_RESOURCE,
+            /* 0x5 */ LOAD_TYPE_MOUNT_RESOURCE_LAYOUT,
         };
 
         /* 0x0 */ HeapType mHeapType;

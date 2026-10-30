@@ -561,16 +561,20 @@ DinoPackun::~DinoPackun() {
     return;
 }
 
-namespace MR {
-    NameObj* createDinoPackunVs1(const char* pName) {
-        DinoPackun* p = new DinoPackun(pName);
-        p->mSequence = new DinoPackunVs1(p);
-        return p;
-    }
+NameObj* MR::createDinoPackunVs1(const char* pName) {
+    DinoPackun* dinoPackun;
 
-    NameObj* createDinoPackunVs2(const char* pName) {
-        DinoPackun* p = new DinoPackun(pName);
-        p->mSequence = new DinoPackunVs2(p);
-        return p;
-    }
-};  // namespace MR
+    dinoPackun = new DinoPackun(pName);
+    dinoPackun->mSequence = new DinoPackunVs1(dinoPackun);
+
+    return dinoPackun;
+}
+
+NameObj* MR::createDinoPackunVs2(const char* pName) {
+    DinoPackun* dinoPackun;
+
+    dinoPackun = new DinoPackun(pName);
+    dinoPackun->mSequence = new DinoPackunVs2(dinoPackun);
+
+    return dinoPackun;
+}

@@ -703,45 +703,43 @@ void TripodBossLeg::updateAnkleShadowMatrix() {
     _1C0.setTrans(calcAnkleShadowPosition(mForceEndPoint, landingNormal));
 }
 
-namespace MR {
-    void separateMatrixRotateYZX(TPos3f* pA1, TPos3f* pA2, const TPos3f& rA3, const TPos3f& rA4) {
-        TPos3f v17;
-        v17.invert(rA3);
-        v17.concat(v17, rA4);
-        TVec3f v16;
-        v17.getXDir(v16);
-        f32 v10 = MR::sqrt((v16.x * v16.x) + (v16.z * v16.z));
+void MR::separateMatrixRotateYZX(TPos3f* pA1, TPos3f* pA2, const TPos3f& rA3, const TPos3f& rA4) {
+    TPos3f v17;
+    v17.invert(rA3);
+    v17.concat(v17, rA4);
+    TVec3f v16;
+    v17.getXDir(v16);
+    f32 v10 = MR::sqrt((v16.x * v16.x) + (v16.z * v16.z));
 
-        if (MR::isNearZero(v10, 0.000001f)) {
-            if (v16.y >= 0.0f) {
-                pA1->setXDir(0.0f, 1.0f, 0.0f);
-                pA1->setYDir(-1.0f, 0.0f, 0.0f);
+    if (MR::isNearZero(v10, 0.000001f)) {
+        if (v16.y >= 0.0f) {
+            pA1->setXDir(0.0f, 1.0f, 0.0f);
+            pA1->setYDir(-1.0f, 0.0f, 0.0f);
 
-            } else {
-                pA1->setXDir(0.0f, -1.0f, 0.0f);
-                pA1->setYDir(1.0f, 0.0f, 0.0f);
-            }
-
-            pA1->setZDir(0.0f, 0.0f, 1.0f);
-            pA1->concat(rA3, *pA1);
-            pA2->set(*pA1);
         } else {
-            f32 v11 = v16.length();
-            f32 v12 = (v10 / v11);
-            f32 v14 = (v16.y / v11);
-            f32 v15 = (v16.x / v10);
-            f32 v13 = (v16.z / v10);
-
-            pA1->setXDir(v15, 0.0f, v13);
-            pA1->setYDir(0.0f, 1.0f, 0.0f);
-            pA1->setZDir(-v13, 0.0f, v15);
-            pA1->setTrans(0.0f, 0.0f, 0.0f);
-            pA2->setXDir(v12, v14, 0.0f);
-            pA2->setYDir(-v14, v12, 0.0f);
-            pA2->setZDir(0.0f, 0.0f, 1.0f);
-            pA2->setTrans(0.0f, 0.0f, 0.0f);
-            pA1->concat(rA3, *pA1);
-            pA2->concat(*pA1, *pA2);
+            pA1->setXDir(0.0f, -1.0f, 0.0f);
+            pA1->setYDir(1.0f, 0.0f, 0.0f);
         }
+
+        pA1->setZDir(0.0f, 0.0f, 1.0f);
+        pA1->concat(rA3, *pA1);
+        pA2->set(*pA1);
+    } else {
+        f32 v11 = v16.length();
+        f32 v12 = (v10 / v11);
+        f32 v14 = (v16.y / v11);
+        f32 v15 = (v16.x / v10);
+        f32 v13 = (v16.z / v10);
+
+        pA1->setXDir(v15, 0.0f, v13);
+        pA1->setYDir(0.0f, 1.0f, 0.0f);
+        pA1->setZDir(-v13, 0.0f, v15);
+        pA1->setTrans(0.0f, 0.0f, 0.0f);
+        pA2->setXDir(v12, v14, 0.0f);
+        pA2->setYDir(-v14, v12, 0.0f);
+        pA2->setZDir(0.0f, 0.0f, 1.0f);
+        pA2->setTrans(0.0f, 0.0f, 0.0f);
+        pA1->concat(rA3, *pA1);
+        pA2->concat(*pA1, *pA2);
     }
-};  // namespace MR
+}

@@ -26,30 +26,26 @@ namespace {
     }
 };  // namespace
 
-namespace MR {
-    namespace Demo {
-        f32 getCameraShakeIntensity(const char* pParamName) {
-            return ::getParam(pParamName)->mCameraShakeIntensity;
-        }
+f32 MR::Demo::getCameraShakeIntensity(const char* pParamName) {
+    return ::getParam(pParamName)->mCameraShakeIntensity;
+}
 
-        f32 getCameraShakeSpeed(const char* pParamName) {
-            return ::getParam(pParamName)->mCameraShakeSpeed;
-        }
+f32 MR::Demo::getCameraShakeSpeed(const char* pParamName) {
+    return ::getParam(pParamName)->mCameraShakeSpeed;
+}
 
-        const char* getPadRumble(const char* pParamName) {
-            return ::getParam(pParamName)->pRumbleName;
-        }
+const char* MR::Demo::getPadRumble(const char* pParamName) {
+    return ::getParam(pParamName)->pRumbleName;
+}
 
-        bool isExistCameraShaking(const char* pParamName) {
-            return 0.0f < ::getParam(pParamName)->mCameraShakeIntensity;
-        }
+bool MR::Demo::isExistCameraShaking(const char* pParamName) {
+    return 0.0f < ::getParam(pParamName)->mCameraShakeIntensity;
+}
 
-        bool isExistPadRumble(const char* pParamName) {
-            return ::getParam(pParamName)->pRumbleName != nullptr;
-        }
+bool MR::Demo::isExistPadRumble(const char* pParamName) {
+    return ::getParam(pParamName)->pRumbleName != nullptr;
+}
 
-        const char* getStartEffect(const char* pParamName) {
-            return "Open";
-        }
-    };  // namespace Demo
-};  // namespace MR
+const char* MR::Demo::getStartEffect(const char* pParamName) {
+    return "Open";
+}

@@ -6,82 +6,80 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 
-namespace MR {
-    void initActorStateKeeper(NerveExecutor* pExecutor, s32 capacity) {
-        pExecutor->mSpine->initStateKeeper(capacity);
+void MR::initActorStateKeeper(NerveExecutor* pExecutor, s32 capacity) {
+    pExecutor->mSpine->initStateKeeper(capacity);
+}
+
+void MR::initActorState(NerveExecutor* pExecutor, ActorStateBaseInterface* pActorState, const Nerve* pNerve, const char* pStateName) {
+    pActorState->init();
+    pExecutor->mSpine->mStateKeeper->addState(pActorState, pNerve, pStateName);
+}
+
+bool MR::updateActorState(LiveActor* pActor, ActorStateBaseInterface* pActorState) {
+    if (isFirstStep(pActor)) {
+        pActorState->appear();
     }
 
-    void initActorState(NerveExecutor* pExecutor, ActorStateBaseInterface* pActorState, const Nerve* pNerve, const char* pStateName) {
-        pActorState->init();
-        pExecutor->mSpine->mStateKeeper->addState(pActorState, pNerve, pStateName);
-    }
-
-    bool updateActorState(LiveActor* pActor, ActorStateBaseInterface* pActorState) {
-        if (isFirstStep(pActor)) {
-            pActorState->appear();
+    if (pActorState->update()) {
+        if (!pActorState->mIsDead) {
+            pActorState->kill();
         }
 
-        if (pActorState->update()) {
-            if (!pActorState->mIsDead) {
-                pActorState->kill();
-            }
-
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
-    bool updateActorStateAndNextNerve(LiveActor* pActor, ActorStateBaseInterface* pActorState, const Nerve* pNextNerve) {
-        bool isStateUpdated = updateActorState(pActor, pActorState);
+    return false;
+}
 
-        if (isStateUpdated) {
-            pActor->setNerve(pNextNerve);
-            return true;
-        }
+bool MR::updateActorStateAndNextNerve(LiveActor* pActor, ActorStateBaseInterface* pActorState, const Nerve* pNextNerve) {
+    bool isStateUpdated = updateActorState(pActor, pActorState);
 
-        return false;
+    if (isStateUpdated) {
+        pActor->setNerve(pNextNerve);
+        return true;
     }
 
-    bool updateActorState(NerveExecutor* pExecutor) {
-        return pExecutor->mSpine->mStateKeeper->updateCurrentState();
+    return false;
+}
+
+bool MR::updateActorState(NerveExecutor* pExecutor) {
+    return pExecutor->mSpine->mStateKeeper->updateCurrentState();
+}
+
+bool MR::updateActorState(NerveExecutor* pExecutor, ActorStateBaseInterface* pActorState) {
+    if (isFirstStep(pExecutor)) {
+        pActorState->appear();
     }
 
-    bool updateActorState(NerveExecutor* pExecutor, ActorStateBaseInterface* pActorState) {
-        if (isFirstStep(pExecutor)) {
-            pActorState->appear();
+    if (pActorState->update()) {
+        if (!pActorState->mIsDead) {
+            pActorState->kill();
         }
 
-        if (pActorState->update()) {
-            if (!pActorState->mIsDead) {
-                pActorState->kill();
-            }
-
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
-    bool updateActorStateAndNextNerve(NerveExecutor* pExecutor, const Nerve* pNextNerve) {
-        bool isStateUpdated = updateActorState(pExecutor);
+    return false;
+}
 
-        if (isStateUpdated) {
-            pExecutor->setNerve(pNextNerve);
-            return true;
-        }
+bool MR::updateActorStateAndNextNerve(NerveExecutor* pExecutor, const Nerve* pNextNerve) {
+    bool isStateUpdated = updateActorState(pExecutor);
 
-        return false;
+    if (isStateUpdated) {
+        pExecutor->setNerve(pNextNerve);
+        return true;
     }
 
-    bool updateActorStateAndNextNerve(NerveExecutor* pExecutor, ActorStateBaseInterface* pActorState, const Nerve* pNextNerve) {
-        bool isStateUpdated = updateActorState(pExecutor, pActorState);
+    return false;
+}
 
-        if (isStateUpdated) {
-            pExecutor->setNerve(pNextNerve);
-            return true;
-        }
+bool MR::updateActorStateAndNextNerve(NerveExecutor* pExecutor, ActorStateBaseInterface* pActorState, const Nerve* pNextNerve) {
+    bool isStateUpdated = updateActorState(pExecutor, pActorState);
 
-        return false;
+    if (isStateUpdated) {
+        pExecutor->setNerve(pNextNerve);
+        return true;
     }
-};  // namespace MR
+
+    return false;
+}

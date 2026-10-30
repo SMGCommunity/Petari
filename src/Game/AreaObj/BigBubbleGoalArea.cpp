@@ -73,16 +73,14 @@ void BigBubbleGoalArea::draw() const {
     TDDraw::drawFillFan(mTrans, MR::getCamZdir(), MR::getCamYdir() * 150.0f, 0x80FF, f, TWO_PI, 16);
 }
 
-namespace MR {
-    bool checkBigBubbleGoal(BigBubble* pBubble) {
-        BigBubbleGoalArea* goalArea = static_cast< BigBubbleGoalArea* >(MR::getAreaObj("BigBubbleGoalArea", pBubble->mPosition));
+bool MR::checkBigBubbleGoal(BigBubble* pBubble) {
+    BigBubbleGoalArea* goalArea = static_cast< BigBubbleGoalArea* >(MR::getAreaObj("BigBubbleGoalArea", pBubble->mPosition));
 
-        if (goalArea != nullptr) {
-            goalArea->addBubble(pBubble);
+    if (goalArea != nullptr) {
+        goalArea->addBubble(pBubble);
 
-            return true;
-        }
-
-        return false;
+        return true;
     }
-};  // namespace MR
+
+    return false;
+}

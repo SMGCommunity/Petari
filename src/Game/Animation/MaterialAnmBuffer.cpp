@@ -164,36 +164,34 @@ void modifyDiffFlagBrk(u32* pFlags, const J3DAnmTevRegKey* pAnm, bool enable, co
     }
 }
 
-namespace MR {
-    void onDiffFlagBpk(u32* pFlags, const J3DAnmColorKey* pAnm, const char* pName) {
-        modifyDiffFlag(pFlags, pAnm, J3DDiffFlag_MatColor, true, pName, "bpk");
-    }
+void MR::onDiffFlagBpk(u32* pFlags, const J3DAnmColorKey* pAnm, const char* pName) {
+    modifyDiffFlag(pFlags, pAnm, J3DDiffFlag_MatColor, true, pName, "bpk");
+}
 
-    void offDiffFlagBpk(u32* pFlags, const J3DAnmColorKey* pAnm, const char* pName) {
-        modifyDiffFlag(pFlags, pAnm, J3DDiffFlag_MatColor, false, pName, "bpk");
-    }
+void MR::offDiffFlagBpk(u32* pFlags, const J3DAnmColorKey* pAnm, const char* pName) {
+    modifyDiffFlag(pFlags, pAnm, J3DDiffFlag_MatColor, false, pName, "bpk");
+}
 
-    void onDiffFlagBtp(u32* pFlags, const J3DAnmTexPattern* pAnm, const char* pName) {
-        modifyDiffFlag(pFlags, pAnm, static_cast< J3DDiffFlag >(0x20000), true, pName, "btp");
-    }
+void MR::onDiffFlagBtp(u32* pFlags, const J3DAnmTexPattern* pAnm, const char* pName) {
+    modifyDiffFlag(pFlags, pAnm, static_cast< J3DDiffFlag >(0x20000), true, pName, "btp");
+}
 
-    void offDiffFlagBtp(u32* pFlags, const J3DAnmTexPattern* pAnm, const char* pName) {
-        modifyDiffFlag(pFlags, pAnm, static_cast< J3DDiffFlag >(0x20000), false, pName, "btp");
-    }
+void MR::offDiffFlagBtp(u32* pFlags, const J3DAnmTexPattern* pAnm, const char* pName) {
+    modifyDiffFlag(pFlags, pAnm, static_cast< J3DDiffFlag >(0x20000), false, pName, "btp");
+}
 
-    void onDiffFlagBtk(u32* pFlags, const J3DAnmTextureSRTKey* pAnm, const char* pName) {
-        modifyDiffFlag(pFlags, pAnm, static_cast< J3DDiffFlag >(0x200), true, pName, "btk");
-    }
+void MR::onDiffFlagBtk(u32* pFlags, const J3DAnmTextureSRTKey* pAnm, const char* pName) {
+    modifyDiffFlag(pFlags, pAnm, static_cast< J3DDiffFlag >(0x200), true, pName, "btk");
+}
 
-    void offDiffFlagBtk(u32* pFlags, const J3DAnmTextureSRTKey* pAnm, const char* pName) {
-        modifyDiffFlag(pFlags, pAnm, static_cast< J3DDiffFlag >(0x200), false, pName, "btk");
-    }
+void MR::offDiffFlagBtk(u32* pFlags, const J3DAnmTextureSRTKey* pAnm, const char* pName) {
+    modifyDiffFlag(pFlags, pAnm, static_cast< J3DDiffFlag >(0x200), false, pName, "btk");
+}
 
-    void onDiffFlagBrk(u32* pFlags, const J3DAnmTevRegKey* pAnm, const char* pName) {
-        modifyDiffFlagBrk(pFlags, pAnm, true, pName);
-    }
+void MR::onDiffFlagBrk(u32* pFlags, const J3DAnmTevRegKey* pAnm, const char* pName) {
+    modifyDiffFlagBrk(pFlags, pAnm, true, pName);
+}
 
-    void offDiffFlagBrk(u32* pFlags, const J3DAnmTevRegKey* pAnm, const char* pName) {
-        modifyDiffFlagBrk(pFlags, pAnm, false, pName);
-    }
-};  // namespace MR
+void MR::offDiffFlagBrk(u32* pFlags, const J3DAnmTevRegKey* pAnm, const char* pName) {
+    modifyDiffFlagBrk(pFlags, pAnm, false, pName);
+}

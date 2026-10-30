@@ -126,191 +126,189 @@ void MercatorTransformCube::calcLocalBoxSize(TVec3f* pPos) const {
     pPos->sub(max, min);
 }
 
-namespace MR {
-    void convertMercatorPlaneToSphereTransAndRotate(TVec3f* pPos, TPos3f* pRotation, const TVec3f& rPos, bool applyInverse) {
-        ::getMercatorCube()->convertTransAndRotate(pPos, pRotation, rPos, applyInverse);
-    }
+void MR::convertMercatorPlaneToSphereTransAndRotate(TVec3f* pPos, TPos3f* pRotation, const TVec3f& rPos, bool applyInverse) {
+    ::getMercatorCube()->convertTransAndRotate(pPos, pRotation, rPos, applyInverse);
+}
 
-    void convertMercatorPlaneToSphereTransAndRotate(TVec3f* pPos, TVec3f* pRotation, const TVec3f& rPos, bool applyInverse) {
-        TPos3f rotation;
-        ::getMercatorCube()->convertTransAndRotate(pPos, &rotation, rPos, applyInverse);
-        TVec3f angles;
-        rotation.getEulerXYZ(angles);
-        pRotation->set< f32 >(57.29577951308232f * angles.x, 57.29577951308232f * angles.y, 57.29577951308232f * angles.z);
-    }
+void MR::convertMercatorPlaneToSphereTransAndRotate(TVec3f* pPos, TVec3f* pRotation, const TVec3f& rPos, bool applyInverse) {
+    TPos3f rotation;
+    ::getMercatorCube()->convertTransAndRotate(pPos, &rotation, rPos, applyInverse);
+    TVec3f angles;
+    rotation.getEulerXYZ(angles);
+    pRotation->set< f32 >(57.29577951308232f * angles.x, 57.29577951308232f * angles.y, 57.29577951308232f * angles.z);
+}
 
-    void initDefaultPosForMercator(LiveActor* pActor, const JMapInfoIter& rIter, bool applyInverse) {
-        getJMapInfoTrans(rIter, &pActor->mPosition);
-        TVec3f angles;
-        getJMapInfoRotate(rIter, &angles);
-        TPos3f rotation;
-        makeMtxRotate(rotation, angles.x, angles.y, angles.z);
+void MR::initDefaultPosForMercator(LiveActor* pActor, const JMapInfoIter& rIter, bool applyInverse) {
+    getJMapInfoTrans(rIter, &pActor->mPosition);
+    TVec3f angles;
+    getJMapInfoRotate(rIter, &angles);
+    TPos3f rotation;
+    makeMtxRotate(rotation, angles.x, angles.y, angles.z);
+    TVec3f pos;
+    TPos3f sphereRotation;
+    ::getMercatorCube()->convertTransAndRotate(&pos, &sphereRotation, pActor->mPosition, applyInverse);
+    rotation.concat(sphereRotation, rotation);
+    rotation.getEulerXYZ(angles);
+    angles.set< f32 >(57.29577951308232f * angles.x, 57.29577951308232f * angles.y, 57.29577951308232f * angles.z);
+    pActor->mPosition.set(pos);
+    pActor->mRotation.set(angles);
+    getJMapInfoScale(rIter, &pActor->mScale);
+}
+
+void MR::calcNearestRailPosForMercator(TVec3f* pPos, const LiveActor* pActor, f32 step) {
+    pPos->zero();
+    f32 nearest = 3.4028234663852886e38f;
+    for (f32 coord = 0.0f; coord <= getRailTotalLength(pActor); coord += step) {
         TVec3f pos;
-        TPos3f sphereRotation;
-        ::getMercatorCube()->convertTransAndRotate(&pos, &sphereRotation, pActor->mPosition, applyInverse);
-        rotation.concat(sphereRotation, rotation);
-        rotation.getEulerXYZ(angles);
-        angles.set< f32 >(57.29577951308232f * angles.x, 57.29577951308232f * angles.y, 57.29577951308232f * angles.z);
-        pActor->mPosition.set(pos);
-        pActor->mRotation.set(angles);
-        getJMapInfoScale(rIter, &pActor->mScale);
+        ::calcRailPosForMercator(&pos, pActor, coord);
+        f32 distance = pos.distance(pActor->mPosition);
+        if (nearest > distance) {
+            *pPos = pos;
+            nearest = distance;
+        }
+    }
+}
+
+void MR::calcRailClippingInfoForMercator(TVec3f* pCenter, f32* pRadius, LiveActor* pActor, f32 step, f32 padding) {
+    f32 length = getRailTotalLength(pActor);
+    s32 count = length / step;
+    TVec3f start;
+    ::calcRailPosForMercator(&start, pActor, 0.0f);
+    TVec3f end;
+    ::calcRailPosForMercator(&end, pActor, length);
+    TBox3f box;
+    box.set(TVec3f(min(start.x, end.x), min(start.y, end.y), min(start.z, end.z)),
+            TVec3f(max(start.x, end.x), max(start.y, end.y), max(start.z, end.z)));
+    for (s32 i = 1; i < count; i++) {
+        TVec3f pos;
+        ::calcRailPosForMercator(&pos, pActor, i * step);
+        box.extend(pos);
     }
 
-    void calcNearestRailPosForMercator(TVec3f* pPos, const LiveActor* pActor, f32 step) {
-        pPos->zero();
-        f32 nearest = 3.4028234663852886e38f;
-        for (f32 coord = 0.0f; coord <= getRailTotalLength(pActor); coord += step) {
+    TVec3f pad(padding);
+    box.i.sub(pad);
+    box.f.add(pad);
+    box.getCenter(pCenter);
+    TVec3f size;
+    size.sub(box.f, box.i);
+    *pRadius = 0.5f * size.length();
+}
+
+void MR::initAndSetRailClippingForMercator(TVec3f* pCenter, LiveActor* pActor, f32 step, f32 padding) {
+    f32 radius = 0.0f;
+    calcRailClippingInfoForMercator(pCenter, &radius, pActor, step, padding);
+    setClippingTypeSphere(pActor, radius, pCenter);
+}
+
+f32 MR::calcRailTotalLengthForMercator(const LiveActor* pActor, f32 step) {
+    f32 length = getRailTotalLength(pActor);
+    s32 count = length / step;
+    TVec3f points[2];
+    ::calcRailPosForMercator(&points[0], pActor, 0.0f);
+    f32 total = 0.0f;
+    for (s32 i = 1; i <= count; i++) {
+        ::calcRailPosForMercator(&points[i % 2], pActor, length * i / count);
+        total += points[0].distance(points[1]);
+    }
+
+    return total;
+}
+
+void MR::getDivideMercatorRailPosition(DivideMercatorRailPosInfo* pInfo, const LiveActor* pActor, u32 count, f32 tolerance, u32 maxIterations) {
+    if (count <= 1) {
+        TVec3f pos;
+        ::calcRailPosForMercator(&pos, pActor, 0.0f);
+        pInfo->setPosition(0, pos);
+        return;
+    }
+
+    f32 total = calcRailTotalLengthForMercator(pActor, 100.0f);
+    f32 railSpacing;
+    f32 spacing;
+    if (isLoopRail(pActor)) {
+        spacing = total / count;
+    } else {
+        spacing = total / (count - 1);
+    }
+
+    f32 railLength = getRailTotalLength(pActor);
+    if (isLoopRail(pActor)) {
+        railSpacing = railLength / count;
+    } else {
+        railSpacing = railLength / (count - 1);
+    }
+
+    f32 distance = 0.0f;
+    f32 targetDistance = spacing;
+    f32 lower = 0.0f;
+    f32 coord = railSpacing;
+    f32 upper = 2.0f * railSpacing;
+    TVec3f previous;
+    ::calcRailPosForMercator(&previous, pActor, 0.0f);
+    pInfo->setPosition(0, previous);
+    for (s32 i = 1; i < count; i++) {
+        bool bracketed = false;
+        u32 iteration = 0;
+        while (iteration < maxIterations) {
             TVec3f pos;
             ::calcRailPosForMercator(&pos, pActor, coord);
-            f32 distance = pos.distance(pActor->mPosition);
-            if (nearest > distance) {
-                *pPos = pos;
-                nearest = distance;
+            f32 segment = previous.distance(pos);
+            f32 remaining = targetDistance - (distance + segment);
+            if (MR::abs(remaining) < tolerance || iteration == maxIterations) {
+                pInfo->setPosition(i, pos);
+                previous = pos;
+                lower = coord;
+                coord += railSpacing;
+                distance += segment;
+                upper = coord + railSpacing;
+                targetDistance = spacing * (i + 1);
+                if (targetDistance < distance) {
+                    targetDistance = distance;
+                }
+
+                break;
+            }
+
+            if (remaining > 0.0f) {
+                lower = coord;
+                if (!bracketed) {
+                    upper += 2.0f * railSpacing;
+                }
+
+                coord = 0.5f * (coord + upper);
+                distance += segment;
+                previous = pos;
+            } else {
+                if (!bracketed) {
+                    bracketed = true;
+                }
+
+                upper = coord;
+                coord = 0.5f * (lower + coord);
+            }
+
+            if (bracketed) {
+                iteration++;
             }
         }
     }
+}
 
-    void calcRailClippingInfoForMercator(TVec3f* pCenter, f32* pRadius, LiveActor* pActor, f32 step, f32 padding) {
-        f32 length = getRailTotalLength(pActor);
-        s32 count = length / step;
-        TVec3f start;
-        ::calcRailPosForMercator(&start, pActor, 0.0f);
-        TVec3f end;
-        ::calcRailPosForMercator(&end, pActor, length);
-        TBox3f box;
-        box.set(TVec3f(min(start.x, end.x), min(start.y, end.y), min(start.z, end.z)),
-                TVec3f(max(start.x, end.x), max(start.y, end.y), max(start.z, end.z)));
-        for (s32 i = 1; i < count; i++) {
-            TVec3f pos;
-            ::calcRailPosForMercator(&pos, pActor, i * step);
-            box.extend(pos);
-        }
-
-        TVec3f pad(padding);
-        box.i.sub(pad);
-        box.f.add(pad);
-        box.getCenter(pCenter);
-        TVec3f size;
-        size.sub(box.f, box.i);
-        *pRadius = 0.5f * size.length();
+MapPartsRailMover* MR::createMapPartsRailMoverForMercator(LiveActor* pActor, const JMapInfoIter& rIter, bool setRailPos) {
+    TVec3f savedPos(pActor->mPosition);
+    TVec3f placementPos;
+    getJMapInfoTrans(rIter, &placementPos);
+    pActor->mPosition.set(placementPos);
+    MapPartsRailMover* pMover = new MapPartsRailMover(pActor);
+    pMover->init(rIter);
+    if (setRailPos) {
+        ::calcRailPosForMercator(&pActor->mPosition, pActor, getRailCoord(pActor));
+    } else {
+        pActor->mPosition.set(savedPos);
     }
 
-    void initAndSetRailClippingForMercator(TVec3f* pCenter, LiveActor* pActor, f32 step, f32 padding) {
-        f32 radius = 0.0f;
-        calcRailClippingInfoForMercator(pCenter, &radius, pActor, step, padding);
-        setClippingTypeSphere(pActor, radius, pCenter);
-    }
-
-    f32 calcRailTotalLengthForMercator(const LiveActor* pActor, f32 step) {
-        f32 length = getRailTotalLength(pActor);
-        s32 count = length / step;
-        TVec3f points[2];
-        ::calcRailPosForMercator(&points[0], pActor, 0.0f);
-        f32 total = 0.0f;
-        for (s32 i = 1; i <= count; i++) {
-            ::calcRailPosForMercator(&points[i % 2], pActor, length * i / count);
-            total += points[0].distance(points[1]);
-        }
-
-        return total;
-    }
-
-    void getDivideMercatorRailPosition(DivideMercatorRailPosInfo* pInfo, const LiveActor* pActor, u32 count, f32 tolerance, u32 maxIterations) {
-        if (count <= 1) {
-            TVec3f pos;
-            ::calcRailPosForMercator(&pos, pActor, 0.0f);
-            pInfo->setPosition(0, pos);
-            return;
-        }
-
-        f32 total = calcRailTotalLengthForMercator(pActor, 100.0f);
-        f32 railSpacing;
-        f32 spacing;
-        if (isLoopRail(pActor)) {
-            spacing = total / count;
-        } else {
-            spacing = total / (count - 1);
-        }
-
-        f32 railLength = getRailTotalLength(pActor);
-        if (isLoopRail(pActor)) {
-            railSpacing = railLength / count;
-        } else {
-            railSpacing = railLength / (count - 1);
-        }
-
-        f32 distance = 0.0f;
-        f32 targetDistance = spacing;
-        f32 lower = 0.0f;
-        f32 coord = railSpacing;
-        f32 upper = 2.0f * railSpacing;
-        TVec3f previous;
-        ::calcRailPosForMercator(&previous, pActor, 0.0f);
-        pInfo->setPosition(0, previous);
-        for (s32 i = 1; i < count; i++) {
-            bool bracketed = false;
-            u32 iteration = 0;
-            while (iteration < maxIterations) {
-                TVec3f pos;
-                ::calcRailPosForMercator(&pos, pActor, coord);
-                f32 segment = previous.distance(pos);
-                f32 remaining = targetDistance - (distance + segment);
-                if (MR::abs(remaining) < tolerance || iteration == maxIterations) {
-                    pInfo->setPosition(i, pos);
-                    previous = pos;
-                    lower = coord;
-                    coord += railSpacing;
-                    distance += segment;
-                    upper = coord + railSpacing;
-                    targetDistance = spacing * (i + 1);
-                    if (targetDistance < distance) {
-                        targetDistance = distance;
-                    }
-
-                    break;
-                }
-
-                if (remaining > 0.0f) {
-                    lower = coord;
-                    if (!bracketed) {
-                        upper += 2.0f * railSpacing;
-                    }
-
-                    coord = 0.5f * (coord + upper);
-                    distance += segment;
-                    previous = pos;
-                } else {
-                    if (!bracketed) {
-                        bracketed = true;
-                    }
-
-                    upper = coord;
-                    coord = 0.5f * (lower + coord);
-                }
-
-                if (bracketed) {
-                    iteration++;
-                }
-            }
-        }
-    }
-
-    MapPartsRailMover* createMapPartsRailMoverForMercator(LiveActor* pActor, const JMapInfoIter& rIter, bool setRailPos) {
-        TVec3f savedPos(pActor->mPosition);
-        TVec3f placementPos;
-        getJMapInfoTrans(rIter, &placementPos);
-        pActor->mPosition.set(placementPos);
-        MapPartsRailMover* pMover = new MapPartsRailMover(pActor);
-        pMover->init(rIter);
-        if (setRailPos) {
-            ::calcRailPosForMercator(&pActor->mPosition, pActor, getRailCoord(pActor));
-        } else {
-            pActor->mPosition.set(savedPos);
-        }
-
-        return pMover;
-    }
-};  // namespace MR
+    return pMover;
+}
 
 MercatorTransformCube::~MercatorTransformCube() {
 }
