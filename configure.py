@@ -3099,7 +3099,7 @@ config.libs = [
     SDKLib(
         "wpad",
         [
-            Object(MatchingFor(KOR,PAL), "RVL_SDK/wpad/WPAD.c", cflags=cflags_sdk_wpad),
+            Object(MatchingFor(KOR, PAL), "RVL_SDK/wpad/WPAD.c", cflags=cflags_sdk_wpad),
             Object(MatchingFor(ALL), "RVL_SDK/wpad/WPADHIDParser.c"),
             Object(MatchingFor(ALL), "RVL_SDK/wpad/WPADEncrypt.c"),
             Object(MatchingFor(ALL), "RVL_SDK/wpad/WPADMem.c"),
