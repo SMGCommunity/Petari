@@ -263,11 +263,11 @@ void __OSLaunchNextFirmware(void) {
         }
 
         if (DVDLowIntType != 1) {
-            #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x388);
-            #elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x395);
-            #endif
+#endif
             __OSReturnToMenuForError();
         }
 
@@ -278,11 +278,11 @@ void __OSLaunchNextFirmware(void) {
         }
 
         if (DVDLowIntType != 1) {
-            #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x392);
-            #elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x39F);
-            #endif
+#endif
             __OSReturnToMenuForError();
         }
 
@@ -293,11 +293,11 @@ void __OSLaunchNextFirmware(void) {
         }
 
         if (DVDLowIntType != 1) {
-            #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x39E);
-            #elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x3AB);
-            #endif
+#endif
             __OSReturnToMenuForError();
         }
 
@@ -342,11 +342,11 @@ void __OSLaunchNextFirmware(void) {
         }
 
         if (DVDLowIntType != 1) {
-            #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x3DB);
-            #elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x3E8);
-            #endif
+#endif
             __OSReturnToMenuForError();
         }
 
@@ -357,11 +357,11 @@ void __OSLaunchNextFirmware(void) {
         }
 
         if (DVDLowIntType != 1) {
-            #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x3E5);
-            #elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x3F2);
-            #endif
+#endif
             __OSReturnToMenuForError();
         }
     }
@@ -370,32 +370,32 @@ void __OSLaunchNextFirmware(void) {
 
     rc = ESP_InitLib();
     if (rc != 0) {
-        #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", rc, 0x3F0);
-        #elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", rc, 0x3FD);
-        #endif
+#endif
         __OSHotResetForError();
     }
 
     rc = ESP_GetTicketViews(version, NULL, &ticketCnt);
     if (ticketCnt != 1 || rc != 0) {
-        #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", rc, 0x3F9);
-        #elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", rc, 0x406);
-        #endif
+#endif
         __OSHotResetForError();
     }
 
     t = (ESTicketView*)OSAllocFromMEM1ArenaLo(OSRoundUp32B(sizeof(ESTicketView) * ticketCnt), 32);
     rc = ESP_GetTicketViews(version, t, &ticketCnt);
     if (rc != 0) {
-        #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", rc, 0x402);
-        #elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", rc, 0x40F);
-        #endif
+#endif
         __OSHotResetForError();
     }
 
@@ -407,11 +407,11 @@ void __OSLaunchNextFirmware(void) {
 
     rc = ESP_LaunchTitle(version, t);
     if (rc != 0) {
-        #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", rc, 0x412);
-        #elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", rc, 0x41F);
-        #endif
+#endif
         __OSHotResetForError();
     }
 
@@ -443,11 +443,11 @@ void __OSLaunchNextFirmware(void) {
     }
 
     if (DVDLowIntType != 1) {
-        #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x43E);
-        #elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x44B);
-        #endif
+#endif
         __OSReturnToMenuForError();
     }
 
@@ -462,11 +462,11 @@ void __OSLaunchNextFirmware(void) {
     }
 
     if (DVDLowIntType != 1) {
-        #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x455);
-        #elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x462);
-        #endif
+#endif
         __OSReturnToMenuForError();
     }
 }
@@ -614,11 +614,11 @@ s32 __OSGetValidTicketIndex(ESTicketView *ticketViewList, u32 numTickets) {
     u32 maxBit = 0, maxTime = 0;
 
     if (ticketViewList == NULL) {
-        #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSReport("NULL pointer detected: line %d in %s\n", 0x54D, __FILE__);
-        #elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01)
         OSReport("NULL pointer detected: line %d in %s\n", 0x183, __FILE__);
-        #endif
+#endif
         return -1017;
     }
 
@@ -888,21 +888,21 @@ void LaunchCommon(OSTitleId titleId, u32 LaunchCode, char* const argv[], BOOL la
         else {
             rv = ESP_InitLib();
             if(rv != 0) {
-                #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
                 OSReport("\nOSExec(): Failed to exec %d in %d\n", rv, 0x6C2);
-                #elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01)
                 OSReport("\nOSExec(): Failed to exec %d in %d\n", rv, 0x30F);
-                #endif
+#endif
                 __OSHotResetForError();
             }
 
             rv = ESP_GetTitleId(&title);
             if(rv != 0) {
-                #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
                 OSReport("\nOSExec(): Failed to exec %d in %d\n", rv, 0x6CA);
-                #elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01)
                 OSReport("\nOSExec(): Failed to exec %d in %d\n", rv, 0x317);
-                #endif
+#endif
                 __OSHotResetForError();
             }
         }
