@@ -135,54 +135,52 @@ namespace {
     }
 };  // namespace
 
-namespace MR {
-    WPad* getWPad(s32 channel) {
-        return ::getWPadHolder()->getWPad(channel);
+WPad* MR::getWPad(s32 channel) {
+    return ::getWPadHolder()->getWPad(channel);
+}
+
+void MR::resetWPad() {
+    WPadHolder* pWPadHolder;
+
+    pWPadHolder = ::getWPadHolder();
+    pWPadHolder->resetPad();
+}
+
+void MR::setWPadHolderModeHomeButton() {
+    WPadHolder* pWPadHolder;
+
+    pWPadHolder = ::getWPadHolder();
+    pWPadHolder->mMode = WPAD_SENSOR_BAR_POS_BOTTOM;
+}
+
+void MR::setWPadHolderModeGame() {
+    WPadHolder* pWPadHolder;
+
+    pWPadHolder = ::getWPadHolder();
+    pWPadHolder->mMode = WPAD_SENSOR_BAR_POS_TOP;
+}
+
+void MR::getHBMKPadData(HBMKPadData* pPadData, s32 chan) {
+    u32 type;
+    s32 err = WPADProbe(chan, &type);
+    KPADStatus* pStatus = ::getWPadHolder()->mReadDataInfoArray[chan].mStatusArray;
+
+    switch (err) {
+    case WPAD_ERR_NONE:
+    case WPAD_ERR_BUSY:
+    case WPAD_ERR_TRANSFER:
+        pPadData->kpad = pStatus;
+        pPadData->pos = pStatus->pos;
+        pPadData->use_devtype = pStatus->dev_type;
+        break;
+    default:
+        pPadData->kpad = nullptr;
+        break;
     }
+}
 
-    void resetWPad() {
-        WPadHolder* pWPadHolder;
+void MR::setAutoSleepTimeWiiRemote(bool isLongAutoSleep) {
+    u8 minute = isLongAutoSleep ? 15 : 5;
 
-        pWPadHolder = ::getWPadHolder();
-        pWPadHolder->resetPad();
-    }
-
-    void setWPadHolderModeHomeButton() {
-        WPadHolder* pWPadHolder;
-
-        pWPadHolder = ::getWPadHolder();
-        pWPadHolder->mMode = WPAD_SENSOR_BAR_POS_BOTTOM;
-    }
-
-    void setWPadHolderModeGame() {
-        WPadHolder* pWPadHolder;
-
-        pWPadHolder = ::getWPadHolder();
-        pWPadHolder->mMode = WPAD_SENSOR_BAR_POS_TOP;
-    }
-
-    void getHBMKPadData(HBMKPadData* pPadData, s32 chan) {
-        u32 type;
-        s32 err = WPADProbe(chan, &type);
-        KPADStatus* pStatus = ::getWPadHolder()->mReadDataInfoArray[chan].mStatusArray;
-
-        switch (err) {
-        case WPAD_ERR_NONE:
-        case WPAD_ERR_BUSY:
-        case WPAD_ERR_TRANSFER:
-            pPadData->kpad = pStatus;
-            pPadData->pos = pStatus->pos;
-            pPadData->use_devtype = pStatus->dev_type;
-            break;
-        default:
-            pPadData->kpad = nullptr;
-            break;
-        }
-    }
-
-    void setAutoSleepTimeWiiRemote(bool isLongAutoSleep) {
-        u8 minute = isLongAutoSleep ? 15 : 5;
-
-        WPADSetAutoSleepTime(minute);
-    }
-};  // namespace MR
+    WPADSetAutoSleepTime(minute);
+}

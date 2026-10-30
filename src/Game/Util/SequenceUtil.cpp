@@ -11,114 +11,112 @@
 #include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/SystemUtil.hpp"
 
-namespace MR {
-    void requestChangeScene(const char* pName) {
-        GameSequenceFunction::requestChangeScene(pName);
+void MR::requestChangeScene(const char* pName) {
+    GameSequenceFunction::requestChangeScene(pName);
+}
+
+void MR::requestChangeSceneTitle() {
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(7, nullptr, 1, nullptr));
+}
+
+void MR::requestChangeStageInGameAfterLoadingGameData() {
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(6, nullptr, 1, nullptr));
+}
+
+void MR::requestChangeStageAfterStageClear() {
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(4, nullptr, 1, nullptr));
+}
+
+void MR::requestChangeStageAfterMiss() {
+    JMapIdInfo info = *getPlayerRestartIdInfo();
+
+    if (isGalaxyAnyCometAppearInCurrentStage()) {
+        const JMapIdInfo& rInitialInfo = getInitializeStartIdInfo();
+        info._0 = rInitialInfo._0;
+        info.mZoneID = rInitialInfo.mZoneID;
     }
 
-    void requestChangeSceneTitle() {
-        GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(7, nullptr, 1, nullptr));
-    }
+    GameSystemSceneController* pSceneController = SingletonHolder< GameSystem >::get()->mSceneController;
+    GalaxyMoveArgument argument(5, pSceneController->mCurrSceneControlInfo.mStage, pSceneController->getCurrentScenarioNo(), &info);
+    argument._C = pSceneController->getCurrentSelectedScenarioNo();
 
-    void requestChangeStageInGameAfterLoadingGameData() {
-        GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(6, nullptr, 1, nullptr));
-    }
+    GameSequenceFunction::requestGalaxyMove(argument);
+}
 
-    void requestChangeStageAfterStageClear() {
-        GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(4, nullptr, 1, nullptr));
-    }
+void MR::requestChangeStageInGameMoving(const char* pStageName, s32 scenarioNo, const JMapIdInfo& rInfo) {
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(0, pStageName, scenarioNo, &rInfo));
+}
 
-    void requestChangeStageAfterMiss() {
-        JMapIdInfo info = *getPlayerRestartIdInfo();
+void MR::requestChangeStageInGameMoving(const char* pStageName, s32 scenarioNo) {
+    requestChangeStageInGameMoving(pStageName, scenarioNo, getInitializeStartIdInfo());
+}
 
-        if (isGalaxyAnyCometAppearInCurrentStage()) {
-            const JMapIdInfo& rInitialInfo = getInitializeStartIdInfo();
-            info._0 = rInitialInfo._0;
-            info.mZoneID = rInitialInfo.mZoneID;
-        }
+void MR::requestChangeSceneAfterGameOver() {
+    resetSystemAndGameStatus();
+    requestChangeSceneTitle();
+}
 
-        GameSystemSceneController* pSceneController = SingletonHolder< GameSystem >::get()->mSceneController;
-        GalaxyMoveArgument argument(5, pSceneController->mCurrSceneControlInfo.mStage, pSceneController->getCurrentScenarioNo(), &info);
-        argument._C = pSceneController->getCurrentSelectedScenarioNo();
+void MR::requestChangeSceneAfterBoot() {
+    requestChangeSceneTitle();
+}
 
-        GameSequenceFunction::requestGalaxyMove(argument);
-    }
+void MR::requestChangeStageGoBackAstroDome() {
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(3, nullptr, 1, nullptr));
+}
 
-    void requestChangeStageInGameMoving(const char* pStageName, s32 scenarioNo, const JMapIdInfo& rInfo) {
-        GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(0, pStageName, scenarioNo, &rInfo));
-    }
+void MR::requestStartScenarioSelect(const char* pStageName) {
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(2, pStageName, -1, nullptr));
+}
 
-    void requestChangeStageInGameMoving(const char* pStageName, s32 scenarioNo) {
-        requestChangeStageInGameMoving(pStageName, scenarioNo, getInitializeStartIdInfo());
-    }
+void MR::requestStartScenarioSelectForComet(const char* pStageName, s32 scenarioNo) {
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(2, pStageName, scenarioNo, nullptr));
+}
 
-    void requestChangeSceneAfterGameOver() {
-        resetSystemAndGameStatus();
-        requestChangeSceneTitle();
-    }
+bool MR::hasRetryGalaxySequence() {
+    return GameSequenceFunction::hasRetryGalaxySequence();
+}
 
-    void requestChangeSceneAfterBoot() {
-        requestChangeSceneTitle();
-    }
+bool MR::isExecScenarioStarter() {
+    return GameSceneFunction::isExecScenarioStarter();
+}
 
-    void requestChangeStageGoBackAstroDome() {
-        GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(3, nullptr, 1, nullptr));
-    }
+void MR::requestPowerStarGetDemo() {
+    GameSceneFunction::requestPowerStarGetDemo();
+}
 
-    void requestStartScenarioSelect(const char* pStageName) {
-        GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(2, pStageName, -1, nullptr));
-    }
+void MR::requestGrandStarGetDemo() {
+    GameSceneFunction::requestGrandStarGetDemo();
+}
 
-    void requestStartScenarioSelectForComet(const char* pStageName, s32 scenarioNo) {
-        GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(2, pStageName, scenarioNo, nullptr));
-    }
+void MR::requestStartGameOverDemo() {
+    GameSceneFunction::requestStartGameOverDemo();
+}
 
-    bool hasRetryGalaxySequence() {
-        return GameSequenceFunction::hasRetryGalaxySequence();
-    }
+void MR::requestEndGameOverDemo() {
+    GameSceneFunction::requestEndGameOverDemo();
+}
 
-    bool isExecScenarioStarter() {
-        return GameSceneFunction::isExecScenarioStarter();
-    }
+void MR::requestEndMissDemo() {
+    GameSceneFunction::requestEndMissDemo();
+}
 
-    void requestPowerStarGetDemo() {
-        GameSceneFunction::requestPowerStarGetDemo();
-    }
+void MR::requestShowGalaxyMap() {
+    GameSceneFunction::requestShowGalaxyMap();
+}
 
-    void requestGrandStarGetDemo() {
-        GameSceneFunction::requestGrandStarGetDemo();
-    }
+void MR::executeOnWelcomeAndRetry() {
+    startGalaxyCometEvent();
+    requestForceAppearHPMeter();
+}
 
-    void requestStartGameOverDemo() {
-        GameSceneFunction::requestStartGameOverDemo();
-    }
+void MR::requestGoToAstroGalaxy(s32 param1) {
+    JMapIdInfo info(param1, 0);
 
-    void requestEndGameOverDemo() {
-        GameSceneFunction::requestEndGameOverDemo();
-    }
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(0, "AstroGalaxy", -1, &info));
+}
 
-    void requestEndMissDemo() {
-        GameSceneFunction::requestEndMissDemo();
-    }
+void MR::requestGoToAstroDomeFromAstroGalaxy(s32 scenarioNo, s32 param2) {
+    JMapIdInfo info(param2, 0);
 
-    void requestShowGalaxyMap() {
-        GameSceneFunction::requestShowGalaxyMap();
-    }
-
-    void executeOnWelcomeAndRetry() {
-        startGalaxyCometEvent();
-        requestForceAppearHPMeter();
-    }
-
-    void requestGoToAstroGalaxy(s32 param1) {
-        JMapIdInfo info(param1, 0);
-
-        GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(0, "AstroGalaxy", -1, &info));
-    }
-
-    void requestGoToAstroDomeFromAstroGalaxy(s32 scenarioNo, s32 param2) {
-        JMapIdInfo info(param2, 0);
-
-        GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(0, "AstroDome", scenarioNo, &info));
-    }
-};  // namespace MR
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(0, "AstroDome", scenarioNo, &info));
+}

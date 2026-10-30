@@ -28,216 +28,111 @@ namespace {
     }
 };  // namespace
 
-namespace MR {
-    void initAnimCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName) {
-        char actorEventName[128];
-        snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
+void MR::initAnimCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName) {
+    char actorEventName[128];
+    snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
 
-        char animName[64];
-        snprintf(animName, sizeof(animName), "%s.canm", pEventName);
+    char animName[64];
+    snprintf(animName, sizeof(animName), "%s.canm", pEventName);
 
-        declareEventCameraAnim(pInfo, actorEventName, getResourceHolder(pActor)->mFileInfoTable->getRes(animName));
+    declareEventCameraAnim(pInfo, actorEventName, getResourceHolder(pActor)->mFileInfoTable->getRes(animName));
+}
+
+ActorCameraInfo* MR::createActorCameraInfo(const JMapInfoIter& rIter) {
+    return new ActorCameraInfo(rIter);
+}
+
+bool MR::createActorCameraInfoIfExist(const JMapInfoIter& rIter, ActorCameraInfo** ppInfo) {
+    ActorCameraInfo newInfo(rIter);
+
+    if (newInfo.mCameraSetID == -1) {
+        return false;
     }
 
-    ActorCameraInfo* createActorCameraInfo(const JMapInfoIter& rIter) {
-        return new ActorCameraInfo(rIter);
+    (*ppInfo) = createActorCameraInfo(rIter);
+
+    return true;
+}
+
+bool MR::initActorCamera(const LiveActor* pActor, const JMapInfoIter& rIter, ActorCameraInfo** ppInfo) {
+    return initMultiActorCamera(pActor, rIter, ppInfo, nullptr);
+}
+
+bool MR::initMultiActorCamera(const LiveActor* pActor, const JMapInfoIter& rIter, ActorCameraInfo** ppInfo, const char* pEventName) {
+    if (*ppInfo == nullptr) {
+        *ppInfo = createActorCameraInfo(rIter);
     }
 
-    bool createActorCameraInfoIfExist(const JMapInfoIter& rIter, ActorCameraInfo** ppInfo) {
-        ActorCameraInfo newInfo(rIter);
+    return initMultiActorCameraNoInit(pActor, (*ppInfo), pEventName);
+}
 
-        if (newInfo.mCameraSetID == -1) {
-            return false;
-        }
-
-        (*ppInfo) = createActorCameraInfo(rIter);
-
-        return true;
+bool MR::initMultiActorCameraNoInit(const LiveActor* pActor, ActorCameraInfo* pInfo, const char* pEventName) {
+    if (pInfo->mCameraSetID < 0) {
+        return false;
     }
 
-    bool initActorCamera(const LiveActor* pActor, const JMapInfoIter& rIter, ActorCameraInfo** ppInfo) {
-        return initMultiActorCamera(pActor, rIter, ppInfo, nullptr);
+    char name[256];
+
+    if (pEventName != nullptr) {
+        ::createMultiActorCameraName(name, sizeof(name), pActor, pInfo, pEventName);
+    } else {
+        ::createActorCameraName(name, sizeof(name), pActor, pInfo);
     }
 
-    bool initMultiActorCamera(const LiveActor* pActor, const JMapInfoIter& rIter, ActorCameraInfo** ppInfo, const char* pEventName) {
-        if (*ppInfo == nullptr) {
-            *ppInfo = createActorCameraInfo(rIter);
-        }
+    declareEventCamera(pInfo, name);
 
-        return initMultiActorCameraNoInit(pActor, (*ppInfo), pEventName);
-    }
+    return true;
+}
 
-    bool initMultiActorCameraNoInit(const LiveActor* pActor, ActorCameraInfo* pInfo, const char* pEventName) {
-        if (pInfo->mCameraSetID < 0) {
-            return false;
-        }
+void MR::initActorCameraProgrammable(const LiveActor* pActor) {
+    declareEventCameraProgrammable(pActor->getName());
+}
 
-        char name[256];
+bool MR::startActorCameraNoTarget(const LiveActor* pActor, const ActorCameraInfo* pInfo, s32 frame) {
+    CameraTargetArg targetArg = CameraTargetArg();
 
-        if (pEventName != nullptr) {
-            ::createMultiActorCameraName(name, sizeof(name), pActor, pInfo, pEventName);
-        } else {
-            ::createActorCameraName(name, sizeof(name), pActor, pInfo);
-        }
+    return startMultiActorCameraTargetOther(pActor, pInfo, nullptr, targetArg, frame);
+}
 
-        declareEventCamera(pInfo, name);
+bool MR::startActorCameraTargetPlayer(const LiveActor* pActor, const ActorCameraInfo* pInfo, s32 frame) {
+    CameraTargetArg targetArg = CameraTargetArg();
 
-        return true;
-    }
+    setCameraTargetToPlayer(&targetArg);
 
-    void initActorCameraProgrammable(const LiveActor* pActor) {
-        declareEventCameraProgrammable(pActor->getName());
-    }
+    return startMultiActorCameraTargetOther(pActor, pInfo, nullptr, targetArg, frame);
+}
 
-    bool startActorCameraNoTarget(const LiveActor* pActor, const ActorCameraInfo* pInfo, s32 frame) {
-        CameraTargetArg targetArg = CameraTargetArg();
+bool MR::startActorCameraTargetSelf(const LiveActor* pActor, const ActorCameraInfo* pInfo, s32 frame) {
+    CameraTargetArg targetArg = CameraTargetArg(pActor);
 
-        return startMultiActorCameraTargetOther(pActor, pInfo, nullptr, targetArg, frame);
-    }
+    return startMultiActorCameraTargetOther(pActor, pInfo, nullptr, targetArg, frame);
+}
 
-    bool startActorCameraTargetPlayer(const LiveActor* pActor, const ActorCameraInfo* pInfo, s32 frame) {
-        CameraTargetArg targetArg = CameraTargetArg();
+bool MR::startActorCameraTargetOther(const LiveActor* pActor, const ActorCameraInfo* pInfo, const CameraTargetArg& rTargetArg, s32 frame) {
+    return startMultiActorCameraTargetOther(pActor, pInfo, nullptr, rTargetArg, frame);
+}
 
-        setCameraTargetToPlayer(&targetArg);
+bool MR::startMultiActorCameraNoTarget(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame) {
+    CameraTargetArg targetArg = CameraTargetArg();
 
-        return startMultiActorCameraTargetOther(pActor, pInfo, nullptr, targetArg, frame);
-    }
+    return startMultiActorCameraTargetOther(pActor, pInfo, pEventName, targetArg, frame);
+}
 
-    bool startActorCameraTargetSelf(const LiveActor* pActor, const ActorCameraInfo* pInfo, s32 frame) {
-        CameraTargetArg targetArg = CameraTargetArg(pActor);
+bool MR::startMultiActorCameraTargetPlayer(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame) {
+    CameraTargetArg targetArg = CameraTargetArg();
 
-        return startMultiActorCameraTargetOther(pActor, pInfo, nullptr, targetArg, frame);
-    }
+    setCameraTargetToPlayer(&targetArg);
 
-    bool startActorCameraTargetOther(const LiveActor* pActor, const ActorCameraInfo* pInfo, const CameraTargetArg& rTargetArg, s32 frame) {
-        return startMultiActorCameraTargetOther(pActor, pInfo, nullptr, rTargetArg, frame);
-    }
+    return startMultiActorCameraTargetOther(pActor, pInfo, pEventName, targetArg, frame);
+}
 
-    bool startMultiActorCameraNoTarget(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame) {
-        CameraTargetArg targetArg = CameraTargetArg();
+bool MR::startMultiActorCameraTargetSelf(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame) {
+    return startMultiActorCameraTargetOther(pActor, pInfo, pEventName, CameraTargetArg(pActor), frame);
+}
 
-        return startMultiActorCameraTargetOther(pActor, pInfo, pEventName, targetArg, frame);
-    }
-
-    bool startMultiActorCameraTargetPlayer(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame) {
-        CameraTargetArg targetArg = CameraTargetArg();
-
-        setCameraTargetToPlayer(&targetArg);
-
-        return startMultiActorCameraTargetOther(pActor, pInfo, pEventName, targetArg, frame);
-    }
-
-    bool startMultiActorCameraTargetSelf(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame) {
-        return startMultiActorCameraTargetOther(pActor, pInfo, pEventName, CameraTargetArg(pActor), frame);
-    }
-
-    bool startMultiActorCameraTargetOther(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName,
+bool MR::startMultiActorCameraTargetOther(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName,
                                           const CameraTargetArg& rTargetArg, s32 frame) {
-        if (pInfo->mCameraSetID >= 0) {
-            char name[256];
-
-            if (pEventName != nullptr) {
-                ::createMultiActorCameraName(name, sizeof(name), pActor, pInfo, pEventName);
-            } else {
-                ::createActorCameraName(name, sizeof(name), pActor, pInfo);
-            }
-
-            startEventCamera(pInfo, name, rTargetArg, frame);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    void startAnimCameraTargetPlayer(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame, f32 speed) {
-        CameraTargetArg targetArg;
-        setCameraTargetToPlayer(&targetArg);
-
-        char actorEventName[128];
-        snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
-
-        startEventCameraAnim(pInfo, actorEventName, targetArg, frame, speed);
-    }
-
-    void startAnimCameraTargetSelf(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame, f32 speed) {
-        CameraTargetArg targetArg(pActor);
-
-        char actorEventName[128];
-        snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
-
-        startEventCameraAnim(pInfo, actorEventName, targetArg, frame, speed);
-    }
-
-    void startAnimCameraTargetOther(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, const CameraTargetArg& rTargetArg,
-                                    s32 frame, f32 speed) {
-        char actorEventName[128];
-        snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
-
-        startEventCameraAnim(pInfo, actorEventName, rTargetArg, frame, speed);
-    }
-
-    void startActorCameraProgrammable(const LiveActor* pActor, s32 frame) {
-        startGlobalEventCameraNoTarget(pActor->getName(), frame);
-    }
-
-    bool endActorCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, bool resetView, s32 frame) {
-        return endMultiActorCamera(pActor, pInfo, nullptr, resetView, frame);
-    }
-
-    bool endMultiActorCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, bool resetView, s32 frame) {
-        if (pInfo->mCameraSetID >= 0) {
-            char name[256];
-
-            if (pEventName != nullptr) {
-                ::createMultiActorCameraName(name, sizeof(name), pActor, pInfo, pEventName);
-            } else {
-                ::createActorCameraName(name, sizeof(name), pActor, pInfo);
-            }
-
-            endEventCamera(pInfo, name, resetView, frame);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    bool endActorCameraAtLanding(const LiveActor* pActor, const ActorCameraInfo* pInfo, s32 frame) {
-        return endMultiActorCameraAtLanding(pActor, pInfo, nullptr, frame);
-    }
-
-    bool endMultiActorCameraAtLanding(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame) {
-        if (pInfo->mCameraSetID >= 0) {
-            char name[256];
-
-            if (pEventName != nullptr) {
-                ::createMultiActorCameraName(name, sizeof(name), pActor, pInfo, pEventName);
-            } else {
-                ::createActorCameraName(name, sizeof(name), pActor, pInfo);
-            }
-
-            endEventCameraAtLanding(pInfo, name, frame);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    void endActorCameraProgrammable(const LiveActor* pActor, s32 frame, bool resetView) {
-        endGlobalEventCamera(pActor->getName(), frame, resetView);
-    }
-
-    bool isActiveActorCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo) {
-        return isActiveMultiActorCamera(pActor, pInfo, nullptr);
-    }
-
-    bool isActiveMultiActorCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName) {
-        if (pInfo->mCameraSetID < 0) {
-            return false;
-        }
-
+    if (pInfo->mCameraSetID >= 0) {
         char name[256];
 
         if (pEventName != nullptr) {
@@ -246,112 +141,215 @@ namespace MR {
             ::createActorCameraName(name, sizeof(name), pActor, pInfo);
         }
 
-        return isEventCameraActive(pInfo, name);
+        startEventCamera(pInfo, name, rTargetArg, frame);
+
+        return true;
     }
 
-    void setProgrammableCameraParam(const LiveActor* pActor, const TVec3f& rWPoint, const TVec3f& rPos, const TVec3f& rUpVec) {
-        setProgrammableCameraParam(pActor->getName(), rWPoint, rPos, rUpVec, true);
-    }
+    return false;
+}
 
-    void setProgrammableCameraParamFovy(const LiveActor* pActor, f32 fovy) {
-        setProgrammableCameraParamFovy(pActor->getName(), fovy);
-    }
+void MR::startAnimCameraTargetPlayer(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame, f32 speed) {
+    CameraTargetArg targetArg;
+    setCameraTargetToPlayer(&targetArg);
 
-    void initAnimCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pArcName, const char* pEventName) {
-        char actorEventName[128];
-        snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
+    char actorEventName[128];
+    snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
 
-        char animName[64];
-        snprintf(animName, sizeof(animName), "%s.canm", pEventName);
+    startEventCameraAnim(pInfo, actorEventName, targetArg, frame, speed);
+}
 
-        declareEventCameraAnim(pInfo, actorEventName, loadResourceFromArc(pArcName, animName));
-    }
+void MR::startAnimCameraTargetSelf(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame, f32 speed) {
+    CameraTargetArg targetArg(pActor);
 
-    void endAnimCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame, bool resetView) {
-        char actorEventName[128];
-        snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
+    char actorEventName[128];
+    snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
 
-        endEventCamera(pInfo, actorEventName, resetView, frame);
-    }
+    startEventCameraAnim(pInfo, actorEventName, targetArg, frame, speed);
+}
 
-    s32 getAnimCameraFrame(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName) {
-        char actorEventName[256];
-        snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
+void MR::startAnimCameraTargetOther(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, const CameraTargetArg& rTargetArg,
+                                    s32 frame, f32 speed) {
+    char actorEventName[128];
+    snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
 
-        return getAnimCameraFrame(pInfo, actorEventName);
-    }
+    startEventCameraAnim(pInfo, actorEventName, rTargetArg, frame, speed);
+}
 
-    bool isAnimCameraEnd(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName) {
-        char actorEventName[256];
-        snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
+void MR::startActorCameraProgrammable(const LiveActor* pActor, s32 frame) {
+    startGlobalEventCameraNoTarget(pActor->getName(), frame);
+}
 
-        return isAnimCameraEnd(pInfo, actorEventName);
-    }
+bool MR::endActorCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, bool resetView, s32 frame) {
+    return endMultiActorCamera(pActor, pInfo, nullptr, resetView, frame);
+}
 
-    s32 getActorCameraFrames(const LiveActor* pActor, const ActorCameraInfo* pInfo) {
-        return getMultiActorCameraFrames(pActor, pInfo, nullptr);
-    }
+bool MR::endMultiActorCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, bool resetView, s32 frame) {
+    if (pInfo->mCameraSetID >= 0) {
+        char name[256];
 
-    s32 getMultiActorCameraFrames(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName) {
-        if (pInfo->mCameraSetID >= 0) {
-            char name[256];
-
-            if (pEventName != nullptr) {
-                ::createMultiActorCameraName(name, sizeof(name), pActor, pInfo, pEventName);
-            } else {
-                ::createActorCameraName(name, sizeof(name), pActor, pInfo);
-            }
-
-            return getEventCameraFrames(pInfo, name);
+        if (pEventName != nullptr) {
+            ::createMultiActorCameraName(name, sizeof(name), pActor, pInfo, pEventName);
+        } else {
+            ::createActorCameraName(name, sizeof(name), pActor, pInfo);
         }
 
-        return 0;
+        endEventCamera(pInfo, name, resetView, frame);
+
+        return true;
     }
 
-    bool isExistActorCamera(const ActorCameraInfo* pInfo) {
-        if (pInfo == nullptr) {
-            return false;
+    return false;
+}
+
+bool MR::endActorCameraAtLanding(const LiveActor* pActor, const ActorCameraInfo* pInfo, s32 frame) {
+    return endMultiActorCameraAtLanding(pActor, pInfo, nullptr, frame);
+}
+
+bool MR::endMultiActorCameraAtLanding(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame) {
+    if (pInfo->mCameraSetID >= 0) {
+        char name[256];
+
+        if (pEventName != nullptr) {
+            ::createMultiActorCameraName(name, sizeof(name), pActor, pInfo, pEventName);
+        } else {
+            ::createActorCameraName(name, sizeof(name), pActor, pInfo);
         }
 
-        return pInfo->mCameraSetID != -1;
+        endEventCameraAtLanding(pInfo, name, frame);
+
+        return true;
     }
 
-    void startRumbleWithShakeCameraWeak(const LiveActor* pActor, const char* pStrongPatternName, const char* pWeakPatternName, f32 strongDistMax,
+    return false;
+}
+
+void MR::endActorCameraProgrammable(const LiveActor* pActor, s32 frame, bool resetView) {
+    endGlobalEventCamera(pActor->getName(), frame, resetView);
+}
+
+bool MR::isActiveActorCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo) {
+    return isActiveMultiActorCamera(pActor, pInfo, nullptr);
+}
+
+bool MR::isActiveMultiActorCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName) {
+    if (pInfo->mCameraSetID < 0) {
+        return false;
+    }
+
+    char name[256];
+
+    if (pEventName != nullptr) {
+        ::createMultiActorCameraName(name, sizeof(name), pActor, pInfo, pEventName);
+    } else {
+        ::createActorCameraName(name, sizeof(name), pActor, pInfo);
+    }
+
+    return isEventCameraActive(pInfo, name);
+}
+
+void MR::setProgrammableCameraParam(const LiveActor* pActor, const TVec3f& rWPoint, const TVec3f& rPos, const TVec3f& rUpVec) {
+    setProgrammableCameraParam(pActor->getName(), rWPoint, rPos, rUpVec, true);
+}
+
+void MR::setProgrammableCameraParamFovy(const LiveActor* pActor, f32 fovy) {
+    setProgrammableCameraParamFovy(pActor->getName(), fovy);
+}
+
+void MR::initAnimCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pArcName, const char* pEventName) {
+    char actorEventName[128];
+    snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
+
+    char animName[64];
+    snprintf(animName, sizeof(animName), "%s.canm", pEventName);
+
+    declareEventCameraAnim(pInfo, actorEventName, loadResourceFromArc(pArcName, animName));
+}
+
+void MR::endAnimCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame, bool resetView) {
+    char actorEventName[128];
+    snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
+
+    endEventCamera(pInfo, actorEventName, resetView, frame);
+}
+
+s32 MR::getAnimCameraFrame(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName) {
+    char actorEventName[256];
+    snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
+
+    return getAnimCameraFrame(pInfo, actorEventName);
+}
+
+bool MR::isAnimCameraEnd(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName) {
+    char actorEventName[256];
+    snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
+
+    return isAnimCameraEnd(pInfo, actorEventName);
+}
+
+s32 MR::getActorCameraFrames(const LiveActor* pActor, const ActorCameraInfo* pInfo) {
+    return getMultiActorCameraFrames(pActor, pInfo, nullptr);
+}
+
+s32 MR::getMultiActorCameraFrames(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName) {
+    if (pInfo->mCameraSetID >= 0) {
+        char name[256];
+
+        if (pEventName != nullptr) {
+            ::createMultiActorCameraName(name, sizeof(name), pActor, pInfo, pEventName);
+        } else {
+            ::createActorCameraName(name, sizeof(name), pActor, pInfo);
+        }
+
+        return getEventCameraFrames(pInfo, name);
+    }
+
+    return 0;
+}
+
+bool MR::isExistActorCamera(const ActorCameraInfo* pInfo) {
+    if (pInfo == nullptr) {
+        return false;
+    }
+
+    return pInfo->mCameraSetID != -1;
+}
+
+void MR::startRumbleWithShakeCameraWeak(const LiveActor* pActor, const char* pStrongPatternName, const char* pWeakPatternName, f32 strongDistMax,
                                         f32 weakDistMax) {
-        f32 dist = calcDistanceToPlayer(pActor);
+    f32 dist = calcDistanceToPlayer(pActor);
 
-        if (dist <= strongDistMax) {
-            tryRumblePad(pActor, pStrongPatternName, WPAD_CHAN0);
-            shakeCameraNormal();
-        } else if (dist <= weakDistMax) {
-            tryRumblePad(pActor, pWeakPatternName, WPAD_CHAN0);
-            shakeCameraWeak();
-        }
+    if (dist <= strongDistMax) {
+        tryRumblePad(pActor, pStrongPatternName, WPAD_CHAN0);
+        shakeCameraNormal();
+    } else if (dist <= weakDistMax) {
+        tryRumblePad(pActor, pWeakPatternName, WPAD_CHAN0);
+        shakeCameraWeak();
     }
+}
 
-    void startRumbleWithShakeCameraNormalWeak(const LiveActor* pActor, const char* pStrongPatternName, const char* pWeakPatternName,
+void MR::startRumbleWithShakeCameraNormalWeak(const LiveActor* pActor, const char* pStrongPatternName, const char* pWeakPatternName,
                                               f32 strongDistMax, f32 weakDistMax) {
-        f32 dist = calcDistanceToPlayer(pActor);
+    f32 dist = calcDistanceToPlayer(pActor);
 
-        if (dist <= strongDistMax) {
-            tryRumblePad(pActor, pStrongPatternName, WPAD_CHAN0);
-            shakeCameraNormalWeak();
-        } else if (dist <= weakDistMax) {
-            tryRumblePad(pActor, pWeakPatternName, WPAD_CHAN0);
-            shakeCameraWeak();
-        }
+    if (dist <= strongDistMax) {
+        tryRumblePad(pActor, pStrongPatternName, WPAD_CHAN0);
+        shakeCameraNormalWeak();
+    } else if (dist <= weakDistMax) {
+        tryRumblePad(pActor, pWeakPatternName, WPAD_CHAN0);
+        shakeCameraWeak();
     }
+}
 
-    void startRumbleWithShakeCameraStrong(const LiveActor* pActor, const char* pStrongPatternName, const char* pWeakPatternName, f32 strongDistMax,
+void MR::startRumbleWithShakeCameraStrong(const LiveActor* pActor, const char* pStrongPatternName, const char* pWeakPatternName, f32 strongDistMax,
                                           f32 weakDistMax) {
-        f32 dist = calcDistanceToPlayer(pActor);
+    f32 dist = calcDistanceToPlayer(pActor);
 
-        if (dist <= strongDistMax) {
-            tryRumblePad(pActor, pStrongPatternName, WPAD_CHAN0);
-            shakeCameraStrong();
-        } else if (dist <= weakDistMax) {
-            tryRumblePad(pActor, pWeakPatternName, WPAD_CHAN0);
-            shakeCameraNormal();
-        }
+    if (dist <= strongDistMax) {
+        tryRumblePad(pActor, pStrongPatternName, WPAD_CHAN0);
+        shakeCameraStrong();
+    } else if (dist <= weakDistMax) {
+        tryRumblePad(pActor, pWeakPatternName, WPAD_CHAN0);
+        shakeCameraNormal();
     }
-};  // namespace MR
+}

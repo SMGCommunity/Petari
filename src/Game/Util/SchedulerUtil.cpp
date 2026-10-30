@@ -1,7 +1,7 @@
 #include "Game/Util/SchedulerUtil.hpp"
 #include <revolution/os.h>
 
-MR::ProhibitSchedulerAndInterrupts::ProhibitSchedulerAndInterrupts(bool unused) {
+MR::ProhibitSchedulerAndInterrupts::ProhibitSchedulerAndInterrupts(bool) {
     mInterruptsStatus = OSDisableInterrupts();
     OSDisableScheduler();
 }
