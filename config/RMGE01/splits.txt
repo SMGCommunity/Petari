@@ -10995,7 +10995,7 @@ JSystem/JAudio2/JAUSectionHeap.cpp:
 	.text       start:0x8049C2A8 end:0x8049E0CC
 	.data       start:0x805DA5F8 end:0x805DA6D8
 	.sdata      start:0x8069E050 end:0x8069E058
-	.sbss       start:0x806A2C28 end:0x806A2C38
+	.sbss       start:0x806A2C28 end:0x806A2C30
 
 JSystem/JAudio2/JAUSeqCollection.cpp:
 	.text       start:0x8049E0CC end:0x8049E2CC
@@ -11037,7 +11037,7 @@ RVL_SDK/aralt/aralt.c:
 	.text       start:0x804A0508 end:0x804A092C
 	.data       start:0x805DA7B0 end:0x805DA7F0
 	.sdata      start:0x8069E060 end:0x8069E068
-	.sbss       start:0x806A2C38 end:0x806A2C68
+	.sbss       start:0x806A2C30 end:0x806A2C68
 
 RVL_SDK/base/PPCArch.c:
 	.text       start:0x804A092C end:0x804A0A9C
