@@ -2,17 +2,10 @@
 #include "Game/NWC24/NWC24SendThread.hpp"
 #include <JSystem/JKernel/JKRHeap.hpp>
 #include <revolution/nwc24.h>
-// #include <revolution/vf.h>
+#include <revolution/vf.h>
 
 #define NWC24_WORK_MEM_SIZE 16384
 #define VF_DRIVE_WORKSIZE (16 * 1024)
-
-extern "C" {
-NWC24Err NWC24OpenLib(void*);
-NWC24Err NWC24CloseLib(void);
-s32 NWC24GetErrorCode(void);
-void VFInitEx(void*, u32);
-};
 
 namespace {
     static u32 sWorkSize = VF_DRIVE_WORKSIZE;
