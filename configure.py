@@ -2960,7 +2960,7 @@ config.libs = [
     SDKLib_OS(
         "os",
         [
-            Object(MatchingFor(KOR), "RVL_SDK/os/OS.c"),
+            Object(MatchingFor(ALL), "RVL_SDK/os/OS.c"),
             Object(MatchingFor(ALL), "RVL_SDK/os/OSAlarm.c"),
             Object(MatchingFor(ALL), "RVL_SDK/os/OSAlloc.c"),
             Object(MatchingFor(ALL), "RVL_SDK/os/OSArena.c"),
@@ -2981,7 +2981,7 @@ config.libs = [
             Object(MatchingFor(ALL), "RVL_SDK/os/OSMemory.c"),
             Object(MatchingFor(ALL), "RVL_SDK/os/OSMutex.c"),
             Object(MatchingFor(ALL), "RVL_SDK/os/OSReboot.c"),
-            Object(MatchingFor(KOR), "RVL_SDK/os/OSReset.c"),
+            Object(MatchingFor(ALL), "RVL_SDK/os/OSReset.c"),
             Object(MatchingFor(ALL), "RVL_SDK/os/OSRtc.c"),
             Object(MatchingFor(ALL), "RVL_SDK/os/OSSync.c"),
             Object(MatchingFor(KOR), "RVL_SDK/os/OSThread.c"),
