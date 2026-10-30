@@ -368,9 +368,9 @@ void __OSHotResetForError(void) {
 
     __OSHotReset();
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
-        OSPanic(__FILE__, 0x3CD, "__OSHotReset(): Falied to reset system.\n");
+    OSPanic(__FILE__, 0x3CD, "__OSHotReset(): Falied to reset system.\n");
 #elif (VERSION == RMGK01)
-        OSPanic(__FILE__, 0x3D3, "__OSHotReset(): Falied to reset system.\n");
+    OSPanic(__FILE__, 0x3D3, "__OSHotReset(): Falied to reset system.\n");
 #endif
 }
 
