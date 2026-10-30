@@ -286,9 +286,9 @@ void __OSReturnToMenu(u8 menuMode) {
 void OSReturnToMenu(void) {
     __OSReturnToMenu(0);
     #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
-        OSPanic(__FILE__, 0x342, "OSReturnToMenu(): Falied to boot system menu.\n");
+    OSPanic(__FILE__, 0x342, "OSReturnToMenu(): Falied to boot system menu.\n");
     #elif (VERSION == RMGK01)
-        OSPanic(__FILE__, 0x348, "OSReturnToMenu(): Falied to boot system menu.\n");
+    OSPanic(__FILE__, 0x348, "OSReturnToMenu(): Falied to boot system menu.\n");
     #endif
 }
 
@@ -332,9 +332,9 @@ void OSReturnToSetting(u8 setting) {
     default: {
         OSReport("OSReturnToSetting(): You can't specify %d.  \n", setting);
         #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
-            OSPanic(__FILE__, 0x38E, "");
+        OSPanic(__FILE__, 0x38E, "");
         #elif (VERSION == RMGK01)
-            OSPanic(__FILE__, 0x394, "");
+        OSPanic(__FILE__, 0x394, "");
         #endif
         // NOT REACHED
     }
