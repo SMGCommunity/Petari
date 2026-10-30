@@ -226,11 +226,11 @@ void OSRestart(u32 resetCode) {
     if (type == 0x81) {
         OSDisableScheduler();
         __OSShutdownDevices(4);
-        #if (VERSION ==  RMGJ01)
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         resetCode = OSEnableScheduler();
-        #else
+#else
         OSEnableScheduler();
-        #endif
+#endif
         __OSRelaunchTitle(resetCode);
     } else if (type == 0x80) {
         OSDisableScheduler();
@@ -285,7 +285,11 @@ void __OSReturnToMenu(u8 menuMode) {
 
 void OSReturnToMenu(void) {
     __OSReturnToMenu(0);
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+    OSPanic(__FILE__, 0x342, "OSReturnToMenu(): Falied to boot system menu.\n");
+#elif (VERSION == RMGK01)
     OSPanic(__FILE__, 0x348, "OSReturnToMenu(): Falied to boot system menu.\n");
+#endif
 }
 
 void OSReturnToDataManager(void) {
@@ -327,7 +331,11 @@ void OSReturnToSetting(u8 setting) {
     }
     default: {
         OSReport("OSReturnToSetting(): You can't specify %d.  \n", setting);
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+        OSPanic(__FILE__, 0x38E, "");
+#elif (VERSION == RMGK01)
         OSPanic(__FILE__, 0x394, "");
+#endif
         // NOT REACHED
     }
     }
@@ -346,7 +354,11 @@ void __OSReturnToMenuForError(void) {
     OSDisableScheduler();
     __VISetRGBModeImm();
     __OSHotResetForError();
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+    OSPanic(__FILE__, 0x3B5, "__OSReturnToMenu(): Falied to boot system menu.\n");
+#elif (VERSION == RMGK01)
     OSPanic(__FILE__, 0x3BB, "__OSReturnToMenu(): Falied to boot system menu.\n");
+#endif
 }
 
 void __OSHotResetForError(void) {
@@ -355,8 +367,11 @@ void __OSHotResetForError(void) {
     }
 
     __OSHotReset();
-
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+    OSPanic(__FILE__, 0x3CD, "__OSHotReset(): Falied to reset system.\n");
+#elif (VERSION == RMGK01)
     OSPanic(__FILE__, 0x3D3, "__OSHotReset(): Falied to reset system.\n");
+#endif
 }
 
 u32 OSGetResetCode(void) {
@@ -372,7 +387,11 @@ u32 OSGetResetCode(void) {
 }
 
 void OSResetSystem(int, u32, int) {
+#if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
+    OSPanic(__FILE__, 1124, "OSResetSystem() is obsoleted. It doesn't work any longer.\n");
+#elif (VERSION == RMGK01)
     OSPanic(__FILE__, 1130, "OSResetSystem() is obsoleted. It doesn't work any longer.\n");
+#endif
 }
 
 u32 OSSetBootDol(u32 dolOffset) {

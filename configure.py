@@ -2960,7 +2960,7 @@ config.libs = [
     SDKLib_OS(
         "os",
         [
-            Object(MatchingFor(KOR), "RVL_SDK/os/OS.c"),
+            Object(MatchingFor(ALL), "RVL_SDK/os/OS.c"),
             Object(MatchingFor(ALL), "RVL_SDK/os/OSAlarm.c"),
             Object(MatchingFor(ALL), "RVL_SDK/os/OSAlloc.c"),
             Object(MatchingFor(ALL), "RVL_SDK/os/OSArena.c"),
@@ -2981,7 +2981,7 @@ config.libs = [
             Object(MatchingFor(ALL), "RVL_SDK/os/OSMemory.c"),
             Object(MatchingFor(ALL), "RVL_SDK/os/OSMutex.c"),
             Object(MatchingFor(ALL), "RVL_SDK/os/OSReboot.c"),
-            Object(MatchingFor(KOR), "RVL_SDK/os/OSReset.c"),
+            Object(MatchingFor(ALL), "RVL_SDK/os/OSReset.c"),
             Object(MatchingFor(ALL), "RVL_SDK/os/OSRtc.c"),
             Object(MatchingFor(ALL), "RVL_SDK/os/OSSync.c"),
             Object(MatchingFor(KOR), "RVL_SDK/os/OSThread.c"),
@@ -3099,7 +3099,7 @@ config.libs = [
     SDKLib(
         "wpad",
         [
-            Object(MatchingFor(KOR,PAL), "RVL_SDK/wpad/WPAD.c", cflags=cflags_sdk_wpad),
+            Object(MatchingFor(KOR, PAL), "RVL_SDK/wpad/WPAD.c", cflags=cflags_sdk_wpad),
             Object(MatchingFor(ALL), "RVL_SDK/wpad/WPADHIDParser.c"),
             Object(MatchingFor(ALL), "RVL_SDK/wpad/WPADEncrypt.c"),
             Object(MatchingFor(ALL), "RVL_SDK/wpad/WPADMem.c"),

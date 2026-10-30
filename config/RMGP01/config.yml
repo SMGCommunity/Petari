@@ -25,3 +25,4 @@ block_relocations:
 - source: .data:0x805ECFD0
 - source: .data:0x805EE9D8
 - source: .rodata:0x80547AB8
+- source: .text:0x804A16D0
