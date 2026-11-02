@@ -15,12 +15,12 @@ Super Mario Galaxy's codebase was directly built upon for Super Mario Galaxy 2. 
 
 Before opening a pull request, make sure your changes satisfy all of the following:
 
-- Run `clang-format` on every modified file. **Formatting is required.**. If using VSCode, please enable auto-formatting on save.
+- Run `clang-format` on every modified file. **Formatting is required.** If using VSCode, please enable auto-formatting on save.
 - Run `ninja` and ensure the object you're working on is **1:1 matching**. Non-matching objects cannot be marked as matching and will break the link step.
 - Run `objdiff` to verify every function still matches the original binary.
-- Once all modified functions are marked as decompiled, run `ninja` again to verify it can successfully link.
+- Once all modified functions are marked as decompiled, run `ninja -t clean` to refresh your build's cache, and then `ninja` again to verify it can successfully link.
 - Keep your pull request focused on **a single object whenever possible**. Multiple objects are acceptable only when they are directly related or depend on each other.
-- Every non-matching function in your pull request **must** have a `decomp.me` scratch linked in a comment directly above the function.
+- Every non-matching function in your pull request **must** have a `decomp.me` scratch linked in a comment at the top of the function. See **[Non-Matching](#non-matching)** for the proper format.
 
 ---
 
@@ -130,7 +130,7 @@ If you encounter an older header that has not yet been documented, documentation
 Class constructors must use initializer lists where applicable rather than initializing members directly inside the function scope. Members that are initialized to default values should be included with empty initializers rather than explicitly initializing with a default value.
 
 ```cpp
-AstroDomeSky::AstroDomeSky(const char* pName) : LiveActor(pName), mBrkFrame(), mColor(0x00, 0x00, 0x00, 0xFF), mProjmap() {
+AstroDomeSky::AstroDomeSky(const char* pName) : LiveActor(pName), mBrkFrame(), mColor(0, 0, 0, 255), mProjmap() {
 }
 ```
 
