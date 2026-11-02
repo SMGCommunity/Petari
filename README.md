@@ -29,18 +29,8 @@ This repository does **not** contain any game assets or assembly whatsoever. An 
 
 This project is **not** meant to be an effort to create a PC port. Join the Discord server to learn more and ask about our work-in-progress PC port "AstroCore".
 
-## Regarding AI Usage
-
-A lot of discussion and accusations have been made claiming we used AI/LLMs to accelerate the decompilation process. **We did not**.
-
-Although AI was allowed for tasks that did not directly affect progress, such as variable naming, code cleanup, and documentation, **it never ended up playing a role in this project**. The fast progress acceleration of the project was a result of **new collaborators**, a ton of **motivation**, and **great community efforts**. It was not a result of AI usage or any other kind of automated decompilation work.
-
-If you don't trust this statement enough, read the source code yourself and form your own conclusions.
-
-Below are our AI usage guidelines:
-
 > [!NOTE]
-> AI may be used for code cleanup, formatting, documentation, and naming assistance. AI-generated decompilation work is not allowed. Pull requests containing obvious AI-generated decompilation output or other AI slop will be rejected. Contributors should be able to explain and justify any decompilation work they submit. This also applies to all tool-generated code. We want to keep this project as human as possible.
+> This is a community-focused project that would like to remain as human as possible. AI-generated or otherwise automated contributions will be rejected. Contributors should be able to explain and justify any work they submit.
 
 Dependencies
 ============
