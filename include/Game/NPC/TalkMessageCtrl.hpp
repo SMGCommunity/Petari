@@ -10,23 +10,23 @@ class TalkMessageInfo;
 class TalkNodeCtrl;
 
 enum TalkMessageCtrl_Type {
-    /* 0x0 */ TalkMessageCtrl_Type0,
-    /* 0x1 */ TalkMessageCtrl_Type1,
-    /* 0x2 */ TalkMessageCtrl_Type2,
-    /* 0x3 */ TalkMessageCtrl_Type3,
-    /* 0x4 */ TalkMessageCtrl_Type4,
-    /* 0x5 */ TalkMessageCtrl_Type5,
-    /* 0x6 */ TalkMessageCtrl_Type6,
-    /* 0x7 */ TalkMessageCtrl_Type7,
-    /* 0x8 */ TalkMessageCtrl_Type8,
-    /* 0x9 */ TalkMessageCtrl_Type9,
-    /* 0xA */ TalkMessageCtrl_TypeA,
-    /* 0xB */ TalkMessageCtrl_TypeB,
-    /* 0xC */ TalkMessageCtrl_TypeC,
+    /* 0x0 */ TalkMessageCtrl_None,
+    /* 0x1 */ TalkMessageCtrl_User,
+    /* 0x2 */ TalkMessageCtrl_IsNearPlayer,
+    /* 0x3 */ TalkMessageCtrl_SwitchA,
+    /* 0x4 */ TalkMessageCtrl_SwitchB,
+    /* 0x5 */ TalkMessageCtrl_IsPlayerNormal,
+    /* 0x6 */ TalkMessageCtrl_IsPlayerBee,
+    /* 0x7 */ TalkMessageCtrl_IsPlayerTeresa,
+    /* 0x8 */ TalkMessageCtrl_IsPowerStarAppeared,
+    /* 0x9 */ TalkMessageCtrl_IsTalkAlreadyDone,
+    /* 0xA */ TalkMessageCtrl_IsPlayerLuigi,
+    /* 0xB */ TalkMessageCtrl_AstroGalaxyBranch,
+    /* 0xC */ TalkMessageCtrl_IsTimeKeepDemoActive,
+    /* 0xD */ TalkMessageCtrl_IsMessageAlreadyRead,
 #if (VERSION == RMGK01)
-    /* 0xD */ TalkMessageCtrl_TypeD,
+    /* 0xE */ TalkMessageCtrl_IsMessageLedPattern,
 #endif
-    /* 0xE */ TalkMessageCtrl_TypeE,
 };
 
 enum BranchNode_Type {

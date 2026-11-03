@@ -106,7 +106,7 @@ bool TalkMessageCtrl::rootNodeEve() {
             return true;
         }
 
-        if (mEventFunc->operator()(nodeEvent->mUnknown) == nullptr) {
+        if (!(*mEventFunc)(nodeEvent->mUnknown)) {
             return false;
         }
     } else if (groupID == 4) {
@@ -114,7 +114,7 @@ bool TalkMessageCtrl::rootNodeEve() {
             return true;
         }
 
-        if (mAnimeFunc->operator()(nodeEvent->mUnknown) == nullptr) {
+        if (!(*mAnimeFunc)(nodeEvent->mUnknown)) {
             return false;
         }
     } else if (groupID == 3) {
@@ -125,7 +125,7 @@ bool TalkMessageCtrl::rootNodeEve() {
     } else if (groupID == 6) {
         MR::onSwitchB(mHostActor);
     } else if (groupID == 7) {
-        if (mKillFunc->operator()(nodeEvent->mUnknown) == nullptr) {
+        if (!(*mKillFunc)(nodeEvent->mUnknown)) {
             return false;
         }
     }
@@ -162,9 +162,9 @@ void TalkMessageCtrl::rootNodePre(bool arg) {
         bool cond = false;
 
         switch (branch->mIndex) {
-        case TalkMessageCtrl_Type0:
+        case TalkMessageCtrl_None:
             return;
-        case TalkMessageCtrl_Type1:
+        case TalkMessageCtrl_User:
             if (mBranchFunc == nullptr) {
                 cond = true;
             } else {
@@ -172,45 +172,45 @@ void TalkMessageCtrl::rootNodePre(bool arg) {
             }
 
             break;
-        case TalkMessageCtrl_Type2:
+        case TalkMessageCtrl_IsNearPlayer:
             cond = MR::isNearPlayerAnyTime(mHostActor, mTalkDistance);
             break;
-        case TalkMessageCtrl_Type3:
+        case TalkMessageCtrl_SwitchA:
             cond = MR::isOnSwitchA(mHostActor);
             break;
-        case TalkMessageCtrl_Type4:
+        case TalkMessageCtrl_SwitchB:
             cond = MR::isOnSwitchB(mHostActor);
             break;
-        case TalkMessageCtrl_Type5:
+        case TalkMessageCtrl_IsPlayerNormal:
             cond = MR::isPlayerElementModeNormal();
             break;
-        case TalkMessageCtrl_Type6:
+        case TalkMessageCtrl_IsPlayerBee:
             cond = MR::isPlayerElementModeBee();
             break;
-        case TalkMessageCtrl_Type7:
+        case TalkMessageCtrl_IsPlayerTeresa:
             cond = MR::isPlayerElementModeTeresa();
             break;
-        case TalkMessageCtrl_Type8:
+        case TalkMessageCtrl_IsPowerStarAppeared:
             cond = MR::isStageStatePowerStarAppeared();
             break;
-        case TalkMessageCtrl_Type9:
+        case TalkMessageCtrl_IsTalkAlreadyDone:
             cond = _3C != 0;
             break;
-        case TalkMessageCtrl_TypeA:
+        case TalkMessageCtrl_IsPlayerLuigi:
             cond = MR::isPlayerLuigi();
             break;
-        case TalkMessageCtrl_TypeB:
+        case TalkMessageCtrl_IsTimeKeepDemoActive:
             cond = MR::isTimeKeepDemoActive();
             break;
-        case TalkMessageCtrl_TypeC:
+        case TalkMessageCtrl_IsMessageAlreadyRead:
             cond = MR::isOnMessageAlreadyRead(branch->mNextIdx);
             break;
 #if (VERSION == RMGK01)
-        case TalkMessageCtrl_TypeD:
+        case TalkMessageCtrl_IsMessageLedPattern:
             cond = MR::isMsgLedPattern();
             break;
 #endif
-        case TalkMessageCtrl_TypeE:
+        case TalkMessageCtrl_AstroGalaxyBranch:
             cond = TalkFunction::getBranchAstroGalaxyResult(branch->mNextIdx);
             break;
         }
