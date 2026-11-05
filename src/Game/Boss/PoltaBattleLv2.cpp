@@ -176,7 +176,7 @@ bool PoltaBattleLv2::tryAttackGround() {
 }
 
 void PoltaBattleLv2::setNerveGenerateRock() {
-    if (mGenerateRockTiming == ::sGenerateGroundRockTiming && PoltaFunction::getCountDeadGroundRock(getHost()) >= ::8) {
+    if (mGenerateRockTiming == ::sGenerateGroundRockTiming && PoltaFunction::getCountDeadGroundRock(getHost()) >= 8) {
         setNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvGenerateGroundRock));
     } else {
         setNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvGenerateRock));
