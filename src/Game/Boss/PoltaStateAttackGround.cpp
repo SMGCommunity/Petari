@@ -8,6 +8,10 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const s32 sDamageStopTime = 60;
+};  // namespace
+
 namespace NrvPoltaStateAttackGround {
     NEW_NERVE(PoltaStateAttackGroundNrvStart, PoltaStateAttackGround, Start);
     NEW_NERVE(PoltaStateAttackGroundNrvAttack, PoltaStateAttackGround, Attack);
@@ -37,7 +41,7 @@ void PoltaStateAttackGround::exeStart() {
         MR::startSound(getHost(), "SE_BV_POLTA_PREP_ARM_DOWN");
         MR::startSound(getHost(), "SE_BM_POLTA_ARM_LIFT_UP");
     }
-    if (MR::isLessStep(this, 60)) {
+    if (MR::isLessStep(this, ::sDamageStopTime)) {
         getHost()->rotateToPlayer();
     }
     if (!PoltaFunction::isEnableAttackLeftArm(getHost()) && !PoltaFunction::isEnableAttackRightArm(getHost())) {
