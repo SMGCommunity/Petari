@@ -13,8 +13,8 @@
 namespace {
     static const f32 sNormalFric = 0.9f;
     static const f32 sAwayAccel = 0.7f;
-    static const f32 sSideAccel = 0.0f; // not done
-    static const f32 sGravityAccel = 0.0f; // not done
+    static const f32 sSideAccel = 0.8f;
+    static const f32 sGravityAccel = 0.5f;
     static const f32 sAwayDistance = 1500.0f;
     static const f32 sAwayRadius = 1800.0f;
     static const f32 sGenerateSpeedH = 20.0f;
@@ -58,9 +58,9 @@ void PoltaStateStagger::exeWait() {
         MR::addVelocityAwayFromTarget(getHost(), *MR::getPlayerPos(), ::sAwayAccel);
     }
 
-    MR::addVelocityClockwiseToPlayer(getHost(), _20 ? 0.8f : -0.8f);
+    MR::addVelocityClockwiseToPlayer(getHost(), _20 ? ::sSideAccel : -::sSideAccel);
     MR::attenuateVelocity(getHost(), ::sNormalFric);
-    MR::addVelocityKeepHeight(getHost(), getHost()->_E0, 0.5f, 50.0f);
+    MR::addVelocityKeepHeight(getHost(), getHost()->_E0, ::sGravityAccel, 50.0f);
     getHost()->rotateToPlayer();
     if (MR::isIntervalStep(this, ::sGenerateInterval) &&
         PoltaFunction::appearBombTeresaFromRoot(getHost(), ::sGenerateSpeedH, ::sGenerateSpeedV, 1)) {
