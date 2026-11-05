@@ -23,7 +23,7 @@ namespace {
     static const f32 sUpVecBlendRate = 0.2f;
     static const s32 sMaxHP = 3;
     static const s32 sWaitTime = 120;
-    static const s32 sGenerateRockCycle = 8;
+    // static const s32 sGenerateRockCycle = _;
     static const s32 sGenerateGroundRockTiming = 2;
     static const f32 sAttackRange = 1500.0f;
     static const f32 sPanchRange = 3000.0f;
@@ -45,7 +45,7 @@ namespace NrvPoltaBattleLv2 {
     NEW_NERVE(PoltaBattleLv2NrvDamageCore, PoltaBattleLv2, DamageCore);
 };  // namespace NrvPoltaBattleLv2
 
-PoltaBattleLv2::PoltaBattleLv2(Polta* pPolta) : PoltaActionBase("ボステレサ2戦目", pPolta), mPoltaHP(::sMaxHP), mGenerateRockCount() {
+PoltaBattleLv2::PoltaBattleLv2(Polta* pPolta) : PoltaActionBase("ボステレサ2戦目", pPolta), mPoltaHP(::sMaxHP), mGenerateRockTiming() {
     initNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvWait));
     mStateAttackGround = new PoltaStateAttackGround(pPolta);
     mStatePunch = new PoltaStatePunch(pPolta);
@@ -176,12 +176,12 @@ bool PoltaBattleLv2::tryAttackGround() {
 }
 
 void PoltaBattleLv2::setNerveGenerateRock() {
-    if (mGenerateRockCount == ::sGenerateGroundRockTiming && PoltaFunction::getCountDeadGroundRock(getHost()) >= ::sGenerateRockCycle) {
+    if (mGenerateRockTiming == ::sGenerateGroundRockTiming && PoltaFunction::getCountDeadGroundRock(getHost()) >= ::8) {
         setNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvGenerateGroundRock));
     } else {
         setNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvGenerateRock));
     }
-    mGenerateRockCount = (mGenerateRockCount + 4) % 3;
+    mGenerateRockTiming = (mGenerateRockTiming + 4) % 3;
 }
 
 bool PoltaBattleLv2::tryGenerateRock() {

@@ -625,12 +625,12 @@ void MR::addVelocityMoveToDirection(LiveActor* pActor, const TVec3f& rA2, f32 a3
     addVelocity(pActor, accel);
 }
 
-void MR::addVelocityMoveToTarget(LiveActor* pActor, const TVec3f& rTarget, f32 accelRate) {
+void MR::addVelocityMoveToTarget(LiveActor* pActor, const TVec3f& rTarget, f32 accel) {
     TVec3f toTarget = rTarget - pActor->mPosition;
-    TVec3f accel;
-    calcVelocityMoveToDirection(&accel, pActor, toTarget, accelRate);
+    TVec3f velocity;
+    calcVelocityMoveToDirection(&velocity, pActor, toTarget, accel);
 
-    addVelocity(pActor, accel);
+    addVelocity(pActor, velocity);
 }
 
 void MR::addVelocityMoveToTarget(LiveActor* pActor, const TVec3f& rTarget, f32 a3, f32 a4, f32 a5, f32 a6) {
@@ -642,13 +642,13 @@ void MR::addVelocityMoveToTarget(LiveActor* pActor, const TVec3f& rTarget, f32 a
     addVelocity(pActor, accel);
 }
 
-void MR::addVelocityAwayFromTarget(LiveActor* pActor, const TVec3f& rTarget, f32 accelRate) {
+void MR::addVelocityAwayFromTarget(LiveActor* pActor, const TVec3f& rTarget, f32 accel) {
     TVec3f fromTarget = pActor->mPosition - rTarget;
 
-    TVec3f accel;
-    calcVelocityMoveToDirection(&accel, pActor, fromTarget, accelRate);
+    TVec3f velocity;
+    calcVelocityMoveToDirection(&velocity, pActor, fromTarget, accel);
 
-    addVelocity(pActor, accel);
+    addVelocity(pActor, velocity);
 }
 
 void MR::addVelocityAwayFromTarget(LiveActor* pActor, const TVec3f& rTarget, f32 a3, f32 a4, f32 a5, f32 a6) {

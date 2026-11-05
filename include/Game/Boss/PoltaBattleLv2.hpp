@@ -45,5 +45,5 @@ public:
     /* 0x20 */ PoltaStateGenerateRock* mStateGenerateRock;
     /* 0x24 */ PoltaStateGroundRockAttack* mStateGroundRockAttack;
     /* 0x28 */ s32 mPoltaHP;
-    /* 0x2C */ s32 mGenerateRockCount;
+    /* 0x2C */ s32 mGenerateRockTiming;
 };

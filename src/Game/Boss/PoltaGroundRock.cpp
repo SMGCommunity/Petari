@@ -25,7 +25,7 @@ namespace NrvPoltaGroundRock {
 };  // namespace NrvPoltaGroundRock
 
 PoltaGroundRock::PoltaGroundRock(const char* pName)
-    : LiveActor(pName), mHost(nullptr), mBreakModel(nullptr), mQuat(0.0f, 0.0f, 0.0f, 1.0f), mStartPosition(0.0f, 0.0f, 0.0f) {
+    : LiveActor(pName), mHost(), mBreakModel(), mQuat(0.0f, 0.0f, 0.0f, 1.0f), mStartPosition(0.0f, 0.0f, 0.0f) {
 }
 
 void PoltaGroundRock::init(const JMapInfoIter& rIter) {

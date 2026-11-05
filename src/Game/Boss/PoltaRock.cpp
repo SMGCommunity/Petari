@@ -37,7 +37,7 @@ namespace NrvPoltaRock {
 };  // namespace NrvPoltaRock
 
 PoltaRock::PoltaRock(const char* pName)
-    : LiveActor(pName), mHost(nullptr), mQuat(0.0f, 0.0f, 0.0f, 1.0f), mTargetPosition(0.0f, 0.0f, 1.0f), mOffset(0.0f, 0.0f, 0.0f), mType(0) {
+    : LiveActor(pName), mHost(), mQuat(0.0f, 0.0f, 0.0f, 1.0f), mTargetPosition(0.0f, 0.0f, 1.0f), mOffset(0.0f, 0.0f, 0.0f), mType() {
 }
 
 void PoltaRock::init(const JMapInfoIter& rIter) {

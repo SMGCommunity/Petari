@@ -19,5 +19,5 @@ public:
 
     /* 0x10 */ u8 padding[0xC];
     /* 0x1C */ const char* mActionName;
-    /* 0x20 */ bool mClockwiseToPlayer;
+    /* 0x20 */ bool mIsClockwiseToPlayer;
 };
