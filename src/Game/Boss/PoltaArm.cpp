@@ -212,9 +212,9 @@ void PoltaArm::start() {
     MR::startBva(this, "BreakLevel");
     MR::setBvaFrameAndStop(this, 0.0f);
 
-    s32 noBreakFrame = mNoBreakStage;
+    s32 noBreakStage = mNoBreakStage;
     mBrokenCounter = 0;
-    mBreakStage = noBreakFrame;
+    mBreakStage = noBreakStage;
     setNerve(GET_NERVE(PoltaArm, PoltaArmNrvControlled));
 }
 
