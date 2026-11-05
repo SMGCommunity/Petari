@@ -25,7 +25,7 @@ namespace NrvPoltaGroundRock {
 };  // namespace NrvPoltaGroundRock
 
 PoltaGroundRock::PoltaGroundRock(const char* pName)
-    : LiveActor(pName), mOwner(nullptr), mBreakModel(nullptr), mQuat(0.0f, 0.0f, 0.0f, 1.0f), mStartPosition(0.0f, 0.0f, 0.0f) {
+    : LiveActor(pName), mHost(nullptr), mBreakModel(nullptr), mQuat(0.0f, 0.0f, 0.0f, 1.0f), mStartPosition(0.0f, 0.0f, 0.0f) {
 }
 
 void PoltaGroundRock::init(const JMapInfoIter& rIter) {
@@ -62,8 +62,8 @@ void PoltaGroundRock::calcAndSetBaseMtx() {
     MR::setBaseScale(this, mScale);
 }
 
-void PoltaGroundRock::start(LiveActor* pOwner, const TVec3f& rStartPosition) {
-    mOwner = pOwner;
+void PoltaGroundRock::start(LiveActor* pHost, const TVec3f& rStartPosition) {
+    mHost = pHost;
     setNerve(GET_NERVE(PoltaGroundRock, PoltaGroundRockNrvSign));
     mStartPosition.set(rStartPosition);
     MR::calcGravity(this, rStartPosition);

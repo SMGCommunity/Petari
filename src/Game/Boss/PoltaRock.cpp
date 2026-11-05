@@ -28,7 +28,7 @@ namespace {
     static const s32 sAccelTime = 30;
     static const f32 sGravityAccel = -0.02f;
     static const f32 sNormalFric = 0.999f;
-}  // namespace
+};  // namespace
 
 namespace NrvPoltaRock {
     NEW_NERVE(PoltaRockNrvFloat, PoltaRock, Float);
@@ -37,7 +37,7 @@ namespace NrvPoltaRock {
 };  // namespace NrvPoltaRock
 
 PoltaRock::PoltaRock(const char* pName)
-    : LiveActor(pName), mOwner(nullptr), mQuat(0.0f, 0.0f, 0.0f, 1.0f), mTargetPosition(0.0f, 0.0f, 1.0f), mOffset(0.0f, 0.0f, 0.0f), mType(0) {
+    : LiveActor(pName), mHost(nullptr), mQuat(0.0f, 0.0f, 0.0f, 1.0f), mTargetPosition(0.0f, 0.0f, 1.0f), mOffset(0.0f, 0.0f, 0.0f), mType(0) {
 }
 
 void PoltaRock::init(const JMapInfoIter& rIter) {
@@ -68,7 +68,7 @@ void PoltaRock::kill() {
         MR::emitEffect(this, "BreakWhite");
         break;
     }
-    mOwner = nullptr;
+    mHost = nullptr;
 }
 
 void PoltaRock::control() {
@@ -79,8 +79,8 @@ void PoltaRock::calcAndSetBaseMtx() {
     MR::setBaseScale(this, mScale);
 }
 
-void PoltaRock::start(Polta* pOwner, const TVec3f& rPosition, const TVec3f& rOffset) {
-    mOwner = pOwner;
+void PoltaRock::start(Polta* pHost, const TVec3f& rPosition, const TVec3f& rOffset) {
+    mHost = pHost;
     mPosition.set(rPosition);
     mOffset.set(rOffset);
     setNerve(GET_NERVE(PoltaRock, PoltaRockNrvFloat));
@@ -154,7 +154,7 @@ void PoltaRock::exeFloat() {
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_POLTA_ROCK_FLOAT");
-    PSMTXMultVec(getOwner()->getBaseMtx(), &mOffset, target);
+    PSMTXMultVec(getHost()->getBaseMtx(), &mOffset, target);
     MR::addVelocityMoveToTarget(this, target, 0.0f, ::sFloatToTargetAccel, 0.0f, 200.0f);
     MR::addVelocityKeepHeightUseShadow(this, ::sFloatHeight, 1.5f, ::sFloatAccelRange, nullptr);
     MR::attenuateVelocity(this, ::sFloatFric);
@@ -171,7 +171,7 @@ void PoltaRock::exeSign() {
         MR::startAction(this, "Sign");
     }
 
-    PSMTXMultVec(getOwner()->getBaseMtx(), &mOffset, target);
+    PSMTXMultVec(getHost()->getBaseMtx(), &mOffset, target);
     MR::addVelocityMoveToTarget(this, target, 0.0f, ::sFloatToTargetAccel, 0.0f, 200.0f);
     MR::addVelocityKeepHeightUseShadow(this, ::sFloatHeight, 1.5f, ::sFloatAccelRange, nullptr);
     MR::attenuateVelocity(this, ::sFloatFric);
@@ -210,10 +210,10 @@ void PoltaRock::exeMove() {
 void PoltaRock::generateKill() {
     switch (mType) {
     case 1:
-        PoltaFunction::appearBombTeresaNormal(getOwner(), mPosition, TVec3f(0.0f, 0.0f, 0.0f));
+        PoltaFunction::appearBombTeresaNormal(getHost(), mPosition, TVec3f(0.0f, 0.0f, 0.0f));
         break;
     case 2:
-        MR::appearCoinPop(getOwner(), mPosition, 1);
+        MR::appearCoinPop(getHost(), mPosition, 1);
         break;
     }
     kill();

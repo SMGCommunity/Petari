@@ -52,8 +52,8 @@ void Polta::init(const JMapInfoIter& rIter) {
     MR::connectToSceneCollisionEnemy(this);
     MR::initLightCtrl(this);
     MR::makeQuatAndFrontFromRotate(&mQuat, &mFront, this);
-    mSpawnQuat.set(mQuat);
-    mSpawnPosition.set(mPosition);
+    mStartPoseQuat.set(mQuat);
+    mStartPoseTrans.set(mPosition);
     MR::addBaseMatrixFollowTarget(this, rIter, nullptr, nullptr);
     initArm();
     initPartsModel();
@@ -143,7 +143,7 @@ void BombTeresaHolder::disperseAll() {
 
 Polta::Polta(const char* pName)
     : LiveActor(pName), mSensorCtrl(), mLeftArm(), mRightArm(), mSequencer(), mBombTeresaHolder(), mRockHolder(), mGroundRockHolder(), mCameraInfo(),
-      mBreakModel(), mFormationModel(), mQuat(0, 0, 0, 1), mFront(0, 0, 1), mSpawnQuat(0, 0, 0, 1), mSpawnPosition(0, 0, 0), mRotateSpeed() {
+      mBreakModel(), mFormationModel(), mQuat(0, 0, 0, 1), mFront(0, 0, 1), mStartPoseQuat(0, 0, 0, 1), mStartPoseTrans(0, 0, 0), mRotateSpeed() {
 }
 
 void Polta::initSensor() {
@@ -258,8 +258,8 @@ void Polta::start() {
 }
 
 void Polta::setStartPose() {
-    mQuat.set(mSpawnQuat);
-    MR::resetPosition(this, mSpawnPosition);
+    mQuat.set(mStartPoseQuat);
+    MR::resetPosition(this, mStartPoseTrans);
     mQuat.getZDir(mFront);
 }
 

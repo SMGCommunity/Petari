@@ -13,7 +13,7 @@
 
 namespace {
     static const s32 sScreamSensorMaxTime = 30;
-}; //namespace
+}; // namespace
 
 PoltaActionBase::PoltaActionBase(const char* pName, Polta* pPolta) : ActorStateBase< Polta >(pName, pPolta), _10() {
     MR::createCenterScreenBlur();

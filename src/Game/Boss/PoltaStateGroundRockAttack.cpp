@@ -17,7 +17,7 @@ namespace {
     static const f32 sGenerateStartRadius = 850.0f;
     static const f32 sGenerateStepRadius = 400.0f;
     static const f32 sForecastAngle = 20.0f;
-}  // namespace
+};  // namespace
 
 namespace NrvPoltaStateGenerateBombTeresa {
     NEW_NERVE(PoltaStateGroundRockAttackNrvSign, PoltaStateGroundRockAttack, Sign);
@@ -26,7 +26,7 @@ namespace NrvPoltaStateGenerateBombTeresa {
 };  // namespace NrvPoltaStateGenerateBombTeresa
 
 PoltaStateGroundRockAttack::PoltaStateGroundRockAttack(Polta* pPolta)
-    : ActorStateBase< Polta >("[state]ポルタ地面岩攻撃", pPolta), mRockCount(4), mSpawnClockwise() {
+    : ActorStateBase< Polta >("[state]ポルタ地面岩攻撃", pPolta), mRockCount(4), mIsAppearClockwise() {
     initNerve(GET_NERVE(PoltaStateGenerateBombTeresa, PoltaStateGroundRockAttackNrvSign));
 }
 
@@ -51,7 +51,7 @@ void PoltaStateGroundRockAttack::exeGenerate() {
     if (MR::isFirstStep(this)) {
         PoltaFunction::startAction(getHost(), "GenerateGroundRockStart", true);
         MR::zeroVelocity(getHost());
-        mSpawnClockwise = MR::isClockwiseToDir(getHost(), *MR::getPlayerLastMove(), *MR::getPlayerPos() - getHost()->mPosition);
+        mIsAppearClockwise = MR::isClockwiseToDir(getHost(), *MR::getPlayerLastMove(), *MR::getPlayerPos() - getHost()->mPosition);
     }
 
     if (MR::isBckOneTimeAndStopped(getHost())) {
@@ -64,10 +64,10 @@ void PoltaStateGroundRockAttack::exeGenerate() {
         s32 v16 = v14 % 4;
 
         if (v14 > 0 && !v16) {
-            mSpawnClockwise = !mSpawnClockwise;
+            mIsAppearClockwise = !mIsAppearClockwise;
         }
         PoltaFunction::appearGroundRock(getHost(), (::sGenerateStartRadius + (::sGenerateStepRadius * v16)),
-                                        mSpawnClockwise ? ::sForecastAngle : -::sForecastAngle);
+                                        mIsAppearClockwise ? ::sForecastAngle : -::sForecastAngle);
     }
     if (MR::isGreaterStep(this, ::sGenerateInterval * mRockCount + ::sGenerateAfterTime)) {
         setNerve(GET_NERVE(PoltaStateGenerateBombTeresa, PoltaStateGroundRockAttackNrvEnd));

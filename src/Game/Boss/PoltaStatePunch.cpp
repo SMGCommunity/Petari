@@ -11,8 +11,7 @@
 namespace {
     static const s32 sStartRotateEndTime = 60;
     static const s32 sEndRotateStartTime = 70;
-    static const s32 sDamageStopTime = 0;  // unused?
-}  // namespace
+};  // namespace
 
 namespace NrvPoltaStatePunch {
     NEW_NERVE(PoltaStatePunchNrvStart, PoltaStatePunch, Start);
