@@ -21,5 +21,5 @@ public:
     bool updateDamageCore();
     void updateScreamSensor();
 
-    s32 _10;
+    /* 0x10 */ s32 _10;
 };

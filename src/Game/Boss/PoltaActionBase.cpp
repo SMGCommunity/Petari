@@ -82,7 +82,7 @@ bool PoltaActionBase::updateBreakBody() {
         getHost()->_EC = 0.0f;
         getHost()->appearBreakModelLast(getHost()->mPosition);
     }
-    this->updateScreamSensor();
+    updateScreamSensor();
     if (getHost()->isEndBreakModel()) {
         getHost()->killBreakModel();
     }
