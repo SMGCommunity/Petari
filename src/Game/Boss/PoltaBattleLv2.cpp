@@ -36,7 +36,7 @@ PoltaBattleLv2::PoltaBattleLv2(Polta* pPolta) : PoltaActionBase("ボステレサ
     mStatePunch = new PoltaStatePunch(pPolta);
     mStateStagger = new PoltaStateStagger(pPolta);
     mStateGroundRockAttack = new PoltaStateGroundRockAttack(pPolta);
-    mStateGroundRockAttack->_10 = 8;
+    mStateGroundRockAttack->mRockCount = 8;
     mStateGenerateRock = new PoltaStateGenerateRock(pPolta);
     mStateGenerateRock->mMaxIndexIntoPattern = 7;
     mStateGenerateRock->mEndDelayStep = 180;

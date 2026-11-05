@@ -27,7 +27,7 @@ PoltaBattleLv1::PoltaBattleLv1(Polta* pPolta) : PoltaActionBase("ポルタ1戦�
     initNerve(GET_NERVE(PoltaBattleLv1, PoltaBattleLv1NrvWait));
     mStateStagger = new PoltaStateStagger(pPolta);
     mStateGroundRockAttack = new PoltaStateGroundRockAttack(pPolta);
-    mStateGroundRockAttack->_10 = 4;
+    mStateGroundRockAttack->mRockCount = 4;
     mStateGenerateRock = new PoltaStateGenerateRock(pPolta);
     mStateGenerateRock->mMaxIndexIntoPattern = 5;
     mStateGenerateRock->mEndDelayStep = 120;
