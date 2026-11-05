@@ -26,7 +26,7 @@ namespace NrvPoltaStateStagger {
     NEW_NERVE(PoltaStateStaggerNrvWait, PoltaStateStagger, Wait);
 };  // namespace NrvPoltaStateStagger
 
-PoltaStateStagger::PoltaStateStagger(Polta* pPolta) : ActorStateBase< Polta >("[state]ポルタ弱り状態", pPolta), mActionName("Stagger"), _20(true) {
+PoltaStateStagger::PoltaStateStagger(Polta* pPolta) : ActorStateBase< Polta >("[state]ポルタ弱り状態", pPolta), mActionName("Stagger"), mClockwiseToPlayer(true) {
     initNerve(GET_NERVE(PoltaStateStagger, PoltaStateStaggerNrvWait));
 }
 
@@ -51,14 +51,14 @@ void PoltaStateStagger::exeWait() {
 
     if (v17 >= ::sAwayRadius) {
         MR::addVelocity(getHost(), v2 * (v17 - ::sAwayRadius));
-        _20 = MR::isClockwiseToPlayer(getHost(), v2);
+        mClockwiseToPlayer = MR::isClockwiseToPlayer(getHost(), v2);
     }
 
     if (MR::isNearPlayerHorizontal(getHost(), ::sAwayDistance)) {
         MR::addVelocityAwayFromTarget(getHost(), *MR::getPlayerPos(), ::sAwayAccel);
     }
 
-    MR::addVelocityClockwiseToPlayer(getHost(), _20 ? ::sSideAccel : -::sSideAccel);
+    MR::addVelocityClockwiseToPlayer(getHost(), mClockwiseToPlayer ? ::sSideAccel : -::sSideAccel);
     MR::attenuateVelocity(getHost(), ::sNormalFric);
     MR::addVelocityKeepHeight(getHost(), getHost()->_E0, ::sGravityAccel, 50.0f);
     getHost()->rotateToPlayer();
