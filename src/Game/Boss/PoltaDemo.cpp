@@ -105,7 +105,7 @@ void PoltaDemo::exeOpeningDemo() {
         MR::startCenterScreenBlur(::sOpeningBlurTime, ::sOpeningBlurOffset, ::sOpeningBlurAlpha, ::sOpeningBlurFadeIn, ::sOpeningBlurFadeOut);
     }
 
-    if (MR::isStep(this, 60)) {
+    if (MR::isStep(this, ::sBgmStartStep)) {
         MR::startStageBGM("MBGM_BOSS_09_A", false);
     }
 
