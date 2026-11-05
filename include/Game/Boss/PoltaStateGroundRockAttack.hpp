@@ -16,5 +16,5 @@ public:
     void exeEnd();
 
     /* 0x10 */ s32 mRockCount; ///< The amount of Ground Rocks Bouldgeist spawns in the attack.
-    /* 0x14 */ bool mIsClockwise;
+    /* 0x14 */ bool mSpawnClockwise;
 };

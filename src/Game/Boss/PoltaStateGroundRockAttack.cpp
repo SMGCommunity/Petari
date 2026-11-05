@@ -26,7 +26,7 @@ namespace NrvPoltaStateGenerateBombTeresa {
 };  // namespace NrvPoltaStateGenerateBombTeresa
 
 PoltaStateGroundRockAttack::PoltaStateGroundRockAttack(Polta* pPolta)
-    : ActorStateBase< Polta >("[state]ポルタ地面岩攻撃", pPolta), mRockCount(4), mIsClockwise() {
+    : ActorStateBase< Polta >("[state]ポルタ地面岩攻撃", pPolta), mRockCount(4), mSpawnClockwise() {
     initNerve(GET_NERVE(PoltaStateGenerateBombTeresa, PoltaStateGroundRockAttackNrvSign));
 }
 
@@ -51,7 +51,7 @@ void PoltaStateGroundRockAttack::exeGenerate() {
     if (MR::isFirstStep(this)) {
         PoltaFunction::startAction(getHost(), "GenerateGroundRockStart", true);
         MR::zeroVelocity(getHost());
-        mIsClockwise = MR::isClockwiseToDir(getHost(), *MR::getPlayerLastMove(), *MR::getPlayerPos() - getHost()->mPosition);
+        mSpawnClockwise = MR::isClockwiseToDir(getHost(), *MR::getPlayerLastMove(), *MR::getPlayerPos() - getHost()->mPosition);
     }
 
     if (MR::isBckOneTimeAndStopped(getHost())) {
@@ -64,10 +64,10 @@ void PoltaStateGroundRockAttack::exeGenerate() {
         s32 v16 = v14 % 4;
 
         if (v14 > 0 && !v16) {
-            mIsClockwise = !mIsClockwise;
+            mSpawnClockwise = !mSpawnClockwise;
         }
         PoltaFunction::appearGroundRock(getHost(), (::sGenerateStartRadius + (::sGenerateStepRadius * v16)),
-                                        mIsClockwise ? ::sForecastAngle : -::sForecastAngle);
+                                        mSpawnClockwise ? ::sForecastAngle : -::sForecastAngle);
     }
     if (MR::isGreaterStep(this, ::sGenerateInterval * mRockCount + ::sGenerateAfterTime)) {
         setNerve(GET_NERVE(PoltaStateGenerateBombTeresa, PoltaStateGroundRockAttackNrvEnd));
