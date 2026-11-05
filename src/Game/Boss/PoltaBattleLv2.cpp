@@ -149,7 +149,7 @@ bool PoltaBattleLv2::tryAttackGround() {
     if (!PoltaFunction::isEnableAttackLeftArm(getHost()) && !PoltaFunction::isEnableAttackRightArm(getHost())) {
         return false;
     }
-    if (!MR::isFaceToPlayerHorizontalDegree(getHost(), getHost()->_C4, 45.0f)) {
+    if (!MR::isFaceToPlayerHorizontalDegree(getHost(), getHost()->mFront, 45.0f)) {
         return false;
     }
     if (MR::isNearPlayer(getHost(), ::sAttackRange)) {
