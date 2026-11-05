@@ -46,7 +46,7 @@ bool PoltaActionBase::updateDamageBody(bool isFirst) {
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormalStrong();
         MR::stopScene(3);
-        getHost()->_EC = 0.0f;
+        getHost()->mRotateSpeed = 0.0f;
         if (isFirst) {
             getHost()->appearBreakModelFirst(getHost()->mPosition);
         } else {
@@ -79,7 +79,7 @@ bool PoltaActionBase::updateBreakBody() {
         MR::zeroVelocity(getHost());
         MR::shakeCameraNormalStrong();
         MR::stopScene(3);
-        getHost()->_EC = 0.0f;
+        getHost()->mRotateSpeed = 0.0f;
         getHost()->appearBreakModelLast(getHost()->mPosition);
     }
     updateScreamSensor();
@@ -107,7 +107,7 @@ bool PoltaActionBase::updateDamageCore() {
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormalStrong();
         MR::stopScene(3);
-        getHost()->_EC = 0.0f;
+        getHost()->mRotateSpeed = 0.0f;
         MR::zeroVelocity(getHost());
         PoltaFunction::disperseBombTeresa(getHost());
     }

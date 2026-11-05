@@ -47,7 +47,7 @@ void PoltaStateStagger::exeWait() {
     TVec3f v2;
 
     f32 v17;
-    MR::separateScalarAndDirection(&v17, &v2, getHost()->_E0 - getHost()->mPosition);
+    MR::separateScalarAndDirection(&v17, &v2, getHost()->mSpawnPosition - getHost()->mPosition);
 
     if (v17 >= ::sAwayRadius) {
         MR::addVelocity(getHost(), v2 * (v17 - ::sAwayRadius));
@@ -60,7 +60,7 @@ void PoltaStateStagger::exeWait() {
 
     MR::addVelocityClockwiseToPlayer(getHost(), mClockwiseToPlayer ? ::sSideAccel : -::sSideAccel);
     MR::attenuateVelocity(getHost(), ::sNormalFric);
-    MR::addVelocityKeepHeight(getHost(), getHost()->_E0, ::sGravityAccel, 50.0f);
+    MR::addVelocityKeepHeight(getHost(), getHost()->mSpawnPosition, ::sGravityAccel, 50.0f);
     getHost()->rotateToPlayer();
     if (MR::isIntervalStep(this, ::sGenerateInterval) &&
         PoltaFunction::appearBombTeresaFromRoot(getHost(), ::sGenerateSpeedH, ::sGenerateSpeedV, 1)) {
