@@ -11,13 +11,17 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const s32 sScreamSensorMaxTime = 30;
+}; //namespace
+
 PoltaActionBase::PoltaActionBase(const char* pName, Polta* pPolta) : ActorStateBase< Polta >(pName, pPolta), _10() {
     MR::createCenterScreenBlur();
 }
 
 void PoltaActionBase::updateScreamSensor() {
-    if (MR::isLessStep(this, 30)) {
-        f32 size = MR::calcNerveValue(this, 30, 0.0f, 3200.0f);
+    if (MR::isLessStep(this, ::sScreamSensorMaxTime)) {
+        f32 size = MR::calcNerveValue(this, ::sScreamSensorMaxTime, 0.0f, 3200.0f);
         PoltaFunction::setScreamSensorSize(getHost(), size);
     } else {
         PoltaFunction::setScreamSensorSize(getHost(), 0.0f);
