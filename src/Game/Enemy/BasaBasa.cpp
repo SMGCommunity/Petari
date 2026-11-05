@@ -574,7 +574,7 @@ bool BasaBasa::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pR
     }
 
     if (MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg)) {
-        MR::tryRumbleDefaultHit(this, 0);
+        MR::tryRumbleDefaultHit(this, WPAD_CHAN0);
         setNerve(GET_NERVE(BasaBasa, BasaBasaNrvTrampleDown));
         return true;
     }
