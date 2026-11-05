@@ -175,14 +175,14 @@ bool MR::isNearPlayerPose(const LiveActor* pActor, f32 a2, f32 a3) {
 }
 
 bool MR::isNearPlayerHorizontal(const LiveActor* pActor, f32 distance) {
-    TVec3f stack_14;
+    TVec3f distanceFromPlayer;
     if (isPlayerHidden()) {
         return false;
     }
 
-    TVec3f stack_8 = pActor->mPosition - *MR::getPlayerPos();
-    f32 f1 = vecKillElement(stack_8, pActor->mGravity, &stack_14);
-    return (stack_14.squared() < distance * distance);
+    TVec3f rawDistanceFromPlayer = pActor->mPosition - *MR::getPlayerPos();
+    f32 f1 = vecKillElement(rawDistanceFromPlayer, pActor->mGravity, &distanceFromPlayer);
+    return (distanceFromPlayer.squared() < distance * distance);
 }
 
 void MR::calcFrontVec(TVec3f* pFrontVec, const LiveActor* pActor) {
