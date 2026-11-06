@@ -15,6 +15,21 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const f32 sModelSize = 120.0f;
+    static const s32 sForceBreakTime = 300;
+    static const s32 sFloatTime = 90;
+    static const f32 sFloatHeight = 800.0f;
+    static const f32 sFloatToTargetAccel = 1.2f;
+    static const f32 sFloatAccelRange = 300.0f;
+    static const f32 sFloatFric = 0.92f;
+    static const s32 sSignTime = 60;
+    static const f32 sMoveAccel = 3.0f;
+    static const s32 sAccelTime = 30;
+    static const f32 sGravityAccel = -0.02f;
+    static const f32 sNormalFric = 0.999f;
+};  // namespace
+
 namespace NrvPoltaRock {
     NEW_NERVE(PoltaRockNrvFloat, PoltaRock, Float);
     NEW_NERVE(PoltaRockNrvSign, PoltaRock, Sign);
@@ -22,7 +37,7 @@ namespace NrvPoltaRock {
 };  // namespace NrvPoltaRock
 
 PoltaRock::PoltaRock(const char* pName)
-    : LiveActor(pName), mOwner(nullptr), _90(0.0f, 0.0f, 0.0f, 1.0f), _A0(0.0f, 0.0f, 1.0f), _AC(0.0f, 0.0f, 0.0f), mType(0) {
+    : LiveActor(pName), mHost(), mQuat(0.0f, 0.0f, 0.0f, 1.0f), mTargetPosition(0.0f, 0.0f, 1.0f), mOffset(0.0f, 0.0f, 0.0f), mType() {
 }
 
 void PoltaRock::init(const JMapInfoIter& rIter) {
@@ -32,8 +47,8 @@ void PoltaRock::init(const JMapInfoIter& rIter) {
     MR::initLightCtrl(this);
     MR::onCalcGravity(this);
     initHitSensor(1);
-    MR::addHitSensorEnemy(this, "Body", 8, 120.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    initBinder(120.0f, 0.0f, 0);
+    MR::addHitSensorEnemy(this, "Body", 8, ::sModelSize, TVec3f(0.0f, 0.0f, 0.0f));
+    initBinder(::sModelSize, 0.0f, 0);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     MR::initShadowFromCSV(this, "Shadow");
@@ -53,21 +68,21 @@ void PoltaRock::kill() {
         MR::emitEffect(this, "BreakWhite");
         break;
     }
-    mOwner = nullptr;
+    mHost = nullptr;
 }
 
 void PoltaRock::control() {
 }
 
 void PoltaRock::calcAndSetBaseMtx() {
-    MR::setBaseTRMtx(this, _90);
+    MR::setBaseTRMtx(this, mQuat);
     MR::setBaseScale(this, mScale);
 }
 
-void PoltaRock::start(Polta* pPolta, const TVec3f& rPosition, const TVec3f& rVec2) {
-    mOwner = pPolta;
+void PoltaRock::start(Polta* pHost, const TVec3f& rPosition, const TVec3f& rOffset) {
+    mHost = pHost;
     mPosition.set(rPosition);
-    _AC.set(rVec2);
+    mOffset.set(rOffset);
     setNerve(GET_NERVE(PoltaRock, PoltaRockNrvFloat));
     appear();
     MR::offBind(this);
@@ -130,35 +145,37 @@ bool PoltaRock::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pR
 }
 
 void PoltaRock::exeFloat() {
-    TVec3f v3;
+    TVec3f target;
 
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_POLTA_ROCK_FLOAT_ST");
         MR::startAction(this, "Froat");
         MR::emitEffect(this, "Appear");
     }
+
     MR::startLevelSound(this, "SE_OJ_LV_POLTA_ROCK_FLOAT");
-    PSMTXMultVec(getOwner()->getBaseMtx(), &_AC, v3);
-    MR::addVelocityMoveToTarget(this, v3, 0.0f, 1.2f, 0.0f, 200.0f);
-    MR::addVelocityKeepHeightUseShadow(this, 800.0f, 1.5f, 300.0f, nullptr);
-    MR::attenuateVelocity(this, 0.92f);
-    if (MR::isGreaterStep(this, 90)) {
+    PSMTXMultVec(getHost()->getBaseMtx(), &mOffset, target);
+    MR::addVelocityMoveToTarget(this, target, 0.0f, ::sFloatToTargetAccel, 0.0f, 200.0f);
+    MR::addVelocityKeepHeightUseShadow(this, ::sFloatHeight, 1.5f, ::sFloatAccelRange, nullptr);
+    MR::attenuateVelocity(this, ::sFloatFric);
+    if (MR::isGreaterStep(this, ::sFloatTime)) {
         setNerve(GET_NERVE(PoltaRock, PoltaRockNrvSign));
         MR::onBind(this);
     }
 }
 
 void PoltaRock::exeSign() {
-    TVec3f v3;
+    TVec3f target;
 
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Sign");
     }
-    PSMTXMultVec(getOwner()->getBaseMtx(), &_AC, v3);
-    MR::addVelocityMoveToTarget(this, v3, 0.0f, 1.2f, 0.0f, 200.0f);
-    MR::addVelocityKeepHeightUseShadow(this, 800.0f, 1.5f, 300.0f, nullptr);
-    MR::attenuateVelocity(this, 0.92f);
-    if (MR::isGreaterStep(this, 60)) {
+
+    PSMTXMultVec(getHost()->getBaseMtx(), &mOffset, target);
+    MR::addVelocityMoveToTarget(this, target, 0.0f, ::sFloatToTargetAccel, 0.0f, 200.0f);
+    MR::addVelocityKeepHeightUseShadow(this, ::sFloatHeight, 1.5f, ::sFloatAccelRange, nullptr);
+    MR::attenuateVelocity(this, ::sFloatFric);
+    if (MR::isGreaterStep(this, ::sSignTime)) {
         setNerve(GET_NERVE(PoltaRock, PoltaRockNrvMove));
         MR::onBind(this);
     }
@@ -166,26 +183,26 @@ void PoltaRock::exeSign() {
 
 void PoltaRock::exeMove() {
     if (MR::isFirstStep(this)) {
-        _A0.set(*MR::getPlayerCenterPos() - mPosition);
-        MR::normalizeOrZero(&_A0);
+        mTargetPosition.set(*MR::getPlayerCenterPos() - mPosition);
+        MR::normalizeOrZero(&mTargetPosition);
         MR::startSound(this, "SE_OJ_POLTA_ROCK_FLY");
         MR::zeroVelocity(this);
     }
 
-    if (MR::isLessStep(this, 30)) {
-        mVelocity.add(_A0 * (3.0f * MR::calcNerveRate(this, 30)));
+    if (MR::isLessStep(this, ::sAccelTime)) {
+        mVelocity.add(mTargetPosition * (::sMoveAccel * MR::calcNerveRate(this, ::sAccelTime)));
     }
-    MR::addVelocityToGravity(this, -0.02f);
-    MR::attenuateVelocity(this, 0.999f);
-    MR::rotateQuatRollBall(&_90, mVelocity, -mGravity, 120.0f);
+    MR::addVelocityToGravity(this, ::sGravityAccel);
+    MR::attenuateVelocity(this, ::sNormalFric);
+    MR::rotateQuatRollBall(&mQuat, mVelocity, -mGravity, ::sModelSize);
     if (MR::isBinded(this)) {
         MR::sendMsgEnemyAttackToBindedSensor(this, getSensor("Body"));
-        MR::tryRumbleDefaultHit(this, 0);
+        MR::tryRumbleDefaultHit(this, WPAD_CHAN0);
         generateKill();
         return;
     }
 
-    if (MR::isGreaterStep(this, 300)) {
+    if (MR::isGreaterStep(this, ::sForceBreakTime)) {
         kill();
     }
 }
@@ -193,10 +210,10 @@ void PoltaRock::exeMove() {
 void PoltaRock::generateKill() {
     switch (mType) {
     case 1:
-        PoltaFunction::appearBombTeresaNormal(getOwner(), mPosition, TVec3f(0.0f, 0.0f, 0.0f));
+        PoltaFunction::appearBombTeresaNormal(getHost(), mPosition, TVec3f(0.0f, 0.0f, 0.0f));
         break;
     case 2:
-        MR::appearCoinPop(getOwner(), mPosition, 1);
+        MR::appearCoinPop(getHost(), mPosition, 1);
         break;
     }
     kill();

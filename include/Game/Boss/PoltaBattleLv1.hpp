@@ -33,6 +33,6 @@ public:
     /* 0x14 */ PoltaStateStagger* mStateStagger;
     /* 0x18 */ PoltaStateGenerateRock* mStateGenerateRock;
     /* 0x1C */ PoltaStateGroundRockAttack* mStateGroundRockAttack;
-    /* 0x20 */ s32 mPoltaHealth;
-    s32 _24;
+    /* 0x20 */ s32 mPoltaHP;
+    /* 0x24 */ s32 mGenerateRockTiming;
 };

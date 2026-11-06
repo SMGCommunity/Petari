@@ -896,7 +896,7 @@ void Kanina::exeGuard() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Guard");
         MR::startSound(this, "SE_EM_KANINA_GUARD");
-        MR::tryRumbleDefaultHit(this, 0);
+        MR::tryRumbleDefaultHit(this, WPAD_CHAN0);
         MR::calcVecToPlayerH(&_D0, this, nullptr);
     }
 

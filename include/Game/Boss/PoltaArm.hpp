@@ -35,10 +35,10 @@ public:
 
     /* 0x90 */ ModelObj* mFormationModel;
     /* 0x94 */ ModelObj* mBreakModel;
-    TPos3f _98;
-    s32 _C8;
-    s32 _CC;
+    /* 0x98 */ TPos3f mMtx;
+    /* 0xC8 */ s32 mBreakStage;
+    /* 0xCC */ s32 mNoBreakStage;
     /* 0xD0*/ s32 mBrokenCounter;
-    s32 _D4;
+    /* 0xD4 */ s32 mIsBroken;
     /* 0xD8 */ bool mIsLeftArm;
 };

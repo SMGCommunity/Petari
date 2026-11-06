@@ -69,9 +69,9 @@ public:
     /* 0xA8 */ ActorCameraInfo* mCameraInfo;
     /* 0xAC */ ModelObj* mBreakModel;
     /* 0xB0 */ ModelObj* mFormationModel;
-    /* 0xB4 */ TQuat4f _B4;
-    /* 0xC4 */ TVec3f _C4;
-    /* 0xD0 */ TQuat4f _D0;
-    /* 0xE0 */ TVec3f _E0;
-    /* 0xEC */ f32 _EC;
+    /* 0xB4 */ TQuat4f mQuat;
+    /* 0xC4 */ TVec3f mFront;
+    /* 0xD0 */ TQuat4f mStartPoseQuat;
+    /* 0xE0 */ TVec3f mStartPoseTrans;
+    /* 0xEC */ f32 mRotateSpeed;
 };

@@ -15,6 +15,10 @@ namespace {
         {1, 0, 0, 0, 1, 0, 0}, {0, 1, 0, 0, 0, 1, 0}, {0, 0, 1, 0, 0, 0, 1}, {0, 0, 0, 1, 0, 0, 0}, {0, 0, 0, 0, 1, 0, 0},
         {1, 0, 0, 1, 0, 0, 0}, {0, 1, 0, 0, 1, 0, 0}, {0, 0, 1, 0, 0, 1, 0}, {0, 0, 0, 1, 0, 0, 1}, {0, 0, 0, 0, 1, 0, 0},
     };
+
+    static const f32 sGenerateRadius = 600.0f;
+    static const s32 sGenRockInterval = 30;
+    static const f32 sEmitCoinRate = 0.08f;
 };  // namespace
 
 namespace NrvPoltaStateGenerateRock {
@@ -57,14 +61,14 @@ void PoltaStateGenerateRock::exeGenerate() {
     }
 
     getHost()->rotateToPlayer();
-    if (MR::isIntervalStep(this, 30)) {
+    if (MR::isIntervalStep(this, ::sGenRockInterval)) {
         patternIndex = mIndexIntoPattern % 7;
         if (::sRockPattern[mPatternIndex][patternIndex] && !PoltaFunction::isMaxGenerateBombTeresa(getHost())) {
-            PoltaFunction::appearBlackRockCircle(getHost(), getHost()->mPosition, 600.0f, patternIndex, mMaxIndexIntoPattern);
-        } else if (MR::getRandom(0.0f, 1.0f) < 0.08f && MR::getDeclareRemnantCoinCount(getHost()) > 0) {
-            PoltaFunction::appearYellowRockCircle(getHost(), getHost()->mPosition, 600.0f, patternIndex, mMaxIndexIntoPattern);
+            PoltaFunction::appearBlackRockCircle(getHost(), getHost()->mPosition, ::sGenerateRadius, patternIndex, mMaxIndexIntoPattern);
+        } else if (MR::getRandom(0.0f, 1.0f) < ::sEmitCoinRate && MR::getDeclareRemnantCoinCount(getHost()) > 0) {
+            PoltaFunction::appearYellowRockCircle(getHost(), getHost()->mPosition, ::sGenerateRadius, patternIndex, mMaxIndexIntoPattern);
         } else {
-            PoltaFunction::appearWhiteRockCircle(getHost(), getHost()->mPosition, 600.0f, patternIndex, mMaxIndexIntoPattern);
+            PoltaFunction::appearWhiteRockCircle(getHost(), getHost()->mPosition, ::sGenerateRadius, patternIndex, mMaxIndexIntoPattern);
         }
 
         mIndexIntoPattern++;

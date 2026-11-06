@@ -17,7 +17,7 @@ public:
     bool isEnableSensor() const;
     void setActionName(const char*);
 
-    u8 padding[0xC];
+    /* 0x10 */ u8 padding[0xC];
     /* 0x1C */ const char* mActionName;
-    bool _20;
+    /* 0x20 */ bool mIsClockwiseToPlayer;
 };

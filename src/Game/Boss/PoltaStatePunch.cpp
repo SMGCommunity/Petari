@@ -8,6 +8,11 @@
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const s32 sStartRotateEndTime = 60;
+    static const s32 sEndRotateStartTime = 70;
+};  // namespace
+
 namespace NrvPoltaStatePunch {
     NEW_NERVE(PoltaStatePunchNrvStart, PoltaStatePunch, Start);
     NEW_NERVE(PoltaStatePunchNrvAttack, PoltaStatePunch, Attack);
@@ -42,7 +47,7 @@ void PoltaStatePunch::exeStart() {
         PoltaFunction::startAction(getHost(), mIsLeftArmActor ? "PunchLeftStart" : "PunchRightStart", mIsActionAffectBody);
         MR::startSound(getHost(), "SE_BV_POLTA_PREP_PUNCH");
     }
-    if (MR::isLessStep(this, 60)) {
+    if (MR::isLessStep(this, ::sStartRotateEndTime)) {
         getHost()->rotateToPlayer();
     }
 
@@ -80,7 +85,7 @@ void PoltaStatePunch::exeToWait() {
         kill();
         return;
     }
-    if (MR::isGreaterStep(this, 70)) {
+    if (MR::isGreaterStep(this, ::sEndRotateStartTime)) {
         getHost()->rotateToPlayer();
     }
     if (MR::isActionEnd(getAttackActor())) {

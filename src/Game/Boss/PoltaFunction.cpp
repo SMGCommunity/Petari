@@ -164,7 +164,7 @@ namespace PoltaFunction {
         direction.orthogonalize(rGravity);
 
         if (MR::normalizeOrZero(&direction)) {
-            direction = pPolta->_C4;
+            direction = pPolta->mFront;
         }
 
         MR::rotateVecDegree(&direction, pPolta->mGravity, angle);
@@ -200,7 +200,7 @@ namespace PoltaFunction {
             break;
         }
 
-        const TVec3f& rFront = pPolta->_C4;
+        const TVec3f& rFront = pPolta->mFront;
         TVec3f direction(rFront);
         f32 sign = index % 2 ? 1.0f : -1.0f;
         f32 angle = sign * (15.0f + 7.0f * (index + 1));

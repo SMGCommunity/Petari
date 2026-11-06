@@ -175,14 +175,14 @@ bool MR::isNearPlayerPose(const LiveActor* pActor, f32 a2, f32 a3) {
 }
 
 bool MR::isNearPlayerHorizontal(const LiveActor* pActor, f32 distance) {
-    TVec3f stack_14;
+    TVec3f distanceFromPlayer;
     if (isPlayerHidden()) {
         return false;
     }
 
-    TVec3f stack_8 = pActor->mPosition - *MR::getPlayerPos();
-    f32 f1 = vecKillElement(stack_8, pActor->mGravity, &stack_14);
-    return (stack_14.squared() < distance * distance);
+    TVec3f rawDistanceFromPlayer = pActor->mPosition - *MR::getPlayerPos();
+    f32 f1 = vecKillElement(rawDistanceFromPlayer, pActor->mGravity, &distanceFromPlayer);
+    return (distanceFromPlayer.squared() < distance * distance);
 }
 
 void MR::calcFrontVec(TVec3f* pFrontVec, const LiveActor* pActor) {
@@ -625,12 +625,12 @@ void MR::addVelocityMoveToDirection(LiveActor* pActor, const TVec3f& rA2, f32 a3
     addVelocity(pActor, accel);
 }
 
-void MR::addVelocityMoveToTarget(LiveActor* pActor, const TVec3f& rTarget, f32 a3) {
+void MR::addVelocityMoveToTarget(LiveActor* pActor, const TVec3f& rTarget, f32 accel) {
     TVec3f toTarget = rTarget - pActor->mPosition;
-    TVec3f accel;
-    calcVelocityMoveToDirection(&accel, pActor, toTarget, a3);
+    TVec3f velocity;
+    calcVelocityMoveToDirection(&velocity, pActor, toTarget, accel);
 
-    addVelocity(pActor, accel);
+    addVelocity(pActor, velocity);
 }
 
 void MR::addVelocityMoveToTarget(LiveActor* pActor, const TVec3f& rTarget, f32 a3, f32 a4, f32 a5, f32 a6) {
@@ -642,13 +642,13 @@ void MR::addVelocityMoveToTarget(LiveActor* pActor, const TVec3f& rTarget, f32 a
     addVelocity(pActor, accel);
 }
 
-void MR::addVelocityAwayFromTarget(LiveActor* pActor, const TVec3f& rTarget, f32 a3) {
+void MR::addVelocityAwayFromTarget(LiveActor* pActor, const TVec3f& rTarget, f32 accel) {
     TVec3f fromTarget = pActor->mPosition - rTarget;
 
-    TVec3f accel;
-    calcVelocityMoveToDirection(&accel, pActor, fromTarget, a3);
+    TVec3f velocity;
+    calcVelocityMoveToDirection(&velocity, pActor, fromTarget, accel);
 
-    addVelocity(pActor, accel);
+    addVelocity(pActor, velocity);
 }
 
 void MR::addVelocityAwayFromTarget(LiveActor* pActor, const TVec3f& rTarget, f32 a3, f32 a4, f32 a5, f32 a6) {

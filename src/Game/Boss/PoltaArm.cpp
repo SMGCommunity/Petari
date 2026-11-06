@@ -27,9 +27,9 @@ PoltaArm::~PoltaArm() {
 }
 
 PoltaArm::PoltaArm(const char* pName, const char* pModelName, MtxPtr pMtx)
-    : ModelObj(pName, pModelName, pMtx, MR::DrawBufferType_Enemy, -2, -2, false), mFormationModel(), mBreakModel(), _C8(2), _CC(2), mBrokenCounter(),
-      _D4(), mIsLeftArm(true) {
-    _98.identity();
+    : ModelObj(pName, pModelName, pMtx, MR::DrawBufferType_Enemy, -2, -2, false), mFormationModel(), mBreakModel(), mBreakStage(2), mNoBreakStage(2), mBrokenCounter(),
+      mIsBroken(), mIsLeftArm(true) {
+    mMtx.identity();
     MR::initLightCtrl(this);
 
     if (MR::isEqualString(pModelName, "PoltaLeftArm")) {
@@ -52,7 +52,7 @@ void PoltaArm::init(const JMapInfoIter& rIter) {
 }
 
 void PoltaArm::initPartsModel() {
-    mBreakModel = MR::createModelObjEnemy("壊れモデル", "PoltaArmBreak", _98);
+    mBreakModel = MR::createModelObjEnemy("壊れモデル", "PoltaArmBreak", mMtx);
     mBreakModel->initWithoutIter();
     MR::initLightCtrl(mBreakModel);
     MR::invalidateClipping(mBreakModel);
@@ -86,7 +86,7 @@ void PoltaArm::exeDamage() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Damage");
         MR::startBva(this, "BreakLevel");
-        f32 ratio = static_cast< f32 >(_C8) / static_cast< f32 >(_CC);
+        f32 ratio = static_cast< f32 >(mBreakStage) / static_cast< f32 >(mNoBreakStage);
         f32 bvaFrame = (1.0f - ratio) * 2.0f;
         MR::setBvaFrameAndStop(this, bvaFrame);
         MR::startSound(this, "SE_BM_POLTA_ROCK_DAMAGE");
@@ -136,7 +136,7 @@ void PoltaArm::exeRepair() {
         MR::startAction(this, "Repair");
         mFormationModel->appear();
         MR::startAction(mFormationModel, mIsLeftArm ? "RepairArmL" : "RepairArmR");
-        _C8 = _CC;
+        mBreakStage = mNoBreakStage;
     }
 
     if (MR::isActionEnd(this)) {
@@ -153,7 +153,7 @@ void PoltaArm::endRepair() {
 }
 
 void PoltaArm::exeBroken() {
-    if (!_D4) {
+    if (!mIsBroken) {
         mBrokenCounter++;
     }
 
@@ -212,9 +212,9 @@ void PoltaArm::start() {
     MR::startBva(this, "BreakLevel");
     MR::setBvaFrameAndStop(this, 0.0f);
 
-    s32 CC_temp = _CC;
+    s32 noBreakStage = mNoBreakStage;
     mBrokenCounter = 0;
-    _C8 = CC_temp;
+    mBreakStage = noBreakStage;
     setNerve(GET_NERVE(PoltaArm, PoltaArmNrvControlled));
 }
 
@@ -239,9 +239,9 @@ bool PoltaArm::requestDamage() {
 
     if (isNerve(GET_NERVE(PoltaArm, PoltaArmNrvControlled)) || isNerve(GET_NERVE(PoltaArm, PoltaArmNrvWaitDamageEnd)) ||
         isNerve(GET_NERVE(PoltaArm, PoltaArmNrvWaitRepairEnd))) {
-        _C8--;
-        if (_C8 <= 0) {
-            _C8 = 0;
+        mBreakStage--;
+        if (mBreakStage <= 0) {
+            mBreakStage = 0;
             mBrokenCounter = 0;
             setNerve(GET_NERVE(PoltaArm, PoltaArmNrvBreak));
         } else {
@@ -283,7 +283,7 @@ bool PoltaArm::requestControlled(const char* pActionName) {
 void PoltaArm::appearBreakModel() {
     TVec3f jointPos;
     MR::copyJointPos(this, mIsLeftArm ? "HandL" : "HandR", &jointPos);
-    MR::makeMtxUpNoSupportPos(&_98, -mGravity, jointPos);
+    MR::makeMtxUpNoSupportPos(&mMtx, -mGravity, jointPos);
     mBreakModel->mScale.set(1.0f, 1.0f, 1.0f);
     mBreakModel->makeActorAppeared();
     MR::invalidateClipping(mBreakModel);

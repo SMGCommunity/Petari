@@ -18,6 +18,21 @@
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const f32 sFrontVecBlendRate = 0.4f;
+    static const f32 sUpVecBlendRate = 0.2f;
+    static const s32 sMaxHP = 3;
+    static const s32 sWaitTime = 120;
+    // static const s32 sGenerateRockCycle = _;
+    static const s32 sGenerateGroundRockTiming = 2;
+    static const f32 sAttackRange = 1500.0f;
+    static const f32 sPanchRange = 3000.0f;
+    static const s32 sBgmStateStagger = 2;
+    static const s32 sBgmStateStaggerChangeFrames = 60;
+    static const s32 sBgmStateNormal = 1;
+    static const s32 sBgmStateNormalChangeFrames = 90;
+};  // namespace
+
 namespace NrvPoltaBattleLv2 {
     NEW_NERVE(PoltaBattleLv2NrvWait, PoltaBattleLv2, Wait);
     NEW_NERVE(PoltaBattleLv2NrvPunch, PoltaBattleLv2, Punch);
@@ -30,13 +45,13 @@ namespace NrvPoltaBattleLv2 {
     NEW_NERVE(PoltaBattleLv2NrvDamageCore, PoltaBattleLv2, DamageCore);
 };  // namespace NrvPoltaBattleLv2
 
-PoltaBattleLv2::PoltaBattleLv2(Polta* pPolta) : PoltaActionBase("ボステレサ2戦目", pPolta), mPoltaHealth(3), _2C() {
+PoltaBattleLv2::PoltaBattleLv2(Polta* pPolta) : PoltaActionBase("ボステレサ2戦目", pPolta), mPoltaHP(::sMaxHP), mGenerateRockTiming() {
     initNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvWait));
     mStateAttackGround = new PoltaStateAttackGround(pPolta);
     mStatePunch = new PoltaStatePunch(pPolta);
     mStateStagger = new PoltaStateStagger(pPolta);
     mStateGroundRockAttack = new PoltaStateGroundRockAttack(pPolta);
-    mStateGroundRockAttack->_10 = 8;
+    mStateGroundRockAttack->mRockCount = 8;
     mStateGenerateRock = new PoltaStateGenerateRock(pPolta);
     mStateGenerateRock->mMaxIndexIntoPattern = 7;
     mStateGenerateRock->mEndDelayStep = 180;
@@ -46,16 +61,16 @@ void PoltaBattleLv2::appear() {
     if (MR::isDead(getHost())) {
         getHost()->makeActorAppeared();
     }
-    mIsDead = 0;
-    mPoltaHealth = 3;
-    PoltaFunction::setBodyHP(getHost(), 3);
+    mIsDead = false;
+    mPoltaHP = ::sMaxHP;
+    PoltaFunction::setBodyHP(getHost(), ::sMaxHP);
     PoltaFunction::startArm(getHost());
     setNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvWait));
     PoltaFunction::emitEffectShadow(getHost());
 }
 
 void PoltaBattleLv2::control() {
-    getHost()->updatePose(0.2f, 0.4f);
+    getHost()->updatePose(::sUpVecBlendRate, ::sFrontVecBlendRate);
     if (isNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvWait)) || isNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvGenerateGroundRock)) ||
         isNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvGenerateRock)) || isNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvDamageBody)) ||
         isNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvBreakBody))) {
@@ -107,7 +122,7 @@ bool PoltaBattleLv2::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSenso
     if (MR::isMsgExplosionAttack(msg)) {
         if (PoltaFunction::isBodySensor(getHost(), pReceiver)) {
             addDamageBody();
-            if (mPoltaHealth <= 0) {
+            if (mPoltaHP <= 0) {
                 setNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvBreakBody));
             } else {
                 setNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvDamageBody));
@@ -134,13 +149,13 @@ bool PoltaBattleLv2::tryAttackGround() {
     if (!PoltaFunction::isEnableAttackLeftArm(getHost()) && !PoltaFunction::isEnableAttackRightArm(getHost())) {
         return false;
     }
-    if (!MR::isFaceToPlayerHorizontalDegree(getHost(), getHost()->_C4, 45.0f)) {
+    if (!MR::isFaceToPlayerHorizontalDegree(getHost(), getHost()->mFront, 45.0f)) {
         return false;
     }
-    if (MR::isNearPlayer(getHost(), 1500.0f)) {
+    if (MR::isNearPlayer(getHost(), ::sAttackRange)) {
         setNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvAttackGround));
         return true;
-    } else if (MR::isNearPlayer(getHost(), 3000.0f)) {
+    } else if (MR::isNearPlayer(getHost(), ::sPanchRange)) {
         if (!PoltaFunction::isEnableAttackRightArm(getHost())) {
             mStatePunch->mIsLeftArmActor = true;
             setNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvPunch));
@@ -161,16 +176,16 @@ bool PoltaBattleLv2::tryAttackGround() {
 }
 
 void PoltaBattleLv2::setNerveGenerateRock() {
-    if (_2C == 2 && PoltaFunction::getCountDeadGroundRock(getHost()) >= 8) {
+    if (mGenerateRockTiming == ::sGenerateGroundRockTiming && PoltaFunction::getCountDeadGroundRock(getHost()) >= 8) {
         setNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvGenerateGroundRock));
     } else {
         setNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvGenerateRock));
     }
-    _2C = (_2C + 4) % 3;
+    mGenerateRockTiming = (mGenerateRockTiming + 4) % 3;
 }
 
 bool PoltaBattleLv2::tryGenerateRock() {
-    if (PoltaFunction::isBrokenLeftArm(getHost()) && PoltaFunction::isBrokenRightArm(getHost()) && MR::isGreaterStep(this, 120)) {
+    if (PoltaFunction::isBrokenLeftArm(getHost()) && PoltaFunction::isBrokenRightArm(getHost()) && MR::isGreaterStep(this, ::sWaitTime)) {
         setNerveGenerateRock();
         return true;
     }
@@ -206,7 +221,7 @@ void PoltaBattleLv2::exeGenerateRock() {
 }
 
 void PoltaBattleLv2::exeDamageBody() {
-    if (updateDamageBody(mPoltaHealth == 2)) {
+    if (updateDamageBody(mPoltaHP == 2)) {
         setNerve(GET_NERVE(PoltaBattleLv2, PoltaBattleLv2NrvWait));
     }
 }
@@ -223,7 +238,7 @@ void PoltaBattleLv2::exeBreakBody() {
 void PoltaBattleLv2::exeStagger() {
     if (MR::isFirstStep(this)) {
         mStateStagger->setActionName("StaggerLv2");
-        MR::setStageBGMState(2, 60);
+        MR::setStageBGMState(::sBgmStateStagger, ::sBgmStateStaggerChangeFrames);
         MR::startSound(getHost(), "SE_BV_POLTA_RUN_AWAY");
     }
 
@@ -231,7 +246,7 @@ void PoltaBattleLv2::exeStagger() {
 }
 
 void PoltaBattleLv2::endStagger() {
-    MR::setStageBGMState(1, 90);
+    MR::setStageBGMState(::sBgmStateNormal, ::sBgmStateNormalChangeFrames);
 }
 
 void PoltaBattleLv2::exeDamageCore() {
@@ -252,15 +267,15 @@ bool PoltaBattleLv2::isEnableSensor(const HitSensor* pSensor) const {
     }
 
     if (PoltaFunction::isBodySensor(getHost(), pSensor)) {
-        return mPoltaHealth > 0;
+        return mPoltaHP > 0;
     }
 
     if (PoltaFunction::isCoreSensor(getHost(), pSensor)) {
-        return mPoltaHealth <= 0;
+        return mPoltaHP <= 0;
     }
 
     if (PoltaFunction::isHeadSensor(getHost(), pSensor)) {
-        return mPoltaHealth <= 0;
+        return mPoltaHP <= 0;
     }
     if (PoltaFunction::isLeftArmSensor(getHost(), pSensor)) {
         return getHost()->mLeftArm->isEnableHitSensor();
@@ -301,8 +316,8 @@ bool PoltaBattleLv2::isEnableScream() const {
 }
 
 void PoltaBattleLv2::addDamageBody() {
-    if (mPoltaHealth > 0) {
-        mPoltaHealth--;
-        PoltaFunction::setBodyHP(getHost(), mPoltaHealth);
+    if (mPoltaHP > 0) {
+        mPoltaHP--;
+        PoltaFunction::setBodyHP(getHost(), mPoltaHP);
     }
 }

@@ -484,7 +484,7 @@ bool Metbo::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRece
                     setNerve(GET_NERVE(Metbo, MetboNrvTrampleDown));
                 } else {
                     setNerve(GET_NERVE(Metbo, MetboNrvGuard));
-                    MR::tryRumbleDefaultHit(this, 0);
+                    MR::tryRumbleDefaultHit(this, WPAD_CHAN0);
                     MR::sendMsgEnemyAttackCounterHipDrop(pSender, pReceiver);
                 }
                 return true;
@@ -496,7 +496,7 @@ bool Metbo::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRece
             } else if (isNerve(GET_NERVE(Metbo, MetboNrvSwoonStart))) {
                 return false;
             } else {
-                MR::tryRumbleDefaultHit(this, 0);
+                MR::tryRumbleDefaultHit(this, WPAD_CHAN0);
                 if (isNrvSwoon()) {
                     setNerve(GET_NERVE(Metbo, MetboNrvTrampleDown));
                 } else {

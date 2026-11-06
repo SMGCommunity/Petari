@@ -11,13 +11,17 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const s32 sScreamSensorMaxTime = 30;
+};  // namespace
+
 PoltaActionBase::PoltaActionBase(const char* pName, Polta* pPolta) : ActorStateBase< Polta >(pName, pPolta), _10() {
     MR::createCenterScreenBlur();
 }
 
 void PoltaActionBase::updateScreamSensor() {
-    if (MR::isLessStep(this, 30)) {
-        f32 size = MR::calcNerveValue(this, 30, 0.0f, 3200.0f);
+    if (MR::isLessStep(this, ::sScreamSensorMaxTime)) {
+        f32 size = MR::calcNerveValue(this, ::sScreamSensorMaxTime, 0.0f, 3200.0f);
         PoltaFunction::setScreamSensorSize(getHost(), size);
     } else {
         PoltaFunction::setScreamSensorSize(getHost(), 0.0f);
@@ -46,7 +50,7 @@ bool PoltaActionBase::updateDamageBody(bool isFirst) {
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormalStrong();
         MR::stopScene(3);
-        getHost()->_EC = 0.0f;
+        getHost()->mRotateSpeed = 0.0f;
         if (isFirst) {
             getHost()->appearBreakModelFirst(getHost()->mPosition);
         } else {
@@ -79,10 +83,10 @@ bool PoltaActionBase::updateBreakBody() {
         MR::zeroVelocity(getHost());
         MR::shakeCameraNormalStrong();
         MR::stopScene(3);
-        getHost()->_EC = 0.0f;
+        getHost()->mRotateSpeed = 0.0f;
         getHost()->appearBreakModelLast(getHost()->mPosition);
     }
-    this->updateScreamSensor();
+    updateScreamSensor();
     if (getHost()->isEndBreakModel()) {
         getHost()->killBreakModel();
     }
@@ -107,7 +111,7 @@ bool PoltaActionBase::updateDamageCore() {
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormalStrong();
         MR::stopScene(3);
-        getHost()->_EC = 0.0f;
+        getHost()->mRotateSpeed = 0.0f;
         MR::zeroVelocity(getHost());
         PoltaFunction::disperseBombTeresa(getHost());
     }
