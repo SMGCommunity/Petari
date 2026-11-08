@@ -2,18 +2,18 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 
-JMapIdInfo::JMapIdInfo(s32 a1, const JMapInfoIter& rIter) {
+JMapIdInfo::JMapIdInfo(s32 id, const JMapInfoIter& rIter) {
     mZoneID = -1;
-    initialize(a1, rIter);
+    initialize(id, rIter);
 }
 
-JMapIdInfo::JMapIdInfo(s32 a1, s32 zoneId) {
-    _0 = a1;
+JMapIdInfo::JMapIdInfo(s32 id, s32 zoneId) {
+    mID = id;
     mZoneID = zoneId;
 }
 
-void JMapIdInfo::initialize(s32 a1, const JMapInfoIter& rIter) {
-    _0 = a1;
+void JMapIdInfo::initialize(s32 id, const JMapInfoIter& rIter) {
+    mID = id;
     mZoneID = MR::getPlacedZoneId(rIter);
 }
 

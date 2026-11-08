@@ -31,7 +31,7 @@ MsgSharedGroup::MsgSharedGroup(const char* pName, s32 numMax, const JMapInfoIter
 
     if (pIdInfo != nullptr) {
         JMapIdInfo newInfo = MR::createJMapIdInfoFromGroupId(rIter);
-        pIdInfo->_0 = newInfo._0;
+        pIdInfo->mID = newInfo.mID;
         pIdInfo->mZoneID = newInfo.mZoneID;
     }
 

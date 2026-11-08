@@ -416,7 +416,7 @@ void StageDataHolder::initPlacementMario() {
 
 JMapInfoIter StageDataHolder::makeMarioJMapInfoIter(const JMapIdInfo& rInfo) const {
     const StageDataHolder* hldr = getStageDataHolderFromZoneId(rInfo.mZoneID);
-    s32 id = rInfo._0;
+    s32 id = rInfo.mID;
     const JMapInfo* i = hldr->mStartObjs.begin();
 
     while (i != hldr->mStartObjs.end()) {

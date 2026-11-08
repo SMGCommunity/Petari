@@ -50,13 +50,13 @@ void GameCameraCreator::scanStartPos() {
     for (s32 idx = 0; idx < MR::getStartPosNum(); idx++) {
         // TODO: ctor
         JMapIdInfo info;
-        info._0 = -1;
+        info.mID = -1;
         info.mZoneID = -1;
 
         MR::getStartCameraIdInfoFromStartDataIndex(&info, idx);
 
         CameraParamChunkID_Tmp chunk = CameraParamChunkID_Tmp();
-        chunk.createStartID(info.mZoneID, info._0);
+        chunk.createStartID(info.mZoneID, info.mID);
 
         mChunkHolder->createChunk(chunk, nullptr);
     }

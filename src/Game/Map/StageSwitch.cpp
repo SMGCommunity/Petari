@@ -32,10 +32,10 @@ SwitchIdInfo::SwitchIdInfo(s32 switchID, const JMapInfoIter& rIter) : mIDInfo(),
 
 s32 SwitchIdInfo::getSwitchNo() const {
     if (mIsGlobal) {
-        return mIDInfo->_0 - 1000;
+        return mIDInfo->mID - 1000;
     }
 
-    return mIDInfo->_0;
+    return mIDInfo->mID;
 }
 
 void StageSwitchContainer::createAndAddZone(const SwitchIdInfo& rInfo) {

@@ -32,7 +32,7 @@ void MR::requestChangeStageAfterMiss() {
 
     if (isGalaxyAnyCometAppearInCurrentStage()) {
         const JMapIdInfo& rInitialInfo = getInitializeStartIdInfo();
-        info._0 = rInitialInfo._0;
+        info.mID = rInitialInfo.mID;
         info.mZoneID = rInitialInfo.mZoneID;
     }
 

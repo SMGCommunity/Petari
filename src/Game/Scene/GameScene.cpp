@@ -491,10 +491,10 @@ void GameScene::startStagePlayFirst() {
 void GameScene::startStagePlayRetry() {
     MR::openWipeCircle();
 
-    if (MR::isEqualStageName("SurfingLv1Galaxy") && MR::getPlayerRestartIdInfo()->_0 == 1) {
+    if (MR::isEqualStageName("SurfingLv1Galaxy") && MR::getPlayerRestartIdInfo()->mID == 1) {
         MR::stopSubBGM(0);
         MR::stopStageBGM(0);
-    } else if (MR::isEqualStageName("SurfingLv2Galaxy") && MR::getPlayerRestartIdInfo()->_0 == 1) {
+    } else if (MR::isEqualStageName("SurfingLv2Galaxy") && MR::getPlayerRestartIdInfo()->mID == 1) {
         MR::stopSubBGM(0);
         MR::stopStageBGM(0);
     } else {
