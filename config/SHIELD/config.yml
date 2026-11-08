@@ -1,0 +1,20 @@
+# Extracted from smg_prd.pak
+# See config.example.yml for documentation.
+object_base: orig/SHIELD
+object: product.alf
+hash: 18b54ebaf8737cecf690aa897357baf535932c13
+symbols: config/SHIELD/symbols.txt
+splits: config/SHIELD/splits.txt
+# Change this to match the linker version.
+mw_comment_version: 14
+
+extract:
+- symbol: lbl_80699BE0
+  binary: assets/StoryProgressTable.bcsv
+  header: assets/StoryProgressTable.hpp
+- symbol: lbl_80699DC0
+  binary: assets/GalaxyInfoTable.bcsv
+  header: assets/GalaxyInfoTable.hpp
+- symbol: lbl_8069BCA0
+  binary: assets/ErrorMessageArchive.arc
+  header: assets/ErrorMessageArchive.hpp
