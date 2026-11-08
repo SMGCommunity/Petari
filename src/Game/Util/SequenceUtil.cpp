@@ -16,15 +16,15 @@ void MR::requestChangeScene(const char* pName) {
 }
 
 void MR::requestChangeSceneTitle() {
-    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(7, nullptr, 1, nullptr));
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(GALAXY_MOVE_TITLE, nullptr, 1, nullptr));
 }
 
 void MR::requestChangeStageInGameAfterLoadingGameData() {
-    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(6, nullptr, 1, nullptr));
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(GALAXY_MOVE_AFTER_LOADING_GAME_DATA, nullptr, 1, nullptr));
 }
 
 void MR::requestChangeStageAfterStageClear() {
-    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(4, nullptr, 1, nullptr));
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(GALAXY_MOVE_AFTER_CLEAR, nullptr, 1, nullptr));
 }
 
 void MR::requestChangeStageAfterMiss() {
@@ -37,14 +37,14 @@ void MR::requestChangeStageAfterMiss() {
     }
 
     GameSystemSceneController* pSceneController = SingletonHolder< GameSystem >::get()->mSceneController;
-    GalaxyMoveArgument argument(5, pSceneController->mCurrSceneControlInfo.mStage, pSceneController->getCurrentScenarioNo(), &info);
-    argument._C = pSceneController->getCurrentSelectedScenarioNo();
+    GalaxyMoveArgument argument(GALAXY_MOVE_AFTER_MISS, pSceneController->mCurrSceneControlInfo.mStage, pSceneController->getCurrentScenarioNo(), &info);
+    argument.mSelectedScenarioNo = pSceneController->getCurrentSelectedScenarioNo();
 
     GameSequenceFunction::requestGalaxyMove(argument);
 }
 
 void MR::requestChangeStageInGameMoving(const char* pStageName, s32 scenarioNo, const JMapIdInfo& rInfo) {
-    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(0, pStageName, scenarioNo, &rInfo));
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(GALAXY_MOVE_MOVING, pStageName, scenarioNo, &rInfo));
 }
 
 void MR::requestChangeStageInGameMoving(const char* pStageName, s32 scenarioNo) {
@@ -61,15 +61,15 @@ void MR::requestChangeSceneAfterBoot() {
 }
 
 void MR::requestChangeStageGoBackAstroDome() {
-    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(3, nullptr, 1, nullptr));
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(GALAXY_MOVE_BACK_ASTRO_DOME, nullptr, 1, nullptr));
 }
 
 void MR::requestStartScenarioSelect(const char* pStageName) {
-    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(2, pStageName, -1, nullptr));
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(GALAXY_MOVE_SCENARIO_SELECT, pStageName, -1, nullptr));
 }
 
 void MR::requestStartScenarioSelectForComet(const char* pStageName, s32 scenarioNo) {
-    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(2, pStageName, scenarioNo, nullptr));
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(GALAXY_MOVE_SCENARIO_SELECT, pStageName, scenarioNo, nullptr));
 }
 
 bool MR::hasRetryGalaxySequence() {
@@ -112,11 +112,11 @@ void MR::executeOnWelcomeAndRetry() {
 void MR::requestGoToAstroGalaxy(s32 param1) {
     JMapIdInfo info(param1, 0);
 
-    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(0, "AstroGalaxy", -1, &info));
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(GALAXY_MOVE_MOVING, "AstroGalaxy", -1, &info));
 }
 
 void MR::requestGoToAstroDomeFromAstroGalaxy(s32 scenarioNo, s32 param2) {
     JMapIdInfo info(param2, 0);
 
-    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(0, "AstroDome", scenarioNo, &info));
+    GameSequenceFunction::requestGalaxyMove(GalaxyMoveArgument(GALAXY_MOVE_MOVING, "AstroDome", scenarioNo, &info));
 }

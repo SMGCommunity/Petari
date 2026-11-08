@@ -24,20 +24,18 @@ void FindingLuigiEventScheduler::initAfterResourceLoaded() {
 
 void FindingLuigiEventScheduler::update(const GalaxyMoveArgument& rMoveArg) {
     switch (rMoveArg.mMoveType) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
+    case GALAXY_MOVE_MOVING:
+    case GALAXY_MOVE_1:
+    case GALAXY_MOVE_SCENARIO_SELECT:
+    case GALAXY_MOVE_BACK_ASTRO_DOME:
+    case GALAXY_MOVE_AFTER_CLEAR:
+    case GALAXY_MOVE_AFTER_MISS:
         break;
-    case 6:
-        // On Normal Level Load
+    case GALAXY_MOVE_AFTER_LOADING_GAME_DATA:
         syncWithGameEventFlag();
         mLuigiMailDirector->reset();
         break;
-    case 7:
-        // On Title Screen
+    case GALAXY_MOVE_TITLE:
         GameDataFunction::setGameEventValue("LuigiEventState", STATE_NULL);
         break;
     default:

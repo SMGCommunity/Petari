@@ -576,27 +576,27 @@ void StorySequenceExecutor::moveGalaxy(GalaxyMoveArgument* pMoveArgument, bool p
     _B0 = false;
 
     switch (pMoveArgument->mMoveType) {
-    case 0:
+    case GALAXY_MOVE_MOVING:
         decideNextEventForMoveGalaxy(pMoveArgument);
         break;
-    case 1:
+    case GALAXY_MOVE_1:
         if (pMoveArgument->isEqualStageScenario("PeachCastleGardenGalaxy", 1)) {
             prepareDemoSequence(::cDemoPrologue);
         }
 
         break;
-    case 3:
+    case GALAXY_MOVE_BACK_ASTRO_DOME:
         decideNextStageForGalaxyOut(pMoveArgument);
         break;
-    case 4:
+    case GALAXY_MOVE_AFTER_CLEAR:
         decideNextEventForClearGalaxy(pMoveArgument);
         decideNextEventForMoveGalaxy(pMoveArgument);
         break;
-    case 6:
+    case GALAXY_MOVE_AFTER_LOADING_GAME_DATA:
         overwriteGalaxyNameAfterLoading(pMoveArgument);
         decideNextEventForAfterLoading(pMoveArgument);
         break;
-    case 7:
+    case GALAXY_MOVE_TITLE:
         pMoveArgument->mStageName = "FileSelect";
         pMoveArgument->mScenarioNo = 1;
         break;
@@ -1121,7 +1121,7 @@ void StorySequenceExecutor::prepareDemoSequenceButlerFortressDiscover(const Gala
 
     addDynamicDemoSequenceInfo(7, 0, rCheckList.mStoryEventName);
 
-    if (pMoveArgument->mMoveType == 4) {
+    if (pMoveArgument->mMoveType == GALAXY_MOVE_AFTER_CLEAR) {
         addDynamicDemoSequenceInfo(13, 0, "");
     } else {
         addDynamicDemoSequenceInfo(1, 1, "Fadein");
@@ -1236,7 +1236,7 @@ void StorySequenceExecutor::setBeforeStageScenario(const GalaxyMoveArgument& rMo
     s32 scenarioNo = -1;
 
     if (MR::isEqualSceneName("Game")) {
-        if (rMoveArgument.mMoveType == 4) {
+        if (rMoveArgument.mMoveType == GALAXY_MOVE_AFTER_CLEAR) {
             pStageName = GameSequenceFunction::getClearedStageName();
             scenarioNo = GameSequenceFunction::getClearedPowerStarId();
         } else {

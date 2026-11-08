@@ -153,7 +153,7 @@ void GameSequenceProgress::requestGalaxyMove(const GalaxyMoveArgument& rMoveArg)
     updateGameDataGalaxyVisitedFlag();
     GameSequenceFunction::storeSceneStartGameDataHolder();
 
-    if (rMoveArg.mMoveType == 4) {
+    if (rMoveArg.mMoveType == GALAXY_MOVE_AFTER_CLEAR) {
         GameSequenceFunction::updateGameDataAndSequenceAfterStageResultSequence();
         mFindingLuigiEventScheduler->updateOnStageResult(GameSequenceFunction::getClearedStageName(), GameSequenceFunction::getClearedPowerStarId());
 
@@ -174,35 +174,35 @@ void GameSequenceProgress::requestGalaxyMove(const GalaxyMoveArgument& rMoveArg)
     pController->mNextSceneControlInfo.setScene("Game");
     pController->mNextSceneControlInfo.setStage(moveArg.mStageName);
     pController->mNextSceneControlInfo.mScenarioNo = moveArg.mScenarioNo;
-    pController->mNextSceneControlInfo.mSelectedScenarioNo = moveArg._C;
+    pController->mNextSceneControlInfo.mSelectedScenarioNo = moveArg.mSelectedScenarioNo;
     pController->mNextSceneControlInfo.setStartIdInfo(moveArg.mIDInfo);
     pController->requestChangeScene();
 
     resetGameDataAfterChangeScene(moveArg);
 
     switch (moveArg.mMoveType) {
-    case 2:
+    case GALAXY_MOVE_SCENARIO_SELECT:
         SingletonHolder< GameSystem >::get()->mSceneController->startScenarioSelectScene();
         MR::setStarPointerModeBase();
 
         break;
-    case 7:
+    case GALAXY_MOVE_TITLE:
         SingletonHolder< GameSystem >::get()->mSceneController->startScenarioSelectSceneBackground();
         mStarPointerOnOffController->setStateToTitle(this);
         break;
-    case 5:
+    case GALAXY_MOVE_AFTER_MISS:
         if (mPlayerMissLeft != nullptr && !isCometStar(moveArg)) {
             mPlayerMissLeft->appear();
         }
-    case 0:
-    case 1:
-    case 3:
-    case 4:
-    case 6:
+    case GALAXY_MOVE_MOVING:
+    case GALAXY_MOVE_1:
+    case GALAXY_MOVE_BACK_ASTRO_DOME:
+    case GALAXY_MOVE_AFTER_CLEAR:
+    case GALAXY_MOVE_AFTER_LOADING_GAME_DATA:
         SingletonHolder< GameSystem >::get()->mSceneController->startScenarioSelectSceneBackground();
         mStarPointerOnOffController->setStateToBase(this);
 
-        if (moveArg.mMoveType == 6) {
+        if (moveArg.mMoveType == GALAXY_MOVE_AFTER_LOADING_GAME_DATA) {
             mLuigiLeftSupplier->syncWithFlags();
         }
 
@@ -211,7 +211,7 @@ void GameSequenceProgress::requestGalaxyMove(const GalaxyMoveArgument& rMoveArg)
 
     mIsForceWipe = true;
 
-    if (moveArg.mMoveType == 2 || MR::isEqualString(moveArg.mStageName, "EpilogueDemoStage")) {
+    if (moveArg.mMoveType == GALAXY_MOVE_SCENARIO_SELECT || MR::isEqualString(moveArg.mStageName, "EpilogueDemoStage")) {
         mIsForceWipe = false;
     }
 
@@ -253,7 +253,7 @@ void GameSequenceProgress::exeWaitGoToFirstScene() {
 void GameSequenceProgress::exeNormal() {
     if (MR::isFirstStep(this)) {
         if (mIsCancelScenarioSelect) {
-            requestGalaxyMove(GalaxyMoveArgument(3, nullptr, 1, nullptr));
+            requestGalaxyMove(GalaxyMoveArgument(GALAXY_MOVE_BACK_ASTRO_DOME, nullptr, 1, nullptr));
             mIsCancelScenarioSelect = false;
         } else {
             startScene();
@@ -329,25 +329,25 @@ void GameSequenceProgress::resetGameDataAfterChangeScene(const GalaxyMoveArgumen
     s32 last1upStarPieceNum = GameDataFunction::getLast1upStarPieceNum();
 
     switch (rMoveArg.mMoveType) {
-    case 6:
+    case GALAXY_MOVE_AFTER_LOADING_GAME_DATA:
         mGalaxyCometScheduler->restoreStateFromGameData();
 
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 7:
+    case GALAXY_MOVE_MOVING:
+    case GALAXY_MOVE_1:
+    case GALAXY_MOVE_SCENARIO_SELECT:
+    case GALAXY_MOVE_BACK_ASTRO_DOME:
+    case GALAXY_MOVE_TITLE:
         GameDataFunction::resetGameDataGoToGalaxyFirst();
 
         break;
-    case 5:
+    case GALAXY_MOVE_AFTER_MISS:
         GameDataFunction::resetGameDataGoToGalaxyRetry();
 
         break;
     }
 
     if (rMoveArg.isEqualStageScenario("HeavensDoorGalaxy", 1) && mStorySequenceExecutor->isEqualStageScenarioBefore("PeachCastleGardenGalaxy", 1) &&
-        rMoveArg.mMoveType == 0) {
+        rMoveArg.mMoveType == GALAXY_MOVE_MOVING) {
         GameDataFunction::addStarPiece(starPieceNum);
         GameDataFunction::setLast1upStarPieceNum(last1upStarPieceNum);
     }
