@@ -75,7 +75,7 @@ FunctionAsyncExecutor::FunctionAsyncExecutor() : mMainThreadExec(nullptr), mHold
     }
 
     mMainThreadExec = new FunctionAsyncExecutorOnMainThread(OSGetCurrentThread());
-    _410 = JKRUnitHeap::create(0x34, 0x34A8, 4, MR::getCurrentHeap(), false);
+    _410 = JKRUnitHeap::create(sizeof(FunctionAsyncExecInfo), 0x34A8, 4, MR::getCurrentHeap(), false);
     _414 = JKRExpHeap::create(0x2800, MR::getCurrentHeap(), false);
 }
 

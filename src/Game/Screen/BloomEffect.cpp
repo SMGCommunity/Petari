@@ -7,12 +7,12 @@
 #include "Game/Util/Color.hpp"
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
-#include "JSystem/JUtility/JUTVideo.hpp"
-#include "revolution/gx/GXEnum.h"
-#include "revolution/gx/GXFrameBuf.h"
-#include "revolution/gx/GXStruct.h"
-#include "revolution/gx/GXTev.h"
 #include <JSystem/JUtility/JUTTexture.hpp>
+#include <JSystem/JUtility/JUTVideo.hpp>
+#include <revolution/gx/GXEnum.h>
+#include <revolution/gx/GXFrameBuf.h>
+#include <revolution/gx/GXStruct.h>
+#include <revolution/gx/GXTev.h>
 
 namespace {
     struct RadAndOfs {

@@ -1,7 +1,7 @@
 #ifndef FUNCTIONAL_H
 #define FUNCTIONAL_H
 
-#include "Inline.hpp"
+#include <Inline.hpp>
 
 namespace std {
     template < class Arg, class Result >

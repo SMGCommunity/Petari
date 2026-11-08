@@ -9,7 +9,6 @@
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "revolution/types.h"
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 #include <RVLFaceLib.h>
 

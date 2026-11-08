@@ -3,7 +3,6 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/MapPartsUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "revolution/os.h"
 
 void MapObjActorInitInfo_FORCE_MATCH_STRINGS() {
     OSReport("地形オブジェ");

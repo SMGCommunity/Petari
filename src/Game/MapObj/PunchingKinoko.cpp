@@ -1,8 +1,19 @@
 #include "Game/MapObj/PunchingKinoko.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include <revolution.h>
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 
 void PunchingKinoko_FORCE_EMIT_SCALE() {
     TVec3f vec;

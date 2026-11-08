@@ -3,17 +3,12 @@
 #include "Game/LiveActor/MaterialCtrl.hpp"
 #include "Game/MapObj/LavaHomeSeesawRotator.hpp"
 #include "Game/MapObj/MapPartsFunction.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "math_types.hpp"
-#include "revolution/types.h"
 
 LavaHomeSeesaw::LavaHomeSeesaw(const char* pName) : LiveActor(pName), mSeesawRotator(), mMtxSetter(), _94(gZeroVec), mYOffset() {
 }

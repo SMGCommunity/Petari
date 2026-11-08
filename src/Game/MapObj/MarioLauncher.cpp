@@ -26,7 +26,7 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TriangleFilter.hpp"
-#include "revolution/wpad.h"
+#include <revolution/wpad.h>
 
 void MarioLauncher_FORCE_MATCH_SDATA2() {
     (void)0.0f;

@@ -36,7 +36,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
-#include "revolution/os.h"
 #include <cstdio>
 
 namespace NrvTicoFat {

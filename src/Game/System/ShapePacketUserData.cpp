@@ -2,13 +2,13 @@
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/SchedulerUtil.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModel.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
-#include "JSystem/J3DGraphBase/J3DMaterial.hpp"
-#include "JSystem/J3DGraphBase/J3DShape.hpp"
-#include "JSystem/J3DGraphBase/J3DSys.hpp"
-#include "JSystem/J3DGraphBase/J3DTexture.hpp"
-#include "JSystem/JKernel/JKRHeap.hpp"
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
+#include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
+#include <JSystem/J3DGraphBase/J3DMaterial.hpp>
+#include <JSystem/J3DGraphBase/J3DShape.hpp>
+#include <JSystem/J3DGraphBase/J3DSys.hpp>
+#include <JSystem/J3DGraphBase/J3DTexture.hpp>
+#include <JSystem/JKernel/JKRHeap.hpp>
 #include <revolution/gd.h>
 #include <revolution/gd/GDTransform.h>
 

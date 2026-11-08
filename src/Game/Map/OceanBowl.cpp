@@ -12,7 +12,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
+#include <JSystem/JUtility/JUTTexture.hpp>
 
 // These are from the debug symbol map
 namespace {

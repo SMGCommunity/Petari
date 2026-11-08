@@ -24,8 +24,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include <JSystem/JGeometry/TUtil.hpp>
 
 // TODO: the symbol order for header funcs is out of order between JointControlDelegator funcs
 //       and Array funcs. This needs to be fixed in order to link.

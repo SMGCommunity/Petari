@@ -17,7 +17,6 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "revolution/types.h"
 
 namespace {
     // static const f32 sDriftSpeedMax = 2.4f;
