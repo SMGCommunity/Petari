@@ -18,7 +18,7 @@ namespace NrvCometRetryButton {
 };  // namespace NrvCometRetryButton
 
 CometRetryButton::CometRetryButton(const char* pName)
-    : LayoutActor(pName, true), mButtonYesPaneCtrl(nullptr), mButtonNoPaneCtrl(nullptr), mPlayerMissLeft(nullptr) {
+    : LayoutActor(pName), mButtonYesPaneCtrl(nullptr), mButtonNoPaneCtrl(nullptr), mPlayerMissLeft(nullptr) {
 }
 
 // FIXME: There are a lot of register swaps.

@@ -8,14 +8,14 @@
 #include "Game/Util/SystemUtil.hpp"
 #include <algorithm>
 
-PaneEffectKeeper::PaneEffectKeeper(LayoutActor* pActor, const LayoutManager* pManager, int myInt, const char* pName)
+PaneEffectKeeper::PaneEffectKeeper(LayoutActor* pActor, const LayoutManager* pManager, int extraEmitterNum, const char* pName)
     : mHost(pActor), mName(pName), mEmitters() {
     if (pName == nullptr) {
         mName = pManager->mLayoutName;
     }
 
     s32 effectNum = MR::getParticleResourceHolder()->getAutoEffectNum(mName);
-    mEmitters.init(myInt + effectNum);
+    mEmitters.init(extraEmitterNum + effectNum);
 
     for (s32 idx = 0; idx < mEmitters.mCount; idx++) {
         mEmitters.mArray[idx] = nullptr;

@@ -15,7 +15,7 @@ namespace NrvPlayerLeft {
 };  // namespace NrvPlayerLeft
 
 PlayerLeft::PlayerLeft(const char* pName)
-    : LayoutActor(pName, true), mPlayerLeft(0), mLayoutAppearer(nullptr), mPaneRumbler(nullptr), mIsForceAppear(false) {
+    : LayoutActor(pName), mPlayerLeft(0), mLayoutAppearer(nullptr), mPaneRumbler(nullptr), mIsForceAppear(false) {
 }
 
 void PlayerLeft::init(const JMapInfoIter& rIter) {

@@ -74,7 +74,7 @@ namespace NrvStarPointerLayout {
 };  // namespace NrvStarPointerLayout
 
 StarPointerLayout::StarPointerLayout(const char* pName)
-    : LayoutActor(pName, true), mPosition(0.0f, 0.0f), mPointerKind(StarPointerKind_NULL), mAnimType(AnimType_HandPaa), mTouchTimer(),
+    : LayoutActor(pName), mPosition(0.0f, 0.0f), mPointerKind(StarPointerKind_NULL), mAnimType(AnimType_HandPaa), mTouchTimer(),
       mPadChannel(-1), mRadius(::sNormalRadius), _3C(),
 #if (VERSION == RMGK01)
       mRotateAngle(),
@@ -906,7 +906,7 @@ void StarPointerLayout::updateDecoration() {
 }
 
 StarPointerNumber::StarPointerNumber(StarPointerLayout* pParent, s32 padChannel, const char* pName)
-    : LayoutActor(pName, true), mParent(pParent), mPadChannel(padChannel), mAnimType(AnimType_NULL), mIsAppear(false), mAppearTime(0) {
+    : LayoutActor(pName), mParent(pParent), mPadChannel(padChannel), mAnimType(AnimType_NULL), mIsAppear(false), mAppearTime(0) {
     initLayoutManager("DPDPointerNumber", 1);
     startAnimPosition(0);
 }

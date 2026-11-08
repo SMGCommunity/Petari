@@ -16,7 +16,7 @@ namespace NrvPurpleCoinCounter {
 };  // namespace NrvPurpleCoinCounter
 
 PurpleCoinCounter::PurpleCoinCounter(const char* pName)
-    : LayoutActor(pName, true), mPurpleCoinNum(0), mPurpleCoinDisplayNum(0), mInvalidCountUpFrame(0), mLayoutAppearer(nullptr), mPaneRumbler(nullptr),
+    : LayoutActor(pName), mPurpleCoinNum(0), mPurpleCoinDisplayNum(0), mInvalidCountUpFrame(0), mLayoutAppearer(nullptr), mPaneRumbler(nullptr),
       mIsValid(false) {
 }
 

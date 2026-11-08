@@ -24,7 +24,7 @@ namespace NrvCounterLayoutController {
 };  // namespace NrvCounterLayoutController
 
 CounterLayoutController::CounterLayoutController()
-    : LayoutActor("カウンタ系レイアウト制御", true), mPlayerNotMovingFrame(), _24(), mCoinCounter(), mStarPieceCounter(), mPlayerLeft(),
+    : LayoutActor("カウンタ系レイアウト制御"), mPlayerNotMovingFrame(), _24(), mCoinCounter(), mStarPieceCounter(), mPlayerLeft(),
       mStarCounter(), mHPMeter() {
 }
 

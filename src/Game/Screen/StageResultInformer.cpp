@@ -102,7 +102,7 @@ void DisplayInformationForResult::exeIdle() {
 }
 
 StageResultInformer::StageResultInformer()
-    : LayoutActor("リザルト通知", true), mInformationDisplayer(), mSequenceChecker(), mIconAButton(), _30(), _31() {
+    : LayoutActor("リザルト通知"), mInformationDisplayer(), mSequenceChecker(), mIconAButton(), _30(), _31() {
     mInformationDisplayer = new DisplayInformationForResult(this);
     mSequenceChecker = new StageResultSequenceChecker();
 }

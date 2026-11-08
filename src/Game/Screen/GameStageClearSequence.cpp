@@ -30,7 +30,7 @@ namespace NrvGameStageClearSequence {
 };  // namespace NrvGameStageClearSequence
 
 GameStageClearSequence::GameStageClearSequence()
-    : LayoutActor("ステージクリアシーケンス", true), mEffectLayout(nullptr), mEffectFollowPos(0.0f, 0.0f) {
+    : LayoutActor("ステージクリアシーケンス"), mEffectLayout(nullptr), mEffectFollowPos(0.0f, 0.0f) {
 }
 
 void GameStageClearSequence::init(const JMapInfoIter& rIter) {

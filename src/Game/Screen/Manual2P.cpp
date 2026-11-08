@@ -35,7 +35,7 @@ namespace {
 };  // namespace
 
 Manual2P::Manual2P(const char* pName)
-    : LayoutActor(pName, true), mPageIndex(), mPageNum(), mLeftPaneCtrl(), mRightPaneCtrl(), _30(true), _31(true), mBackButton() {
+    : LayoutActor(pName), mPageIndex(), mPageNum(), mLeftPaneCtrl(), mRightPaneCtrl(), _30(true), _31(true), mBackButton() {
 }
 
 void Manual2P::init(const JMapInfoIter& rIter) {

@@ -5,7 +5,7 @@
 #include <cstdio>
 
 GalaxyMapTicoIcon::GalaxyMapTicoIcon(int exclamationGalaxyIndex, const char* pGalaxyName, LayoutActor* pHost, const char* pPaneName)
-    : LayoutActor(pGalaxyName, true), mExclamationGalaxyIndex(exclamationGalaxyIndex), mGalaxyName(pGalaxyName), mHost(pHost), mPaneName(nullptr),
+    : LayoutActor(pGalaxyName), mExclamationGalaxyIndex(exclamationGalaxyIndex), mGalaxyName(pGalaxyName), mHost(pHost), mPaneName(nullptr),
       mMode(0) {
     u32 paneNameLen = strlen(pPaneName) + 1;
 

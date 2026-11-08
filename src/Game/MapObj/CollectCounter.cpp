@@ -7,7 +7,7 @@ namespace NrvCollectCounter {
     NEW_NERVE(CollectCounterNrvShow, CollectCounter, Show);
 };  // namespace NrvCollectCounter
 
-CollectCounter::CollectCounter(const char* pName) : LayoutActor(pName, true) {
+CollectCounter::CollectCounter(const char* pName) : LayoutActor(pName) {
     mFollowPosition.x = 0.0f;
     mFollowPosition.y = 0.0f;
 }

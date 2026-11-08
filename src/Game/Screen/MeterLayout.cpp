@@ -54,7 +54,7 @@ namespace NrvMeterLayout {
 };  // namespace NrvMeterLayout
 
 MeterLayout::MeterLayout(const char* pName, const char* pArcName)
-    : LayoutActor(pName, true), mCountUpPaneRumbler(), mFollowPos(0.0f, 0.0f), mFollowPosW(0.0f, 0.0f), _3C(0.0f, 0.0f), mCount(3), mAlpha(),
+    : LayoutActor(pName), mCountUpPaneRumbler(), mFollowPos(0.0f, 0.0f), mFollowPosW(0.0f, 0.0f), _3C(0.0f, 0.0f), mCount(3), mAlpha(),
       _4C(1.0f) {
     MR::connectToSceneLayout(this);
     initLayoutManager(pArcName, 3);

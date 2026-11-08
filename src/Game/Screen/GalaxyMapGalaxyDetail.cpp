@@ -15,7 +15,7 @@ namespace {
     NEW_NERVE(GalaxyMapGalaxyDetailDisappear, GalaxyMapGalaxyDetail, Disappear);
 };  // namespace
 
-GalaxyMapGalaxyDetail::GalaxyMapGalaxyDetail() : LayoutActor("GalaxyDetail", true) {
+GalaxyMapGalaxyDetail::GalaxyMapGalaxyDetail() : LayoutActor("GalaxyDetail") {
     mInfoLayoutSetter = nullptr;
 }
 

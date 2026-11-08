@@ -27,7 +27,7 @@ namespace NrvStarPointerGuidance {
 };  // namespace NrvStarPointerGuidance
 
 StarPointerGuidance::StarPointerGuidance(const char* pName)
-    : LayoutActor(pName, true), mSpineFrame1P(nullptr), mSpineGuidance(nullptr), mSpineFrame2P(nullptr), mOutScreenTime(0), mRequestTime1P(0),
+    : LayoutActor(pName), mSpineFrame1P(nullptr), mSpineGuidance(nullptr), mSpineFrame2P(nullptr), mOutScreenTime(0), mRequestTime1P(0),
       mRequestTime2P(0), mGuidanceMessage(nullptr), mPrevGuidanceMessage(nullptr), mIsActiveRequest1P(false), mIsActiveRequest2P(false),
       mIsActive(true), mIsGuidanceDisabled(false), mTextLineNumGuidance(1), mTextLineNum1P(1), mTextLineNum2P(1) {
 }

@@ -64,7 +64,7 @@ namespace {
 };  // namespace
 
 GalaxyMapDomeIcon::GalaxyMapDomeIcon(int param1, LayoutActor* pHost, const char* pPaneName, const char* pParam4)
-    : LayoutActor(pPaneName, true), _20(param1), mHost(pHost), mPaneName(pPaneName), _2C(pParam4), mNamePlate(), mMode() {
+    : LayoutActor(pPaneName), _20(param1), mHost(pHost), mPaneName(pPaneName), _2C(pParam4), mNamePlate(), mMode() {
 }
 
 void GalaxyMapDomeIcon::appear() {

@@ -37,7 +37,7 @@ namespace NrvSuddenDeathMeter {
 };  // namespace NrvSuddenDeathMeter
 
 SuddenDeathMeter::SuddenDeathMeter(const char* pName, const char* pArcName)
-    : LayoutActor(pName, true), mCountUpPaneRumbler(), mFollowPosW(0.0f, 0.0f), _2C(0.0f, 0.0f), mCount(1), mAlpha(0.0f), mShowHideRate(1.0f) {
+    : LayoutActor(pName), mCountUpPaneRumbler(), mFollowPosW(0.0f, 0.0f), _2C(0.0f, 0.0f), mCount(1), mAlpha(0.0f), mShowHideRate(1.0f) {
     MR::connectToSceneLayout(this);
     initLayoutManager(pArcName, 3);
 }

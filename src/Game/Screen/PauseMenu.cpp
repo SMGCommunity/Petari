@@ -37,7 +37,7 @@ namespace NrvPauseMenu {
 };  // namespace NrvPauseMenu
 
 PauseMenu::PauseMenu()
-    : LayoutActor("ポーズメニュー", true), _20(), _24(), _28(0.0f, 50.0f), _30(), mLuigiLetter(), _38(), mStageTitleOffset(0.0f, 39.0f),
+    : LayoutActor("ポーズメニュー"), _20(), _24(), _28(0.0f, 50.0f), _30(), mLuigiLetter(), _38(), mStageTitleOffset(0.0f, 39.0f),
       mCoinNumPos(0.0f, 0.0f), mStarPieceNumPos(0.0f, 0.0f), _54(true) {
 }
 

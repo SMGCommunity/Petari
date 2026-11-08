@@ -25,7 +25,7 @@ namespace {
 };  // namespace
 
 OdhConverter::OdhConverter()
-    : LayoutActor("ODH-jpeg変換", true), mCaptureWidth(::cCaptureWidth), mCaptureHeight(::cCaptureHeight), mLimitSize(::cLimitSize),
+    : LayoutActor("ODH-jpeg変換"), mCaptureWidth(::cCaptureWidth), mCaptureHeight(::cCaptureHeight), mLimitSize(::cLimitSize),
       mIsRequestedCapture(false), mImage(nullptr), mCaptureImage(nullptr) {
 }
 

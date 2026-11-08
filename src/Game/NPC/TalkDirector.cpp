@@ -71,7 +71,7 @@ void TalkPeekZ::drawSyncCallback(u16 arg) {
 }
 
 TalkDirector::TalkDirector(const char* pName)
-    : LayoutActor(pName, true), mMsgCtrl(), _3C(), _40(), _44(), mTalkState(), _4C(), _4D(), _4E(), mIsInvalidClipping(), mDemoType(), _58(), _59() {
+    : LayoutActor(pName), mMsgCtrl(), _3C(), _40(), _44(), mTalkState(), _4C(), _4D(), _4E(), mIsInvalidClipping(), mDemoType(), _58(), _59() {
 }
 
 TalkDirector::~TalkDirector() {

@@ -55,7 +55,7 @@ namespace {
     }
 };  // namespace
 
-RaceManagerLayout::RaceManagerLayout(const char* pName) : LayoutActor(pName, true) {
+RaceManagerLayout::RaceManagerLayout(const char* pName) : LayoutActor(pName) {
 }
 
 void RaceManagerLayout::init(const JMapInfoIter& rIter) {

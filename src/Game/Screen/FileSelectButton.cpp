@@ -13,7 +13,7 @@ namespace {
     NEW_NERVE(FileSelectButtonNrvDisappear, FileSelectButton, Disappear);
 };  // namespace
 
-FileSelectButton::FileSelectButton(const char* pName) : LayoutActor(pName, true) {
+FileSelectButton::FileSelectButton(const char* pName) : LayoutActor(pName) {
     for (int i = 0; i < ARRAY_SIZE(mButtonCtrl); i++) {
         mButtonCtrl[i] = nullptr;
         mCallbackFunctor[i] = nullptr;

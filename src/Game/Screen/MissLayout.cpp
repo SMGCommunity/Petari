@@ -9,7 +9,7 @@ namespace {
     NEW_NERVE(MissLayoutNrvEnd, MissLayout, End);
 };  // namespace
 
-MissLayout::MissLayout() : LayoutActor("ミス!", true) {
+MissLayout::MissLayout() : LayoutActor("ミス!") {
 }
 
 void MissLayout::init(const JMapInfoIter& rIter) {

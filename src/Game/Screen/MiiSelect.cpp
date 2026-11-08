@@ -28,7 +28,7 @@ namespace {
 };  // namespace
 
 MiiSelect::MiiSelect(const char* pName)
-    : LayoutActor(pName, true), _28(new MR::BitArray(5)), mFellowIconNum(), mFavoriteMiiNum(), mMiiNum(), _1EC(), _1F0(), _1F4(), _1F8(), _1FC(),
+    : LayoutActor(pName), _28(new MR::BitArray(5)), mFellowIconNum(), mFavoriteMiiNum(), mMiiNum(), _1EC(), _1F0(), _1F4(), _1F8(), _1FC(),
       _200(), _204(new FileSelectIconID()) {
     for (int i = 0; i < ARRAY_SIZE(_20); i++) {
         _20[i] = nullptr;

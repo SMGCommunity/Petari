@@ -21,7 +21,7 @@ namespace NrvSysInfoWindow {
 };  // namespace NrvSysInfoWindow
 
 SysInfoWindow::SysInfoWindow(SysInfoWindowType windowType, SysInfoExecuteType executeType)
-    : LayoutActor("システム用インフォメーションウィンドウ", true), mWindowType(windowType), mType(Type_Key), mYesNoSelector(nullptr),
+    : LayoutActor("システム用インフォメーションウィンドウ"), mWindowType(windowType), mType(Type_Key), mYesNoSelector(nullptr),
       mIconAButton(nullptr), mTextParentPaneName(nullptr), mWindowParentPaneName(nullptr), _38(executeType == ExecuteType_Children) {
     switch (windowType) {
     case WindowType_Normal:

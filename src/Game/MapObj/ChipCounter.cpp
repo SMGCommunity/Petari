@@ -24,7 +24,7 @@ namespace NrvChipCounter {
     NEW_NERVE(ChipCounterNrvCompleteOut, ChipCounter, CompleteOut);
 };  // namespace NrvChipCounter
 
-ChipCounter::ChipCounter(const char* pName, s32 type) : LayoutActor(pName, true), mCollectCounter(), mCount(), mType(type), mGroupId(-1), _30(1.0f) {
+ChipCounter::ChipCounter(const char* pName, s32 type) : LayoutActor(pName), mCollectCounter(), mCount(), mType(type), mGroupId(-1), _30(1.0f) {
 }
 
 void ChipCounter::init(const JMapInfoIter& rIter) {

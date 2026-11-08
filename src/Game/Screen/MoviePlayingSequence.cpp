@@ -225,7 +225,7 @@ namespace {
     }
 };  // namespace
 
-MoviePlayingSequence::MoviePlayingSequence(const char* pName, s32 movieType) : LayoutActor(pName, true), mInfo(&::sInfoTable[movieType]), mSubtitles() {
+MoviePlayingSequence::MoviePlayingSequence(const char* pName, s32 movieType) : LayoutActor(pName), mInfo(&::sInfoTable[movieType]), mSubtitles() {
     mPadRumbler = new DemoPadRumbler(getMovieName(MovieType(movieType)));
 
     MR::createSceneObj(SceneObj_MoviePlayerSimple);

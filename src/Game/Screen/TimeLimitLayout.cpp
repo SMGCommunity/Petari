@@ -31,7 +31,7 @@ namespace NrvTimeLimitLayout {
 };  // namespace NrvTimeLimitLayout
 
 TimeLimitLayout::TimeLimitLayout(u32 timeLimit)
-    : LayoutActor("タイムリミット", true), mTime(), mTimeLimit(timeLimit), mScaleControl(), mFadeControl(), mCurrentTiming(), mIsSuspend(), _35() {
+    : LayoutActor("タイムリミット"), mTime(), mTimeLimit(timeLimit), mScaleControl(), mFadeControl(), mCurrentTiming(), mIsSuspend(), _35() {
 }
 
 void TimeLimitLayout::init(const JMapInfoIter& rIter) {

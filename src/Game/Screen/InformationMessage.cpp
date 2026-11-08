@@ -12,7 +12,7 @@ namespace NrvInformationMessage {
     NEW_NERVE(InformationMessageNrvDisappear, InformationMessage, Disappear);
 };  // namespace NrvInformationMessage
 
-InformationMessage::InformationMessage() : LayoutActor("インフォメーションメッセージ", true), mAButtonIcon(nullptr), mIsCenter(false) {
+InformationMessage::InformationMessage() : LayoutActor("インフォメーションメッセージ"), mAButtonIcon(nullptr), mIsCenter(false) {
 }
 
 void InformationMessage::init(const JMapInfoIter& rIter) {

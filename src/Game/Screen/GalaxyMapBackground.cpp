@@ -1,7 +1,7 @@
 #include "Game/Screen/GalaxyMapBackground.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 
-GalaxyMapBackground::GalaxyMapBackground() : LayoutActor("背景", true) {
+GalaxyMapBackground::GalaxyMapBackground() : LayoutActor("背景") {
     initLayoutManager("MapGalaxyBg", 1);
 }
 

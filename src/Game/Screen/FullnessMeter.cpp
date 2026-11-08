@@ -12,7 +12,7 @@ namespace NrvFullnessMeter {
     NEW_NERVE(FullnessMeterNrvEnd, FullnessMeter, End);
 };  // namespace NrvFullnessMeter
 
-FullnessMeter::FullnessMeter(LiveActor* pHost, s32 a2, s32 a3) : LayoutActor("満腹計", true), _20(a3), _24(a2), mHost(pHost) {
+FullnessMeter::FullnessMeter(LiveActor* pHost, s32 a2, s32 a3) : LayoutActor("満腹計"), _20(a3), _24(a2), mHost(pHost) {
     MR::connectToSceneTalkLayout(this);
     initLayoutManager("StarPieceTargetMeter", 1);
     MR::createAndAddPaneCtrl(this, "TargetMeter", 1);

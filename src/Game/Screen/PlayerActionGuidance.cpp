@@ -29,7 +29,7 @@ namespace MR {
 };  // namespace MR
 
 PlayerActionGuidance::PlayerActionGuidance()
-    : LayoutActor("プレイヤーアクションガイダンス", true), mSpinLayout(), mTamakoroLayout(), mCurrentLayout(), mGuidanceState(3),
+    : LayoutActor("プレイヤーアクションガイダンス"), mSpinLayout(), mTamakoroLayout(), mCurrentLayout(), mGuidanceState(3),
       mGuidancePrevState(3), _34(), _35(), _36(), _37() {
 }
 

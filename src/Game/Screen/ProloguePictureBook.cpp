@@ -18,7 +18,7 @@ namespace NrvProloguePictureBook {
     NEW_NERVE(ProloguePictureBookEnd, ProloguePictureBook, End);
 };  // namespace NrvProloguePictureBook
 
-ProloguePictureBook::ProloguePictureBook() : LayoutActor("プロローグの絵本", true), mIconAButton(), mPage() {
+ProloguePictureBook::ProloguePictureBook() : LayoutActor("プロローグの絵本"), mIconAButton(), mPage() {
 }
 
 void ProloguePictureBook::init(const JMapInfoIter& rIter) {

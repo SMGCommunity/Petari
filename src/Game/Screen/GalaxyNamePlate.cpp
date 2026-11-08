@@ -21,7 +21,7 @@ namespace NrvGalaxyNamePlate {
 };  // namespace NrvGalaxyNamePlate
 
 GalaxyNamePlate::GalaxyNamePlate(const char* pGalaxyName, bool param2)
-    : LayoutActor("ギャラクシー名プレート", true), mGalaxyName(pGalaxyName), _24(false), _25(false), mShowBalloonNozzle(true), mDrawerEntry(nullptr),
+    : LayoutActor("ギャラクシー名プレート"), mGalaxyName(pGalaxyName), _24(false), _25(false), mShowBalloonNozzle(true), mDrawerEntry(nullptr),
       _2C(0), _30(true) {
     initLayoutManager("GalaxyNamePlate", 3);
 

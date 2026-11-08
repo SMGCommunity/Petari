@@ -13,7 +13,7 @@ namespace {
     NEW_NERVE(LogoFaderNrvFadeOut, LogoFader, FadeOut);
 };  // namespace
 
-LogoFader::LogoFader(const char* pName) : LayoutActor(pName, true), _20(true), mMaxStep(30), mRate(0.0f) {
+LogoFader::LogoFader(const char* pName) : LayoutActor(pName), _20(true), mMaxStep(30), mRate(0.0f) {
     initNerve(GET_NERVE_ANON(LogoFaderNrvDisplay));
     kill();
 }

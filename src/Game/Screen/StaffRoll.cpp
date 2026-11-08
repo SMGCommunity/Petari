@@ -119,7 +119,7 @@ namespace NrvStaffRollLine {
     NEW_NERVE(StaffRollLineNrvScroll, StaffRollLine, Scroll);
 };  // namespace NrvStaffRollLine
 
-StaffRollLine::StaffRollLine(const char* pName) : LayoutActor(pName, true), mPosition(0.0f, 0.0f) {
+StaffRollLine::StaffRollLine(const char* pName) : LayoutActor(pName), mPosition(0.0f, 0.0f) {
 }
 
 void StaffRollLine::init(const JMapInfoIter& rIter) {
@@ -152,7 +152,7 @@ namespace NrvStaffRollPicture {
     NEW_NERVE(StaffRollPictureNrvWork, StaffRollPicture, Work);
 };  // namespace NrvStaffRollPicture
 
-StaffRollPicture::StaffRollPicture(const char* pName) : LayoutActor(pName, true), mReplaceTexture() {
+StaffRollPicture::StaffRollPicture(const char* pName) : LayoutActor(pName), mReplaceTexture() {
 }
 
 void StaffRollPicture::init(const JMapInfoIter& rIter) {
@@ -250,7 +250,7 @@ namespace NrvStaffRoll {
 };  // namespace NrvStaffRoll
 
 StaffRoll::StaffRoll(const char* pName)
-    : LayoutActor(pName, true), mInfo(), mLine(), mPicture(), mMsg(), mMsgLineNum(), mMsgLine(), mTitleLogoPos(0.0f, 0.0f), mEndLogoPos(0.0f, 0.0f),
+    : LayoutActor(pName), mInfo(), mLine(), mPicture(), mMsg(), mMsgLineNum(), mMsgLine(), mTitleLogoPos(0.0f, 0.0f), mEndLogoPos(0.0f, 0.0f),
       _48(-1), _4C() {
 }
 

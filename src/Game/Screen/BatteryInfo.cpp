@@ -194,7 +194,7 @@ bool BatteryInfo::tryChangeNerveWithBatteryLeftAlreadyAppear() {
     return false;
 }
 
-BatteryLayout::BatteryLayout() : LayoutActor("BatteryLayout", true), mInfo1P(nullptr), mInfo2P(nullptr) {
+BatteryLayout::BatteryLayout() : LayoutActor("BatteryLayout"), mInfo1P(nullptr), mInfo2P(nullptr) {
 }
 
 void BatteryLayout::init(const JMapInfoIter& rIter) {

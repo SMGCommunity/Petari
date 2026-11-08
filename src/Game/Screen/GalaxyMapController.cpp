@@ -63,7 +63,7 @@ namespace {
 };  // namespace
 
 GalaxyMapController::GalaxyMapController()
-    : LayoutActor("GalaxyMapController", true), mMap(), mMapBackground(), mPowerStarList(), mBackButton(), mWipe(), _38(), mMode(),
+    : LayoutActor("GalaxyMapController"), mMap(), mMapBackground(), mPowerStarList(), mBackButton(), mWipe(), _38(), mMode(),
       mWipeFrame(::sMapFadeinoutFrame) {
 }
 

@@ -200,7 +200,7 @@ namespace NrvPowerStarList {
 };  // namespace NrvPowerStarList
 
 PowerStarList::PowerStarList()
-    : LayoutActor("全パワースターリスト", true), mArrowUpButtonCtrl(), mArrowDownButtonCtrl(), mCaptureButtonCtrl(), mSysInfoWindow(), mPageNo(),
+    : LayoutActor("全パワースターリスト"), mArrowUpButtonCtrl(), mArrowDownButtonCtrl(), mCaptureButtonCtrl(), mSysInfoWindow(), mPageNo(),
       mMailMessageLength(), mMailMessage() {
     mSeparatorArray = new Separator[4]();
 }

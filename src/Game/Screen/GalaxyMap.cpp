@@ -38,7 +38,7 @@ namespace {
 };  // namespace
 
 GalaxyMap::GalaxyMap()
-    : LayoutActor("ギャラクシー・天文台マップ", true), mMarioIcon1(), mMarioIcon2(), mGalaxyPlain(), mGalaxyDetail(), mPointingIcon(), mGalaxyName(),
+    : LayoutActor("ギャラクシー・天文台マップ"), mMarioIcon1(), mMarioIcon2(), mGalaxyPlain(), mGalaxyDetail(), mPointingIcon(), mGalaxyName(),
 #if (VERSION == RMGK01)
       mIconAButton(),
 #endif

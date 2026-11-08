@@ -17,7 +17,7 @@ namespace NrvCameraInfo {
     NEW_NERVE(CameraInfoNrvEnd, CameraInfo, End);
 };  // namespace NrvCameraInfo
 
-CameraInfo::CameraInfo(const char* pName) : LayoutActor(pName, true), mStep(-1), mIsActive(true) {
+CameraInfo::CameraInfo(const char* pName) : LayoutActor(pName), mStep(-1), mIsActive(true) {
 }
 
 void CameraInfo::init(const JMapInfoIter& rIter) {

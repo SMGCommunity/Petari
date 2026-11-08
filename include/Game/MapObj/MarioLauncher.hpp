@@ -63,7 +63,7 @@ public:
 
 class MarioLauncherLayout : public LayoutActor {
 public:
-    MarioLauncherLayout() : LayoutActor("移動用砲台用レイアウト", true), mLayout() {
+    MarioLauncherLayout() : LayoutActor("移動用砲台用レイアウト"), mLayout() {
     }
 
     virtual void init(const JMapInfoIter& rIter);

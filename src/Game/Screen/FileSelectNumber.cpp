@@ -11,7 +11,7 @@ namespace {
     NEW_NERVE(FileSelectNumberNrvEnd, FileSelectNumber, End);
 };  // namespace
 
-FileSelectNumber::FileSelectNumber(const char* pName) : LayoutActor(pName, true), mNumber(-1), mSelectAnimCtrl() {
+FileSelectNumber::FileSelectNumber(const char* pName) : LayoutActor(pName), mNumber(-1), mSelectAnimCtrl() {
 }
 
 void FileSelectNumber::init(const JMapInfoIter& rIter) {

@@ -30,7 +30,7 @@ namespace NrvTalkBalloonEvent {
     NEW_NERVE(TalkBalloonEventNrvClose, TalkBalloonEvent, Close);
 };  // namespace NrvTalkBalloonEvent
 
-TalkBalloon::TalkBalloon(const char* pName) : LayoutActor(pName, true), mMessageCtrl(), mTextFormer(), _28(), _29() {
+TalkBalloon::TalkBalloon(const char* pName) : LayoutActor(pName), mMessageCtrl(), mTextFormer(), _28(), _29() {
 }
 
 void TalkBalloon::create(const char* pLayoutName, bool arg2, bool isTalkLayout) {

@@ -33,7 +33,7 @@ namespace {
 };  // namespace
 
 MoviePlayerSimple::MoviePlayerSimple()
-    : LayoutActor("ムービープレイヤー", true), JKRDisposer(), mMovie(nullptr), mPlayerWrapper(nullptr), _44(false), _45(false) {
+    : LayoutActor("ムービープレイヤー"), JKRDisposer(), mMovie(nullptr), mPlayerWrapper(nullptr), _44(false), _45(false) {
     mMovie = new Movie();
     mMovie->mMovieName = "";
     mMovie->mBuffer = nullptr;

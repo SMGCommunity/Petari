@@ -12,7 +12,7 @@ namespace NrvGalaxyConfirmLayout {
     NEW_NERVE(GalaxyConfirmLayoutNrvSelected, GalaxyConfirmLayout, Selected);
 };  // namespace NrvGalaxyConfirmLayout
 
-GalaxyConfirmLayout::GalaxyConfirmLayout() : LayoutActor("ギャラクシー確認レイアウト", true), mPaneCtrl(nullptr), mBackButton(nullptr) {
+GalaxyConfirmLayout::GalaxyConfirmLayout() : LayoutActor("ギャラクシー確認レイアウト"), mPaneCtrl(nullptr), mBackButton(nullptr) {
 }
 
 void GalaxyConfirmLayout::init(const JMapInfoIter& rIter) {

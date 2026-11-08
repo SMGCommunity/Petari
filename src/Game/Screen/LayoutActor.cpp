@@ -97,12 +97,12 @@ LayoutManager* LayoutActor::getLayoutManager() const {
     return mLayoutManager;
 }
 
-void LayoutActor::createPaneMtxRef(const char* pParam1) {
-    mLayoutManager->createPaneMtxRef(pParam1);
+void LayoutActor::createPaneMtxRef(const char* pName) {
+    mLayoutManager->createPaneMtxRef(pName);
 }
 
-MtxPtr LayoutActor::getPaneMtxRef(const char* pParam1) {
-    return mLayoutManager->getPaneMtxRef(pParam1);
+MtxPtr LayoutActor::getPaneMtxRef(const char* pName) {
+    return mLayoutManager->getPaneMtxRef(pName);
 }
 
 void LayoutActor::initLayoutManager(const char* pName, u32 rootPaneAnimLayerNum) {
@@ -121,8 +121,8 @@ void LayoutActor::initNerve(const Nerve* pNerve) {
     mSpine = new Spine(this, pNerve);
 }
 
-void LayoutActor::initEffectKeeper(int param1, const char* pParam2, const EffectSystem* pEffectSystem) {
-    mEffectKeeper = new PaneEffectKeeper(this, mLayoutManager, param1, pParam2);
+void LayoutActor::initEffectKeeper(int extraEmitterNum, const char* pName, const EffectSystem* pEffectSystem) {
+    mEffectKeeper = new PaneEffectKeeper(this, mLayoutManager, extraEmitterNum, pName);
     mEffectKeeper->init(this, pEffectSystem);
 }
 

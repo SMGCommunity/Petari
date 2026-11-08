@@ -6,7 +6,7 @@ namespace {
     static f32 sScreenOffsetY = -70.0f;
 };  // namespace
 
-SubMeterLayout::SubMeterLayout(const char* pName, const char* pLayoutName) : LayoutActor(pName, true) {
+SubMeterLayout::SubMeterLayout(const char* pName, const char* pLayoutName) : LayoutActor(pName) {
     MR::connectToSceneLayout(this);
     initLayoutManager(pLayoutName, 1);
     MR::createAndAddPaneCtrl(this, "Count", 1);

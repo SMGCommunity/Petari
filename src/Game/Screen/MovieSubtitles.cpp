@@ -12,7 +12,7 @@ namespace NrvMovieSubtitles {
     NEW_NERVE(HostTypeTalkWait, MovieSubtitles, TalkWait);
 };  // namespace NrvMovieSubtitles
 
-MovieSubtitles::MovieSubtitles(const char* pMessageId, s32 appearTime) : LayoutActor("ムービーの字幕", true), mFormerText(), mAppearTime(appearTime) {
+MovieSubtitles::MovieSubtitles(const char* pMessageId, s32 appearTime) : LayoutActor("ムービーの字幕"), mFormerText(), mAppearTime(appearTime) {
     MR::connectToScene(this, MR::MovementType_MovieSubtitles, MR::CalcAnimType_MovieSubtitles, MR::DrawBufferType_None, MR::DrawType_MovieSubtitles);
     initLayoutManager("CinemaSuper", 1);
 

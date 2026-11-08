@@ -3,7 +3,7 @@
 #include "Game/Util/LayoutUtil.hpp"
 
 GalaxyMapCometIcon::GalaxyMapCometIcon(const char* pName, LayoutActor* pParam2, const char* pParam3)
-    : LayoutActor(pName, true), _20(pName), _24(pParam2), _28(pParam3) {
+    : LayoutActor(pName), _20(pName), _24(pParam2), _28(pParam3) {
 }
 
 void GalaxyMapCometIcon::appear() {

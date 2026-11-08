@@ -15,7 +15,7 @@ namespace {
     NEW_NERVE(GalaxyMapSelectButtonBetweenMapToListFadein, GalaxyMapSelectButton, BetweenMapToListFadein);
 };  // namespace
 
-GalaxyMapSelectButton::GalaxyMapSelectButton() : LayoutActor("選択用ボタン", true), _20(nullptr), mPaneCtrl(nullptr) {
+GalaxyMapSelectButton::GalaxyMapSelectButton() : LayoutActor("選択用ボタン"), _20(nullptr), mPaneCtrl(nullptr) {
 }
 
 void GalaxyMapSelectButton::init(const JMapInfoIter& rIter) {

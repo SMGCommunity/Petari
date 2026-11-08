@@ -13,7 +13,7 @@ namespace NrvPeachLetter {
     NEW_NERVE(PeachLetterNrvEnd, PeachLetter, End);
 };  // namespace NrvPeachLetter
 
-PeachLetter::PeachLetter(const char* pName) : LayoutActor(pName, true), mAButtonIcon() {
+PeachLetter::PeachLetter(const char* pName) : LayoutActor(pName), mAButtonIcon() {
 }
 
 void PeachLetter::init(const JMapInfoIter&) {

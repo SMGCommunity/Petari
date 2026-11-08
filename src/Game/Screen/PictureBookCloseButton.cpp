@@ -12,7 +12,7 @@ namespace NrvPictureBookCloseButton {
 };  // namespace NrvPictureBookCloseButton
 
 PictureBookCloseButton::PictureBookCloseButton(bool canCloseWithPad)
-    : LayoutActor("絵本閉じるボタン", true), mPaneCtrl(nullptr), mCanCloseWithPad(canCloseWithPad) {
+    : LayoutActor("絵本閉じるボタン"), mPaneCtrl(nullptr), mCanCloseWithPad(canCloseWithPad) {
 }
 
 void PictureBookCloseButton::init(const JMapInfoIter& rIter) {

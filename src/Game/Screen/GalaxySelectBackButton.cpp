@@ -10,7 +10,7 @@ namespace NrvGalaxySelectBackButton {
     NEW_NERVE(GalaxySelectBackButtonNrvDecide, GalaxySelectBackButton, Decide);
 };  // namespace NrvGalaxySelectBackButton
 
-GalaxySelectBackButton::GalaxySelectBackButton() : LayoutActor("ギャラクシー選択戻るボタン", true) {
+GalaxySelectBackButton::GalaxySelectBackButton() : LayoutActor("ギャラクシー選択戻るボタン") {
 }
 
 void GalaxySelectBackButton::init(const JMapInfoIter&) {
