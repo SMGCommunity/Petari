@@ -9,13 +9,19 @@
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/SaveDataHandleSequence.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
+#include "Game/System/ScenarioProgressTestRun.hpp"
 #include "Game/System/SysConfigFile.hpp"
 #include "Game/System/UserFile.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 #include <cstdio>
 
 namespace {
-    SaveDataHandleSequence* getSaveDataHandleSequence() NO_INLINE {
+#if (VERSION == SHIELD)
+    SaveDataHandleSequence* getSaveDataHandleSequence()
+#else
+    SaveDataHandleSequence* getSaveDataHandleSequence() NO_INLINE
+#endif
+    {
         return SingletonHolder< GameSystem >::get()->mSequenceDirector->mSaveDataHandleSequence;
     }
 
@@ -23,7 +29,12 @@ namespace {
         return SingletonHolder< GameSystem >::get()->mSequenceDirector->mGameDataTemporaryInGalaxy;
     }
 
-    GameSequenceProgress* getGameSequenceProgress() NO_INLINE {
+#if (VERSION == SHIELD)
+    GameSequenceProgress* getGameSequenceProgress()
+#else
+    GameSequenceProgress* getGameSequenceProgress() NO_INLINE
+#endif
+    {
         return SingletonHolder< GameSystem >::get()->mSequenceDirector->mGameSequenceProgress;
     }
 };  // namespace
@@ -251,6 +262,37 @@ namespace GameDataFunction {
         getCurrentGameDataHolder()->resetAllData();
     }
 
+    void resetSequenceGameData() {
+        getCurrentGameDataHolder()->resetSequenceData();
+    }
+
+    bool tryGetPowerStarToOpenGalaxyAndScenario(const char* pStageName, int scenarioNo) {
+        GalaxyScenarioInfo info;
+        info.mStageName = pStageName;
+        info.mScenarioNo = scenarioNo;
+        return getCurrentGameDataHolder()->mScenarioProgressTestRun->tryTakePowerStarsToPlayGalaxyScenario(&info, true);
+    }
+
+    bool followGameEventFlagGalaxyOpenAndStoryProgress(const char* pStageName, int scenarioNo) {
+        GalaxyScenarioInfo info;
+        info.mStageName = pStageName;
+        info.mScenarioNo = scenarioNo;
+        return getCurrentGameDataHolder()->mScenarioProgressTestRun->followGameEventFlagGalaxyOpenAndStoryProgress(&info);
+    }
+
+    bool tryGetPowerStarToNum(int powerStarNum) {
+        bool isTakeNextPowerStar = true;
+
+        while (isTakeNextPowerStar) {
+            isTakeNextPowerStar = getCurrentGameDataHolder()->mScenarioProgressTestRun->tryTakeNextPowerStarAndOnEventFlag(1);
+            if (powerStarNum <= getCurrentGameDataHolder()->calcCurrentPowerStarNum()) {
+                break;
+            }
+        }
+
+        return isTakeNextPowerStar;
+    }
+
     bool isOnJustGameEventFlag(const char* pName) {
         return getCurrentGameDataHolder()->isOnGameEventFlag(pName) && !getSceneStartGameDataHolder()->isOnGameEventFlag(pName);
     }
@@ -395,6 +437,24 @@ namespace GameDataFunction {
         }
 
         getCurrentGameDataHolder()->tryOnGameEventFlag(pEventFlagName);
+    }
+
+    // FIXME: regswap
+    bool tryGetPowerStarToGetGrandStar(int grandStarNo) {
+        char eventName[0x20];
+        snprintf(eventName, sizeof(eventName), "SpecialStarGrand%1d", grandStarNo);
+
+        GameEventFlagAccessor accessor = GameEventFlagTable::makeAccessor(eventName);
+        s32 starId = accessor.getStarId();
+        const char* galaxyName = accessor.getGalaxyName();
+
+        bool isTakePowerStars = tryGetPowerStarToOpenGalaxyAndScenario(galaxyName, starId);
+        if (isTakePowerStars) {
+            getCurrentGameDataHolder()->setPowerStar(galaxyName, starId, true);
+            followGameEventFlagGalaxyOpenAndStoryProgress(galaxyName, starId);
+        }
+
+        return isTakePowerStars;
     }
 
     bool isPowerStarLeftInCometOnly() {

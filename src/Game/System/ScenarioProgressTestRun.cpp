@@ -243,7 +243,7 @@ bool ScenarioProgressTestRun::tryTakePowerStarsToOpenGalaxy(u32 preference, cons
 }
 
 // FIXME: stack ordering
-bool ScenarioProgressTestRun::followGameEventFlagGalaxyOpenAndStoryProgress(GalaxyScenarioInfo* pInfo) {
+bool ScenarioProgressTestRun::followGameEventFlagGalaxyOpenAndStoryProgress(const GalaxyScenarioInfo* pInfo) {
     bool isOnFlagGalaxy;
     bool isOnFlagAny = tryOnGameEventFlagsDependedAnother(pInfo) != false;
 
