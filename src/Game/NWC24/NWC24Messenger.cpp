@@ -51,7 +51,7 @@ void NWC24Messenger::draw() const {
 
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
 void NWC24Messenger::send(const char* pTaskName, const wchar_t* pMessage, const wchar_t* pAltName, const u8* pPicture, u32 pictureSize, bool isBG)
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
 void NWC24Messenger::send(const char* pTaskName, const wchar_t* pMessage, const wchar_t* pAltName, const u8* pPicture, u32 pictureSize, bool isBG,
                           bool isMsgLedPattern, u16 tag, u8 delayHours)
 #endif
@@ -80,13 +80,13 @@ void NWC24Messenger::send(const char* pTaskName, const wchar_t* pMessage, const 
         pTask->_0 = true;
         pTask->mIsBG = isBG;
         pTask->_2 = false;
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
         pTask->mIsMsgLedPattern = isMsgLedPattern;
 #endif
         pTask->mRetryNo = 0;
         pTask->mErr = NWC24_OK;
         pTask->mErrCode = 0;
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
         pTask->mTag = tag;
         pTask->mDelayHours = delayHours;
 #endif
@@ -701,7 +701,7 @@ namespace MR {
         ::getNWC24Messenger()->send(pTaskName, pMessage, MR::getMailSender(pMessageId), pImage, imageSize, isBG);
     }
 
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
 
     SendMailObj::SendMailObj(const char* pTaskName)
         : mTaskName(pTaskName), mMessage(), mSenderID(), mImage(), mImageSize(), mIsBG(true), mIsLed(true), mTag(), mDelay() {

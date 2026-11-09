@@ -9,7 +9,7 @@ typedef enum { NWC24_FAIL_SFL = 1 << 0, NWC24_FAIL_DL_TASK = 1 << 1, NWC24_FAIL_
 
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
 const char* __NWC24Version = "<< RVL_SDK - NWC24 	release build: Aug  8 2007 19:23:17 (0x4199_60831) >>";
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
 const char* __NWC24Version = "<< RVL_SDK - NWC24 	release build: Dec 10 2007 10:02:25 (0x4199_60831) >>";
 #endif
 

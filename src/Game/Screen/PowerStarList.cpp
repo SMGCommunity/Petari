@@ -269,7 +269,7 @@ void PowerStarList::drawForMessageBoardCapture() {
     MR::addPictureFontTagPlayerIcon(pictureFont);
     MR::setTextBoxMessageRecursive(this, "BlosBase", pictureFont);
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     setTotalPowerStarNumForMessageBoardCapture();
 #endif
 
@@ -701,7 +701,7 @@ void PowerStarList::setSeparatorPaneSize() {
     }
 }
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
 void PowerStarList::setTotalPowerStarNumForMessageBoardCapture() {
     wchar_t message[256];
     wchar_t* pMessage;
@@ -855,7 +855,7 @@ void PowerStarList::exeCaptureSend() {
         const wchar_t* pUserName = GameDataFunction::getUserName();
         const wchar_t* pMessage = MR::getGameMessageDirect(::cMailMessageID);
         ReplaceTagFunction::ReplaceArgs(mMailMessage, mMailMessageLength, pMessage, pUserName);
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
         MR::SendMailObj sendMailObj = MR::SendMailObj("スターリスト");
 
         sendMailObj.setMessageDirect(mMailMessage);

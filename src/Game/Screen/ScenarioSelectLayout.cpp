@@ -211,7 +211,7 @@ void ScenarioSelectLayout::appear() {
     mScenarioSky->appear();
     MultiScene::startBtk(mScenarioSky, "ScenarioSelectSky");
 
-#if (VERSION == RMGP01 || VERSION == RMGK01)
+#if (VERSION == RMGP01 || VERSION == RMGK01 || VERSION == SHIELD)
     MR::hidePaneRecursive(this, "CometAppear");
 #endif
 

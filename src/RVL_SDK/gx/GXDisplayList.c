@@ -29,7 +29,7 @@ void GXBeginDisplayList(void *list, u32 size)
 
     gx->inDispList   = GX_TRUE;
 
-    #if (VERSION == RMGK01)
+    #if (VERSION == RMGK01 || VERSION == SHIELD)
     GXFlush();
     #endif
     GXGetCPUFifo(&OldCPUFifo);
@@ -42,7 +42,7 @@ u32 GXEndDisplayList(void) {
     BOOL enabled;
     u32 cpenable;
 
-    #if (VERSION == RMGK01)
+    #if (VERSION == RMGK01 || VERSION == SHIELD)
     GXFlush();
     #endif
     GXGetCPUFifo(&DisplayListFifo);

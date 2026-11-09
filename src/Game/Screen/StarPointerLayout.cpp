@@ -76,7 +76,7 @@ namespace NrvStarPointerLayout {
 StarPointerLayout::StarPointerLayout(const char* pName)
     : LayoutActor(pName), mPosition(0.0f, 0.0f), mPointerKind(StarPointerKind_NULL), mAnimType(AnimType_HandPaa), mTouchTimer(),
       mPadChannel(-1), mRadius(::sNormalRadius), _3C(),
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
       mRotateAngle(),
 #endif
       mDirector(), mBlur(), mCommandStream(), mNumber(), mActor(), mNewTouchedID(), mTouchedID(), mStartTouch(), mStartDisableShoot(), mSingleTouch(),
@@ -640,14 +640,14 @@ void StarPointerLayout::control() {
             return;
 #endif
         } else {
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
             rotateTest();
 #endif
             return;
         }
     }
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     rotateTest();
 #endif
 

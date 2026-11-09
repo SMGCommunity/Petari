@@ -41,7 +41,7 @@ namespace {
     static const StaffRollParam sStaffRollParamTable[] = {
         // Jp, Us, Eu
         {0.8f, 0.5f, 27.5f, 36.0f},  {0.8f, 0.5f, 24.5f, 29.5f}, {0.8f, 0.5f, 23.5f, 30.5f},
-#if (VERSION == RMGK01)  // Cn, Kr
+#if (VERSION == RMGK01 || VERSION == SHIELD)  // Cn, Kr
         {0.85f, 0.5f, 27.5f, 32.5f}, {0.8f, 0.5f, 24.0f, 30.5f},
 #endif
     };
@@ -101,7 +101,7 @@ namespace {
             return &::sStaffRollParamTable[2];
         }
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
         if (MR::isEqualString(pRegionPrefix, "Cn")) {
             return &::sStaffRollParamTable[3];
         }
@@ -418,7 +418,7 @@ void StaffRoll::exeAllRights() {
     }
 
     if (MR::isPaneAnimStopped(this, ::cPaneNameTheEnd, 0)) {
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
         MR::stopStageBGM(0);
 #endif
 

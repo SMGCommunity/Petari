@@ -13,7 +13,7 @@
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
 #include "Game/Screen/IsbnManager.hpp"
 #include "Game/System/Language.hpp"
 #include "Game/Util/FileUtil.hpp"
@@ -36,7 +36,7 @@ namespace {
     const s32 STRAP_DISPLAY_MIN_FRAME = 450;
     const s32 STRAP_DISPLAY_MAX_FRAME = 1200;
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     NEW_NERVE(LogoSceneCensorshipFadein, LogoScene, CensorshipFadein);
     NEW_NERVE(LogoSceneCensorshipDisplay, LogoScene, CensorshipDisplay);
     NEW_NERVE(LogoSceneCensorshipFadeout, LogoScene, CensorshipFadeout);
@@ -52,7 +52,7 @@ namespace {
 
 LogoScene::LogoScene()
     : Scene("LogoScene"),
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
       mIsbnManager(),
 #endif
       mStrapLayout(), mLogoFader() {
@@ -66,7 +66,7 @@ LogoScene::~LogoScene() {
 }
 
 void LogoScene::init() {
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     if (MR::isEqualString(MR::getCurrentRegionPrefix(), "Cn")) {
         initNerve(GET_NERVE_ANON(LogoSceneCensorshipFadein));
     } else
@@ -99,7 +99,7 @@ void LogoScene::draw() const {
     color.r = 0;
     color.g = 0;
     color.b = 0;
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     color.r = 255;
     color.g = 255;
     color.b = 255;
@@ -110,7 +110,7 @@ void LogoScene::draw() const {
     MR::clearZBuffer();
     MR::drawInitFor2DModel();
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     bool isCensorship = isNerve(GET_NERVE_ANON(LogoSceneCensorshipFadein)) || isNerve(GET_NERVE_ANON(LogoSceneCensorshipDisplay)) ||
                         isNerve(GET_NERVE_ANON(LogoSceneCensorshipFadeout));
 
@@ -131,7 +131,7 @@ void LogoScene::draw() const {
 
 bool LogoScene::isDisplayStrapRemineder() const {
     return isNerve(GET_NERVE_ANON(LogoSceneDeactive)) ||
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
            isNerve(GET_NERVE_ANON(LogoSceneCensorshipFadein)) || isNerve(GET_NERVE_ANON(LogoSceneCensorshipDisplay)) ||
            isNerve(GET_NERVE_ANON(LogoSceneCensorshipFadeout)) ||
 #endif
@@ -139,7 +139,7 @@ bool LogoScene::isDisplayStrapRemineder() const {
            isNerve(GET_NERVE_ANON(LogoSceneStrapFadeout)) || isNerve(GET_NERVE_ANON(LogoSceneWaitReadDoneSystemArchive));
 }
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
 void LogoScene::exeCensorshipFadein() {
     if (MR::isFirstStep(this)) {
         mLogoFader->mMaxStep = FADEINOUT_FRAME;
@@ -241,7 +241,7 @@ void LogoScene::initLayout() {
     mLogoFader->appear();
     MR::connectToSceneLayout(mLogoFader);
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     if (!MR::isEqualString(MR::getCurrentRegionPrefix(), "Cn")) {
         return;
     }
@@ -304,7 +304,7 @@ bool LogoScene::tryFadeoutLayout(LayoutActor* pActor) {
 #endif
 }
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
 bool LogoScene::tryFadeinLayout() {
     if (MR::isFirstStep(this)) {
         mLogoFader->startFadeIn();

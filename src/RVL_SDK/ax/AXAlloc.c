@@ -52,7 +52,7 @@ void AXFreeVoice(AXVPB* vpb) {
     OSRestoreInterrupts(enabled);
 }
 
-#if (VERSION != RMGK01)
+#if (VERSION != RMGK01 && VERSION != SHIELD)
 void __AXPushStackHead(AXVPB* vpb, u32 prio) {
     vpb->next = __AXStackHead[prio];
     vpb->prev = NULL;

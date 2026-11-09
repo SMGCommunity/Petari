@@ -36,7 +36,7 @@ NWC24Err NWC24CheckDlTask(const NWC24DlTask* pTask, BOOL wantWrite) {
         return NWC24_ERR_LIB_NOT_OPENED;
     }
 
-    #if (VERSION == RMGK01)
+    #if (VERSION == RMGK01 || VERSION == SHIELD)
         if (pTaskImpl->appId == 0 || pTaskImpl->titleIdLo == 0) {
             return NWC24_ERR_INVALID_VALUE;
         }
@@ -76,7 +76,7 @@ NWC24Err NWC24DeleteDlTaskForced(NWC24DlTask* pTask) {
         return result;
     }
 
-    #if (VERSION == RMGK01)
+    #if (VERSION == RMGK01 || VERSION == SHIELD)
         result = CheckDlEntryAvailable(pTaskImpl->id);
         if (result < 0) {
             return result;

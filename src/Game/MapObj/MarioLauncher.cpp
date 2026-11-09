@@ -235,7 +235,7 @@ void MarioLauncher::exeAim() {
         mLayout->mLayout->kill();
         MR::requestMarioLauncherGuidance();
     }
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     mLayout->appearAt(MR::getStarPointerScreenPositionOrEdge(WPAD_CHAN0));
     MR::requestMarioLauncherGuidance();
 #endif
@@ -532,7 +532,7 @@ bool MarioLauncher::doEject() {
     TVec3f shootDir;
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     MR::calcWorldRayDirectionFromScreen(&shootDir, *MR::getStarPointerScreenPosition(WPAD_CHAN0));
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     MR::calcWorldRayDirectionFromScreen(&shootDir, MR::getStarPointerScreenPositionOrEdge(WPAD_CHAN0));
 #endif
     MR::normalize(&shootDir);

@@ -43,7 +43,7 @@ OSPowerCallback OSSetPowerCallback(OSPowerCallback callback) {
 
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     PowerCallback = callback;
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     if (callback) {
         PowerCallback = callback;
     } else {
@@ -59,7 +59,7 @@ OSPowerCallback OSSetPowerCallback(OSPowerCallback callback) {
 
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     return prevCallback;
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     if (prevCallback == __OSDefaultPowerCallback) {
         return NULL;
     } else {
@@ -122,7 +122,7 @@ void __OSShutdownToSBY(void) {
     if (!StmReady) {
 #if(VERSION  == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSPanic(__FILE__, 281, "Error: The firmware doesn't support shutdown feature.\n");
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
         OSPanic(__FILE__, 316, "Error: The firmware doesn't support shutdown feature.\n");
 #endif
     }
@@ -140,7 +140,7 @@ void __OSHotReset(void) {
     if (!StmReady) {
 #if(VERSION  == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSPanic(__FILE__, 345, "Error: The firmware doesn't support reboot feature.\n");
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
         OSPanic(__FILE__, 380, "Error: The firmware doesn't support reboot feature.\n");
 #endif
     }
@@ -263,7 +263,7 @@ static s32 __OSStateEventHandler(s32 ret, void* pUnused) {
     if (ret != 0) {
 #if(VERSION  == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSPanic(__FILE__, 753, "Error on STM state event handler\n");
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
         OSPanic(__FILE__, 788, "Error on STM state event handler\n");
 #endif
     }

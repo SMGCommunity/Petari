@@ -12,7 +12,7 @@ public:
 
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     void send(const u8* pImage, u32 imageSize);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     void send(const u8* pImage, u32 imageSize, bool isLedOn);
 #endif
     void update();

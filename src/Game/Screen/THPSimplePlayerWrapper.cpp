@@ -17,7 +17,7 @@ static u16 VolumeTable[] = {0,     2,     8,     18,    32,    50,    73,    99,
 
 static s32 WorkBuffer[16] ATTRIBUTE_ALIGN(32);
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
 THPSimplePlayerStaticAudio THPSimplePlayerWrapper::mStaticAudioPlayer;
 THPSimplePlayerWrapper* THPSimplePlayerStaticAudio::mPlayer;
 #endif
@@ -47,7 +47,7 @@ THPSimplePlayerWrapper::THPSimplePlayerWrapper(const char* pName)
     : NerveExecutor(pName), _8(), _9(), _C(), _10(), mTHPWork(), mOpen(), mPreFetchState(), mAudioState(), mLoop(), mAudioExist(), mCurOffset(),
       mDvdError(), mReadProgress(), mNextDecodeIndex(), mReadIndex(), mReadSize(), mTotalReadFrame(), mCurrentVolume(), mTargetVolume(),
       mDeltaVolume(), mRampCount(), mAudioDecodeIndex(), mAudioOutputIndex(), _2F0(), _2F4(1.0f), _2F8(), _2FC(), mSoundBufferIndex(), _30C()
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
       ,
       _310()
 #endif
@@ -278,7 +278,7 @@ bool THPSimplePlayerWrapper::loadStop() {
         mCurrentVolume = mTargetVolume;
         mRampCount = 0;
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
         _310 = 0;
 #endif
         return true;
@@ -576,7 +576,7 @@ void THPSimplePlayerWrapper::setupParams() {
     mAudioState = 0;
     mLoop = 0;
     mOpen = 1;
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     _310 = 0;
 #endif
     resetAudioParams();

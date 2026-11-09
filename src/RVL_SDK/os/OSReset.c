@@ -287,7 +287,7 @@ void OSReturnToMenu(void) {
     __OSReturnToMenu(0);
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     OSPanic(__FILE__, 0x342, "OSReturnToMenu(): Falied to boot system menu.\n");
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     OSPanic(__FILE__, 0x348, "OSReturnToMenu(): Falied to boot system menu.\n");
 #endif
 }
@@ -333,7 +333,7 @@ void OSReturnToSetting(u8 setting) {
         OSReport("OSReturnToSetting(): You can't specify %d.  \n", setting);
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSPanic(__FILE__, 0x38E, "");
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
         OSPanic(__FILE__, 0x394, "");
 #endif
         // NOT REACHED
@@ -356,7 +356,7 @@ void __OSReturnToMenuForError(void) {
     __OSHotResetForError();
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     OSPanic(__FILE__, 0x3B5, "__OSReturnToMenu(): Falied to boot system menu.\n");
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     OSPanic(__FILE__, 0x3BB, "__OSReturnToMenu(): Falied to boot system menu.\n");
 #endif
 }
@@ -369,7 +369,7 @@ void __OSHotResetForError(void) {
     __OSHotReset();
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     OSPanic(__FILE__, 0x3CD, "__OSHotReset(): Falied to reset system.\n");
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     OSPanic(__FILE__, 0x3D3, "__OSHotReset(): Falied to reset system.\n");
 #endif
 }
@@ -389,7 +389,7 @@ u32 OSGetResetCode(void) {
 void OSResetSystem(int, u32, int) {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     OSPanic(__FILE__, 1124, "OSResetSystem() is obsoleted. It doesn't work any longer.\n");
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     OSPanic(__FILE__, 1130, "OSResetSystem() is obsoleted. It doesn't work any longer.\n");
 #endif
 }

@@ -39,7 +39,7 @@ void Mario::checkStep() {
         return;
     }
 
-#if VERSION == RMGK01
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     if (isPlayerModeHopper()) {
         return;
     }

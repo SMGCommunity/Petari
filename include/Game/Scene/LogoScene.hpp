@@ -22,7 +22,7 @@ public:
 
     bool isDisplayStrapRemineder() const;
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     void exeCensorshipFadein();
     void exeCensorshipDisplay();
     void exeCensorshipFadeout();

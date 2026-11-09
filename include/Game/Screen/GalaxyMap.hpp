@@ -75,7 +75,7 @@ public:
     /* 0x5C */ GalaxyMapGalaxyDetail* mGalaxyDetail;
     /* 0x60 */ GalaxyMapIcon* mPointingIcon;
     /* 0x64 */ GalaxyMapTitle* mTitle;
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     /* 0x68 */ IconAButton* mIconAButton;
 #endif
     /* 0x6C */ const char* mGalaxyName;

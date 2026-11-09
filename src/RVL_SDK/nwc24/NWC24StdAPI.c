@@ -43,7 +43,7 @@ void* Mail_memcpy(void* dst, const void* src, size_t n) {
     }
 
     return dst;
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     NETMemCpy(dst, src, n);
 #endif
 }
@@ -57,7 +57,7 @@ void* Mail_memset(void* dst, int ch, size_t n) {
     }
 
     return dst;
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     NETMemSet(dst, ch, n);
 #endif
 }

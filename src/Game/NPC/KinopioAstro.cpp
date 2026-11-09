@@ -108,7 +108,7 @@ bool KinopioAstro::sendLetter() {
         size = _19C->mArchive->getExpandedResSize(_19C->mArchive->getResource(pImage));
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         _198->send(reinterpret_cast< u8* >(_19C->mFileInfoTable->getRes(pImage)), size);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
         _198->send(reinterpret_cast< u8* >(_19C->mFileInfoTable->getRes(pImage)), size, false);
 #endif
         _197 = true;
@@ -162,7 +162,7 @@ bool KinopioAstro::eventFunc(u32 letterEvent) {
     } else if (letterEvent == LetterEvent_SendLetter) {
         return sendLetter();
     }
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     else if (letterEvent == LetterEvent_OnMsgLedPattern) {
         MR::onMsgLedPattern();
         return true;

@@ -47,12 +47,12 @@ bool NWC24SendThread::requestSend(const u16* pText, const u16* pAltName, const u
     mMsgSendStatus.mPicture = pPicture;
     mMsgSendStatus.mPictureSize = pictureSize;
     mMsgSendStatus._18 = false;
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     mMsgSendStatus.mIsMsgLedPattern = isMsgLedPattern;
 #endif
     mMsgSendStatus.mSentErr = NWC24_OK;
     mMsgSendStatus.mSentSize = 0;
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     mMsgSendStatus.mTag = tag;
     mMsgSendStatus.mDelayHours = delayHours;
 #endif
@@ -100,11 +100,11 @@ void NWC24SendThread::initMsgSendStatus() {
     mMsgSendStatus.mPicture = nullptr;
     mMsgSendStatus.mPictureSize = 0;
     mMsgSendStatus._18 = true;
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     mMsgSendStatus.mIsMsgLedPattern = false;
 #endif
     mMsgSendStatus.mSentErr = NWC24_OK;
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     mMsgSendStatus.mTag = 0;
     mMsgSendStatus.mDelayHours = 0;
 #endif
@@ -135,7 +135,7 @@ NWC24Err NWC24SendThread::sendMessage(MsgSendStatus* pMsgSendStatus, u32* pMsgSi
             return err;
         }
     }
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     err = NWC24SetMsgTag(&msgObj, pMsgSendStatus->mTag);
 
     if (err != NWC24_OK) {
