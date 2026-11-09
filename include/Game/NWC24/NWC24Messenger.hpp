@@ -24,7 +24,7 @@ public:
     void initAfterResourceLoaded();
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     void send(const char*, const wchar_t*, const wchar_t*, const u8*, u32, bool);
-#elif VERSION == RMGK01
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     void send(const char*, const wchar_t*, const wchar_t*, const u8*, u32, bool, bool, u16, u8);
 #endif
     void term(const char*);
@@ -61,14 +61,14 @@ namespace NWC24MessengerSub {
         /* 0x00 */ bool _0;
         /* 0x01 */ bool mIsBG;
         /* 0x02 */ bool _2;
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
         /* 0x03 */ bool mIsMsgLedPattern;
 #endif
         /* 0x04 */ s32 mRetryNo;
         /* 0x08 */ NWC24Err mErr;
         /* 0x0C */ s32 mErrCode;
         /* 0x10 */ u32 mSentSize;
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
         /* 0x14 */ u16 mTag;
         /* 0x16 */ u8 mDelayHours;
 #endif
@@ -129,7 +129,7 @@ namespace NWC24MessengerSub {
 namespace MR {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     void sendMail(const char*, const wchar_t*, const char*, const u8*, u32, bool);
-#elif VERSION == RMGK01
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     class SendMailObj {
     public:
         /// @brief Creates a new `SendMailObj`.

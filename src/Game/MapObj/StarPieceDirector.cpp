@@ -458,7 +458,7 @@ bool StarPieceShooter::shoot() {
 
 bool StarPieceShooter::tryShoot() {
     if (!((
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
               !StarPointerFunction::isOnScreenEdge(_A0) ||
 #endif
               MR::isStarPointerInScreen(_A0)) &&

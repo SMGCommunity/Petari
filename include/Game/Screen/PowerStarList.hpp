@@ -43,7 +43,7 @@ public:
     bool tryShowSeparator(s32, f32);
     void setSeparatorPaneSize();
     
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     void setTotalPowerStarNumForMessageBoardCapture();
 #endif
 

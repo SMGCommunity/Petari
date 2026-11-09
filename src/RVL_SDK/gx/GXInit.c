@@ -31,7 +31,7 @@ static GXTexRegion* __GXDefaultTexRegionCallback(const GXTexObj*, GXTexMapID);
 
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
 const char* __GXVersion = "<< RVL_SDK - GX \trelease build: Aug  8 2007 02:05:28 (0x4199_60831) >>";
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
 const char* __GXVersion = "<< RVL_SDK - GX \trelease build: Dec 11 2007 01:34:15 (0x4199_60831) >>";
 #endif
 

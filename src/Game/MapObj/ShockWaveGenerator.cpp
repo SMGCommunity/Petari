@@ -58,7 +58,7 @@ void ShockWaveGenerator::exeWait() {
         MR::startBtk(this, "SpinHit");
         MR::setBrkFrameAndStop(this, 0.0f);
         MR::setBtkFrameAndStop(this, 0.0f);
-#if (VERSION == RMGP01 || VERSION == RMGK01)
+#if (VERSION == RMGP01 || VERSION == RMGK01 || VERSION == SHIELD)
         MR::validateClipping(this);
 #endif
     }
@@ -126,7 +126,7 @@ bool ShockWaveGenerator::isPlayerInCameraStartRange() const {
 }
 
 void ShockWaveGenerator::startShockWave() {
-#if (VERSION == RMGP01 || VERSION == RMGK01)
+#if (VERSION == RMGP01 || VERSION == RMGK01 || VERSION == SHIELD)
     MR::invalidateClipping(this);
 #endif
 

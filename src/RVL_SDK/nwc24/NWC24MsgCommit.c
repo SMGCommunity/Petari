@@ -101,7 +101,7 @@ NWC24Err NWC24CommitMsgInternal(NWC24iMsgObj* pMsg, NWC24MsgBoxId id) {
 
     NWC24iSetErrorCode(NWC24_OK);
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     err = CorrectHeadersForMBDelay(pMsg);
     if (err != NWC24_OK) {
         goto _exit;
@@ -457,7 +457,7 @@ static NWC24Err WriteSMTP_MAILFROM(NWC24iMsgObj* pMsg) {
     u32 addrFlags;
     u32 addrLen;
     s32 totalLen;
-    #if (VERSION == RMGK01)
+    #if (VERSION == RMGK01 || VERSION == SHIELD)
         s32 remainSize;
     #endif
     NWC24Err result;
@@ -478,7 +478,7 @@ static NWC24Err WriteSMTP_MAILFROM(NWC24iMsgObj* pMsg) {
 
     #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         result = SynthesizeAddrStr(&pMsg->from, addrFlags, pWork, MSG_WORK_SIZE, &addrLen);
-    #elif (VERSION == RMGK01)
+    #elif (VERSION == RMGK01 || VERSION == SHIELD)
         remainSize = MSG_WORK_SIZE - (NWC24i_KSTRLEN("MAIL FROM: ") - 1) - (NWC24i_KSTRLEN("\r\n") - 1);
         result = SynthesizeAddrStr(&pMsg->from, addrFlags, pWork, remainSize, &addrLen);
     #endif
@@ -491,14 +491,14 @@ static NWC24Err WriteSMTP_MAILFROM(NWC24iMsgObj* pMsg) {
     *pWork++ = '\r';
     *pWork++ = '\n';
 
-    #if (VERSION == RMGK01)
+    #if (VERSION == RMGK01 || VERSION == SHIELD)
         remainSize -= addrLen;
     #endif
     totalLen = addrLen + NWC24i_KSTRLEN("MAIL FROM: ") - 1 + NWC24i_KSTRLEN("\r\n") - 1;
 
     #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         if (MSG_WORK_SIZE - totalLen <= 0) {
-    #elif (VERSION == RMGK01)
+    #elif (VERSION == RMGK01 || VERSION == SHIELD)
         if (remainSize <= 0) {
     #endif
         return NWC24_ERR_NOMEM;
@@ -537,7 +537,7 @@ static NWC24Err WriteSMTP_RCPTTO(NWC24iMsgObj* pMsg) {
 
         #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
             result = SynthesizeAddrStr(&pMsg->to[i], pMsg->flags, pWork, remainSize, &addrLen);
-        #elif (VERSION == RMGK01)
+        #elif (VERSION == RMGK01 || VERSION == SHIELD)
             remainSize -= (NWC24i_KSTRLEN("RCPT TO: ") - 1) + (NWC24i_KSTRLEN("\r\n") - 1);
             result = SynthesizeAddrStr(&pMsg->to[i], pMsg->flags, pWork, remainSize, &addrLen);
         #endif
@@ -552,7 +552,7 @@ static NWC24Err WriteSMTP_RCPTTO(NWC24iMsgObj* pMsg) {
 
         #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
             remainSize -= addrLen + NWC24i_KSTRLEN("RCPT TO: ") - 1 + NWC24i_KSTRLEN("\r\n") - 1;
-        #elif (VERSION == RMGK01)
+        #elif (VERSION == RMGK01 || VERSION == SHIELD)
             remainSize -= addrLen;
         #endif
 
@@ -597,7 +597,7 @@ static NWC24Err WriteFromField(NWC24iMsgObj* pMsg) {
     u32 addrFlags;
     u32 addrLen;
     s32 totalLen;
-    #if (VERSION == RMGK01)
+    #if (VERSION == RMGK01 || VERSION == SHIELD)
         s32 remainSize;
     #endif
     NWC24Err result;
@@ -617,7 +617,7 @@ static NWC24Err WriteFromField(NWC24iMsgObj* pMsg) {
 
     #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         result = SynthesizeAddrStr(&pMsg->from, addrFlags, pWork, MSG_WORK_SIZE, &addrLen);
-    #elif (VERSION == RMGK01)
+    #elif (VERSION == RMGK01 || VERSION == SHIELD)
         remainSize = MSG_WORK_SIZE - (NWC24i_KSTRLEN("From: ") - 1) - (NWC24i_KSTRLEN("\r\n") - 1);
         result = SynthesizeAddrStr(&pMsg->from, addrFlags, pWork, remainSize, &addrLen);
     #endif
@@ -630,7 +630,7 @@ static NWC24Err WriteFromField(NWC24iMsgObj* pMsg) {
     *pWork++ = '\r';
     *pWork++ = '\n';
 
-    #if (VERSION == RMGK01)
+    #if (VERSION == RMGK01 || VERSION == SHIELD)
         remainSize -= addrLen;
     #endif
 
@@ -638,7 +638,7 @@ static NWC24Err WriteFromField(NWC24iMsgObj* pMsg) {
 
     #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         if (MSG_WORK_SIZE - totalLen <= 0) {
-    #elif (VERSION == RMGK01)
+    #elif (VERSION == RMGK01 || VERSION == SHIELD)
         if (remainSize <= 0) {
     #endif
         return NWC24_ERR_NOMEM;
@@ -672,7 +672,7 @@ static NWC24Err WriteToField(NWC24iMsgObj* pMsg) {
 
     #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         Mail_strncat(pWork, "To: ", NWC24i_STRING_WORK_SIZE);
-    #elif (VERSION == RMGK01)
+    #elif (VERSION == RMGK01 || VERSION == SHIELD)
         Mail_strncat(pWork, "To: ", MSG_WORK_SIZE);
     #endif
 
@@ -683,7 +683,7 @@ static NWC24Err WriteToField(NWC24iMsgObj* pMsg) {
 
     #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         remainSize = NWC24i_STRING_WORK_SIZE - (NWC24i_KSTRLEN("To: ") - 1);
-    #elif (VERSION == RMGK01)
+    #elif (VERSION == RMGK01 || VERSION == SHIELD)
         remainSize = MSG_WORK_SIZE - (NWC24i_KSTRLEN("To: ") - 1);
     #endif
 

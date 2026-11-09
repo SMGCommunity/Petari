@@ -595,7 +595,7 @@ bool GalaxyMapController::tryDisplayAndKeyWait() {
         mMap->_71 = false;
     }
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     if (MR::isStep(this, ::sDisplayKeepFrame)) {
         mMap->dispIconAButton();
     }

@@ -1028,7 +1028,7 @@ bool SkeletalFishBoss::isEnableToBeDamaged() const {
            !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDeadDamage)) && !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDead)) &&
            !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvAppearDemo)) && !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvPowerUpDemo)) &&
            !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDeadDemo));
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     return !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDamage)) && !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDown)) &&
            !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDeadDamage)) && !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDead)) &&
            !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvDemoWait)) && !isNerve(GET_NERVE_ANON(SkeletalFishBossNrvAppearDemo)) &&

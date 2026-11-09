@@ -26,12 +26,12 @@ private:
         /* 0x10 */ const u8* mPicture;
         /* 0x14 */ u32 mPictureSize;
         /* 0x18 */ bool _18;
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
         /* 0x19 */ bool mIsMsgLedPattern;
 #endif
         /* 0x1C */ NWC24Err mSentErr;
         /* 0x20 */ u32 mSentSize;
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
         /* 0x24 */ u16 mTag;
         /* 0x28 */ u8 mDelayHours;
 #endif

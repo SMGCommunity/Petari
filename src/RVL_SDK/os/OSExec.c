@@ -265,7 +265,7 @@ void __OSLaunchNextFirmware(void) {
         if (DVDLowIntType != 1) {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x388);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x395);
 #endif
             __OSReturnToMenuForError();
@@ -280,7 +280,7 @@ void __OSLaunchNextFirmware(void) {
         if (DVDLowIntType != 1) {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x392);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x39F);
 #endif
             __OSReturnToMenuForError();
@@ -295,7 +295,7 @@ void __OSLaunchNextFirmware(void) {
         if (DVDLowIntType != 1) {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x39E);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x3AB);
 #endif
             __OSReturnToMenuForError();
@@ -344,7 +344,7 @@ void __OSLaunchNextFirmware(void) {
         if (DVDLowIntType != 1) {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x3DB);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x3E8);
 #endif
             __OSReturnToMenuForError();
@@ -359,7 +359,7 @@ void __OSLaunchNextFirmware(void) {
         if (DVDLowIntType != 1) {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x3E5);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x3F2);
 #endif
             __OSReturnToMenuForError();
@@ -372,7 +372,7 @@ void __OSLaunchNextFirmware(void) {
     if (rc != 0) {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", rc, 0x3F0);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", rc, 0x3FD);
 #endif
         __OSHotResetForError();
@@ -382,7 +382,7 @@ void __OSLaunchNextFirmware(void) {
     if (ticketCnt != 1 || rc != 0) {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", rc, 0x3F9);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", rc, 0x406);
 #endif
         __OSHotResetForError();
@@ -393,7 +393,7 @@ void __OSLaunchNextFirmware(void) {
     if (rc != 0) {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", rc, 0x402);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", rc, 0x40F);
 #endif
         __OSHotResetForError();
@@ -409,7 +409,7 @@ void __OSLaunchNextFirmware(void) {
     if (rc != 0) {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", rc, 0x412);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", rc, 0x41F);
 #endif
         __OSHotResetForError();
@@ -445,7 +445,7 @@ void __OSLaunchNextFirmware(void) {
     if (DVDLowIntType != 1) {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x43E);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x44B);
 #endif
         __OSReturnToMenuForError();
@@ -464,7 +464,7 @@ void __OSLaunchNextFirmware(void) {
     if (DVDLowIntType != 1) {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x455);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
         OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x462);
 #endif
         __OSReturnToMenuForError();
@@ -616,7 +616,7 @@ s32 __OSGetValidTicketIndex(ESTicketView *ticketViewList, u32 numTickets) {
     if (ticketViewList == NULL) {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         OSReport("NULL pointer detected: line %d in %s\n", 0x54D, __FILE__);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
         OSReport("NULL pointer detected: line %d in %s\n", 0x183, __FILE__);
 #endif
         return -1017;
@@ -890,7 +890,7 @@ void LaunchCommon(OSTitleId titleId, u32 LaunchCode, char* const argv[], BOOL la
             if(rv != 0) {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
                 OSReport("\nOSExec(): Failed to exec %d in %d\n", rv, 0x6C2);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
                 OSReport("\nOSExec(): Failed to exec %d in %d\n", rv, 0x30F);
 #endif
                 __OSHotResetForError();
@@ -900,7 +900,7 @@ void LaunchCommon(OSTitleId titleId, u32 LaunchCode, char* const argv[], BOOL la
             if(rv != 0) {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
                 OSReport("\nOSExec(): Failed to exec %d in %d\n", rv, 0x6CA);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
                 OSReport("\nOSExec(): Failed to exec %d in %d\n", rv, 0x317);
 #endif
                 __OSHotResetForError();

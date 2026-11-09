@@ -19,7 +19,7 @@ namespace {
         {"サーフィン[チャレンジ]/lo", 90 * 60},
         {"LibraryOpenNewStarCount", 1},
         {"絵本既読章", 0},
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
         {"MsgLedPattern", 1},
 #endif
         {"LuigiEventState", FindingLuigiEventScheduler::STATE_NULL},

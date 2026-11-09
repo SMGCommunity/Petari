@@ -28,7 +28,7 @@ void ReceiverTagMail::send(const u8* pImage, u32 imageSize) {
     _18 = 0;
 }
 
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
 
 void ReceiverTagMail::send(const u8* pImage, u32 imageSize, bool isLedOn) {
     ReplaceTagFunction::ReplaceArgs(mMessage, mMessageLength, MR::getGameMessageDirect(mMessageID), GameDataFunction::getUserName());

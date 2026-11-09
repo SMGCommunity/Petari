@@ -219,7 +219,7 @@ void MarioActor::doTrampleJump(HitSensor* pSensor) {
     if (getMario()->isStatusActive(MarioStatus_Wall)) {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
         mMario->closeStatus(nullptr);
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
         mMario->closeStatus(mMario->mWall);
 #endif
     }

@@ -24,7 +24,7 @@ enum TalkMessageCtrl_Type {
     /* 0xB */ TalkMessageCtrl_AstroGalaxyBranch,
     /* 0xC */ TalkMessageCtrl_IsTimeKeepDemoActive,
     /* 0xD */ TalkMessageCtrl_IsMessageAlreadyRead,
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     /* 0xE */ TalkMessageCtrl_IsMessageLedPattern,
 #endif
 };
@@ -49,7 +49,7 @@ enum BranchNode_Type {
     /* 0x10 */ BranchNode_Type10,
     /* 0x11 */ BranchNode_Type11,
     /* 0x12 */ BranchNode_Type12,
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     /* 0x13 */ BranchNode_Type13,
 #endif
 };

@@ -32,7 +32,7 @@ void LuigiMailDirector::initAfterResourceLoaded() {
 void LuigiMailDirector::lost() {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     mLostMessageNum++;
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     mLostMessageNum = 1;
     mFoundMessageNum = 0;
 #endif
@@ -41,7 +41,7 @@ void LuigiMailDirector::lost() {
 void LuigiMailDirector::found() {
 #if (VERSION == RMGJ01 || VERSION == RMGE01 || VERSION == RMGP01)
     mFoundMessageNum++;
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     mFoundMessageNum = 1;
     mLostMessageNum = 0;
 #endif
@@ -62,12 +62,12 @@ void LuigiMailDirector::sendMail() {
             mFoundMessageNum--;
         }
     }
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     sendMail(calcDelayHours());
 #endif
 }
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
 void LuigiMailDirector::sendMail(u8 delayHours) {
     prepareMessage();
 
@@ -123,7 +123,7 @@ void LuigiMailDirector::writeSendSize() {
             foundMessageNum--;
         }
     }
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
     if (lostMessageNum != 0 || foundMessageNum != 0) {
         if (lostMessageNum != 0) {
             mailSize = MR::calcWiiMailSize(pMailSender, reinterpret_cast< u16* >(mLostMessage), 0, 0);
@@ -151,7 +151,7 @@ void LuigiMailDirector::prepareMessage() {
     ReplaceTagFunction::ReplaceArgs(mFoundMessage, mFoundMessageLength, MR::getGameMessageDirect(::cFoundMessageID), GameDataFunction::getUserName());
 }
 
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
 u8 LuigiMailDirector::calcDelayHours() const {
     OSCalendarTime td;
 

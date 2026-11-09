@@ -33,6 +33,7 @@ VERSIONS = [
     "RMGE01", # USA (1)
     "RMGP01", # PAL (2)
     "RMGK01", # KOR (3)
+    "SHIELD", # NVIDIA Shield TV, China (4)
 ]
 
 parser = argparse.ArgumentParser()
@@ -246,6 +247,10 @@ cflags_game = [
     f"-i build/{config.version}/include",
     *VERSION_DEF,
 ]
+
+# The Shield build compiled game code for speed (-O4,p), which inlines far more
+if config.version == "SHIELD":
+    cflags_game = ["-O4,p" if opt == "-O4,s" else opt for opt in cflags_game]
 
 # Game TUs whose original .sdata2 pool doesn't start with the shared constants in this order
 cflags_game_noprefix = cflags_game[:]
@@ -497,7 +502,7 @@ config.linker_version = "GC/3.0a5"
 def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/3.0a3",
+        "mw_version": "Wii/1.0" if config.version == "SHIELD" else "GC/3.0a3",
         "cflags": cflags_game,
         "progress_category": "game",
         "objects": objects,
@@ -543,7 +548,7 @@ def SDKLib_KPAD(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
             "progress_category": "sdk",
             "objects": objects,
         }
-    elif config.version == "RMGK01":
+    elif config.version == "RMGK01" or config.version == "SHIELD":
         return {
             "lib": lib_name,
             "mw_version": "Wii/1.0",
@@ -674,6 +679,7 @@ JPN = ["RMGJ01"]
 USA = ["RMGE01"]
 PAL = ["RMGP01"]
 KOR = ["RMGK01"]
+SHIELD = ["SHIELD"]
 ALL = JPN + USA + PAL + KOR
 
 # Object is only matching for specific versions
@@ -2668,6 +2674,7 @@ config.libs = [
                 MatchingFor(), "Game/Util/LayoutUtil.cpp", extra_cflags=["-DNW4R_DEBUG"]
             ),
             Object(MatchingFor(ALL), "Game/Util/LightUtil.cpp"),
+            Object(MatchingFor(SHIELD), "Game/Util/LingcodPatch.c", cflags=cflags_game_noprefix),
             Object(MatchingFor(), "Game/Util/LiveActorUtil.cpp"),
             Object(MatchingFor(ALL), "Game/Util/MapPartsUtil.cpp"),
             Object(MatchingFor(ALL), "Game/Util/MapUtil.cpp"),

@@ -148,7 +148,7 @@ void CameraFollow::calcRotPos() {
     TVec3f newPos;
     MR::polarToCross(watchPos, &newPos, length, angleX, angleY);
 
-    #if (VERSION == RMGK01)
+    #if (VERSION == RMGK01 || VERSION == SHIELD)
     Triangle tri;
     TriangleFilterFunc filterFunc(&MR::isCameraCodeThrough);
 

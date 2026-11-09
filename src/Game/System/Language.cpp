@@ -12,7 +12,7 @@
 #define SCLanguage2GameLanguageTableIndex 1
 #elif (VERSION == RMGP01)
 #define SCLanguage2GameLanguageTableIndex 2
-#elif (VERSION == RMGK01)
+#elif (VERSION == RMGK01 || VERSION == SHIELD)
 #define SCLanguage2GameLanguageTableIndex 4
 #else
 #define SCLanguage2GameLanguageTableIndex -1
@@ -74,7 +74,7 @@ namespace {
             LANGUAGE_KRKOREAN,
 #endif
         },
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
         {
             LANGUAGE_JPJAPANESE,
             LANGUAGE_USENGLISH,
@@ -119,7 +119,7 @@ namespace {
         {LANGUAGE_EUENGLISH, "EuEnglish"},         {LANGUAGE_EUSPANISH, "EuSpanish"},
         {LANGUAGE_EUFRENCH, "EuFrench"},           {LANGUAGE_EUGERMAN, "EuGerman"},
         {LANGUAGE_EUITALIAN, "EuItalian"},         {LANGUAGE_EUDUTCH, "EuDutch"},
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
         {LANGUAGE_CNSIMPCHINESE, "CnSimpChinese"}, {LANGUAGE_KRKOREAN, "KrKorean"},
 #endif
     };
@@ -179,7 +179,7 @@ const char* MR::getCurrentRegionPrefix() {
     if (MR::isEqualString(prefix, "Eu")) {
         return "Eu";
     }
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
     if (MR::isEqualString(prefix, "Cn")) {
         return "Cn";
     }

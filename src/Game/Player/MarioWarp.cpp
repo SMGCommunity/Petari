@@ -8,9 +8,12 @@
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 
+// The Shield's newer compiler (Wii/1.0) rejects redeclaring a member outside its class
+#if (VERSION != SHIELD)
 namespace JGeometry {
     TVec3< f32 > TVec3< f32 >::operator*(f32) const NO_INLINE;
 };  // namespace JGeometry
+#endif
 
 bool Mario::doObjWarp(LiveActor* pActor) {
     if (getPlayer()->getMovementStates().debugMode) {

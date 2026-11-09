@@ -157,7 +157,7 @@ s32 MR::countMessageChar(const wchar_t* pMessage) {
             } else if (tag.getGroup() == 5) {
                 count += 3;
             }
-#if (VERSION == RMGK01)
+#if (VERSION == RMGK01 || VERSION == SHIELD)
             else if (tag.getGroup() == 11) {
                 count += 2;
             }

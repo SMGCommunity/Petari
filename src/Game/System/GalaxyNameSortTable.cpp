@@ -4,7 +4,7 @@
 
 s32 GalaxyNameSortTable::getGalaxySortIndex(const char* pName) {
     JMapInfo info;
-    info.attach(&cGalaxyInfoTable);
+    info.attach(&GalaxyInfoTable_bcsv_start);
 
     JMapInfoIter iter = info.findElement("name", pName, 0);
 
