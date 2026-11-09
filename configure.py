@@ -2674,6 +2674,7 @@ config.libs = [
                 MatchingFor(), "Game/Util/LayoutUtil.cpp", extra_cflags=["-DNW4R_DEBUG"]
             ),
             Object(MatchingFor(ALL), "Game/Util/LightUtil.cpp"),
+            Object(MatchingFor(SHIELD), "Game/Util/LingcodPatch.c", cflags=cflags_game_noprefix),
             Object(MatchingFor(), "Game/Util/LiveActorUtil.cpp"),
             Object(MatchingFor(ALL), "Game/Util/MapPartsUtil.cpp"),
             Object(MatchingFor(ALL), "Game/Util/MapUtil.cpp"),

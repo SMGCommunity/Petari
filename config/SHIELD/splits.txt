@@ -7837,13 +7837,13 @@ Game/Screen/MiiSelectIcon.cpp:
 	.sdata2     start:0x807F79E8 end:0x807F79F0
 
 Game/Screen/MissLayout.cpp:
-	.text       start:0x803DBD70 end:0x803DC1B0
+	.text       start:0x803DBD70 end:0x803DC040
 	.ctors      start:0x8068B9FC end:0x8068BA00
 	.data       start:0x80731300 end:0x80731378
 	.sbss       start:0x807ED478 end:0x807ED488
 
 Game/Screen/MoviePlayerSimple.cpp:
-	.text       start:0x803DC1B0 end:0x803DCBE0
+	.text       start:0x803DC040 end:0x803DCBE0
 	.ctors      start:0x8068BA00 end:0x8068BA04
 	.data       start:0x80731378 end:0x807315D8
 	.sdata      start:0x807E9148 end:0x807E9158
@@ -8882,13 +8882,13 @@ Game/Util/ValueControl.cpp:
 	.text       start:0x8045C690 end:0x8045C8B0
 	.rodata     start:0x8069B4F0 end:0x8069B510
 
-Game/Util/LingcodPatch.cpp:
+Game/Util/LingcodPatch.c:
 	.text       start:0x8045C8B0 end:0x8045C940
 	.data       start:0x80740DA0 end:0x80740DC0
 	.sdata2     start:0x807F7FE0 end:0x807F7FE8
 
 Game/Unity/unity.cpp:
-	.text       start:0x8045C940 end:0x805806A0
+	.text       start:0x8045C940 end:0x805806A0 align:16
 	.ctors      start:0x8068BAE0 end:0x8068BAE4
 	.rodata     start:0x8069B510 end:0x8069BCA0
 	.data       start:0x80740DC0 end:0x80745FB0
