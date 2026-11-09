@@ -127,7 +127,7 @@ s32 GalaxyMapDomeIcon::calcDomeStatus() const {
 bool GalaxyMapDomeIcon::isComplete() const {
     JMapInfo mapInfo = JMapInfo();
 
-    mapInfo.attach(&cGalaxyInfoTable);
+    mapInfo.attach(&GalaxyInfoTable_bcsv_start);
 
     CheckerIsComplete checker = CheckerIsComplete(_20);
 
@@ -187,7 +187,7 @@ void GalaxyMapDomeIcon::syncStatus() {
 bool GalaxyMapDomeIcon::hasNewGalaxy() const {
     JMapInfo mapInfo = JMapInfo();
 
-    mapInfo.attach(&cGalaxyInfoTable);
+    mapInfo.attach(&GalaxyInfoTable_bcsv_start);
 
     CheckerIsExistNewGalaxy checker = CheckerIsExistNewGalaxy(_20);
 

@@ -2,4 +2,4 @@
 
 #include <revolution/types.h>
 
-extern const u8 cErrorMessageArchive[];
+extern const u8 ErrorMessageArchive_rodata_start[];

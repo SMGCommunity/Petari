@@ -31,7 +31,7 @@ GameSystemObjHolder::GameSystemObjHolder()
     initDvd();
     initNAND();
     initNameObj();
-    MR::createAndAddArchive((void*)cErrorMessageArchive, MR::getStationedHeapNapa(), "ErrorMessageArchive.arc");
+    MR::createAndAddArchive((void*)ErrorMessageArchive_rodata_start, MR::getStationedHeapNapa(), "ErrorMessageArchive.arc");
 }
 
 void GameSystemObjHolder::initAfterStationedResourceLoaded() {

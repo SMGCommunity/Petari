@@ -458,7 +458,7 @@ namespace GameEventFlagTable {
 
     s32 getGalaxyDependedFlags(const char** pFlags, int a1, const char* pName) {
         JMapInfo info;
-        info.attach(&cGalaxyInfoTable);
+        info.attach(&GalaxyInfoTable_bcsv_start);
 
         JMapInfoIter iter = info.findElement("name", pName, 0);
 

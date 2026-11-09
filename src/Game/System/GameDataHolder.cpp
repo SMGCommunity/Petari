@@ -30,7 +30,7 @@ GameDataHolder::GameDataHolder(const UserFile* pUserFile)
     mStarPieceAlmsStorage = new StarPieceAlmsStorage();
 
     mMapInfo = new JMapInfo();
-    mMapInfo->attach(cStoryProgressTable);
+    mMapInfo->attach(StoryProgressTable_bcsv_start);
 
     mChunkHolder = new BinaryDataChunkHolder(4096, 6);
     mChunkHolder->addChunk(mPlayerStatus);

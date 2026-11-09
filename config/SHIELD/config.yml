@@ -9,12 +9,12 @@ splits: config/SHIELD/splits.txt
 mw_comment_version: 14
 
 extract:
-- symbol: lbl_80699BE0
+- symbol: StoryProgressTable_bcsv_start
   binary: assets/StoryProgressTable.bcsv
   header: assets/StoryProgressTable.hpp
-- symbol: lbl_80699DC0
+- symbol: GalaxyInfoTable_bcsv_start
   binary: assets/GalaxyInfoTable.bcsv
   header: assets/GalaxyInfoTable.hpp
-- symbol: lbl_8069BCA0
+- symbol: ErrorMessageArchive_rodata_start
   binary: assets/ErrorMessageArchive.arc
   header: assets/ErrorMessageArchive.hpp
