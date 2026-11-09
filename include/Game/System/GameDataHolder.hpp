@@ -23,6 +23,7 @@ public:
     bool canOnGameEventFlag(const char*) const;
     bool isOnGameEventFlag(const char*) const;
     void tryOnGameEventFlag(const char*);
+    bool tryOnGameEventFlagsDependedAnother(const char*);
     s32 getGameEventValue(const char*) const;
     void setGameEventValue(const char*, u16);
     bool isOnGameEventValueForBit(const char*, int) const;
@@ -61,6 +62,7 @@ public:
     bool isCompleteMarioAndLuigi() const;
     bool isPassedStoryEvent(const char*) const;
     void followStoryEventByName(const char*);
+    bool trySyncStoryEventByGameEventFlag();
     void resetAllData();
     u32 makeFileBinary(u8*, u32);
     bool loadFromFileBinary(const char*, const u8*, u32);

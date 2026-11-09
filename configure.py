@@ -235,6 +235,7 @@ cflags_game = [
     "-sdata2 4",
     "-ipa file",
     "-sym on",
+    "-i src",
     "-i include",
     "-i libs/JSystem/include",
     "-i libs/MSL_C++/include",

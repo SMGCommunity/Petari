@@ -1,3 +1,5 @@
+#pragma once
+
 #include "JSystem/JAudio2/JAISeqDataMgr.hpp"
 #include "JSystem/JAudio2/JASGlobal.hpp"
 #include "JSystem/JSupport/JSUList.hpp"

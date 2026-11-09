@@ -75,6 +75,10 @@ void GameDataHolder::tryOnGameEventFlag(const char* pFlagName) {
     mEventFlagChecker->tryOn(pFlagName);
 }
 
+// TODO
+bool GameDataHolder::tryOnGameEventFlagsDependedAnother(const char* pFlagName) {
+}
+
 s32 GameDataHolder::getGameEventValue(const char* pName) const {
     u16 value = mEventValueChecker->getValue(pName);
 
@@ -296,6 +300,10 @@ void GameDataHolder::followStoryEventByName(const char* pEventName) {
     u32 progress = 0;
     iter.getValue("progress", &progress);
     mPlayerStatus->mStoryProgress = progress;
+}
+
+// TODO
+bool GameDataHolder::trySyncStoryEventByGameEventFlag() {
 }
 
 void GameDataHolder::resetAllData() {
