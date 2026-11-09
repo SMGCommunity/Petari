@@ -64,6 +64,7 @@ public:
     void followStoryEventByName(const char*);
     bool trySyncStoryEventByGameEventFlag();
     void resetAllData();
+    void resetSequenceData();
     u32 makeFileBinary(u8*, u32);
     bool loadFromFileBinary(const char*, const u8*, u32);
 

@@ -49,6 +49,8 @@ public:
     /// @param num The number of Star Bits to add.
     void addStockedStarPiece(int num);
 
+    void resetStoryProgress();
+
     /// @brief The number of extra lives.
     /* 0x04 */ u16 mPlayerLeft;
 

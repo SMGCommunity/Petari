@@ -79,3 +79,7 @@ void GameDataPlayerStatus::addStockedStarPiece(int num) {
 
     mStockedStarPiece = MR::clamp(stockedStarPiece, 0, 9999);
 }
+
+void GameDataPlayerStatus::resetStoryProgress() {
+    mStoryProgress = 0;
+}

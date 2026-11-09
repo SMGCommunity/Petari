@@ -211,6 +211,12 @@ void GameDataAllGalaxyStorage::initializeData() {
     }
 }
 
+void GameDataAllGalaxyStorage::resetSequenceData() {
+    for (s32 idx = 0; idx < getGalaxyNum(); idx++) {
+        getGalaxyStorage(idx)->mPowerStarOwnedFlags = 0;
+    }
+}
+
 void GameDataAllGalaxyStorage::initHeaderSerializer() {
     mHeaderSerializer->addAttribute("mGalaxyName", sizeof(u16));
     mHeaderSerializer->addAttribute("mPowerStarFlag", sizeof(u8));

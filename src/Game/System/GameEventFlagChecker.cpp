@@ -39,8 +39,8 @@ bool GameEventFlagChecker::canOn(const char* pFlagName) const {
         return isOnGalaxy(pFlagName);
     case GameEventFlag::Type_Comet:
         return isOnComet(pFlag);
-    case GameEventFlag::Type_StoryEventSync:
-        return isOn(pFlag->mEventFlagName);
+    case GameEventFlag::Type_ProgressSync:
+        return isOn(pFlag->mDependedFlagName);
     case GameEventFlag::Type_StarPiece:
         GameEventFlagAccessor accessor1 = GameEventFlagAccessor(pFlag);
         s32 needStarPieceNum = accessor1.getNeedStarPieceNum();
@@ -80,7 +80,7 @@ bool GameEventFlagChecker::isOn(const char* pFlagName) const {
     case GameEventFlag::Type_Comet:
     case GameEventFlag::Type_StarPiece:
     case GameEventFlag::Type_CompleteMarioAndLuigi:
-    case GameEventFlag::Type_StoryEventSync:
+    case GameEventFlag::Type_ProgressSync:
     default:
         return false;
     }
@@ -103,7 +103,7 @@ bool GameEventFlagChecker::tryOn(const char* pFlagName) {
     case GameEventFlag::Type_Comet:
     case GameEventFlag::Type_StarPiece:
     case GameEventFlag::Type_CompleteMarioAndLuigi:
-    case GameEventFlag::Type_StoryEventSync:
+    case GameEventFlag::Type_ProgressSync:
         return false;
     case GameEventFlag::Type_None:
     case GameEventFlag::Type_StarNum:

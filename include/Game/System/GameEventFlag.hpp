@@ -15,7 +15,7 @@ struct GameEventFlag {
         Type_StarPiece = 0x08,
         Type_EventValueIsZero = 0x09,
         Type_CompleteMarioAndLuigi = 0x0A,
-        Type_StoryEventSync = 0x0B,
+        Type_ProgressSync = 0x0B,
     };
 
     /* 0x00 */ const char* mName;
@@ -43,12 +43,14 @@ struct GameEventFlag {
         /* 0x0C */ const char* mEventValueName;
         /* 0x0C */ const char* mStoryEventName;
         /* 0x0C */ const char* mRequirement1;
+        /* 0x0C */ const char* mDependedFlagName;
     };
 
     union {
         /* 0x10 */ const char* mCondition4;
         /* 0x10 */ const char* mRequirement;
         /* 0x10 */ const char* mRequirement2;
+        /* 0x10 */ const char* mProgressName;
     };
 };
 
@@ -59,10 +61,13 @@ public:
     const char* getName() const;
     bool isTypeGalaxyOpenStar() const;
     bool isTypeSpecialStar() const;
+    bool isTypeProgressSync() const;
     bool isTypeStarPiece() const;
     bool isTypeEventValueIsZero() const;
     const char* getGalaxyName() const;
     s32 getStarId() const;
+    const char* getDependedFlagName() const;
+    const char* getProgressName() const;
     s32 getStarPieceIndex() const;
     const char* getGalaxyNameWithStarPiece() const;
     s32 getNeedStarPieceNum() const;

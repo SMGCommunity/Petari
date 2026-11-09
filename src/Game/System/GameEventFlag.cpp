@@ -15,6 +15,10 @@ bool GameEventFlagAccessor::isTypeSpecialStar() const {
     return mFlag->mType == GameEventFlag::Type_SpecialStar;
 }
 
+bool GameEventFlagAccessor::isTypeProgressSync() const {
+    return mFlag->mType == GameEventFlag::Type_ProgressSync;
+}
+
 bool GameEventFlagAccessor::isTypeStarPiece() const {
     return mFlag->mType == GameEventFlag::Type_StarPiece;
 }
@@ -29,6 +33,14 @@ const char* GameEventFlagAccessor::getGalaxyName() const {
 
 s32 GameEventFlagAccessor::getStarId() const {
     return mFlag->mStarID;
+}
+
+const char* GameEventFlagAccessor::getDependedFlagName() const {
+    return mFlag->mDependedFlagName;
+}
+
+const char* GameEventFlagAccessor::getProgressName() const {
+    return mFlag->mProgressName;
 }
 
 s32 GameEventFlagAccessor::getStarPieceIndex() const {

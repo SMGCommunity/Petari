@@ -1,6 +1,7 @@
 #include "Game/System/GameDataHolder.hpp"
 #include "Game/System/GameDataGalaxyStorage.hpp"
 #include "Game/System/GameDataPlayerStatus.hpp"
+#include "Game/System/GameEventFlag.hpp"
 #include "Game/System/GameEventFlagChecker.hpp"
 #include "Game/System/GameEventFlagStorage.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
@@ -75,8 +76,28 @@ void GameDataHolder::tryOnGameEventFlag(const char* pFlagName) {
     mEventFlagChecker->tryOn(pFlagName);
 }
 
-// TODO
 bool GameDataHolder::tryOnGameEventFlagsDependedAnother(const char* pFlagName) {
+    bool isOnFlagAny = false;
+    bool isOnFlag;
+
+    do {
+        isOnFlag = false;
+
+        for (GameEventFlagIter iter = GameEventFlagTable::getBeginIter(); !iter.isEnd(); iter.goNext()) {
+            GameEventFlagAccessor accessor(iter.getFlag());
+
+            if (!GameEventFlagTable::isDependedAnother(accessor.getName(), pFlagName)) {
+                continue;
+            }
+
+            if (mEventFlagChecker->isOn(accessor.getName()) && mEventFlagChecker->tryOn(accessor.getName())) {
+                isOnFlagAny = true;
+                isOnFlag = true;
+            }
+        }
+    } while (isOnFlag);
+
+    return isOnFlagAny;
 }
 
 s32 GameDataHolder::getGameEventValue(const char* pName) const {
@@ -302,8 +323,27 @@ void GameDataHolder::followStoryEventByName(const char* pEventName) {
     mPlayerStatus->mStoryProgress = progress;
 }
 
-// TODO
 bool GameDataHolder::trySyncStoryEventByGameEventFlag() {
+    bool isFollowStoryAny = false;
+
+    for (GameEventFlagIter iter = GameEventFlagTable::getBeginIter(); !iter.isEnd(); iter.goNext()) {
+        GameEventFlagAccessor accessor(iter.getFlag());
+        if (!accessor.isTypeProgressSync()) {
+            continue;
+        }
+
+        const char* dependedFlagName = accessor.getDependedFlagName();
+        if (!mEventFlagChecker->isOn(dependedFlagName)) {
+            continue;
+        }
+
+        if (!isPassedStoryEvent(accessor.getProgressName())) {
+            followStoryEventByName(accessor.getProgressName());
+            isFollowStoryAny = true;
+        }
+    }
+
+    return isFollowStoryAny;
 }
 
 void GameDataHolder::resetAllData() {
@@ -313,6 +353,14 @@ void GameDataHolder::resetAllData() {
     mPlayerStatus->initializeData();
     mSpinDriverPathStorage->initializeData();
     mStarPieceAlmsStorage->initializeData();
+}
+
+void GameDataHolder::resetSequenceData() {
+    mAllGalaxyStorage->resetSequenceData();
+    mEventFlagChecker->reset();
+    mEventValueChecker->initializeData();
+    mStarPieceAlmsStorage->initializeData();
+    mPlayerStatus->resetStoryProgress();
 }
 
 u32 GameDataHolder::makeFileBinary(u8* pData, u32 a2) {
