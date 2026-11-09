@@ -17,6 +17,79 @@ bool ScenarioProgressTestRun::tryTakeNextPowerStar(GalaxyScenarioInfo* pInfo, u3
     }
 }
 
+bool ScenarioProgressTestRun::tryTakePowerStarsToPlayGalaxyScenario(const GalaxyScenarioInfo* pInfo, bool a2) {
+    GalaxyScenarioInfo info;
+
+    if (!GameEventFlagTable::isExist(pInfo->mStageName)) {
+        info.mStageName = "EggStarGalaxy";
+        info.mScenarioNo = 1;
+        pInfo = &info;
+    }
+
+    GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(pInfo->mStageName);
+
+    if (pInfo->mScenarioNo < 1 || accessor.getPowerStarNum() < pInfo->mScenarioNo || canTakePowerStar(pInfo)) {
+        mGameDataHolder->trySyncStoryEventByGameEventFlag();
+        return true;
+    }
+
+    if (!tryTakePowerStarsToOpenGalaxy(1, pInfo->mStageName, true)) {
+        return false;
+    }
+
+    s32 starNum = a2 ? pInfo->mScenarioNo - 1 : pInfo->mScenarioNo;
+
+    for (s32 starNo = 1; starNo <= starNum; starNo++) {
+        GalaxyScenarioInfo info;
+        info.mStageName = pInfo->mStageName;
+        info.mScenarioNo = starNo;
+
+        GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(info.mStageName);
+
+        if (!canTakePowerStar(&info)) {
+            if (accessor.getNormalScenarioNum() >= info.mScenarioNo) {
+                return false;
+            }
+
+            continue;
+        }
+
+        if (canTakePowerStar(&info)) {
+            mGameDataHolder->setPowerStar(info.mStageName, info.mScenarioNo, true);
+        }
+
+        tryOnGameEventFlagsDependedAnother(&info);
+
+        if (mGameDataHolder->getGalaxyNumCanOpen() > 0) {
+            for (ScenarioDataIter iter = MR::makeBeginScenarioDataIter(); !iter.isEnd(); iter.goNext()) {
+                GalaxyStatusAccessor accessor = iter.makeAccessor();
+
+                if (accessor.getPowerStarNum() == 0) {
+                    continue;
+                }
+
+                if (!GameEventFlagTable::isExist(accessor.getName())) {
+                    continue;
+                }
+
+                if (!mGameDataHolder->canOnGameEventFlag(accessor.getName())) {
+                    continue;
+                }
+
+                if (mGameDataHolder->isOnGameEventFlag(accessor.getName())) {
+                    continue;
+                }
+
+                mGameDataHolder->tryOnGameEventFlag(accessor.getName());
+            }
+        }
+
+        mGameDataHolder->trySyncStoryEventByGameEventFlag();
+    }
+
+    return true;
+}
+
 bool ScenarioProgressTestRun::tryOnGameEventFlagsDependedAnother(const GalaxyScenarioInfo* pInfo) {
     const char* flagName = GameEventFlagTable::getEventFlagNameSpecialPowerStar(pInfo->mStageName, pInfo->mScenarioNo);
 
@@ -104,15 +177,17 @@ bool ScenarioProgressTestRun::tryTakeNextPowerStarAndOnEventFlag(u32 preference)
     return isTakeNextPowerStar | isOnFlagAny;
 }
 
-// FIXME stack
+// FIXME: stack ordering
 bool ScenarioProgressTestRun::tryTakePowerStarsToOpenGalaxy(u32 preference, const char* pStageName, bool ignoreTargetGalaxyFlag) {
     if (mGameDataHolder->canOnGameEventFlag(pStageName)) {
         return true;
     }
 
     bool isAdvance = true;
+
     while (isAdvance) {
         GalaxyScenarioInfo info;
+
         bool isTakeNextPowerStar = tryTakeNextPowerStar(&info, preference);
         if (!isTakeNextPowerStar) {
             return false;
@@ -165,6 +240,43 @@ bool ScenarioProgressTestRun::tryTakePowerStarsToOpenGalaxy(u32 preference, cons
     }
 
     return true;
+}
+
+// FIXME: stack ordering
+bool ScenarioProgressTestRun::followGameEventFlagGalaxyOpenAndStoryProgress(GalaxyScenarioInfo* pInfo) {
+    bool isOnFlagGalaxy;
+    bool isOnFlagAny = tryOnGameEventFlagsDependedAnother(pInfo) != false;
+
+    if (mGameDataHolder->getGalaxyNumCanOpen() > 0) {
+        isOnFlagGalaxy = false;
+
+        for (ScenarioDataIter iter = MR::makeBeginScenarioDataIter(); !iter.isEnd(); iter.goNext()) {
+            GalaxyStatusAccessor accessor = iter.makeAccessor();
+
+            if (accessor.getPowerStarNum() == 0) {
+                continue;
+            }
+
+            if (!GameEventFlagTable::isExist(accessor.getName())) {
+                continue;
+            }
+
+            if (!mGameDataHolder->canOnGameEventFlag(accessor.getName())) {
+                continue;
+            }
+
+            if (mGameDataHolder->isOnGameEventFlag(accessor.getName())) {
+                continue;
+            }
+
+            mGameDataHolder->tryOnGameEventFlag(accessor.getName());
+            isOnFlagGalaxy = true;
+        }
+
+        isOnFlagAny |= isOnFlagGalaxy;
+    }
+
+    return isOnFlagAny | mGameDataHolder->trySyncStoryEventByGameEventFlag();
 }
 
 bool ScenarioProgressTestRun::tryTakeNextPowerStarPreferGalaxy(GalaxyScenarioInfo* pInfo) {

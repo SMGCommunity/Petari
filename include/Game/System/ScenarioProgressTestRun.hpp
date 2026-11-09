@@ -12,6 +12,7 @@ struct GalaxyScenarioInfo {
 class ScenarioProgressTestRun {
 public:
     bool tryTakeNextPowerStar(GalaxyScenarioInfo* pInfo, u32 preference);
+    bool tryTakePowerStarsToPlayGalaxyScenario(const GalaxyScenarioInfo* pInfo, bool);
     bool tryOnGameEventFlagsDependedAnother(const GalaxyScenarioInfo* pInfo);
     bool canTakePowerStar(const GalaxyScenarioInfo* pInfo) const;
 
@@ -19,6 +20,7 @@ public:
 
     bool tryTakeNextPowerStarAndOnEventFlag(u32 preference);
     bool tryTakePowerStarsToOpenGalaxy(u32 preference, const char* pStageName, bool ignoreTargetGalaxyFlag);
+    bool followGameEventFlagGalaxyOpenAndStoryProgress(GalaxyScenarioInfo* pInfo);
     bool tryTakeNextPowerStarPreferGalaxy(GalaxyScenarioInfo* pInfo);
     bool tryTakeNextPowerStarPreferScenario(GalaxyScenarioInfo* pInfo);
 
