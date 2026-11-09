@@ -1,7 +1,7 @@
 Petari
 [![Build Status]][actions] [![Discord Badge]][discord]
 ======
-![RMGJ01_Code]![RMGJ01_Link] ![RMGE01_Code]![RMGE01_Link] ![RMGP01_Code]![RMGP01_Link] ![RMGK01_Code]![RMGK01_Link]
+![RMGJ01_Code]![RMGJ01_Link] ![RMGE01_Code]![RMGE01_Link] ![RMGP01_Code]![RMGP01_Link] ![RMGK01_Code]![RMGK01_Link] ![SHIELD_Code]![SHIELD_Link]
 
 [Build Status]: https://github.com/SMGCommunity/Petari/actions/workflows/build.yml/badge.svg
 [actions]: https://github.com/SMGCommunity/Petari/actions/workflows/build.yml
@@ -14,6 +14,8 @@ Petari
 [RMGP01_Link]: https://decomp.dev/SMGCommunity/Petari/RMGP01.svg?mode=shield&measure=complete_code_percent&label=
 [RMGK01_Code]: https://decomp.dev/SMGCommunity/Petari/RMGK01.svg?mode=shield&measure=code&label=RMGK01
 [RMGK01_Link]: https://decomp.dev/SMGCommunity/Petari/RMGK01.svg?mode=shield&measure=complete_code_percent&label=
+[SHIELD_Code]: https://decomp.dev/SMGCommunity/Petari/SHIELD.svg?mode=shield&measure=code&label=SHIELD
+[SHIELD_Link]: https://decomp.dev/SMGCommunity/Petari/SHIELD.svg?mode=shield&measure=complete_code_percent&label=
 
 [Discord Badge]: https://img.shields.io/discord/727908905392275526?color=%237289DA&logo=discord&logoColor=%23FFFFFF
 [discord]: https://discord.gg/ZxEqyYeZbf
@@ -77,6 +79,7 @@ Building
 ![](assets/dolphin-extract.png)
   - To save space, the only necessary files are the following. Any others can be deleted.
     - `sys/main.dol`
+- For the Nvidia Shield version, extract the `product.alf` into `orig/SHIELD/`
 - Configure:
 
   ```sh
