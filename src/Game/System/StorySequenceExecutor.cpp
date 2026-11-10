@@ -579,7 +579,7 @@ void StorySequenceExecutor::moveGalaxy(GalaxyMoveArgument* pMoveArgument, bool p
     case GALAXY_MOVE_MOVING:
         decideNextEventForMoveGalaxy(pMoveArgument);
         break;
-    case GALAXY_MOVE_1:
+    case GALAXY_MOVE_SYNC_GAME_DATA:
         if (pMoveArgument->isEqualStageScenario("PeachCastleGardenGalaxy", 1)) {
             prepareDemoSequence(::cDemoPrologue);
         }

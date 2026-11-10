@@ -522,6 +522,10 @@ namespace MR {
         GameDataFunction::addStarPieceGivingToTicoSeed(index, num);
     }
 
+    s32 getStarPieceNumMaxGivingToTicoSeed(int index) {
+        return GameDataFunction::getStarPieceNumGivingToTicoSeed(index);
+    }
+
     s32 getStarPieceNumGivingToTicoGalaxy(int index) {
         return GameDataFunction::getStarPieceNumGivingToTicoSeed(index + 8);
     }

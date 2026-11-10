@@ -105,6 +105,7 @@ namespace MR {
     void updateStorageSpinDriverPathDrawRange(int, f32);
     s32 getStarPieceNumGivingToTicoSeed(int);
     void addStarPieceGivingToTicoSeed(int, int);
+    s32 getStarPieceNumMaxGivingToTicoSeed(int);
     s32 getStarPieceNumGivingToTicoGalaxy(int);
     s32 getStarPieceNumMaxGivingToTicoGalaxy(int);
     void addStarPieceGivingToTicoGalaxy(int, int);

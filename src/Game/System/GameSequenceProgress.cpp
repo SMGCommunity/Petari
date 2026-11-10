@@ -195,7 +195,7 @@ void GameSequenceProgress::requestGalaxyMove(const GalaxyMoveArgument& rMoveArg)
             mPlayerMissLeft->appear();
         }
     case GALAXY_MOVE_MOVING:
-    case GALAXY_MOVE_1:
+    case GALAXY_MOVE_SYNC_GAME_DATA:
     case GALAXY_MOVE_BACK_ASTRO_DOME:
     case GALAXY_MOVE_AFTER_CLEAR:
     case GALAXY_MOVE_AFTER_LOADING_GAME_DATA:
@@ -333,7 +333,7 @@ void GameSequenceProgress::resetGameDataAfterChangeScene(const GalaxyMoveArgumen
         mGalaxyCometScheduler->restoreStateFromGameData();
 
     case GALAXY_MOVE_MOVING:
-    case GALAXY_MOVE_1:
+    case GALAXY_MOVE_SYNC_GAME_DATA:
     case GALAXY_MOVE_SCENARIO_SELECT:
     case GALAXY_MOVE_BACK_ASTRO_DOME:
     case GALAXY_MOVE_TITLE:

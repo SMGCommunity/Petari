@@ -4,7 +4,7 @@
 #include <revolution/types.h>
 
 #define GALAXY_MOVE_MOVING 0
-#define GALAXY_MOVE_1 1
+#define GALAXY_MOVE_SYNC_GAME_DATA 1
 #define GALAXY_MOVE_SCENARIO_SELECT 2
 #define GALAXY_MOVE_BACK_ASTRO_DOME 3
 #define GALAXY_MOVE_AFTER_CLEAR 4

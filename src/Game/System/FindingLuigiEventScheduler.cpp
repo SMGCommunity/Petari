@@ -25,7 +25,7 @@ void FindingLuigiEventScheduler::initAfterResourceLoaded() {
 void FindingLuigiEventScheduler::update(const GalaxyMoveArgument& rMoveArg) {
     switch (rMoveArg.mMoveType) {
     case GALAXY_MOVE_MOVING:
-    case GALAXY_MOVE_1:
+    case GALAXY_MOVE_SYNC_GAME_DATA:
     case GALAXY_MOVE_SCENARIO_SELECT:
     case GALAXY_MOVE_BACK_ASTRO_DOME:
     case GALAXY_MOVE_AFTER_CLEAR:

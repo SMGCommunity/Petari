@@ -28,4 +28,7 @@ namespace MR {
     void executeOnWelcomeAndRetry();
     void requestGoToAstroGalaxy(s32);
     void requestGoToAstroDomeFromAstroGalaxy(s32, s32);
+    bool isProductSequence();
+    bool isMonitorPlaySequence();
+    void requestChangeStageInGameWithSyncGameData(const char*, s32);
 };  // namespace MR
