@@ -25,7 +25,6 @@ public:
 
     Rabbit(const char*);
 
-    virtual ~Rabbit();
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void calcAndSetBaseMtx();

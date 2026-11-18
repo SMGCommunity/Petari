@@ -68,7 +68,9 @@ void HoneyBee::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &arg0);
     mArg0 = arg0;
 
-    setDefaultsParam();
+    mParam.setDefaultAction();
+    mReactionParam.setDefaultAction();
+
     _128 = 0;
     _12C = 450.0f;
 

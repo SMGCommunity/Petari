@@ -224,7 +224,7 @@ void LuigiNPC::setWaitAction() {
     mParam._18 = turn;
     mParam._1C = "Talk";
     mParam._20 = turn;
-    setDefaults();
+    mReactionParam.setDefaultAction();
     _12C = 1500.0f;
     _128 = true;
 }

@@ -75,8 +75,8 @@ void Butler::init(const JMapInfoIter& rIter) {
     caps.mUseShadow = true;
     caps.mBinder = 0;
     NPCActor::initialize(rIter, caps);
-    setDefaults();
-    _13C = "Spin";
+    mReactionParam.setDefaultAction();
+    mReactionParam.mReactionActionName = "Spin";
     mParam.setMoveAction("Wait", "Wait");
     mParam.setTalkAction("Talk", "Talk");
     MR::useStageSwitchWriteA(this, rIter);

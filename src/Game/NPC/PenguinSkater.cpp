@@ -73,7 +73,7 @@ void PenguinSkater::init(const JMapInfoIter& rIter) {
         caps.mWaitNerve = GET_NERVE(PenguinSkater, PenguinSkaterNrvTalk);
     }
     initialize(rIter, caps);
-    setDefaults();
+    mReactionParam.setDefaultAction();
     mParam.setMoveAction("Wait", "Turn");
     mParam.setTalkAction("Talk", "TalkTurn");
     MR::startBrk(this, "ColorChange");

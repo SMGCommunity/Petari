@@ -95,10 +95,10 @@ void PenguinCoach::init(const JMapInfoIter& rIter) {
     mParam.setMoveAction("Wait", "Turn");
     mParam.setTalkAction("Talk", "TalkTurn");
     mParam._8 = 1.0f;
-    _134 = "Trampled";
-    _13C = "Reaction";
-    _130 = "Reaction";
-    _138 = "Pointing";
+    mReactionParam.mTrampledActionName = "Trampled";
+    mReactionParam.mReactionActionName = "Reaction";
+    mReactionParam.mSpinAttackedActionName = "Reaction";
+    mReactionParam.mPointingActionName = "Pointing";
 
     if (mMsgCtrl != nullptr) {
         MR::registerBranchFunc(getMsgCtrl(), TalkMessageFunc(this, &PenguinCoach::branchFunc));

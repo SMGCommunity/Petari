@@ -20,16 +20,23 @@ namespace MR {
         ActorReactionParam(){};
 
         inline void setDefaultAction() {
-            _0 = "Spin";
-            _4 = "Trampled";
-            _8 = "Pointing";
-            _C = "Reaction";
+            mSpinAttackedActionName = "Spin";
+            mTrampledActionName = "Trampled";
+            mPointingActionName = "Pointing";
+            mReactionActionName = "Reaction";
         }
 
-        /* 0x0 */ const char* _0;
-        /* 0x4 */ const char* _4;
-        /* 0x8 */ const char* _8;
-        /* 0xC */ const char* _C;
+        inline void setAction(const char* pReaction, const char* pPointing, const char* pTrampled, const char* pSpin) {
+            mSpinAttackedActionName = pSpin;
+            mTrampledActionName = pTrampled;
+            mPointingActionName = pPointing;
+            mReactionActionName = pReaction;
+        }
+
+        /* 0x0 */ const char* mSpinAttackedActionName;
+        /* 0x4 */ const char* mTrampledActionName;
+        /* 0x8 */ const char* mPointingActionName;
+        /* 0xC */ const char* mReactionActionName;
     };
 };  // namespace MR
 
@@ -153,52 +160,6 @@ public:
 
     void setBaseMtx(const TPos3f&);
     void setBaseMtx(MtxPtr);
-
-    inline void setDefaults(const char* pReaction, const char* pPointing, const char* pTrampled, const char* pSpin) {
-        mReactionParam._0 = pSpin;
-        mReactionParam._4 = pTrampled;
-        mReactionParam._8 = pPointing;
-        mReactionParam._C = pReaction;
-    }
-
-    inline void setDefaults2(const char* pReaction, const char* pPointing, const char* pSpin, const char* pTrampled) {
-        mReactionParam._4 = pTrampled;
-        mReactionParam._0 = pSpin;
-        mReactionParam._8 = pPointing;
-        mReactionParam._C = pReaction;
-    }
-
-    inline void setDefaults3(const char* pPointing, const char* pReaction, const char* pSpin, const char* pTrampled) {
-        mReactionParam._4 = pTrampled;
-        mReactionParam._0 = pSpin;
-        mReactionParam._C = pReaction;
-        mReactionParam._8 = pPointing;
-    }
-
-    inline void setDefaults4(const char* a1, const char* a2, const char* a3, const char* a4) {
-        mReactionParam._0 = a4;
-        mReactionParam._C = a2;
-        mReactionParam._4 = a3;
-        mReactionParam._8 = a1;
-    }
-
-    inline void setDefaultsParam() {
-        mParam._14 = "Wait";
-        mParam._18 = "Turn";
-        mParam._1C = "Talk";
-        mParam._20 = "TalkTurn";
-
-        mReactionParam._0 = "Spin";
-        mReactionParam._4 = "Trampled";
-        mReactionParam._8 = "Pointing";
-        mReactionParam._C = "Reaction";
-    }
-
-    inline void setDefaults2() {
-        mReactionParam._0 = "Spin";
-        mReactionParam._4 = "Trampled";
-        mReactionParam._8 = "Pointing";
-    }
 
     inline void setTalkAction(const char* pActionName) {
         _11C = pActionName;

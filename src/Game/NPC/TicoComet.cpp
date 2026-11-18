@@ -61,7 +61,7 @@ void TicoEat::init(const JMapInfoIter& rIter) {
     mParam.setMoveAction("Wait", "Wait");
     mParam.setTalkAction("Talk", "Talk");
     mParam._4 = 3000.0f;
-    setDefaults();
+    mReactionParam.setDefaultAction();
     _12C = 1000.0f;
 }
 

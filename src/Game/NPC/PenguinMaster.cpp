@@ -35,10 +35,10 @@ void PenguinMaster::init(const JMapInfoIter& rIter) {
     mParam._20 = nullptr;
     mParam._0 = false;
     mParam._1 = false;
-    _134 = "Trampled";
-    _13C = "Reaction";
-    _130 = "Reaction";
-    _138 = "Pointing";
+    mReactionParam.mTrampledActionName = "Trampled";
+    mReactionParam.mReactionActionName = "Reaction";
+    mReactionParam.mSpinAttackedActionName = "Reaction";
+    mReactionParam.mPointingActionName = "Pointing";
 
     if (mMsgCtrl != nullptr) {
         MR::setDistanceToTalk(mMsgCtrl, 350.0f);

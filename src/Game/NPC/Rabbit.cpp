@@ -59,9 +59,6 @@ namespace NrvRabbit {
 Rabbit::Rabbit(const char* pName) : NPCActor(pName) {
 }
 
-Rabbit::~Rabbit() {
-}
-
 void Rabbit::init(const JMapInfoIter& rIter) {
     const char* name;
     MR::getObjectName(&name, rIter);
@@ -159,18 +156,16 @@ void Rabbit::init(const JMapInfoIter& rIter) {
     }
 
     MR::setClippingFar100m(this);
-    const char* const turn = "TurnSmall";
-    const char* const wait = "Wait";
-    const char* const reaction = "Reaction";
-    const char* const pointing = "Pointing";
-    const char* const press = "Press";
-    const char* const spin = "Spin";
-    mParam._14 = wait;
-    mParam._18 = turn;
-    const char* talk = "Talk";
-    mParam._1C = talk;
-    mParam._20 = turn;
-    setDefaults(reaction, pointing, press, spin);
+
+    mParam.setMoveAction("Wait", "TurnSmall");
+    mParam.setTalkAction("Talk", "TurnSmall");
+
+    mReactionParam.setDefaultAction();
+    mReactionParam.mSpinAttackedActionName = "Spin";
+    mReactionParam.mTrampledActionName = "Press";
+    mReactionParam.mPointingActionName = "Pointing";
+    mReactionParam.mReactionActionName = "Reaction";
+
     _12C = 450.0f;
 
     if (mBehavior == Behavior_LongJump) {

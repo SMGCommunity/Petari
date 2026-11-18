@@ -48,14 +48,13 @@ void ButlerMap::init(const JMapInfoIter& rIter) {
     caps.mUseShadow = true;
     caps.mBinder = false;
     NPCActor::initialize(rIter, caps);
-    setDefaults2();
-    _13C = "Spin";
-    const char* wait = "Wait";
-    const char* talk = "Talk";
-    mParam._14 = wait;
-    mParam._18 = wait;
-    mParam._1C = talk;
-    mParam._20 = talk;
+
+    mReactionParam.setDefaultAction();
+    mReactionParam.mReactionActionName = "Spin";
+
+    mParam.setMoveAction("Wait", "Wait");
+    mParam.setTalkAction("Talk", "Talk");
+
     MR::createSceneObj(SceneObj_GalaxyMapController);
     MR::tryRegisterDemoCast(this, rIter);
     MR::tryRegisterDemoCast(this, "バトラー報告", rIter);

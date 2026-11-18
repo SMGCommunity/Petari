@@ -84,7 +84,10 @@ void Caretaker::init(const JMapInfoIter& rIter) {
     MR::startBtk(this, "Dirt");
     MR::setBtkFrameAndStop(this, 0.0f);
 
-    setDefaults3("BTalkHelp", "BSpinHit", "BSpinHit", "BTrampled");
+    mReactionParam.mTrampledActionName = "BTrampled";
+    mReactionParam.mSpinAttackedActionName = "BSpinHit";
+    mReactionParam.mReactionActionName = "BSpinHit";
+    mReactionParam.mPointingActionName = "BTalkHelp";
 
     mParam.setMoveAction("BWaitStand", "BWaitStand");
     setTalkAction("BWaitRun", "BRunTalk");
@@ -111,7 +114,11 @@ void Caretaker::init(const JMapInfoIter& rIter) {
     }
 
     if (mObjArg0 != -1 && mObjArg0 != 1) {
-        setDefaults4("TalkAngry", "SpinHit", "Trampled", "SpinHit");
+        mReactionParam.mSpinAttackedActionName = "SpinHit";
+        mReactionParam.mReactionActionName = "SpinHit";
+        mReactionParam.mTrampledActionName = "Trampled";
+        mReactionParam.mPointingActionName = "TalkAngry";
+
         mParam.setMoveAction("Wait", "Wait");
         mParam.setTalkAction("TalkNormal", "TalkNormal");
         setTalkAction("WaitRun");

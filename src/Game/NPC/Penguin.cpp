@@ -127,7 +127,7 @@ void Penguin::init(const JMapInfoIter& rIter) {
     MR::startBrk(this, "ColorChange");
     MR::setBrkFrameAndStop(this, color);
 
-    setDefaults();
+    mReactionParam.setDefaultAction();
     _128 = false;
     _12C = ::sDistanceCall;
 

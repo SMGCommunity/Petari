@@ -126,7 +126,7 @@ void Kinopio::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchWriteDead(this, rIter);
     MR::tryRegisterDemoCast(this, rIter);
     setNerve(GET_NERVE(Kinopio, KinopioNrvWait));
-    setDefaults();
+    mReactionParam.setDefaultAction();
     _12C = ::sDistancePlayerIsEvent;
     mParam.setDefaultAction();
     mParam.setTalkAction("Talk", "Talk");

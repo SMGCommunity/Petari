@@ -175,11 +175,7 @@ void NPCActorCaps::setIndirect() {
     mSceneConnectionType = 2;
 }
 
-NPCActor::NPCActor(const char* pName) : LiveActor(pName) {
-    mLodCtrl = nullptr;
-    mMsgCtrl = nullptr;
-    _94 = nullptr;
-    _98 = nullptr;
+NPCActor::NPCActor(const char* pName) : LiveActor(pName), mLodCtrl(), mMsgCtrl(), _94(), _98() {
     mLodCtrl = nullptr;
     mMsgCtrl = nullptr;
     _94 = nullptr;
@@ -219,10 +215,10 @@ NPCActor::NPCActor(const char* pName) : LiveActor(pName) {
     _124 = 0;
     _128 = 1;
     _12C = 0.0f;
-    _130 = 0;
-    _134 = 0;
-    _138 = 0;
-    _13C = 0;
+    mReactionParam.mSpinAttackedActionName = nullptr;
+    mReactionParam.mTrampledActionName = nullptr;
+    mReactionParam.mPointingActionName = nullptr;
+    mReactionParam.mReactionActionName = nullptr;
     mScaleController = nullptr;
     mDelegator = nullptr;
     mCurNerve = nullptr;
@@ -796,23 +792,23 @@ void NPCActor::updateReaction() {
 
 void NPCActor::updateScaleCtrl() {
     if (_128) {
-        if (_D9 && MR::isNullOrEmptyString(_130)) {
+        if (_D9 && MR::isNullOrEmptyString(mReactionParam.mSpinAttackedActionName)) {
             mScaleController->startHitReaction();
         }
 
-        if (_D8 && MR::isNullOrEmptyString(_134)) {
+        if (_D8 && MR::isNullOrEmptyString(mReactionParam.mTrampledActionName)) {
             mScaleController->startHitReaction();
         }
 
-        if (_DB && MR::isNullOrEmptyString(_13C)) {
+        if (_DB && MR::isNullOrEmptyString(mReactionParam.mReactionActionName)) {
             mScaleController->startHitReaction();
         }
 
         if (!_DF && _E4) {
-            if (MR::isNullOrEmptyString(_138)) {
+            if (MR::isNullOrEmptyString(mReactionParam.mPointingActionName)) {
                 mScaleController->startDpdHitVibration();
             }
-        } else if (_DF && !_E4 && MR::isNullOrEmptyString(_138)) {
+        } else if (_DF && !_E4 && MR::isNullOrEmptyString(mReactionParam.mPointingActionName)) {
             mScaleController->startAnim();
         }
     } else {

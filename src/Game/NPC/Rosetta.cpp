@@ -1,13 +1,13 @@
 #include "Game/NPC/Rosetta.hpp"
 #include "Game/Demo/AstroDemoFunction.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/NPC/RosettaDemoAstroDome.hpp"
 #include "Game/NPC/RosettaDemoEpilogue.hpp"
 #include "Game/NPC/RosettaDemoHeavensDoor.hpp"
 #include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/NPC/TurnJointCtrl.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util.hpp"
 
 namespace {
@@ -104,7 +104,7 @@ void Rosetta::init(const JMapInfoIter& rIter) {
 
     MR::useStageSwitchWriteB(this, rIter);
     mParam.setMoveTalkNoTurnAction("WaitA", "TalkA");
-    setDefaults();
+    mReactionParam.setDefaultAction();
     _12C = 1500.0f;
 }
 

@@ -57,7 +57,7 @@ void KoopaJr::init(const JMapInfoIter& rIter) {
     mParam.setSingleAction("Wait");
     mParam._0 = 0;
     mParam._1 = 0;
-    _13C = "Damage";
+    mReactionParam.mReactionActionName = "Damage";
     initialize(rIter, caps);
 
     MR::declareStarPiece(this, ::sStarPieceNum);
@@ -243,4 +243,3 @@ void KoopaJr::exeShipBattleDemoTalkWait() {
         MR::startBck(this, "TalkWait");
     }
 }
-

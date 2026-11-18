@@ -20,7 +20,7 @@ MiiFaceParts::~MiiFaceParts() {
 
 void MiiFaceParts::init(const JMapInfoIter& rIter) {
     _90 = new (32) u8[mRecipe->getModelBufferSize()];
-    mCharModel = new RFLCharModel;
+    mCharModel = new RFLCharModel();
     _D1 = true;
 }
 

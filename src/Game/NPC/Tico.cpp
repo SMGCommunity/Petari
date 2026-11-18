@@ -85,18 +85,14 @@ void Tico::initBase(const JMapInfoIter& rIter, s32 color) {
         caps.mObjectName = "TicoBaby";
     }
 
-    setDefaults2();
-    _13C = "Spin";
+    mReactionParam.setDefaultAction();
+    mReactionParam.mReactionActionName = "Spin";
     _12C = 1000.0f;
-    const char* wait = "Wait";
-    const char* talk = "Talk";
-    const char* fly = "Fly";
-    mParam._14 = wait;
-    mParam._18 = wait;
-    mParam._1C = talk;
-    mParam._20 = talk;
-    _11C = fly;
-    _120 = fly;
+
+    mParam.setMoveAction("Wait", "Wait");
+    mParam.setTalkAction("Talk", "Talk");
+    setTalkAction("Fly");
+
     _10C = 8.0f;
     _110 = 0.2f;
     mParam._C = 0.5f;
@@ -294,7 +290,7 @@ void Tico::exeReaction() {
 
     if (_DB) {
         MR::limitedStarPieceHitSound();
-        MR::startSound(this, "SE_BM_BUTLER_ABSORB");
+        MR::startSound(this, "SE_SM_BUTLER_ABSORB");
     }
 
     if (MR::tryStartReactionAndPopNerve(this)) {
@@ -304,7 +300,7 @@ void Tico::exeReaction() {
 
 void Tico::exeDelight() {
     if (MR::isFirstStep(this)) {
-        MR::startAction(this, _13C);
+        MR::startAction(this, mReactionParam.mReactionActionName);
         MR::resetAndForwardNode(_174, MR::getRandom(0l, 5l));
     }
 

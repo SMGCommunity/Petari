@@ -124,7 +124,7 @@ void PenguinRacer::initColor(const JMapInfoIter& rIter) {
 void PenguinRacer::initEtc(const JMapInfoIter& rIter) {
     mParam.setMoveAction("RacerWait", "Turn");
     mParam.setTalkAction("RacerTalk", "TalkTurn");
-    setDefaults();
+    mReactionParam.setDefaultAction();
     MR::getJMapInfoArg0NoInit(rIter, &mRaceDisabled);
 }
 
