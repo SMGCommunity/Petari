@@ -13,10 +13,25 @@ class NPCActorItem;
 class PartsModel;
 class TalkMessageCtrl;
 
-static const char* ReactionDefault = "Reaction";
-static const char* PointingDefault = "Pointing";
-static const char* TrampledDefault = "Trampled";
-static const char* SpinDefault = "Spin";
+// TODO should this be somewhere else?
+namespace MR {
+    class ActorReactionParam {
+    public:
+        ActorReactionParam(){};
+
+        inline void setDefaultAction() {
+            _0 = "Spin";
+            _4 = "Trampled";
+            _8 = "Pointing";
+            _C = "Reaction";
+        }
+
+        /* 0x0 */ const char* _0;
+        /* 0x4 */ const char* _4;
+        /* 0x8 */ const char* _8;
+        /* 0xC */ const char* _C;
+    };
+};  // namespace MR
 
 class NPCActorCaps {
 public:
@@ -25,14 +40,14 @@ public:
     void setDefault();
     void setIndirect();
 
-    const char* _0;
+    /* 0x00 */ const char* _0;
     /* 0x04 */ bool mModel;
     /* 0x08 */ const char* mObjectName;
     /* 0x0C */ bool mMakeActor;
     /* 0x0D */ bool mHostIO;
     /* 0x0E */ bool mMessage;
-    bool _F;
-    const char* _10;
+    /* 0x0F */ bool _F;
+    /* 0x10 */ const char* _10;
     /* 0x14 */ TVec3f mMessageOffset;
     /* 0x20 */ MtxPtr mTalkMtx;
     /* 0x24 */ const char* mTalkJointName;
@@ -55,16 +70,14 @@ public:
     /* 0x58 */ s32 mSensorMax;
     /* 0x5C */ bool mShadow;
     /* 0x5D */ bool mUseShadow;
-    u8 _5E;
-    u8 _5F;
-    f32 mShadowSize;
+    /* 0x60 */ f32 mShadowSize;
     /* 0x64 */ bool mRailRider;
     /* 0x65 */ bool mSwitchDead;
     /* 0x66 */ bool mSwitchAppear;
-    u8 _67;
+    /* 0x67 */ bool _67;
     /* 0x68 */ bool mPointer;
-    const char* _6C;
-    const char* _70;
+    /* 0x6C */ const char* _6C;
+    /* 0x70 */ const char* _70;
     /* 0x74 */ TVec3f mStarPointerOffs;
     /* 0x80 */ f32 mPointerSize;
     /* 0x84 */ s32 mSceneConnectionType;
@@ -141,39 +154,32 @@ public:
     void setBaseMtx(const TPos3f&);
     void setBaseMtx(MtxPtr);
 
-    inline void setDefaults() {
-        _130 = "Spin";
-        _134 = "Trampled";
-        _138 = "Pointing";
-        _13C = "Reaction";
-    }
-
     inline void setDefaults(const char* pReaction, const char* pPointing, const char* pTrampled, const char* pSpin) {
-        _130 = pSpin;
-        _134 = pTrampled;
-        _138 = pPointing;
-        _13C = pReaction;
+        mReactionParam._0 = pSpin;
+        mReactionParam._4 = pTrampled;
+        mReactionParam._8 = pPointing;
+        mReactionParam._C = pReaction;
     }
 
     inline void setDefaults2(const char* pReaction, const char* pPointing, const char* pSpin, const char* pTrampled) {
-        _134 = pTrampled;
-        _130 = pSpin;
-        _138 = pPointing;
-        _13C = pReaction;
+        mReactionParam._4 = pTrampled;
+        mReactionParam._0 = pSpin;
+        mReactionParam._8 = pPointing;
+        mReactionParam._C = pReaction;
     }
 
-    inline void setDefaults3(const char* pReaction, const char* pPointing, const char* pSpin, const char* pTrampled) {
-        _134 = pTrampled;
-        _130 = pSpin;
-        _13C = pPointing;
-        _138 = pReaction;
+    inline void setDefaults3(const char* pPointing, const char* pReaction, const char* pSpin, const char* pTrampled) {
+        mReactionParam._4 = pTrampled;
+        mReactionParam._0 = pSpin;
+        mReactionParam._C = pReaction;
+        mReactionParam._8 = pPointing;
     }
 
     inline void setDefaults4(const char* a1, const char* a2, const char* a3, const char* a4) {
-        _130 = a4;
-        _13C = a2;
-        _134 = a3;
-        _138 = a1;
+        mReactionParam._0 = a4;
+        mReactionParam._C = a2;
+        mReactionParam._4 = a3;
+        mReactionParam._8 = a1;
     }
 
     inline void setDefaultsParam() {
@@ -181,16 +187,17 @@ public:
         mParam._18 = "Turn";
         mParam._1C = "Talk";
         mParam._20 = "TalkTurn";
-        _130 = "Spin";
-        _134 = "Trampled";
-        _138 = "Pointing";
-        _13C = "Reaction";
+
+        mReactionParam._0 = "Spin";
+        mReactionParam._4 = "Trampled";
+        mReactionParam._8 = "Pointing";
+        mReactionParam._C = "Reaction";
     }
 
     inline void setDefaults2() {
-        _130 = "Spin";
-        _134 = "Trampled";
-        _138 = "Pointing";
+        mReactionParam._0 = "Spin";
+        mReactionParam._4 = "Trampled";
+        mReactionParam._8 = "Pointing";
     }
 
     inline void setTalkAction(const char* pActionName) {
@@ -207,53 +214,50 @@ public:
         return mMsgCtrl;
     }
 
-    /* 0x8C */ LodCtrl* mLodCtrl;
-    /* 0x90 */ TalkMessageCtrl* mMsgCtrl;
-    PartsModel* _94;
-    PartsModel* _98;
-    s32 _9C;
-    TQuat4f _A0;
-    TQuat4f _B0;
-    TVec3f _C0;
-    TVec3f _CC;
-    u8 _D8;
-    u8 _D9;
-    u8 _DA;
-    u8 _DB;
-    u8 _DC;
-    u8 _DD;
-    u8 _DE;
-    u8 _DF;
-    u8 _E0;
-    u8 _E1;
-    u8 _E2;
-    u8 _E3;
-    u8 _E4;
-    u8 _E5;
-    u8 _E6;
-    u8 _E7;
-    /* 0xE8 */ MR::ActorTalkParam mParam;
-    f32 _10C;
-    f32 _110;
-    f32 _114;
-    f32 _118;
-    const char* _11C;
-    const char* _120;
-    u8 _124;  // follow rail on ground
-    u8 _125;
-    u8 _126;
-    u8 _127;
-    u8 _128;
-    f32 _12C;
-    const char* _130;
-    const char* _134;
-    const char* _138;
-    const char* _13C;
+    /* 0x08C */ LodCtrl* mLodCtrl;
+    /* 0x090 */ TalkMessageCtrl* mMsgCtrl;
+    /* 0x094 */ PartsModel* _94;
+    /* 0x098 */ PartsModel* _98;
+    /* 0x09C */ s32 _9C;
+    /* 0x0A0 */ TQuat4f _A0;
+    /* 0x0B0 */ TQuat4f _B0;
+    /* 0x0C0 */ TVec3f _C0;
+    /* 0x0CC */ TVec3f _CC;
+    /* 0x0D8 */ bool _D8;
+    /* 0x0D9 */ bool _D9;
+    /* 0x0DA */ bool _DA;
+    /* 0x0DB */ bool _DB;
+    /* 0x0DC */ bool _DC;
+    /* 0x0DD */ bool _DD;
+    /* 0x0DE */ bool _DE;
+    /* 0x0DF */ bool _DF;
+    /* 0x0E0 */ bool _E0;
+    /* 0x0E1 */ bool _E1;
+    /* 0x0E2 */ bool _E2;
+    /* 0x0E3 */ bool _E3;
+    /* 0x0E4 */ bool _E4;
+    /* 0x0E5 */ bool _E5;
+    /* 0x0E6 */ bool _E6;
+    /* 0x0E7 */ bool _E7;
+    /* 0x0E8 */ MR::ActorTalkParam mParam;
+    /* 0x10C */ f32 _10C;
+    /* 0x110 */ f32 _110;
+    /* 0x114 */ f32 _114;
+    /* 0x118 */ f32 _118;
+    /* 0x11C */ const char* _11C;
+    /* 0x120 */ const char* _120;
+    /* 0x124 */ bool _124;  // follow rail on ground
+    /* 0x125 */ bool _125;
+    /* 0x126 */ bool _126;
+    /* 0x127 */ bool _127;
+    /* 0x128 */ bool _128;
+    /* 0x12C */ f32 _12C;
+    /* 0x130 */ MR::ActorReactionParam mReactionParam;
     /* 0x140 */ AnimScaleController* mScaleController;
     /* 0x144 */ JointController* mDelegator;
     /* 0x148 */ const Nerve* mCurNerve;
     /* 0x14C */ Nerve* mWaitNerve;
     /* 0x150 */ Nerve* mTalkNerve;
     /* 0x154 */ Nerve* mReactionNerve;
-    s32 _158;
+    /* 0x158 */ s32 _158;
 };
