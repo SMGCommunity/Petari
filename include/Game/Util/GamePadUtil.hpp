@@ -46,6 +46,16 @@ namespace MR {
     /// @return `true` if the B Button is pressed, `false` otherwise.
     bool testCorePadButtonB(s32 channel);
 
+    /// @brief Determines if the 1 Button on the given Wii Remote is pressed.
+    /// @param channel The handle to the Wii Remote.
+    /// @return `true` if the 1 Button is pressed, `false` otherwise.
+    bool testCorePadButton1(s32 channel);
+
+    /// @brief Determines if the 2 Button on the given Wii Remote is pressed.
+    /// @param channel The handle to the Wii Remote.
+    /// @return `true` if the 2 Button is pressed, `false` otherwise.
+    bool testCorePadButton2(s32 channel);
+
     /// @brief Determines if the Plus (+) Button on the given Wii Remote is pressed.
     /// @param channel The handle to the Wii Remote.
     /// @return `true` if the Plus (+) Button is pressed, `false` otherwise.
@@ -100,6 +110,16 @@ namespace MR {
     /// @param channel The handle to the Wii Remote.
     /// @return `true` if the B Button was just pressed, `false` otherwise.
     bool testCorePadTriggerB(s32 channel);
+
+    /// @brief Determines if the 1 Button on the given Wii Remote was just pressed.
+    /// @param channel The handle to the Wii Remote.
+    /// @return `true` if the 1 Button was just pressed, `false` otherwise.
+    bool testCorePadTrigger1(s32 channel);
+
+    /// @brief Determines if the 2 Button on the given Wii Remote was just pressed.
+    /// @param channel The handle to the Wii Remote.
+    /// @return `true` if the 2 Button was just pressed, `false` otherwise.
+    bool testCorePadTrigger2(s32 channel);
 
     /// @brief Determines if the Plus (+) Button on the given Wii Remote was just pressed.
     /// @param channel The handle to the Wii Remote.

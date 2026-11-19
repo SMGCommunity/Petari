@@ -17,6 +17,16 @@ bool ScenarioProgressTestRun::tryTakeNextPowerStar(GalaxyScenarioInfo* pInfo, u3
     }
 }
 
+bool ScenarioProgressTestRun::tryOnGameEventFlagsDependedAnother(const GalaxyScenarioInfo* pInfo) {
+    const char* flagName = GameEventFlagTable::getEventFlagNameSpecialPowerStar(pInfo->mStageName, pInfo->mScenarioNo);
+
+    if (flagName == nullptr) {
+        return false;
+    }
+
+    return mGameDataHolder->tryOnGameEventFlagsDependedAnother(flagName);
+}
+
 bool ScenarioProgressTestRun::tryTakePowerStarsToPlayGalaxyScenario(const GalaxyScenarioInfo* pInfo, bool a2) {
     GalaxyScenarioInfo info;
 
@@ -88,16 +98,6 @@ bool ScenarioProgressTestRun::tryTakePowerStarsToPlayGalaxyScenario(const Galaxy
     }
 
     return true;
-}
-
-bool ScenarioProgressTestRun::tryOnGameEventFlagsDependedAnother(const GalaxyScenarioInfo* pInfo) {
-    const char* flagName = GameEventFlagTable::getEventFlagNameSpecialPowerStar(pInfo->mStageName, pInfo->mScenarioNo);
-
-    if (flagName == nullptr) {
-        return false;
-    }
-
-    return mGameDataHolder->tryOnGameEventFlagsDependedAnother(flagName);
 }
 
 bool ScenarioProgressTestRun::canTakePowerStar(const GalaxyScenarioInfo* pInfo) const {

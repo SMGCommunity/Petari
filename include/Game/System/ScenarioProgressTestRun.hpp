@@ -14,8 +14,8 @@ public:
     ScenarioProgressTestRun(GameDataHolder* pGameDataHolder);
 
     bool tryTakeNextPowerStar(GalaxyScenarioInfo* pInfo, u32 preference);
-    bool tryTakePowerStarsToPlayGalaxyScenario(const GalaxyScenarioInfo* pInfo, bool);
     bool tryOnGameEventFlagsDependedAnother(const GalaxyScenarioInfo* pInfo);
+    bool tryTakePowerStarsToPlayGalaxyScenario(const GalaxyScenarioInfo* pInfo, bool);
     bool canTakePowerStar(const GalaxyScenarioInfo* pInfo) const;
     bool tryTakeNextPowerStarAndOnEventFlag(u32 preference);
     bool tryTakePowerStarsToOpenGalaxy(u32 preference, const char* pStageName, bool ignoreTargetGalaxyFlag);
