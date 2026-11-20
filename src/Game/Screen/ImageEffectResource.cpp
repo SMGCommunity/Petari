@@ -4,8 +4,7 @@
 #include <JSystem/JUtility/JUTTexture.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
 
-ImageEffectResource::ImageEffectResource()
-    : _0(nullptr), _4(nullptr), _8(nullptr), _C(nullptr), _10(nullptr), _14(nullptr), _18(nullptr), _1C(nullptr), _20(nullptr) {
+ImageEffectResource::ImageEffectResource() : _0(), _4(), _8(), _C(), _10(), _14(), _18(), _1C(), _20() {
 }
 
 void ImageEffectResource::createBloomTexture() {

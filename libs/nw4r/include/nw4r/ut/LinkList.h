@@ -337,7 +337,7 @@ namespace nw4r {
 
                 TItC_base_ it_;
 
-                friend class Self;
+                friend class LinkList;
             };
             explicit LinkList() {
             }

@@ -69,7 +69,7 @@ BloomEffect::BloomEffect(const char* pName) : ImageEffectBase(pName), _14(255), 
 }
 
 void BloomEffect::preDraw() const {
-    if (!isSomething()) {
+    if (!isVisible()) {
         return;
     }
 
@@ -85,7 +85,7 @@ void BloomEffect::preDraw() const {
 }
 
 void BloomEffect::postDraw() const {
-    if (!isSomething()) {
+    if (!isVisible()) {
         return;
     }
 
@@ -119,7 +119,7 @@ void BloomEffect::postDraw() const {
     blurTexture(_34, _4C, 8, 20, 12, _1C, 3, &::sL2RadAndOfs[0]._0);
 
     ImageEffectLocalUtil::capture(_38, 8, 20, GX_TF_RGB565, false, 0);
-    const u8 intensity = _14 * get_10();
+    const u8 intensity = _14 * getFadeIntensity();
     drawTexture(_30, 4, 7, intensity, DrawType_0);
     drawTexture(_38, 4, 7, intensity, DrawType_1);
 

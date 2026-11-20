@@ -41,7 +41,7 @@ BloomEffectSimple::BloomEffectSimple()
 }
 
 void BloomEffectSimple::draw() const {
-    if (!isSomething()) {
+    if (!isVisible()) {
         return;
     }
 
@@ -87,7 +87,7 @@ void BloomEffectSimple::draw() const {
     ImageEffectLocalUtil::blurTexture(texSpec._0, texSpec._4, texSpec._8, 8, 0.009f, 1.0f);
     ImageEffectLocalUtil::capture(_28, texSpec._4, texSpec._8, texSpec._C, false, 0);
     ImageEffectLocalUtil::drawTexture(_20, 4, 0, 255, ImageEffectLocalUtil::TexDrawType_0);
-    const u8 alpha = 255.0f * mIntensity * get_10();
+    const u8 alpha = 255.0f * mIntensity * getFadeIntensity();
     ImageEffectLocalUtil::drawTexture(_28, 1, 0, alpha, ImageEffectLocalUtil::TexDrawType_1);
 }
 

@@ -11,7 +11,7 @@ GameDataTemporaryInGalaxy::GameDataTemporaryInGalaxy() : mPlayerRestartIdInfo(nu
 
     resetStageResultParam();
 
-    _4 = false;
+    mHasRetryGalaxySequence = false;
 }
 
 void GameDataTemporaryInGalaxy::resetPlayerRestartIdInfo() {
@@ -28,11 +28,11 @@ void GameDataTemporaryInGalaxy::resetRaceBestTime() {
 }
 
 bool GameDataTemporaryInGalaxy::isStageCleared() const {
-    return _8 == 1;
+    return mStageClearStatus == 1;
 }
 
 void GameDataTemporaryInGalaxy::resetStageResultPowerStarParam() {
-    _8 = 0;
+    mStageClearStatus = 0;
     mPowerStarId = 1;
     mStageName[0] = '\0';
 }
@@ -82,7 +82,7 @@ void GameDataTemporaryInGalaxy::receiveStageResultParam(const char* pStageName, 
     resetStageResultParam();
 
     mPowerStarId = powerStarId;
-    _8 = 1;
+    mStageClearStatus = 1;
     mStarPieceNum = starPieceNum;
     mCoinNum = coinNum;
 

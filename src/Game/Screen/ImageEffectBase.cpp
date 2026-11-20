@@ -1,22 +1,26 @@
 #include "Game/Screen/ImageEffectBase.hpp"
 
-ImageEffectBase::ImageEffectBase(const char* pName) : NameObj(pName), _C(), _D(), _10() {
+namespace {
+    const f32 sFadeCounterMax = 15.0f;
+};
+
+ImageEffectBase::ImageEffectBase(const char* pName) : NameObj(pName), mIsActive(), mIsFade(), mFadeIntensity() {
 }
 
 void ImageEffectBase::calcAnim() {
-    if (_C) {
-        _D = true;
-        _10 += 1.0f / 15.0f;
+    if (mIsActive) {
+        mIsFade = true;
+        mFadeIntensity += 1.0f / sFadeCounterMax;
 
-        if (_10 > 1.0f) {
-            _10 = 1.0f;
+        if (mFadeIntensity > 1.0f) {
+            mFadeIntensity = 1.0f;
         }
-    } else if (isSomething()) {
-        _10 -= 1.0f / 15.0f;
+    } else if (isVisible()) {
+        mFadeIntensity -= 1.0f / sFadeCounterMax;
 
-        if (_10 < 0.0f) {
-            _D = false;
-            _10 = 0.0f;
+        if (mFadeIntensity < 0.0f) {
+            mIsFade = false;
+            mFadeIntensity = 0.0f;
         }
     }
 

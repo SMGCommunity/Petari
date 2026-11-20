@@ -14,7 +14,7 @@ namespace {
 };  // namespace
 
 NameObjExecuteInfo::NameObjExecuteInfo()
-    : mExecutedObj(), _4(), _5(), mMovementType(-1), mCalcAnimType(-1), mDrawType(-1), mDrawBufferType(-1), _A(-1) {
+    : mExecutedObj(), _4(), _5(), mMovementType(-1), mCalcAnimType(-1), mDrawType(-1), mDrawBufferType(-1), mDrawBufferIdx(-1) {
 }
 
 void NameObjExecuteInfo::setConnectInfo(NameObj* pObj, int movementType, int calcAnimType, int drawBufferType, int drawType) {
@@ -28,7 +28,7 @@ void NameObjExecuteInfo::setConnectInfo(NameObj* pObj, int movementType, int cal
     NameObjListExecutor* pListExecutor = SingletonHolder< GameSystem >::get()->mSceneController->getNameObjListExecutor();
 
     if (drawBufferType != -1) {
-        _A = pListExecutor->registerDrawBuffer(static_cast< LiveActor* >(pObj), drawBufferType);
+        mDrawBufferIdx = pListExecutor->registerDrawBuffer(static_cast< LiveActor* >(pObj), drawBufferType);
     }
 
     if (movementType != -1) {
@@ -152,7 +152,7 @@ void NameObjExecuteInfo::requestMovementOff(int a1) {
 
 void NameObjExecuteInfo::findLightInfo() const {
     SingletonHolder< GameSystem >::get()->mSceneController->getNameObjListExecutor()->findLightInfo(static_cast< LiveActor* >(mExecutedObj),
-                                                                                                    mDrawBufferType, _A);
+                                                                                                    mDrawBufferType, mDrawBufferIdx);
 }
 
 void NameObjExecuteInfo::connectToScene() {
@@ -190,7 +190,7 @@ void NameObjExecuteInfo::connectToDraw() {
     }
 
     if (mDrawBufferType != -1) {
-        pListExecutor->addToDrawBuffer(static_cast< LiveActor* >(mExecutedObj), mDrawBufferType, _A);
+        pListExecutor->addToDrawBuffer(static_cast< LiveActor* >(mExecutedObj), mDrawBufferType, mDrawBufferIdx);
     }
 }
 
@@ -203,7 +203,7 @@ void NameObjExecuteInfo::disconnectToDraw() {
     }
 
     if (mDrawBufferType != -1) {
-        pListExecutor->removeToDrawBuffer(static_cast< LiveActor* >(mExecutedObj), mDrawBufferType, _A);
+        pListExecutor->removeToDrawBuffer(static_cast< LiveActor* >(mExecutedObj), mDrawBufferType, mDrawBufferIdx);
     }
 }
 

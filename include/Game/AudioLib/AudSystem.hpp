@@ -28,13 +28,13 @@ class JKRArchive;
 class JKRSolidHeap;
 class SpkSystem;
 
-extern const char sAudioResFile[];
-extern const char sJaiSeqArc[];
-extern const char sJaiChordArc[];
-extern const char sJaiMeArc[];
-extern const char sJaiRemixArc[];
-extern const char sJaiAudioArc[];
-extern const char sJaiSeqResArc[];
+extern char sAudioResFile[];
+extern char sJaiSeqArc[];
+extern char sJaiChordArc[];
+extern char sJaiMeArc[];
+extern char sJaiRemixArc[];
+extern char sJaiAudioArc[];
+extern char sJaiSeqResArc[];
 
 class AudSystem : public JAUSoundMgr {
 public:

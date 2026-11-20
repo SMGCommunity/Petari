@@ -179,7 +179,7 @@ namespace GameSequenceFunction {
     }
 
     bool hasRetryGalaxySequence() {
-        return ::getGameDataTemporaryInGalaxy()->_4;
+        return ::getGameDataTemporaryInGalaxy()->mHasRetryGalaxySequence;
     }
 
     bool isNeedToReflectStageResultSequenceStarPiece() {

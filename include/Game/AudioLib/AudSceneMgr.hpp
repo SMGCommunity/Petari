@@ -49,12 +49,12 @@ public:
     }
 
     /* 0x00 */ JAUSectionHeap* mSectionHeap;
-    /* 0x04 */ u32 _4;
+    /* 0x04 */ s32 mStageBgmMode;
     /* 0x08 */ s32 mSeWaveSetId;
     /* 0x0C */ s32 mSeScenarioWaveSetId;
     /* 0x10 */ s32 mBgmWaveSetId;
     /* 0x14 */ s32 mPlayerMode;
     /* 0x18 */ s32 mPrevPlayerMode;
     /* 0x1C */ bool mIsNewPlayerMode;
-    /* 0x1D */ bool _1D;
+    /* 0x1D */ bool mIsCubeBgmChangeInvalid;
 };

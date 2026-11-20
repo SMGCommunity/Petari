@@ -35,7 +35,7 @@ DepthOfFieldBlur::DepthOfFieldBlur(const char* pName)
 }
 
 void DepthOfFieldBlur::draw() const {
-    if (!isSomething()) {
+    if (!isVisible()) {
         return;
     }
 
@@ -132,7 +132,7 @@ void DepthOfFieldBlur::drawZAlphaTex() const {
 void DepthOfFieldBlur::createBlurTexture() const {
     ImageEffectLocalUtil::drawTexture(_1C, 4, 0, 255, ImageEffectLocalUtil::TexDrawType_0);
     ImageEffectLocalUtil::capture(_24, 4, 0, GX_TF_RGB565, false, 0);
-    ImageEffectLocalUtil::blurTexture(_24, 4, 0, 4, mIntensity * get_10() * 0.005f, 1.0f);
+    ImageEffectLocalUtil::blurTexture(_24, 4, 0, 4, mIntensity * getFadeIntensity() * 0.005f, 1.0f);
     ImageEffectLocalUtil::capture(_24, 4, 0, GX_TF_RGB565, false, 0);
 }
 
@@ -161,7 +161,7 @@ void DepthOfFieldBlur::drawFinal() const {
     GXSetIndTexCoordScale(GX_INDTEXSTAGE0, GX_ITS_1, GX_ITS_1);
     _28->load(GX_TEXMAP1);
     _20->load(GX_TEXMAP2);
-    ImageEffectLocalUtil::drawTexture(_24, 1, 0, mIntensity * get_10() * 255.0f, ImageEffectLocalUtil::TexDrawType_2);
+    ImageEffectLocalUtil::drawTexture(_24, 1, 0, mIntensity * getFadeIntensity() * 255.0f, ImageEffectLocalUtil::TexDrawType_2);
     GXSetNumTevStages(1);
     GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
     GXSetNumIndStages(0);

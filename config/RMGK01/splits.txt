@@ -3950,7 +3950,7 @@ Game/Map/LightDirector.cpp:
 
 Game/Map/LightFunction.cpp:
 	.text       start:0x80188398 end:0x80189120
-	.rodata     start:0x80532BE0 end:0x80532C70
+	.rodata     start:0x80532BE0 end:0x80532C30
 	.data       start:0x8058AB70 end:0x8058AC08
 	.sdata2     start:0x806BC100 end:0x806BC118
 
@@ -3968,6 +3968,7 @@ Game/Map/NamePosHolder.cpp:
 
 Game/Map/OceanBowl.cpp:
 	.text       start:0x80189BF4 end:0x8018B780
+	.rodata     start:0x80532C30 end:0x80532C40
 	.data       start:0x8058AC58 end:0x8058AD08
 	.sdata      start:0x806B1BF0 end:0x806B1C00
 	.sdata2     start:0x806BC130 end:0x806BC18C

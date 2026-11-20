@@ -40,13 +40,13 @@
 #include <revolution/sc.h>
 #include <revolution/vi/vifuncs.h>
 
-const char sAudioResFile[] = "/AudioRes/SMR.szs";
-const char sJaiSeqArc[] = "/AudioRes/Seqs/JaiSeq.arc";
-const char sJaiChordArc[] = "/AudioRes/Info/JaiChord.arc";
-const char sJaiMeArc[] = "/AudioRes/Info/JaiMe.arc";
-const char sJaiRemixArc[] = "/AudioRes/Info/JaiRemixSeq.arc";
-const char sJaiAudioArc[] = "AudioRes/SMR.baa";
-const char sJaiSeqResArc[] = "/AudioRes/JaiSeq.arc";
+char sAudioResFile[] = "/AudioRes/SMR.szs";
+char sJaiSeqArc[] = "/AudioRes/Seqs/JaiSeq.arc";
+char sJaiChordArc[] = "/AudioRes/Info/JaiChord.arc";
+char sJaiMeArc[] = "/AudioRes/Info/JaiMe.arc";
+char sJaiRemixArc[] = "/AudioRes/Info/JaiRemixSeq.arc";
+char sJaiAudioArc[] = "AudioRes/SMR.baa";
+char sJaiSeqResArc[] = "/AudioRes/JaiSeq.arc";
 
 AudSystem* AudSystem::msBasic;
 

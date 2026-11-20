@@ -19,7 +19,7 @@ public:
     void initSync();
 
 private:
-    /* 0x0C */ MR::Vector< MR::FixedArray< SleepController*, 1024 > > mSleepControl;
+    /* 0xC */ MR::Vector< MR::FixedArray< SleepController*, 1024 > > mSleepControl;
 };
 
 namespace SleepControlFunc {

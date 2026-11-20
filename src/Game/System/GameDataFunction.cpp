@@ -348,7 +348,7 @@ namespace GameDataFunction {
     void resetGameDataGoToGalaxyFirst() {
         ::getGameDataTemporaryInGalaxy()->resetRaceBestTime();
         ::getGameDataTemporaryInGalaxy()->resetPlayerRestartIdInfo();
-        ::getGameDataTemporaryInGalaxy()->_4 = false;
+        ::getGameDataTemporaryInGalaxy()->mHasRetryGalaxySequence = false;
         ::getGameDataTemporaryInGalaxy()->clearAlreadyDoneFlag();
         ::getGameDataTemporaryInGalaxy()->resetStageResultStarPieceParam();
         ::getGameDataTemporaryInGalaxy()->resetStageResultCoinParam();
@@ -356,7 +356,7 @@ namespace GameDataFunction {
 
     void resetGameDataGoToGalaxyRetry() {
         ::getGameDataTemporaryInGalaxy()->resetRaceBestTime();
-        ::getGameDataTemporaryInGalaxy()->_4 = true;
+        ::getGameDataTemporaryInGalaxy()->mHasRetryGalaxySequence = true;
     }
 
     void onCompleteEndingCurrentPlayer() {

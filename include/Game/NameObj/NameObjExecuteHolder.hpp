@@ -35,7 +35,7 @@ private:
     /* 0x7 */ s8 mCalcAnimType;
     /* 0x8 */ s8 mDrawType;
     /* 0x9 */ s8 mDrawBufferType;
-    /* 0xA */ s16 _A;
+    /* 0xA */ s16 mDrawBufferIdx;
 };
 
 class NameObjExecuteHolder : public NameObj {

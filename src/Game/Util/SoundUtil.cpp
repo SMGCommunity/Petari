@@ -359,8 +359,7 @@ namespace MR {
 
         if (pSoundHandle != nullptr) {
             AudSceneMgr* pSceneMgr = AudWrap::getSceneMgr();
-
-            pSceneMgr->_4 = 1;
+            pSceneMgr->mStageBgmMode = 1;
         }
 
         return pSoundHandle;
@@ -584,12 +583,11 @@ namespace MR {
 
     void setCubeBgmChangeInvalid() {
         AudSceneMgr* pSceneMgr = AudWrap::getSceneMgr();
-
-        pSceneMgr->_1D = 1;
+        pSceneMgr->mIsCubeBgmChangeInvalid = true;
     }
 
     bool isCubeBgmChangeInvalid() {
-        return AudWrap::getSceneMgr()->_1D;
+        return AudWrap::getSceneMgr()->mIsCubeBgmChangeInvalid;
     }
 
     void clearBgmQueue() {

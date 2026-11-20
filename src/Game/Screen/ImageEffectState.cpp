@@ -21,12 +21,12 @@ void ImageEffectState::update() {
             return;
         }
 
-        if (getEffect()->_C) {
+        if (getEffect()->mIsActive) {
             return;
         }
 
         ImageEffectBase* pBase = getEffect();
-        pBase->_C = true;
+        pBase->mIsActive = true;
         pBase->notifyTurnOn();
         return;
     }
@@ -34,20 +34,20 @@ void ImageEffectState::update() {
     ImageEffectBase* pBase = mHost->mCurrentEffect;
 
     if (pBase != nullptr) {
-        if (pBase->_C) {
-            pBase->_C = false;
+        if (pBase->mIsActive) {
+            pBase->mIsActive = false;
             pBase->notifyTurnOff();
             return;
         }
 
-        if (pBase->isSomething()) {
+        if (pBase->isVisible()) {
             return;
         }
     }
 
     if (getEffect() != nullptr) {
         ImageEffectBase* pBase = getEffect();
-        pBase->_C = true;
+        pBase->mIsActive = true;
         pBase->notifyTurnOn();
     }
 
@@ -63,9 +63,9 @@ void ImageEffectState::forceOff() {
     }
 
     pBase = getEffect();
-    pBase->_D = false;
-    pBase->_C = false;
-    pBase->_10 = 0.0f;
+    pBase->mIsFade = false;
+    pBase->mIsActive = false;
+    pBase->mFadeIntensity = 0.0f;
     pBase->notifyForceOff();
 }
 

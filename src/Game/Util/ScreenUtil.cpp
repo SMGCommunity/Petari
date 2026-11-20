@@ -317,7 +317,7 @@ namespace MR {
     }
 
     bool isNormalBloomOn() {
-        return isExistSceneObj(SceneObj_BloomEffect) && ::getNormalBloom()->isSomething();
+        return isExistSceneObj(SceneObj_BloomEffect) && ::getNormalBloom()->isVisible();
     }
 
     bool isNormalBloomForEachModel() {

@@ -17,5 +17,5 @@ public:
     NameObjGroup* findGroupFromName(const char*) const;
 
 private:
-    /* 0x0C */ MR::Vector< MR::FixedArray< NameObjGroup*, 32 > > mGroups;
+    /* 0xC */ MR::Vector< MR::FixedArray< NameObjGroup*, 32 > > mGroups;
 };

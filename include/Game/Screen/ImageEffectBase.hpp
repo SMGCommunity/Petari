@@ -25,15 +25,15 @@ public:
     virtual void notifyForceOff() {
     }
 
-    bool isSomething() const {
-        return _C || _D;
+    bool isVisible() const {
+        return mIsActive || mIsFade;
     }
 
-    f32 get_10() const {
-        return _10;
+    f32 getFadeIntensity() const {
+        return mFadeIntensity;
     }
 
-    /* 0x0C */ bool _C;
-    /* 0x0D */ bool _D;
-    /* 0x10 */ f32 _10;
+    /* 0x0C */ bool mIsActive;
+    /* 0x0D */ bool mIsFade;
+    /* 0x10 */ f32 mFadeIntensity;
 };
