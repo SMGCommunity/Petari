@@ -86,6 +86,7 @@ namespace GameDataFunction {
     void updateGalaxyCometStatus(int, u16, u16);
     void addStockedStarPiece(int);
     bool tryGetPowerStarToGetGrandStar(int);
+    void makeGameDataComplete();
     bool isPowerStarLeftInCometOnly();
     s32 calcGreenStarNum(const GameDataHolder*);
 };  // namespace GameDataFunction

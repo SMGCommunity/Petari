@@ -1,4 +1,5 @@
 #include "Game/System/GameDataFunction.hpp"
+#include "Game/System/FindingLuigiEventScheduler.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
 #include "Game/System/GameDataGalaxyStorage.hpp"
 #include "Game/System/GameDataHolder.hpp"
@@ -12,6 +13,7 @@
 #include "Game/System/ScenarioProgressTestRun.hpp"
 #include "Game/System/SysConfigFile.hpp"
 #include "Game/System/UserFile.hpp"
+#include "Game/Util/EventUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 #include <cstdio>
 
@@ -444,21 +446,59 @@ namespace GameDataFunction {
         char eventName[0x20];
         snprintf(eventName, sizeof(eventName), "SpecialStarGrand%1d", grandStarNo);
 
+        const char* galaxyName;
+        s32 starId;
+
         GameEventFlagAccessor accessor = GameEventFlagTable::makeAccessor(eventName);
-        s32 starId = accessor.getStarId();
-        const char* galaxyName = accessor.getGalaxyName();
+        starId = accessor.getStarId();
+        galaxyName = accessor.getGalaxyName();
 
         bool isTakePowerStars = tryGetPowerStarToOpenGalaxyAndScenario(galaxyName, starId);
         if (isTakePowerStars) {
-            getCurrentGameDataHolder()->setPowerStar(galaxyName, starId, true);
+            setGameFlagPowerStarSuccess(galaxyName, starId, true);
             followGameEventFlagGalaxyOpenAndStoryProgress(galaxyName, starId);
         }
 
         return isTakePowerStars;
     }
 
+    void makeGameDataComplete() {
+        getSaveDataHandleSequence()->getCurrentUserFile()->mGameDataHolder->resetAllData();
+        s32 exclamationGalaxyNum = GameEventFlagTable::calcExclamationGalaxyNum();
+
+        for (s32 i = 0; i < exclamationGalaxyNum; i++) {
+            const char* galaxyName = GameEventFlagTable::getExclamationGalaxyNameFromIndex(i);
+            s32 starPieceNum = GameEventFlagTable::getStarPieceNumToOpenExclamationGalaxy(galaxyName);
+            MR::addStarPieceGivingToTicoGalaxy(i, starPieceNum);
+        }
+
+        tryGetPowerStarToNum(120);
+        setGameEventValue("LibraryOpenNewStarCount", 0);
+        setGameEventValue("LuigiEventState", FindingLuigiEventScheduler::STATE_END);
+        onGameEventFlag("RosettaTalkAboutTico");
+        onGameEventFlag("ViewCompleteEnding");
+        onGameEventFlag("RosettaTalkAfterNormalEnding");
+        getSaveDataHandleSequence()->getCurrentUserFile()->onCompleteEndingCurrentPlayer();
+
+        for (ScenarioDataIter iter = MR::makeBeginScenarioDataIter(); !iter.isEnd(); iter.goNext()) {
+            GalaxyStatusAccessor accessor = iter.makeAccessor();
+
+            if (accessor.getPowerStarNum() == 0) {
+                continue;
+            }
+
+            for (int i = 1; i < accessor.getPowerStarNum(); i++) {
+                onGalaxyScenarioFlagAlreadyVisited(accessor.getName(), i);
+            }
+        }
+
+        for (s32 i = 0; i < 9998; i++) {
+            incPlayerMissNum();
+        }
+    }
+
     bool isPowerStarLeftInCometOnly() {
-        const char* pGalaxyName;
+        const char* galaxyName;
 
         for (ScenarioDataIter iter = MR::makeBeginScenarioDataIter(); !iter.isEnd(); iter.goNext()) {
             GalaxyStatusAccessor accessor = iter.makeAccessor();
@@ -472,9 +512,9 @@ namespace GameDataFunction {
                     continue;
                 }
 
-                pGalaxyName = accessor.getName();
+                galaxyName = accessor.getName();
 
-                if (getCurrentGameDataHolder()->hasPowerStar(pGalaxyName, i)) {
+                if (getCurrentGameDataHolder()->hasPowerStar(galaxyName, i)) {
                     continue;
                 }
 
