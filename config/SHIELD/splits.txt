@@ -8614,7 +8614,7 @@ Game/System/StorySequenceExecutor.cpp:
 Game/System/StoryProgressTable.cpp:
 	.rodata     start:0x80699BE0 end:0x80699DC0
 
-Game/System/GalaxyInfoTable.cpp:
+Game/System/PowerStarNumTable.cpp:
 	.rodata     start:0x80699DC0 end:0x8069AB00
 
 Game/System/SysConfigFile.cpp:

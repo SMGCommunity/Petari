@@ -9347,7 +9347,7 @@ Game/System/StorySequenceExecutor.cpp:
 Game/System/StoryProgressTable.cpp:
 	.rodata     start:0x8053DC20 end:0x8053DE00
 
-Game/System/GalaxyInfoTable.cpp:
+Game/System/PowerStarNumTable.cpp:
 	.rodata     start:0x8053DE00 end:0x8053EB20
 
 Game/System/SysConfigFile.cpp:
