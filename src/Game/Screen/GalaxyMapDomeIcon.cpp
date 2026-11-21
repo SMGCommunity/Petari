@@ -1,8 +1,8 @@
 #include "Game/Screen/GalaxyMapDomeIcon.hpp"
 #include "Game/Screen/GalaxyNamePlate.hpp"
-#include "Game/System/GalaxyInfoTable.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
 #include "Game/System/GameDataConst.hpp"
+#include "Game/System/PowerStarNumTable.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
@@ -127,7 +127,7 @@ s32 GalaxyMapDomeIcon::calcDomeStatus() const {
 bool GalaxyMapDomeIcon::isComplete() const {
     JMapInfo mapInfo = JMapInfo();
 
-    mapInfo.attach(&GalaxyInfoTable_bcsv_start);
+    mapInfo.attach(&PowerStarNumTable_bcsv_start);
 
     CheckerIsComplete checker = CheckerIsComplete(_20);
 
@@ -187,7 +187,7 @@ void GalaxyMapDomeIcon::syncStatus() {
 bool GalaxyMapDomeIcon::hasNewGalaxy() const {
     JMapInfo mapInfo = JMapInfo();
 
-    mapInfo.attach(&GalaxyInfoTable_bcsv_start);
+    mapInfo.attach(&PowerStarNumTable_bcsv_start);
 
     CheckerIsExistNewGalaxy checker = CheckerIsExistNewGalaxy(_20);
 

@@ -12,9 +12,9 @@ extract:
 - symbol: StoryProgressTable_bcsv_start
   binary: assets/StoryProgressTable.bcsv
   header: assets/StoryProgressTable.hpp
-- symbol: GalaxyInfoTable_bcsv_start
-  binary: assets/GalaxyInfoTable.bcsv
-  header: assets/GalaxyInfoTable.hpp
+- symbol: PowerStarNumTable_bcsv_start
+  binary: assets/PowerStarNumTable.bcsv
+  header: assets/PowerStarNumTable.hpp
 - symbol: ErrorMessageArchive_rodata_start
   binary: assets/ErrorMessageArchive.arc
   header: assets/ErrorMessageArchive.hpp
