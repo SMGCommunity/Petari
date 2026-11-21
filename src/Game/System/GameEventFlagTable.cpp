@@ -1,5 +1,5 @@
 #include "Game/System/GameEventFlagTable.hpp"
-#include "Game/System/GalaxyInfoTable.hpp"
+#include "Game/System/PowerStarNumTable.hpp"
 #include "Game/Util/HashUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/SingletonHolder.hpp"
@@ -458,7 +458,7 @@ namespace GameEventFlagTable {
 
     s32 getGalaxyDependedFlags(const char** pFlags, int a1, const char* pName) {
         JMapInfo info;
-        info.attach(&GalaxyInfoTable_bcsv_start);
+        info.attach(&PowerStarNumTable_bcsv_start);
 
         JMapInfoIter iter = info.findElement("name", pName, 0);
 

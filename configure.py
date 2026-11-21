@@ -2640,7 +2640,7 @@ config.libs = [
             Object(MatchingFor(ALL_WII), "Game/System/SysConfigFile.cpp"),
             Object(MatchingFor(ALL_WII), "Game/System/UserFile.cpp"),
             Object(MatchingFor(ALL_WII), "Game/System/StoryProgressTable.cpp"),
-            Object(MatchingFor(ALL_WII), "Game/System/GalaxyInfoTable.cpp"),
+            Object(MatchingFor(ALL_WII), "Game/System/PowerStarNumTable.cpp"),
             Object(MatchingFor(ALL_WII), "Game/System/ErrorMessageArchive.cpp"),
         ],
     ),
