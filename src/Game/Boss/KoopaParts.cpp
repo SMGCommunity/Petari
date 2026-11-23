@@ -34,10 +34,10 @@ KoopaParts::KoopaParts(Koopa* pKoopa, const JMapInfoIter& rIter)
 }
 
 namespace {
-    PartsModel* createKoopaBodyParts(LiveActor* pActor, const char* pName, const char* pModelName, const char* pJointName) {
+    PartsModel* createKoopaBodyParts(LiveActor* pActor, const char* pName, const char* pModelName, const char* pFixPosCsvName) {
         PartsModel* pPartsModel = new PartsModel(pActor, pName, pModelName, nullptr, MR::DrawBufferType_Enemy, false);
 
-        pPartsModel->loadFixedPosition(pJointName);
+        pPartsModel->loadFixedPosition(pFixPosCsvName);
         pPartsModel->initWithoutIter();
 
         MR::initLightCtrl(pPartsModel);

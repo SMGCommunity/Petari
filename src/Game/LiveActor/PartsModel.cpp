@@ -126,8 +126,8 @@ void PartsModel::initFixedPosition(MtxPtr pMtx, const TVec3f& rLocalTrans, const
     mMtx = mFixedPosition->mMtx;
 }
 
-void PartsModel::loadFixedPosition(const char* pJointName) {
-    mFixedPosition = new FixedPosition(mHost, pJointName, nullptr);
+void PartsModel::loadFixedPosition(const char* pCsvName) {
+    mFixedPosition = new FixedPosition(mHost, pCsvName, nullptr);
     mMtx = mFixedPosition->mMtx;
 }
 
